@@ -35,9 +35,11 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   'cli-gemini': ['model', 'sandboxMode', 'timeoutSeconds'],
   'cli-claude-code': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
   // cli-opencode: opencode run --variant <high|medium|minimal> maps to reasoningEffort.
-  // sandboxMode is honored via --dangerously-skip-permissions when 'danger-full-access',
-  // otherwise default permission prompts. timeoutSeconds caps the spawn.
-  'cli-opencode': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
+  // sandboxMode is NOT supported — opencode CLI has no read-only equivalent and the
+  // YAML branches always pass --dangerously-skip-permissions. Including sandboxMode
+  // here without a runtime branch would be a schema-runtime contract violation
+  // (see packet 102 P1-028); reject it like we reject serviceTier for non-codex.
+  'cli-opencode': ['model', 'reasoningEffort', 'timeoutSeconds'],
 };
 
 export const GEMINI_SUPPORTED_MODELS = ['gemini-3.1-pro-preview'] as const;

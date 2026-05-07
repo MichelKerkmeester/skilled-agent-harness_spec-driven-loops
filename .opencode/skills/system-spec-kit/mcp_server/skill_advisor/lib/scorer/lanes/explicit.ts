@@ -236,6 +236,14 @@ export function scoreExplicitLane(prompt: string, projection: AdvisorProjection)
   if (/\b(continue|resume|launch|kick off|overnight|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
     push(scores, 'deep-research', 0.85, 'research-loop');
   }
+  // Disambiguation: "cli-opencode" / "cli opencode" / "opencode CLI" routes to the
+  // cli-opencode orchestrator skill. Bare "opencode" continues to route to sk-code
+  // (the project's primary opencode-stack code-author skill) via the `opencode` token
+  // boost above. This regex matches the explicit CLI/orchestrator framing.
+  if (/\bcli[-\s]opencode\b|\bopencode[-\s]cli\b/.test(lower)) {
+    push(scores, 'cli-opencode', 0.9, 'cli-opencode-orchestrator');
+    push(scores, 'sk-code', -0.5, 'cli-opencode-disambiguation');
+  }
   if (/\b(continue|resume|launch|start|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
     push(scores, 'deep-review', 0.85, 'review-loop');
     if (/\b(audit|spec folder|packet|convergence)\b/.test(lower)) {

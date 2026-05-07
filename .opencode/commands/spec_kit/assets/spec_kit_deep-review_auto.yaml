@@ -785,6 +785,7 @@ workflow:
               --agent general \
               --format json \
               --dangerously-skip-permissions \
+              --pure \
               --dir "{repo_root}" \
               {optional_variant_flag} \
               "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')"

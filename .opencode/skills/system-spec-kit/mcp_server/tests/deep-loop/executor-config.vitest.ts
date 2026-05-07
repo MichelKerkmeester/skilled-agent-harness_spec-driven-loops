@@ -131,6 +131,39 @@ describe('executor-config', () => {
     });
   });
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // cli-opencode (added in packet 101, hardened in packet 103)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  it('accepts a cli-opencode executor with a model and reasoningEffort variant', () => {
+    expect(
+      parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', reasoningEffort: 'high' }),
+    ).toMatchObject({
+      kind: 'cli-opencode',
+      model: 'opencode-go/glm-5.1',
+      reasoningEffort: 'high',
+    });
+  });
+
+  it('rejects sandboxMode for cli-opencode because the kind does not support read-only', () => {
+    expect(() =>
+      parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/qwen3.6-plus', sandboxMode: 'read-only' }),
+    ).toThrowError(/sandboxMode.*not supported by executor kind 'cli-opencode'/);
+  });
+
+  it('rejects serviceTier for cli-opencode (no opencode equivalent)', () => {
+    expect(() =>
+      parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', serviceTier: 'fast' }),
+    ).toThrowError(/serviceTier.*not supported by executor kind 'cli-opencode'/);
+  });
+
+  it('accepts cli-opencode without a model (no whitelist enforcement)', () => {
+    expect(parseExecutorConfig({ kind: 'cli-opencode' })).toMatchObject({
+      kind: 'cli-opencode',
+      model: null,
+    });
+  });
+
   it('lets CLI values override file values during resolution', () => {
     expect(resolveExecutorConfig({ cli: { kind: 'cli-codex', model: 'gpt-5.4' }, file: { kind: 'native' } })).toMatchObject({
       kind: 'cli-codex',
