@@ -4,8 +4,8 @@
   "title": "Phase 006 - skill advisor python",
   "description": "Migrate remaining skill advisor and Python support-tool defaults from singular `.opencode/skill` to plural `.opencode/skills`.",
   "level": 2,
-  "status": "draft",
-  "completion_pct": 0,
+  "status": "complete",
+  "completion_pct": 100,
   "key_topics": [
     "skill-advisor-python",
     "098-remediation",
@@ -21,5 +21,5 @@
   "importance_tier": "high",
   "context_type": "infrastructure-quality",
   "created_at": "2026-05-07T18:30:00Z",
-  "last_updated_at": "2026-05-07T18:30:00Z"
+  "last_updated_at": "2026-05-07T19:30:00Z"
 }

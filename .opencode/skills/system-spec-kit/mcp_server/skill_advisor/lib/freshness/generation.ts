@@ -9,7 +9,7 @@ import { GenerationMetadataSchema, type GenerationMetadata } from '../../schemas
 import { invalidateSkillGraphCaches, type CacheInvalidationEvent } from './cache-invalidation.js';
 import type { SkillGraphTrustState } from './trust-state.js';
 
-const GENERATION_RELATIVE_PATH = join('.opencode', 'skill', '.advisor-state', 'skill-graph-generation.json');
+const GENERATION_RELATIVE_PATH = join('.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json');
 const GENERATION_LOCK_STALE_MS = 30_000;
 const GENERATION_LOCK_WAIT_MS = 250;
 

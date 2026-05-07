@@ -56,7 +56,7 @@ NATIVE_TIMEOUT_SECONDS = 2.5
 NATIVE_ADVISOR_STATUS = os.path.join(
     REPO_ROOT,
     ".opencode",
-    "skill",
+    "skills",
     "system-spec-kit",
     "mcp_server",
     "dist",
@@ -67,7 +67,7 @@ NATIVE_ADVISOR_STATUS = os.path.join(
 NATIVE_ADVISOR_COMPAT = os.path.join(
     REPO_ROOT,
     ".opencode",
-    "skill",
+    "skills",
     "system-spec-kit",
     "mcp_server",
     "dist",
@@ -78,7 +78,7 @@ NATIVE_ADVISOR_COMPAT = os.path.join(
 NATIVE_GENERATION_MODULE = os.path.join(
     REPO_ROOT,
     ".opencode",
-    "skill",
+    "skills",
     "system-spec-kit",
     "mcp_server",
     "dist",

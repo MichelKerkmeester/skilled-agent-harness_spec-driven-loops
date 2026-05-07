@@ -44,7 +44,7 @@ from typing import Any, Dict, List, Optional
 
 # Reuse quick_validate.py constants (single source of truth in python).
 SCRIPT_DIR = Path(__file__).resolve().parent
-QUICK_VALIDATE_DIR = SCRIPT_DIR.parent.parent.parent / "skill" / "sk-doc" / "scripts"
+QUICK_VALIDATE_DIR = SCRIPT_DIR.parent.parent.parent / "skills" / "sk-doc" / "scripts"
 sys.path.insert(0, str(QUICK_VALIDATE_DIR))
 
 try:
@@ -154,7 +154,7 @@ class Item:
 
 def walk_skills(repo: Path) -> List[Item]:
     items: List[Item] = []
-    base = repo / ".opencode" / "skill"
+    base = repo / ".opencode" / "skills"
     if not base.is_dir():
         return items
     for skill_dir in sorted(base.iterdir()):
@@ -182,7 +182,7 @@ def walk_skills(repo: Path) -> List[Item]:
 
 def walk_commands(repo: Path) -> List[Item]:
     items: List[Item] = []
-    base = repo / ".opencode" / "command"
+    base = repo / ".opencode" / "commands"
     if not base.is_dir():
         return items
     for cmd in sorted(base.rglob("*.md")):
@@ -217,7 +217,7 @@ def walk_commands(repo: Path) -> List[Item]:
 def walk_agents(repo: Path) -> List[Item]:
     """Walk all four runtime agent surfaces, dedupe by name, annotate mirrors."""
     surfaces = [
-        (repo / ".opencode" / "agent", "yaml"),
+        (repo / ".opencode" / "agents", "yaml"),
         (repo / ".claude" / "agents", "yaml"),
         (repo / ".gemini" / "agents", "yaml"),
         (repo / ".codex" / "agents", "toml"),
