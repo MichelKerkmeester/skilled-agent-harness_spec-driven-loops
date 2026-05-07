@@ -192,11 +192,14 @@ def is_daemon_running() -> bool:
 
 def start_daemon() -> None:
     """Start the daemon as a background process."""
-    from .daemon import daemon_dir
+    from .daemon import daemon_dir, daemon_spawn_lock_path
 
     daemon_dir().mkdir(parents=True, exist_ok=True)
     pid_path = daemon_pid_path()
-    lock_fd = _try_acquire_pid_lock(pid_path)
+    # Patch 11+12: lock the client-side spawn-coordination file.
+    # The daemon process locks daemon.lock separately, so the daemon's
+    # acquire does not contend against this client lock during startup.
+    lock_fd = _try_acquire_pid_lock(daemon_spawn_lock_path())
     if lock_fd is None:
         return
 
@@ -209,13 +212,22 @@ def start_daemon() -> None:
         except (FileNotFoundError, ValueError):
             pass
 
-        _spawn_daemon_process()
+        # Patch 12: hold the spawn-coordination lock until the daemon either
+        # claims daemon.pid or its subprocess dies. Concurrent callers that
+        # come in after release will then see the populated PID file and skip
+        # the spawn instead of racing into a duplicate-spawn situation.
+        proc = _spawn_daemon_process()
+        _wait_for_daemon_claim(pid_path, proc)
     finally:
         lock_fd.close()
 
 
-def _spawn_daemon_process() -> None:
-    """Spawn the daemon subprocess. Caller owns lifecycle locking."""
+def _spawn_daemon_process() -> "subprocess.Popen":
+    """Spawn the daemon subprocess. Caller owns lifecycle locking.
+
+    Patch 12: returns the Popen handle so the caller can poll daemon.pid
+    and abort the wait if the spawn dies before claiming.
+    """
     from .daemon import daemon_dir
 
     log_path = daemon_dir() / "daemon.log"
@@ -233,21 +245,50 @@ def _spawn_daemon_process() -> None:
             # preventing its exit code from leaking back to the calling shell.
             _create_new_process_group = 0x00000200
             _detached_process = 0x00000008
-            subprocess.Popen(
+            return subprocess.Popen(
                 cmd,
                 stdout=log_fd,
                 stderr=log_fd,
                 stdin=subprocess.DEVNULL,
                 creationflags=_create_new_process_group | _detached_process,
             )
-        else:
-            subprocess.Popen(
-                cmd,
-                start_new_session=True,
-                stdout=log_fd,
-                stderr=log_fd,
-                stdin=subprocess.DEVNULL,
-            )
+        return subprocess.Popen(
+            cmd,
+            start_new_session=True,
+            stdout=log_fd,
+            stderr=log_fd,
+            stdin=subprocess.DEVNULL,
+        )
+
+
+def _wait_for_daemon_claim(
+    pid_path: Path,
+    spawned: "subprocess.Popen",
+    timeout: float = 5.0,
+) -> None:
+    """Block until daemon.pid contains a live PID OR the spawn has died.
+
+    Patch 12: bounds the spawn-coordination window so the client-side lock
+    is held until the daemon has actually claimed ownership. Concurrent
+    `start_daemon()` callers that come in after release see the populated
+    PID file and skip the spawn instead of racing.
+
+    Returns silently on timeout; the caller's later connect attempt will
+    surface any actual failure.
+    """
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        if spawned.poll() is not None:
+            return
+        try:
+            text = pid_path.read_text().strip()
+            if text:
+                pid = int(text)
+                if _pid_alive(pid):
+                    return
+        except (FileNotFoundError, ValueError):
+            pass
+        time.sleep(0.05)
 
 
 def _try_acquire_pid_lock(lock_path: Path) -> TextIO | None:
@@ -457,15 +498,19 @@ def ensure_daemon() -> DaemonClient:
         resp = client.handshake()
         if not _needs_restart(resp):
             return client
-        # Version or settings mismatch — restart atomically.
+        # Version or settings mismatch. Restart atomically.
         client.close()
-        lock_fd = _try_acquire_pid_lock(daemon_pid_path())
+        from .daemon import daemon_spawn_lock_path
+        # Patch 11+12: lock the client-side spawn-coordination file.
+        lock_fd = _try_acquire_pid_lock(daemon_spawn_lock_path())
         if lock_fd is None:
             _wait_for_daemon()
         else:
             try:
                 stop_daemon()
-                _spawn_daemon_process()
+                proc = _spawn_daemon_process()
+                # Patch 12: wait for the new daemon to claim before release.
+                _wait_for_daemon_claim(daemon_pid_path(), proc)
                 _wait_for_daemon()
             finally:
                 lock_fd.close()

@@ -173,6 +173,28 @@ def daemon_pid_path() -> Path:
     return daemon_dir() / "daemon.pid"
 
 
+def daemon_lock_path() -> Path:
+    """Return the path for the daemon's lifetime lock file.
+
+    Patch 11: held by the daemon process for its entire lifetime. Fences
+    sibling daemons that try to start while one is alive. Separate from
+    daemon.pid so operator scripts can read the PID file without lock
+    awareness, and separate from daemon.spawn-lock so client and daemon
+    do not contend on the same fd during startup.
+    """
+    return daemon_dir() / "daemon.lock"
+
+
+def daemon_spawn_lock_path() -> Path:
+    """Return the path for the client-side spawn-coordination lock file.
+
+    Patch 12: held briefly by the client during spawn-and-wait-for-claim.
+    Separate from daemon.lock so the spawned daemon can acquire its own
+    long-lived lock without contending against the client's coordination fd.
+    """
+    return daemon_dir() / "daemon.spawn-lock"
+
+
 def daemon_log_path() -> Path:
     """Return the path for the daemon's log file."""
     return daemon_dir() / "daemon.log"
@@ -629,7 +651,8 @@ def run_daemon() -> None:
     embedder = create_embedder(user_settings.embedding)
 
     pid_path = daemon_pid_path()
-    startup_lock_fd = _try_acquire_pid_lock(pid_path)
+    # Patch 11: lock the dedicated daemon.lock file, not daemon.pid.
+    startup_lock_fd = _try_acquire_pid_lock(daemon_lock_path())
     if startup_lock_fd is None:
         raise RuntimeError("daemon already running; refusing to start (lock contended)")
 

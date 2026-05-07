@@ -60,6 +60,13 @@ def _run_async_daemon(coco_dir: str, write_pid: bool = False) -> None:
     asyncio.run(daemon._async_daemon_main(object(), None))  # type: ignore[arg-type]
 
 
+class _DonePopenStub:
+    """Stub that satisfies the Popen interface used by `_wait_for_daemon_claim`."""
+
+    def poll(self) -> int:
+        return 0
+
+
 def _locked_start_worker(coco_dir: str, marker_path: str) -> None:
     from cocoindex_code import client as worker_client
     from cocoindex_code import daemon as worker_daemon
@@ -68,9 +75,10 @@ def _locked_start_worker(coco_dir: str, marker_path: str) -> None:
     os.environ["COCOINDEX_CODE_DIR"] = coco_dir
     worker_daemon.daemon_dir().mkdir(parents=True, exist_ok=True)
 
-    def _spawn() -> None:
+    def _spawn() -> _DonePopenStub:
         marker.write_text(marker.read_text() + "x" if marker.exists() else "x")
         time.sleep(0.2)
+        return _DonePopenStub()
 
     worker_client._spawn_daemon_process = _spawn  # type: ignore[method-assign]
     worker_client.start_daemon()

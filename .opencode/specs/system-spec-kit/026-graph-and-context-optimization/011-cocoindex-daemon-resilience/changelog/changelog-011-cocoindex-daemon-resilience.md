@@ -183,4 +183,58 @@ Phase 4 closed the open follow-ups from Phase 3. The shutdown path no longer han
 ### Follow-Ups
 
 - P2-3 from research: `cocoindex.db` Rust-binding opacity audit. Investigative; no clear actionable. Stays deferred.
-- Recommendations 2 and 3 from the Phase 3 live-test report (dedicated `daemon.lock` file plus client-side wait-for-claim). Patch 8 makes these unnecessary; both are belt-and-suspenders. Stays deferred.
+
+## 2026-05-07: Phase 5 (Patches 11 and 12, hardening pass)
+
+> Spec folder: `026-graph-and-context-optimization/011-cocoindex-daemon-resilience` (Level 2)
+> Parent packet: `026-graph-and-context-optimization`
+
+### Summary
+
+Phase 5 closes the last two recommendations from the Phase 3 live-test report. Both are belt-and-suspenders defenses on top of the Patch 8 sibling-check that the integrated flow already uses, but they reduce wasted process spawns under bursty client load and clean up the lock-versus-data-file conflation that Phase 3 left in place.
+
+The first attempt at Patch 11 used a single shared lock file for both the client coordination window and the daemon lifetime guard. That caused a regression where the client held the lock during spawn-coordination while the spawned daemon also tried to acquire it, producing `RuntimeError: lock contended` on every fresh start. The corrected design uses two separate lock files: one for the client window, one for the daemon lifetime.
+
+### Added
+
+- Patch 11: `daemon_lock_path()` returns `daemon_dir() / "daemon.lock"`. Held by the daemon process for its entire lifetime and acts as the singleton fence against sibling daemons. Operator scripts that read `daemon.pid` no longer need lock awareness.
+- Patch 11: `daemon_spawn_lock_path()` returns `daemon_dir() / "daemon.spawn-lock"`. Held briefly by the client during spawn-and-wait-for-claim. Separate from `daemon.lock` so the spawned daemon can acquire its own lifetime lock without contending against the parent client's coordination fd.
+- Patch 12: `_wait_for_daemon_claim(pid_path, spawned, timeout=5.0)` in `client.py`. Polls `daemon.pid` until it contains a live PID OR the spawned subprocess has died. Bounds the spawn-coordination window so concurrent `start_daemon()` callers see a populated PID file when they acquire the spawn lock and skip the duplicate spawn.
+- Patch 12: `_spawn_daemon_process()` now returns the `subprocess.Popen` handle so the caller can poll its exit status during the claim wait.
+- Four new unit tests covering Patch 11 and Patch 12: `test_daemon_lock_path_is_separate_from_pid_path`, `test_wait_for_daemon_claim_returns_when_pid_appears`, `test_wait_for_daemon_claim_returns_when_spawn_dies`, `test_wait_for_daemon_claim_returns_at_timeout`.
+
+### Changed
+
+- `client.start_daemon()` and `client.ensure_daemon()` lock `daemon.spawn-lock` instead of `daemon.pid`. Hold the lock until `_wait_for_daemon_claim` returns.
+- `daemon.run_daemon()` locks `daemon.lock` instead of `daemon.pid` for its lifetime guard. The sibling-check from Patch 8 still reads `daemon.pid`.
+- Test fixture `_locked_start_worker` was updated to return a `_DonePopenStub` from its mocked `_spawn_daemon_process`, since the production `_spawn_daemon_process` now returns a `Popen` and `_wait_for_daemon_claim` calls `.poll()` on it.
+
+### Fixed
+
+- Concurrent client spawn waste. Without Patch 12, three concurrent `ccc status` callers each spawned a daemon process. Two would exit with the Patch 8 sibling-check, but the spawn cycles were wasted. Now the spawn-coordination lock holds the slow path until daemon.pid is populated, so the second and third callers acquire the lock, see the populated PID file, and skip the spawn.
+- Lock-versus-data-file conflation from Phase 3. The lock file is now distinct from the PID file. Operator scripts reading `daemon.pid` cannot accidentally interfere with locking semantics.
+
+### Verification
+
+- Full pytest suite: 20 of 20 PASS in 9.32 seconds. Includes 13 unit tests plus 7 E2E and integration tests.
+- Patch 11+12 unit tests in isolation: 4 of 4 PASS in 0.73 seconds.
+- pipx redeploy: `cocoindex-code 0.2.3+spec.kit.fork.0.2.0`. Verified `daemon_lock_path` and `_wait_for_daemon_claim` markers in the deployed package.
+- Live T1b (3 concurrent `ccc status`): all 3 returned successfully, 1 daemon survived (PID 3016), `daemon.pid` correct.
+- Live T5 (second daemon-spawn attempt while one alive): exits cleanly with `RuntimeError: daemon already running at PID 3016; refusing to start`. Patch 8 sibling-check still fires.
+- Live T6 (log duplication): 2 INFO lines, 2 unique. Factor 1.00. Patch 9 still working.
+- Daemon-dir contents post-test show all 4 expected files: `daemon.lock`, `daemon.pid`, `daemon.sock`, `daemon.spawn-lock`.
+
+### Files Changed
+
+| File | What changed |
+|------|--------------|
+| `mcp_server/cocoindex_code/daemon.py` | Patch 11: added `daemon_lock_path()` and `daemon_spawn_lock_path()`. `run_daemon` now locks `daemon.lock`. About +20 lines. |
+| `mcp_server/cocoindex_code/client.py` | Patch 11+12: `start_daemon` and `ensure_daemon` lock `daemon.spawn-lock`. `_spawn_daemon_process` returns Popen. New helper `_wait_for_daemon_claim`. About +50 lines. |
+| `mcp_server/tests/test_daemon.py` | 4 new unit tests for Patches 11 and 12. About +60 lines. |
+| `mcp_server/tests/test_e2e_daemon.py` | `_locked_start_worker` mock returns `_DonePopenStub`. About +10 lines. |
+| `changelog/changelog-011-cocoindex-daemon-resilience.md` | This Phase 5 entry. |
+| `implementation-summary.md` | Updated to mark recommendations 2 and 3 closed; refreshed file-change count. |
+
+### Follow-Ups
+
+- P2-3 from research: `cocoindex.db` Rust-binding opacity audit. Investigative; no clear actionable. Stays deferred.

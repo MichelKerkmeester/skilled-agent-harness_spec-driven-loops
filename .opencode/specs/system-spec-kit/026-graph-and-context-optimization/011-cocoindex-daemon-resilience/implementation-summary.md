@@ -168,7 +168,6 @@ If `pgrep -fc "ccc run-daemon"` returns more than 1, or if a daemon is unreachab
 ### Open follow-ups
 
 1. P2-3 from research: `cocoindex.db` Rust-binding opacity audit. Investigative; no clear actionable. Stays deferred.
-2. Recommendations from the Phase 3 live-test report that were not implemented: dedicated lock file (`daemon.lock` separate from `daemon.pid`) and client-side wait-for-daemon-claim. Patch 8 made these unnecessary; both would only be belt-and-suspenders.
 
 ### Closed in Phase 4
 
@@ -176,6 +175,11 @@ If `pgrep -fc "ccc run-daemon"` returns more than 1, or if a daemon is unreachab
 - E2E hang follow-up: confirmed all 5 tests pass cleanly under the rebuilt venv.
 - Test-file P2 sk-code gaps (shebangs plus docstring): closed.
 - Local venv broken by reorg: rebuilt against the post-reorg path.
+
+### Closed in Phase 5 (hardening pass)
+
+- Recommendation 2 from the Phase 3 live-test report: dedicated lock file separate from `daemon.pid`. Closed by Patch 11. The daemon now locks `daemon.lock` for its lifetime and the client locks `daemon.spawn-lock` during spawn coordination. Operator scripts can read `daemon.pid` without lock awareness.
+- Recommendation 3 from the Phase 3 live-test report: client-side wait-for-daemon-claim. Closed by Patch 12. `_wait_for_daemon_claim` polls `daemon.pid` until it contains a live PID or the spawned subprocess has died. Concurrent `start_daemon` callers see a populated PID file and skip the duplicate spawn.
 <!-- /ANCHOR:limitations -->
 
 ---

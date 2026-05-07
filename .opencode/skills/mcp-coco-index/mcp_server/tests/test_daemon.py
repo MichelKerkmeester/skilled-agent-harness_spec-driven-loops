@@ -117,3 +117,66 @@ def test_handle_connection_six_sites_parameterized_placeholder():
     for _ in range(6):
         _safe_send_bytes(conn, b"payload")
     assert conn.send_bytes.call_count == 6
+
+
+def test_daemon_lock_path_is_separate_from_pid_path():
+    """Patch 11: daemon.lock and daemon.pid are different files."""
+    from cocoindex_code.daemon import daemon_lock_path, daemon_pid_path
+
+    assert daemon_lock_path() != daemon_pid_path()
+    assert daemon_lock_path().name == "daemon.lock"
+    assert daemon_pid_path().name == "daemon.pid"
+    assert daemon_lock_path().parent == daemon_pid_path().parent
+
+
+def test_wait_for_daemon_claim_returns_when_pid_appears(tmp_path, monkeypatch):
+    """Patch 12: returns as soon as daemon.pid contains a live PID."""
+    from cocoindex_code import client as client_module
+
+    pid_path = tmp_path / "daemon.pid"
+    spawned = MagicMock()
+    spawned.poll = MagicMock(return_value=None)  # spawn still running
+
+    # Drop the live PID partway through. _pid_alive is patched to True.
+    monkeypatch.setattr(client_module, "_pid_alive", lambda pid: True)
+    pid_path.write_text(str(os.getpid()))
+
+    import time as _time
+
+    start = _time.monotonic()
+    client_module._wait_for_daemon_claim(pid_path, spawned, timeout=2.0)
+    duration = _time.monotonic() - start
+    assert duration < 0.5, f"should have returned immediately on alive PID, took {duration:.2f}s"
+
+
+def test_wait_for_daemon_claim_returns_when_spawn_dies(tmp_path):
+    """Patch 12: returns when the spawned process exits, even if PID never appears."""
+    from cocoindex_code import client as client_module
+
+    pid_path = tmp_path / "daemon.pid"  # never populated
+    spawned = MagicMock()
+    spawned.poll = MagicMock(return_value=1)  # already exited
+
+    import time as _time
+
+    start = _time.monotonic()
+    client_module._wait_for_daemon_claim(pid_path, spawned, timeout=2.0)
+    duration = _time.monotonic() - start
+    assert duration < 0.5, f"should have returned on dead spawn, took {duration:.2f}s"
+
+
+def test_wait_for_daemon_claim_returns_at_timeout(tmp_path, monkeypatch):
+    """Patch 12: bounded wait when neither claim happens nor spawn dies."""
+    from cocoindex_code import client as client_module
+
+    pid_path = tmp_path / "daemon.pid"  # never populated
+    spawned = MagicMock()
+    spawned.poll = MagicMock(return_value=None)  # spawn still running
+
+    import time as _time
+
+    start = _time.monotonic()
+    client_module._wait_for_daemon_claim(pid_path, spawned, timeout=0.5)
+    duration = _time.monotonic() - start
+    assert duration >= 0.4, f"should have waited ~0.5s, took {duration:.2f}s"
+    assert duration < 1.0, f"should not exceed timeout budget, took {duration:.2f}s"
