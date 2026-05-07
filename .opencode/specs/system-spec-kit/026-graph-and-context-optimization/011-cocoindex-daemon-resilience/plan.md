@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "specs/system-spec-kit/027-cocoindex-daemon-resilience"
+    packet_pointer: "specs/system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience"
     last_updated_at: "2026-05-07T07:32:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored plan after spec landed"
