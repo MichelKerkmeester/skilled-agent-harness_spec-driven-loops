@@ -30,7 +30,7 @@ user_inputs:
   review_target_type: "[spec-folder|skill|agent|track|files] - Target type for scope derivation. REQUIRED."
   review_dimensions: "[all|correctness,security,traceability,maintainability] - Dimensions to check. Default: all."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for state files. REQUIRED."
-  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see sk-deep-review/references/loop_protocol.md §Lifecycle Branches."
+  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see deep-review/references/loop_protocol.md §Lifecycle Branches."
   max_iterations: 7
   convergence_threshold: 0.10
 
@@ -53,15 +53,15 @@ context_loading:
 # SKILL REFERENCE
 # ─────────────────────────────────────────────────────────────────
 skill_reference:
-  skill: sk-deep-review
-  skill_md: .opencode/skills/sk-deep-review/SKILL.md
+  skill: deep-review
+  skill_md: .opencode/skills/deep-review/SKILL.md
   references:
-    loop_protocol: .opencode/skills/sk-deep-review/references/loop_protocol.md
-    state_format: .opencode/skills/sk-deep-review/references/state_format.md
-    convergence: .opencode/skills/sk-deep-review/references/convergence.md
+    loop_protocol: .opencode/skills/deep-review/references/loop_protocol.md
+    state_format: .opencode/skills/deep-review/references/state_format.md
+    convergence: .opencode/skills/deep-review/references/convergence.md
   templates:
-    config: .opencode/skills/sk-deep-review/assets/deep_review_config.json
-    strategy: .opencode/skills/sk-deep-review/assets/deep_review_strategy.md
+    config: .opencode/skills/deep-review/assets/deep_review_config.json
+    strategy: .opencode/skills/deep-review/assets/deep_review_strategy.md
 
 # ─────────────────────────────────────────────────────────────────
 # AGENT CONFIGURATION
@@ -214,7 +214,7 @@ workflow:
             generation: "{prior_generation + 1}"
           append_jsonl: '{"type":"event","event":"restarted","mode":"review","sessionId":"{session_id}","parentSessionId":"{prior_session_id}","lineageMode":"restart","generation":{generation},"archivedPath":"{state_paths.archive_root}/{timestamp_slug}","timestamp":"{ISO_8601_NOW}"}'
           skip_to: step_create_config
-        note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See sk-deep-review/references/loop_protocol.md §Lifecycle Branches for the one-session contract."
+        note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-review/references/loop_protocol.md §Lifecycle Branches for the one-session contract."
         on_completed_session:
           log: "Prior session already completed. Either archive the completed review/ tree and start a fresh session, or jump straight to synthesis with the existing artifacts."
           skip_to: phase_synthesis
@@ -285,7 +285,7 @@ workflow:
 
       step_create_config:
         action: "Create deep-review-config.json from template with review-specific fields"
-        template: .opencode/skills/sk-deep-review/assets/deep_review_config.json
+        template: .opencode/skills/deep-review/assets/deep_review_config.json
         populate:
           topic: "Review: {review_target}"
           mode: "review"
@@ -334,7 +334,7 @@ workflow:
 
       step_create_strategy:
         action: "Create review strategy file from deep_review_strategy.md template"
-        template: .opencode/skills/sk-deep-review/assets/deep_review_strategy.md
+        template: .opencode/skills/deep-review/assets/deep_review_strategy.md
         populate:
           review_target: "{review_target}"
           review_target_type: "{review_target_type}"
@@ -636,7 +636,7 @@ workflow:
             Stuck count: {stuck_count}
             Provisional Verdict: {PASS|CONDITIONAL|FAIL|PENDING} hasAdvisories={has_advisories}
           render_prompt_pack:
-            template_path: ".opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl"
+            template_path: ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl"
             renderer: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             variables:
@@ -853,7 +853,7 @@ workflow:
 
       step_reduce_review_state:
         action: "Run reducer to refresh the canonical findings registry before dashboard generation"
-        command: "node .opencode/skills/sk-deep-review/scripts/reduce-state.cjs {spec_folder}"
+        command: "node .opencode/skills/deep-review/scripts/reduce-state.cjs {spec_folder}"
         read:
           - "{state_paths.state_log}"
           - "{state_paths.iteration_pattern}"
@@ -1021,7 +1021,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/sk-deep-review/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+        command: "node .opencode/skills/deep-review/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"
@@ -1079,7 +1079,7 @@ workflow:
              - Convergence summary, coverage summary, ruled-out claims, sources reviewed
              - Cross-reference appendix MUST be split into `Core Protocols` and `Overlay Protocols`
 
-          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `sk-deep-review/references/loop_protocol.md §Lifecycle Branches`.)
+          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-review/references/loop_protocol.md §Lifecycle Branches`.)
         output: "{state_paths.review_output}"
 
       step_convergence_report:

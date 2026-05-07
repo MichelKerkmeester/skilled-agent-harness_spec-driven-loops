@@ -131,7 +131,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      D) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort. No service-tier.
 
    Reply format examples:
-   - `"skill:sk-deep-research, B, all, A, A"`
+   - `"skill:deep-research, B, all, A, A"`
    - `"review the deep-review packet output, E, correctness security, B, B, 5"`
    - `"Review review/review-report.md contract drift, E, all, A, 7, 0.10, B, gpt-5.4, high, fast"`
    - `"review executor drift across CLIs, E, all, A, 7, 0.10, C, gpt-5.4, _, _"`
@@ -287,21 +287,21 @@ STATUS=FAIL ERROR="[message]"
 
 ## 8. SKILL REFERENCE
 
-Full protocol documentation: `.opencode/skills/sk-deep-review/SKILL.md`
+Full protocol documentation: `.opencode/skills/deep-review/SKILL.md`
 
 Key references:
-- Review contract: `sk-deep-review/assets/review_mode_contract.yaml`
-- Review strategy template: `sk-deep-review/assets/deep_review_strategy.md`
-- Review dashboard template: `sk-deep-review/assets/deep_review_dashboard.md`
-- Review config template: `sk-deep-review/assets/deep_review_config.json`
+- Review contract: `deep-review/assets/review_mode_contract.yaml`
+- Review strategy template: `deep-review/assets/deep_review_strategy.md`
+- Review dashboard template: `deep-review/assets/deep_review_dashboard.md`
+- Review config template: `deep-review/assets/deep_review_config.json`
 
 ---
 
 ## 9. EXAMPLES
 
 ```
-/spec_kit:deep-review "skill:sk-deep-research"
-/spec_kit:deep-review:auto "specs/03--commands-and-skills/030-sk-deep-research-review-mode/"
+/spec_kit:deep-review "skill:deep-research"
+/spec_kit:deep-review:auto "specs/03--commands-and-skills/030-deep-research-review-mode/"
 /spec_kit:deep-review:confirm "agent:deep-research" --max-iterations=5
 /spec_kit:deep-review "track:03--commands-and-skills"
 /spec_kit:deep-review:auto ".opencode/skills/sk-git/**/*.md" --convergence=0.15
@@ -384,4 +384,4 @@ Convergence thresholds and recovery settings used by this command are a governed
 **References:**
 - Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`, `compositeStopScore`
-- Convergence reference: `.opencode/skills/sk-deep-review/references/convergence.md`
+- Convergence reference: `.opencode/skills/deep-review/references/convergence.md`
