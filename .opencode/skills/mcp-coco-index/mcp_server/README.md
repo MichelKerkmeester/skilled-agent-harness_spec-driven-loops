@@ -64,6 +64,20 @@ Commit `1bbe80986` added the daemon resilience patch set for packet `026/011-coc
   Result: handles concurrent client storms without queue overflow.
 - **Patch 7**: Operator recovery procedure documented in `implementation-summary.md` Known Limitations.
   Reference: 6-step stale-daemon recovery for duplicate processes, stale runtime files and reachability checks.
+- **Patch 8**: Sibling-check reads the previous PID from `daemon.pid` before the daemon writes its own PID. A live sibling raises `RuntimeError("daemon already running at PID N; refusing to start")`.
+  File: `cocoindex_code/daemon.py:631-660`.
+  Test: `tests/test_e2e_daemon.py::test_concurrent_run_daemon_integrated_flow`.
+- **Patch 9**: `logging.StreamHandler` attaches only when `sys.stderr.isatty()` is true. Spawned daemon stderr already redirects to `daemon.log`, so file logs no longer receive duplicate lines.
+  File: `cocoindex_code/daemon.py:666-684`.
+- **Patch 10**: Shutdown task-join wraps `asyncio.gather(*tasks, return_exceptions=True)` in `asyncio.wait_for(..., timeout=10.0)`.
+  File: `cocoindex_code/daemon.py:786-798`.
+  Test: `tests/test_e2e_daemon.py::test_shutdown_timeout_with_stuck_task`.
+- **Patch 11**: `daemon_lock_path()` and `daemon_spawn_lock_path()` split the lifetime singleton lock from client spawn coordination.
+  File: `cocoindex_code/daemon.py:171-200`.
+  Test: `tests/test_daemon.py::test_daemon_lock_path_is_separate_from_pid_path`.
+- **Patch 12**: `_wait_for_daemon_claim()` holds spawn coordination until `daemon.pid` contains a live PID or the spawned process exits. `_spawn_daemon_process()` now returns the `subprocess.Popen` handle.
+  File: `cocoindex_code/client.py:269-310`.
+  Tests: `tests/test_daemon.py::test_wait_for_daemon_claim_returns_when_pid_appears`, `::test_wait_for_daemon_claim_returns_when_spawn_dies`, `::test_wait_for_daemon_claim_returns_at_timeout`.
 
 ---
 

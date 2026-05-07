@@ -796,9 +796,11 @@ Before you start:
 1. `pkill -f "ccc run-daemon"`. Terminate all daemon processes.
 2. `pgrep -fc "ccc run-daemon"`. Confirm returns 0.
 3. Optional: `pgrep -f multiprocessing.resource_tracker`. Orphan tracker children should self-exit.
-4. `ls ~/.cocoindex_code/`. Inspect for stale `daemon.pid` and `daemon.sock`.
-5. `ccc run-daemon`. Start fresh. The Patch 1 pre-flight check handles stale state automatically.
+4. `ls ~/.cocoindex_code/`. Inspect for stale `daemon.pid`, `daemon.sock`, `daemon.lock` and `daemon.spawn-lock`.
+5. `ccc run-daemon`. Start fresh. The Patch 1 pre-flight, Patch 8 sibling-check and Patch 12 claim wait handle stale state automatically.
 6. `ccc status` (or equivalent reachability probe). Confirm the new daemon is reachable.
+
+The two lock files are 0-byte placeholders. They can survive across runs. Their content does not matter because the active state lives in the inode lock, so do not clean them up for size or content alone.
 
 Expected result:
 
@@ -806,6 +808,7 @@ Expected result:
 - `ccc status` reaches the daemon without connection errors.
 - `daemon.pid` names the live daemon process.
 - `daemon.sock` belongs to that daemon on POSIX systems.
+- `daemon.lock` is held by the daemon process, and `daemon.spawn-lock` exists for client spawn coordination.
 
 <!-- /ANCHOR:troubleshooting -->
 

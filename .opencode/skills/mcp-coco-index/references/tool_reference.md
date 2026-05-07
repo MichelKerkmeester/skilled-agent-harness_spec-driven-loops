@@ -243,6 +243,10 @@ Source files:
 | Socket-unlink guard | `_unlink_stale_socket` reads `daemon.pid` before removing `daemon.sock`. If the PID belongs to a live sibling daemon, startup raises `RuntimeError` and leaves the sibling socket intact. |
 | Bounded daemon logs | The daemon uses `RotatingFileHandler` at 10 MB per file with 5 backups. Disk use for daemon logs caps at 60 MB total. |
 | Wider accept backlog | The daemon Listener backlog is 128 instead of the stdlib default of 1. Concurrent client storms queue without the old single-connection bottleneck. |
+| Bounded shutdown join | Shutdown wraps handler-task gather in `asyncio.wait_for(..., timeout=10.0)`. A stuck handler task cannot block daemon exit past 10 seconds. |
+| Separate lock files | The daemon holds `daemon.lock` for its lifetime. Clients hold `daemon.spawn-lock` only during spawn coordination. `daemon.pid` stays an informational file. |
+| Spawn-claim wait | `_wait_for_daemon_claim()` keeps the spawn lock until `daemon.pid` contains a live PID or the spawned process exits. Later callers see the claimed PID and skip duplicate spawn work. |
+| Five-file daemon directory | A live daemon has `daemon.pid`, `daemon.sock`, `daemon.log`, `daemon.lock` and `daemon.spawn-lock` under `~/.cocoindex_code/`. The two lock files are 0-byte placeholders. |
 
 Operational notes:
 

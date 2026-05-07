@@ -21,7 +21,7 @@ End-to-end tests verify the commands as operators use them rather than only test
 ## 2. CURRENT REALITY
 
 The suite covers init, index, status, search filters, reset modes, daemon stop and restart, refresh search, not-initialized errors, subdirectory behavior, root discovery and gitignore respect.
-The 5 E2E tests authored by 026/011 Phase 2 are present but currently hang in the test runner (subprocess fixture timing follow-up).
+The daemon integration count moved from 5 tests to 7. The added tests are `test_concurrent_run_daemon_integrated_flow` and `test_shutdown_timeout_with_stuck_task`.
 <!-- /ANCHOR:current-reality -->
 
 ---
@@ -36,7 +36,7 @@ The 5 E2E tests authored by 026/011 Phase 2 are present but currently hang in th
 | `.opencode/skills/mcp-coco-index/tests/test_e2e.py:141` | Test | Covers the full happy-path session. |
 | `.opencode/skills/mcp-coco-index/tests/test_e2e.py:197` | Test | Covers incremental indexing. |
 | `.opencode/skills/mcp-coco-index/tests/test_e2e.py:307` | Test | Covers gitignore-respecting search results. |
-| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py:94` | Test | Covers concurrency, version-mismatch race, listener backlog, log rotation and socket-unlink guard. |
+| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py:94` | Test | Runs 7 tests covering daemon Patches 1-12, including concurrency, shutdown timeout, version-mismatch race, listener backlog, log rotation and socket-unlink guard. |
 
 ### Validation And Tests
 

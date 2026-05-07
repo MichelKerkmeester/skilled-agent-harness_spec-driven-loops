@@ -21,7 +21,8 @@ Most user-facing commands do not ask operators to start the daemon manually. The
 ## 2. CURRENT REALITY
 
 `ensure_daemon` first tries an existing socket. If the daemon is missing, version-stale or settings-stale, it starts or restarts the process and retries the handshake.
-Patch 1 added lock-based atomic spawn around daemon startup. `start_daemon()` creates the daemon directory, calls `_try_acquire_pid_lock()` on `daemon.pid`, checks `_pid_alive()` for any stored PID, removes stale runtime files through `_cleanup_stale_files()` and then calls `_spawn_daemon_process()`. POSIX uses `fcntl.flock(fd, LOCK_EX | LOCK_NB)`. Win32 uses `msvcrt.locking(fd, LK_NBLCK, 1)`. Concurrent `ensure_daemon` callers never spawn duplicate daemon processes.
+Patch 1 added lock-based atomic spawn around daemon startup. `start_daemon()` creates the daemon directory, takes the spawn coordination lock, checks `_pid_alive()` for any stored PID, removes stale runtime files through `_cleanup_stale_files()` and then calls `_spawn_daemon_process()`. POSIX uses `fcntl.flock(fd, LOCK_EX | LOCK_NB)`. Win32 uses `msvcrt.locking(fd, LK_NBLCK, 1)`. Concurrent `ensure_daemon` callers never spawn duplicate daemon processes.
+Patch 8 added a sibling-check before the daemon writes its own PID. A live sibling raises `RuntimeError("daemon already running at PID N; refusing to start")`. Patches 11 and 12 split daemon locking across `daemon.lock` and `daemon.spawn-lock`, then hold spawn coordination until `daemon.pid` contains a live PID or the spawned process exits. `daemon.pid` is now informational.
 <!-- /ANCHOR:current-reality -->
 
 ---
@@ -39,6 +40,9 @@ Patch 1 added lock-based atomic spawn around daemon startup. `start_daemon()` cr
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:283` | Client | `_pid_alive` checks stored daemon PIDs across POSIX and Win32. |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:382` | Client | `_cleanup_stale_files` removes stale PID and socket files after death confirmation. |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:217` | Client | `_spawn_daemon_process` starts the detached daemon subprocess. |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:264` | Client | `_wait_for_daemon_claim` waits until `daemon.pid` contains a live PID or the spawned process exits. |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:188` | Daemon | `daemon_spawn_lock_path` defines the client-side spawn coordination lock. |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:631` | Daemon | Patch 8 sibling-check rejects startup when an alive sibling owns `daemon.pid`. |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:430` | Client | Detects restart requirements. |
 
 ### Validation And Tests

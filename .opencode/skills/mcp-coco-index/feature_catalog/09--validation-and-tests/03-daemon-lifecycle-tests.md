@@ -21,7 +21,7 @@ Daemon tests exercise the core process boundary between client and background re
 ## 2. CURRENT REALITY
 
 The suite starts a daemon in test fixtures, handshakes with it, checks version mismatch behavior, indexes a sample project, searches results, validates project removal and proves search waits during active indexing.
-The 9 daemon-resilience unit tests added by 026/011 Phase 2 pass in 0.40s under `mcp_server/.venv/bin/python`.
+The 13 daemon-resilience unit tests in `test_daemon.py` cover Patches 1-7 plus the Patch 11 and 12 lock split. The Phase 4 venv rebuild met the required runner path at `mcp_server/.venv/bin/python`.
 <!-- /ANCHOR:current-reality -->
 
 ---
@@ -42,6 +42,10 @@ The 9 daemon-resilience unit tests added by 026/011 Phase 2 pass in 0.40s under 
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py:74` | Test | `test_socket_unlink_guard_alive_sibling` covers live sibling protection. |
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py:90` | Test | `test_socket_unlink_guard_dead_sibling` covers dead sibling cleanup. |
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py:104` | Test | `test_handle_connection_six_sites_parameterized_placeholder` covers the 6 safe-send sites. |
+| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py:122` | Test | `test_daemon_lock_path_is_separate_from_pid_path` covers the Patch 11 lock-file split. |
+| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py:132` | Test | `test_wait_for_daemon_claim_returns_when_pid_appears` covers the Patch 12 live-PID claim path. |
+| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py:152` | Test | `test_wait_for_daemon_claim_returns_when_spawn_dies` covers the Patch 12 dead-spawn path. |
+| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py:168` | Test | `test_wait_for_daemon_claim_returns_at_timeout` covers the Patch 12 timeout path. |
 
 ### Validation And Tests
 
