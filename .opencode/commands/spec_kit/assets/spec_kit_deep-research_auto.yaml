@@ -714,6 +714,28 @@ workflow:
             model: "{config.executor.model}"
             reasoningEffort: "{config.executor.reasoningEffort}"
             serviceTier: "{config.executor.serviceTier}"
+        if_cli_opencode:
+          command: |
+            opencode run \
+              --model "{config.executor.model}" \
+              --agent general \
+              --format json \
+              --dangerously-skip-permissions \
+              --dir "{repo_root}" \
+              {optional_variant_flag} \
+              "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')"
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          render_hint:
+            optional_variant_flag: |
+              If config.executor.reasoningEffort is set and non-null, expand to: --variant {config.executor.reasoningEffort}
+              Otherwise expand to empty string.
+          notes:
+            - "opencode run takes a positional message; prompt is fed via command substitution"
+            - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
+            - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
+            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude/Codex/Gemini/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         post_dispatch_validate:
           validator: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"

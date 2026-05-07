@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/101-cli-opencode-executor",
+  "title": "101 - cli-opencode executor support",
+  "description": "Adds cli-opencode as a 5th supported executor for the deep-review/deep-research workflows; enables hands-off iteration dispatch via opencode run.",
+  "level": 2,
+  "status": "complete",
+  "completion_pct": 100,
+  "key_topics": ["101", "cli-opencode", "executor", "deep-review", "deep-research"],
+  "trigger_phrases": ["101 cli-opencode executor", "opencode executor"],
+  "importance_tier": "high",
+  "context_type": "infrastructure-quality",
+  "created_at": "2026-05-07T21:00:00Z",
+  "last_updated_at": "2026-05-07T21:00:00Z"
+}

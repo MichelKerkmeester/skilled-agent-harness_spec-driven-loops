@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/101-cli-opencode-executor",
+  "spec_folder": "skilled-agent-orchestration/101-cli-opencode-executor",
+  "parent_id": "skilled-agent-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": ["skilled-agent-orchestration/100-099-remediation"],
+    "supersedes": [],
+    "related_to": ["skilled-agent-orchestration/099-track-rereview"]
+  },
+  "derived": {
+    "trigger_phrases": ["101 cli-opencode executor", "opencode executor"],
+    "key_topics": ["101", "cli-opencode", "executor"],
+    "status": "complete",
+    "completion_pct": 100,
+    "level": 2,
+    "is_phase_parent": false
+  }
+}

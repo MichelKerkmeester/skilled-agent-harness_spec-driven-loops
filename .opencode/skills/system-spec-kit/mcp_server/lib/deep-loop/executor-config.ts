@@ -4,7 +4,7 @@
 
 import { z } from 'zod';
 
-export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-gemini', 'cli-claude-code'] as const;
+export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-gemini', 'cli-claude-code', 'cli-opencode'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
 export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh'] as const;
@@ -34,6 +34,10 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds'],
   'cli-gemini': ['model', 'sandboxMode', 'timeoutSeconds'],
   'cli-claude-code': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
+  // cli-opencode: opencode run --variant <high|medium|minimal> maps to reasoningEffort.
+  // sandboxMode is honored via --dangerously-skip-permissions when 'danger-full-access',
+  // otherwise default permission prompts. timeoutSeconds caps the spawn.
+  'cli-opencode': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
 };
 
 export const GEMINI_SUPPORTED_MODELS = ['gemini-3.1-pro-preview'] as const;
