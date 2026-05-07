@@ -71,6 +71,12 @@ node_modules/
 # Python
 # ───────────────────────────────────────────
 __pycache__/
+*.pyc
+*.pyo
+build/
+dist/
+*.egg-info/
+.pytest_cache/
 
 # Temporary files
 # ───────────────────────────────────────────
