@@ -36,7 +36,15 @@ const AUTOSAVE_TIMEOUT_MS = 4000;
 const IS_CLI_ENTRY = process.argv[1] ? resolve(process.argv[1]) === fileURLToPath(import.meta.url) : false;
 
 function resolveGenerateContextScriptPath(): string | null {
-  const explicitPath = process.env.SPECKIT_GENERATE_CONTEXT_SCRIPT;
+  // Test-only env override: SPECKIT_GENERATE_CONTEXT_SCRIPT is honored only when
+  // NODE_ENV='test' or SPECKIT_TEST='true'. In production, the env var is ignored
+  // to prevent malformed/hostile values from redirecting autosave script execution
+  // before workflow path resolution. See packet 097/P1-006 + 098/004.
+  const isTestMode =
+    process.env.NODE_ENV === 'test' || process.env.SPECKIT_TEST === 'true';
+  const explicitPath = isTestMode
+    ? process.env.SPECKIT_GENERATE_CONTEXT_SCRIPT
+    : undefined;
   const candidates = [
     explicitPath?.trim(),
     resolve(HOOK_DIR, '../../../scripts/dist/memory/generate-context.js'),
