@@ -17,15 +17,16 @@ Reducer-generated observability surface for the active review packet.
 ## 2. STATUS
 - Review Target: track:skilled-agent-orchestration (packets 093, 094, 095, 096 — architectural cross-phase audit) (track)
 - Started: 2026-05-07T14:46:56Z
-- Status: INITIALIZED
+- Status: COMPLETE
 - Iteration: 10 of 10
-- Provisional Verdict: PASS
+- Provisional Verdict: FAIL
 - hasAdvisories: false
 - Session ID: 2026-05-07T14:46:56Z
 - Parent Session: none
 - Lifecycle Mode: new
 - Generation: 1
 - continuedFromRun: none
+- stopReason: maxIterationsReached
 
 <!-- /ANCHOR:status -->
 <!-- ANCHOR:findings-summary -->
@@ -33,9 +34,9 @@ Reducer-generated observability surface for the active review packet.
 
 | Severity | Count |
 |----------|------:|
-| P0 (Blockers) | 0 |
-| P1 (Required) | 0 |
-| P2 (Suggestions) | 0 |
+| P0 (Blockers) | 1 |
+| P1 (Required) | 13 |
+| P2 (Suggestions) | 8 |
 | Resolved | 0 |
 
 <!-- /ANCHOR:findings-summary -->
@@ -61,10 +62,10 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 0 |
-| security | covered | 0 |
-| traceability | covered | 0 |
-| maintainability | covered | 0 |
+| correctness | covered | 10 |
+| security | covered | 3 |
+| traceability | covered | 5 |
+| maintainability | covered | 4 |
 
 <!-- /ANCHOR:dimension-coverage -->
 <!-- ANCHOR:blocked-stops -->
@@ -83,10 +84,10 @@ No blocked-stop events recorded.
 ## 8. TREND
 - Last 3 ratios: 0.06 -> 0.00 -> 0.00
 - convergenceScore: 1.00
-- openFindings: 0
+- openFindings: 22
 - persistentSameSeverity: 0
-- severityChanged: 0
-- repeatedFindings (deprecated combined bucket): 0
+- severityChanged: 1
+- repeatedFindings (deprecated combined bucket): 1
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:corruption-warnings -->
@@ -101,6 +102,7 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 11. ACTIVE RISKS
-- None active beyond normal review uncertainty.
+- 1 active P0 finding(s) blocking release.
+- 13 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 
 <!-- /ANCHOR:active-risks -->

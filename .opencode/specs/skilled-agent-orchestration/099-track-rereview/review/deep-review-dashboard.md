@@ -17,15 +17,16 @@ Reducer-generated observability surface for the active review packet.
 ## 2. STATUS
 - Review Target: track:skilled-agent-orchestration (packets 093, 094, 095, 096, 098-097-remediation — verdict-flip confirmation) (track)
 - Started: 2026-05-07T17:08:57Z
-- Status: INITIALIZED
+- Status: COMPLETE
 - Iteration: 10 of 10
-- Provisional Verdict: PASS
+- Provisional Verdict: CONDITIONAL
 - hasAdvisories: false
 - Session ID: 2026-05-07T17:08:57Z
 - Parent Session: none
 - Lifecycle Mode: new
 - Generation: 1
 - continuedFromRun: none
+- stopReason: maxIterationsReached
 
 <!-- /ANCHOR:status -->
 <!-- ANCHOR:findings-summary -->
@@ -34,8 +35,8 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 0 |
-| P2 (Suggestions) | 0 |
+| P1 (Required) | 13 |
+| P2 (Suggestions) | 6 |
 | Resolved | 0 |
 
 <!-- /ANCHOR:findings-summary -->
@@ -61,7 +62,7 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 0 |
+| correctness | covered | 19 |
 | security | covered | 0 |
 | traceability | covered | 0 |
 | maintainability | covered | 0 |
@@ -83,10 +84,10 @@ No blocked-stop events recorded.
 ## 8. TREND
 - Last 3 ratios: 0.16 -> 0.00 -> 0.00
 - convergenceScore: 1.00
-- openFindings: 0
-- persistentSameSeverity: 0
+- openFindings: 19
+- persistentSameSeverity: 12
 - severityChanged: 0
-- repeatedFindings (deprecated combined bucket): 0
+- repeatedFindings (deprecated combined bucket): 12
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:corruption-warnings -->
@@ -101,6 +102,6 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 11. ACTIVE RISKS
-- None active beyond normal review uncertainty.
+- 13 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 
 <!-- /ANCHOR:active-risks -->

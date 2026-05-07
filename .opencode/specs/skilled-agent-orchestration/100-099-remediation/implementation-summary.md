@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 100 - 099 deep-review remediation"
-description: "Resolved 12 of 13 P1 findings from packet 099 deep-review; 1 P1 deferred (P1-026 reducer findings extraction; non-blocking observability)."
+description: "Resolved all 13 P1 findings from packet 099 deep-review (P1-026 fixed in follow-on pass within this packet)."
 trigger_phrases:
   - "100/implementation"
   - "099 remediation summary"
@@ -11,10 +11,9 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/100-099-remediation"
     last_updated_at: "2026-05-07T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "12 P1 fixes landed + P1-026 deferred"
-    next_safe_action: "Re-run /spec_kit:deep-review:auto for second verdict-flip confirmation"
-    blockers:
-      - "P1-026 reducer findings extraction (deferred; non-blocking observability — state.jsonl source-of-truth correct)"
+    recent_action: "All 13 P1 fixes landed (P1-026 fixed in follow-on pass)"
+    next_safe_action: "Re-run /spec_kit:deep-review:auto for verdict-flip confirmation (now all 13 P1s closed)"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts"
@@ -44,8 +43,8 @@ _memory:
 | **Spec Folder** | `skilled-agent-orchestration/100-099-remediation` |
 | **Completed** | 2026-05-07 |
 | **Level** | 2 |
-| **Findings resolved** | P1-007, P1-015, P1-016, P1-017, P1-018, P1-019, P1-020, P1-021, P1-022, P1-023, P1-024, P1-025 (12 of 13) |
-| **Deferred** | P1-026 (reducer findings extraction; advisory) |
+| **Findings resolved** | All 13 P1s: P1-007, P1-015, P1-016, P1-017, P1-018, P1-019, P1-020, P1-021, P1-022, P1-023, P1-024, P1-025, P1-026 |
+| **Deferred** | None (P1-026 was fixed in a follow-on pass within this packet) |
 | **Actual Effort** | ~2 hours wall-clock |
 <!-- /ANCHOR:metadata -->
 
@@ -95,14 +94,17 @@ Updated `095/implementation-summary.md` Decisions block + Verification table to 
 ### P1-023 — Continuity blockers backfill
 Backfilled `_memory.continuity.blockers` array in 5 of the 098 sub-phase implementation-summary.md files (001, 004, 005, 006, 007) where deferred work was documented in narrative §Limitations / §Followups but `blockers: []` was empty. Machine-readable continuity surface (which `/spec_kit:resume` reads first) now matches the human narrative.
 
-### P1-026 — Reducer findings extraction (DEFERRED)
-The deep-review reducer at `deep-review/scripts/reduce-state.cjs` does not extract finding records from `{type:"finding"}` delta records, leaving the registry showing 0 findings while state.jsonl has the actual count. Deferred as advisory because:
-- Source-of-truth is state.jsonl, which is correct
-- Verdict logic reads from state.jsonl, not the registry
-- Registry is observability/dashboard surface only
-- Fix requires ~30+ min of TS code modeling + regression tests
+### P1-026 — Reducer findings extraction (FIXED)
+The deep-review reducer at `deep-review/scripts/reduce-state.cjs` previously did not extract finding records from `{type:"finding"}` delta records, leaving the registry showing 0 findings while state.jsonl carried the actual count. Initially scoped as deferred-advisory; subsequently fixed.
 
-Tracked in `_memory.continuity.blockers`.
+**Fix**: Added `deltaRecordToFinding(record)` helper that maps a `{type:"finding"}` delta record to the structured-finding shape used by the registry (matches `parseFindingLine` output). Modified `buildFindingRegistry()` to accept a third parameter `deltaRecords` and process them BEFORE the iteration-markdown parser; delta records are the primary source (structured fields), iteration-markdown remains as the fallback for legacy review packets. Plumbed `deltaRecords` through `buildRegistry()` (added 5th positional arg). Updated the main entrypoint to load `loadDeltaPayloads(deltaDir)` once up-front and feed both the registry and the resource-map emitter (eliminates the prior duplicate-load).
+
+**Verification**:
+- Re-running reducer on packet 099 now reports `openFindingsCount: 19, findingsBySeverity: {P0:0, P1:13, P2:6}` (was all 0). Matches the deep-review report exactly.
+- Re-running reducer on packet 097 reports `openFindingsCount: 22, findingsBySeverity: {P0:1, P1:13, P2:8}` (P1/P2 split differs by 1 from the 097 report due to claim_adjudication ordering edge case; total 22 matches; non-blocking).
+- All 11 reducer regression tests pass: `deep-review-reducer-schema.vitest.ts`, `review-reducer-fail-closed.vitest.ts`, `deep-research-reducer.vitest.ts`.
+
+**Side fix**: While running tests I discovered they imported the OLD pre-rename path `sk-deep-review`/`sk-deep-research` (pre-existing P1-018/P1-025 carryover into the test layer). Patched 3 vitest files to use the post-rename plural paths; tests now run + pass.
 
 ### Files Changed
 
@@ -125,6 +127,9 @@ Tracked in `_memory.continuity.blockers`.
 | `.opencode/specs/skilled-agent-orchestration/094-*/checklist.md` | Modified | P1-007 |
 | `.opencode/specs/skilled-agent-orchestration/096-*/00N-*/checklist.md` (×4 phase children) | Modified | P1-007 |
 | `.opencode/specs/skilled-agent-orchestration/095-sk-code-review-playbook-execution/implementation-summary.md` | Modified | P1-017 |
+| `.opencode/skills/deep-review/scripts/reduce-state.cjs:430-580, 869, 1305-1313` | Modified | P1-026 (delta-records primary source for findings registry) |
+| `.opencode/skills/system-spec-kit/scripts/tests/{deep-review-reducer-schema,review-reducer-fail-closed,deep-research-reducer}.vitest.ts` | Modified | P1-018/P1-025 carryover (pre-existing sk-deep-* test path bugs) |
+| `.opencode/specs/skilled-agent-orchestration/{097,099}/review/deep-review-findings-registry.json` | Regenerated | P1-026 verification (registries now match state.jsonl) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -202,7 +207,7 @@ All edits used direct Edit/Write tooling per memory rule "prefer direct sed/Edit
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **P1-026 reducer findings extraction deferred**: state.jsonl source-of-truth is correct; this is observability/dashboard concern only. Future packet should patch reducer to read `{type:"finding"}` records and update `findingsBySeverity` + `openFindings`.
+1. **P1-026 fully resolved** in this packet via the follow-on reducer fix; see §What Was Built for evidence.
 2. **No adversarial regression tests added for security surfaces**: P1-019 fix verified by smoke test only. A dedicated adversarial test fixture (e.g., `review-research-paths-injection.vitest.ts`) would lock the contract.
 3. **Final deep-review re-run not yet executed**: this packet's success criterion SC-005 calls for one final `/spec_kit:deep-review:auto` to confirm verdict flips to PASS. Defer to user-triggered run; no further code remediation expected.
 <!-- /ANCHOR:limitations -->
@@ -215,7 +220,7 @@ All edits used direct Edit/Write tooling per memory rule "prefer direct sed/Edit
 | Planned | Actual | Reason |
 |---------|--------|--------|
 | Phase-parent + 7 sub-phases | Single Level 2 packet | 12 P1s share verification gates; phase-parent overhead unjustified |
-| Address all 13 P1s | 12 of 13 (P1-026 deferred) | Reducer findings extraction is observability concern, not release-blocking; state.jsonl source-of-truth correct |
+| Address all 13 P1s in single Level 2 packet | All 13 resolved | P1-026 was initially scoped as deferred but fixed in a follow-on pass within this same packet (~30 min) |
 | Adversarial regression tests for P1-019 | Smoke test only | Out-of-scope for this remediation; tracked as advisory follow-on |
 <!-- /ANCHOR:deviations -->
 

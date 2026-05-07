@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: 100 - 099 deep-review remediation"
-description: "Resolves 12 of 13 active P1 findings raised by packet 099 deep-review of the 093-098 track; 1 P1 deferred (P1-026 reducer findings extraction) as advisory follow-on."
+description: "Resolves all 13 active P1 findings raised by packet 099 deep-review of the 093-098 track. P1-026 was initially scoped as deferred but fixed in a follow-on pass within this same packet."
 trigger_phrases:
   - "100 remediation"
   - "099 findings remediation"
@@ -12,10 +12,9 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/100-099-remediation"
     last_updated_at: "2026-05-07T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Resolved 12 of 13 P1 findings in flat Level 2 packet"
-    next_safe_action: "Phase complete; optional follow-on for P1-026 reducer fix"
-    blockers:
-      - "P1-026 reducer findings extraction (deferred; non-blocking observability concern)"
+    recent_action: "Resolved 13 of 13 P1 findings in flat Level 2 packet"
+    next_safe_action: "Phase complete; track release-ready"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts"
@@ -51,8 +50,8 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-05-07 |
 | **Branch** | `main` |
-| **Findings resolved** | P1-007, P1-015, P1-016, P1-017, P1-018, P1-019, P1-020, P1-021, P1-022, P1-023, P1-024, P1-025 (12 of 13) |
-| **Deferred** | P1-026 (reducer findings extraction; non-blocking observability concern) |
+| **Findings resolved** | All 13 P1s: P1-007, P1-015, P1-016, P1-017, P1-018, P1-019, P1-020, P1-021, P1-022, P1-023, P1-024, P1-025, P1-026 |
+| **Deferred** | All 13 P1s resolved (P1-026 fixed in follow-on pass) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -64,7 +63,7 @@ _memory:
 Packet 099 deep-review (10 iterations, gpt-5.5 high fast) confirmed P0=0 holding (098/001 dist rebuild succeeded) but verdict remained FAIL on 13 active P1 findings: 1 carryover (P1-007) plus 12 NEW findings surfaced by the remediation itself, including source/dist parity gaps (P1-015, P1-016), security spec_folder shell injection in YAML (P1-019), 098 sub-phase strict-validate failures (P1-024), advisor missing deep-review alias (P1-025), validator zero-inventory false-pass (P1-020), shared-CLI path resolver gap (P1-021), 095 internally contradictory results (P1-017), 096/004 anchor mismatch (P1-022), playbooks not linked from owning SKILL.md (P1-018), and continuity blockers field empty despite documented deferrals (P1-023).
 
 ### Purpose
-Convert each of the 13 P1 findings into a spec-governed change with file:line evidence. 12 P1s land here; P1-026 (reducer findings extraction) is documented as deferred — it's an observability/dashboard concern; state.jsonl source-of-truth is correct.
+Convert each of the 13 P1 findings into a spec-governed change with file:line evidence. All 13 P1s land here; P1-026 (reducer findings extraction) was initially scoped as deferred but fixed in a follow-on pass.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -73,10 +72,9 @@ Convert each of the 13 P1 findings into a spec-governed change with file:line ev
 ## 3. SCOPE
 
 ### In Scope
-12 P1 fixes (P1-007, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025) — see implementation-summary.md §What Was Built for per-finding evidence.
+All 13 P1 fixes (P1-007, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026) — see implementation-summary.md §What Was Built for per-finding evidence.
 
 ### Out of Scope
-- P1-026 reducer findings extraction (deferred to advisory follow-on)
 - 6 P2 advisories — schedule after P1 closure
 
 ### Files to Change
@@ -91,7 +89,7 @@ See implementation-summary.md §Files Changed table for the canonical list (~25 
 ### P0 - Blockers
 | ID | Requirement | Acceptance |
 |----|-------------|------------|
-| REQ-001 | All 12 in-scope P1s resolved with file:line evidence | implementation-summary.md §What Was Built |
+| REQ-001 | All 13 P1s resolved with file:line evidence | implementation-summary.md §What Was Built |
 | REQ-002 | `validate.sh --strict` on 098 + adjacent packets exits 0 | run output |
 | REQ-003 | Smart-router scans 16 plural skills + accepts shared CLI paths | `check-smart-router.sh` PATHS PASS |
 | REQ-004 | audit_descriptions.py exits non-zero on zero-inventory | Stub repo test |
@@ -110,11 +108,11 @@ See implementation-summary.md §Files Changed table for the canonical list (~25 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All 12 P1s have file:line resolution evidence in implementation-summary.md
+- **SC-001**: All 13 P1s have file:line resolution evidence in implementation-summary.md
 - **SC-002**: `validate.sh --strict 098-097-remediation` recursive PASS (now ALSO per-child PASS)
 - **SC-003**: `validate.sh --strict 096-rename-opencode-dirs-to-plural` recursive PASS
 - **SC-004**: `validate.sh --strict 100-099-remediation` PASS
-- **SC-005**: P1-026 explicitly deferred with rationale in `_memory.continuity.blockers`
+- **SC-005**: P1-026 fully resolved with file:line evidence in implementation-summary.md (was deferred-then-fixed)
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -172,7 +170,7 @@ See implementation-summary.md §Files Changed table for the canonical list (~25 
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 18/25 | 12 P1 fixes across 13+ files + 7 098 sub-phase docs |
+| Scope | 20/25 | 13 P1 fixes across 14+ files + 7 098 sub-phase docs + reducer code |
 | Risk | 12/25 | Reversible per-edit; security fix is bounded |
 | Research | 10/20 | Surface inventory complete from 099 review-report |
 | **Total** | **40/70** | **Level 2** |

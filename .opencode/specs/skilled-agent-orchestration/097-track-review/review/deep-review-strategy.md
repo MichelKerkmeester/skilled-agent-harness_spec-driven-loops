@@ -231,9 +231,9 @@ Iteration 10 confirmed all active finding classifications and severity dispositi
 
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
-- P0 (Blockers): 0
-- P1 (Required): 0
-- P2 (Suggestions): 0
+- P0 (Blockers): 1
+- P1 (Required): 13
+- P2 (Suggestions): 8
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->

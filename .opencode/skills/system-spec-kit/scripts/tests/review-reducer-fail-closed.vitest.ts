@@ -1,4 +1,4 @@
-// TEST: sk-deep-review reducer fail-closed behavior (phase 008 REQ-015, REQ-016)
+// TEST: deep-review reducer fail-closed behavior (phase 008 REQ-015, REQ-016)
 //
 // Covers:
 //  - Test 1: malformed JSONL triggers corruptionWarnings + non-zero exit unless --lenient
@@ -15,7 +15,7 @@ import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const reducer = require('../../../sk-deep-review/scripts/reduce-state.cjs') as {
+const reducer = require('../../../deep-review/scripts/reduce-state.cjs') as {
   reduceReviewState: (specFolder: string, options?: {
     write?: boolean;
     lenient?: boolean;
@@ -106,7 +106,7 @@ afterEach(() => {
   }
 });
 
-describe('sk-deep-review reducer — fail-closed behavior', () => {
+describe('deep-review reducer — fail-closed behavior', () => {
   it('throws fail-closed corruption errors when JSONL is malformed and lenient is false', () => {
     const specFolder = makeTempSpecFolder('corruption');
     writeConfig(specFolder);

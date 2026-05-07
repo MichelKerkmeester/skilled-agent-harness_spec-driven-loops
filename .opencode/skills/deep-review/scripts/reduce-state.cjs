@@ -492,9 +492,120 @@ function createCorruptionError(stateLogPath, corruptionWarnings) {
 // 5. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
-function buildFindingRegistry(iterationFiles, iterationRecords) {
+/**
+ * Convert a {type:"finding"} delta record to the structured-finding shape
+ * used by the registry (matches parseFindingLine output shape).
+ *
+ * Returns null if the record is malformed or missing required fields.
+ *
+ * Delta record shape (live schema):
+ *   { type:"finding", iteration, id, severity, status, title, file, findingClass,
+ *     claim|recommendation|evidence, evidenceRefs, finalSeverity? }
+ */
+function deltaRecordToFinding(record) {
+  if (!record || record.type !== 'finding' || !record.id) {
+    return null;
+  }
+  const file = typeof record.file === 'string' ? record.file : null;
+  let fileBase = null;
+  let lineNumber = null;
+  if (file) {
+    const m = file.match(/^(.+?):(\d+)(?:[:-].*)?$/);
+    if (m) {
+      fileBase = m[1];
+      lineNumber = Number(m[2]);
+    } else {
+      fileBase = file;
+    }
+  }
+  // Prefer finalSeverity (post-adjudication) over initial severity.
+  const rawSeverity = record.finalSeverity || record.severity;
+  const severity = normalizeSeverity(rawSeverity);
+  if (!severity) {
+    return null;
+  }
+  // Description: claim is most informative; fall back to recommendation/evidence.
+  const description = normalizeText(
+    record.claim || record.recommendation || record.alternativeExplanation || '',
+  );
+  return {
+    findingId: record.id,
+    severity,
+    title: normalizeText(record.title || ''),
+    file: fileBase,
+    line: lineNumber,
+    description,
+    findingClass: record.findingClass || null,
+    deltaStatus: record.status || null,
+  };
+}
+
+function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = []) {
   const findingById = new Map();
   const claimAdjudicationByFinding = buildClaimAdjudicationByFinding(iterationRecords);
+
+  // P1-026 fix: extract findings from {type:"finding"} delta records as the
+  // primary source. Delta records carry structured fields (id, severity,
+  // status, file:line, claim, evidenceRefs) authored by the loop runtime.
+  // Iteration-markdown parsing remains as fallback for legacy iteration
+  // files that don't have corresponding delta records.
+  const deltaFindingsByRun = new Map();
+  for (const record of deltaRecords) {
+    const finding = deltaRecordToFinding(record);
+    if (!finding) continue;
+    const run = isFiniteNumber(record.iteration) ? record.iteration : 0;
+    if (!deltaFindingsByRun.has(run)) {
+      deltaFindingsByRun.set(run, []);
+    }
+    deltaFindingsByRun.get(run).push(finding);
+  }
+
+  // Process deltas in iteration order so transitions reflect chronology.
+  // Cross-reference iteration markdown files for focus/dimensionsAddressed
+  // metadata (used by deriveDimension); pseudo iteration if no markdown match.
+  const iterationByRun = new Map(iterationFiles.map((it) => [it.run, it]));
+  const sortedRuns = [...deltaFindingsByRun.keys()].sort((a, b) => a - b);
+  for (const run of sortedRuns) {
+    const pseudoIteration = iterationByRun.get(run) || { focus: '', run, dimensionsAddressed: [] };
+    for (const finding of deltaFindingsByRun.get(run)) {
+      const claimAdjudication = claimAdjudicationByFinding.get(finding.findingId);
+      const canonicalSeverity = claimAdjudication?.finalSeverity || finding.severity;
+      const existing = findingById.get(finding.findingId);
+      if (!existing) {
+        findingById.set(finding.findingId, {
+          ...finding,
+          severity: canonicalSeverity,
+          dimension: deriveDimension(
+            { ...finding, severity: canonicalSeverity },
+            pseudoIteration,
+          ),
+          firstSeen: run,
+          lastSeen: run,
+          status: 'active',
+          transitions: mergeTransitions(
+            [{
+              iteration: run,
+              from: null,
+              to: canonicalSeverity,
+              reason: 'Initial discovery (delta)',
+            }],
+            claimAdjudication?.transitions,
+          ),
+        });
+      } else {
+        existing.lastSeen = run;
+        if (existing.severity !== canonicalSeverity) {
+          existing.transitions.push({
+            iteration: run,
+            from: existing.severity,
+            to: canonicalSeverity,
+            reason: 'Severity adjusted in later delta',
+          });
+          existing.severity = canonicalSeverity;
+        }
+      }
+    }
+  }
 
   for (const iteration of iterationFiles) {
     for (const finding of iteration.findings) {
@@ -758,10 +869,10 @@ function buildBlockedStopHistory(records) {
     });
 }
 
-function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = []) {
+function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = [], deltaRecords = []) {
   const terminalStop = buildTerminalStopState(iterationRecords);
   const lineage = buildLineageState(config, iterationRecords, terminalStop);
-  const { openFindings, resolvedFindings } = buildFindingRegistry(iterationFiles, iterationRecords);
+  const { openFindings, resolvedFindings } = buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords);
   const dimensionCoverage = buildDimensionCoverage(iterationRecords, strategyDimensions);
   const findingsBySeverity = buildFindingsBySeverity(openFindings);
   const convergenceScore = computeConvergenceScore(iterationRecords);
@@ -1201,7 +1312,16 @@ function reduceReviewState(specFolder, options = {}) {
         .map((fileName) => parseIterationFile(path.join(iterationDir, fileName)))
     : [];
 
-  const registry = buildRegistry(strategyDimensions, iterationFiles, records, config, corruptionWarnings);
+  // P1-026 fix: load delta payloads up-front so the finding registry can be
+  // built from {type:"finding"} delta records (primary source) rather than
+  // relying solely on iteration markdown parsing (legacy/fallback). The
+  // resource-map emit path below reuses these loaded payloads.
+  const deltaPayloads = fs.existsSync(deltaDir) ? loadDeltaPayloads(deltaDir) : [];
+  const flattenedDeltaRecords = deltaPayloads
+    .flat()
+    .filter((record) => record !== null && record !== undefined);
+
+  const registry = buildRegistry(strategyDimensions, iterationFiles, records, config, corruptionWarnings, flattenedDeltaRecords);
   const strategy = updateStrategyContent(strategyContent, registry, iterationFiles, { createMissingAnchors }, records);
   const dashboard = renderDashboard(config, registry, records, iterationFiles);
   let resourceMap = null;
@@ -1216,7 +1336,7 @@ function reduceReviewState(specFolder, options = {}) {
     if (getResourceMapEmitSetting(config) === false) {
       resourceMapSkipReason = 'config.resource_map.emit=false';
     } else {
-      const deltaPayloads = loadDeltaPayloads(deltaDir);
+      // Reuse the deltaPayloads already loaded above (P1-026 fix) — avoids re-reading.
       if (!deltaPayloads.length) {
         resourceMapSkipReason = 'no delta files found';
       } else {

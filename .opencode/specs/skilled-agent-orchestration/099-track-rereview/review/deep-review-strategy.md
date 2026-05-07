@@ -106,8 +106,8 @@ converged review deltas at synthesis time (default `config.resource_map.emit=tru
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 0
-- P2 (Suggestions): 0
+- P1 (Required): 13
+- P2 (Suggestions): 6
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
