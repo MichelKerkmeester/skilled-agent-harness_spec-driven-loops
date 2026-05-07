@@ -182,7 +182,7 @@ describe('settings-driven invocation parity (F23.1 / F25 / F46 / F56)', () => {
         it('command is anchored to the canonical repo root and pinned node binary', () => {
           const cmd = getHook()?.command ?? '';
           expect(cmd).toContain(`cd "${REPO_ROOT}"`);
-          expect(cmd).toMatch(/&& \/[^'"\s]+\/node\s+\.opencode/skills/system-spec-kit\/mcp_server\/dist\/hooks\/claude\//);
+          expect(cmd).toMatch(/&& \/[^'"\s]+\/node\s+\.opencode\/skills\/system-spec-kit\/mcp_server\/dist\/hooks\/claude\//);
           expect(cmd).not.toContain('git rev-parse');
           expect(cmd).not.toContain('|| pwd');
           expect(cmd).not.toContain('&& node ');
