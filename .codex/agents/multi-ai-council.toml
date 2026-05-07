@@ -623,7 +623,7 @@ type CouncilComplete = {event:"council_complete"; timestamp:string; final_report
 
 `ai-council-state.jsonl` is append-only. NEVER rewrite or truncate it. NEVER write secrets, credentials, tokens, or private keys to state events.
 
-### v1.1 Optional Metadata
+### Optional Metadata
 
 Helper-emitted rows may prefix each event with `schema_version`, `protocol`, and `producer`. Missing `schema_version` means implicit `"1"`; helper v1.1 emits `"1.1"`, `protocol:"multi-ai-council"`, and `producer:"persist-artifacts.cjs@<version>"`.
 
