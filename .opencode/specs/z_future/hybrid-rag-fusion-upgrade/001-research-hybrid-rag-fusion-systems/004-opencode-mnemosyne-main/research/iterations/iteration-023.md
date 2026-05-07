@@ -13,36 +13,36 @@
 --
 ## Findings
 ### Finding 1: Add a transport-owned memory reminder block at compaction time
-- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence type: both
+- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence type: both
 - **What it does**: Mnemosyne injects an explicit “use memory tools” reminder into `experimental.session.compacting`, while Public’s compaction path currently carries continuity payloads and surfaced memories, not a direct tool-usage reminder.
 - **Why it matters for us**: This is the clearest gap with the best fit: it improves post-compaction memory awareness without changing retrieval math or governance. Affected subsystem: OpenCode compaction transport.
 - **Recommendation**: adopt now
 - **Impact**: high
 ## Findings
 - **Impact**: high
-- **Target files**: [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [opencode-transport.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts)
+- **Target files**: [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [opencode-transport.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts)
 - **Proposed signatures**: `function buildCompactionMemoryActionCard(args: { healthPayload?: SharedPayloadEnvelope | null; specFolder?: string | null }): string | null`; `function buildOpenCodeTransportPlan(args: { bootstrapPayload?: SharedPayloadEnvelope | null; startupPayload?: SharedPayloadEnvelope | null; resumePayload?: SharedPayloadEnvelope | null; healthPayload?: SharedPayloadEnvelope | null; compactionPayload?: SharedPayloadEnvelope | null; specFolder?: string | null }): OpenCodeTransportPlan`
-- **Migration steps**: 1. Add `buildCompactionMemoryActionCard()` in [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts) and append its output into the existing `compaction.content`, not a second compaction block. 2. Gate the card so it renders only when health is ready or at least not blocked; if degraded, emit one short fallback like “run `memory_health()` / `session_bootstrap()` first.” 3. Keep [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js) structurally unchanged except for consuming the longer single block. 4. Add tests proving one compaction block, stable dedupe, and no duplicated reminder when auto-surfaced memory content is also present.
+- **Migration steps**: 1. Add `buildCompactionMemoryActionCard()` in [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts) and append its output into the existing `compaction.content`, not a second compaction block. 2. Gate the card so it renders only when health is ready or at least not blocked; if degraded, emit one short fallback like “run `memory_health()` / `session_bootstrap()` first.” 3. Keep [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js) structurally unchanged except for consuming the longer single block. 4. Add tests proving one compaction block, stable dedupe, and no duplicated reminder when auto-surfaced memory content is also present.
 
 ### Finding 2: Translate Mnemosyne’s AGENTS/startup discipline into Public-native startup and bootstrap wording
-- **Source**: [external/README.md#L62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [context-server.ts#L741](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L741), [session-bootstrap.ts#L163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163), [session-resume.ts#L583](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L583)
+- **Source**: [external/README.md#L62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [context-server.ts#L741](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L741), [session-bootstrap.ts#L163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163), [session-resume.ts#L583](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L583)
 - **What it does**: Mnemosyne repeats a simple behavior loop: recall early, save after decisions, delete contradictions. Public already has stronger governed surfaces, but the startup wording still emphasizes tool inventory more than memory operating protocol.
 - **Why it matters**: This is worth adopting only as wording and workflow discipline. The message should point to `session_bootstrap`, `memory_context`, governed saves, and cautious mutation, not to cheap direct recall/store/delete semantics.
 - **Recommendation**: adopt now
 - **Impact**: medium
-- **Target files**: [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts), [context-server.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts)
+- **Target files**: [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts), [context-server.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts)
 - **Proposed signatures**: `function buildMemoryDisciplineLines(args: { staleCount: number; healthStatus: 'ready' | 'degraded' | 'blocked' }): string[]`; `function buildBootstrapMemoryHints(args: { structuralStatus: 'ready' | 'stale' | 'missing'; healthStatus: 'ready' | 'degraded' | 'blocked' }): string[]`
-- **Migration steps**: 1. In [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts), factor startup wording out of `buildServerInstructions()` into a helper that adds a short “memory discipline” section: start with `session_bootstrap()`, use `memory_context()` for grounded recall, save through governed paths, mutate only when contradictions are verified. 2. In [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), add one or two memory lifecycle hints alongside structural hints so the behavior survives non-hook runtimes. 3. Mirror the same phrasing in the `session_resume` result path only when resume is the active recovery owner. 4. Update tests to assert the new wording is Public-native and does not mention Mnemosyne-only concepts like `core=true` or direct global/project CLI pairs.
+- **Migration steps**: 1. In [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts), factor startup wording out of `buildServerInstructions()` into a helper that adds a short “memory discipline” section: start with `session_bootstrap()`, use `memory_context()` for grounded recall, save through governed paths, mutate only when contradictions are verified. 2. In [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), add one or two memory lifecycle hints alongside structural hints so the behavior survives non-hook runtimes. 3. Mirror the same phrasing in the `session_resume` result path only when resume is the active recovery owner. 4. Update tests to assert the new wording is Public-native and does not mention Mnemosyne-only concepts like `core=true` or direct global/project CLI pairs.
 
 ### Finding 3: Promote readiness into a first-class contract that gates startup and compaction advice
-- **Source**: [external/src/index.ts#L64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L64), [external/README.md#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L7), [memory-crud-health.ts#L222](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [memory-crud-types.ts#L50](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts#L50), [tool-schemas.ts#L237](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L237), [context-server.ts#L1230](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L1230), [context-server.ts#L1580](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L1580)
+- **Source**: [external/src/index.ts#L64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L64), [external/README.md#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L7), [memory-crud-health.ts#L222](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [memory-crud-types.ts#L50](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts#L50), [tool-schemas.ts#L237](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L237), [context-server.ts#L1230](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L1230), [context-server.ts#L1580](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L1580)
 - **What it does**: Mnemosyne’s README and wrapper assume prerequisites and first-use model download, but the user only learns readiness problems late. Public already has `memory_health`, startup logs, and integrity checks, yet its readiness signal is not a small reusable contract consumed by startup instructions and compaction transport.
 - **Why it matters**: This is the missing guardrail that makes Findings 1 and 2 safe. Without it, we risk adding more advice in precisely the moments when memory is degraded or unavailable.
 - **Recommendation**: adopt now
 - **Impact**: high
-- **Target files**: [memory-crud-types.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts), [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
+- **Target files**: [memory-crud-types.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts), [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
 - **Proposed signatures**: `interface MemoryReadyContract { status: 'ready' | 'degraded' | 'blocked'; reasons: string[]; recommendedAction: string; }`; `function buildMemoryReadyContract(args: { databaseConnected: boolean; embeddingReady: boolean; vectorAvailable: boolean; staleCount: number; }): MemoryReadyContract`; `async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse>`
-- **Migration steps**: 1. Add `MemoryReadyContract` to [memory-crud-types.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts) and return it from [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts) on every full health response. 2. Extend [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts) only if needed for an explicit `includeReadyContract` flag; otherwise keep the surface stable and always include the field in `full` mode. 3. Consume the ready contract in [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts) when generating startup instructions so degraded memory surfaces call for `memory_health()` or `session_bootstrap()` instead of encouraging memory operations. 4. Feed the same contract into [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts) so the compaction card from Finding 1 is suppressed or shortened when memory is blocked.
+- **Migration steps**: 1. Add `MemoryReadyContract` to [memory-crud-types.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts) and return it from [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts) on every full health response. 2. Extend [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts) only if needed for an explicit `includeReadyContract` flag; otherwise keep the surface stable and always include the field in `full` mode. 3. Consume the ready contract in [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts) when generating startup instructions so degraded memory surfaces call for `memory_health()` or `session_bootstrap()` instead of encouraging memory operations. 4. Feed the same contract into [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts) so the compaction card from Finding 1 is suppressed or shortened when memory is blocked.
 
 ## Assessment
 - New information ratio: 0.28
@@ -80,7 +80,7 @@ The plugin exposes five memory tools: `memory_recall`, `memory_recall_global`, `
 
 ### 4.3 What This Repo Already Has
 
-`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
 
 What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
 
@@ -96,11 +96,11 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
 9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
 10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
 12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
 13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -108,7 +108,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
     ```
 
 ## 6. Research Questions
@@ -139,7 +139,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 - Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
 - Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
 - Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
 - Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
 - Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
 - Do not edit anything under `external/` or outside this phase folder.
@@ -346,7 +346,7 @@ The plugin exposes five memory tools: `memory_recall`, `memory_recall_global`, `
 
 ### 4.3 What This Repo Already Has
 
-`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
 
 What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
 
@@ -362,11 +362,11 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
 9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
 10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
 12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
 13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -374,7 +374,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
     ```
 
 ## 6. Research Questions
@@ -405,7 +405,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 - Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
 - Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
 - Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
 - Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
 - Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
 - Do not edit anything under `external/` or outside this phase folder.
@@ -568,7 +568,7 @@ exec
 codex
 The first pass surfaced a path mismatch: the phase folder exists, but the external checkout is not at the nested `external/opencode-mnemosyne-main/...` path from the brief. I’m locating the real external layout now, then I’ll trace the temporal and decay logic from the actual files instead of the assumed path.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -586,7 +586,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -1233,271 +1233,271 @@ exec
    109	MIT
 
 exec
-/bin/zsh -lc "rg -n \"decay|retention|deleteAfter|retentionPolicy|useDecay|trackAccess|FSRS|state: 'HOT'|state: 'WARM'|strength|half-life|attention|stale|archived|DORMANT|ARCHIVED|forget|recency|last_accessed|next_review|review\" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/scripts/dist/memory | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"decay|retention|deleteAfter|retentionPolicy|useDecay|trackAccess|FSRS|state: 'HOT'|state: 'WARM'|strength|half-life|attention|stale|archived|DORMANT|ARCHIVED|forget|recency|last_accessed|next_review|review\" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/scripts/dist/memory | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:104:import * as attentionDecay from './lib/cognitive/attention-decay.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:107:// T059: Archival manager for automatic archival of ARCHIVED state memories
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:118:// P4-12/P4-19: Incremental index (passed to db-state for stale handle refresh)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:175:    codeGraphStatus: 'fresh' | 'stale' | 'empty';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:194:  staleCount: number;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:379:// Safe for stdio (single client). TTL in query-flow-tracker bounds staleness.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:712:      return { totalMemories: 0, specFolderCount: 0, activeCount: 0, staleCount: 0 };
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:731:      staleCount: pending + failed + retry,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:734:    return { totalMemories: 0, specFolderCount: 0, activeCount: 0, staleCount: 0 };
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:751:  const staleWarning = stats.staleCount > 10
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:752:    ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:757:    `Active memories: ${stats.activeCount}. Stale memories: ${stats.staleCount}.`,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:761:    staleWarning.trim(),
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:798:    if (snap.graphFreshness === 'fresh' || snap.graphFreshness === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1191:    // P1 FIX: Wire isCommittedInDb callback so stale pending files are detected at startup.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1313:          staleDeleted: 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1314:          staleDeleteFailed: 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1561:  // Refresh their DB handles during reinitializeDatabase(), preventing stale refs.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1574:      attentionDecay,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1711:      attentionDecay.init(database);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1728:    // T059: Archival Manager for automatic archival of ARCHIVED state memories
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1843:                    staleDeleted: 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1844:                    staleDeleteFailed: 0,
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:46:| `SPECKIT_EVAL_LOGGING` | Persists evaluation events for later review, but does not authorize publication-grade multiplier claims. |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:133:| `SPECKIT_CLASSIFICATION_DECAY` | `true` | boolean | Classification-aware decay in FSRS scheduling and composite scoring. Graduated ON. | `lib/cognitive/fsrs-scheduler.ts`, `lib/scoring/composite-scoring.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:134:| `SPECKIT_SESSION_BOOST` | `true` | boolean | Session attention boost for search result re-ranking. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:139:| `SPECKIT_RECENCY_FUSION_WEIGHT` | `0.07` | number | Weight of recency signal in Stage 2 fusion scoring. | `lib/search/pipeline/stage2-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:140:| `SPECKIT_RECENCY_FUSION_CAP` | `0.10` | number | Maximum recency contribution cap in Stage 2 fusion. | `lib/search/pipeline/stage2-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:223:| `SPECKIT_ARCHIVAL` | `true` | boolean | Archival manager for aging out stale memories (90-day max age). Graduated ON. | `lib/cognitive/archival-manager.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:224:| `SPECKIT_HYBRID_DECAY_POLICY` | `true` | boolean | Type-aware no-decay for permanent artifacts (decision/constitutional types get Infinity stability). Graduated ON. | `lib/cognitive/fsrs-scheduler.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:227:| `SPECKIT_CONSOLIDATION` | `true` | boolean | Consolidation engine: contradiction scan, Hebbian strengthening, staleness detection (N3-lite). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:232:| `SPECKIT_RECENCY_DECAY_DAYS` | (internal) | number | Number of days for recency decay calculation in access tracking. | `lib/storage/access-tracker.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:233:| `SPECKIT_EVENT_DECAY` | `true` | boolean | Event decay processing in working memory. Graduated ON. | `lib/cognitive/working-memory.ts` (via tests) |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:434:# Lower recency fusion impact
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:26:import * as attentionDecay from '../lib/cognitive/attention-decay.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:61:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:74:  attentionScore?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:81:  decayedCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:90:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:97:  decayApplied: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:122:/** Per-turn decay rate for attention scoring. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:130:/** Fetch full memory records required for FSRS tier classification. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:135:  const db = attentionDecay.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:161:  if (tier === 'COLD' || tier === 'DORMANT' || tier === 'ARCHIVED') return '';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:276:    attentionDecay.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:278:  let decayStats: DecayStats | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:281:      decayStats = { decayedCount: workingMemory.batchUpdateScores(sessionId as string) };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:345:          decayApplied: decayStats ? decayStats.decayedCount : 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:368:        attentionDecay.activateMemory(match.memoryId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:369:        // T209: Persist max attention boost for matched memories.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:399:      .map(wm => ({ memoryId: (wm.id as number) || 0, attentionScore: (wm.attention_score as number) || 1.0 }));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:409:      let attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:417:          // WM already applies its own decay — skip turnDecayFactor to avoid double-decay.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:418:          effectiveRetrievability = Math.min(effectiveRetrievability, wmEntry.attentionScore);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:423:        attentionScore = effectiveRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:426:        // When no FSRS record, use WM score directly (already session-decayed) or apply turn decay
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:427:        const baseScore = wmEntry ? wmEntry.attentionScore : 1.0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:428:        attentionScore = wmEntry ? baseScore : baseScore * turnDecayFactor;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:429:        tier = tierClassifier.classifyState(attentionScore);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:432:      // Clamp to [0,1] — retrievability * decay or wmEntry scores
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:434:      attentionScore = Math.max(0, Math.min(1, attentionScore));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:438:        attentionScore: attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:461:        attentionScore: r.attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:471:      decayApplied: decayStats ? decayStats.decayedCount : 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:531:    const db = attentionDecay.getDb();
-.opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js:32:  --dry-run           Preview what would be deleted without making changes
-.opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js:37:  node cleanup-orphaned-vectors.js --dry-run      # Preview only
-.opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js:153:        console.log(`\nCleanup ${dryRun ? 'preview' : 'completed'} successfully`);
-.opencode/skill/system-spec-kit/scripts/dist/memory/migrate-historical-json-mode-memories.js:53:  --dry-run            Preview only (default and only supported mode)
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:142:/** Reinforce an existing memory's stability via FSRS scheduling instead of creating a duplicate */
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:148:      SELECT id, stability, difficulty, last_review, review_count, title
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:157:    const elapsedDays = fsrsScheduler.calculateElapsedDays(memory.last_review as string | null);
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:179:          last_review = datetime('now'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:180:          review_count = COALESCE(review_count, 0) + 1,
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:70:- `memory-index.ts` and `mutation-hooks.ts` work together so index, update, and stale-delete flows clear trigger, constitutional, graph, co-activation, and degree caches.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
-.opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js:9:// Computes composite ranking scores for memories and folders with recency decay
-.opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js:181:    const archivedCount = allFolders.filter((f) => f.isArchived).length;
-.opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js:190:            activeFolders: folderMap.size - archivedCount,
-.opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js:191:            archivedFolders: archivedCount,
-.opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js:227:        if (arg === '--show-archived') {
-.opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js:257:  --show-archived     Include archived folders in output
-.opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js:80:  --dry-run            Preview changes (default if --apply is omitted)
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:9:// auditing all consumers first (see review/review-report.md P2-MNT-02).
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:114:    [--dry-run]                    Preview without deleting
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:307:  console.log(`\nBulk Delete Preview`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:40:  action: 'review';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:151:  review_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:56:  useDecay?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:73:  minState?: 'HOT' | 'WARM' | 'COLD' | 'DORMANT' | 'ARCHIVED';
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:74:  trackAccess?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:164:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:165:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:302:  strength?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:122:  attentionScore?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:125:  last_review?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:127:  last_accessed?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:169:    recency: weights.recency,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:188:  useDecay?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:203:  includeArchived?: boolean; // REQ-206: include archived memories in search (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:505:    useDecay: useDecay = true,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:520:    includeArchived: includeArchived = false, // REQ-206: exclude archived by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:732:    useDecay,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:794:      useDecay,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:81:- `../../lib/cognitive/fsrs-scheduler.ts` -- FSRS stability/difficulty defaults
-.opencode/skill/system-spec-kit/scripts/dist/memory/migrate-trigger-phrase-residual.js:8:// canonicalization rules for stale residual cleanup.
-.opencode/skill/system-spec-kit/scripts/dist/memory/migrate-trigger-phrase-residual.js:58:  --dry-run            Preview changes only (default)
-.opencode/skill/system-spec-kit/scripts/dist/memory/rebuild-auto-entities.js:19:  --dry-run                 Preview the rebuild without changing the database
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:70: *   0.88 <= sim < 0.96  → review (supersede or complement recommendation)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:78:): 'auto_merge' | 'review' | 'keep_separate' {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:80:  if (similarity >= ASSISTIVE_REVIEW_THRESHOLD)     return 'review';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:85: * Classify whether a borderline (review-tier) memory pair should be
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:130:   *  borderline pair is detected (review tier). */
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:397:          // we mark is_archived so it is excluded from future search results
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:402:              SET is_archived = 1,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:410:              `[reconsolidation-bridge] assistive auto-merge: archived older=${topId} ` +
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417:        } else if (tier === 'review') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:421:            action: 'review',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:39:  strength: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:85:  strength?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:158:        strength: child.strength,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:517:      hints.push('Contradicting relationships detected - review for consistency');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:563:    strength = 1.0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:625:    const edge = causalEdges.insertEdge(String(sourceId), String(targetId), safeRelation, strength ?? 1.0, evidence ?? null);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:740:        avg_strength: stats.avgStrength,
-.opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.d.ts:67:        archivedFolders: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:88:    if (args.loopType !== 'research' && args.loopType !== 'review') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:89:      return errorResponse('loopType must be "research" or "review"');
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:340:  // Check dimension coverage — blocking gate for review mode.
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:341:  // Incomplete dimension coverage means the review is not yet comprehensive
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:23:      strength REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:27:      last_accessed TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:76:      INSERT INTO causal_edges (source_id, target_id, relation, strength)
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:234:  // --- Hop decay ---
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:251:    // fix_bug, supersedes (CORRECTION tier 0 → edgePrior=1.0), 1-hop (decay=1.0), freshness=0.8
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:259:    // add_feature, supports (tier 2 → edgePrior=0.5), 2-hop (decay=0.5), freshness=1.0
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:284:      INSERT INTO causal_edges (source_id, target_id, relation, strength)
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:303:      INSERT INTO causal_edges (source_id, target_id, relation, strength)
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:335:      INSERT INTO causal_edges (source_id, target_id, relation, strength)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:103:      // Data integrity: clean stale auto-entities before re-extraction on update
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:58:        actor TEXT DEFAULT 'system' CHECK(actor IN ('user', 'system', 'hook', 'decay')),
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:297:      // The beforeAll created the table with CHECK(actor IN ('user','system','hook','decay'))
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:51:    if (args.loopType !== 'research' && args.loopType !== 'review') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:52:      return errorResponse('loopType must be "research" or "review"');
-.opencode/skill/system-spec-kit/mcp_server/database/README.md:73:- Structural reads (`code_graph_query`, `code_graph_context`) can perform bounded inline selective refresh against `code-graph.sqlite` when the stale set is small enough.
-.opencode/skill/system-spec-kit/mcp_server/database/README.md:74:- Empty or broadly stale structural states still require explicit `code_graph_scan` to rebuild the graph database.
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:505:// 9. Cache behavior (invalidations + TTL stale detection)
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:536:  it('detects stale cache after TTL expiry and rebuilds hierarchy', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:551:    const staleRefreshedTree = buildHierarchyTree(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:552:    expect(staleRefreshedTree).not.toBe(initialTree);
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:553:    expect(staleRefreshedTree.nodeMap.has('003-foo/140-after-ttl')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:452:        `N3-lite consolidation: +${consolidation.hebbian.strengthened} strengthened, ` +
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:453:        `-${consolidation.hebbian.decayed} decayed, ${consolidation.stale.flagged} stale flagged`
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:117:  attention: number | null;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:156:    edges: Array<{ sourceId: number; targetId: number; relation: string; strength: number }>;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:472:        attention: toNullableNumber(rawResult.attentionScore),
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:496:              strength: typeof e.strength === 'number' ? e.strength : 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:197:// Track stale session cleanup interval (runs hourly)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:198:let staleCleanupInterval: ReturnType<typeof setInterval> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:234:  // Run stale session cleanup on startup and set up hourly interval
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:239:    console.warn(`[session-manager] Initial stale session cleanup failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:242:  if (staleCleanupInterval) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:243:    clearInterval(staleCleanupInterval);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:245:  staleCleanupInterval = setInterval(() => {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:250:      console.warn(`[session-manager] Periodic stale session cleanup failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:253:  if (staleCleanupInterval && typeof staleCleanupInterval === 'object' && 'unref' in staleCleanupInterval) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:254:    staleCleanupInterval.unref();
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:758: * T302: Clean up stale sessions across all session-related tables.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:782:  // 1. Clean stale working_memory entries
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:795:  // 2. Clean stale session_sent_memories entries
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1382:  if (staleCleanupInterval) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1383:    clearInterval(staleCleanupInterval);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1384:    staleCleanupInterval = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:52:  return loopType === 'research' || loopType === 'review';
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:77:      return errorResponse('loopType must be "research" or "review"');
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:114:  it('returns the merged survivor id instead of the archived predecessor id', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:152:  it('removes archived assistive auto-merge documents from the BM25 singleton', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:38:      is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:45:      last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:71:    INSERT INTO memory_index (title, trigger_phrases, spec_folder, parent_id, importance_tier, is_archived)
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:238:  it('ignores archived and deprecated siblings that are no longer retrievable', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:246:      title: 'authentication login session token validation handler middleware security user access archived',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:364:  it('skips archived and deprecated rows during batch scoring', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:377:      title: 'authentication login session token validation handler middleware security user access archived',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:776:      JSON.stringify({ note: 'resolved by reviewer' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:84:      AND (m.is_archived IS NULL OR m.is_archived = 0)
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:120:        last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:123:        is_archived INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:144:        strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:148:        last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:157:        old_strength REAL NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:158:        new_strength REAL NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:421:      // F04-001: Append-only merge — old row (id=100) is archived, new row holds merged content.
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:422:      const oldRow = testDb.prepare('SELECT is_archived FROM memory_index WHERE id = 100').get() as {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:423:        is_archived: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:425:      expect(oldRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:460:      const oldRow = testDb.prepare('SELECT is_archived FROM memory_index WHERE id = 101').get() as {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:461:        is_archived: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:463:      expect(oldRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:496:      const archivedRow = testDb.prepare(
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:497:        'SELECT is_archived FROM memory_index WHERE id = 102'
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:498:      ).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:499:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:514:    it('MP4: Keeps merged survivor reachable through active projection and hides archived predecessor', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:571:      const archivedRow = testDb.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:572:        SELECT is_archived
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:575:      `).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:576:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:691:        makeNewMemory({ content: 'Incoming content that should not be stale-merged' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:701:        SELECT id, is_archived, content_text
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:704:      `).all() as Array<{ id: number; is_archived: number; content_text: string | null }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:706:        { id: 105, is_archived: 0, content_text: 'Concurrent writer content' },
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:744:      const archivedRow = testDb.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:745:        SELECT is_archived
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:748:      `).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:749:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:929:      const archivedRow = testDb.prepare(
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:930:        'SELECT is_archived FROM memory_index WHERE id = 400'
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:931:      ).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:932:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1049:      const archivedRow = testDb.prepare(
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1050:        'SELECT is_archived FROM memory_index WHERE id = 450'
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1051:      ).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1052:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:35:    if (args.loopType !== 'research' && args.loopType !== 'review') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:36:      return errorResponse('loopType must be "research" or "review"');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:85:        last_review TEXT DEFAULT (datetime('now')),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:86:        review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:120:        strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:124:        last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:133:        old_strength REAL NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:134:        new_strength REAL NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:535:        // May fail due to missing FSRS columns - acceptable
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:621:            id, spec_folder, file_path, title, content_text, content_hash, stability, difficulty, review_count
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:628:          'stale-hash',
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:4:// Scoped governance isolation, retention behavior, and audit review.
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:61:  it('auto-merge threshold is above review threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:77:  it('returns "review" for similarity in [0.88, 0.96)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:78:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:79:    expect(classifyAssistiveSimilarity(0.90)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:80:    expect(classifyAssistiveSimilarity(0.9599)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:93:  it('exact boundary 0.88 is review', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:94:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:204:    // review
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:205:    expect(classifyAssistiveSimilarity(0.959)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:206:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:223:    expect(tier).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/anchor-metadata.vitest.ts:596:      expect(meta).not.toHaveProperty('strength');
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:25:  graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:39:  status: 'ready' | 'stale' | 'missing';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:218:  } else if (graphFreshness === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:219:    status = 'stale';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:104:import * as attentionDecay from './lib/cognitive/attention-decay.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:107:// T059: Archival manager for automatic archival of ARCHIVED state memories
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:118:// P4-12/P4-19: Incremental index (passed to db-state for stale handle refresh)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:175:    codeGraphStatus: 'fresh' | 'stale' | 'empty';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:194:  staleCount: number;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:379:// Safe for stdio (single client). TTL in query-flow-tracker bounds staleness.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:712:      return { totalMemories: 0, specFolderCount: 0, activeCount: 0, staleCount: 0 };
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:731:      staleCount: pending + failed + retry,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:734:    return { totalMemories: 0, specFolderCount: 0, activeCount: 0, staleCount: 0 };
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:751:  const staleWarning = stats.staleCount > 10
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:752:    ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:757:    `Active memories: ${stats.activeCount}. Stale memories: ${stats.staleCount}.`,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:761:    staleWarning.trim(),
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:798:    if (snap.graphFreshness === 'fresh' || snap.graphFreshness === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1191:    // P1 FIX: Wire isCommittedInDb callback so stale pending files are detected at startup.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1313:          staleDeleted: 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1314:          staleDeleteFailed: 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1561:  // Refresh their DB handles during reinitializeDatabase(), preventing stale refs.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1574:      attentionDecay,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1711:      attentionDecay.init(database);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1728:    // T059: Archival Manager for automatic archival of ARCHIVED state memories
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1843:                    staleDeleted: 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1844:                    staleDeleteFailed: 0,
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:46:| `SPECKIT_EVAL_LOGGING` | Persists evaluation events for later review, but does not authorize publication-grade multiplier claims. |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:133:| `SPECKIT_CLASSIFICATION_DECAY` | `true` | boolean | Classification-aware decay in FSRS scheduling and composite scoring. Graduated ON. | `lib/cognitive/fsrs-scheduler.ts`, `lib/scoring/composite-scoring.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:134:| `SPECKIT_SESSION_BOOST` | `true` | boolean | Session attention boost for search result re-ranking. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:139:| `SPECKIT_RECENCY_FUSION_WEIGHT` | `0.07` | number | Weight of recency signal in Stage 2 fusion scoring. | `lib/search/pipeline/stage2-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:140:| `SPECKIT_RECENCY_FUSION_CAP` | `0.10` | number | Maximum recency contribution cap in Stage 2 fusion. | `lib/search/pipeline/stage2-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:223:| `SPECKIT_ARCHIVAL` | `true` | boolean | Archival manager for aging out stale memories (90-day max age). Graduated ON. | `lib/cognitive/archival-manager.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:224:| `SPECKIT_HYBRID_DECAY_POLICY` | `true` | boolean | Type-aware no-decay for permanent artifacts (decision/constitutional types get Infinity stability). Graduated ON. | `lib/cognitive/fsrs-scheduler.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:227:| `SPECKIT_CONSOLIDATION` | `true` | boolean | Consolidation engine: contradiction scan, Hebbian strengthening, staleness detection (N3-lite). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:232:| `SPECKIT_RECENCY_DECAY_DAYS` | (internal) | number | Number of days for recency decay calculation in access tracking. | `lib/storage/access-tracker.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:233:| `SPECKIT_EVENT_DECAY` | `true` | boolean | Event decay processing in working memory. Graduated ON. | `lib/cognitive/working-memory.ts` (via tests) |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:434:# Lower recency fusion impact
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:26:import * as attentionDecay from '../lib/cognitive/attention-decay.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:61:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:74:  attentionScore?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:81:  decayedCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:90:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:97:  decayApplied: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:122:/** Per-turn decay rate for attention scoring. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:130:/** Fetch full memory records required for FSRS tier classification. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:135:  const db = attentionDecay.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:161:  if (tier === 'COLD' || tier === 'DORMANT' || tier === 'ARCHIVED') return '';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:276:    attentionDecay.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:278:  let decayStats: DecayStats | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:281:      decayStats = { decayedCount: workingMemory.batchUpdateScores(sessionId as string) };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:345:          decayApplied: decayStats ? decayStats.decayedCount : 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:368:        attentionDecay.activateMemory(match.memoryId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:369:        // T209: Persist max attention boost for matched memories.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:399:      .map(wm => ({ memoryId: (wm.id as number) || 0, attentionScore: (wm.attention_score as number) || 1.0 }));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:409:      let attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:417:          // WM already applies its own decay — skip turnDecayFactor to avoid double-decay.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:418:          effectiveRetrievability = Math.min(effectiveRetrievability, wmEntry.attentionScore);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:423:        attentionScore = effectiveRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:426:        // When no FSRS record, use WM score directly (already session-decayed) or apply turn decay
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:427:        const baseScore = wmEntry ? wmEntry.attentionScore : 1.0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:428:        attentionScore = wmEntry ? baseScore : baseScore * turnDecayFactor;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:429:        tier = tierClassifier.classifyState(attentionScore);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:432:      // Clamp to [0,1] — retrievability * decay or wmEntry scores
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:434:      attentionScore = Math.max(0, Math.min(1, attentionScore));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:438:        attentionScore: attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:461:        attentionScore: r.attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:471:      decayApplied: decayStats ? decayStats.decayedCount : 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:531:    const db = attentionDecay.getDb();
+.opencode/skills/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js:32:  --dry-run           Preview what would be deleted without making changes
+.opencode/skills/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js:37:  node cleanup-orphaned-vectors.js --dry-run      # Preview only
+.opencode/skills/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js:153:        console.log(`\nCleanup ${dryRun ? 'preview' : 'completed'} successfully`);
+.opencode/skills/system-spec-kit/scripts/dist/memory/migrate-historical-json-mode-memories.js:53:  --dry-run            Preview only (default and only supported mode)
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:142:/** Reinforce an existing memory's stability via FSRS scheduling instead of creating a duplicate */
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:148:      SELECT id, stability, difficulty, last_review, review_count, title
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:157:    const elapsedDays = fsrsScheduler.calculateElapsedDays(memory.last_review as string | null);
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:179:          last_review = datetime('now'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:180:          review_count = COALESCE(review_count, 0) + 1,
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:70:- `memory-index.ts` and `mutation-hooks.ts` work together so index, update, and stale-delete flows clear trigger, constitutional, graph, co-activation, and degree caches.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
+.opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js:9:// Computes composite ranking scores for memories and folders with recency decay
+.opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js:181:    const archivedCount = allFolders.filter((f) => f.isArchived).length;
+.opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js:190:            activeFolders: folderMap.size - archivedCount,
+.opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js:191:            archivedFolders: archivedCount,
+.opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js:227:        if (arg === '--show-archived') {
+.opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js:257:  --show-archived     Include archived folders in output
+.opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js:80:  --dry-run            Preview changes (default if --apply is omitted)
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:9:// auditing all consumers first (see review/review-report.md P2-MNT-02).
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:114:    [--dry-run]                    Preview without deleting
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:307:  console.log(`\nBulk Delete Preview`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:40:  action: 'review';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:151:  review_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:56:  useDecay?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:73:  minState?: 'HOT' | 'WARM' | 'COLD' | 'DORMANT' | 'ARCHIVED';
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:74:  trackAccess?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:164:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:165:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:302:  strength?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:122:  attentionScore?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:125:  last_review?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:127:  last_accessed?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:169:    recency: weights.recency,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:188:  useDecay?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:203:  includeArchived?: boolean; // REQ-206: include archived memories in search (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:505:    useDecay: useDecay = true,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:520:    includeArchived: includeArchived = false, // REQ-206: exclude archived by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:732:    useDecay,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:794:      useDecay,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:81:- `../../lib/cognitive/fsrs-scheduler.ts` -- FSRS stability/difficulty defaults
+.opencode/skills/system-spec-kit/scripts/dist/memory/migrate-trigger-phrase-residual.js:8:// canonicalization rules for stale residual cleanup.
+.opencode/skills/system-spec-kit/scripts/dist/memory/migrate-trigger-phrase-residual.js:58:  --dry-run            Preview changes only (default)
+.opencode/skills/system-spec-kit/scripts/dist/memory/rebuild-auto-entities.js:19:  --dry-run                 Preview the rebuild without changing the database
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:70: *   0.88 <= sim < 0.96  → review (supersede or complement recommendation)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:78:): 'auto_merge' | 'review' | 'keep_separate' {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:80:  if (similarity >= ASSISTIVE_REVIEW_THRESHOLD)     return 'review';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:85: * Classify whether a borderline (review-tier) memory pair should be
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:130:   *  borderline pair is detected (review tier). */
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:397:          // we mark is_archived so it is excluded from future search results
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:402:              SET is_archived = 1,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:410:              `[reconsolidation-bridge] assistive auto-merge: archived older=${topId} ` +
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417:        } else if (tier === 'review') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:421:            action: 'review',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:39:  strength: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:85:  strength?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:158:        strength: child.strength,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:517:      hints.push('Contradicting relationships detected - review for consistency');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:563:    strength = 1.0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:625:    const edge = causalEdges.insertEdge(String(sourceId), String(targetId), safeRelation, strength ?? 1.0, evidence ?? null);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:740:        avg_strength: stats.avgStrength,
+.opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.d.ts:67:        archivedFolders: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:88:    if (args.loopType !== 'research' && args.loopType !== 'review') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:89:      return errorResponse('loopType must be "research" or "review"');
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:340:  // Check dimension coverage — blocking gate for review mode.
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:341:  // Incomplete dimension coverage means the review is not yet comprehensive
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:23:      strength REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:27:      last_accessed TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:76:      INSERT INTO causal_edges (source_id, target_id, relation, strength)
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:234:  // --- Hop decay ---
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:251:    // fix_bug, supersedes (CORRECTION tier 0 → edgePrior=1.0), 1-hop (decay=1.0), freshness=0.8
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:259:    // add_feature, supports (tier 2 → edgePrior=0.5), 2-hop (decay=0.5), freshness=1.0
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:284:      INSERT INTO causal_edges (source_id, target_id, relation, strength)
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:303:      INSERT INTO causal_edges (source_id, target_id, relation, strength)
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:335:      INSERT INTO causal_edges (source_id, target_id, relation, strength)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:103:      // Data integrity: clean stale auto-entities before re-extraction on update
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:58:        actor TEXT DEFAULT 'system' CHECK(actor IN ('user', 'system', 'hook', 'decay')),
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:297:      // The beforeAll created the table with CHECK(actor IN ('user','system','hook','decay'))
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:51:    if (args.loopType !== 'research' && args.loopType !== 'review') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:52:      return errorResponse('loopType must be "research" or "review"');
+.opencode/skills/system-spec-kit/mcp_server/database/README.md:73:- Structural reads (`code_graph_query`, `code_graph_context`) can perform bounded inline selective refresh against `code-graph.sqlite` when the stale set is small enough.
+.opencode/skills/system-spec-kit/mcp_server/database/README.md:74:- Empty or broadly stale structural states still require explicit `code_graph_scan` to rebuild the graph database.
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:505:// 9. Cache behavior (invalidations + TTL stale detection)
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:536:  it('detects stale cache after TTL expiry and rebuilds hierarchy', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:551:    const staleRefreshedTree = buildHierarchyTree(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:552:    expect(staleRefreshedTree).not.toBe(initialTree);
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:553:    expect(staleRefreshedTree.nodeMap.has('003-foo/140-after-ttl')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:452:        `N3-lite consolidation: +${consolidation.hebbian.strengthened} strengthened, ` +
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:453:        `-${consolidation.hebbian.decayed} decayed, ${consolidation.stale.flagged} stale flagged`
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:117:  attention: number | null;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:156:    edges: Array<{ sourceId: number; targetId: number; relation: string; strength: number }>;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:472:        attention: toNullableNumber(rawResult.attentionScore),
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:496:              strength: typeof e.strength === 'number' ? e.strength : 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:197:// Track stale session cleanup interval (runs hourly)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:198:let staleCleanupInterval: ReturnType<typeof setInterval> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:234:  // Run stale session cleanup on startup and set up hourly interval
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:239:    console.warn(`[session-manager] Initial stale session cleanup failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:242:  if (staleCleanupInterval) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:243:    clearInterval(staleCleanupInterval);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:245:  staleCleanupInterval = setInterval(() => {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:250:      console.warn(`[session-manager] Periodic stale session cleanup failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:253:  if (staleCleanupInterval && typeof staleCleanupInterval === 'object' && 'unref' in staleCleanupInterval) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:254:    staleCleanupInterval.unref();
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:758: * T302: Clean up stale sessions across all session-related tables.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:782:  // 1. Clean stale working_memory entries
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:795:  // 2. Clean stale session_sent_memories entries
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1382:  if (staleCleanupInterval) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1383:    clearInterval(staleCleanupInterval);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1384:    staleCleanupInterval = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:52:  return loopType === 'research' || loopType === 'review';
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:77:      return errorResponse('loopType must be "research" or "review"');
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:114:  it('returns the merged survivor id instead of the archived predecessor id', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:152:  it('removes archived assistive auto-merge documents from the BM25 singleton', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:38:      is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:45:      last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:71:    INSERT INTO memory_index (title, trigger_phrases, spec_folder, parent_id, importance_tier, is_archived)
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:238:  it('ignores archived and deprecated siblings that are no longer retrievable', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:246:      title: 'authentication login session token validation handler middleware security user access archived',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:364:  it('skips archived and deprecated rows during batch scoring', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:377:      title: 'authentication login session token validation handler middleware security user access archived',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:776:      JSON.stringify({ note: 'resolved by reviewer' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:84:      AND (m.is_archived IS NULL OR m.is_archived = 0)
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:120:        last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:123:        is_archived INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:144:        strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:148:        last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:157:        old_strength REAL NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:158:        new_strength REAL NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:421:      // F04-001: Append-only merge — old row (id=100) is archived, new row holds merged content.
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:422:      const oldRow = testDb.prepare('SELECT is_archived FROM memory_index WHERE id = 100').get() as {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:423:        is_archived: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:425:      expect(oldRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:460:      const oldRow = testDb.prepare('SELECT is_archived FROM memory_index WHERE id = 101').get() as {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:461:        is_archived: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:463:      expect(oldRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:496:      const archivedRow = testDb.prepare(
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:497:        'SELECT is_archived FROM memory_index WHERE id = 102'
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:498:      ).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:499:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:514:    it('MP4: Keeps merged survivor reachable through active projection and hides archived predecessor', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:571:      const archivedRow = testDb.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:572:        SELECT is_archived
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:575:      `).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:576:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:691:        makeNewMemory({ content: 'Incoming content that should not be stale-merged' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:701:        SELECT id, is_archived, content_text
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:704:      `).all() as Array<{ id: number; is_archived: number; content_text: string | null }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:706:        { id: 105, is_archived: 0, content_text: 'Concurrent writer content' },
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:744:      const archivedRow = testDb.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:745:        SELECT is_archived
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:748:      `).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:749:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:929:      const archivedRow = testDb.prepare(
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:930:        'SELECT is_archived FROM memory_index WHERE id = 400'
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:931:      ).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:932:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1049:      const archivedRow = testDb.prepare(
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1050:        'SELECT is_archived FROM memory_index WHERE id = 450'
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1051:      ).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1052:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:35:    if (args.loopType !== 'research' && args.loopType !== 'review') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:36:      return errorResponse('loopType must be "research" or "review"');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:85:        last_review TEXT DEFAULT (datetime('now')),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:86:        review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:120:        strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:124:        last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:133:        old_strength REAL NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:134:        new_strength REAL NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:535:        // May fail due to missing FSRS columns - acceptable
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:621:            id, spec_folder, file_path, title, content_text, content_hash, stability, difficulty, review_count
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:628:          'stale-hash',
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:4:// Scoped governance isolation, retention behavior, and audit review.
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:61:  it('auto-merge threshold is above review threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:77:  it('returns "review" for similarity in [0.88, 0.96)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:78:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:79:    expect(classifyAssistiveSimilarity(0.90)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:80:    expect(classifyAssistiveSimilarity(0.9599)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:93:  it('exact boundary 0.88 is review', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:94:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:204:    // review
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:205:    expect(classifyAssistiveSimilarity(0.959)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:206:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:223:    expect(tier).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/anchor-metadata.vitest.ts:596:      expect(meta).not.toHaveProperty('strength');
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:25:  graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:39:  status: 'ready' | 'stale' | 'missing';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:218:  } else if (graphFreshness === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:219:    status = 'stale';
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '100,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '100,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    100	// Feature catalog: Semantic and lexical search (memory_search)
    101	// Feature catalog: Hybrid search pipeline
@@ -1662,7 +1662,7 @@ exec
    260	      : null;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '480,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '480,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    480	──────────────────────────────────────────────────────────────── */
    481	
@@ -2047,9 +2047,9 @@ exec
    860	      }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '120,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '120,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    120	──────────────────────────────────────────────────────────────── */
    121	
@@ -2776,7 +2776,7 @@ exec
    320	 * @returns Combined stability multiplier (may be Infinity)
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '320,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '320,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    320	 * @returns Combined stability multiplier (may be Infinity)
    321	 */
@@ -2921,7 +2921,7 @@ exec
    460	  FSRS_HALF_LIFE_FACTOR, // T301: derived constant for half-life ↔ stability
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Archival Manager
@@ -3205,7 +3205,7 @@ exec
    280	    db.exec(`
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Access Tracker
@@ -3469,7 +3469,7 @@ exec
    260	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Working Memory
@@ -3753,7 +3753,7 @@ exec
    280	  if (!db) return [];
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '300,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '300,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    300	
    301	  try {
@@ -3918,7 +3918,7 @@ exec
    460	      ) VALUES (?, ?, ?, ?, 0, ?, ?, ?, ?)
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts | sed -n '120,190p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts | sed -n '120,190p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    120	  embeddingStatus?: string;
    121	  postMutationHooks?: ReturnType<typeof buildMutationHookFeedback>['data'];
@@ -3991,7 +3991,7 @@ exec
    188	}
 
 exec
-/bin/zsh -lc 'rg -n "batchUpdateScores|EVENT_DECAY_FACTOR|DELETE_THRESHOLD|DECAY_FLOOR|decay" .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "batchUpdateScores|EVENT_DECAY_FACTOR|DELETE_THRESHOLD|DECAY_FLOOR|decay" .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 5:// DECAY STRATEGY (ADR-004): This module handles SESSION-SCOPED decay
 8:// Independent of FSRS long-term decay — different time scale, different
@@ -4017,499 +4017,499 @@ exec
 749:  EVENT_DECAY_FACTOR,
 
 exec
-/bin/zsh -lc "rg -n \"retention_policy|delete_after|deleteAfter|retentionPolicy|ephemeral|shared|keep\" .opencode/skill/system-spec-kit/mcp_server/handlers/save .opencode/skill/system-spec-kit/mcp_server | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"retention_policy|delete_after|deleteAfter|retentionPolicy|ephemeral|shared|keep\" .opencode/skills/system-spec-kit/mcp_server/handlers/save .opencode/skills/system-spec-kit/mcp_server | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:72:} from '@spec-kit/shared/embeddings/factory';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1581:  // in shared embeddings, so startup no longer branches on shouldEagerWarmup().
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:32:Publication-facing metric rows now use the shared measurement contract from `lib/context/shared-payload.ts`.
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:56:- The current dashboard reader remains aggregate-only. Future export or publication surfaces should import the shared gate helper instead of re-encoding eligibility logic in handler-local code.
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:90:| `SPECKIT_DB_DIR` | (auto-detected) | string | Override database directory path. Also accepts `SPEC_KIT_DB_DIR`. | `core/config.ts`, `shared/config.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:107:| `SPECKIT_RRF` | `true` | boolean | Master switch for Reciprocal Rank Fusion. Graduated ON. | `shared/algorithms/rrf-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:108:| `SPECKIT_RRF_K` | `40` | number | RRF smoothing constant `k`. Lower = more top-heavy ranking, higher = flatter. Must be > 0. | `shared/algorithms/rrf-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:120:| `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Intent-aware adaptive fusion with document-type weight shifting. Graduated ON. | `shared/algorithms/adaptive-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:141:| `SPECKIT_DOC_TYPE_WEIGHT_FACTOR` | `1.2` | number | Proportional weight shift factor per document type in adaptive fusion (20% shift at 1.2). | `shared/algorithms/adaptive-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:265:| `SPECKIT_MEMORY_ROADMAP_PHASE` | `shared-rollout` | string | Active memory roadmap phase: `baseline`, `lineage`, `graph`, `adaptive`, `scope-governance`, `shared-rollout`. | `lib/config/capability-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:272:| `SPECKIT_SHARED_MEMORY_ADMIN_USER_ID` | (none) | string | Admin user ID override for shared memory operations. | `handlers/shared-memory.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:273:| `SPECKIT_SHARED_MEMORY_ADMIN_AGENT_ID` | (none) | string | Admin agent ID override for shared memory operations. | `handlers/shared-memory.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:349:| `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:350:| `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:351:| `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:363:| `SPECKIT_MEMORY_ROADMAP_PHASE` | `SPECKIT_HYDRA_PHASE` | `shared-rollout` | string | Active roadmap phase. |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:418:# Enable shared memory spaces
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:106:  const sharedSpaceId = normalizeScopeMatchValue(scope.sharedSpaceId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:118:      AND ((? IS NULL AND shared_space_id IS NULL) OR shared_space_id = ?)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:133:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:134:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:15:import type { WeightedDocumentSections } from '@spec-kit/shared/index';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:4:// MCP handler layer for shared-space CRUD, membership assignment,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:18:} from '../lib/collab/shared-spaces.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:31:type SharedSpaceAdminTool = 'shared_space_upsert' | 'shared_space_membership_set';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:32:type SharedAdminTool = SharedSpaceAdminTool | 'shared_memory_enable';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:33:type SharedIdentityTool = SharedAdminTool | 'shared_memory_status';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:87: * Resolve the shared-memory admin identity from server-owned configuration.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:108:        details: { reason: 'shared_memory_admin_unconfigured' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:123:        details: { reason: 'shared_memory_admin_ambiguous' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:184:      'Caller authentication is required for shared-memory operations.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:187:        error: 'Caller authentication is required for shared-memory operations.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:214:  if (args.tool !== 'shared_memory_enable' && normalizedTenantId.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:216:      'Tenant scope is required for shared-memory admin mutations.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:219:        error: 'Tenant scope is required for shared-memory admin mutations.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:221:        reason: 'shared_space_tenant_required',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:222:        hint: 'Provide the tenantId for the target shared-space mutation.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:239:        reason: 'shared_memory_trusted_binding_required',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:263:  sharedSpaceId?: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:266:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:272:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:291:    action: 'shared_space_admin',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:310:    case 'shared_space_not_found':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:312:    case 'shared_space_create_admin_required':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:313:      return `Only the configured shared-memory admin can create shared space "${spaceId}".`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:314:    case 'shared_space_tenant_mismatch':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:316:    case 'shared_space_owner_required':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:317:      return tool === 'shared_space_membership_set'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:318:        ? `Only a shared-space owner can update membership for "${spaceId}".`
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:319:        : `Only a shared-space owner can update "${spaceId}".`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:320:    case 'shared_space_editor_required':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:322:    case 'shared_space_membership_required':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:323:      return `Membership is required to manage shared space "${spaceId}".`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:324:    case 'shared_space_kill_switch':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:326:    case 'shared_space_rollout_disabled':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:328:    case 'shared_space_tenant_required':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:329:      return 'Tenant scope is required to manage shared spaces.';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:336:  return reason === 'shared_space_membership_required'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:337:    ? 'shared_space_owner_required'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:349:    code: reason === 'shared_space_not_found' ? 'E_NOT_FOUND' : 'E_AUTHORIZATION',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:352:      hint: reason === 'shared_space_not_found'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:353:        ? 'Create the space first with shared_space_upsert.'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:354:        : reason === 'shared_space_create_admin_required'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:355:          ? 'Authenticate as the configured shared-memory admin before creating a new shared space.'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:356:        : 'Use the tenant owner identity for this shared space.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:363:    tool: 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:368:      hint: 'Authenticate as the configured shared-memory admin before enabling shared memory.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:380:  console.error(`[shared-memory] ${tool} failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:385:    details: { reason: 'shared_memory_internal_error' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:402:  console.warn('[shared-memory] Admin operation using caller-supplied identity — assumes trusted transport');
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:421:    FROM shared_space_members m
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:422:    JOIN shared_spaces s ON s.space_id = m.space_id
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:439: * Persist a shared-space definition for rollout and membership checks.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:442: * @returns MCP success response describing the saved shared space.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:454:        tool: 'shared_space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:455:        error: 'Shared memory is not enabled. Run /memory:manage shared enable first.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:461:      tool: 'shared_space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:472:        FROM shared_spaces
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:490:            const reason = normalizeOwnerAdminDenyReason(access.reason ?? 'shared_space_owner_required');
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:505:              msg: getSharedSpaceAccessErrorMessage('shared_space_upsert', args.spaceId, reason),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:511:        const reason = 'shared_space_create_admin_required';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:526:          msg: getSharedSpaceAccessErrorMessage('shared_space_upsert', args.spaceId, reason),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:566:        FROM shared_spaces
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:598:      return createSharedSpaceAuthError('shared_space_upsert', result.error, result.msg);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:602:      tool: 'shared_space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:621:      'shared_space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:630: * Persist membership for a user or agent within a shared space.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:645:        tool: 'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:646:        error: 'Shared memory is not enabled. Run /memory:manage shared enable first.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:652:      tool: 'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:665:        const reason = normalizeOwnerAdminDenyReason(access.reason ?? 'shared_space_owner_required');
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:684:          console.error(`[shared-memory] Failed to record shared_space_admin audit: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:687:          'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:689:          getSharedSpaceAccessErrorMessage('shared_space_membership_set', args.spaceId, reason),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:720:      tool: 'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:738:      'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:747: * Report rollout status and visible shared spaces for the requested scope.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:756:      tool: 'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:765:      tool: 'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:768:        : 'Shared memory disabled — run /memory:manage shared enable to set up',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:785:      'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:794: * Enable the shared-memory subsystem via first-run setup.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:805:      tool: 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:811:        'shared_memory_enable_admin_required',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:812:        'Only the configured shared-memory admin can enable shared memory.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:823:        .get('shared_memory_enabled') as { value: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:834:        tool: 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:850:      tool: 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:866:      'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:875: * Write a README into the shared-spaces directory (skip if already exists).
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:880:  const dir = path.resolve(import.meta.dirname, '../../shared-spaces');
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:901:- **Spaces** — Named containers for shared memories, scoped to a tenant.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:910:| \`/memory:manage shared status\` | View rollout state and accessible spaces |
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:911:| \`/memory:manage shared create <spaceId> <tenantId> <name>\` | Create or update a shared space; first creator becomes owner |
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:912:| \`/memory:manage shared member <spaceId> <type> <id> <role>\` | Set membership; caller must already own the space |
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:913:| \`/memory:manage shared enable\` | Re-run first-time setup (idempotent) |
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:917:Set \`SPECKIT_MEMORY_SHARED_MEMORY=true\` to force-enable shared memory regardless of database state.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:6:import type { MemorySufficiencyResult } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:37:export type AssistiveClassification = 'supersede' | 'complement' | 'keep_separate';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:135:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:165:  shared_space_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:181:  sharedSpaceId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:59:/** Partial embedding provider metadata — see shared/types.ts ProviderMetadata for the full shape. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:25:} from '../lib/context/shared-payload.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:35:import type { MCPResponse } from '@spec-kit/shared/types';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:25:} from '../lib/context/shared-payload.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:35:import type { MCPResponse } from '@spec-kit/shared/types';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:462:  // ── Sub-call 3: CocoIndex availability (F046/F051: shared helper) ──
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:189:      // Safe-swap mode for re-chunking: keep existing children intact until
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:380:      // callers and older implementations that might bypass the shared transaction.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:82:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:94:  sessionScope: 'caller' | 'ephemeral';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:119:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:707:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:728:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:759:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:793:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1241:    sessionScope: requestedSessionId ? 'caller' : 'ephemeral',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1284:    sharedSpaceId: args.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:71: *   sim < 0.88          → keep separate (complement)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:78:): 'auto_merge' | 'review' | 'keep_separate' {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:81:  return 'keep_separate';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:171:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:177:  // Reconsolidation.ts keeps an internal guard as a defensive fallback for
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:213:                if (scope?.sharedSpaceId && r.shared_space_id && r.shared_space_id !== scope.sharedSpaceId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:437:        // 'keep_separate' → no action, fall through to normal save
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:24:import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:78:type SharedMemoryModule = typeof import('./shared-memory.js');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:96:let sharedMemoryModule: Promise<SharedMemoryModule> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:193:  if (!sharedMemoryModule) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:194:    sharedMemoryModule = loadHandlerModule<SharedMemoryModule>('shared-memory');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:196:  return sharedMemoryModule;
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:13:} from '../../lib/context/shared-payload.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:35:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:49:      sharedSpaceId: scope?.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:9:} from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:10:import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:13:} from '@spec-kit/shared/parsing/memory-template-contract';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:24:import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:106:  const sharedSpaceId = normalizeScopeMatchValue(scope.sharedSpaceId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:118:      AND ((? IS NULL AND shared_space_id IS NULL) OR shared_space_id = ?)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:133:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:134:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:5:import { validateFilePath } from '@spec-kit/shared/utils/path-security';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:115:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:292:  const { specFolder, tenantId, userId, agentId, sharedSpaceId } = args;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:293:  if (specFolder || tenantId || userId || agentId || sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:300:          SELECT id, spec_folder, tenant_id, user_id, agent_id, shared_space_id
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:308:          shared_space_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:320:          if (sharedSpaceId && row.shared_space_id !== sharedSpaceId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:7:import type { MemoryEvidenceSnapshot } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:7:import type { MemoryEvidenceSnapshot } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:23:  ['shared_space_id', 'sharedSpaceId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:61:    sharedSpaceId: normalizeScopeMatchValue(scope.sharedSpaceId),
-.opencode/skill/system-spec-kit/mcp_server/README.md:47:Spec Kit Memory is a Model Context Protocol (MCP) server that gives AI assistants persistent memory. It stores decisions, code context and project history in a local SQLite database, then finds exactly what is relevant when you need it. Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task.
-.opencode/skill/system-spec-kit/mcp_server/README.md:91:| `/memory:manage` | Database maintenance, checkpoints, bulk ingestion, shared-memory spaces and memberships | 19 primary tools + 1 helper |
-.opencode/skill/system-spec-kit/mcp_server/README.md:93:| `/spec_kit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
-.opencode/skill/system-spec-kit/mcp_server/README.md:402:**Reconsolidation-on-save** -- handles near-duplicates intelligently. Nearly identical content gets merged. Contradictions retire the old version. Different content keeps both. Like a filing clerk who reads the new document, checks the cabinet and makes an informed decision instead of just stuffing it in.
-.opencode/skill/system-spec-kit/mcp_server/README.md:410:**Auto-entity extraction** -- spots tool names, project names and concept names when you save and adds them to a shared catalog. Connects memories mentioning the same things even when surrounding text differs completely.
-.opencode/skill/system-spec-kit/mcp_server/README.md:422:The system keeps track of what happened during your current conversation so it does not repeat itself or lose context mid-session.
-.opencode/skill/system-spec-kit/mcp_server/README.md:436:Think of it like a shared office with a keycard lock. The office stays locked until an admin activates it. Only people on the access list can enter. Management can lock it down instantly if something goes wrong.
-.opencode/skill/system-spec-kit/mcp_server/README.md:438:- **Spaces** -- named containers for shared knowledge (like rooms in the office)
-.opencode/skill/system-spec-kit/mcp_server/README.md:443:For the full shared memory guide, see [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md).
-.opencode/skill/system-spec-kit/mcp_server/README.md:495:The system keeps the index accurate and performant as your project evolves.
-.opencode/skill/system-spec-kit/mcp_server/README.md:576:| `sharedSpaceId` | string | Shared-space boundary for governed retrieval |
-.opencode/skill/system-spec-kit/mcp_server/README.md:634:| `sharedSpaceId` | string | Shared-memory boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:669:| `sharedSpaceId` | string | Shared-memory boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:710:| `retentionPolicy` | string | `keep` (default), `ephemeral`, `shared` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:711:| `deleteAfter` | string | ISO date for automatic deletion |
-.opencode/skill/system-spec-kit/mcp_server/README.md:716:| `sharedSpaceId` | string | Governance: shared-space target |
-.opencode/skill/system-spec-kit/mcp_server/README.md:832:The cleanup tool for large-scale housekeeping. Delete all outdated or temporary memories in one go based on their importance level, like clearing out the recycling bin. The most important memories get extra protection. A safety checkpoint is created first so you can restore if needed.
-.opencode/skill/system-spec-kit/mcp_server/README.md:891:##### `shared_space_upsert`
-.opencode/skill/system-spec-kit/mcp_server/README.md:893:Create or update a shared-memory space. Shared spaces start locked: nobody can read or write until you add members with `shared_space_membership_set`. The person or agent who creates the space automatically becomes its owner.
-.opencode/skill/system-spec-kit/mcp_server/README.md:908:##### `shared_space_membership_set`
-.opencode/skill/system-spec-kit/mcp_server/README.md:910:Control who can access a shared space. Assign owner, editor or viewer roles. Only existing owners can change membership.
-.opencode/skill/system-spec-kit/mcp_server/README.md:924:##### `shared_memory_status`
-.opencode/skill/system-spec-kit/mcp_server/README.md:926:Check the state of shared memory. See which spaces exist, who has access and whether the kill switch is active. Use this to verify your setup after making changes.
-.opencode/skill/system-spec-kit/mcp_server/README.md:936:##### `shared_memory_enable`
-.opencode/skill/system-spec-kit/mcp_server/README.md:938:Turn on the shared-memory subsystem. First-time setup creates the database tables. Safe to call multiple times.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1230:├── shared-spaces/             # Documentation-only shared-memory surface
-.opencode/skill/system-spec-kit/mcp_server/README.md:1262:| L5 | Lifecycle | 8 | 600 | Checkpoints, shared spaces and enable/status/shared-space lifecycle |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1493:Enable the subsystem and create a shared space for your team:
-.opencode/skill/system-spec-kit/mcp_server/README.md:1496:{ "tool": "shared_memory_enable", "arguments": {} }
-.opencode/skill/system-spec-kit/mcp_server/README.md:1501:  "tool": "shared_space_upsert",
-.opencode/skill/system-spec-kit/mcp_server/README.md:1515:  "tool": "shared_space_membership_set",
-.opencode/skill/system-spec-kit/mcp_server/README.md:1527:For the full shared memory guide, see [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md).
-.opencode/skill/system-spec-kit/mcp_server/README.md:1646:| Shared memory not working | Call `shared_memory_enable` first, then create a space with an actor identity |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1705:Yes, through shared memory. Call `shared_memory_enable`, create a space with `shared_space_upsert` and grant access with `shared_space_membership_set`. Spaces are deny-by-default and the first creator becomes owner. See [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md) for the full guide.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1743:| [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md) | Complete shared memory guide: setup, use cases, roles, kill switch, troubleshooting |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:9:} from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:10:import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:13:} from '@spec-kit/shared/parsing/memory-template-contract';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:22:} from '../lib/context/shared-payload.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:27:import type { MCPResponse } from '@spec-kit/shared/types';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:23:  ['shared_space_id', 'sharedSpaceId'],
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:72:} from '@spec-kit/shared/embeddings/factory';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1581:  // in shared embeddings, so startup no longer branches on shouldEagerWarmup().
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:32:Publication-facing metric rows now use the shared measurement contract from `lib/context/shared-payload.ts`.
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:56:- The current dashboard reader remains aggregate-only. Future export or publication surfaces should import the shared gate helper instead of re-encoding eligibility logic in handler-local code.
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:90:| `SPECKIT_DB_DIR` | (auto-detected) | string | Override database directory path. Also accepts `SPEC_KIT_DB_DIR`. | `core/config.ts`, `shared/config.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:107:| `SPECKIT_RRF` | `true` | boolean | Master switch for Reciprocal Rank Fusion. Graduated ON. | `shared/algorithms/rrf-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:108:| `SPECKIT_RRF_K` | `40` | number | RRF smoothing constant `k`. Lower = more top-heavy ranking, higher = flatter. Must be > 0. | `shared/algorithms/rrf-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:120:| `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Intent-aware adaptive fusion with document-type weight shifting. Graduated ON. | `shared/algorithms/adaptive-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:141:| `SPECKIT_DOC_TYPE_WEIGHT_FACTOR` | `1.2` | number | Proportional weight shift factor per document type in adaptive fusion (20% shift at 1.2). | `shared/algorithms/adaptive-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:265:| `SPECKIT_MEMORY_ROADMAP_PHASE` | `shared-rollout` | string | Active memory roadmap phase: `baseline`, `lineage`, `graph`, `adaptive`, `scope-governance`, `shared-rollout`. | `lib/config/capability-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:272:| `SPECKIT_SHARED_MEMORY_ADMIN_USER_ID` | (none) | string | Admin user ID override for shared memory operations. | `handlers/shared-memory.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:273:| `SPECKIT_SHARED_MEMORY_ADMIN_AGENT_ID` | (none) | string | Admin agent ID override for shared memory operations. | `handlers/shared-memory.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:349:| `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:350:| `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:351:| `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:363:| `SPECKIT_MEMORY_ROADMAP_PHASE` | `SPECKIT_HYDRA_PHASE` | `shared-rollout` | string | Active roadmap phase. |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:418:# Enable shared memory spaces
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:106:  const sharedSpaceId = normalizeScopeMatchValue(scope.sharedSpaceId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:118:      AND ((? IS NULL AND shared_space_id IS NULL) OR shared_space_id = ?)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:133:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:134:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:15:import type { WeightedDocumentSections } from '@spec-kit/shared/index';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:4:// MCP handler layer for shared-space CRUD, membership assignment,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:18:} from '../lib/collab/shared-spaces.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:31:type SharedSpaceAdminTool = 'shared_space_upsert' | 'shared_space_membership_set';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:32:type SharedAdminTool = SharedSpaceAdminTool | 'shared_memory_enable';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:33:type SharedIdentityTool = SharedAdminTool | 'shared_memory_status';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:87: * Resolve the shared-memory admin identity from server-owned configuration.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:108:        details: { reason: 'shared_memory_admin_unconfigured' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:123:        details: { reason: 'shared_memory_admin_ambiguous' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:184:      'Caller authentication is required for shared-memory operations.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:187:        error: 'Caller authentication is required for shared-memory operations.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:214:  if (args.tool !== 'shared_memory_enable' && normalizedTenantId.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:216:      'Tenant scope is required for shared-memory admin mutations.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:219:        error: 'Tenant scope is required for shared-memory admin mutations.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:221:        reason: 'shared_space_tenant_required',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:222:        hint: 'Provide the tenantId for the target shared-space mutation.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:239:        reason: 'shared_memory_trusted_binding_required',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:263:  sharedSpaceId?: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:266:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:272:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:291:    action: 'shared_space_admin',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:310:    case 'shared_space_not_found':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:312:    case 'shared_space_create_admin_required':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:313:      return `Only the configured shared-memory admin can create shared space "${spaceId}".`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:314:    case 'shared_space_tenant_mismatch':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:316:    case 'shared_space_owner_required':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:317:      return tool === 'shared_space_membership_set'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:318:        ? `Only a shared-space owner can update membership for "${spaceId}".`
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:319:        : `Only a shared-space owner can update "${spaceId}".`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:320:    case 'shared_space_editor_required':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:322:    case 'shared_space_membership_required':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:323:      return `Membership is required to manage shared space "${spaceId}".`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:324:    case 'shared_space_kill_switch':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:326:    case 'shared_space_rollout_disabled':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:328:    case 'shared_space_tenant_required':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:329:      return 'Tenant scope is required to manage shared spaces.';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:336:  return reason === 'shared_space_membership_required'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:337:    ? 'shared_space_owner_required'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:349:    code: reason === 'shared_space_not_found' ? 'E_NOT_FOUND' : 'E_AUTHORIZATION',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:352:      hint: reason === 'shared_space_not_found'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:353:        ? 'Create the space first with shared_space_upsert.'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:354:        : reason === 'shared_space_create_admin_required'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:355:          ? 'Authenticate as the configured shared-memory admin before creating a new shared space.'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:356:        : 'Use the tenant owner identity for this shared space.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:363:    tool: 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:368:      hint: 'Authenticate as the configured shared-memory admin before enabling shared memory.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:380:  console.error(`[shared-memory] ${tool} failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:385:    details: { reason: 'shared_memory_internal_error' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:402:  console.warn('[shared-memory] Admin operation using caller-supplied identity — assumes trusted transport');
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:421:    FROM shared_space_members m
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:422:    JOIN shared_spaces s ON s.space_id = m.space_id
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:439: * Persist a shared-space definition for rollout and membership checks.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:442: * @returns MCP success response describing the saved shared space.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:454:        tool: 'shared_space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:455:        error: 'Shared memory is not enabled. Run /memory:manage shared enable first.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:461:      tool: 'shared_space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:472:        FROM shared_spaces
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:490:            const reason = normalizeOwnerAdminDenyReason(access.reason ?? 'shared_space_owner_required');
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:505:              msg: getSharedSpaceAccessErrorMessage('shared_space_upsert', args.spaceId, reason),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:511:        const reason = 'shared_space_create_admin_required';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:526:          msg: getSharedSpaceAccessErrorMessage('shared_space_upsert', args.spaceId, reason),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:566:        FROM shared_spaces
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:598:      return createSharedSpaceAuthError('shared_space_upsert', result.error, result.msg);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:602:      tool: 'shared_space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:621:      'shared_space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:630: * Persist membership for a user or agent within a shared space.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:645:        tool: 'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:646:        error: 'Shared memory is not enabled. Run /memory:manage shared enable first.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:652:      tool: 'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:665:        const reason = normalizeOwnerAdminDenyReason(access.reason ?? 'shared_space_owner_required');
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:684:          console.error(`[shared-memory] Failed to record shared_space_admin audit: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:687:          'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:689:          getSharedSpaceAccessErrorMessage('shared_space_membership_set', args.spaceId, reason),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:720:      tool: 'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:738:      'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:747: * Report rollout status and visible shared spaces for the requested scope.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:756:      tool: 'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:765:      tool: 'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:768:        : 'Shared memory disabled — run /memory:manage shared enable to set up',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:785:      'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:794: * Enable the shared-memory subsystem via first-run setup.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:805:      tool: 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:811:        'shared_memory_enable_admin_required',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:812:        'Only the configured shared-memory admin can enable shared memory.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:823:        .get('shared_memory_enabled') as { value: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:834:        tool: 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:850:      tool: 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:866:      'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:875: * Write a README into the shared-spaces directory (skip if already exists).
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:880:  const dir = path.resolve(import.meta.dirname, '../../shared-spaces');
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:901:- **Spaces** — Named containers for shared memories, scoped to a tenant.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:910:| \`/memory:manage shared status\` | View rollout state and accessible spaces |
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:911:| \`/memory:manage shared create <spaceId> <tenantId> <name>\` | Create or update a shared space; first creator becomes owner |
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:912:| \`/memory:manage shared member <spaceId> <type> <id> <role>\` | Set membership; caller must already own the space |
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:913:| \`/memory:manage shared enable\` | Re-run first-time setup (idempotent) |
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:917:Set \`SPECKIT_MEMORY_SHARED_MEMORY=true\` to force-enable shared memory regardless of database state.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:6:import type { MemorySufficiencyResult } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:37:export type AssistiveClassification = 'supersede' | 'complement' | 'keep_separate';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:135:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:165:  shared_space_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:181:  sharedSpaceId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:59:/** Partial embedding provider metadata — see shared/types.ts ProviderMetadata for the full shape. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:25:} from '../lib/context/shared-payload.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:35:import type { MCPResponse } from '@spec-kit/shared/types';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:25:} from '../lib/context/shared-payload.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:35:import type { MCPResponse } from '@spec-kit/shared/types';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:462:  // ── Sub-call 3: CocoIndex availability (F046/F051: shared helper) ──
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:189:      // Safe-swap mode for re-chunking: keep existing children intact until
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:380:      // callers and older implementations that might bypass the shared transaction.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:82:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:94:  sessionScope: 'caller' | 'ephemeral';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:119:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:707:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:728:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:759:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:793:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1241:    sessionScope: requestedSessionId ? 'caller' : 'ephemeral',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1284:    sharedSpaceId: args.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:71: *   sim < 0.88          → keep separate (complement)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:78:): 'auto_merge' | 'review' | 'keep_separate' {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:81:  return 'keep_separate';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:171:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:177:  // Reconsolidation.ts keeps an internal guard as a defensive fallback for
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:213:                if (scope?.sharedSpaceId && r.shared_space_id && r.shared_space_id !== scope.sharedSpaceId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:437:        // 'keep_separate' → no action, fall through to normal save
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:24:import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:78:type SharedMemoryModule = typeof import('./shared-memory.js');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:96:let sharedMemoryModule: Promise<SharedMemoryModule> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:193:  if (!sharedMemoryModule) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:194:    sharedMemoryModule = loadHandlerModule<SharedMemoryModule>('shared-memory');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:196:  return sharedMemoryModule;
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:13:} from '../../lib/context/shared-payload.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:35:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:49:      sharedSpaceId: scope?.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:9:} from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:10:import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:13:} from '@spec-kit/shared/parsing/memory-template-contract';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:24:import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:106:  const sharedSpaceId = normalizeScopeMatchValue(scope.sharedSpaceId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:118:      AND ((? IS NULL AND shared_space_id IS NULL) OR shared_space_id = ?)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:133:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:134:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:5:import { validateFilePath } from '@spec-kit/shared/utils/path-security';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:115:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:292:  const { specFolder, tenantId, userId, agentId, sharedSpaceId } = args;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:293:  if (specFolder || tenantId || userId || agentId || sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:300:          SELECT id, spec_folder, tenant_id, user_id, agent_id, shared_space_id
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:308:          shared_space_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:320:          if (sharedSpaceId && row.shared_space_id !== sharedSpaceId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:7:import type { MemoryEvidenceSnapshot } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:7:import type { MemoryEvidenceSnapshot } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:23:  ['shared_space_id', 'sharedSpaceId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:61:    sharedSpaceId: normalizeScopeMatchValue(scope.sharedSpaceId),
+.opencode/skills/system-spec-kit/mcp_server/README.md:47:Spec Kit Memory is a Model Context Protocol (MCP) server that gives AI assistants persistent memory. It stores decisions, code context and project history in a local SQLite database, then finds exactly what is relevant when you need it. Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task.
+.opencode/skills/system-spec-kit/mcp_server/README.md:91:| `/memory:manage` | Database maintenance, checkpoints, bulk ingestion, shared-memory spaces and memberships | 19 primary tools + 1 helper |
+.opencode/skills/system-spec-kit/mcp_server/README.md:93:| `/spec_kit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
+.opencode/skills/system-spec-kit/mcp_server/README.md:402:**Reconsolidation-on-save** -- handles near-duplicates intelligently. Nearly identical content gets merged. Contradictions retire the old version. Different content keeps both. Like a filing clerk who reads the new document, checks the cabinet and makes an informed decision instead of just stuffing it in.
+.opencode/skills/system-spec-kit/mcp_server/README.md:410:**Auto-entity extraction** -- spots tool names, project names and concept names when you save and adds them to a shared catalog. Connects memories mentioning the same things even when surrounding text differs completely.
+.opencode/skills/system-spec-kit/mcp_server/README.md:422:The system keeps track of what happened during your current conversation so it does not repeat itself or lose context mid-session.
+.opencode/skills/system-spec-kit/mcp_server/README.md:436:Think of it like a shared office with a keycard lock. The office stays locked until an admin activates it. Only people on the access list can enter. Management can lock it down instantly if something goes wrong.
+.opencode/skills/system-spec-kit/mcp_server/README.md:438:- **Spaces** -- named containers for shared knowledge (like rooms in the office)
+.opencode/skills/system-spec-kit/mcp_server/README.md:443:For the full shared memory guide, see [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md).
+.opencode/skills/system-spec-kit/mcp_server/README.md:495:The system keeps the index accurate and performant as your project evolves.
+.opencode/skills/system-spec-kit/mcp_server/README.md:576:| `sharedSpaceId` | string | Shared-space boundary for governed retrieval |
+.opencode/skills/system-spec-kit/mcp_server/README.md:634:| `sharedSpaceId` | string | Shared-memory boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:669:| `sharedSpaceId` | string | Shared-memory boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:710:| `retentionPolicy` | string | `keep` (default), `ephemeral`, `shared` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:711:| `deleteAfter` | string | ISO date for automatic deletion |
+.opencode/skills/system-spec-kit/mcp_server/README.md:716:| `sharedSpaceId` | string | Governance: shared-space target |
+.opencode/skills/system-spec-kit/mcp_server/README.md:832:The cleanup tool for large-scale housekeeping. Delete all outdated or temporary memories in one go based on their importance level, like clearing out the recycling bin. The most important memories get extra protection. A safety checkpoint is created first so you can restore if needed.
+.opencode/skills/system-spec-kit/mcp_server/README.md:891:##### `shared_space_upsert`
+.opencode/skills/system-spec-kit/mcp_server/README.md:893:Create or update a shared-memory space. Shared spaces start locked: nobody can read or write until you add members with `shared_space_membership_set`. The person or agent who creates the space automatically becomes its owner.
+.opencode/skills/system-spec-kit/mcp_server/README.md:908:##### `shared_space_membership_set`
+.opencode/skills/system-spec-kit/mcp_server/README.md:910:Control who can access a shared space. Assign owner, editor or viewer roles. Only existing owners can change membership.
+.opencode/skills/system-spec-kit/mcp_server/README.md:924:##### `shared_memory_status`
+.opencode/skills/system-spec-kit/mcp_server/README.md:926:Check the state of shared memory. See which spaces exist, who has access and whether the kill switch is active. Use this to verify your setup after making changes.
+.opencode/skills/system-spec-kit/mcp_server/README.md:936:##### `shared_memory_enable`
+.opencode/skills/system-spec-kit/mcp_server/README.md:938:Turn on the shared-memory subsystem. First-time setup creates the database tables. Safe to call multiple times.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1230:├── shared-spaces/             # Documentation-only shared-memory surface
+.opencode/skills/system-spec-kit/mcp_server/README.md:1262:| L5 | Lifecycle | 8 | 600 | Checkpoints, shared spaces and enable/status/shared-space lifecycle |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1493:Enable the subsystem and create a shared space for your team:
+.opencode/skills/system-spec-kit/mcp_server/README.md:1496:{ "tool": "shared_memory_enable", "arguments": {} }
+.opencode/skills/system-spec-kit/mcp_server/README.md:1501:  "tool": "shared_space_upsert",
+.opencode/skills/system-spec-kit/mcp_server/README.md:1515:  "tool": "shared_space_membership_set",
+.opencode/skills/system-spec-kit/mcp_server/README.md:1527:For the full shared memory guide, see [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md).
+.opencode/skills/system-spec-kit/mcp_server/README.md:1646:| Shared memory not working | Call `shared_memory_enable` first, then create a space with an actor identity |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1705:Yes, through shared memory. Call `shared_memory_enable`, create a space with `shared_space_upsert` and grant access with `shared_space_membership_set`. Spaces are deny-by-default and the first creator becomes owner. See [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md) for the full guide.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1743:| [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md) | Complete shared memory guide: setup, use cases, roles, kill switch, troubleshooting |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:9:} from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:10:import { MEMORY_SUFFICIENCY_REJECTION_CODE } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:13:} from '@spec-kit/shared/parsing/memory-template-contract';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:22:} from '../lib/context/shared-payload.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:27:import type { MCPResponse } from '@spec-kit/shared/types';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:23:  ['shared_space_id', 'sharedSpaceId'],
 
 codex
 The code split is becoming clear: Mnemosyne’s wrapper has no visible age model at all, while Spec Kit Memory has three different time axes already in play: long-term FSRS decay, session attention decay, and archival/retention cleanup. I’m pulling the exact archival and retention code paths next so the recommendations stay concrete rather than generic.
 exec
-/bin/zsh -lc "rg -n \"candidate|archive|unarchive|maxAgeDays|maxAccessCount|maxConfidence|is_archived|delete_after|retention_policy|bulk delete|retention sweep|deleteAfter\" .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/mcp_server/lib | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"candidate|archive|unarchive|maxAgeDays|maxAccessCount|maxConfidence|is_archived|delete_after|retention_policy|bulk delete|retention sweep|deleteAfter\" .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/mcp_server/lib | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:5:// Background archival job for dormant/archived memories
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:185:  maxAgeDays: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:186:  maxAccessCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:187:  maxConfidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:196:  maxAgeDays: 90,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:197:  maxAccessCount: 2,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:198:  maxConfidence: 0.4,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:222:  totalUnarchived: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:237:  totalUnarchived: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:258:    const hasArchived = columns.some(c => c.name === 'is_archived');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:261:      db.exec('ALTER TABLE memory_index ADD COLUMN is_archived INTEGER DEFAULT 0');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:262:      db.exec('CREATE INDEX IF NOT EXISTS idx_archived ON memory_index(is_archived)');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:263:      console.error('[archival-manager] Added is_archived column');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:312:        case 'totalUnarchived':
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:313:          archivalStats.totalUnarchived = parseInt(row.value, 10) || 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:342:      upsert.run('totalUnarchived', String(archivalStats.totalUnarchived));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:358: * Get archival candidates using SQL as a pre-filter, then FSRS tier classifier
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:361: * Strategy: SQL query fetches broad candidates (unarchived, not protected, not pinned).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:362: * The FSRS-based tier classifier then determines which should actually be archived.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:371:    // Broad SQL pre-filter: get unarchived, non-protected, non-pinned memories
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:375:      WHERE (is_archived IS NULL OR is_archived = 0)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:388:    cutoffDate.setDate(cutoffDate.getDate() - ARCHIVAL_CONFIG.maxAgeDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:390:    const candidates: ArchivalCandidate[] = [];
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:403:          ((row.access_count as number) || 0) <= ARCHIVAL_CONFIG.maxAccessCount &&
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:404:          ((row.confidence as number) || 0.5) <= ARCHIVAL_CONFIG.maxConfidence
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:409:        candidates.push({
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:421:        if (candidates.length >= limit) break;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:425:    return candidates;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:438:  if ((row.access_count as number) <= ARCHIVAL_CONFIG.maxAccessCount) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:441:  if ((row.confidence as number) <= ARCHIVAL_CONFIG.maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:444:  return reasons.join(', ') || 'candidate';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:460:    const isArchived = (memory.is_archived as number) === 1;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:498:    console.warn(`[archival-manager] BM25 archive sync failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:503:// Touching memory_index or ancillary tables. This preserves the archived row
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:504:// (is_archived=1) so unarchive can still find and restore it.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:514:      console.warn(`[archival-manager] Vector archive sync failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:519:function syncBm25OnUnarchive(memoryId: number): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:530:    const query = `SELECT ${availableColumns.join(', ')} FROM memory_index WHERE id = ? AND is_archived = 0`;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:539:    console.warn(`[archival-manager] BM25 unarchive sync failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:546: * The playbook contract (scenario 124) requires that unarchive does NOT recreate the
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:549: * the unarchive call on an async embedding generation round-trip and keeps the
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:550: * archive/unarchive path lightweight.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:552:function syncVectorOnUnarchive(memoryId: number): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:558:function archiveMemory(memoryId: number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:564:      SET is_archived = 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:567:        AND (is_archived IS NULL OR is_archived = 0)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:587:    console.warn(`[archival-manager] archiveMemory error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:592:function archiveBatch(memoryIds: number[]): { archived: number; failed: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:593:  if (!db) return { archived: 0, failed: memoryIds.length };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:595:  let archived = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:601:        // Db is guaranteed non-null because archiveBatch returns early when the module database is missing
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:604:          SET is_archived = 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:607:            AND (is_archived IS NULL OR is_archived = 0)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:615:          archived++;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:626:        console.warn(`[archival-manager] archiveMemory error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:635:  return { archived, failed };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:638:function unarchiveMemory(memoryId: number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:644:      SET is_archived = 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:646:      WHERE id = ? AND is_archived = 1
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:651:      archivalStats.totalUnarchived++;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:652:      syncBm25OnUnarchive(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:653:      syncVectorOnUnarchive(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:661:    console.warn(`[archival-manager] unarchiveMemory error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:670:function runArchivalScan(): { scanned: number; archived: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:671:  const candidates = getArchivalCandidates();
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:672:  archivalStats.totalScanned += candidates.length;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:675:  const result = archiveBatch(candidates.map(c => c.id));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:681:    `[archival-manager] Scan complete: ${candidates.length} candidates, ${result.archived} archived`
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:684:  return { scanned: candidates.length, archived: result.archived };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:739:  archivalStats.totalUnarchived = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:764:  archiveMemory,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:765:  archiveBatch,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:766:  unarchiveMemory,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:76:type CrudMutationType = 'create' | 'update' | 'delete' | 'merge' | 'archive' | 'restore' | 'reindex';
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:43:| Retrieval Stages | 6 | candidate, filter, fusion, rerank, fallback, final-rank |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:52:| **TraceEntry** | Per-stage metrics (stage name, timestamp, duration, candidate counts) |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:149:| `candidate` | Initial candidate generation |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:50:| **LatencyMetrics** | Stage-by-stage timing: candidate, fusion, rerank, boost, and total |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:137:| `candidateLatencyMs` | `number` | Candidate retrieval stage duration |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:312:| `RETRIEVAL_TRACE_STAGES` | Allowed stage names: `candidate`, `filter`, `fusion`, `rerank`, `fallback`, `final-rank` |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:348:  candidateLatencyMs: 18,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:56:        actions: ['Wait for the restore to finish', 'Retry the bulk delete request'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:100:      error: 'Memory bulk delete aborted: database unavailable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:152:          reason: `auto-checkpoint before bulk delete of ${affectedCount} "${tier}" memories`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:162:          throw new Error(`${checkpointError}. Aborting high-safety bulk delete.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:224:          // History recording is best-effort inside bulk delete
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:55:  candidateLatencyMs: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:187:      candidateLatencyMs: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:242:    t.latency.candidateLatencyMs +
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:384:  const candidate = forecast && typeof forecast === 'object'
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:387:  const riskSignals = Array.isArray(candidate.riskSignals)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:388:    ? candidate.riskSignals.filter((signal): signal is string => typeof signal === 'string')
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:406:      typeof candidate.etaSeconds === 'number' && Number.isFinite(candidate.etaSeconds)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:407:        ? Math.max(0, candidate.etaSeconds)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:410:      typeof candidate.etaConfidence === 'number' && Number.isFinite(candidate.etaConfidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:411:        ? Math.max(0, Math.min(1, candidate.etaConfidence))
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:414:      typeof candidate.failureRisk === 'number' && Number.isFinite(candidate.failureRisk)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:415:        ? Math.max(0, Math.min(1, candidate.failureRisk))
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:418:    ...(typeof candidate.caveat === 'string' && candidate.caveat.length > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:419:      ? { caveat: candidate.caveat }
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:656:      candidateLatencyMs: t.latency.candidateLatencyMs,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:54:  candidates: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:84:    candidates: 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:242:  const candidates: DivergenceReconcileCandidate[] = [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:254:    candidates.push({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:260:  return candidates.sort((a, b) => a.normalizedPath.localeCompare(b.normalizedPath));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:279:  // Expand to the full candidate set from the index table.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:289:      summary.errors.push(`candidate-expansion: ${toErrorMessage(err)}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:293:  summary.candidates = reconcileCandidates.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:24:const SPEC_DOC_EXCLUDE_DIRS = new Set(['scratch', 'memory', 'node_modules', 'iterations', 'z_archive']);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:68:          // Enforce optional specFolder scope before including a candidate file.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:101:   * Internal raw-candidate mode used by the Stage 1 pipeline.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:102:   * When true, stop after channel collection and return pre-fusion candidates.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:241:/** Minimum MMR candidates required for diversity reranking to be worthwhile. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:347:    // resolution returns [] rather than leaking unscoped BM25 candidates.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:465:    // Filters: is_archived exclusion and spec_folder matching handled by fts5Bm25Search
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:635:      const candidate: HybridSearchResult = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:644:      const key = canonicalResultId(candidate.id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:645:      deduped.set(key, mergeRawCandidate(deduped.get(key), candidate));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1450:          const diversifiedRows = diversified.map((candidate): HybridSearchResult => {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1451:            const existing = rerankedById.get(canonicalResultId(candidate.id));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1457:              id: candidate.id,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1458:              score: candidate.score,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1532:  // candidates before low-confidence tails are trimmed.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1675: * Collect pipeline candidates through the adaptive fallback chain, returning
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1682: * @returns Unfused candidate results from the first non-empty collection stage.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1726:  console.warn('[hybrid-search] Raw candidate collection returned empty results');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1808:    // H13 FIX: Exclude archived rows unless explicitly requested
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1810:      `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1811:      `(is_archived IS NULL OR is_archived = 0)`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2210:  candidateCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2383:      candidateCount: 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2419:      candidateCount: results.length,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2436:    candidateCount: results.length,
-.opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:60:    const candidatePaths = [
-.opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:66:    for (const distPath of candidatePaths) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:125:      const candidatesExhausted = results.length < fetchLimit;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:127:      if (candidatesExhausted || !sawNewCandidates) {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts:11:  'candidate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:511:  const candidates = database.prepare(query).all(...params) as PreflightRecord[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:512:  const preflightCandidates = candidates.filter((row) => row.phase === 'preflight');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:513:  const completeCandidates = candidates.filter((row) => row.phase === 'complete');
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:535:        const archivePlaceholders = oldChildIds.map(() => '?').join(', ');
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:540:          WHERE id IN (${archivePlaceholders})
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:703:    const candidates = findSimilar(embedding, {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:708:    if (!candidates || candidates.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:719:    const bestMatch = candidates[0];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:212:  const candidates = queryTerms
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:227:  const unique = [...new Set(candidates)];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1115:    deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1146:    deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:203:  includeArchived?: boolean; // REQ-206: include archived memories in search (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:520:    includeArchived: includeArchived = false, // REQ-206: exclude archived by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1297:              const candidate = result.id;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1298:              if (typeof candidate !== 'number' && typeof candidate !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1301:              const normalizedId = String(candidate).trim();
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:131:- Low-HVR memories are candidates for demotion or deprecation
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:236:  { spec_folder: 'z_archive/001-old', updated_at: '2024-06-01', importance_tier: 'deprecated' },
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:271:| Archive check | `isArchived('/z_archive/old')` | Deprioritize archived folders |
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:569:      const candidates = find_similar(embedding, {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:578:      if (candidates && candidates.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:579:        const bestMatch = candidates[0] as {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:192:  const candidates = [
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:204:    candidates.push(
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:216:  const existing = candidates
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:217:    .filter((candidate): candidate is LatestMemoryLookupRow => candidate !== undefined)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:53:    hasArchivedColumn: columnSet.has('is_archived'),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:62:    predicates.push(`COALESCE(${alias}.is_archived, 0) = 0`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:13:// Active mode (graduated): HyDE results are merged into the candidate
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:24://   SPECKIT_HYDE_ACTIVE — merge HyDE results into candidates (default: TRUE, graduated)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:359: * merging into the candidate pool.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:364: * @returns Array of PipelineRow candidates (empty in shadow mode).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:380: * for a deep + low-confidence query, log results, and return candidates
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:386: *   - Active mode: results returned for merging in stage1-candidate-gen.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:389: * @param baseline - Current stage-1 candidate set (before HyDE).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:412:    const candidates = vectorOnly(hydeResult.embedding, limit, specFolder);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:418:        `[hyde] shadow results: ${candidates.length} candidates for query "${query}" ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:424:      // Shadow mode — log only, do not contribute to candidate set
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:428:    return candidates;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:28:  '/z_archive/',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:192:  candidate: CachedSessionSummaryCandidate | null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:199:  if (!candidate) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:203:  if (candidate.schemaVersion !== CACHED_SESSION_SUMMARY_SCHEMA_VERSION) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:207:      `Expected schema version ${CACHED_SESSION_SUMMARY_SCHEMA_VERSION} but received ${String(candidate.schemaVersion)}.`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:211:  const summaryText = candidate.summaryText?.trim() ?? '';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:212:  if (summaryText.length === 0 || parseIsoMs(candidate.extractedAt) === null) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:220:  const producerMetadata = candidate.producerMetadata;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:281:  const extractedAtMs = parseIsoMs(candidate.extractedAt);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:301:  const cachedSpecFolder = normalizeSpecFolder(candidate.lastSpecFolder);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:333:      schemaVersion: candidate.schemaVersion,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:336:      extractedAt: candidate.extractedAt!,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:357:  const candidate = buildCachedSessionSummaryCandidate(
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:366:  return evaluateCachedSessionSummaryCandidate(candidate, options);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:114:  const candidates = new Set<string>();
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:119:  candidates.add(normalizedReference);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:120:  candidates.add(canonical);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:121:  candidates.add(trimmedLeadingSlash);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:123:    candidates.add(`/${normalizedReference}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:126:    candidates.add(`/${canonical}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:129:  return Array.from(candidates).filter((candidate) => candidate.length > 0);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:204:    for (const candidate of buildPathExactCandidates(ref.normalizedReference)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:205:      pathCandidates.add(candidate);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:206:      const current = pathCandidateRefs.get(candidate) ?? [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:208:      pathCandidateRefs.set(candidate, current);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:240:    for (const [candidate, refs] of pathCandidateRefs.entries()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:241:      const id = idByCandidate.get(candidate);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:382:        const candidate = resolvedReferenceMap.get(reference);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:383:        resolvedId = typeof candidate === 'number' ? candidate : null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:378:    const candidateInnerStates: Array<Record<string, unknown>> = [
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:410:      const meta = candidateInnerStates[0].meta as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:414:    for (const innerEnvelope of candidateInnerStates) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:469:        const candidateResults = [...currentResults];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:470:        candidateResults[lastIndex] = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:477:          results: candidateResults,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:478:          count: candidateResults.length,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:481:        const candidateContent = contentEntries.map((entry, index) => (
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:484:        const candidateResult = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:486:          content: candidateContent,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:488:        const candidateTokens = estimateTokens(JSON.stringify(candidateResult));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:490:        if (candidateTokens <= budgetTokens) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:491:          bestResult = candidateResult;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:492:          bestTokens = candidateTokens;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:76:  const candidates = Array.isArray(flagNames) ? flagNames : [flagNames];
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:77:  for (const flagName of candidates) {
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:99:  const candidates = Array.isArray(flagNames) ? flagNames : [flagNames];
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:104:  for (const flagName of candidates) {
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:115:  const canonicalFlag = candidates[0];
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:42:  candidateMemoryIds: number[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:71:    for (const candidate of packageCandidates) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:72:      if (!existsSync(candidate)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:75:      const pkg = JSON.parse(readFileSync(candidate, 'utf-8'));
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:644:  const candidateEntries = getTriggerCandidates(promptNormalized, cache);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:649:  for (const entry of candidateEntries) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:686:    candidateCount: candidateEntries.length,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:741:  const candidateIds = new Set<number>();
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:749:      candidateIds.add(triggerId);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:753:  if (candidateIds.size === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:757:  return [...candidateIds]
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:91:  const candidateMemoryIds = Array.from(
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:93:      ...rawRecommendation.candidateMemoryIds,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:103:    candidateMemoryIds,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:38:  let candidates: SimilarMemory[] = [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:42:    candidates = findSimilarMemories(embedding, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:53:  if (!force && candidates.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:57:      candidates,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:87:  const candidate = data.cachedSummary;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:88:  if (candidate && typeof candidate === 'object') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:89:    return candidate as CachedSessionSummaryDecision;
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:96:  - `archival-manager.ts` — lifecycle transitions between active and archived memory states.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:169:- Purpose: Owns post-tool extraction and save-time entity/secret handling. It turns tool outputs into candidate memory payloads while gating PII/secrets and extracting reusable entities.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:174:  - `entity-denylist.ts` — denylist filtering for noisy or generic entity candidates.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:194:- Purpose: Owns scope enforcement, governed ingest normalization, audit recording, and retention sweeps. This is the boundary for tenant/user/agent/session/shared-space policy decisions.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:197:  - `retention.ts` — scoped retention sweep logic over expired memories.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:297:- Purpose: Owns ranking and calibration logic once candidate memories already exist. It combines importance tiers, composite scoring, folder relevance, confidence signals, and negative-feedback effects.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:313:- Purpose: Owns the retrieval engine: candidate generation, vector/lexical channels, fusion, reranking, query intelligence, graph-aware retrieval, and schema/index helpers needed by the search path. This is the highest-churn and broadest domain module in `lib/`.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:372:      .map((candidate) => graphDb.resolveSubjectFilePath(candidate) ?? candidate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:373:      .filter((candidate): candidate is string => typeof candidate === 'string' && candidate.length > 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:5:// Background archival job for dormant/archived memories
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:185:  maxAgeDays: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:186:  maxAccessCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:187:  maxConfidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:196:  maxAgeDays: 90,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:197:  maxAccessCount: 2,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:198:  maxConfidence: 0.4,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:222:  totalUnarchived: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:237:  totalUnarchived: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:258:    const hasArchived = columns.some(c => c.name === 'is_archived');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:261:      db.exec('ALTER TABLE memory_index ADD COLUMN is_archived INTEGER DEFAULT 0');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:262:      db.exec('CREATE INDEX IF NOT EXISTS idx_archived ON memory_index(is_archived)');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:263:      console.error('[archival-manager] Added is_archived column');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:312:        case 'totalUnarchived':
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:313:          archivalStats.totalUnarchived = parseInt(row.value, 10) || 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:342:      upsert.run('totalUnarchived', String(archivalStats.totalUnarchived));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:358: * Get archival candidates using SQL as a pre-filter, then FSRS tier classifier
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:361: * Strategy: SQL query fetches broad candidates (unarchived, not protected, not pinned).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:362: * The FSRS-based tier classifier then determines which should actually be archived.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:371:    // Broad SQL pre-filter: get unarchived, non-protected, non-pinned memories
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:375:      WHERE (is_archived IS NULL OR is_archived = 0)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:388:    cutoffDate.setDate(cutoffDate.getDate() - ARCHIVAL_CONFIG.maxAgeDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:390:    const candidates: ArchivalCandidate[] = [];
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:403:          ((row.access_count as number) || 0) <= ARCHIVAL_CONFIG.maxAccessCount &&
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:404:          ((row.confidence as number) || 0.5) <= ARCHIVAL_CONFIG.maxConfidence
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:409:        candidates.push({
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:421:        if (candidates.length >= limit) break;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:425:    return candidates;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:438:  if ((row.access_count as number) <= ARCHIVAL_CONFIG.maxAccessCount) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:441:  if ((row.confidence as number) <= ARCHIVAL_CONFIG.maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:444:  return reasons.join(', ') || 'candidate';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:460:    const isArchived = (memory.is_archived as number) === 1;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:498:    console.warn(`[archival-manager] BM25 archive sync failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:503:// Touching memory_index or ancillary tables. This preserves the archived row
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:504:// (is_archived=1) so unarchive can still find and restore it.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:514:      console.warn(`[archival-manager] Vector archive sync failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:519:function syncBm25OnUnarchive(memoryId: number): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:530:    const query = `SELECT ${availableColumns.join(', ')} FROM memory_index WHERE id = ? AND is_archived = 0`;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:539:    console.warn(`[archival-manager] BM25 unarchive sync failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:546: * The playbook contract (scenario 124) requires that unarchive does NOT recreate the
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:549: * the unarchive call on an async embedding generation round-trip and keeps the
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:550: * archive/unarchive path lightweight.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:552:function syncVectorOnUnarchive(memoryId: number): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:558:function archiveMemory(memoryId: number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:564:      SET is_archived = 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:567:        AND (is_archived IS NULL OR is_archived = 0)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:587:    console.warn(`[archival-manager] archiveMemory error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:592:function archiveBatch(memoryIds: number[]): { archived: number; failed: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:593:  if (!db) return { archived: 0, failed: memoryIds.length };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:595:  let archived = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:601:        // Db is guaranteed non-null because archiveBatch returns early when the module database is missing
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:604:          SET is_archived = 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:607:            AND (is_archived IS NULL OR is_archived = 0)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:615:          archived++;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:626:        console.warn(`[archival-manager] archiveMemory error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:635:  return { archived, failed };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:638:function unarchiveMemory(memoryId: number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:644:      SET is_archived = 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:646:      WHERE id = ? AND is_archived = 1
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:651:      archivalStats.totalUnarchived++;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:652:      syncBm25OnUnarchive(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:653:      syncVectorOnUnarchive(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:661:    console.warn(`[archival-manager] unarchiveMemory error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:670:function runArchivalScan(): { scanned: number; archived: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:671:  const candidates = getArchivalCandidates();
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:672:  archivalStats.totalScanned += candidates.length;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:675:  const result = archiveBatch(candidates.map(c => c.id));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:681:    `[archival-manager] Scan complete: ${candidates.length} candidates, ${result.archived} archived`
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:684:  return { scanned: candidates.length, archived: result.archived };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:739:  archivalStats.totalUnarchived = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:764:  archiveMemory,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:765:  archiveBatch,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:766:  unarchiveMemory,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:76:type CrudMutationType = 'create' | 'update' | 'delete' | 'merge' | 'archive' | 'restore' | 'reindex';
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:43:| Retrieval Stages | 6 | candidate, filter, fusion, rerank, fallback, final-rank |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:52:| **TraceEntry** | Per-stage metrics (stage name, timestamp, duration, candidate counts) |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:149:| `candidate` | Initial candidate generation |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:50:| **LatencyMetrics** | Stage-by-stage timing: candidate, fusion, rerank, boost, and total |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:137:| `candidateLatencyMs` | `number` | Candidate retrieval stage duration |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:312:| `RETRIEVAL_TRACE_STAGES` | Allowed stage names: `candidate`, `filter`, `fusion`, `rerank`, `fallback`, `final-rank` |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:348:  candidateLatencyMs: 18,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:56:        actions: ['Wait for the restore to finish', 'Retry the bulk delete request'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:100:      error: 'Memory bulk delete aborted: database unavailable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:152:          reason: `auto-checkpoint before bulk delete of ${affectedCount} "${tier}" memories`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:162:          throw new Error(`${checkpointError}. Aborting high-safety bulk delete.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:224:          // History recording is best-effort inside bulk delete
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:55:  candidateLatencyMs: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:187:      candidateLatencyMs: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:242:    t.latency.candidateLatencyMs +
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:384:  const candidate = forecast && typeof forecast === 'object'
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:387:  const riskSignals = Array.isArray(candidate.riskSignals)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:388:    ? candidate.riskSignals.filter((signal): signal is string => typeof signal === 'string')
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:406:      typeof candidate.etaSeconds === 'number' && Number.isFinite(candidate.etaSeconds)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:407:        ? Math.max(0, candidate.etaSeconds)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:410:      typeof candidate.etaConfidence === 'number' && Number.isFinite(candidate.etaConfidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:411:        ? Math.max(0, Math.min(1, candidate.etaConfidence))
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:414:      typeof candidate.failureRisk === 'number' && Number.isFinite(candidate.failureRisk)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:415:        ? Math.max(0, Math.min(1, candidate.failureRisk))
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:418:    ...(typeof candidate.caveat === 'string' && candidate.caveat.length > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:419:      ? { caveat: candidate.caveat }
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:656:      candidateLatencyMs: t.latency.candidateLatencyMs,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:54:  candidates: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:84:    candidates: 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:242:  const candidates: DivergenceReconcileCandidate[] = [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:254:    candidates.push({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:260:  return candidates.sort((a, b) => a.normalizedPath.localeCompare(b.normalizedPath));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:279:  // Expand to the full candidate set from the index table.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:289:      summary.errors.push(`candidate-expansion: ${toErrorMessage(err)}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:293:  summary.candidates = reconcileCandidates.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:24:const SPEC_DOC_EXCLUDE_DIRS = new Set(['scratch', 'memory', 'node_modules', 'iterations', 'z_archive']);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:68:          // Enforce optional specFolder scope before including a candidate file.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:101:   * Internal raw-candidate mode used by the Stage 1 pipeline.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:102:   * When true, stop after channel collection and return pre-fusion candidates.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:241:/** Minimum MMR candidates required for diversity reranking to be worthwhile. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:347:    // resolution returns [] rather than leaking unscoped BM25 candidates.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:465:    // Filters: is_archived exclusion and spec_folder matching handled by fts5Bm25Search
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:635:      const candidate: HybridSearchResult = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:644:      const key = canonicalResultId(candidate.id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:645:      deduped.set(key, mergeRawCandidate(deduped.get(key), candidate));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1450:          const diversifiedRows = diversified.map((candidate): HybridSearchResult => {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1451:            const existing = rerankedById.get(canonicalResultId(candidate.id));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1457:              id: candidate.id,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1458:              score: candidate.score,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1532:  // candidates before low-confidence tails are trimmed.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1675: * Collect pipeline candidates through the adaptive fallback chain, returning
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1682: * @returns Unfused candidate results from the first non-empty collection stage.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1726:  console.warn('[hybrid-search] Raw candidate collection returned empty results');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1808:    // H13 FIX: Exclude archived rows unless explicitly requested
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1810:      `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1811:      `(is_archived IS NULL OR is_archived = 0)`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2210:  candidateCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2383:      candidateCount: 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2419:      candidateCount: results.length,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2436:    candidateCount: results.length,
+.opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:60:    const candidatePaths = [
+.opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:66:    for (const distPath of candidatePaths) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:125:      const candidatesExhausted = results.length < fetchLimit;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:127:      if (candidatesExhausted || !sawNewCandidates) {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts:11:  'candidate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:511:  const candidates = database.prepare(query).all(...params) as PreflightRecord[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:512:  const preflightCandidates = candidates.filter((row) => row.phase === 'preflight');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:513:  const completeCandidates = candidates.filter((row) => row.phase === 'complete');
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:535:        const archivePlaceholders = oldChildIds.map(() => '?').join(', ');
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:540:          WHERE id IN (${archivePlaceholders})
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:703:    const candidates = findSimilar(embedding, {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:708:    if (!candidates || candidates.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:719:    const bestMatch = candidates[0];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:212:  const candidates = queryTerms
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:227:  const unique = [...new Set(candidates)];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1115:    deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1146:    deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:203:  includeArchived?: boolean; // REQ-206: include archived memories in search (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:520:    includeArchived: includeArchived = false, // REQ-206: exclude archived by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1297:              const candidate = result.id;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1298:              if (typeof candidate !== 'number' && typeof candidate !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1301:              const normalizedId = String(candidate).trim();
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:131:- Low-HVR memories are candidates for demotion or deprecation
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:236:  { spec_folder: 'z_archive/001-old', updated_at: '2024-06-01', importance_tier: 'deprecated' },
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:271:| Archive check | `isArchived('/z_archive/old')` | Deprioritize archived folders |
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:569:      const candidates = find_similar(embedding, {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:578:      if (candidates && candidates.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:579:        const bestMatch = candidates[0] as {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:192:  const candidates = [
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:204:    candidates.push(
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:216:  const existing = candidates
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:217:    .filter((candidate): candidate is LatestMemoryLookupRow => candidate !== undefined)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:53:    hasArchivedColumn: columnSet.has('is_archived'),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:62:    predicates.push(`COALESCE(${alias}.is_archived, 0) = 0`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:13:// Active mode (graduated): HyDE results are merged into the candidate
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:24://   SPECKIT_HYDE_ACTIVE — merge HyDE results into candidates (default: TRUE, graduated)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:359: * merging into the candidate pool.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:364: * @returns Array of PipelineRow candidates (empty in shadow mode).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:380: * for a deep + low-confidence query, log results, and return candidates
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:386: *   - Active mode: results returned for merging in stage1-candidate-gen.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:389: * @param baseline - Current stage-1 candidate set (before HyDE).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:412:    const candidates = vectorOnly(hydeResult.embedding, limit, specFolder);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:418:        `[hyde] shadow results: ${candidates.length} candidates for query "${query}" ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:424:      // Shadow mode — log only, do not contribute to candidate set
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:428:    return candidates;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:28:  '/z_archive/',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:192:  candidate: CachedSessionSummaryCandidate | null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:199:  if (!candidate) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:203:  if (candidate.schemaVersion !== CACHED_SESSION_SUMMARY_SCHEMA_VERSION) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:207:      `Expected schema version ${CACHED_SESSION_SUMMARY_SCHEMA_VERSION} but received ${String(candidate.schemaVersion)}.`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:211:  const summaryText = candidate.summaryText?.trim() ?? '';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:212:  if (summaryText.length === 0 || parseIsoMs(candidate.extractedAt) === null) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:220:  const producerMetadata = candidate.producerMetadata;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:281:  const extractedAtMs = parseIsoMs(candidate.extractedAt);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:301:  const cachedSpecFolder = normalizeSpecFolder(candidate.lastSpecFolder);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:333:      schemaVersion: candidate.schemaVersion,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:336:      extractedAt: candidate.extractedAt!,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:357:  const candidate = buildCachedSessionSummaryCandidate(
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:366:  return evaluateCachedSessionSummaryCandidate(candidate, options);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:114:  const candidates = new Set<string>();
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:119:  candidates.add(normalizedReference);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:120:  candidates.add(canonical);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:121:  candidates.add(trimmedLeadingSlash);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:123:    candidates.add(`/${normalizedReference}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:126:    candidates.add(`/${canonical}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:129:  return Array.from(candidates).filter((candidate) => candidate.length > 0);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:204:    for (const candidate of buildPathExactCandidates(ref.normalizedReference)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:205:      pathCandidates.add(candidate);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:206:      const current = pathCandidateRefs.get(candidate) ?? [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:208:      pathCandidateRefs.set(candidate, current);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:240:    for (const [candidate, refs] of pathCandidateRefs.entries()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:241:      const id = idByCandidate.get(candidate);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:382:        const candidate = resolvedReferenceMap.get(reference);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:383:        resolvedId = typeof candidate === 'number' ? candidate : null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:378:    const candidateInnerStates: Array<Record<string, unknown>> = [
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:410:      const meta = candidateInnerStates[0].meta as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:414:    for (const innerEnvelope of candidateInnerStates) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:469:        const candidateResults = [...currentResults];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:470:        candidateResults[lastIndex] = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:477:          results: candidateResults,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:478:          count: candidateResults.length,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:481:        const candidateContent = contentEntries.map((entry, index) => (
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:484:        const candidateResult = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:486:          content: candidateContent,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:488:        const candidateTokens = estimateTokens(JSON.stringify(candidateResult));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:490:        if (candidateTokens <= budgetTokens) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:491:          bestResult = candidateResult;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:492:          bestTokens = candidateTokens;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:76:  const candidates = Array.isArray(flagNames) ? flagNames : [flagNames];
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:77:  for (const flagName of candidates) {
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:99:  const candidates = Array.isArray(flagNames) ? flagNames : [flagNames];
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:104:  for (const flagName of candidates) {
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:115:  const canonicalFlag = candidates[0];
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:42:  candidateMemoryIds: number[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:71:    for (const candidate of packageCandidates) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:72:      if (!existsSync(candidate)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:75:      const pkg = JSON.parse(readFileSync(candidate, 'utf-8'));
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:644:  const candidateEntries = getTriggerCandidates(promptNormalized, cache);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:649:  for (const entry of candidateEntries) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:686:    candidateCount: candidateEntries.length,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:741:  const candidateIds = new Set<number>();
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:749:      candidateIds.add(triggerId);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:753:  if (candidateIds.size === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:757:  return [...candidateIds]
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:91:  const candidateMemoryIds = Array.from(
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:93:      ...rawRecommendation.candidateMemoryIds,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:103:    candidateMemoryIds,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:38:  let candidates: SimilarMemory[] = [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:42:    candidates = findSimilarMemories(embedding, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:53:  if (!force && candidates.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:57:      candidates,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:87:  const candidate = data.cachedSummary;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:88:  if (candidate && typeof candidate === 'object') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:89:    return candidate as CachedSessionSummaryDecision;
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:96:  - `archival-manager.ts` — lifecycle transitions between active and archived memory states.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:169:- Purpose: Owns post-tool extraction and save-time entity/secret handling. It turns tool outputs into candidate memory payloads while gating PII/secrets and extracting reusable entities.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:174:  - `entity-denylist.ts` — denylist filtering for noisy or generic entity candidates.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:194:- Purpose: Owns scope enforcement, governed ingest normalization, audit recording, and retention sweeps. This is the boundary for tenant/user/agent/session/shared-space policy decisions.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:197:  - `retention.ts` — scoped retention sweep logic over expired memories.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:297:- Purpose: Owns ranking and calibration logic once candidate memories already exist. It combines importance tiers, composite scoring, folder relevance, confidence signals, and negative-feedback effects.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:313:- Purpose: Owns the retrieval engine: candidate generation, vector/lexical channels, fusion, reranking, query intelligence, graph-aware retrieval, and schema/index helpers needed by the search path. This is the highest-churn and broadest domain module in `lib/`.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:372:      .map((candidate) => graphDb.resolveSubjectFilePath(candidate) ?? candidate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:373:      .filter((candidate): candidate is string => typeof candidate === 'string' && candidate.length > 0);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts | sed -n '280,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts | sed -n '280,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts | sed -n '520,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts | sed -n '520,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    520	  const bm25 = getBm25Index();
    521	  if (!db || !bm25 || !bm25.isBm25Enabled()) return;
@@ -4997,74 +4997,74 @@ exec
    520	  const bm25 = getBm25Index();
 
 exec
-/bin/zsh -lc "rg -n \"retention_policy|delete_after|deleteAfter|retention sweep|delete after|ephemeral\" .opencode/skill/system-spec-kit/mcp_server | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"retention_policy|delete_after|deleteAfter|retention sweep|delete after|ephemeral\" .opencode/skills/system-spec-kit/mcp_server | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:195:  retentionPolicy: z.enum(['keep', 'ephemeral', 'shared']).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:196:  deleteAfter: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:55:        hint: 'Retry memory_bulk_delete after checkpoint_restore maintenance completes.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
-.opencode/skill/system-spec-kit/mcp_server/README.md:710:| `retentionPolicy` | string | `keep` (default), `ephemeral`, `shared` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:711:| `deleteAfter` | string | ISO date for automatic deletion |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:94:  sessionScope: 'caller' | 'ephemeral';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1241:    sessionScope: requestedSessionId ? 'caller' : 'ephemeral',
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:164:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:165:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1115:    deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1146:    deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:16:export type RetentionPolicy = 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:37:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:54:  deleteAfter: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:207:    || input.retentionPolicy === 'ephemeral'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:209:    || typeof input.deleteAfter === 'string';
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:222:  const deleteAfter = normalizeIsoTimestamp(input.deleteAfter) ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:223:  const retentionPolicy: RetentionPolicy = input.retentionPolicy === 'ephemeral' || input.retentionPolicy === 'shared'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:244:        deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:255:  if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:256:    issues.push('deleteAfter must be later than governedAt');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:258:  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:259:  // Without this, ephemeral rows are never swept since sweeps key off delete_after
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:260:  if (retentionPolicy === 'ephemeral' && !deleteAfter) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:261:    issues.push('deleteAfter is required for ephemeral retention policy');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:278:      deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:299:    retention_policy: decision.normalized.retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:300:    delete_after: decision.normalized.deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:311:      deleteAfter: decision.normalized.deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:194:- Purpose: Owns scope enforcement, governed ingest normalization, audit recording, and retention sweeps. This is the boundary for tenant/user/agent/session/shared-space policy decisions.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:197:  - `retention.ts` — scoped retention sweep logic over expired memories.
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:459:| Temporary | Yes (fast) | 0.5x | Session-specific, ephemeral |
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:30:      delete_after TEXT
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:9:// Domain (ephemeral session attention vs persistent memory scoring).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:13:// STORAGE: In-memory only (ephemeral by design, no SQLite persistence).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:70: * Sessions are ephemeral — they exist only in process memory and are not
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:165:      reason: 'delete_after_expired',
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:240: * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1421:    { name: 'retention_policy', sql: "ALTER TABLE memory_index ADD COLUMN retention_policy TEXT DEFAULT 'keep'" },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1422:    { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1468:      CREATE INDEX IF NOT EXISTS idx_memory_retention_delete_after
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1469:        ON memory_index(delete_after);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2333:      retention_policy TEXT DEFAULT 'keep',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2334:      delete_after TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:978:  // passed an ephemeral sessionId, because memories don't have session-scoped access.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:44:  retention_policy?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:45:  delete_after?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:62:  'governed_at', 'retention_policy', 'delete_after', 'governance_metadata',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:927:    retention_policy: existingRow.retention_policy,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:928:    delete_after: existingRow.delete_after,
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json:59:      "content": "Tier 1 memories are ephemeral and decay within 24 hours",
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json:88:      "a": "Tier 1 ephemeral memories",
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:516:    it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:522:        'T027k-ephemeral'
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:526:      expect(parsed.meta.sessionLifecycle.sessionScope).toBe('ephemeral');
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:107:    expect(tasksContent).toContain('Fix retention sweeps so deletion uses the passed database handle');
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:138:    expect(summaryContent).toContain('The earlier retention sweep database-handle fix remains in place, so retention sweeps now delete through the passed database handle');
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:195:  retentionPolicy: z.enum(['keep', 'ephemeral', 'shared']).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:196:  deleteAfter: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:55:        hint: 'Retry memory_bulk_delete after checkpoint_restore maintenance completes.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+.opencode/skills/system-spec-kit/mcp_server/README.md:710:| `retentionPolicy` | string | `keep` (default), `ephemeral`, `shared` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:711:| `deleteAfter` | string | ISO date for automatic deletion |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:94:  sessionScope: 'caller' | 'ephemeral';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1241:    sessionScope: requestedSessionId ? 'caller' : 'ephemeral',
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:164:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:165:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1115:    deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1146:    deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:16:export type RetentionPolicy = 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:37:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:54:  deleteAfter: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:207:    || input.retentionPolicy === 'ephemeral'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:209:    || typeof input.deleteAfter === 'string';
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:222:  const deleteAfter = normalizeIsoTimestamp(input.deleteAfter) ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:223:  const retentionPolicy: RetentionPolicy = input.retentionPolicy === 'ephemeral' || input.retentionPolicy === 'shared'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:244:        deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:255:  if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:256:    issues.push('deleteAfter must be later than governedAt');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:258:  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:259:  // Without this, ephemeral rows are never swept since sweeps key off delete_after
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:260:  if (retentionPolicy === 'ephemeral' && !deleteAfter) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:261:    issues.push('deleteAfter is required for ephemeral retention policy');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:278:      deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:299:    retention_policy: decision.normalized.retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:300:    delete_after: decision.normalized.deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:311:      deleteAfter: decision.normalized.deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:194:- Purpose: Owns scope enforcement, governed ingest normalization, audit recording, and retention sweeps. This is the boundary for tenant/user/agent/session/shared-space policy decisions.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:197:  - `retention.ts` — scoped retention sweep logic over expired memories.
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:459:| Temporary | Yes (fast) | 0.5x | Session-specific, ephemeral |
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:30:      delete_after TEXT
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:9:// Domain (ephemeral session attention vs persistent memory scoring).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:13:// STORAGE: In-memory only (ephemeral by design, no SQLite persistence).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:70: * Sessions are ephemeral — they exist only in process memory and are not
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:165:      reason: 'delete_after_expired',
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:240: * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1421:    { name: 'retention_policy', sql: "ALTER TABLE memory_index ADD COLUMN retention_policy TEXT DEFAULT 'keep'" },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1422:    { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1468:      CREATE INDEX IF NOT EXISTS idx_memory_retention_delete_after
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1469:        ON memory_index(delete_after);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2333:      retention_policy TEXT DEFAULT 'keep',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2334:      delete_after TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:978:  // passed an ephemeral sessionId, because memories don't have session-scoped access.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:44:  retention_policy?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:45:  delete_after?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:62:  'governed_at', 'retention_policy', 'delete_after', 'governance_metadata',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:927:    retention_policy: existingRow.retention_policy,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:928:    delete_after: existingRow.delete_after,
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json:59:      "content": "Tier 1 memories are ephemeral and decay within 24 hours",
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json:88:      "a": "Tier 1 ephemeral memories",
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:516:    it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:522:        'T027k-ephemeral'
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:526:      expect(parsed.meta.sessionLifecycle.sessionScope).toBe('ephemeral');
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:107:    expect(tasksContent).toContain('Fix retention sweeps so deletion uses the passed database handle');
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:138:    expect(summaryContent).toContain('The earlier retention sweep database-handle fix remains in place, so retention sweeps now delete through the passed database handle');
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts | sed -n '200,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts | sed -n '200,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    200	 */
    201	export function requiresGovernedIngest(input: GovernedIngestInput): boolean {
@@ -5189,12 +5189,12 @@ exec
    320	 */
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/governance/retention.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/governance/retention.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-nl: .opencode/skill/system-spec-kit/mcp_server/lib/governance/retention.ts: No such file or directory
+nl: .opencode/skills/system-spec-kit/mcp_server/lib/governance/retention.ts: No such file or directory
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1080,1165p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1080,1165p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1080	  // A7-P2-1: Generate requestId for incident correlation in error responses
   1081	  const requestId = randomUUID();
@@ -5245,7 +5245,7 @@ exec
   1126	  const database = requireDb();
   1127	
   1128	  if (!memoryParser.isMemoryFile(validatedPath)) {
-  1129	    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), or .opencode/skill/*/constitutional/');
+  1129	    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), or .opencode/skills/*/constitutional/');
   1130	  }
   1131	
   1132	  if (typeof database.exec === 'function') {
@@ -5284,123 +5284,123 @@ exec
   1165	    const access = assertSharedSpaceAccess(database, {
 
 exec
-/bin/zsh -lc "rg -n \"trackAccess\\(|calculateUsageBoost\\(|calculatePopularityScore\\(|applyClassificationDecay\\(|calculateRetrievability\\(|recency\" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"trackAccess\\(|calculateUsageBoost\\(|calculatePopularityScore\\(|applyClassificationDecay\\(|calculateRetrievability\\(|recency\" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:169:    recency: weights.recency,
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:57:| **Folder Ranking** | Composite scoring for spec folders based on recency, relevance and importance |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:465:// Combines recency, relevance, importance and access patterns
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:32:    recency: number;        // 1.0 if recent tool call, decays over time
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:163:/** Compute recency factor: 1.0 if <5 min, linear decay to 0.0 at 60 min. */
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:209:    recency: computeRecency(),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:217:  //   recency (0.35)       — Highest weight because stale sessions are the primary
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:234:    factors.recency * 0.35 +
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1227:      : { semanticWeight: 1.0, keywordWeight: 1.0, recencyWeight: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:172:  recency: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:44:| **Folder Scoring** | Rank spec folders by recency, activity and importance |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:115:The scoring module supports an event-based decay model that replaces pure time-based decay with event-driven signals. Instead of decaying scores solely based on elapsed time, the model tracks meaningful events (access, citation, validation) and adjusts decay rates based on event frequency and recency. This provides more accurate relevance scoring for memories that are actively referenced versus those that are merely recent.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:240:// Returns: [{ folder: '012-auth', score: 0.85, recencyScore: 0.95, ... }]
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:125:/** Recency fusion weight — controls how much recency score contributes to the fused score.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:129:/** Recency fusion cap — maximum bonus a candidate can receive from recency fusion.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:597: *   intentScore = similarity * w.similarity + importance * w.importance + recency * w.recency
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:604: * @param weights - Intent weight configuration {similarity, importance, recency}
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:626:    const recencyTimestamp = (row.created_at as string | undefined) ?? '';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:628:    const recency = computeRecencyScore(recencyTimestamp, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:633:      recency * weights.recency;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:872:      const currentR = fsrsScheduler.calculateRetrievability(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1003:    let recencyBoostedCount = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1005:      const recencyTimestamp = (row.created_at as string | undefined) ?? '';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1007:      if (!recencyTimestamp) return row;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1009:      const recencyScore = computeRecencyScore(recencyTimestamp, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1010:      const bonus = Math.min(RECENCY_FUSION_CAP, recencyScore * RECENCY_FUSION_WEIGHT);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1017:      recencyBoostedCount++;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1020:    if (recencyBoostedCount > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1022:      (metadata as Record<string, unknown>).recencyFusionApplied = true;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1023:      (metadata as Record<string, unknown>).recencyFusionBoosted = recencyBoostedCount;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1027:    console.warn(`[stage2-fusion] recency fusion failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:24:  recency: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:198:  add_feature: { recency: 0.3, importance: 0.4, similarity: 0.3, contextType: 'implementation' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:199:  fix_bug: { recency: 0.5, importance: 0.2, similarity: 0.3, contextType: 'implementation' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:200:  refactor: { recency: 0.2, importance: 0.3, similarity: 0.5, contextType: 'implementation' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:201:  security_audit: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'research' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:202:  understand: { recency: 0.2, importance: 0.3, similarity: 0.5, contextType: null },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:203:  find_spec: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'planning' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:204:  find_decision: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'planning' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:502: * @returns Weight adjustments for recency, importance, similarity, and context type
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:521:  // recency was previously ignored.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:522:  // Parse timestamps, min/max normalize to [0,1], apply weights.recency.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:542:    const recencyRaw = timestamps[i] > 0 && tsRange > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:550:        recencyRaw * weights.recency,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:975:  const recency_weight = search_weights.smartRanking?.recencyWeight || 0.3;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:986:    let recency_factor;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:988:      recency_factor = 1.0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:990:      recency_factor = 0.8;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:992:      recency_factor = 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:998:    r.smartScore = (similarity_factor * relevance_weight) + (recency_factor * recency_weight) + (usage_factor * access_weight);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:6:// HIGH-003 FIX: Import unified recency scoring from folder-scoring
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:101:  recency: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:139:    recency: FactorDetail;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:173:  recency: 0.10,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:235:// Citation recency decay constants
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:332:      adjustedStability = scheduler.applyClassificationDecay(stability, contextType, tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:352:    const score = scheduler.calculateRetrievability(adjustedStability, adjustedElapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:388: * T033: Calculate citation recency score (REQ-017 Factor 5)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:393:  // General recency with citation recency. Uncited memories score 0.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:498: * HIGH-003 FIX: Wrapper around unified compute_recency_score from folder-scoring.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:591: * importance (tier-based), pattern (query alignment), and citation (recency).
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:634: * similarity, importance, recency, popularity, tierBoost, and retrievability.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:649:  const wSum = rawWeights.similarity + rawWeights.importance + rawWeights.recency
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:655:        recency: rawWeights.recency / wSum,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:667:  const recencyScore = calculateRecencyScore(timestamp, tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:668:  const popularityScore = calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:675:    recencyScore * weights.recency +
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:693: *   usage, importance, pattern alignment, and citation recency scores.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:726: *   importance, recency, popularity, tierBoost, and retrievability scores.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:751:        recency: calculateRecencyScore(row.updated_at || row.created_at, tier),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:752:        popularity: calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:795:      citation: { value: citation, weight: weights.citation, contribution: citation * weights.citation, description: 'Citation recency' },
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:815:  const wSum = rawWeights.similarity + rawWeights.importance + rawWeights.recency
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:821:        recency: rawWeights.recency / wSum,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:831:  const recency = calculateRecencyScore(row.updated_at || row.created_at, tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:832:  const popularity = calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:840:      recency: { value: recency, weight: weights.recency, contribution: recency * weights.recency },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:51:    recencyWeight?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:28:  recencyBias: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:57:    recencyBias: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:65:    recencyBias: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:73:    recencyBias: 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:81:    recencyBias: 0.4,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:89:    recencyBias: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:97:    recencyBias: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:105:    recencyBias: 0.6,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:113:    recencyBias: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:121:    recencyBias: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:61:      "notes": "Temporal query — 'recently discussed' should surface content from the last 7 days of memory creation. Tests recency boost in fix_bug / understand intent modes."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:421:      "notes": "Bug-intent with temporal aspect (\"after index rebuild\") — tests recency boosting for fix_bug intent."
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:50:  /** Get top N files by recency-weighted score */
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:55:    // Score: frequency * recency_decay
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:56:    // recency_decay = 1 / (1 + age_in_minutes / 10)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:135:  /** Get top N symbols by recency-weighted score */
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:103:    return fsrsScheduler.calculateRetrievability(stability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:224:function calculateRetrievability(stability: number, elapsedDays: number): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:325:  const retrievability = calculateRetrievability(finalStability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:301:  - `folder-scoring.ts` — folder-level relevance and recency weighting.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:20:// Through calculateRetrievability(). Formula: R(t) = (1 + 19/81 * t/S)^(-0.5)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:80:function calculateRetrievability(stability: number, elapsedDays: number): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:202:  const retrievability = calculateRetrievability(params.stability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:346:function applyClassificationDecay(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:86:function trackAccess(memoryId: number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:199:function calculatePopularityScore(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:211:  let recencyScore = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:216:    recencyScore = Math.max(0, Math.min(1, 1 - (ageDays / decayDays)));
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:219:  return (freqScore * 0.6) + (recencyScore * 0.4);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:227:function calculateUsageBoost(accessCount: number, lastAccessed: number | null): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:300:const R = calculateRetrievability(stability, elapsed);
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/scoring/README.md:29:- `../../scoring/folder-scoring.ts` -- recency decay used by composite scoring
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:169:    recency: weights.recency,
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:57:| **Folder Ranking** | Composite scoring for spec folders based on recency, relevance and importance |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:465:// Combines recency, relevance, importance and access patterns
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:32:    recency: number;        // 1.0 if recent tool call, decays over time
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:163:/** Compute recency factor: 1.0 if <5 min, linear decay to 0.0 at 60 min. */
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:209:    recency: computeRecency(),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:217:  //   recency (0.35)       — Highest weight because stale sessions are the primary
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:234:    factors.recency * 0.35 +
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1227:      : { semanticWeight: 1.0, keywordWeight: 1.0, recencyWeight: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:172:  recency: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:44:| **Folder Scoring** | Rank spec folders by recency, activity and importance |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:115:The scoring module supports an event-based decay model that replaces pure time-based decay with event-driven signals. Instead of decaying scores solely based on elapsed time, the model tracks meaningful events (access, citation, validation) and adjusts decay rates based on event frequency and recency. This provides more accurate relevance scoring for memories that are actively referenced versus those that are merely recent.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:240:// Returns: [{ folder: '012-auth', score: 0.85, recencyScore: 0.95, ... }]
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:125:/** Recency fusion weight — controls how much recency score contributes to the fused score.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:129:/** Recency fusion cap — maximum bonus a candidate can receive from recency fusion.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:597: *   intentScore = similarity * w.similarity + importance * w.importance + recency * w.recency
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:604: * @param weights - Intent weight configuration {similarity, importance, recency}
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:626:    const recencyTimestamp = (row.created_at as string | undefined) ?? '';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:628:    const recency = computeRecencyScore(recencyTimestamp, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:633:      recency * weights.recency;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:872:      const currentR = fsrsScheduler.calculateRetrievability(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1003:    let recencyBoostedCount = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1005:      const recencyTimestamp = (row.created_at as string | undefined) ?? '';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1007:      if (!recencyTimestamp) return row;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1009:      const recencyScore = computeRecencyScore(recencyTimestamp, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1010:      const bonus = Math.min(RECENCY_FUSION_CAP, recencyScore * RECENCY_FUSION_WEIGHT);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1017:      recencyBoostedCount++;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1020:    if (recencyBoostedCount > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1022:      (metadata as Record<string, unknown>).recencyFusionApplied = true;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1023:      (metadata as Record<string, unknown>).recencyFusionBoosted = recencyBoostedCount;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1027:    console.warn(`[stage2-fusion] recency fusion failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:24:  recency: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:198:  add_feature: { recency: 0.3, importance: 0.4, similarity: 0.3, contextType: 'implementation' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:199:  fix_bug: { recency: 0.5, importance: 0.2, similarity: 0.3, contextType: 'implementation' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:200:  refactor: { recency: 0.2, importance: 0.3, similarity: 0.5, contextType: 'implementation' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:201:  security_audit: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'research' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:202:  understand: { recency: 0.2, importance: 0.3, similarity: 0.5, contextType: null },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:203:  find_spec: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'planning' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:204:  find_decision: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'planning' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:502: * @returns Weight adjustments for recency, importance, similarity, and context type
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:521:  // recency was previously ignored.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:522:  // Parse timestamps, min/max normalize to [0,1], apply weights.recency.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:542:    const recencyRaw = timestamps[i] > 0 && tsRange > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:550:        recencyRaw * weights.recency,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:975:  const recency_weight = search_weights.smartRanking?.recencyWeight || 0.3;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:986:    let recency_factor;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:988:      recency_factor = 1.0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:990:      recency_factor = 0.8;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:992:      recency_factor = 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:998:    r.smartScore = (similarity_factor * relevance_weight) + (recency_factor * recency_weight) + (usage_factor * access_weight);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:6:// HIGH-003 FIX: Import unified recency scoring from folder-scoring
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:101:  recency: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:139:    recency: FactorDetail;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:173:  recency: 0.10,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:235:// Citation recency decay constants
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:332:      adjustedStability = scheduler.applyClassificationDecay(stability, contextType, tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:352:    const score = scheduler.calculateRetrievability(adjustedStability, adjustedElapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:388: * T033: Calculate citation recency score (REQ-017 Factor 5)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:393:  // General recency with citation recency. Uncited memories score 0.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:498: * HIGH-003 FIX: Wrapper around unified compute_recency_score from folder-scoring.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:591: * importance (tier-based), pattern (query alignment), and citation (recency).
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:634: * similarity, importance, recency, popularity, tierBoost, and retrievability.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:649:  const wSum = rawWeights.similarity + rawWeights.importance + rawWeights.recency
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:655:        recency: rawWeights.recency / wSum,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:667:  const recencyScore = calculateRecencyScore(timestamp, tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:668:  const popularityScore = calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:675:    recencyScore * weights.recency +
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:693: *   usage, importance, pattern alignment, and citation recency scores.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:726: *   importance, recency, popularity, tierBoost, and retrievability scores.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:751:        recency: calculateRecencyScore(row.updated_at || row.created_at, tier),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:752:        popularity: calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:795:      citation: { value: citation, weight: weights.citation, contribution: citation * weights.citation, description: 'Citation recency' },
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:815:  const wSum = rawWeights.similarity + rawWeights.importance + rawWeights.recency
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:821:        recency: rawWeights.recency / wSum,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:831:  const recency = calculateRecencyScore(row.updated_at || row.created_at, tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:832:  const popularity = calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:840:      recency: { value: recency, weight: weights.recency, contribution: recency * weights.recency },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:51:    recencyWeight?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:28:  recencyBias: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:57:    recencyBias: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:65:    recencyBias: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:73:    recencyBias: 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:81:    recencyBias: 0.4,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:89:    recencyBias: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:97:    recencyBias: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:105:    recencyBias: 0.6,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:113:    recencyBias: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:121:    recencyBias: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:61:      "notes": "Temporal query — 'recently discussed' should surface content from the last 7 days of memory creation. Tests recency boost in fix_bug / understand intent modes."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:421:      "notes": "Bug-intent with temporal aspect (\"after index rebuild\") — tests recency boosting for fix_bug intent."
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:50:  /** Get top N files by recency-weighted score */
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:55:    // Score: frequency * recency_decay
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:56:    // recency_decay = 1 / (1 + age_in_minutes / 10)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:135:  /** Get top N symbols by recency-weighted score */
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:103:    return fsrsScheduler.calculateRetrievability(stability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:224:function calculateRetrievability(stability: number, elapsedDays: number): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:325:  const retrievability = calculateRetrievability(finalStability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:301:  - `folder-scoring.ts` — folder-level relevance and recency weighting.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:20:// Through calculateRetrievability(). Formula: R(t) = (1 + 19/81 * t/S)^(-0.5)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:80:function calculateRetrievability(stability: number, elapsedDays: number): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:202:  const retrievability = calculateRetrievability(params.stability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:346:function applyClassificationDecay(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:86:function trackAccess(memoryId: number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:199:function calculatePopularityScore(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:211:  let recencyScore = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:216:    recencyScore = Math.max(0, Math.min(1, 1 - (ageDays / decayDays)));
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:219:  return (freqScore * 0.6) + (recencyScore * 0.4);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:227:function calculateUsageBoost(accessCount: number, lastAccessed: number | null): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:300:const R = calculateRetrievability(stability, elapsed);
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/scoring/README.md:29:- `../../scoring/folder-scoring.ts` -- recency decay used by composite scoring
 
 web search: 
 web search: 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '620,690p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '620,690p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    620	    const similarity = Math.max(0, Math.min(1, similarityRaw / 100));
    621	    const importance = typeof row.importance_weight === 'number' && Number.isFinite(row.importance_weight)
@@ -5475,9 +5475,9 @@ exec
    690	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '995,1035p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '995,1035p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '320,380p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '320,380p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    995	    }
    996	  }
@@ -5585,10 +5585,10 @@ exec
    380	  const tierLower = (tier || 'normal').toLowerCase();
 
 exec
-/bin/zsh -lc "find .opencode/skill/system-spec-kit/mcp_server -path '*retention*.ts' -o -path '*retention*.js' | sort" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "find .opencode/skills/system-spec-kit/mcp_server -path '*retention*.ts' -o -path '*retention*.js' | sort" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 510ms:
 exec
-/bin/zsh -lc 'rg -n "shouldArchive|classifyState|HOT|WARM|COLD|DORMANT|ARCHIVED" .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "shouldArchive|classifyState|HOT|WARM|COLD|DORMANT|ARCHIVED" .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 39:  HOT: 0.80,
 40:  WARM: 0.25,
@@ -5657,7 +5657,7 @@ exec
 536:  shouldArchive,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts | sed -n '300,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts | sed -n '300,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    300	  // If no decay (constitutional/critical), always HOT
    301	  if (effectiveHalfLife === null) {
@@ -5782,7 +5782,7 @@ exec
    420	        surplusSlots += tierLimit - available;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Attention Decay
@@ -5966,7 +5966,7 @@ exec
    180	      // Basic update if FSRS not available
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '1220,1265p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '1220,1265p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1220	
   1221	  const {
@@ -6016,7 +6016,7 @@ exec
   1265	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts | sed -n '140,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts | sed -n '140,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    140	    ensureGovernanceRuntime(db);
    141	
@@ -6101,61 +6101,61 @@ exec
    220	    expect(warnSpy).toHaveBeenCalledWith(
 
 exec
-/bin/zsh -lc "rg -n \"delete_after_expired|delete_after|retention sweep|sweepExpired|expired memories|retention\" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/handlers | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"delete_after_expired|delete_after|retention sweep|sweepExpired|expired memories|retention\" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/handlers | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:10:// Feature catalog: Hierarchical scope governance, governed ingest, retention, and audit
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:30: * Governed-ingest fields required to persist scope and retention metadata.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:36:  retentionPolicy?: RetentionPolicy;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:53:  retentionPolicy: RetentionPolicy;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:207:    || input.retentionPolicy === 'ephemeral'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:208:    || input.retentionPolicy === 'shared'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:216: * @returns Validation result with normalized scope, provenance, and retention data.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:223:  const retentionPolicy: RetentionPolicy = input.retentionPolicy === 'ephemeral' || input.retentionPolicy === 'shared'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:224:    ? input.retentionPolicy
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:243:        retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:258:  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:259:  // Without this, ephemeral rows are never swept since sweeps key off delete_after
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:260:  if (retentionPolicy === 'ephemeral' && !deleteAfter) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:261:    issues.push('deleteAfter is required for ephemeral retention policy');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:277:      retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:299:    retention_policy: decision.normalized.retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:300:    delete_after: decision.normalized.deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:310:      retentionPolicy: decision.normalized.retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1114:    retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1145:    retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1458:    // persisted rows without tenant/shared-space/retention metadata.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1471:        metadata: { filePath: validatedPath, retentionPolicy: governanceDecision.normalized.retentionPolicy },
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:194:- Purpose: Owns scope enforcement, governed ingest normalization, audit recording, and retention sweeps. This is the boundary for tenant/user/agent/session/shared-space policy decisions.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:197:  - `retention.ts` — scoped retention sweep logic over expired memories.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:123: * The interval where retrievability = 0.9 (desired retention).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:175: * Get next review date based on stability and desired retention.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:44:  retention_policy?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:45:  delete_after?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:62:  'governed_at', 'retention_policy', 'delete_after', 'governance_metadata',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:927:    retention_policy: existingRow.retention_policy,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:928:    delete_after: existingRow.delete_after,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:92:| **Type-Specific Decay**      | Constitutional (none), Critical (none), Normal (0.80/turn)                            | Memory importance = retention time   |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:625:attentionDecayRate: 0.95      // 95% retention per decay cycle
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:878:// normal: 0.80 = 80% retention per turn
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:982:A: Constitutional memories are permanent rules and principles (like coding standards and architectural decisions). They should ALWAYS be available, so `decay_rate = 1.0` (100% retention = no decay). This applies to both `constitutional` and `critical` tiers.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1421:    { name: 'retention_policy', sql: "ALTER TABLE memory_index ADD COLUMN retention_policy TEXT DEFAULT 'keep'" },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1422:    { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1468:      CREATE INDEX IF NOT EXISTS idx_memory_retention_delete_after
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1469:        ON memory_index(delete_after);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2333:      retention_policy TEXT DEFAULT 'keep',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2334:      delete_after TEXT,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:169:  retention_policy?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:10:// Feature catalog: Hierarchical scope governance, governed ingest, retention, and audit
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:30: * Governed-ingest fields required to persist scope and retention metadata.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:36:  retentionPolicy?: RetentionPolicy;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:53:  retentionPolicy: RetentionPolicy;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:207:    || input.retentionPolicy === 'ephemeral'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:208:    || input.retentionPolicy === 'shared'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:216: * @returns Validation result with normalized scope, provenance, and retention data.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:223:  const retentionPolicy: RetentionPolicy = input.retentionPolicy === 'ephemeral' || input.retentionPolicy === 'shared'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:224:    ? input.retentionPolicy
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:243:        retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:258:  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:259:  // Without this, ephemeral rows are never swept since sweeps key off delete_after
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:260:  if (retentionPolicy === 'ephemeral' && !deleteAfter) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:261:    issues.push('deleteAfter is required for ephemeral retention policy');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:277:      retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:299:    retention_policy: decision.normalized.retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:300:    delete_after: decision.normalized.deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:310:      retentionPolicy: decision.normalized.retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1114:    retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1145:    retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1458:    // persisted rows without tenant/shared-space/retention metadata.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1471:        metadata: { filePath: validatedPath, retentionPolicy: governanceDecision.normalized.retentionPolicy },
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:194:- Purpose: Owns scope enforcement, governed ingest normalization, audit recording, and retention sweeps. This is the boundary for tenant/user/agent/session/shared-space policy decisions.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:197:  - `retention.ts` — scoped retention sweep logic over expired memories.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:123: * The interval where retrievability = 0.9 (desired retention).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:175: * Get next review date based on stability and desired retention.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:44:  retention_policy?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:45:  delete_after?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:62:  'governed_at', 'retention_policy', 'delete_after', 'governance_metadata',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:927:    retention_policy: existingRow.retention_policy,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:928:    delete_after: existingRow.delete_after,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:92:| **Type-Specific Decay**      | Constitutional (none), Critical (none), Normal (0.80/turn)                            | Memory importance = retention time   |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:625:attentionDecayRate: 0.95      // 95% retention per decay cycle
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:878:// normal: 0.80 = 80% retention per turn
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:982:A: Constitutional memories are permanent rules and principles (like coding standards and architectural decisions). They should ALWAYS be available, so `decay_rate = 1.0` (100% retention = no decay). This applies to both `constitutional` and `critical` tiers.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1421:    { name: 'retention_policy', sql: "ALTER TABLE memory_index ADD COLUMN retention_policy TEXT DEFAULT 'keep'" },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1422:    { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1468:      CREATE INDEX IF NOT EXISTS idx_memory_retention_delete_after
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1469:        ON memory_index(delete_after);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2333:      retention_policy TEXT DEFAULT 'keep',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2334:      delete_after TEXT,
 
 exec
-/bin/zsh -lc "rg -n \"retentionPolicy|deleteAfter|retention\" .opencode/skill/system-spec-kit/mcp_server/README.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"retentionPolicy|deleteAfter|retention\" .opencode/skills/system-spec-kit/mcp_server/README.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 710:| `retentionPolicy` | string | `keep` (default), `ephemeral`, `shared` |
 711:| `deleteAfter` | string | ISO date for automatic deletion |
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/README.md | sed -n '700,725p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/README.md | sed -n '700,725p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    700	
    701	This is how you add new knowledge to the system. Point it at a markdown file and it reads, validates, embeds and stores the content so it becomes searchable. Before storing, it checks whether the information already exists and decides whether to add it fresh, update an older version or skip it. Quality gates catch low-value content before it clutters the knowledge base.
@@ -6221,7 +6221,7 @@ exec
     22	--
     23	## Findings
     24	### Finding 1: Add a transport-owned memory reminder block at compaction time
-    25	- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence type: both
+    25	- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence type: both
     26	- **What it does**: Mnemosyne injects an explicit “use memory tools” reminder into `experimental.session.compacting`, while Public’s compaction path currently carries continuity payloads and surfaced memories, not a direct tool-usage reminder.
     27	- **Why it matters for us**: This is the clearest gap with the best fit: it improves post-compaction memory awareness without changing retrieval math or governance. Affected subsystem: OpenCode compaction transport.
     28	- **Recommendation**: adopt now
@@ -6250,7 +6250,7 @@ exec
     51	--
     52	## Findings
     53	### Finding 1: Mnemosyne is not a retrieval-engine upgrade for Public
-    54	- **Source**: [external/src/index.ts:106](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L106), [external/README.md:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [memory-search.ts:809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L809); evidence: both
+    54	- **Source**: [external/src/index.ts:106](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L106), [external/README.md:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [memory-search.ts:809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L809); evidence: both
     55	- **What it does**: Mnemosyne’s wrapper forwards search requests to a backend whose BM25/vector/RRF internals are only README-documented, while Public already runs a visible multi-stage hybrid search pipeline.
     56	- **Why it matters for us**: The transferable value is wrapper ergonomics, not ranking replacement, so using Mnemosyne as a reason to re-architect Public retrieval would be a category error.
     57	- **Recommendation**: reject
@@ -6291,21 +6291,21 @@ exec
     92	- **Impact**: high
     93	
     94	### Finding 3: Scope separation converges, but Mnemosyne’s project/global split is uniquely simple and uniquely weak
-    95	- **Source**: [Mnemosyne index.ts]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L27), [Mnemosyne README]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L51), [Modus iteration]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/research/iterations/iteration-013.md#L8), [MemPalace iteration]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-017.md#L5439), [Public memory search]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L14)
+    95	- **Source**: [Mnemosyne index.ts]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L27), [Mnemosyne README]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L51), [Modus iteration]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/research/iterations/iteration-013.md#L8), [MemPalace iteration]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-017.md#L5439), [Public memory search]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L14)
     96	- **What it does**: All systems partition memory somehow: Engram by agent/admin and sessions, Mex by scaffold vs repair plane, Modus by separate planes, MemPalace by layers and fact plane. Mnemosyne is the simplest: basename-derived project collection, a single global collection, plus `core` tagging.
     97	- **Why it matters**: The ergonomic lesson is real, but the identity model is brittle. Mnemosyne’s split is useful as a UX alias, not as a storage/governance model for Public.
     98	- **Recommendation**: prototype later
     99	- **Impact**: medium
    100	
    101	### Finding 4: Mnemosyne is uniquely valuable as a thin OpenCode-native facade over a local backend, not as a retrieval-engine replacement
-   102	- **Source**: [Mnemosyne package]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L1), [Mnemosyne README]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L80), [Public startup]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L1495), [Public compaction plugin]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L296), [CocoIndex README]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md#L42)
+   102	- **Source**: [Mnemosyne package]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L1), [Mnemosyne README]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L80), [Public startup]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L1495), [Public compaction plugin]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L296), [CocoIndex README]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md#L42)
    103	- **What it does**: The checked-out Mnemosyne repo is mostly a Bun/OpenCode wrapper plus README contract. Its BM25/vector/RRF story is documented, but the wrapper itself mainly contributes CLI bridging, tool exposure, and compaction guidance. Public already has visible hybrid search and separate semantic code search.
    104	- **Why it matters**: Cross-system, the unique contribution here is facade ergonomics: an easy local memory plugin with a tight OpenCode surface. It is not evidence for reworking Public’s retrieval core.
    105	- **Recommendation**: reject
    106	- **Impact**: high
    107	
    108	### Finding 5: Readiness and trust boundaries are a hidden convergence theme, and Mnemosyne is uniquely brittle there
-   109	- **Source**: [Mnemosyne index.ts]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L78), [Mnemosyne README]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [Public startup]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L1589), [Mex iteration]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/research/iterations/iteration-014.md#L9310), [Modus iteration]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/research/iterations/iteration-013.md#L15)
+   109	- **Source**: [Mnemosyne index.ts]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L78), [Mnemosyne README]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [Public startup]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L1589), [Mex iteration]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/research/iterations/iteration-014.md#L9310), [Modus iteration]( /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/research/iterations/iteration-013.md#L15)
    110	- **What it does**: The other systems all expose some visible posture around truth, trust, freshness, or readiness. Mnemosyne auto-inits collections and depends on a first-use model download, but the wrapper does not fail closed on init readiness and can still advertise memory usage at compaction even if the backend is broken.
    111	- **Why it matters**: This is the biggest unique warning from this system. If we borrow its ergonomics, we should also invert its failure posture and keep readiness explicit and health-gated.
    112	- **Recommendation**: adopt now
@@ -6347,7 +6347,7 @@ exec
    148	
    149	### 4.3 What This Repo Already Has
    150	
-   151	`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+   151	`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
    152	
    153	What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
    154	
@@ -6363,11 +6363,11 @@ exec
    164	8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
    165	9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
    166	10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-   167	11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+   167	11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
    168	12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
    169	13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
    170	    ```bash
-   171	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+   171	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
    172	    ```
    173	14. After validation passes, run deep research using this exact topic:
    174	    ```text
@@ -6375,7 +6375,7 @@ exec
    176	    ```
    177	15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
    178	    ```bash
-   179	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+   179	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
    180	    ```
    181	
    182	## 6. Research Questions
@@ -6406,7 +6406,7 @@ exec
    207	- Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
    208	- Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
    209	- Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-   210	- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+   210	- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
    211	- Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
    212	- Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
    213	- Do not edit anything under `external/` or outside this phase folder.
@@ -6475,7 +6475,7 @@ exec
     52	--
     53	## Findings
     54	### Finding 1: Init and first-use readiness fail late and ambiguously
-    55	- **Source**: [external/src/index.ts#L78](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L78), [external/src/index.ts#L171](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L171), [external/README.md#L18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [context-server.ts#L1495](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L1495), [context-server.ts#L1589](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L1589)
+    55	- **Source**: [external/src/index.ts#L78](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L78), [external/src/index.ts#L171](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L171), [external/README.md#L18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [context-server.ts#L1495](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L1495), [context-server.ts#L1589](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L1589)
     56	- **What it does**: Mnemosyne auto-runs `mnemosyne init` for project/global collections but never checks the subprocess exit code in those init paths; the README also says first use downloads about 500 MB of models. If init or model download fails, the wrapper does not surface a readiness state up front. Public instead validates provider config, runs integrity checks, refuses embedding-dimension mismatches, and emits explicit degraded or fatal startup guidance.
     57	- **Why it matters for us**: This is the biggest operational gap. Missing model, permissions failure, corrupt collection, and init failure can all look like “tool broke later,” not “system is not ready.”
     58	- **Recommendation**: adopt now
@@ -6533,7 +6533,7 @@ exec
    110	--
    111	## Findings
    112	### Finding 1: Adopting Mnemosyne-style compaction reminders risks duplicating Public’s existing compaction channels
-   113	- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L208), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [memory-surface.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts#L623)
+   113	- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L208), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [memory-surface.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts#L623)
    114	- **Evidence type**: wrapper-confirmed for Mnemosyne; wrapper-confirmed for Public
    115	- **What it does**: Mnemosyne appends a fixed memory-usage instruction block during `experimental.session.compacting`, while Public already has a transport-backed compaction note plus a separate `autoSurfaceAtCompaction()` path that injects retrieved memory/context.
    116	- **Why it matters for us**: The transfer is still attractive, but the main risk is prompt collision: we could end up with three compaction surfaces saying similar things in different voices, which weakens retrieval-policy clarity and increases prompt noise.
@@ -6563,7 +6563,7 @@ exec
    140	--
    141	## Findings
    142	### Finding 1: Add a transport-owned memory reminder block at compaction time
-   143	- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence type: both
+   143	- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence type: both
    144	- **What it does**: Mnemosyne injects an explicit “use memory tools” reminder into `experimental.session.compacting`, while Public’s compaction path currently carries continuity payloads and surfaced memories, not a direct tool-usage reminder.
    145	- **Why it matters for us**: This is the clearest gap with the best fit: it improves post-compaction memory awareness without changing retrieval math or governance. Affected subsystem: OpenCode compaction transport.
    146	- **Recommendation**: adopt now
@@ -6592,7 +6592,7 @@ exec
    169	--
    170	## Findings
    171	### Finding 1: Mnemosyne is not a retrieval-engine upgrade for Public
-   172	- **Source**: [external/src/index.ts:106](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L106), [external/README.md:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [memory-search.ts:809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L809); evidence: both
+   172	- **Source**: [external/src/index.ts:106](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L106), [external/README.md:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [memory-search.ts:809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L809); evidence: both
    173	- **What it does**: Mnemosyne’s wrapper forwards search requests to a backend whose BM25/vector/RRF internals are only README-documented, while Public already runs a visible multi-stage hybrid search pipeline.
    174	- **Why it matters for us**: The transferable value is wrapper ergonomics, not ranking replacement, so using Mnemosyne as a reason to re-architect Public retrieval would be a category error.
    175	- **Recommendation**: reject
@@ -6628,7 +6628,7 @@ exec
    205	
    206	### 4.3 What This Repo Already Has
    207	
-   208	`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+   208	`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
    209	
    210	What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
    211	
@@ -6643,7 +6643,7 @@ exec
    220	7. Examine `memory_delete` in detail. Trace how document IDs are expected to flow from recall results into deletion, and what this says about memory lifecycle and hygiene expectations.
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 2719ms:
 
 ───────────────────────────────────────────────────────────────
@@ -6658,7 +6658,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -6671,7 +6671,7 @@ exec
 codex
 I’ve got enough evidence to frame the temporal delta now: Mnemosyne relies on manual hygiene plus `core` pinning, whereas Spec Kit Memory already mixes decay, archival, and governed expiry. I’m waiting on the strict phase validation result, then I’ll turn this into a bounded set of decay-and-retention findings with exact recommendations.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts | sed -n '388,430p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts | sed -n '388,430p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    388	        const similarity = rawSimilarity > 1 ? rawSimilarity / 100 : rawSimilarity;
    389	        const topId = typeof top.id === 'number' ? top.id : 0;
@@ -6718,64 +6718,64 @@ exec
    430	            recommendedAt: Date.now(),
 
 exec
-/bin/zsh -lc "rg -n \"contradict|archive older|supersede|auto-merge|is_archived = 1|delete outdated|outdated\" .opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts .opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"contradict|archive older|supersede|auto-merge|is_archived = 1|delete outdated|outdated\" .opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts .opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:45: * and auto-merged.  Requires SPECKIT_ASSISTIVE_RECONSOLIDATION=true.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:51: * (possible supersede/complement).  A recommendation is logged but no
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:69: *   similarity >= 0.96  → auto-merge (near-duplicate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:70: *   0.88 <= sim < 0.96  → review (supersede or complement recommendation)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:86: * superseded or complemented.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:90: * (supersede).  Callers may override with domain-specific logic.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:94: * @returns 'supersede' or 'complement'
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:99:): 'supersede' | 'complement' {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:103:  return newerLen > olderLen * 1.2 ? 'complement' : 'supersede';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:345:              status: reconResult.action === 'merge' ? 'merged' : 'superseded',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:369:  // shadow-only (auto-merge at >= 0.96 only archives old record).
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:402:              SET is_archived = 1,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:410:              `[reconsolidation-bridge] assistive auto-merge: archived older=${topId} ` +
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:415:            console.warn(`[reconsolidation-bridge] assistive auto-merge archive failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:49:  by_supersedes: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:50:  by_contradicts: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:62:  supersedes: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:63:  contradicts: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:141:    by_supersedes: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:142:    by_contradicts: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:186:      case 'supersedes': return result.by_supersedes;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:187:      case 'contradicts': return result.by_contradicts;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:209:    by_supersedes: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:210:    by_contradicts: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:228:      case 'supersedes': merged.by_supersedes.push(edge); break;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:229:      case 'contradicts': merged.by_contradicts.push(edge); break;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:275:    by_supersedes: allowed.has('supersedes') ? chain.by_supersedes : [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:276:    by_contradicts: allowed.has('contradicts') ? chain.by_contradicts : [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:293:    by_supersedes: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:294:    by_contradicts: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:308:    supersedes: chain.by_supersedes,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:309:    contradicts: chain.by_contradicts,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:325:  if (chain.by_supersedes.length > 0) parts.push(`${chain.by_supersedes.length} supersedes`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:326:  if (chain.by_contradicts.length > 0) parts.push(`${chain.by_contradicts.length} contradicts`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:516:    if (combinedChain.by_contradicts.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:9:// - similarity in [0.75, 0.88): CONFLICT (supersede prior memory via causal 'supersedes' edge)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:88:/** Result of a conflict (supersede) operation */
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:132:/** Threshold above which memories are in conflict (supersede) */
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:255:    // F04-001: Append-only merge — mark old as superseded, create new record
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:289:      // Mark existing memory as archived (superseded)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:292:        SET is_archived = 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:346:      // Create supersedes causal edge
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:349:        VALUES (?, ?, 'supersedes', 1.0, datetime('now'))
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:464: * - Mark existing memory as deprecated (superseded)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:465: * - Create a 'supersedes' causal edge from new -> existing
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:471: * @param existingMemory - The existing memory being superseded
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:474: * @returns ConflictResult with supersede details
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:482:    // Add causal 'supersedes' edge only when caller provides a distinct new ID.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:483:    // Prevent self-referential supersedes edges (source == target).
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:511:          'supersedes',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:517:            `Failed to insert supersedes edge (${sourceId} -> ${targetId}) — aborting reconsolidation`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:654:        // TM-06 live-save path: materialize memory + supersede edge together
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:673:          // Memory so we don't leave dangling rows with no supersedes edge.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:45: * and auto-merged.  Requires SPECKIT_ASSISTIVE_RECONSOLIDATION=true.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:51: * (possible supersede/complement).  A recommendation is logged but no
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:69: *   similarity >= 0.96  → auto-merge (near-duplicate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:70: *   0.88 <= sim < 0.96  → review (supersede or complement recommendation)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:86: * superseded or complemented.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:90: * (supersede).  Callers may override with domain-specific logic.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:94: * @returns 'supersede' or 'complement'
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:99:): 'supersede' | 'complement' {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:103:  return newerLen > olderLen * 1.2 ? 'complement' : 'supersede';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:345:              status: reconResult.action === 'merge' ? 'merged' : 'superseded',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:369:  // shadow-only (auto-merge at >= 0.96 only archives old record).
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:402:              SET is_archived = 1,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:410:              `[reconsolidation-bridge] assistive auto-merge: archived older=${topId} ` +
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:415:            console.warn(`[reconsolidation-bridge] assistive auto-merge archive failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:49:  by_supersedes: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:50:  by_contradicts: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:62:  supersedes: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:63:  contradicts: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:141:    by_supersedes: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:142:    by_contradicts: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:186:      case 'supersedes': return result.by_supersedes;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:187:      case 'contradicts': return result.by_contradicts;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:209:    by_supersedes: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:210:    by_contradicts: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:228:      case 'supersedes': merged.by_supersedes.push(edge); break;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:229:      case 'contradicts': merged.by_contradicts.push(edge); break;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:275:    by_supersedes: allowed.has('supersedes') ? chain.by_supersedes : [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:276:    by_contradicts: allowed.has('contradicts') ? chain.by_contradicts : [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:293:    by_supersedes: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:294:    by_contradicts: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:308:    supersedes: chain.by_supersedes,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:309:    contradicts: chain.by_contradicts,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:325:  if (chain.by_supersedes.length > 0) parts.push(`${chain.by_supersedes.length} supersedes`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:326:  if (chain.by_contradicts.length > 0) parts.push(`${chain.by_contradicts.length} contradicts`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:516:    if (combinedChain.by_contradicts.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:9:// - similarity in [0.75, 0.88): CONFLICT (supersede prior memory via causal 'supersedes' edge)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:88:/** Result of a conflict (supersede) operation */
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:132:/** Threshold above which memories are in conflict (supersede) */
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:255:    // F04-001: Append-only merge — mark old as superseded, create new record
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:289:      // Mark existing memory as archived (superseded)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:292:        SET is_archived = 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:346:      // Create supersedes causal edge
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:349:        VALUES (?, ?, 'supersedes', 1.0, datetime('now'))
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:464: * - Mark existing memory as deprecated (superseded)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:465: * - Create a 'supersedes' causal edge from new -> existing
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:471: * @param existingMemory - The existing memory being superseded
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:474: * @returns ConflictResult with supersede details
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:482:    // Add causal 'supersedes' edge only when caller provides a distinct new ID.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:483:    // Prevent self-referential supersedes edges (source == target).
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:511:          'supersedes',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:517:            `Failed to insert supersedes edge (${sourceId} -> ${targetId}) — aborting reconsolidation`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:654:        // TM-06 live-save path: materialize memory + supersede edge together
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:673:          // Memory so we don't leave dangling rows with no supersedes edge.
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts | sed -n '140,190p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts | sed -n '140,190p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    140	}
    141	
@@ -6830,23 +6830,23 @@ exec
    190	      status: 'reinforced',
 
 exec
-/bin/zsh -lc "rg -n \"desiredRetention|0.9|nextReviewDate|processReview\" .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"desiredRetention|0.9|nextReviewDate|processReview\" .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:15:// Linear multiplicative: score * 0.95 per tick
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:123: * The interval where retrievability = 0.9 (desired retention).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:125:function calculateOptimalInterval(stability: number, desiredRetention: number = 0.9): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:128:  if (safeStability <= 0 || desiredRetention <= 0 || desiredRetention >= 1) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:132:  const interval = (safeStability / FSRS_FACTOR) * (Math.pow(desiredRetention, 1 / FSRS_DECAY) - 1);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:177:function getNextReviewDate(stability: number, desiredRetention: number = 0.9): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:178:  const intervalDays = calculateOptimalInterval(stability, desiredRetention);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:200:function processReview(params: FsrsParams, grade: number): ReviewResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:496:  processReview,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:15:// Linear multiplicative: score * 0.95 per tick
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:123: * The interval where retrievability = 0.9 (desired retention).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:125:function calculateOptimalInterval(stability: number, desiredRetention: number = 0.9): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:128:  if (safeStability <= 0 || desiredRetention <= 0 || desiredRetention >= 1) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:132:  const interval = (safeStability / FSRS_FACTOR) * (Math.pow(desiredRetention, 1 / FSRS_DECAY) - 1);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:177:function getNextReviewDate(stability: number, desiredRetention: number = 0.9): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:178:  const intervalDays = calculateOptimalInterval(stability, desiredRetention);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:200:function processReview(params: FsrsParams, grade: number): ReviewResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:496:  processReview,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '110,170p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '110,170p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    110	}
    111	
@@ -6911,14 +6911,14 @@ exec
    170	  }
 
 exec
-/bin/zsh -lc "rg -n \"function computeRecencyScore|computeRecencyScore\\(\" .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts .opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"function computeRecencyScore|computeRecencyScore\\(\" .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts .opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:628:    const recency = computeRecencyScore(recencyTimestamp, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1009:      const recencyScore = computeRecencyScore(recencyTimestamp, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:505:  return computeRecencyScore(timestamp || '', tier, DECAY_RATE);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:628:    const recency = computeRecencyScore(recencyTimestamp, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1009:      const recencyScore = computeRecencyScore(recencyTimestamp, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:505:  return computeRecencyScore(timestamp || '', tier, DECAY_RATE);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Folder Scoring
@@ -6943,15 +6943,15 @@ exec
     21	} from '@spec-kit/shared/scoring/folder-scoring';
 
 exec
-/bin/zsh -lc "rg -n \"useDecay|trackAccess\" .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts .opencode/skill/system-spec-kit/mcp_server/tools/types.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"useDecay|trackAccess\" .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts .opencode/skills/system-spec-kit/mcp_server/tools/types.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:56:  useDecay?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:74:  trackAccess?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:86:      useDecay: { type: 'boolean', default: true, description: 'Apply temporal decay scoring to results' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:165:      trackAccess: {
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:56:  useDecay?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:74:  trackAccess?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:86:      useDecay: { type: 'boolean', default: true, description: 'Apply temporal decay scoring to results' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:165:      trackAccess: {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '78,172p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '78,172p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     78	      },
     79	      enableDedup: {
@@ -7050,7 +7050,7 @@ exec
    172	        default: false,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/README.md | sed -n '450,470p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/README.md | sed -n '450,470p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    450	
    451	**Importance Tiers**: Six-level classification system
@@ -7075,7 +7075,7 @@ exec
    470	  importanceTier: 'critical',
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md | sed -n '88,110p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md | sed -n '88,110p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     88	| **Power-Law Decay**          | FSRS v4 formula validated on 100M+ users                                              | More accurate than exponential decay |
     89	| **5-State Model**            | HOT/WARM/COLD/DORMANT/ARCHIVED with thresholds                                        | Progressive memory transitions       |
@@ -7102,7 +7102,7 @@ exec
    110	---
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md | sed -n '972,988p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md | sed -n '972,988p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    972	---
    973	
@@ -7123,7 +7123,7 @@ exec
    988	**Q: How does spreading activation work?**
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '548,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '548,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    548	
    549	/**
@@ -7200,7 +7200,7 @@ exec
    620	    return changedRows;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts | sed -n '238,286p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts | sed -n '238,286p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    238	function classifyState(
    239	  retrievabilityOrMemory: number | TierInput | null | undefined,
@@ -7253,49 +7253,49 @@ exec
    286	}
 
 exec
-/bin/zsh -lc "rg -n \"retention_sweep\" .opencode/skill/system-spec-kit/mcp_server | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"retention_sweep\" .opencode/skills/system-spec-kit/mcp_server | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:160:      action: 'retention_sweep',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:160:      action: 'retention_sweep',
 
 exec
-/bin/zsh -lc "rg -n \"nextReviewDate|next_review_date|getNextReviewDate|calculateOptimalInterval\" .opencode/skill/system-spec-kit/mcp_server | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"nextReviewDate|next_review_date|getNextReviewDate|calculateOptimalInterval\" .opencode/skills/system-spec-kit/mcp_server | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:498:    if (!fsrsScheduler?.calculateOptimalInterval) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:499:    const interval = fsrsScheduler.calculateOptimalInterval(1.0, 0.9);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:504:    if (!fsrsScheduler?.calculateOptimalInterval) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:505:    const calcInterval = fsrsScheduler.calculateOptimalInterval;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:517:    if (!fsrsScheduler?.calculateOptimalInterval) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:518:    const calcInterval = fsrsScheduler.calculateOptimalInterval;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:535:    if (!fsrsScheduler?.calculateOptimalInterval) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:536:    const calcInterval = fsrsScheduler.calculateOptimalInterval;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:557:    'calculateOptimalInterval',
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:186:        nextReviewDate: new Date().toISOString(),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:125:function calculateOptimalInterval(stability: number, desiredRetention: number = 0.9): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:177:function getNextReviewDate(stability: number, desiredRetention: number = 0.9): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:178:  const intervalDays = calculateOptimalInterval(stability, desiredRetention);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:491:  calculateOptimalInterval,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:494:  getNextReviewDate,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:291:  calculateOptimalInterval,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:316:// result = { stability, difficulty, lastReview, reviewCount, nextReviewDate, retrievability }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:319:const interval = calculateOptimalInterval(newStability, 0.9);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:89:      expect(fsrsScheduler.calculateOptimalInterval(0, 0.9)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:294:      const nextReviewDate = fsrsScheduler.getNextReviewDate(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:295:      expect(Number.isNaN(new Date(nextReviewDate).getTime())).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:111:   B. FSRS SCHEDULER — getNextReviewDate
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:114:describe('B. getNextReviewDate', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:116:    const result = fsrs.getNextReviewDate(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:122:    const result = fsrs.getNextReviewDate(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:128:    const lowStab = new Date(fsrs.getNextReviewDate(1.0)).getTime();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:129:    const highStab = new Date(fsrs.getNextReviewDate(50.0)).getTime();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:134:    const r90 = new Date(fsrs.getNextReviewDate(10.0, 0.9)).getTime();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:135:    const r50 = new Date(fsrs.getNextReviewDate(10.0, 0.5)).getTime();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:140:    const result = fsrs.getNextReviewDate(0.1);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:207:    expect(result).toHaveProperty('nextReviewDate');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:249:  it('D-08: nextReviewDate is valid future date', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:251:    const nextDate = new Date(result.nextReviewDate);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:498:    if (!fsrsScheduler?.calculateOptimalInterval) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:499:    const interval = fsrsScheduler.calculateOptimalInterval(1.0, 0.9);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:504:    if (!fsrsScheduler?.calculateOptimalInterval) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:505:    const calcInterval = fsrsScheduler.calculateOptimalInterval;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:517:    if (!fsrsScheduler?.calculateOptimalInterval) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:518:    const calcInterval = fsrsScheduler.calculateOptimalInterval;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:535:    if (!fsrsScheduler?.calculateOptimalInterval) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:536:    const calcInterval = fsrsScheduler.calculateOptimalInterval;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:557:    'calculateOptimalInterval',
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:186:        nextReviewDate: new Date().toISOString(),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:125:function calculateOptimalInterval(stability: number, desiredRetention: number = 0.9): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:177:function getNextReviewDate(stability: number, desiredRetention: number = 0.9): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:178:  const intervalDays = calculateOptimalInterval(stability, desiredRetention);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:491:  calculateOptimalInterval,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:494:  getNextReviewDate,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:291:  calculateOptimalInterval,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:316:// result = { stability, difficulty, lastReview, reviewCount, nextReviewDate, retrievability }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:319:const interval = calculateOptimalInterval(newStability, 0.9);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:89:      expect(fsrsScheduler.calculateOptimalInterval(0, 0.9)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:294:      const nextReviewDate = fsrsScheduler.getNextReviewDate(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:295:      expect(Number.isNaN(new Date(nextReviewDate).getTime())).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:111:   B. FSRS SCHEDULER — getNextReviewDate
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:114:describe('B. getNextReviewDate', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:116:    const result = fsrs.getNextReviewDate(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:122:    const result = fsrs.getNextReviewDate(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:128:    const lowStab = new Date(fsrs.getNextReviewDate(1.0)).getTime();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:129:    const highStab = new Date(fsrs.getNextReviewDate(50.0)).getTime();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:134:    const r90 = new Date(fsrs.getNextReviewDate(10.0, 0.9)).getTime();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:135:    const r50 = new Date(fsrs.getNextReviewDate(10.0, 0.5)).getTime();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:140:    const result = fsrs.getNextReviewDate(0.1);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:207:    expect(result).toHaveProperty('nextReviewDate');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:249:  it('D-08: nextReviewDate is valid future date', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:251:    const nextDate = new Date(result.nextReviewDate);
 
 codex
 I’m on the synthesis step now. One useful nuance surfaced: this iteration’s strongest recommendation is not “add more decay,” it’s “separate permanence, reversible forgetting, and hard expiry into distinct lanes,” because that is exactly where Mnemosyne is simplest and where Public is already strongest.
@@ -7319,7 +7319,7 @@ exec
  succeeded in 0ms:
    782	## Reusable knowledge
    783	
-   784	- canonical validation gates for packet readiness here were `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --recursive --strict` plus `TMPDIR=... npm run check:full` and `npm run build` evidence capture [Task 1][Task 2]
+   784	- canonical validation gates for packet readiness here were `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --recursive --strict` plus `TMPDIR=... npm run check:full` and `npm run build` evidence capture [Task 1][Task 2]
    785	- for strict validator compliance, checklist lines need explicit `[EVIDENCE: ...]` and level-template headers/section numbers must remain exact (`## 1. METADATA`, `## 2. PROBLEM & PURPOSE`, etc.) [Task 3]
    786	- `session_bootstrap()` is the primary recovery call for non-hook flows; docs should mention fallback `memory_context({mode:"resume",profile:"resume"})` only after bootstrap guidance [Task 4]
    787	- hook path truth is `mcp_server/hooks/claude/*.ts` and compiled `mcp_server/dist/hooks/claude/*.js`; avoid stale `scripts/hooks/claude/` references [Task 4]
@@ -7340,28 +7340,28 @@ MEMORY DECAY & RETENTION: How does this system handle memory aging, relevance de
 - **Impact**: high
 
 ### Finding 2: Public already has three separate time axes; we should keep that separation explicit
-- **Source**: [attention-decay.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts#L5), [fsrs-scheduler.ts:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L18), [working-memory.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts#L5), [stage2-fusion.ts:998](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L998)
+- **Source**: [attention-decay.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts#L5), [fsrs-scheduler.ts:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L18), [working-memory.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts#L5), [stage2-fusion.ts:998](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L998)
 - **What it does**: Spec Kit Memory already separates long-term FSRS retrievability, session-scoped attention decay, and search-time recency fusion. Those are distinct clocks with distinct purposes, not one blended “memory age” number.
 - **Why it matters**: This is the right architecture for long-lived memory. Permanence, recall probability, and current-session salience should stay independent so we do not accidentally make durable rules feel “old” or recent noise feel “important.”
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 3: Reversible forgetting is stronger than hard deletion for durable memory
-- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
+- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
 - **What it does**: Public archives low-value memories instead of immediately deleting them, removes archived rows from BM25/vector retrieval, and supports unarchive. The save-time reconsolidation path also archives older near-duplicates rather than physically deleting them.
 - **Why it matters**: For long-lived systems, “forgetting” should usually mean reversible removal from active retrieval, not destruction. That preserves lineage, auditability, and recovery when the system over-prunes.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: Hard expiry should stay opt-in and explicitly ephemeral
-- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
+- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
 - **What it does**: Public supports explicit `retentionPolicy` and `deleteAfter`, and governed ingest rejects `ephemeral` saves without a future expiry. I found test/audit evidence for a `retention_sweep` action, but I did not locate a concrete runtime sweep implementation in this checkout.
 - **Why it matters**: This is the correct shape for hard expiry: explicit, narrow, and policy-driven. The gap is operational visibility, not the policy model itself.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 5: Desired-retention scheduling exists internally, but it is not yet an operator-facing memory policy
-- **Source**: [fsrs-scheduler.ts:123](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L123), [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177), [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200), [pe-gating.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts#L142), [tool-schemas.ts:86](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L86), [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L165); evidence type: wrapper-confirmed
+- **Source**: [fsrs-scheduler.ts:123](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L123), [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177), [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200), [pe-gating.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts#L142), [tool-schemas.ts:86](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L86), [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L165); evidence type: wrapper-confirmed
 - **What it does**: Public’s FSRS layer already computes optimal intervals and next review dates around a `0.9` desired retention target, and reinforcement updates stability/review count. But that review horizon is not surfaced as a first-class operator control or reporting field in the retrieval UX.
 - **Why it matters**: Long-lived memory systems need more than decay math; they need an understandable retention policy. Exposing “why this memory is still hot” or “when this should be revisited” would make the current system much easier to govern.
 - **Recommendation**: NEW FEATURE
@@ -7392,28 +7392,28 @@ MEMORY DECAY & RETENTION: How does this system handle memory aging, relevance de
 - **Impact**: high
 
 ### Finding 2: Public already has three separate time axes; we should keep that separation explicit
-- **Source**: [attention-decay.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts#L5), [fsrs-scheduler.ts:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L18), [working-memory.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts#L5), [stage2-fusion.ts:998](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L998)
+- **Source**: [attention-decay.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts#L5), [fsrs-scheduler.ts:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L18), [working-memory.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts#L5), [stage2-fusion.ts:998](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L998)
 - **What it does**: Spec Kit Memory already separates long-term FSRS retrievability, session-scoped attention decay, and search-time recency fusion. Those are distinct clocks with distinct purposes, not one blended “memory age” number.
 - **Why it matters**: This is the right architecture for long-lived memory. Permanence, recall probability, and current-session salience should stay independent so we do not accidentally make durable rules feel “old” or recent noise feel “important.”
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 3: Reversible forgetting is stronger than hard deletion for durable memory
-- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
+- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
 - **What it does**: Public archives low-value memories instead of immediately deleting them, removes archived rows from BM25/vector retrieval, and supports unarchive. The save-time reconsolidation path also archives older near-duplicates rather than physically deleting them.
 - **Why it matters**: For long-lived systems, “forgetting” should usually mean reversible removal from active retrieval, not destruction. That preserves lineage, auditability, and recovery when the system over-prunes.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: Hard expiry should stay opt-in and explicitly ephemeral
-- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
+- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
 - **What it does**: Public supports explicit `retentionPolicy` and `deleteAfter`, and governed ingest rejects `ephemeral` saves without a future expiry. I found test/audit evidence for a `retention_sweep` action, but I did not locate a concrete runtime sweep implementation in this checkout.
 - **Why it matters**: This is the correct shape for hard expiry: explicit, narrow, and policy-driven. The gap is operational visibility, not the policy model itself.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 5: Desired-retention scheduling exists internally, but it is not yet an operator-facing memory policy
-- **Source**: [fsrs-scheduler.ts:123](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L123), [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177), [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200), [pe-gating.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts#L142), [tool-schemas.ts:86](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L86), [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L165); evidence type: wrapper-confirmed
+- **Source**: [fsrs-scheduler.ts:123](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L123), [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177), [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200), [pe-gating.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts#L142), [tool-schemas.ts:86](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L86), [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L165); evidence type: wrapper-confirmed
 - **What it does**: Public’s FSRS layer already computes optimal intervals and next review dates around a `0.9` desired retention target, and reinforcement updates stability/review count. But that review horizon is not surfaced as a first-class operator control or reporting field in the retrieval UX.
 - **Why it matters**: Long-lived memory systems need more than decay math; they need an understandable retention policy. Exposing “why this memory is still hot” or “when this should be revisited” would make the current system much easier to govern.
 - **Recommendation**: NEW FEATURE

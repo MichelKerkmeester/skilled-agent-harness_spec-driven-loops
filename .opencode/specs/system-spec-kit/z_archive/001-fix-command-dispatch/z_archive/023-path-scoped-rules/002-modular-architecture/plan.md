@@ -1,6 +1,6 @@
 ---
 title: "I [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/plan]"
-description: ".opencode/skill/system-spec-kit/scripts/"
+description: ".opencode/skills/system-spec-kit/scripts/"
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -36,7 +36,7 @@ contextType: "planning"
 ### Directory Structure
 
 ```
-.opencode/skill/system-spec-kit/scripts/
+.opencode/skills/system-spec-kit/scripts/
 ├── validate-spec.sh              # Orchestrator
 ├── lib/
 │   ├── common.sh                 # Shared utilities

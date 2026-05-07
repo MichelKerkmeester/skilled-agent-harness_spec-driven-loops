@@ -68,9 +68,9 @@ Cross-phase rule: do not do another packet's deep dive; tag overlap with `003` f
 
 Assume `Code_Environment/Public` already has meaningful orchestration infrastructure, but not BAD's sprint-level automation layer:
 
-- `.opencode/agent/orchestrate.md` enforces single-hop NDP and makes the top-level orchestrator the only dispatcher.
-- `.opencode/agent/speckit.md` owns spec-folder markdown workflows and template-governed documentation.
-- `.opencode/skill/sk-git/SKILL.md` already covers git worktrees, commit hygiene, PR flow, and cleanup.
+- `.opencode/agents/orchestrate.md` enforces single-hop NDP and makes the top-level orchestrator the only dispatcher.
+- `.opencode/agents/speckit.md` owns spec-folder markdown workflows and template-governed documentation.
+- `.opencode/skills/sk-git/SKILL.md` already covers git worktrees, commit hygiene, PR flow, and cleanup.
 - `CLAUDE.md` and related repo rules already enforce gates, documentation discipline, and operational safety.
 - Spec Kit Memory, code graph tools, CocoIndex, and deep-research workflows already cover context retrieval and research execution.
 
@@ -114,8 +114,8 @@ Follow these steps in order and keep the analysis evidence-first.
    - batch wait / retro / continue
 9. Identify which actions are coordinator-owned and which are subagent-owned. Be explicit about BAD's "coordinator never touches source code directly" principle and how hard that boundary really is in the source material.
 10. Inspect how `sprint-status.yaml`, dependency-graph output, GitHub PR state, and epic ordering interact. Clarify which source of truth wins when state diverges.
-11. Compare BAD's worktree lifecycle, branch safety, PR flow, and cleanup behavior against `.opencode/skill/sk-git/SKILL.md`. Focus on what BAD adds beyond a generic git workflow skill.
-12. Compare BAD's coordinator model against `.opencode/agent/orchestrate.md`, especially around single-hop dispatch, leaf-agent boundaries, and whether BAD's coordinator is stricter or looser than local NDP.
+11. Compare BAD's worktree lifecycle, branch safety, PR flow, and cleanup behavior against `.opencode/skills/sk-git/SKILL.md`. Focus on what BAD adds beyond a generic git workflow skill.
+12. Compare BAD's coordinator model against `.opencode/agents/orchestrate.md`, especially around single-hop dispatch, leaf-agent boundaries, and whether BAD's coordinator is stricter or looser than local NDP.
 13. Verify the orchestrator-guard / `PreToolUse` hook claim carefully. If you find an actual guard, hook, or manifest-level enforcement mechanism that prevents the coordinator from reading non-process files, cite it exactly. If you do **not** find it in this repo snapshot, classify it as an unverified claim and say what evidence would be needed.
 14. For every meaningful finding, include exact source paths, a crisp comparison to the matching local surface, and one recommendation label: `adopt now`, `prototype later`, or `reject`.
 15. Keep the research focused on automation patterns, not sprint content. Story text, example epics, or installation trivia matter only when they reveal orchestration design, safety boundaries, or adoption risk.
@@ -134,7 +134,7 @@ Answer these questions directly in the research output.
 8. What exactly does BAD's auto-merge phase do, and why is sequential merge-by-story-number important?
 9. How does `sprint-status.yaml` drive execution, and what happens when it disagrees with GitHub state or local git state?
 10. Is there a real orchestrator guard / `PreToolUse` hook implementation in the repo, or only a documented principle? What would be required to bring the same enforcement into this repo?
-11. Compared with `.opencode/agent/orchestrate.md`, what does BAD add for sprint-level automation that this repo currently lacks?
+11. Compared with `.opencode/agents/orchestrate.md`, what does BAD add for sprint-level automation that this repo currently lacks?
 12. Which findings clearly belong to phase `003` or `005`, and how should they be tagged without diluting phase `008` ownership?
 
 ## 7. Do's
@@ -146,7 +146,7 @@ Answer these questions directly in the research output.
 - Do compare create / dev / review / PR subagent instructions side by side.
 - Do inspect continuation logic, timer behavior, and rate-limit pauses as part of the orchestration story.
 - Do verify whether the claimed orchestrator guard / `PreToolUse` hook is implemented, inferred, or missing from this repo snapshot.
-- Do compare BAD against `.opencode/agent/orchestrate.md`, `.opencode/agent/speckit.md`, and `.opencode/skill/sk-git/SKILL.md`.
+- Do compare BAD against `.opencode/agents/orchestrate.md`, `.opencode/agents/speckit.md`, and `.opencode/skills/sk-git/SKILL.md`.
 - Do tag overlap with phase `003` for hook / Claude workflow lessons.
 - Do tag overlap with phase `005` for generalized multi-agent / worktree architecture lessons.
 
@@ -171,7 +171,7 @@ Use findings in this style.
 - **What it does:** BAD keeps the coordinator focused on selection, spawning, timers, and summaries while delegating file reads, git, gh, and disk writes to fresh-context subagents.
 - **Why it matters here:** `Code_Environment/Public` already has a top-level orchestrator with single-hop NDP, but it does not yet have a sprint-specific coordinator that refuses implementation work this aggressively.
 - **Recommendation:** `prototype later`
-- **Affected area:** `.opencode/agent/orchestrate.md`, future sprint-automation skill or command layer
+- **Affected area:** `.opencode/agents/orchestrate.md`, future sprint-automation skill or command layer
 - **Risk / cost:** Medium. Strong boundary discipline is attractive, but it adds orchestration overhead and requires reliable subagent contracts.
 
 ### Example B - unverified `PreToolUse` guard claim
@@ -201,8 +201,8 @@ Produce research outputs that include all of the following:
 
 1. A concise summary of BAD's coordinator-subagent operating model.
 2. A pipeline trace covering dependency graph -> selection -> worktree -> create -> dev -> review -> PR / CI -> auto-merge -> continue.
-3. A comparison section against `.opencode/agent/orchestrate.md`.
-4. A comparison section against `.opencode/skill/sk-git/SKILL.md`.
+3. A comparison section against `.opencode/agents/orchestrate.md`.
+4. A comparison section against `.opencode/skills/sk-git/SKILL.md`.
 5. A config section covering `_bmad/bad/config.yaml` versus `_bmad/config.yaml` evidence and any path discrepancy.
 6. A scheduler section covering epic ordering, dependency readiness, and `MAX_PARALLEL_STORIES`.
 7. A model-tiering section covering `MODEL_STANDARD` and `MODEL_QUALITY`.
@@ -240,7 +240,7 @@ The task is complete only when all of the following are true:
 - the four-step story pipeline is traced with exact file-path evidence
 - dependency-graph and `sprint-status.yaml` behavior are explained clearly
 - the config-path discrepancy is documented instead of guessed away
-- BAD is compared directly to `.opencode/agent/orchestrate.md` and `.opencode/skill/sk-git/SKILL.md`
+- BAD is compared directly to `.opencode/agents/orchestrate.md` and `.opencode/skills/sk-git/SKILL.md`
 - overlap with phase `003` and phase `005` is tagged explicitly where needed
 - every major recommendation is labeled `adopt now`, `prototype later`, or `reject`
 - all packet references use the approved `999-agentic-system-upgrade` root only

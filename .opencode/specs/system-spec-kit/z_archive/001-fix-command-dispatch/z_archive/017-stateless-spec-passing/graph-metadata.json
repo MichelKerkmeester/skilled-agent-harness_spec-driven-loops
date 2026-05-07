@@ -38,10 +38,10 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/command/spec_kit/resume.md",
-      ".opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml",
-      ".opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml",
-      ".opencode/command/memory/save.md",
+      ".opencode/commands/spec_kit/resume.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml",
+      ".opencode/commands/memory/save.md",
       "plan.md",
       "spec.md",
       "tasks.md",
@@ -51,25 +51,25 @@
       {
         "name": "resume.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/resume.md",
+        "path": ".opencode/commands/spec_kit/resume.md",
         "source": "derived"
       },
       {
         "name": "spec_kit_resume_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
         "source": "derived"
       },
       {
         "name": "spec_kit_resume_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "save.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/save.md",
+        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {

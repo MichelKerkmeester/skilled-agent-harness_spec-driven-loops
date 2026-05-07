@@ -23,7 +23,7 @@ The Wave 1 audit documented 7 unintentional divergences. For each, I assess whet
 
 [SOURCE: .claude/agents/deep-research.md:1-15 (Claude frontmatter)]
 [SOURCE: .codex/agents/deep-research.toml:1-7 (Codex frontmatter)]
-[SOURCE: .opencode/agent/deep-research.md:1-20 (OpenCode frontmatter)]
+[SOURCE: .opencode/agents/deep-research.md:1-20 (OpenCode frontmatter)]
 [SOURCE: scratch/wave1-cross-runtime-audit.md (full audit)]
 
 ### Finding 2: Concrete Alignment Recommendations by Priority (NEW)
@@ -129,14 +129,14 @@ All 5 sub-proposals are correctly scoped. The YAML workflow file (`spec_kit_deep
 
 **One risk identified**: P2.2 (Ideas Backlog) depends on the orchestrator not just injecting the file contents but also CREATING the initial `research-ideas.md` file if it does not exist. The agent body says to "Append them to research/research-ideas.md for future iterations" but the orchestrator does not initialize this file. The wiring must include initialization logic in step_initialize, not just injection in step_dispatch.
 
-[SOURCE: .opencode/skill/sk-deep-research/references/convergence.md (algorithm specifications)]
-[SOURCE: .opencode/skill/sk-deep-research/references/state_format.md (schema definitions)]
+[SOURCE: .opencode/skills/sk-deep-research/references/convergence.md (algorithm specifications)]
+[SOURCE: .opencode/skills/sk-deep-research/references/state_format.md (schema definitions)]
 [INFERENCE: based on cross-reference of specification sources against YAML workflow behavior]
 
 ## Sources Consulted
 - .claude/agents/deep-research.md (Claude agent frontmatter, lines 1-15)
 - .codex/agents/deep-research.toml (Codex agent frontmatter, lines 1-7)
-- .opencode/agent/deep-research.md (OpenCode agent frontmatter, lines 1-20)
+- .opencode/agents/deep-research.md (OpenCode agent frontmatter, lines 1-20)
 - scratch/wave1-cross-runtime-audit.md (complete audit with 10 divergences)
 - research/iterations/iteration-004.md (gap analysis, 8 novel features)
 - research/iterations/iteration-005.md (GitHub issues, 7 failure modes)

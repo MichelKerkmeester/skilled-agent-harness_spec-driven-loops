@@ -38,12 +38,12 @@ After sub-phases 002, 003, 004, 005 ship, you sync the umbrella docs (root READM
 | File | Action |
 |------|--------|
 | `/README.md` (repo root) | **MODIFY** — features section reflects new capabilities (phase runner, detect_changes, blast_radius uplift, affordance evidence, trust badges) |
-| `.opencode/skill/system-spec-kit/SKILL.md` | **MODIFY** — capability matrix update |
-| `.opencode/skill/system-spec-kit/README.md` | **MODIFY** — feature index |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | **MODIFY** — handler list (add `detect_changes`); note enriched query/blast_radius outputs and new affordance lane wiring |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | **MODIFY** — verification steps include one smoke test per new capability (4 sub-phases × 1 smoke each) |
-| `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md` | **MODIFY** — top-level index lists the 5 new per-packet entries with correct paths |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | **MODIFY** — top-level index lists the 5 new per-packet playbook entries |
+| `.opencode/skills/system-spec-kit/SKILL.md` | **MODIFY** — capability matrix update |
+| `.opencode/skills/system-spec-kit/README.md` | **MODIFY** — feature index |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | **MODIFY** — handler list (add `detect_changes`); note enriched query/blast_radius outputs and new affordance lane wiring |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | **MODIFY** — verification steps include one smoke test per new capability (4 sub-phases × 1 smoke each) |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | **MODIFY** — top-level index lists the 5 new per-packet entries with correct paths |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | **MODIFY** — top-level index lists the 5 new per-packet playbook entries |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md` | **MODIFY** — add 012 entry as the External Project implementation phase derived from pt-01 + pt-02 |
 | `012/006/implementation-summary.md` | **MODIFY** — populate Capabilities Reflected, Before/After Diff Summary, DQI Scores |
 
@@ -69,7 +69,7 @@ After sub-phases 002, 003, 004, 005 ship, you sync the umbrella docs (root READM
 
 - [ ] All 18 tasks in `012/006/tasks.md` complete (T-006-A1 through T-006-F3)
 - [ ] All checklist items in `012/006/checklist.md` ticked with evidence
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../012/006 --strict` passes
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../012/006 --strict` passes
 - [ ] sk-doc DQI ≥85 on root README, system-spec-kit/SKILL.md, system-spec-kit/README.md, mcp_server/README.md, mcp_server/INSTALL_GUIDE.md
 - [ ] No broken links (grep verification)
 - [ ] INSTALL_GUIDE smoke tests run successfully
@@ -90,4 +90,4 @@ After sub-phases 002, 003, 004, 005 ship, you sync the umbrella docs (root READM
 - pt-02 §11 (no specific packet — 006 is user-requested addition per ADR-012-007)
 - ADR-012-007 (per-packet inline + trailing umbrella rollup)
 - 002-005 implementation-summary.md (your source-of-truth)
-- sk-doc skill: `.opencode/skill/sk-doc/SKILL.md`
+- sk-doc skill: `.opencode/skills/sk-doc/SKILL.md`

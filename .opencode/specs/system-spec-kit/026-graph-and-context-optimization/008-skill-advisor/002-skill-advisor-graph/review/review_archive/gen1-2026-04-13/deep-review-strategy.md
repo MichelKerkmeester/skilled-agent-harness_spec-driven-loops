@@ -195,13 +195,13 @@ Review of 011-skill-advisor-graph spec folder: a Level 2 implementation that add
 
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| `.opencode/skill/skill-advisor/scripts/skill_advisor.py` | [D1, D2, D3, D4] | 19 | 1 P0, 3 P1, 1 P2 (F001, F021, F030, F110, F011) | reviewed |
-| `.opencode/skill/skill-advisor/scripts/skill_graph_compiler.py` | [D1, D2, D3, D4] | 5 | 3 P0, 4 P1, 1 P2 (F020, F021, F022, F023, F030, F031, F040, F041) | reviewed |
-| `.opencode/skill/skill-advisor/scripts/skill-graph.json` | [D1, D2, D3] | 5 | 2 P0, 1 P1, 0 P2 (F021, F022, F023) | reviewed |
-| `.opencode/skill/skill-advisor/feature_catalog/feature_catalog.md` | [D4] | 16 | 0 P0, 1 P1, 0 P2 (F150) | reviewed |
-| `.opencode/skill/skill-advisor/feature_catalog/02--graph-system/*.md` | [D4] | 16 | 0 P0, 1 P1, 0 P2 (F150; schema page drifts while sampled peer pages still match runtime) | partial |
-| `.opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | [D3] | 14 | Supports F090 and F131 evidence replay | reviewed |
-| `.opencode/skill/*/graph-metadata.json` (21 files on disk) | [D2, D3, D4] | 13 | 2 P0, 2 P1, 1 P2 (F020, F021, F031, F080, F081; deep-pass sweep localized live weight drift to `skill-advisor` + `mcp-coco-index`) | partial |
+| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | [D1, D2, D3, D4] | 19 | 1 P0, 3 P1, 1 P2 (F001, F021, F030, F110, F011) | reviewed |
+| `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py` | [D1, D2, D3, D4] | 5 | 3 P0, 4 P1, 1 P2 (F020, F021, F022, F023, F030, F031, F040, F041) | reviewed |
+| `.opencode/skills/skill-advisor/scripts/skill-graph.json` | [D1, D2, D3] | 5 | 2 P0, 1 P1, 0 P2 (F021, F022, F023) | reviewed |
+| `.opencode/skills/skill-advisor/feature_catalog/feature_catalog.md` | [D4] | 16 | 0 P0, 1 P1, 0 P2 (F150) | reviewed |
+| `.opencode/skills/skill-advisor/feature_catalog/02--graph-system/*.md` | [D4] | 16 | 0 P0, 1 P1, 0 P2 (F150; schema page drifts while sampled peer pages still match runtime) | partial |
+| `.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | [D3] | 14 | Supports F090 and F131 evidence replay | reviewed |
+| `.opencode/skills/*/graph-metadata.json` (21 files on disk) | [D2, D3, D4] | 13 | 2 P0, 2 P1, 1 P2 (F020, F021, F031, F080, F081; deep-pass sweep localized live weight drift to `skill-advisor` + `mcp-coco-index`) | partial |
 | `011-skill-advisor-graph/spec.md` | [D3] | 3 | 3 P0, 0 P1, 0 P2 (F020, F021, F022) | partial |
 | `011-skill-advisor-graph/plan.md` | [] | - | - | pending |
 | `011-skill-advisor-graph/implementation-summary.md` | [D3, D4] | 18 | 1 P0, 2 P1, 0 P2 (F022, F023, F090) | partial |

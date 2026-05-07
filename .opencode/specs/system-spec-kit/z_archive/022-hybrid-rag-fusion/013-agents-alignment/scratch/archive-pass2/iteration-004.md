@@ -14,8 +14,8 @@
 - **Agents Affected**: @orchestrate (all 5 runtimes)
 - **Finding**: `@explore` referenced in LEAF lists and NDP examples across all 5 orchestrate runtimes, but no `explore.md`/`explore.toml` exists in any runtime family.
 - **Evidence**:
-  - `.opencode/agent/orchestrate.md:112,142,747`
-  - `.opencode/agent/chatgpt/orchestrate.md:127,157,779`
+  - `.opencode/agents/orchestrate.md:112,142,747`
+  - `.opencode/agents/chatgpt/orchestrate.md:127,157,779`
   - `.claude/agents/orchestrate.md:107,137,742`
   - `.codex/agents/orchestrate.toml:119,149,771`
   - `.agents/agents/orchestrate.md:107,137,742`
@@ -33,14 +33,14 @@
 - **Severity**: P1
 - **Dimension**: correctness
 - **Agents Affected**: @review (all 5 runtimes)
-- **Finding**: All review agents reference `sk-code` as a baseline skill to load, but `.opencode/skill/sk-code/` does not exist. The actual skill is `sk-code-review`.
+- **Finding**: All review agents reference `sk-code` as a baseline skill to load, but `.opencode/skills/sk-code/` does not exist. The actual skill is `sk-code-review`.
 - **Evidence**:
-  - `.opencode/agent/review.md:32,48,75,221,285` — "load sk-code baseline"
-  - `.opencode/agent/chatgpt/review.md:32,48,77,223,287`
+  - `.opencode/agents/review.md:32,48,75,221,285` — "load sk-code baseline"
+  - `.opencode/agents/chatgpt/review.md:32,48,77,223,287`
   - `.claude/agents/review.md:26,42,69,215,279`
   - `.codex/agents/review.toml:19,35,64,210,274`
   - `.agents/agents/review.md:26,42,69,215,279`
-  - `.opencode/skill/sk-code-review/` exists; `.opencode/skill/sk-code/` does NOT
+  - `.opencode/skills/sk-code-review/` exists; `.opencode/skills/sk-code/` does NOT
 - **Fix**: Replace `sk-code` with `sk-code-review` as the baseline. Update the overlay detection pattern.
 
 ### CROSS-004
@@ -48,7 +48,7 @@
 - **Dimension**: maintainability
 - **Agents Affected**: ALL agents (all runtimes)
 - **Finding**: No agent file across any runtime references `/memory:shared`. The 6-command memory surface is underdocumented.
-- **Evidence**: `grep -r "/memory:shared" .opencode/agent/ .claude/agents/ .codex/agents/ .agents/agents/` returns 0 matches.
+- **Evidence**: `grep -r "/memory:shared" .opencode/agents/ .claude/agents/ .codex/agents/ .agents/agents/` returns 0 matches.
 - **Fix**: Add /memory:shared to command surface enumerations where memory commands are listed.
 
 ### CROSS-005

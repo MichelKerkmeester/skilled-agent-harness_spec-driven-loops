@@ -1,6 +1,6 @@
 ---
 title: "Plan: Skill [skilled-agent-orchestration/041-sk-recursive-agent-loop/011-sk-agent-improver-advisor-readme-sync/plan]"
-description: "File: .opencode/skill/README.md"
+description: "File: .opencode/skills/README.md"
 trigger_phrases:
   - "plan"
   - "skill"
@@ -27,7 +27,7 @@ _memory:
 
 ## D1: Update Skill README
 
-**File**: `.opencode/skill/README.md`
+**File**: `.opencode/skills/README.md`
 
 Changes:
 - Line 165 area: Update version from `0.1.0.0` to `1.0.0.0`
@@ -36,7 +36,7 @@ Changes:
 
 ## D2: Update Skill Advisor (Public)
 
-**File**: `.opencode/skill/skill-advisor/scripts/skill_advisor.py`
+**File**: `.opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 ### Add INTENT_BOOSTERS (single-token)
 ```python
@@ -77,7 +77,7 @@ Changes:
 
 ## D3: Sync COMMAND_BRIDGES to Barter
 
-**File**: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Barter/coder/.opencode/skill/skill-advisor/scripts/skill_advisor.py`
+**File**: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Barter/coder/.opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 Add same COMMAND_BRIDGES as D2 EXCEPT:
 - `/improve:agent` → skip (sk-improve-agent not in Barter)
@@ -89,12 +89,12 @@ Also add PHRASE_INTENT_BOOSTERS for `/improve:prompt` and `/create:*` commands.
 
 ```bash
 # Test Phase 008+ routing
-python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "evaluate agent with 5 dimensions" --threshold 0.8
-python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "integration scanning" --threshold 0.8
-python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "/improve:agent" --threshold 0.8
-python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "/improve:prompt" --threshold 0.8
-python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "/create:agent" --threshold 0.8
+python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "evaluate agent with 5 dimensions" --threshold 0.8
+python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "integration scanning" --threshold 0.8
+python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/improve:agent" --threshold 0.8
+python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/improve:prompt" --threshold 0.8
+python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/create:agent" --threshold 0.8
 
 # Verify README
-grep "sk-improve-agent" .opencode/skill/README.md
+grep "sk-improve-agent" .opencode/skills/README.md
 ```

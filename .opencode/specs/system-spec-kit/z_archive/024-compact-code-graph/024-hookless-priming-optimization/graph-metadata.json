@@ -51,9 +51,9 @@
       "tools/lifecycle-tools.ts",
       "lib/architecture/layer-definitions.ts",
       "hooks/memory-surface.ts",
-      ".opencode/agent/context.md",
+      ".opencode/agents/context.md",
       ".claude/agents/context.md",
-      ".opencode/agent/orchestrate.md",
+      ".opencode/agents/orchestrate.md",
       "tests/context-server.vitest.ts",
       "tests/review-fixes.vitest.ts",
       "tests/session-resume.vitest.ts",
@@ -131,13 +131,13 @@
       {
         "name": "context.md",
         "kind": "doc",
-        "path": ".opencode/agent/context.md",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
         "name": "orchestrate.md",
         "kind": "doc",
-        "path": ".opencode/agent/orchestrate.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {

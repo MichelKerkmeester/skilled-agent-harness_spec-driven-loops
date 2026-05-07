@@ -14,7 +14,7 @@ I reviewed Agent Lightning's optional dependency groups and contributor guidance
 ## Evidence
 - Agent Lightning separates optional capabilities into explicit groups such as `apo`, `verl`, `weave`, `mongo`, and multiple training or hardware profiles. [SOURCE: external/pyproject.toml:30-49] [SOURCE: external/pyproject.toml:53-113]
 - The external contributor guide tells maintainers to mention optional groups like VERL, APO, and GPU when they are relevant, rather than assuming one universal capability set. [SOURCE: external/AGENTS.md:11-16]
-- `system-spec-kit`'s memory server currently documents 43 tools across orchestration, mutation, lifecycle, shared memory, analysis, and maintenance layers. [SOURCE: .opencode/skill/system-spec-kit/references/memory/memory_system.md:95-140]
+- `system-spec-kit`'s memory server currently documents 43 tools across orchestration, mutation, lifecycle, shared memory, analysis, and maintenance layers. [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:95-140]
 - The operator quick-reference in `AGENTS.md` also exposes many command families spanning research, implementation, analysis, shared memory, and database maintenance. [SOURCE: AGENTS.md:132-155]
 
 ## Analysis

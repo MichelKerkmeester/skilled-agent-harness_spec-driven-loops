@@ -41,19 +41,19 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-improve-prompt/SKILL.md",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/sk-improve-prompt/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
       "hooks/claude/user-prompt-submit.ts",
-      ".opencode/skill/cli-codex/SKILL.md",
-      ".opencode/skill/cli-codex/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-codex/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts",
       "decision-record.md",
       "hooks/codex/user-prompt-submit.ts",
       "hooks/codex/session-start.ts",
       "tests/codex-user-prompt-submit-hook.vitest.ts",
-      ".opencode/skill/cli-codex/references/hook_contract.md",
+      ".opencode/skills/cli-codex/references/hook_contract.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -65,31 +65,31 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-prompt/SKILL.md",
+        "path": ".opencode/skills/sk-improve-prompt/SKILL.md",
         "source": "derived"
       },
       {
         "name": "user-prompt-submit.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-codex/README.md",
+        "path": ".opencode/skills/cli-codex/README.md",
         "source": "derived"
       },
       {
         "name": "session-start.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
         "source": "derived"
       },
       {
         "name": "codex-user-prompt-submit-hook.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts",
         "source": "derived"
       },
       {
@@ -101,7 +101,7 @@
       {
         "name": "hook_contract.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-codex/references/hook_contract.md",
+        "path": ".opencode/skills/cli-codex/references/hook_contract.md",
         "source": "derived"
       },
       {

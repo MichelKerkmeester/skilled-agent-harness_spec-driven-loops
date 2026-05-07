@@ -52,7 +52,7 @@ Single linear iteration applying the validated sk-improve-agent v2 substrate (pr
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-`@context` is consumed via the Task tool / orchestrator dispatch. Improvements ship as canonical `.opencode/agent/context.md` updates plus 3 mirror updates. Score profile is dynamic (generated per-target via `generate-profile.cjs`).
+`@context` is consumed via the Task tool / orchestrator dispatch. Improvements ship as canonical `.opencode/agents/context.md` updates plus 3 mirror updates. Score profile is dynamic (generated per-target via `generate-profile.cjs`).
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -63,7 +63,7 @@ Single linear iteration applying the validated sk-improve-agent v2 substrate (pr
 | Phase | Steps | Output |
 |---|---|---|
 | **P1** Profile | scan-integration.cjs + generate-profile.cjs | `<packet>/profile.json` |
-| **P2** Dispatch | `/improve:agent .opencode/agent/context.md` | `<packet>/candidate.md` |
+| **P2** Dispatch | `/improve:agent .opencode/agents/context.md` | `<packet>/candidate.md` |
 | **P3** Score+Bench | score-candidate.cjs + run-benchmark.cjs | score + benchmark JSONs |
 | **P4** Legal-stop | reduce-state.cjs verifies 5 gates | `<packet>/legal_stop_evaluated.json` |
 | **P5** Promote | promote-candidate.cjs --approve | canonical updated |
@@ -76,7 +76,7 @@ Single linear iteration applying the validated sk-improve-agent v2 substrate (pr
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Smoke-test via re-running a representative scenario from `.opencode/skill/sk-improve-agent/manual_testing_playbook/`. For LEAF agents (@context, @deep-research, @deep-review), test via the dispatching command's flow.
+Smoke-test via re-running a representative scenario from `.opencode/skills/sk-improve-agent/manual_testing_playbook/`. For LEAF agents (@context, @deep-research, @deep-review), test via the dispatching command's flow.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -95,5 +95,5 @@ Smoke-test via re-running a representative scenario from `.opencode/skill/sk-imp
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-`rollback-candidate.cjs --target=.opencode/agent/context.md --backup=<pre-promote-backup>` reverts canonical. Mirror revert via git revert of the sync commit. 
+`rollback-candidate.cjs --target=.opencode/agents/context.md --backup=<pre-promote-backup>` reverts canonical. Mirror revert via git revert of the sync commit. 
 <!-- /ANCHOR:rollback -->

@@ -12,227 +12,227 @@ I’m going to inspect the targeted subsystems, cross-check how the handlers act
 
 ● Explore Audit learning/errors
   │ Read corrections.ts
-  │   │ .opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts
+  │   │ .opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts
   │   └ L600:750 (151 lines read)
   └ Search (grep)
       │ "withTimeout|Promise.race|clearTimeout"
-      │ (.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts)
+      │ (.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts)
       └ 5 lines found
 
 ● Explore Audit handlers integration
   │ Check aggregated result reporting (shell)
   │   │ grep -n "processed\|inserted\|resolved\|unresolved\|errors:"
   │   │ "/Users/michelkerkmeester/MEGA/Development/Opencode
-  │   │ Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts" |
+  │   │ Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts" |
   │   head
   │   │ -20
   │   └ 20 lines...
   └ Read final causal-links processing (shell)
       │ sed -n '240,280p' "/Users/michelkerkmeester/MEGA/Development/Opencode
-      │ Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts"
+      │ Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts"
       └ 1 line...
 
 I’ve got two synthesized passes from sub-agents. Now I’m spot-checking the critical claims directly in the source so the final audit is grounded in exact evidence, not just summaries.
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L140:230 (91 lines read)
 
 ● Read preflight.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts
   └ L240:430 (191 lines read)
 
 ● Read recovery-hints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
   └ L1:260 (260 lines read)
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
   └ L280:340 (61 lines read)
 
 ● Read quality-loop.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts
   └ L520:620 (100 lines read)
 
 ● Read causal-links-processor.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
   └ L1:220 (183 lines read)
 
 ● Read core.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts
   └ L1:280 (280 lines read)
 
 ● Read pe-gating.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts
   └ L160:340 (181 lines read)
 
 ● Read corrections.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts
   └ L420:530 (111 lines read)
 
 ● Search (grep)
   │ "recordCorrection|processCausalLinks|runQualityLoop|handleCheckpointRestore|getRecoveryHint|ERRO
   │ R_CODES|isTransientError|isPermanentError|validateAnchorFormat|ensureActivationTimestampInitiali
-  │ zed|handleTaskPostflight|handleTaskPreflight" (.opencode/skill/system-spec-kit/mcp_server)
+  │ zed|handleTaskPostflight|handleTaskPreflight" (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 I’ve confirmed one concrete high-severity issue in `corrections.ts` directly. I’m now checking the call sites and error plumbing so the rest of the report stays evidence-based and avoids overclaiming.
 
 ● Read errors.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors.ts
   └ L1:260 (35 lines read)
 
 ● Read recovery-hints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
   └ L780:860 (81 lines read)
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/learning/index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/learning/index.ts
   └ L1:220 (51 lines read)
 
 ● Read session-learning.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts
   └ L260:520 (261 lines read)
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
   └ L1:260 (260 lines read)
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/index.ts
   └ L1:220 (40 lines read)
 
 ● Read session-learning.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
-  │ "processCausalLinks\(" (.opencode/skill/system-spec-kit/mcp_server)
+  │ "processCausalLinks\(" (.opencode/skills/system-spec-kit/mcp_server)
   └ 12 lines found
 
 ● Search (grep)
   │ "E100|E101|CAUSAL_EDGE_NOT_FOUND|CAUSAL_CYCLE_DETECTED"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts)
   └ 5 lines found
 
 I found one sub-agent overclaim: the causal error codes actually do have recovery hints. I’m correcting that now and narrowing the report to the issues the source really supports.
 
 ● Read recovery-hints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
   └ L560:620 (61 lines read)
 
 ● Read post-insert.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts
   └ L1:180 (127 lines read)
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L360:660 (301 lines read)
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L230:360 (130 lines read)
 
 ● Read causal-graph.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts
   └ L240:320 (81 lines read)
 
 ● Read shared-memory.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts
   └ L1:240 (180 lines read)
 
 ● Read eval-reporting.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts
   └ L1:220 (175 lines read)
 
 The remaining question is whether preflight and the quality gate miss prerequisites or just intentionally degrade. I’m reading those paths now so the audit can distinguish “soft fail by design” from real robustness gaps.
 
 ● Read core.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts
   └ L256:360 (66 lines read)
 
 ● Read core.ts
-  └ .opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts
+  └ .opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts
 
 ● Read preflight.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts
   └ L430:620 (191 lines read)
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L660:820 (68 lines read)
 
 ● Read chunking-orchestrator.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
   └ L500:540 (41 lines read)
 
 ● Read causal-graph.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts
   └ L430:540 (111 lines read)
 
 ● Read chunking-orchestrator.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
   └ L360:430 (71 lines read)
 
 ● Read quality-loop.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts
   └ L1:120 (120 lines read)
 
 I’ve got enough source-level evidence for the main conclusions. I’m doing one last pass on `runPreflight()` and the quality gate’s call pattern so the final findings cleanly separate “design choice” from “bug.”
 
 ● Read recovery-hints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
   └ L620:792 (173 lines read)
 
 ● Read pe-gating.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts
   └ L1:170 (170 lines read)
 
 ● Read preflight.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts
   └ L620:760 (111 lines read)
 
 ● Search (grep)
-  │ "runQualityGate\(" (.opencode/skill/system-spec-kit/mcp_server)
+  │ "runQualityGate\(" (.opencode/skills/system-spec-kit/mcp_server)
   └ 27 lines found
 
 ● Search (grep)
   │ "runPreflight\(|validateAnchorFormat\(|checkTokenBudget\(|checkDuplicate\("
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 42 lines found
 
 I’m checking `memory-save.ts` now, because robustness here depends on whether preflight/quality-loop results are merely computed or actually enforced at the boundary.
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L520:620 (101 lines read)
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L840:930 (91 lines read)
 
 ● Search (grep)
   │ "qualityGateResult|preflightResult|warnOnly|wouldReject|dryRun"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
   └ 34 lines found
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L930:975 (46 lines read)
 
 ● Search (grep)
-  │ "file_path" (.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts)
+  │ "file_path" (.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts)
   └ 10 lines found
 
 I’ve finished the code read. I’m running the subsystem tests that already exist so I can factor in whether the current suite actually covers the robustness gaps I found.
 
 ● Search (glob)
-  │ "**/*session*learning*.vitest.ts" in .opencode/skill/system-spec-kit/mcp_server/tests
+  │ "**/*session*learning*.vitest.ts" in .opencode/skills/system-spec-kit/mcp_server/tests
   └ 1 file found
 
 ● Run targeted audit tests (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/mcp_server' && npx vitest run
+  │ Env/Public/.opencode/skills/system-spec-kit/mcp_server' && npx vitest run
   │ tests/preflight.vitest.ts tests/save-quality-gate.vitest.ts tests/handler-helpers.vitest.ts
   │ --reporter=basic
   └ 41 lines...
@@ -241,7 +241,7 @@ The first test run failed because this Vitest version doesn’t recognize `--rep
 
 ● Run targeted audit tests (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/mcp_server' && npx vitest run
+  │ Env/Public/.opencode/skills/system-spec-kit/mcp_server' && npx vitest run
   │ tests/preflight.vitest.ts tests/save-quality-gate.vitest.ts tests/handler-helpers.vitest.ts
   │ tests/handler-session-learning.vitest.ts
   └ 111 lines...
@@ -250,78 +250,78 @@ The targeted suite passes, which is useful: these issues are more about untested
 
 ● Search (grep)
   │ "qualityGateActivatedAt|setActivationTimestamp|warn-only|warnOnly|ensureActivationTimestampIniti
-  │ alized" (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ alized" (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 52 lines found
 
 ● Search (grep)
   │ "partial: true|checkpoint_restore|restored with warnings|warningCount"
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 21 lines found
 
 ● Search (grep)
   │ "record_correction|recordCorrection|undo_correction|undoCorrection|corrections"
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 60 lines found
 
 ● Read corrections.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/corrections.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/corrections.vitest.ts
   └ L360:395 (36 lines read)
 
 ● Read handler-checkpoints.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts
   └ L220:255 (36 lines read)
 
 I noticed one possible contract mismatch around error severities (`'warning'` vs the shared `Severity` union). I’m checking whether that’s a real type hole or just a different envelope type before I include it.
 
 ● Read envelope.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "interface .*Recovery|type .*Severity|createMCPErrorResponse"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/response)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/response)
   └ 4 lines found
 
 ● Search (grep)
-  │ "severity:\s*'warning'" (.opencode/skill/system-spec-kit/mcp_server)
+  │ "severity:\s*'warning'" (.opencode/skills/system-spec-kit/mcp_server)
   └ 7 lines found
 
 ● Search (grep)
   │ "causalLinksResult|runPostInsertEnrichment"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
   └ 3 lines found
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L640:675 (36 lines read)
 
 ● Search (grep)
-  │ "causalLinksResult" (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ "causalLinksResult" (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 19 lines found
 
 ● Read response-builder.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts
   └ L150:180 (31 lines read)
 
 ● Search (grep)
   │ "throw new Error\(|throw new MemoryError\(|createMCPErrorResponse\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts)
   └ 12 lines found
 
 ● Search (grep)
-  │ "createErrorWithHint\(" (.opencode/skill/system-spec-kit/mcp_server)
+  │ "createErrorWithHint\(" (.opencode/skills/system-spec-kit/mcp_server)
   └ 6 lines found
 
 I want to see whether the corrections and checkpoint suites currently catch the two highest-signal issues I found. Running those tests now.
 
 ● Run corrections and checkpoints tests (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/mcp_server' && npx vitest run
+  │ Env/Public/.opencode/skills/system-spec-kit/mcp_server' && npx vitest run
   │ tests/corrections.vitest.ts tests/handler-checkpoints.vitest.ts
   └ 49 lines...
 
 ● Search (grep)
-  │ "runQualityLoop\(" (.opencode/skill/system-spec-kit/mcp_server)
+  │ "runQualityLoop\(" (.opencode/skills/system-spec-kit/mcp_server)
   └ 21 lines found
 
 # Robustness Audit

@@ -10,9 +10,9 @@ Research the Claude Code Mastery Project Starter Kit external repo and identify 
 
 - `CLAUDE.md`
 - `.claude/settings.local.json`
-- `.opencode/command/`
-- `.opencode/agent/`
-- `.opencode/skill/scripts/skill_advisor.py`
+- `.opencode/commands/`
+- `.opencode/agents/`
+- `.opencode/skills/scripts/skill_advisor.py`
 - Spec Kit memory, handover, and deep-research workflows
 
 The goal is not to copy the starter kit wholesale. The goal is to extract the best ideas from its MDD workflow, hook architecture, command system, AI monitor, and `CLAUDE.md` rulebook, then judge what `Code_Environment/Public` should adopt now, prototype later, or reject.
@@ -74,8 +74,8 @@ Assume `Code_Environment/Public` already has significant workflow infrastructure
 - Root `CLAUDE.md` with hard gates, spec-folder requirements, skill routing, memory save rules, and completion verification
 - `.claude/CLAUDE.md` as Claude-specific recovery notes layered on top of the root rulebook
 - `.claude/settings.local.json` with `PreCompact`, `SessionStart`, and `Stop` hooks for recovery and context injection
-- `.opencode/command/` with `22` markdown command files grouped into `create`, `improve`, `memory`, and `spec_kit`
-- `.opencode/agent/` with `12` custom agents such as `deep-research`, `deep-review`, `debug`, `handover`, `review`, and `speckit`
+- `.opencode/commands/` with `22` markdown command files grouped into `create`, `improve`, `memory`, and `spec_kit`
+- `.opencode/agents/` with `12` custom agents such as `deep-research`, `deep-review`, `debug`, `handover`, `review`, and `speckit`
 - `skill_advisor.py` for Gate 2 skill routing
 - Spec Kit Memory, code graph tooling, CocoIndex, handover, resume, and deep-research workflows
 
@@ -93,14 +93,14 @@ Follow these steps in order and keep the analysis evidence-first.
 3. Start with the external `CLAUDE.md`. Extract how it structures rules, quick references, project structure, command scope, and team-memory feedback loops.
 4. Compare that external `CLAUDE.md` side-by-side with this repo's `CLAUDE.md` and `.claude/CLAUDE.md`. Highlight differences in gate style, recovery model, enforcement style, rule specificity, and update discipline.
 5. Inventory the external `.claude/commands/` directory. Confirm the command count, identify the highest-value commands, and note how `scope: project` versus `scope: starter-kit` changes distribution behavior.
-6. Compare the starter kit command surface against this repo's `.opencode/command/README.txt`, `.opencode/command/spec_kit/README.txt`, and relevant command entrypoints such as `.opencode/command/improve/prompt.md`. Focus on workflow ergonomics, discoverability, distribution model, and execution-mode design.
+6. Compare the starter kit command surface against this repo's `.opencode/commands/README.txt`, `.opencode/commands/spec_kit/README.txt`, and relevant command entrypoints such as `.opencode/commands/improve/prompt.md`. Focus on workflow ergonomics, discoverability, distribution model, and execution-mode design.
 7. Read the external `.claude/commands/mdd.md` in detail. Use it as the main reference for MDD mechanics, audit flow, test-skeleton generation, plan approval, and incremental notes-to-disk behavior.
 8. Inventory the external hook system using `.claude/settings.json` plus the hook scripts in `.claude/hooks/`. Confirm all `9` hooks and map them to trigger points such as `PreToolUse`, `PostToolUse`, and `Stop`.
 9. Compare that hook architecture against this repo's `.claude/settings.local.json`. Be explicit about the difference between enforcement hooks in the starter kit and recovery/context hooks in this repo.
 10. Read representative starter-kit hooks including branch protection, lint-on-save, secrets blocking, and E2E or port guards. Judge which patterns could be transplanted into `Code_Environment/Public` without fighting the existing Spec Kit gate system.
 11. Read the external `README.md` sections on MDD, AI monitor, command usage, and `CLAUDE.md` rules. Use `package.json` to confirm scripts such as `pnpm ai:monitor`, `test:e2e`, and fixed test-port conventions.
 12. Read the `.mdd/` artifacts, especially a real doc under `.mdd/docs/`, and compare that workflow to this repo's spec-folder, memory, deep-research, handover, and resume system. Do not assume `.mdd/` is a drop-in replacement for Spec Kit.
-13. Read the starter-kit support roles under `.claude/agents/` and any starter-kit skills that directly support workflow execution. Compare them to this repo's `.opencode/agent/` model and `skill_advisor.py` routing. Keep general skill-system conclusions clearly tagged as overlap with phase `008`.
+13. Read the starter-kit support roles under `.claude/agents/` and any starter-kit skills that directly support workflow execution. Compare them to this repo's `.opencode/agents/` model and `skill_advisor.py` routing. Keep general skill-system conclusions clearly tagged as overlap with phase `008`.
 14. For every meaningful finding, include exact source paths, a crisp comparison to the matching local file or subsystem, and one recommendation label: `adopt now`, `prototype later`, or `reject`.
 15. Throughout the research, keep focus on AI workflow infrastructure. Do not spend time comparing tech-stack starter templates such as React, Vue, Svelte, Go, or Python scaffolds unless they directly affect Claude workflow behavior.
 
@@ -112,7 +112,7 @@ Answer these questions directly in the resulting research output.
 2. Which parts of the starter kit's `20K -> 200` context-compression story are real workflow primitives versus marketing shorthand?
 3. How does the starter kit use `.mdd/` artifacts and incremental writes to survive context compaction, and what is the closest equivalent in this repo today?
 4. Which hook patterns are strongest candidates for adoption in `Code_Environment/Public`: secret blocking, branch protection, lint-on-save, E2E gating, port checks, env sync, or something else?
-5. How is the starter kit command system organized, distributed, and documented, and what lessons apply to `.opencode/command/`?
+5. How is the starter kit command system organized, distributed, and documented, and what lessons apply to `.opencode/commands/`?
 6. How does the starter kit structure `CLAUDE.md` rules so they are easy for Claude Code to obey, and what should be borrowed or avoided in this repo's own rulebook?
 7. How useful is the starter kit's AI monitor in practice, and is there a comparable observability gap in this repo?
 8. What does the starter kit do with project-versus-kit command scoping that this repo currently lacks?
@@ -127,7 +127,7 @@ Answer these questions directly in the resulting research output.
 - Do examine how the starter kit wires hooks through `.claude/settings.json`, not just the shell scripts individually.
 - Do study the MDD compression claim using actual workflow artifacts: `README.md`, `.claude/commands/mdd.md`, and `.mdd/docs/`.
 - Do inspect how command frontmatter uses `scope:` and how distribution behavior follows from that metadata.
-- Do compare command discoverability between `.claude/commands/` and `.opencode/command/`.
+- Do compare command discoverability between `.claude/commands/` and `.opencode/commands/`.
 - Do compare hook intent between starter-kit enforcement hooks and this repo's recovery hooks.
 - Do call out when a finding is Claude-specific versus cross-runtime.
 - Do distinguish ideas that improve prompt ergonomics from ideas that require runtime or tooling changes.
@@ -155,7 +155,7 @@ Use findings in this style.
 - **What it does:** The starter kit compresses feature context into a single structured `.mdd/docs/*.md` file, then writes audit notes to disk every two features so context compaction does not erase progress.
 - **Why it matters here:** This repo already has spec folders, memory saves, handover, and deep-research artifacts, but it does not yet offer a simple Claude-first "write notes to disk while auditing" convention.
 - **Recommendation:** `prototype later`
-- **Affected area:** `CLAUDE.md`, `.opencode/command/spec_kit/`, handover or research workflows
+- **Affected area:** `CLAUDE.md`, `.opencode/commands/spec_kit/`, handover or research workflows
 - **Risk / cost:** Medium. The concept is useful, but `.mdd/` must not undercut Spec Kit governance.
 
 ### Example B - hook-based enforcement
@@ -220,7 +220,7 @@ The task is complete only when all of the following are true:
 
 - The research uses `999-agentic-system-upgrade` everywhere with no legacy packet-root references.
 - External `CLAUDE.md`, `.claude/commands/`, `.claude/hooks/`, `.mdd/`, `README.md`, and `package.json` were all meaningfully examined.
-- This repo's `CLAUDE.md`, `.claude/CLAUDE.md`, `.claude/settings.local.json`, `.opencode/command/`, `.opencode/agent/`, and `skill_advisor.py` were used as comparison anchors.
+- This repo's `CLAUDE.md`, `.claude/CLAUDE.md`, `.claude/settings.local.json`, `.opencode/commands/`, `.opencode/agents/`, and `skill_advisor.py` were used as comparison anchors.
 - The final analysis distinguishes `adopt now`, `prototype later`, and `reject`.
 - Phase overlap with `005` and `008` is explicitly handled.
 - The analysis stays focused on Claude workflow infrastructure and MDD patterns.

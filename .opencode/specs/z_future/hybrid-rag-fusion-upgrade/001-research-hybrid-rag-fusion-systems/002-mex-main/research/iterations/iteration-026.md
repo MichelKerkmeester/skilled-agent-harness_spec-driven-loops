@@ -70,21 +70,21 @@ For EACH finding:
 - **Impact**: medium
 
 ### Finding 4: Spec Kit Memory already has explicit shared vs private scoping with deny-by-default access control
-- **Source**: [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L893), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L1703), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts#L507), [shared-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts#L144), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L985)
+- **Source**: [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L893), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L1703), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts#L507), [shared-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts#L144), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L985)
 - **What it does**: Shared memory is opt-in. Spaces start locked, membership is role-based, caller identity must be exactly one user or agent, and retrieval filters candidates by `tenantId`, `userId`, `agentId`, and allowed `sharedSpaceId`s before ranking continues.
 - **Why it matters**: This is the concrete multi-agent safety layer Mex lacks. Spec Kit distinguishes private scope from collaborative scope at query time and mutation time, rather than relying on directory boundaries alone.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 5: Spec Kit Memory also has real concurrent-write and conflict controls that Mex does not
-- **Source**: [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L1632), [spec-folder-mutex.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts#L1), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1513), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts#L135), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts#L678), [vector-index-schema.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts#L1503)
+- **Source**: [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L1632), [spec-folder-mutex.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts#L1), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1513), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts#L135), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts#L678), [vector-index-schema.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts#L1503)
 - **What it does**: The server forces SQLite WAL mode, `memory_save` serializes writes with a per-spec-folder mutex, uses unique pending-file suffixes to avoid pending-file races, logs shared-space conflicts into `shared_space_conflicts`, and escalates repeat or high-risk collisions from `append_version` to `manual_merge`.
 - **Why it matters**: This is a genuine concurrency and merge-conflict story: serialize same-scope saves, preserve data, and retain an auditable record when shared writes collide. That is materially stronger than Mex’s “repair after drift” approach.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 6: Checkpoint restore adds another safety boundary by blocking saves and rolling back failed merge restores
-- **Source**: [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1080), [checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts#L1097), [checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts#L1855)
+- **Source**: [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1080), [checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts#L1097), [checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts#L1855)
 - **What it does**: `memory_save` refuses writes while checkpoint restore maintenance is active, and merge-mode restore uses savepoints so reinsertion failures roll back instead of leaving partially restored scoped data behind.
 - **Why it matters**: This is important multi-agent safety during maintenance windows. It prevents a restore from interleaving with live writes and turning scoped memories or shared-space state into mixed snapshots.
 - **Recommendation**: adopt now
@@ -142,7 +142,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
 12. Compare Mex directly against current `Code_Environment/Public` capabilities: Spec Kit validation, memory frontmatter, documented memory/index structure, and other repo guidance files. Be precise about where Mex adds new capability versus where it overlaps with systems already covered by phases `001`, `003`, or `004`.
 13. Before any deep-research run, ensure this phase folder contains the expected spec-kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -150,7 +150,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every finding must cite exact file paths, describe what Mex actually does, why it matters for `Code_Environment/Public`, whether it should be `adopt now`, `prototype later`, or `reject`, what subsystem it would affect, and what migration or validation risk comes with it. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
     ```
 
 ## 6. Research Questions
@@ -303,9 +303,9 @@ hook: UserPromptSubmit Completed
 codex
 I’m treating this as a read-only research pass for iteration 26, centered on semantic vs lexical retrieval trade-offs in Mex versus Spec Kit Memory. I’ll do a quick memory/context pass first, then inspect the external and internal code paths that actually implement retrieval, ranking, and hybrid fusion before I synthesize the iteration output.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/mcp-coco-index/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/mcp-coco-index/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: mcp-coco-index
@@ -545,7 +545,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -814,7 +814,7 @@ exec
 2023:- when user asked to “Let 3 ultra-think agents review all work done in .../023-hybrid-rag-fusion-refinement,” run multi-agent read-only review with severity-ranked findings and exact file+line evidence [Task 1]
 
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "DEEP RESEARCH iteration 26 semantic vs lexical trade-offs for Spec Kit Memory vs Mex hybrid strategies" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "DEEP RESEARCH iteration 26 semantic vs lexical trade-offs for Spec Kit Memory vs Mex hybrid strategies" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1494ms:
 2026-04-10 22:58:44.812 xcodebuild[85534:38512983]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-04-10 22:58:44.990 xcodebuild[85534:38512981] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -1480,7 +1480,7 @@ your-project/
 ## Multi-Tool Compatibility
 
 exec
-/bin/zsh -lc "sed -n '720,920p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '720,920p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 async function executeDeepStrategy(input: string, intent: string | null, options: ContextOptions): Promise<ContextResult> {
   const result = await handleMemorySearch({
@@ -1685,7 +1685,7 @@ function resolveEffectiveMode(
     if (pressureOverrideTargetMode) {
 
 exec
-/bin/zsh -lc "sed -n '780,980p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '780,980p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
 function applyUsageRankingBoost(
@@ -1890,7 +1890,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
   if (isHybrid && config.enableSessionBoost && config.sessionId) {
 
 exec
-/bin/zsh -lc "sed -n '250,380p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '250,380p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   memory: 1.0,
   constitutional: 2.0,
@@ -2025,251 +2025,251 @@ export function calculateImportanceScore(tier: string, baseWeight: number | unde
   const tierLower = (tier || 'normal').toLowerCase();
 
 exec
-/bin/zsh -lc "rg -n \"semantic|lexical|hybrid|fusion|FTS|BM25|vector|embedding|trigger|CocoIndex|code_graph|session boost|causal boost\" .opencode/skill/system-spec-kit/mcp_server | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"semantic|lexical|hybrid|fusion|FTS|BM25|vector|embedding|trigger|CocoIndex|code_graph|session boost|causal boost\" .opencode/skills/system-spec-kit/mcp_server | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:202:// To prevent semantically meaningless `confirm: false` from passing validation.
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:212:  triggerPhrases: optionalStringArray,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:347:  channels: z.array(z.enum(['vector', 'bm25', 'fts5', 'graph', 'trigger'])).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:471:  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:24:  runBM25Baseline,
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:26:  type BM25SearchFn,
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:27:  type BM25SearchResult,
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:28:  type BM25BaselineResult,
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:43:  hybridSearchEnhanced,
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:48:  vectorIndex,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
-.opencode/skill/system-spec-kit/mcp_server/scripts/reindex-embeddings.ts:9:const targetScript = path.resolve(import.meta.dirname, '../../../scripts/dist/memory/reindex-embeddings.js');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:72:} from '@spec-kit/shared/embeddings/factory';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:75:import * as vectorIndex from './lib/search/vector-index.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:76:import * as _embeddings from './lib/providers/embeddings.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:80:import * as hybridSearch from './lib/search/hybrid-search.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:109:// T099: Retry manager for background embedding retry job (REQ-031, CHK-179)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:125:import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:163:  triggered: unknown[];
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:201:/** Timeout (ms) for waiting on embedding model readiness during startup scan. */
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:213:  'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:214:  'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:215:  'code_graph_scan',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:254:  preferredTool: 'code_graph_query';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:255:  secondaryTool: 'code_graph_context';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:320:    preferredTool: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:321:    secondaryTool: 'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:694:    hints.push(`Code graph: ${pkg.codeGraphStatus}, CocoIndex: ${pkg.cocoIndexAvailable ? 'available' : 'not installed'}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:747:  const channels: string[] = ['vector', 'fts5'];
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:771:        snap.graphFreshness === 'empty' ? 'run code_graph_scan' :
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:799:      routingRules.push('Structural queries (callers, imports, deps) → code_graph_query');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:823:    const triggerMatcher = await import('./lib/parsing/trigger-matcher.js');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:824:    if (typeof triggerMatcher.clearCache === 'function') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:825:      triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:829:    console.error(`[context-server] Failed to clear trigger cache after DB reinit: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:885:    if (name.startsWith('code_graph_')) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:886:      recordMetricEvent({ kind: 'code_graph_query' });
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:945:      vectorIndex.initializeDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1193:    const database = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1238:    console.error('[context-server] Waiting for embedding model to be ready...');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1242:      console.error('[context-server] Startup scan skipped: embedding model not ready');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1380:    runCleanupStep('vectorIndex', () => vectorIndex.closeDb());
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1410:  const database = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1437:      if (vectorIndex.deleteMemory(row.id)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1495:    console.error('[context-server] Validating embedding API key...');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1554:  vectorIndex.initializeDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1563:    vectorIndex,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1566:    hybridSearch,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1581:  // in shared embeddings, so startup no longer branches on shouldEagerWarmup().
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1582:  console.error('[context-server] Lazy loading enabled - embedding model will initialize on first use');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1584:  // Mark embedding as "ready" since it will self-initialize on first use
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1589:    const report = vectorIndex.verifyIntegrity();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1593:    // Validate embedding dimension matches database
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1594:    const dimValidation = vectorIndex.validateEmbeddingDimension();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1599:      console.error('[context-server] FATAL: Refusing to start with mismatched embedding dimensions');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1605:    const database = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1622:        console.error(`[context-server] Learned triggers ready (migrated=${migrated}, fts5Isolated=${isolated})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1656:      console.error('[context-server] Auto-backfill triggered: %d rows seeded into active_memory_projection', result.seeded);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1669:    hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFn);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1694:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1696:    // P3-04: Rebuild BM25 index from database on startup
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1701:        console.error(`[context-server] BM25 index rebuilt from database: ${count} documents`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1704:        console.warn('[context-server] BM25 index rebuild failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1743:    // T099: Background retry job for pending embeddings (REQ-031, CHK-179)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1744:    // Processes memories with failed embeddings in the background
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:10:import * as vectorIndex from '../lib/search/vector-index.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:12:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:484:      vectorIndex.clearConstitutionalCache(null);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:485:      vectorIndex.clearSearchCache(null);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:487:      const database = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:492:      triggerMatcher.refreshTriggerCache();
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:675:  vectorIndex.initializeDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:26:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:59:/** Partial embedding provider metadata — see shared/types.ts ProviderMetadata for the full shape. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:93:  triggerCacheCleared: boolean;
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:15:All variables are optional. The server runs with sensible defaults when none are set. Variables use **graduated semantics** unless noted: they default to ON and you disable them by setting `=false`.
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:17:**Graph as a first-class feature family.** The `SPECKIT_GRAPH_*` variables form a dedicated feature family (see [Section 6](#6-graph) and [Section 7](#7-graph-calibration)) controlling structural code graph indexing, graph-first routing in the search pipeline, causal graph traversal, and calibration profiles. Since graph-first routing is now the default query dispatch order (Code Graph -> CocoIndex -> Memory), the graph env vars are among the most impactful configuration levers.
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:66:4. [Search Pipeline: Fusion and Scoring](#4-search-pipeline-fusion-and-scoring)
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:77:15. [Embedding](#15-embedding)
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:107:| `SPECKIT_RRF` | `true` | boolean | Master switch for Reciprocal Rank Fusion. Graduated ON. | `shared/algorithms/rrf-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:108:| `SPECKIT_RRF_K` | `40` | number | RRF smoothing constant `k`. Lower = more top-heavy ranking, higher = flatter. Must be > 0. | `shared/algorithms/rrf-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:115:| `SPECKIT_EMBEDDING_EXPANSION` | `true` | boolean | Query expansion for embedding-based retrieval (R12). Suppressed when classification = "simple". Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:117:| `SPECKIT_CHANNEL_MIN_REP` | `true` | boolean | Channel minimum-representation promotion after fusion. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:120:| `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Intent-aware adaptive fusion with document-type weight shifting. Graduated ON. | `shared/algorithms/adaptive-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:125:<!-- ANCHOR:search-pipeline-fusion -->
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:138:| `SPECKIT_TEMPORAL_CONTIGUITY` | `true` | boolean | Temporal contiguity boost on raw Stage 1 vector results. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:139:| `SPECKIT_RECENCY_FUSION_WEIGHT` | `0.07` | number | Weight of recency signal in Stage 2 fusion scoring. | `lib/search/pipeline/stage2-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:140:| `SPECKIT_RECENCY_FUSION_CAP` | `0.10` | number | Maximum recency contribution cap in Stage 2 fusion. | `lib/search/pipeline/stage2-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:141:| `SPECKIT_DOC_TYPE_WEIGHT_FACTOR` | `1.2` | number | Proportional weight shift factor per document type in adaptive fusion (20% shift at 1.2). | `shared/algorithms/adaptive-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:144:| `SPECKIT_FOLDER_TOP_K` | `5` | number | Number of top folder-scored results to inject. | `lib/search/hybrid-search.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:146:<!-- /ANCHOR:search-pipeline-fusion -->
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:157:| `SPECKIT_QUERY_CONCEPT_EXPANSION` | `true` | boolean | Query concept expansion via alias matching for hybrid search (Phase B T016). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:205:| `SPECKIT_N2A_CAP` | (profile) | number | N2a cap for RRF fusion overflow prevention. Overrides the active calibration profile value. | `lib/search/graph-calibration.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:206:| `SPECKIT_N2B_CAP` | (profile) | number | N2b cap for RRF fusion overflow prevention. Overrides the active calibration profile value. | `lib/search/graph-calibration.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:245:| `SPECKIT_SHADOW_LEARNING` | `false` | boolean | Shadow learned model loading for Stage 2 weight combiner. Opt-in: set `true` to enable. | `lib/search/pipeline/stage2-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:247:| `SPECKIT_LEARNED_STAGE2_MODEL` | (auto) | string | Custom file path for the learned Stage 2 model. Absolute or relative to cwd. | `lib/search/pipeline/stage2-fusion.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:252:| `SPECKIT_SIGNAL_VOCAB` | `true` | boolean | Signal vocabulary detection for trigger matching. Graduated ON. | `lib/parsing/trigger-matcher.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:344:<!-- ANCHOR:embedding -->
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:349:| `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:350:| `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:351:| `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:352:<!-- /ANCHOR:embedding -->
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:434:# Lower recency fusion impact
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:212:  description: '[L2:Core] Fast trigger phrase matching with cognitive memory features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related memories. Pass session_id and turnNumber for cognitive features. Token Budget: 3500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:216:// T306: Added asyncEmbedding parameter for non-blocking embedding generation
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:219:  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:263:        description: 'When true in full mode, attempts best-effort repair actions for detected health issues (e.g., FTS rebuild).'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:293:  description: '[L4:Mutation] Update an existing memory with corrections. Re-generates embedding if content changes. Token Budget: 500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:294:  inputSchema: { type: 'object', additionalProperties: false, properties: { id: { type: 'number', minimum: 1, description: 'Memory ID to update' }, title: { type: 'string', description: 'New title' }, triggerPhrases: { type: 'array', items: { type: 'string' }, description: 'Updated trigger phrases' }, importanceWeight: { type: 'number', minimum: 0, maximum: 1, description: 'New importance weight (0-1)' }, importanceTier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Set importance tier. Constitutional tier memories always surface at top of results.' }, allowPartialUpdate: { type: 'boolean', default: false, description: 'Allow update to succeed even if embedding regeneration fails. When true, metadata changes are applied and the embedding is marked for re-index. When false (default), the entire update is rolled back on embedding failure.' } }, required: ['id'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:310:      searchMode: { type: 'string', description: 'Optional search mode context (search/context/trigger)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:518:        description: 'Evaluation mode. Defaults to ablation; use k_sensitivity for raw pre-fusion RRF K analysis.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:522:        items: { type: 'string', enum: ['vector', 'bm25', 'fts5', 'graph', 'trigger'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:624:  name: 'code_graph_scan',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:639:  name: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:657:  name: 'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:663:  name: 'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:664:  description: '[L6:Analysis] Get LLM-oriented compact graph neighborhoods. Accepts CocoIndex search results as seeds — use CocoIndex (mcp__cocoindex_code__search) for semantic search first, then pass results here for structural expansion. Supports manual seeds (provider: manual) and graph seeds (provider: graph). Modes: neighborhood (1-hop calls+imports), outline (file symbols), impact (reverse callers). Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:681:            file: { type: 'string', description: 'CocoIndex file path (provider: cocoindex)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:682:            range: { type: 'object', properties: { start: { type: 'number' }, end: { type: 'number' } }, description: 'CocoIndex line range' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:683:            score: { type: 'number', description: 'CocoIndex relevance score' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:688:        description: 'Seeds from CocoIndex, manual input, or graph lookups',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:700:  description: '[L7:Maintenance] Check CocoIndex availability, binary path, and index status.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:706:  description: '[L7:Maintenance] Trigger CocoIndex incremental (or full) re-indexing of the workspace.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:718:  description: '[L7:Maintenance] Submit quality feedback on CocoIndex search results to improve future searches.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:747:      minimal: { type: 'boolean', description: 'When true, skip the heavy memory context call and return code-graph, CocoIndex, structural-context, hints, and session-quality fields without the full memory payload' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:927:  // L8: CocoIndex
-.opencode/skill/system-spec-kit/mcp_server/utils/db-helpers.ts:11:import * as vectorIndex from '../lib/search/vector-index.js';
-.opencode/skill/system-spec-kit/mcp_server/utils/db-helpers.ts:18: * const database = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/utils/db-helpers.ts:27:function requireDb(): NonNullable<ReturnType<typeof vectorIndex.getDb>> {
-.opencode/skill/system-spec-kit/mcp_server/utils/db-helpers.ts:28:  const db = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:3:description: "Operational scripts for forced embedding reindex and maintenance workflows."
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:4:trigger_phrases:
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:6:  - "reindex embeddings"
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:14:> Operational entry points for maintenance tasks that run outside the normal MCP request lifecycle, such as forced full-reindex of embeddings.
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:50:+-- reindex-embeddings.ts    # Wrapper source -> ../../scripts/dist/memory/reindex-embeddings.js at runtime
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:56:- Canonical implementation source: `../../scripts/memory/reindex-embeddings.ts`
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:57:- Canonical built runtime target: `../../scripts/dist/memory/reindex-embeddings.js`
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:58:- Legacy wrapper source: `reindex-embeddings.ts`
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:59:- Legacy wrapper build output: `../dist/scripts/reindex-embeddings.js`
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:65:| `reindex-embeddings.ts`   | Backward-compatible entry point for legacy `mcp_server/scripts` path         | Delegates to `scripts/dist/memory/reindex-embeddings.js` | Spec 138 |
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:74:- Reindex implementation lives in `scripts/memory/reindex-embeddings.ts` and runs through current handlers.
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:77:- Module initialization order: `vectorIndex` -> `embeddings` -> `checkpointsLib` -> `accessTracker` -> `hybridSearch` -> `initDbState` -> `setEmbeddingModelReady`.
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:92:node scripts/dist/memory/reindex-embeddings.js
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:95:node mcp_server/dist/scripts/reindex-embeddings.js
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:100:The script exits 0 on success. Any fatal startup error (missing DB, failed embedding warm-up) exits non-zero with an error message on stderr.
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:109:- `../../scripts/memory/reindex-embeddings.ts`
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:8:import * as vectorIndex from '../lib/search/vector-index.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:96:  const database = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:212:      if (vectorIndex.deleteMemory(memory.id)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:268:        latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:19:type VectorIndexModule = Awaited<typeof import('./lib/search/vector-index.js')>;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:23:type TriggerMatcherModule = Awaited<typeof import('./lib/parsing/trigger-matcher.js')>;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:30:let _vector_index: VectorIndexModule | null = null;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:34:let _trigger_matcher: TriggerMatcherModule | null = null;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:42:  return _vector_index ??= await import('./lib/search/vector-index.js');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:58:  return _trigger_matcher ??= await import('./lib/parsing/trigger-matcher.js');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:138:   2. DATABASE INITIALIZATION (minimal — no MCP, no embeddings)
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:142:  const [vectorIndex, checkpointsLib, accessTracker, coreIndex] = await Promise.all([
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:149:  vectorIndex.initializeDb();
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:150:  const db = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:157:  coreIndex.init({ vectorIndex, checkpoints: checkpointsLib, accessTracker });
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:168:  const vectorIndex = await getVectorIndex();
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:170:  const db = vectorIndex.getDb()!;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:224:      "SELECT COUNT(*) as count FROM memory_index WHERE embedding_status = 'partial'"
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:281:  const [vectorIndex, checkpointsLib, mutationLedger, triggerMatcher, causalEdges, history] = await Promise.all([
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:289:  const db = vectorIndex.getDb()!;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:387:      if (vectorIndex.deleteMemory(memory.id)) {
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:426:  // Invalidate trigger cache
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:427:  triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:458:    console.log(`  Loading embedding model...`);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:459:    const embeddings = await import('./lib/providers/embeddings.js');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:461:      await embeddings.generateEmbedding('warmup');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:525:  const vectorIndex = await getVectorIndex();
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:526:  const db = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:594:    .then(vectorIndex => { vectorIndex.closeDb(); })
-.opencode/skill/system-spec-kit/mcp_server/formatters/README.md:4:trigger_phrases:
-.opencode/skill/system-spec-kit/mcp_server/formatters/README.md:29:- `search-results.ts`: formats results, optional content embedding, anchor extraction, and path checks.
-.opencode/skill/system-spec-kit/mcp_server/formatters/README.md:49:- File path checks are defense-in-depth for content embedding.
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:8:import * as vectorIndex from '../lib/search/vector-index.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:11:  hybridSearchEnhanced,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:14:} from '../lib/search/hybrid-search.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:15:import { generateQueryEmbedding } from '../lib/providers/embeddings.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:44:import type { RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:83:function initializeEvalHybridSearch(database: ReturnType<typeof vectorIndex.getDb>) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:85:  initHybridSearch(database, vectorIndex.vectorSearch, graphSearchFn);
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:99:  run: (database: NonNullable<ReturnType<typeof vectorIndex.getDb>>, dbPath: string) => Promise<T>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:102:  const activeDb = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:112:    return run(activeDb, vectorIndex.getDbPath());
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:115:  const currentDbPath = path.resolve(vectorIndex.getDbPath());
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:128:  vectorIndex.closeDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:132:    const overrideDb = vectorIndex.initializeDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:133:    return await run(overrideDb, vectorIndex.getDbPath());
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:135:    vectorIndex.closeDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:141:    vectorIndex.initializeDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:146:  database: NonNullable<ReturnType<typeof vectorIndex.getDb>>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:149:  embedding: Float32Array | number[] | null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:154:  if (embedding) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:155:    const vectorResults = vectorIndex.vectorSearch(embedding, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:161:    if (vectorResults.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:163:        source: 'vector',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:164:        results: vectorResults.map((row) => ({ id: row.id as number | string })),
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:268:      const embedding = await generateQueryEmbedding(query);
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:276:        triggerPhrases: channelFlags.useTrigger ? undefined : [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:281:      const results = await hybridSearchEnhanced(query, embedding, searchOptions);
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:332:  'hybrid search fusion',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:335:  'semantic search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:341: * 1. Runs hybridSearchEnhanced for each representative query
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:348:  const db = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:369:    const embedding = await generateQueryEmbedding(query);
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:370:    queryLists.push(buildRawFusionLists(db, graphSearchFn, query, embedding, limit));
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:4:trigger_phrases:
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:29:- `memory-search.ts` - L2 hybrid search handler with telemetry and profile support.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:30:- `memory-triggers.ts` - Trigger phrase matching, tiered content injection, and session-aware matching.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:44:- `code-graph/scan.ts` - `code_graph_scan`: index workspace files, build structural graph.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:45:- `code-graph/query.ts` - `code_graph_query`: query structural relationships (outline, calls, imports).
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:46:- `code-graph/status.ts` - `code_graph_status`: report graph health and statistics.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:47:- `code-graph/context.ts` - `code_graph_context`: LLM-oriented compact graph neighborhoods.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:70:- `memory-index.ts` and `mutation-hooks.ts` work together so index, update, and stale-delete flows clear trigger, constitutional, graph, co-activation, and degree caches.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:71:- `memory-crud-health.ts` surfaces embedding retry stats and FTS/index sync diagnostics as part of the health response.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
-.opencode/skill/system-spec-kit/mcp_server/schemas/README.md:4:trigger_phrases:
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:5:Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides 43 tools covering semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking, shared memory spaces, session learning, evaluation, validation, and bounded structural code-graph indexing.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:35:- Test semantic search with a sample query
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:60:Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistants semantic memory and context retrieval. It indexes markdown documentation and conversation memories to surface relevant information during AI interactions.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:78:│  Causal lineage      Adaptive fusion    Extended telemetry      │
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:80:│  SQLite + sqlite-vec for vector storage                         │
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:202:// To prevent semantically meaningless `confirm: false` from passing validation.
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:212:  triggerPhrases: optionalStringArray,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:347:  channels: z.array(z.enum(['vector', 'bm25', 'fts5', 'graph', 'trigger'])).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:471:  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:24:  runBM25Baseline,
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:26:  type BM25SearchFn,
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:27:  type BM25SearchResult,
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:28:  type BM25BaselineResult,
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:43:  hybridSearchEnhanced,
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:48:  vectorIndex,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
+.opencode/skills/system-spec-kit/mcp_server/scripts/reindex-embeddings.ts:9:const targetScript = path.resolve(import.meta.dirname, '../../../scripts/dist/memory/reindex-embeddings.js');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:72:} from '@spec-kit/shared/embeddings/factory';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:75:import * as vectorIndex from './lib/search/vector-index.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:76:import * as _embeddings from './lib/providers/embeddings.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:80:import * as hybridSearch from './lib/search/hybrid-search.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:109:// T099: Retry manager for background embedding retry job (REQ-031, CHK-179)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:125:import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:163:  triggered: unknown[];
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:201:/** Timeout (ms) for waiting on embedding model readiness during startup scan. */
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:213:  'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:214:  'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:215:  'code_graph_scan',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:254:  preferredTool: 'code_graph_query';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:255:  secondaryTool: 'code_graph_context';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:320:    preferredTool: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:321:    secondaryTool: 'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:694:    hints.push(`Code graph: ${pkg.codeGraphStatus}, CocoIndex: ${pkg.cocoIndexAvailable ? 'available' : 'not installed'}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:747:  const channels: string[] = ['vector', 'fts5'];
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:771:        snap.graphFreshness === 'empty' ? 'run code_graph_scan' :
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:799:      routingRules.push('Structural queries (callers, imports, deps) → code_graph_query');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:823:    const triggerMatcher = await import('./lib/parsing/trigger-matcher.js');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:824:    if (typeof triggerMatcher.clearCache === 'function') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:825:      triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:829:    console.error(`[context-server] Failed to clear trigger cache after DB reinit: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:885:    if (name.startsWith('code_graph_')) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:886:      recordMetricEvent({ kind: 'code_graph_query' });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:945:      vectorIndex.initializeDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1193:    const database = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1238:    console.error('[context-server] Waiting for embedding model to be ready...');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1242:      console.error('[context-server] Startup scan skipped: embedding model not ready');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1380:    runCleanupStep('vectorIndex', () => vectorIndex.closeDb());
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1410:  const database = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1437:      if (vectorIndex.deleteMemory(row.id)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1495:    console.error('[context-server] Validating embedding API key...');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1554:  vectorIndex.initializeDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1563:    vectorIndex,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1566:    hybridSearch,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1581:  // in shared embeddings, so startup no longer branches on shouldEagerWarmup().
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1582:  console.error('[context-server] Lazy loading enabled - embedding model will initialize on first use');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1584:  // Mark embedding as "ready" since it will self-initialize on first use
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1589:    const report = vectorIndex.verifyIntegrity();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1593:    // Validate embedding dimension matches database
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1594:    const dimValidation = vectorIndex.validateEmbeddingDimension();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1599:      console.error('[context-server] FATAL: Refusing to start with mismatched embedding dimensions');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1605:    const database = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1622:        console.error(`[context-server] Learned triggers ready (migrated=${migrated}, fts5Isolated=${isolated})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1656:      console.error('[context-server] Auto-backfill triggered: %d rows seeded into active_memory_projection', result.seeded);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1669:    hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFn);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1694:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1696:    // P3-04: Rebuild BM25 index from database on startup
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1701:        console.error(`[context-server] BM25 index rebuilt from database: ${count} documents`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1704:        console.warn('[context-server] BM25 index rebuild failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1743:    // T099: Background retry job for pending embeddings (REQ-031, CHK-179)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1744:    // Processes memories with failed embeddings in the background
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:10:import * as vectorIndex from '../lib/search/vector-index.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:12:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:484:      vectorIndex.clearConstitutionalCache(null);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:485:      vectorIndex.clearSearchCache(null);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:487:      const database = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:492:      triggerMatcher.refreshTriggerCache();
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:675:  vectorIndex.initializeDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:26:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:59:/** Partial embedding provider metadata — see shared/types.ts ProviderMetadata for the full shape. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:93:  triggerCacheCleared: boolean;
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:15:All variables are optional. The server runs with sensible defaults when none are set. Variables use **graduated semantics** unless noted: they default to ON and you disable them by setting `=false`.
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:17:**Graph as a first-class feature family.** The `SPECKIT_GRAPH_*` variables form a dedicated feature family (see [Section 6](#6-graph) and [Section 7](#7-graph-calibration)) controlling structural code graph indexing, graph-first routing in the search pipeline, causal graph traversal, and calibration profiles. Since graph-first routing is now the default query dispatch order (Code Graph -> CocoIndex -> Memory), the graph env vars are among the most impactful configuration levers.
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:66:4. [Search Pipeline: Fusion and Scoring](#4-search-pipeline-fusion-and-scoring)
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:77:15. [Embedding](#15-embedding)
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:107:| `SPECKIT_RRF` | `true` | boolean | Master switch for Reciprocal Rank Fusion. Graduated ON. | `shared/algorithms/rrf-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:108:| `SPECKIT_RRF_K` | `40` | number | RRF smoothing constant `k`. Lower = more top-heavy ranking, higher = flatter. Must be > 0. | `shared/algorithms/rrf-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:115:| `SPECKIT_EMBEDDING_EXPANSION` | `true` | boolean | Query expansion for embedding-based retrieval (R12). Suppressed when classification = "simple". Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:117:| `SPECKIT_CHANNEL_MIN_REP` | `true` | boolean | Channel minimum-representation promotion after fusion. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:120:| `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Intent-aware adaptive fusion with document-type weight shifting. Graduated ON. | `shared/algorithms/adaptive-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:125:<!-- ANCHOR:search-pipeline-fusion -->
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:138:| `SPECKIT_TEMPORAL_CONTIGUITY` | `true` | boolean | Temporal contiguity boost on raw Stage 1 vector results. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:139:| `SPECKIT_RECENCY_FUSION_WEIGHT` | `0.07` | number | Weight of recency signal in Stage 2 fusion scoring. | `lib/search/pipeline/stage2-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:140:| `SPECKIT_RECENCY_FUSION_CAP` | `0.10` | number | Maximum recency contribution cap in Stage 2 fusion. | `lib/search/pipeline/stage2-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:141:| `SPECKIT_DOC_TYPE_WEIGHT_FACTOR` | `1.2` | number | Proportional weight shift factor per document type in adaptive fusion (20% shift at 1.2). | `shared/algorithms/adaptive-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:144:| `SPECKIT_FOLDER_TOP_K` | `5` | number | Number of top folder-scored results to inject. | `lib/search/hybrid-search.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:146:<!-- /ANCHOR:search-pipeline-fusion -->
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:157:| `SPECKIT_QUERY_CONCEPT_EXPANSION` | `true` | boolean | Query concept expansion via alias matching for hybrid search (Phase B T016). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:205:| `SPECKIT_N2A_CAP` | (profile) | number | N2a cap for RRF fusion overflow prevention. Overrides the active calibration profile value. | `lib/search/graph-calibration.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:206:| `SPECKIT_N2B_CAP` | (profile) | number | N2b cap for RRF fusion overflow prevention. Overrides the active calibration profile value. | `lib/search/graph-calibration.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:245:| `SPECKIT_SHADOW_LEARNING` | `false` | boolean | Shadow learned model loading for Stage 2 weight combiner. Opt-in: set `true` to enable. | `lib/search/pipeline/stage2-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:247:| `SPECKIT_LEARNED_STAGE2_MODEL` | (auto) | string | Custom file path for the learned Stage 2 model. Absolute or relative to cwd. | `lib/search/pipeline/stage2-fusion.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:252:| `SPECKIT_SIGNAL_VOCAB` | `true` | boolean | Signal vocabulary detection for trigger matching. Graduated ON. | `lib/parsing/trigger-matcher.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:344:<!-- ANCHOR:embedding -->
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:349:| `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:350:| `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:351:| `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:352:<!-- /ANCHOR:embedding -->
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:434:# Lower recency fusion impact
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:212:  description: '[L2:Core] Fast trigger phrase matching with cognitive memory features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related memories. Pass session_id and turnNumber for cognitive features. Token Budget: 3500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:216:// T306: Added asyncEmbedding parameter for non-blocking embedding generation
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:219:  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:263:        description: 'When true in full mode, attempts best-effort repair actions for detected health issues (e.g., FTS rebuild).'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:293:  description: '[L4:Mutation] Update an existing memory with corrections. Re-generates embedding if content changes. Token Budget: 500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:294:  inputSchema: { type: 'object', additionalProperties: false, properties: { id: { type: 'number', minimum: 1, description: 'Memory ID to update' }, title: { type: 'string', description: 'New title' }, triggerPhrases: { type: 'array', items: { type: 'string' }, description: 'Updated trigger phrases' }, importanceWeight: { type: 'number', minimum: 0, maximum: 1, description: 'New importance weight (0-1)' }, importanceTier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Set importance tier. Constitutional tier memories always surface at top of results.' }, allowPartialUpdate: { type: 'boolean', default: false, description: 'Allow update to succeed even if embedding regeneration fails. When true, metadata changes are applied and the embedding is marked for re-index. When false (default), the entire update is rolled back on embedding failure.' } }, required: ['id'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:310:      searchMode: { type: 'string', description: 'Optional search mode context (search/context/trigger)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:518:        description: 'Evaluation mode. Defaults to ablation; use k_sensitivity for raw pre-fusion RRF K analysis.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:522:        items: { type: 'string', enum: ['vector', 'bm25', 'fts5', 'graph', 'trigger'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:624:  name: 'code_graph_scan',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:639:  name: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:657:  name: 'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:663:  name: 'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:664:  description: '[L6:Analysis] Get LLM-oriented compact graph neighborhoods. Accepts CocoIndex search results as seeds — use CocoIndex (mcp__cocoindex_code__search) for semantic search first, then pass results here for structural expansion. Supports manual seeds (provider: manual) and graph seeds (provider: graph). Modes: neighborhood (1-hop calls+imports), outline (file symbols), impact (reverse callers). Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:681:            file: { type: 'string', description: 'CocoIndex file path (provider: cocoindex)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:682:            range: { type: 'object', properties: { start: { type: 'number' }, end: { type: 'number' } }, description: 'CocoIndex line range' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:683:            score: { type: 'number', description: 'CocoIndex relevance score' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:688:        description: 'Seeds from CocoIndex, manual input, or graph lookups',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:700:  description: '[L7:Maintenance] Check CocoIndex availability, binary path, and index status.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:706:  description: '[L7:Maintenance] Trigger CocoIndex incremental (or full) re-indexing of the workspace.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:718:  description: '[L7:Maintenance] Submit quality feedback on CocoIndex search results to improve future searches.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:747:      minimal: { type: 'boolean', description: 'When true, skip the heavy memory context call and return code-graph, CocoIndex, structural-context, hints, and session-quality fields without the full memory payload' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:927:  // L8: CocoIndex
+.opencode/skills/system-spec-kit/mcp_server/utils/db-helpers.ts:11:import * as vectorIndex from '../lib/search/vector-index.js';
+.opencode/skills/system-spec-kit/mcp_server/utils/db-helpers.ts:18: * const database = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/utils/db-helpers.ts:27:function requireDb(): NonNullable<ReturnType<typeof vectorIndex.getDb>> {
+.opencode/skills/system-spec-kit/mcp_server/utils/db-helpers.ts:28:  const db = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:3:description: "Operational scripts for forced embedding reindex and maintenance workflows."
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:4:trigger_phrases:
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:6:  - "reindex embeddings"
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:14:> Operational entry points for maintenance tasks that run outside the normal MCP request lifecycle, such as forced full-reindex of embeddings.
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:50:+-- reindex-embeddings.ts    # Wrapper source -> ../../scripts/dist/memory/reindex-embeddings.js at runtime
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:56:- Canonical implementation source: `../../scripts/memory/reindex-embeddings.ts`
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:57:- Canonical built runtime target: `../../scripts/dist/memory/reindex-embeddings.js`
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:58:- Legacy wrapper source: `reindex-embeddings.ts`
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:59:- Legacy wrapper build output: `../dist/scripts/reindex-embeddings.js`
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:65:| `reindex-embeddings.ts`   | Backward-compatible entry point for legacy `mcp_server/scripts` path         | Delegates to `scripts/dist/memory/reindex-embeddings.js` | Spec 138 |
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:74:- Reindex implementation lives in `scripts/memory/reindex-embeddings.ts` and runs through current handlers.
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:77:- Module initialization order: `vectorIndex` -> `embeddings` -> `checkpointsLib` -> `accessTracker` -> `hybridSearch` -> `initDbState` -> `setEmbeddingModelReady`.
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:92:node scripts/dist/memory/reindex-embeddings.js
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:95:node mcp_server/dist/scripts/reindex-embeddings.js
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:100:The script exits 0 on success. Any fatal startup error (missing DB, failed embedding warm-up) exits non-zero with an error message on stderr.
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:109:- `../../scripts/memory/reindex-embeddings.ts`
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:8:import * as vectorIndex from '../lib/search/vector-index.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:96:  const database = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:212:      if (vectorIndex.deleteMemory(memory.id)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:268:        latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:19:type VectorIndexModule = Awaited<typeof import('./lib/search/vector-index.js')>;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:23:type TriggerMatcherModule = Awaited<typeof import('./lib/parsing/trigger-matcher.js')>;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:30:let _vector_index: VectorIndexModule | null = null;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:34:let _trigger_matcher: TriggerMatcherModule | null = null;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:42:  return _vector_index ??= await import('./lib/search/vector-index.js');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:58:  return _trigger_matcher ??= await import('./lib/parsing/trigger-matcher.js');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:138:   2. DATABASE INITIALIZATION (minimal — no MCP, no embeddings)
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:142:  const [vectorIndex, checkpointsLib, accessTracker, coreIndex] = await Promise.all([
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:149:  vectorIndex.initializeDb();
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:150:  const db = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:157:  coreIndex.init({ vectorIndex, checkpoints: checkpointsLib, accessTracker });
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:168:  const vectorIndex = await getVectorIndex();
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:170:  const db = vectorIndex.getDb()!;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:224:      "SELECT COUNT(*) as count FROM memory_index WHERE embedding_status = 'partial'"
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:281:  const [vectorIndex, checkpointsLib, mutationLedger, triggerMatcher, causalEdges, history] = await Promise.all([
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:289:  const db = vectorIndex.getDb()!;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:387:      if (vectorIndex.deleteMemory(memory.id)) {
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:426:  // Invalidate trigger cache
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:427:  triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:458:    console.log(`  Loading embedding model...`);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:459:    const embeddings = await import('./lib/providers/embeddings.js');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:461:      await embeddings.generateEmbedding('warmup');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:525:  const vectorIndex = await getVectorIndex();
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:526:  const db = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:594:    .then(vectorIndex => { vectorIndex.closeDb(); })
+.opencode/skills/system-spec-kit/mcp_server/formatters/README.md:4:trigger_phrases:
+.opencode/skills/system-spec-kit/mcp_server/formatters/README.md:29:- `search-results.ts`: formats results, optional content embedding, anchor extraction, and path checks.
+.opencode/skills/system-spec-kit/mcp_server/formatters/README.md:49:- File path checks are defense-in-depth for content embedding.
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:8:import * as vectorIndex from '../lib/search/vector-index.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:11:  hybridSearchEnhanced,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:14:} from '../lib/search/hybrid-search.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:15:import { generateQueryEmbedding } from '../lib/providers/embeddings.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:44:import type { RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:83:function initializeEvalHybridSearch(database: ReturnType<typeof vectorIndex.getDb>) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:85:  initHybridSearch(database, vectorIndex.vectorSearch, graphSearchFn);
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:99:  run: (database: NonNullable<ReturnType<typeof vectorIndex.getDb>>, dbPath: string) => Promise<T>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:102:  const activeDb = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:112:    return run(activeDb, vectorIndex.getDbPath());
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:115:  const currentDbPath = path.resolve(vectorIndex.getDbPath());
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:128:  vectorIndex.closeDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:132:    const overrideDb = vectorIndex.initializeDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:133:    return await run(overrideDb, vectorIndex.getDbPath());
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:135:    vectorIndex.closeDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:141:    vectorIndex.initializeDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:146:  database: NonNullable<ReturnType<typeof vectorIndex.getDb>>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:149:  embedding: Float32Array | number[] | null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:154:  if (embedding) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:155:    const vectorResults = vectorIndex.vectorSearch(embedding, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:161:    if (vectorResults.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:163:        source: 'vector',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:164:        results: vectorResults.map((row) => ({ id: row.id as number | string })),
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:268:      const embedding = await generateQueryEmbedding(query);
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:276:        triggerPhrases: channelFlags.useTrigger ? undefined : [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:281:      const results = await hybridSearchEnhanced(query, embedding, searchOptions);
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:332:  'hybrid search fusion',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:335:  'semantic search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:341: * 1. Runs hybridSearchEnhanced for each representative query
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:348:  const db = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:369:    const embedding = await generateQueryEmbedding(query);
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:370:    queryLists.push(buildRawFusionLists(db, graphSearchFn, query, embedding, limit));
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:4:trigger_phrases:
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:29:- `memory-search.ts` - L2 hybrid search handler with telemetry and profile support.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:30:- `memory-triggers.ts` - Trigger phrase matching, tiered content injection, and session-aware matching.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:44:- `code-graph/scan.ts` - `code_graph_scan`: index workspace files, build structural graph.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:45:- `code-graph/query.ts` - `code_graph_query`: query structural relationships (outline, calls, imports).
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:46:- `code-graph/status.ts` - `code_graph_status`: report graph health and statistics.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:47:- `code-graph/context.ts` - `code_graph_context`: LLM-oriented compact graph neighborhoods.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:70:- `memory-index.ts` and `mutation-hooks.ts` work together so index, update, and stale-delete flows clear trigger, constitutional, graph, co-activation, and degree caches.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:71:- `memory-crud-health.ts` surfaces embedding retry stats and FTS/index sync diagnostics as part of the health response.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
+.opencode/skills/system-spec-kit/mcp_server/schemas/README.md:4:trigger_phrases:
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:5:Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides 43 tools covering semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking, shared memory spaces, session learning, evaluation, validation, and bounded structural code-graph indexing.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:35:- Test semantic search with a sample query
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:60:Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistants semantic memory and context retrieval. It indexes markdown documentation and conversation memories to surface relevant information during AI interactions.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:78:│  Causal lineage      Adaptive fusion    Extended telemetry      │
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:80:│  SQLite + sqlite-vec for vector storage                         │
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Trigger Matcher
@@ -2533,9 +2533,9 @@ function extractTriggerIndexKeys(text: string): string[] {
       keys.add(basis.slice(index, index + size).join(' '));
 
 exec
-/bin/zsh -lc "sed -n '1,280p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,280p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,320p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,320p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Hybrid Search
@@ -3141,7 +3141,7 @@ function mergeCandidateRows(
     channelCount: mergedSources.length > 0 ? mergedSources.length : primary.channelCount,
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Memory Triggers
@@ -3407,7 +3407,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
 codex
 I have the core split now: Spec Kit has a true multi-channel retrieval stack, while Mex is mostly lexical/static truth maintenance around markdown claims. I’m drilling one layer deeper into the channel routing and candidate collection so the final output can say exactly when vector semantics win, when lexical/trigger paths win, and how the hybrid policy should choose among them instead of hand-waving.
 exec
-/bin/zsh -lc 'rg -n "collectRawCandidates|fts5Bm25Search|getAdaptiveWeights|routeQuery|forceAllChannels|useVector|useFts|useBm25|useGraph|triggerPhrases|skipFusion|stopAfterFusion|degradation" .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "collectRawCandidates|fts5Bm25Search|getAdaptiveWeights|routeQuery|forceAllChannels|useVector|useFts|useBm25|useGraph|triggerPhrases|skipFusion|stopAfterFusion|degradation" .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 11:import { getAdaptiveWeights, isAdaptiveFusionEnabled } from '@spec-kit/shared/algorithms/adaptive-fusion';
 15:import { fts5Bm25Search } from './sqlite-fts.js';
@@ -3475,7 +3475,7 @@ exec
 2486:  routeQuery,
 
 exec
-/bin/zsh -lc 'rg -n "generateEmbedding|expandQueryWithEmbeddings|multiConceptSearch|collectRawCandidates|vectorSearchWithContiguity|querySummaryEmbeddings|decompose|routeQueryConcepts|matchSurrogates|runHyDE" .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "generateEmbedding|expandQueryWithEmbeddings|multiConceptSearch|collectRawCandidates|vectorSearchWithContiguity|querySummaryEmbeddings|decompose|routeQueryConcepts|matchSurrogates|runHyDE" .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 12://   - multi-concept: Generate per-concept embeddings, run multiConceptSearch
 16://   - hybrid: collectRawCandidates → falls back to vector on failure
@@ -3835,7 +3835,7 @@ function buildFileContext(
 }
 
 exec
-/bin/zsh -lc "sed -n '980,1060p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '980,1060p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   options: HybridSearchOptions = {}
 ): Promise<HybridSearchResult[]> {
@@ -3920,7 +3920,7 @@ async function collectAndFuseHybridResults(
 
 
 exec
-/bin/zsh -lc "sed -n '860,930p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '860,930p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     specFolder,
     minSimilarity = 0,
@@ -3995,7 +3995,7 @@ exec
     if (!bySource.has(src)) bySource.set(src, []);
 
 exec
-/bin/zsh -lc "sed -n '1684,1728p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1684,1728p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 async function collectRawCandidates(
   query: string,
@@ -4044,7 +4044,7 @@ async function collectRawCandidates(
 }
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Query Router
@@ -4350,7 +4350,7 @@ function findScaffoldFiles(
 }
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Sqlite Fts
@@ -4614,7 +4614,7 @@ function fts5Bm25Search(
  * Used as a feature-detect before calling fts5Bm25Search, since FTS5
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Bm25 Index
@@ -5344,7 +5344,7 @@ When done, report:
 codex
 I’ve got enough structure to see the shape of the answer, and now I’m collecting line-accurate evidence for the final synthesis. This last pass is about precision: exact routing defaults, exact lexical weighting behavior, and the exact Mex mechanisms that make it strong for static claim integrity but weak as a standalone semantic retriever.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Query Router
@@ -5528,7 +5528,7 @@ exec
    180	  FALLBACK_CHANNELS,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Sqlite Fts
@@ -5752,9 +5752,9 @@ exec
    220	    const normalizedRows = rows.map(row => ({
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '980,1060p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '980,1060p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    980	  options: HybridSearchOptions = {}
    981	): Promise<HybridSearchResult[]> {
@@ -6061,7 +6061,7 @@ exec
    220	  }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '860,930p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '860,930p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    860	    specFolder,
    861	    minSimilarity = 0,
@@ -6136,7 +6136,7 @@ exec
    930	    if (!bySource.has(src)) bySource.set(src, []);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '1684,1735p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '1684,1735p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1684	async function collectRawCandidates(
   1685	  query: string,
@@ -6192,9 +6192,9 @@ exec
   1735	 *
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts | sed -n '150,250p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts | sed -n '150,250p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts | sed -n '610,940p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts | sed -n '610,940p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    150	
    151	  // Return the entry for test verification
@@ -6632,7 +6632,7 @@ exec
    940	        vectorSearchWithContiguity(
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '760,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '760,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    760	    limit: options.limit || 8,
    761	    includeConstitutional: true,
@@ -6737,7 +6737,7 @@ exec
    860	  };
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '900,1040p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '900,1040p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    900	    for (const result of accessedResults) {
    901	      insertAdaptiveSignal.run(
@@ -6882,7 +6882,7 @@ exec
   1040	        return next !== previous
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '250,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '250,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    250	  memory: 1.0,
    251	  constitutional: 2.0,
@@ -7713,7 +7713,7 @@ exec
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/ROUTER.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '140,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '140,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    140	      'SELECT * FROM memory_index WHERE id = ?'
    141	    );
@@ -7941,28 +7941,28 @@ SEMANTIC VS LEXICAL TRADE-OFFS: Deep analysis of when semantic search beats lexi
 
 ## Findings
 ### Finding 1: Spec Kit already implements an explicit hybrid contract, and it should stay hybrid by default
-- **Source**: [query-router.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts#L62), [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1006)
+- **Source**: [query-router.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts#L62), [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1006)
 - **What it does**: Query routing is tiered by complexity. Simple queries run `vector + fts`, moderate adds `bm25`, and complex runs all channels including graph and degree. Even for simple queries, BM25 is preserved when the artifact looks like `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, or `research`.
 - **Why it matters**: The code already encodes the right intuition: semantic search is not the whole system, and lexical retrieval stays necessary for documentation-shaped and artifact-shaped questions.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 2: Lexical retrieval is the authority lane for exact artifact lookup, titles, trigger phrases, commands, and file-shaped queries
-- **Source**: [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L146), [bm25-index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts#L45), [trigger-matcher.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts#L157), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L156)
+- **Source**: [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L146), [bm25-index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts#L45), [trigger-matcher.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts#L157), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L156)
 - **What it does**: FTS5 uses weighted BM25 with strong bias toward `title` and `trigger_phrases`, then generic content, then body. Query tokens are normalized and OR-joined for recall. Trigger matching separately builds regex-boundary and n-gram keyed lexical caches, then returns tiered content by HOT/WARM/COLD state.
 - **Why it matters**: This lane will beat embeddings whenever the user really means “find this named thing”: packet IDs, exact docs, commands, script names, trigger phrases, title fragments, or path-like nouns. It is also more auditable and cheaper.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 3: Semantic retrieval wins when the query is conceptual, multi-faceted, or uses vocabulary that does not appear verbatim in memory files
-- **Source**: [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L616), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L781), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L869)
+- **Source**: [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L616), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L781), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L869)
 - **What it does**: Stage 1 expands and decomposes conceptual queries with facet decomposition, deep query variants, embedding-based expansion, concept expansion, and vector fallback. The system is designed to search beyond literal phrasing before fusion happens.
 - **Why it matters**: This is where semantic beats lexical: “how does X work,” “what changed around Y,” “show me similar memory-quality failures,” and other language-mismatch questions. Lexical alone will under-recall in those cases.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: The best hybrid strategy is semantic candidate generation plus non-semantic reranking, not semantic search alone
-- **Source**: [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L922), [composite-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts#L295), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L783)
+- **Source**: [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L922), [composite-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts#L295), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L783)
 - **What it does**: After retrieval, Stage 2 injects session attention, recency fusion, causal boost, co-activation, graph signals, artifact routing, feedback signals, and validation metadata. Separately, retrievability is scored with FSRS-style decay, and resume flows explicitly disable decay while anchoring to `state`, `next-steps`, `summary`, and `blockers`.
 - **Why it matters**: The right architecture is not “semantic vs lexical” as a winner-take-all choice. It is “semantic for discovery, lexical for anchoring, graph for structure, temporal and session signals for ranking.” That is the real hybrid advantage.
 - **Recommendation**: adopt now
@@ -7983,7 +7983,7 @@ SEMANTIC VS LEXICAL TRADE-OFFS: Deep analysis of when semantic search beats lexi
 - **Impact**: medium
 
 ### Finding 7: The missing contract is explicit lane arbitration and user-visible attribution
-- **Source**: [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1684), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L28)
+- **Source**: [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1684), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L28)
 - **What it does**: Raw candidate collection already falls back from hybrid execution to FTS and then BM25. The lexical subsystem also tracks `lexicalPath` and failure states such as `missing_table` or `no_such_module_fts5`.
 - **Why it matters**: We already have the mechanics of lane degradation, but not a strong outward contract explaining which lane dominated, which failed, and why a result should be trusted. That makes hybrid behavior harder to debug and tune.
 - **Recommendation**: NEW FEATURE
@@ -8006,28 +8006,28 @@ SEMANTIC VS LEXICAL TRADE-OFFS: Deep analysis of when semantic search beats lexi
 
 ## Findings
 ### Finding 1: Spec Kit already implements an explicit hybrid contract, and it should stay hybrid by default
-- **Source**: [query-router.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts#L62), [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1006)
+- **Source**: [query-router.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts#L62), [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1006)
 - **What it does**: Query routing is tiered by complexity. Simple queries run `vector + fts`, moderate adds `bm25`, and complex runs all channels including graph and degree. Even for simple queries, BM25 is preserved when the artifact looks like `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, or `research`.
 - **Why it matters**: The code already encodes the right intuition: semantic search is not the whole system, and lexical retrieval stays necessary for documentation-shaped and artifact-shaped questions.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 2: Lexical retrieval is the authority lane for exact artifact lookup, titles, trigger phrases, commands, and file-shaped queries
-- **Source**: [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L146), [bm25-index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts#L45), [trigger-matcher.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts#L157), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L156)
+- **Source**: [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L146), [bm25-index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts#L45), [trigger-matcher.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts#L157), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L156)
 - **What it does**: FTS5 uses weighted BM25 with strong bias toward `title` and `trigger_phrases`, then generic content, then body. Query tokens are normalized and OR-joined for recall. Trigger matching separately builds regex-boundary and n-gram keyed lexical caches, then returns tiered content by HOT/WARM/COLD state.
 - **Why it matters**: This lane will beat embeddings whenever the user really means “find this named thing”: packet IDs, exact docs, commands, script names, trigger phrases, title fragments, or path-like nouns. It is also more auditable and cheaper.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 3: Semantic retrieval wins when the query is conceptual, multi-faceted, or uses vocabulary that does not appear verbatim in memory files
-- **Source**: [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L616), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L781), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L869)
+- **Source**: [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L616), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L781), [stage1-candidate-gen.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L869)
 - **What it does**: Stage 1 expands and decomposes conceptual queries with facet decomposition, deep query variants, embedding-based expansion, concept expansion, and vector fallback. The system is designed to search beyond literal phrasing before fusion happens.
 - **Why it matters**: This is where semantic beats lexical: “how does X work,” “what changed around Y,” “show me similar memory-quality failures,” and other language-mismatch questions. Lexical alone will under-recall in those cases.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: The best hybrid strategy is semantic candidate generation plus non-semantic reranking, not semantic search alone
-- **Source**: [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L922), [composite-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts#L295), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L783)
+- **Source**: [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L922), [composite-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts#L295), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L783)
 - **What it does**: After retrieval, Stage 2 injects session attention, recency fusion, causal boost, co-activation, graph signals, artifact routing, feedback signals, and validation metadata. Separately, retrievability is scored with FSRS-style decay, and resume flows explicitly disable decay while anchoring to `state`, `next-steps`, `summary`, and `blockers`.
 - **Why it matters**: The right architecture is not “semantic vs lexical” as a winner-take-all choice. It is “semantic for discovery, lexical for anchoring, graph for structure, temporal and session signals for ranking.” That is the real hybrid advantage.
 - **Recommendation**: adopt now
@@ -8048,7 +8048,7 @@ SEMANTIC VS LEXICAL TRADE-OFFS: Deep analysis of when semantic search beats lexi
 - **Impact**: medium
 
 ### Finding 7: The missing contract is explicit lane arbitration and user-visible attribution
-- **Source**: [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1684), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L28)
+- **Source**: [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1684), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L28)
 - **What it does**: Raw candidate collection already falls back from hybrid execution to FTS and then BM25. The lexical subsystem also tracks `lexicalPath` and failure states such as `missing_table` or `no_such_module_fts5`.
 - **Why it matters**: We already have the mechanics of lane degradation, but not a strong outward contract explaining which lane dominated, which failed, and why a result should be trusted. That makes hybrid behavior harder to debug and tune.
 - **Recommendation**: NEW FEATURE

@@ -74,8 +74,8 @@ All three artifacts are REQUIRED.
 ## RESEARCH GUIDANCE FOR ITERATION 2
 
 Specifically:
-1. **Read** `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` and `.opencode/skill/system-spec-kit/scripts/rules/check-template-staleness.sh` end-to-end. Document what they expect from the templates folder.
-2. **Read** `.opencode/skill/system-spec-kit/shared/parsing/spec-doc-health.ts` and `.opencode/skill/system-spec-kit/scripts/lib/anchor-generator.ts`. Map ANCHOR invariants.
+1. **Read** `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` and `.opencode/skills/system-spec-kit/scripts/rules/check-template-staleness.sh` end-to-end. Document what they expect from the templates folder.
+2. **Read** `.opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts` and `.opencode/skills/system-spec-kit/scripts/lib/anchor-generator.ts`. Map ANCHOR invariants.
 3. **Grep** for `templates/level_` references across `mcp_server/tests/` and `scripts/tests/`. List every test fixture that depends on level dirs.
 4. **Grep** for `SPECKIT_TEMPLATE_SOURCE` to count occurrences and validate the "~800 spec folders" claim. (Already partially done in iter 1; refine.)
 5. **Document** the exact ANCHOR-tag injection algorithm in `wrap-all-templates.ts`: regex, ordering, normalization rules. This is critical for proving hash determinism in a future generator.

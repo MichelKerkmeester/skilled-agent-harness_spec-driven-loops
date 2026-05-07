@@ -117,8 +117,8 @@ File reads and command runs produce evidence. Evidence is grouped into P0/P1/P2 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Static audit | Install, doctor, config, env, scripts | `rg`, `nl`, direct file reads |
-| Runtime diagnostic | Current MCP doctor health | `bash .opencode/command/doctor/scripts/mcp-doctor.sh --json` |
-| Migration test evidence | Hydra phase 1 schema/checkpoint coverage | `npm --prefix .opencode/skill/system-spec-kit/mcp_server run test:hydra:phase1` |
+| Runtime diagnostic | Current MCP doctor health | `bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json` |
+| Migration test evidence | Hydra phase 1 schema/checkpoint coverage | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run test:hydra:phase1` |
 | Backwards compatibility | Existing older spec folder strict validation | `validate.sh --strict` |
 | Packet validation | Packet structure | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->

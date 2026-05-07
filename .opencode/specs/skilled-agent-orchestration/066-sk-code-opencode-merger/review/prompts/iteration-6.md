@@ -22,7 +22,7 @@ Prior Findings: F001 P1, F002 P2, F003 P1, F004 P1 remain active.
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
+Load `.opencode/skills/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
 
 ## Review Focus
 

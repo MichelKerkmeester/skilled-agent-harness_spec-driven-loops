@@ -14,14 +14,14 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/plan.md:482-491`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/implementation-summary.md:82-84`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/checklist.md:226-232`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-50`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-193`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:221-234`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:343`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:260-299`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:280-308`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:262-268`
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:260-261`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-50`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-193`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:221-234`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:343`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:260-299`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:280-308`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:262-268`
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:260-261`
 
 ## Findings by Severity
 

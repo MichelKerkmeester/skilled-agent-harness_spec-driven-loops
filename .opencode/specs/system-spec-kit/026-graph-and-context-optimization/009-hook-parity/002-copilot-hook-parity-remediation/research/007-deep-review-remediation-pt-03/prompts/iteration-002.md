@@ -43,7 +43,7 @@ Nail down **which config object** Copilot is rejecting. Two parallel attacks:
   - `unzip -l /opt/homebrew/Caskroom/copilot-cli-0.0.420.zip 2>/dev/null` if a pre-install archive exists in `/opt/homebrew/Caskroom/`
   - `brew list --cask copilot-cli --verbose` to find install artifacts
   - Check `~/Library/Application Support/Code/User/globalStorage/github.copilot-chat/copilotCli/copilot` — possibly a cached older variant we CAN grep as text.
-  - Try `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/@github/copilot-sdk/node_modules/@github/copilot/node_modules/@github/copilot-darwin-arm64/copilot` — this local SDK copy may be a different arch or version but might still contain the validator text as gzipped or uncompressed JS.
+  - Try `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/@github/copilot-sdk/node_modules/@github/copilot/node_modules/@github/copilot-darwin-arm64/copilot` — this local SDK copy may be a different arch or version but might still contain the validator text as gzipped or uncompressed JS.
 - Once the validator is found, read the code path that throws `"Neither 'bash' nor 'powershell' specified"` — it will reveal what shape the entry must have.
 
 ### Attack B: Find the offending config object via log archaeology + hook discovery

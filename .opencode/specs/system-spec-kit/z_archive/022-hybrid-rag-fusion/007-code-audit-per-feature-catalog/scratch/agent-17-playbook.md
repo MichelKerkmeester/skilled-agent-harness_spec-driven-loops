@@ -22,7 +22,7 @@
 ## Validation
 
 - `python3 - <<'PY' ...` against `MANUAL_TESTING_PLAYBOOK.md` now reports `166` scenario rows before the cross-reference index.
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion` returned warnings only. The remaining warnings are pre-existing ToC/size issues elsewhere in this Level 3+ audit tree, not from these edits.
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion` returned warnings only. The remaining warnings are pre-existing ToC/size issues elsewhere in this Level 3+ audit tree, not from these edits.
 
 ## Remaining notes
 

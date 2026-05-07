@@ -20,7 +20,7 @@ Four sub-tasks:
    - Decision (level vocabulary remains the SOLE public/AI-facing surface; preset/capability/kind names are STRICTLY internal to the manifest + scaffolder)
    - Specific bans:
      - NO `--preset X` flag in public CLI (drop from `create.sh --help`)
-     - NO mention of "preset", "capability", "kind" in any: `CLAUDE.md`, `AGENTS.md`, `SKILL.md`, `.opencode/command/*.md`, `.opencode/agent/*.md`, `.opencode/skill/system-spec-kit/SKILL.md`, validator error messages, scaffolder log lines, frontmatter exposed to the AI
+     - NO mention of "preset", "capability", "kind" in any: `CLAUDE.md`, `AGENTS.md`, `SKILL.md`, `.opencode/commands/*.md`, `.opencode/agents/*.md`, `.opencode/skills/system-spec-kit/SKILL.md`, validator error messages, scaffolder log lines, frontmatter exposed to the AI
      - YES keep `--level N` flag, `<!-- SPECKIT_LEVEL: N -->` markers, `level: N` frontmatter, `Level 1/2/3/3+` taxonomy in user-facing docs
    - Consequences (what improves / what costs / risks)
    - Five Checks evaluation (PASS/FAIL each)

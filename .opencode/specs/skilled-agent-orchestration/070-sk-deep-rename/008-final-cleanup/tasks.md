@@ -53,10 +53,10 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read deep review report (`../review/review-report.md`)
-- [x] T002 Read advisor graph source before editing (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`)
-- [x] T003 Read compiler validation before editing (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py`)
-- [x] T004 Read deep-review and deep-research graph metadata before editing (`.opencode/skill/deep-*/graph-metadata.json`)
-- [x] T005 Read sk-code graph metadata before editing (`.opencode/skill/sk-code/graph-metadata.json`)
+- [x] T002 Read advisor graph source before editing (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`)
+- [x] T003 Read compiler validation before editing (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py`)
+- [x] T004 Read deep-review and deep-research graph metadata before editing (`.opencode/skills/deep-*/graph-metadata.json`)
+- [x] T005 Read sk-code graph metadata before editing (`.opencode/skills/sk-code/graph-metadata.json`)
 - [x] T006 Author Phase 008 planning artifacts (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `description.json`, `graph-metadata.json`)
 <!-- /ANCHOR:phase-1 -->
 

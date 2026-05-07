@@ -75,8 +75,8 @@ _memory:
 - Audited 14 omitted current snippets that were outside executed March 8 ranges.
 - Classified 12 omitted snippets as structurally current (no immediate remediation required).
 - Added 2 follow-up remediation items at addendum time:
-  1. Normalize broad-glob/non-canonical source-path references in `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md`.
-  2. Correct/remove the invalid source-path reference (legacy command/memory/context.md entry) in `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md`.
+  1. Normalize broad-glob/non-canonical source-path references in `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md`.
+  2. Correct/remove the invalid source-path reference (legacy command/memory/context.md entry) in `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md`.
 - Post-addendum update: both follow-up items were completed after the addendum was created. The two affected catalog snippets now resolve `0` missing backticked markdown-path references.
 - Clarified historical taxonomy labels (`19-decisions`, `20-flags`) vs current monolith headings (`20 UX HOOKS`, `21 PHASE SYSTEM`, `22 FEATURE FLAG REFERENCE`).
 - Clarified tooling narrative drift: execution artifacts are Codex-based even where plan text still reflected Copilot wording.
@@ -165,7 +165,7 @@ Phase F is defined in `tasks.md` (remaining open work is T100-T171; T128-T129 ad
 
 ### Feature Catalog (Target of Remediation)
 ```
-.opencode/skill/system-spec-kit/feature_catalog/
+.opencode/skills/system-spec-kit/feature_catalog/
   FEATURE_CATALOG.md               # Monolithic catalog (sync after snippets)
   01--retrieval/                   # 9 snippet files
   02--mutation/                    # 10 snippet files

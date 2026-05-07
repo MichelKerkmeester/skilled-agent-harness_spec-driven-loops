@@ -135,7 +135,7 @@ Add hard token-telemetry fields to `meta.tokenBudgetEnforcement` so callers can 
 - **SC-001**: All 5 REQs covered by green vitest assertions.
 - **SC-002**: 005 Probe B (Semantic Search) re-run after dist rebuild + MCP daemon restart shows `count > 0` in `data.content[0].text`.
 - **SC-003**: New test helper `expectReturnedCountMatchesPayload()` exists in shared test utils, used by at least 2 tests.
-- **SC-004**: Validation passes via `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict`.
+- **SC-004**: Validation passes via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict`.
 - **SC-005**: `npm run build` regenerates `dist/handlers/memory-context.js` with new fields visible in compiled output (grep marker check).
 <!-- /ANCHOR:success-criteria -->
 

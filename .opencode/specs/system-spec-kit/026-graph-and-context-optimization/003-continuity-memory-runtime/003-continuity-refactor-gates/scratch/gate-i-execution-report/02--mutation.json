@@ -23,7 +23,7 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
           "asyncEmbedding": true,
           "skipPreflight": true
         }
@@ -55,7 +55,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
             "asyncEmbedding": true,
             "skipPreflight": true
           }

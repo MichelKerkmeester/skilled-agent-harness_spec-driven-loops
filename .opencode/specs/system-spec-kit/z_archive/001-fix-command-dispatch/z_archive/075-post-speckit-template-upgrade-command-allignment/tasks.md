@@ -91,7 +91,7 @@ Changes per command:
 
 ### Task 2.1: Add mandatory gate to /memory:search
 **Agent**: Agent 2 (Opus)
-**File**: .opencode/command/memory/search.md
+**File**: .opencode/commands/memory/search.md
 
 Changes:
 - [ ] Add multi-phase blocking gate after frontmatter
@@ -107,14 +107,14 @@ Changes:
 
 ### Task 3.1: Fix /create:skill argument-hint
 **Agent**: Agent 3 (Opus)
-**File**: .opencode/command/create/skill.md
+**File**: .opencode/commands/create/skill.md
 
 Changes:
 - [ ] Change `skill-name` to `<skill-name>` in argument-hint
 
 ### Task 3.2: Fix /create:agent argument-hint
 **Agent**: Agent 3 (Opus)
-**File**: .opencode/command/create/agent.md
+**File**: .opencode/commands/create/agent.md
 
 Changes:
 - [ ] Change `agent-name` to `<agent-name>` in argument-hint
@@ -151,7 +151,7 @@ Changes per command:
 
 ### Task 5.1: Fix cross-reference error in /memory:database
 **Agent**: Agent 5 (Opus)
-**File**: .opencode/command/memory/database.md
+**File**: .opencode/commands/memory/database.md
 
 Changes:
 - [ ] Line 393: Change `/memory:database restore` to `/memory:checkpoint restore pre-cleanup-...`

@@ -59,11 +59,11 @@ Codex CLI sessions previously returned no startup context and no advisor brief. 
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts` (NEW) | SessionStart adapter parsing Codex JSON stdin and emitting context. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts` (NEW) | UserPromptSubmit adapter emitting advisor brief. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts` (NEW) | Codex SessionStart parity tests. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts` (NEW) | Codex UserPromptSubmit parity tests. |
-| `.opencode/skill/cli-codex/SKILL.md` and `README.md` | Document native hooks, troubleshooting, and contract reference. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts` (NEW) | SessionStart adapter parsing Codex JSON stdin and emitting context. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts` (NEW) | UserPromptSubmit adapter emitting advisor brief. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts` (NEW) | Codex SessionStart parity tests. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts` (NEW) | Codex UserPromptSubmit parity tests. |
+| `.opencode/skills/cli-codex/SKILL.md` and `README.md` | Document native hooks, troubleshooting, and contract reference. |
 
 ### Follow-Ups
 

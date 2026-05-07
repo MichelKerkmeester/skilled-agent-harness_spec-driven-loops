@@ -66,10 +66,10 @@ This document records the current verified state for this scope. Use [spec.md](s
 
 ### Consumer Updates
 - [x] T010 [P] Update decision tree generator to show split confidence on tree nodes when values diverge by > 0.1 (REQ-003) (`scripts/lib/decision-tree-generator.ts`). Evidence: `DecisionNode` now carries dual confidence fields and forwards them to header rendering.
-- [x] T011 [P] Update renderer templates to include `Choice: X% / Rationale: Y%` labels when dual values are present (REQ-004) (`.opencode/skill/system-spec-kit/templates/context_template.md`). Evidence: decision sections render split confidence only when the values materially diverge.
+- [x] T011 [P] Update renderer templates to include `Choice: X% / Rationale: Y%` labels when dual values are present (REQ-004) (`.opencode/skills/system-spec-kit/templates/context_template.md`). Evidence: decision sections render split confidence only when the values materially diverge.
 - [x] T012 [P] Update `workflow.ts` percent conversion to use legacy `CONFIDENCE` with new type shape (`scripts/core/workflow.ts`). Evidence: workflow now converts overall, choice, and rationale confidence to percentages and tags divergent cases.
 - [x] T013 [P] Update confidence validation to understand dual fields (`scripts/memory/validate-memory-quality.ts`). Evidence: no validator logic change was required for Phase 1. Render fixtures were updated and validated without changing quality-gate semantics.
-- [x] T014 [P] Add dual confidence display placeholders for decision sections (`.opencode/skill/system-spec-kit/templates/context_template.md`). Evidence: added `HAS_SPLIT_CONFIDENCE` branch with choice/rationale formatting.
+- [x] T014 [P] Add dual confidence display placeholders for decision sections (`.opencode/skills/system-spec-kit/templates/context_template.md`). Evidence: added `HAS_SPLIT_CONFIDENCE` branch with choice/rationale formatting.
 - [x] T015 [P] Render split confidence in decision box labels when values diverge (`scripts/lib/ascii-boxes.ts`). Evidence: ASCII decision headers now render split confidence when the delta exceeds 10 percentage points.
 <!-- /ANCHOR:phase-2 -->
 

@@ -16,8 +16,8 @@ Read Relay's README feature list plus `relay.ts` delivery-state and idle/event h
 - The SDK defines delivery states `queued`, `injected`, `active`, `verified`, and `failed`. [SOURCE: external/packages/sdk/src/relay.ts:160-160]
 - Relay keeps a separate `messageReadyAgents` set, marks agents message-ready when inbound relay traffic is observed, and resolves delivery-state updates from broker events. [SOURCE: external/packages/sdk/src/relay.ts:396-396] [SOURCE: external/packages/sdk/src/relay.ts:1166-1228] [SOURCE: external/packages/sdk/src/relay.ts:1296-1342]
 - `Agent` handles expose `waitForIdle()`, and the facade exposes `onAgentIdle`. [SOURCE: external/packages/sdk/src/relay.ts:257-257] [SOURCE: external/packages/sdk/src/relay.ts:360-360]
-- Public's bootstrap path focuses on startup health and context recovery, not transport progression or idle/output states. [SOURCE: .opencode/agent/context-prime.md:34-39] [SOURCE: .opencode/agent/context-prime.md:118-145]
-- Public's orchestrator evaluates outputs after delegation and prefers focused execution, but it has no state machine for deliveries in flight. [SOURCE: .opencode/agent/orchestrate.md:51-60] [SOURCE: .opencode/agent/orchestrate.md:266-268]
+- Public's bootstrap path focuses on startup health and context recovery, not transport progression or idle/output states. [SOURCE: .opencode/agents/context-prime.md:34-39] [SOURCE: .opencode/agents/context-prime.md:118-145]
+- Public's orchestrator evaluates outputs after delegation and prefers focused execution, but it has no state machine for deliveries in flight. [SOURCE: .opencode/agents/orchestrate.md:51-60] [SOURCE: .opencode/agents/orchestrate.md:266-268]
 
 ## Analysis
 Delivery-state tracking is valuable once messages are a first-class unit of coordination. Right now Public mostly cares about task decomposition and artifact delivery, so importing this state machine immediately would be premature. Still, Relay shows that ready-state alone is not enough; once live messaging exists, "queued" versus "verified" matters operationally and diagnostically.
@@ -27,7 +27,7 @@ confidence: medium
 finding: Public should keep delivery and idle states on the prototype roadmap, but after adopting simpler wins like coordination-shape naming and completion-evidence rules. This is an enabling runtime pattern, not the first design move.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** future live-coordination module under `.opencode/skill/system-spec-kit/mcp_server/`
+- **Target file or module:** future live-coordination module under `.opencode/skills/system-spec-kit/mcp_server/`
 - **Change type:** new module
 - **Blast radius:** medium
 - **Prerequisites:** establish whether Public will ever expose message-level coordination to users or only use it internally

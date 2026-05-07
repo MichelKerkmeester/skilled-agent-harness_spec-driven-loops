@@ -6,10 +6,10 @@ I’m auditing the catalog against the actual implementation now. I’ll invento
   └ {"summary":"Context retrieved via quick mode (quick strategy)","data":{"strat...
 
 ● Route skill and list catalog files (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Review ALL .md files in
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/ against mcp_server
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Review ALL .md files in
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/ against mcp_server
   │ and scripts source code, flag mismatches" --threshold 0.8 && printf '\n---DIR---\n' && find
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration -maxdepth 1 -type f
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration -maxdepth 1 -type f
   │ -name '*.md' | sort
   └ 59 lines...
 
@@ -41,7 +41,7 @@ I’ve loaded the review baseline and the OpenCode overlay. Now I’m checking t
 ● Summarize catalog doc structure (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
-  │ base = Path('.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration')
+  │ base = Path('.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration')
   │ for p in sorted(base.glob('*.md')):
   │ text = p.read_text()…
   └ 238 lines...
@@ -50,44 +50,44 @@ I’ve loaded the review baseline and the OpenCode overlay. Now I’m checking t
   └ {"success":true,"results":[],"total_returned":0,"offset":0,"message":null}
 
 ● Search (grep)
-  │ "^# " in *.md (.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration)
+  │ "^# " in *.md (.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration)
   └ 22 lines found
 
 ● Extract core sections from all docs (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re
-  │ base = Path('.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration')
+  │ base = Path('.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration')
   │ for p in sorted(base.glob('*.md')):…
   └ 32 lines...
 
 ● Read 01-score-normalization.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalizati
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalizati
   │ on.md
   └ 77 lines read
 
 ● Read 14-local-gguf-reranker-via-node-llama-cpp.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/14-local-gguf-rerank
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/14-local-gguf-rerank
   │ er-via-node-llama-cpp.md
   └ 127 lines read
 
 ● Read 18-adaptive-shadow-ranking-bounded-proposals-and-rollback.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/18-adaptive-shadow-r
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/18-adaptive-shadow-r
   │ anking-bounded-proposals-and-rollback.md
   └ 55 lines read
 
-● List directory .opencode/skill/system-spec-kit/mcp_server
+● List directory .opencode/skills/system-spec-kit/mcp_server
   └ 34 files found
 
-● List directory .opencode/skill/system-spec-kit/scripts
+● List directory .opencode/skills/system-spec-kit/scripts
   └ 34 files found
 
 ● Search (glob)
-  │ "**/shared/**" in .opencode/skill/system-spec-kit/mcp_server
+  │ "**/shared/**" in .opencode/skills/system-spec-kit/mcp_server
   └ No matches found
 
 ● Search (glob)
-  │ "**/shared/**" in .opencode/skill/system-spec-kit/scripts
+  │ "**/shared/**" in .opencode/skills/system-spec-kit/scripts
   └ No matches found
 
 The docs are structured consistently, which helps. I’m now turning each file into a checklist of claimed paths/identifiers and comparing that against the current tree to spot stale references versus truly missing features.
@@ -100,7 +100,7 @@ The docs are structured consistently, which helps. I’m now turning each file i
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re, json
-  │ root = Path('.opencode/skill/system-spec-kit')
+  │ root = Path('.opencode/skills/system-spec-kit')
   │ base = root/'feature_catalog/11--scoring-and-calibration'…
   └ 22 lines...
 
@@ -119,7 +119,7 @@ I hit a bad shell pattern while generating the audit input file, so I’m restar
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re, json
-  │ root = Path('.opencode/skill/system-spec-kit')
+  │ root = Path('.opencode/skills/system-spec-kit')
   │ base = root/'feature_catalog/11--scoring-and-calibration'…
   └ 17 lines...
 
@@ -127,7 +127,7 @@ I hit a bad shell pattern while generating the audit input file, so I’m restar
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re, json
-  │ root = Path('.opencode/skill/system-spec-kit')
+  │ root = Path('.opencode/skills/system-spec-kit')
   │ base = root/'feature_catalog/11--scoring-and-calibration'…
   └ 22 lines...
 
@@ -139,14 +139,14 @@ I hit a bad shell pattern while generating the audit input file, so I’m restar
   │ "SPECKIT_SCORE_NORMALIZATION|normalizeRrfScores|normalizeCompositeScores|RERANKER_LOCAL|SPECKIT_
   │ MEMORY_ADAPTIVE_RANKING|effectiveScore|negative feedback|auto-promot|promotion|RRF_K|overlap
   │ bonus|holdout|learned stage 2|tool-level ttl|embedding cache|folder scoring|interference" in
-  │ {mcp_server,scripts}/**/*.{ts,js,py,sh} (.opencode/skill/system-spec-kit)
+  │ {mcp_server,scripts}/**/*.{ts,js,py,sh} (.opencode/skills/system-spec-kit)
   └ No matches found
 
 ● Generate token hit matrix (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re, json, subprocess, shlex
-  │ root = Path('.opencode/skill/system-spec-kit')
+  │ root = Path('.opencode/skills/system-spec-kit')
   │ base = root/'feature_catalog/11--scoring-and-calibration'…
   └ 57 lines...
 
@@ -154,7 +154,7 @@ I hit a bad shell pattern while generating the audit input file, so I’m restar
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re
-  │ base = Path('.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration')
+  │ base = Path('.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration')
   │ for p in sorted(base.glob('*.md')):…
   └ 30 lines...
 
@@ -162,7 +162,7 @@ I hit a bad shell pattern while generating the audit input file, so I’m restar
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re
-  │ base = Path('.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration')
+  │ base = Path('.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration')
   │ for p in sorted(base.glob('*.md')):…
   └ 52 lines...
 
@@ -172,7 +172,7 @@ The first pass is useful: most docs have live `mcp_server` evidence, but a few e
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re
-  │ base = Path('.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration')
+  │ base = Path('.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration')
   │ keywords = ['IMPLEMENTED', 'EFFECTIVELY DISABLED', 'graduated', 'introduced', 'now', …
   └ 32 lines...
 
@@ -180,7 +180,7 @@ The first pass is useful: most docs have live `mcp_server` evidence, but a few e
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re, json
-  │ root = Path('.opencode/skill/system-spec-kit')
+  │ root = Path('.opencode/skills/system-spec-kit')
   │ source_roots = [root/'mcp_server', root/'scripts']…
   └ 62 lines...
 
@@ -192,7 +192,7 @@ The first pass is useful: most docs have live `mcp_server` evidence, but a few e
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re, json
-  │ root = Path('.opencode/skill/system-spec-kit')
+  │ root = Path('.opencode/skills/system-spec-kit')
   │ source_roots = [root/'mcp_server', root/'scripts']…
   └ 53 lines...
 
@@ -209,120 +209,120 @@ The first pass is useful: most docs have live `mcp_server` evidence, but a few e
   └ L520:700 (80 lines read)
 
 ● Read 05-folder-level-relevance-scoring.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/05-folder-level-rele
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/05-folder-level-rele
   │ vance-scoring.md
   └ 58 lines read
 
 ● Read folder-scoring.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts
   └ 21 lines read
 
 ● Read folder-relevance.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-relevance.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-relevance.ts
   └ 238 lines read
 
 ✗ Read folder-scoring.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/shared/scoring/folder-scoring.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/shared/scoring/folder-scoring.ts
   └ Path does not exist
 
 ● Search (glob)
-  │ "**/rrf-fusion.ts" in .opencode/skill/system-spec-kit
+  │ "**/rrf-fusion.ts" in .opencode/skills/system-spec-kit
   └ 1 file found
 
 ● Search (glob)
-  │ "**/folder-scoring.ts" in .opencode/skill/system-spec-kit
+  │ "**/folder-scoring.ts" in .opencode/skills/system-spec-kit
   └ 2 files found
 
 ● Search (glob)
-  │ "**/local-reranker.ts" in .opencode/skill/system-spec-kit
+  │ "**/local-reranker.ts" in .opencode/skills/system-spec-kit
   └ 1 file found
 
 I found one clear drift already: `05-folder-level-relevance-scoring.md` describes a four-factor folder formula, but the live `folder-relevance.ts` implementation is the damped `DocScore = (1/sqrt(M+1))*SUM(score)` path instead. I’m validating the rest of the “maybe stale” entries the same way.
 
 ● Read quality-loop.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts
   └ 1 line read
 
 ● Read 17-temporal-structural-coherence-scoring.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structur
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structur
   │ al-coherence-scoring.md
   └ 50 lines read
 
 ● Read 13-scoring-and-fusion-corrections.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-fusio
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-fusio
   │ n-corrections.md
   └ 73 lines read
 
 ● Read 06-embedding-cache.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/06-embedding-cache.m
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/06-embedding-cache.m
   │ d
   └ 46 lines read
 
 ● Read embedding-cache.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
   └ 226 lines read
 
 ● Read quality-loop.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts
   └ L1:260 (260 lines read)
 
 ● Read quality-loop.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts
   └ L242:430 (189 lines read)
 
 ✗ Read learned-combiner.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/learned-combiner.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/learned-combiner.ts
   └ Path does not exist
 
 ● Read 08-rrf-k-value-sensitivity-analysis.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/08-rrf-k-value-sensi
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/08-rrf-k-value-sensi
   │ tivity-analysis.md
   └ 46 lines read
 
 ● Read k-value-analysis.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts
   └ 1 line read
 
 ● Read 19-learned-stage2-weight-combiner.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/19-learned-stage2-we
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/19-learned-stage2-we
   │ ight-combiner.md
   └ 53 lines read
 
 ● Read learned-combiner.ts
-  │ .opencode/skill/system-spec-kit/shared/ranking/learned-combiner.ts
+  │ .opencode/skills/system-spec-kit/shared/ranking/learned-combiner.ts
   └ 558 lines read
 
 ● Read k-value-analysis.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts
   └ L1:260 (260 lines read)
 
 ● Read 20-shadow-feedback-holdout-evaluation.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/20-shadow-feedback-h
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/20-shadow-feedback-h
   │ oldout-evaluation.md
   └ 47 lines read
 
 ● Read shadow-scoring.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts
   └ L1:260 (260 lines read)
 
 ● Read 10-auto-promotion-on-validation.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/10-auto-promotion-on
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/10-auto-promotion-on
   │ -validation.md
   └ 65 lines read
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
   └ L520:700 (176 lines read)
 
 ● Search (grep)
   │ "fuseResultsRsf|canonicalRrfId|withSyncedScoreAliases|syncScoreAliasesInPlace" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/shared)
+  │ (.opencode/skills/system-spec-kit/shared)
   └ 7 lines found
 
 ● Search (grep)
   │ "fuseResultsRsf|canonicalRrfId|withSyncedScoreAliases|syncScoreAliasesInPlace|computeInterferenc
   │ eScoresBatch|resolveEffectiveScore" in {lib,handlers,tests,core,configs,shared}/**/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ No matches found
 
 I’ve isolated the likely drift cases. I’m doing one last pass over `scripts/` now so I can explicitly say whether each feature is `mcp_server`-only or actually has companion implementation there too.
@@ -331,93 +331,93 @@ I’ve isolated the likely drift cases. I’m doing one last pass over `scripts/
   │ "SPECKIT_SCORE_NORMALIZATION|SPECKIT_NOVELTY_BOOST|SPECKIT_INTERFERENCE_SCORE|SPECKIT_CLASSIFICA
   │ TION_DECAY|SPECKIT_FOLDER_SCORING|SPECKIT_NEGATIVE_FEEDBACK|SPECKIT_MEMORY_ADAPTIVE_RANKING|SPEC
   │ KIT_LEARNED_STAGE2_COMBINER|SPECKIT_SHADOW_FEEDBACK|SPECKIT_CALIBRATED_OVERLAP_BONUS|SPECKIT_RRF
-  │ _K_EXPERIMENTAL|RERANKER_LOCAL" in **/*.{ts,js,py,sh} (.opencode/skill/system-spec-kit/scripts)
+  │ _K_EXPERIMENTAL|RERANKER_LOCAL" in **/*.{ts,js,py,sh} (.opencode/skills/system-spec-kit/scripts)
   └ No matches found
 
 ● Check scripts matches per feature (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re, subprocess
-  │ base = Path('.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration')
-  │ scripts = Path('.opencode/skill/system-spec-kit/scripts')…
+  │ base = Path('.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration')
+  │ scripts = Path('.opencode/skills/system-spec-kit/scripts')…
   └ 58 lines...
 
 I’ve confirmed `scripts/` doesn’t materially implement these scoring features; almost all real behavior lives in `mcp_server` plus a few shared modules. I’m pulling a final set of exact source snippets for the remaining edge cases, then I’ll deliver the per-file verdicts.
 
 ● Search (grep)
   │ "SPECKIT_NOVELTY_BOOST|calculateNoveltyBoost|noveltyBoostApplied"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts)
   └ 3 lines found
 
 ● Search (grep)
   │ "SPECKIT_INTERFERENCE_SCORE|computeInterferenceScoresBatch|INTERFERENCE_SIMILARITY_THRESHOLD"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts)
   └ 8 lines found
 
 ● Search (grep)
   │ "SPECKIT_CLASSIFICATION_DECAY|halfLifeDays|stability adjustment|classification decay"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts)
   └ 6 lines found
 
 ● Search (grep)
   │ "executeAutoPromotion|PROMOTION_PATHS|MAX_PROMOTIONS_PER_WINDOW|PROMOTION_WINDOW_HOURS|memory_pr
-  │ omotion_audit" (.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts)
+  │ omotion_audit" (.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts)
   └ 13 lines found
 
 ● Search (grep)
   │ "recordNegativeFeedbackEvent|RECOVERY_HALF_LIFE_MS|SPECKIT_NEGATIVE_FEEDBACK|negative_feedback_e
-  │ vents" in **/*.ts (.opencode/skill/system-spec-kit/mcp_server/lib)
+  │ vents" in **/*.ts (.opencode/skills/system-spec-kit/mcp_server/lib)
   └ 17 lines found
 
 ● Search (grep)
   │ "resolveEffectiveScore|withSyncedScoreAliases|syncScoreAliasesInPlace|stage2Score" in **/*.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline)
   └ 39 lines found
 
 ● Read folder-scoring.ts
-  │ .opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts
+  │ .opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "computeSingleFolderScore|computeFolderScores|folder-relevance|twoPhaseRetrieval|computeFolderRe
   │ levanceScores" in {mcp_server,shared,scripts}/**/*.{ts,js,py,sh}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ No matches found
 
 ● Search folder scoring call sites (shell)
   │ rg -n
   │ "computeSingleFolderScore|computeFolderScores|twoPhaseRetrieval|computeFolderRelevanceScores"
-  │ .opencode/skill/system-spec-kit/{mcp_server,shared,scripts} --glob '*.{ts,js,py,sh}' | head -n
+  │ .opencode/skills/system-spec-kit/{mcp_server,shared,scripts} --glob '*.{ts,js,py,sh}' | head -n
   │ 120
   └ 77 lines...
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L1248:1280 (32 lines read)
 
 ● Read rank-memories.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/rank-memories.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/rank-memories.ts
   └ L1:220 (220 lines read)
 
 ● Read 11-scoring-and-ranking-corrections.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/11-scoring-and-ranki
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/11-scoring-and-ranki
   │ ng-corrections.md
   └ 58 lines read
 
 ● Read rrf-fusion.ts
-  │ .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts
+  │ .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts
   └ L100:140 (41 lines read)
 
 ● Read rrf-fusion.ts
-  │ .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts
+  │ .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts
   └ L612:632 (21 lines read)
 
 ● Read types.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts
   └ L40:90 (51 lines read)
 
 ● Read stage2-fusion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
   └ L248:270 (23 lines read)
 
 I searched both requested trees. Real implementation is overwhelmingly in `mcp_server` (plus shared modules it imports); `scripts/` only had direct touchpoints for folder scoring and ablation tooling.

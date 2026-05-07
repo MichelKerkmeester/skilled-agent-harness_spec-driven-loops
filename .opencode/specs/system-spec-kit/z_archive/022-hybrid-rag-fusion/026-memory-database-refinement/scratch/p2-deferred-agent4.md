@@ -1,6 +1,6 @@
 ## Agent 4 Summary
 
-Implemented both deferred P2 trigger-matcher fixes in `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts` and added regression coverage in `.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts`.
+Implemented both deferred P2 trigger-matcher fixes in `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts` and added regression coverage in `.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts`.
 
 ### P2-034
 
@@ -17,7 +17,7 @@ Implemented both deferred P2 trigger-matcher fixes in `.opencode/skill/system-sp
 
 ### Verification
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -5`
-- `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/trigger-matcher.vitest.ts 2>&1 | tail -20`
+- `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -5`
+- `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/trigger-matcher.vitest.ts 2>&1 | tail -20`
 
 Both commands passed.

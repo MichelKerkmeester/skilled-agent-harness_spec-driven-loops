@@ -10,15 +10,15 @@ This iteration turns the winning design into an executable contract: one manifes
 
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-003.md` first to preserve the design decision and 15-file inventory.
 - Loaded the `sk-deep-research` quick reference and current state log.
-- Re-read `.opencode/skill/system-spec-kit/assets/template_mapping.md` and `.opencode/skill/system-spec-kit/templates/README.md` to confirm today's Level 1/2/3/3+ and phase-parent file behavior.
-- Checked `.opencode/skill/system-spec-kit/package.json` and `.opencode/skill/system-spec-kit/scripts/package.json` to place the golden tests in the existing Vitest surface.
+- Re-read `.opencode/skills/system-spec-kit/assets/template_mapping.md` and `.opencode/skills/system-spec-kit/templates/README.md` to confirm today's Level 1/2/3/3+ and phase-parent file behavior.
+- Checked `.opencode/skills/system-spec-kit/package.json` and `.opencode/skills/system-spec-kit/scripts/package.json` to place the golden tests in the existing Vitest surface.
 - Drafted the manifest JSON Schema, sample scaffold matrix, and golden-test contract.
 
 ## Findings
 
 ### Manifest Schema
 
-The manifest should be a schema-validated JSON file at `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`. The key design choice is to keep five axes separate:
+The manifest should be a schema-validated JSON file at `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`. The key design choice is to keep five axes separate:
 
 - `kind` says what kind of packet this is.
 - `capability` says what authored docs, section profiles, and validation rules are added.
@@ -208,9 +208,9 @@ Count check:
 
 Test file:
 
-- `.opencode/skill/system-spec-kit/scripts/tests/template-scaffold.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/template-scaffold.vitest.ts`
 
-The test belongs in `@spec-kit/scripts` because `.opencode/skill/system-spec-kit/scripts/package.json` already runs Vitest with `vitest run --config ../mcp_server/vitest.config.ts --root .`. The root package already calls `npm run test --workspace=@spec-kit/scripts`, so no new GitHub workflow is required unless a dedicated template-only job is desired.
+The test belongs in `@spec-kit/scripts` because `.opencode/skills/system-spec-kit/scripts/package.json` already runs Vitest with `vitest run --config ../mcp_server/vitest.config.ts --root .`. The root package already calls `npm run test --workspace=@spec-kit/scripts`, so no new GitHub workflow is required unless a dedicated template-only job is desired.
 
 Scaffolder signature:
 
@@ -243,7 +243,7 @@ Snapshot shape:
 
 ```ts
 expect(scaffoldFromManifest(
-  ".opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json",
+  ".opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json",
   "arch-change",
   ".opencode/specs/example-arch-change"
 )).toMatchInlineSnapshot()
@@ -264,9 +264,9 @@ Six requested test cases:
 
 CI hook:
 
-- Existing integration point: `.opencode/skill/system-spec-kit/scripts/package.json` `test` script, via `vitest run --config ../mcp_server/vitest.config.ts --root .`.
-- Root integration point: `.opencode/skill/system-spec-kit/package.json` `test:root`, which already runs `npm run test --workspace=@spec-kit/scripts`.
-- Optional dedicated local command: add `test:templates` to `.opencode/skill/system-spec-kit/scripts/package.json` as `vitest run tests/template-scaffold.vitest.ts --config ../mcp_server/vitest.config.ts --root .`.
+- Existing integration point: `.opencode/skills/system-spec-kit/scripts/package.json` `test` script, via `vitest run --config ../mcp_server/vitest.config.ts --root .`.
+- Root integration point: `.opencode/skills/system-spec-kit/package.json` `test:root`, which already runs `npm run test --workspace=@spec-kit/scripts`.
+- Optional dedicated local command: add `test:templates` to `.opencode/skills/system-spec-kit/scripts/package.json` as `vitest run tests/template-scaffold.vitest.ts --config ../mcp_server/vitest.config.ts --root .`.
 
 The prompt asks for 5 preset snapshots plus 1 minimum-viable case. The scaffold matrix names 6 presets if `investigation` is counted as a UX preset. To keep the requested 6-test harness, `investigation` should either be covered by the same baseline file-set assertion as `simple-change` with `kind=investigation`, or the harness should add a seventh snapshot. My recommendation is to add the seventh snapshot during implementation; otherwise one named preset remains unsnapshotted.
 

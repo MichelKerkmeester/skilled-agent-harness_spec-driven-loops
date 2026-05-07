@@ -15,13 +15,13 @@ The true phase-1 prerequisite is not the plugin shell itself. It is a shared com
 - compact-merger output
 - recovery digests
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:209-267`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:209-267`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
 
 Without that, the adapter would either duplicate assembly logic or rely on slower tool orchestration.
 
 ### The OpenCode Adapter Should Land Second
 
-The adapter depends on the shared payload/provenance layer, but it does **not** depend on doctor/export/import work. That makes it the fastest path to closing the actual OpenCode gap once the shared payload contract exists. [SOURCE: `.opencode/skill/system-spec-kit/references/config/hook_system.md:48-50`] [SOURCE: `external/opencode-lcm-master/src/store.ts:2876-2924`] [SOURCE: `external/opencode-lcm-master/src/store.ts:3242-3275`]
+The adapter depends on the shared payload/provenance layer, but it does **not** depend on doctor/export/import work. That makes it the fastest path to closing the actual OpenCode gap once the shared payload contract exists. [SOURCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md:48-50`] [SOURCE: `external/opencode-lcm-master/src/store.ts:2876-2924`] [SOURCE: `external/opencode-lcm-master/src/store.ts:3242-3275`]
 
 ### Hardening Comes Third And Has Its Own Order
 

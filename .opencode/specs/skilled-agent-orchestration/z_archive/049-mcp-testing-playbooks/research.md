@@ -36,7 +36,7 @@ This document captures the per-skill test-data inventory gathered during plan-mo
 ## 1. mcp-code-mode (CM) — foundational orchestrator
 
 ### Identity
-- Skill location: `.opencode/skill/mcp-code-mode`
+- Skill location: `.opencode/skills/mcp-code-mode`
 - Mode: hybrid orchestrator wrapping all external MCP servers
 - Foundational: defines the cross-skill vocabulary (manual-namespace, env-prefixing, call_tool_chain) that BDG, CU, and other MCP skills reference
 
@@ -94,7 +94,7 @@ cat .utcp_config.json | jq '.'
 list_tools()  # via Code Mode
 search_tools({task_description: "task management"})
 tool_info({tool_name: "clickup.clickup_create_task"})
-python3 .opencode/skill/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env
+python3 .opencode/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env
 ```
 
 ---
@@ -102,7 +102,7 @@ python3 .opencode/skill/mcp-code-mode/scripts/validate_config.py .utcp_config.js
 ## 2. mcp-chrome-devtools (BDG) — CLI primary, MCP fallback
 
 ### Identity
-- Skill location: `.opencode/skill/mcp-chrome-devtools`
+- Skill location: `.opencode/skills/mcp-chrome-devtools`
 - Mode: CLI-prioritized (`bdg`), MCP fallback via Code Mode for parallel instances
 - Browser-required: Chrome / Chromium / Edge
 
@@ -157,7 +157,7 @@ bdg network har <path>
 ## 3. mcp-clickup (CU) — CLI primary, MCP for enterprise
 
 ### Identity
-- Skill location: `.opencode/skill/mcp-clickup`
+- Skill location: `.opencode/skills/mcp-clickup`
 - Mode: CLI-prioritized (`cu`), MCP for enterprise features (docs, goals, webhooks, time tracking)
 - Auth: ClickUp API token + workspace ID required
 
@@ -238,7 +238,7 @@ Fix if conflict: add npm bin to PATH first: `echo 'export PATH="$(npm config get
 ## 4. mcp-coco-index (CCC) — semantic code search (audit only)
 
 ### Identity (existing playbook is current)
-- Skill location: `.opencode/skill/mcp-coco-index`
+- Skill location: `.opencode/skills/mcp-coco-index`
 - Mode: hybrid CLI (`ccc`) + single MCP `search` tool
 - **Existing playbook**: `manual_testing_playbook/` with 23 scenarios across 7 categories (CCC-001..CCC-005, MCP-001..MCP-007, CFG-001..CFG-003, DMN-001..DMN-002, ADV-001..ADV-002, ERR-001, INT-001..INT-003)
 
@@ -297,9 +297,9 @@ The 3 PARTIAL items (`--path` CLI, daemon log, similarity threshold) are explici
 
 #### Files appended
 
-- `.opencode/skill/mcp-coco-index/manual_testing_playbook/02--mcp-search-tool/008-concurrent-refresh-race.md` (MCP-008)
-- `.opencode/skill/mcp-coco-index/manual_testing_playbook/03--configuration/004-root-path-env-var-override.md` (CFG-004)
-- `.opencode/skill/mcp-coco-index/manual_testing_playbook/04--daemon-lifecycle/003-helper-script-readiness.md` (DMN-003)
+- `.opencode/skills/mcp-coco-index/manual_testing_playbook/02--mcp-search-tool/008-concurrent-refresh-race.md` (MCP-008)
+- `.opencode/skills/mcp-coco-index/manual_testing_playbook/03--configuration/004-root-path-env-var-override.md` (CFG-004)
+- `.opencode/skills/mcp-coco-index/manual_testing_playbook/04--daemon-lifecycle/003-helper-script-readiness.md` (DMN-003)
 
 #### Root-playbook edits (append-only)
 
@@ -317,10 +317,10 @@ All 23 existing IDs (CCC-001..CCC-005, MCP-001..MCP-007, CFG-001..CFG-003, DMN-0
 
 ## 6. Sources for Phase-1 inventory
 
-- `.opencode/skill/mcp-chrome-devtools/SKILL.md` (CLI surface, MCP surface, recovery commands)
-- `.opencode/skill/mcp-clickup/SKILL.md` and `references/install_guides/INSTALL_GUIDE.md` (full CLI + MCP catalogs, system-cu conflict, auth flow)
-- `.opencode/skill/mcp-coco-index/SKILL.md` and existing `manual_testing_playbook/` (current contract; Phase-5 audit baseline)
-- `.opencode/skill/mcp-code-mode/SKILL.md` and `references/install_guides/INSTALL_GUIDE.md` (manual-namespace contract, env-prefixing rule, validation script, tool counts)
-- `.opencode/command/create/testing-playbook.md` (workflow contract for `/create:testing-playbook`)
-- `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` (root + snippet templates)
+- `.opencode/skills/mcp-chrome-devtools/SKILL.md` (CLI surface, MCP surface, recovery commands)
+- `.opencode/skills/mcp-clickup/SKILL.md` and `references/install_guides/INSTALL_GUIDE.md` (full CLI + MCP catalogs, system-cu conflict, auth flow)
+- `.opencode/skills/mcp-coco-index/SKILL.md` and existing `manual_testing_playbook/` (current contract; Phase-5 audit baseline)
+- `.opencode/skills/mcp-code-mode/SKILL.md` and `references/install_guides/INSTALL_GUIDE.md` (manual-namespace contract, env-prefixing rule, validation script, tool counts)
+- `.opencode/commands/create/testing-playbook.md` (workflow contract for `/create:testing-playbook`)
+- `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` (root + snippet templates)
 - 5 in-tree precedent playbooks: mcp-coco-index, sk-deep-research, sk-improve-agent, sk-deep-review, system-spec-kit

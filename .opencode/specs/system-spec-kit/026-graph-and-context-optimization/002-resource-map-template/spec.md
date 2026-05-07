@@ -98,12 +98,12 @@ Create a first-class, reusable `resource-map.md` template discoverable across al
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` | Modify | Local-owner path resolution (Phase 001) |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Modify | Convergence-time resource-map emission (Phase 003) |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Convergence-time resource-map emission (Phase 003) |
-| `.opencode/skill/system-spec-kit/templates/resource-map.md` | Create | New cross-cutting template (Phase 002) |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Modify | Add filename to SPEC_DOCUMENT_FILENAMES (Phase 002) |
-| `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Create | Shared evidence extractor (Phase 003) |
+| `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Modify | Local-owner path resolution (Phase 001) |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modify | Convergence-time resource-map emission (Phase 003) |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Convergence-time resource-map emission (Phase 003) |
+| `.opencode/skills/system-spec-kit/templates/resource-map.md` | Create | New cross-cutting template (Phase 002) |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Modify | Add filename to SPEC_DOCUMENT_FILENAMES (Phase 002) |
+| `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Create | Shared evidence extractor (Phase 003) |
 <!-- /ANCHOR:scope -->
 
 ---

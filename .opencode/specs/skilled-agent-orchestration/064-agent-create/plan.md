@@ -53,7 +53,7 @@ LEAF agent with caller-restriction convention. Same architecture as @code (orche
 
 | Phase | Steps |
 |---|---|
-| P1 | cli-codex authors canonical .opencode/agent/create.md |
+| P1 | cli-codex authors canonical .opencode/agents/create.md |
 | P2 | Mirror to 3 other runtimes (Bash) |
 | P3 | Update 6 /create:* commands' Phase 0 gating |
 | P4 | Sync READMEs + orchestrate + CLAUDE/AGENTS |

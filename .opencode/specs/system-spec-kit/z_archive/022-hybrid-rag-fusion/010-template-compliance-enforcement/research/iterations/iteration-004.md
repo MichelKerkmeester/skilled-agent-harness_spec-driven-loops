@@ -5,14 +5,14 @@ Q3 + Q4: Examine what enforcement mechanisms already exist across different CLIs
 
 ## Findings
 
-1. **All 4 CLIs have @speckit agent definitions with identical compliance instructions but NO write-time enforcement.** Copilot (`.opencode/agent/speckit.md`), Claude Code (`.claude/agents/speckit.md`), Codex (`.codex/agents/speckit.toml`), and Gemini (`.gemini/agents/speckit.md`) all contain the same core instructions: "Always copy templates from templates/level_N/ folders. NEVER create spec documentation from scratch or memory." However, the enforcement is purely instructional -- it tells the agent WHAT to do but provides no automated check that verifies compliance. The only validation call is "Run validate.sh before claiming completion" which is a soft instruction at the end of the workflow, not a hard gate after each write.
-   [SOURCE: .opencode/agent/speckit.md, .claude/agents/speckit.md, .codex/agents/speckit.toml, .gemini/agents/speckit.md]
+1. **All 4 CLIs have @speckit agent definitions with identical compliance instructions but NO write-time enforcement.** Copilot (`.opencode/agents/speckit.md`), Claude Code (`.claude/agents/speckit.md`), Codex (`.codex/agents/speckit.toml`), and Gemini (`.gemini/agents/speckit.md`) all contain the same core instructions: "Always copy templates from templates/level_N/ folders. NEVER create spec documentation from scratch or memory." However, the enforcement is purely instructional -- it tells the agent WHAT to do but provides no automated check that verifies compliance. The only validation call is "Run validate.sh before claiming completion" which is a soft instruction at the end of the workflow, not a hard gate after each write.
+   [SOURCE: .opencode/agents/speckit.md, .claude/agents/speckit.md, .codex/agents/speckit.toml, .gemini/agents/speckit.md]
 
 2. **The @speckit agent definition already contains one inline scaffold (spec.md Level 2) but the other 4 document types have NO inline scaffolds.** Section 8 "Template Patterns" includes a "Quick Reference: Level 2 spec.md scaffold" showing the exact H1, ANCHOR tags, and H2 sequence. But plan.md, tasks.md, checklist.md, and implementation-summary.md have zero inline scaffolds. This means agents must read the template files at runtime -- a step that can be skipped or produce stale results.
-   [SOURCE: .opencode/agent/speckit.md:324-344 and .claude/agents/speckit.md:324-344]
+   [SOURCE: .opencode/agents/speckit.md:324-344 and .claude/agents/speckit.md:324-344]
 
-3. **A pre-commit hook script exists (`pre-commit-spec-validate.sh`) but is NOT installed.** The file at `.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` is a well-designed 250-line script that runs a fast 6-rule subset (FILE_EXISTS, LEVEL_DECLARED, FRONTMATTER_VALID, TEMPLATE_SOURCE, ANCHORS_VALID, FOLDER_NAMING) on staged spec files. However, `.git/hooks/pre-commit` does NOT exist -- only the `.sample` file is present. The hook has never been activated.
-   [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh:1-250, .git/hooks/pre-commit.sample (no real pre-commit)]
+3. **A pre-commit hook script exists (`pre-commit-spec-validate.sh`) but is NOT installed.** The file at `.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` is a well-designed 250-line script that runs a fast 6-rule subset (FILE_EXISTS, LEVEL_DECLARED, FRONTMATTER_VALID, TEMPLATE_SOURCE, ANCHORS_VALID, FOLDER_NAMING) on staged spec files. However, `.git/hooks/pre-commit` does NOT exist -- only the `.sample` file is present. The hook has never been activated.
+   [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh:1-250, .git/hooks/pre-commit.sample (no real pre-commit)]
 
 4. **The `.speckit-enforce.yaml` configuration file IS present and correctly configured.** It defines `mode: warn`, `new_folder_mode: block`, `created_after: 2026-03-22`, and a list of 6 pre-commit rules. The enforcement date being set to today's date (2026-03-22) suggests it was recently configured for this research effort. The script reads this YAML without requiring external tools (grep-based parsing).
    [SOURCE: .speckit-enforce.yaml:1-22]
@@ -24,14 +24,14 @@ Q3 + Q4: Examine what enforcement mechanisms already exist across different CLIs
    [INFERENCE: based on findings 1-5 combined]
 
 7. **The @speckit agent definition has a "validate after each write" rule that is inconsistently stated.** In the ALWAYS rules (section 5), it says: "Run scripts/spec/validate.sh [SPEC_FOLDER] --strict immediately after each spec-doc write or update." But in the Inline Scaffold Contract (section 8), it says: "Run scripts/spec/validate.sh [SPEC_FOLDER] --strict before moving to the next workflow step." These are different enforcement points -- "after each write" vs "before next step" -- and the workflow diagram (section 1) only shows validation once at the end: "VALIDATE: Run validate.sh -> Exit 0/1 = proceed, Exit 2 = fix and re-validate." Three conflicting enforcement timing directives in the same agent definition.
-   [SOURCE: .opencode/agent/speckit.md lines ~238, ~325, ~114]
+   [SOURCE: .opencode/agents/speckit.md lines ~238, ~325, ~114]
 
 ## Sources Consulted
-- `.opencode/agent/speckit.md` (Copilot @speckit agent, 570 lines)
+- `.opencode/agents/speckit.md` (Copilot @speckit agent, 570 lines)
 - `.claude/agents/speckit.md` (Claude Code @speckit agent, 566 lines)
 - `.codex/agents/speckit.toml` (Codex @speckit agent, TOML format, 80 lines read)
 - `.gemini/agents/speckit.md` (Gemini @speckit agent, exists at 26KB)
-- `.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` (250 lines)
+- `.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` (250 lines)
 - `.speckit-enforce.yaml` (22 lines)
 - `.claude/settings.local.json` (7 lines)
 - `.git/hooks/` directory listing

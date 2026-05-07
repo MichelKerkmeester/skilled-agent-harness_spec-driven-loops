@@ -19,12 +19,12 @@ D1 Correctness — core ESM boundary
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/spec.md:116]
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/tasks.md:60]
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/checklist.md:46]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:59]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts:16]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:17]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:15]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/tsconfig.json:2]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/package.json:5]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:59]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:16]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:17]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:15]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/tsconfig.json:2]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:5]
 - Impact: The packet claims the CommonJS scripts package now crosses a clean explicit interop boundary, but the current tree still contains direct sibling imports from a CommonJS package into migrated ESM packages.
 - Final severity: P1
 
@@ -36,7 +36,7 @@ D1 Correctness — core ESM boundary
     ".opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/spec.md:116",
     ".opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/tasks.md:60",
     ".opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/checklist.md:46",
-    ".opencode/skill/system-spec-kit/scripts/core/workflow.ts:59"
+    ".opencode/skills/system-spec-kit/scripts/core/workflow.ts:59"
   ],
   "counterevidenceSought": "Checked whether the imports are isolated to tests or type-only shims; several are live runtime or operator entrypoints.",
   "alternativeExplanation": "If the TypeScript pipeline always rewrites these imports into a safe runtime bridge, the docs could still be directionally right, but the source contract presented to maintainers is not explicit today.",
@@ -50,9 +50,9 @@ D1 Correctness — core ESM boundary
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:46]
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:73]
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:84]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/package.json:7]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/shared/package.json:19]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/package.json:40]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:7]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/shared/package.json:19]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/package.json:40]
 - Impact: The runtime-compatibility story is internally inconsistent: the packet celebrates Node 25-native `require(esm)` proof, but the shipped manifests still promise a lower engine floor.
 - Final severity: P1
 
@@ -64,7 +64,7 @@ D1 Correctness — core ESM boundary
     ".opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:46",
     ".opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:73",
     ".opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:84",
-    ".opencode/skill/system-spec-kit/scripts/package.json:7"
+    ".opencode/skills/system-spec-kit/scripts/package.json:7"
   ],
   "counterevidenceSought": "Looked for matching Node-25-only engine bumps or scoped caveats in package metadata and packet docs; none were found in the cited surfaces.",
   "alternativeExplanation": "The team may intend Node 25 proof as supplemental rather than normative, but the implementation summary presents it as the key boundary decision.",
@@ -83,15 +83,15 @@ D1 Correctness — core ESM boundary
 - Checked package metadata, tsconfig mode, and current runtime entrypoints for archived crash claims; no fresh top-level-await blocker surfaced.
 
 ## Sources Reviewed
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/package.json:40]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:59]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:17]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:15]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/package.json:5]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/package.json:7]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts:16]
-- [SOURCE: .opencode/skill/system-spec-kit/shared/package.json:19]
-- [SOURCE: .opencode/skill/system-spec-kit/tsconfig.json:2]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/package.json:40]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:59]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:17]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:15]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:5]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:7]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:16]
+- [SOURCE: .opencode/skills/system-spec-kit/shared/package.json:19]
+- [SOURCE: .opencode/skills/system-spec-kit/tsconfig.json:2]
 - [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/checklist.md:46]
 - [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:46]
 - [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:73]

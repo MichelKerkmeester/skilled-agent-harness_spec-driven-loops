@@ -62,12 +62,12 @@ Verify all 30 findings opened by the first deep-review pass (review/) are now cl
 
 Same scope as review-pt-01 — see `review-pt-01/resource-map.md` Section 1. Key targets after remediation:
 
-- `.opencode/command/spec_kit/skill-advisor.md` (renumbered 1-12, GATE 3 EXEMPT updated, USER INPUT + KEY BEHAVIORS sections; Task removed from allowed-tools)
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml` (mutation_boundaries.validator added; phase_3_apply now 9 numbered steps with validate_targets first; proposal_validation block; conditional lane edits; rules.NEVER expanded)
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml` (same patterns; pre_phase_4 branched on build_status; per_skill_loop accepted_responses_schema)
+- `.opencode/commands/spec_kit/skill-advisor.md` (renumbered 1-12, GATE 3 EXEMPT updated, USER INPUT + KEY BEHAVIORS sections; Task removed from allowed-tools)
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml` (mutation_boundaries.validator added; phase_3_apply now 9 numbered steps with validate_targets first; proposal_validation block; conditional lane edits; rules.NEVER expanded)
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml` (same patterns; pre_phase_4 branched on build_status; per_skill_loop accepted_responses_schema)
 - `.opencode/install_guides/SET-UP - Skill Advisor.md` (Section 5 ROLLBACK rewritten with per-run script + git stash safety)
 - `.opencode/README.md` (counts: 22/30 with breakdown including doctor)
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` (Section 3.1.14 wording: "validated in Phase 3 by canonical-path validator")
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` (Section 3.1.14 wording: "validated in Phase 3 by canonical-path validator")
 - Parent `008-skill-advisor/{context-index,spec,tasks}.md` (trigger_phrases include 012; description text 12 children)
 - Parent `008-skill-advisor/changelog/changelog-008-012-*.md` (3 added rows, .opencode/ prefixes)
 - Packet docs (this file)

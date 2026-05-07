@@ -114,7 +114,7 @@ Research packet with externalized iteration state.
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Structural validation | Spec folder required files, anchors, frontmatter, and links | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Structural validation | Spec folder required files, anchors, frontmatter, and links | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 | Artifact audit | 5 iteration files, 5 delta files, state events, final report | `find`, direct file reads |
 | Convergence audit | newInfoRatio sequence and stop reason | JSONL state and report section 7 |
 | Scope audit | No runtime code writes | `git status --short` and file path review |

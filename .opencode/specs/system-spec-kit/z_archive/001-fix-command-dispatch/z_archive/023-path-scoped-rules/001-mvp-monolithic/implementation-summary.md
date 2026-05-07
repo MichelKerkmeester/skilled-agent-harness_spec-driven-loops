@@ -24,7 +24,7 @@ Implemented `validate-spec.sh`, a spec folder validation script that enforces do
 
 ### 1. Core Script: validate-spec.sh (~600 lines)
 
-**Location:** `.opencode/skill/system-spec-kit/scripts/validate-spec.sh`
+**Location:** `.opencode/skills/system-spec-kit/scripts/validate-spec.sh`
 
 **Features:**
 - Argument parsing: `--json`, `--strict`, `--verbose`, `--help`
@@ -38,7 +38,7 @@ Implemented `validate-spec.sh`, a spec folder validation script that enforces do
 
 ### 2. Test Suite
 
-**Location:** `.opencode/skill/system-spec-kit/scripts/test-validation.sh`
+**Location:** `.opencode/skills/system-spec-kit/scripts/test-validation.sh`
 
 **Test Fixtures:**
 - `valid-level1/` - Level 1 spec (spec.md, plan.md, tasks.md)
@@ -84,16 +84,16 @@ This prevents false positives when documentation describes the patterns being de
 
 ```bash
 # Basic validation
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/xxx-name/
+.opencode/skills/system-spec-kit/scripts/validate-spec.sh specs/xxx-name/
 
 # JSON output for tooling
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh --json specs/xxx-name/
+.opencode/skills/system-spec-kit/scripts/validate-spec.sh --json specs/xxx-name/
 
 # Strict mode (warnings = errors)
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh --strict specs/xxx-name/
+.opencode/skills/system-spec-kit/scripts/validate-spec.sh --strict specs/xxx-name/
 
 # Run test suite
-.opencode/skill/system-spec-kit/scripts/test-validation.sh
+.opencode/skills/system-spec-kit/scripts/test-validation.sh
 ```
 
 ## Deferred Items

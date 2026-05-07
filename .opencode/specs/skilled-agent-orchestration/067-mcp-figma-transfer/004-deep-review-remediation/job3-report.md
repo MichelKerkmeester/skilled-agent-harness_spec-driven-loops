@@ -28,7 +28,7 @@ Status: COMPLETE
 | decision-record.md | `SPECKIT_TEMPLATE_SOURCE` present; ADR-001 template anchor scaffold added; frontmatter continuity normalized |
 | implementation-summary.md | `SPECKIT_TEMPLATE_SOURCE` present; implementation-summary anchors normalized; verification artifact added; frontmatter continuity normalized |
 
-Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/001-barter-figma-agent --strict --verbose` → exit 0, 0 errors, 0 warnings.
+Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/001-barter-figma-agent --strict --verbose` → exit 0, 0 errors, 0 warnings.
 
 ### 002-public-figma-agent
 
@@ -43,7 +43,7 @@ Status: COMPLETE
 | decision-record.md | `SPECKIT_TEMPLATE_SOURCE` present; ADR-001 template anchor scaffold added; frontmatter continuity normalized |
 | implementation-summary.md | `SPECKIT_TEMPLATE_SOURCE` present; implementation-summary anchors normalized; verification artifact added; frontmatter continuity normalized |
 
-Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/002-public-figma-agent --strict --verbose` → exit 0, 0 errors, 0 warnings.
+Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/002-public-figma-agent --strict --verbose` → exit 0, 0 errors, 0 warnings.
 
 ### 003-mcp-figma-skill-removal
 
@@ -58,7 +58,7 @@ Status: COMPLETE
 | decision-record.md | `SPECKIT_TEMPLATE_SOURCE` present; ADR-001 template anchor scaffold added; frontmatter continuity normalized |
 | implementation-summary.md | `SPECKIT_TEMPLATE_SOURCE` present; implementation-summary anchors normalized; verification artifact added; frontmatter continuity normalized |
 
-Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal --strict --verbose` → exit 0, 0 errors, 0 warnings.
+Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal --strict --verbose` → exit 0, 0 errors, 0 warnings.
 
 ## T020 — P0 Checklist Evidence
 
@@ -91,15 +91,15 @@ Status: COMPLETE
 
 ## Verification Commands
 
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/001-barter-figma-agent --strict --verbose` → PASS
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/002-public-figma-agent --strict --verbose` → PASS
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal --strict --verbose` → PASS
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/001-barter-figma-agent --strict --verbose` → PASS
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/002-public-figma-agent --strict --verbose` → PASS
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal --strict --verbose` → PASS
 - `rg -n "^- \[ \].*\[P0\]" .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/00{1,2,3}-*/checklist.md` → no matches
 - JSONL check: 8 events total, 7 iteration events
 
 ## Additional Completion Gate
 
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/004-deep-review-remediation --strict --verbose` → PASS
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/004-deep-review-remediation --strict --verbose` → PASS
 
 ## Residual Notes
 

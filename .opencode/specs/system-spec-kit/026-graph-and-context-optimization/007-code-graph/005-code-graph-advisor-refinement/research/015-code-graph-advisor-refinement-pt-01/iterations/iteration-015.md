@@ -21,7 +21,7 @@ F40 was chosen over F41 (HMAC rotation edge case) and F43 (instrumentation names
 - `mcp_server/skill-advisor/schemas/` — barrel-export check: there is no `index.ts` aggregator in this directory (verified: `ls schemas/` shows 5 `.ts` files + a `README.md`, no `index.ts`). So `promotion-cycle.ts` is imported by direct path (`../schemas/promotion-cycle.js` from bench files), not via a barrel. After delete, the only consumers are the 3 bench files already on the delete list. [SOURCE: `ls mcp_server/skill-advisor/schemas/` returned `advisor-tool-schemas.ts daemon-status.ts generation-metadata.ts promotion-cycle.ts skill-derived-v2.ts README.md tool-input-schemas.ts` — note `tool-input-schemas.ts` is the closest thing to a barrel, but it has zero `promotion` token matches]
 - `mcp_server/schemas/tool-input-schemas.ts` — grep `promotion` returned zero matches. **Clean.** [SOURCE: `grep -n "promotion\|Promotion" mcp_server/schemas/tool-input-schemas.ts → 0 matches`]
 - `.github/workflows/` — directory does not exist. No CI workflow files. The repo has no GitHub Actions surface that would reference promotion test/bench scripts. [SOURCE: `find .github/workflows -name "*.yml" -o -name "*.yaml" → 0 results`]
-- `scripts/` shell scripts (20 files) — grep `promotion\|promote` against the entire `scripts/` tree returned zero matches in `.sh` files. The only hits are documentary references inside `scripts/optimizer/promote.cjs` and `scripts/optimizer/optimizer-manifest.json` — both of which are an **unrelated subsystem**, see F69. [SOURCE: `grep -rln "promotion\|promote" .opencode/skill/system-spec-kit/scripts/`]
+- `scripts/` shell scripts (20 files) — grep `promotion\|promote` against the entire `scripts/` tree returned zero matches in `.sh` files. The only hits are documentary references inside `scripts/optimizer/promote.cjs` and `scripts/optimizer/optimizer-manifest.json` — both of which are an **unrelated subsystem**, see F69. [SOURCE: `grep -rln "promotion\|promote" .opencode/skills/system-spec-kit/scripts/`]
 
 **New delete-plan row required:**
 
@@ -124,15 +124,15 @@ The right move is **NOT to collapse 5 → 1**, but to **explicitly canonicalize 
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/package.json:1-72` (full read)
-- `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts:1-42` (full read)
-- `.opencode/skill/system-spec-kit/mcp_server/tsconfig.json:1-31` (full read)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/` (ls + structural inspection)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/safety-bench.ts:9-10` (promotion import confirmation)
-- `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:1-40` + `optimizer-manifest.json:129,136` (false-positive disambiguation)
-- `find .opencode/skill/system-spec-kit/scripts -type f \( -name "*.sh" -o -name "*.yml" \)` (CI surface check — no GitHub Actions)
+- `.opencode/skills/system-spec-kit/mcp_server/package.json:1-72` (full read)
+- `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:1-42` (full read)
+- `.opencode/skills/system-spec-kit/mcp_server/tsconfig.json:1-31` (full read)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/` (ls + structural inspection)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/safety-bench.ts:9-10` (promotion import confirmation)
+- `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:1-40` + `optimizer-manifest.json:129,136` (false-positive disambiguation)
+- `find .opencode/skills/system-spec-kit/scripts -type f \( -name "*.sh" -o -name "*.yml" \)` (CI surface check — no GitHub Actions)
 - `.opencode/specs/.../research/iterations/iteration-003.md:120-320` (V1-V5 catalog reload + erratum source)
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:11-16,43,213,240,247` (V3 + import-path erratum verification)
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:11-16,43,213,240,247` (V3 + import-path erratum verification)
 
 ## Assessment
 

@@ -84,22 +84,22 @@ This pass combined documentation normalization and code correction instead of tr
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/shared-spaces.vitest.ts tests/memory-governance.vitest.ts tests/tool-input-schema.vitest.ts tests/handler-memory-context.vitest.ts tests/memory-tools.vitest.ts tests/shared-memory-handlers.vitest.ts tests/graph-search-fn.vitest.ts` | PASS (`7` files, `112` tests) |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features` | PASS after parent/phase normalization and decision-record anchor cleanup |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features --recursive --json` | PASS (`errors: 0`, `warnings: 0`, parent + six phases validated) |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/quality-audit.sh --json --root .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features` | PASS (`7/7` folders pass) |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh <parent+phase-folders> --json` | PASS (`7/7` folders complete, `0` quality-gate misses) |
-| `cd . && /usr/bin/python3 .opencode/skill/sk-doc/scripts/validate_document.py <README/spec/plan/tasks/checklist/decision-record/implementation-summary across parent+phases> --json` | PASS (`49` documents validated) |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/shared-spaces.vitest.ts tests/memory-governance.vitest.ts` | PASS (`22` tests) |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run test:hydra:phase1` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/feature-flag-reference-docs.vitest.ts tests/hydra-spec-pack-consistency.vitest.ts tests/shared-spaces.vitest.ts tests/memory-governance.vitest.ts tests/memory-lineage-state.vitest.ts tests/memory-lineage-backfill.vitest.ts tests/adaptive-ranking.vitest.ts tests/graph-roadmap-finalization.vitest.ts` | PASS (`53` tests) |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm test` | PASS (`283` passed files, `7790` passed tests, `11` skipped, `28` todo) |
-| `cd .opencode/skill/system-spec-kit/scripts && npm run check` | PASS |
-| `cd .opencode/skill/system-spec-kit/scripts && npm run build` | PASS |
-| `cd .opencode/skill/system-spec-kit/scripts && npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/codex-cli-capture.vitest.ts tests/copilot-cli-capture.vitest.ts tests/gemini-cli-capture.vitest.ts tests/claude-code-capture.vitest.ts tests/opencode-capture.vitest.ts` | PASS (`7` files, `54` tests) |
-| `cd .opencode/skill/system-spec-kit && python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` | PASS (`0` findings, `0` warnings, `0` violations) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/shared-spaces.vitest.ts tests/memory-governance.vitest.ts tests/tool-input-schema.vitest.ts tests/handler-memory-context.vitest.ts tests/memory-tools.vitest.ts tests/shared-memory-handlers.vitest.ts tests/graph-search-fn.vitest.ts` | PASS (`7` files, `112` tests) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features` | PASS after parent/phase normalization and decision-record anchor cleanup |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features --recursive --json` | PASS (`errors: 0`, `warnings: 0`, parent + six phases validated) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/quality-audit.sh --json --root .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features` | PASS (`7/7` folders pass) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh <parent+phase-folders> --json` | PASS (`7/7` folders complete, `0` quality-gate misses) |
+| `cd . && /usr/bin/python3 .opencode/skills/sk-doc/scripts/validate_document.py <README/spec/plan/tasks/checklist/decision-record/implementation-summary across parent+phases> --json` | PASS (`49` documents validated) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/shared-spaces.vitest.ts tests/memory-governance.vitest.ts` | PASS (`22` tests) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run test:hydra:phase1` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/feature-flag-reference-docs.vitest.ts tests/hydra-spec-pack-consistency.vitest.ts tests/shared-spaces.vitest.ts tests/memory-governance.vitest.ts tests/memory-lineage-state.vitest.ts tests/memory-lineage-backfill.vitest.ts tests/adaptive-ranking.vitest.ts tests/graph-roadmap-finalization.vitest.ts` | PASS (`53` tests) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm test` | PASS (`283` passed files, `7790` passed tests, `11` skipped, `28` todo) |
+| `cd .opencode/skills/system-spec-kit/scripts && npm run check` | PASS |
+| `cd .opencode/skills/system-spec-kit/scripts && npm run build` | PASS |
+| `cd .opencode/skills/system-spec-kit/scripts && npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/codex-cli-capture.vitest.ts tests/copilot-cli-capture.vitest.ts tests/gemini-cli-capture.vitest.ts tests/claude-code-capture.vitest.ts tests/opencode-capture.vitest.ts` | PASS (`7` files, `54` tests) |
+| `cd .opencode/skills/system-spec-kit && python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` | PASS (`0` findings, `0` warnings, `0` violations) |
 | `2026-03-17T20:22:39Z timeout 35 claude -p "Reply with exactly OK."` | PASS (exit `0`, payload `OK`, exact `true`) |
 | `2026-03-17T20:23:25Z timeout 35 opencode run "Reply with exactly OK." --format json` | PASS (exit `0`, payload includes `"text":"OK"`, exact assistant text `true`) |
 | `2026-03-17T20:24:08Z timeout 35 codex exec "Reply with exactly OK." --model gpt-5.3-codex --sandbox read-only` | PASS (exit `0`, assistant payload `OK`, exact assistant text `true`) |

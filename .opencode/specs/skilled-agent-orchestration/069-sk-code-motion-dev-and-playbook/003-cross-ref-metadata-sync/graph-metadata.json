@@ -46,12 +46,12 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skill/sk-code/assets/webflow/patterns/wait_patterns.js",
-      ".opencode/skill/sk-code/SKILL.md",
-      ".opencode/skill/sk-code/README.md",
-      ".opencode/skill/sk-code/description.json",
-      ".opencode/skill/sk-code/graph-metadata.json",
-      ".opencode/skill/sk-code/changelog/changelog-069-motion-dev-and-playbook.md"
+      ".opencode/skills/sk-code/assets/webflow/patterns/wait_patterns.js",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/sk-code/changelog/changelog-069-motion-dev-and-playbook.md"
     ],
     "entities": [
       {
@@ -87,37 +87,37 @@
       {
         "name": "wait_patterns.js",
         "kind": "code",
-        "path": ".opencode/skill/sk-code/assets/webflow/patterns/wait_patterns.js",
+        "path": ".opencode/skills/sk-code/assets/webflow/patterns/wait_patterns.js",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/SKILL.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/README.md",
+        "path": ".opencode/skills/sk-code/README.md",
         "source": "derived"
       },
       {
         "name": "description.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-code/description.json",
+        "path": ".opencode/skills/sk-code/description.json",
         "source": "derived"
       },
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-code/graph-metadata.json",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
         "source": "derived"
       },
       {
         "name": "changelog-069-motion-dev-and-playbook.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/changelog/changelog-069-motion-dev-and-playbook.md",
+        "path": ".opencode/skills/sk-code/changelog/changelog-069-motion-dev-and-playbook.md",
         "source": "derived"
       },
       {

@@ -16,10 +16,10 @@ _memory:
     next_safe_action: "Rerun validator"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/templates/resource-map.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts"
-      - ".opencode/skill/system-spec-kit/SKILL.md"
-      - ".opencode/skill/system-spec-kit/templates/README.md"
+      - ".opencode/skills/system-spec-kit/templates/resource-map.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts"
+      - ".opencode/skills/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-spec-kit/templates/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-04-24"
@@ -69,18 +69,18 @@ A single coordinated pass updated ~12 surfaces: the main templates README (Struc
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/templates/resource-map.md` | Created | The template itself. |
-| `.opencode/skill/system-spec-kit/templates/README.md` | Modified | Structure row + Workflow Notes + Related. |
-| `.opencode/skill/system-spec-kit/templates/level_1/README.md` | Modified | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_2/README.md` | Modified | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_3/README.md` | Modified | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_3+/README.md` | Modified | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Canonical spec docs + cross-cutting templates + distributed governance blocks. |
-| `.opencode/skill/system-spec-kit/README.md` | Modified | Template architecture section. |
-| `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` | Modified | Cross-cutting Templates row + per-level Optional Files mentions. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Modified | Append to SPEC_DOCUMENT_FILENAMES. |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` | Created | Feature catalog entry. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` | Created | Playbook scenario. |
+| `.opencode/skills/system-spec-kit/templates/resource-map.md` | Created | The template itself. |
+| `.opencode/skills/system-spec-kit/templates/README.md` | Modified | Structure row + Workflow Notes + Related. |
+| `.opencode/skills/system-spec-kit/templates/level_1/README.md` | Modified | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_2/README.md` | Modified | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_3/README.md` | Modified | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_3+/README.md` | Modified | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Canonical spec docs + cross-cutting templates + distributed governance blocks. |
+| `.opencode/skills/system-spec-kit/README.md` | Modified | Template architecture section. |
+| `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` | Modified | Cross-cutting Templates row + per-level Optional Files mentions. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Modified | Append to SPEC_DOCUMENT_FILENAMES. |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` | Created | Feature catalog entry. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` | Created | Playbook scenario. |
 | `CLAUDE.md` | Modified | Documentation Levels cross-cutting note. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/002-resource-map-template-creation/*` | Created | Packet docs (spec, plan, tasks, checklist, implementation-summary, description.json, graph-metadata.json). |
 <!-- /ANCHOR:what-built -->

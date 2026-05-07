@@ -4,47 +4,47 @@ phase	category	path	ref_count	notes
 004	runtime-gemini	.gemini/agents/improve-prompt.md	9	hidden runtime mirror body refs
 004	runtime-gemini	.gemini/commands/create/prompt.toml	2	hidden Gemini create command embeds skill path in TOML prompt
 004	runtime-gemini	.gemini/commands/improve/README.txt	2	hidden Gemini command README link refs
-003	agent-body	.opencode/agent/improve-prompt.md	9	agent filename unchanged body refs only
+003	agent-body	.opencode/agents/improve-prompt.md	9	agent filename unchanged body refs only
 005	changelog	.opencode/changelog/agent-orchestration/v2.4.0.0.md	4	active changelog refs
-003	dispatcher-cmd	.opencode/command/improve/README.txt	2	dispatcher README table and link refs
-003	dispatcher-cmd	.opencode/command/improve/prompt.md	10	dispatcher command body refs
+003	dispatcher-cmd	.opencode/commands/improve/README.txt	2	dispatcher README table and link refs
+003	dispatcher-cmd	.opencode/commands/improve/prompt.md	10	dispatcher command body refs
 005	install-guide	.opencode/install_guides/README.md	3	install guide catalog refs
 005	install-guide	.opencode/install_guides/SET-UP - AGENTS.md	2	install guide skill table refs
-005	skill-readme	.opencode/skill/README.md	4	skill catalog README refs
-003	cli-mirror-parent	.opencode/skill/cli-claude-code/SKILL.md	1	parent skill routing table ref
-003	cli-mirror	.opencode/skill/cli-claude-code/assets/prompt_quality_card.md	1	mirrored prompt quality card ref
-003	cli-mirror-playbook	.opencode/skill/cli-claude-code/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-5-check.md	1	manual playbook ref
-003	cli-mirror-parent	.opencode/skill/cli-codex/SKILL.md	1	parent skill routing table ref
-003	cli-mirror	.opencode/skill/cli-codex/assets/prompt_quality_card.md	1	mirrored prompt quality card ref
-003	cli-mirror-parent	.opencode/skill/cli-gemini/SKILL.md	1	parent skill routing table ref
-003	cli-mirror	.opencode/skill/cli-gemini/assets/prompt_quality_card.md	1	mirrored prompt quality card ref
-003	cli-mirror	.opencode/skill/cli-opencode/assets/prompt_quality_card.md	1	mirrored prompt quality card ref
-003	cli-mirror-playbook	.opencode/skill/cli-opencode/manual_testing_playbook/07--prompt-templates/002-clear-quality-card.md	2	manual playbook refs
-003	sk-doc-cross-ref	.opencode/skill/deep-agent-improvement/SKILL.md	1	cross-skill reference to prompt skill
-003	sk-doc-cross-ref	.opencode/skill/deep-agent-improvement/changelog/v1.1.0.0.md	1	cross-skill changelog reference
-003	sk-doc-cross-ref	.opencode/skill/deep-agent-improvement/graph-metadata.json	1	cross-skill graph metadata reference
-003	sk-doc-cross-ref	.opencode/skill/sk-code/assets/opencode/checklists/mcp_server_authoring.md	2	advisor authoring checklist refs
-003	sk-doc-cross-ref	.opencode/skill/sk-code/manual_testing_playbook/04--skill-advisor-integration/001-advisor-probe-battery.md	1	advisor probe playbook ref
-002	skill-internal	.opencode/skill/sk-improve-prompt/README.md	4	path embeds plus skill name refs
-002	skill-internal	.opencode/skill/sk-improve-prompt/SKILL.md	1	frontmatter name ref and filename embed
-002	skill-internal	.opencode/skill/sk-improve-prompt/assets/cli_prompt_quality_card.md	3	asset refs and filename embed through folder
-002	skill-internal	.opencode/skill/sk-improve-prompt/changelog/v1.0.0.0.md	1	changelog ref and filename embed through folder
-002	skill-internal	.opencode/skill/sk-improve-prompt/changelog/v1.1.0.0.md	7	changelog refs and filename embed through folder
-002	skill-internal	.opencode/skill/sk-improve-prompt/changelog/v1.2.0.0.md	7	changelog refs and filename embed through folder
-002	skill-internal	.opencode/skill/sk-improve-prompt/graph-metadata.json	15	metadata title trigger path refs and filename embed
-002	skill-internal	.opencode/skill/sk-improve-prompt/references/depth_framework.md	1	reference doc self-ref and filename embed through folder
-005	changelog	.opencode/skill/system-spec-kit/changelog/v3.4.0.0.md	1	active system-spec-kit changelog ref
-003	skill-graph-json	.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json	1	advisor graph metadata ref
-003	scorer	.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts	1	hardcoded skill ID literal
-003	scorer	.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts	9	hardcoded skill ID literals
-003	scorer	.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts	1	hardcoded skill ID key
-003	cli-mirror	.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh	1	sync script source path
-003	advisor-fixture	.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl	2	regression expected_top_any refs
-003	advisor-fixture	.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/routing-accuracy/labeled-prompts.jsonl	10	routing accuracy expected skill refs
-002	skill-graph-json	.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json	5	JSON key and graph edge refs
-003	advisor-py	.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py	31	TOKEN PHRASE and command bridge literals
-005	observability	.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md	1	forward-facing measurement report ID
-005	observability	.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl	15	forward-facing measurement result IDs
+005	skill-readme	.opencode/skills/README.md	4	skill catalog README refs
+003	cli-mirror-parent	.opencode/skills/cli-claude-code/SKILL.md	1	parent skill routing table ref
+003	cli-mirror	.opencode/skills/cli-claude-code/assets/prompt_quality_card.md	1	mirrored prompt quality card ref
+003	cli-mirror-playbook	.opencode/skills/cli-claude-code/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-5-check.md	1	manual playbook ref
+003	cli-mirror-parent	.opencode/skills/cli-codex/SKILL.md	1	parent skill routing table ref
+003	cli-mirror	.opencode/skills/cli-codex/assets/prompt_quality_card.md	1	mirrored prompt quality card ref
+003	cli-mirror-parent	.opencode/skills/cli-gemini/SKILL.md	1	parent skill routing table ref
+003	cli-mirror	.opencode/skills/cli-gemini/assets/prompt_quality_card.md	1	mirrored prompt quality card ref
+003	cli-mirror	.opencode/skills/cli-opencode/assets/prompt_quality_card.md	1	mirrored prompt quality card ref
+003	cli-mirror-playbook	.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/002-clear-quality-card.md	2	manual playbook refs
+003	sk-doc-cross-ref	.opencode/skills/deep-agent-improvement/SKILL.md	1	cross-skill reference to prompt skill
+003	sk-doc-cross-ref	.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md	1	cross-skill changelog reference
+003	sk-doc-cross-ref	.opencode/skills/deep-agent-improvement/graph-metadata.json	1	cross-skill graph metadata reference
+003	sk-doc-cross-ref	.opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md	2	advisor authoring checklist refs
+003	sk-doc-cross-ref	.opencode/skills/sk-code/manual_testing_playbook/04--skill-advisor-integration/001-advisor-probe-battery.md	1	advisor probe playbook ref
+002	skill-internal	.opencode/skills/sk-improve-prompt/README.md	4	path embeds plus skill name refs
+002	skill-internal	.opencode/skills/sk-improve-prompt/SKILL.md	1	frontmatter name ref and filename embed
+002	skill-internal	.opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md	3	asset refs and filename embed through folder
+002	skill-internal	.opencode/skills/sk-improve-prompt/changelog/v1.0.0.0.md	1	changelog ref and filename embed through folder
+002	skill-internal	.opencode/skills/sk-improve-prompt/changelog/v1.1.0.0.md	7	changelog refs and filename embed through folder
+002	skill-internal	.opencode/skills/sk-improve-prompt/changelog/v1.2.0.0.md	7	changelog refs and filename embed through folder
+002	skill-internal	.opencode/skills/sk-improve-prompt/graph-metadata.json	15	metadata title trigger path refs and filename embed
+002	skill-internal	.opencode/skills/sk-improve-prompt/references/depth_framework.md	1	reference doc self-ref and filename embed through folder
+005	changelog	.opencode/skills/system-spec-kit/changelog/v3.4.0.0.md	1	active system-spec-kit changelog ref
+003	skill-graph-json	.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json	1	advisor graph metadata ref
+003	scorer	.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts	1	hardcoded skill ID literal
+003	scorer	.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts	9	hardcoded skill ID literals
+003	scorer	.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts	1	hardcoded skill ID key
+003	cli-mirror	.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh	1	sync script source path
+003	advisor-fixture	.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl	2	regression expected_top_any refs
+003	advisor-fixture	.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/routing-accuracy/labeled-prompts.jsonl	10	routing accuracy expected skill refs
+002	skill-graph-json	.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json	5	JSON key and graph edge refs
+003	advisor-py	.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py	31	TOKEN PHRASE and command bridge literals
+005	observability	.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md	1	forward-facing measurement report ID
+005	observability	.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl	15	forward-facing measurement result IDs
 005	observability	.opencode/specs/descriptions.json	4	generated spec index refs
 005	observability	.opencode/specs/skilled-agent-orchestration/059-agent-implement-code/research/stream-03-internal-agent-inventory/research/deltas/iter-004.jsonl	1	active research delta ref
 005	observability	.opencode/specs/skilled-agent-orchestration/059-agent-implement-code/research/stream-03-internal-agent-inventory/research/findings-registry.json	1	active research findings ref

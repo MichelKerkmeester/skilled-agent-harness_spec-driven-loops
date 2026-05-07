@@ -1,7 +1,7 @@
 {
   "id": "deep-research",
   "family": "derived",
-  "targetPath": ".opencode/agent/deep-research.md",
+  "targetPath": ".opencode/agents/deep-research.md",
   "outputKind": "markdown",
   "promotionEligible": false,
   "generated": true,

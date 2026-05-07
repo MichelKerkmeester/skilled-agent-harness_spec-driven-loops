@@ -47,11 +47,11 @@ Mainframe is the shared cache layer. `src/lib/mainframe/bridge.ts`, `rooms.ts`, 
 7. Then trace the self-healing path in this order: `external/src/lib/core/feedback.ts`, `external/src/lib/core/janitor.ts`, `external/src/lib/core/generator.ts`, and the `enrichFromFeedback(...)` helper inside `external/src/mcp.ts`. Follow the lifecycle from agent failure report to repair queue, regeneration, enrichment, freshness handling, and feedback counters.
 8. Then trace Mainframe in this order: `external/src/lib/mainframe/bridge.ts`, `client.ts`, `rooms.ts`, `dedup.ts`, and `summarizer.ts`. Capture the sync model, query-hash dedup strategy, room state usage, janitor lock behavior, budget limits, summary generation, privacy assumptions, and where conflict resolution is absent or minimal.
 9. Read `external/package.json`, `external/README.md`, `external/TROUBLESHOOTING.md`, and `external/LICENSE-COMMERCIAL.md` only after the core source pass. Use them to confirm runtime assumptions, Bun requirements, setup flow, provider support, `.mcp.json` generation, the 93% token-reduction claim, and the actual AGPL/commercial licensing model.
-10. Compare Contextador directly against current `Code_Environment/Public` surfaces: `.opencode/skill/mcp-coco-index/README.md` for semantic search, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` plus related handlers for memory and code-graph retrieval, and the current code-graph and memory tool surfaces. Do not use a stale baseline.
+10. Compare Contextador directly against current `Code_Environment/Public` surfaces: `.opencode/skills/mcp-coco-index/README.md` for semantic search, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` plus related handlers for memory and code-graph retrieval, and the current code-graph and memory tool surfaces. Do not use a stale baseline.
 11. Resolve cross-phase boundaries explicitly. Do not collapse this phase into codesight's static file generation or graphify's knowledge-graph analysis. This phase owns the MCP query surface, bounded self-healing loop, shared query cache, and cross-agent reuse model.
 12. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/003-contextador" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/003-contextador" --strict
     ```
 13. After validation passes, run deep research with this exact topic:
     ```text
@@ -60,7 +60,7 @@ Mainframe is the shared cache layer. `src/lib/mainframe/bridge.ts`, `rooms.ts`, 
 14. Save canonical analysis output to `research/research.md`. Every meaningful finding must cite exact file paths, explain what Contextador actually does, why it matters for `Code_Environment/Public`, whether the evidence is source-proven or README-level, what subsystem is affected, and whether the recommendation is `adopt now`, `prototype later`, or `reject`.
 15. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/003-contextador"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/003-contextador"
     ```
 
 ## 6. Research Questions

@@ -4,7 +4,7 @@
 Finish RQ-6 by checking whether existing backfill review flags catch the observed status drift and normalization issues.
 
 ## Findings
-1. Backfill only flags `ambiguous_status` when metadata says `planned` and neither `spec.md` nor `plan.md` contains a frontmatter status matching `(planned|complete|in_progress|blocked)`. It does not inspect markdown status tables or `implementation-summary.md` presence. [SOURCE: .opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:120-133]
+1. Backfill only flags `ambiguous_status` when metadata says `planned` and neither `spec.md` nor `plan.md` contains a frontmatter status matching `(planned|complete|in_progress|blocked)`. It does not inspect markdown status tables or `implementation-summary.md` presence. [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:120-133]
 2. The corpus contains three non-canonical stored status tokens: `Complete`, `In Progress`, and `review`, which shows casing and vocabulary are not normalized at write time. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 3. The dominant failure mode is still silent false-`planned`, not exotic tokens. That means review-flag coverage is narrower than the real semantic status problem. [INFERENCE: based on backfill review rules plus the 259 planned-with-implementation-summary mismatches]
 
@@ -15,7 +15,7 @@ Finish RQ-6 by checking whether existing backfill review flags catch the observe
 - Chasing rare casing drift before addressing the far larger planned-vs-implementation mismatch.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:120-133`
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:120-133`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

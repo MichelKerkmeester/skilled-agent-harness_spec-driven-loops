@@ -44,11 +44,11 @@ _memory:
 
 ### Problem Statement
 
-Skill READMEs and command READMEs vary in quality, structure and voice. Most lack two-tier voice, comparison tables, numbered Feature subsections and HVR compliance. The recently upgraded `.opencode/skill/sk-doc/references/specific/readme_creation.md` and `.opencode/skill/sk-doc/references/global/hvr_rules.md` from spec 032 define production-quality standards that no existing skill README meets except the system-spec-kit exemplars.
+Skill READMEs and command READMEs vary in quality, structure and voice. Most lack two-tier voice, comparison tables, numbered Feature subsections and HVR compliance. The recently upgraded `.opencode/skills/sk-doc/references/specific/readme_creation.md` and `.opencode/skills/sk-doc/references/global/hvr_rules.md` from spec 032 define production-quality standards that no existing skill README meets except the system-spec-kit exemplars.
 
 ### Purpose
 
-Rewrite all 23 READMEs from scratch to match the quality demonstrated by `.opencode/skill/system-spec-kit/README.md` and `.opencode/skill/system-spec-kit/mcp_server/README.md`, applying the full README creation workflow and HVR standards.
+Rewrite all 23 READMEs from scratch to match the quality demonstrated by `.opencode/skills/system-spec-kit/README.md` and `.opencode/skills/system-spec-kit/mcp_server/README.md`, applying the full README creation workflow and HVR standards.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -62,49 +62,49 @@ Rewrite all 23 READMEs from scratch to match the quality demonstrated by `.openc
 
 | # | Skill | Path |
 |---|-------|------|
-| 1 | Skill root | `.opencode/skill/README.md` |
-| 2 | cli-claude-code | `.opencode/skill/cli-claude-code/README.md` |
-| 3 | cli-codex | `.opencode/skill/cli-codex/README.md` |
-| 4 | cli-copilot | `.opencode/skill/cli-copilot/README.md` |
-| 5 | cli-gemini | `.opencode/skill/cli-gemini/README.md` |
-| 6 | mcp-chrome-devtools | `.opencode/skill/mcp-chrome-devtools/README.md` |
-| 7 | mcp-clickup | `.opencode/skill/mcp-clickup/README.md` |
-| 8 | mcp-coco-index | `.opencode/skill/mcp-coco-index/README.md` |
-| 9 | mcp-code-mode | `.opencode/skill/mcp-code-mode/README.md` |
-| 10 | mcp-figma | `.opencode/skill/mcp-figma/README.md` |
-| 11 | scripts | `.opencode/skill/skill-advisor/README.md` |
-| 12 | sk-code-full-stack | `.opencode/skill/sk-code-full-stack/README.md` |
-| 13 | sk-code-opencode | `.opencode/skill/sk-code-opencode/README.md` |
-| 14 | sk-code-review | `.opencode/skill/sk-code-review/README.md` |
-| 15 | sk-code-web | `.opencode/skill/sk-code-web/README.md` |
-| 16 | sk-deep-research | `.opencode/skill/sk-deep-research/README.md` |
-| 17 | sk-doc | `.opencode/skill/sk-doc/README.md` |
-| 18 | sk-git | `.opencode/skill/sk-git/README.md` |
-| 19 | sk-improve-prompt | `.opencode/skill/sk-improve-prompt/README.md` |
+| 1 | Skill root | `.opencode/skills/README.md` |
+| 2 | cli-claude-code | `.opencode/skills/cli-claude-code/README.md` |
+| 3 | cli-codex | `.opencode/skills/cli-codex/README.md` |
+| 4 | cli-copilot | `.opencode/skills/cli-copilot/README.md` |
+| 5 | cli-gemini | `.opencode/skills/cli-gemini/README.md` |
+| 6 | mcp-chrome-devtools | `.opencode/skills/mcp-chrome-devtools/README.md` |
+| 7 | mcp-clickup | `.opencode/skills/mcp-clickup/README.md` |
+| 8 | mcp-coco-index | `.opencode/skills/mcp-coco-index/README.md` |
+| 9 | mcp-code-mode | `.opencode/skills/mcp-code-mode/README.md` |
+| 10 | mcp-figma | `.opencode/skills/mcp-figma/README.md` |
+| 11 | scripts | `.opencode/skills/skill-advisor/README.md` |
+| 12 | sk-code-full-stack | `.opencode/skills/sk-code-full-stack/README.md` |
+| 13 | sk-code-opencode | `.opencode/skills/sk-code-opencode/README.md` |
+| 14 | sk-code-review | `.opencode/skills/sk-code-review/README.md` |
+| 15 | sk-code-web | `.opencode/skills/sk-code-web/README.md` |
+| 16 | sk-deep-research | `.opencode/skills/sk-deep-research/README.md` |
+| 17 | sk-doc | `.opencode/skills/sk-doc/README.md` |
+| 18 | sk-git | `.opencode/skills/sk-git/README.md` |
+| 19 | sk-improve-prompt | `.opencode/skills/sk-improve-prompt/README.md` |
 
 **4 Command README sources** (rewrite from scratch, with markdown conversion tracked from the current committed `.txt` files):
 
 | # | Command | Tracked Path | Rewrite Intent |
 |---|---------|--------------|----------------|
-| 20 | Command root | `.opencode/command/README.txt` | Convert the committed text README into the markdown command reference |
-| 21 | create | `.opencode/command/create/README.txt` | Convert the committed text README into the markdown command reference |
-| 22 | memory | `.opencode/command/memory/README.txt` | Convert the committed text README into the markdown command reference |
-| 23 | spec_kit | `.opencode/command/spec_kit/README.txt` | Convert the committed text README into the markdown command reference |
+| 20 | Command root | `.opencode/commands/README.txt` | Convert the committed text README into the markdown command reference |
+| 21 | create | `.opencode/commands/create/README.txt` | Convert the committed text README into the markdown command reference |
+| 22 | memory | `.opencode/commands/memory/README.txt` | Convert the committed text README into the markdown command reference |
+| 23 | spec_kit | `.opencode/commands/spec_kit/README.txt` | Convert the committed text README into the markdown command reference |
 
 ### Out of Scope
 
-- `.opencode/skill/system-spec-kit/README.md` -- exemplar, do not touch
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` -- exemplar, do not touch
-- `.opencode/skill/system-spec-kit/SHARED_MEMORY_DATABASE.md` -- exemplar, do not touch
+- `.opencode/skills/system-spec-kit/README.md` -- exemplar, do not touch
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` -- exemplar, do not touch
+- `.opencode/skills/system-spec-kit/SHARED_MEMORY_DATABASE.md` -- exemplar, do not touch
 - SKILL.md files -- only READMEs are in scope
 - Any non-README documentation
 
 ### Standards to Apply
 
 Every README must follow:
-- `.opencode/skill/sk-doc/references/specific/readme_creation.md` workflow (Section 5 structural format rules, Section 7 pre-publish checklist)
-- `.opencode/skill/sk-doc/assets/documentation/readme_template.md` 9-section structure (use Skill type: Overview, Quick Start, Features, Structure, Configuration, Usage Examples, Troubleshooting, FAQ, Related Documents)
-- `.opencode/skill/sk-doc/references/global/hvr_rules.md` v0.210 (0 hard blockers, structural patterns, voice personality)
+- `.opencode/skills/sk-doc/references/specific/readme_creation.md` workflow (Section 5 structural format rules, Section 7 pre-publish checklist)
+- `.opencode/skills/sk-doc/assets/documentation/readme_template.md` 9-section structure (use Skill type: Overview, Quick Start, Features, Structure, Configuration, Usage Examples, Troubleshooting, FAQ, Related Documents)
+- `.opencode/skills/sk-doc/references/global/hvr_rules.md` v0.210 (0 hard blockers, structural patterns, voice personality)
 - Two-tier voice (narrative + reference) for all Skill type READMEs
 - Blockquote tagline after H1
 - Numbered H2 ALL CAPS, numbered H3/H4 ALL CAPS for Feature subsections
@@ -122,7 +122,7 @@ Every README must follow:
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Every README follows 9-section structure | All applicable sections present per `.opencode/skill/sk-doc/references/specific/readme_creation.md` Section 3 type matrix |
+| REQ-001 | Every README follows 9-section structure | All applicable sections present per `.opencode/skills/sk-doc/references/specific/readme_creation.md` Section 3 type matrix |
 | REQ-002 | Every README has blockquote tagline after H1 | One-sentence tagline in `>` blockquote |
 | REQ-003 | Every README uses numbered H2 ALL CAPS with anchors | `## N. SECTION NAME` plus explicit anchor markers such as `ANCHOR:overview` |
 | REQ-004 | Every README passes HVR pre-publish checklist | 0 hard blocker words, 0 em dashes, 0 semicolons |
@@ -141,9 +141,9 @@ Every README must follow:
 
 ### Acceptance Scenarios
 
-1. **Given** a skill README source in `.opencode/skill/*/SKILL.md`, **when** the rewrite is drafted, **then** the resulting README reflects the source behavior and keeps the Level 2 documentation packet synchronized.
-2. **Given** a command README source in `.opencode/command/*/README.txt`, **when** the command packet is reviewed, **then** the spec references the committed source file and the migration intent remains explicit.
-3. **Given** the system-spec-kit exemplars at `.opencode/skill/system-spec-kit/README.md` and `.opencode/skill/system-spec-kit/mcp_server/README.md`, **when** quality is assessed, **then** structure and voice are evaluated against those committed references.
+1. **Given** a skill README source in `.opencode/skills/*/SKILL.md`, **when** the rewrite is drafted, **then** the resulting README reflects the source behavior and keeps the Level 2 documentation packet synchronized.
+2. **Given** a command README source in `.opencode/commands/*/README.txt`, **when** the command packet is reviewed, **then** the spec references the committed source file and the migration intent remains explicit.
+3. **Given** the system-spec-kit exemplars at `.opencode/skills/system-spec-kit/README.md` and `.opencode/skills/system-spec-kit/mcp_server/README.md`, **when** quality is assessed, **then** structure and voice are evaluated against those committed references.
 4. **Given** validator enforcement for anchors and template headers, **when** the packet files are updated, **then** each required section and anchor is present without template drift.
 <!-- /ANCHOR:requirements -->
 
@@ -152,7 +152,7 @@ Every README must follow:
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All 23 READMEs match the quality standard of `.opencode/skill/system-spec-kit/README.md`
+- **SC-001**: All 23 READMEs match the quality standard of `.opencode/skills/system-spec-kit/README.md`
 - **SC-002**: 0 HVR hard blocker violations across all files
 - **SC-003**: Every README is self-contained (understandable without reading SKILL.md)
 - **SC-004**: Command .txt files replaced with .md files
@@ -167,8 +167,8 @@ Every README must follow:
 |------|------|--------|------------|
 | Risk | Context window exhaustion (23 files) | High | Batch in groups of 4-5 per session, or use parallel agents |
 | Risk | Skill-specific content requires reading each SKILL.md | Med | Read SKILL.md before writing each README |
-| Dependency | `.opencode/skill/sk-doc/references/specific/readme_creation.md` and `.opencode/skill/sk-doc/references/global/hvr_rules.md` (spec 032) | Green | Completed in this session |
-| Dependency | `.opencode/skill/system-spec-kit/README.md`, `.opencode/skill/system-spec-kit/mcp_server/README.md`, and `.opencode/skill/system-spec-kit/SHARED_MEMORY_DATABASE.md` | Green | Stable, do not modify |
+| Dependency | `.opencode/skills/sk-doc/references/specific/readme_creation.md` and `.opencode/skills/sk-doc/references/global/hvr_rules.md` (spec 032) | Green | Completed in this session |
+| Dependency | `.opencode/skills/system-spec-kit/README.md`, `.opencode/skills/system-spec-kit/mcp_server/README.md`, and `.opencode/skills/system-spec-kit/SHARED_MEMORY_DATABASE.md` | Green | Stable, do not modify |
 <!-- /ANCHOR:risks -->
 
 ---

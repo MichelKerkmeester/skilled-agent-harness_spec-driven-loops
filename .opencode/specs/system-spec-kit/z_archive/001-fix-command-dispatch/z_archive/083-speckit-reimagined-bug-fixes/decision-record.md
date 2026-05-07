@@ -62,7 +62,7 @@ The MCP server's `memory-parser.js` uses regex to extract ANCHOR-tagged sections
 
 ### Context
 
-Command files reference YAML workflow assets at `.opencode/command/spec_kit/assets/` but actual files are at `.claude/commands/spec_kit/assets/`.
+Command files reference YAML workflow assets at `.opencode/commands/spec_kit/assets/` but actual files are at `.claude/commands/spec_kit/assets/`.
 
 ### Decision
 

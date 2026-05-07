@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: End-User Scope Default for Code Graph Indexing"
-description: "Code graph currently indexes everything under .opencode/skill/, polluting end-user code searches with skill/system internals. Default should be end-user-repo-only; skill indexing must require an explicit opt-in feature flag."
+description: "Code graph currently indexes everything under .opencode/skills/, polluting end-user code searches with skill/system internals. Default should be end-user-repo-only; skill indexing must require an explicit opt-in feature flag."
 trigger_phrases:
   - "end user scope default"
   - "code graph skill indexing"
@@ -30,7 +30,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Scope decision lives in code_graph/lib/indexer-types.ts plus lib/utils/index-scope.ts."
-      - "Default exclusion should be path-prefix based for .opencode/skill/**."
+      - "Default exclusion should be path-prefix based for .opencode/skills/**."
       - "Opt-in granularity should be all skill internals on/off via SPECKIT_CODE_GRAPH_INDEX_SKILLS=true or includeSkills:true."
       - "Existing graph migration should force a loud full scan because incremental cleanup will not remove existing out-of-scope files."
       - "Advisor and skill graph use separate metadata storage and should not block this change."
@@ -116,7 +116,7 @@ End-user-repo-only is the **default**. Skill code indexing becomes opt-in via fe
 
 ### Functional
 
-- F1: Default `code_graph_scan` MUST exclude `.opencode/skill/` and adjacent skill-related paths.
+- F1: Default `code_graph_scan` MUST exclude `.opencode/skills/` and adjacent skill-related paths.
 - F2: A documented feature flag MUST enable skill indexing on demand.
 - F3: Existing maintainer workflow (developing on spec-kit itself) MUST have a documented one-step setup for skill indexing.
 - F4: Default behavior MUST not silently break consumers (advisor, hooks, blast_radius queries).

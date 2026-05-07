@@ -53,10 +53,10 @@
     "status": "in_progress",
     "key_files": [
       "review/archive-rvw-2026-04-11/review-report.md",
-      ".opencode/skill/sk-deep-review/references/state_format.md",
-      ".opencode/skill/sk-deep-review/references/loop_protocol.md",
-      ".opencode/agent/deep-review.md",
-      ".opencode/skill/sk-deep-review/references/convergence.md",
+      ".opencode/skills/sk-deep-review/references/state_format.md",
+      ".opencode/skills/sk-deep-review/references/loop_protocol.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/skills/sk-deep-review/references/convergence.md",
       "008-further-deep-loop-improvements/implementation-summary.md",
       "spec.md",
       "tasks.md",
@@ -76,25 +76,25 @@
       {
         "name": "state_format.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-review/references/state_format.md",
+        "path": ".opencode/skills/sk-deep-review/references/state_format.md",
         "source": "derived"
       },
       {
         "name": "loop_protocol.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-review/references/loop_protocol.md",
+        "path": ".opencode/skills/sk-deep-review/references/loop_protocol.md",
         "source": "derived"
       },
       {
         "name": "deep-review.md",
         "kind": "doc",
-        "path": ".opencode/agent/deep-review.md",
+        "path": ".opencode/agents/deep-review.md",
         "source": "derived"
       },
       {
         "name": "convergence.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-review/references/convergence.md",
+        "path": ".opencode/skills/sk-deep-review/references/convergence.md",
         "source": "derived"
       },
       {

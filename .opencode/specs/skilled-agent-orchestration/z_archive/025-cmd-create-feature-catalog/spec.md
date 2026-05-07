@@ -31,7 +31,7 @@ This packet defines the implementation contract for a new `/create:feature-catal
 
 **Key Decisions**: Keep the user-facing command name `/create:feature-catalog` while scaffolding the canonical `feature_catalog/` folder; treat spec `021-sk-doc-feature-catalog-testing-playbook` as the source of truth for package shape and authoring rules.
 
-**Critical Dependencies**: `.opencode/skill/sk-doc/references/specific/feature_catalog_creation.md`, `.opencode/skill/sk-doc/assets/documentation/feature_catalog/`, and the existing `create/*` command conventions.
+**Critical Dependencies**: `.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md`, `.opencode/skills/sk-doc/assets/documentation/feature_catalog/`, and the existing `create/*` command conventions.
 
 ---
 
@@ -66,10 +66,10 @@ Add `/create:feature-catalog` so authors can generate or update a canonical `fea
 ## 3. SCOPE
 
 ### In Scope
-- Add a canonical command entrypoint at `.opencode/command/create/feature-catalog.md`.
+- Add a canonical command entrypoint at `.opencode/commands/create/feature-catalog.md`.
 - Add paired workflow assets:
-  - `.opencode/command/create/assets/create_feature_catalog_auto.yaml`
-  - `.opencode/command/create/assets/create_feature_catalog_confirm.yaml`
+  - `.opencode/commands/create/assets/create_feature_catalog_auto.yaml`
+  - `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml`
 - Add the runtime mirror `.agents/commands/create/feature-catalog.toml`.
 - Define command setup flow for:
   - target skill name
@@ -78,9 +78,9 @@ Add `/create:feature-catalog` so authors can generate or update a canonical `fea
   - `:auto|:confirm` execution mode
   - source strategy based on existing playbook/catalog state
 - Require the command to load:
-  - `.opencode/skill/sk-doc/references/specific/feature_catalog_creation.md`
-  - `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`
-  - `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`
+  - `.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md`
+  - `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`
+  - `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`
 - Define output contract for `<skill-root>/feature_catalog/FEATURE_CATALOG.md` plus numbered root-level category folders and per-feature files.
 - Scope the implementation to existing create-command patterns, runtime mirrors, and command-advertising docs that list live create commands.
 
@@ -94,14 +94,14 @@ Add `/create:feature-catalog` so authors can generate or update a canonical `fea
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/create/feature-catalog.md` | Create | Canonical command definition for `/create:feature-catalog` |
-| `.opencode/command/create/assets/create_feature_catalog_auto.yaml` | Create | Auto-mode workflow |
-| `.opencode/command/create/assets/create_feature_catalog_confirm.yaml` | Create | Confirm-mode workflow |
+| `.opencode/commands/create/feature-catalog.md` | Create | Canonical command definition for `/create:feature-catalog` |
+| `.opencode/commands/create/assets/create_feature_catalog_auto.yaml` | Create | Auto-mode workflow |
+| `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml` | Create | Confirm-mode workflow |
 | `.agents/commands/create/feature-catalog.toml` | Create | Runtime mirror for the command |
-| `.opencode/command/create/README.txt` | Modify | Add the new command to the create-command inventory |
-| `.opencode/command/README.txt` | Modify | Keep top-level command catalog aligned |
+| `.opencode/commands/create/README.txt` | Modify | Add the new command to the create-command inventory |
+| `.opencode/commands/README.txt` | Modify | Keep top-level command catalog aligned |
 | `.opencode/README.md` | Modify | Reflect the new create command in runtime-facing docs |
-| `.opencode/agent/write.md` | Modify | Add the command to write-agent guidance where create commands are enumerated |
+| `.opencode/agents/write.md` | Modify | Add the command to write-agent guidance where create commands are enumerated |
 | `.claude/agents/write.md` | Modify | Keep ChatGPT runtime write guidance aligned |
 | `.codex/agents/write.toml` | Modify | Keep Codex runtime create-command inventory aligned |
 | `.agents/agents/write.md` | Modify | Keep `.agents` runtime guidance aligned |
@@ -116,7 +116,7 @@ Add `/create:feature-catalog` so authors can generate or update a canonical `fea
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Canonical command entrypoints exist | `.opencode/command/create/feature-catalog.md`, the paired YAML assets, and `.agents/commands/create/feature-catalog.toml` all exist and refer to the same command |
+| REQ-001 | Canonical command entrypoints exist | `.opencode/commands/create/feature-catalog.md`, the paired YAML assets, and `.agents/commands/create/feature-catalog.toml` all exist and refer to the same command |
 | REQ-002 | The command uses the shipped feature-catalog contract | The command loads the feature-catalog creation reference plus both feature-catalog templates from `sk-doc` and scaffolds the root catalog file under `feature_catalog/` plus numbered category folders |
 | REQ-003 | Setup flow captures the required routing decisions | The command supports `<skill-name> [create|update] [--path <dir>] [:auto|:confirm]` and explicitly collects target path, operation, source strategy, and execution mode |
 | REQ-004 | Create/update behavior is honest about output location | The command name stays `/create:feature-catalog` while output lands in `<skill-root>/feature_catalog/` and that translation is documented in the command and spec packet |
@@ -149,7 +149,7 @@ Add `/create:feature-catalog` so authors can generate or update a canonical `fea
 2. **Given** a maintainer runs `/create:feature-catalog my-skill update --path custom/skills :confirm`, **when** an existing catalog is present, **then** the command routes through the update flow instead of pretending it is a greenfield create.
 3. **Given** a runtime consumer reads the create-command menus, **when** it looks for feature-catalog generation support, **then** `/create:feature-catalog` appears in the same surfaces as other live create commands.
 4. **Given** future maintainers inspect the spec packet, **when** they compare it with spec `021-sk-doc-feature-catalog-testing-playbook`, **then** the output contract matches the shipped feature-catalog package shape.
-5. **Given** the command is invoked with `--path custom/skills`, **when** the workflow resolves the skill root, **then** output still lands in that custom parent instead of silently falling back to `.opencode/skill/`.
+5. **Given** the command is invoked with `--path custom/skills`, **when** the workflow resolves the skill root, **then** output still lands in that custom parent instead of silently falling back to `.opencode/skills/`.
 6. **Given** the command generates the package from a paired playbook, **when** reviewers inspect the output, **then** root summaries and per-feature files still match the rooted feature-catalog contract instead of a playbook-oriented structure.
 <!-- /ANCHOR:success-criteria -->
 
@@ -193,7 +193,7 @@ Add `/create:feature-catalog` so authors can generate or update a canonical `fea
 ### Data Boundaries
 - A skill may not yet contain enough features for a mature multi-category catalog; the command should still scaffold a valid minimal package.
 - A skill may already have a manual testing playbook but no feature catalog; the command should allow catalog creation from that context.
-- A custom `--path` may target a non-default skill root parent and must not silently fall back to `.opencode/skill/`.
+- A custom `--path` may target a non-default skill root parent and must not silently fall back to `.opencode/skills/`.
 
 ### Error Scenarios
 - Existing `feature_catalog/` content is present during `create`; the command should stop or switch to the documented update path.

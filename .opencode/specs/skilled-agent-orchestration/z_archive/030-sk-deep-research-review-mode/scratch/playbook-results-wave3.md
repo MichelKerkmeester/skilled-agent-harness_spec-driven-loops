@@ -142,7 +142,7 @@ The state_format.md (line 565) lists the Executive Summary section as containing
 
 ### Source 1: Dashboard template — `deep_review_dashboard.md`
 
-The template (`.opencode/skill/sk-deep-research/assets/deep_review_dashboard.md`) contains 9 sections:
+The template (`.opencode/skills/sk-deep-research/assets/deep_review_dashboard.md`) contains 9 sections:
 
 | # | Section | Required Element | Present |
 |---|---------|-----------------|---------|

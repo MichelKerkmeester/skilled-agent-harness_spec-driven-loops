@@ -238,7 +238,7 @@ Phases 2-7 (Per-command changes) ──► Phase 8 (Emoji cleanup) ──► Pha
 
 ### Rollback Procedure
 1. Identify failing command or incorrect agent dispatch
-2. Git revert commit(s) modifying `.opencode/command/create/`
+2. Git revert commit(s) modifying `.opencode/commands/create/`
 3. Re-run 7 verification checks against reverted files
 4. Document root cause
 

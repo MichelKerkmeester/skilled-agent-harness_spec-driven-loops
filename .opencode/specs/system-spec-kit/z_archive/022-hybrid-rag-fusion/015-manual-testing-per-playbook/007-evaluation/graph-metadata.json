@@ -44,12 +44,12 @@
       "mcp_server/lib/eval/ablation-framework.ts",
       "mcp_server/handlers/eval-reporting.ts",
       "mcp_server/lib/eval/reporting-dashboard.ts",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/07--evaluation/026-ablation-studies-eval-run-ablation.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/07--evaluation/027-reporting-dashboard-eval-reporting-dashboard.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/046-anchor-aware-chunk-thinning-r7.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/047-encoding-intent-capture-at-index-time-r16.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/048-auto-entity-extraction-r10.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/049-4-stage-pipeline-refactor-r6.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/026-ablation-studies-eval-run-ablation.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/027-reporting-dashboard-eval-reporting-dashboard.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/046-anchor-aware-chunk-thinning-r7.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/047-encoding-intent-capture-at-index-time-r16.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/048-auto-entity-extraction-r10.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/049-4-stage-pipeline-refactor-r6.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
@@ -78,37 +78,37 @@
       {
         "name": "026-ablation-studies-eval-run-ablation.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/07--evaluation/026-ablation-studies-eval-run-ablation.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/026-ablation-studies-eval-run-ablation.md",
         "source": "derived"
       },
       {
         "name": "027-reporting-dashboard-eval-reporting-dashboard.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/07--evaluation/027-reporting-dashboard-eval-reporting-dashboard.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/027-reporting-dashboard-eval-reporting-dashboard.md",
         "source": "derived"
       },
       {
         "name": "046-anchor-aware-chunk-thinning-r7.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/046-anchor-aware-chunk-thinning-r7.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/046-anchor-aware-chunk-thinning-r7.md",
         "source": "derived"
       },
       {
         "name": "047-encoding-intent-capture-at-index-time-r16.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/047-encoding-intent-capture-at-index-time-r16.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/047-encoding-intent-capture-at-index-time-r16.md",
         "source": "derived"
       },
       {
         "name": "048-auto-entity-extraction-r10.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/048-auto-entity-extraction-r10.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/048-auto-entity-extraction-r10.md",
         "source": "derived"
       },
       {
         "name": "049-4-stage-pipeline-refactor-r6.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/049-4-stage-pipeline-refactor-r6.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/049-4-stage-pipeline-refactor-r6.md",
         "source": "derived"
       },
       {

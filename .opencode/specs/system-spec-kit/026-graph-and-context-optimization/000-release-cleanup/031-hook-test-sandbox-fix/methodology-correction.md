@@ -63,14 +63,14 @@ cell is skipped.
 Run this from a normal shell for the actual live CLI verdict:
 
 ```bash
-npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests
 ```
 
 Run this only for a sandbox-safe direct-smoke verdict:
 
 ```bash
 codex exec --sandbox workspace-write \
-  "npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests"
+  "npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests"
 ```
 
 The second command should produce direct-smoke `PASS` or `FAIL` cells and live

@@ -7,7 +7,7 @@
 
 ## HIGH-005: RRF O(n*m) Lookup Optimization
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/search/rrf-fusion.js`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/search/rrf-fusion.js`
 
 **Status:** [x] IMPLEMENTED
 
@@ -40,7 +40,7 @@ const result = vector_results_by_id.get(id) || fts_results_by_id.get(id);
 
 ## HIGH-006: Duplicate Code Elimination
 
-**File:** `.opencode/skill/system-spec-kit/scripts/rank-memories.js`
+**File:** `.opencode/skills/system-spec-kit/scripts/rank-memories.js`
 
 **Status:** [x] IMPLEMENTED
 
@@ -97,13 +97,13 @@ const last_activity = find_last_activity(folder_memories);
 - [x] Imports constants: `TIER_WEIGHTS`, `SCORE_WEIGHTS`, `DECAY_RATE`, `TIER_ORDER`
 - [x] No duplicate scoring function implementations found locally (only thin wrapper)
 
-**Source file verified:** `folder-scoring.js` exists at `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js` (397 lines) and exports all referenced functions.
+**Source file verified:** `folder-scoring.js` exists at `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js` (397 lines) and exports all referenced functions.
 
 ---
 
 ## HIGH-007: Constitutional Double-Fetch Prevention
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.js`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.js`
 
 **Status:** [x] IMPLEMENTED
 
@@ -153,7 +153,7 @@ if (include_constitutional !== false && !tier) {
 
 ## HIGH-008: Multi-Concept Query Parameter Optimization
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js`
 
 **Status:** [ ] NOT IMPLEMENTED (No evidence found)
 

@@ -40,7 +40,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 <!-- ANCHOR:metadata -->
@@ -64,41 +64,41 @@ Five CLI orchestrator skills now ship matching `manual_testing_playbook/` packag
 
 You can now grade cli-gemini against 19 deterministic scenarios spread across 6 category folders (numeric gap at 05 documented inline — cli-gemini has no first-class session-continuity surface). The playbook covers direct prompt invocation, output formats, `--yolo` auto-approve, the three built-in tools (`google_web_search`, `codebase_investigator`, `save_memory`), the FULL 6-agent `As @<agent>:` routing surface (context, review, deep-research, write, ultra-think, debug — the new CG-019 closes the @debug surface gap), cross-AI integration patterns, and prompt-template usage with CLEAR-card grading.
 
-Path: `.opencode/skill/cli-gemini/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
+Path: `.opencode/skills/cli-gemini/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
 
 ### cli-claude-code Manual Testing Playbook
 
 Twenty-seven scenarios across 8 categories cover the Claude Code CLI surface: base `-p` invocation with text/json/stream-json output, the three permission modes (plan, accept-edits, bypass-permissions), Opus/Sonnet/Haiku model selection with extended thinking, ALL nine agents from the documented roster (context, debug, review, ultra-think, handover, orchestrate, research, speckit, write), `--continue`/`--resume` session continuity, structured-output integration patterns, prompt-template + CLEAR-card scenarios, and the new cost-and-background category covering `--max-budget-usd` cost cap behavior plus `&` plus `</dev/null` background execution.
 
-Path: `.opencode/skill/cli-claude-code/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
+Path: `.opencode/skills/cli-claude-code/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
 
 ### cli-codex Manual Testing Playbook
 
 Twenty-eight scenarios across 9 categories validate Codex CLI: `codex exec` and `codex exec review` invocation with explicit `service_tier="fast"` (per the auto-memory rule), three sandbox modes with approval policies, the six reasoning-effort levels, six agent profiles (review, context, debug, ultra-think, research, write), `--full-auto` + hook integration session continuity, web-search/image-input integration patterns, prompt templates, four built-in tools (`/review`, `--search`, `--image`, MCP), and the new codex-cloud category exercising the `codex cloud` remote-task-execution surface.
 
-Path: `.opencode/skill/cli-codex/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
+Path: `.opencode/skills/cli-codex/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
 
 ### cli-copilot Manual Testing Playbook
 
 Twenty-one scenarios across 8 categories cover the GitHub Copilot CLI: non-interactive `-p`, `--allow-all-tools`, `--no-ask-user`; explicit selection of all 5 models (gpt-5.4, gpt-5.3-codex, claude-opus-4.6, claude-sonnet-4.6, gemini-3.1-pro-preview) with config-file reasoning-effort tuning; Autopilot mode with the autonomy contract; explore/task agent routing with mid-session model switching (cap at 3 concurrent dispatches per the auto-memory rule); repo-memory continuity; cross-AI integration with shell-wrapper context injection; prompt templates; and `/delegate` + `&prompt` cloud delegation.
 
-Path: `.opencode/skill/cli-copilot/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
+Path: `.opencode/skills/cli-copilot/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
 
 ### cli-opencode Manual Testing Playbook
 
 Thirty-four scenarios across 9 categories cover the largest surface: `opencode run` with full flag inventory; external AI runtimes dispatching `opencode run`; multi-provider (anthropic/openai/google) dispatch with five variant levels; the FULL 9-agent roster (general/context/review/ultra-think/deep-research/deep-review/write/orchestrate plus debug — CO-032/033/034 close the deferred deep-research, deep-review, and orchestrate surface gaps); `-c`/`-s`/`--fork`/`--share` session continuity; cross-AI handback integration patterns (isolated per ADR-004 — companion CLI execution is out of scope for default scenarios); 13 prompt templates with CLEAR-card grading; `--port` parallel-detached worker farms and ablation; and `--dir` cross-repo + cross-server dispatch with self-invocation guard.
 
-Path: `.opencode/skill/cli-opencode/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
+Path: `.opencode/skills/cli-opencode/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/cli-gemini/manual_testing_playbook/` (1 root + 6 categories + 19 per-feature files) | Created | Operator validation matrix for cli-gemini |
-| `.opencode/skill/cli-claude-code/manual_testing_playbook/` (1 root + 8 categories + 27 per-feature files) | Created | Operator validation matrix for cli-claude-code |
-| `.opencode/skill/cli-codex/manual_testing_playbook/` (1 root + 9 categories + 28 per-feature files) | Created | Operator validation matrix for cli-codex |
-| `.opencode/skill/cli-copilot/manual_testing_playbook/` (1 root + 8 categories + 21 per-feature files) | Created | Operator validation matrix for cli-copilot |
-| `.opencode/skill/cli-opencode/manual_testing_playbook/` (1 root + 9 categories + 34 per-feature files) | Created | Operator validation matrix for cli-opencode |
+| `.opencode/skills/cli-gemini/manual_testing_playbook/` (1 root + 6 categories + 19 per-feature files) | Created | Operator validation matrix for cli-gemini |
+| `.opencode/skills/cli-claude-code/manual_testing_playbook/` (1 root + 8 categories + 27 per-feature files) | Created | Operator validation matrix for cli-claude-code |
+| `.opencode/skills/cli-codex/manual_testing_playbook/` (1 root + 9 categories + 28 per-feature files) | Created | Operator validation matrix for cli-codex |
+| `.opencode/skills/cli-copilot/manual_testing_playbook/` (1 root + 8 categories + 21 per-feature files) | Created | Operator validation matrix for cli-copilot |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/` (1 root + 9 categories + 34 per-feature files) | Created | Operator validation matrix for cli-opencode |
 | `.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/spec.md` | Created | Level 3 spec scaffolding |
 | `.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/plan.md` | Created | Wave-based delivery plan |
 | `.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/tasks.md` | Created | Linear task list |

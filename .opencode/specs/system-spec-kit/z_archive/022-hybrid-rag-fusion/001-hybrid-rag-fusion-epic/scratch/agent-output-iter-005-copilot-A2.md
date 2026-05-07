@@ -4,12 +4,12 @@
 
 Read and traced:
 
-- `.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts`
-- `.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
+- `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts`
+- `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
 
 ## 1) How `vector`, `BM25`, and `FTS` are combined in `hybridSearchEnhanced`
 
@@ -232,15 +232,15 @@ That would make the channel contribution ratio match the declared adaptive model
 
 ---
 
-[^rrf-multi]: `.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:223-287`
-[^adaptive-profiles]: `.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60-122`
-[^adaptive-fuse]: `.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:135-238`
-[^adaptive-entry]: `.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:344-419`
-[^router-defaults]: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:51-142`
-[^embedding-helper]: `.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:181-304`
-[^combined-lexical]: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:375-409`
-[^hybrid-enhanced-flow]: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:558-746`
-[^legacy-fallback]: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1059-1064`
-[^fallback-wrapper]: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1067-1119`
-[^tiered-fallback]: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1433-1517`
-[^stage1-r12]: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:338-412`
+[^rrf-multi]: `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:223-287`
+[^adaptive-profiles]: `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60-122`
+[^adaptive-fuse]: `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:135-238`
+[^adaptive-entry]: `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:344-419`
+[^router-defaults]: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:51-142`
+[^embedding-helper]: `.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:181-304`
+[^combined-lexical]: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:375-409`
+[^hybrid-enhanced-flow]: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:558-746`
+[^legacy-fallback]: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1059-1064`
+[^fallback-wrapper]: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1067-1119`
+[^tiered-fallback]: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1433-1517`
+[^stage1-r12]: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:338-412`

@@ -34,9 +34,9 @@ The stronger current signal is:
 - vector similarity search still finds no qualifying neighbors for that query,
 - while lexical FTS finds many matches.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts:10-49`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:684-723`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts:308-348`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts:10-49`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:684-723`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:308-348`]  
 [SOURCE: live runtime probe on 2026-04-01 using `mcp_server/dist/lib/providers/embeddings.js`, `vector-index-queries.js`, and `sqlite-fts.js`]  
 [SOURCE: sqlite3 CLI probe on 2026-04-01 against `database/context-index.sqlite`]
 
@@ -44,18 +44,18 @@ The stronger current signal is:
 
 The file requested in the prompt does not exist at:
 
-- `.opencode/skill/system-spec-kit/mcp_server/providers/embeddings.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/providers/embeddings.ts`
 
 The actual file is:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts`
 
 That file is only a **re-export facade**. The real implementation lives in:
 
-- `.opencode/skill/system-spec-kit/shared/embeddings.ts`
-- `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts`
+- `.opencode/skills/system-spec-kit/shared/embeddings.ts`
+- `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts`
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts:1-49`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts:1-49`]
 
 ## 2. How embeddings are generated
 
@@ -71,7 +71,7 @@ That file is only a **re-export facade**. The real implementation lives in:
 
 But all of them come from `@spec-kit/shared/embeddings`.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts:10-49`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts:10-49`]
 
 ### 2.2 The real query embedding path
 
@@ -87,7 +87,7 @@ But all of them come from `@spec-kit/shared/embeddings`.
 
 This is a **silent-null** API at runtime: it does not throw on provider failure; it warns and returns `null`.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:684-723`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:684-723`]
 
 ### 2.3 Lazy provider initialization
 
@@ -99,8 +99,8 @@ providerInstance = await createEmbeddingsProvider({ warmup: false })
 
 So startup does not fully instantiate the provider object for embeddings; it only validates configuration and dimensions, then marks the model "ready" for lazy first use.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:384-417`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:1108-1113`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:384-417`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:1108-1113`]
 
 ## 3. Which provider is used, and what env vars matter
 
@@ -115,8 +115,8 @@ Provider resolution precedence is:
 
 Important detail: the env var name is **`EMBEDDINGS_PROVIDER`** (plural), not `EMBEDDING_PROVIDER`.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts:220-229`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts:308-348`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:220-229`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:308-348`]
 
 ### 3.2 Required provider env vars
 
@@ -126,9 +126,9 @@ Important detail: the env var name is **`EMBEDDINGS_PROVIDER`** (plural), not `E
 
 If a cloud provider is explicitly selected without its key, provider creation throws.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts:351-407`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.ts:126-138`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/providers/openai.ts:102-112`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:351-407`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts:126-138`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts:102-112`]
 
 ### 3.3 What is configured in this environment
 
@@ -148,8 +148,8 @@ The repository root `.env` file also contains `VOYAGE_API_KEY`, but I did **not*
 
 So the runtime appears to rely on the **inherited process environment** rather than internal `.env` loading. In this session, that inherited environment does contain `VOYAGE_API_KEY`.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/package.json:16-19`]  
-[SOURCE: code search on 2026-04-01 for `dotenv|--env-file|loadEnv|config\\(` under `.opencode/skill/system-spec-kit` returned no matches]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/package.json:16-19`]  
+[SOURCE: code search on 2026-04-01 for `dotenv|--env-file|loadEnv|config\\(` under `.opencode/skills/system-spec-kit` returned no matches]  
 [SOURCE: live shell env probe on 2026-04-01]  
 [SOURCE: repository root `.env:14-18`]
 
@@ -169,7 +169,7 @@ Behavior:
 - during cooldown, embedding calls return `null` immediately,
 - after cooldown, the circuit becomes half-open and allows a probe request.
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:39-99`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:39-99`]
 
 ### 4.1 Search flags file does not define this flag
 
@@ -177,8 +177,8 @@ I checked `mcp_server/lib/search/search-flags.ts`.
 
 There is **no** `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` flag defined there. That is expected, because the circuit breaker belongs to the shared embeddings module rather than the search-flags module.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:1-260`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:46-57`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:1-260`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:46-57`]
 
 ### 4.2 Distinguish this from the cross-encoder circuit breaker
 
@@ -188,7 +188,7 @@ I found a separate circuit breaker in:
 
 That one is only for reranker APIs (`voyage`, `cohere`, `local`) and does **not** control query embedding generation.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:141-205`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:141-205`]
 
 ## 5. What happens if the API key is missing or invalid?
 
@@ -215,7 +215,7 @@ This validation is skipped only when:
 
 If the problem is a **network error**, startup warns and continues.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:1024-1079`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:1024-1079`]
 
 ### 5.2 Runtime query embedding behavior: warn and return null
 
@@ -226,7 +226,7 @@ After startup, runtime query embedding is softer:
 
 So yes, **runtime embedding generation can fail silently into `null`** from the caller's point of view.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:698-723`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:698-723`]
 
 ### 5.3 But stage1 hybrid does not silently continue with null
 
@@ -245,8 +245,8 @@ if (!effectiveEmbedding) {
 
 So in the **standard hybrid stage1 path**, a null query embedding should produce an **error**, not a normal `candidateCount: 0`.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`]
 
 ## 6. Live runtime probe: the current environment does produce a valid embedding
 
@@ -339,8 +339,8 @@ and filters rows by distance.
 
 So if no rows satisfy the threshold, vector search legitimately returns `[]`.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:168-200`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:221-283`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:168-200`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:221-283`]
 
 Inside hybrid search, the vector lane is wrapped in a non-fatal channel try/catch:
 
@@ -355,7 +355,7 @@ try {
 
 So a vector-channel failure becomes an empty vector lane, not a pipeline crash.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1084`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1084`]
 
 ## 9. Subtle conditional risk: auto fallback to `hf-local`
 
@@ -371,8 +371,8 @@ if ((providerName === 'openai' || providerName === 'voyage') && allowsAutomaticF
 
 `allowsAutomaticFallback()` is true when provider is unset or `auto`.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts:152-155`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts:495-558`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:152-155`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:495-558`]
 
 That fallback path explicitly warns that the embedding dimension may change:
 
@@ -380,7 +380,7 @@ That fallback path explicitly warns that the embedding dimension may change:
 WARNING: Provider fallback changed embedding dimension ...
 ```
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts:452-488`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:452-488`]
 
 If such a fallback produced embeddings with a different dimension than the vector index expects, then `vector_search()` would reject them with:
 
@@ -390,12 +390,12 @@ Invalid embedding dimension: expected X, got Y
 
 and the vector channel would collapse to empty while FTS could still work.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:190-197`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1056-1084`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:190-197`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1056-1084`]
 
 However, that is **not** what I observed in this session: current live probe produced a 1024-dim Voyage embedding, which matches the expected startup path.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:1081-1083`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:1081-1083`]  
 [SOURCE: live runtime probe on 2026-04-01]
 
 ## 10. FTS behavior: can return [] on error, but current evidence says it works
@@ -416,7 +416,7 @@ try {
 
 So yes: if an exception happens, `ftsSearch()` returns `[]`.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-471`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-471`]
 
 ### 10.2 The underlying SQLite FTS helper also swallows errors
 
@@ -428,7 +428,7 @@ So yes: if an exception happens, `ftsSearch()` returns `[]`.
 - logs a warning,
 - returns `[]`
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:48-103`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:48-103`]
 
 ### 10.3 But the current query does match FTS data
 
@@ -461,8 +461,8 @@ The compiled server confirms:
 
 That means the server is designed to fail early on obvious configuration problems rather than silently running with a broken embedding stack.  
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:1024-1079`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:1081-1130`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:1024-1079`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:1081-1130`]
 
 ## Final conclusion
 

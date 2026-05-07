@@ -64,13 +64,13 @@ Implementation is organized around one command family: canonical markdown entryp
 Reference-driven create command that scaffolds a multi-file documentation package.
 
 ### Key Components
-- **Canonical command doc**: `.opencode/command/create/feature-catalog.md`
-- **Execution variants**: auto/confirm YAML assets under `.opencode/command/create/assets/`
+- **Canonical command doc**: `.opencode/commands/create/feature-catalog.md`
+- **Execution variants**: auto/confirm YAML assets under `.opencode/commands/create/assets/`
 - **Runtime mirror**: `.agents/commands/create/feature-catalog.toml`
 - **Authoring source inputs**:
-  - `.opencode/skill/sk-doc/references/specific/feature_catalog_creation.md`
-  - `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`
-  - `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`
+  - `.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md`
+  - `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`
+  - `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`
 - **Discovery surfaces**: create-command READMEs plus runtime write-agent docs
 
 ### Data Flow
@@ -88,16 +88,16 @@ User invokes `/create:feature-catalog` -> command captures target skill path, op
 - [x] Freeze the naming translation `/create:feature-catalog` -> `feature_catalog/`.
 
 ### Phase 2: Command family implementation
-- [x] Create `.opencode/command/create/feature-catalog.md`.
-- [x] Create `.opencode/command/create/assets/create_feature_catalog_auto.yaml`.
-- [x] Create `.opencode/command/create/assets/create_feature_catalog_confirm.yaml`.
+- [x] Create `.opencode/commands/create/feature-catalog.md`.
+- [x] Create `.opencode/commands/create/assets/create_feature_catalog_auto.yaml`.
+- [x] Create `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml`.
 - [x] Create `.agents/commands/create/feature-catalog.toml`.
 
 ### Phase 3: Runtime-discovery sync
-- [x] Update `.opencode/command/create/README.txt`.
-- [x] Update `.opencode/command/README.txt`.
+- [x] Update `.opencode/commands/create/README.txt`.
+- [x] Update `.opencode/commands/README.txt`.
 - [x] Update `.opencode/README.md`.
-- [x] Update `.opencode/agent/write.md`, `.claude/agents/write.md`, `.codex/agents/write.toml`, and `.agents/agents/write.md`.
+- [x] Update `.opencode/agents/write.md`, `.claude/agents/write.md`, `.codex/agents/write.toml`, and `.agents/agents/write.md`.
 
 ### Phase 4: Validation and closure
 - [x] Validate the command markdown doc.
@@ -113,12 +113,12 @@ User invokes `/create:feature-catalog` -> command captures target skill path, op
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Command-doc validation | `.opencode/command/create/feature-catalog.md` | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` |
+| Command-doc validation | `.opencode/commands/create/feature-catalog.md` | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` |
 | YAML structure | `create_feature_catalog_auto.yaml`, `create_feature_catalog_confirm.yaml` | YAML parser or equivalent script check |
 | TOML structure | `.agents/commands/create/feature-catalog.toml` | `python3` with `tomllib` |
 | Discovery sync | Runtime-facing create-command listings | `rg`, targeted reads |
 | Scenario inspection | `create/update` plus `:auto/:confirm` command shapes | path and content review |
-| Spec validation | This packet | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../025-cmd-create-feature-catalog` |
+| Spec validation | This packet | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../025-cmd-create-feature-catalog` |
 
 ### Planned Scenario Checks
 
@@ -136,7 +136,7 @@ User invokes `/create:feature-catalog` -> command captures target skill path, op
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Spec `021-sk-doc-feature-catalog-testing-playbook` | Internal | Available | Defines the package contract this command must generate |
-| `.opencode/skill/sk-doc/references/specific/feature_catalog_creation.md` | Internal | Available | Defines when and how the command should scaffold the package |
+| `.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md` | Internal | Available | Defines when and how the command should scaffold the package |
 | Feature-catalog template bundle | Internal | Available | Provides the root and per-feature scaffold source |
 | Existing create-command conventions | Internal | Available | Needed to keep the new command consistent with live workflows |
 <!-- /ANCHOR:dependencies -->

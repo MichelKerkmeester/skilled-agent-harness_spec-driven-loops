@@ -6,8 +6,8 @@
 - Scope slice: command docs, packet docs, README/feature/playbook surfaces, reducer outputs
 
 ## Files Reviewed
-- `.opencode/command/spec_kit/deep-review.md`
-- `.opencode/command/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/commands/spec_kit/deep-research.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-resource-map-template/003-resource-map-deep-loop-integration/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-resource-map-template/003-resource-map-deep-loop-integration/tasks.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-resource-map-template/003-resource-map-deep-loop-integration/implementation-summary.md`

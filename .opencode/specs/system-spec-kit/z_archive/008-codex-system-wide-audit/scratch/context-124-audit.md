@@ -13,7 +13,7 @@
 ### 1. Implementation Completeness
 
 #### Script Metadata
-- **File**: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`
+- **File**: `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`
 - **Total Lines**: 1,511
 - **Total Functions**: 22 named functions
 - **Bash Requirement**: 3.2+ (macOS compatible)
@@ -83,7 +83,7 @@
 
 **Directory Structure**:
 ```
-.opencode/skill/system-spec-kit/templates/
+.opencode/skills/system-spec-kit/templates/
 ├── addendum/
 │   ├── level2-verify/
 │   │   ├── spec-level2.md (L1→L2 spec sections: NFR, Edge Cases, Complexity)
@@ -756,7 +756,7 @@ fi
 ### OPTIONAL (P2 - Enhancement)
 
 #### FIX-6: Add README to scripts/spec/ directory
-**Location**: `.opencode/skill/system-spec-kit/scripts/spec/README.md` (new file)  
+**Location**: `.opencode/skills/system-spec-kit/scripts/spec/README.md` (new file)  
 **Content**: Usage guide for upgrade-level.sh, examples, common pitfalls  
 **Rationale**: Improves discoverability and ease of use (CHK-053 deferred P2).
 
@@ -978,8 +978,8 @@ Before deploying upgrade-level.sh to production:
 
 - [ ] Apply P0 FIX-1: Add error check on shell-common.sh sourcing
 - [ ] Apply P0 FIX-2: Expand backup to include subdirectory .md files
-- [ ] Verify shell-common.sh exists in deployment environment at: `.opencode/skill/system-spec-kit/scripts/lib/shell-common.sh`
-- [ ] Verify all template addendum files present in: `.opencode/skill/system-spec-kit/templates/addendum/`
+- [ ] Verify shell-common.sh exists in deployment environment at: `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh`
+- [ ] Verify all template addendum files present in: `.opencode/skills/system-spec-kit/templates/addendum/`
 - [ ] Run full test suite on target OS (macOS, Linux)
 - [ ] Test edge cases:
   - Spec folder with memory/ subdirectory

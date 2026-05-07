@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-This packet's blast radius spans ~101 live-config files plus the entire `.opencode/skill/cli-copilot/` directory (~50+ files). A flat listing in `implementation-summary.md` would be unreadable. The 6-bucket categorization (DELETE_LIVE / EDIT_LIVE / MIRROR_SYNC / PRESERVE_HISTORY / ANNOTATE / POST_PROCESS) is required to keep cli-codex dispatch prompts unambiguous and to ensure no historical content is deleted by accident.
+This packet's blast radius spans ~101 live-config files plus the entire `.opencode/skills/cli-copilot/` directory (~50+ files). A flat listing in `implementation-summary.md` would be unreadable. The 6-bucket categorization (DELETE_LIVE / EDIT_LIVE / MIRROR_SYNC / PRESERVE_HISTORY / ANNOTATE / POST_PROCESS) is required to keep cli-codex dispatch prompts unambiguous and to ensure no historical content is deleted by accident.
 
 <!-- /ANCHOR:when-to-use -->
 
@@ -62,14 +62,14 @@ This packet's blast radius spans ~101 live-config files plus the entire `.openco
 | Path | Bucket | Batch | Action |
 |------|--------|-------|--------|
 | `README.md` (root) | EDIT_LIVE | B5 | Scrub cli-copilot from quick-start + executor list |
-| `.opencode/skill/README.md` | EDIT_LIVE | B5 | Drop cli-copilot from skill catalog |
+| `.opencode/skills/README.md` | EDIT_LIVE | B5 | Drop cli-copilot from skill catalog |
 | `.opencode/install_guides/README.md` | EDIT_LIVE | B5 | Drop cli-copilot from install index |
-| `.opencode/skill/cli-claude-code/README.md` | EDIT_LIVE | B3a | Scrub cli-copilot peer references |
-| `.opencode/skill/cli-codex/README.md` | EDIT_LIVE | B3b | Scrub cli-copilot peer references |
-| `.opencode/skill/cli-gemini/README.md` | EDIT_LIVE | B3c | Scrub cli-copilot peer references |
-| `.opencode/skill/cli-opencode/README.md` | EDIT_LIVE | B3d | Scrub cli-copilot peer references |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/README.md` | EDIT_LIVE | B6a | Drop cli-copilot adapter from runner README |
-| `.opencode/skill/cli-copilot/README.md` | DELETE_LIVE | B1 | Deleted with skill tree |
+| `.opencode/skills/cli-claude-code/README.md` | EDIT_LIVE | B3a | Scrub cli-copilot peer references |
+| `.opencode/skills/cli-codex/README.md` | EDIT_LIVE | B3b | Scrub cli-copilot peer references |
+| `.opencode/skills/cli-gemini/README.md` | EDIT_LIVE | B3c | Scrub cli-copilot peer references |
+| `.opencode/skills/cli-opencode/README.md` | EDIT_LIVE | B3d | Scrub cli-copilot peer references |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md` | EDIT_LIVE | B6a | Drop cli-copilot adapter from runner README |
+| `.opencode/skills/cli-copilot/README.md` | DELETE_LIVE | B1 | Deleted with skill tree |
 
 <!-- /ANCHOR:readmes -->
 
@@ -94,14 +94,14 @@ Files (sample, full list captured in `/tmp/cli-copilot-non-skill-hits.txt`):
 | Cluster | Files | Action |
 |---------|-------|--------|
 | Matrix runner cluster | `feature_catalog/16/37-cli-matrix-adapter-runners.md`, `manual_testing_playbook/16/280-cli-matrix-adapter-runner-smoke.md` | Drop cli-copilot adapter wiring |
-| sk-doc playbooks | `.opencode/skill/sk-doc/manual_testing_playbook/...` (19 files) | Scrub current-state peer list mentions |
-| sk-code playbooks | `.opencode/skill/sk-code/manual_testing_playbook/...` (2 files) | Scrub peer list mentions |
-| sk-improve-prompt playbooks | `.opencode/skill/sk-improve-prompt/manual_testing_playbook/...` (2 files) | Scrub peer list mentions |
-| deep-agent-improvement playbooks | `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/{013..018}*.md` (6 files) | Scrub peer list mentions |
-| deep-research SKILL + loop_protocol | `.opencode/skill/deep-research/SKILL.md`, `references/loop_protocol.md` | Scrub current-state peer list mentions |
-| deep-review SKILL + loop_protocol + manual_testing_playbook | `.opencode/skill/deep-review/SKILL.md`, `references/loop_protocol.md`, `manual_testing_playbook/manual_testing_playbook.md` | Scrub current-state peer list mentions |
-| system-spec-kit feature_catalog (other) | `.opencode/skill/system-spec-kit/feature_catalog/...` (~10 remaining files) | Scrub peer list mentions |
-| system-spec-kit manual_testing_playbook (other) | `.opencode/skill/system-spec-kit/manual_testing_playbook/...` (~10 remaining files) | Scrub peer list mentions |
+| sk-doc playbooks | `.opencode/skills/sk-doc/manual_testing_playbook/...` (19 files) | Scrub current-state peer list mentions |
+| sk-code playbooks | `.opencode/skills/sk-code/manual_testing_playbook/...` (2 files) | Scrub peer list mentions |
+| sk-improve-prompt playbooks | `.opencode/skills/sk-improve-prompt/manual_testing_playbook/...` (2 files) | Scrub peer list mentions |
+| deep-agent-improvement playbooks | `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/{013..018}*.md` (6 files) | Scrub peer list mentions |
+| deep-research SKILL + loop_protocol | `.opencode/skills/deep-research/SKILL.md`, `references/loop_protocol.md` | Scrub current-state peer list mentions |
+| deep-review SKILL + loop_protocol + manual_testing_playbook | `.opencode/skills/deep-review/SKILL.md`, `references/loop_protocol.md`, `manual_testing_playbook/manual_testing_playbook.md` | Scrub current-state peer list mentions |
+| system-spec-kit feature_catalog (other) | `.opencode/skills/system-spec-kit/feature_catalog/...` (~10 remaining files) | Scrub peer list mentions |
+| system-spec-kit manual_testing_playbook (other) | `.opencode/skills/system-spec-kit/manual_testing_playbook/...` (~10 remaining files) | Scrub peer list mentions |
 
 ### Other-packet changelog (PRESERVE_HISTORY)
 
@@ -118,9 +118,9 @@ Files (sample, full list captured in `/tmp/cli-copilot-non-skill-hits.txt`):
 
 | Path | Bucket | Batch | Action |
 |------|--------|-------|--------|
-| `.opencode/command/spec_kit/deep-research.md` | EDIT_LIVE | B4e | Scrub cli-copilot from executor list |
-| `.opencode/command/spec_kit/deep-review.md` | EDIT_LIVE | B4e | Scrub cli-copilot from executor list |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | EDIT_LIVE | B4e | Drop cli-copilot from YAML config |
+| `.opencode/commands/spec_kit/deep-research.md` | EDIT_LIVE | B4e | Scrub cli-copilot from executor list |
+| `.opencode/commands/spec_kit/deep-review.md` | EDIT_LIVE | B4e | Scrub cli-copilot from executor list |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | EDIT_LIVE | B4e | Drop cli-copilot from YAML config |
 
 Note: Commands are NOT mirrored to `.claude/commands/`, `.gemini/commands/`, `.codex/commands/` for cli-copilot routing. The Gemini commands dir does carry a `deep-research.toml` (status: M in current git status), but discovery shows it does NOT contain `cli-copilot` references. No mirror sync needed for commands.
 
@@ -133,7 +133,7 @@ Note: Commands are NOT mirrored to `.claude/commands/`, `.gemini/commands/`, `.c
 
 | Path | Bucket | Batch | Action |
 |------|--------|-------|--------|
-| `.opencode/agent/multi-ai-council.md` | EDIT_LIVE | B4a | Scrub cli-copilot from executor list |
+| `.opencode/agents/multi-ai-council.md` | EDIT_LIVE | B4a | Scrub cli-copilot from executor list |
 | `.claude/agents/multi-ai-council.md` | MIRROR_SYNC | B4b | Apply identical edits |
 | `.gemini/agents/multi-ai-council.md` | MIRROR_SYNC | B4c | Apply identical edits |
 | `.codex/agents/multi-ai-council.toml` | MIRROR_SYNC | B4d | Apply identical edits in TOML format |
@@ -151,18 +151,18 @@ Other agents (e.g., `@orchestrate`, `@deep-research`, `@deep-review`, `@code`, `
 
 | Path | Files | Action |
 |------|-------|--------|
-| `.opencode/skill/cli-copilot/` | ~50+ (SKILL.md, README.md, graph-metadata.json, references/, assets/, scripts/, manual_testing_playbook/{01..08}__*/, changelog/v1.0..v1.3.7.md) | `rm -rf` entire tree |
+| `.opencode/skills/cli-copilot/` | ~50+ (SKILL.md, README.md, graph-metadata.json, references/, assets/, scripts/, manual_testing_playbook/{01..08}__*/, changelog/v1.0..v1.3.7.md) | `rm -rf` entire tree |
 | `.opencode/changelog/cli-copilot/` | global skill changelog | `rm -rf` entire tree |
 
 ### EDIT_LIVE — Skill advisor (B2)
 
 | Path | Hit Lines | Action |
 |------|-----------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | ~12 lines (1398, 1468-1470, 1672-1681, 1708-1709, 2806-2808) | Remove TOKEN_BOOSTS["copilot"]; remove cli-copilot from PHRASE_BOOSTS keys; remove from delegate/opinion/validate routing tables; rewrite command-bridge tiebreaker prose to drop cli-copilot example |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | lines 9, 41, 49, 54, 66, 74, 157, 171, 206, 378 | Remove cli-copilot node entry, every related_to/coupling array entry, and the dedicated cli-copilot block at line 54 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | line 13 | Remove the `{ "target": "cli-copilot", ... }` edge entry |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh` | line 16 | Drop the `$ROOT/.opencode/skill/cli-copilot/assets/prompt_quality_card.md` path from SYNC_PATHS |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | line 36 | Delete the P1-CLI-004 line entirely |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | ~12 lines (1398, 1468-1470, 1672-1681, 1708-1709, 2806-2808) | Remove TOKEN_BOOSTS["copilot"]; remove cli-copilot from PHRASE_BOOSTS keys; remove from delegate/opinion/validate routing tables; rewrite command-bridge tiebreaker prose to drop cli-copilot example |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | lines 9, 41, 49, 54, 66, 74, 157, 171, 206, 378 | Remove cli-copilot node entry, every related_to/coupling array entry, and the dedicated cli-copilot block at line 54 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | line 13 | Remove the `{ "target": "cli-copilot", ... }` edge entry |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh` | line 16 | Drop the `$ROOT/.opencode/skills/cli-copilot/assets/prompt_quality_card.md` path from SYNC_PATHS |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | line 36 | Delete the P1-CLI-004 line entirely |
 
 ### EDIT_LIVE — Sibling cli-* skills (B3, 4 parallel agents)
 
@@ -178,16 +178,16 @@ Other agents (e.g., `@orchestrate`, `@deep-research`, `@deep-review`, `@code`, `
 | Path | Bucket | Action |
 |------|--------|--------|
 | `.github/hooks/spec-kit-copilot-hook.sh` | DELETE_LIVE | rm -f |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/` | DELETE_LIVE | rm -rf |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts` | DELETE_LIVE | rm -f |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts` | DELETE_LIVE | rm -f |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts` | EDIT_LIVE (B6a) | Remove import + dispatch wiring for cli-copilot adapter |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json` | EDIT_LIVE (B6a) | Remove cli-copilot adapter manifest entry |
-| `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/36-copilot-target-authority-helper.md` | DELETE_LIVE | rm -f (copilot-only feature) |
-| `.opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md` | DELETE_LIVE | rm -f (copilot-only feature) |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/18--ux-hooks/274-shared-provenance-and-copilot-compact-cache-parity.md` | DELETE_LIVE | rm -f (matches deleted feature_catalog entry) |
-| `.opencode/skill/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/030-cli-copilot-target-authority-dispatch.md` | DELETE_LIVE | rm -f (cli-copilot-specific test scenario) |
-| `.opencode/skill/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/016-cli-copilot-target-authority-dispatch.md` | DELETE_LIVE | rm -f (cli-copilot-specific test scenario) |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/` | DELETE_LIVE | rm -rf |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts` | DELETE_LIVE | rm -f |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts` | DELETE_LIVE | rm -f |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts` | EDIT_LIVE (B6a) | Remove import + dispatch wiring for cli-copilot adapter |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json` | EDIT_LIVE (B6a) | Remove cli-copilot adapter manifest entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/36-copilot-target-authority-helper.md` | DELETE_LIVE | rm -f (copilot-only feature) |
+| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md` | DELETE_LIVE | rm -f (copilot-only feature) |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/274-shared-provenance-and-copilot-compact-cache-parity.md` | DELETE_LIVE | rm -f (matches deleted feature_catalog entry) |
+| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/030-cli-copilot-target-authority-dispatch.md` | DELETE_LIVE | rm -f (cli-copilot-specific test scenario) |
+| `.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/016-cli-copilot-target-authority-dispatch.md` | DELETE_LIVE | rm -f (cli-copilot-specific test scenario) |
 
 <!-- /ANCHOR:skills -->
 
@@ -236,10 +236,10 @@ These directories contain prior packets, ADRs, decision-records, deep-research/d
 
 | Path | Bucket | Batch | Action |
 |------|--------|-------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | EDIT_LIVE | B2 | (see Skills/Skill advisor) |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh` | EDIT_LIVE | B2 | (see Skills/Skill advisor) |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts` | EDIT_LIVE | B6a | Drop cli-copilot adapter import + dispatch |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts` | DELETE_LIVE | B1 | rm -f |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | EDIT_LIVE | B2 | (see Skills/Skill advisor) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh` | EDIT_LIVE | B2 | (see Skills/Skill advisor) |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts` | EDIT_LIVE | B6a | Drop cli-copilot adapter import + dispatch |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts` | DELETE_LIVE | B1 | rm -f |
 
 <!-- /ANCHOR:scripts -->
 
@@ -250,8 +250,8 @@ These directories contain prior packets, ADRs, decision-records, deep-research/d
 
 | Path | Bucket | Batch | Action |
 |------|--------|-------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts` | DELETE_LIVE | B1 | rm -f (its only adapter is being deleted) |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | EDIT_LIVE | B2 | Delete P1-CLI-004 line |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts` | DELETE_LIVE | B1 | rm -f (its only adapter is being deleted) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | EDIT_LIVE | B2 | Delete P1-CLI-004 line |
 
 Workflow-invariance test (`workflow-invariance.vitest.ts`) — no edit anticipated; covered by P2 CHK-504.
 
@@ -264,13 +264,13 @@ Workflow-invariance test (`workflow-invariance.vitest.ts`) — no edit anticipat
 
 | Path | Bucket | Batch | Action |
 |------|--------|-------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | EDIT_LIVE | B2 | Remove cli-copilot edge |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | EDIT_LIVE | B2 | Remove cli-copilot node + edges |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json` | EDIT_LIVE | B6a | Remove cli-copilot adapter manifest entry |
-| `.opencode/skill/cli-claude-code/graph-metadata.json` | EDIT_LIVE | B3a | Scrub cli-copilot peer entries |
-| `.opencode/skill/cli-codex/graph-metadata.json` | EDIT_LIVE | B3b | Scrub cli-copilot peer entries |
-| `.opencode/skill/cli-gemini/graph-metadata.json` | EDIT_LIVE | B3c | Scrub cli-copilot peer entries |
-| `.opencode/skill/cli-opencode/graph-metadata.json` | EDIT_LIVE | B3d | Scrub cli-copilot peer entries |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | EDIT_LIVE | B2 | Remove cli-copilot edge |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | EDIT_LIVE | B2 | Remove cli-copilot node + edges |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json` | EDIT_LIVE | B6a | Remove cli-copilot adapter manifest entry |
+| `.opencode/skills/cli-claude-code/graph-metadata.json` | EDIT_LIVE | B3a | Scrub cli-copilot peer entries |
+| `.opencode/skills/cli-codex/graph-metadata.json` | EDIT_LIVE | B3b | Scrub cli-copilot peer entries |
+| `.opencode/skills/cli-gemini/graph-metadata.json` | EDIT_LIVE | B3c | Scrub cli-copilot peer entries |
+| `.opencode/skills/cli-opencode/graph-metadata.json` | EDIT_LIVE | B3d | Scrub cli-copilot peer entries |
 
 ### MIRROR_SYNC entries
 

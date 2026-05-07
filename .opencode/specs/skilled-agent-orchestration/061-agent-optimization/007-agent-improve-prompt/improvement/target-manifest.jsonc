@@ -13,35 +13,35 @@
   "dynamicProfileEnabled": true,
 
   // Path to the script that generates a dynamic target profile on the fly.
-  "dynamicProfileScript": ".opencode/skill/sk-improve-agent/scripts/generate-profile.cjs",
+  "dynamicProfileScript": ".opencode/skills/sk-improve-agent/scripts/generate-profile.cjs",
 
   // Path to the integration-surface scanner that checks mirror parity,
   // command coverage, permission alignment, and resource references
   // for a given target agent across all runtime directories.
-  "integrationScanScript": ".opencode/skill/sk-improve-agent/scripts/scan-integration.cjs",
+  "integrationScanScript": ".opencode/skills/sk-improve-agent/scripts/scan-integration.cjs",
 
   // profileCatalog remains referenced for path consistency with config, but
   // the directory is intentionally empty (contains only .gitkeep).
-  "profileCatalog": ".opencode/skill/sk-improve-agent/assets/target-profiles",
+  "profileCatalog": ".opencode/skills/sk-improve-agent/assets/target-profiles",
   "targets": [],
 
   // `fixed` declares files sk-improve-agent MUST NEVER mutate. These paths
   // belong to LIVE spec-kit surfaces (commands + templates) outside this
   // skill; they are protections, not static profiles for the handover agent.
   "fixed": [
-    ".opencode/command/spec_kit/handover.md",
+    ".opencode/commands/spec_kit/handover.md",
     ".agents/commands/spec_kit/handover.toml",
     ".gemini/commands/spec_kit/handover.toml",
-    ".opencode/skill/system-spec-kit/templates/handover.md"
+    ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
 
   // `forbidden` declares files sk-improve-agent MUST NEVER write to even
   // when a candidate superficially matches. Same rationale as `fixed`.
   "forbidden": [
-    ".opencode/command/spec_kit/handover.md",
+    ".opencode/commands/spec_kit/handover.md",
     ".agents/commands/spec_kit/handover.toml",
     ".gemini/commands/spec_kit/handover.toml",
-    ".opencode/skill/system-spec-kit/templates/handover.md"
+    ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
   "packaging": {
     "mirrorSyncMode": "downstream-only",

@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "F-005 can be closed after review"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/tests"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:012-broad-suite-vitest-honesty-checklist"

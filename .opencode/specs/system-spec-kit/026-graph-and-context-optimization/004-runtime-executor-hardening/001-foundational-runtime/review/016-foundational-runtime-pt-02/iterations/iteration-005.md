@@ -16,14 +16,14 @@ Test 6 compound hypotheses H1–H6 that combine findings from iter 1–3. Iterat
 
 ## 1. Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:440-495`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/shared-provenance.ts:1-72`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/compact-cache.ts:1-56`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts:1-79`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:400-430`
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1240-1395`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/shared.ts` (full)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:95-112`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:440-495`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/shared-provenance.ts:1-72`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/compact-cache.ts:1-56`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts:1-79`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:400-430`
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1240-1395`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/shared.ts` (full)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:95-112`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/001-foundational-runtime/tasks.md` (parent)
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/001-foundational-runtime/description.json` (stub)
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/001-foundational-runtime/001-initial-research/description.json` (stub)

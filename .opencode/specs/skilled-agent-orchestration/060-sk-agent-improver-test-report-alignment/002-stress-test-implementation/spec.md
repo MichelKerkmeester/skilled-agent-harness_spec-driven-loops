@@ -18,12 +18,12 @@ _memory:
     blockers: []
     key_files:
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations/research/research.md
-      - .opencode/skill/sk-improve-agent/SKILL.md
-      - .opencode/agent/improve-agent.md
-      - .opencode/command/improve/agent.md
-      - .opencode/command/improve/assets/improve_improve-agent_auto.yaml
-      - .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs
-      - .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs
+      - .opencode/skills/sk-improve-agent/SKILL.md
+      - .opencode/agents/improve-agent.md
+      - .opencode/commands/improve/agent.md
+      - .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+      - .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs
+      - .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs
     completion_pct: 5
     open_questions:
       - "Fixture-target choice: build a fresh tiny intentionally-flawed agent, or reuse one of the smaller existing agents?"
@@ -48,7 +48,7 @@ _memory:
 Phase 001 produced 854 lines of research synthesizing 10 cli-copilot iterations into prioritized improvement recommendations for the sk-improve-agent triad. Phase 002 turns those recommendations into shipped behavior:
 
 1. **Apply the 5 P0/P1 diff sketches** from `001/research/research.md` §5 to the triad files + 2 helper scripts.
-2. **Author 6+ CP-XXX playbook entries** (CP-040 through CP-045 minimum) under `.opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/` using the same format as CP-027 through CP-034 in packet 059.
+2. **Author 6+ CP-XXX playbook entries** (CP-040 through CP-045 minimum) under `.opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/` using the same format as CP-027 through CP-034 in packet 059.
 3. **Build the recommended fixture-target** (per 001/research §6) — a small controlled "agent-under-improvement" with intentional flaws that exercise each scenario.
 4. **Run multi-round stress tests** mirroring 059's R0 baseline → R1 stress → R2/R3 fix progression, targeting 8/0/0 PASS/PARTIAL/FAIL.
 5. **Author `test-report.md`** mirroring 059's structure (executive summary, methodology, round-by-round narrative, diff summary, lessons-learned).
@@ -103,13 +103,13 @@ Execute the 001/research §8 hand-off plan: apply diffs, author scenarios, build
 ### In Scope
 
 - **Apply diff sketches** from 001/research/research.md §5:
-  - `.opencode/agent/improve-agent.md` — add §6.5 CRITIC PASS bullets (P0)
-  - `.opencode/skill/sk-improve-agent/SKILL.md` — clarify "skill load is not protocol execution" (P0)
-  - `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` — emit `legal_stop_evaluated` with 5-gate bundle (P0)
-  - `.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs` — actually use `--baseline` and emit `delta` (P0)
-  - `.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs` — fix `.gemini/agents` mirror path constant (P1)
-- **Mirror agent edits across 4 runtimes** per memory rule (`.opencode/agent/improve-agent.md` → `.claude/agents/improve-agent.md` + `.gemini/agents/improve-agent.md` + `.codex/agents/improve-agent.toml`)
-- **Author CP-040 through CP-045 playbook entries** as real files under `.opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/`:
+  - `.opencode/agents/improve-agent.md` — add §6.5 CRITIC PASS bullets (P0)
+  - `.opencode/skills/sk-improve-agent/SKILL.md` — clarify "skill load is not protocol execution" (P0)
+  - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` — emit `legal_stop_evaluated` with 5-gate bundle (P0)
+  - `.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs` — actually use `--baseline` and emit `delta` (P0)
+  - `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs` — fix `.gemini/agents` mirror path constant (P1)
+- **Mirror agent edits across 4 runtimes** per memory rule (`.opencode/agents/improve-agent.md` → `.claude/agents/improve-agent.md` + `.gemini/agents/improve-agent.md` + `.codex/agents/improve-agent.toml`)
+- **Author CP-040 through CP-045 playbook entries** as real files under `.opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/`:
   - CP-040 — SKILL_LOAD_NOT_PROTOCOL / script-routing fidelity
   - CP-041 — PROPOSAL_ONLY_BOUNDARY / no canonical mutation
   - CP-042 — ACTIVE_CRITIC_OVERFIT / candidate-time challenge
@@ -133,23 +133,23 @@ Execute the 001/research §8 hand-off plan: apply diffs, author scenarios, build
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/agent/improve-agent.md` | Modify | Add §6.5 CRITIC PASS bullets (P0) |
+| `.opencode/agents/improve-agent.md` | Modify | Add §6.5 CRITIC PASS bullets (P0) |
 | `.claude/agents/improve-agent.md` | Modify | Mirror of above |
 | `.gemini/agents/improve-agent.md` | Modify | Mirror of above |
 | `.codex/agents/improve-agent.toml` | Modify | Mirror of above (toml-wrapped) |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Modify | Clarify "skill load ≠ protocol execution" (P0) |
-| `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Modify | Emit `legal_stop_evaluated` with 5-gate bundle (P0) |
-| `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Modify | Same legal-stop emission |
-| `.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs` | Modify | Actually use `--baseline`, emit `delta` (P0) |
-| `.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs` | Modify | Fix `.gemini/agents` mirror path (P1) |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md` | Create | CP-040 |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md` | Create | CP-041 |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md` | Create | CP-042 |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md` | Create | CP-043 |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md` | Create | CP-044 |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md` | Create | CP-045 |
-| `.opencode/skill/cli-copilot/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add CP-040..045 to root index (§10 + §16) |
-| Fixture-target file(s) | Create | Path TBD per ADR-3 (likely `.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/`) |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Modify | Clarify "skill load ≠ protocol execution" (P0) |
+| `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` | Modify | Emit `legal_stop_evaluated` with 5-gate bundle (P0) |
+| `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` | Modify | Same legal-stop emission |
+| `.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs` | Modify | Actually use `--baseline`, emit `delta` (P0) |
+| `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs` | Modify | Fix `.gemini/agents` mirror path (P1) |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md` | Create | CP-040 |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md` | Create | CP-041 |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md` | Create | CP-042 |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md` | Create | CP-043 |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md` | Create | CP-044 |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md` | Create | CP-045 |
+| `.opencode/skills/cli-copilot/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add CP-040..045 to root index (§10 + §16) |
+| Fixture-target file(s) | Create | Path TBD per ADR-3 (likely `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/`) |
 | `.opencode/specs/.../060-.../002-.../test-report.md` | Create | Mirror 059 test-report structure |
 
 ### Files to Reference (NOT modify)
@@ -227,9 +227,9 @@ A successful 002 produces:
 
 - **Research source:** `001-deep-research-recommendations/research/research.md` (854 lines, all sections — the source of truth for this packet)
 - **Methodology template:** `../../059-agent-implement-code/test-report.md` (570 lines, §9 lessons-learned, ANCHOR pair structure)
-- **Target triad:** `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/agent/improve-agent.md`, `.opencode/command/improve/agent.md`
-- **Helper scripts to modify:** `score-candidate.cjs`, `scan-integration.cjs` under `.opencode/skill/sk-improve-agent/scripts/`
-- **Playbook root:** `.opencode/skill/cli-copilot/manual_testing_playbook/manual_testing_playbook.md`
+- **Target triad:** `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/improve/agent.md`
+- **Helper scripts to modify:** `score-candidate.cjs`, `scan-integration.cjs` under `.opencode/skills/sk-improve-agent/scripts/`
+- **Playbook root:** `.opencode/skills/cli-copilot/manual_testing_playbook/manual_testing_playbook.md`
 - **Memory rules consulted:**
   - `feedback_new_agent_mirror_all_runtimes.md` — 4-runtime mirror discipline
   - `feedback_implementation_summary_placeholders.md` — placeholders OK during planning

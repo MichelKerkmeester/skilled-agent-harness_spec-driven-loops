@@ -16,10 +16,10 @@ Correctness. Iteration 1 also performed the requested inventory pass and resourc
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deep-research-state.jsonl`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deltas/iter-001.jsonl` through `iter-010.jsonl`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
 - Selected implementation summaries for packets 003, 005, and 009.
 - Selected downstream packet docs for 012 and 017.
 

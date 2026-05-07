@@ -16,10 +16,10 @@ _memory:
     blockers: []
     key_files:
       - "plan.md"
-      - ".opencode/skill/sk-code/references/webflow/"
-      - ".opencode/skill/sk-code/references/router/"
-      - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code/README.md"
+      - ".opencode/skills/sk-code/references/webflow/"
+      - ".opencode/skills/sk-code/references/router/"
+      - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/sk-code/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05"
@@ -124,7 +124,7 @@ A user asks for Motion API/integration guidance. sk-code routes code work as usu
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Template validation | Packet 3 docs and parent phase integration | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Template validation | Packet 3 docs and parent phase integration | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 | Cross-ref audit | Motion mention files and `motion_dev/` pointer coverage | `grep -ril`, `grep -rl`, `wc -l` |
 | Metadata refresh | Skill graph derived block and index health | derived sync script, `skill_graph_scan`, `skill_graph_validate` |
 | Scope review | No Packet 1/2-owned content edited | `git status --short`, changed-file review |

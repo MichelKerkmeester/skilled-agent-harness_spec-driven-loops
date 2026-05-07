@@ -16,10 +16,10 @@ D4 Maintainability — recovery and contract surfaces
 ## Findings
 ### P2-023-008: Startup and recovery guidance still diverges between `session_resume` and `session_bootstrap` entrypoints
 - Dimension: D4 Maintainability
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:662]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:679]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:680]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:737]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:662]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:679]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:680]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:737]
 - Impact: Non-hook clients still receive mixed recovery guidance from the runtime itself, which makes the intended first-call path harder to preserve consistently across wrappers and docs.
 - Final severity: P2
 
@@ -32,10 +32,10 @@ D4 Maintainability — recovery and contract surfaces
 - The runtime still converges on the same tools, but entrypoint wording remains internally split.
 
 ## Sources Reviewed
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:662]
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:679]
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:680]
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:737]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:662]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:679]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:680]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:737]
 
 ## Assessment
 - Confirmed findings: 1

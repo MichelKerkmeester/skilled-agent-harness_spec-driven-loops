@@ -45,20 +45,20 @@ _memory:
 <!-- ANCHOR:skills -->
 ## 5. Skills
 
-> `.opencode/skill/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
+> `.opencode/skills/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/package.json` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph-degraded-sweep.vitest.ts` | Created | MISSING | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/README.md` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/session-manager-stress.vitest.ts` | Created | MISSING | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-degraded-sweep.vitest.ts` | Removed | MISSING | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/README.md` | Updated | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts` | Removed | MISSING | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tsconfig.json` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph-degraded-sweep.vitest.ts` | Created | MISSING | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/session-manager-stress.vitest.ts` | Created | MISSING | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-degraded-sweep.vitest.ts` | Removed | MISSING | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/README.md` | Updated | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts` | Removed | MISSING | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tsconfig.json` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
 <!-- /ANCHOR:skills -->
 
 ---
@@ -108,7 +108,7 @@ _memory:
 
 - Paths are repo-root relative and use the real `.opencode/specs` tree rather than the `specs` symlink.
 - This map was derived from packet commit history with shared commits split by packet-owned paths and commit-body scope.
-- Keep action/status vocabulary aligned with `.opencode/skill/system-spec-kit/templates/resource-map.md`.
+- Keep action/status vocabulary aligned with `.opencode/skills/system-spec-kit/templates/resource-map.md`.
 - Preserve category precedence: Specs over Config, Meta over root READMEs, Skills over Documents, Tests over Scripts.
 - Refresh this map whenever the packet receives additional touched paths or a canonical save changes packet-local metadata.
 <!-- /ANCHOR:author-instructions -->

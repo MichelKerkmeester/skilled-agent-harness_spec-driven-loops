@@ -86,13 +86,13 @@ Create a fully functional `sk-improve-prompt` OpenCode skill that enables develo
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-improve-prompt/SKILL.md` | Create | Main skill definition with WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES sections |
-| .opencode/skill/sk-improve-prompt/references/frameworks.md | Create | All 10 prompt frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT, VIBE, FRAME, MOTION) |
-| `.opencode/skill/sk-improve-prompt/references/depth_framework.md` | Create | DEPTH thinking methodology (10-round approach) |
-| .opencode/skill/sk-improve-prompt/references/scoring_systems.md | Create | Triple scoring documentation (CLEAR, EVOKE, VISUAL) |
-| .opencode/skill/sk-improve-prompt/references/operating_modes.md | Create | Signal-based routing and 10 operating modes |
-| .opencode/skill/sk-improve-prompt/references/knowledge_base.md | Create | System prompts, templates, and visual/image/video reference materials |
-| `.opencode/skill/scripts/skill_advisor.py` | Modify | Add sk-improve-prompt intent boosters and confidence thresholds |
+| `.opencode/skills/sk-improve-prompt/SKILL.md` | Create | Main skill definition with WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES sections |
+| .opencode/skills/sk-improve-prompt/references/frameworks.md | Create | All 10 prompt frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT, VIBE, FRAME, MOTION) |
+| `.opencode/skills/sk-improve-prompt/references/depth_framework.md` | Create | DEPTH thinking methodology (10-round approach) |
+| .opencode/skills/sk-improve-prompt/references/scoring_systems.md | Create | Triple scoring documentation (CLEAR, EVOKE, VISUAL) |
+| .opencode/skills/sk-improve-prompt/references/operating_modes.md | Create | Signal-based routing and 10 operating modes |
+| .opencode/skills/sk-improve-prompt/references/knowledge_base.md | Create | System prompts, templates, and visual/image/video reference materials |
+| `.opencode/skills/scripts/skill_advisor.py` | Modify | Add sk-improve-prompt intent boosters and confidence thresholds |
 
 ---
 <!-- /ANCHOR:scope -->
@@ -152,7 +152,7 @@ Create a fully functional `sk-improve-prompt` OpenCode skill that enables develo
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Source Prompt Improver system documentation | Completeness of frameworks/scoring systems | Maintain reference copy at `.opencode/skill/sk-improve-prompt/references/` and index in decision-record.md |
+| Dependency | Source Prompt Improver system documentation | Completeness of frameworks/scoring systems | Maintain reference copy at `.opencode/skills/sk-improve-prompt/references/` and index in decision-record.md |
 | Dependency | skill_advisor.py infrastructure | If skill routing doesn't work, skill becomes inaccessible | Work with @general to register intent boosters; test with multiple prompt engineering query variants |
 | Risk | Framework completeness vs. OpenCode environment constraints | Frameworks may require adaptation for non-interactive environment | Document constraints in SKILL.md RULES section; provide workarounds for text-only modes |
 | Risk | Signal-based routing accuracy | Misdetection of operating mode (e.g., confusing "Improve" with "Refine") | Build validation checks into skill; include user clarification prompts in Smart Routing section |

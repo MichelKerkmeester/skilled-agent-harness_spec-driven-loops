@@ -25,7 +25,7 @@ Verified every claim in `analysis_findings.md` and narrowed remediation scope to
 ### Technical Context
 - **Language**: Node 20 (MCP server) + Bash scripts + Markdown docs
 - **Dependencies**: Nominal (sqlite-vec, huggingface embedder); no new deps required
-- **Storage**: `.opencode/skill/system-spec-kit/database/context-index.sqlite`
+- **Storage**: `.opencode/skills/system-spec-kit/database/context-index.sqlite`
 - **Testing**: Existing `test-validation.sh` + lint (eslint/prettier) where touched
 - **Project Type**: Monorepo-style Webflow tooling repo
 - **Constraints**: Preserve MCP tool schemas; avoid downtime for semantic memory; doc changes must keep Gate text consistent
@@ -37,7 +37,7 @@ Verified every claim in `analysis_findings.md` and narrowed remediation scope to
 
 ### Definition of Ready
 - [x] Problem statement verified by re-reading each finding
-- [x] Impacted paths enumerated (`context-server.js`, `README.md`, `.opencode/command/**`, `scripts/lib/**`)
+- [x] Impacted paths enumerated (`context-server.js`, `README.md`, `.opencode/commands/**`, `scripts/lib/**`)
 - [x] Risks captured (security regression, doc drift)
 - [x] Success criteria defined (see DoD)
 
@@ -64,9 +64,9 @@ Verified every claim in `analysis_findings.md` and narrowed remediation scope to
 
 ### Architecture Overview
 SpecKit + semantic memory share a single MCP server. Fixes stay within:
-- `.opencode/skill/system-spec-kit/mcp_server/**`
-- `.opencode/skill/system-spec-kit/scripts/**`
-- `.opencode/command/{memory,spec_kit}/**`
+- `.opencode/skills/system-spec-kit/mcp_server/**`
+- `.opencode/skills/system-spec-kit/scripts/**`
+- `.opencode/commands/{memory,spec_kit}/**`
 - Root `README.md`
 
 Documentation structure already conforms to Option 1 (single project). No build changes required.

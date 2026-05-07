@@ -38,44 +38,44 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/vitest.config.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/vitest.stress.config.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/matrix/shadow-comparison.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-trigger-fast-path.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-trigger-perf-benchmark.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-output.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/matrix/shadow-comparison.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-trigger-fast-path.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-trigger-perf-benchmark.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-output.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts"
     ],
     "entities": [
       {
         "name": "vitest.config.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/vitest.config.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts",
         "source": "derived"
       },
       {
         "name": "vitest.stress.config.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/vitest.stress.config.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
         "source": "derived"
       },
       {
         "name": "package.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/package.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
         "source": "derived"
       },
       {
@@ -93,91 +93,91 @@
       {
         "name": "code-graph-degraded-sweep.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
         "source": "derived"
       },
       {
         "name": "walker-dos-caps.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts",
         "source": "derived"
       },
       {
         "name": "shadow-comparison.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/matrix/shadow-comparison.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/matrix/shadow-comparison.vitest.ts",
         "source": "derived"
       },
       {
         "name": "gate-d-benchmark-memory-search.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts",
         "source": "derived"
       },
       {
         "name": "gate-d-benchmark-trigger-fast-path.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-trigger-fast-path.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-trigger-fast-path.vitest.ts",
         "source": "derived"
       },
       {
         "name": "gate-d-trigger-perf-benchmark.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-trigger-perf-benchmark.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-trigger-perf-benchmark.vitest.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
         "source": "derived"
       },
       {
         "name": "baseline.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts",
         "source": "derived"
       },
       {
         "name": "corpus.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts",
         "source": "derived"
       },
       {
         "name": "harness-telemetry-export.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts",
         "source": "derived"
       },
       {
         "name": "harness.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts",
         "source": "derived"
       },
       {
         "name": "measurement-fixtures.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts",
         "source": "derived"
       },
       {
         "name": "measurement-output.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-output.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-output.vitest.ts",
         "source": "derived"
       },
       {
         "name": "metrics.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
         "source": "derived"
       },
       {
         "name": "w10-degraded-readiness-integration.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts",
         "source": "derived"
       },
       {

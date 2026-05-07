@@ -171,7 +171,7 @@ The following items were identified as future improvements but are NOT part of t
 If continuing this work, verify:
 
 - [ ] Test suite passes: `cd .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity/tests && ./run-tests.sh`
-- [ ] CLI tools work: `node .opencode/skill/system-spec-kit/scripts/detect-complexity.js --help`
+- [ ] CLI tools work: `node .opencode/skills/system-spec-kit/scripts/detect-complexity.js --help`
 - [ ] create-spec-folder.sh integration: `./scripts/create-spec-folder.sh --help`
 - [ ] Memory files exist: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity/memory`
 - [ ] Review test-summary.md for coverage details

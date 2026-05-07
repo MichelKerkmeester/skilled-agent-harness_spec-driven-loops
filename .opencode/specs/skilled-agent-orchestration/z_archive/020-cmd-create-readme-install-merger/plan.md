@@ -108,8 +108,8 @@ Invocation enters canonical parser, normalization resolves operation and mode, s
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/command/create/folder_readme.md` and the merged install-guide branch | Internal | Green | Merge contract cannot preserve current command semantics |
-| Four operation-mode YAML assets in `.opencode/command/create/assets/` | Internal | Green | Shared kernel design cannot be grounded in current behavior |
+| `.opencode/commands/create/folder_readme.md` and the merged install-guide branch | Internal | Green | Merge contract cannot preserve current command semantics |
+| Four operation-mode YAML assets in `.opencode/commands/create/assets/` | Internal | Green | Shared kernel design cannot be grounded in current behavior |
 | sk-doc DQI expectations in existing workflows | Internal | Yellow | Validation policy inconsistencies after merge |
 <!-- /ANCHOR:dependencies -->
 
@@ -197,26 +197,26 @@ Evidence Review ────────┘
 
 | Evidence Asset | Key Finding |
 |----------------|-------------|
-| `.opencode/command/create/folder_readme.md` | Uses Phase 0 write verification + unified setup + mode split to two YAML files |
-| merged install-guide branch inside `.opencode/command/create/folder_readme.md` | Mirrors the setup protocol and mode split with operation-specific input fields |
-| `.opencode/command/create/assets/create_folder_readme_auto.yaml` | Autonomous six-step workflow with README-specific section model and DQI gate |
-| `.opencode/command/create/assets/create_folder_readme_confirm.yaml` | Interactive variant with step checkpoints and same core structure |
-| `.opencode/command/create/assets/create_install_guide_auto.yaml` | Autonomous six-step workflow with install-guide-specific section model and platform logic |
-| `.opencode/command/create/assets/create_install_guide_confirm.yaml` | Interactive variant with checkpointed install guide flow and same core structure |
+| `.opencode/commands/create/folder_readme.md` | Uses Phase 0 write verification + unified setup + mode split to two YAML files |
+| merged install-guide branch inside `.opencode/commands/create/folder_readme.md` | Mirrors the setup protocol and mode split with operation-specific input fields |
+| `.opencode/commands/create/assets/create_folder_readme_auto.yaml` | Autonomous six-step workflow with README-specific section model and DQI gate |
+| `.opencode/commands/create/assets/create_folder_readme_confirm.yaml` | Interactive variant with step checkpoints and same core structure |
+| `.opencode/commands/create/assets/create_install_guide_auto.yaml` | Autonomous six-step workflow with install-guide-specific section model and platform logic |
+| `.opencode/commands/create/assets/create_install_guide_confirm.yaml` | Interactive variant with checkpointed install guide flow and same core structure |
 
 ### Implementation Evidence (Current Cycle)
 
 | Evidence Asset | Result |
 |----------------|--------|
-| `.opencode/command/create/folder_readme.md` | Preferred unified user-facing command updated for README/install workflows (default `readme`) |
+| `.opencode/commands/create/folder_readme.md` | Preferred unified user-facing command updated for README/install workflows (default `readme`) |
 | compatibility/internal workflow kernel behavior | Retired wrapper behavior remains preserved inside the canonical command flow |
 | install-guide compatibility alias behavior | Legacy wrapper retired after implementation; install routing remains available through the canonical command |
 | `.agents/commands/create/folder_readme.toml` | Preferred unified `.agents` wrapper updated |
 | `.agents/commands/create/doc.toml` | Retained as compatibility/internal `.agents` wrapper |
 | `.agents/commands/create/install_guide.toml` | Converted to compatibility alias wrapper |
 | Alias warning behavior in markdown/TOML wrappers | Implemented one-line deprecation warnings with canonical migration hints before routing |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/command/create/folder_readme.md` (canonical pass used for merged workflow) | VALID |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/command/create/folder_readme.md` | VALID |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/commands/create/folder_readme.md` (canonical pass used for merged workflow) | VALID |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/commands/create/folder_readme.md` | VALID |
 | install-guide branch validation via canonical command document review | VALID |
 | `python3.11 -c "import tomllib, pathlib; ..."` (three `.agents` files) | TOML_PARSE_VALID |
 | Static parity+safety suite | PASS (20 checks, 0 failed), including `route:readme:auto`, `route:readme:confirm`, `route:install:auto`, `route:install:confirm`; alias-token + alias-source checks for markdown and `.agents` wrappers; confirm-checkpoints + explicit-overwrite-options checks for both confirm YAML files; no-secret-field checks in the canonical merged command document |

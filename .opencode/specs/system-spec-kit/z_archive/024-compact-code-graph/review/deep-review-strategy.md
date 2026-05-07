@@ -57,14 +57,14 @@ Audit the root packet, representative child phases, and the runtime implementati
 |---------------|---------|
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` | Root packet contract and completion evidence. |
 | Child phases `001-034` | Validate cross-reference integrity, status carry-forward, and per-phase evidence where root claims depend on them. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Validate root recovery and structural bootstrap claims. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | Validate resume surface referenced by packet docs. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts` | Validate structural context and compact graph context claims. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts` | Validate graph query traversal and filters. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` | Validate structural bootstrap budget and payload claims. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` | Validate autosave and packet-targeting claims. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Validate compact recovery and cross-runtime safety parity. |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md`, feature catalog, manual playbook | Validate overlay protocol truth-sync. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Validate root recovery and structural bootstrap claims. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Validate resume surface referenced by packet docs. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts` | Validate structural context and compact graph context claims. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts` | Validate graph query traversal and filters. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` | Validate structural bootstrap budget and payload claims. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` | Validate autosave and packet-targeting claims. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Validate compact recovery and cross-runtime safety parity. |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md`, feature catalog, manual playbook | Validate overlay protocol truth-sync. |
 
 ## 9. Running Findings
 

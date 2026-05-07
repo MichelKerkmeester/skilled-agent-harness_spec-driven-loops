@@ -4,9 +4,9 @@
 Test the length-penalty thresholds against the actual system-spec-kit markdown corpus and determine whether the 5-minute reranker TTL can be evaluated from current telemetry.
 
 ## Findings
-1. A packet-local probe over `.opencode/specs/system-spec-kit/**/*.md` found `5966` markdown files, `0` under 50 characters, and `4690` over 2000 characters (`78.6%`), with median length `5666`. [INFERENCE: packet-local corpus probe] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:62]
-2. Because the short threshold catches none of the actual corpus and the long threshold catches most of it, the current length penalty behaves like a blanket long-doc demotion rather than a targeted relevance correction for spec-doc continuity search. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:62] [INFERENCE: derived from the packet-local corpus probe]
-3. The reranker cache exposes TTL checks, insertions, and latency sample counts, but there are no hit/miss counters in the exported status object, so current code cannot answer "what is the hit rate at 5 minutes?" [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:424] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:499]
+1. A packet-local probe over `.opencode/specs/system-spec-kit/**/*.md` found `5966` markdown files, `0` under 50 characters, and `4690` over 2000 characters (`78.6%`), with median length `5666`. [INFERENCE: packet-local corpus probe] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:62]
+2. Because the short threshold catches none of the actual corpus and the long threshold catches most of it, the current length penalty behaves like a blanket long-doc demotion rather than a targeted relevance correction for spec-doc continuity search. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:62] [INFERENCE: derived from the packet-local corpus probe]
+3. The reranker cache exposes TTL checks, insertions, and latency sample counts, but there are no hit/miss counters in the exported status object, so current code cannot answer "what is the hit rate at 5 minutes?" [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:424] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:499]
 
 ## Ruled Out
 - Changing the TTL based on a derived hit rate from current exports.
@@ -15,9 +15,9 @@ Test the length-penalty thresholds against the actual system-spec-kit markdown c
 - None beyond the cache observability gap.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:62`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:424`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:499`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:62`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:424`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:499`
 
 ## Assessment
 - New information ratio: 0.30

@@ -165,7 +165,7 @@ Pre-flight self-check (executed by reading the code, retained as audit trail):
 ### `validate.sh --strict` — Wave-3 canonical evidence (010/007/T-B, 2026-04-25)
 
 ```
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/002-code-graph-phase-runner-and-detect-changes \
   --strict
 → FAILED (template-section conformance)
@@ -221,26 +221,26 @@ Phase-root files (`012/spec.md`, `012/plan.md`, `012/tasks.md`, `012/checklist.m
 
    ```sh
    # Chunk 1 — Phase A (runner foundation)
-   git add .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/phase-runner.ts \
-           .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/phase-runner.test.ts
+   git add .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/phase-runner.ts \
+           .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/phase-runner.test.ts
    git commit -m "feat(012/002): add typed phase-DAG runner for code-graph scan"
 
    # Chunk 2 — Phase B (wrap indexFiles)
-   git add .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts
+   git add .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts
    git commit -m "feat(012/002): wrap indexFiles() body in phase-DAG runner"
 
    # Chunk 3 — Phase C+D (diff parser + detect_changes handler + tests + registration)
-   git add .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/diff-parser.ts \
-           .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts \
-           .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/index.ts \
-           .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts
+   git add .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/diff-parser.ts \
+           .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts \
+           .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/index.ts \
+           .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts
    git commit -m "feat(012/002): add detect_changes preflight handler + custom diff parser"
 
    # Chunk 4 — Phase E+F (docs + spec docs)
-   git add .opencode/skill/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md \
-           .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md \
-           .opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md \
-           .opencode/skill/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md \
+   git add .opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md \
+           .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md \
+           .opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md \
+           .opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md \
            .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/002-code-graph-phase-runner-and-detect-changes/{tasks.md,checklist.md,implementation-summary.md}
    git commit -m "docs(012/002): catalog detect_changes + phase-DAG runner; populate spec docs"
    ```

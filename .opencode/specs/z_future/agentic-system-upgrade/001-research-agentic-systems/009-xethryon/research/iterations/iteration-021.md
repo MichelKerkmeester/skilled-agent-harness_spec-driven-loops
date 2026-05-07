@@ -12,9 +12,9 @@ Does `system-spec-kit` ask the operator to think in too many top-level lifecycle
 I compared the local lifecycle commands and their YAML-driven workflow contracts with Xethryon's command registry and slash-command operator surface.
 
 ## Evidence
-- `/spec_kit:plan` introduces its own setup flow and explicitly translates markdown inputs into a YAML-driven execution workflow. [SOURCE: .opencode/command/spec_kit/plan.md:13-21] [SOURCE: .opencode/command/spec_kit/plan.md:37-52]
-- `/spec_kit:implement` has a separate setup block and its own multi-step workflow contract, including explicit context-save behavior. [SOURCE: .opencode/command/spec_kit/implement.md:35-120] [SOURCE: .opencode/command/spec_kit/implement.md:171-201]
-- `/spec_kit:complete` is yet another top-level workflow with its own setup questions and closeout sequence. [SOURCE: .opencode/command/spec_kit/complete.md:38-144] [SOURCE: .opencode/command/spec_kit/complete.md:198-217]
+- `/spec_kit:plan` introduces its own setup flow and explicitly translates markdown inputs into a YAML-driven execution workflow. [SOURCE: .opencode/commands/spec_kit/plan.md:13-21] [SOURCE: .opencode/commands/spec_kit/plan.md:37-52]
+- `/spec_kit:implement` has a separate setup block and its own multi-step workflow contract, including explicit context-save behavior. [SOURCE: .opencode/commands/spec_kit/implement.md:35-120] [SOURCE: .opencode/commands/spec_kit/implement.md:171-201]
+- `/spec_kit:complete` is yet another top-level workflow with its own setup questions and closeout sequence. [SOURCE: .opencode/commands/spec_kit/complete.md:38-144] [SOURCE: .opencode/commands/spec_kit/complete.md:198-217]
 - Xethryon's README presents a flatter operator surface of slash commands inside one TUI conversation rather than a visible plan-then-implement-then-complete trilogy. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/README.md:165-205]
 - Xethryon's command registry reinforces that model: commands are loaded into a single shared command layer and bundled skills are registered into the same surface. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/command/index.ts:68-76] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/command/index.ts:96-183]
 
@@ -49,7 +49,7 @@ finding: `system-spec-kit` should merge the operator-facing lifecycle into a sin
 - **Migration path:** additive first; keep existing commands as advanced entry points and measure whether the guided entry point absorbs most usage.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/plan.md`
+- **Target file or module:** `.opencode/commands/spec_kit/plan.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define stable routing heuristics for when the guided front door chooses planning, implementation, or completion

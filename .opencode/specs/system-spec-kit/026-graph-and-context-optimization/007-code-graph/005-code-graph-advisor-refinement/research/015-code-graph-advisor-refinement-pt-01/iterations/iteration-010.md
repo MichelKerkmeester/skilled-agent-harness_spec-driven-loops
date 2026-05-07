@@ -13,7 +13,7 @@ Three depth-evidence tasks: (1) Produce PR-ready before/after JSON diff for F23.
 5. Grepped `applyWeights|promote|rollback` across `handlers/` and `lib/promotion/` -- confirmed `applyWeights` is also a callback parameter (no production binding) and there is NO promotion-orchestrator handler in `handlers/`.
 6. Grepped `advisorPromptCache|getAdvisorPromptCache|new AdvisorPromptCache` to enumerate every cache-touching site -- confirmed exactly 4 sites: the singleton at `lib/prompt-cache.ts:180`, three call sites in `lib/skill-advisor-brief.ts` (lines 20, 386, 441), and three call sites in `handlers/advisor-recommend.ts` (lines 8, 173-229).
 7. Read `lib/skill-advisor-brief.ts:370-420` to inspect the `clearAdvisorBriefCacheForTests()` helper -- confirmed it is a TEST-ONLY exported function (its name and JSDoc both say so), not a production seam.
-8. `ls .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/` -- enumerated all 6 promotion modules: `gate-bundle.ts`, `rollback.ts`, `semantic-lock.ts`, `shadow-cycle.ts`, `two-cycle-requirement.ts`, `weight-delta-cap.ts`. None of them are imported by anything in `handlers/`.
+8. `ls .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/` -- enumerated all 6 promotion modules: `gate-bundle.ts`, `rollback.ts`, `semantic-lock.ts`, `shadow-cycle.ts`, `two-cycle-requirement.ts`, `weight-delta-cap.ts`. None of them are imported by anything in `handlers/`.
 9. `ls handlers/` -- confirmed only 3 handler files (`advisor-recommend.ts`, `advisor-status.ts`, `advisor-validate.ts`) plus `index.ts`. There is NO `promotion-promote.ts` or similar handler that would be the natural production entry point for `rollbackPromotion()`.
 10. Grepped `cache.*hit|set.*get|getOrSet` across `tests/` -- enumerated tests that call the scorer/handler twice and assert `cache.hit === true`. Two relevant tests: `tests/handlers/advisor-recommend.vitest.ts:269-278` and `:303-343`.
 11. Read `tests/handlers/advisor-recommend.vitest.ts:260-345` to inspect the twice-call test shape and verify whether vitest worker isolation could rotate the `DEFAULT_SECRET` between the two calls.
@@ -52,12 +52,12 @@ So `UserPromptSubmit` and `SessionStart` execute the COPILOT adapter as a side e
     "UserPromptSubmit": [
       {
         "type": "command",
-        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
+        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
         "timeoutSec": 5,
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
             "timeout": 3
           }
         ]
@@ -71,7 +71,7 @@ So `UserPromptSubmit` and `SessionStart` execute the COPILOT adapter as a side e
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'",
             "timeout": 3
           }
         ]
@@ -80,12 +80,12 @@ So `UserPromptSubmit` and `SessionStart` execute the COPILOT adapter as a side e
     "SessionStart": [
       {
         "type": "command",
-        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js",
+        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js",
         "timeoutSec": 5,
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'",
             "timeout": 3
           }
         ]
@@ -99,7 +99,7 @@ So `UserPromptSubmit` and `SessionStart` execute the COPILOT adapter as a side e
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js'",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js'",
             "timeout": 10,
             "async": true
           }
@@ -116,28 +116,28 @@ So `UserPromptSubmit` and `SessionStart` execute the COPILOT adapter as a side e
     "UserPromptSubmit": [
       {
         "type": "command",
-        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
+        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
         "timeout": 3
       }
     ],
     "PreCompact": [
       {
         "type": "command",
-        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'",
+        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'",
         "timeout": 3
       }
     ],
     "SessionStart": [
       {
         "type": "command",
-        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'",
+        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'",
         "timeout": 3
       }
     ],
     "Stop": [
       {
         "type": "command",
-        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js'",
+        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js'",
         "timeout": 10,
         "async": true
       }
@@ -265,7 +265,7 @@ export function clearAdvisorBriefCacheForTests(): void {
 
 **The 2-line fix that unblocks F52:**
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
 
 **Before (lines 384-387):**
 
@@ -333,8 +333,8 @@ export async function rollbackOnRegression(args: {
 ## Sources Consulted
 
 - `.claude/settings.local.json` (lines 1-84, full read)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts` (lines 370-420, focused read on `clearAdvisorBriefCacheForTests`)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts` (lines 260-345, twice-call cache-hit assertion shapes)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts` (lines 370-420, focused read on `clearAdvisorBriefCacheForTests`)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts` (lines 260-345, twice-call cache-hit assertion shapes)
 - `.gemini/settings.json` (lines 1-40, schema-shape spot-check)
 - `iterations/iteration-009.md` (full re-anchor of F45-F50)
 - Grep results across `mcp_server/skill-advisor/` for: `rollbackPromotion`, `rollbackOnRegression`, `invalidateCache`, `advisorPromptCache`, `applyWeights|promote|rollback`, `cache.*hit|set.*get|getOrSet`

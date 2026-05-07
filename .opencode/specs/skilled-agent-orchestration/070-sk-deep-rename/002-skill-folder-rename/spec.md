@@ -58,7 +58,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 001 measured 130 Phase 002 files: the two old skill folder roots and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`. The folders must be physically renamed before downstream phases update references elsewhere, and the advisor graph JSON must recognize the new IDs as canonical.
+Phase 001 measured 130 Phase 002 files: the two old skill folder roots and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`. The folders must be physically renamed before downstream phases update references elsewhere, and the advisor graph JSON must recognize the new IDs as canonical.
 
 ### Purpose
 Phase 002 performs the concrete folder rename and local content cleanup for the renamed skills. It also updates the skill advisor graph source so the advisor can rebuild against `deep-review` and `deep-research`.
@@ -71,9 +71,9 @@ Phase 002 performs the concrete folder rename and local content cleanup for the 
 
 ### In Scope
 - Author Phase 002 Level 2 planning artifacts.
-- Rename `.opencode/skill/sk-deep-review/` to `.opencode/skill/deep-review/` using `git mv`.
-- Rename `.opencode/skill/sk-deep-research/` to `.opencode/skill/deep-research/` using `git mv`.
-- Replace quoted `sk-deep-review` and `sk-deep-research` IDs in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
+- Rename `.opencode/skills/sk-deep-review/` to `.opencode/skills/deep-review/` using `git mv`.
+- Rename `.opencode/skills/sk-deep-research/` to `.opencode/skills/deep-research/` using `git mv`.
+- Replace quoted `sk-deep-review` and `sk-deep-research` IDs in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
 - Update internal files inside the renamed folders so they no longer self-reference either old skill name.
 - Run the advisor rebuild script when available.
 - Validate this child spec folder and the packet parent with strict validation.
@@ -93,11 +93,11 @@ Phase 002 performs the concrete folder rename and local content cleanup for the 
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename/tasks.md` | Create/Update | Concrete execution task list |
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename/checklist.md` | Create/Update | Level 2 verification checklist |
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename/graph-metadata.json` | Create/Update | Canonical graph metadata for the phase |
-| `.opencode/skill/sk-deep-review/` | Rename | Rename to `.opencode/skill/deep-review/` |
-| `.opencode/skill/sk-deep-research/` | Rename | Rename to `.opencode/skill/deep-research/` |
-| `.opencode/skill/deep-review/**` | Update | Replace internal old-name references after rename |
-| `.opencode/skill/deep-research/**` | Update | Replace internal old-name references after rename |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Update | Replace old skill IDs in graph keys and signal references |
+| `.opencode/skills/sk-deep-review/` | Rename | Rename to `.opencode/skills/deep-review/` |
+| `.opencode/skills/sk-deep-research/` | Rename | Rename to `.opencode/skills/deep-research/` |
+| `.opencode/skills/deep-review/**` | Update | Replace internal old-name references after rename |
+| `.opencode/skills/deep-research/**` | Update | Replace internal old-name references after rename |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Update | Replace old skill IDs in graph keys and signal references |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -111,7 +111,7 @@ Phase 002 performs the concrete folder rename and local content cleanup for the 
 |----|-------------|---------------------|
 | REQ-001 | Rename skill folders with Git tracking | `git mv` produces `deep-review/` and `deep-research/`; old `sk-deep-*` folders are absent |
 | REQ-002 | Update advisor graph JSON source | `skill-graph.json` parses as JSON and contains new signal keys without old signal keys |
-| REQ-003 | Update internal renamed-folder references | `grep -rl "sk-deep-review\\|sk-deep-research" .opencode/skill/deep-review .opencode/skill/deep-research` returns no rows |
+| REQ-003 | Update internal renamed-folder references | `grep -rl "sk-deep-review\\|sk-deep-research" .opencode/skills/deep-review .opencode/skills/deep-research` returns no rows |
 | REQ-004 | Rebuild advisor graph | Build script runs, or absence is explicitly flagged for orchestrator MCP rebuild |
 | REQ-005 | Preserve phase scope | Git diff touches only Phase 002 artifacts, the two renamed skill roots, their internal files, and `skill-graph.json` |
 
@@ -130,7 +130,7 @@ Phase 002 performs the concrete folder rename and local content cleanup for the 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Phase folder contains Level 2 `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `graph-metadata.json`.
-- **SC-002**: `.opencode/skill/deep-review/` and `.opencode/skill/deep-research/` exist, with no old folder roots remaining.
+- **SC-002**: `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/` exist, with no old folder roots remaining.
 - **SC-003**: `skill-graph.json` contains `deep-review` and `deep-research` keys in `signals` and no old signal keys.
 - **SC-004**: Internal renamed-folder grep for old skill names returns no rows.
 - **SC-005**: Advisor rebuild is run or explicitly deferred with a warning.
@@ -167,7 +167,7 @@ Phase 002 performs the concrete folder rename and local content cleanup for the 
 <!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
-- Internal path links inside the renamed folders still pointing to `.opencode/skill/sk-deep-*`.
+- Internal path links inside the renamed folders still pointing to `.opencode/skills/sk-deep-*`.
 - `graph-metadata.json` files inside the renamed folders carrying old `skill_id` or adjacency targets.
 - Cross-references from `deep-review` to old `deep-research`, or from `deep-research` to old `deep-review`.
 - Backup files from `sed -i` containing stale old names.

@@ -3,9 +3,9 @@
   "profileId": "improve-prompt",
   "family": "improve-prompt",
   "evaluationMode": "dynamic-5d",
-  "target": ".opencode/agent/improve-prompt.md",
+  "target": ".opencode/agents/improve-prompt.md",
   "candidate": "specs/skilled-agent-orchestration/061-agent-optimization/007-agent-improve-prompt/improvement/candidates/iter-3-candidate-001.md",
-  "baseline": ".opencode/agent/improve-prompt.md",
+  "baseline": ".opencode/agents/improve-prompt.md",
   "score": 97,
   "baselineScore": 97,
   "delta": {
@@ -90,7 +90,7 @@
         {
           "id": "always-rule-0",
           "type": "always",
-          "rule": "Read `.opencode/skill/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.",
+          "rule": "Read `.opencode/skills/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.",
           "pass": true,
           "matchRatio": 1
         },

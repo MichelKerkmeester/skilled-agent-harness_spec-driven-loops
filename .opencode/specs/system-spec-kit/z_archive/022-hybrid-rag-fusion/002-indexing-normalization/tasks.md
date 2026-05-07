@@ -76,10 +76,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 [P0] Implement canonical-path dedup in memory discovery and merge flow (`mcp_server/lib/parsing/memory-parser.ts`) [EVIDENCE: implementation landed in `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`]
-- [x] T006 [P0] Enforce unique file list before batch indexing (`mcp_server/handlers/memory-index.ts`) [EVIDENCE: implementation landed in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts`]
+- [x] T005 [P0] Implement canonical-path dedup in memory discovery and merge flow (`mcp_server/lib/parsing/memory-parser.ts`) [EVIDENCE: implementation landed in `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`]
+- [x] T006 [P0] Enforce unique file list before batch indexing (`mcp_server/handlers/memory-index.ts`) [EVIDENCE: implementation landed in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`]
 - [x] T007 [P0] Preserve specFolder filter behavior after canonicalization (`mcp_server/lib/parsing/memory-parser.ts`) [EVIDENCE: targeted + extended parser/index suites PASS (52 + 186 tests)]
-- [x] T008 [P0] Normalize default tier mapping behavior (`mcp_server/lib/scoring/importance-tiers.ts`) [EVIDENCE: implementation landed in `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts`; targeted tier tests PASS]
+- [x] T008 [P0] Normalize default tier mapping behavior (`mcp_server/lib/scoring/importance-tiers.ts`) [EVIDENCE: implementation landed in `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts`; targeted tier tests PASS]
 - [x] T009 [P1] Add diagnostics for deduped path counts in scan result details (`mcp_server/handlers/memory-index.ts`) [EVIDENCE: handler implementation/tests updated; handler test suite PASS]
 <!-- /ANCHOR:phase-2 -->
 
@@ -91,7 +91,7 @@ contextType: "implementation"
 - [x] T010 [P0] Run index handler tests and verify duplicate-source regression passes (`mcp_server/tests/handler-memory-index.vitest.ts`) [EVIDENCE: `npm test -- tests/memory-parser.vitest.ts tests/handler-memory-index.vitest.ts tests/importance-tiers.vitest.ts` PASS (52 tests)]
 - [x] T011 [P0] Run parser tests and verify tier precedence cases pass (`mcp_server/tests/memory-parser.vitest.ts`) [EVIDENCE: targeted + extended parser/spec runs PASS (52 + 186 tests)]
 - [x] T012 [P1] Run tier utility tests and verify defaults remain stable (`mcp_server/tests/importance-tiers.vitest.ts`) [EVIDENCE: targeted tier utility suite PASS (included in 52-test run)]
-- [x] T013 [P1] Run spec validation and resolve issues (`scripts/spec/validate.sh`) [EVIDENCE: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/003-index-tier-anomalies` PASS (0 errors, 0 warnings)] (pre-consolidation path; now 002-indexing-normalization)
+- [x] T013 [P1] Run spec validation and resolve issues (`scripts/spec/validate.sh`) [EVIDENCE: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/003-index-tier-anomalies` PASS (0 errors, 0 warnings)] (pre-consolidation path; now 002-indexing-normalization)
 - [x] T014 [P1] Update checklist and implementation-summary with evidence (`checklist.md`, `implementation-summary.md`) [EVIDENCE: documentation synchronized in spec folder]
 <!-- /ANCHOR:phase-3 -->
 

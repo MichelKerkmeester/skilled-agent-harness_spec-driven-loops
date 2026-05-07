@@ -13,10 +13,10 @@ I compared the internal agent inventory, orchestrator routing table, and handove
 
 ## Evidence
 - [SOURCE: .opencode/README.md:97-117] The framework documents a 12-agent model with explicit user-facing descriptions for orchestration, context, research, review, write, handover, ultra-think, and more.
-- [SOURCE: .opencode/agent/orchestrate.md:95-107] The orchestrator's routing table also exposes many separate specialist roles as first-class dispatch choices.
-- [SOURCE: .opencode/agent/orchestrate.md:169-183] The file inventory reinforces a broad named roster that operators and maintainers must understand.
-- [SOURCE: .opencode/agent/handover.md:22-32] `@handover` is a dedicated continuation specialist with its own template and lifecycle contract.
-- [SOURCE: .opencode/agent/handover.md:40-58] Its actual work is focused and useful, but narrow.
+- [SOURCE: .opencode/agents/orchestrate.md:95-107] The orchestrator's routing table also exposes many separate specialist roles as first-class dispatch choices.
+- [SOURCE: .opencode/agents/orchestrate.md:169-183] The file inventory reinforces a broad named roster that operators and maintainers must understand.
+- [SOURCE: .opencode/agents/handover.md:22-32] `@handover` is a dedicated continuation specialist with its own template and lifecycle contract.
+- [SOURCE: .opencode/agents/handover.md:40-58] Its actual work is focused and useful, but narrow.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:152-159] The external repo exposes only three visible roles: implementer, reviewer, and refactorer.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/loop-explained.md:149-159] The external design keeps role distinctions tied to cognitively distinct jobs, not every support concern.
 

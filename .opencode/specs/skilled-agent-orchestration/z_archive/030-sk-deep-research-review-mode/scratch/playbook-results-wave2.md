@@ -95,7 +95,7 @@
 
 5. **State format** (`state_format.md` line 541): Config schema includes `crossReference` object field: `{ spec: true, checklist: true, agentConsistency: true }`. The "Review Strategy Sections Mapping" table (line 553) lists "Cross-Reference Status" as a review-specific section.
 
-6. **research.md reference file does NOT exist**: The scenario expected `research/research.md §4` to describe cross-reference output format. The file `.opencode/skill/sk-deep-research/references/research/research/research.md` does not exist. This is a gap -- the scenario's source anchor is invalid.
+6. **research.md reference file does NOT exist**: The scenario expected `research/research.md §4` to describe cross-reference output format. The file `.opencode/skills/sk-deep-research/references/research/research/research.md` does not exist. This is a gap -- the scenario's source anchor is invalid.
 
 7. **State format §8**: The scenario expected cross-reference fields in state format section 8. State format section 8 is the "Review Report Format" which includes "Section 8: Cross-Reference Results" (line 572) as one of the 11 report sections. This partially satisfies the check.
 

@@ -63,43 +63,43 @@ Use these commands to verify checklist items:
 # === PHASE 1: CRITICAL ===
 
 # CHK008: Verify config-loader removed
-grep -r "config-loader" .opencode/skill/system-spec-kit/ --include="*.js" | grep -v ".bak" | wc -l
+grep -r "config-loader" .opencode/skills/system-spec-kit/ --include="*.js" | grep -v ".bak" | wc -l
 # Expected: 0
 
 # CHK013: Verify 93% claims removed
-grep -r "93%" .opencode/skill/system-spec-kit/ --include="*.md" | wc -l
+grep -r "93%" .opencode/skills/system-spec-kit/ --include="*.md" | wc -l
 # Expected: 0
 
 # CHK019-021: Verify debug threshold consistent
-grep -rn "failed.*attempt\|fix attempt" .opencode/skill/system-spec-kit/ .opencode/command/spec_kit/ --include="*.md" | grep -v "3"
+grep -rn "failed.*attempt\|fix attempt" .opencode/skills/system-spec-kit/ .opencode/commands/spec_kit/ --include="*.md" | grep -v "3"
 # Expected: No output (all say "3")
 
 # CHK023: Verify memory_save.md exists
-ls -la .opencode/command/spec_kit/memory_save.md
+ls -la .opencode/commands/spec_kit/memory_save.md
 # Expected: File exists
 
 # CHK093: Verify await added to formatSearchResults
-grep -c "return await formatSearchResults" .opencode/skill/system-spec-kit/mcp_server/context-server.js
+grep -c "return await formatSearchResults" .opencode/skills/system-spec-kit/mcp_server/context-server.js
 # Expected: 3
 
 # CHK095: Verify E429 defined
-grep "E429" .opencode/skill/system-spec-kit/mcp_server/lib/errors.js
+grep "E429" .opencode/skills/system-spec-kit/mcp_server/lib/errors.js
 # Expected: Shows definition
 
 # === PHASE 2: HIGH ===
 
 # CHK028: Verify AGENTS.md references removed
-grep -c "AGENTS.md" .opencode/skill/system-spec-kit/SKILL.md
+grep -c "AGENTS.md" .opencode/skills/system-spec-kit/SKILL.md
 # Expected: 0
 
 # CHK083: Verify MCP server starts
-cd .opencode/skill/system-spec-kit/mcp_server && node -c context-server.js
+cd .opencode/skills/system-spec-kit/mcp_server && node -c context-server.js
 # Expected: No syntax errors
 
 # === INTEGRATION ===
 
 # CHK092: Verify existing memories accessible
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT count(*) FROM memory_index"
+sqlite3 .opencode/skills/system-spec-kit/database/context-index.sqlite "SELECT count(*) FROM memory_index"
 # Expected: Number > 0 (if DB exists)
 ```
 
@@ -181,7 +181,7 @@ Before claiming ANY phase complete:
 - [x] CHK022 [P1] Any code checking threshold uses same value | Evidence: No code checks attempt count
 
 #### T004: /memory:save Command
-- [x] CHK023 [P0] `memory_save.md` file created at correct path | Evidence: File exists at .opencode/command/memory/save.md
+- [x] CHK023 [P0] `memory_save.md` file created at correct path | Evidence: File exists at .opencode/commands/memory/save.md
 - [x] CHK024 [P0] Command follows template structure from other commands | Evidence: Uses standard command template
 - [x] CHK025 [P0] Command integrates with `generate-context.js` | Evidence: References script in workflow
 - [x] CHK026 [P0] SKILL.md references now resolve correctly | Evidence: /memory:save references valid
@@ -441,20 +441,20 @@ Execute verification in phases:
 
 ```bash
 # Check config-loader imports
-grep -r "config-loader" .opencode/skill/system-spec-kit/ --include="*.js"
+grep -r "config-loader" .opencode/skills/system-spec-kit/ --include="*.js"
 
 # Check AGENTS.md references (should return 0)
-grep -r "AGENTS.md" .opencode/skill/system-spec-kit/
+grep -r "AGENTS.md" .opencode/skills/system-spec-kit/
 
 # Check anchor_id population
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
+sqlite3 .opencode/skills/system-spec-kit/database/context-index.sqlite \
   "SELECT count(*) FROM memories WHERE anchor_id IS NOT NULL"
 
 # Check MCP server startup
-node .opencode/skill/system-spec-kit/mcp_server/context-server.js 2>&1 | head -20
+node .opencode/skills/system-spec-kit/mcp_server/context-server.js 2>&1 | head -20
 
 # Check threshold consistency
-grep -r "failed fix attempts\|fix attempts" .opencode/skill/system-spec-kit/ --include="*.md"
+grep -r "failed fix attempts\|fix attempts" .opencode/skills/system-spec-kit/ --include="*.md"
 ```
 
 ---
@@ -547,7 +547,7 @@ All 34 JavaScript files pass syntax verification.
 - T101: Added `await` at lines 1085, 1140, 1161 in context-server.js
 - T001: Deleted config-loader.js, reduced search-weights.json
 - T003: Updated 5 files to use "3+" consistently
-- T004: Command created at .opencode/command/memory/save.md
+- T004: Command created at .opencode/commands/memory/save.md
 - T103: Added E429 to errors.js and troubleshooting.md
 - T002: Updated 5 files, documented ANCHOR as "planned feature"
 - T102: Versions already consistent (1.7.1)

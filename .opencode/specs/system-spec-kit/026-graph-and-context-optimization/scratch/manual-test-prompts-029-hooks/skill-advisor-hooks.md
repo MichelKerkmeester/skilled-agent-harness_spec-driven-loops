@@ -25,7 +25,7 @@ Phase D also hardened the Codex PreToolUse hook (HOOK-P2-002, HOOK-P2-003).
 
 **Run in terminal:**
 ```bash
-python3 .opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor.py \
+python3 .opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor.py \
   "I need to add rate limiting to our login endpoint" \
   --threshold 0.8
 ```
@@ -38,7 +38,7 @@ python3 .opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/skill_a
 
 **Run in terminal:**
 ```bash
-python3 .opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor.py \
+python3 .opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor.py \
   "Review this pull request for security issues" \
   --force-native
 ```
@@ -92,7 +92,7 @@ Help me write something. Then before continuing, quote any advisor line from you
 
 **Precondition:** Temporarily break freshness by touching a tracked SKILL.md without indexing:
 ```bash
-touch .opencode/skill/sk-doc/SKILL.md
+touch .opencode/skills/sk-doc/SKILL.md
 # Do NOT run memory_index_scan
 ```
 
@@ -110,7 +110,7 @@ What is 2+2? Quote any advisor line you see.
 **Cleanup:**
 ```bash
 # Revert any mtime damage with no content change — rebuild index so other tests are clean
-node .opencode/skill/system-spec-kit/mcp_server/dist/skill-advisor/scripts/reindex.js 2>/dev/null || true
+node .opencode/skills/system-spec-kit/mcp_server/dist/skill-advisor/scripts/reindex.js 2>/dev/null || true
 ```
 
 ---
@@ -132,7 +132,7 @@ jq '.' .codex/policy.json
 **Run in terminal (do NOT paste into CLI):**
 ```bash
 printf '%s\n' '{"prompt":"review this TypeScript hook implementation","cwd":"'"$PWD"'"}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js
 ```
 
 **Expected stdout (post-029):**
@@ -174,7 +174,7 @@ export SPECKIT_CODEX_HOOK_TIMEOUT_MS=5000
 **Run in terminal:**
 ```bash
 printf '%s\n' '{"prompt":"complex routing request","cwd":"'"$PWD"'"}' \
-  | SPECKIT_CODEX_HOOK_TIMEOUT_MS=5000 node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js
+  | SPECKIT_CODEX_HOOK_TIMEOUT_MS=5000 node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js
 ```
 
 **Expected:** stderr `durationMs` may exceed 1000ms without triggering SIGNAL_KILLED; stdout has non-empty `additionalContext`.
@@ -184,7 +184,7 @@ printf '%s\n' '{"prompt":"complex routing request","cwd":"'"$PWD"'"}' \
 **Run in terminal:**
 ```bash
 node -e "
-const { detectCodexHookPolicy } = require('./.opencode/skill/system-spec-kit/mcp_server/dist/lib/codex-hook-policy.js');
+const { detectCodexHookPolicy } = require('./.opencode/skills/system-spec-kit/mcp_server/dist/lib/codex-hook-policy.js');
 detectCodexHookPolicy().then(r => console.log(JSON.stringify(r, null, 2)));
 "
 ```
@@ -211,7 +211,7 @@ detectCodexHookPolicy().then(r => console.log(JSON.stringify(r, null, 2)));
 ```bash
 CODEX_TUI_RECORD_SESSION=1 CODEX_TUI_SESSION_LOG_PATH=/tmp/fake.jsonl CODEX_CI=1 \
   node -e "
-const { detectCodexHookPolicy } = require('./.opencode/skill/system-spec-kit/mcp_server/dist/lib/codex-hook-policy.js');
+const { detectCodexHookPolicy } = require('./.opencode/skills/system-spec-kit/mcp_server/dist/lib/codex-hook-policy.js');
 detectCodexHookPolicy().then(r => console.log(JSON.stringify(r, null, 2)));
 "
 ```
@@ -225,7 +225,7 @@ detectCodexHookPolicy().then(r => console.log(JSON.stringify(r, null, 2)));
 **Run in terminal:**
 ```bash
 printf '%s\n' '{"tool":"Bash","tool_input":{"command":"git reset --hard origin/main"}}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
 ```
 
 **Expected stdout:**
@@ -238,7 +238,7 @@ printf '%s\n' '{"tool":"Bash","tool_input":{"command":"git reset --hard origin/m
 **Run in terminal:**
 ```bash
 printf '%s\n' '{"tool":"Bash","tool_input":{"command":"git reset --hard"}}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
 ```
 
 **Expected post-029:**
@@ -253,7 +253,7 @@ printf '%s\n' '{"tool":"Bash","tool_input":{"command":"git reset --hard"}}' \
 **Run in terminal:**
 ```bash
 printf '%s\n' '{"toolName":"Bash","toolInput":{"command":"git reset --hard origin/main"}}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
 ```
 
 **Expected post-029:** `{"decision":"deny",...}` — parser now reads `toolInput.command` (camelCase) in addition to `tool_input.command`.
@@ -280,7 +280,7 @@ cat > "$TMPDIR/.codex/policy.json" <<'EOF'
 EOF
 
 cd "$TMPDIR" && printf '%s\n' '{"tool":"Bash","tool_input":{"command":"rm -rf /"}}' \
-  | node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
+  | node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
 cd -
 ```
 
@@ -296,7 +296,7 @@ TMPDIR=$(mktemp -d)
 cd "$TMPDIR"
 # No .codex dir exists
 printf '%s\n' '{"tool":"Bash","tool_input":{"command":"ls"}}' \
-  | node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
+  | node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
 ls -la .codex 2>/dev/null || echo "no .codex dir created — PASS"
 cd -
 ```
@@ -316,7 +316,7 @@ cd -
 
 ```bash
 bash .github/hooks/scripts/user-prompt-submit.sh --help 2>&1 | head -5 || true
-ls .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js
+ls .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js
 ```
 
 ### Scenario SA-CP-01 — Prompt-hook smoke
@@ -324,7 +324,7 @@ ls .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-sub
 **Run in terminal:**
 ```bash
 echo '{"prompt":"create a new Webflow component","cwd":"'"$PWD"'"}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js
 ```
 
 **Expected:** Advisor brief routed to `sk-code-web` or `system-spec-kit` with high confidence.
@@ -349,7 +349,7 @@ I want to refactor the CSS in our landing page. What skill did the advisor recom
 **Run in terminal:**
 ```bash
 echo '{"prompt":"help me write a Python script","cwd":"'"$PWD"'"}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/user-prompt-submit.js 2>&1 | head -20
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/user-prompt-submit.js 2>&1 | head -20
 ```
 
 **Expected:** non-empty `additionalContext` with advisor routing.

@@ -12,7 +12,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../../../../.." && pwd)"
 SCRATCH_DIR="$SCRIPT_DIR"
-SCRIPTS_DIR="$PROJECT_ROOT/.opencode/skill/system-spec-kit/scripts"
+SCRIPTS_DIR="$PROJECT_ROOT/.opencode/skills/system-spec-kit/scripts"
 
 DRY_RUN=false
 PIDS=()

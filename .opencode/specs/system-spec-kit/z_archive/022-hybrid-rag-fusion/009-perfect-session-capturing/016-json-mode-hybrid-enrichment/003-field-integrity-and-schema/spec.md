@@ -95,8 +95,8 @@ Eliminate silent data loss and silent quality degradation in the memory-save pip
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | Fast-path `filesModified` conversion, unknown-field warnings, `contextType` enum validation, string length limits |
-| `.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts` | Modify | YAML parser replacement, content density V-rule, V12 path normalization, status/percentage contradiction V-rule |
+| `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | Fast-path `filesModified` conversion, unknown-field warnings, `contextType` enum validation, string length limits |
+| `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts` | Modify | YAML parser replacement, content density V-rule, V12 path normalization, status/percentage contradiction V-rule |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -131,7 +131,7 @@ The `utils/index.ts` barrel has **17+ dead re-exports** that no consumer imports
 | `CLAUDE.md` | 37 | `generate-context.js [spec-folder-path]` -- old bare positional |
 | `CLAUDE.md` | 53 | Same stale quick-reference |
 | `CLAUDE.md` | 137-138 | "Pass bare spec folder path" |
-| `.opencode/command/memory/save.md` | 75 | `generate-context.js [spec-folder]` |
+| `.opencode/commands/memory/save.md` | 75 | `generate-context.js [spec-folder]` |
 
 Note: `SKILL.md` is already properly aligned with JSON-primary + `--recovery`.
 

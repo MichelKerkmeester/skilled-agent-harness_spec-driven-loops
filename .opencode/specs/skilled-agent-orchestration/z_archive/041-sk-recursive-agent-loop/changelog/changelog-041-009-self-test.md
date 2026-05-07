@@ -18,7 +18,7 @@ Ran the first self-referential test of the sk-improve-agent skill: the `/improve
 
 **Problem:** The skill had been tested against handover and context-prime targets but never against its own agent file, leaving a gap in confidence about self-referential edge cases.
 
-**Fix:** Ran `/improve:agent` in `:confirm` mode for 3 iterations targeting `.opencode/agent/agent-improver.md`. The integration scanner discovered 9 surfaces, the dynamic profiler extracted 11 rules and 7 output checks, and the loop generated 3 candidates with full ledger, dashboard, and registry artifacts.
+**Fix:** Ran `/improve:agent` in `:confirm` mode for 3 iterations targeting `.opencode/agents/agent-improver.md`. The integration scanner discovered 9 surfaces, the dynamic profiler extracted 11 rules and 7 output checks, and the loop generated 3 candidates with full ledger, dashboard, and registry artifacts.
 
 ---
 
@@ -26,7 +26,7 @@ Ran the first self-referential test of the sk-improve-agent skill: the `/improve
 
 ### Invalid resource reference discovered
 
-**Problem:** The agent's RELATED RESOURCES section listed `/improve:agent-improver` as the command slug, but the actual file is `.opencode/command/improve/agent.md` (slug: `/improve:agent`). This caused systemFitness to score 93 instead of 100.
+**Problem:** The agent's RELATED RESOURCES section listed `/improve:agent-improver` as the command slug, but the actual file is `.opencode/commands/improve/agent.md` (slug: `/improve:agent`). This caused systemFitness to score 93 instead of 100.
 
 **Fix:** The scorer's `resource-refs-valid` check correctly flagged the reference as invalid (3/4 valid). The subagent identified and fixed it in iteration 2, bringing all 5 dimensions to 100.
 

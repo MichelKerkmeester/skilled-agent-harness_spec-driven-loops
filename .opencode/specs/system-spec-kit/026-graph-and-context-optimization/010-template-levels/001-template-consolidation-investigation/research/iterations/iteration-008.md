@@ -19,7 +19,7 @@ This iteration does not change the recommendation. The evidence from iterations 
 Purpose: Give the decision and its reason in one scan. This section should be short enough to survive being copied into a planning issue or implementation brief.
 
 - Recommendation: **PARTIAL**.
-- Do not delete `.opencode/skill/system-spec-kit/templates/level_1`, `.opencode/skill/system-spec-kit/templates/level_2`, `.opencode/skill/system-spec-kit/templates/level_3`, or `.opencode/skill/system-spec-kit/templates/level_3+` in the first implementation packet.
+- Do not delete `.opencode/skills/system-spec-kit/templates/level_1`, `.opencode/skills/system-spec-kit/templates/level_2`, `.opencode/skills/system-spec-kit/templates/level_3`, or `.opencode/skills/system-spec-kit/templates/level_3+` in the first implementation packet.
 - Repair generated-output parity, then add a resolver and migrate consumers.
 - Physical deletion is Phase 4 only if byte parity, validator parity, and path compatibility all pass.
 
@@ -69,7 +69,7 @@ Purpose: Collapse the ten research questions into evidence-backed answers. Each 
 
 Purpose: Capture the chosen implementation design before code begins. The section should make clear that the resolver is not a second generator.
 
-- Use `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` as the generator.
+- Use `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` as the generator.
 - Add temp output-root support for non-mutating parity tests and cache generation.
 - Add a TypeScript resolver with `path`, `content`, and `metadata` modes.
 - Add a shell wrapper exposing `ensure_template_level_dir`, `get_template_path`, and `get_template`.

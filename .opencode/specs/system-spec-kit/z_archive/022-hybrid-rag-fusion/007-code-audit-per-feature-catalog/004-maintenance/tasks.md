@@ -43,7 +43,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T000 Verify feature catalog currency for Maintenance — Catalog confirmed current; 2 features present
-- [x] T000a [P] Identify source code root paths — Root: `.opencode/skill/system-spec-kit/`
+- [x] T000a [P] Identify source code root paths — Root: `.opencode/skills/system-spec-kit/`
 
 <!-- /ANCHOR:phase-1 -->
 

@@ -44,7 +44,7 @@ contextType: "implementation"
 - [x] P0: `grep -r "workflows-spec-kit" .opencode/skills/` returns 0 matches - VERIFIED: 0 matches (excluding SQLite binary)
 - [x] P0: `grep -r "workflows-spec-kit" AGENTS.md` returns 0 matches - VERIFIED by Agent 4.2
 - [x] P0: `grep -r "workflows-spec-kit" "AGENTS (Universal).md"` returns 0 matches - VERIFIED by Agent 4.2
-- [x] P0: `grep -r "workflows-spec-kit" .opencode/command/` returns 0 matches - VERIFIED after remediation
+- [x] P0: `grep -r "workflows-spec-kit" .opencode/commands/` returns 0 matches - VERIFIED after remediation
 
 ### Commands Functional
 - [x] P0: `/spec_kit:complete` command parses without errors - VERIFIED: YAML files updated

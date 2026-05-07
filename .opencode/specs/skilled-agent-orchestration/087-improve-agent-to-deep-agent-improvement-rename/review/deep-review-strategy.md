@@ -37,7 +37,7 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 <!-- MACHINE-OWNED: START -->
 | Dimension | Verdict | Iteration | Summary |
 |-----------|---------|-----------|---------|
-| Correctness | CONDITIONAL | 1 | Agent-file renames are present, but active Gemini command docs still reference obsolete YAML assets, active playbook commands still load `.opencode/agent/improve-agent.md`, and implementation-summary completion claims contain placeholders. |
+| Correctness | CONDITIONAL | 1 | Agent-file renames are present, but active Gemini command docs still reference obsolete YAML assets, active playbook commands still load `.opencode/agents/improve-agent.md`, and implementation-summary completion claims contain placeholders. |
 | Security | PASS | 2 | Proposal-only agent boundaries, YAML target validation, and guarded promotion controls remain intact after the rename; F001/F002 have no supported security impact beyond their correctness breakage. |
 | Traceability | CONDITIONAL | 3 | Implementation-summary COMPLETE claims are not traceable to unchecked tasks/checklist ledgers, and resource-map OK rows contradict active stale references in Gemini command docs and CP-041/CP-042 playbooks. |
 | Maintainability | CONDITIONAL | 4 | Stale references are repairable but not concentrated: active feature-catalog docs, SKILL integration points, and benchmark defaults still publish the removed `improve-agent` proposal path/YAML identity. |
@@ -63,12 +63,12 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 ## 9. WHAT FAILED
 
 - Iteration 1: Gemini command TOML and README still reference `improve_improve-agent_{auto,confirm}.yaml` even though the renamed asset pattern is used elsewhere.
-- Iteration 1: Active CP-041/CP-042 playbook command blocks still `cat .opencode/agent/improve-agent.md` after the old active agent file was removed.
+- Iteration 1: Active CP-041/CP-042 playbook command blocks still `cat .opencode/agents/improve-agent.md` after the old active agent file was removed.
 - Iteration 1: `implementation-summary.md` claims COMPLETE while retaining `[POPULATE]` placeholders in required completion-evidence sections.
 - Iteration 2: Existing unquoted workflow placeholders remain security-sensitive for future executor substitution review, but this pass did not find evidence that the rename introduced a new exploit path.
 - Iteration 3: `tasks.md` and `checklist.md` remain unchecked while `implementation-summary.md` claims COMPLETE, so packet completion is not traceable to the required ledgers.
 - Iteration 3: `resource-map.md` marks Gemini command and active playbook surfaces OK even though active files still contain the stale F001/F002 references.
-- Iteration 4: Active deep-agent-improvement feature-catalog docs, SKILL integration points, and default benchmark profile still publish the old `.opencode/agent/improve-agent.md` and `improve_improve-agent_{auto,confirm}.yaml` identity.
+- Iteration 4: Active deep-agent-improvement feature-catalog docs, SKILL integration points, and default benchmark profile still publish the old `.opencode/agents/improve-agent.md` and `improve_improve-agent_{auto,confirm}.yaml` identity.
 
 ## 10. EXHAUSTED APPROACHES (do not retry)
 
@@ -79,7 +79,7 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Iteration 1: Historical `z_archive` and `.opencode/specs/...` references were not treated as active defects unless an active file relied on them as current evidence.
 - Iteration 1: The slash command `/improve:agent` and Gemini command filename `.gemini/commands/improve/improve-agent.toml` were not flagged because the packet explicitly marks those non-renames as intentional.
 - Iteration 2: F001 stale Gemini YAML names were ruled out as security findings; they reference absent exact assets rather than unsafe fallback or traversal behavior.
-- Iteration 2: F002 stale manual playbook `cat .opencode/agent/improve-agent.md` commands were ruled out as security findings; they are fixed-path test failures rather than broad reads or sandbox escapes.
+- Iteration 2: F002 stale manual playbook `cat .opencode/agents/improve-agent.md` commands were ruled out as security findings; they are fixed-path test failures rather than broad reads or sandbox escapes.
 
 ## 12. NEXT FOCUS
 <!-- MACHINE-OWNED: START -->
@@ -106,7 +106,7 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 | `skill_agent` | overlay | partial | 3 | Changelog exists, but active CP-041/CP-042 playbooks still load old agent path. |
 | `agent_cross_runtime` | overlay | partial | 3 | OpenCode command surfaces use renamed assets; Gemini command docs still reference obsolete asset names. |
 | `feature_catalog_code` | overlay | fail | 4 | Active feature-catalog pages and benchmark defaults still publish the old proposal-agent/YAML identity. |
-| `playbook_capability` | overlay | fail | 3 | Active playbook command blocks still `cat .opencode/agent/improve-agent.md`. |
+| `playbook_capability` | overlay | fail | 3 | Active playbook command blocks still `cat .opencode/agents/improve-agent.md`. |
 <!-- MACHINE-OWNED: END -->
 
 ## 15. FILES UNDER REVIEW
@@ -201,10 +201,10 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Active exact references to old YAML filenames and the old agent file path were checked outside historical `z_archive`; new active surfaces were found in feature-catalog/SKILL/benchmark defaults.
 
-### Command setup still requires a `.opencode/agent/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/command/improve/agent.md:79`, `.opencode/command/improve/agent.md:83`, `.opencode/command/improve/agent.md:122`, `.opencode/command/improve/agent.md:136`]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Command setup still requires a `.opencode/agent/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/command/improve/agent.md:79`, `.opencode/command/improve/agent.md:83`, `.opencode/command/improve/agent.md:122`, `.opencode/command/improve/agent.md:136`].
+### Command setup still requires a `.opencode/agents/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/commands/improve/agent.md:79`, `.opencode/commands/improve/agent.md:83`, `.opencode/commands/improve/agent.md:122`, `.opencode/commands/improve/agent.md:136`]. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Command setup still requires a `.opencode/agents/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/commands/improve/agent.md:79`, `.opencode/commands/improve/agent.md:83`, `.opencode/commands/improve/agent.md:122`, `.opencode/commands/improve/agent.md:136`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Command setup still requires a `.opencode/agent/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/command/improve/agent.md:79`, `.opencode/command/improve/agent.md:83`, `.opencode/command/improve/agent.md:122`, `.opencode/command/improve/agent.md:136`].
+- Do NOT retry: Command setup still requires a `.opencode/agents/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/commands/improve/agent.md:79`, `.opencode/commands/improve/agent.md:83`, `.opencode/commands/improve/agent.md:122`, `.opencode/commands/improve/agent.md:136`].
 
 ### Did not flag the unchanged slash command `/improve:agent` or unchanged Gemini command filename `.gemini/commands/improve/improve-agent.toml`; the packet explicitly documents those as intentional non-renames. -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: Did not flag the unchanged slash command `/improve:agent` or unchanged Gemini command filename `.gemini/commands/improve/improve-agent.toml`; the packet explicitly documents those as intentional non-renames.
@@ -226,10 +226,10 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Follow-on path is unsafe if driven only from current packet ledgers because F003/F004/F005 remain active; however, the concrete stale-reference class identified in F006 gives a repairable inventory target.
 
-### Guarded promotion remains outside the proposal agent and is blocked unless approval, proposal-only config disablement, promotion enablement, target/config/manifest alignment, benchmark pass, repeatability pass, and positive score delta are all present [SOURCE: `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:81`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:101`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:106`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:151`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:156`]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Guarded promotion remains outside the proposal agent and is blocked unless approval, proposal-only config disablement, promotion enablement, target/config/manifest alignment, benchmark pass, repeatability pass, and positive score delta are all present [SOURCE: `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:81`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:101`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:106`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:151`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:156`].
+### Guarded promotion remains outside the proposal agent and is blocked unless approval, proposal-only config disablement, promotion enablement, target/config/manifest alignment, benchmark pass, repeatability pass, and positive score delta are all present [SOURCE: `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:81`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:101`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:106`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:151`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:156`]. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Guarded promotion remains outside the proposal agent and is blocked unless approval, proposal-only config disablement, promotion enablement, target/config/manifest alignment, benchmark pass, repeatability pass, and positive score delta are all present [SOURCE: `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:81`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:101`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:106`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:151`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:156`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Guarded promotion remains outside the proposal agent and is blocked unless approval, proposal-only config disablement, promotion enablement, target/config/manifest alignment, benchmark pass, repeatability pass, and positive score delta are all present [SOURCE: `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:81`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:101`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:106`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:151`, `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs:156`].
+- Do NOT retry: Guarded promotion remains outside the proposal agent and is blocked unless approval, proposal-only config disablement, promotion enablement, target/config/manifest alignment, benchmark pass, repeatability pass, and positive score delta are all present [SOURCE: `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:81`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:101`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:106`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:151`, `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:156`].
 
 ### No duplicate F001: stale Gemini YAML references remain already-recorded P1 correctness/traceability evidence. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: No duplicate F001: stale Gemini YAML references remain already-recorded P1 correctness/traceability evidence.
@@ -241,10 +241,10 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: No duplicate F001/F002 correctness finding: stale Gemini YAML names and stale playbook `cat` commands remain prior active findings; F005 is limited to the resource-map false-OK certification of those surfaces.
 
-### No duplicate F002: CP-041/CP-042 old `cat .opencode/agent/improve-agent.md` commands remain already-recorded P1 correctness/traceability evidence. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: No duplicate F002: CP-041/CP-042 old `cat .opencode/agent/improve-agent.md` commands remain already-recorded P1 correctness/traceability evidence.
+### No duplicate F002: CP-041/CP-042 old `cat .opencode/agents/improve-agent.md` commands remain already-recorded P1 correctness/traceability evidence. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: No duplicate F002: CP-041/CP-042 old `cat .opencode/agents/improve-agent.md` commands remain already-recorded P1 correctness/traceability evidence.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: No duplicate F002: CP-041/CP-042 old `cat .opencode/agent/improve-agent.md` commands remain already-recorded P1 correctness/traceability evidence.
+- Do NOT retry: No duplicate F002: CP-041/CP-042 old `cat .opencode/agents/improve-agent.md` commands remain already-recorded P1 correctness/traceability evidence.
 
 ### No finding for proposal-boundary bypass: the renamed agent and promotion helper keep candidate generation separate from scoring/promotion. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: No finding for proposal-boundary bypass: the renamed agent and promotion helper keep candidate generation separate from scoring/promotion.
@@ -281,15 +281,15 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: No repeat of F001/F002 as correctness findings; they were considered only for security impact.
 
-### OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/command/improve/agent.md:269-270`; `.claude/commands/improve/agent.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/improve/improve-agent.toml:60-61`; `.gemini/commands/improve/README.txt:158-159`]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/command/improve/agent.md:269-270`; `.claude/commands/improve/agent.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/improve/improve-agent.toml:60-61`; `.gemini/commands/improve/README.txt:158-159`].
+### OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/commands/improve/agent.md:269-270`; `.claude/commands/improve/agent.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/improve/improve-agent.toml:60-61`; `.gemini/commands/improve/README.txt:158-159`]. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/commands/improve/agent.md:269-270`; `.claude/commands/improve/agent.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/improve/improve-agent.toml:60-61`; `.gemini/commands/improve/README.txt:158-159`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/command/improve/agent.md:269-270`; `.claude/commands/improve/agent.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/improve/improve-agent.toml:60-61`; `.gemini/commands/improve/README.txt:158-159`].
+- Do NOT retry: OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/commands/improve/agent.md:269-270`; `.claude/commands/improve/agent.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/improve/improve-agent.toml:60-61`; `.gemini/commands/improve/README.txt:158-159`].
 
-### Proposal-only boundary remains explicit in the renamed agent: it must write only one packet-local candidate and stop before scoring, promotion, or packaging [SOURCE: `.opencode/agent/deep-agent-improvement.md:24`, `.opencode/agent/deep-agent-improvement.md:26`, `.opencode/agent/deep-agent-improvement.md:38`, `.opencode/agent/deep-agent-improvement.md:40`]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Proposal-only boundary remains explicit in the renamed agent: it must write only one packet-local candidate and stop before scoring, promotion, or packaging [SOURCE: `.opencode/agent/deep-agent-improvement.md:24`, `.opencode/agent/deep-agent-improvement.md:26`, `.opencode/agent/deep-agent-improvement.md:38`, `.opencode/agent/deep-agent-improvement.md:40`].
+### Proposal-only boundary remains explicit in the renamed agent: it must write only one packet-local candidate and stop before scoring, promotion, or packaging [SOURCE: `.opencode/agents/deep-agent-improvement.md:24`, `.opencode/agents/deep-agent-improvement.md:26`, `.opencode/agents/deep-agent-improvement.md:38`, `.opencode/agents/deep-agent-improvement.md:40`]. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Proposal-only boundary remains explicit in the renamed agent: it must write only one packet-local candidate and stop before scoring, promotion, or packaging [SOURCE: `.opencode/agents/deep-agent-improvement.md:24`, `.opencode/agents/deep-agent-improvement.md:26`, `.opencode/agents/deep-agent-improvement.md:38`, `.opencode/agents/deep-agent-improvement.md:40`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Proposal-only boundary remains explicit in the renamed agent: it must write only one packet-local candidate and stop before scoring, promotion, or packaging [SOURCE: `.opencode/agent/deep-agent-improvement.md:24`, `.opencode/agent/deep-agent-improvement.md:26`, `.opencode/agent/deep-agent-improvement.md:38`, `.opencode/agent/deep-agent-improvement.md:40`].
+- Do NOT retry: Proposal-only boundary remains explicit in the renamed agent: it must write only one packet-local candidate and stop before scoring, promotion, or packaging [SOURCE: `.opencode/agents/deep-agent-improvement.md:24`, `.opencode/agents/deep-agent-improvement.md:26`, `.opencode/agents/deep-agent-improvement.md:38`, `.opencode/agents/deep-agent-improvement.md:40`].
 
 ### Remaining stale references are not fully concentrated in F001/F002 surfaces; feature catalog, SKILL integration points, and benchmark defaults still carry the old naming family, so repair is tractable but requires a same-class inventory pass. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: Remaining stale references are not fully concentrated in F001/F002 surfaces; feature catalog, SKILL integration points, and benchmark defaults still carry the old naming family, so repair is tractable but requires a same-class inventory pass.
@@ -301,10 +301,10 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: REQ-005: **PARTIAL/FAIL**. OpenCode command references inspected use `@deep-agent-improvement` and new YAML filenames, but active Gemini command docs still reference obsolete YAML asset filenames and active playbooks still load the removed agent path.
 
-### REQ-008: **PASS for existence/content shape**. `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md:13` exists and documents the rename, 079 predecessor, 085/001 precedent, YAML filename renames, and migration notes. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: REQ-008: **PASS for existence/content shape**. `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md:13` exists and documents the rename, 079 predecessor, 085/001 precedent, YAML filename renames, and migration notes.
+### REQ-008: **PASS for existence/content shape**. `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:13` exists and documents the rename, 079 predecessor, 085/001 precedent, YAML filename renames, and migration notes. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: REQ-008: **PASS for existence/content shape**. `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:13` exists and documents the rename, 079 predecessor, 085/001 precedent, YAML filename renames, and migration notes.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: REQ-008: **PASS for existence/content shape**. `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md:13` exists and documents the rename, 079 predecessor, 085/001 precedent, YAML filename renames, and migration notes.
+- Do NOT retry: REQ-008: **PASS for existence/content shape**. `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:13` exists and documents the rename, 079 predecessor, 085/001 precedent, YAML filename renames, and migration notes.
 
 ### REQ-010: **FAIL**. `implementation-summary.md` exists but contains unresolved placeholders and lacks concrete commit SHAs while claiming `REQ-010` met at `implementation-summary.md:125` and commit rows at `implementation-summary.md:133-134` remain `[POPULATE]`. -- BLOCKED (iteration 3, 1 attempts)
 - What was tried: REQ-010: **FAIL**. `implementation-summary.md` exists but contains unresolved placeholders and lacks concrete commit SHAs while claiming `REQ-010` met at `implementation-summary.md:125` and commit rows at `implementation-summary.md:133-134` remain `[POPULATE]`.
@@ -326,15 +326,15 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Resource-map classification of F001/F002 surfaces: **FAIL**. The map marks Gemini command docs and active playbook files OK at `resource-map.md:57`, `resource-map.md:83`, and `resource-map.md:112-113`, but active files still show the stale references covered by F001/F002.
 
-### Security baseline loaded from `.opencode/skill/sk-code-review/references/review_core.md:18` through `.opencode/skill/sk-code-review/references/review_core.md:34`; no active P0/P1 security issue was supported by file-line evidence. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Security baseline loaded from `.opencode/skill/sk-code-review/references/review_core.md:18` through `.opencode/skill/sk-code-review/references/review_core.md:34`; no active P0/P1 security issue was supported by file-line evidence.
+### Security baseline loaded from `.opencode/skills/sk-code-review/references/review_core.md:18` through `.opencode/skills/sk-code-review/references/review_core.md:34`; no active P0/P1 security issue was supported by file-line evidence. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Security baseline loaded from `.opencode/skills/sk-code-review/references/review_core.md:18` through `.opencode/skills/sk-code-review/references/review_core.md:34`; no active P0/P1 security issue was supported by file-line evidence.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Security baseline loaded from `.opencode/skill/sk-code-review/references/review_core.md:18` through `.opencode/skill/sk-code-review/references/review_core.md:34`; no active P0/P1 security issue was supported by file-line evidence.
+- Do NOT retry: Security baseline loaded from `.opencode/skills/sk-code-review/references/review_core.md:18` through `.opencode/skills/sk-code-review/references/review_core.md:34`; no active P0/P1 security issue was supported by file-line evidence.
 
-### YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agent/*.md` [SOURCE: `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml:57`, `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml:60`; auto parity at `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml:56`, `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml:59`]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agent/*.md` [SOURCE: `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml:57`, `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml:60`; auto parity at `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml:56`, `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml:59`].
+### YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agents/*.md` [SOURCE: `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:57`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:60`; auto parity at `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:56`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:59`]. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agents/*.md` [SOURCE: `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:57`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:60`; auto parity at `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:56`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:59`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agent/*.md` [SOURCE: `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml:57`, `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml:60`; auto parity at `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml:56`, `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml:59`].
+- Do NOT retry: YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agents/*.md` [SOURCE: `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:57`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:60`; auto parity at `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:56`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:59`].
 
 <!-- /ANCHOR:exhausted-approaches -->
 

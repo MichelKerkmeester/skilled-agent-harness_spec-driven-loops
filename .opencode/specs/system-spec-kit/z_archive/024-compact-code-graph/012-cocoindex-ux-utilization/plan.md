@@ -136,7 +136,7 @@ Implementation facts flow from shipped hooks and helper tools into the packet. T
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Existing Phase 012 code changes | Internal | Green | Packet cannot stay accurate if implementation facts are wrong |
-| Validator contract in `.opencode/skill/system-spec-kit/templates/level_2/` | Internal | Green | Packet structure drifts and validation fails |
+| Validator contract in `.opencode/skills/system-spec-kit/templates/level_2/` | Internal | Green | Packet structure drifts and validation fails |
 | Manual build and hook smoke evidence | Internal | Yellow | Verification claims weaken if evidence is not retained |
 <!-- /ANCHOR:dependencies -->
 

@@ -51,7 +51,7 @@ Evidence: `hook-state.ts:168,180,278`; `context-server.ts:425` (transport hardco
 ### S3 — Supply-chain / postinstall / SDK drift — **RULED OUT**
 
 **Evidence:**
-- `git log 4d3af5a8c..HEAD -- .opencode/skill/system-spec-kit/mcp_server/package.json` → empty. Phase 017 modified zero package.json files.
+- `git log 4d3af5a8c..HEAD -- .opencode/skills/system-spec-kit/mcp_server/package.json` → empty. Phase 017 modified zero package.json files.
 - Grep for `postinstall|preinstall` in mcp_server/package.json → no matches.
 - No dependency bumps; `@modelcontextprotocol/sdk` on-disk is pre-017 baseline.
 

@@ -14,7 +14,7 @@ Audit + align commands and agents across ALL supported runtimes after this sessi
 
 | Runtime | Commands | Agents |
 |---------|----------|--------|
-| **OpenCode** (primary) | `.opencode/command/` | `.opencode/agent/` |
+| **OpenCode** (primary) | `.opencode/commands/` | `.opencode/agents/` |
 | **Claude Code** | (uses .opencode + extras) | `.claude/agents/` |
 | **Codex CLI** | (uses .opencode) | `.codex/agents/` (if present) |
 | **Gemini CLI** | (uses .opencode) | `.gemini/agents/` (if present) |
@@ -39,7 +39,7 @@ For each command + agent, check:
 3. **Tool count claims current** — "54 MCP tools" / "50 + 4" / "63 across 4 servers" — match canonical sources (`tool-schemas.ts`, `opencode.json`).
 4. **Capability matrix current** — agents that mention runtime capabilities (e.g., "Claude has UserPromptSubmit hook") match 013/043/044 reality.
 5. **Auto-claim trigger column** — same rule as 040: every "auto-fires"/"auto-managing" claim has a Trigger column or file:line citation.
-6. **Cross-runtime consistency** — agents that exist in multiple runtimes (`@write`, `@review`, `@orchestrate`, `@deep-research`, `@deep-review`, etc.) should have equivalent capability descriptions across `.opencode/agent/` and `.claude/agents/`.
+6. **Cross-runtime consistency** — agents that exist in multiple runtimes (`@write`, `@review`, `@orchestrate`, `@deep-research`, `@deep-review`, etc.) should have equivalent capability descriptions across `.opencode/agents/` and `.claude/agents/`.
 7. **Evergreen-doc rule compliance** — no packet IDs in command/agent narrative content (per 040 rule).
 8. **New tools surfaced** — agents that should know about `memory_retention_sweep`, `advisor_rebuild`, `freshness-smoke-check`, matrix_runners adapters reference them where appropriate.
 
@@ -49,7 +49,7 @@ For each command + agent, check:
 - `@deep-research` definition: does it cite current sk-deep-research workflow + lineage modes (`new`, `resume`, `restart`)?
 - `@context` agent: does it cite the LEAF-only constraint correctly?
 - `@debug`: does it preserve user-invoked-only directive (no auto-dispatch)?
-- `@orchestrate`: does it cite the runtime agent directory resolution rule (use `.opencode/agent/` for OpenCode profile, `.claude/agents/` for Claude profile)?
+- `@orchestrate`: does it cite the runtime agent directory resolution rule (use `.opencode/agents/` for OpenCode profile, `.claude/agents/` for Claude profile)?
 - `@write`: does it cite sk-doc skill + DQI rules + evergreen-doc rule?
 - `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:complete`, `/spec_kit:resume`: do their YAML workflows reference current paths (no `matrix-runners`, no `tests/search-quality/` for stress)?
 - `/memory:save`, `/memory:search`, `/memory:manage`: do they mention `memory_retention_sweep`?
@@ -79,7 +79,7 @@ For each PASS: do nothing.
 
 #### Phase 3: Cross-runtime consistency check
 
-For agents that exist in BOTH `.opencode/agent/` AND `.claude/agents/`:
+For agents that exist in BOTH `.opencode/agents/` AND `.claude/agents/`:
 - Read both versions
 - Diff capability descriptions
 - If they should be equivalent (same agent, different runtime), align them — pick the more-current source as truth
@@ -87,7 +87,7 @@ For agents that exist in BOTH `.opencode/agent/` AND `.claude/agents/`:
 
 #### Phase 4: Verification
 
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review --strict` — must exit 0
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review --strict` — must exit 0
 - Self-check: run the evergreen-rule grep across all touched command/agent files; goal is zero unexempted hits
 - For any command with a YAML asset: confirm strict validator on the wrapper packet (if applicable) still passes
 
@@ -101,7 +101,7 @@ PLUS: `audit-findings.md` (per-file classifications), `remediation-log.md` (per-
 
 **Trigger phrases**: `["036-runtime-command-agent-alignment-review","runtime command audit","agent alignment review","cross-runtime agent consistency"]`.
 
-**Causal summary**: `"Audits all commands in .opencode/command/ and agents in .opencode/agent/, .claude/agents/, .codex/agents/, .gemini/agents/ for current-reality alignment after 031-048. Surfaces tool/path/count/capability drift; applies fixes; cross-checks runtime-equivalent agents for consistency."`.
+**Causal summary**: `"Audits all commands in .opencode/commands/ and agents in .opencode/agents/, .claude/agents/, .codex/agents/, .gemini/agents/ for current-reality alignment after 031-048. Surfaces tool/path/count/capability drift; applies fixes; cross-checks runtime-equivalent agents for consistency."`.
 
 **Frontmatter**: compact `recent_action` / `next_safe_action` rules. < 80 chars.
 

@@ -106,7 +106,7 @@ The audit read the command markdown/YAML contracts first, then checked destructi
 | Check | Result |
 |-------|--------|
 | `ccc search "canonical spec_kit memory command workflow preflight contract auto confirm gate" --path .opencode --limit 8` | BLOCKED: CocoIndex daemon log access denied in sandbox; direct `rg` fallback used. |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/001-workflow-correctness --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/001-workflow-correctness --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

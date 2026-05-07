@@ -112,7 +112,7 @@ Five v1 checklist items that overstated shipped behavior now carry PARTIAL annot
 | `handlers/code-graph/scan.ts` | Modified | Git HEAD detection, auto-reindex |
 | `AGENTS.md` | Modified | Session Start Protocol |
 | `AGENTS.md` | Modified | Code graph auto-trigger |
-| `.opencode/agent/context.md` | Modified | Code graph integration |
+| `.opencode/agents/context.md` | Modified | Code graph integration |
 | `CLAUDE.md` | Modified | Universal recovery |
 | `CLAUDE.md` | Modified | Claude-specific only |
 | Root `checklist.md` | Modified | PARTIAL annotations |

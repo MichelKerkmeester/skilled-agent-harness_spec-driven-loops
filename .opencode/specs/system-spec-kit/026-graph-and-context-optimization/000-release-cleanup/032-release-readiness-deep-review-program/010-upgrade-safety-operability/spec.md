@@ -20,9 +20,9 @@ _memory:
     blockers: []
     key_files:
       - "review-report.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md"
-      - ".opencode/command/doctor/scripts/mcp-doctor.sh"
-      - ".opencode/skill/system-spec-kit/mcp_server/package.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md"
+      - ".opencode/commands/doctor/scripts/mcp-doctor.sh"
+      - ".opencode/skills/system-spec-kit/mcp_server/package.json"
     session_dedup:
       fingerprint: "sha256:045010upgradesafetyoperability0000000000000000000000000000"
       session_id: "045-010-upgrade-safety-operability"

@@ -17,7 +17,7 @@ Investigate reusable patterns from the oh-my-opencode-slim plugin that inform th
 ---
 
 ## 2. TOPIC
-Identify reusable patterns from oh-my-opencode-slim multi-agent orchestration plugin that inform the design of a new @code LEAF agent for our .opencode/agent/ inventory.
+Identify reusable patterns from oh-my-opencode-slim multi-agent orchestration plugin that inform the design of a new @code LEAF agent for our .opencode/agents/ inventory.
 
 ---
 
@@ -97,6 +97,6 @@ This packet investigates oh-my-opencode-slim ONLY. Cross-stream synthesis with s
 - Lifecycle branches: resume, restart (live)
 - Machine-owned sections: reducer controls Sections 3, 6, 7-11
 - Canonical pause sentinel: research/stream-01-oh-my-opencode-slim/.deep-research-pause
-- Capability matrix: .opencode/skill/sk-deep-research/assets/runtime_capabilities.json
+- Capability matrix: .opencode/skills/sk-deep-research/assets/runtime_capabilities.json
 - Current generation: 1
 - Started: 2026-05-01

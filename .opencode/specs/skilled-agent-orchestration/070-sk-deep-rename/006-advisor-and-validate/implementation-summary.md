@@ -33,7 +33,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -88,7 +88,7 @@ Phase 006 produced the final packet documentation and ran the closing verificati
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The delivery followed the requested order: authored planning artifacts, restored parent narrative, ran advisor probes, ran the final grep audit, and recorded the final verdict. The literal Node build command failed because `.opencode/skill/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js` does not exist in this checkout; this matches the user brief's fallback note that the orchestrator will run `advisor_rebuild({force: true})` after this phase when the script is absent.
+The delivery followed the requested order: authored planning artifacts, restored parent narrative, ran advisor probes, ran the final grep audit, and recorded the final verdict. The literal Node build command failed because `.opencode/skills/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js` does not exist in this checkout; this matches the user brief's fallback note that the orchestrator will run `advisor_rebuild({force: true})` after this phase when the script is absent.
 <!-- /ANCHOR:how-delivered -->
 
 ---

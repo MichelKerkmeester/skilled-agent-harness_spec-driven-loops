@@ -137,7 +137,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh |
+| Active File | /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh |
 | Last Action | Tool: edit |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -155,19 +155,19 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - **I'll fix the 5 shell script files to comply with the code style guide. Let me st** - I'll fix the 5 shell script files to comply with the code style guide.
 
-- **Tool: edit** - .opencode/skill/system-spec-kit/scripts/setup.sh
+- **Tool: edit** - .opencode/skills/system-spec-kit/scripts/setup.sh
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/scripts/setup.sh` - Script
+- `.opencode/skills/system-spec-kit/scripts/setup.sh` - Script
 
-- `.opencode/skill/system-spec-kit/scripts/check-completion.sh` - Script
+- `.opencode/skills/system-spec-kit/scripts/check-completion.sh` - Script
 
 - `.opencode/.../scripts/calculate-completeness.sh` - Script
 
-- `.opencode/skill/system-spec-kit/scripts/archive-spec.sh` - Script
+- `.opencode/skills/system-spec-kit/scripts/archive-spec.sh` - Script
 
-- `.opencode/skill/system-spec-kit/scripts/recommend-level.sh` - Script
+- `.opencode/skills/system-spec-kit/scripts/recommend-level.sh` - Script
 
 **How to Extend**:
 
@@ -204,11 +204,11 @@ I'll fix the 5 shell script files to comply with the code style guide. Let me st
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/scripts/setup.sh` | Updated setup |
-| `.opencode/skill/system-spec-kit/scripts/check-completion.sh` | Updated check completion |
+| `.opencode/skills/system-spec-kit/scripts/setup.sh` | Updated setup |
+| `.opencode/skills/system-spec-kit/scripts/check-completion.sh` | Updated check completion |
 | `.opencode/.../scripts/calculate-completeness.sh` | Updated calculate completeness |
-| `.opencode/skill/system-spec-kit/scripts/archive-spec.sh` | Updated archive spec |
-| `.opencode/skill/system-spec-kit/scripts/recommend-level.sh` | Updated recommend level |
+| `.opencode/skills/system-spec-kit/scripts/archive-spec.sh` | Updated archive spec |
+| `.opencode/skills/system-spec-kit/scripts/recommend-level.sh` | Updated recommend level |
 
 <!-- /ANCHOR:summary-session-1767282398252-y4i7zb9r7-003-memory-and-spec-kit/056-spec-kit-references-reorganization -->
 
@@ -229,333 +229,333 @@ I'll fix the 5 shell script files to comply with the code style guide. Let me st
 <!-- ANCHOR:implementation-tool-read-08be23ea-session-1767282398252-y4i7zb9r7 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-08be23ea-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-read-08be23ea-2-session-1767282398252-y4i7zb9r7 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/check-completion.sh
+.opencode/skills/system-spec-kit/scripts/check-completion.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/check-completion.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/check-completion.sh
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-08be23ea-2-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-read-a6b13719-session-1767282398252-y4i7zb9r7 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-a6b13719-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-read-a6b13719-2-session-1767282398252-y4i7zb9r7 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-a6b13719-2-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-read-a6b13719-3-session-1767282398252-y4i7zb9r7 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-a6b13719-3-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-2-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/check-completion.sh
+.opencode/skills/system-spec-kit/scripts/check-completion.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/check-completion.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/check-completion.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-2-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-3-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-3-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-4-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-4-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-5-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-5-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-6-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-6-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-7-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-7-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-8-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-8-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-9-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-9-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-10-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-10-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-11-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-11-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-12-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-12-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-13-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/setup.sh
+.opencode/skills/system-spec-kit/scripts/setup.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/setup.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/setup.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-13-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-14-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-14-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-15-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-15-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-16-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-16-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-17-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-17-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-18-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-18-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-19-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-19-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-20-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-20-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-21-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-21-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-22-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-22-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-23-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-23-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-24-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-24-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-25-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/archive-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/archive-spec.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-25-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-26-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-26-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-27-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-27-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-28-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-28-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-29-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-29-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-30-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-30-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-31-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-31-session-1767282398252-y4i7zb9r7 -->
 
 <!-- ANCHOR:implementation-tool-edit-873a202a-32-session-1767282398252-y4i7zb9r7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/recommend-level.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/recommend-level.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-873a202a-32-session-1767282398252-y4i7zb9r7 -->
 
@@ -793,11 +793,11 @@ trigger_phrases:
   []
 
 key_files:
-  - ".opencode/skill/system-spec-kit/scripts/setup.sh"
-  - ".opencode/skill/system-spec-kit/scripts/check-completion.sh"
+  - ".opencode/skills/system-spec-kit/scripts/setup.sh"
+  - ".opencode/skills/system-spec-kit/scripts/check-completion.sh"
   - ".opencode/.../scripts/calculate-completeness.sh"
-  - ".opencode/skill/system-spec-kit/scripts/archive-spec.sh"
-  - ".opencode/skill/system-spec-kit/scripts/recommend-level.sh"
+  - ".opencode/skills/system-spec-kit/scripts/archive-spec.sh"
+  - ".opencode/skills/system-spec-kit/scripts/recommend-level.sh"
 
 # Relationships
 related_sessions:

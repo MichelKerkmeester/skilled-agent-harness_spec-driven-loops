@@ -7,12 +7,12 @@ Compile `research.md` from iterations 1-9 and declare convergence. [REFERENCE: i
 Stop reason: max_iterations + all_questions_answered (Q1-Q7 resolved). New-info ratio trajectory: `0.95, 0.78, 0.60, 0.73, 0.68, 0.57, 0.42, 0.32, 0.29`; convergence is declared because the curve flattened by iteration 9, all questions were answered, and iteration 10 is synthesis-only. [REFERENCE: deep-research-state.jsonl, iteration-008, iteration-009]
 
 ## Questions resolved
-- Q1: D1 root cause — `collect-session-data.ts:875-881` hard substring truncation. [CITATION: `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:875-881`]
-- Q2: D2 root cause — `decision-extractor.ts:182-185` and `:367-388` lexical fallback after missing raw JSON decision read. [CITATION: `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:182-185`, `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:367-388`]
-- Q3: D3 root cause — `workflow.ts:1271-1295` folder-token append plus `semantic-signal-extractor.ts:260-284` stopword-collapsed bigrams. [CITATION: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1271-1295`, `.opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:260-284`]
-- Q4: D4 root cause — `frontmatter-migration.ts:1112-1183` second writer. [CITATION: `.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1112-1183`]
-- Q5: D5 root cause — no predecessor discovery in the current workflow path; causal context is pass-through only. [CITATION: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1305-1372`, `.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:227-236`]
-- Q6: D7 root cause — `workflow.ts:658-659` and `:877-923` capture-only enrichment gate. [CITATION: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:658-659`, `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:877-923`]
+- Q1: D1 root cause — `collect-session-data.ts:875-881` hard substring truncation. [CITATION: `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:875-881`]
+- Q2: D2 root cause — `decision-extractor.ts:182-185` and `:367-388` lexical fallback after missing raw JSON decision read. [CITATION: `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:182-185`, `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:367-388`]
+- Q3: D3 root cause — `workflow.ts:1271-1295` folder-token append plus `semantic-signal-extractor.ts:260-284` stopword-collapsed bigrams. [CITATION: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1271-1295`, `.opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:260-284`]
+- Q4: D4 root cause — `frontmatter-migration.ts:1112-1183` second writer. [CITATION: `.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1112-1183`]
+- Q5: D5 root cause — no predecessor discovery in the current workflow path; causal context is pass-through only. [CITATION: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1305-1372`, `.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:227-236`]
+- Q6: D7 root cause — `workflow.ts:658-659` and `:877-923` capture-only enrichment gate. [CITATION: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:658-659`, `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:877-923`]
 - Q7: Final remediation matrix synthesized in iteration 8 and narrowed in iteration 9. [REFERENCE: iteration-008 and iteration-009]
 
 ## research.md status

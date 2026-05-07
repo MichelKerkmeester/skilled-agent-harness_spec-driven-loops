@@ -8,18 +8,18 @@ Audit every daemon spawn site for the same idempotency hole as `start_daemon()`,
 ### P0-1 — `start_daemon()` is the **only** spawn site, but it is reachable via three concurrent entry points with no cross-process locking
 - **Severity**: P0 (confirms the spec.md ground-truth bug; clarifies blast radius)
 - **Evidence**:
-  - Only spawn calls in `mcp_server/`: `client.py:212` (Win32 branch) and `client.py:220` (Unix branch). Both inside `start_daemon()`. [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:192-227]
+  - Only spawn calls in `mcp_server/`: `client.py:212` (Win32 branch) and `client.py:220` (Unix branch). Both inside `start_daemon()`. [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:192-227]
   - All other code paths funnel through `start_daemon()`:
-    - `client.py:426` inside `ensure_daemon()` after a connect-refused or version mismatch [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:405-443]
-    - `cli.py:538` `daemon restart` command (calls `stop_daemon()` first, so safer) [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/cli.py:529-544]
-    - `cli.py:85`, `cli.py:511`, `server.py:302`, `server.py:340` all go through `ensure_daemon()` [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/cli.py:81-89; server.py:202-340]
+    - `client.py:426` inside `ensure_daemon()` after a connect-refused or version mismatch [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:405-443]
+    - `cli.py:538` `daemon restart` command (calls `stop_daemon()` first, so safer) [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:529-544]
+    - `cli.py:85`, `cli.py:511`, `server.py:302`, `server.py:340` all go through `ensure_daemon()` [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:81-89; server.py:202-340]
   - `test_e2e_daemon.py:64` calls `start_daemon()` directly in test setUp — same race exposure, but tests serialize via fixtures.
 - **Conclusion**: The remediation does NOT need to patch additional spawn sites. Fixing the idempotency hole inside `start_daemon()` (and ensuring `ensure_daemon()`'s exception path also routes through the new pre-flight) covers every reachable caller. **However**, three concurrent processes (e.g., MCP server, `ccc search` CLI, `ccc index` CLI) racing on `connection refused` will all enter `start_daemon()` with no inter-process lock — the proposed `_pid_alive()` check inside the function helps each caller skip a redundant spawn, but TOCTOU between `_pid_alive()` and `Popen` remains. Recommend the spec adopt an OS-level advisory lock on `daemon.pid` (`fcntl.flock` on Unix, `msvcrt.locking` on Win32) inside `start_daemon()` so only one caller wins the spawn.
 
 ### P0-2 — Socket-unlink on daemon startup is the **mechanism** by which PID 98364 lost its binding
 - **Severity**: P0 (resolves Q4 root cause; reframes the bug from "mysterious zombie" to "predictable consequence of unguarded restart")
 - **Evidence**:
-  - `daemon.py:611-620`: every `_async_daemon_main()` invocation calls `Path(sock_path).unlink(missing_ok=True)` BEFORE `Listener(sock_path, family=...)`. This deletes whatever socket file is at that path, including one currently bound by another live daemon. [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:611-620]
+  - `daemon.py:611-620`: every `_async_daemon_main()` invocation calls `Path(sock_path).unlink(missing_ok=True)` BEFORE `Listener(sock_path, family=...)`. This deletes whatever socket file is at that path, including one currently bound by another live daemon. [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:611-620]
   - Log timeline establishes the actual sequence (different from spec.md's hypothesis):
     - `2026-04-27 11:18:28` PID 98364 starts (v0.2.3+spec-kit-fork.0.2.0) [SOURCE: ~/.cocoindex_code/daemon.log:242981]
     - `2026-04-27 17:08:49` PID 16404 starts (same version, **NO "Daemon stopped" line between them**) — concurrent spawn while 98364 was alive [SOURCE: ~/.cocoindex_code/daemon.log:243148]
@@ -32,20 +32,20 @@ Audit every daemon spawn site for the same idempotency hole as `start_daemon()`,
 ### P0-3 — Two `send_bytes` call sites in `daemon.py` are unprotected against `BrokenPipeError`; one is the known double-crash, the other is a brand-new finding
 - **Severity**: P0 (extends bug 2 surface)
 - **Evidence**:
-  - **Class (a) — double-crash on broken pipe** (the known bug): `daemon.py:436-439` streams responses, catches `Exception`, then issues a second `conn.send_bytes` over the same broken connection [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:434-439]. Confirmed.
-  - **Class (c) — bare send outside any try/except**: `daemon.py:441` `conn.send_bytes(encode_response(result))` for non-streaming responses. Wrapped only by the outer connection-handler try/except at `daemon.py:445`, which catches the BrokenPipeError but ALSO logs `logger.exception("Error handling connection")`. Each broken non-streaming reply produces a stack trace in the 23 MB `daemon.log`. [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:440-446]
+  - **Class (a) — double-crash on broken pipe** (the known bug): `daemon.py:436-439` streams responses, catches `Exception`, then issues a second `conn.send_bytes` over the same broken connection [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:434-439]. Confirmed.
+  - **Class (c) — bare send outside any try/except**: `daemon.py:441` `conn.send_bytes(encode_response(result))` for non-streaming responses. Wrapped only by the outer connection-handler try/except at `daemon.py:445`, which catches the BrokenPipeError but ALSO logs `logger.exception("Error handling connection")`. Each broken non-streaming reply produces a stack trace in the 23 MB `daemon.log`. [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:440-446]
   - **Class (b) — protected**: `daemon.py:411` (invalid request error reply), `daemon.py:417` (handshake error reply), `daemon.py:426` (handshake response). All inside the same outer try/except. Same noise problem as :441 but at lower frequency.
-  - Client-side `send_bytes` at `client.py:75, 112, 165` are caller-side and not part of the daemon error-handler surface; they cannot trigger the double-crash. [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:75-165]
+  - Client-side `send_bytes` at `client.py:75, 112, 165` are caller-side and not part of the daemon error-handler surface; they cannot trigger the double-crash. [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:75-165]
 - **Conclusion**: Bug 2's spec patch (adding `BrokenPipeError`/`OSError` filtering before the second send at :436-439) is necessary but **insufficient**. The plan should either (a) wrap each `conn.send_bytes` in `daemon.py` with a small helper that swallows `BrokenPipeError`/`ConnectionResetError`/`EPIPE` quietly, or (b) move the outer except block to log `BrokenPipeError` at DEBUG (not exception). Otherwise log growth (Q6) continues even after the streaming-path fix.
 
 ### P1-1 — `ensure_daemon()` exception handler swallows `OSError` from version mismatch and falls through to a duplicate spawn path
 - **Severity**: P1
-- **Evidence**: `client.py:413-426` — on connect+handshake success but version-mismatch, the code calls `stop_daemon()` then unconditionally `start_daemon()`. If `stop_daemon()` fails to actually terminate the old daemon (e.g., because the StopRequest blocks behind a long index), `start_daemon()` runs against a still-live daemon, rebinds the socket, orphans the old. This is a SECOND code path producing the PID 98364 scenario, not just the connection-refused race. [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:413-443]
+- **Evidence**: `client.py:413-426` — on connect+handshake success but version-mismatch, the code calls `stop_daemon()` then unconditionally `start_daemon()`. If `stop_daemon()` fails to actually terminate the old daemon (e.g., because the StopRequest blocks behind a long index), `start_daemon()` runs against a still-live daemon, rebinds the socket, orphans the old. This is a SECOND code path producing the PID 98364 scenario, not just the connection-refused race. [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:413-443]
 - **Conclusion**: The spec patch must verify `_pid_alive(old_pid) is False` (or honor a hard timeout) before the post-stop spawn, or take the advisory lock approach proposed in P0-1.
 
 ### P2-1 — Log volume amplified by per-broken-pipe `logger.exception` traceback at `daemon.py:438` AND outer handler at `daemon.py:445`
 - **Severity**: P2 (informs Q6 growth-rate analysis but does not affect correctness)
-- **Evidence**: 564 BrokenPipeError lines in 23 MB daemon.log. Each broken stream triggers `logger.exception` (multi-line traceback). [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:438, :446; spec.md known-context]
+- **Evidence**: 564 BrokenPipeError lines in 23 MB daemon.log. Each broken stream triggers `logger.exception` (multi-line traceback). [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:438, :446; spec.md known-context]
 - **Conclusion**: After fixing the double-crash, ensure log noise from broken clients drops to single-line WARN at most. Recommend adding `logging.handlers.RotatingFileHandler` configuration in iteration 3 work.
 
 ## Evidence
@@ -112,9 +112,9 @@ Audit every daemon spawn site for the same idempotency hole as `start_daemon()`,
 - **Partial success**: None — all three planned tasks completed within budget.
 
 ## Sources Consulted
-- .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:60-263, 395-443
-- .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:395-451, 600-650
-- .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/cli.py:75-89, 503-544
+- .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:60-263, 395-443
+- .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:395-451, 600-650
+- .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:75-89, 503-544
 - /Users/michelkerkmeester/.cocoindex_code/daemon.log:1-243883 (sampled by grep on `Daemon (starting|stopped|stopping)|signal`)
 - ripgrep results: `subprocess\.Popen|Popen\(|start_daemon|restart_daemon|ensure_daemon` (entire mcp-coco-index/ tree)
 - ripgrep results: `conn\.send_bytes|socket\.send_bytes|\.send_bytes\(` (mcp_server/cocoindex_code/)

@@ -38,13 +38,13 @@ _memory:
 
 ## P0 — Blockers
 
-- [ ] **P0-01** — `.opencode/skill/cli-codex/assets/codex_app_personalization.md` exists. (REQ-001) — Evidence: file path + `ls -la` output.
+- [ ] **P0-01** — `.opencode/skills/cli-codex/assets/codex_app_personalization.md` exists. (REQ-001) — Evidence: file path + `ls -la` output.
 - [ ] **P0-02** — Three distinct tiers (tiny/compact/extended) appear in `codex_app_personalization.md`, each in fenced code blocks with clear headers. (REQ-001) — Evidence: line numbers for each tier header.
-- [ ] **P0-03** — `.opencode/skill/cli-codex/assets/codex_voice_module.md` exists. (REQ-002) — Evidence: file path + `ls -la` output.
+- [ ] **P0-03** — `.opencode/skills/cli-codex/assets/codex_voice_module.md` exists. (REQ-002) — Evidence: file path + `ls -la` output.
 - [ ] **P0-04** — Voice module has a single clearly-delimited appendable block with `<!-- VOICE_MODULE_START -->` / `<!-- VOICE_MODULE_END -->` markers. (REQ-002) — Evidence: grep for delimiter comments returns exactly two matches.
 - [ ] **P0-05** — Both assets cover all seven target shifts (filler, hedging, reasoning visibility, faulty-premise correction, scope discipline, code comments, end-of-turn rhythm). (REQ-003) — Evidence: coverage table in implementation-summary.md mapping each shift to the file+line where it appears.
 - [ ] **P0-06** — `cli-codex/SKILL.md` references both new assets without contradiction. (REQ-004) — Evidence: grep for `codex_app_personalization` and `codex_voice_module` in SKILL.md returns at least one hit each.
-- [ ] **P0-07** — `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice --strict` exits 0. (SC-003) — Evidence: recorded exit code.
+- [ ] **P0-07** — `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice --strict` exits 0. (SC-003) — Evidence: recorded exit code.
 - [ ] **P0-08** — No clause in either asset overrides AGENTS.md §1/§2/§3 rules. (REQ-007, NFR-C01) — Evidence: manual review notes in implementation-summary.md.
 
 ## P1 — Required

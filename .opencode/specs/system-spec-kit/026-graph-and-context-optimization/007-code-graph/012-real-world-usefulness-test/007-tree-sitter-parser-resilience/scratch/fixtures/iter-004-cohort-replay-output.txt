@@ -1,6 +1,6 @@
 # cohort-replay
-# wts dir : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/web-tree-sitter
-# wasms   : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out
+# wts dir : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/web-tree-sitter
+# wasms   : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out
 # cohort  : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-oob-cohort.txt
 # loaded api: Parser=function Language=function from node_modules/web-tree-sitter/tree-sitter.js
 # langs loaded: ts sh py js
@@ -17,8 +17,8 @@
 [9] OK .ts /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-copilot-hooks.ts
 [10] OK .ts /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-gemini-hooks.ts
 [11] OK .ts /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-opencode-plugins.ts
-[12] FAIL[B1] .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/doctor/scripts/mcp-doctor-lib.sh :: resolved is not a function
-[13] FAIL[B1] .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/doctor/scripts/mcp-doctor.sh :: resolved is not a function
+[12] FAIL[B1] .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/doctor/scripts/mcp-doctor-lib.sh :: resolved is not a function
+[13] FAIL[B1] .sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/doctor/scripts/mcp-doctor.sh :: resolved is not a function
 [14] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py
 [15] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/072-sk-doc-router-rerun-refined-extraction/scripts/extract_metrics_v2.py
 [16] OK .py /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3/scripts/extract_metrics_v3.py
@@ -60,5 +60,5 @@
 # total=51 ok=41 failed=9
 # perExt_ok: ts=10 sh=23 py=6 js=2
 # fail_classes: B1=9 B2=0 OTHER=0
-# first_B1_idx=12 file=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/doctor/scripts/mcp-doctor-lib.sh
+# first_B1_idx=12 file=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/doctor/scripts/mcp-doctor-lib.sh
 # first_B2_idx=-1 file=null

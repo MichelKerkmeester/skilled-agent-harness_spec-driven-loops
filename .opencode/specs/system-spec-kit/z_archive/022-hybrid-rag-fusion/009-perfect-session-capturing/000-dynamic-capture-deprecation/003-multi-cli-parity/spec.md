@@ -92,9 +92,9 @@ Prove the shipped multi-CLI parity behavior with direct regression tests and rec
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/tests/phase-classification.vitest.ts` | Modify | Add direct proof that Copilot `view` aliases to canonical `read` scoring. |
-| `.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Create | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
-| `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` | Modify | Prove CLI-derived `FILES` keep `_provenance: 'tool'` and Copilot `view` titles render as `Read ...`. |
+| `.opencode/skills/system-spec-kit/scripts/tests/phase-classification.vitest.ts` | Modify | Add direct proof that Copilot `view` aliases to canonical `read` scoring. |
+| `.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Create | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
+| `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` | Modify | Prove CLI-derived `FILES` keep `_provenance: 'tool'` and Copilot `view` titles render as `Read ...`. |
 | `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity/*.md` | Modify | Bring the archived branch phase artifacts back into Level 2 template compliance with current evidence. |
 <!-- /ANCHOR:scope -->
 
@@ -110,7 +110,7 @@ Prove the shipped multi-CLI parity behavior with direct regression tests and rec
 | REQ-001 | Copilot `view` aliases must drive canonical research scoring. | `phase-classification.vitest.ts` proves `View` classifies as `Research` through the public classifier APIs. |
 | REQ-002 | Built-in multi-CLI noise markers must be filtered through the shared noise path. | `content-filter-parity.vitest.ts` proves `tool.execution_start`, `tool.execution_complete`, `reasoning`, `<reasoning>...</reasoning>`, and empty XML wrapper tags all register as noise through `isNoiseContent()` / `NOISE_PATTERNS`. |
 | REQ-003 | CLI-derived file entries must retain tool provenance and `view` titles. | `runtime-memory-inputs.vitest.ts` proves `transformOpencodeCapture()` emits `Read loaders/data-loader.ts` for `view` and applies `_provenance: 'tool'` to CLI-derived `FILES`. |
-| REQ-004 | Phase-016 spec artifacts must validate cleanly as Level 2 docs. | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` passes this phase folder with zero errors and zero warnings. |
+| REQ-004 | Phase-016 spec artifacts must validate cleanly as Level 2 docs. | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` passes this phase folder with zero errors and zero warnings. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

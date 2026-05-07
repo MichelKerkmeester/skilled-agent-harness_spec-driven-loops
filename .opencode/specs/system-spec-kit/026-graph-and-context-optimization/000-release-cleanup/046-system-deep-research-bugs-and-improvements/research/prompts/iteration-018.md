@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 018 of 20. The packet root is
 
 **Angle D3 — Type / schema duplication**
 
-Audit zod schemas, TypeScript types, and runtime guards across `.opencode/skill/system-spec-kit/mcp_server/`. Where is the same shape defined in multiple places? Where do types drift from runtime schemas (z.infer mismatches)? Recommend a single-source-of-truth strategy. Cite file:line for each duplication.
+Audit zod schemas, TypeScript types, and runtime guards across `.opencode/skills/system-spec-kit/mcp_server/`. Where is the same shape defined in multiple places? Where do types drift from runtime schemas (z.infer mismatches)? Recommend a single-source-of-truth strategy. Cite file:line for each duplication.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

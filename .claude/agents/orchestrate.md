@@ -29,7 +29,7 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
-**Runtime Directory Resolution**: OpenCode profile reads `.opencode/agent/`; Claude profile reads `.claude/agents/`; Codex profile reads `.codex/agents/`; Gemini profile reads `.gemini/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
+**Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`; Codex profile reads `.codex/agents/`; Gemini profile reads `.gemini/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
 
 **CRITICAL**: You primarily orchestrate via the `task` tool. You MAY use `read` to load agent definitions or command specs needed for correct dispatch, but you MUST NOT perform implementation or codebase exploration directly. Execution work remains delegated to sub-agents.
 
@@ -565,7 +565,7 @@ I've enhanced the validation [implemented by @general] to include RFC 5322 compl
 **Trigger:** 15+ tool calls, 5+ files modified, user says "stopping"/"continue later", or session approaching context limits.
 **Action:** Suggest `/memory:save` → mandate sub-agents save context → compile orchestration decisions summary → preserve task state, pending work, blockers.
 
-After complex multi-agent workflows, save orchestration context via JSON mode: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/`
+After complex multi-agent workflows, save orchestration context via JSON mode: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/`
 
 #### Context Health Monitoring
 

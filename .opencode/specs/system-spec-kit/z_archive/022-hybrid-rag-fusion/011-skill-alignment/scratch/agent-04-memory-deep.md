@@ -6,25 +6,25 @@ Deep comparison of the Spec Kit Memory System subsection in `SKILL.md` against t
 
 ### Primary sources read
 
-- `.opencode/skill/system-spec-kit/SKILL.md:508-590`
+- `.opencode/skills/system-spec-kit/SKILL.md:508-590`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/implementation-summary.md:23-46`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/spec.md`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:254-266`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-563`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:42-110`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:5-18`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:28-69`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:73-250`
-- `.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:80-121`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:35-141`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:27-220`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:32-108`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:1-130`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-170`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:1-109`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:42-83,188-215`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:7-18,155-199`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:306-314`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:254-266`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-563`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:42-110`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:5-18`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:28-69`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:73-250`
+- `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:80-121`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:35-141`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:27-220`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:32-108`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:1-130`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-170`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:1-109`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:42-83,188-215`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:7-18,155-199`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:306-314`
 
 ## Executive Summary
 

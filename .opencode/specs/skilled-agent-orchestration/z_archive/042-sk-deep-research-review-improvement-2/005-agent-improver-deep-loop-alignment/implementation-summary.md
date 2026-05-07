@@ -47,19 +47,19 @@ Phase 005 brought the improve-agent loop into the same runtime-truth family as t
 
 ### Stop-Reason Taxonomy and Audit Journal
 
-The phase added `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/command/improve/agent.md`, and `.opencode/agent/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
 
 ### Mutation Coverage and Trade-Off Detection
 
-The phase added `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` and `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs`. Together they made the loop explainable: maintainers could see which dimensions and mutation types had already been explored, and they could detect when a candidate improved one dimension by regressing another.
+The phase added `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` and `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`. Together they made the loop explainable: maintainers could see which dimensions and mutation types had already been explored, and they could detect when a candidate improved one dimension by regressing another.
 
 ### Optional Parallel Candidate Waves
 
-The phase added `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs` plus supporting playbook scenarios. That let the loop track optional branch exploration without turning parallelism into the mandatory default path.
+The phase added `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs` plus supporting playbook scenarios. That let the loop track optional branch exploration without turning parallelism into the mandatory default path.
 
 ### Stability Scoring and Advisory Optimization
 
-The phase added `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs` so repeated benchmark behavior could be measured instead of assumed. The same helper family also exposed advisory optimizer-facing outputs, which Phase 008 later wired into the visible workflow in `v1.2.0.0` rather than replacing.
+The phase added `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs` so repeated benchmark behavior could be measured instead of assumed. The same helper family also exposed advisory optimizer-facing outputs, which Phase 008 later wired into the visible workflow in `v1.2.0.0` rather than replacing.
 <!-- /ANCHOR:what-built -->
 
 ---

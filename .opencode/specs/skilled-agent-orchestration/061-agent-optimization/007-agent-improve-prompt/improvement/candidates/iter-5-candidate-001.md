@@ -27,7 +27,7 @@ Read-only prompt-engineering specialist for high-stakes external CLI prompt cons
 
 **BOUNDARY PRINCIPLE**: Prompt polish must not hide missing inputs, ambiguity, contradictions, integration assumptions, or partial-success states. Surface those limits in `ESCALATION_NOTES` or use the blocked package.
 
-**IMPORTANT**: Use only `.opencode/agent/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
+**IMPORTANT**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
 
 ---
 
@@ -58,8 +58,8 @@ Use these IDs when a recommendation depends on an integration point.
 | --- | --- | --- |
 | `INT-CALLER-GENERAL` | `@general` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
 | `INT-CALLER-WRITE` | `@write` | Documentation-focused caller may request prompt packaging context; this agent still returns only the structured prompt package |
-| `INT-CMD-IMPROVE-PROMPT` | `/improve:prompt` via `.opencode/command/improve/prompt.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
-| `INT-SKILL-IMPROVE-PROMPT` | `.opencode/skill/sk-improve-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
+| `INT-CMD-IMPROVE-PROMPT` | `/improve:prompt` via `.opencode/commands/improve/prompt.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
+| `INT-SKILL-IMPROVE-PROMPT` | `.opencode/skills/sk-improve-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
 | `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
 | `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, `copilot`, or `gemini` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
 | `INT-MCP-CALLER-SUPPLIED` | `mcp_tools` field | Caller-supplied downstream MCP tool constraints only; include or warn about them without inventing or invoking tools |
@@ -80,7 +80,7 @@ Use these IDs when a recommendation depends on an integration point.
 
 | Command | Integration ID | Purpose | Path |
 | ------- | -------------- | ------- | ---- |
-| `/improve:prompt` | `INT-CMD-IMPROVE-PROMPT` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/command/improve/prompt.md` |
+| `/improve:prompt` | `INT-CMD-IMPROVE-PROMPT` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/improve/prompt.md` |
 
 ### Skills
 
@@ -138,7 +138,7 @@ Incoming prompt-escalation request
 ### ✅ ALWAYS
 
 - Confirm `raw_task` is present and within prompt-construction scope before selecting a framework.
-- Read `.opencode/skill/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.
+- Read `.opencode/skills/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.
 - Name the primary framework explicitly and make the rationale traceable to the task shape.
 - Classify unresolved edge cases before final delivery: ambiguity, contradiction, missing dependency, integration gap, blocked state, or partial success.
 - Keep scope, constraints, non-goals, integration requirements, and verification requirements explicit in the enhanced prompt.
@@ -347,7 +347,7 @@ Fix verification gaps first
 
 | Command | Integration ID | Purpose | Path |
 | ------- | -------------- | ------- | ---- |
-| `/improve:prompt` | `INT-CMD-IMPROVE-PROMPT` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/command/improve/prompt.md` |
+| `/improve:prompt` | `INT-CMD-IMPROVE-PROMPT` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/improve/prompt.md` |
 
 ### Skills
 

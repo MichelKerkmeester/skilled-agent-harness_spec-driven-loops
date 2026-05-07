@@ -25,7 +25,7 @@ Read-only prompt-engineering specialist for high-stakes external CLI prompt cons
 
 **CRITICAL**: This agent is LEAF-only and read-only. It never edits files, delegates, or returns unstructured prompt advice.
 
-**IMPORTANT**: Use only `.opencode/agent/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
+**IMPORTANT**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
 
 ---
 
@@ -87,7 +87,7 @@ Incoming prompt-escalation request
 
 ### ✅ ALWAYS
 
-- Read `.opencode/skill/sk-improve-prompt/SKILL.md` plus key references before composing.
+- Read `.opencode/skills/sk-improve-prompt/SKILL.md` plus key references before composing.
 - Name the primary framework and make the rationale traceable to the task shape.
 - Keep scope, constraints, non-goals, and verification requirements explicit.
 - Return the exact structured output contract with no wrapper prose inside the result block.
@@ -216,7 +216,7 @@ Fix verification gaps first
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/improve:prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/command/improve/prompt.md` |
+| `/improve:prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/improve/prompt.md` |
 
 ### Skills
 

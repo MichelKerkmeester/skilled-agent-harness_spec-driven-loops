@@ -101,8 +101,8 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **SKILL.md**: `.opencode/skill/system-spec-kit/SKILL.md`
-- **MCP README**: `.opencode/skill/system-spec-kit/mcp_server/README.md`
+- **SKILL.md**: `.opencode/skills/system-spec-kit/SKILL.md`
+- **MCP README**: `.opencode/skills/system-spec-kit/mcp_server/README.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

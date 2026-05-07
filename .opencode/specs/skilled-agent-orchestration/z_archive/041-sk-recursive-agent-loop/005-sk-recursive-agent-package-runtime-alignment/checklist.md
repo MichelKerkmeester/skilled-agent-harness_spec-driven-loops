@@ -49,8 +49,8 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] `sk-improve-agent` source package passes `package_skill.py --check` (verified)
-- [x] CHK-011 [P0] `.opencode/skill/sk-improve-agent/SKILL.md` validates as a skill document (verified)
-- [x] CHK-012 [P0] `.opencode/skill/sk-improve-agent/README.md` validates as a README (verified)
+- [x] CHK-011 [P0] `.opencode/skills/sk-improve-agent/SKILL.md` validates as a skill document (verified)
+- [x] CHK-012 [P0] `.opencode/skills/sk-improve-agent/README.md` validates as a README (verified)
 - [x] CHK-013 [P0] All agent-improver references and markdown assets validate against the proper document types (verified)
 - [x] CHK-014 [P1] The renamed `agent-improver` validates as an agent document (verified)
 - [x] CHK-015 [P1] The canonical command validates as a command document (verified)

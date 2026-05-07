@@ -10,8 +10,8 @@
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-copilot-hooks.ts
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-gemini-hooks.ts
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/test-opencode-plugins.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/doctor/scripts/mcp-doctor-lib.sh
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/doctor/scripts/mcp-doctor.sh
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/doctor/scripts/mcp-doctor-lib.sh
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/doctor/scripts/mcp-doctor.sh
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/072-sk-doc-router-rerun-refined-extraction/scripts/extract_metrics_v2.py
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3/scripts/extract_metrics_v3.py

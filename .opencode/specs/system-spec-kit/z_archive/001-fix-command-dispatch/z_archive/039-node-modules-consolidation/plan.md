@@ -32,7 +32,7 @@ id: 039-node-modules-consolidation
 ### 2.1 Create Root Workspace
 ```bash
 # Create root package.json with workspaces
-cd .opencode/skill/system-spec-kit/
+cd .opencode/skills/system-spec-kit/
 ```
 
 Root package.json content:
@@ -90,7 +90,7 @@ rm -f mcp_server/package-lock.json
 
 ### 2.5 Install from Root
 ```bash
-cd .opencode/skill/system-spec-kit/
+cd .opencode/skills/system-spec-kit/
 npm install
 ```
 

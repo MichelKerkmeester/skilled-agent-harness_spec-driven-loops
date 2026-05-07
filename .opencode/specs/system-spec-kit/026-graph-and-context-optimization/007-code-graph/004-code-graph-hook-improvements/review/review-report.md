@@ -22,22 +22,22 @@
 
 ### P1
 
-- `F-001` `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:45`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:134`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:218`
+- `F-001` `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:45`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:134`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:218`
 Evidence: ambiguity resolution only ranks the first 10 SQL matches before `pickOperationAwareCandidate()` runs.
 Recommended fix: re-rank the full ambiguous match set and add a `>10` collision regression.
 Target files: `query.ts`, `code-graph-query-handler.vitest.ts`
 
-- `F-002` `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:169`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:199`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:184`
+- `F-002` `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:169`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:199`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:184`
 Evidence: CocoIndex fidelity survives only when callers send `seed.file`; `seed.filePath` falls through the generic seed path and drops provider-specific metadata.
 Recommended fix: treat `filePath` as equivalent to `file` for CocoIndex seeds and add a regression for that public input shape.
 Target files: `context.ts`, `code-graph-context-handler.vitest.ts`
 
-- `F-003` `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:116`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:171`
+- `F-003` `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:116`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:171`
 Evidence: deadline handling increments `omittedAnchors` by one and breaks, so the new `partialOutput` metadata undercounts skipped anchors.
 Recommended fix: count all remaining anchors when the deadline trips and add a multi-anchor regression.
 Target files: `code-graph-context.ts`, `code-graph-context-handler.vitest.ts`
 
-- `F-004` `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1366`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:207`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:240`
+- `F-004` `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1366`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:207`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:240`
 Evidence: fresh files are filtered before `handleCodeGraphScan()` sees them, so no-op incrementals report `filesSkipped: 0`; the same code path also clears the persisted edge-enrichment summary even when no new graph state was written.
 Recommended fix: separate pre-parse skip accounting from persistence results and only clear summaries when a replacement graph state is actually persisted.
 Target files: `structural-indexer.ts`, `scan.ts`, `code-graph-scan.vitest.ts`
@@ -59,17 +59,17 @@ Evidence: `implementation-summary.md` omits `hooks/codex/session-start.ts` from 
 Recommended fix: add the missing Codex adapter row to `Files Changed`.
 Target files: `implementation-summary.md`
 
-- `F-008` `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:337`
+- `F-008` `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:337`
 Evidence: ambiguity tests cover only two candidates, leaving the truncated candidate-window behavior from `F-001` unproven.
 Recommended fix: add a stress regression with more than 10 matching symbols.
 Target files: `code-graph-query-handler.vitest.ts`
 
-- `F-009` `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:145`
+- `F-009` `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:145`
 Evidence: the new partial-output tests cover a single-anchor deadline case only, so the multi-anchor undercount from `F-003` is not guarded.
 Recommended fix: add a multi-anchor timeout regression.
 Target files: `code-graph-context-handler.vitest.ts`
 
-- `F-010` `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts:147`
+- `F-010` `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts:147`
 Evidence: scan tests mock `indexFiles()` as if fresh files still flow into the handler, which diverges from the real `skipFreshFiles` behavior in `structural-indexer.ts`.
 Recommended fix: add a regression with `indexFiles()` returning `[]` for a no-op incremental scan and assert summary preservation / skipped accounting.
 Target files: `code-graph-scan.vitest.ts`
@@ -116,11 +116,11 @@ Target files: `code-graph-scan.vitest.ts`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/checklist.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`

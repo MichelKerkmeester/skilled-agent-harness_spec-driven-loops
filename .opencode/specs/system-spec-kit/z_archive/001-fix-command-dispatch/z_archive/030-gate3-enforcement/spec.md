@@ -148,9 +148,9 @@ Update AGENTS.md Self-Verification checkbox:
 
 | File | Changes |
 |------|---------|
-| `.opencode/skill/system-memory/README.md` | Add section on Constitutional Tier for Gate 3 enforcement |
-| `.opencode/skill/system-memory/SKILL.md` | Document constitutional memory usage for enforcement |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Reference First Message Protocol, Gate 3 enforcement |
+| `.opencode/skills/system-memory/README.md` | Add section on Constitutional Tier for Gate 3 enforcement |
+| `.opencode/skills/system-memory/SKILL.md` | Document constitutional memory usage for enforcement |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Reference First Message Protocol, Gate 3 enforcement |
 
 ### Why Skill Docs Must Be Updated
 

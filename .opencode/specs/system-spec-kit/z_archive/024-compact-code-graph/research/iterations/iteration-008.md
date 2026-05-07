@@ -92,6 +92,6 @@ Integration steps:
 - Considered LSP integration: too heavy, per-language overhead
 
 ## Sources
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:77-88] — graph search infrastructure
-- [SOURCE: .opencode/skill/system-spec-kit/shared/README.md] — five-channel retrieval pipeline
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:77-88] — graph search infrastructure
+- [SOURCE: .opencode/skills/system-spec-kit/shared/README.md] — five-channel retrieval pipeline
 - [SOURCE: iteration-002.md] — hybrid search architecture details

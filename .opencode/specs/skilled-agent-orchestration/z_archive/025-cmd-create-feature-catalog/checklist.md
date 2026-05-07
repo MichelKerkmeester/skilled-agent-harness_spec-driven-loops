@@ -40,7 +40,7 @@ _memory:
 
 - [x] CHK-001 [P0] Requirements documented in `spec.md` [EVIDENCE: `spec.md` defines command files, output contract, and runtime-sync scope]
 - [x] CHK-002 [P0] Technical approach defined in `plan.md` [EVIDENCE: `plan.md` defines the command-family, runtime-sync, and validation phases]
-- [x] CHK-003 [P1] Dependencies identified and available [EVIDENCE: spec `021`, `.opencode/skill/sk-doc/references/specific/feature_catalog_creation.md`, and both feature-catalog template files are listed as dependencies]
+- [x] CHK-003 [P1] Dependencies identified and available [EVIDENCE: spec `021`, `.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md`, and both feature-catalog template files are listed as dependencies]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -48,10 +48,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Canonical command markdown file created [EVIDENCE: `.opencode/command/create/feature-catalog.md` exists and validates]
-- [x] CHK-011 [P0] Auto and confirm YAML assets created [EVIDENCE: both `create_feature_catalog_*.yaml` files exist under `.opencode/command/create/assets/`]
+- [x] CHK-010 [P0] Canonical command markdown file created [EVIDENCE: `.opencode/commands/create/feature-catalog.md` exists and validates]
+- [x] CHK-011 [P0] Auto and confirm YAML assets created [EVIDENCE: both `create_feature_catalog_*.yaml` files exist under `.opencode/commands/create/assets/`]
 - [x] CHK-012 [P0] `.agents` TOML mirror created [EVIDENCE: `.agents/commands/create/feature-catalog.toml` exists and matches the canonical command contract]
-- [x] CHK-013 [P1] The command loads both feature-catalog templates and the creation reference [EVIDENCE: the command markdown and paired YAML assets reference `.opencode/skill/sk-doc/references/specific/feature_catalog_creation.md`, `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`, and `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`]
+- [x] CHK-013 [P1] The command loads both feature-catalog templates and the creation reference [EVIDENCE: the command markdown and paired YAML assets reference `.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md`, `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`, and `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`]
 - [x] CHK-014 [P1] Runtime discovery docs stay synchronized [EVIDENCE: command inventories and write-agent docs were updated across `.opencode`, `.agents`, and `.codex` surfaces]
 <!-- /ANCHOR:code-quality -->
 
@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] `validate_document.py` passes for `.opencode/command/create/feature-catalog.md` [EVIDENCE: validator returned `VALID`]
+- [x] CHK-020 [P0] `validate_document.py` passes for `.opencode/commands/create/feature-catalog.md` [EVIDENCE: validator returned `VALID`]
 - [x] CHK-021 [P0] YAML parse checks pass for both workflow assets [EVIDENCE: both feature-catalog workflow files pass the full create-asset YAML parse sweep]
 - [x] CHK-022 [P1] TOML parse check passes for `.agents/commands/create/feature-catalog.toml` [EVIDENCE: TOML structure was verified during mirror creation and follow-up alignment checks]
 - [x] CHK-023 [P1] Grep/path sweeps confirm runtime docs reference the new command consistently [EVIDENCE: runtime command-menu updates and follow-up path sweeps completed without stale references]
@@ -84,7 +84,7 @@ _memory:
 
 - [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` are synchronized for planning state [EVIDENCE: all packet files were created together on 2026-03-19]
 - [x] CHK-041 [P1] `implementation-summary.md` updated with actual implementation evidence [EVIDENCE: this file now records real command, YAML, mirror, and validation outcomes]
-- [x] CHK-042 [P2] Command inventories updated with the new command [EVIDENCE: `.opencode/command/create/README.txt`, `.opencode/command/README.txt`, `.opencode/README.md`, and write-agent surfaces now list `/create:feature-catalog`]
+- [x] CHK-042 [P2] Command inventories updated with the new command [EVIDENCE: `.opencode/commands/create/README.txt`, `.opencode/commands/README.txt`, `.opencode/README.md`, and write-agent surfaces now list `/create:feature-catalog`]
 <!-- /ANCHOR:docs -->
 
 ---

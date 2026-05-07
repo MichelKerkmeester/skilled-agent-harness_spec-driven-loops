@@ -1,7 +1,7 @@
 {
   "session_id": "imp-deep-review-20260502T180349Z",
   "started_at": "2026-05-02T18:03:49Z",
-  "target_path": ".opencode/agent/deep-review.md",
+  "target_path": ".opencode/agents/deep-review.md",
   "agent_name": "deep-review",
   "spec_folder": "specs/skilled-agent-orchestration/061-agent-optimization/008-agent-deep-review",
   "executor": "cli-copilot",

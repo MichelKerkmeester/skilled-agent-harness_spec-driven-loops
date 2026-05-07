@@ -63,7 +63,7 @@ Improvement focus: **5-phase root-cause discipline; user-invoked-only constraint
 ## 3. SCOPE
 
 ### In Scope
-- Canonical agent body: `.opencode/agent/debug.md`
+- Canonical agent body: `.opencode/agents/debug.md`
 - Runtime mirrors: `.claude/agents/debug.md`, `.gemini/agents/debug.md`, `.codex/agents/debug.toml`
 - Frontmatter / behavioral rules / output verification / anti-patterns refinements
 - Score-weighting dimensions: phase-boundary discipline, fresh-perspective preservation
@@ -78,7 +78,7 @@ Improvement focus: **5-phase root-cause discipline; user-invoked-only constraint
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| `.opencode/agent/debug.md` | Update | Promoted candidate body |
+| `.opencode/agents/debug.md` | Update | Promoted candidate body |
 | `.claude/agents/debug.md` | Update | Mirror sync |
 | `.gemini/agents/debug.md` | Update | Mirror sync |
 | `.codex/agents/debug.toml` | Update | Mirror sync (TOML) |

@@ -47,8 +47,8 @@ That is safer than "store first, sanitize later."
 
 Spec Kit Memory already has:
 
-- archival and pinning semantics [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:371-405`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:502-555`]
-- tiered recall [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:156-169`]
+- archival and pinning semantics [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:371-405`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:502-555`]
+- tiered recall [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:156-169`]
 
 But the graph/runtime side is still mostly:
 
@@ -56,7 +56,7 @@ But the graph/runtime side is still mostly:
 - stale-cache rejection
 - render-time file dedup
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:30-45`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:56-64`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:107-170`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:30-45`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:56-64`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:107-170`]
 
 ## Recommendations
 

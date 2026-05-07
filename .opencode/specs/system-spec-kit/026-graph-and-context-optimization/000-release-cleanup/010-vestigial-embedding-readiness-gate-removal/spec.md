@@ -92,7 +92,7 @@ Remove the dead gate so in-process probes work without test-only bypass scaffold
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Edit (delete 6 lines + reduce import) | Remove vestigial readiness gate |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Edit (delete 6 lines + reduce import) | Remove vestigial readiness gate |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -110,7 +110,7 @@ Remove the dead gate so in-process probes work without test-only bypass scaffold
 | REQ-002 | Imports cleaned. | Line 61 imports only `checkDatabaseUpdated`. |
 | REQ-003 | Focused vitest suites pass. | `handler-memory-search.vitest.ts`, `memory-search-integration.vitest.ts`, `search-quality/*.vitest.ts` exit 0. |
 | REQ-004 | Build clean. | TypeScript compiles via the existing build script (`npm run build` or equivalent in `mcp_server/`). |
-| REQ-005 | Strict validator passes on this packet. | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0. |
+| REQ-005 | Strict validator passes on this packet. | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0. |
 
 ### Acceptance Scenarios
 

@@ -40,7 +40,7 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Feature catalog files accessible and current — `feature_catalog/cross-cutting/` confirmed current; 18 phases all audited against live catalog [EVIDENCE: 2026-03-25 release-alignment normalization cross-checked spec.md, plan.md, and implementation-summary.md.]
-- [x] CHK-002 [P0] Source code accessible — `.opencode/skill/system-spec-kit/` fully traversed across all phases [EVIDENCE: 2026-03-25 release-alignment normalization cross-checked spec.md, plan.md, and implementation-summary.md.]
+- [x] CHK-002 [P0] Source code accessible — `.opencode/skills/system-spec-kit/` fully traversed across all phases [EVIDENCE: 2026-03-25 release-alignment normalization cross-checked spec.md, plan.md, and implementation-summary.md.]
 - [x] CHK-003 [P1] Audit methodology documented in plan.md — 3-phase methodology (prep → audit → synthesis) documented in plan.md §4 [EVIDENCE: 2026-03-25 release-alignment normalization cross-checked spec.md, plan.md, and implementation-summary.md.]
 
 <!-- /ANCHOR:pre-impl -->

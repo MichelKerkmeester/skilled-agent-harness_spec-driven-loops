@@ -1,7 +1,7 @@
 {
   "id": "agent-improver",
   "family": "derived",
-  "targetPath": ".opencode/agent/agent-improver.md",
+  "targetPath": ".opencode/agents/agent-improver.md",
   "outputKind": "markdown",
   "promotionEligible": false,
   "generated": true,

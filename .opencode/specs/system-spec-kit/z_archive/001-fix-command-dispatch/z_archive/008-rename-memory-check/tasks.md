@@ -45,8 +45,8 @@ contextType: "implementation"
 #### Additional Fixes Found
 - [x] 5.1 Update `AGENTS.md` line 184 (`/memory:search` → `/memory:check`)
 - [x] 5.2 Update `AGENTS (Universal).md` line 176 (`/memory:search` → `/memory:check`)
-- [x] 5.3 Update `.opencode/command/cli/codex.md` line 357
-- [x] 5.4 Update `.opencode/command/cli/gemini.md` line 361
+- [x] 5.3 Update `.opencode/commands/cli/codex.md` line 357
+- [x] 5.4 Update `.opencode/commands/cli/gemini.md` line 361
 
 ---
 
@@ -102,12 +102,12 @@ contextType: "implementation"
 
 | File | Status |
 |------|--------|
-| `.opencode/command/memory/search.md` | Renamed from memory.md → check.md → search.md |
-| `.opencode/command/memory/save.md` | Updated Related Commands |
-| `.opencode/command/memory/checkpoint.md` | Updated Related Commands |
+| `.opencode/commands/memory/search.md` | Renamed from memory.md → check.md → search.md |
+| `.opencode/commands/memory/save.md` | Updated Related Commands |
+| `.opencode/commands/memory/checkpoint.md` | Updated Related Commands |
 | `.opencode/skills/workflows-memory/SKILL.md` | Updated all dashboard refs |
 | `.opencode/skills/workflows-memory/references/execution_methods.md` | Updated command reference |
-| `.opencode/command/cli/codex.md` | Updated Related Commands |
-| `.opencode/command/cli/gemini.md` | Updated Related Commands |
+| `.opencode/commands/cli/codex.md` | Updated Related Commands |
+| `.opencode/commands/cli/gemini.md` | Updated Related Commands |
 | `AGENTS.md` | Updated memory command ref |
 | `AGENTS (Universal).md` | Updated memory command ref |

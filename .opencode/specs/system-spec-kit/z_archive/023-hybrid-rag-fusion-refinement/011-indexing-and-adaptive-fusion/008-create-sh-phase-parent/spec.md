@@ -84,7 +84,7 @@ Define the documentation, decisions, and task plan for a safe `create.sh` update
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh` | Modified | Added `--phase-parent`, `allow_nested_parent` validation, parser consolidation |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Modified | Added `--phase-parent`, `allow_nested_parent` validation, parser consolidation |
 | `spec.md` | Updated | Phase specification — reflects implemented state |
 | `plan.md` | Updated | Implementation plan with completed phases |
 | `tasks.md` | Updated | Task tracking with completion evidence |

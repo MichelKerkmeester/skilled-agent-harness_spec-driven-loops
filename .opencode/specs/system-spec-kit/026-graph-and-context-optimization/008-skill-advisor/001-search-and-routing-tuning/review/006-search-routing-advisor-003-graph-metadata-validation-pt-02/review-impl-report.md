@@ -10,11 +10,11 @@ The main implementation risk is corpus backfill failure containment: one malform
 
 Code and test files audited:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts`
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts`
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts`
 
 Spec docs, `description.json`, and `graph-metadata.json` were used only to identify the claimed implementation surface. Findings below cite production code or packet-owned test files, not spec-doc drift.
 
@@ -22,7 +22,7 @@ Spec docs, `description.json`, and `graph-metadata.json` were used only to ident
 
 Ran 10 implementation-audit iterations rotating correctness, security, robustness, and testing. Each iteration ran:
 
-`cd .opencode/skill/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run tests/graph-metadata-schema.vitest.ts ../scripts/tests/graph-metadata-backfill.vitest.ts --reporter=default`
+`cd .opencode/skills/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run tests/graph-metadata-schema.vitest.ts ../scripts/tests/graph-metadata-backfill.vitest.ts --reporter=default`
 
 All 10 runs passed with 2 test files and 25 tests. Git history was checked each iteration against the scoped files. Grep/Glob/read passes covered parser derivation, schema validation, backfill traversal, write paths, and packet-owned tests.
 
@@ -38,15 +38,15 @@ All 10 runs passed with 2 test files and 25 tests. Git history was checked each 
 
 | ID | Finding | Evidence |
 | --- | --- | --- |
-| IMPL-P1-001 | Backfill aborts the entire corpus when one existing `graph-metadata.json` is invalid. | `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:206`, `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:208`, `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:214`, `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:397`, `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:401` |
+| IMPL-P1-001 | Backfill aborts the entire corpus when one existing `graph-metadata.json` is invalid. | `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:206`, `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:208`, `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:214`, `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:397`, `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:401` |
 
 ### P2
 
 | ID | Finding | Evidence |
 | --- | --- | --- |
-| IMPL-P2-002 | Backfill accepts any `--root` and recursively scans it without a traversal budget. | `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:89`, `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:90`, `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:121`, `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:137`, `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:144` |
-| IMPL-P2-003 | Atomic graph-metadata writes can leave temp files behind when rename fails. | `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1145`, `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1148`, `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1149` |
-| IMPL-P2-004 | Backfill tests name `z_future` coverage but only create `z_archive` fixtures. | `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:27`, `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:60`, `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:61`, `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:78`, `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:117` |
+| IMPL-P2-002 | Backfill accepts any `--root` and recursively scans it without a traversal budget. | `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:89`, `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:90`, `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:121`, `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:137`, `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:144` |
+| IMPL-P2-003 | Atomic graph-metadata writes can leave temp files behind when rename fails. | `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1145`, `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1148`, `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1149` |
+| IMPL-P2-004 | Backfill tests name `z_future` coverage but only create `z_archive` fixtures. | `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:27`, `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:60`, `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:61`, `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:78`, `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:117` |
 
 ## 5. Findings by dimension
 

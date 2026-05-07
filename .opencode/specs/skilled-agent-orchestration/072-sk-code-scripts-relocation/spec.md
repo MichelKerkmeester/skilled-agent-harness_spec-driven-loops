@@ -17,11 +17,11 @@ _memory:
     next_safe_action: "Review final diff"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code/scripts/minify-webflow.mjs"
-      - ".opencode/skill/sk-code/scripts/test-minified-runtime.mjs"
-      - ".opencode/skill/sk-code/scripts/verify-minification.mjs"
-      - ".opencode/skill/sk-code/scripts/verify_alignment_drift.py"
-      - ".opencode/skill/sk-code/scripts/test_verify_alignment_drift.py"
+      - ".opencode/skills/sk-code/scripts/minify-webflow.mjs"
+      - ".opencode/skills/sk-code/scripts/test-minified-runtime.mjs"
+      - ".opencode/skills/sk-code/scripts/verify-minification.mjs"
+      - ".opencode/skills/sk-code/scripts/verify_alignment_drift.py"
+      - ".opencode/skills/sk-code/scripts/test_verify_alignment_drift.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000072"
       session_id: "phase-072-sk-code-scripts-relocation"
@@ -56,7 +56,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`.opencode/skill/sk-code/scripts/` currently mixes stack-specific Webflow build utilities with the root of the `sk-code` skill. That makes the root harder to scan and weakens the existing `assets/<surface>/` ownership model for surface-specific tooling.
+`.opencode/skills/sk-code/scripts/` currently mixes stack-specific Webflow build utilities with the root of the `sk-code` skill. That makes the root harder to scan and weakens the existing `assets/<surface>/` ownership model for surface-specific tooling.
 
 ### Purpose
 Move the five targeted script files to the correct asset-owned home, update all references to the new paths, and leave no stale references to the old root `sk-code/scripts/` path outside this packet's historical notes.
@@ -84,12 +84,12 @@ Move the five targeted script files to the correct asset-owned home, update all 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-code/scripts/minify-webflow.mjs` | Move | Relocate Webflow JS minification utility. |
-| `.opencode/skill/sk-code/scripts/test-minified-runtime.mjs` | Move | Relocate minified runtime smoke test utility. |
-| `.opencode/skill/sk-code/scripts/verify-minification.mjs` | Move | Relocate minification correctness verifier. |
-| `.opencode/skill/sk-code/scripts/verify_alignment_drift.py` | Move | Relocate after inspection determines destination. |
-| `.opencode/skill/sk-code/scripts/test_verify_alignment_drift.py` | Move | Relocate with the validator. |
-| `.opencode/skill/sk-code/**` | Modify | Update references to moved scripts and script folder guidance. |
+| `.opencode/skills/sk-code/scripts/minify-webflow.mjs` | Move | Relocate Webflow JS minification utility. |
+| `.opencode/skills/sk-code/scripts/test-minified-runtime.mjs` | Move | Relocate minified runtime smoke test utility. |
+| `.opencode/skills/sk-code/scripts/verify-minification.mjs` | Move | Relocate minification correctness verifier. |
+| `.opencode/skills/sk-code/scripts/verify_alignment_drift.py` | Move | Relocate after inspection determines destination. |
+| `.opencode/skills/sk-code/scripts/test_verify_alignment_drift.py` | Move | Relocate with the validator. |
+| `.opencode/skills/sk-code/**` | Modify | Update references to moved scripts and script folder guidance. |
 | `.opencode/**/*.md|json|yaml|toml|ts|js|mjs|py|sh` | Modify if matched | Update only old-path references from the inventory. |
 | `specs/skilled-agent-orchestration/072-sk-code-scripts-relocation/*` | Create/Modify | Planning, ADR, scratch inventory, checklist, and completion summary. |
 <!-- /ANCHOR:scope -->
@@ -106,7 +106,7 @@ Move the five targeted script files to the correct asset-owned home, update all 
 | REQ-001 | Relocate the five scoped scripts with `git mv`. | `git status --short` shows renames from the old script folder to the chosen destination. |
 | REQ-002 | Preserve script contents and executable bits. | `ls -la` at the destination shows files present with retained modes; no script content is intentionally deleted. |
 | REQ-003 | Remove stale old-path references. | Verification grep for `sk-code/scripts/` and `skill/sk-code/scripts` returns zero hits outside this packet. |
-| REQ-004 | Remove the old root scripts directory if empty. | `ls .opencode/skill/sk-code/scripts/` returns "No such file or directory". |
+| REQ-004 | Remove the old root scripts directory if empty. | `ls .opencode/skills/sk-code/scripts/` returns "No such file or directory". |
 | REQ-005 | Validate the spec packet strictly. | `validate.sh specs/skilled-agent-orchestration/072-sk-code-scripts-relocation --strict` exits 0. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -124,7 +124,7 @@ Move the five targeted script files to the correct asset-owned home, update all 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All five scoped scripts exist in their selected destination. Met.
-- **SC-002**: `.opencode/skill/sk-code/scripts/` is gone. Met.
+- **SC-002**: `.opencode/skills/sk-code/scripts/` is gone. Met.
 - **SC-003**: No old script-path references remain outside `072-sk-code-scripts-relocation`. Met.
 - **SC-004**: ADR-001 explains why the selected destination is correct. Met.
 - **SC-005**: Strict spec validation exits 0. Met.
@@ -198,5 +198,5 @@ Move the five targeted script files to the correct asset-owned home, update all 
 
 ## 10. OPEN QUESTIONS
 
-- None. Alignment-drift destination resolved to `.opencode/skill/sk-code/assets/scripts/`, because the validator describes OpenCode codebases and recurring multi-language alignment checks rather than Webflow/CDN behavior.
+- None. Alignment-drift destination resolved to `.opencode/skills/sk-code/assets/scripts/`, because the validator describes OpenCode codebases and recurring multi-language alignment checks rather than Webflow/CDN behavior.
 <!-- /ANCHOR:questions -->

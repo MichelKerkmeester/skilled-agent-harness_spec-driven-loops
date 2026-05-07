@@ -15,7 +15,7 @@ This review followed the packet docs in the requested order, then audited every 
 
 ### P0
 
-- `F-003` `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts:163`, `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:22`
+- `F-003` `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts:163`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:22`
   Evidence: `advisor_recommend` accepts explicit `workspaceRoot`, but the cache key parts do not include that root.
   Recommended fix: key the cache by resolved `workspaceRoot` (or a workspace-scoped freshness source signature) and add a multi-workspace cache isolation test.
   Target files: `handlers/advisor-recommend.ts`, `lib/prompt-cache.ts`, `tests/handlers/advisor-recommend.vitest.ts`
@@ -32,7 +32,7 @@ This review followed the packet docs in the requested order, then audited every 
   Recommended fix: restore the missing evidence or correct the docs to stop claiming it exists.
   Target files: `checklist.md`, `implementation-summary.md`, `resource-map.md`
 
-- `F-004` `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:172`, `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:98`
+- `F-004` `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:172`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:98`
   Evidence: the builder still uses a private renderer, while hooks render through `renderAdvisorBrief(...)`; shared payload then stores the private format.
   Recommended fix: make the builder derive `brief` and shared payload content from the shared renderer.
   Target files: `lib/skill-advisor-brief.ts`, `lib/render.ts`, `tests/legacy/advisor-brief-producer.vitest.ts`
@@ -42,12 +42,12 @@ This review followed the packet docs in the requested order, then audited every 
   Recommended fix: replace those claims with packet-local success-path evidence or explicit references to the real codex tests that were rerun.
   Target files: `implementation-summary.md`, `checklist.md`, `resource-map.md`
 
-- `F-006` `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:400`, `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:325`
+- `F-006` `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:400`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:325`
   Evidence: durable outcome JSONL is parsed without validation or recovery, and `advisor_validate` reads it unguarded.
   Recommended fix: make outcome parsing corruption-tolerant and add malformed-telemetry tests.
   Target files: `lib/metrics.ts`, `handlers/advisor-validate.ts`, `tests/handlers/advisor-validate.vitest.ts`
 
-- `F-007` `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:311`, `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:420`
+- `F-007` `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:311`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:420`
   Evidence: `skillSlug` filters corpus rows only, but telemetry totals stay workspace-global.
   Recommended fix: either scope totals to the selected skill or relabel/document them as global.
   Target files: `handlers/advisor-validate.ts`, `schemas/advisor-tool-schemas.ts`, `README.md`
@@ -99,9 +99,9 @@ This review followed the packet docs in the requested order, then audited every 
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/implementation-summary.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/checklist.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/resource-map.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`

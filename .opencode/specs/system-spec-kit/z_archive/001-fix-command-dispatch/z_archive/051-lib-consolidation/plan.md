@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Lib [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation/plan]"
-description: "mkdir -p .opencode/skill/system-spec-kit/lib"
+description: "mkdir -p .opencode/skills/system-spec-kit/lib"
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -24,7 +24,7 @@ contextType: "planning"
 
 ### 1.1 Create Directory
 ```bash
-mkdir -p .opencode/skill/system-spec-kit/lib
+mkdir -p .opencode/skills/system-spec-kit/lib
 ```
 
 ### 1.2 Create README
@@ -36,8 +36,8 @@ Document the purpose and contents of the shared lib folder:
 ## Phase 2: Extract and Move Shared Modules
 
 ### 2.1 Move embeddings.js
-**Source:** `.opencode/skill/system-spec-kit/mcp_server/shared/embeddings.js`
-**Target:** `.opencode/skill/system-spec-kit/shared/embeddings.js`
+**Source:** `.opencode/skills/system-spec-kit/mcp_server/shared/embeddings.js`
+**Target:** `.opencode/skills/system-spec-kit/shared/embeddings.js`
 
 **Verification:**
 - Grep for all imports of embeddings.js
@@ -45,8 +45,8 @@ Document the purpose and contents of the shared lib folder:
 - Test embedding generation from both CLI and MCP contexts
 
 ### 2.2 Move trigger-extractor.js
-**Source:** `.opencode/skill/system-spec-kit/mcp_server/shared/trigger-extractor.js`
-**Target:** `.opencode/skill/system-spec-kit/shared/trigger-extractor.js`
+**Source:** `.opencode/skills/system-spec-kit/mcp_server/shared/trigger-extractor.js`
+**Target:** `.opencode/skills/system-spec-kit/shared/trigger-extractor.js`
 
 **Verification:**
 - Grep for all imports
@@ -140,17 +140,17 @@ Contents:
 ### 5.1 Static Analysis
 ```bash
 # Check for circular dependencies
-npx madge --circular .opencode/skill/system-spec-kit/
+npx madge --circular .opencode/skills/system-spec-kit/
 
 # Verify no remaining cross-folder imports
-grep -r "../../scripts/lib" .opencode/skill/system-spec-kit/mcp_server/
-grep -r "../../mcp_server/lib" .opencode/skill/system-spec-kit/scripts/
+grep -r "../../scripts/lib" .opencode/skills/system-spec-kit/mcp_server/
+grep -r "../../mcp_server/lib" .opencode/skills/system-spec-kit/scripts/
 ```
 
 ### 5.2 CLI Script Testing
 ```bash
 # Test generate-context.js loads without vector-index
-node -e "require('./.opencode/skill/system-spec-kit/scripts/generate-context.js')"
+node -e "require('./.opencode/skills/system-spec-kit/scripts/generate-context.js')"
 
 # Verify vector-index.js NOT loaded
 node --print "Object.keys(require.cache).filter(k => k.includes('vector-index'))"
@@ -159,7 +159,7 @@ node --print "Object.keys(require.cache).filter(k => k.includes('vector-index'))
 ### 5.3 MCP Server Testing
 ```bash
 # Test server loads correctly
-node -e "require('./.opencode/skill/system-spec-kit/mcp_server/context-server'); console.log('OK')"
+node -e "require('./.opencode/skills/system-spec-kit/mcp_server/context-server'); console.log('OK')"
 
 # Test memory_health via MCP
 # Test memory_search via MCP
@@ -178,7 +178,7 @@ node -e "require('./.opencode/skill/system-spec-kit/mcp_server/context-server');
 If issues discovered post-implementation:
 
 1. **Revert imports** - Git revert the import changes
-2. **Delete shared lib** - Remove `.opencode/skill/system-spec-kit/shared/`
+2. **Delete shared lib** - Remove `.opencode/skills/system-spec-kit/shared/`
 3. **Restore re-exports** - Put back wrapper modules in scripts/lib
 <!-- /ANCHOR:rollback -->
 

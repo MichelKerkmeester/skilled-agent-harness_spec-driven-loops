@@ -11,13 +11,13 @@ Check whether `opencode-lcm` suggests improvements for our other existing code-g
 Our current runtime already has several strong pieces that should be preserved:
 
 1. **Compact startup brief**
-   - `buildStartupBrief()` already emits a compact graph outline plus lightweight session continuity. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`]
+   - `buildStartupBrief()` already emits a compact graph outline plus lightweight session continuity. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`]
 2. **Shared structural bootstrap contract**
-   - `buildStructuralBootstrapContract()` already keeps structural context bounded and reusable across `session_bootstrap`, `session_resume`, and `session_health`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:28-39`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
+   - `buildStructuralBootstrapContract()` already keeps structural context bounded and reusable across `session_bootstrap`, `session_resume`, and `session_health`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:28-39`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
 3. **Hook-based startup injection**
-   - `session-prime.ts` already injects structural context, session continuity, and stale-graph warnings into hook-capable runtimes. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:99-155`]
+   - `session-prime.ts` already injects structural context, session continuity, and stale-graph warnings into hook-capable runtimes. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:99-155`]
 4. **Budget-aware compaction merge**
-   - `mergeCompactBrief()` already does source budgeting, truncation, and cross-section file deduplication. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
+   - `mergeCompactBrief()` already does source budgeting, truncation, and cross-section file deduplication. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
 
 So the new opportunity is **not** to replace these components. It is to make the surrounding graph/runtime operations more durable and more portable.
 
@@ -45,11 +45,11 @@ Our graph MCP surface currently exposes only:
 - `code_graph_status`
 - `code_graph_context`
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/README.md:5-13`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/README.md:5-13`]
 
-`code_graph_status` reports health and counts, but it does not expose repair, export/import, or retention controls. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`]
+`code_graph_status` reports health and counts, but it does not expose repair, export/import, or retention controls. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`]
 
-`ensureCodeGraphReady()` handles empty graphs, git-head drift, file-mtime drift, deleted tracked files, and auto-reindexing, but it is still fundamentally an index-freshness helper rather than a full integrity-management surface. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:93-166`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:207-260`]
+`ensureCodeGraphReady()` handles empty graphs, git-head drift, file-mtime drift, deleted tracked files, and auto-reindexing, but it is still fundamentally an index-freshness helper rather than a full integrity-management surface. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:93-166`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:207-260`]
 
 ### Hook State Is Durable Enough For One Session, But Not Portable
 
@@ -60,7 +60,7 @@ Our hook state is intentionally lightweight:
 - stores last spec folder, session summary, and cached compact prime
 - cleaned up by age
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:14-30`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:67-103`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:178-198`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:14-30`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:67-103`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:178-198`]
 
 That is a good runtime cache model, but it is not enough for:
 

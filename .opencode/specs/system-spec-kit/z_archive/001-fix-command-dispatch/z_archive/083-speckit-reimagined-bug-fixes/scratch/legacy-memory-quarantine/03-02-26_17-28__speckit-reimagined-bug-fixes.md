@@ -149,7 +149,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/.../tests/test-bug-fixes.js, .opencode/.../tests/test-template-system.js, .opencode/skill/system-spec-kit/CHANGELOG.md
+- Files modified: .opencode/.../tests/test-bug-fixes.js, .opencode/.../tests/test-template-system.js, .opencode/skills/system-spec-kit/CHANGELOG.md
 
 - Last: Completed post-audit test verification for system-spec-kit after the 30-agent au
 
@@ -190,7 +190,7 @@ Next: Continue implementation
 
 - `.opencode/.../tests/test-template-system.js` - Template file
 
-- `.opencode/skill/system-spec-kit/CHANGELOG.md` - Documentation
+- `.opencode/skills/system-spec-kit/CHANGELOG.md` - Documentation
 
 - `/.../coder/AGENTS.md` - Documentation
 
@@ -239,7 +239,7 @@ Completed post-audit test verification for system-spec-kit after the 30-agent au
 |:---------|:----------------|
 | `.opencode/.../tests/test-bug-fixes.js` | Spec-kit related sections: fixed generate-context |
 | `.opencode/.../tests/test-template-system.js` | Spec-kit related sections: fixed generate-context |
-| `.opencode/skill/system-spec-kit/CHANGELOG.md` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/CHANGELOG.md` | File modified (description pending) |
 | `/.../coder/AGENTS.md` | Spec-kit related sections: fixed generate-context |
 | `/.../Public/AGENTS.md` | Spec-kit related sections: fixed generate-context |
 
@@ -460,7 +460,7 @@ Completed post-audit test verification for system-spec-kit after the 30-agent au
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "003-memory-and-spec-kit/083-speckit-reimagined-bug-fixes", limit: 10 })
@@ -472,7 +472,7 @@ ls -la 005-anobel.com/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 005-anobel.com --force
+node .opencode/skills/system-spec-kit/scripts/memory/generate-context.js 005-anobel.com --force
 ```
 
 ### Recovery Priority
@@ -632,7 +632,7 @@ trigger_phrases:
 key_files:
   - ".opencode/.../tests/test-bug-fixes.js"
   - ".opencode/.../tests/test-template-system.js"
-  - ".opencode/skill/system-spec-kit/CHANGELOG.md"
+  - ".opencode/skills/system-spec-kit/CHANGELOG.md"
   - "/.../coder/AGENTS.md"
   - "/.../Public/AGENTS.md"
 

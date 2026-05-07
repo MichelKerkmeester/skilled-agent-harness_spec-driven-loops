@@ -12,8 +12,8 @@ It has become ceremony. The routing decision is useful, but the explicit advisor
 I compared the local Gate 2 contract and `skill_advisor.py` implementation with Xethryon's runtime skill exposure and autonomous invocation model.
 
 ## Evidence
-- Gate 2 requires running `skill_advisor.py` and promotes confidence-threshold routing as a formal step in non-trivial tasks. [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:62-68] [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md:33-55]
-- `skill_advisor.py` is a substantial routing engine with stop-word filtering, synonym expansion, and intent boosters, which signals that the system is solving a real problem but through an exposed operational step. [SOURCE: .opencode/skill/scripts/skill_advisor.py:6-16] [SOURCE: .opencode/skill/scripts/skill_advisor.py:67-81] [SOURCE: .opencode/skill/scripts/skill_advisor.py:83-107] [SOURCE: .opencode/skill/scripts/skill_advisor.py:211-259]
+- Gate 2 requires running `skill_advisor.py` and promotes confidence-threshold routing as a formal step in non-trivial tasks. [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:62-68] [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md:33-55]
+- `skill_advisor.py` is a substantial routing engine with stop-word filtering, synonym expansion, and intent boosters, which signals that the system is solving a real problem but through an exposed operational step. [SOURCE: .opencode/skills/scripts/skill_advisor.py:6-16] [SOURCE: .opencode/skills/scripts/skill_advisor.py:67-81] [SOURCE: .opencode/skills/scripts/skill_advisor.py:83-107] [SOURCE: .opencode/skills/scripts/skill_advisor.py:211-259]
 - Xethryon's session system simply makes skills available in the prompt, and the autonomy layer can call `invoke_skill` inside the same turn. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/system.ts:66-77] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/tool/invoke_skill.ts:28-41] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/tool/invoke_skill.ts:80-90]
 - Xethryon's model is too autonomous for Spec Kit, but it proves the user does not need to watch the routing machinery happen in order for routing to work. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/autonomy.ts:42-76]
 
@@ -48,7 +48,7 @@ finding: redesign Gate 2 so skill routing is silent by default. Keep the routing
 - **Migration path:** start by changing defaults and output policy before replacing the underlying advisor engine.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/scripts/skill_advisor.py`
+- **Target file or module:** `.opencode/skills/scripts/skill_advisor.py`
 - **Change type:** modified existing
 - **Blast radius:** high
 - **Prerequisites:** define low-confidence thresholds, ambiguity policy, and a user-visible explanation fallback

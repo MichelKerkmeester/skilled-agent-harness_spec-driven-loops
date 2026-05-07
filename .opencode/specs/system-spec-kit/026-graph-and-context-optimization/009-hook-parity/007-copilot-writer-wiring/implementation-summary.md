@@ -37,7 +37,7 @@ Current `.claude/settings.local.json` again contains the Copilot writer commands
   "UserPromptSubmit": [
     {
       "type": "command",
-      "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
+      "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
       "timeoutSec": 5,
       "hooks": [
         {
@@ -51,7 +51,7 @@ Current `.claude/settings.local.json` again contains the Copilot writer commands
   "SessionStart": [
     {
       "type": "command",
-      "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js",
+      "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js",
       "timeoutSec": 5,
       "hooks": [
         {
@@ -86,7 +86,7 @@ Packet 010 is reapplied, and packet 011 now restores these top-level commands:
      "UserPromptSubmit": [
        {
 +        "type": "command",
-+        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
++        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
 +        "timeoutSec": 5,
          "hooks": [
            { "type": "command", "command": "...claude/user-prompt-submit.js", "timeout": 3 }
@@ -96,7 +96,7 @@ Packet 010 is reapplied, and packet 011 now restores these top-level commands:
      "SessionStart": [
        {
 +        "type": "command",
-+        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js",
++        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js",
 +        "timeoutSec": 5,
          "hooks": [
            { "type": "command", "command": "...claude/session-prime.js", "timeout": 3 }
@@ -115,5 +115,5 @@ Packet 010 is reapplied, and packet 011 now restores these top-level commands:
 
 - Research: `../../research/007-deep-review-remediation-pt-03/research.md` §7 (writer-wiring secondary gap)
 - Revert commit: `6cd00aa51b`
-- Writer source: `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
-- Writer dist: `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js`
+- Writer source: `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
+- Writer dist: `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js`

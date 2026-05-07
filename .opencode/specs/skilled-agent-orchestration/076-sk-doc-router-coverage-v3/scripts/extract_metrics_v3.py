@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 REPO = Path("/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public")
-PB = REPO / ".opencode/skill/sk-doc/manual_testing_playbook"
+PB = REPO / ".opencode/skills/sk-doc/manual_testing_playbook"
 LOGS_071 = REPO / ".opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/002-matrix-execute/logs"
 DELTAS_071 = REPO / ".opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/002-matrix-execute/deltas"
 LOGS_076 = REPO / ".opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3/logs"

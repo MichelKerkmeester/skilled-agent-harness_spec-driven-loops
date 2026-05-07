@@ -75,9 +75,9 @@ This phase did not add new test files. It closed the release by re-running the c
 
 | File | Changes |
 | ---- | ------- |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Simplified affected MCP tool schemas by removing `superRefine` so generated tool contracts stay readable to AI callers. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Kept request validation in the handler after the schema simplification so runtime checks still happen when requests execute. |
-| `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` | Included in the highest-risk retest set and in the scripts-side verification sweep because it sits on a sensitive package boundary. |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Simplified affected MCP tool schemas by removing `superRefine` so generated tool contracts stay readable to AI callers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Kept request validation in the handler after the schema simplification so runtime checks still happen when requests execute. |
+| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | Included in the highest-risk retest set and in the scripts-side verification sweep because it sits on a sensitive package boundary. |
 
 ### Tests (0 files)
 
@@ -94,10 +94,10 @@ No test files changed in this phase. Verification reran existing release checks 
 
 | File | Changes |
 | ---- | ------- |
-| `.opencode/skill/sk-code-opencode/README.md` | Synced standards guidance to the verified ESM state. |
-| `.opencode/skill/system-spec-kit/README.md` | Aligned top-level guidance with the verified module behavior. |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Updated server-facing guidance to match the verified native ESM behavior. |
-| `.opencode/skill/system-spec-kit/scripts/README.md` | Updated scripts guidance to match the verified interop behavior. |
+| `.opencode/skills/sk-code-opencode/README.md` | Synced standards guidance to the verified ESM state. |
+| `.opencode/skills/system-spec-kit/README.md` | Aligned top-level guidance with the verified module behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Updated server-facing guidance to match the verified native ESM behavior. |
+| `.opencode/skills/system-spec-kit/scripts/README.md` | Updated scripts guidance to match the verified interop behavior. |
 | `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/implementation-summary.md` | Recorded the phase result, delivery order, key decisions, and verification outcome. |
 | `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md` | Recorded packet-wide verification evidence and final completion status. |
 

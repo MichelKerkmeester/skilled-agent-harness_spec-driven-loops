@@ -1,6 +1,6 @@
 ---
 title: "...-system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/090-opencode-naming-conventions/implementation-summary]"
-description: "Migrated all JavaScript code in .opencode/skill/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Up..."
+description: "Migrated all JavaScript code in .opencode/skills/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Up..."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -21,7 +21,7 @@ contextType: "implementation"
 
 ## Overview
 
-Migrated all JavaScript code in `.opencode/skill/system-spec-kit/` from `snake_case` to `camelCase` naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Updated 9 skill documentation files to reflect the new standard.
+Migrated all JavaScript code in `.opencode/skills/system-spec-kit/` from `snake_case` to `camelCase` naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Updated 9 skill documentation files to reflect the new standard.
 
 **Scope**: ~206 JS files, 2,980+ unique identifiers renamed, 9 documentation files updated
 
@@ -31,7 +31,7 @@ Migrated all JavaScript code in `.opencode/skill/system-spec-kit/` from `snake_c
 
 ### Part A: Skill Documentation (9 files)
 
-All files in `.opencode/skill/sk-code-opencode/`:
+All files in `.opencode/skills/sk-code-opencode/`:
 
 | File | Changes |
 |------|---------|
@@ -129,7 +129,7 @@ Fixed cross-directory import mismatches and remaining string-embedded function n
 ## Risks and Known Limitations
 
 1. **Test files**: Some test files reference function names in string literals (test descriptions). These were left as-is since they're descriptive text, not code.
-2. **External consumers**: Any code outside `.opencode/skill/system-spec-kit/` that imports snake_case names will still work via backward-compatible aliases.
+2. **External consumers**: Any code outside `.opencode/skills/system-spec-kit/` that imports snake_case names will still work via backward-compatible aliases.
 3. **String-embedded identifiers**: Some error messages and log strings contain the old snake_case names (e.g., `[working-memory] enforce_memory_limit failed`). These are display strings, not code references.
 
 <!-- /ANCHOR:limitations -->

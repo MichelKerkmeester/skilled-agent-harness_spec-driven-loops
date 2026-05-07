@@ -4,7 +4,7 @@
   "timestamp": "2026-04-04T11:21:24.151Z",
   "surfaces": {
     "canonical": {
-      "path": ".opencode/agent/agent-improver.md",
+      "path": ".opencode/agents/agent-improver.md",
       "exists": true,
       "frontmatter": {
         "name": "agent-improver",
@@ -46,7 +46,7 @@
     ],
     "commands": [
       {
-        "path": ".opencode/command/improve/agent.md",
+        "path": ".opencode/commands/improve/agent.md",
         "references": [
           "@agent-improver"
         ]
@@ -54,14 +54,14 @@
     ],
     "yamlWorkflows": [
       {
-        "path": ".opencode/command/improve/assets/improve_agent-improver_auto.yaml",
+        "path": ".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",
         "references": [
           "agent-improver",
           "@agent-improver"
         ]
       },
       {
-        "path": ".opencode/command/improve/assets/improve_agent-improver_confirm.yaml",
+        "path": ".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",
         "references": [
           "agent-improver",
           "@agent-improver"
@@ -70,13 +70,13 @@
     ],
     "skills": [
       {
-        "path": ".opencode/skill/sk-improve-agent/SKILL.md",
+        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
         "referenceCount": 6
       }
     ],
     "globalDocs": [],
     "skillAdvisor": {
-      "path": ".opencode/skill/skill-advisor/scripts/skill_advisor.py",
+      "path": ".opencode/skills/skill-advisor/scripts/skill_advisor.py",
       "matched": true
     }
   },

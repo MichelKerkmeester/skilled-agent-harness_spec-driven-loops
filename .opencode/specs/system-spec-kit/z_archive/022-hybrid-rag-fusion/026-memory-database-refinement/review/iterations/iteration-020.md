@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] External DB rebind refreshes only a subset of singleton DB consumers
-**File** `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts`
 
 **Issue** `checkDatabaseUpdated()`/`reinitializeDatabase()` closes and reopens the main DB, but only rebinds `checkpoints`, `accessTracker`, `hybridSearch`, `sessionManager`, and `incrementalIndex`. Several other long-lived modules are initialized once at startup with module-level DB handles or timer closures and are never rebound after a DB swap. That leaves later MCP requests and background jobs reading from a stale or already-closed connection after an external DB update.
 
@@ -12,7 +12,7 @@
 **Fix** Move DB access to call-time `vectorIndex.getDb()` lookups, or extend `db-state` so every module with a retained DB handle or scheduler closure participates in rebind. For timer-based modules, stop and restart the job on rebind so it captures the fresh handle.
 
 ### [P1] Retrieval session state is global, caller-controlled, and not scope-bound
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts`
 
 **Issue** Retrieval session state is stored in a process-global singleton keyed only by raw `sessionId`. `memory_search` mutates and consumes that state directly from the request without validating that the caller actually owns the session. In a shared MCP process, one caller can accidentally or intentionally reuse another caller's `sessionId` and influence future dedup/goal-boost behavior.
 
@@ -21,7 +21,7 @@
 **Fix** Key retrieval state by a trusted scope tuple, not just `sessionId` alone. At minimum use the normalized tenant/user/agent scope plus the trusted effective session id, and refuse to mutate in-memory retrieval state for untrusted caller-supplied ids.
 
 ### [P1] Progressive-disclosure cursors replay prior result sets without scope checks
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts`
 
 **Issue** Continuation cursors are backed by a process-global in-memory store that holds entire result sets. The cursor token is only base64-encoded JSON, and cursor resolution does not verify tenant/user/agent/session scope before replaying stored results. Any caller that obtains a cursor can fetch a prior result set from an unrelated invocation, bypassing the current request's scope filters.
 
@@ -30,7 +30,7 @@
 **Fix** Bind each stored cursor entry to the normalized scope and tool name, include an integrity-protected token payload, and reject cursor reuse when the current scope does not match the scope that created it. Also clear cursor state during shutdown/restart instead of relying only on TTL.
 
 ### [P1] Access-tracker accumulators can bleed across DB swaps
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts`
 
 **Issue** `access-tracker` keeps an in-memory accumulator map keyed only by `memoryId`. On external DB rebind, `db-state` calls `accessTracker.init(newDb)`, which swaps the DB handle but does not flush or discard pending accumulator entries. Any buffered counts from the old DB can later be written into the new DB against the same numeric ids, corrupting `access_count` and `last_accessed`.
 
@@ -39,7 +39,7 @@
 **Fix** Treat a DB swap as a hard generation boundary: flush safely before rebinding, or drop all pending accumulators when the DB identity changes. If you need to preserve buffered state, key it by `(db identity, memoryId)` instead of `memoryId` alone.
 
 ### [P2] External DB reinitialization leaves stale in-process caches alive
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts`
 
 **Issue** The server reinitializes the DB on external updates, but it does not invalidate several process-global caches that were populated from the old DB. That means unrelated MCP calls can continue to observe pre-rebind search results and trigger phrases until TTL expiry or a later mutation hook happens to clear them.
 

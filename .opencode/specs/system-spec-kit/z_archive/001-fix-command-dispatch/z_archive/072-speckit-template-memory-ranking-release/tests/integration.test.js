@@ -21,7 +21,7 @@ const os = require('os');
 // TEST CONFIGURATION
 // ===================================================================
 
-const SPEC_KIT_BASE = path.join(__dirname, '../../../../.opencode/skill/system-spec-kit');
+const SPEC_KIT_BASE = path.join(__dirname, '../../../../.opencode/skills/system-spec-kit');
 const MCP_SERVER_PATH = path.join(SPEC_KIT_BASE, 'mcp_server');
 const LIB_PATH = path.join(MCP_SERVER_PATH, 'lib');
 const TEMPLATES_PATH = path.join(SPEC_KIT_BASE, 'templates');

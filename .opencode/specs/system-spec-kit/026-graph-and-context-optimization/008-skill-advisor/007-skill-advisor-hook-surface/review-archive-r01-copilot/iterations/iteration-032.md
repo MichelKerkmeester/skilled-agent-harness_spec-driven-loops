@@ -6,7 +6,7 @@ Finished the UNKNOWN/fail-open correctness pass by reading the telemetry classif
 ## Evidence read
 - `smart-router-telemetry.vitest.ts:101-106` -> empty or sentinel allowed-resource sets intentionally classify as `unknown_unparsed`.
 - `smart-router-analyze.vitest.ts:89-102` -> analyzer skips malformed JSONL rows and counts parse errors instead of promoting them into false positives.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:136-153` -> diagnostic error codes normalize malformed/variant subprocess failures into a closed enum rather than leaking arbitrary strings.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:136-153` -> diagnostic error codes normalize malformed/variant subprocess failures into a closed enum rather than leaking arbitrary strings.
 
 ## Findings
 

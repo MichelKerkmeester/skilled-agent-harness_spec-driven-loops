@@ -21,7 +21,7 @@ Hunter (iter 6) asked "what's missing?" and returned 0 new in-scope findings. Sk
 |---|---|---|
 | Commit hash `ccd73ef55` | `git show ccd73ef55 --stat` | ✓ Confirmed; commit message exact match: "feat(sk-doc): relocate feature_catalog/testing_playbook/templates to assets/ root (068/001)" |
 | 4 `git mv` operations | Stat shows 6 R-lines (4 mv ops × inner files) | ✓ Confirmed (`feature_catalog/` 2 inner + `testing_playbook/` 2 inner + 2 templates = 6 renames) |
-| `assets/agents/` deleted | `test ! -e .opencode/skill/sk-doc/assets/agents` | ✓ Confirmed |
+| `assets/agents/` deleted | `test ! -e .opencode/skills/sk-doc/assets/agents` | ✓ Confirmed |
 | Branch = main | `git branch --show-current` | ✓ Confirmed (current state still main) |
 | Inner content preservation | `ls assets/feature_catalog assets/testing_playbook` | ✓ Both have 2 files each |
 
@@ -30,11 +30,11 @@ Hunter (iter 6) asked "what's missing?" and returned 0 new in-scope findings. Sk
 | Claim | Re-executed | Result |
 |---|---|---|
 | `tomllib` parse-check OK on all 5 .toml | `python3.12 -c "import tomllib; tomllib.load(open(f,'rb'))"` × 5 | ✓ All 5 emit "OK" (4 `.gemini/commands/create/*.toml` + `.codex/agents/create.toml`) |
-| `.claude/agents/create.md` byte-identical to `.opencode/agent/create.md` | `diff -q` | ✓ Empty (byte-identical) |
-| `.gemini/agents/create.md` byte-identical to `.opencode/agent/create.md` | `diff -q` | ✓ Empty (byte-identical) |
+| `.claude/agents/create.md` byte-identical to `.opencode/agents/create.md` | `diff -q` | ✓ Empty (byte-identical) |
+| `.gemini/agents/create.md` byte-identical to `.opencode/agents/create.md` | `diff -q` | ✓ Empty (byte-identical) |
 | `.claude/commands` is a symlink | `readlink .claude/commands` → `../.opencode/command` | ✓ Confirmed |
 | `.codex/prompts` is a symlink | `readlink .codex/prompts` → absolute path to `.opencode/command` | ✓ Confirmed |
-| Inode-identical via symlink | `stat -L -f '%i' .claude/commands/create/agent.md` vs `.opencode/command/create/agent.md` → both `32374636` | ✓ Same inode |
+| Inode-identical via symlink | `stat -L -f '%i' .claude/commands/create/agent.md` vs `.opencode/commands/create/agent.md` → both `32374636` | ✓ Same inode |
 | `.gemini/commands/create/feature-catalog.toml` has new paths, no old | `grep -c new` = 1; `grep -cE old-pattern` = 0 | ✓ Substitution clean |
 | Phase 2 commit non-spec file count | `git show 851336518 --name-only` filtered | 30 files — matches the impl-summary's enumerated rows (11 sk-doc internal + 11 /create:* canonical + 4 .gemini .toml + 2 agent cp + .codex agent + install_guide = 30, accounting for symlink-only `.claude`/`.codex` command mirrors not in commit) |
 | `assets/agent_template.md` exists at new path | `test -f` | ✓ |
@@ -46,29 +46,29 @@ Hunter (iter 6) asked "what's missing?" and returned 0 new in-scope findings. Sk
 
 | Claim | Re-executed | Result |
 |---|---|---|
-| `validate.sh --strict` on parent 068 returns exit 0 | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` | ✓ Exit 0; "RESULT: PASSED"; Errors: 0 Warnings: 0 |
+| `validate.sh --strict` on parent 068 returns exit 0 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` | ✓ Exit 0; "RESULT: PASSED"; Errors: 0 Warnings: 0 |
 | Phase 3 commit `98cc6b59c` | `git log` | ✓ Present in history |
-| P2 SKILL.md narrative fix at L162 + L434 | `grep -nE "assets/skill" .opencode/skill/sk-doc/SKILL.md` | ✓ L162 reads "`assets/skill/` for skill creation templates; `assets/agent_template.md` and `assets/command_template.md` at the assets/ root..." (P2 fix landed) |
+| P2 SKILL.md narrative fix at L162 + L434 | `grep -nE "assets/skill" .opencode/skills/sk-doc/SKILL.md` | ✓ L162 reads "`assets/skill/` for skill creation templates; `assets/agent_template.md` and `assets/command_template.md` at the assets/ root..." (P2 fix landed) |
 | Opus verifier returned PASS | Prior session — assumed true (not directly re-verifiable) | ⚠ Trust-without-verify (prior session); deterministic checks below act as proxy |
 
 ### Cross-runtime mirror sanity (re-verified)
 
 ```
-diff -q .opencode/agent/create.md .claude/agents/create.md   → empty
-diff -q .opencode/agent/create.md .gemini/agents/create.md   → empty
+diff -q .opencode/agents/create.md .claude/agents/create.md   → empty
+diff -q .opencode/agents/create.md .gemini/agents/create.md   → empty
 readlink .claude/commands                                     → ../.opencode/command
 readlink .codex/prompts                                       → /Users/michelkerkmeester/.../.opencode/command
 stat -L -f '%i' .claude/commands/create/agent.md              → 32374636
-stat -L -f '%i' .opencode/command/create/agent.md             → 32374636 (SAME inode)
+stat -L -f '%i' .opencode/commands/create/agent.md             → 32374636 (SAME inode)
 ```
 
 ### Sample path-resolveability (3 absolute paths, randomly drawn)
 
 | Source file | Path drawn | Resolves? |
 |---|---|---|
-| `.opencode/agent/create.md:186` (COMMAND TEMPLATE MAP table) | `.opencode/skill/sk-doc/assets/agent_template.md` | ✓ EXISTS |
-| `.opencode/command/create/assets/create_agent_auto.yaml:168` (`primary:`) | `.opencode/skill/sk-doc/assets/agent_template.md` | ✓ EXISTS |
-| `.opencode/skill/sk-doc/SKILL.md:124` (markdown link) | `./assets/testing_playbook/manual_testing_playbook_template.md` | ✓ EXISTS |
+| `.opencode/agents/create.md:186` (COMMAND TEMPLATE MAP table) | `.opencode/skills/sk-doc/assets/agent_template.md` | ✓ EXISTS |
+| `.opencode/commands/create/assets/create_agent_auto.yaml:168` (`primary:`) | `.opencode/skills/sk-doc/assets/agent_template.md` | ✓ EXISTS |
+| `.opencode/skills/sk-doc/SKILL.md:124` (markdown link) | `./assets/testing_playbook/manual_testing_playbook_template.md` | ✓ EXISTS |
 
 ### TODO/FIXME/placeholder scan in active spec scope
 

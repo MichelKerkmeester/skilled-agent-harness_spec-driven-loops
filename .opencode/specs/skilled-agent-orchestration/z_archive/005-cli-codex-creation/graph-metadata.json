@@ -41,8 +41,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/cli-codex/SKILL.md",
-      ".opencode/skill/cli-codex/assets/prompt_templates.md",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-codex/assets/prompt_templates.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -53,13 +53,13 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-codex/SKILL.md",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
         "source": "derived"
       },
       {
         "name": "prompt_templates.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-codex/assets/prompt_templates.md",
+        "path": ".opencode/skills/cli-codex/assets/prompt_templates.md",
         "source": "derived"
       },
       {

@@ -93,7 +93,7 @@ Drift introduces a sophisticated categorization that maps memory longevity to kn
 R(t, S) = (1 + 0.235 × t/S)^(-0.5)
 where: t = elapsed days, S = stability (days)
 ```
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.js]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.js]
 
 **Half-life decay (drift):**
 ```
@@ -114,7 +114,7 @@ confidence × e^(-t × ln(2) / half_life)
 | DORMANT | 0.02-0.05 | None |
 | ARCHIVED | < 0.02 or 90+ days | None |
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js]
 
 **Drift's Compression Levels:**
 | Level | Tokens | Content |

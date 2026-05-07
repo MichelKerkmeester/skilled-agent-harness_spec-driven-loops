@@ -90,11 +90,11 @@ Stage 2 (author scenarios) and Stage 1's fixture-target work happen BEFORE Stage
 
 ### Context
 
-Per memory rule `feedback_new_agent_mirror_all_runtimes.md`: any agent file edits must propagate to all 4 runtime surfaces (`.opencode/agent/*.md` + `.claude/agents/*.md` + `.gemini/agents/*.md` + `.codex/agents/*.toml`). Packet 059's @code agent followed this rule; 001/research RQ-6 confirmed sk-improve-agent's mirror policy correctness.
+Per memory rule `feedback_new_agent_mirror_all_runtimes.md`: any agent file edits must propagate to all 4 runtime surfaces (`.opencode/agents/*.md` + `.claude/agents/*.md` + `.gemini/agents/*.md` + `.codex/agents/*.toml`). Packet 059's @code agent followed this rule; 001/research RQ-6 confirmed sk-improve-agent's mirror policy correctness.
 
 ### Decision
 
-When editing `.opencode/agent/improve-agent.md`, immediately mirror the same change to:
+When editing `.opencode/agents/improve-agent.md`, immediately mirror the same change to:
 - `.claude/agents/improve-agent.md` (Path Convention adjusted)
 - `.gemini/agents/improve-agent.md` (Path Convention adjusted)
 - `.codex/agents/improve-agent.toml` (toml-wrapped with `sandbox_mode="workspace-write"`)

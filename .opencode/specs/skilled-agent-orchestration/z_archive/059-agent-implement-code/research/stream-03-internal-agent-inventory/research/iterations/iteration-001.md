@@ -2,19 +2,19 @@
 
 ## Focus
 
-This iteration focused on Q3, the D3 blocker: whether the internal `.opencode/agent/*.md` ecosystem has any machine-readable caller-restriction field, harness-level dispatch validator, or only prose conventions governing which agents may call or dispatch other agents.
+This iteration focused on Q3, the D3 blocker: whether the internal `.opencode/agents/*.md` ecosystem has any machine-readable caller-restriction field, harness-level dispatch validator, or only prose conventions governing which agents may call or dispatch other agents.
 
 ## Actions Taken
 
-- Inventoried every live OpenCode agent definition under `.opencode/agent/*.md` and extracted its YAML frontmatter keys.
+- Inventoried every live OpenCode agent definition under `.opencode/agents/*.md` and extracted its YAML frontmatter keys.
 - Read root `AGENTS.md` agent routing and Distributed Governance Rule sections for dispatch ownership language.
-- Read `.opencode/agent/orchestrate.md` routing, nesting, dispatch, and agent-loading sections.
+- Read `.opencode/agents/orchestrate.md` routing, nesting, dispatch, and agent-loading sections.
 - Grepped the agent, command, skill, and `system-spec-kit` harness areas for caller-restriction and dispatch-validator terms.
 - Checked special command-owned agents: `@deep-research`, `@deep-review`, `@improve-agent`, and `@improve-prompt`.
 
 ## Findings
 
-- Frontmatter inventory shows no explicit caller-restriction key on any live agent. The keys present are `name`, `description`, `mode`, `temperature`, `permission`, and sometimes `mcpServers`; no agent has `caller`, `dispatchableBy`, `callableFrom`, `parent`, `restricted_callers`, or equivalent. Evidence: `.opencode/agent/context.md:2`, `.opencode/agent/context.md:4`, `.opencode/agent/context.md:6`, `.opencode/agent/context.md:20`; `.opencode/agent/orchestrate.md:2`, `.opencode/agent/orchestrate.md:4`, `.opencode/agent/orchestrate.md:6`; `.opencode/agent/ultra-think.md:2`, `.opencode/agent/ultra-think.md:4`, `.opencode/agent/ultra-think.md:20`.
+- Frontmatter inventory shows no explicit caller-restriction key on any live agent. The keys present are `name`, `description`, `mode`, `temperature`, `permission`, and sometimes `mcpServers`; no agent has `caller`, `dispatchableBy`, `callableFrom`, `parent`, `restricted_callers`, or equivalent. Evidence: `.opencode/agents/context.md:2`, `.opencode/agents/context.md:4`, `.opencode/agents/context.md:6`, `.opencode/agents/context.md:20`; `.opencode/agents/orchestrate.md:2`, `.opencode/agents/orchestrate.md:4`, `.opencode/agents/orchestrate.md:6`; `.opencode/agents/ultra-think.md:2`, `.opencode/agents/ultra-think.md:4`, `.opencode/agents/ultra-think.md:20`.
 
 | Agent | Frontmatter keys | Caller-restriction signal |
 | --- | --- | --- |
@@ -35,15 +35,15 @@ This iteration focused on Q3, the D3 blocker: whether the internal `.opencode/ag
 
 - The Distributed Governance Rule is explicit that it is "a workflow-required gate, not a runtime hook"; therefore existing authored-doc and exclusive-write governance is not a harness enforcement mechanism for caller identity. Evidence: `AGENTS.md:342`.
 
-- `.opencode/agent/orchestrate.md` lists routes in prose and tables, not in machine-readable frontmatter. It says only the depth-0 orchestrator may dispatch LEAF agents and depth-1 agents must not dispatch; its routing table maps task types to `@context`, `@deep-research`, `@ultra-think`, `@review`, `@write`, `@general`, and `@debug`. Evidence: `.opencode/agent/orchestrate.md:42`, `.opencode/agent/orchestrate.md:95`, `.opencode/agent/orchestrate.md:101`.
+- `.opencode/agents/orchestrate.md` lists routes in prose and tables, not in machine-readable frontmatter. It says only the depth-0 orchestrator may dispatch LEAF agents and depth-1 agents must not dispatch; its routing table maps task types to `@context`, `@deep-research`, `@ultra-think`, `@review`, `@write`, `@general`, and `@debug`. Evidence: `.opencode/agents/orchestrate.md:42`, `.opencode/agents/orchestrate.md:95`, `.opencode/agents/orchestrate.md:101`.
 
-- The orchestrator imposes prompt-level NDP enforcement: every non-orchestrator dispatch must include a "NESTING CONSTRAINT" telling the child it is a LEAF agent and must not use Task. That is convention plus prompt injection, not caller-restriction metadata on the callee. Evidence: `.opencode/agent/orchestrate.md:149`, `.opencode/agent/orchestrate.md:151`.
+- The orchestrator imposes prompt-level NDP enforcement: every non-orchestrator dispatch must include a "NESTING CONSTRAINT" telling the child it is a LEAF agent and must not use Task. That is convention plus prompt injection, not caller-restriction metadata on the callee. Evidence: `.opencode/agents/orchestrate.md:149`, `.opencode/agents/orchestrate.md:151`.
 
-- Grep found no harness-level matcher for likely caller-restriction keys (`dispatchableBy`, `callableFrom`, `restricted_callers`, `allowed_callers`, `callerRestriction`, `isOrchestrator`, etc.) under the searched harness and agent surfaces. The only related harness "caller" hits are MCP caller/session-context security concepts, not agent dispatch allowlists. Evidence: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:62`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:930`; absence confirmed by focused grep returning no matches for the restriction terms.
+- Grep found no harness-level matcher for likely caller-restriction keys (`dispatchableBy`, `callableFrom`, `restricted_callers`, `allowed_callers`, `callerRestriction`, `isOrchestrator`, etc.) under the searched harness and agent surfaces. The only related harness "caller" hits are MCP caller/session-context security concepts, not agent dispatch allowlists. Evidence: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:62`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:930`; absence confirmed by focused grep returning no matches for the restriction terms.
 
-- `cli-opencode` documentation contains the clearest command-only dispatch contract: generic subagents go through a primary orchestrator, while `deep-research`, `deep-review`, `improve-agent`, and `improve-prompt` are dispatched only by parent commands and never through `orchestrate`. This is documentation-level governance and should not be mistaken for runtime enforcement. Evidence: `.opencode/skill/cli-opencode/SKILL.md:296`, `.opencode/skill/cli-opencode/SKILL.md:298`, `.opencode/skill/cli-opencode/SKILL.md:300`.
+- `cli-opencode` documentation contains the clearest command-only dispatch contract: generic subagents go through a primary orchestrator, while `deep-research`, `deep-review`, `improve-agent`, and `improve-prompt` are dispatched only by parent commands and never through `orchestrate`. This is documentation-level governance and should not be mistaken for runtime enforcement. Evidence: `.opencode/skills/cli-opencode/SKILL.md:296`, `.opencode/skills/cli-opencode/SKILL.md:298`, `.opencode/skills/cli-opencode/SKILL.md:300`.
 
-- Special command-owned agents do not encode caller restrictions in frontmatter. `@deep-research` and `@deep-review` have `permission.task: deny` and body-level leaf rules; `@improve-agent` has proposal-only body rules and orchestrator-only journal emission; `@improve-prompt` is read-only and leaf-only. Evidence: `.opencode/agent/deep-research.md:18`, `.opencode/agent/deep-research.md:38`, `.opencode/agent/deep-review.md:18`, `.opencode/agent/deep-review.md:38`, `.opencode/agent/improve-agent.md:155`, `.opencode/agent/improve-prompt.md:22`.
+- Special command-owned agents do not encode caller restrictions in frontmatter. `@deep-research` and `@deep-review` have `permission.task: deny` and body-level leaf rules; `@improve-agent` has proposal-only body rules and orchestrator-only journal emission; `@improve-prompt` is read-only and leaf-only. Evidence: `.opencode/agents/deep-research.md:18`, `.opencode/agents/deep-research.md:38`, `.opencode/agents/deep-review.md:18`, `.opencode/agents/deep-review.md:38`, `.opencode/agents/improve-agent.md:155`, `.opencode/agents/improve-prompt.md:22`.
 
 ## Questions Answered
 
@@ -58,31 +58,31 @@ This iteration focused on Q3, the D3 blocker: whether the internal `.opencode/ag
 
 ## Sources Consulted
 
-- `.opencode/agent/context.md:2`
-- `.opencode/agent/context.md:4`
-- `.opencode/agent/context.md:16`
-- `.opencode/agent/debug.md:3`
-- `.opencode/agent/deep-research.md:18`
-- `.opencode/agent/deep-research.md:38`
-- `.opencode/agent/deep-review.md:18`
-- `.opencode/agent/deep-review.md:38`
-- `.opencode/agent/improve-agent.md:155`
-- `.opencode/agent/improve-prompt.md:22`
-- `.opencode/agent/orchestrate.md:42`
-- `.opencode/agent/orchestrate.md:95`
-- `.opencode/agent/orchestrate.md:101`
-- `.opencode/agent/orchestrate.md:149`
-- `.opencode/agent/orchestrate.md:151`
-- `.opencode/agent/ultra-think.md:39`
-- `.opencode/agent/ultra-think.md:40`
-- `.opencode/agent/README.txt:4`
-- `.opencode/agent/README.txt:5`
-- `.opencode/skill/cli-opencode/SKILL.md:296`
-- `.opencode/skill/cli-opencode/SKILL.md:298`
-- `.opencode/skill/cli-opencode/SKILL.md:300`
-- `.opencode/skill/sk-deep-research/SKILL.md:48`
-- `.opencode/skill/sk-deep-research/SKILL.md:54`
-- `.opencode/skill/sk-deep-review/SKILL.md:51`
+- `.opencode/agents/context.md:2`
+- `.opencode/agents/context.md:4`
+- `.opencode/agents/context.md:16`
+- `.opencode/agents/debug.md:3`
+- `.opencode/agents/deep-research.md:18`
+- `.opencode/agents/deep-research.md:38`
+- `.opencode/agents/deep-review.md:18`
+- `.opencode/agents/deep-review.md:38`
+- `.opencode/agents/improve-agent.md:155`
+- `.opencode/agents/improve-prompt.md:22`
+- `.opencode/agents/orchestrate.md:42`
+- `.opencode/agents/orchestrate.md:95`
+- `.opencode/agents/orchestrate.md:101`
+- `.opencode/agents/orchestrate.md:149`
+- `.opencode/agents/orchestrate.md:151`
+- `.opencode/agents/ultra-think.md:39`
+- `.opencode/agents/ultra-think.md:40`
+- `.opencode/agents/README.txt:4`
+- `.opencode/agents/README.txt:5`
+- `.opencode/skills/cli-opencode/SKILL.md:296`
+- `.opencode/skills/cli-opencode/SKILL.md:298`
+- `.opencode/skills/cli-opencode/SKILL.md:300`
+- `.opencode/skills/sk-deep-research/SKILL.md:48`
+- `.opencode/skills/sk-deep-research/SKILL.md:54`
+- `.opencode/skills/sk-deep-review/SKILL.md:51`
 - `AGENTS.md:223`
 - `AGENTS.md:329`
 - `AGENTS.md:334`
@@ -99,7 +99,7 @@ This iteration focused on Q3, the D3 blocker: whether the internal `.opencode/ag
 
 ## Recommended Next Focus
 
-Focus Q4 next: inventory write-capable agents (`debug`, `deep-research`, `deep-review`, `improve-agent`, `write`) for exact write boundaries, file ownership rules, and whether those guarantees are enforced by permissions, command reducers, or prose only. For `.opencode/agent/code.md`, the immediate D3 recommendation is to avoid claiming caller-restriction enforcement unless a harness validator is added. If caller restriction is required, add explicit frontmatter such as `dispatch: { allowedCallers: [...], commandOwned: true }` and implement a loader/Task-dispatch validator; otherwise design `code.md` as convention-governed with `permission.task: deny`, LEAF body rules, and orchestrator routing prose.
+Focus Q4 next: inventory write-capable agents (`debug`, `deep-research`, `deep-review`, `improve-agent`, `write`) for exact write boundaries, file ownership rules, and whether those guarantees are enforced by permissions, command reducers, or prose only. For `.opencode/agents/code.md`, the immediate D3 recommendation is to avoid claiming caller-restriction enforcement unless a harness validator is added. If caller restriction is required, add explicit frontmatter such as `dispatch: { allowedCallers: [...], commandOwned: true }` and implement a loader/Task-dispatch validator; otherwise design `code.md` as convention-governed with `permission.task: deny`, LEAF body rules, and orchestrator routing prose.
 
 ## Ruled Out
 

@@ -119,10 +119,10 @@ Defense-in-depth across the daemon lifecycle. Atomic spawn (advisory lock + idem
 | `daemon.log` | Runtime log | Verify quieter post-fix | Grep BrokenPipeError count + log size |
 
 Required inventories:
-- All `send_bytes` call sites: `rg -n 'conn.send_bytes' .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/`
-- All `start_daemon` call sites: `rg -n 'start_daemon\b' .opencode/skill/mcp-coco-index/`
-- All `_pid_alive` and `_cleanup_stale_files` call sites: `rg -n '_pid_alive|_cleanup_stale_files' .opencode/skill/mcp-coco-index/`
-- All `subprocess.Popen` call sites: `rg -n 'subprocess\.Popen|Popen\(' .opencode/skill/mcp-coco-index/`
+- All `send_bytes` call sites: `rg -n 'conn.send_bytes' .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/`
+- All `start_daemon` call sites: `rg -n 'start_daemon\b' .opencode/skills/mcp-coco-index/`
+- All `_pid_alive` and `_cleanup_stale_files` call sites: `rg -n '_pid_alive|_cleanup_stale_files' .opencode/skills/mcp-coco-index/`
+- All `subprocess.Popen` call sites: `rg -n 'subprocess\.Popen|Popen\(' .opencode/skills/mcp-coco-index/`
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -135,7 +135,7 @@ Required inventories:
 - [ ] Confirm pytest setup runs locally (`cd mcp-coco-index/mcp_server && pytest --collect-only 2>&1 | head`)
 - [ ] Capture `pgrep -af "ccc run-daemon"` baseline
 - [ ] Snapshot current `daemon.log` size (~23 MB) and BrokenPipeError count (~564) for before-after comparison
-- [ ] Verify no daemon-lifecycle tests exist (per P1-4): `grep -rn 'start_daemon\|ensure_daemon\|stop_daemon' .opencode/skill/mcp-coco-index/mcp_server/tests/` returns 0 hits
+- [ ] Verify no daemon-lifecycle tests exist (per P1-4): `grep -rn 'start_daemon\|ensure_daemon\|stop_daemon' .opencode/skills/mcp-coco-index/mcp_server/tests/` returns 0 hits
 
 ### Phase 2: Implementation (7 patches)
 

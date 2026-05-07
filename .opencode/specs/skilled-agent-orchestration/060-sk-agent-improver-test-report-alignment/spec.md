@@ -104,7 +104,7 @@ Restructured CP-040..045 around per-CP layer partition: CP-040/043/044/045 invok
 Status: COMPLETE — 91 tests / 193 expects pass, no regressions
 Output: `005-improve-agent-executable-wiring/spec.md` + actual wiring across the triad + skill scripts + YAMLs
 
-Wired the executable producers + consumers across sk-improve-agent's command-flow pipeline. Static benchmark assets (profile + 3 fixtures) at `.opencode/skill/sk-improve-agent/assets/benchmark-{profiles,fixtures}/`. Materializer helper at `.opencode/skill/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs`. Both YAMLs (auto + confirm) emit nested `legal_stop_evaluated.details.gateResults` matching the reducer consumer shape. Stop-reason enum reconciled (Option A — narrow SKILL enum canonical). Native RT-028/RT-032 reconciled.
+Wired the executable producers + consumers across sk-improve-agent's command-flow pipeline. Static benchmark assets (profile + 3 fixtures) at `.opencode/skills/sk-improve-agent/assets/benchmark-{profiles,fixtures}/`. Materializer helper at `.opencode/skills/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs`. Both YAMLs (auto + confirm) emit nested `legal_stop_evaluated.details.gateResults` matching the reducer consumer shape. Stop-reason enum reconciled (Option A — narrow SKILL enum canonical). Native RT-028/RT-032 reconciled.
 <!-- /ANCHOR:phases -->
 
 ---

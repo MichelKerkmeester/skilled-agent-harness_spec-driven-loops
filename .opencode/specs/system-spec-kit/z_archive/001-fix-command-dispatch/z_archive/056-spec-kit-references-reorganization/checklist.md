@@ -1,6 +1,6 @@
 ---
 title: "Veri [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/056-spec-kit-references-reorganization/checklist]"
-description: "grep -E '\\\\\\\\./references/[^/]+\\\\\\\\.md' .opencode/skill/system-spec-kit/SKILL.md"
+description: "grep -E '\\\\\\\\./references/[^/]+\\\\\\\\.md' .opencode/skills/system-spec-kit/SKILL.md"
 trigger_phrases:
   - "verification"
   - "checklist"
@@ -76,16 +76,16 @@ contextType: "implementation"
 
 ```bash
 # Check for broken paths in SKILL.md
-grep -E '\./references/[^/]+\.md' .opencode/skill/system-spec-kit/SKILL.md
+grep -E '\./references/[^/]+\.md' .opencode/skills/system-spec-kit/SKILL.md
 
 # List new structure
-find .opencode/skill/system-spec-kit/references -type f -name "*.md"
+find .opencode/skills/system-spec-kit/references -type f -name "*.md"
 
 # Verify no old flat-structure references remain
-grep -r 'references/[a-z_]*\.md' .opencode/skill/system-spec-kit/
+grep -r 'references/[a-z_]*\.md' .opencode/skills/system-spec-kit/
 
 # Check internal links in reference files
-grep -r '\[.*\](\./' .opencode/skill/system-spec-kit/references/
+grep -r '\[.*\](\./' .opencode/skills/system-spec-kit/references/
 ```
 
 ## Sign-off

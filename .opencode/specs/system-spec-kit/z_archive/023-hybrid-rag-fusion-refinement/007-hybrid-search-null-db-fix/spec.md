@@ -128,7 +128,7 @@ Restore hybrid search functionality so that `memory_search` and `memory_context`
 | `mcp_server/lib/handlers/memory-search.ts` | Modify (Phase 4) | Token budget 1500 → 2500 |
 | `mcp_server/lib/architecture/layer-definitions.ts` | Modify (Phase 4) | Token budget constant update |
 
-All paths relative to `.opencode/skill/system-spec-kit/`.
+All paths relative to `.opencode/skills/system-spec-kit/`.
 <!-- /ANCHOR:scope -->
 
 ---

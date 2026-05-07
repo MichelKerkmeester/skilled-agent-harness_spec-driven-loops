@@ -85,32 +85,32 @@ This phase took the deep-research packet from a partly aligned documentation pas
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/sk-deep-research/README.md` | Reframed the skill around the canonical packet contract and machine-readable capability paths. |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Locked lifecycle vocabulary, reducer ownership, and helper-surface references to the live contract. |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Tied convergence guidance to the reducer-owned contract. |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Documented lifecycle branches, reducer sequencing, and parity source-of-truth references. |
-| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Added canonical pause-sentinel, lifecycle, and capability-matrix guidance. |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Added lineage schema, reducer contract details, and explicit machine-readable parity references. |
-| `.opencode/skill/sk-deep-research/references/capability_matrix.md` | Added the runtime parity matrix and packet-file invariants. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Added lineage mode enum, pause sentinel path, helper paths, and machine-readable capability metadata. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md` | Aligned the dashboard contract to reducer-owned synchronization. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Clarified machine-owned sections and capability-resolver references. |
-| `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json` | Added the machine-readable runtime capability matrix. |
+| `.opencode/skills/sk-deep-research/README.md` | Reframed the skill around the canonical packet contract and machine-readable capability paths. |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Locked lifecycle vocabulary, reducer ownership, and helper-surface references to the live contract. |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Tied convergence guidance to the reducer-owned contract. |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Documented lifecycle branches, reducer sequencing, and parity source-of-truth references. |
+| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Added canonical pause-sentinel, lifecycle, and capability-matrix guidance. |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Added lineage schema, reducer contract details, and explicit machine-readable parity references. |
+| `.opencode/skills/sk-deep-research/references/capability_matrix.md` | Added the runtime parity matrix and packet-file invariants. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Added lineage mode enum, pause sentinel path, helper paths, and machine-readable capability metadata. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md` | Aligned the dashboard contract to reducer-owned synchronization. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Clarified machine-owned sections and capability-resolver references. |
+| `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json` | Added the machine-readable runtime capability matrix. |
 
 ### Executable Helper Surfaces
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs` | Added a CommonJS helper that resolves runtime capability records from the machine-readable matrix. Aligned to sk-code-opencode standards (box header, section dividers, JSDoc). |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Added the reducer helper that regenerates findings registry, strategy, and dashboard outputs from packet state. Aligned to sk-code-opencode standards (box header, section dividers, JSDoc, regex fix). |
+| `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` | Added a CommonJS helper that resolves runtime capability records from the machine-readable matrix. Aligned to sk-code-opencode standards (box header, section dividers, JSDoc). |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Added the reducer helper that regenerates findings registry, strategy, and dashboard outputs from packet state. Aligned to sk-code-opencode standards (box header, section dividers, JSDoc, regex fix). |
 
 ### Workflow and Runtime Mirrors
 
 | File | What changed |
 |------|--------------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Updated reducer step execution, lifecycle handling, and helper-script references for auto mode. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Mirrored the same reducer and lifecycle contract in confirm mode. |
-| `.opencode/agent/deep-research.md` | Aligned the OpenCode runtime mirror to the reducer-owned packet model and lifecycle branches. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Updated reducer step execution, lifecycle handling, and helper-script references for auto mode. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Mirrored the same reducer and lifecycle contract in confirm mode. |
+| `.opencode/agents/deep-research.md` | Aligned the OpenCode runtime mirror to the reducer-owned packet model and lifecycle branches. |
 | `.claude/agents/deep-research.md` | Aligned the Claude runtime mirror to the same packet model. |
 | `.gemini/agents/deep-research.md` | Aligned the Gemini runtime mirror to the same packet model and restored the correct runtime-path convention. |
 | `.codex/agents/deep-research.toml` | Aligned the Codex runtime mirror to the same packet model. |
@@ -120,15 +120,15 @@ This phase took the deep-research packet from a partly aligned documentation pas
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | Updated DR-008 summary wording to the reducer-refresh contract. |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md` | Updated the concrete DR-008 scenario to the reducer-refresh contract and `.cjs` helper path. |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | Updated DR-008 summary wording to the reducer-refresh contract. |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md` | Updated the concrete DR-008 scenario to the reducer-refresh contract and `.cjs` helper path. |
 
 ### Focused Verification
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Added parity coverage for docs, runtime mirrors, command assets, and capability-matrix surfaces. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Added reducer idempotency and packet-integrity coverage. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Added parity coverage for docs, runtime mirrors, command assets, and capability-matrix surfaces. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Added reducer idempotency and packet-integrity coverage. |
 
 ### Phase Packet
 
@@ -180,10 +180,10 @@ This phase took the deep-research packet from a partly aligned documentation pas
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Box header, section dividers, JSDoc on exports, regex bug fix in `extractSection` |
-| `.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs` | Box header, section dividers, JSDoc on exports |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | Section 13 updated with automated test cross-reference table |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/024-dashboard-generation-after-iteration.md` | Added reducer script and Vitest suite to anchors and command sequence |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Box header, section dividers, JSDoc on exports, regex bug fix in `extractSection` |
+| `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` | Box header, section dividers, JSDoc on exports |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | Section 13 updated with automated test cross-reference table |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/024-dashboard-generation-after-iteration.md` | Added reducer script and Vitest suite to anchors and command sequence |
 
 </details>
 

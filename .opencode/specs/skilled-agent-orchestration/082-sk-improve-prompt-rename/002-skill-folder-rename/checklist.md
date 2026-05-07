@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Phase 003 opencode internals"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-prompt/SKILL.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-06-082-002"
@@ -60,7 +60,7 @@ _memory:
 - [x] CHK-010 [P0] Code passes syntax checks - evidence: `jq . skill-graph.json > /dev/null` passed.
 - [x] CHK-011 [P0] No scoped old-name refs remain - evidence: scoped `rg -n "sk-improve-prompt"` returned no matches.
 - [x] CHK-012 [P1] Error handling documented - evidence: `git mv` and MCP cancellation fallbacks are documented in `implementation-summary.md`.
-- [x] CHK-013 [P1] Code follows project patterns - evidence: changelog symlink convention preserved and `verify_alignment_drift.py --root .opencode/skill/sk-prompt` passed.
+- [x] CHK-013 [P1] Code follows project patterns - evidence: changelog symlink convention preserved and `verify_alignment_drift.py --root .opencode/skills/sk-prompt` passed.
 <!-- /ANCHOR:code-quality -->
 
 ---

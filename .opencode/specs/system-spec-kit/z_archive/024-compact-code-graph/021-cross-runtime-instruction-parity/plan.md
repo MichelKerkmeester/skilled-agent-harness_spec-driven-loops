@@ -80,7 +80,7 @@ Template compliance shim anchor for rollback.
 2. **No Hook Transport section in AGENTS.md** (30-40 LOC)
    - Add same trigger table for OpenCode/Copilot CLI
    - Clarify AGENTS.md defines `@context-prime` and advertises session lifecycle guidance
-   - Keep actual first-turn delegation in `.opencode/agent/orchestrate.md`
+   - Keep actual first-turn delegation in `.opencode/agents/orchestrate.md`
 
 3. **No Hook Transport section in GEMINI.md** (30-40 LOC)
    - Add trigger table adapted for Gemini CLI lifecycle
@@ -88,18 +88,18 @@ Template compliance shim anchor for rollback.
    - Include fallback for non-hook Gemini usage
 
 4. **@context-prime agent for OpenCode** (60-80 LOC)
-    - Create `.opencode/agent/context.md`
+    - Create `.opencode/agents/context.md`
    - Agent calls: `session_resume()` plus optional `session_health()`
    - Returns compact Prime Package: spec folder, task status, system health, and recommended next steps
     - Invoked on first turn or after /clear by orchestrator
 
 5. **Orchestrator delegation** (10-15 LOC)
-    - Update `.opencode/agent/orchestrate.md` to delegate to @context-prime on first turn
+    - Update `.opencode/agents/orchestrate.md` to delegate to @context-prime on first turn
     - Add @context-prime to Agent Definitions in CLAUDE.md
 
 ### Status Notes
 
-- **F059**: VERIFIED/DONE. `.opencode/agent/orchestrate.md` lines 18-21 explicitly delegate to `@context-prime` on the first user turn or after `/clear`.
+- **F059**: VERIFIED/DONE. `.opencode/agents/orchestrate.md` lines 18-21 explicitly delegate to `@context-prime` on the first user turn or after `/clear`.
 - **Residual gap**: Claude Code SessionStart hook wording still persists in `.codex/agents/orchestrate.toml`, `.codex/agents/deep-research.toml`, `.codex/agents/speckit.toml`, and several `.gemini/agents/*.md` files. This phase should describe that wording as partially cleaned up, not fully removed.
 
 6. **CLAUDE.md Agent Definitions update** (5-10 LOC)

@@ -78,7 +78,7 @@ Update all documentation to reflect the new hook system. This covers the feature
 
 ### What to Document
 
-### 1. Feature Catalog Entries (`.opencode/skill/system-spec-kit/feature_catalog/`)
+### 1. Feature Catalog Entries (`.opencode/skills/system-spec-kit/feature_catalog/`)
 
 New feature entries needed:
 
@@ -91,7 +91,7 @@ New feature entries needed:
 | Runtime Detection | Infrastructure | Capability-based runtime identification, including Gemini support detected dynamically from `.gemini/settings.json` |
 | CocoIndex Integration | Context Enrichment | CocoIndex provides semantic code search complementing structural code graph and memory context |
 
-### 2. Manual Testing Playbook (`.opencode/skill/system-spec-kit/manual_testing_playbook/`)
+### 2. Manual Testing Playbook (`.opencode/skills/system-spec-kit/manual_testing_playbook/`)
 
 New test scenarios:
 
@@ -116,7 +116,7 @@ Add section covering:
 - Reference CocoIndex Code MCP as companion system for semantic code search
 - Document the complementary architecture: CocoIndex (semantic) + Code Graph (structural) + Memory (session)
 
-### 4. ARCHITECTURE.md Updates (`.opencode/skill/system-spec-kit/ARCHITECTURE.md`)
+### 4. ARCHITECTURE.md Updates (`.opencode/skills/system-spec-kit/ARCHITECTURE.md`)
 
 Add hook architecture:
 - Hook lifecycle diagram (PreCompact -> cache -> SessionStart -> inject)
@@ -128,16 +128,16 @@ Add hook architecture:
 
 ### 5. README Updates
 
-- `.opencode/skill/system-spec-kit/README.md` — Hook capabilities in feature list
-- `.opencode/skill/README.md` — Updated system-spec-kit description
+- `.opencode/skills/system-spec-kit/README.md` — Hook capabilities in feature list
+- `.opencode/skills/README.md` — Updated system-spec-kit description
 - `README.md` (root) — Context preservation mention remains a follow-up gap unless explicitly added
 - `AGENTS.md` — Updated if agent definitions changed in Phase 5
 - `AGENTS_example_fs_enterprises.md` — Updated if relevant
 
 ### 6. Reference and Template Updates
 
-- `.opencode/skill/system-spec-kit/references/` — Any reference docs mentioning compaction; if no additional reference doc ships in this phase, record that as not created
-- `.opencode/skill/system-spec-kit/assets/` — Templates referencing compaction recovery; if no additional prompt/template asset ships in this phase, record that as not created
+- `.opencode/skills/system-spec-kit/references/` — Any reference docs mentioning compaction; if no additional reference doc ships in this phase, record that as not created
+- `.opencode/skills/system-spec-kit/assets/` — Templates referencing compaction recovery; if no additional prompt/template asset ships in this phase, record that as not created
 
 ### Acceptance Criteria
 - [ ] Feature catalog entries created for all 5 hook-related features
@@ -150,16 +150,16 @@ Add hook architecture:
 - [ ] No stale references to pre-hook compaction approach remain
 
 ### Files Modified
-- NEW: Feature catalog entries in `.opencode/skill/system-spec-kit/feature_catalog/`
-- NEW: Testing playbook scenarios in `.opencode/skill/system-spec-kit/manual_testing_playbook/`
-- EDIT: `.opencode/skill/system-spec-kit/SKILL.md`
-- EDIT: `.opencode/skill/system-spec-kit/ARCHITECTURE.md`
-- EDIT: `.opencode/skill/system-spec-kit/README.md`
-- EDIT: `.opencode/skill/README.md`
+- NEW: Feature catalog entries in `.opencode/skills/system-spec-kit/feature_catalog/`
+- NEW: Testing playbook scenarios in `.opencode/skills/system-spec-kit/manual_testing_playbook/`
+- EDIT: `.opencode/skills/system-spec-kit/SKILL.md`
+- EDIT: `.opencode/skills/system-spec-kit/ARCHITECTURE.md`
+- EDIT: `.opencode/skills/system-spec-kit/README.md`
+- EDIT: `.opencode/skills/README.md`
 - EDIT: `README.md` (root) if context preservation mention is actually added in this phase
 - EDIT: `AGENTS.md` (if needed)
-- EDIT: `.opencode/skill/system-spec-kit/references/` (if needed; otherwise leave additional reference docs marked as not created)
-- EDIT: `.opencode/skill/system-spec-kit/assets/` (if needed; otherwise leave additional prompt/template assets marked as not created)
+- EDIT: `.opencode/skills/system-spec-kit/references/` (if needed; otherwise leave additional reference docs marked as not created)
+- EDIT: `.opencode/skills/system-spec-kit/assets/` (if needed; otherwise leave additional prompt/template assets marked as not created)
 
 ### LOC Estimate
 ~200-300 lines (feature catalog + playbook entries) + ~100-150 lines (SKILL.md/ARCHITECTURE.md updates) + ~50-80 lines (README updates)

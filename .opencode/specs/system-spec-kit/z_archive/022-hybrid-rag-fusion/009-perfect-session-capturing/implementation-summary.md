@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -79,8 +79,8 @@ The work landed in four steps:
 |-------|--------|
 | Parent Level 3 docs reconciled to the current direct-child layout | PASS on 2026-03-20 |
 | `000-dynamic-capture-deprecation/` now has parent docs | PASS on 2026-03-20 |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --strict --recursive` | PASS after the phase-tree repair |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --strict` | Not run in this narrowed documentation pass |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --strict --recursive` | PASS after the phase-tree repair |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --strict` | Not run in this narrowed documentation pass |
 <!-- /ANCHOR:verification -->
 
 ---

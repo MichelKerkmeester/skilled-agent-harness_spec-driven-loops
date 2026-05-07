@@ -5,8 +5,8 @@ Checked whether the bridge/wrapper surfaces keep model-visible output on stdout 
 
 ## Evidence read
 - `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs:38-65` and `:131-146` -> bridge redirects console output to `stderr` and reserves `stdout` for the final JSON payload.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts:89-99` and `:203-217` -> prompt wrapper emits diagnostics to `stderr` and writes only the hook JSON to `stdout`.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/normalize-adapter-output.ts:84-115` -> normalized JSON/prompt-wrapper transports are treated as not exposing stderr to the model-visible surface.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts:89-99` and `:203-217` -> prompt wrapper emits diagnostics to `stderr` and writes only the hook JSON to `stdout`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/normalize-adapter-output.ts:84-115` -> normalized JSON/prompt-wrapper transports are treated as not exposing stderr to the model-visible surface.
 
 ## Findings
 

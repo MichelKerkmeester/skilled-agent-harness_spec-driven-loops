@@ -58,7 +58,7 @@ _memory:
 
 - [x] T-010: Define the fixture input corpus for handover benchmarking
 - [x] T-011: Define benchmark scoring expectations and stable pass/fail rules
-- [x] T-012: Add harness scripts or runner extensions under `.opencode/skill/sk-improve-agent/scripts/`
+- [x] T-012: Add harness scripts or runner extensions under `.opencode/skills/sk-improve-agent/scripts/`
 - [x] T-013: Create packet-local benchmark evidence layout under this packet
 - [x] T-014: Verify repeatability across at least two benchmark runs
 

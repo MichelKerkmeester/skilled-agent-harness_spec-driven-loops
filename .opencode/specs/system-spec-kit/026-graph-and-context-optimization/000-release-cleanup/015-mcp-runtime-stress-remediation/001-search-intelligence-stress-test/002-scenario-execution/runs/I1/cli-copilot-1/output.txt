@@ -41,23 +41,23 @@ The repo’s most recently active packet is `skilled-agent-orchestration/048-cli
 I’ve got the active packet and its current continuity state. Next I’m using the full save path so the packet metadata and indexed memory both refresh together.
 
 ● Read save_workflow.md
-  │ .opencode/skill/system-spec-kit/references/memory/save_workflow.md
+  │ .opencode/skills/system-spec-kit/references/memory/save_workflow.md
   └ L1:240 (240 lines read)
 
 ● Search (grep)
   │ "generate-context\.js.+--json|sessionSummary|recent_action|next_safe_action"
-  │ in *.{md,ts,js} (.opencode/skill/system-spec-kit/scripts,
-  │ .opencode/skill/system-spec-kit/references)
+  │ in *.{md,ts,js} (.opencode/skills/system-spec-kit/scripts,
+  │ .opencode/skills/system-spec-kit/references)
   └ 6 lines found
 
 ● Read generate-context.js
-  │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+  │ .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "routeAs|mergeModeHint|specFolder|sessionSummary" in *.{ts,js}
-  │ (.opencode/skill/system-spec-kit/scripts,
-  │ .opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/scripts,
+  │ .opencode/skills/system-spec-kit/mcp_server)
   └ 8 lines found
 
 I’ve got enough context to perform the save cleanly. I’m writing a canonical continuity update for spec 048 and then checking the packet still validates.
@@ -65,7 +65,7 @@ I’ve got enough context to perform the save cleanly. I’m writing a canonical
 ● Save conversation context for spec 048 and validate packet (shell)
   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public &&
   │ node
-  │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+  │ .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
   │ --session-id 7cec28b6-0dc5-44cc-9219-774dd0620416 --json
   │ '{"specFolder":"skilled-agent-orchestration/048-cli-testing-playbooks","ro…
   └ 29 lines...
@@ -86,7 +86,7 @@ The save path looks hung rather than just slow, so I’m checking the running sh
 ● Inspect running save processes (shell)
   │ ps -o pid,ppid,stat,etime,command -p $(pgrep -P $(pgrep -f 'bash -lc cd
   │ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node
-  │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js' |
+  │ .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js' |
   │ head -n1) | tr '\n' ',' | sed 's/,$//') 2>/dev/null || ps -o
   │ pid,ppid,stat,etime,command | grep 'generate-context.js\|validate.sh' | …
   └ 6 lines...
@@ -167,7 +167,7 @@ The script reached its planner-first permission path and couldn’t prompt, so I
 ✗ Run full-auto context save for spec 048 (shell)
   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public &&
   │ node
-  │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+  │ .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
   │ --full-auto --session-id 7cec28b6-0dc5-44cc-9219-774dd0620416
   │ /tmp/save-context-7cec28b6-0dc5-44cc-9219-774dd0620416.json …
   └ Permission denied and could not request permission from user
@@ -193,7 +193,7 @@ I’ve switched to the direct continuity path successfully. Now I’m re-indexin
 ✗ Revalidate spec 048 and remove temp save files (shell)
   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public &&
   │ validate_status=0; bash
-  │ .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+  │ .opencode/skills/system-spec-kit/scripts/spec/validate.sh
   │ .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks ||
   │ validate_status=$?; rm -f …
   └ Permission denied and could not request permission from user

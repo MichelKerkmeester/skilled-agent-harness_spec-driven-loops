@@ -15,7 +15,7 @@ contextType: "implementation"
 
 <!-- ANCHOR:protocol -->
 ## P0 - Must Complete
-- [x] `/spec_kit:debug` command file created (591 lines at .opencode/command/spec_kit/debug.md)
+- [x] `/spec_kit:debug` command file created (591 lines at .opencode/commands/spec_kit/debug.md)
 - [x] Model selection phase is MANDATORY (Phase 2 with HARD STOP)
 - [x] Sub-agent dispatch uses Task tool correctly (Step 3 with full prompt)
 - [x] SKILL.md updated with debug workflow (Section 6, lines 514-585)

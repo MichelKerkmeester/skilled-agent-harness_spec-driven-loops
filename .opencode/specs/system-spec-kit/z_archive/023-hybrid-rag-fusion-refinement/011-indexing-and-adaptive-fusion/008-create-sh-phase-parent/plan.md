@@ -32,7 +32,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Bash shell script |
-| **Framework** | `.opencode/skill/system-spec-kit/scripts/spec/create.sh` |
+| **Framework** | `.opencode/skills/system-spec-kit/scripts/spec/create.sh` |
 | **Storage** | Spec folder filesystem under `specs/` and `.opencode/specs/` |
 | **Testing** | Script invocation checks and `validate.sh --strict` for planning docs |
 

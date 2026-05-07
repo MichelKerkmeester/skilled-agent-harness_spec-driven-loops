@@ -76,7 +76,7 @@ Author NEW manual_testing_playbook for sk-doc (15 scenarios, 5 categories) and r
 ## 3. SCOPE
 
 ### In Scope
-- Author `.opencode/skill/sk-doc/manual_testing_playbook/` with 15 scenarios across 5 categories
+- Author `.opencode/skills/sk-doc/manual_testing_playbook/` with 15 scenarios across 5 categories
 - Execute 45 dispatches (3 CLIs × 15 scenarios) with concurrency cap ≤3 per CLI
 - Capture 3 metrics per cell: efficiency (wall-clock, tool calls, refs loaded), accuracy (intent picked, false-positive ref load, outcome correctness), token usage (CLI-specific normalized to USD)
 - Build matrix.csv companion (45 rows × ~10 cols)
@@ -94,12 +94,12 @@ Author NEW manual_testing_playbook for sk-doc (15 scenarios, 5 categories) and r
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/` | Create | 001 | 3 scenarios |
-| `.opencode/skill/sk-doc/manual_testing_playbook/02--resource-loading/` | Create | 001 | 3 scenarios |
-| `.opencode/skill/sk-doc/manual_testing_playbook/03--unknown-fallback/` | Create | 001 | 3 scenarios |
-| `.opencode/skill/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/` | Create | 001 | 3 scenarios |
-| `.opencode/skill/sk-doc/manual_testing_playbook/05--token-cost-baseline/` | Create | 001 | 3 scenarios |
-| `.opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Create | 001 | Index |
+| `.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/` | Create | 001 | 3 scenarios |
+| `.opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/` | Create | 001 | 3 scenarios |
+| `.opencode/skills/sk-doc/manual_testing_playbook/03--unknown-fallback/` | Create | 001 | 3 scenarios |
+| `.opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/` | Create | 001 | 3 scenarios |
+| `.opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/` | Create | 001 | 3 scenarios |
+| `.opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Create | 001 | Index |
 | `071/002-matrix-execute/deltas/{codex,copilot,opencode}.jsonl` | Create | 002 | Per-CLI delta logs |
 | `071/002-matrix-execute/logs/<scenario-id>/{codex,copilot,opencode}.log` | Create | 002 | Per-cell stdout/stderr |
 | `071/003-synthesize/matrix.csv` | Create | 003 | 45-row data table |
@@ -116,7 +116,7 @@ Author NEW manual_testing_playbook for sk-doc (15 scenarios, 5 categories) and r
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-scenario-author/ | Author NEW `.opencode/skill/sk-doc/manual_testing_playbook/` with 5 categories × 3 scenarios = 15 scenarios. Closes a real gap (sk-doc had no manual_testing_playbook before). | Pending |
+| 1 | 001-scenario-author/ | Author NEW `.opencode/skills/sk-doc/manual_testing_playbook/` with 5 categories × 3 scenarios = 15 scenarios. Closes a real gap (sk-doc had no manual_testing_playbook before). | Pending |
 | 2 | 002-matrix-execute/ | Execute 45-cell matrix: 15 scenarios × 3 CLIs (cli-codex with stdin-redirection mitigation, cli-opencode). Concurrency cap ≤3 per CLI, ≤9 total. Capture stdout/stderr/exit/wall-clock/tokens per cell. | Pending |
 | 3 | 003-synthesize/ | Build matrix.csv (45 rows × ~10 cols). Author review-report.md with verdict (PASS/CONDITIONAL/FAIL) + per-CLI ranked summary + P0/P1/P2 findings registry. If P0/P1, recommend follow-up packet ID for remediation. | Pending |
 | 4 | 004-closeout/ | validate.sh --strict (must exit 0); graph-metadata refresh; implementation-summary per child + parent; final commit on main. | Pending |

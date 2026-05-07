@@ -10,10 +10,10 @@
   └ {"summary":"Matched 5 memories via trigger phrases","data":{"matchType":"trig...
 
 ● Run skill advisor (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Review ALL markdown files in
-  │ .opencode/skill/system-spec-kit/feature_catalog/17--governance/ and 18--ux-hooks/, compare
-  │ documented features against implementations in .opencode/skill/system-spec-kit/mcp_server/ and
-  │ .opencode/skill/system-spec-kit/scripts/, and report alignment per file with
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Review ALL markdown files in
+  │ .opencode/skills/system-spec-kit/feature_catalog/17--governance/ and 18--ux-hooks/, compare
+  │ documented features against implementations in .opencode/skills/system-spec-kit/mcp_server/ and
+  │ .opencode/skills/system-spec-kit/scripts/, and report alignment per file with
   │ ALIGNED/MISALIGNED/PARTIAL plus summary." --threshold 0.8
   └ 43 lines...
 
@@ -26,11 +26,11 @@ I’ve kicked off parallel reviews for both categories and I’m doing a quick s
 ● skill(sk-code-opencode)
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/17--governance/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/17--governance/*.md"
   └ 4 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/*.md"
   └ 19 files found
 
 ● Create session plan (shell)
@@ -62,7 +62,7 @@ The two long reviews are still crunching through the source trees, so I’m chec
 
 ● Search (grep)
   │ "feature_catalog|alignment drift|catalog alignment|verify_alignment|alignment" in
-  │ *.{py,ts,js,md,sh,json} (.opencode/skill/system-spec-kit)
+  │ *.{py,ts,js,md,sh,json} (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Read (Explore agent — Review UX hooks catalog)
@@ -72,16 +72,16 @@ The two long reviews are still crunching through the source trees, so I’m chec
   └ {"success":true,"results":[],"total_returned":0,"offset":0,"message":null}
 
 ● Search (grep)
-  │ "feature_catalog" in *.{py,ts,js,sh} (.opencode/skill/system-spec-kit/scripts)
+  │ "feature_catalog" in *.{py,ts,js,sh} (.opencode/skills/system-spec-kit/scripts)
   └ 1 line found
 
 ● Search (grep)
-  │ "verify_alignment_drift|alignment drift" in *.{py,ts,js,sh,md} (.opencode/skill/system-spec-kit)
+  │ "verify_alignment_drift|alignment drift" in *.{py,ts,js,sh,md} (.opencode/skills/system-spec-kit)
   └ 23 lines found
 
 ● Search (grep)
   │ "feature catalog|catalog alignment|alignment review" in *.{py,ts,js,sh,md}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 30 lines found
 
 ● Read (Explore agent — Review governance catalog)
@@ -93,59 +93,59 @@ The two long reviews are still crunching through the source trees, so I’m chec
 Both category reviews are in. I’m doing one last sanity check on the two `PARTIAL` findings so the final report doesn’t rely only on the sub-agent summaries.
 
 ● Read 02-feature-flag-sunset-audit.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md
   └ L1:120 (38 lines read)
 
 ● Read 15-mode-aware-response-profiles.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks/15-mode-aware-response-profiles.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/15-mode-aware-response-profiles.md
   └ L1:140 (56 lines read)
 
 ✗ Search (grep)
-  │ "export function is[A-Z]" (.opencode/skill/system-spec-kit/mcp_server/lib/search-flags.ts)
+  │ "export function is[A-Z]" (.opencode/skills/system-spec-kit/mcp_server/lib/search-flags.ts)
   └ rg: /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search-flags.ts: IO error for
+    Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search-flags.ts: IO error for
     operation on /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search-flags.ts: No such file or
+    Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search-flags.ts: No such file or
     directory (os error 2)
 
 ✗ Search (grep)
-  │ "profile" (.opencode/skill/system-spec-kit/mcp_server/lib/tools/memory-context.ts)
+  │ "profile" (.opencode/skills/system-spec-kit/mcp_server/lib/tools/memory-context.ts)
   └ rg: /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/tools/memory-context.ts: IO error for
+    Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/tools/memory-context.ts: IO error for
     operation on /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/tools/memory-context.ts: No such file
+    Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/tools/memory-context.ts: No such file
     or directory (os error 2)
 
 ✗ Search (grep)
   │ "applyProfileToEnvelope|profile"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/tools/memory-search.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/tools/memory-search.ts)
   └ rg: /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/tools/memory-search.ts: IO error for
+    Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/tools/memory-search.ts: IO error for
     operation on /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/tools/memory-search.ts: No such file
+    Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/tools/memory-search.ts: No such file
     or directory (os error 2)
 
 ● Search (grep)
-  │ "export function is[A-Z]" in *search-flags*.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ "export function is[A-Z]" in *search-flags*.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 53 lines found
 
 ● Search (grep)
   │ "profile\?: string|applyProfileToEnvelope|profile" in *memory-{context,search}*.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 13 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/**/*.ts"
   └ 5 files found
 
 ● Search (grep)
   │ "export function is[A-Z]" in search-flags.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts)
   └ 1 file found
 
 ● Search (grep)
   │ "isPipelineV2Enabled|isInShadowPeriod|isShadowScoringEnabled|isRsfEnabled" in *.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 6 lines found
 
 `17--governance`

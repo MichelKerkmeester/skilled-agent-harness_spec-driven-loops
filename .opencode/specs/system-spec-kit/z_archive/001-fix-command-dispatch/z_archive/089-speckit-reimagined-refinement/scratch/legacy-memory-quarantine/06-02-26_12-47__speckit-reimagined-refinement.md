@@ -425,7 +425,7 @@ Continuation session recovering from context compaction of the comprehensive sys
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "003-memory-and-spec-kit/089-speckit-reimagined-refinement", limit: 10 })
@@ -437,7 +437,7 @@ ls -la 003-memory-and-spec-kit/089-speckit-reimagined-refinement/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/089-speckit-reimagined-refinement --force
+node .opencode/skills/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/089-speckit-reimagined-refinement --force
 ```
 
 ### Recovery Priority

@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Use packet verification record"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/documentation/readme_template.md"
-      - ".opencode/skill/sk-doc/assets/documentation/readme_code_template.md"
+      - ".opencode/skills/sk-doc/assets/documentation/readme_template.md"
+      - ".opencode/skills/sk-doc/assets/documentation/readme_code_template.md"
     session_dedup:
       fingerprint: "sha256:0510000000000000000000000000000000000000000000000000000000000001"
       session_id: "task-10-readme-code-template-diagram-evidence"
@@ -97,12 +97,12 @@ Capture the completed README code template implementation state, diagram styling
 ## 3. SCOPE
 
 ### In Scope
-- Record that `.opencode/skill/sk-doc/assets/documentation/readme_template.md` was expanded for skill/project README alignment based on sampled skill READMEs.
-- Record that `.opencode/skill/sk-doc/assets/documentation/readme_code_template.md` was improved with architecture, topology, dependency, tree, key-file, and control-flow guidance.
+- Record that `.opencode/skills/sk-doc/assets/documentation/readme_template.md` was expanded for skill/project README alignment based on sampled skill READMEs.
+- Record that `.opencode/skills/sk-doc/assets/documentation/readme_code_template.md` was improved with architecture, topology, dependency, tree, key-file, and control-flow guidance.
 - Capture Task #5 validation evidence and Task #6 punctuation cleanup.
 - Capture Task #9 diagram styling correction evidence for `readme_code_template.md`.
 - Record code-folder README P1 batches complete and P2 batches 01-22 complete.
-- Record that `.opencode/skill/system-spec-kit/shared/README.md` was fixed in final remediation.
+- Record that `.opencode/skills/system-spec-kit/shared/README.md` was fixed in final remediation.
 - Record the explicit README sweep target manifest for final review recovery.
 - Record final remediation status for HVR blockers, lowercase-v diagram blockers, low-DQI files, and the remaining template scratch exception.
 - Record batch validation summaries and known exception notes for final review.
@@ -161,7 +161,7 @@ Capture the completed README code template implementation state, diagram styling
 - **SC-006**: The packet records that `readme_code_template.md` diagrams now use sk-doc Unicode box drawing style and no longer use ASCII `+---`, `--->`, lowercase `v`, or bracket-list `->` diagram patterns.
 - **SC-007**: The packet records that directory trees intentionally remain tree blocks and flowchart validator exit 1 is a non-blocking validator limitation.
 - **SC-008**: The packet records P1 batches complete and P2 batches 01-22 complete.
-- **SC-009**: The packet records `.opencode/skill/system-spec-kit/shared/README.md` as fixed in final remediation.
+- **SC-009**: The packet records `.opencode/skills/system-spec-kit/shared/README.md` as fixed in final remediation.
 - **SC-010**: The packet records batch validation summaries plus known notes for `templates/scratch/README.md` and reported validator alternatives.
 - **SC-011**: The packet includes an explicit README sweep target manifest with exact paths.
 - **SC-012**: The packet records HVR blockers fixed, lowercase-v diagram blockers fixed, low-DQI files improved, and the remaining template scratch exception.

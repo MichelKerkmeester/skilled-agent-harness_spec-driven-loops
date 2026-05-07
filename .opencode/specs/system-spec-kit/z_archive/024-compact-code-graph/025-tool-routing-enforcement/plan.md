@@ -107,7 +107,7 @@ Template compliance shim anchor for rollback.
 ### Layer 4: Instruction File Updates
 
 6. **Constitutional memory** (1 file, 20-30 LOC)
-   - Create `.opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md`
+   - Create `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md`
    - Title: "TOOL ROUTING ENFORCEMENT -- Code Search Decision Tree"
    - Constitutional tier = always surfaced on every query
    - Content: decision tree for search tool selection
@@ -118,7 +118,7 @@ Template compliance shim anchor for rollback.
    - `../../../../../AGENTS.md`: Add routing for the Gemini runtime
 
 8. **Context-prime agent** (5 files, ~10 LOC each)
-   - All runtime copies of `.opencode/agent/context.md`: add routing rules to output format
+   - All runtime copies of `.opencode/agents/context.md`: add routing rules to output format
    - Prime Package display includes routing decision tree
 
 ### Estimated Total: 250-350 LOC

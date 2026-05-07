@@ -38,10 +38,10 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
       "lib/cognitive/fsrs-scheduler.ts",
       "spec.md",
       "plan.md",
@@ -52,25 +52,25 @@
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {
         "name": "fsrs-scheduler.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
         "source": "derived"
       },
       {
         "name": "memory-crud-health.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
         "name": "memory-save.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
         "source": "derived"
       },
       {

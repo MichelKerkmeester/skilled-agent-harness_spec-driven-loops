@@ -2,23 +2,23 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:124-135`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-194`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:197-235`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:285-297`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:328-344`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:159-215`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:299-334`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-50`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:56-65`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:79-90`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1219-1242`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1375-1448`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1451-1487`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1556-1580`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:2058-2105`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:348-414`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:465-540`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:124-135`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-194`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:197-235`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:285-297`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:328-344`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:159-215`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:299-334`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-50`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:56-65`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:79-90`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1219-1242`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1375-1448`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1451-1487`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1556-1580`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:2058-2105`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:348-414`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:465-540`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/spec.md:119-128`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/checklist.md:85-98`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/decision-record.md:162-181`
@@ -33,11 +33,11 @@
 
 - **Claim:** FIX-009 redacts invalid-`rootDir` errors and scan warnings, but the successful `code_graph_scan` payload can still leak absolute workspace file paths through `data.errors` whenever persistence or parser errors occur.
 - **EvidenceRefs:**
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:285-297`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:328-344`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1375-1448`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1219-1242`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:348-414`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:285-297`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:328-344`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1375-1448`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1219-1242`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:348-414`
 - **Evidence:** `handleCodeGraphScan()` builds `errors` with raw `${result.filePath}: ...` for both persistence failures and parse failures, then returns `errors: errors.slice(0, 10)` in the user-facing JSON response. The structural indexer populates scan candidates from `fullPath` values rooted at `config.rootDir`, and `parseFile()` preserves that `filePath` on parser failure. The new FIX-009 tests assert redaction for invalid-root errors and `data.warnings`, but there is no equivalent assertion for `data.errors`.
 - **CounterevidenceSought:** Checked the FIX-009 `relativize()` helper and call sites; it only covers invalid root errors and `warnings`. Checked scan tests around absolute-path redaction; they cover `payload.error` and `payload.data.warnings`, not `payload.data.errors`. Checked `status.ts` error paths for direct path construction; no comparable direct path interpolation was found there in this iteration.
 - **AlternativeExplanation:** The raw `data.errors` entries may have been intended as operator diagnostics rather than end-user errors. However, they are returned in the MCP tool response rather than debug logs, and this iteration's security focus explicitly treats user-facing errors as unable to disclose absolute host/workspace paths.

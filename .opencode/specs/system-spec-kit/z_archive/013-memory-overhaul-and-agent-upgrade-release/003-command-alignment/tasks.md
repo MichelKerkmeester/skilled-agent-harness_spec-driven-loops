@@ -35,7 +35,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Audit/Creation
 
-- [ ] T001 Review .opencode/command/spec_kit/*.md (9 files)
+- [ ] T001 Review .opencode/commands/spec_kit/*.md (9 files)
 - [ ] T002 Identify stale references or missing content
 - [ ] T003 Document findings systematically
 <!-- /ANCHOR:phase-1 -->

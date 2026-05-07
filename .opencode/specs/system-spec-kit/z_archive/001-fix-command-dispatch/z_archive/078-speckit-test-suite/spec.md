@@ -213,7 +213,7 @@ Achieve comprehensive test coverage by creating 8 new test files (~3,000 LOC) th
 
 ### Test Organization
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── mcp_server/tests/
 │   ├── test-session-learning.js      # REQ-001
 │   ├── test-memory-handlers.js       # REQ-002
@@ -240,11 +240,11 @@ This effort adds ~450+ new tests to achieve comprehensive coverage.
 ### Running Tests
 ```bash
 # JavaScript tests
-cd .opencode/skill/system-spec-kit
+cd .opencode/skills/system-spec-kit
 npm test
 
 # Python tests
-cd .opencode/skill/system-spec-kit/scripts/tests
+cd .opencode/skills/system-spec-kit/scripts/tests
 pytest test_dual_threshold.py -v
 ```
 

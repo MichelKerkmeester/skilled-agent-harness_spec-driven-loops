@@ -44,7 +44,7 @@
       "mcp_server/code_graph/lib/ensure-ready.ts",
       "mcp_server/code_graph/lib/code-graph-db.ts",
       "mcp_server/code_graph/handlers/query.ts",
-      ".opencode/command/doctor/assets/doctor_code-graph_auto.yaml",
+      ".opencode/commands/doctor/assets/doctor_code-graph_auto.yaml",
       "mcp_server/code_graph/lib/code-graph-context.ts",
       "mcp_server/code_graph/tests/code-graph-atomic-persistence.vitest.ts",
       "mcp_server/code_graph/tests/code-graph-busy-timeout.vitest.ts",
@@ -53,7 +53,7 @@
       "mcp_server/code_graph/tests/code-graph-metadata-shape.vitest.ts",
       "mcp_server/code_graph/tests/code-graph-resolve-subject-typed.vitest.ts",
       "skill_advisor/lib/daemon/watcher.ts",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
@@ -82,7 +82,7 @@
       {
         "name": "doctor_code-graph_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/doctor/assets/doctor_code-graph_auto.yaml",
+        "path": ".opencode/commands/doctor/assets/doctor_code-graph_auto.yaml",
         "source": "derived"
       },
       {
@@ -136,7 +136,7 @@
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {

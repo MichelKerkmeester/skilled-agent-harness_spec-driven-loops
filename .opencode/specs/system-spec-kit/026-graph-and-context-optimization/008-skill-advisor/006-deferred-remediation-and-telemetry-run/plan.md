@@ -16,8 +16,8 @@ _memory:
     blockers:
       - ".codex writes denied"
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts"
-      - ".opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze.ts"
     completion_pct: 85
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 ---
@@ -37,7 +37,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 |--------|-------|
 | **Language/Stack** | TypeScript, Bash, JSON |
 | **Framework** | Spec Kit scripts and MCP server Vitest |
-| **Storage** | JSONL telemetry under `.opencode/skill/.smart-router-telemetry/` |
+| **Storage** | JSONL telemetry under `.opencode/skills/.smart-router-telemetry/` |
 | **Testing** | Vitest, TypeScript noEmit, strict spec validation |
 
 ### Overview

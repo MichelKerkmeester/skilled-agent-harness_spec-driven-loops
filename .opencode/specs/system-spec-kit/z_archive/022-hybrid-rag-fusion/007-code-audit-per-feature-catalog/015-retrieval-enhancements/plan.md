@@ -69,7 +69,7 @@ Read-only audit: Feature Catalog → Source Code → Findings Report
 
 ### Key Components
 - **Feature Catalog**: `feature_catalog/15--retrieval-enhancements/` — source of truth (9 files)
-- **Source Code**: `.opencode/skill/system-spec-kit/mcp_server/` — implementation files
+- **Source Code**: `.opencode/skills/system-spec-kit/mcp_server/` — implementation files
 - **Audit Output**: This spec folder — findings in `spec.md` §12
 
 ### Data Flow

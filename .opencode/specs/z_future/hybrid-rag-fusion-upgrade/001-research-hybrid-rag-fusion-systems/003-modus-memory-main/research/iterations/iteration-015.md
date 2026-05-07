@@ -27,14 +27,14 @@ DEEP DIVE - SECOND PATTERN: Go deep on the second most impactful pattern. Full i
 - **Impact**: **medium**
 
 ### Finding 4: **Public already has richer decay/governance primitives than Modus, but they are intentionally hidden behind safer defaults**
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:202-203`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:840-883`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1194-1207`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-795`; `.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:13-20`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:192-200`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:361-404`
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:202-203`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:840-883`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1194-1207`; `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-795`; `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:13-20`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:192-200`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:361-404`
 - **What it does**: Public’s `memory_search` defaults `trackAccess=false`, and Stage 2 only applies FSRS strengthening when that opt-in flag is set. `memory_validate` records positive/negative usefulness, adaptive signals, auto-promotion, learned feedback, and ground-truth selection. Batch learning is shadow-only, and archival uses protected tiers plus age/access/confidence filters. In other words, Public already has the mechanics Modus needs several explicit tools to approximate.
 - **Why it matters for us**: The gap is no longer retrieval math or decay correctness. The gap is that Public’s stronger primitives are distributed across internals and safety rails, while Modus packages a simpler subset as an obvious operator workflow.
 - **Recommendation**: **reject**
 - **Impact**: **high**
 
 ### Finding 5: **The best transfer is a thin review/due-items layer on top of Public’s existing systems—not Modus’s exact fact model**
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:471-479`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:733-776`; `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:64-79`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:237-454`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-795`
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:471-479`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:733-776`; `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:64-79`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:237-454`; `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-795`
 - **What it does**: Public already exposes session readiness (`session_health`, `session_bootstrap`) and task-learning analytics (`task_preflight`, `task_postflight`), but not a comparable operator surface for memory hygiene. The right abstraction is a dedicated queue for memories that are due for review, repeatedly unhelpful, promotion-eligible, or archival candidates—fed by existing FSRS, validation, and archival signals.
 - **Why it matters for us**: This is the concrete implementation delta. Modus proves the value of an operator-visible control plane, but Public should build that plane from its own stronger state model rather than regress to Modus’s simpler markdown-fact lifecycle.
 - **Recommendation**: **NEW FEATURE**
@@ -49,15 +49,15 @@ DEEP DIVE - SECOND PATTERN: Go deep on the second most impactful pattern. Full i
 - `external/internal/vault/missions.go`
 - `external/internal/vault/trust.go`
 - `external/internal/vault/prs.go`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 
 ## Assessment
 - New information ratio: **0.81**

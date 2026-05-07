@@ -6,7 +6,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 ## Findings
 
 ### Finding 1: Public should not copy Modus's monolithic vault UX; it needs a task-to-tool workflow map instead
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go:7-39`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:15-18`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:170-207`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-44,638-665,740-757` [SOURCE: paths above]
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go:7-39`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:15-18`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:170-207`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-44,638-665,740-757` [SOURCE: paths above]
 - **What it does**: Modus flattens the operator surface into 11 vault/memory tools and teaches usage through a small verb set. Public already uses a different control plane: `memory_context` is the unified retrieval entrypoint, `session_bootstrap` is the recovery entrypoint, and `code_graph_query` / `code_graph_context` stay separate for structural questions.
 - **Why it matters**: If Public adopts Modus-inspired features without a workflow map, DX gets worse: more tools, but less clarity on when to use `memory_context`, `memory_search`, `session_bootstrap`, CocoIndex, or code-graph. The needed migration artifact is a task-to-tool guide, not a new top-level `vault_*` lane.
 - **Recommendation**: **NEW FEATURE**
@@ -14,7 +14,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - **Source strength**: **primary**
 
 ### Finding 2: `memory_review` is the one new command that would materially improve agent workflow; it must stay distinct from `memory_validate`
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:885-897`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go:160-217`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:297-317`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-790` [SOURCE: paths above]
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:885-897`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go:160-217`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:297-317`; `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-790` [SOURCE: paths above]
 - **What it does**: Modus exposes explicit reinforcement as a first-class command. Public exposes `memory_validate`, but that surface records binary usefulness feedback, ranking/selection telemetry, and promotion signals; it is not a spaced-repetition review API.
 - **Why it matters**: This is the clearest workflow addition for Public: agents need a first-class way to say “this memory was reviewed with a recall grade” without overloading `memory_validate`. Migration guidance should say: keep `memory_validate` for usefulness/ranking feedback, add `memory_review` for review-state changes, and only introduce `memory_due` after the review contract is stable.
 - **Recommendation**: **adopt now**
@@ -22,7 +22,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - **Source strength**: **primary**
 
 ### Finding 3: Search behavior must remain observational by default; implicit reinforcement would be a breaking workflow change
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:273-317`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:202,519,771-809`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:164-169` [SOURCE: paths above]
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:273-317`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:202,519,771-809`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:164-169` [SOURCE: paths above]
 - **What it does**: Modus treats successful recall during `memory_search` as a write event and reinforces returned facts automatically. Public explicitly gates write-on-read behind `trackAccess`, defaults it to `false`, and keeps the canonical hybrid pipeline observational unless the caller opts in.
 - **Why it matters**: For agent developers, this is the main behavior-contract issue. If Public silently changed `memory_search` to mutate state on reads, existing workflows would start producing hidden writes and ambiguous cache semantics. The migration rule should instead be: current search behavior stays the same; reinforcement only happens through an explicit mutation path or explicit opt-in tracking.
 - **Recommendation**: **reject**
@@ -30,7 +30,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - **Source strength**: **primary**
 
 ### Finding 4: Connected-doc UX is useful, but it should ship as an appendix in memory results with clear non-authoritative wording
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:75-101,901-924`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go:9-16,154-214`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-665,740-757`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:143-156`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:157-193` [SOURCE: paths above]
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:75-101,901-924`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go:9-16,154-214`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:638-665,740-757`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:143-156`; `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:157-193` [SOURCE: paths above]
 - **What it does**: Modus appends cross-reference hints directly to search results and also exposes `vault_connected` for follow-up. Public already nudges agents toward code-graph tools for structural questions and keeps memory retrieval separate from structural expansion.
 - **Why it matters**: This pattern can improve navigation, but only if the workflow language is precise. If Public adopts it, connected-doc output should mean “related memory context to inspect next,” not evidence equivalent to code-graph or causal links. That means a response-shape change and migration note, not a new authority surface.
 - **Recommendation**: **prototype later**
@@ -38,7 +38,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - **Source strength**: **primary**
 
 ### Finding 5: Public's save workflow should stay authoritative; any Modus-like write ergonomics must wrap `generate-context`, not bypass it
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:141-161`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:209-229`; `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-93` [SOURCE: paths above]
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:141-161`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:209-229`; `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-93` [SOURCE: paths above]
 - **What it does**: Modus offers direct vault writes and frames a Librarian model as the sole authority over persistent state. Public instead makes structured session/context capture the canonical save path: `generate-context.js` expects JSON-first input, writes anchored memory files into the spec folder, and treats an explicit CLI spec-folder target as authoritative.
 - **Why it matters**: This is a workflow migration issue more than an algorithm issue. If Public adds a friendlier “remember this session” surface, it should still compile down to `generate-context --stdin/--json` or equivalent structured save semantics. Agents should not treat spec memory as arbitrary markdown that can be hand-written like a Modus vault file.
 - **Recommendation**: **adopt now**
@@ -51,12 +51,12 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go:160-217`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go:9-16,154-214`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:170-229`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-44,164-169,297-317,638-665,740-757`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:202,519,771-809`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-790`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:143-156`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:157-193`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-93`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-44,164-169,297-317,638-665,740-757`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:202,519,771-809`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-790`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:143-156`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:157-193`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-93`
 
 ## Assessment
 - New information ratio: **0.19**

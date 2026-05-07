@@ -7,7 +7,7 @@ Context-prime output contract parity.
 - Can resume consumers rely on a common output schema?
 
 ## Evidence
-- `.opencode/agent/context-prime.md:130-134`
+- `.opencode/agents/context-prime.md:130-134`
 - `.codex/agents/context-prime.md:129-133`
 
 ## Analysis

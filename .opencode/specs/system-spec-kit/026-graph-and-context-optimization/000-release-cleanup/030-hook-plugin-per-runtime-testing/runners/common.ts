@@ -75,7 +75,7 @@ function findRepoRoot(): string {
 
   for (const candidate of candidates) {
     const root = resolve(candidate);
-    if (existsSync(join(root, '.opencode/skill/system-spec-kit'))) {
+    if (existsSync(join(root, '.opencode/skills/system-spec-kit'))) {
       return root;
     }
   }

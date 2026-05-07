@@ -43,13 +43,13 @@
     "key_files": [
       ".github/hooks/superset-notify.json",
       "hooks/copilot/session-prime.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/253-runtime-detection.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/06-runtime-detection.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/253-runtime-detection.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/06-runtime-detection.md",
       "dist/hooks/copilot/session-prime.js",
       "tests/copilot-hook-wiring.vitest.ts",
       "tests/runtime-detection.vitest.ts",
@@ -77,43 +77,43 @@
       {
         "name": "runtime-detection.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts",
         "source": "derived"
       },
       {
         "name": "cross-runtime-fallback.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts",
         "source": "derived"
       },
       {
         "name": "copilot-hook-wiring.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts",
         "source": "derived"
       },
       {
         "name": "252-cross-runtime-fallback.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md",
         "source": "derived"
       },
       {
         "name": "253-runtime-detection.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/253-runtime-detection.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/253-runtime-detection.md",
         "source": "derived"
       },
       {
         "name": "05-cross-runtime-fallback.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md",
         "source": "derived"
       },
       {
         "name": "06-runtime-detection.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/06-runtime-detection.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/06-runtime-detection.md",
         "source": "derived"
       },
       {

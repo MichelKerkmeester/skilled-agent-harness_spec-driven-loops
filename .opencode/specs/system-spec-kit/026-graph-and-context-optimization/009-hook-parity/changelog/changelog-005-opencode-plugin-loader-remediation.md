@@ -25,7 +25,7 @@ Running `opencode` in any directory under this repo terminated the TUI with `Typ
 
 ### Added
 
-- `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/` directory containing the three relocated helper modules (bridge files and message schema).
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` directory containing the three relocated helper modules (bridge files and message schema).
 - `.opencode/plugins/README.md` documenting the entrypoints-only convention and OpenCode 1.3.17 upgrade probe.
 - `tests/opencode-plugins-folder-purity.vitest.ts` regression guard that fails if any file in `.opencode/plugins/*.{js,mjs,ts}` lacks a default export.
 - Skill-advisor plugin OpenCode hook registrations: `event` (lifecycle readiness and cache cleanup) and `experimental.chat.system.transform` (advisor brief injection into `output.system[]`).
@@ -76,11 +76,11 @@ Running `opencode` in any directory under this repo terminated the TUI with `Typ
 | `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` | Moved to `mcp_server/plugin_bridges/`. |
 | `.opencode/plugins/spec-kit-opencode-message-schema.mjs` | Moved to `mcp_server/plugin_bridges/`. |
 | `.opencode/plugins/README.md` (NEW) | Documents entrypoints-only convention and upgrade probe. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts` (NEW) | Regression guard against future helper drift. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts` | Updated for relocated helpers and parseTransportPlan guard. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Extended with OpenCode hook shape, transform injection, fail-open, and status coverage. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts` | Updated bridge import path. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts` | Added `advisor_lookups` field. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts` (NEW) | Regression guard against future helper drift. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts` | Updated for relocated helpers and parseTransportPlan guard. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Extended with OpenCode hook shape, transform injection, fail-open, and status coverage. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts` | Updated bridge import path. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts` | Added `advisor_lookups` field. |
 
 ### Follow-Ups
 

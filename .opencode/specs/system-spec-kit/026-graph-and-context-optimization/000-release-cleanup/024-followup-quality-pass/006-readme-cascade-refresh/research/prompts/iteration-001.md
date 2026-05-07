@@ -8,14 +8,14 @@ Final README cascade refresh: ensure every README in `mcp_server/`, `mcp_server/
 
 ### Read these first
 
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` (mcp_server's own)
-- `.opencode/skill/system-spec-kit/README.md` (parent — if exists)
-- `.opencode/skill/system-spec-kit/SKILL.md` (parent skill doc)
-- `.opencode/skill/system-spec-kit/ARCHITECTURE.md`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` (mcp_server's own)
+- `.opencode/skills/system-spec-kit/README.md` (parent — if exists)
+- `.opencode/skills/system-spec-kit/SKILL.md` (parent skill doc)
+- `.opencode/skills/system-spec-kit/ARCHITECTURE.md`
 - AGENTS.md (project root)
 - All sub-folder READMEs under `mcp_server/`:
   ```bash
-  find .opencode/skill/system-spec-kit/mcp_server -name 'README.md' -type f
+  find .opencode/skills/system-spec-kit/mcp_server -name 'README.md' -type f
   ```
 - All packets in 037/001 through 037/005 — read their implementation summaries to understand what changed
 
@@ -23,11 +23,11 @@ Final README cascade refresh: ensure every README in `mcp_server/`, `mcp_server/
 
 ```bash
 # All README files in scope
-find .opencode/skill/system-spec-kit -name 'README.md' -type f
+find .opencode/skills/system-spec-kit -name 'README.md' -type f
 find .opencode/specs/system-spec-kit/026-graph-and-context-optimization -maxdepth 3 -name 'README.md' -type f
 
 # Recent commits affecting docs
-git --no-pager log --oneline --since='2026-04-29' -- .opencode/skill/system-spec-kit/ | head -30
+git --no-pager log --oneline --since='2026-04-29' -- .opencode/skills/system-spec-kit/ | head -30
 ```
 
 Build a target list. Write `target-list.md` at packet root.
@@ -45,7 +45,7 @@ For each README, verify:
 
 ### Specific updates required
 
-#### `.opencode/skill/system-spec-kit/mcp_server/README.md`
+#### `.opencode/skills/system-spec-kit/mcp_server/README.md`
 
 - Tool count: confirm 54 (or N after 036)
 - Add reference to `mcp_server/matrix_runners/` (from 036 if shipped)
@@ -53,7 +53,7 @@ For each README, verify:
 - Update file structure tree
 - Update capability matrix if it has one
 
-#### Parent README (`.opencode/skill/system-spec-kit/README.md` if exists)
+#### Parent README (`.opencode/skills/system-spec-kit/README.md` if exists)
 
 - Reflect new sub-modules / capabilities
 - Cross-link to mcp_server/README.md for details
@@ -62,7 +62,7 @@ For each README, verify:
 
 - Add new entries for: memory-retention-sweep handler, advisor-rebuild handler, freshness-smoke-check helper, matrix_runners adapters
 
-#### `.opencode/skill/system-spec-kit/ARCHITECTURE.md`
+#### `.opencode/skills/system-spec-kit/ARCHITECTURE.md`
 
 - Update CCC handler paths (already done by 031; verify still accurate)
 - Add architecture notes for matrix_runners + stress_test/ if they're architecturally significant

@@ -116,7 +116,7 @@ Resource set:
 - [ ] Generate description.json + graph-metadata.json (manual write or generate-context.js)
 
 ### Phase 2: New skill scaffold + content
-- [ ] Create `.opencode/skill/sk-code/` directory tree
+- [ ] Create `.opencode/skills/sk-code/` directory tree
 - [ ] Author SKILL.md (merged routing pseudocode + Webflow markers prepended to full-stack stack detection + extended TASK_SIGNALS)
 - [ ] Author README.md (modeled on sk-code-web/README.md)
 - [ ] Author CHANGELOG.md (1.0.0 baseline)
@@ -196,7 +196,7 @@ Resource set:
   1. Remove entries from `DEPRECATED_SKILLS` in skill_advisor.py + explicit.ts → legacy skills resume routing
   2. Revert PHRASE_BOOSTS / TOKEN_BOOSTS edits via git → original boost tables restored
   3. Revert legacy SKILL.md frontmatter edits via git → deprecation flags removed
-  4. Optional: delete `.opencode/skill/sk-code/` if a clean rollback is wanted (legacy folders are untouched, so this is safe)
+  4. Optional: delete `.opencode/skills/sk-code/` if a clean rollback is wanted (legacy folders are untouched, so this is safe)
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -256,7 +256,7 @@ Phase 1 (Spec) ──► Phase 2 (Skill scaffold) ──► Phase 3 (Web migrati
 1. Remove `DEPRECATED_SKILLS` entries → legacy skills resume routing immediately
 2. `git diff` the advisor files; revert with `git checkout HEAD -- <path>` if scoped revert needed
 3. Smoke-test legacy skills route correctly: "sk-code-web minify" should return sk-code-web with weight back to original
-4. (Optional) Delete `.opencode/skill/sk-code/` for clean rollback — legacy content is intact
+4. (Optional) Delete `.opencode/skills/sk-code/` for clean rollback — legacy content is intact
 
 ### Data Reversal
 - **Has data migrations?** No (filesystem only)

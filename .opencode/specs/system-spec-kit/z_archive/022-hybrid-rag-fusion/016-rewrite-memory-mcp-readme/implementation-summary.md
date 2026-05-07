@@ -41,14 +41,14 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Complete rewrite of the Spec Kit Memory MCP server README from scratch using simple-terms voice modeled after `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md`. Two-tier architecture: narrative explanations with analogies for newcomers, technical parameter tables for power users. All 33 MCP tools documented with parameters across 7 layers. Shared memory coverage draws from `.opencode/skill/system-spec-kit/SHARED_MEMORY_DATABASE.md`.
+Complete rewrite of the Spec Kit Memory MCP server README from scratch using simple-terms voice modeled after `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md`. Two-tier architecture: narrative explanations with analogies for newcomers, technical parameter tables for power users. All 33 MCP tools documented with parameters across 7 layers. Shared memory coverage draws from `.opencode/skills/system-spec-kit/SHARED_MEMORY_DATABASE.md`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Rewritten | Complete rewrite: 1,421 lines, 9 sections, 33 tools, simple-terms voice |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md.bak` | Created | Backup of previous README (1,419 lines) |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Rewritten | Complete rewrite: 1,421 lines, 9 sections, 33 tools, simple-terms voice |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md.bak` | Created | Backup of previous README (1,419 lines) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -81,7 +81,7 @@ Complete rewrite of the Spec Kit Memory MCP server README from scratch using sim
 | Decision | Why |
 |----------|-----|
 | Grounded content in feature catalog | Authoritative source for all 21 feature categories |
-| Simple-terms voice from `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md` | User requirement for accessible language |
+| Simple-terms voice from `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md` | User requirement for accessible language |
 | Linked to sibling docs instead of duplicating | Prevents content drift between MCP README, Spec Kit README and root README |
 | Added Example 7 for shared memory | New content drawing from SHARED_MEMORY_DATABASE.md |
 | Maintained all ANCHOR markers | Preserves section-level retrieval compatibility (~93% token savings) |

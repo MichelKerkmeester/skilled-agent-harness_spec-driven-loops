@@ -41,7 +41,7 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/agent/orchestrate.md",
+      ".opencode/agents/orchestrate.md",
       "decision-record.md",
       ".opencode/specs/skilled-agent-orchestration/022-mcp-coco-integration/graph-metadata.json",
       ".opencode/specs/skilled-agent-orchestration/022-mcp-coco-integration/description.json",
@@ -49,19 +49,19 @@
       "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      ".opencode/agent/review.md",
-      ".opencode/agent/write.md",
-      ".opencode/agent/context.md",
-      ".opencode/skill/sk-code/SKILL.md",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
+      ".opencode/agents/review.md",
+      ".opencode/agents/write.md",
+      ".opencode/agents/context.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       "spec.md"
     ],
     "entities": [
       {
         "name": "orchestrate.md",
         "kind": "doc",
-        "path": ".opencode/agent/orchestrate.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
@@ -109,37 +109,37 @@
       {
         "name": "review.md",
         "kind": "doc",
-        "path": ".opencode/agent/review.md",
+        "path": ".opencode/agents/review.md",
         "source": "derived"
       },
       {
         "name": "write.md",
         "kind": "doc",
-        "path": ".opencode/agent/write.md",
+        "path": ".opencode/agents/write.md",
         "source": "derived"
       },
       {
         "name": "context.md",
         "kind": "doc",
-        "path": ".opencode/agent/context.md",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/SKILL.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
         "name": "generate-context.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Author a new write-capable code-implementation sub-agent at `.opencode/agent/code.md`, modeled on `review.md` but flipped to `write/edit/patch: allow`. The agent is codebase/repo-agnostic via auto-loading the `sk-code` skill (which owns stack detection internally), dispatchable only by `@orchestrate`, and enforces `task: deny` to keep it LEAF-depth-1. Packet-internal research dispatches three parallel `/spec_kit:deep-research:auto` streams (10 iters each, executed via `cli-copilot` with `gpt-5.5 high`) across two external multi-agent reference implementations (`oh-my-opencode-slim`, `opencode-swarm-main`) and our own `.opencode/agent/` inventory before authoring the agent file.",
+    "causal_summary": "Author a new write-capable code-implementation sub-agent at `.opencode/agents/code.md`, modeled on `review.md` but flipped to `write/edit/patch: allow`. The agent is codebase/repo-agnostic via auto-loading the `sk-code` skill (which owns stack detection internally), dispatchable only by `@orchestrate`, and enforces `task: deny` to keep it LEAF-depth-1. Packet-internal research dispatches three parallel `/spec_kit:deep-research:auto` streams (10 iters each, executed via `cli-copilot` with `gpt-5.5 high`) across two external multi-agent reference implementations (`oh-my-opencode-slim`, `opencode-swarm-main`) and our own `.opencode/agents/` inventory before authoring the agent file.",
     "created_at": "2026-05-01T14:39:36.273Z",
     "last_save_at": "2026-05-01T14:39:36.273Z",
     "save_lineage": "graph_only",

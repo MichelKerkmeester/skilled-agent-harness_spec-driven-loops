@@ -5,20 +5,20 @@
   "copilot_dispatched": false,
   "copilot_dispatch_reason": "14 focus surfaces all small-to-medium; 10 targeted grep + Read passes gave full coverage. Dispatching gpt-5.4 high would add latency without new signal.",
   "files_audited": [
-    ".opencode/skill/system-spec-kit/SKILL.md",
-    ".opencode/skill/system-spec-kit/README.md",
-    ".opencode/skill/system-spec-kit/templates/README.md",
-    ".opencode/skill/system-spec-kit/templates/level_1/README.md",
-    ".opencode/skill/system-spec-kit/templates/level_2/README.md",
-    ".opencode/skill/system-spec-kit/templates/level_3/README.md",
-    ".opencode/skill/system-spec-kit/templates/level_3+/README.md",
-    ".opencode/skill/system-spec-kit/references/templates/level_specifications.md",
-    ".opencode/skill/system-spec-kit/references/templates/template_guide.md",
-    ".opencode/skill/system-spec-kit/references/templates/template_style_guide.md",
-    ".opencode/skill/system-spec-kit/references/structure/folder_structure.md",
-    ".opencode/skill/system-spec-kit/references/workflows/quick_reference.md",
-    ".opencode/skill/system-spec-kit/assets/template_mapping.md",
-    ".opencode/skill/system-spec-kit/assets/level_decision_matrix.md"
+    ".opencode/skills/system-spec-kit/SKILL.md",
+    ".opencode/skills/system-spec-kit/README.md",
+    ".opencode/skills/system-spec-kit/templates/README.md",
+    ".opencode/skills/system-spec-kit/templates/level_1/README.md",
+    ".opencode/skills/system-spec-kit/templates/level_2/README.md",
+    ".opencode/skills/system-spec-kit/templates/level_3/README.md",
+    ".opencode/skills/system-spec-kit/templates/level_3+/README.md",
+    ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
+    ".opencode/skills/system-spec-kit/references/templates/template_guide.md",
+    ".opencode/skills/system-spec-kit/references/templates/template_style_guide.md",
+    ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
+    ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+    ".opencode/skills/system-spec-kit/assets/template_mapping.md",
+    ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md"
   ],
   "resource_map_mentions_found": 30,
   "assertions_verified": {
@@ -62,8 +62,8 @@
       "title": "Anchor slug drift after (Level 3 Only) -> (Any Level) rename",
       "description": "Two files renamed the H2 heading to '(Any Level)' but retained the old anchor ID `optional-templates-level-3-only`. Any deep link or auto-ToC slug-matcher targeting the new title will miss. Rename anchor ID to `optional-templates-any-level` for both.",
       "files": [
-        ".opencode/skill/system-spec-kit/assets/template_mapping.md:150,168",
-        ".opencode/skill/system-spec-kit/references/templates/level_specifications.md:149,168"
+        ".opencode/skills/system-spec-kit/assets/template_mapping.md:150,168",
+        ".opencode/skills/system-spec-kit/references/templates/level_specifications.md:149,168"
       ],
       "blocker": false,
       "fix_suggestion": "Rename ANCHOR id to `optional-templates-any-level` (open and close tags) in both files. No heading change needed; title already reads 'OPTIONAL TEMPLATES (Any Level)'."
@@ -74,8 +74,8 @@
       "title": "Level 2 folder-tree diagrams omit optional resource-map.md",
       "description": "§5 Level 2 tree (level_specifications.md:193-200) and parallel tree in template_mapping.md:194-200 do not show `resource-map.md`, while the Level 3 tree does (lines 211-221 and 209-221 respectively). Prose Optional Files subsection at L2 correctly lists it, so tree is inconsistent with prose. Minor: Level 1 tree (lines 174-180) similarly omits it.",
       "files": [
-        ".opencode/skill/system-spec-kit/references/templates/level_specifications.md:174-200",
-        ".opencode/skill/system-spec-kit/assets/template_mapping.md:174-200"
+        ".opencode/skills/system-spec-kit/references/templates/level_specifications.md:174-200",
+        ".opencode/skills/system-spec-kit/assets/template_mapping.md:174-200"
       ],
       "blocker": false,
       "fix_suggestion": "Add `└── resource-map.md  (OPTIONAL - lean path catalog)` to Level 1 and Level 2 ASCII trees."
@@ -86,10 +86,10 @@
       "title": "Four distinct phrasings used to describe resource-map.md across surfaces",
       "description": "No canonical one-liner is enforced. The four variants are semantically compatible: (a) 'Optional lean path catalog (any level)', (b) 'lean path catalog (cross-cutting, see §9)', (c) 'lean, scannable catalog of every path analyzed, created, updated, or removed', (d) 'Lean path catalog of every file analyzed/created/updated/removed'. No finding — recorded for future style-guide hardening.",
       "files": [
-        ".opencode/skill/system-spec-kit/README.md:271,512,596",
-        ".opencode/skill/system-spec-kit/references/templates/level_specifications.md:100,193,311,397",
-        ".opencode/skill/system-spec-kit/templates/level_1/README.md:67",
-        ".opencode/skill/system-spec-kit/assets/template_mapping.md:158"
+        ".opencode/skills/system-spec-kit/README.md:271,512,596",
+        ".opencode/skills/system-spec-kit/references/templates/level_specifications.md:100,193,311,397",
+        ".opencode/skills/system-spec-kit/templates/level_1/README.md:67",
+        ".opencode/skills/system-spec-kit/assets/template_mapping.md:158"
       ],
       "blocker": false
     }

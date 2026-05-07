@@ -1,12 +1,12 @@
 # C10 Type Safety Audit
 
-Scope: `.opencode/skill/system-spec-kit/`
+Scope: `.opencode/skills/system-spec-kit/`
 Audit date: 2026-03-21
 Auditor: C10 Type Safety
 
 ## Baseline
 
-- `cd .opencode/skill/system-spec-kit && npx tsc --noEmit 2>&1`
+- `cd .opencode/skills/system-spec-kit && npx tsc --noEmit 2>&1`
   Result: clean exit, 0 compiler errors under `strict: true`.
 - Explicit `: any` search:
   Result: 91 owned hits in test files, 0 production code hits. The 3 non-test matches were comment text in `mcp_server/lib/telemetry/scoring-observability.ts`, not type annotations.

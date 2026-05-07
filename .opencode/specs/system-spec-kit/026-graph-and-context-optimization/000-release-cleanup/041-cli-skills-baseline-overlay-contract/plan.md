@@ -42,8 +42,8 @@ contextType: "implementation"
 
 ## 3. DEPENDENCIES
 
-- Donor pattern: `.opencode/agent/review.md`
-- Validator: `.opencode/skill/sk-doc/scripts/validate_document.py`
+- Donor pattern: `.opencode/agents/review.md`
+- Validator: `.opencode/skills/sk-doc/scripts/validate_document.py`
 
 ---
 

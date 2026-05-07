@@ -107,7 +107,7 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/tasks.md; original 
 ### Observability + Documentation
 - [ ] **T100** [P0] Edit `smart-router-measurement-report.md`: line 26 DELETE_LINE
 - [ ] **T110** [P0] Edit root `README.md`: 4 edits (DELETE subsection, DELETE line, PATCH 2 examples)
-- [ ] **T120** [P0] Edit `.opencode/skill/README.md`: 6 edits (PATCH 2 counts, DELETE 4 rows)
+- [ ] **T120** [P0] Edit `.opencode/skills/README.md`: 6 edits (PATCH 2 counts, DELETE 4 rows)
 
 ### mcp-code-mode (D1 strip pattern, KEEP 127 tool refs)
 - [ ] **T130** [P0] Edit `mcp-code-mode/SKILL.md` line 476: DELETE_LINE (Related skills: mcp-figma)
@@ -117,8 +117,8 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/tasks.md; original 
 
 ### Phase 3C — Skill folder deletion
 
-- [ ] **T170** [P0] `rm -rf .opencode/skill/mcp-figma/` (memory rule: DELETE not archive)
-- [ ] **T180** [P0] Verify deletion: `test ! -d .opencode/skill/mcp-figma/`
+- [ ] **T170** [P0] `rm -rf .opencode/skills/mcp-figma/` (memory rule: DELETE not archive)
+- [ ] **T180** [P0] Verify deletion: `test ! -d .opencode/skills/mcp-figma/`
 
 ### Phase 3D — Commit 4 (deletion + cross-ref patches)
 

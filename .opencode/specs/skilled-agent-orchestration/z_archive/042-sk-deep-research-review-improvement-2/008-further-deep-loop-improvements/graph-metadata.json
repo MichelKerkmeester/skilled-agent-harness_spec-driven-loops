@@ -47,15 +47,15 @@
       "scratch/closing-review.md",
       "implementation-summary.md",
       ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md",
-      ".opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md",
-      ".opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/033-graph-aware-stop-gate.md",
-      ".opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md",
-      ".opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/023-fail-closed-reducer.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md",
-      ".opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts",
+      ".opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md",
+      ".opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/033-graph-aware-stop-gate.md",
+      ".opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md",
+      ".opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/023-fail-closed-reducer.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -96,55 +96,55 @@
       {
         "name": "032-blocked-stop-reducer-surfacing.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md",
+        "path": ".opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md",
         "source": "derived"
       },
       {
         "name": "033-graph-aware-stop-gate.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/033-graph-aware-stop-gate.md",
+        "path": ".opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/033-graph-aware-stop-gate.md",
         "source": "derived"
       },
       {
         "name": "022-blocked-stop-reducer-surfacing.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md",
+        "path": ".opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md",
         "source": "derived"
       },
       {
         "name": "023-fail-closed-reducer.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/023-fail-closed-reducer.md",
+        "path": ".opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/023-fail-closed-reducer.md",
         "source": "derived"
       },
       {
         "name": "032-journal-wiring.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md",
+        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md",
         "source": "derived"
       },
       {
         "name": "033-insufficient-sample.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md",
+        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md",
         "source": "derived"
       },
       {
         "name": "034-replay-consumer.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md",
+        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md",
         "source": "derived"
       },
       {
         "name": "graph-aware-stop.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",
         "source": "derived"
       },
       {
         "name": "session-isolation.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",
         "source": "derived"
       },
       {

@@ -54,10 +54,10 @@ Produce a markdown table the parent can drop directly.
 
 ## ACTIONS
 
-1. Read `.opencode/agent/review.md:396-434` (anti-patterns table).
+1. Read `.opencode/agents/review.md:396-434` (anti-patterns table).
 2. Read `AGENTS.md:125-153` (generic anti-patterns table — confirm what's already there so we don't duplicate; add CODER-SPECIFIC ones only).
-3. Read `.opencode/agent/code.md:70-101` (current SCOPE BOUNDARIES + Bash bypass warning) — confirm what's already in code.md so the new anti-pattern table sharpens rather than repeats.
-4. Read `.opencode/agent/debug.md:426-457` (debug anti-patterns — useful precedent for "claim without evidence" + "skip verification").
+3. Read `.opencode/agents/code.md:70-101` (current SCOPE BOUNDARIES + Bash bypass warning) — confirm what's already in code.md so the new anti-pattern table sharpens rather than repeats.
+4. Read `.opencode/agents/debug.md:426-457` (debug anti-patterns — useful precedent for "claim without evidence" + "skip verification").
 5. Synthesize the Q6 anti-patterns table + Q7 Confidence Levels table.
 
 ## OUTPUT CONTRACT

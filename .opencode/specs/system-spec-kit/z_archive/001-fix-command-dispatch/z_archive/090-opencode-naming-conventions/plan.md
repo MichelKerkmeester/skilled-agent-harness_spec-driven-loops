@@ -1,6 +1,6 @@
 ---
 title: "Implementation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/090-opencode-naming-conventions/plan]"
-description: "Rename all snake_case JavaScript identifiers (functions, parameters, module variables, exports) to camelCase across ~206 files in .opencode/skill/system-spec-kit/. Update 9 skil..."
+description: "Rename all snake_case JavaScript identifiers (functions, parameters, module variables, exports) to camelCase across ~206 files in .opencode/skills/system-spec-kit/. Update 9 skil..."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -31,7 +31,7 @@ contextType: "planning"
 | **Testing** | Manual + MCP server startup |
 
 ### Overview
-Rename all snake_case JavaScript identifiers (functions, parameters, module variables, exports) to camelCase across ~206 files in `.opencode/skill/system-spec-kit/`. Update 9 skill documentation files to reflect the new standard. Maintain backward-compatible export aliases for MCP handlers.
+Rename all snake_case JavaScript identifiers (functions, parameters, module variables, exports) to camelCase across ~206 files in `.opencode/skills/system-spec-kit/`. Update 9 skill documentation files to reflect the new standard. Maintain backward-compatible export aliases for MCP handlers.
 
 ---
 
@@ -128,7 +128,7 @@ Function definitions are renamed → Call sites updated in same file → Cross-f
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: MCP server fails to start after migration
-- **Procedure**: `git checkout -- .opencode/skill/system-spec-kit/` to restore all JS files
+- **Procedure**: `git checkout -- .opencode/skills/system-spec-kit/` to restore all JS files
 
 <!-- /ANCHOR:rollback -->
 ---

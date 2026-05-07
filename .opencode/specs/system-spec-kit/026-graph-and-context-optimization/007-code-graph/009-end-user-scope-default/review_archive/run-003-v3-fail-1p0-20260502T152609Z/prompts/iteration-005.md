@@ -42,25 +42,25 @@ Your dimension this iter: **correctness**.
 
 ## REVIEW SCOPE FILES (in-scope)
 
-- .opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/README.md
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md
+- .opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/README.md
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md
 
 ## DIMENSION FOCUS — CORRECTNESS (iter 5)
 
 Iter 5 — cross-cutting: does v2 preserve v1 invariants?
 - All 6 precedence cases produce correct fingerprint + label?
 - Symlink fix from v1 still works after v2 changes? Walk through scan.ts:218-234 logic post-v2 — canonical root still flows correctly?
-- Default exclude (`.opencode/skill/**`) still applies even when all opt-in mechanisms are off?
+- Default exclude (`.opencode/skills/**`) still applies even when all opt-in mechanisms are off?
 - end-to-end matrix: env=true, includeSkills=false, rootDir=symlink → end-user-only scope (no skill files indexed)
 - end-to-end matrix: env=undef, includeSkills=true → maintainer scope (skill files indexed)
 - Status payload reports the correct activeScope across ALL transitions (post-init, post-scan, post-rescan with different policy)

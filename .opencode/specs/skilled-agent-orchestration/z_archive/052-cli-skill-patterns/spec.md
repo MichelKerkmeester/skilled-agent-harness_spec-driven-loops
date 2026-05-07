@@ -17,11 +17,11 @@ _memory:
     next_safe_action: "Author plan.md per-skill diff plan, then tasks.md"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-claude-code/SKILL.md"
-      - ".opencode/skill/cli-codex/SKILL.md"
-      - ".opencode/skill/cli-copilot/SKILL.md"
-      - ".opencode/skill/cli-gemini/SKILL.md"
-      - ".opencode/skill/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-claude-code/SKILL.md"
+      - ".opencode/skills/cli-codex/SKILL.md"
+      - ".opencode/skills/cli-copilot/SKILL.md"
+      - ".opencode/skills/cli-gemini/SKILL.md"
+      - ".opencode/skills/cli-opencode/SKILL.md"
     completion_pct: 5
     open_questions: []
     answered_questions:
@@ -53,7 +53,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The 5 cli-* skills under `.opencode/skill/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an external CLI from another AI runtime — and were authored from the same 8-section template. Audit during packet 051 surfaced concrete drift: cli-copilot is missing the Error Handling table, cli-opencode duplicates UNKNOWN_FALLBACK_CHECKLIST 3×, cli-claude-code is missing the Default Invocation block, INTENT_SIGNALS counts differ (codex=8, others=7), and the new Provider Auth Pre-Flight pattern added to cli-opencode in 051 has no equivalent in the other 4 even though several of them have provider-auth failure modes.
+The 5 cli-* skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an external CLI from another AI runtime — and were authored from the same 8-section template. Audit during packet 051 surfaced concrete drift: cli-copilot is missing the Error Handling table, cli-opencode duplicates UNKNOWN_FALLBACK_CHECKLIST 3×, cli-claude-code is missing the Default Invocation block, INTENT_SIGNALS counts differ (codex=8, others=7), and the new Provider Auth Pre-Flight pattern added to cli-opencode in 051 has no equivalent in the other 4 even though several of them have provider-auth failure modes.
 
 ### Purpose
 Harmonize the structural surface that's already shared across all 5 skills (section ordering, frontmatter contract, INTENT_SIGNALS keys, ALWAYS/NEVER/ESCALATE triple, Memory Handback, Error Handling table presence, single-occurrence UNKNOWN_FALLBACK_CHECKLIST, Provider Auth Pre-Flight pattern) while explicitly preserving each skill's unique value props (per-CLI flag names, agent-routing syntax, model rosters, auth flows, manual-testing-playbook scenarios).
@@ -92,12 +92,12 @@ Harmonize the structural surface that's already shared across all 5 skills (sect
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skill/cli-claude-code/SKILL.md | Modify | Add Default Invocation block to §3; align INTENT_SIGNALS keys; verify section order |
-| .opencode/skill/cli-codex/SKILL.md | Modify | Align INTENT_SIGNALS to 7-intent target (currently 8); verify section order |
-| .opencode/skill/cli-copilot/SKILL.md | Modify | Add Error Handling table to §3; align ALWAYS/NEVER/ESCALATE if drifted; verify section order |
-| .opencode/skill/cli-gemini/SKILL.md | Modify | Section-order audit only; verify INTENT_SIGNALS keys |
-| .opencode/skill/cli-opencode/SKILL.md | Modify | Dedupe UNKNOWN_FALLBACK_CHECKLIST 3→1; serves as the canonical Provider Auth Pre-Flight template the others adapt |
-| .opencode/skill/cli-claude-code/SKILL.md + cli-codex + cli-copilot + cli-gemini | Modify | Port Provider Auth Pre-Flight subsection from cli-opencode §3 (adapt detection commands per CLI: `claude auth list` / `codex auth status` / `gh auth status copilot` / `gemini auth status`) |
+| .opencode/skills/cli-claude-code/SKILL.md | Modify | Add Default Invocation block to §3; align INTENT_SIGNALS keys; verify section order |
+| .opencode/skills/cli-codex/SKILL.md | Modify | Align INTENT_SIGNALS to 7-intent target (currently 8); verify section order |
+| .opencode/skills/cli-copilot/SKILL.md | Modify | Add Error Handling table to §3; align ALWAYS/NEVER/ESCALATE if drifted; verify section order |
+| .opencode/skills/cli-gemini/SKILL.md | Modify | Section-order audit only; verify INTENT_SIGNALS keys |
+| .opencode/skills/cli-opencode/SKILL.md | Modify | Dedupe UNKNOWN_FALLBACK_CHECKLIST 3→1; serves as the canonical Provider Auth Pre-Flight template the others adapt |
+| .opencode/skills/cli-claude-code/SKILL.md + cli-codex + cli-copilot + cli-gemini | Modify | Port Provider Auth Pre-Flight subsection from cli-opencode §3 (adapt detection commands per CLI: `claude auth list` / `codex auth status` / `gh auth status copilot` / `gemini auth status`) |
 | Each skill's `graph-metadata.json` | Modify | Refresh `causal_summary` / `key_topics` to surface harmonized vocabulary |
 | Each skill's `manual_testing_playbook/manual_testing_playbook.md` | Modify (only if section-name references rotted) | Rename audit; update header references if any |
 <!-- /ANCHOR:scope -->
@@ -133,7 +133,7 @@ Harmonize the structural surface that's already shared across all 5 skills (sect
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/052-cli-skill-patterns --strict` exits 0
+- **SC-001**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/052-cli-skill-patterns --strict` exits 0
 - **SC-002**: All P0 checklist items marked `[x]` with grep-evidence
 - **SC-003**: Per-skill do-not-collapse grep gate passes (every unique term still ≥1 hit in its SKILL.md)
 - **SC-004**: 8-section header order/titles identical across all 5 SKILL.md files

@@ -51,11 +51,11 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python fallback parity and graphless inline bridge health tolerance |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Next-session preservation boost |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Updated | OK | Plain file-save confidence cap |
-| `.opencode/skill/sk-doc/graph-metadata.json` | Updated | OK | Removed stale missing agent references blocking advisor graph-health validation |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/data/shadow-deltas.jsonl` | Checked | OK | Probe-generated telemetry noise removed from patch |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python fallback parity and graphless inline bridge health tolerance |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Next-session preservation boost |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Updated | OK | Plain file-save confidence cap |
+| `.opencode/skills/sk-doc/graph-metadata.json` | Updated | OK | Removed stale missing agent references blocking advisor graph-health validation |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/data/shadow-deltas.jsonl` | Checked | OK | Probe-generated telemetry noise removed from patch |
 <!-- /ANCHOR:skills -->
 
 <!-- ANCHOR:tests -->
@@ -63,8 +63,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Added CP-101/CP-104 regressions |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/compat/shim.vitest.ts` | Updated | OK | Native shim allows memory-save candidate |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/python/test_skill_advisor.py` | Updated | OK | Command bridge owner expectation aligned to `memory:save` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/legacy/advisor-graph-health.vitest.ts` | Updated | OK | Health test covers graphless inline bridge tolerance |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Added CP-101/CP-104 regressions |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/compat/shim.vitest.ts` | Updated | OK | Native shim allows memory-save candidate |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/python/test_skill_advisor.py` | Updated | OK | Command bridge owner expectation aligned to `memory:save` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/legacy/advisor-graph-health.vitest.ts` | Updated | OK | Health test covers graphless inline bridge tolerance |
 <!-- /ANCHOR:tests -->

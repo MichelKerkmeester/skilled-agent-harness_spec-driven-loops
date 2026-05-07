@@ -18,9 +18,9 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 | Component | Location |
 |-----------|----------|
-| Skill folder | `.opencode/skill/system-spec-kit/` |
+| Skill folder | `.opencode/skills/system-spec-kit/` |
 | Spec folder | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs` |
-| Database | `.opencode/skill/system-spec-kit/database/context-index.sqlite` |
+| Database | `.opencode/skills/system-spec-kit/database/context-index.sqlite` |
 | MCP config | `opencode.json` |
 
 ---
@@ -39,19 +39,19 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Verify `getEmbeddingDim()` function exists:**
    ```bash
-   grep -n "getEmbeddingDim" .opencode/skill/system-spec-kit/mcp_server/vector-index.js
+   grep -n "getEmbeddingDim" .opencode/skills/system-spec-kit/mcp_server/vector-index.js
    ```
    **Expected:** Lines ~59-70 showing the function definition
 
 2. **Verify dynamic dimension usage in validation:**
    ```bash
-   grep -n "getEmbeddingDim()" .opencode/skill/system-spec-kit/mcp_server/vector-index.js
+   grep -n "getEmbeddingDim()" .opencode/skills/system-spec-kit/mcp_server/vector-index.js
    ```
    **Expected:** Lines ~985 and ~1102 using `getEmbeddingDim()` instead of hardcoded `768`
 
 3. **Verify pre-flight logging in context-server.js:**
    ```bash
-   grep -n "Pre-flight embedding" .opencode/skill/system-spec-kit/mcp_server/context-server.js
+   grep -n "Pre-flight embedding" .opencode/skills/system-spec-kit/mcp_server/context-server.js
    ```
    **Expected:** Lines ~1616-1627 showing dimension logging
 
@@ -82,25 +82,25 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Verify script exists:**
    ```bash
-   ls -la .opencode/skill/system-spec-kit/scripts/rules/check-folder-naming.sh
+   ls -la .opencode/skills/system-spec-kit/scripts/rules/check-folder-naming.sh
    ```
    **Expected:** File exists with execute permissions
 
 2. **Test valid folder name:**
    ```bash
-   cd .opencode/skill/system-spec-kit && bash scripts/rules/check-folder-naming.sh "007-auth-feature"
+   cd .opencode/skills/system-spec-kit && bash scripts/rules/check-folder-naming.sh "007-auth-feature"
    ```
    **Expected:** Exit code 0, "PASS" message
 
 3. **Test invalid folder name (no number prefix):**
    ```bash
-   cd .opencode/skill/system-spec-kit && bash scripts/rules/check-folder-naming.sh "auth-feature"
+   cd .opencode/skills/system-spec-kit && bash scripts/rules/check-folder-naming.sh "auth-feature"
    ```
    **Expected:** Exit code 1, "FAIL" message
 
 4. **Test invalid folder name (wrong format):**
    ```bash
-   cd .opencode/skill/system-spec-kit && bash scripts/rules/check-folder-naming.sh "7-auth"
+   cd .opencode/skills/system-spec-kit && bash scripts/rules/check-folder-naming.sh "7-auth"
    ```
    **Expected:** Exit code 1, "FAIL" message (needs 3 digits)
 
@@ -119,7 +119,7 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Verify ERROR severity for implementation-summary.md:**
    ```bash
-   grep -A5 "implementation-summary" .opencode/skill/system-spec-kit/scripts/rules/check-files.sh | grep -i "error\|severity"
+   grep -A5 "implementation-summary" .opencode/skills/system-spec-kit/scripts/rules/check-files.sh | grep -i "error\|severity"
    ```
    **Expected:** Shows ERROR severity, not WARN
 
@@ -141,21 +141,21 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Verify script exists:**
    ```bash
-   ls -la .opencode/skill/system-spec-kit/scripts/rules/check-frontmatter.sh
+   ls -la .opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh
    ```
    **Expected:** File exists with execute permissions
 
 2. **Test valid frontmatter:**
    ```bash
    echo -e "---\ntitle: Test\n---\n# Content" > /tmp/test-valid.md
-   cd .opencode/skill/system-spec-kit && bash scripts/rules/check-frontmatter.sh /tmp/test-valid.md
+   cd .opencode/skills/system-spec-kit && bash scripts/rules/check-frontmatter.sh /tmp/test-valid.md
    ```
    **Expected:** Exit code 0, valid frontmatter detected
 
 3. **Test invalid frontmatter:**
    ```bash
    echo -e "---\ntitle: Test\n# Missing closing ---\n# Content" > /tmp/test-invalid.md
-   cd .opencode/skill/system-spec-kit && bash scripts/rules/check-frontmatter.sh /tmp/test-invalid.md
+   cd .opencode/skills/system-spec-kit && bash scripts/rules/check-frontmatter.sh /tmp/test-invalid.md
    ```
    **Expected:** Exit code 1, invalid frontmatter error
 
@@ -178,14 +178,14 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Verify link is fixed:**
    ```bash
-   sed -n '610,620p' .opencode/skill/system-spec-kit/references/folder_routing.md
+   sed -n '610,620p' .opencode/skills/system-spec-kit/references/folder_routing.md
    ```
    **Expected:** Line 614 shows correct link (not broken)
 
 2. **Verify link target exists:**
    ```bash
    # Extract the link target and verify it exists
-   grep -o '\[.*\](.*\.md)' .opencode/skill/system-spec-kit/references/folder_routing.md | head -5
+   grep -o '\[.*\](.*\.md)' .opencode/skills/system-spec-kit/references/folder_routing.md | head -5
    ```
    **Expected:** All referenced files exist
 
@@ -203,13 +203,13 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Verify context_template.md is documented:**
    ```bash
-   grep "context_template" .opencode/skill/system-spec-kit/SKILL.md
+   grep "context_template" .opencode/skills/system-spec-kit/SKILL.md
    ```
    **Expected:** Reference to context_template.md exists
 
 2. **Verify test-embeddings-factory.js is documented:**
    ```bash
-   grep "test-embeddings-factory" .opencode/skill/system-spec-kit/SKILL.md
+   grep "test-embeddings-factory" .opencode/skills/system-spec-kit/SKILL.md
    ```
    **Expected:** Reference to test-embeddings-factory.js exists
 
@@ -229,13 +229,13 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Verify handover.md uses bulleted list format:**
    ```bash
-   grep -E "^- \*\*" .opencode/skill/system-spec-kit/templates/handover.md | head -5
+   grep -E "^- \*\*" .opencode/skills/system-spec-kit/templates/handover.md | head -5
    ```
    **Expected:** Shows bulleted list format (`- **Field:**`)
 
 2. **Verify implementation-summary.md uses bulleted list format:**
    ```bash
-   grep -E "^- \*\*" .opencode/skill/system-spec-kit/templates/implementation-summary.md | head -5
+   grep -E "^- \*\*" .opencode/skills/system-spec-kit/templates/implementation-summary.md | head -5
    ```
    **Expected:** Shows bulleted list format (`- **Field:**`)
 
@@ -257,13 +257,13 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Test --help flag:**
    ```bash
-   node .opencode/skill/system-spec-kit/scripts/generate-context.js --help
+   node .opencode/skills/system-spec-kit/scripts/generate-context.js --help
    ```
    **Expected:** Usage information displayed, exit code 0
 
 2. **Test -h flag:**
    ```bash
-   node .opencode/skill/system-spec-kit/scripts/generate-context.js -h
+   node .opencode/skills/system-spec-kit/scripts/generate-context.js -h
    ```
    **Expected:** Same usage information displayed
 
@@ -282,7 +282,7 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Verify error handling code exists:**
    ```bash
-   grep -n "mkdir.*error\|EACCES\|permission" .opencode/skill/system-spec-kit/scripts/generate-context.js
+   grep -n "mkdir.*error\|EACCES\|permission" .opencode/skills/system-spec-kit/scripts/generate-context.js
    ```
    **Expected:** Error handling code found around lines 3667-3678
 
@@ -305,13 +305,13 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Test --help flag:**
    ```bash
-   bash .opencode/skill/system-spec-kit/scripts/validate-spec.sh --help
+   bash .opencode/skills/system-spec-kit/scripts/validate-spec.sh --help
    ```
    **Expected:** Complete usage information with all options documented
 
 2. **Verify all options documented:**
    ```bash
-   bash .opencode/skill/system-spec-kit/scripts/validate-spec.sh --help | grep -E "^\s+--"
+   bash .opencode/skills/system-spec-kit/scripts/validate-spec.sh --help | grep -E "^\s+--"
    ```
    **Expected:** All command-line options listed
 
@@ -333,25 +333,25 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Verify proper structure:**
    ```bash
-   head -20 .opencode/skill/system-spec-kit/references/template_style_guide.md
+   head -20 .opencode/skills/system-spec-kit/references/template_style_guide.md
    ```
    **Expected:** YAML frontmatter with title and description
 
 2. **Verify section structure:**
    ```bash
-   grep "^## " .opencode/skill/system-spec-kit/references/template_style_guide.md
+   grep "^## " .opencode/skills/system-spec-kit/references/template_style_guide.md
    ```
    **Expected:** Numbered sections (## 1. OVERVIEW, ## 2. ..., etc.)
 
 3. **Verify RELATED RESOURCES section:**
    ```bash
-   grep -A10 "RELATED RESOURCES" .opencode/skill/system-spec-kit/references/template_style_guide.md
+   grep -A10 "RELATED RESOURCES" .opencode/skills/system-spec-kit/references/template_style_guide.md
    ```
    **Expected:** Last section with links to related files
 
 4. **Verify file length:**
    ```bash
-   wc -l .opencode/skill/system-spec-kit/references/template_style_guide.md
+   wc -l .opencode/skills/system-spec-kit/references/template_style_guide.md
    ```
    **Expected:** Significantly more than 73 lines (target: 200+ lines)
 
@@ -371,13 +371,13 @@ This document provides step-by-step test cases for verifying all 17 fixes implem
 
 1. **Run full validation on this spec folder:**
    ```bash
-   bash .opencode/skill/system-spec-kit/scripts/validate-spec.sh .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs
+   bash .opencode/skills/system-spec-kit/scripts/validate-spec.sh .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs
    ```
    **Expected:** Exit code 0 (all checks pass)
 
 2. **Run validation on a known-good spec folder:**
    ```bash
-   bash .opencode/skill/system-spec-kit/scripts/validate-spec.sh .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/048-system-analysis
+   bash .opencode/skills/system-spec-kit/scripts/validate-spec.sh .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/048-system-analysis
    ```
    **Expected:** Exit code 0 or 1 (pass or warnings only)
 

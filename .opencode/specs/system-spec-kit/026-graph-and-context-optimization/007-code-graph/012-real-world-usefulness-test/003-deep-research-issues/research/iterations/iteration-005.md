@@ -14,19 +14,19 @@ Traced the parser path through `code_graph/lib/structural-indexer.ts`, `code_gra
 Also ran a read-only parser probe against the current `.opencode` JS/TS candidate set. It checked 1,463 files with the current built tree-sitter parser and found zero reproducible `memory access out of bounds` hits. That does not disprove the native trial; it means the archived artifacts do not contain enough file-level data to recover the exact 10 affected files.
 
 ## FINDINGS
-- P0 `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:467` — Error parse results are persisted as authoritative file state with `node_count=0` and then `replaceNodes()`/`replaceEdges()` clears the file's graph content; recommended remediation: do not replace a prior successful file graph when `result.parseHealth === "error"`, and persist the parse diagnostic separately.
-- P1 `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:348` — Any per-file parse error suppresses candidate-manifest recording for the whole full scan, so a scan with 10 parser crashes can complete with persisted graph changes but no fresh manifest baseline; recommended remediation: record the candidate manifest independently from per-file parse health, or distinguish fatal scan errors from nonfatal per-file parser diagnostics.
-- P1 `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:81` — `code_files` stores only `parse_health` and not the actual parse error text, while scan response truncates errors at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:402`; recommended remediation: add durable parse diagnostic storage keyed by file path and expose it via scan/status so native crash artifacts include affected filenames and messages.
-- P2 `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:722` — Tree-sitter syntax errors and parser runtime crashes are both collapsed into `parseHealth`/`parseErrors` results, but only syntax errors get the stable message `Tree contains syntax errors (partial parse)`; recommended remediation: classify parser runtime exceptions separately from syntax-recovered parses so OOB crashes are counted and reported as parser backend failures.
+- P0 `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:467` — Error parse results are persisted as authoritative file state with `node_count=0` and then `replaceNodes()`/`replaceEdges()` clears the file's graph content; recommended remediation: do not replace a prior successful file graph when `result.parseHealth === "error"`, and persist the parse diagnostic separately.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:348` — Any per-file parse error suppresses candidate-manifest recording for the whole full scan, so a scan with 10 parser crashes can complete with persisted graph changes but no fresh manifest baseline; recommended remediation: record the candidate manifest independently from per-file parse health, or distinguish fatal scan errors from nonfatal per-file parser diagnostics.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:81` — `code_files` stores only `parse_health` and not the actual parse error text, while scan response truncates errors at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:402`; recommended remediation: add durable parse diagnostic storage keyed by file path and expose it via scan/status so native crash artifacts include affected filenames and messages.
+- P2 `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:722` — Tree-sitter syntax errors and parser runtime crashes are both collapsed into `parseHealth`/`parseErrors` results, but only syntax errors get the stable message `Tree contains syntax errors (partial parse)`; recommended remediation: classify parser runtime exceptions separately from syntax-recovered parses so OOB crashes are counted and reported as parser backend failures.
 
 ## EVIDENCE
 Parser versions:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/package.json:59 tree-sitter-wasms ^0.1.13
-.opencode/skill/system-spec-kit/mcp_server/package.json:60 web-tree-sitter ^0.24.7
-.opencode/skill/system-spec-kit/package-lock.json:5593 tree-sitter-wasms 0.1.13
-.opencode/skill/system-spec-kit/package-lock.json:7569 web-tree-sitter 0.24.7
+.opencode/skills/system-spec-kit/mcp_server/package.json:59 tree-sitter-wasms ^0.1.13
+.opencode/skills/system-spec-kit/mcp_server/package.json:60 web-tree-sitter ^0.24.7
+.opencode/skills/system-spec-kit/package-lock.json:5593 tree-sitter-wasms 0.1.13
+.opencode/skills/system-spec-kit/package-lock.json:7569 web-tree-sitter 0.24.7
 ```
 
 Parser selection and fallback:
@@ -78,8 +78,8 @@ error|1648
 Two sampled currently error-marked TypeScript files did not reproduce parser errors with the current built parser:
 
 ```text
-.opencode/skill/mcp-code-mode/mcp_server/index.ts|clean|nodes=28|edges=13|errors=
-.opencode/skill/system-spec-kit/mcp_server/api/eval.ts|clean|nodes=20|edges=0|errors=
+.opencode/skills/mcp-code-mode/mcp_server/index.ts|clean|nodes=28|edges=13|errors=
+.opencode/skills/system-spec-kit/mcp_server/api/eval.ts|clean|nodes=20|edges=0|errors=
 ```
 
 The sampled files use ordinary TypeScript features: imports, `z.infer`, typed function signatures, template literals, and re-export blocks. No common unusual TS syntax was verified from those samples.

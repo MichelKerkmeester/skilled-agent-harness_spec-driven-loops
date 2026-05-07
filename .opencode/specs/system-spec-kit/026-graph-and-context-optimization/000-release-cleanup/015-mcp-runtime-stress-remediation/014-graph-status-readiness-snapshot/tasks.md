@@ -59,7 +59,7 @@ _memory:
 - [x] T104 Verify the helper does NOT call `cleanupDeletedTrackedFiles`, `cacheReadyResult`, `setLastGitHead`, or `indexWithTimeout` (read-only contract per REQ-001).
 - [x] T105 Patch `code_graph/handlers/status.ts`: import `getGraphReadinessSnapshot`; replace `getGraphFreshness(process.cwd())` + hard-coded `action: 'none'` with the snapshot's `action` and richer `reason`.
 - [x] T106 Preserve the existing top-level `freshness` field on the status response so existing callers do not break (REQ-005).
-- [x] T107 Typecheck: `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` PASS.
+- [x] T107 Typecheck: `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` PASS.
 <!-- /ANCHOR:phase-2 -->
 
 ---

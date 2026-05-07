@@ -40,7 +40,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown + YAML/JSON; no runtime code changes |
 | **Framework** | None — copy edits, manifest authoring, fixture authoring |
-| **Storage** | Filesystem only (`.opencode/command/`, `.opencode/skill/system-spec-kit/`) |
+| **Storage** | Filesystem only (`.opencode/commands/`, `.opencode/skills/system-spec-kit/`) |
 | **Testing** | `validate.sh --strict`; manual visual review; cross-link verification |
 
 ### Overview
@@ -98,7 +98,7 @@ None — no runtime data flow changes. Phase 4's `source-manifest.yaml` is read-
 - [ ] Apply to `plan.md`, `implement.md`, `deep-research.md`, `deep-review.md`, `resume.md`, `complete.md`
 - [ ] Mirror copy in matching `assets/*.yaml` setup-phase YAML comments
 - [ ] Preserve every Gate-3 answer key (A/B/C/D/E) verbatim
-- [ ] Verify gate-3 classifier still parses correctly: `node .opencode/skill/system-spec-kit/shared/gate-3-classifier.ts` smoke test
+- [ ] Verify gate-3 classifier still parses correctly: `node .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` smoke test
 
 ### Phase 2 — Phase boundary copy pass
 - [ ] Read packet-057 finding-2 evidence (F-iter009-002)
@@ -148,7 +148,7 @@ None — no runtime data flow changes. Phase 4's `source-manifest.yaml` is read-
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Validator | Spec packet integrity | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh` |
+| Validator | Spec packet integrity | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` |
 | Manual visual | Command READMEs, fixture readability | Browser / editor preview |
 | Smoke | Gate-3 classifier still parses post-Phase 1 | Node script invocation |
 | Cross-link | Phase 3 doc references resolve | grep / link checker |

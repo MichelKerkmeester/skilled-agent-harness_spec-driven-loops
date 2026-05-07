@@ -23,7 +23,7 @@ The V8 rule lives in `validate-memory-quality.ts` (lines 700-775). It works as f
 
 **Consequence:** `blockOnWrite: true, blockOnIndex: true` -- hard abort.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:101-775]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:101-775]
 
 ### 2. Same-Parent Phase Reference Problem
 
@@ -39,7 +39,7 @@ It does NOT:
 
 This means JSON payloads that discuss related work in sibling phases trigger V8 false positives.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:524-555]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:524-555]
 [INFERENCE: based on extractAllowedSpecIds only walking down (children) never up (siblings)]
 
 ### 3. Contamination Filter vs V8 Rule (Separate Concerns)
@@ -52,8 +52,8 @@ The term "contamination" is overloaded:
 
 The fix for same-parent references is entirely within `validate-memory-quality.ts`, specifically in `extractAllowedSpecIds()`.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:1-225]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:524-555]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:1-225]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:524-555]
 
 ### 4. Design: Same-Parent Sibling Allowlisting
 
@@ -131,10 +131,10 @@ I recommend **Option C** because:
 None -- all approaches explored this iteration produced viable designs.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:101-775` (V8 rule, extractAllowedSpecIds, detection logic)
-- `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:1-225` (contamination filter -- confirmed NOT involved in V8)
-- `.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:704-774` (existing V8 test cases)
-- `.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:29-39` (V8 metadata tests)
+- `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:101-775` (V8 rule, extractAllowedSpecIds, detection logic)
+- `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:1-225` (contamination filter -- confirmed NOT involved in V8)
+- `.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:704-774` (existing V8 test cases)
+- `.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:29-39` (V8 metadata tests)
 
 ## Assessment
 - New information ratio: 0.90

@@ -37,7 +37,7 @@ _memory:
 | **Framework** | None (utility scripts) |
 | **Storage** | SQLite via Spec Kit Memory MCP (writes not in scope for this phase) |
 | **Testing** | Manual integration tests; `tsc --noEmit` for type correctness |
-| **Build** | `npm run build` in `.opencode/skill/system-spec-kit/scripts/` |
+| **Build** | `npm run build` in `.opencode/skills/system-spec-kit/scripts/` |
 
 ### Overview
 

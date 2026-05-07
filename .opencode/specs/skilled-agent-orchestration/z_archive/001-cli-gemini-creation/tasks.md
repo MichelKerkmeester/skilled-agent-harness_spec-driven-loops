@@ -36,7 +36,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Create skill directory structure (.opencode/skill/cli-gemini/)
+- [x] T001 Create skill directory structure (.opencode/skills/cli-gemini/)
 - [x] T002 Create references/ and assets/ subdirectories
 
 ---
@@ -49,11 +49,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T003 Create SKILL.md with 8 standard sections (.opencode/skill/cli-gemini/SKILL.md)
-- [x] T004 [P] Create CLI reference (.opencode/skill/cli-gemini/references/cli_reference.md)
-- [x] T005 [P] Create integration patterns (.opencode/skill/cli-gemini/references/integration_patterns.md)
-- [x] T006 [P] Create Gemini tools reference (.opencode/skill/cli-gemini/references/gemini_tools.md)
-- [x] T007 [P] Create prompt templates (.opencode/skill/cli-gemini/assets/prompt_templates.md)
+- [x] T003 Create SKILL.md with 8 standard sections (.opencode/skills/cli-gemini/SKILL.md)
+- [x] T004 [P] Create CLI reference (.opencode/skills/cli-gemini/references/cli_reference.md)
+- [x] T005 [P] Create integration patterns (.opencode/skills/cli-gemini/references/integration_patterns.md)
+- [x] T006 [P] Create Gemini tools reference (.opencode/skills/cli-gemini/references/gemini_tools.md)
+- [x] T007 [P] Create prompt templates (.opencode/skills/cli-gemini/assets/prompt_templates.md)
 
 ---
 

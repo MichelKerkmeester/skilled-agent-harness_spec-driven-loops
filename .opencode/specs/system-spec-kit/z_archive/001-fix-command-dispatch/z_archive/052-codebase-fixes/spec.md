@@ -75,8 +75,8 @@ Fix critical bugs and performance issues identified during comprehensive codebas
 
 | File | Change |
 |------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js` | Remove hardcoded EMBEDDING_DIM, import from embeddings, store/use dynamic dimension |
-| `.opencode/skill/system-spec-kit/shared/embeddings.js` | Fix getEmbeddingDimension() default, add parallel batch processing |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js` | Remove hardcoded EMBEDDING_DIM, import from embeddings, store/use dynamic dimension |
+| `.opencode/skills/system-spec-kit/shared/embeddings.js` | Fix getEmbeddingDimension() default, add parallel batch processing |
 
 <!-- ANCHOR:success-criteria -->
 ## Success Criteria

@@ -20,11 +20,11 @@ Dimension: security
 
 Evidence:
 
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:89` accepts `--root`.
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:90` resolves the next argument as the traversal root without validating that an argument was supplied or that it is a specs root.
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:121` starts recursive traversal.
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:137` iterates every child directory.
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:144` recurses without a depth, folder-count, or elapsed-time guard.
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:89` accepts `--root`.
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:90` resolves the next argument as the traversal root without validating that an argument was supplied or that it is a specs root.
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:121` starts recursive traversal.
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:137` iterates every child directory.
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:144` recurses without a depth, folder-count, or elapsed-time guard.
 
 This is a local operator CLI, so the severity is P2 rather than a remote security hole. Still, an accidental `--root /` or similarly broad path can force a large synchronous filesystem walk before any graph-metadata validation boundary is reached. A bounded specs-root check or traversal budget would reduce denial-of-service risk from misconfiguration.
 

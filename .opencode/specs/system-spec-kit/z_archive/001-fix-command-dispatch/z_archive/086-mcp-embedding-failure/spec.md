@@ -71,11 +71,11 @@ export VOYAGE_API_KEY=your-key    # or OPENAI_API_KEY
 
 ## Files of Interest
 
-- `.opencode/skill/system-spec-kit/shared/embeddings.js` - Main embeddings module
-- `.opencode/skill/system-spec-kit/shared/embeddings/factory.js` - Provider factory
-- `.opencode/skill/system-spec-kit/shared/embeddings/providers/hf-local.js` - HF local provider
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js` - Vector index implementation
-- `.opencode/skill/system-spec-kit/mcp_server/package.json` - Dependencies
+- `.opencode/skills/system-spec-kit/shared/embeddings.js` - Main embeddings module
+- `.opencode/skills/system-spec-kit/shared/embeddings/factory.js` - Provider factory
+- `.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.js` - HF local provider
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js` - Vector index implementation
+- `.opencode/skills/system-spec-kit/mcp_server/package.json` - Dependencies
 
 ## Dependencies
 

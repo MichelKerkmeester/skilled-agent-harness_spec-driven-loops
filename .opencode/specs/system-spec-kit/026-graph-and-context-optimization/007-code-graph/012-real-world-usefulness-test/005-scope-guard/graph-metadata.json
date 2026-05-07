@@ -37,29 +37,29 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts"
     ],
     "entities": [
       {
         "name": "code_graph_scan",
         "kind": "tool",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts",
         "source": "manual"
       },
       {
         "name": "forceScopeChange",
         "kind": "schema-field",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "manual"
       },
       {
         "name": "getStoredCodeGraphScope",
         "kind": "function",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
         "source": "manual"
       }
     ],

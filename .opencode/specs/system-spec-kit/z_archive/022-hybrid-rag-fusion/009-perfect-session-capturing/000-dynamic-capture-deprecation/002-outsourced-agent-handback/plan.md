@@ -76,7 +76,7 @@ Repository-side runtime hardening plus documentation alignment.
 - **`runtime-memory-inputs.vitest.ts`**: Guards the explicit-failure path and next-step persistence behavior.
 - **`outsourced-agent-handback-docs.vitest.ts`**: Keeps the 8 CLI handback docs and the feature catalog aligned on post-010 save-gate guidance.
 - **4 `cli-*` skills + 4 prompt templates**: Tell the caller to extract handback data, redact and scrub it, include richer `FILES` metadata, and stop on explicit JSON-mode failures.
-- **Feature catalog entry `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md`**: Tracks the handback protocol as a current phase `015` concern rather than a stale `013` snapshot.
+- **Feature catalog entry `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md`**: Tracks the handback protocol as a current phase `015` concern rather than a stale `013` snapshot.
 
 ### Data Flow
 ```text
@@ -127,8 +127,8 @@ Caller prepares /tmp/save-context-data.json
 |-----------|-------|-------|
 | Targeted regression | Explicit `dataFile` failure handling, next-step persistence, and doc-contract drift | `runtime-memory-inputs.vitest.ts`, `outsourced-agent-handback-docs.vitest.ts` |
 | Static verification | TypeScript correctness for the task scope | `npm run lint` (`tsc --noEmit`) |
-| Alignment verification | Drift between implementation and aligned standards | `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts` |
-| Spec validation | Completeness and checklist consistency inside this folder | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` |
+| Alignment verification | Drift between implementation and aligned standards | `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` |
+| Spec validation | Completeness and checklist consistency inside this folder | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` |
 | Manual follow-up | Fresh JSON-mode handback write plus thin-payload rejection | `generate-context.js` with representative rich and thin payloads |
 <!-- /ANCHOR:testing -->
 

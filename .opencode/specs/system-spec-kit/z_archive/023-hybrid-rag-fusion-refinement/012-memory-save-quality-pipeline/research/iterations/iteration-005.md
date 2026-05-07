@@ -38,9 +38,9 @@ When a keyDecision is a plain string (e.g., `"Use ESM modules for all new code"`
 3. `**Selected**: {{CHOSEN}}` (line 521) -- the chosenLabel, which defaults to `OPTIONS[0].DESCRIPTION`
 4. `**Rationale**: {{RATIONALE}}` (line 523) -- falls back to full `decisionText`
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:197-362]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:198-261]
-[SOURCE: .opencode/skill/system-spec-kit/templates/context_template.md:492-566]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:197-362]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:198-261]
+[SOURCE: .opencode/skills/system-spec-kit/templates/context_template.md:492-566]
 
 ### 2. Object-Form Decisions Also Suffer Partial Repetition
 
@@ -63,7 +63,7 @@ OPTIONS = [{
 
 So for objects without `alternatives`, CHOSEN still equals `title`.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:270-283]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:270-283]
 
 ### 3. The CONTEXT Field Is Intentionally Brief (Fix 1 Applied)
 
@@ -77,7 +77,7 @@ const contextText: string = rationaleFromInput
 
 This means CONTEXT is distinct from RATIONALE **only when** `rationaleFromInput` is non-empty. For string-form decisions, `rationaleFromInput` is always empty (it reads from `manualObj?.rationale` which is undefined for strings), so CONTEXT = title = first part of decisionText.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:329-332]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:329-332]
 
 ### 4. The Observation-Based Path Also Has Repetition
 
@@ -88,7 +88,7 @@ For decisions extracted from observations (lines 390-569), the repetition is dif
 
 So RATIONALE is always a prefix of CONTEXT in the observation path.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:449-455]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:449-455]
 
 ### 5. Dual-Registration of Decisions
 
@@ -103,8 +103,8 @@ The `decision-extractor.ts` then:
 
 This means decisions are NOT duplicated as separate entries -- the suppression at line 376 prevents that. But the same text still appears 4x **within each single decision block**.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:375-377]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:552-565]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:375-377]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:552-565]
 
 ## Ruled Out
 - Decision duplication as separate entries -- suppression logic at lines 375-377 works correctly
@@ -114,9 +114,9 @@ This means decisions are NOT duplicated as separate entries -- the suppression a
 None -- this is the core finding.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts` (full file, 624 lines)
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 198-261, 546-565)
-- `.opencode/skill/system-spec-kit/templates/context_template.md` (lines 488-572)
+- `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts` (full file, 624 lines)
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 198-261, 546-565)
+- `.opencode/skills/system-spec-kit/templates/context_template.md` (lines 488-572)
 
 ## Assessment
 - New information ratio: 1.0

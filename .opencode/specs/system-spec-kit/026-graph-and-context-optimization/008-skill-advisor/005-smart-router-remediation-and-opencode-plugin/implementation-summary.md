@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "Roll out OpenCode plugin and collect observe-only telemetry before considering enforcement"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh"
+      - ".opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh"
       - ".opencode/plugins/spec-kit-skill-advisor.js"
       - ".opencode/plugins/spec-kit-skill-advisor-bridge.mjs"
     completion_pct: 100
@@ -52,11 +52,11 @@ Phase 023 shipped all six work areas from the 021 smart-router research packet a
 
 Fixed five stale references found by the Area A scan:
 
-- `mcp-code-mode`: changed `DEFAULT_RESOURCE` from a nonexistent quick-reference resource to existing `.opencode/skill/mcp-code-mode/references/workflows.md`; rationale: dedicated quick-reference file is not present and workflows is the operational first-touch reference.
-- `sk-improve-agent`: removed a nonexistent second-target evaluation resource from `TARGET_ONBOARDING`; rationale: no renamed replacement exists in the skill package, while `.opencode/skill/sk-improve-agent/references/target_onboarding.md` covers the live onboarding path.
-- `sk-deep-research`: changed the auto workflow prose from skill-local `assets/spec_kit_deep-research_auto.yaml` to `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`; rationale: workflow YAML lives under command assets.
-- `sk-deep-review`: changed the auto workflow prose from skill-local `assets/spec_kit_deep-review_auto.yaml` to `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`; rationale: workflow YAML lives under command assets.
-- `sk-doc`: changed the feature catalog template reference to `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`; rationale: template was moved under the documentation asset family.
+- `mcp-code-mode`: changed `DEFAULT_RESOURCE` from a nonexistent quick-reference resource to existing `.opencode/skills/mcp-code-mode/references/workflows.md`; rationale: dedicated quick-reference file is not present and workflows is the operational first-touch reference.
+- `sk-improve-agent`: removed a nonexistent second-target evaluation resource from `TARGET_ONBOARDING`; rationale: no renamed replacement exists in the skill package, while `.opencode/skills/sk-improve-agent/references/target_onboarding.md` covers the live onboarding path.
+- `sk-deep-research`: changed the auto workflow prose from skill-local `assets/spec_kit_deep-research_auto.yaml` to `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; rationale: workflow YAML lives under command assets.
+- `sk-deep-review`: changed the auto workflow prose from skill-local `assets/spec_kit_deep-review_auto.yaml` to `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`; rationale: workflow YAML lives under command assets.
+- `sk-doc`: changed the feature catalog template reference to `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`; rationale: template was moved under the documentation asset family.
 
 ### Area B: ON_DEMAND Keyword Tuning
 
@@ -94,18 +94,18 @@ Non-zero-score behavior is unchanged: intent scoring, ambiguity selection, condi
 
 ### Area D: Static CI Check
 
-Created `.opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh` as a Bash entry point with an embedded Python parser. The checker scans every top-level `.opencode/skill/*/SKILL.md`, extracts `references/*.md` and `assets/*.md` paths from canonical and variant router pseudocode, validates the files, computes ALWAYS-tier bytes versus the loadable markdown tree, emits text or `--json`, exits 1 only for missing paths, and treats bloat as an informational warning.
+Created `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh` as a Bash entry point with an embedded Python parser. The checker scans every top-level `.opencode/skills/*/SKILL.md`, extracts `references/*.md` and `assets/*.md` paths from canonical and variant router pseudocode, validates the files, computes ALWAYS-tier bytes versus the loadable markdown tree, emits text or `--json`, exits 1 only for missing paths, and treats bloat as an informational warning.
 
 Current result: exit 0. Path validation passes on all 20 smart-routing skills. Five informational bloat warnings remain: `mcp-chrome-devtools` 52.32%, `mcp-clickup` 50.34%, `mcp-coco-index` 52.33%, `mcp-figma` 61.12%, and `sk-code-review` 68.63%. These warnings are informational per Area D and not failing conditions.
 
 ### Area E: Observe-Only Telemetry
 
-Created `.opencode/skill/system-spec-kit/scripts/observability/smart-router-telemetry.ts` with:
+Created `.opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts` with:
 
 - `ComplianceRecord` and `ComplianceClass` exports
 - pure `classifyCompliance(allowedResources, actualReads)`
 - `recordSmartRouterCompliance(...)` JSONL append behavior
-- default output path `.opencode/skill/.smart-router-telemetry/compliance.jsonl`
+- default output path `.opencode/skills/.smart-router-telemetry/compliance.jsonl`
 - `SPECKIT_SMART_ROUTER_TELEMETRY_PATH` override for tests and local diagnostics
 
 Telemetry remains observe-only. It classifies records, appends JSONL, and never blocks caller behavior. The generated telemetry directory is ignored by git.
@@ -140,21 +140,21 @@ Bridge behavior:
 | `tasks.md` | Created | Track Areas A-F progressively |
 | `checklist.md` | Created | Track Level 2 verification evidence |
 | `implementation-summary.md` | Created | Capture decisions, metrics, and final handoff |
-| `.opencode/skill/mcp-code-mode/SKILL.md` | Modified | Fix stale default smart-router resource path |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Modified | Remove stale onboarding reference |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Modified | Point auto workflow prose at live command YAML |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Modified | Point auto workflow prose at live command YAML |
-| `.opencode/skill/sk-doc/SKILL.md` | Modified | Correct feature catalog template path |
-| `.opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh` | Created | Add static CI check for router resource paths and ALWAYS-tier bloat |
-| `.opencode/skill/*/SKILL.md` | Modified | Tune ON_DEMAND keyword phrases across all 20 smart-routing skills |
-| `.opencode/skill/cli-{claude-code,codex,copilot,gemini}/SKILL.md` | Modified | Replace zero-score silent CLI fallback with UNKNOWN disambiguation |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-telemetry.ts` | Created | Observe-only router compliance recorder |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts` | Created | Test all compliance classes, JSONL roundtrip, idempotent directory creation, and path sanitization |
-| `.gitignore` | Modified | Ignore `.opencode/skill/.smart-router-telemetry/` |
-| `.opencode/skill/system-spec-kit/scripts/tsconfig.json` | Modified | Include `observability/**/*.ts` in script typechecking |
+| `.opencode/skills/mcp-code-mode/SKILL.md` | Modified | Fix stale default smart-router resource path |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Modified | Remove stale onboarding reference |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Modified | Point auto workflow prose at live command YAML |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Modified | Point auto workflow prose at live command YAML |
+| `.opencode/skills/sk-doc/SKILL.md` | Modified | Correct feature catalog template path |
+| `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh` | Created | Add static CI check for router resource paths and ALWAYS-tier bloat |
+| `.opencode/skills/*/SKILL.md` | Modified | Tune ON_DEMAND keyword phrases across all 20 smart-routing skills |
+| `.opencode/skills/cli-{claude-code,codex,copilot,gemini}/SKILL.md` | Modified | Replace zero-score silent CLI fallback with UNKNOWN disambiguation |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts` | Created | Observe-only router compliance recorder |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts` | Created | Test all compliance classes, JSONL roundtrip, idempotent directory creation, and path sanitization |
+| `.gitignore` | Modified | Ignore `.opencode/skills/.smart-router-telemetry/` |
+| `.opencode/skills/system-spec-kit/scripts/tsconfig.json` | Modified | Include `observability/**/*.ts` in script typechecking |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Created | OpenCode plugin for skill-advisor prompt injection |
 | `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` | Created | Node bridge that imports Phase 020 advisor producer/renderer |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Created | Cache, status, opt-out, and timeout tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Created | Cache, status, opt-out, and timeout tests |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -188,13 +188,13 @@ Delivery followed the requested Area order with Area D moved immediately after A
 |-------|--------|
 | Initial required reads | PASS: all user-required driver files were read before coding |
 | `validate.sh --strict` after initial plan scaffold | PASS after packet doc scaffold and `spec.md` remediation |
-| `.opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh` | PASS: exit 0, no missing paths, 5 informational bloat warnings |
-| `.opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh --json` | PASS: exit 0, JSON emitted with empty `errors` array |
+| `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh` | PASS: exit 0, no missing paths, 5 informational bloat warnings |
+| `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh --json` | PASS: exit 0, JSON emitted with empty `errors` array |
 | ON_DEMAND hit-rate measurement | PASS: 5.5% before, 48.0% after on 200-prompt corpus |
 | CLI fallback scan | PASS: four zero-score branches return `UNKNOWN`; no silent `GENERATION` fallback remains |
 | Phase 020 advisor/hook regression suite | PASS: 19 files / 118 tests via targeted Phase 020 Vitest run |
 | Telemetry + plugin tests | PASS: 2 files / 16 tests via `node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/smart-router-telemetry.vitest.ts mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts --config mcp_server/vitest.config.ts` |
-| TypeScript | PASS: `cd .opencode/skill/system-spec-kit && npm run typecheck` exited 0 |
+| TypeScript | PASS: `cd .opencode/skills/system-spec-kit && npm run typecheck` exited 0 |
 | Final 023 strict validation | PASS: `validate.sh .../006-smart-router-remediation-and-opencode-plugin --strict` exited 0 with errors=0 |
 <!-- /ANCHOR:verification -->
 
@@ -204,6 +204,6 @@ Delivery followed the requested Area order with Area D moved immediately after A
 ## Known Limitations
 
 1. **Bloat warnings remain observe-only.** The static checker reports five ALWAYS-tier bloat warnings but exits 0 because Area D defines bloat as informational.
-2. **Telemetry is not enforcement.** Runtime enforcement should wait until real compliance data has been collected from `.opencode/skill/.smart-router-telemetry/compliance.jsonl`.
+2. **Telemetry is not enforcement.** Runtime enforcement should wait until real compliance data has been collected from `.opencode/skills/.smart-router-telemetry/compliance.jsonl`.
 3. **Plugin rollout remains a deployment step.** The plugin files are present and tested, but enabling them for users should be handled by the orchestrator or plugin marketplace/config workflow.
 <!-- /ANCHOR:limitations -->

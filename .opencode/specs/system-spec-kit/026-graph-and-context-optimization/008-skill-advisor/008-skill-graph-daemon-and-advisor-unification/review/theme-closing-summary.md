@@ -12,17 +12,17 @@
 
 ## Final Verification
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && npm run typecheck`
+- `cd .opencode/skills/system-spec-kit/mcp_server && npm run typecheck`
   - Exit 0
   - `tsc --noEmit --composite false -p tsconfig.json`
-- `cd .opencode/skill/system-spec-kit/mcp_server && npm run build`
+- `cd .opencode/skills/system-spec-kit/mcp_server && npm run build`
   - Exit 0
   - `tsc --build`
-- `cd .opencode/skill/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run skill-advisor/tests/ code-graph/tests/ --reporter=default`
+- `cd .opencode/skills/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run skill-advisor/tests/ code-graph/tests/ --reporter=default`
   - Exit 0
   - Test Files: 32 passed (32)
   - Tests: 245 passed (245)
-- `python3 .opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor_regression.py --dataset .opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl`
+- `python3 .opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor_regression.py --dataset .opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl`
   - Exit 0
   - Runners exercised: inprocess, subprocess
   - Total cases: 104
@@ -43,4 +43,4 @@
 
 - No `git add`, `git commit`, or `git reset` was run.
 - The Python regression suite now defaults to both in-process and subprocess execution, so the expected regression count is 104 cases instead of the previous 52.
-- `MERGE-P1-008` was resolved in the active `skill-advisor/scripts/routing-accuracy` runner; the legacy `.opencode/skill/system-spec-kit/scripts/routing-accuracy/` path was absent.
+- `MERGE-P1-008` was resolved in the active `skill-advisor/scripts/routing-accuracy` runner; the legacy `.opencode/skills/system-spec-kit/scripts/routing-accuracy/` path was absent.

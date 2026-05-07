@@ -63,7 +63,7 @@ Improvement focus: **Prompt engineering; framework selection; CLEAR validation**
 ## 3. SCOPE
 
 ### In Scope
-- Canonical agent body: `.opencode/agent/improve-prompt.md`
+- Canonical agent body: `.opencode/agents/improve-prompt.md`
 - Runtime mirrors: `.claude/agents/improve-prompt.md`, `.gemini/agents/improve-prompt.md`, `.codex/agents/improve-prompt.toml`
 - Frontmatter / behavioral rules / output verification / anti-patterns refinements
 - Score-weighting dimensions: framework-selection accuracy, DEPTH thinking discipline
@@ -78,7 +78,7 @@ Improvement focus: **Prompt engineering; framework selection; CLEAR validation**
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| `.opencode/agent/improve-prompt.md` | Update | Promoted candidate body |
+| `.opencode/agents/improve-prompt.md` | Update | Promoted candidate body |
 | `.claude/agents/improve-prompt.md` | Update | Mirror sync |
 | `.gemini/agents/improve-prompt.md` | Update | Mirror sync |
 | `.codex/agents/improve-prompt.toml` | Update | Mirror sync (TOML) |

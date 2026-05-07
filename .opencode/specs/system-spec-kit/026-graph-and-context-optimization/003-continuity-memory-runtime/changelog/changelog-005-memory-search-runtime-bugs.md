@@ -31,7 +31,7 @@ The audit produced 17 defect requirements (4 P0, 7 P1, 6 P2). Three P0 clusters 
 - preservedAfterStructural snapshot threaded through the structural truncation loop so fallbackToStructuredBudget preserves survivors before falling through to zero-fill.
 - Centroid-only confidence floor at 0.30 in classifyIntent that fires only when winning intent has zero keyword and zero regex-pattern evidence.
 - classificationKind annotation on dual-classifier output: meta.intent is task-intent (authoritative for rendering). Data.queryIntentRouting is backend-routing (authoritative for channel selection).
-- Forbidden Phrase Enforcement subsection in .opencode/command/memory/search.md with substitution table, mandatory pre-render gate, and verification grep.
+- Forbidden Phrase Enforcement subsection in .opencode/commands/memory/search.md with substitution table, mandatory pre-render gate, and verification grep.
 
 ### Changed
 
@@ -69,7 +69,7 @@ The audit produced 17 defect requirements (4 P0, 7 P1, 6 P2). Three P0 clusters 
 | `graph-metadata.json` (NEW) | Graph traversal metadata. |
 | `mcp_server/handlers/memory-context.ts` | enforceTokenBudget sanity guard and preservedAfterStructural snapshot. |
 | `mcp_server/lib/search/intent-classifier.ts` | Centroid-only 0.30 confidence floor. ClassificationKind annotation. |
-| `.opencode/command/memory/search.md` | Forbidden Phrase Enforcement subsection with substitution table. |
+| `.opencode/commands/memory/search.md` | Forbidden Phrase Enforcement subsection with substitution table. |
 
 Packet-level reference: `7a987e8827`.
 

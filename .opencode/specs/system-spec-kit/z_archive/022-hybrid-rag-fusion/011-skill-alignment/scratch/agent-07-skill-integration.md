@@ -29,21 +29,21 @@
 ## Quick Reference Gaps
 
 - Missing recursive validation command:
-  - `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<parent-spec> --recursive`
+  - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/<parent-spec> --recursive`
 
 - Missing phase creation commands:
-  - `bash .opencode/skill/system-spec-kit/scripts/spec/create.sh "Feature Name" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify"`
-  - `bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --phase --parent specs/<parent-spec> --phases 2 --phase-names "Hardening,Rollout" "Feature Name"`
+  - `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Feature Name" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify"`
+  - `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --phase --parent specs/<parent-spec> --phases 2 --phase-names "Hardening,Rollout" "Feature Name"`
 
 - Missing phase workflow commands:
   - `/spec_kit:phase`
-  - `bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh specs/<parent-spec>`
-  - `bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<spec>`
+  - `bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh specs/<parent-spec>`
+  - `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<spec>`
 
 - Missing feature-flag management/verification commands:
-  - `cd .opencode/skill/system-spec-kit/mcp_server && npm run test:hydra:phase1`
-  - `cd .opencode/skill/system-spec-kit/mcp_server && npm test -- --run tests/memory-roadmap-flags.vitest.ts`
-  - Runtime toggle example: `SPECKIT_ADAPTIVE_FUSION=0 node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js`
+  - `cd .opencode/skills/system-spec-kit/mcp_server && npm run test:hydra:phase1`
+  - `cd .opencode/skills/system-spec-kit/mcp_server && npm test -- --run tests/memory-roadmap-flags.vitest.ts`
+  - Runtime toggle example: `SPECKIT_ADAPTIVE_FUSION=0 node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js`
 
 ## Recommendations
 

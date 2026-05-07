@@ -27,9 +27,9 @@ Read these files and cite specific lines/anchors in your findings:
 3. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/runs/I1/cli-codex-1/score.md` AND `runs/I1/cli-opencode-1/score.md` (compare correct-Gate-3 behavior to Q-P0's broken behavior)
 4. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/spec.md` (planner-first contract definition for Q-P0)
 5. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/005-code-graph-fast-fail/spec.md` (fallbackDecision matrix for Q-P1)
-6. `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts` lines 30-100 (Q-P2 debounce mechanism)
+6. `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts` lines 30-100 (Q-P2 debounce mechanism)
 7. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/spec.md` (Q-OPP context)
-8. Optional: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` (search around line 1230 + grep for `path_class`, `dedupedAliases`, `rankingSignals` to confirm non-consumption — Q-OPP)
+8. Optional: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` (search around line 1230 + grep for `path_class`, `dedupedAliases`, `rankingSignals` to confirm non-consumption — Q-OPP)
 
 **Tool budget**: 12 tool calls max, 10 minutes wall-clock target. Use Read, Grep, Glob. No Bash needed for this iteration (no execution yet).
 

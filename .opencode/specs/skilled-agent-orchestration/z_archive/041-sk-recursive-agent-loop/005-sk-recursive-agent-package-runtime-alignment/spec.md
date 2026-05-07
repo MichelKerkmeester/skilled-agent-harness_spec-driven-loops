@@ -57,7 +57,7 @@ Create a package-and-runtime alignment phase that brings the agent-improver skil
 ## 3. SCOPE
 
 ### In Scope
-- `.opencode/skill/sk-improve-agent/` markdown package alignment against `sk-doc` templates
+- `.opencode/skills/sk-improve-agent/` markdown package alignment against `sk-doc` templates
 - renaming the canonical mutator agent to `agent-improver` across OpenCode, Claude, Gemini, `.agents`, and Codex runtimes
 - aligning the command entrypoint and command wrappers with the `sk-doc` command template shape
 - syncing `.agents/skills/sk-improve-agent/` to the corrected source package
@@ -69,15 +69,15 @@ Create a package-and-runtime alignment phase that brings the agent-improver skil
 - widening promotion eligibility or target scope
 
 ### Files to Change
-- `.opencode/skill/sk-improve-agent/`
-- `.opencode/agent/agent-improver.md`
+- `.opencode/skills/sk-improve-agent/`
+- `.opencode/agents/agent-improver.md`
 - `.claude/agents/agent-improver.md`
 - `.gemini/agents/agent-improver.md`
 - `.agents/agents/agent-improver.md`
 - `.codex/agents/agent-improver.toml`
-- `.opencode/command/spec_kit/agent-improver.md`
-- `.opencode/command/spec_kit/assets/improve_agent-improver_auto.yaml`
-- `.opencode/command/spec_kit/assets/improve_agent-improver_confirm.yaml`
+- `.opencode/commands/spec_kit/agent-improver.md`
+- `.opencode/commands/spec_kit/assets/improve_agent-improver_auto.yaml`
+- `.opencode/commands/spec_kit/assets/improve_agent-improver_confirm.yaml`
 - `.agents/commands/spec_kit/agent-improver.toml`
 - `.gemini/commands/spec_kit/agent-improver.toml`
 - `.agents/skills/sk-improve-agent/`
@@ -94,7 +94,7 @@ Create a package-and-runtime alignment phase that brings the agent-improver skil
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Source package matches `sk-doc` templates more closely | `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/skill/sk-improve-agent/README.md`, `references/*.md`, and markdown `assets/*.md` validate and use the expected template family structure |
+| REQ-001 | Source package matches `sk-doc` templates more closely | `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/skills/sk-improve-agent/README.md`, `references/*.md`, and markdown `assets/*.md` validate and use the expected template family structure |
 | REQ-002 | Mutator agent is renamed to `agent-improver` across runtimes | OpenCode, Claude, Gemini, `.agents`, and Codex runtime files use the new agent name and current template-aligned structure |
 | REQ-003 | Command surfaces are aligned | The canonical command doc and both wrapper TOMLs reflect the corrected command template structure |
 | REQ-004 | `.agents/skills/sk-improve-agent` is resynchronized | The mirrored `.agents` skill package matches the corrected source package, including scripts |
@@ -115,7 +115,7 @@ Create a package-and-runtime alignment phase that brings the agent-improver skil
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The agent-improver source package is template-faithful across `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/skill/sk-improve-agent/README.md`, `references/`, and markdown `assets/`.
+- **SC-001**: The agent-improver source package is template-faithful across `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/skills/sk-improve-agent/README.md`, `references/`, and markdown `assets/`.
 - **SC-002**: The mutator exists only as `agent-improver` across runtime surfaces, and dispatch files call the new name.
 - **SC-003**: The `.agents/skills/sk-improve-agent/` mirror matches the source package after the correction pass.
 - **SC-004**: Root packet `041` clearly shows five completed phases and pushes future work to `006-*`.

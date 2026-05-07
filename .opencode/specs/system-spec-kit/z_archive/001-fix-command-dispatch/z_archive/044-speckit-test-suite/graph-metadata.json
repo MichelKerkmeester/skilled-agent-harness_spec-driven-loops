@@ -55,7 +55,7 @@
       "scratch/test-agent-07-validation/TEST-REPORT.md",
       "scratch/test-agent-09-tiers/TEST-REPORT.md",
       "scratch/test-agent-10-e2e/TEST-REPORT.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/comprehensive-analysis.md",
       ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/RESTART-REQUIRED.md",
       "spec.md",
@@ -120,7 +120,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

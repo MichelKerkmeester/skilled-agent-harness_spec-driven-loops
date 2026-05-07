@@ -11,7 +11,7 @@
 - L162 mentions `assets/agent_template.md` and `assets/command_template.md` at root, plus `assets/skill/` for skill templates. ✓
 - L163 mentions `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root. ✓
 - L434 enumerates `agent_template.md`, `command_template.md`, `feature_catalog/`, `testing_playbook/` under `assets/` root. ✓
-- `rg -n "assets/agents" .opencode/skill/sk-doc/SKILL.md` → **0 hits** in active scope. ✓
+- `rg -n "assets/agents" .opencode/skills/sk-doc/SKILL.md` → **0 hits** in active scope. ✓
 
 ### 2. references/global/quick_reference.md tree diagram (lines 174-188) — STALE
 The "Project Structure" tree drawing in `quick_reference.md` (the **ALWAYS-loaded** smart-router baseline reference, per SKILL.md L168-170) still depicts the pre-reorg layout:
@@ -32,7 +32,7 @@ The "Project Structure" tree drawing in `quick_reference.md` (the **ALWAYS-loade
 188. │   │   └── agent_template.md (agent definition template)             ← STALE: now at assets/agent_template.md
 ```
 
-Filesystem ground truth (`ls .opencode/skill/sk-doc/assets/`):
+Filesystem ground truth (`ls .opencode/skills/sk-doc/assets/`):
 ```
 agent_template.md  command_template.md  documentation/  feature_catalog/
 flowcharts/  skill/  template_rules.json  testing_playbook/
@@ -46,7 +46,7 @@ This is the same class of miss as Iter 3 P1 (Phase 2's substring sweep didn't ca
 **Severity: P1** — authoritative ALWAYS-loaded resource directs users / future authors to non-existent paths in the canonical project-structure diagram.
 
 ### 3. Other references/* mentions sweep
-`rg -n "assets/agents|assets/documentation/feature_catalog|assets/documentation/testing_playbook" .opencode/skill/sk-doc/`:
+`rg -n "assets/agents|assets/documentation/feature_catalog|assets/documentation/testing_playbook" .opencode/skills/sk-doc/`:
 
 - `references/specific/skill_creation.md:56` — illustrative example "Example: `assets/skill/`, `assets/agents/`, `assets/documentation/`, `assets/flowcharts/`" — used as a generic asset-folder example for new skills. Not a sk-doc filesystem claim, but the example references a folder shape sk-doc itself no longer uses. **Severity: P2** (illustrative-but-stale).
 - `assets/skill/skill_md_template.md:593` — same `assets/agents/` mention inside the new-skill SKILL.md template's example list. **Severity: P2** (illustrative-but-stale; affects skills generated from this template).
@@ -54,7 +54,7 @@ This is the same class of miss as Iter 3 P1 (Phase 2's substring sweep didn't ca
 - All changelog `v1.1.3.0.md` / `v1.4.0.0.md` mentions are out-of-scope per strategy (changelog history locked).
 
 ### 4. Relative-path / forgotten-prefix sweep (Iter-3 generalization)
-`rg --no-config --no-ignore-vcs --glob "!**/specs/**" --glob "!**/z_archive/**" --glob "!**/dist/**" --glob "!**/.tmp/**" --glob "!**/barter/**" --glob "!**/changelog/v[0-9]*.md" "(\.\./)?agents/(agent|command)_template|(\.\./)?documentation/(feature_catalog|testing_playbook)" .opencode/skill/sk-doc/ .opencode/agent/ .opencode/command/ .opencode/install_guides/`
+`rg --no-config --no-ignore-vcs --glob "!**/specs/**" --glob "!**/z_archive/**" --glob "!**/dist/**" --glob "!**/.tmp/**" --glob "!**/barter/**" --glob "!**/changelog/v[0-9]*.md" "(\.\./)?agents/(agent|command)_template|(\.\./)?documentation/(feature_catalog|testing_playbook)" .opencode/skills/sk-doc/ .opencode/agents/ .opencode/commands/ .opencode/install_guides/`
 → **0 hits.** ✓ No surviving relative-path leftovers (the Iter-3 frontmatter_templates.md L770 fix held).
 
 ### 5. Functional regression — does sk-doc resolve templates at the new paths?
@@ -64,9 +64,9 @@ This is the same class of miss as Iter 3 P1 (Phase 2's substring sweep didn't ca
 **`assets/template_rules.json`:** Contains validation rule schemas (`documentTypes`, `requiredSections`, etc.) — no filesystem path references to moved templates. ✓
 
 **`/create:*` command YAML configs** — `template_sources` keys all point at NEW paths:
-- `create_agent_{auto,confirm}.yaml` → `agent_templates.primary: .opencode/skill/sk-doc/assets/agent_template.md` ✓
-- `create_feature_catalog_{auto,confirm}.yaml` → `template_sources.root_catalog: .opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_template.md` ✓ (verified file present)
-- `create_testing_playbook_{auto,confirm}.yaml` → `template_sources.root_playbook: .opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` ✓ (verified file present)
+- `create_agent_{auto,confirm}.yaml` → `agent_templates.primary: .opencode/skills/sk-doc/assets/agent_template.md` ✓
+- `create_feature_catalog_{auto,confirm}.yaml` → `template_sources.root_catalog: .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md` ✓ (verified file present)
+- `create_testing_playbook_{auto,confirm}.yaml` → `template_sources.root_playbook: .opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` ✓ (verified file present)
 
 All template paths resolve on disk:
 - `assets/agent_template.md` — present ✓
@@ -89,9 +89,9 @@ Structural integrity intact. ✓
 
 | ID | Severity | Title | Location | Evidence | Recommendation |
 |----|----------|-------|----------|----------|----------------|
-| iter4-F1 | **P1** | quick_reference.md project-structure tree depicts pre-reorg layout (`assets/agents/`, `assets/documentation/feature_catalog/`, `assets/documentation/testing_playbook/`) | `.opencode/skill/sk-doc/references/global/quick_reference.md:174-188` | `ls assets/` shows `agent_template.md` and `command_template.md` at root and `feature_catalog/`, `testing_playbook/` at root; `assets/agents/` does not exist | Update the tree drawing to mirror current filesystem (move `feature_catalog/` and `testing_playbook/` out of `documentation/`; replace `agents/` subtree with two root entries `agent_template.md` and `command_template.md`). |
-| iter4-F2 | P2 | Illustrative `assets/agents/` reference in skill creation guide | `.opencode/skill/sk-doc/references/specific/skill_creation.md:56` | Line reads "Example: `assets/skill/`, `assets/agents/`, `assets/documentation/`, `assets/flowcharts/`" | Replace `assets/agents/` with a non-stale example (e.g., drop or substitute with another asset folder name); affects guidance only. |
-| iter4-F3 | P2 | Generated SKILL.md template still suggests `assets/agents/` example | `.opencode/skill/sk-doc/assets/skill/skill_md_template.md:593` | Same illustrative example list as F2 | Same fix as F2; minor effect on new skills generated from this template. |
+| iter4-F1 | **P1** | quick_reference.md project-structure tree depicts pre-reorg layout (`assets/agents/`, `assets/documentation/feature_catalog/`, `assets/documentation/testing_playbook/`) | `.opencode/skills/sk-doc/references/global/quick_reference.md:174-188` | `ls assets/` shows `agent_template.md` and `command_template.md` at root and `feature_catalog/`, `testing_playbook/` at root; `assets/agents/` does not exist | Update the tree drawing to mirror current filesystem (move `feature_catalog/` and `testing_playbook/` out of `documentation/`; replace `agents/` subtree with two root entries `agent_template.md` and `command_template.md`). |
+| iter4-F2 | P2 | Illustrative `assets/agents/` reference in skill creation guide | `.opencode/skills/sk-doc/references/specific/skill_creation.md:56` | Line reads "Example: `assets/skill/`, `assets/agents/`, `assets/documentation/`, `assets/flowcharts/`" | Replace `assets/agents/` with a non-stale example (e.g., drop or substitute with another asset folder name); affects guidance only. |
+| iter4-F3 | P2 | Generated SKILL.md template still suggests `assets/agents/` example | `.opencode/skills/sk-doc/assets/skill/skill_md_template.md:593` | Same illustrative example list as F2 | Same fix as F2; minor effect on new skills generated from this template. |
 
 ## Verdict
 

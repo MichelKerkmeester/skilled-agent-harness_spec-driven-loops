@@ -37,12 +37,12 @@ Review Iteration: 3 of 5
 Mode: review
 Dimension: template-rendering-correctness
 Review Target: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep
-Review Scope Files: .opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json, .opencode/skill/system-spec-kit/templates/manifest/spec.md.tmpl, .opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl, .opencode/skill/system-spec-kit/templates/manifest/tasks.md.tmpl, .opencode/skill/system-spec-kit/templates/manifest/checklist.md.tmpl, .opencode/skill/system-spec-kit/templates/manifest/decision-record.md.tmpl, .opencode/skill/system-spec-kit/templates/manifest/implementation-summary.md.tmpl, .opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts, .opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.sh, .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts, .opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts, .opencode/skill/system-spec-kit/scripts/spec/create.sh, .opencode/skill/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts, .opencode/skill/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts, .opencode/skill/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/spec.md, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/plan.md
+Review Scope Files: .opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json, .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl, .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl, .opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl, .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl, .opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl, .opencode/skills/system-spec-kit/templates/manifest/implementation-summary.md.tmpl, .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts, .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh, .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts, .opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts, .opencode/skills/system-spec-kit/scripts/spec/create.sh, .opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts, .opencode/skills/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts, .opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/spec.md, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/plan.md
 Prior Findings: P1-001 target scaffold placeholders; P1-002 graph metadata disconnected; P1-003 marker comments counted by semantic validators.
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/references/review_core.md` before final severity calls.
+Load `.opencode/skills/sk-code-review/references/review_core.md` before final severity calls.
 
 ## Iteration Task
 
@@ -54,7 +54,7 @@ Required checks:
 - Inspect `create.sh` ordering around rendering/finalization to determine whether markers are appended after template rendering and whether they interfere with `SPECKIT_TEMPLATE_SOURCE`, anchors, or frontmatter.
 - Inspect scaffold/inline-gate/level-contract tests for coverage of marker comments in generated output.
 - Distinguish template-rendering defects from the existing validator-consumer defect F003. Do not duplicate F003 unless rendering evidence changes the scope.
-- Use `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` if refreshing reducer-owned artifacts. Do not use `.claude/skills/...` script mirrors.
+- Use `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` if refreshing reducer-owned artifacts. Do not use `.claude/skills/...` script mirrors.
 
 ## Writable State Files
 

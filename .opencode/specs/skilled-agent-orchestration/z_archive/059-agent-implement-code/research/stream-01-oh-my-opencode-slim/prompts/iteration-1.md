@@ -14,7 +14,7 @@ answered_count: 0
 total_questions: 5
 last_3_summaries: (none — first iteration)
 
-Research Topic: Identify reusable patterns from oh-my-opencode-slim multi-agent orchestration plugin that inform the design of a new @code LEAF agent for our .opencode/agent/ inventory. Focus on (1) skill auto-loading patterns, (2) stack-agnostic detection, (3) caller-restriction enforcement (HIGHEST PRIORITY), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts.
+Research Topic: Identify reusable patterns from oh-my-opencode-slim multi-agent orchestration plugin that inform the design of a new @code LEAF agent for our .opencode/agents/ inventory. Focus on (1) skill auto-loading patterns, (2) stack-agnostic detection, (3) caller-restriction enforcement (HIGHEST PRIORITY), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts.
 
 Iteration: 1 of 8
 Focus Area: **Q3 — Caller-restriction enforcement**. This is the highest-priority unknown. Surface ANY harness-level mechanism (env vars, context markers, hooks, dispatch protocol fields, frontmatter rules) that enforces "callable only by orchestrator". Find the concrete mechanism, not just policy text.

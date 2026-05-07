@@ -13,13 +13,13 @@ I compared Spec Kit's Gate 2 contract and `skill_advisor.py` routing complexity 
 
 ## Evidence
 - AGENTS currently makes Gate 2 mandatory for non-trivial tasks: run `skill_advisor.py`, apply the confidence threshold, and treat confidence >= 0.8 as a must-invoke route. [SOURCE: AGENTS.md:174-179]
-- `skill_advisor.py` is a substantial routing system with stop words, synonym expansion, intent boosters, and threshold logic for choosing skills. [SOURCE: .opencode/skill/scripts/skill_advisor.py:67-90] [SOURCE: .opencode/skill/scripts/skill_advisor.py:104-115] [SOURCE: .opencode/skill/scripts/skill_advisor.py:211-260]
+- `skill_advisor.py` is a substantial routing system with stop words, synonym expansion, intent boosters, and threshold logic for choosing skills. [SOURCE: .opencode/skills/scripts/skill_advisor.py:67-90] [SOURCE: .opencode/skills/scripts/skill_advisor.py:104-115] [SOURCE: .opencode/skills/scripts/skill_advisor.py:211-260]
 - Babysitter's repo guidance is simpler: user requests should use the `babysit` skill. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:3-4]
 - The OpenCode `/babysitter:call` and `/babysitter:resume` commands directly invoke the babysit skill instead of invoking a routing advisor first. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/plugins/babysitter-opencode/commands/call.md:2-7] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/plugins/babysitter-opencode/commands/resume.md:2-8]
 - Babysitter's slash-command UX makes the user's intent explicit through mode names such as `call`, `yolo`, `forever`, and `plan`, so routing is mostly decided before execution begins. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:11-31] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:41-62] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:66-88] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:127-150]
 
 ## Analysis
-Gate 2 makes sense as a safety mechanism when the system has too many possible routes and the user's request is ambiguous. But once the user is already entering through a specific command surface or a clearly named workflow, mandatory advisor execution becomes ceremony rather than clarification. [SOURCE: AGENTS.md:174-179] [SOURCE: .opencode/skill/scripts/skill_advisor.py:211-260]
+Gate 2 makes sense as a safety mechanism when the system has too many possible routes and the user's request is ambiguous. But once the user is already entering through a specific command surface or a clearly named workflow, mandatory advisor execution becomes ceremony rather than clarification. [SOURCE: AGENTS.md:174-179] [SOURCE: .opencode/skills/scripts/skill_advisor.py:211-260]
 
 Babysitter shows the simpler pattern: when the surface already expresses the mode, route directly. Use discovery only when you truly need it. That lowers latency, reduces explanation overhead, and avoids making the operator watch the framework rediscover something they already told it. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/plugins/babysitter-opencode/commands/call.md:2-7] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:11-20]
 
@@ -51,7 +51,7 @@ finding: `system-spec-kit` should keep `skill_advisor.py`, but demote it from a 
 - **Migration path:** change AGENTS/Gate 2 first, then reframe `skill_advisor.py` as advisory infrastructure rather than a mandatory ceremony.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `AGENTS.md`, `.opencode/skill/scripts/skill_advisor.py`, command wrappers that currently restate Gate 2
+- **Target file or module:** `AGENTS.md`, `.opencode/skills/scripts/skill_advisor.py`, command wrappers that currently restate Gate 2
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define which command surfaces count as explicit routing

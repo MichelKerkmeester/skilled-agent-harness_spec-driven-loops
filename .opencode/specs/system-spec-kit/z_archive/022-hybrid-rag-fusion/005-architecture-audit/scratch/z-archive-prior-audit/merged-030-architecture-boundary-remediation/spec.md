@@ -77,15 +77,15 @@ Close the API boundary coverage gaps by migrating unnecessary direct imports to 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts` | Modify | Replace `@spec-kit/mcp-server/lib/search/vector-index` with `api/search` import |
-| `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts` | Modify | Replace `@spec-kit/mcp-server/core/config` with `shared/config` import |
-| `.opencode/skill/system-spec-kit/scripts/memory/reindex-embeddings.ts` | Modify | Replace imports already available via `api/` |
-| `.opencode/skill/system-spec-kit/mcp_server/api/search.ts` | Modify | Expose checkpoints and access-tracker if needed |
-| `.opencode/skill/system-spec-kit/shared/config.ts` | Modify | Add `DB_UPDATED_FILE` constant |
-| `.opencode/skill/system-spec-kit/mcp_server/core/config.ts` | Modify | Re-export from `shared/config` for backward compat |
-| `.opencode/skill/system-spec-kit/scripts/evals/import-policy-allowlist.json` | Modify | Remove resolved exceptions |
-| `.opencode/skill/system-spec-kit/ARCHITECTURE_BOUNDARIES.md` | Modify | Update current exceptions table |
-| `.opencode/skill/system-spec-kit/scripts/package.json` | Modify | Ensure CI pipeline executes `npm run check` (pre-commit optional) |
+| `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts` | Modify | Replace `@spec-kit/mcp-server/lib/search/vector-index` with `api/search` import |
+| `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts` | Modify | Replace `@spec-kit/mcp-server/core/config` with `shared/config` import |
+| `.opencode/skills/system-spec-kit/scripts/memory/reindex-embeddings.ts` | Modify | Replace imports already available via `api/` |
+| `.opencode/skills/system-spec-kit/mcp_server/api/search.ts` | Modify | Expose checkpoints and access-tracker if needed |
+| `.opencode/skills/system-spec-kit/shared/config.ts` | Modify | Add `DB_UPDATED_FILE` constant |
+| `.opencode/skills/system-spec-kit/mcp_server/core/config.ts` | Modify | Re-export from `shared/config` for backward compat |
+| `.opencode/skills/system-spec-kit/scripts/evals/import-policy-allowlist.json` | Modify | Remove resolved exceptions |
+| `.opencode/skills/system-spec-kit/ARCHITECTURE_BOUNDARIES.md` | Modify | Update current exceptions table |
+| `.opencode/skills/system-spec-kit/scripts/package.json` | Modify | Ensure CI pipeline executes `npm run check` (pre-commit optional) |
 <!-- /ANCHOR:scope -->
 
 ---

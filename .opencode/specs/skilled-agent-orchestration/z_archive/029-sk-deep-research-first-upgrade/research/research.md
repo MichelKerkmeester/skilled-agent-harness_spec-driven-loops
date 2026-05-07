@@ -523,13 +523,13 @@ Total research time: ~25 minutes wall clock (including retries for Gate 3 blocks
 - [pjhoberman/autoresearch](https://github.com/pjhoberman/autoresearch) — SKILL.md, templates/*, references/lessons.md, autoresearch-discover/SKILL.md, README.md
 
 ### Internal Sources (our skill)
-- `.opencode/skill/sk-deep-research/SKILL.md`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-research/references/convergence.md`
-- `.opencode/skill/sk-deep-research/references/state_format.md`
-- `.opencode/skill/sk-deep-research/references/quick_reference.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-- `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-research/references/convergence.md`
+- `.opencode/skills/sk-deep-research/references/state_format.md`
+- `.opencode/skills/sk-deep-research/references/quick_reference.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+- `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
 
 ---
 

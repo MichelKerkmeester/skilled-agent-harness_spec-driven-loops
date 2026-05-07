@@ -37,7 +37,7 @@ Supplemental automation reality research extending 012's 7-iteration baseline (5
 
 ## 012's 4 P1 Aspirational Findings (to challenge in iter 4)
 
-1. **Code-graph watcher overclaim** — `.opencode/skill/system-spec-kit/mcp_server/README.md:515-518` claims real-time watching; no watcher under `code_graph/`. Re-test: Is there a chokidar/fs.watch path 012 missed? Test fixture? Documented-but-disabled flag?
+1. **Code-graph watcher overclaim** — `.opencode/skills/system-spec-kit/mcp_server/README.md:515-518` claims real-time watching; no watcher under `code_graph/`. Re-test: Is there a chokidar/fs.watch path 012 missed? Test fixture? Documented-but-disabled flag?
 2. **Memory retention sweep missing** — `scope-governance.ts:225-333` persists `delete_after` metadata; no sweep path. Re-test: Is there a session-manager cron sweep? Cleanup interval? CLI tool that fires it?
 3. **Copilot hook docs conflict** — `references/config/hook_system.md:22` describes stale `.claude/settings.local.json` wrapper; `hooks/copilot/README.md:27-34` forbids that shape. Re-test: Which doc is authoritative? Is one runtime-resolved? Does the conflict actually mis-configure operators?
 4. **Codex hook readiness mismatch** — docs require `[features].codex_hooks=true` + `hooks.json`; repo uses `.codex/settings.json` without flag. Re-test: Is settings.json equivalent? Is the flag deprecated? Where does Codex actually load hooks from?

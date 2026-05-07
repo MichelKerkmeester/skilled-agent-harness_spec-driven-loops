@@ -37,7 +37,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/decision-record.md"
-      - ".opencode/command/improve/prompt.md"
+      - ".opencode/commands/improve/prompt.md"
     session_dedup:
       fingerprint: "sha256:043-cli-skill-improved-prompting"
       session_id: "043-cli-skill-improved-prompting"
@@ -72,7 +72,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-We need better prompt quality in the four CLI orchestration skills without loading the full prompt-engineering skill on every dispatch. The current routers only discover markdown under each skill's own `references/` and `assets/` trees, and `_guard_in_skill()` enforces that same-skill boundary. At the same time, the repo already treats `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/` as an active parity set for shared agent surfaces.
+We need better prompt quality in the four CLI orchestration skills without loading the full prompt-engineering skill on every dispatch. The current routers only discover markdown under each skill's own `references/` and `assets/` trees, and `_guard_in_skill()` enforces that same-skill boundary. At the same time, the repo already treats `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/` as an active parity set for shared agent surfaces.
 
 ### Constraints
 

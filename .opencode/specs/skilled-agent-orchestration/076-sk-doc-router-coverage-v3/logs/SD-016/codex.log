@@ -31,7 +31,7 @@ hook: UserPromptSubmit Completed
 codex
 I’ll use `sk-doc` only as a read-only routing trace: inspect its routing map, then report the intent, conditional loads, and output shape. No writes, no `/create:*`, no scaffolding.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-doc
@@ -71,7 +71,7 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 - Authoring a global component changelog at `.opencode/changelog/{NN--component}/v{VERSION}.md`
 - Composing GitHub release notes that mirror the changelog body
 - Choosing between compact (under 10 changes) and expanded (10+ changes or major) formats
-- Template: [changelog_template.md](./assets/documentation/changelog_template.md). Used by `/create:changelog` (auto + confirm). Nested packet-local changelogs use the spec-kit templates at `.opencode/skill/system-spec-kit/templates/changelog/` instead.
+- Template: [changelog_template.md](./assets/documentation/changelog_template.md). Used by `/create:changelog` (auto + confirm). Nested packet-local changelogs use the spec-kit templates at `.opencode/skills/system-spec-kit/templates/changelog/` instead.
 
 **Validation Workflow** - Apply after Write/Edit operations:
 - Auto-correct filename violations (ALL CAPS to lowercase, hyphens to underscores)
@@ -89,9 +89,9 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 Create and manage OpenCode components (skills, agents, commands). Each component type has templates and validation with quality standards.
 
 **Component Types:**
-- **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/specific/skill_creation.md)
-- **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_creation.md](./references/specific/agent_creation.md)
-- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
+- **Skills** (.opencode/skills/) - Knowledge bundles with workflows → [skill_creation.md](./references/specific/skill_creation.md)
+- **Agents** (.opencode/agents/) - AI personas with tool permissions → [agent_creation.md](./references/specific/agent_creation.md)
+- **Commands** (.opencode/commands/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
 
 For larger skills, split deep content into focused reference files and keep concise navigation in `SKILL.md` or `README.md`. When a skill has both cross-cutting standards and document-family guides, prefer `references/global/` for shared rules and `references/specific/` for creation-specific workflows.
 
@@ -295,7 +295,7 @@ def score_intents(task) -> dict[str, float]:
             if keyword in text:
 
 exec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
             if keyword in text:
                 scores[intent] += cfg["weight"]

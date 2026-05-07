@@ -1,6 +1,6 @@
 ---
 title: "Implementat [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-03-command-alignment/plan]"
-description: "9 command configuration files audit/creation for spec 130 umbrella. Systematic review of .opencode/command/spec_kit/*.md (9 files) to ensure alignment with post-implementation s..."
+description: "9 command configuration files audit/creation for spec 130 umbrella. Systematic review of .opencode/commands/spec_kit/*.md (9 files) to ensure alignment with post-implementation s..."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -30,7 +30,7 @@ contextType: "planning"
 | **Testing** | Manual verification, validation scripts |
 
 ### Overview
-9 command configuration files audit/creation for spec 130 umbrella. Systematic review of .opencode/command/spec_kit/*.md (9 files) to ensure alignment with post-implementation state of specs 014-016 and 122-129.
+9 command configuration files audit/creation for spec 130 umbrella. Systematic review of .opencode/commands/spec_kit/*.md (9 files) to ensure alignment with post-implementation state of specs 014-016 and 122-129.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -59,7 +59,7 @@ contextType: "planning"
 Systematic file-by-file audit/creation
 
 ### Key Components
-- **Target Files**: .opencode/command/spec_kit/*.md (9 files)
+- **Target Files**: .opencode/commands/spec_kit/*.md (9 files)
 - **Output**: changes.md with before/after text
 
 ### Data Flow
@@ -205,7 +205,7 @@ Phase 1 (Audit) ──► Phase 2 (Documentation) ──► Phase 3 (Verificatio
 ## L3+: AI EXECUTION FRAMEWORK
 
 ### Tier 1: Sequential Audit
-**Files**: .opencode/command/spec_kit/*.md (9 files)
+**Files**: .opencode/commands/spec_kit/*.md (9 files)
 **Duration**: 2-3 hours
 **Agent**: Primary
 
@@ -229,7 +229,7 @@ Phase 1 (Audit) ──► Phase 2 (Documentation) ──► Phase 3 (Verificatio
 
 | ID | Name | Owner | Files | Status |
 |----|------|-------|-------|--------|
-| W-AUDIT | Audit/Creation | Primary | .opencode/command/spec_kit/*.md (9 files) | Active |
+| W-AUDIT | Audit/Creation | Primary | .opencode/commands/spec_kit/*.md (9 files) | Active |
 | W-DOC | Documentation | Primary | changes.md | Blocked on W-AUDIT |
 | W-VERIFY | Verification | Primary | checklist.md | Blocked on W-DOC |
 

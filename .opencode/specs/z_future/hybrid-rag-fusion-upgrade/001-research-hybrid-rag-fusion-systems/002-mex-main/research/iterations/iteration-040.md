@@ -83,7 +83,7 @@ I found this phase packet is much leaner than a full spec folder: it mostly has 
 
 ✗ Validate mex research phase folder (shell)
   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash
-  │ .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-hyb
+  │ .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-hyb
   │ rid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main --strict
   └ Permission denied and could not request permission from user
 
@@ -180,28 +180,28 @@ I have enough context now: the late iterations already converged on the architec
   └ Create ~/.copilot/session-state/f8007949-4ee7-414f-953e-4d7c55175f74/plan.md
 
 ● Search (glob)
-  │ "**/{implementation-summary.md,checklist.md}" in .opencode/skill/system-spec-kit/templates
+  │ "**/{implementation-summary.md,checklist.md}" in .opencode/skills/system-spec-kit/templates
   └ 15 files found
 
 ● Search (grep)
   │ "Spec Folder|Implementation Summary|Checklist" in **/*.md
-  │ (.opencode/skill/system-spec-kit/templates)
+  │ (.opencode/skills/system-spec-kit/templates)
   └ 71 lines found
 
 ● Read checklist.md
-  │ .opencode/skill/system-spec-kit/templates/level_2/checklist.md
+  │ .opencode/skills/system-spec-kit/templates/level_2/checklist.md
   └ 111 lines read
 
 ● Read implementation-summary.md
-  │ .opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md
+  │ .opencode/skills/system-spec-kit/templates/level_2/implementation-summary.md
   └ 118 lines read
 
 ● Read checklist.md
-  │ .opencode/skill/system-spec-kit/templates/examples/level_2/checklist.md
+  │ .opencode/skills/system-spec-kit/templates/examples/level_2/checklist.md
   └ 145 lines read
 
 ● Read implementation-summary.md
-  │ .opencode/skill/system-spec-kit/templates/examples/level_2/implementation-summary.md
+  │ .opencode/skills/system-spec-kit/templates/examples/level_2/implementation-summary.md
   └ 145 lines read
 
 I’ve got the synthesis packets. I’m pulling the core primary-source snippets one more time so the final report can cite the actual Mex and Spec Kit contracts, not just the prior iteration summaries.
@@ -247,27 +247,27 @@ I’ve got the synthesis packets. I’m pulling the core primary-source snippets
   └ L1:180 (158 lines read)
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L236:270 (35 lines read)
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L638:706 (69 lines read)
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L739:776 (38 lines read)
 
 ● Read session-bootstrap.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
   └ L94:209 (116 lines read)
 
 ● Read memory-crud-health.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts
   └ L419:490 (72 lines read)
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L1187:1394 (208 lines read)
 
 ● Read research.md
@@ -299,7 +299,7 @@ The write agent hit the repo’s doc-ownership rule for spec folders, so I’m h
 ● Speckit Creating spec closeout
   │ Run strict phase validation (shell)
   │   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash
-  │   │ .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+  │   │ .opencode/skills/system-spec-kit/scripts/spec/validate.sh
   │   │ "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-sp
   │   ec-k
   │   │ it/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
@@ -307,7 +307,7 @@ The write agent hit the repo’s doc-ownership rule for spec folders, so I’m h
   │   └ Permission denied and could not request permission from user
   └ Try generate-context memory save (shell)
       │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node
-      │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+      │ .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
       │ "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-sp
       ec-k
       │ it/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"

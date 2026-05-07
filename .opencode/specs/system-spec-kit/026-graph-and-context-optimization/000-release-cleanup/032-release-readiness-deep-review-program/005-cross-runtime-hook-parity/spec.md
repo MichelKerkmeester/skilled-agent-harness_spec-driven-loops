@@ -76,7 +76,7 @@ Produce a severity-classified `review-report.md` for cross-runtime hook and plug
 
 ### In Scope
 
-- Audit per-runtime hook source under `.opencode/skill/system-spec-kit/mcp_server/hooks/{claude,codex,copilot,gemini}/`.
+- Audit per-runtime hook source under `.opencode/skills/system-spec-kit/mcp_server/hooks/{claude,codex,copilot,gemini}/`.
 - Audit the OpenCode skill-advisor plugin bridge at `.opencode/plugins/spec-kit-skill-advisor.js`.
 - Audit hook contract docs, per-runtime configs, and packet evidence from 035, 043, and 044.
 - Write packet-local docs and the final `review-report.md`.

@@ -82,7 +82,7 @@ This document provides a comprehensive execution map for the SpecKit 14-step aut
 
 **Activities:**
 - Read AGENTS.md for project principles (line 384)
-- Check skills folder (.opencode/skill/) for relevant coding standards (line 385)
+- Check skills folder (.opencode/skills/) for relevant coding standards (line 385)
 - Extract coding standards summary (line 386)
 - Identify architectural patterns (line 387)
 - Document project conventions & constraints (line 388–390)
@@ -527,7 +527,7 @@ Before marking complete: implementation-summary.md exists with all required sect
 
 **Memory Creation** (line 803–808): **HARD BLOCK**
 - Method: MUST use generate-context.js script (line 805)
-- Command: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
+- Command: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
 - **Forbidden:** Write/Edit tools on memory/ paths (line 807)
 - **Violation recovery:** DELETE manual file → run generate-context.js → verify ANCHORs → index via memory_save (line 808)
 

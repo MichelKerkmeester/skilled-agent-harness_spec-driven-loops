@@ -19,9 +19,9 @@ _memory:
     key_files:
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/stress-runs/r1-summary.md
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/stress-runs/r1-run-log.txt
-      - .opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh
-      - .opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md
-      - .opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md
+      - .opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh
+      - .opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md
+      - .opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md
     completion_pct: 100
     open_questions:
       - "Is CP-042's remaining PARTIAL a body-discipline gap or scenario-bait weakness? Either way it's a follow-on packet, not a 061 blocker."
@@ -84,19 +84,19 @@ The suite used per-CP layer partition.
 
 | CP | Layer | Call B shape |
 |---|---|---|
-| CP-040 | command-flow | `/improve:agent ".opencode/agent/cp-improve-target.md" :auto --spec-folder=/tmp/cp-040-spec --iterations=1` |
-| CP-041 | body-level | prepend `.opencode/agent/improve-agent.md` + `Depth: 1` + explicit runtime/control inputs |
-| CP-042 | body-level | prepend `.opencode/agent/improve-agent.md` + `Depth: 1` + explicit runtime/control inputs |
-| CP-043 | command-flow | `/improve:agent ".opencode/agent/cp-improve-target.md" :auto --spec-folder=/tmp/cp-043-spec --iterations=1` |
-| CP-044 | command-flow | `/improve:agent ".opencode/agent/cp-improve-target.md" :auto --spec-folder=/tmp/cp-044-spec --iterations=1` |
-| CP-045 | command-flow | `/improve:agent ".opencode/agent/cp-improve-target.md" :auto --spec-folder=/tmp/cp-045-spec --iterations=1` |
+| CP-040 | command-flow | `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-040-spec --iterations=1` |
+| CP-041 | body-level | prepend `.opencode/agents/improve-agent.md` + `Depth: 1` + explicit runtime/control inputs |
+| CP-042 | body-level | prepend `.opencode/agents/improve-agent.md` + `Depth: 1` + explicit runtime/control inputs |
+| CP-043 | command-flow | `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-043-spec --iterations=1` |
+| CP-044 | command-flow | `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-044-spec --iterations=1` |
+| CP-045 | command-flow | `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-045-spec --iterations=1` |
 
-The setup helper at `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh` created command-capable temp roots. Each command-flow scenario got a local `.opencode/command/improve/`, `.opencode/skill/sk-improve-agent/`, target fixture, runtime mirrors, benchmark profiles, benchmark fixtures, and a per-CP spec folder under `/tmp/cp-NNN-spec`.
+The setup helper at `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh` created command-capable temp roots. Each command-flow scenario got a local `.opencode/commands/improve/`, `.opencode/skills/sk-improve-agent/`, target fixture, runtime mirrors, benchmark profiles, benchmark fixtures, and a per-CP spec folder under `/tmp/cp-NNN-spec`.
 
 The command-flow calls used both roots:
 
 ```bash
-copilot -p "/improve:agent \".opencode/agent/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-NNN-spec --iterations=1" \
+copilot -p "/improve:agent \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-NNN-spec --iterations=1" \
   --model gpt-5.5 \
   --allow-all-tools \
   --no-ask-user \
@@ -230,13 +230,13 @@ The scoped source change was 7 files: 6 playbook scenarios modified plus 1 sandb
 
 | File | Change |
 |---|---:|
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md` | 29 lines touched |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md` | 24 lines touched |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md` | 32 lines touched |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md` | 21 lines touched |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md` | 27 lines touched |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md` | 32 lines touched |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh` | 80 lines added |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md` | 29 lines touched |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md` | 24 lines touched |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md` | 32 lines touched |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md` | 21 lines touched |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md` | 27 lines touched |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md` | 32 lines touched |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh` | 80 lines added |
 
 **Stat:** 169 insertions, 76 deletions.
 
@@ -298,18 +298,18 @@ No sk-improve-agent runtime source was changed in 061. The point of this packet 
 ### Scenario specs
 
 ```text
-.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md
 ```
 
 ### Sandbox helper and generated roots
 
 ```text
-.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh
+.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh
 /tmp/cp-040-spec/improvement/
 /tmp/cp-041-spec/improvement/
 /tmp/cp-042-spec/improvement/

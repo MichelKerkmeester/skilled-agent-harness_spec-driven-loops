@@ -16,9 +16,9 @@
       "firstSeenIteration": 1,
       "lastTouchedIteration": 10,
       "evidence": [
-        ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1054",
-        ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:2090",
-        ".opencode/skill/system-spec-kit/references/memory/save_workflow.md:167"
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1054",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2090",
+        ".opencode/skills/system-spec-kit/references/memory/save_workflow.md:167"
       ],
       "recommendation": "Route `spec-frontmatter` to `implementation-summary.md` whenever it exists, regardless of which non-memory doc initiated the save."
     },
@@ -31,11 +31,11 @@
       "firstSeenIteration": 5,
       "lastTouchedIteration": 10,
       "evidence": [
-        ".opencode/command/memory/save.md:93",
-        ".opencode/skill/system-spec-kit/references/memory/save_workflow.md:321",
+        ".opencode/commands/memory/save.md:93",
+        ".opencode/skills/system-spec-kit/references/memory/save_workflow.md:321",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/002-content-routing-accuracy/004-doc-surface-alignment/checklist.md:93",
-        ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/202-canonical-continuity-save-substrate.md:34",
-        ".opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md:130"
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/202-canonical-continuity-save-substrate.md:34",
+        ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md:130"
       ],
       "recommendation": "Remove the `SPECKIT_TIER3_ROUTING` opt-in/default-off story everywhere and restate the always-on fail-open contract consistently."
     },
@@ -49,7 +49,7 @@
       "lastTouchedIteration": 10,
       "evidence": [
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/002-content-routing-accuracy/004-doc-surface-alignment/implementation-summary.md:116",
-        ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/202-canonical-continuity-save-substrate.md:34"
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/202-canonical-continuity-save-substrate.md:34"
       ],
       "recommendation": "Broaden the doc verification grep or add an assertion that explicitly checks for removed-flag/always-on wording."
     },

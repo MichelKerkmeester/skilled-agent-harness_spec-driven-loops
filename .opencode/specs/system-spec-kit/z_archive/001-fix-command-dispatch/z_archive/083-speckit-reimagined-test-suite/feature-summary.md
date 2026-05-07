@@ -12,7 +12,7 @@ This document maps the complete test coverage requirements for the SpecKit Reima
 - **Target state** - What tests are required for complete coverage
 - **Key test cases** - Critical scenarios that must be verified
 
-**Test Location:** `.opencode/skill/system-spec-kit/mcp_server/tests/`
+**Test Location:** `.opencode/skills/system-spec-kit/mcp_server/tests/`
 
 ---
 

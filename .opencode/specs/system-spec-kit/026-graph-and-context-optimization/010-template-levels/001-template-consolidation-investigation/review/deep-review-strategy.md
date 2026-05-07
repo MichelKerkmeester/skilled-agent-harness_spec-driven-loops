@@ -32,7 +32,7 @@ The implementation has already been migrated from CORE+ADDENDUM+compose.sh to a 
 2. **code-correctness** — Are there logic bugs, error-handling defects, or behavioral issues in the scripts? Does `inline-gate-renderer.ts` produce deterministic output?
 3. **template-rendering-correctness** — Are the `templates/manifest/*.tmpl` files correctly gated? Do ANCHOR tags survive inline-gate-renderer processing intact?
 4. **validator-coverage** — Does the validation suite provide adequate coverage of manifest-based level requirements? Are there gaps?
-5. **cross-runtime-mirror-consistency** — Do `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` mirror each other consistently? Are template-path references consistent across runtimes?
+5. **cross-runtime-mirror-consistency** — Do `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` mirror each other consistently? Are template-path references consistent across runtimes?
 
 ## Known Context
 - Deep-research loop converged at iteration 10 (newInfoRatio 0.04) with recommendation: PARTIAL
@@ -42,19 +42,19 @@ The implementation has already been migrated from CORE+ADDENDUM+compose.sh to a 
 - Implementation files are read-only during this review
 
 ## Review Scope Files
-- `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` — shell composer
-- `.opencode/skill/system-spec-kit/scripts/templates/wrap-all-templates.sh` — ANCHOR injection
-- `.opencode/skill/system-spec-kit/scripts/templates/wrap-all-templates.ts` — ANCHOR injection (TS)
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh` — spec folder creator
-- `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` — copy_template
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` — template structure reader
-- `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` — level validator
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` — header validator
-- `.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh` — staleness check
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` — master validator
-- `.opencode/skill/system-spec-kit/scripts/tests/template-rendered-parity.vitest.ts` — parity test
-- `.opencode/skill/system-spec-kit/templates/` — template tree
-- `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` — runtime agents
+- `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` — shell composer
+- `.opencode/skills/system-spec-kit/scripts/templates/wrap-all-templates.sh` — ANCHOR injection
+- `.opencode/skills/system-spec-kit/scripts/templates/wrap-all-templates.ts` — ANCHOR injection (TS)
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh` — spec folder creator
+- `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` — copy_template
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` — template structure reader
+- `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` — level validator
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` — header validator
+- `.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh` — staleness check
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` — master validator
+- `.opencode/skills/system-spec-kit/scripts/tests/template-rendered-parity.vitest.ts` — parity test
+- `.opencode/skills/system-spec-kit/templates/` — template tree
+- `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` — runtime agents
 
 ## What Worked
 - **Iteration 001**: Glob + grep pattern for detecting absent files (compose.sh, wrap-all-templates) was definitive. Directory listing of templates/ conclusively proved core/, addendum/, and level_N/ don't exist. The manifest system was discovered by reading through create.sh's actual code path (copy_templates_batch) and tracing into template-utils.sh's _manifest_template_path.

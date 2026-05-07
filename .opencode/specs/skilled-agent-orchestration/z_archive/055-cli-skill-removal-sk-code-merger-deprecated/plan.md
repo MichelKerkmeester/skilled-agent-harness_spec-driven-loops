@@ -90,7 +90,7 @@ spec.md → plan.md → tasks.md → execute (delete + edit + sql) → validator
 - **Sub-phase 2B — sk-code self-references**: 10 `_placeholder.md` files + SKILL.md + README.md + graph-metadata.json + CHANGELOG.md + a handful of references/*.md and assets/*.md that mention deprecated names
 - **Sub-phase 2C — Advisor data**: skill_advisor.py (DEPRECATED_SKILLS frozenset, comments) + skill-graph.json (Python json round-trip: count 22→20, families, adjacency, signals) + advisor graph-metadata.json
 - **Sub-phase 2D — Eval / telemetry / regression fixtures**: skill_advisor_regression_cases.jsonl (retarget P1-FULLSTACK-001) + labeled-prompts.jsonl + compliance.jsonl
-- **Sub-phase 2E — Doc surfaces**: root README, .opencode/skill/README, .opencode/install_guides/* (3 files), AGENTS.md, CLAUDE.md
+- **Sub-phase 2E — Doc surfaces**: root README, .opencode/skills/README, .opencode/install_guides/* (3 files), AGENTS.md, CLAUDE.md
 - **Sub-phase 2F — Cross-skill refs**: sk-code-review (SKILL.md, README.md, graph-metadata.json, references/*.md), sk-code-opencode, mcp-chrome-devtools, cli-claude-code, cli-codex, cli-gemini, cli-opencode, sk-doc, sk-git, sk-improve-prompt, system-spec-kit references
 - **Sub-phase 2G — Agent definitions**: four runtime deep-review files
 - **Sub-phase 2H — SQLite DBs**: skill-graph (DELETE 2 nodes + cascade edges), code-graph (DELETE files under deprecated paths), voyage memory_index/lineage purge
@@ -137,7 +137,7 @@ spec.md → plan.md → tasks.md → execute (delete + edit + sql) → validator
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: skill-graph fails JSON parse OR validate.sh shows hard errors after edits OR sqlite ROLLBACK fails.
-- **Procedure**: `git checkout HEAD -- <affected-files>` to revert each file individually; restore deleted folders with `git restore .opencode/skill/sk-code-full-stack .opencode/skill/sk-code-web` (assumes deletions not yet committed). For SQLite — `cp` from a pre-edit `.bak` (created at start of Phase 2H).
+- **Procedure**: `git checkout HEAD -- <affected-files>` to revert each file individually; restore deleted folders with `git restore .opencode/skills/sk-code-full-stack .opencode/skills/sk-code-web` (assumes deletions not yet committed). For SQLite — `cp` from a pre-edit `.bak` (created at start of Phase 2H).
 <!-- /ANCHOR:rollback -->
 
 ---

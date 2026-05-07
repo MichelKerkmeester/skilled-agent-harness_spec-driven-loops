@@ -59,7 +59,7 @@
       }
     ],
     "evidence": [
-      "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":\"001-manual-fixture-auth-resume\",\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:35.269Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":\\\"001-manual-fixture-auth-resume\\\",\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"k",
+      "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":\"001-manual-fixture-auth-resume\",\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:35.269Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":\\\"001-manual-fixture-auth-resume\\\",\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"k",
       "{\"summary\":\"Context retrieved via resume mode (resume strategy)\",\"data\":{\"strategy\":\"resume\",\"mode\":\"resume\",\"resumeAnchors\":[\"state\",\"next-steps\",\"summary\",\"blockers\"],\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"summary\\\": \\\"Resume ladder found no canonical recovery context\\\",\\n  \\\"data\\\": {\\n    \\\"count\\\": 0,\\n    \\\"results\\\": [],\\n    \\\"resumeLadder\\\": {\\n      \\\"source\\\": \\\"unresolved\\\",\\n      \\\"levels\\\": [\\n        \\\"handover\\\",\\n        \\\"continuity\\\",\\n        \\\"spec_docs\\\"\\n      ],\\n      \\\"specFolder\\\": null,\\n      \\\"specFolderPath\\\": null,\\n      \\\"legacyMemoryFallback\\\": false,\\n      \\\"archivedTierEnabled\\\": false,\\n      \\\"warnings\\\": [],\\n      \\\"requestedAnchors\\\": [\\n        \\\"state\\\",\\n        \\\"next-steps\\\",\\n        \\\"summary\\\",\\n        \\\"blockers\\\"\\n      ]\\n    }\\n  },\\n  \\\"hints\\\": [\\n    \\\"Resume mode reads canonical docs directly: handover.md -> _memory.continuity -> spec docs.\\\",\\n    \\\"No archived tier or legacy memory fallback is enabled in Gate D resume mode.\\\"\\n  ],\\n  \\\"meta\\\": {\\n    \\\"tool\\\": \\\"memory_context_resume\\\",\\n    \\\"tokenCount\\\": 208,\\n    \\\"cacheHit\\\": false\\n  }\\n}\"}],\"isError\":false},\"hints\":[\"Mode: Resume previous work with state and next-steps anchors\",\"For more granular control, use L2 tools: memory_search, memory_match_triggers\",\"Token budget: 2000 (resume mode)\"],\"meta\":{\"tool\":\"memory_context\",\"tokenCount\":635,\"cacheHit\":false,\"layer\":\"L1:Orchestration\",\"mode\":\"resume\",\"requestedMode\":\"resume\",\"strategy\":\"resume\",\"tokenUsageSource\":\"estimator\",\"tokenUsagePressure\":0.002285714285714286,\"pressureLevel\":\"none\",\"pressure_level\":\"none\",\"pressurePolicy\":{\"applied\":false,\"overrideMode\":null,\"warning\":null},\"sessionLifecycle\":{\"sessionScope\":\"ephemeral\",\"requestedSessionId\":null,\"effectiveSessionId\":\"fbfeb6d5-a978-4545-acea-c8e3f6726498\",\"resumed\":false,\"eventCounterStart\":0,\"resumedContextCount\":0},\"tokenBudget\":2000,\"tokenBudgetEnforcement\":{\"budgetTokens\":2000,\"actualTokens\":269,\"enforced\":false,\"truncated\":false},\"inte",
       "{\"summary\":\"Context retrieved via focused mode (focused strategy)\",\"data\":{\"strategy\":\"focused\",\"mode\":\"focused\",\"intent\":\"find_decision\",\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"summary\\\": \\\"> **[EVIDENCE GAP DETECTED]: Retrieved context has low mathematical confidence (Z=1.41). Consider first principles.**\\\\n\\\\nNo matching memories found\\\",\\n  \\\"data\\\": {\\n    \\\"count\\\": 0,\\n    \\\"searchType\\\": \\\"hybrid\\\",\\n    \\\"constitutionalCount\\\": 0,\\n    \\\"requestQuality\\\": {\\n      \\\"label\\\": \\\"gap\\\"\\n    },\\n    \\\"stateStats\\\": {\\n      \\\"minState\\\": \\\"\\\",\\n      \\\"before\\\": {\\n        \\\"UNKNOWN\\\": 5\\n      },\\n      \\\"after\\\": {\\n        \\\"UNKNOWN\\\": 5\\n      },\\n      \\\"removed\\\": 0\\n    },\\n    \\\"featureFlags\\\": {\\n      \\\"trmEnabled\\\": true,\\n      \\\"multiQueryEnabled\\\": true,\\n      \\\"stateLimitsApplied\\\": false\\n    },\\n    \\\"pipelineMetadata\\\": {\\n      \\\"stage1\\\": {\\n        \\\"searchType\\\": \\\"hybrid\\\",\\n        \\\"channelCount\\\": 2,\\n        \\\"activeChannels\\\": 2,\\n        \\\"candidateCount\\\": 9,\\n        \\\"constitutionalInjected\\\": 0,\\n        \\\"durationMs\\\": 28\\n      },\\n      \\\"stage2\\\": {\\n        \\\"sessionBoostApplied\\\": \\\"enabled\\\",\\n        \\\"causalBoostApplied\\\": \\\"applied\\\",\\n        \\\"intentWeightsApplied\\\": \\\"off\\\",\\n        \\\"artifactRoutingApplied\\\": \\\"applied\\\",\\n        \\\"feedbackSignalsApplied\\\": \\\"off\\\",\\n        \\\"graphContribution\\\": {\\n          \\\"killSwitchActive\\\": false,\\n          \\\"causalBoosted\\\": 1,\\n          \\\"coActivationBoosted\\\": 0,\\n          \\\"communityInjected\\\": 0,\\n          \\\"graphSignalsBoosted\\\": 0,\\n          \\\"totalGraphInjected\\\": 0,\\n          \\\"rolloutState\\\": \\\"bounded_runtime\\\"\\n        },\\n        \\\"qualityFiltered\\\": 0,\\n        \\\"durationMs\\\": 4,\\n        \\\"recencyFusionApplied\\\": true,\\n        \\\"recencyFusionBoosted\\\": 8,\\n        \\\"coActivationApplied\\\": true,\\n        \\\"graphSignalsApplied\\\": true\\n      },\\n      \\\"stage3\\\": {\\n        \\\"rerankApplied\\\": true,\\n        \\\"rerankProvider\\\": \\\"fallback-sort\\\",\\n   "
     ],
@@ -80,7 +80,7 @@
           "hints present"
         ],
         "evidence": [
-          "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":\"001-manual-fixture-auth-resume\",\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:35.269Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":\\\"001-manual-fixture-auth-resume\\\",\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"k"
+          "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":\"001-manual-fixture-auth-resume\",\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:35.269Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":\\\"001-manual-fixture-auth-resume\\\",\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"k"
         ]
       },
       {
@@ -987,7 +987,7 @@
           "hints present"
         ],
         "evidence": [
-          "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":\"001-manual-fixture-auth-resume\",\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:35.529Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":\\\"001-manual-fixture-auth-resume\\\",\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"k"
+          "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":\"001-manual-fixture-auth-resume\",\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:35.529Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":\\\"001-manual-fixture-auth-resume\\\",\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"k"
         ]
       },
       {
@@ -1025,7 +1025,7 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
           "asyncEmbedding": true,
           "skipPreflight": true
         }
@@ -1057,7 +1057,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
             "asyncEmbedding": true,
             "skipPreflight": true
           }
@@ -1745,7 +1745,7 @@
       }
     ],
     "evidence": [
-      "{\"summary\":\"Memory system healthy: 11 memories indexed\",\"data\":{\"status\":\"healthy\",\"embeddingModelReady\":true,\"databaseConnected\":true,\"vectorSearchAvailable\":true,\"memoryCount\":11,\"uptime\":1.85239675,\"version\":\"1.8.0\",\"reportMode\":\"full\",\"aliasConflicts\":{\"groups\":0,\"rows\":0,\"identicalHashGroups\":0,\"divergentHashGroups\":0,\"unknownHashGroups\":0,\"samples\":[]},\"repair\":{\"requested\":false,\"attempted\":false,\"repaired\":false,\"partialSuccess\":false,\"actions\":[],\"warnings\":[],\"errors\":[]},\"embeddingProvider\":{\"provider\":\"hf-local\",\"model\":\"nomic-ai/nomic-embed-text-v1.5\",\"dimension\":768,\"healthy\":true,\"databasePath\":\".opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/db/context-index.sqlite\"},\"embeddingRetry\":{\"pending\":0,\"failed\":0,\"retryAttempts\":0,\"circuitBreakerOpen\":false,\"lastRun\":null,\"queueDepth\":0}},\"hints\":[],\"meta\":{\"tool\":\"memory_health\",\"tokenCount\":321,\"latencyMs\":1,\"cacheHit\":false}}",
+      "{\"summary\":\"Memory system healthy: 11 memories indexed\",\"data\":{\"status\":\"healthy\",\"embeddingModelReady\":true,\"databaseConnected\":true,\"vectorSearchAvailable\":true,\"memoryCount\":11,\"uptime\":1.85239675,\"version\":\"1.8.0\",\"reportMode\":\"full\",\"aliasConflicts\":{\"groups\":0,\"rows\":0,\"identicalHashGroups\":0,\"divergentHashGroups\":0,\"unknownHashGroups\":0,\"samples\":[]},\"repair\":{\"requested\":false,\"attempted\":false,\"repaired\":false,\"partialSuccess\":false,\"actions\":[],\"warnings\":[],\"errors\":[]},\"embeddingProvider\":{\"provider\":\"hf-local\",\"model\":\"nomic-ai/nomic-embed-text-v1.5\",\"dimension\":768,\"healthy\":true,\"databasePath\":\".opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/db/context-index.sqlite\"},\"embeddingRetry\":{\"pending\":0,\"failed\":0,\"retryAttempts\":0,\"circuitBreakerOpen\":false,\"lastRun\":null,\"queueDepth\":0}},\"hints\":[],\"meta\":{\"tool\":\"memory_health\",\"tokenCount\":321,\"latencyMs\":1,\"cacheHit\":false}}",
       "{\"summary\":\"Divergent alias report: 0 of 0 group(s)\",\"data\":{\"reportMode\":\"divergent_aliases\",\"status\":\"healthy\",\"databaseConnected\":true,\"embeddingRetry\":{\"pending\":0,\"failed\":0,\"retryAttempts\":0,\"circuitBreakerOpen\":false,\"lastRun\":null,\"queueDepth\":0},\"specFolder\":null,\"limit\":20,\"totalRowsScanned\":11,\"totalDivergentGroups\":0,\"returnedGroups\":0,\"groups\":[]},\"hints\":[\"No divergent alias groups detected\"],\"meta\":{\"tool\":\"memory_health\",\"tokenCount\":165,\"latencyMs\":0,\"cacheHit\":false}}"
     ],
     "steps": [
@@ -1763,7 +1763,7 @@
           "health diagnostics returned"
         ],
         "evidence": [
-          "{\"summary\":\"Memory system healthy: 11 memories indexed\",\"data\":{\"status\":\"healthy\",\"embeddingModelReady\":true,\"databaseConnected\":true,\"vectorSearchAvailable\":true,\"memoryCount\":11,\"uptime\":1.85239675,\"version\":\"1.8.0\",\"reportMode\":\"full\",\"aliasConflicts\":{\"groups\":0,\"rows\":0,\"identicalHashGroups\":0,\"divergentHashGroups\":0,\"unknownHashGroups\":0,\"samples\":[]},\"repair\":{\"requested\":false,\"attempted\":false,\"repaired\":false,\"partialSuccess\":false,\"actions\":[],\"warnings\":[],\"errors\":[]},\"embeddingProvider\":{\"provider\":\"hf-local\",\"model\":\"nomic-ai/nomic-embed-text-v1.5\",\"dimension\":768,\"healthy\":true,\"databasePath\":\".opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/db/context-index.sqlite\"},\"embeddingRetry\":{\"pending\":0,\"failed\":0,\"retryAttempts\":0,\"circuitBreakerOpen\":false,\"lastRun\":null,\"queueDepth\":0}},\"hints\":[],\"meta\":{\"tool\":\"memory_health\",\"tokenCount\":321,\"latencyMs\":1,\"cacheHit\":false}}"
+          "{\"summary\":\"Memory system healthy: 11 memories indexed\",\"data\":{\"status\":\"healthy\",\"embeddingModelReady\":true,\"databaseConnected\":true,\"vectorSearchAvailable\":true,\"memoryCount\":11,\"uptime\":1.85239675,\"version\":\"1.8.0\",\"reportMode\":\"full\",\"aliasConflicts\":{\"groups\":0,\"rows\":0,\"identicalHashGroups\":0,\"divergentHashGroups\":0,\"unknownHashGroups\":0,\"samples\":[]},\"repair\":{\"requested\":false,\"attempted\":false,\"repaired\":false,\"partialSuccess\":false,\"actions\":[],\"warnings\":[],\"errors\":[]},\"embeddingProvider\":{\"provider\":\"hf-local\",\"model\":\"nomic-ai/nomic-embed-text-v1.5\",\"dimension\":768,\"healthy\":true,\"databasePath\":\".opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/db/context-index.sqlite\"},\"embeddingRetry\":{\"pending\":0,\"failed\":0,\"retryAttempts\":0,\"circuitBreakerOpen\":false,\"lastRun\":null,\"queueDepth\":0}},\"hints\":[],\"meta\":{\"tool\":\"memory_health\",\"tokenCount\":321,\"latencyMs\":1,\"cacheHit\":false}}"
         ]
       },
       {
@@ -1815,7 +1815,7 @@
       }
     ],
     "evidence": [
-      "{\"summary\":\"No memory files found\",\"data\":{\"status\":\"complete\",\"scanned\":0,\"indexed\":0,\"updated\":0,\"unchanged\":0,\"failed\":0,\"staleDeleted\":0,\"staleDeleteFailed\":0},\"hints\":[\"Memory files should be in specs/**/memory/ directories\",\"Constitutional files go in .opencode/skill/*/constitutional/\"],\"meta\":{\"tool\":\"memory_index_scan\",\"tokenCount\":117,\"cacheHit\":false}}",
+      "{\"summary\":\"No memory files found\",\"data\":{\"status\":\"complete\",\"scanned\":0,\"indexed\":0,\"updated\":0,\"unchanged\":0,\"failed\":0,\"staleDeleted\":0,\"staleDeleteFailed\":0},\"hints\":[\"Memory files should be in specs/**/memory/ directories\",\"Constitutional files go in .opencode/skills/*/constitutional/\"],\"meta\":{\"tool\":\"memory_index_scan\",\"tokenCount\":117,\"cacheHit\":false}}",
       "{\"summary\":\"Memory system: 11 memories across 2 folders\",\"data\":{\"totalMemories\":11,\"byStatus\":{\"pending\":0,\"success\":11,\"failed\":0,\"retry\":0,\"partial\":0},\"oldestMemory\":\"2026-04-12T00:32:34.418Z\",\"newestMemory\":\"2026-04-12T00:32:35.003Z\",\"topFolders\":[{\"folder\":\"001-manual-fixture-auth-resume\",\"count\":7},{\"folder\":\"002-test-sandbox\",\"count\":4}],\"totalSpecFolders\":2,\"limit\":10,\"totalTriggerPhrases\":11,\"vectorSearchEnabled\":true,\"graphChannelMetrics\":{\"totalQueries\":0,\"graphHits\":0,\"graphOnlyResults\":0,\"multiSourceResults\":104,\"graphHitRate\":0},\"folderRanking\":\"count\",\"tierBreakdown\":{\"normal\":11},\"databaseSizeBytes\":3981312,\"lastIndexedAt\":\"2026-04-12T00:32:35.003Z\"},\"hints\":[],\"meta\":{\"tool\":\"memory_stats\",\"tokenCount\":269,\"latencyMs\":0,\"cacheHit\":false}}"
     ],
     "steps": [
@@ -1835,7 +1835,7 @@
           "workspace indexing completed"
         ],
         "evidence": [
-          "{\"summary\":\"No memory files found\",\"data\":{\"status\":\"complete\",\"scanned\":0,\"indexed\":0,\"updated\":0,\"unchanged\":0,\"failed\":0,\"staleDeleted\":0,\"staleDeleteFailed\":0},\"hints\":[\"Memory files should be in specs/**/memory/ directories\",\"Constitutional files go in .opencode/skill/*/constitutional/\"],\"meta\":{\"tool\":\"memory_index_scan\",\"tokenCount\":117,\"cacheHit\":false}}"
+          "{\"summary\":\"No memory files found\",\"data\":{\"status\":\"complete\",\"scanned\":0,\"indexed\":0,\"updated\":0,\"unchanged\":0,\"failed\":0,\"staleDeleted\":0,\"staleDeleteFailed\":0},\"hints\":[\"Memory files should be in specs/**/memory/ directories\",\"Constitutional files go in .opencode/skills/*/constitutional/\"],\"meta\":{\"tool\":\"memory_index_scan\",\"tokenCount\":117,\"cacheHit\":false}}"
         ]
       },
       {
@@ -1875,7 +1875,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server` -> `npm test -- --run tests/startup-checks.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server` -> `npm test -- --run tests/startup-checks.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -2340,7 +2340,7 @@
           "chain includes expected relations"
         ],
         "evidence": [
-          "{\"summary\":\"Found 8 causal relationships (incoming: 10 supports)\",\"data\":{\"memoryId\":\"2\",\"memory\":{\"id\":2,\"title\":\"Graph Rollout Diagnostics\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.489Z\",\"updated_at\":\"2026-04-12T00:32:34.489Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/graph-rollout-diagnostics.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":11,\"from\":\"1\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.8,\"depth\":1,\"direction\":\"incoming\"},{\"id\":1,\"from\":\"6\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.5599999999999999,\"depth\":2,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.39199999999999996,\"depth\":3,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.39199999999999996,\"depth\":3,\"direction\":\"incoming\"},{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.5599999999999999,\"depth\":2,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.5599999999999999,\"depth\":2,\"direction\":\"incoming\"},{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":11,\"from\":\"1\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.8,\"depth\":1,\"direction\":\"incoming\"},{\"id\":1,\"from\":\"6\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.5599999999999999,\""
+          "{\"summary\":\"Found 8 causal relationships (incoming: 10 supports)\",\"data\":{\"memoryId\":\"2\",\"memory\":{\"id\":2,\"title\":\"Graph Rollout Diagnostics\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.489Z\",\"updated_at\":\"2026-04-12T00:32:34.489Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/graph-rollout-diagnostics.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":11,\"from\":\"1\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.8,\"depth\":1,\"direction\":\"incoming\"},{\"id\":1,\"from\":\"6\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.5599999999999999,\"depth\":2,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.39199999999999996,\"depth\":3,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.39199999999999996,\"depth\":3,\"direction\":\"incoming\"},{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.5599999999999999,\"depth\":2,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.5599999999999999,\"depth\":2,\"direction\":\"incoming\"},{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":11,\"from\":\"1\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.8,\"depth\":1,\"direction\":\"incoming\"},{\"id\":1,\"from\":\"6\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.5599999999999999,\""
         ]
       },
       {
@@ -2433,7 +2433,7 @@
     "evidence": [
       "{\"summary\":\"Checkpoint \\\"pre-ex021-causal-unlink\\\" created successfully\",\"data\":{\"success\":true,\"checkpoint\":{\"id\":1,\"name\":\"pre-ex021-causal-unlink\",\"createdAt\":\"2026-04-12T00:32:35.913Z\",\"specFolder\":\"002-test-sandbox\",\"gitBranch\":null,\"snapshotSize\":51434,\"metadata\":{\"memoryCount\":4}}},\"hints\":[\"Restore with: checkpoint_restore({ name: \\\"pre-ex021-causal-unlink\\\" })\",\"Delete with: checkpoint_delete({ name: \\\"pre-ex021-causal-unlink\\\", confirmName: \\\"pre-ex021-causal-unlink\\\" })\"],\"meta\":{\"tool\":\"checkpoint_create\",\"tokenCount\":181,\"latencyMs\":9,\"cacheHit\":false}}",
       "{\"summary\":\"Deleted causal edge 1\",\"data\":{\"deleted\":true},\"hints\":[],\"meta\":{\"tool\":\"memory_causal_unlink\",\"tokenCount\":53,\"latencyMs\":1,\"cacheHit\":false}}",
-      "{\"summary\":\"Found 2 causal relationships (incoming: 2 supports)\",\"data\":{\"memoryId\":\"1\",\"memory\":{\"id\":1,\"title\":\"Checkpoint Rollback Runbook\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.418Z\",\"updated_at\":\"2026-04-12T00:32:34.418Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/checkpoint-rollback.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":2,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"outgoing\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[],\"allEdges\":[],\"totalEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"allEdges\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":2,\"totalIncomingEdges\":2,\"totalOutgoingEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null,\"relatedMemories\":{\"1\":{\"id\":1,\"title\":\"Checkpoint Rollback Runbook\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"created_at\":\"2026-04-12T00:32:34.418Z\"},\"7\":{\"id\":7,\"title\":\"Sandbox Temporary Memory B\",\"spec_folder\":\"002-test-sandbox\",\"impo"
+      "{\"summary\":\"Found 2 causal relationships (incoming: 2 supports)\",\"data\":{\"memoryId\":\"1\",\"memory\":{\"id\":1,\"title\":\"Checkpoint Rollback Runbook\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.418Z\",\"updated_at\":\"2026-04-12T00:32:34.418Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/checkpoint-rollback.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":2,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"outgoing\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[],\"allEdges\":[],\"totalEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"allEdges\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":2,\"totalIncomingEdges\":2,\"totalOutgoingEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null,\"relatedMemories\":{\"1\":{\"id\":1,\"title\":\"Checkpoint Rollback Runbook\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"created_at\":\"2026-04-12T00:32:34.418Z\"},\"7\":{\"id\":7,\"title\":\"Sandbox Temporary Memory B\",\"spec_folder\":\"002-test-sandbox\",\"impo"
     ],
     "steps": [
       {
@@ -2487,7 +2487,7 @@
           "chain includes expected relations"
         ],
         "evidence": [
-          "{\"summary\":\"Found 2 causal relationships (incoming: 2 supports)\",\"data\":{\"memoryId\":\"1\",\"memory\":{\"id\":1,\"title\":\"Checkpoint Rollback Runbook\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.418Z\",\"updated_at\":\"2026-04-12T00:32:34.418Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/checkpoint-rollback.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":2,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"outgoing\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[],\"allEdges\":[],\"totalEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"allEdges\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":2,\"totalIncomingEdges\":2,\"totalOutgoingEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null,\"relatedMemories\":{\"1\":{\"id\":1,\"title\":\"Checkpoint Rollback Runbook\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"created_at\":\"2026-04-12T00:32:34.418Z\"},\"7\":{\"id\":7,\"title\":\"Sandbox Temporary Memory B\",\"spec_folder\":\"002-test-sandbox\",\"impo"
+          "{\"summary\":\"Found 2 causal relationships (incoming: 2 supports)\",\"data\":{\"memoryId\":\"1\",\"memory\":{\"id\":1,\"title\":\"Checkpoint Rollback Runbook\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.418Z\",\"updated_at\":\"2026-04-12T00:32:34.418Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/checkpoint-rollback.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":2,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"outgoing\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[],\"allEdges\":[],\"totalEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"allEdges\":[{\"id\":6,\"from\":\"7\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":10,\"from\":\"10\",\"to\":\"1\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":2,\"totalIncomingEdges\":2,\"totalOutgoingEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null,\"relatedMemories\":{\"1\":{\"id\":1,\"title\":\"Checkpoint Rollback Runbook\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"created_at\":\"2026-04-12T00:32:34.418Z\"},\"7\":{\"id\":7,\"title\":\"Sandbox Temporary Memory B\",\"spec_folder\":\"002-test-sandbox\",\"impo"
         ]
       }
     ]
@@ -2516,7 +2516,7 @@
       }
     ],
     "evidence": [
-      "{\"summary\":\"Found 4 causal relationships (incoming: 4 supports)\",\"data\":{\"memoryId\":\"2\",\"memory\":{\"id\":2,\"title\":\"Graph Rollout Diagnostics\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.489Z\",\"updated_at\":\"2026-04-12T00:32:34.489Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/graph-rollout-diagnostics.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":4,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"outgoing\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[],\"allEdges\":[],\"totalEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"allEdges\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":"
+      "{\"summary\":\"Found 4 causal relationships (incoming: 4 supports)\",\"data\":{\"memoryId\":\"2\",\"memory\":{\"id\":2,\"title\":\"Graph Rollout Diagnostics\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.489Z\",\"updated_at\":\"2026-04-12T00:32:34.489Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/graph-rollout-diagnostics.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":4,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"outgoing\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[],\"allEdges\":[],\"totalEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"allEdges\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":"
     ],
     "steps": [
       {
@@ -2535,7 +2535,7 @@
           "chain includes expected relations"
         ],
         "evidence": [
-          "{\"summary\":\"Found 4 causal relationships (incoming: 4 supports)\",\"data\":{\"memoryId\":\"2\",\"memory\":{\"id\":2,\"title\":\"Graph Rollout Diagnostics\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.489Z\",\"updated_at\":\"2026-04-12T00:32:34.489Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/graph-rollout-diagnostics.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":4,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"outgoing\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[],\"allEdges\":[],\"totalEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"allEdges\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":"
+          "{\"summary\":\"Found 4 causal relationships (incoming: 4 supports)\",\"data\":{\"memoryId\":\"2\",\"memory\":{\"id\":2,\"title\":\"Graph Rollout Diagnostics\",\"spec_folder\":\"001-manual-fixture-auth-resume\",\"importance_tier\":\"normal\",\"importance_weight\":0.5,\"context_type\":\"implementation\",\"created_at\":\"2026-04-12T00:32:34.489Z\",\"updated_at\":\"2026-04-12T00:32:34.489Z\",\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/memory/graph-rollout-diagnostics.md\"},\"incoming\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"allEdges\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":9,\"from\":\"9\",\"to\":\"6\",\"relation\":\"supports\",\"strength\":0.48999999999999994,\"depth\":2,\"direction\":\"incoming\"},{\"id\":7,\"from\":\"7\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"}],\"totalEdges\":4,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"outgoing\":{\"caused\":[],\"enabled\":[],\"supersedes\":[],\"contradicts\":[],\"derivedFrom\":[],\"supports\":[],\"allEdges\":[],\"totalEdges\":0,\"maxDepthReached\":false,\"truncated\":false,\"truncationLimit\":null},\"allEdges\":[{\"id\":2,\"from\":\"6\",\"to\":\"2\",\"relation\":\"supports\",\"strength\":0.7,\"depth\":1,\"direction\":\"incoming\"},{\"id\":8,\"from\":\"8\",\"to\":\"6\",\"relation\":"
         ]
       }
     ]
@@ -2979,7 +2979,7 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
           "asyncEmbedding": true,
           "skipPreflight": true
         }
@@ -2995,7 +2995,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
             "asyncEmbedding": true,
             "skipPreflight": true
           }
@@ -3395,7 +3395,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-state-baseline.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-state-baseline.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -4960,7 +4960,7 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
           "dryRun": true
         }
       }
@@ -4975,7 +4975,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
             "dryRun": true
           }
         },
@@ -4985,7 +4985,7 @@
           "indexed successfully"
         ],
         "evidence": [
-          "{\"summary\":\"Dry-run detected structural template-contract violations\",\"data\":{\"status\":\"dry_run\",\"would_pass\":false,\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"title\":\"Sandbox Extra\",\"validation\":{\"errors\":[],\"warnings\":[],\"details\":{\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"checks_run\":[\"content_size\",\"anchor_format\",\"token_budget\",\"duplicate_check\"],\"content_size\":{\"valid\":true,\"content_length\":1008,\"errors\":[],\"warnings\":[]},\"anchor_format\":{\"valid\":true,\"errors\":[],\"warnings\":[],\"anchors\":[\"continue-session\",\"overview\",\"recovery-hints\",\"metadata\"]},\"token_budget\":{\"within_budget\":true,\"estimated_tokens\":402,\"maxTokens\":8000,\"percentage_used\":0.05025,\"warnings\":[],\"errors\":[]},\"duplicate_check\":{\"isDuplicate\":false,\"duplicate_type\":null,\"existingId\":null,\"existing_path\":null,\"similarity\":null,\"content_hash\":\"91f7cb4dd4819bb20486da93727a83466a1eba3362599aa3fe11069aaf7bb04c\"}}},\"qualityLoop\":{\"passed\":true,\"rejected\":false,\"fixes\":[]},\"templateContract\":{\"valid\":false,\"violations\":[{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required canonical-docs section.\",\"sectionId\":\"canonical-docs\"},{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required evidence section.\",\"sectionId\":\"evidence\"}],\"missingAnchors\":[],\"unexpectedTemplateArtifacts\":[]},\"sufficiency\":{\"pass\":false,\"rejectionCode\":\"INSUFFICIENT_CONTEXT_ABORT\",\"reasons\":[\"No primary evidence was captured for this memory.\"],\"evidenceCounts\":{\"primary\":0,\"support\":3,\"total\":3,\"semanticChars\":317,\"uniqueWords\":27,\"anchors\":4,\"triggerPhrases\":1},\"sc"
+          "{\"summary\":\"Dry-run detected structural template-contract violations\",\"data\":{\"status\":\"dry_run\",\"would_pass\":false,\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"title\":\"Sandbox Extra\",\"validation\":{\"errors\":[],\"warnings\":[],\"details\":{\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"checks_run\":[\"content_size\",\"anchor_format\",\"token_budget\",\"duplicate_check\"],\"content_size\":{\"valid\":true,\"content_length\":1008,\"errors\":[],\"warnings\":[]},\"anchor_format\":{\"valid\":true,\"errors\":[],\"warnings\":[],\"anchors\":[\"continue-session\",\"overview\",\"recovery-hints\",\"metadata\"]},\"token_budget\":{\"within_budget\":true,\"estimated_tokens\":402,\"maxTokens\":8000,\"percentage_used\":0.05025,\"warnings\":[],\"errors\":[]},\"duplicate_check\":{\"isDuplicate\":false,\"duplicate_type\":null,\"existingId\":null,\"existing_path\":null,\"similarity\":null,\"content_hash\":\"91f7cb4dd4819bb20486da93727a83466a1eba3362599aa3fe11069aaf7bb04c\"}}},\"qualityLoop\":{\"passed\":true,\"rejected\":false,\"fixes\":[]},\"templateContract\":{\"valid\":false,\"violations\":[{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required canonical-docs section.\",\"sectionId\":\"canonical-docs\"},{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required evidence section.\",\"sectionId\":\"evidence\"}],\"missingAnchors\":[],\"unexpectedTemplateArtifacts\":[]},\"sufficiency\":{\"pass\":false,\"rejectionCode\":\"INSUFFICIENT_CONTEXT_ABORT\",\"reasons\":[\"No primary evidence was captured for this memory.\"],\"evidenceCounts\":{\"primary\":0,\"support\":3,\"total\":3,\"semanticChars\":317,\"uniqueWords\":27,\"anchors\":4,\"triggerPhrases\":1},\"sc"
         ]
       },
       {
@@ -5393,7 +5393,7 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/thin-sandbox.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/thin-sandbox.md",
           "dryRun": true
         }
       }
@@ -5426,7 +5426,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/thin-sandbox.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/thin-sandbox.md",
             "dryRun": true
           }
         },
@@ -5436,7 +5436,7 @@
           "indexed successfully"
         ],
         "evidence": [
-          "{\"summary\":\"Dry-run detected structural template-contract violations\",\"data\":{\"status\":\"dry_run\",\"would_pass\":false,\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/thin-sandbox.md\",\"spec_folder\":\"002-test-sandbox\",\"title\":\"Thin Sandbox Memory\",\"validation\":{\"errors\":[],\"warnings\":[],\"details\":{\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/thin-sandbox.md\",\"spec_folder\":\"002-test-sandbox\",\"checks_run\":[\"content_size\",\"anchor_format\",\"token_budget\",\"duplicate_check\"],\"content_size\":{\"valid\":true,\"content_length\":984,\"errors\":[],\"warnings\":[]},\"anchor_format\":{\"valid\":true,\"errors\":[],\"warnings\":[],\"anchors\":[\"continue-session\",\"overview\",\"recovery-hints\",\"metadata\"]},\"token_budget\":{\"within_budget\":true,\"estimated_tokens\":396,\"maxTokens\":8000,\"percentage_used\":0.0495,\"warnings\":[],\"errors\":[]},\"duplicate_check\":{\"isDuplicate\":false,\"duplicate_type\":null,\"existingId\":null,\"existing_path\":null,\"similarity\":null,\"content_hash\":\"52e8ae473d40b61e012f05cd4702e2182be18bb5eb7d48751cddeb0996827ef1\"}}},\"qualityLoop\":{\"passed\":true,\"rejected\":false,\"fixes\":[]},\"templateContract\":{\"valid\":false,\"violations\":[{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required canonical-docs section.\",\"sectionId\":\"canonical-docs\"},{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required evidence section.\",\"sectionId\":\"evidence\"}],\"missingAnchors\":[],\"unexpectedTemplateArtifacts\":[]},\"sufficiency\":{\"pass\":false,\"rejectionCode\":\"INSUFFICIENT_CONTEXT_ABORT\",\"reasons\":[\"No primary evidence was captured for this memory.\"],\"evidenceCounts\":{\"primary\":0,\"support\":3,\"total\":3,\"semanticChars\":304,\"uniqueWords\":26,\"anchors\":4,\"triggerPhrases\":1},\""
+          "{\"summary\":\"Dry-run detected structural template-contract violations\",\"data\":{\"status\":\"dry_run\",\"would_pass\":false,\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/thin-sandbox.md\",\"spec_folder\":\"002-test-sandbox\",\"title\":\"Thin Sandbox Memory\",\"validation\":{\"errors\":[],\"warnings\":[],\"details\":{\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/thin-sandbox.md\",\"spec_folder\":\"002-test-sandbox\",\"checks_run\":[\"content_size\",\"anchor_format\",\"token_budget\",\"duplicate_check\"],\"content_size\":{\"valid\":true,\"content_length\":984,\"errors\":[],\"warnings\":[]},\"anchor_format\":{\"valid\":true,\"errors\":[],\"warnings\":[],\"anchors\":[\"continue-session\",\"overview\",\"recovery-hints\",\"metadata\"]},\"token_budget\":{\"within_budget\":true,\"estimated_tokens\":396,\"maxTokens\":8000,\"percentage_used\":0.0495,\"warnings\":[],\"errors\":[]},\"duplicate_check\":{\"isDuplicate\":false,\"duplicate_type\":null,\"existingId\":null,\"existing_path\":null,\"similarity\":null,\"content_hash\":\"52e8ae473d40b61e012f05cd4702e2182be18bb5eb7d48751cddeb0996827ef1\"}}},\"qualityLoop\":{\"passed\":true,\"rejected\":false,\"fixes\":[]},\"templateContract\":{\"valid\":false,\"violations\":[{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required canonical-docs section.\",\"sectionId\":\"canonical-docs\"},{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required evidence section.\",\"sectionId\":\"evidence\"}],\"missingAnchors\":[],\"unexpectedTemplateArtifacts\":[]},\"sufficiency\":{\"pass\":false,\"rejectionCode\":\"INSUFFICIENT_CONTEXT_ABORT\",\"reasons\":[\"No primary evidence was captured for this memory.\"],\"evidenceCounts\":{\"primary\":0,\"support\":3,\"total\":3,\"semanticChars\":304,\"uniqueWords\":26,\"anchors\":4,\"triggerPhrases\":1},\""
         ]
       },
       {
@@ -5465,7 +5465,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Compose full JSON payload: `sessionSummary` = descriptive title, `triggerPhrases` = keyword array, `keyDecisions` = 2+ items, `importanceTier` = \"important\", `contextType` = \"implementation\" 2) `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>` 3) Capture stdout 4) Locate `POST-SAVE QUALITY REVIEW` block 5) Assert status = PASSED and issues = 0"
+      "Command sequence is not expressible as direct handler calls: 1) Compose full JSON payload: `sessionSummary` = descriptive title, `triggerPhrases` = keyword array, `keyDecisions` = 2+ items, `importanceTier` = \"important\", `contextType` = \"implementation\" 2) `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>` 3) Capture stdout 4) Locate `POST-SAVE QUALITY REVIEW` block 5) Assert status = PASSED and issues = 0"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -5628,7 +5628,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Create or pick a spec doc with a deliberately malformed `_memory.continuity` block 2) Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict <target-spec>` 3) Confirm the five rules appear in the expected order 4) Repair the continuity block and rerun 5) Confirm the document passes cleanly"
+      "Command sequence is not expressible as direct handler calls: 1) Create or pick a spec doc with a deliberately malformed `_memory.continuity` block 2) Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <target-spec>` 3) Confirm the five rules appear in the expected order 4) Repair the continuity block and rerun 5) Confirm the document passes cleanly"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -6028,7 +6028,7 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
           "asyncEmbedding": true,
           "skipPreflight": true
         }
@@ -6044,7 +6044,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
             "asyncEmbedding": true,
             "skipPreflight": true
           }
@@ -6110,7 +6110,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-lineage-state.vitest.ts` 3) Inspect the output for active projection, `asOf`, integrity failure coverage, and timestamp-order coverage for variant date formats"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-lineage-state.vitest.ts` 3) Inspect the output for active projection, `asOf`, integrity failure coverage, and timestamp-order coverage for variant date formats"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -6132,7 +6132,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-lineage-backfill.vitest.ts` 3) Inspect the output for dry-run counts, successful execution, zero-change rerun, and post-restore empty lineage tables"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-lineage-backfill.vitest.ts` 3) Inspect the output for dry-run counts, successful execution, zero-change rerun, and post-restore empty lineage tables"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -6655,7 +6655,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Create or identify a high-complexity spec folder (>500 LOC, multiple concerns) 2) `bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec>` 3) Inspect JSON output for `recommended_phases`, `phase_score`, and `suggested_phase_count` fields 4) Verify all 4 scoring dimensions are present in output: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%) 5) Run on a simple spec folder and confirm `recommended_phases` is false"
+      "Command sequence is not expressible as direct handler calls: 1) Create or identify a high-complexity spec folder (>500 LOC, multiple concerns) 2) `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec>` 3) Inspect JSON output for `recommended_phases`, `phase_score`, and `suggested_phase_count` fields 4) Verify all 4 scoring dimensions are present in output: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%) 5) Run on a simple spec folder and confirm `recommended_phases` is false"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -6681,7 +6681,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/spec/create.sh \"Phase Test\" --phase --level 3 --phases 3 --phase-names \"Design,Implement,Verify\"` 2) Verify parent folder `specs/NNN-phase-test/` exists with spec.md containing Phase Documentation Map 3) Verify 3 child folders `001-design/`, `002-implement/`, `003-verify/` exist under parent 4) Verify each child has spec.md with parent back-reference 5) Verify `002-implement/spec.md` has predecessor link to `001-design` and successor link to `003-verify` 6) Verify Level 3 template files present in parent and each child"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh \"Phase Test\" --phase --level 3 --phases 3 --phase-names \"Design,Implement,Verify\"` 2) Verify parent folder `specs/NNN-phase-test/` exists with spec.md containing Phase Documentation Map 3) Verify 3 child folders `001-design/`, `002-implement/`, `003-verify/` exist under parent 4) Verify each child has spec.md with parent back-reference 5) Verify `002-implement/spec.md` has predecessor link to `001-design` and successor link to `003-verify` 6) Verify Level 3 template files present in parent and each child"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -6707,7 +6707,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Use the phase folder created in PHASE-002 (or create one via `create.sh \"Validate Test\" --phase --level 2 --phases 2`) 2) `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --recursive specs/<phase-parent>` 3) Inspect output for per-phase validation results 4) Verify JSON output contains `phases` array with one entry per child folder 5) Verify combined exit code matches highest severity across children 6) Introduce a deliberate error in one child spec.md and re-run; verify aggregated exit code is 2 (error)"
+      "Command sequence is not expressible as direct handler calls: 1) Use the phase folder created in PHASE-002 (or create one via `create.sh \"Validate Test\" --phase --level 2 --phases 2`) 2) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --recursive specs/<phase-parent>` 3) Inspect output for per-phase validation results 4) Verify JSON output contains `phases` array with one entry per child folder 5) Verify combined exit code matches highest severity across children 6) Introduce a deliberate error in one child spec.md and re-run; verify aggregated exit code is 2 (error)"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -6755,7 +6755,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Use the phase folder from PHASE-002 2) `bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent>` 3) Verify output checks 4 link types: Phase Documentation Map, parent back-references, predecessor links, successor links 4) Confirm all links pass on a well-formed phase folder (exit code 0) 5) Remove a child folder and re-run; verify Phase Documentation Map check warns about missing child (exit code 1) 6) Edit a child spec.md to corrupt the parent back-reference and re-run; verify back-reference check warns (exit code 1) 7) Confirm all issues are reported at warn severity, not error"
+      "Command sequence is not expressible as direct handler calls: 1) Use the phase folder from PHASE-002 2) `bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent>` 3) Verify output checks 4 link types: Phase Documentation Map, parent back-references, predecessor links, successor links 4) Confirm all links pass on a well-formed phase folder (exit code 0) 5) Remove a child folder and re-run; verify Phase Documentation Map check warns about missing child (exit code 1) 6) Edit a child spec.md to corrupt the parent back-reference and re-run; verify back-reference check warns (exit code 1) 7) Confirm all issues are reported at warn severity, not error"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -6959,7 +6959,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `npx tsc -b` 2) `npm run lint` 3) `npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts tests/memory-crud-extended.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 4) `npx vitest run tests/embeddings.vitest.ts tests/stdio-logging-safety.vitest.ts` 5) run MCP SDK stdio smoke test against `node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js`"
+      "Command sequence is not expressible as direct handler calls: 1) `npx tsc -b` 2) `npm run lint` 3) `npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts tests/memory-crud-extended.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 4) `npx vitest run tests/embeddings.vitest.ts tests/stdio-logging-safety.vitest.ts` 5) run MCP SDK stdio smoke test against `node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7009,7 +7009,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npm test -- --run tests/migration-checkpoint-scripts.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npm test -- --run tests/migration-checkpoint-scripts.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7031,7 +7031,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npm test -- --run tests/vector-index-schema-compatibility.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npm test -- --run tests/vector-index-schema-compatibility.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7053,7 +7053,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Pick 3 features with known multi-layer implementations (e.g., \"Hybrid search pipeline\", \"Classification-based decay\", \"Prediction-error save arbitration\") 2) For each: `grep -r \"// Feature catalog: <feature>\" .opencode/skill/system-spec-kit/mcp_server/` 3) Verify each grep returns hits in both `handlers/` and `lib/` directories 4) Verify all returned files exist and contain the annotation"
+      "Command sequence is not expressible as direct handler calls: 1) Pick 3 features with known multi-layer implementations (e.g., \"Hybrid search pipeline\", \"Classification-based decay\", \"Prediction-error save arbitration\") 2) For each: `grep -r \"// Feature catalog: <feature>\" .opencode/skills/system-spec-kit/mcp_server/` 3) Verify each grep returns hits in both `handlers/` and `lib/` directories 4) Verify all returned files exist and contain the annotation"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7073,7 +7073,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Extract all unique annotation names: `grep -rho \"// Feature catalog: .*\" .opencode/skill/system-spec-kit/mcp_server/ .opencode/skill/system-spec-kit/shared/ \\"
+      "Command sequence is not expressible as direct handler calls: 1) Extract all unique annotation names: `grep -rho \"// Feature catalog: .*\" .opencode/skills/system-spec-kit/mcp_server/ .opencode/skills/system-spec-kit/shared/ \\"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7124,7 +7124,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit` 2) `python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` 3) Grep output for `TS-MODULE-HEADER` findings 4) Verify 0 findings"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) `python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` 3) Grep output for `TS-MODULE-HEADER` findings 4) Verify 0 findings"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7190,14 +7190,14 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
           "dryRun": true
         }
       },
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
           "force": true
         }
       }
@@ -7212,7 +7212,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
             "dryRun": true
           }
         },
@@ -7222,7 +7222,7 @@
           "indexed successfully"
         ],
         "evidence": [
-          "{\"summary\":\"Dry-run detected structural template-contract violations\",\"data\":{\"status\":\"dry_run\",\"would_pass\":false,\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"title\":\"Sandbox Extra\",\"validation\":{\"errors\":[],\"warnings\":[],\"details\":{\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"checks_run\":[\"content_size\",\"anchor_format\",\"token_budget\",\"duplicate_check\"],\"content_size\":{\"valid\":true,\"content_length\":1008,\"errors\":[],\"warnings\":[]},\"anchor_format\":{\"valid\":true,\"errors\":[],\"warnings\":[],\"anchors\":[\"continue-session\",\"overview\",\"recovery-hints\",\"metadata\"]},\"token_budget\":{\"within_budget\":true,\"estimated_tokens\":402,\"maxTokens\":8000,\"percentage_used\":0.05025,\"warnings\":[],\"errors\":[]},\"duplicate_check\":{\"isDuplicate\":false,\"duplicate_type\":null,\"existingId\":null,\"existing_path\":null,\"similarity\":null,\"content_hash\":\"91f7cb4dd4819bb20486da93727a83466a1eba3362599aa3fe11069aaf7bb04c\"}}},\"qualityLoop\":{\"passed\":true,\"rejected\":false,\"fixes\":[]},\"templateContract\":{\"valid\":false,\"violations\":[{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required canonical-docs section.\",\"sectionId\":\"canonical-docs\"},{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required evidence section.\",\"sectionId\":\"evidence\"}],\"missingAnchors\":[],\"unexpectedTemplateArtifacts\":[]},\"sufficiency\":{\"pass\":false,\"rejectionCode\":\"INSUFFICIENT_CONTEXT_ABORT\",\"reasons\":[\"No primary evidence was captured for this memory.\"],\"evidenceCounts\":{\"primary\":0,\"support\":3,\"total\":3,\"semanticChars\":317,\"uniqueWords\":27,\"anchors\":4,\"triggerPhrases\":1},\"sc"
+          "{\"summary\":\"Dry-run detected structural template-contract violations\",\"data\":{\"status\":\"dry_run\",\"would_pass\":false,\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"title\":\"Sandbox Extra\",\"validation\":{\"errors\":[],\"warnings\":[],\"details\":{\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"checks_run\":[\"content_size\",\"anchor_format\",\"token_budget\",\"duplicate_check\"],\"content_size\":{\"valid\":true,\"content_length\":1008,\"errors\":[],\"warnings\":[]},\"anchor_format\":{\"valid\":true,\"errors\":[],\"warnings\":[],\"anchors\":[\"continue-session\",\"overview\",\"recovery-hints\",\"metadata\"]},\"token_budget\":{\"within_budget\":true,\"estimated_tokens\":402,\"maxTokens\":8000,\"percentage_used\":0.05025,\"warnings\":[],\"errors\":[]},\"duplicate_check\":{\"isDuplicate\":false,\"duplicate_type\":null,\"existingId\":null,\"existing_path\":null,\"similarity\":null,\"content_hash\":\"91f7cb4dd4819bb20486da93727a83466a1eba3362599aa3fe11069aaf7bb04c\"}}},\"qualityLoop\":{\"passed\":true,\"rejected\":false,\"fixes\":[]},\"templateContract\":{\"valid\":false,\"violations\":[{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required canonical-docs section.\",\"sectionId\":\"canonical-docs\"},{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required evidence section.\",\"sectionId\":\"evidence\"}],\"missingAnchors\":[],\"unexpectedTemplateArtifacts\":[]},\"sufficiency\":{\"pass\":false,\"rejectionCode\":\"INSUFFICIENT_CONTEXT_ABORT\",\"reasons\":[\"No primary evidence was captured for this memory.\"],\"evidenceCounts\":{\"primary\":0,\"support\":3,\"total\":3,\"semanticChars\":317,\"uniqueWords\":27,\"anchors\":4,\"triggerPhrases\":1},\"sc"
         ]
       },
       {
@@ -7231,7 +7231,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
             "force": true
           }
         },
@@ -7270,7 +7270,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit` 2) `npx ts-node --transpile-only scripts/evals/check-source-dist-alignment.ts` 3) Check exit code is 0 4) Verify \"violations: 0\" in output"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) `npx ts-node --transpile-only scripts/evals/check-source-dist-alignment.ts` 3) Check exit code is 0 4) Verify \"violations: 0\" in output"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7290,7 +7290,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit` 2) Read MODULE_MAP.md entries for config, cognitive, search, storage, scoring 3) For each module: `ls mcp_server/lib/{module}/` to verify key files exist 4) For each module: `grep -r \"from.*/{module}/\" mcp_server/ --include=\"*.ts\" -l` to verify consumers 5) Compare against MODULE_MAP.md listings"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) Read MODULE_MAP.md entries for config, cognitive, search, storage, scoring 3) For each module: `ls mcp_server/lib/{module}/` to verify key files exist 4) For each module: `grep -r \"from.*/{module}/\" mcp_server/ --include=\"*.ts\" -l` to verify consumers 5) Compare against MODULE_MAP.md listings"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7310,7 +7310,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit` 2) `find mcp_server/lib -type l` 3) Verify output is empty 4) `echo $?` to confirm exit 0"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) `find mcp_server/lib -type l` 3) Verify output is empty 4) `echo $?` to confirm exit 0"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7330,7 +7330,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Compose JSON payload with `toolCalls`, `exchanges`, `user_prompts`, `trigger_phrases` 2) `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>` 3) Inspect rendered .md output for field preservation 4) Verify decision confidence matches input 5) Verify git_changed_file_count matches explicit count"
+      "Command sequence is not expressible as direct handler calls: 1) Compose JSON payload with `toolCalls`, `exchanges`, `user_prompts`, `trigger_phrases` 2) `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>` 3) Inspect rendered .md output for field preservation 4) Verify decision confidence matches input 5) Verify git_changed_file_count matches explicit count"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7342,15 +7342,15 @@
     "filePath": "16--tooling-and-scripts/154-json-primary-deprecation-posture.md",
     "prompt": "Test the generate-context.js save paths: (1) --json with valid structured payload should succeed, (2) --stdin with valid structured payload should succeed, and (3) direct positional JSON file input should still succeed on the same structured path. Return a pass/fail verdict for each path.",
     "expectedSignals": [
-      "node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder>` \u2192 expect exit 0 3) `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json <spec-folder>` \u2192 expect exit 0"
+      "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder>` \u2192 expect exit 0 3) `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json <spec-folder>` \u2192 expect exit 0"
     ],
     "matchedSignals": [],
     "unmatchedSignals": [
-      "node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder>` \u2192 expect exit 0 3) `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json <spec-folder>` \u2192 expect exit 0"
+      "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder>` \u2192 expect exit 0 3) `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json <spec-folder>` \u2192 expect exit 0"
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '{\"specFolder\":\"test\",\"sessionSummary\":\"test\"}' <spec-folder>` \u2192 expect exit 0 2) `printf '{\"specFolder\":\"test\",\"sessionSummary\":\"test\"}'"
+      "Command sequence is not expressible as direct handler calls: 1) `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{\"specFolder\":\"test\",\"sessionSummary\":\"test\"}' <spec-folder>` \u2192 expect exit 0 2) `printf '{\"specFolder\":\"test\",\"sessionSummary\":\"test\"}'"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7374,7 +7374,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Create a Level 2 spec folder via @speckit agent for a test feature 2) `bash .opencode/skill/system-spec-kit/scripts/validate.sh --strict <spec-folder>` 3) Check exit code and capture stdout/stderr output"
+      "Command sequence is not expressible as direct handler calls: 1) Create a Level 2 spec folder via @speckit agent for a test feature 2) `bash .opencode/skills/system-spec-kit/scripts/validate.sh --strict <spec-folder>` 3) Check exit code and capture stdout/stderr output"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7404,7 +7404,7 @@
     "category": "16--tooling-and-scripts",
     "status": "UNAUTOMATABLE",
     "filePath": "16--tooling-and-scripts/183-runtime-lineage-naming-parity.md",
-    "prompt": "Audit runtime agent naming parity. Capture the evidence needed to prove base (.opencode/agent/) matches Claude and Gemini, Codex traces lineage to base after extension normalization, deep-research is the active name, and stale research naming is absent. Return a concise pass/fail verdict with the main reason.",
+    "prompt": "Audit runtime agent naming parity. Capture the evidence needed to prove base (.opencode/agents/) matches Claude and Gemini, Codex traces lineage to base after extension normalization, deep-research is the active name, and stale research naming is absent. Return a concise pass/fail verdict with the main reason.",
     "expectedSignals": [
       "all diff commands produce no output",
       "rg finds no active `research/research.md`."
@@ -7564,7 +7564,7 @@
     "unmatchedSignals": [],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1` 2) `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 3) `TMP_DIR=\"$(mktemp -d /tmp/speckit-completion-XXXXXX)\"` 4) `cp -R .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 \"$TMP_DIR/level3-missing-evidence\"` 5) `perl -0pi -e 's/ \\\\[EVIDENCE:[^\\\\n]+\\\\]//' \"$TMP_DIR/level3-missing-evidence/checklist.md\"` 6) `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh \"$TMP_DIR/level3-missing-evidence\" --json"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1` 2) `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 3) `TMP_DIR=\"$(mktemp -d /tmp/speckit-completion-XXXXXX)\"` 4) `cp -R .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 \"$TMP_DIR/level3-missing-evidence\"` 5) `perl -0pi -e 's/ \\\\[EVIDENCE:[^\\\\n]+\\\\]//' \"$TMP_DIR/level3-missing-evidence/checklist.md\"` 6) `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh \"$TMP_DIR/level3-missing-evidence\" --json"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7580,7 +7580,7 @@
     "unmatchedSignals": [],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh list` 2) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh show index-drift` 3) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh drill index-drift --scenario success --max-attempts 3` 4) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh drill ledger-mismatch --scenario success --max-attempts 3` 5) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh drill telemetry-drift --scenario escalate --max-attempts 2"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh list` 2) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh show index-drift` 3) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill index-drift --scenario success --max-attempts 3` 4) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill ledger-mismatch --scenario success --max-attempts 3` 5) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill telemetry-drift --scenario escalate --max-attempts 2"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7596,7 +7596,7 @@
     "unmatchedSignals": [],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `npx tsx .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run` 2) `npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts --channels vector"
+      "Command sequence is not expressible as direct handler calls: 1) `npx tsx .opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run` 2) `npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts --channels vector"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7620,7 +7620,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh` 2) `node .opencode/skill/system-spec-kit/scripts/tests/test-phase-command-workflows.js` 3) `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase --recursive` 4) `bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh .opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh` 2) `node .opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js` 3) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase --recursive` 4) `bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh .opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7646,7 +7646,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --help` 2) `bash .opencode/skill/system-spec-kit/scripts/tests/test-upgrade-level.sh` 3) `bash .opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 4) `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 5) `bash .opencode/skill/system-spec-kit/scripts/spec/archive.sh --help`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --help` 2) `bash .opencode/skills/system-spec-kit/scripts/tests/test-upgrade-level.sh` 3) `bash .opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 4) `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 5) `bash .opencode/skills/system-spec-kit/scripts/spec/archive.sh --help`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7662,7 +7662,7 @@
     "unmatchedSignals": [],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 2) `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/054-template-extra-header"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 2) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7686,7 +7686,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json` 2) `node .opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js` 3) `node .opencode/skill/system-spec-kit/scripts/tests/test-cleanup-orphaned-vectors.js` 4) `node .opencode/skill/system-spec-kit/scripts/tests/test-ast-parser.js` 5) `printf '[{\\\"path\\\":\\\"memory/demo.md\\\",\\\"title\\\":\\\"Demo Memory\\\",\\\"importance_tier\\\":\\\"important\\\",\\\"updated_at\\\":\\\"2026-03-26T00:00:00.000Z\\\"}]' > /tmp/memories.json` 6) `node .opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json`"
+      "Command sequence is not expressible as direct handler calls: 1) `node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json` 2) `node .opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js` 3) `node .opencode/skills/system-spec-kit/scripts/tests/test-cleanup-orphaned-vectors.js` 4) `node .opencode/skills/system-spec-kit/scripts/tests/test-ast-parser.js` 5) `printf '[{\\\"path\\\":\\\"memory/demo.md\\\",\\\"title\\\":\\\"Demo Memory\\\",\\\"importance_tier\\\":\\\"important\\\",\\\"updated_at\\\":\\\"2026-03-26T00:00:00.000Z\\\"}]' > /tmp/memories.json` 6) `node .opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7706,7 +7706,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/scripts && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7730,7 +7730,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/scripts && node tests/test-extractors-loaders.js` 2) `cd .opencode/skill/system-spec-kit/scripts && npx vitest run tests/session-enrichment.vitest.ts tests/phase-classification.vitest.ts tests/description-enrichment.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js` 2) `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/session-enrichment.vitest.ts tests/phase-classification.vitest.ts tests/description-enrichment.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7754,7 +7754,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/scripts && node tests/test-folder-detector-functional.js` 2) `cd .opencode/skill/system-spec-kit/scripts && node tests/test-alignment-validator.js` 3) `cd .opencode/skill/system-spec-kit/scripts && node tests/test-subfolder-resolution.js` 4) `npx tsx .opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion .opencode/specs --description \"Manual scenario description\"`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js` 2) `cd .opencode/skills/system-spec-kit/scripts && node tests/test-alignment-validator.js` 3) `cd .opencode/skills/system-spec-kit/scripts && node tests/test-subfolder-resolution.js` 4) `npx tsx .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion .opencode/specs --description \"Manual scenario description\"`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7780,7 +7780,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate` 2) `cd .opencode/skill/system-spec-kit && bash scripts/setup/check-native-modules.sh` 3) `cd .opencode/skill/system-spec-kit && node scripts/setup/record-node-version.js` 4) `cd .opencode/skill/system-spec-kit && bash scripts/setup/install.sh --skip-verify`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate` 2) `cd .opencode/skills/system-spec-kit && bash scripts/setup/check-native-modules.sh` 3) `cd .opencode/skills/system-spec-kit && node scripts/setup/record-node-version.js` 4) `cd .opencode/skills/system-spec-kit && bash scripts/setup/install.sh --skip-verify`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7806,7 +7806,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --verify` 2) `bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --dry-run --verbose 2 3` 3) `bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh 2` 4) `bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --verify 2`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/templates/compose.sh --verify` 2) `bash .opencode/skills/system-spec-kit/scripts/templates/compose.sh --dry-run --verbose 2 3` 3) `bash .opencode/skills/system-spec-kit/scripts/templates/compose.sh 2` 4) `bash .opencode/skills/system-spec-kit/scripts/templates/compose.sh --verify 2`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7832,7 +7832,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `npx tsx .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run` 2) `SPECKIT_ABLATION=true npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts` 3) `npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-bm25-baseline.ts --verbose` 4) `npx tsx --tsconfig .opencode/skill/system-spec-kit/scripts/tsconfig.json .opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts system-spec-kit/022-hybrid-rag-fusion` 5) `cd .opencode/skill/system-spec-kit/scripts && npx vitest run tests/architecture-boundary-enforcement.vitest.ts tests/import-policy-rules.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `npx tsx .opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run` 2) `SPECKIT_ABLATION=true npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts` 3) `npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts --verbose` 4) `npx tsx --tsconfig .opencode/skills/system-spec-kit/scripts/tsconfig.json .opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts system-spec-kit/022-hybrid-rag-fusion` 5) `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/architecture-boundary-enforcement.vitest.ts tests/import-policy-rules.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7854,7 +7854,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/scripts && npx vitest run tests/semantic-signal-golden.vitest.ts tests/utils-regressions.vitest.ts tests/workspace-identity.vitest.ts tests/backfill-frontmatter.vitest.ts tests/tool-sanitizer.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/semantic-signal-golden.vitest.ts tests/utils-regressions.vitest.ts tests/workspace-identity.vitest.ts tests/backfill-frontmatter.vitest.ts tests/tool-sanitizer.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7878,7 +7878,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh` 2) `bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion` 3) `bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion > /tmp/quality-kpi.json` 4) `node -e \"const fs=require('fs'); const data=JSON.parse(fs.readFileSync('/tmp/quality-kpi.json','utf8')); console.log(data.scope, data.totalFiles, data.rates.emptyTriggerPhrasesRate)\"`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh` 2) `bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion` 3) `bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion > /tmp/quality-kpi.json` 4) `node -e \"const fs=require('fs'); const data=JSON.parse(fs.readFileSync('/tmp/quality-kpi.json','utf8')); console.log(data.scope, data.totalFiles, data.rates.emptyTriggerPhrasesRate)\"`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -7924,7 +7924,7 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
           "asyncEmbedding": true,
           "skipPreflight": true
         }
@@ -7940,7 +7940,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
             "asyncEmbedding": true,
             "skipPreflight": true
           }
@@ -8077,7 +8077,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Inspect `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md` frontmatter and capture the constitutional importance tier, content type, and trigger-phrase coverage 2) Inspect the body of `gate-enforcement.md` and confirm the gate cross-reference table, continuation-validation workflow, compaction-recovery guidance, and quick-reference behavior are present 3) Inspect `.opencode/skill/system-spec-kit/constitutional/README.md` and confirm it documents constitutional ranking, fixed similarity, no decay, permanence, and budget/verification rules 4) Cross-check the rule-pack references against `AGENTS.md` Section 2 to confirm the constitutional pack points back to the authoritative gate contract"
+      "Command sequence is not expressible as direct handler calls: 1) Inspect `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md` frontmatter and capture the constitutional importance tier, content type, and trigger-phrase coverage 2) Inspect the body of `gate-enforcement.md` and confirm the gate cross-reference table, continuation-validation workflow, compaction-recovery guidance, and quick-reference behavior are present 3) Inspect `.opencode/skills/system-spec-kit/constitutional/README.md` and confirm it documents constitutional ranking, fixed similarity, no decay, permanence, and budget/verification rules 4) Cross-check the rule-pack references against `AGENTS.md` Section 2 to confirm the constitutional pack points back to the authoritative gate contract"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8213,7 +8213,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `rg \"mutation-feedback\" .opencode/skill/system-spec-kit/mcp_server/hooks/index.ts` 2) `rg \"response-hints\" .opencode/skill/system-spec-kit/mcp_server/hooks/index.ts` 3) `rg \"mutation-feedback\\"
+      "Command sequence is not expressible as direct handler calls: 1) `rg \"mutation-feedback\" .opencode/skills/system-spec-kit/mcp_server/hooks/index.ts` 2) `rg \"response-hints\" .opencode/skills/system-spec-kit/mcp_server/hooks/index.ts` 3) `rg \"mutation-feedback\\"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8553,7 +8553,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hooks-mutation-wiring.vitest.ts tests/mutation-hooks.vitest.ts` 2) inspect assertions covering `save`, `update`, `delete`, `bulk-delete`, and `atomic-save` 3) inspect assertions proving thrown hook failures populate `errors` and emit warning telemetry"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hooks-mutation-wiring.vitest.ts tests/mutation-hooks.vitest.ts` 2) inspect assertions covering `save`, `update`, `delete`, `bulk-delete`, and `atomic-save` 3) inspect assertions proving thrown hook failures populate `errors` and emit warning telemetry"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8573,7 +8573,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/handler-memory-health-edge.vitest.ts tests/memory-crud-extended.vitest.ts` 2) inspect assertions covering confirmation-only responses for `autoRepair:true` without `confirmed:true` 3) inspect assertions covering FTS rebuild, orphan cleanup, and partial-success repair metadata"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/handler-memory-health-edge.vitest.ts tests/memory-crud-extended.vitest.ts` 2) inspect assertions covering confirmation-only responses for `autoRepair:true` without `confirmed:true` 3) inspect assertions covering FTS rebuild, orphan cleanup, and partial-success repair metadata"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8593,7 +8593,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/hooks-mutation-wiring.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 2) inspect assertions covering missing, mismatched, and matching `confirmName` payloads 3) inspect assertions covering shared mutation-hook result fields in hook wiring and save responses"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/hooks-mutation-wiring.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 2) inspect assertions covering missing, mismatched, and matching `confirmName` payloads 3) inspect assertions covering shared mutation-hook result fields in hook wiring and save responses"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8613,7 +8613,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/mutation-hooks.vitest.ts tests/hooks-mutation-wiring.vitest.ts tests/hooks-ux-feedback.vitest.ts` 2) inspect assertions covering `latencyMs`, cache-clear booleans, `toolCacheInvalidated`, and `errors` 3) inspect assertions proving UX feedback/hint builders surface the contract fields without dropping error context"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/mutation-hooks.vitest.ts tests/hooks-mutation-wiring.vitest.ts tests/hooks-ux-feedback.vitest.ts` 2) inspect assertions covering `latencyMs`, cache-clear booleans, `toolCacheInvalidated`, and `errors` 3) inspect assertions proving UX feedback/hint builders surface the contract fields without dropping error context"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8633,7 +8633,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts` 2) inspect assertions covering successful `memory_save` and `atomicSaveMemory` responses with typed `postMutationHooks` fields 3) inspect assertions covering duplicate-content and unchanged/no-op suppression of false UX payloads"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts` 2) inspect assertions covering successful `memory_save` and `atomicSaveMemory` responses with typed `postMutationHooks` fields 3) inspect assertions covering duplicate-content and unchanged/no-op suppression of false UX payloads"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8653,7 +8653,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts tests/context-server.vitest.ts` 2) inspect assertions covering successful atomic-save `postMutationHooks` contract parity 3) inspect assertions covering partial-indexing hints and duplicate or unchanged hook suppression 4) inspect assertions covering `structuredClone` snapshot isolation for after-tool callbacks"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts tests/context-server.vitest.ts` 2) inspect assertions covering successful atomic-save `postMutationHooks` contract parity 3) inspect assertions covering partial-indexing hints and duplicate or unchanged hook suppression 4) inspect assertions covering `structuredClone` snapshot isolation for after-tool callbacks"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8673,7 +8673,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts` 2) inspect assertions covering final serialized-envelope token-count recomputation in `appendAutoSurfaceHints` 3) inspect assertions covering final token-count correctness after success-path hint append and token-budget injection"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts` 2) inspect assertions covering final serialized-envelope token-count recomputation in `appendAutoSurfaceHints` 3) inspect assertions covering final token-count correctness after success-path hint append and token-budget injection"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8693,7 +8693,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/hooks-ux-feedback.vitest.ts` 2) inspect assertions covering success-path hint append 3) inspect assertions covering preserved `autoSurfacedContext` 4) inspect assertions covering final serialized-envelope token-count alignment"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/hooks-ux-feedback.vitest.ts` 2) inspect assertions covering success-path hint append 3) inspect assertions covering preserved `autoSurfacedContext` 4) inspect assertions covering final serialized-envelope token-count alignment"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8947,7 +8947,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts tests/memory-crud-extended.vitest.ts tests/mcp-input-validation.vitest.ts` 2) `cd .opencode/skill/system-spec-kit/mcp_server && node -e \"const fs=require('fs'); const path=require('path'); const p=path.resolve(process.cwd(),'handlers','../../../scripts/dist/memory/validate-memory-quality.js'); console.log(p); console.log(fs.existsSync(p) ? 'exists' : 'missing')\"` 3) inspect assertions covering `memory_save` preflight, V-rule disposition handling, quality-loop rejection or repair, and downstream save-quality-gate outcomes 4) inspect assertions covering `memory_health` confirmation-required auto-repair and bounded repair metadata 5) inspect assertions covering `memory_validate` and checkpoint pathways that preserve revalidation or rollback signals"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts tests/memory-crud-extended.vitest.ts tests/mcp-input-validation.vitest.ts` 2) `cd .opencode/skills/system-spec-kit/mcp_server && node -e \"const fs=require('fs'); const path=require('path'); const p=path.resolve(process.cwd(),'handlers','../../../scripts/dist/memory/validate-memory-quality.js'); console.log(p); console.log(fs.existsSync(p) ? 'exists' : 'missing')\"` 3) inspect assertions covering `memory_save` preflight, V-rule disposition handling, quality-loop rejection or repair, and downstream save-quality-gate outcomes 4) inspect assertions covering `memory_health` confirmation-required auto-repair and bounded repair metadata 5) inspect assertions covering `memory_validate` and checkpoint pathways that preserve revalidation or rollback signals"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -8973,7 +8973,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/memory-crud-extended.vitest.ts tests/tool-input-schema.vitest.ts` 2) inspect assertions covering `memory_health` with `autoRepair: true` and missing `confirmed: true` to verify confirmation-required behavior 3) inspect assertions covering confirmed FTS rebuild, trigger-cache refresh, orphan-edge cleanup, and vector or chunk cleanup 4) inspect assertions covering `repair.requested`, `repair.attempted`, `repair.repaired`, `repair.partialSuccess`, `repair.warnings`, and `repair.errors` in success and partial-success paths"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/memory-crud-extended.vitest.ts tests/tool-input-schema.vitest.ts` 2) inspect assertions covering `memory_health` with `autoRepair: true` and missing `confirmed: true` to verify confirmation-required behavior 3) inspect assertions covering confirmed FTS rebuild, trigger-cache refresh, orphan-edge cleanup, and vector or chunk cleanup 4) inspect assertions covering `repair.requested`, `repair.attempted`, `repair.repaired`, `repair.partialSuccess`, `repair.warnings`, and `repair.errors` in success and partial-success paths"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9001,7 +9001,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/learned-feedback.vitest.ts tests/promotion-positive-validation-semantics.vitest.ts tests/mcp-input-validation.vitest.ts` 2) inspect assertions covering confidence and validation-counter updates for positive and negative `memory_validate` calls 3) inspect assertions covering best-effort adaptive feedback writes plus positive-only promotion thresholds and non-promotable tiers 4) inspect assertions covering persisted negative-feedback events, bounded learned-feedback behavior, and ground-truth capture fields"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/learned-feedback.vitest.ts tests/promotion-positive-validation-semantics.vitest.ts tests/mcp-input-validation.vitest.ts` 2) inspect assertions covering confidence and validation-counter updates for positive and negative `memory_validate` calls 3) inspect assertions covering best-effort adaptive feedback writes plus positive-only promotion thresholds and non-promotable tiers 4) inspect assertions covering persisted negative-feedback events, bounded learned-feedback behavior, and ground-truth capture fields"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9029,7 +9029,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/learned-feedback.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 2) inspect source-backed assertions or snapshots showing eager warmup stays disabled and deprecated warmup flags only surface as compatibility warnings 3) inspect source-backed assertions or snapshots showing shadow scoring runtime helpers return inert values and novelty boost reports as not applied 4) inspect source-backed assertions or snapshots showing hybrid search always follows adaptive fusion as the default live path without consulting the retired flag"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/learned-feedback.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 2) inspect source-backed assertions or snapshots showing eager warmup stays disabled and deprecated warmup flags only surface as compatibility warnings 3) inspect source-backed assertions or snapshots showing shadow scoring runtime helpers return inert values and novelty boost reports as not applied 4) inspect source-backed assertions or snapshots showing hybrid search always follows adaptive fusion as the default live path without consulting the retired flag"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9049,7 +9049,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npx vitest run tests/lazy-loading.vitest.ts tests/context-server.vitest.ts` 3) `sed -n '840,890p' context-server.ts` 4) `rg -n \"shouldEagerWarmup"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npx vitest run tests/lazy-loading.vitest.ts tests/context-server.vitest.ts` 3) `sed -n '840,890p' context-server.ts` 4) `rg -n \"shouldEagerWarmup"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9069,7 +9069,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npx vitest run tests/shadow-scoring.vitest.ts tests/mpab-quality-gate-integration.vitest.ts` 3) `sed -n '230,420p' lib/eval/shadow-scoring.ts` 4) `rg -n \"runShadowScoring"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npx vitest run tests/shadow-scoring.vitest.ts tests/mpab-quality-gate-integration.vitest.ts` 3) `sed -n '230,420p' lib/eval/shadow-scoring.ts` 4) `rg -n \"runShadowScoring"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9089,7 +9089,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npx vitest run tests/cold-start.vitest.ts tests/search-flags.vitest.ts tests/scoring-observability.vitest.ts` 3) `sed -n '470,530p' lib/scoring/composite-scoring.ts` 4) `sed -n '1,120p' lib/search/graph-flags.ts` 5) `rg -n \"SPECKIT_NOVELTY_BOOST"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npx vitest run tests/cold-start.vitest.ts tests/search-flags.vitest.ts tests/scoring-observability.vitest.ts` 3) `sed -n '470,530p' lib/scoring/composite-scoring.ts` 4) `sed -n '1,120p' lib/search/graph-flags.ts` 5) `rg -n \"SPECKIT_NOVELTY_BOOST"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9109,7 +9109,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npx vitest run tests/adaptive-fusion.vitest.ts tests/hybrid-search.vitest.ts` 3) `sed -n '985,1015p' lib/search/hybrid-search.ts` 4) `rg -n \"SPECKIT_ADAPTIVE_FUSION\" INSTALL_GUIDE.md` 5) `rg -n \"hybridAdaptiveFuse\" lib/search/hybrid-search.ts tests/adaptive-fusion.vitest.ts tests/hybrid-search.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npx vitest run tests/adaptive-fusion.vitest.ts tests/hybrid-search.vitest.ts` 3) `sed -n '985,1015p' lib/search/hybrid-search.ts` 4) `rg -n \"SPECKIT_ADAPTIVE_FUSION\" INSTALL_GUIDE.md` 5) `rg -n \"hybridAdaptiveFuse\" lib/search/hybrid-search.ts tests/adaptive-fusion.vitest.ts tests/hybrid-search.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9129,7 +9129,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hook-precompact.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-precompact.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9149,7 +9149,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9169,7 +9169,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9189,7 +9189,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9209,7 +9209,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9229,7 +9229,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9249,7 +9249,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9289,7 +9289,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/budget-allocator.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/budget-allocator.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9309,7 +9309,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9329,7 +9329,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9349,7 +9349,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9369,7 +9369,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -9476,7 +9476,7 @@
       }
     ],
     "evidence": [
-      "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":null,\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:37.840Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":null,\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery context found. Pass specFol...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"key\":\"cocoindex-status\",\"title\""
+      "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":null,\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:37.840Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":null,\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery context found. Pass specFol...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"key\":\"cocoindex-status\",\"title\""
     ],
     "steps": [
       {
@@ -9493,7 +9493,7 @@
           "hints present"
         ],
         "evidence": [
-          "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":null,\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:37.840Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":null,\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery context found. Pass specFol...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"key\":\"cocoindex-status\",\"title\""
+          "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":null,\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:37.840Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":null,\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery context found. Pass specFol...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"key\":\"cocoindex-status\",\"title\""
         ]
       }
     ]
@@ -9525,11 +9525,11 @@
     "filePath": "22--context-preservation-and-code-graph/265-gemini-hooks.md",
     "prompt": "Validate 265a session-prime startup",
     "expectedSignals": [
-      "node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js`"
+      "node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js`"
     ],
     "matchedSignals": [],
     "unmatchedSignals": [
-      "node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js`"
+      "node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js`"
     ],
     "handlerCalls": [],
     "evidence": [
@@ -9621,7 +9621,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit && rg -n \"## Tool Routing"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit && rg -n \"## Tool Routing"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."

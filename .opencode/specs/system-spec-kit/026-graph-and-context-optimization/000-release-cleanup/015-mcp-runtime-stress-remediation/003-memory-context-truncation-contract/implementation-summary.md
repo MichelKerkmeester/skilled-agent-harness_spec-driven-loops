@@ -26,7 +26,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -59,11 +59,11 @@ Built behavior:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modified | Add token telemetry fields and impossible-budget reason |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/_support/token-budget-assertions.ts` | Added | Shared payload/count invariant helper |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts` | Modified | Existing invariant calls plus 3 new contract tests |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts` | Modified | Existing truncation tests now assert nested payload count |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js` | Verified generated artifact | Ignored by git; local build output includes new telemetry fields |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modified | Add token telemetry fields and impossible-budget reason |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/_support/token-budget-assertions.ts` | Added | Shared payload/count invariant helper |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts` | Modified | Existing invariant calls plus 3 new contract tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts` | Modified | Existing truncation tests now assert nested payload count |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js` | Verified generated artifact | Ignored by git; local build output includes new telemetry fields |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -103,9 +103,9 @@ The MCP daemon restart procedure is owned by packet 008-mcp-daemon-rebuild-proto
 | Requested `npm test -- --run tests/token-budget-enforcement.vitest.ts tests/memory-context.vitest.ts` | FAIL | The package script runs full `test:core` before `test:file-watcher`; unrelated suites failed/hung before the target filter was reached. Observed failures included `handler-memory-save.vitest.ts`, `checkpoints-extended.vitest.ts`, `modularization.vitest.ts`, `graph-payload-validator.vitest.ts`, `advisor-graph-health.vitest.ts`, and others. |
 | Focused Vitest: `npx vitest run tests/token-budget-enforcement.vitest.ts tests/memory-context.vitest.ts` | PASS | 2 files passed, 137 tests passed. |
 | `npm run build` | PASS | `tsc --build` completed successfully. |
-| `grep -l preEnforcementTokens .opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js` | PASS | Found compiled marker. |
-| `grep -l returnedTokens .opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js` | PASS | Found compiled marker. |
-| `grep -l droppedAllResultsReason .opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js` | PASS | Found compiled marker. |
+| `grep -l preEnforcementTokens .opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js` | PASS | Found compiled marker. |
+| `grep -l returnedTokens .opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js` | PASS | Found compiled marker. |
+| `grep -l droppedAllResultsReason .opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js` | PASS | Found compiled marker. |
 | Live `memory_context({input:"Semantic Search", mode:"auto"})` probe | PASS | Recorded 2026-04-27T10:12:36.021Z (fresh Claude Code session post-2026-04-26 dist rebuild). `meta.tokenBudgetEnforcement`: `preEnforcementTokens:7410`, `returnedTokens:1278`, `actualTokens:1278`, `enforced:true`, `truncated:true`, `originalResultCount:5`, `returnedResultCount:2`. Over-budget path with payload preserved (no `droppedAllResultsReason`). Confirms REQ-001/002/004 markers are live. |
 
 REQ acceptance criteria:

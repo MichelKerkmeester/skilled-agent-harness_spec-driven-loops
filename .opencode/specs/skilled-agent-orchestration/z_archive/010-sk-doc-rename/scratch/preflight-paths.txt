@@ -4,8 +4,8 @@
 ./.gemini/skills/sk-visual-explainer
 ./.opencode/changelog/11--sk-documentation
 ./.opencode/changelog/12--sk-visual-explainer
-./.opencode/skill/sk-documentation
-./.opencode/skill/sk-visual-explainer
+./.opencode/skills/sk-documentation
+./.opencode/skills/sk-visual-explainer
 ./.opencode/specs/03--commands-and-skills/002-skill-rename/004-sk-documentation
 ./.opencode/specs/03--commands-and-skills/002-skill-rename/004-sk-documentation/memory/21-02-26_12-29__sk-documentation.md
 ./.opencode/specs/03--commands-and-skills/002-skill-rename/006-sk-visual-explainer

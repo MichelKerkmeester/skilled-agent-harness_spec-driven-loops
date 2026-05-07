@@ -21,7 +21,7 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-      - ".opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-05"
@@ -48,7 +48,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | Parent Spec: `../spec.md` |
 | **Packet** | `001-playbook` |
-| **Implementation Surface** | `.opencode/skill/sk-code/manual_testing_playbook/` |
+| **Implementation Surface** | `.opencode/skills/sk-code/manual_testing_playbook/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -76,7 +76,7 @@ Extend the playbook with two additional numbered category folders and seven dete
 - Use real repo anchors from `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` and `a_nobel_en_zn/2_javascript/slider/testimonial.js` to keep scenarios realistic.
 
 ### Out of Scope
-- Populating `.opencode/skill/sk-code/references/motion_dev/` or `.opencode/skill/sk-code/assets/motion_dev/`; Packet 2 owns that.
+- Populating `.opencode/skills/sk-code/references/motion_dev/` or `.opencode/skills/sk-code/assets/motion_dev/`; Packet 2 owns that.
 - Adding webflow reference "See also" pointers or sk-code metadata synchronization; Packet 3 owns that.
 - Modifying `SKILL.md`, README files, sk-code root metadata, or changelog files.
 - Reorganizing existing playbook categories or renumbering existing stable scenario IDs.
@@ -89,9 +89,9 @@ Extend the playbook with two additional numbered category folders and seven dete
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook/plan.md` | Create | Packet 1 implementation plan |
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook/tasks.md` | Create | Packet 1 task ledger |
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook/checklist.md` | Create | Packet 1 verification checklist |
-| `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add two categories and renumber trailing sections |
-| `.opencode/skill/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/*.md` | Create | Four MR scenarios |
-| `.opencode/skill/sk-code/manual_testing_playbook/06--cross-browser-and-performance-gates/*.md` | Create | Three CB scenarios |
+| `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add two categories and renumber trailing sections |
+| `.opencode/skills/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/*.md` | Create | Four MR scenarios |
+| `.opencode/skills/sk-code/manual_testing_playbook/06--cross-browser-and-performance-gates/*.md` | Create | Three CB scenarios |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -106,7 +106,7 @@ Extend the playbook with two additional numbered category folders and seven dete
 | REQ-001 | Preserve the existing sk-doc playbook shape | Root file remains `manual_testing_playbook.md`; new scenarios live in numbered category folders; existing categories are not restructured |
 | REQ-002 | Add deterministic motion.dev scenarios | MR-001 through MR-004 include exact prompts, exact command sequences, expected signals, evidence requirements, pass/fail criteria, and failure triage |
 | REQ-003 | Add deterministic cross-browser/performance scenarios | CB-001 through CB-003 include browser, CWV, and GPU/compositing evidence requirements |
-| REQ-004 | Respect packet boundaries | No edits outside the approved spec child folder and `.opencode/skill/sk-code/manual_testing_playbook/` |
+| REQ-004 | Respect packet boundaries | No edits outside the approved spec child folder and `.opencode/skills/sk-code/manual_testing_playbook/` |
 
 ### P1 - Required
 

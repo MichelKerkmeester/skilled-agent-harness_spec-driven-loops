@@ -119,8 +119,8 @@ Current active review artifacts live under `review/` and include five iteration 
 <!-- MACHINE-OWNED: START -->
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|---------------------|----------------|----------|--------|
-| `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` | D1, D2, D4 | 005 | 1 P1 | needs recheck |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml` | D1, D2, D4 | 005 | 1 P1 | needs recheck |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` | D1, D2, D4 | 005 | 1 P1 | needs recheck |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` | D1, D2, D4 | 005 | 1 P1 | needs recheck |
 | `spec.md` | D3 | 005 | 1 P1 | remediated |
 | `plan.md` | D3 | 005 | 1 P1 | remediated |
 | `tasks.md` | D3 | 005 | 1 P1 | remediated |

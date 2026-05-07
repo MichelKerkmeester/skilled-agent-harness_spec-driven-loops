@@ -44,17 +44,17 @@ skill_advisor.py updated with 3 booster sections (INTENT_BOOSTERS, MULTI_SKILL_B
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/cli-copilot/SKILL.md` | Created | Main orchestrator (13.2 KB, 8 sections) |
-| `.opencode/skill/cli-copilot/README.md` | Created | Companion guide (10.9 KB, 8 sections) |
-| `.opencode/skill/cli-copilot/references/cli_reference.md` | Created | CLI reference (7.8 KB) |
-| `.opencode/skill/cli-copilot/references/agent_delegation.md` | Created | Agent delegation (7.7 KB) |
-| `.opencode/skill/cli-copilot/references/copilot_tools.md` | Created | Capabilities + 4-way comparison (7.8 KB) |
-| `.opencode/skill/cli-copilot/references/integration_patterns.md` | Created | Orchestration patterns (12.2 KB) |
-| `.opencode/skill/cli-copilot/assets/prompt_templates.md` | Created | Templates (8.7 KB) |
-| `.opencode/skill/scripts/skill_advisor.py` | Modified | 3 booster sections (Public) |
-| `Barter/.opencode/skill/scripts/skill_advisor.py` | Modified | 3 booster sections (Barter) |
+| `.opencode/skills/cli-copilot/SKILL.md` | Created | Main orchestrator (13.2 KB, 8 sections) |
+| `.opencode/skills/cli-copilot/README.md` | Created | Companion guide (10.9 KB, 8 sections) |
+| `.opencode/skills/cli-copilot/references/cli_reference.md` | Created | CLI reference (7.8 KB) |
+| `.opencode/skills/cli-copilot/references/agent_delegation.md` | Created | Agent delegation (7.7 KB) |
+| `.opencode/skills/cli-copilot/references/copilot_tools.md` | Created | Capabilities + 4-way comparison (7.8 KB) |
+| `.opencode/skills/cli-copilot/references/integration_patterns.md` | Created | Orchestration patterns (12.2 KB) |
+| `.opencode/skills/cli-copilot/assets/prompt_templates.md` | Created | Templates (8.7 KB) |
+| `.opencode/skills/scripts/skill_advisor.py` | Modified | 3 booster sections (Public) |
+| `Barter/.opencode/skills/scripts/skill_advisor.py` | Modified | 3 booster sections (Barter) |
 | `.claude/skills/cli-copilot` | Created | Symlink |
-| `.opencode/skill/README.md` | Modified | Catalog, routing table, related links, count |
+| `.opencode/skills/README.md` | Modified | Catalog, routing table, related links, count |
 | `.opencode/README.md` | Modified | Skills table, count |
 | `README.md` | Modified | Skills table, count |
 
@@ -108,9 +108,9 @@ Spec docs created first as Level 2 documentation following the 003-cli-claude-co
 | Check | Result |
 |-------|--------|
 | skill_advisor.py "use copilot cli" | PASS — confidence 0.95, passes_threshold: true |
-| Symlink readlink | PASS — `../../.opencode/skill/cli-copilot` |
+| Symlink readlink | PASS — `../../.opencode/skills/cli-copilot` |
 | Skill files exist (ls -la) | PASS — 2 root + 4 references + 1 asset |
-| grep cli-copilot in .opencode/skill/README.md | PASS — 4 matches |
+| grep cli-copilot in .opencode/skills/README.md | PASS — 4 matches |
 | grep cli-copilot in README.md | PASS — 1 match |
 | grep cli-copilot in .opencode/README.md | PASS — 1 match |
 | AI-agnostic language | PASS — zero "Claude Code" conductor violations |

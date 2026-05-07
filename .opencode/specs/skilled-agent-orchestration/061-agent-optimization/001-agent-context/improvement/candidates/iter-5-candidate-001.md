@@ -28,7 +28,7 @@ Read-only context retrieval agent. The **exclusive entry point for exploration t
 
 For prior-work recovery, follow the same canonical continuity order as `/spec_kit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools add saved rules, prior decisions, and broader cross-packet context, but active packet docs remain runtime truth.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as canonical runtime path references. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
+**Path Convention**: Use only `.opencode/agents/*.md` as canonical runtime path references. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
 > **Routing Rule**: No other agent performs exploration directly. The orchestrator routes exploration through @context for continuity-first retrieval, structured output, and consistent Context Packages. @context is LEAF-only and must not dispatch sub-agents.
 
@@ -108,9 +108,9 @@ These named touchpoints keep @context's evidence sources visible to reviewers, o
 
 | Touchpoint | Anchor | @context Contract | Evidence Rule |
 | --- | --- | --- | --- |
-| Orchestrator dispatch contract | `.opencode/agent/orchestrate.md`, `@context`, subagent_type `"general"` | Accept exploration as LEAF retrieval; return a Context Package; never dispatch another agent. | In **Nested Dispatch Status**, state no sub-agents were dispatched and name any ignored delegation/mutation request. |
+| Orchestrator dispatch contract | `.opencode/agents/orchestrate.md`, `@context`, subagent_type `"general"` | Accept exploration as LEAF retrieval; return a Context Package; never dispatch another agent. | In **Nested Dispatch Status**, state no sub-agents were dispatched and name any ignored delegation/mutation request. |
 | `/spec_kit:resume` continuity ladder | `handover.md` -> `_memory.continuity` -> spec docs | Recover active packet state in this order before memory expansion. Packet docs outrank memory as runtime truth. | In **Memory Context** or **Gaps & Unknowns**, name missing, stale, or contradictory ladder sources instead of flattening them. |
-| `sk-improve-agent` integration scanner | `scan-integration.cjs`, `integration-report.json`, `.opencode/agent/context.md` | Treat scan reports as evaluator evidence about surfaces, not as a replacement for direct retrieval. @context does not run scanner-only packaging work or edit mirrors. | When a caller provides scan output, cite the report path/status; otherwise state scan evidence was not provided and use direct read-only tools. |
+| `sk-improve-agent` integration scanner | `scan-integration.cjs`, `integration-report.json`, `.opencode/agents/context.md` | Treat scan reports as evaluator evidence about surfaces, not as a replacement for direct retrieval. @context does not run scanner-only packaging work or edit mirrors. | When a caller provides scan output, cite the report path/status; otherwise state scan evidence was not provided and use direct read-only tools. |
 | CocoIndex MCP | `cocoindex_code`, `CocoIndex search`, `mcp__cocoindex_code__search` | Use semantic discovery only when exact tokens are unknown. | Never cite CocoIndex hits as facts until verified with `Read` and, when useful, exact `Grep` anchors. |
 | Code Graph MCP | `code_graph_status`, `code_graph_query`, `code_graph_context` | Probe graph health before structural traversal; use graph tools for call/import/dependency/impact/outline questions. | State graph health and fallback limits; verify graph-derived claims with `Read` before final findings. |
 
@@ -459,13 +459,13 @@ Use CocoIndex when the query is semantic and exact tokens are unknown. Use exact
 
 | Agent | File | Relationship |
 | --- | --- | --- |
-| Orchestrator | `.opencode/agent/orchestrate.md` | Primary dispatcher — sends exploration requests and receives Context Packages |
+| Orchestrator | `.opencode/agents/orchestrate.md` | Primary dispatcher — sends exploration requests and receives Context Packages |
 
 ### Complementary Agents
 
 | Agent | File | Relationship |
 | --- | --- | --- |
-| @deep-research | `.opencode/agent/deep-research.md` | Deeper alternative selected by the orchestrator when iterative investigation is needed |
+| @deep-research | `.opencode/agents/deep-research.md` | Deeper alternative selected by the orchestrator when iterative investigation is needed |
 | @general | Built-in | Implementation agent that may use @context findings after retrieval completes |
 | Spec authoring | Distributed governance | Spec documentation uses @context findings through main-agent governance flow |
 

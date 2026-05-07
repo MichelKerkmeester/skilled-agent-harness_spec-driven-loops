@@ -6,7 +6,7 @@ I re-read the requested state-honesty seams in `post-insert.ts`, `shared-payload
 ## Findings
 
 ### Finding R24-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
 - **Lines:** `1616-1678, 2362-2384`
 - **Severity:** P1
 - **Description:** `memory_save` decides whether to advertise `runEnrichmentBackfill` before post-insert enrichment runs. That means the only save path with a typed recovery action is the already-known planner-first defer case. If `post-insert.ts:96-208` later collapses a partial runtime miss into `executionStatus.status = 'ran'` plus warning-only side channels, the final save response has no structured retry/backfill action even though the backfill API exists.
@@ -14,7 +14,7 @@ I re-read the requested state-honesty seams in `post-insert.ts`, `shared-payload
 - **Downstream Impact:** Agents consuming `memory_save` cannot mechanically distinguish "retry/backfill is available now" from "best-effort enrichment partially failed during this save," and they never receive a machine-actionable follow-up tool for the latter. Recovery falls back to parsing warnings or knowing hidden internal APIs.
 
 ### Finding R24-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`
 - **Lines:** `174-188, 191-327, 415-429, 560-563`
 - **Severity:** P1
 - **Description:** `session_resume` promotes hook-state `lastSpecFolder` into authoritative recovery scope without validating the packet anchor itself. `buildCachedSessionSummaryCandidate()` lifts `lastSpecFolder` and summary text directly from the unvalidated `HookState`; `evaluateCachedSessionSummaryCandidate()` verifies transcript identity, timestamps, and cache-token fields, but never confirms that the cached packet still exists or that the summary actually belongs to it. When the caller omits `specFolder`, `handleSessionResume()` feeds that cached value into `buildResumeLadder()` as `fallbackSpecFolder`, yet still builds `opencodeTransport` from `args.specFolder ?? null`.

@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Hand off to Packet 3 for cross-reference and metadata synchronization"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code/references/motion_dev/"
-      - ".opencode/skill/sk-code/assets/motion_dev/"
+      - ".opencode/skills/sk-code/references/motion_dev/"
+      - ".opencode/skills/sk-code/assets/motion_dev/"
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -71,10 +71,10 @@ The asset set adds a short install card, nine snippet files, and Packet 1 playbo
 | `checklist.md` | Created | Verification checklist with P0 citation and inventory checks |
 | `implementation-summary.md` | Created | Completion summary and validation evidence |
 | `graph-metadata.json` | Created | Validator-required child graph metadata |
-| `.opencode/skill/sk-code/references/motion_dev/*.md` | Created | Six canonical Motion reference docs |
-| `.opencode/skill/sk-code/assets/motion_dev/install_card.md` | Created | Quick install/version-pin reference |
-| `.opencode/skill/sk-code/assets/motion_dev/playbook_entries.md` | Created | Scenario-ready MR-001..MR-004 entries |
-| `.opencode/skill/sk-code/assets/motion_dev/snippets/*.js` | Created, then remediated | Nine runnable JavaScript snippets after Phase 004 added `stagger_animation.js` and fixed the layout/ESM bootstrap snippets |
+| `.opencode/skills/sk-code/references/motion_dev/*.md` | Created | Six canonical Motion reference docs |
+| `.opencode/skills/sk-code/assets/motion_dev/install_card.md` | Created | Quick install/version-pin reference |
+| `.opencode/skills/sk-code/assets/motion_dev/playbook_entries.md` | Created | Scenario-ready MR-001..MR-004 entries |
+| `.opencode/skills/sk-code/assets/motion_dev/snippets/*.js` | Created, then remediated | Nine runnable JavaScript snippets after Phase 004 added `stagger_animation.js` and fixed the layout/ESM bootstrap snippets |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -13,12 +13,12 @@ status: converged
 Trace sampled child implementation summaries into live `scripts/` runtime files and check whether the status drift is backed by real shipped code.
 
 ## Files Reviewed
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts`
-- `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts`
-- `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts`
-- `.opencode/skill/system-spec-kit/scripts/lib/trigger-phrase-sanitizer.ts`
-- `.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts`
-- `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts`
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts`
+- `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts`
+- `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts`
+- `.opencode/skills/system-spec-kit/scripts/lib/trigger-phrase-sanitizer.ts`
+- `.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts`
+- `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts`
 
 ## Findings
 

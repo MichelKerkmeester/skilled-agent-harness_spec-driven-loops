@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "final-report"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/"
+      - ".opencode/commands/spec_kit/"
     session_dedup:
       fingerprint: "sha256:0060060060060060060060060060060060060060060060060060060060060004"
       session_id: "2026-05-02-006-command-md-yaml-alignment"
@@ -56,7 +56,7 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] In-scope command docs have no stale deleted-artifact references. Evidence: Gate A `rg "compose\\.sh|wrap-all-templates|templates/level_|templates/core/|templates/addendum/|templates/phase_parent/|CORE \\+ ADDENDUM" .opencode/command/spec_kit/` returned zero hits.
+- [x] CHK-010 [P0] In-scope command docs have no stale deleted-artifact references. Evidence: Gate A `rg "compose\\.sh|wrap-all-templates|templates/level_|templates/core/|templates/addendum/|templates/phase_parent/|CORE \\+ ADDENDUM" .opencode/commands/spec_kit/` returned zero hits.
 - [x] CHK-011 [P0] YAML assets preserve step IDs, ordering, and parseability. Evidence: only prose strings were edited in YAML; Gate C parsed 12/12 assets and workflow-invariance passed.
 - [x] CHK-012 [P1] Error handling policy followed for YAML failures. Evidence: edited YAML files parsed immediately with zero failures.
 - [x] CHK-013 [P1] Changes follow project patterns. Evidence: command Markdown kept entrypoint/reference split; YAML edits kept existing keys, step IDs, and ordering.

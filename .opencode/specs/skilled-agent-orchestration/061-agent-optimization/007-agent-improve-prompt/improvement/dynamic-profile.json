@@ -1,7 +1,7 @@
 {
   "id": "improve-prompt",
   "family": "derived",
-  "targetPath": ".opencode/agent/improve-prompt.md",
+  "targetPath": ".opencode/agents/improve-prompt.md",
   "outputKind": "markdown",
   "promotionEligible": false,
   "generated": true,
@@ -61,7 +61,7 @@
     "ruleCoherence": [
       {
         "id": "always-rule-0",
-        "rule": "Read `.opencode/skill/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.",
+        "rule": "Read `.opencode/skills/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.",
         "type": "always",
         "weight": 8
       },

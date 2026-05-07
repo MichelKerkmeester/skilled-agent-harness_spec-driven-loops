@@ -3,16 +3,16 @@
 I’m reading the affinity implementation, tests, and a bit of surrounding context so I can evaluate failure modes and propose concrete ranking upgrades rather than hand-wavy ideas.
 
 ● Read spec-affinity.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts
   └ 546 lines read
 
 ● Read spec-affinity.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/spec-affinity.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/spec-affinity.vitest.ts
   └ 131 lines read
 
 ● Search (grep)
   │ "spec-affinity|computeSpecAffinity|KEYWORD_STOPWORDS|SPEC_ID_REGEX|normalizeText" in
-  │ **/*.{ts,tsx,js,json} (.opencode/skill/system-spec-kit/scripts)
+  │ **/*.{ts,tsx,js,json} (.opencode/skills/system-spec-kit/scripts)
   └ 28 lines found
 
 ● memory_match_triggers
@@ -21,11 +21,11 @@ I’m reading the affinity implementation, tests, and a bit of surrounding conte
 I’ve got the core implementation loaded. Next I’m checking nearby ranking/search code and sampling real spec metadata so the proposals are grounded in how this repo actually names specs and stores signals.
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L760:840 (81 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1:220 (220 lines read)
 
 ● search BM25 TF-IDF lexical ranking scoring search relevance in system-spec-kit
@@ -44,7 +44,7 @@ I’ve got the core implementation loaded. Next I’m checking nearby ranking/se
 
 ● Run spec affinity tests (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/scripts' && npm test -- --run
+  │ Env/Public/.opencode/skills/system-spec-kit/scripts' && npm test -- --run
   │ tests/spec-affinity.vitest.ts
   └ 14 lines...
 
@@ -59,20 +59,20 @@ I’ve got the core implementation loaded. Next I’m checking nearby ranking/se
 The implementation is smaller than the surrounding system, so I’m now stress-testing it conceptually against real spec names and the repo’s existing semantic-indexing components. That should let me separate “easy heuristics” from “worth doing only if infrastructure already exists.”
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/scripts/lib/embeddings.ts
+  │ .opencode/skills/system-spec-kit/scripts/lib/embeddings.ts
   └ L1:220 (9 lines read)
 
 ● Read package.json
-  │ .opencode/skill/system-spec-kit/package.json
+  │ .opencode/skills/system-spec-kit/package.json
   └ 44 lines read
 
 ● Read package.json
-  │ .opencode/skill/system-spec-kit/scripts/package.json
+  │ .opencode/skills/system-spec-kit/scripts/package.json
   └ 28 lines read
 
 ● Search (grep)
   │ "bm25|tf-idf|tfidf|embedding|cosine|similarity|rank|score" in **/*.{ts,tsx,js,md,json}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Measure spec metadata token distribution (shell)
@@ -98,13 +98,13 @@ I’ve confirmed there’s existing embedding infrastructure in the workspace, w
   └ L1:200 (44 lines read)
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "\bBM25\b|\bbm25\b|tf-idf|tfidf|sqlite-vec|cosine similarity|cosineSimilarity|dot
   │ product|embedding similarity|hybrid retrieval|lexical" in
-  │ {shared,mcp_server,scripts}/**/*.{ts,js,md} (.opencode/skill/system-spec-kit)
+  │ {shared,mcp_server,scripts}/**/*.{ts,js,md} (.opencode/skills/system-spec-kit)
   └ No matches found
 
 ● Simulate lexical false positives and negatives (shell)
@@ -135,7 +135,7 @@ I found a strong signal already: the current target construction appears to inhe
 
 ● Verify real false positive example (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/scripts' && npx tsx -e "const {buildSpecAffinityTar
+  │ Env/Public/.opencode/skills/system-spec-kit/scripts' && npx tsx -e "const {buildSpecAffinityTar
   │ gets,matchesSpecAffinityText,evaluateSpecAffinityText}=require('./utils/spec-affinity'); const
   │ a=buildSpecAffinityTargets('/Users/michelkerkmeester/MEGA/Development/Opencode
   │ Env/Public/specs/system-spec-kit/021-spec-kit-phase-system'); const text='Feature …
@@ -144,12 +144,12 @@ I found a strong signal already: the current target construction appears to inhe
 Confirmed: this isn’t just theoretical. A real spec currently builds `exactPhrases` that include raw triggers like `"feature"` and `"specification"`, so unrelated spec titles can score as relevant immediately. I’m pulling one more pass on retrieval infrastructure now so the proposals can cleanly distinguish “lexical fix,” “hybrid fix,” and “full semantic fix.”
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/index.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/index.ts
   └ L1:80 (80 lines read)
 
 ● Search (grep)
   │ "FTS5|fts5|bm25|rank_bm25|sqlite_vec|sqlite-vec|cosine|similarity" in
-  │ {shared,mcp_server,scripts}/**/*.{ts,js,sql,md} (.opencode/skill/system-spec-kit)
+  │ {shared,mcp_server,scripts}/**/*.{ts,js,sql,md} (.opencode/skills/system-spec-kit)
   └ No matches found
 
 ● Sample files-to-change structural signals (shell)
@@ -171,12 +171,12 @@ Confirmed: this isn’t just theoretical. A real spec currently builds `exactPhr
 I’ve got two concrete repo-level findings now: generic trigger phrases are widespread, and there are a lot of cross-spec lexical overlaps in real metadata. I’m doing a final pass for existing SQL/vector retrieval plumbing so the proposals map onto what the codebase can realistically adopt quickly.
 
 ● Read test-embeddings-factory.js
-  │ .opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js
+  │ .opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js
   └ L1:220 (117 lines read)
 
 ● Search (grep)
   │ "CREATE VIRTUAL TABLE.*fts5|fts5\(|MATCH \?|MATCH '|sqlite-vec|sqlite_vec|vec0|embedding" in
-  │ {shared,mcp_server,scripts}/**/*.{ts,js,sql} (.opencode/skill/system-spec-kit)
+  │ {shared,mcp_server,scripts}/**/*.{ts,js,sql} (.opencode/skills/system-spec-kit)
   └ No matches found
 
 ● Verify cleaned file targets (shell)
@@ -189,7 +189,7 @@ I’ve got two concrete repo-level findings now: generic trigger phrases are wid
 
 ● Inspect target payload and aggregate evaluation (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/scripts' && npx tsx -e "const
+  │ Env/Public/.opencode/skills/system-spec-kit/scripts' && npx tsx -e "const
   │ {buildSpecAffinityTargets,evaluateCollectedDataSpecAffinity}=require('./utils/spec-affinity');
   │ const s=buildSpecAffinityTargets('/Users/michelkerkmeester/MEGA/Development/Opencode
   │ Env/Public/specs/system-spec-kit/021-spec-kit-phase-system'); …
@@ -198,31 +198,31 @@ I’ve got two concrete repo-level findings now: generic trigger phrases are wid
 I’ve got enough to make the key call: the current system is brittle mostly because of target construction, not just because it lacks embeddings. I’m pulling the exact embedding API exports now so I can say whether semantic affinity is feasible immediately or would still need plumbing work.
 
 ● Read spec-affinity.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts
   └ L12:120 (109 lines read)
 
 ● Read spec-affinity.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts
   └ L217:392 (176 lines read)
 
 ● Read spec-affinity.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/spec-affinity.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/spec-affinity.vitest.ts
   └ L26:131 (106 lines read)
 
 ● Search (grep)
   │ "generateDocumentEmbedding|generateQueryEmbedding|getEmbeddingDimension|getProviderMetadata|getE
   │ mbeddingProfile|createEmbeddingsProvider" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/shared)
+  │ (.opencode/skills/system-spec-kit/shared)
   └ 25 lines found
 
 I’ve verified the repo already exposes `generateDocumentEmbedding` and `generateQueryEmbedding` in the shared package, so semantic affinity is technically feasible today. I just need one last look at how expensive/async that path is before I rank it against a cheaper lexical hybrid.
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/shared/index.ts
+  │ .opencode/skills/system-spec-kit/shared/index.ts
   └ L80:140 (61 lines read)
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ L320:660 (340 lines read)
 
 ● Find specs with sparse lexical vocab (shell)
@@ -254,30 +254,30 @@ I have the shape of the problem, but I want the benchmark numbers cleaned up so 
 I’ve got the cleaned benchmark now: on a synthetic cross-spec test over `specs/`, lexical affinity fires on about 27% of negative pairs, and ~84% of those hits come from phrase matches, not keyword thresholds. That points very directly at the highest-value fix.
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ L540:608 (68 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L520:620 (100 lines read)
 
 ● Search (grep)
   │ "evaluateCollectedDataSpecAffinity\(|buildSpecAffinityTargets\(|matchesSpecAffinityText\(" in
-  │ **/*.{ts,js} (.opencode/skill/system-spec-kit/scripts)
+  │ **/*.{ts,js} (.opencode/skills/system-spec-kit/scripts)
   └ 17 lines found
 
 I traced the call sites too: `spec-affinity` isn’t isolated. It’s used both in the workflow save path and in input normalization, so any semantic upgrade would ripple into hot-path filtering logic and likely force async changes unless kept as an optional reranker.
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L884:915 (32 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L944:1006 (63 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1428:1450 (23 lines read)
 
 I analyzed `spec-affinity.ts` and its tests, plus the surrounding embedding/relevance pipeline. Bottom line: the biggest problem is not “no embeddings,” it’s that target construction currently promotes generic phrases into hard anchors, so the boolean matcher is far too eager.

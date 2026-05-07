@@ -6,16 +6,16 @@ Map how memory, code graph, advisor, CocoIndex, and causal graph trust signals c
 
 ## Sources
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:12`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:74`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:161`
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:297`
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:998`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:20`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:110`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts:101`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:18`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:12`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:74`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:161`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:297`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:998`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:20`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:110`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts:101`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:18`
 
 ## Findings
 

@@ -63,7 +63,7 @@ Improvement focus: **LEAF autonomous research loop; iteration state; convergence
 ## 3. SCOPE
 
 ### In Scope
-- Canonical agent body: `.opencode/agent/deep-research.md`
+- Canonical agent body: `.opencode/agents/deep-research.md`
 - Runtime mirrors: `.claude/agents/deep-research.md`, `.gemini/agents/deep-research.md`, `.codex/agents/deep-research.toml`
 - Frontmatter / behavioral rules / output verification / anti-patterns refinements
 - Score-weighting dimensions: evidence-grounding discipline, iteration-delta clarity
@@ -78,7 +78,7 @@ Improvement focus: **LEAF autonomous research loop; iteration state; convergence
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| `.opencode/agent/deep-research.md` | Update | Promoted candidate body |
+| `.opencode/agents/deep-research.md` | Update | Promoted candidate body |
 | `.claude/agents/deep-research.md` | Update | Mirror sync |
 | `.gemini/agents/deep-research.md` | Update | Mirror sync |
 | `.codex/agents/deep-research.toml` | Update | Mirror sync (TOML) |

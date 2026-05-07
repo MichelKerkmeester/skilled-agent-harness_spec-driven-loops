@@ -11,8 +11,8 @@ A binding constraint (ADR-005 in `002/decision-record.md`): **`Level 1/2/3/3+` i
 ## Your task: audit these two directories for impact
 
 Audit ALL files under:
-- `.opencode/skill/system-spec-kit/references/` (34 markdown files in subdirs: `memory/`, `config/`, `debugging/`, `workflows/`, `cli/`, `hooks/`, `templates/`, `structure/`, `validation/`)
-- `.opencode/skill/system-spec-kit/assets/` (4 markdown files: `parallel_dispatch_config.md`, `level_decision_matrix.md`, `complexity_decision_matrix.md`, `template_mapping.md`)
+- `.opencode/skills/system-spec-kit/references/` (34 markdown files in subdirs: `memory/`, `config/`, `debugging/`, `workflows/`, `cli/`, `hooks/`, `templates/`, `structure/`, `validation/`)
+- `.opencode/skills/system-spec-kit/assets/` (4 markdown files: `parallel_dispatch_config.md`, `level_decision_matrix.md`, `complexity_decision_matrix.md`, `template_mapping.md`)
 
 **Highest-impact candidates to check first** (read these end-to-end):
 - `references/templates/level_selection_guide.md`

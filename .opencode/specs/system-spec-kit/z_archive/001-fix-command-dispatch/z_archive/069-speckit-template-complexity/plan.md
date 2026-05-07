@@ -138,7 +138,7 @@ Level-Based Template Architecture:
 ### Source Code (New Files)
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── lib/
 │   ├── complexity/
 │   │   ├── index.js           # Main exports

@@ -34,7 +34,7 @@ The 009 hook-parity track started with a 10-finding review that revealed silent 
 
 ## How to read these
 
-Each phase changelog follows the canonical nested-changelog template at `.opencode/skill/system-spec-kit/templates/changelog/phase.md`. Sections are:
+Each phase changelog follows the canonical nested-changelog template at `.opencode/skills/system-spec-kit/templates/changelog/phase.md`. Sections are:
 
 - **Summary**: what changed and why it matters, in plain language
 - **Added**: new capabilities or surfaces
@@ -44,7 +44,7 @@ Each phase changelog follows the canonical nested-changelog template at `.openco
 - **Files Changed**: source paths with one-line descriptions
 - **Follow-Ups**: known deferred items
 
-Voice rules per `.opencode/skill/sk-doc/references/global/hvr_rules.md` apply throughout. Technical jargon includes a parenthetical definition on first use.
+Voice rules per `.opencode/skills/sk-doc/references/global/hvr_rules.md` apply throughout. Technical jargon includes a parenthetical definition on first use.
 
 ## Where to find the full story
 

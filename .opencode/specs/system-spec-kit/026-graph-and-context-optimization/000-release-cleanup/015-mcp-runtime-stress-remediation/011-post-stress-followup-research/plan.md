@@ -31,7 +31,7 @@ _memory:
 
 A single 10-iteration `/spec_kit:deep-research:auto` loop with cli-codex (gpt-5.5, high reasoning, fast service tier) refines actionable fix proposals for four v1.0.2 stress-test follow-ups (P0 cli-copilot Gate 3 bypass, P1 graph fast-fail testability, P2 file-watcher debounce, opportunity CocoIndex telemetry leverage) plus a light architectural touch on intelligence-system seams. Deliverable: `research/research.md` synthesis. Per-follow-up remediation packets are downstream user-authored work.
 
-**Technical context**: stack is `/spec_kit:deep-research:auto` workflow + cli-codex executor; model gpt-5.5 with `reasoning_effort=high`, `service_tier=fast`; iteration cap 10 (hard); state root is `research/` subdirectory under this packet; source of evidence is `../010-stress-test-rerun-v1-0-2/findings.md` Recommendations §1-5 + per-cell scores; workflow YAML at `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`; convergence math is rolling-avg + MAD-noise + question-entropy weighted stop-score (default threshold 0.60).
+**Technical context**: stack is `/spec_kit:deep-research:auto` workflow + cli-codex executor; model gpt-5.5 with `reasoning_effort=high`, `service_tier=fast`; iteration cap 10 (hard); state root is `research/` subdirectory under this packet; source of evidence is `../010-stress-test-rerun-v1-0-2/findings.md` Recommendations §1-5 + per-cell scores; workflow YAML at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; convergence math is rolling-avg + MAD-noise + question-entropy weighted stop-score (default threshold 0.60).
 
 
 ### Technical Context

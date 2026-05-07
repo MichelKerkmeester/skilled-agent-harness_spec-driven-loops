@@ -123,7 +123,7 @@ _memory:
 - [ ] T034 Validate all JSON/JSONL artifacts parse.
 - [ ] T035 Validate sidecar aggregate math.
 - [ ] T036 Validate no unauthorized runtime, harness, prior packet, or unrelated workspace files were modified.
-- [ ] T037 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <execution-packet> --strict`.
+- [ ] T037 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <execution-packet> --strict`.
 - [ ] T038 Author execution packet implementation summary.
 - [ ] T039 Save execution-phase continuity as complete.
 <!-- /ANCHOR:phase-3 -->

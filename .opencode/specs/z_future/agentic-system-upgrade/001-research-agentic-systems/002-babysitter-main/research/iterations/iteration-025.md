@@ -12,8 +12,8 @@ The operator friction is more likely in the wrapper surface than in the existenc
 I compared Spec Kit's deep-research/deep-review artifact model with Babysitter's run/events/tasks observability model and bound orchestration loop.
 
 ## Evidence
-- `@deep-research` is explicitly a single-iteration LEAF agent that writes iteration files, appends JSONL, and lets reducer-owned packet files refresh around it. [SOURCE: .opencode/agent/deep-research.md:24-33] [SOURCE: .opencode/agent/deep-research.md:50-60] [SOURCE: .opencode/agent/deep-research.md:159-166] [SOURCE: .opencode/agent/deep-research.md:203-213]
-- `@deep-review` follows the same externalized-state contract for review iterations and packet-local review artifacts. [SOURCE: .opencode/agent/deep-review.md:23-31] [SOURCE: .opencode/agent/deep-review.md:45-57] [SOURCE: .opencode/agent/deep-review.md:231-253]
+- `@deep-research` is explicitly a single-iteration LEAF agent that writes iteration files, appends JSONL, and lets reducer-owned packet files refresh around it. [SOURCE: .opencode/agents/deep-research.md:24-33] [SOURCE: .opencode/agents/deep-research.md:50-60] [SOURCE: .opencode/agents/deep-research.md:159-166] [SOURCE: .opencode/agents/deep-research.md:203-213]
+- `@deep-review` follows the same externalized-state contract for review iterations and packet-local review artifacts. [SOURCE: .opencode/agents/deep-review.md:23-31] [SOURCE: .opencode/agents/deep-review.md:45-57] [SOURCE: .opencode/agents/deep-review.md:231-253]
 - Babysitter's orchestration loop is also explicitly inspectable: it creates runs, iterates them, resolves effects, posts task results, and exposes run status, events, and pending tasks as first-class artifacts. [SOURCE: external/packages/sdk/src/cli/commands/harnessPhase2.ts:4-18] [SOURCE: external/packages/sdk/src/cli/commands/harnessPhase2.ts:97-157] [SOURCE: external/packages/sdk/src/cli/commands/harnessPhase2.ts:202-250]
 - Babysitter's quick-reference prompt template tells the operator how to create runs, inspect status, inspect events, list tasks, post results, and iterate again. [SOURCE: external/packages/sdk/src/prompts/templates/quick-reference.md:1-34]
 - The repo also keeps strong diagnostic surfaces such as `doctor`, which inspect journals, state cache, effects, locks, sessions, and logs rather than hiding them. [SOURCE: external/plugins/babysitter-opencode/commands/doctor.md:1-19] [SOURCE: external/plugins/babysitter-opencode/commands/doctor.md:23-80]
@@ -27,7 +27,7 @@ Spec Kit should therefore simplify the front door, not the evidence trail.
 
 ## UX / System Design Analysis
 
-- **Current system-spec-kit surface:** Deep loops produce explicit iteration files, JSONL logs, dashboards, and synthesis documents. [SOURCE: .opencode/agent/deep-research.md:50-60] [SOURCE: .opencode/agent/deep-review.md:45-57]
+- **Current system-spec-kit surface:** Deep loops produce explicit iteration files, JSONL logs, dashboards, and synthesis documents. [SOURCE: .opencode/agents/deep-research.md:50-60] [SOURCE: .opencode/agents/deep-review.md:45-57]
 - **External repo's equivalent surface:** Babysitter keeps run status, journals, events, effects, and doctor tooling visible and inspectable. [SOURCE: external/packages/sdk/src/prompts/templates/quick-reference.md:1-34] [SOURCE: external/plugins/babysitter-opencode/commands/doctor.md:23-80]
 - **Friction comparison:** The artifact trail itself is not the high-friction part. The friction comes from how many wrappers and concepts surround it.
 - **What system-spec-kit could DELETE to improve UX:** Delete the expectation that end users must understand the internal loop plumbing, but do not delete the artifacts themselves.
@@ -41,7 +41,7 @@ finding: `system-spec-kit` should **not** delete its packet-local iteration arti
 
 ## Refactor / Pivot Analysis
 
-- **Current system-spec-kit approach:** Preserve externalized loop state in packet files for research and review. [SOURCE: .opencode/agent/deep-research.md:167-213] [SOURCE: .opencode/agent/deep-review.md:231-253]
+- **Current system-spec-kit approach:** Preserve externalized loop state in packet files for research and review. [SOURCE: .opencode/agents/deep-research.md:167-213] [SOURCE: .opencode/agents/deep-review.md:231-253]
 - **External repo's approach:** Preserve explicit run journals, events, and task state even while keeping orchestration control centralized. [SOURCE: external/packages/sdk/src/cli/commands/harnessPhase2.ts:4-18] [SOURCE: external/packages/sdk/src/prompts/templates/quick-reference.md:1-34]
 - **Why the external approach might be better:** It proves that simplification and observability are not opposites; the runtime can be simpler without making state opaque.
 - **Why system-spec-kit's approach might still be correct:** The packet-local evidence trail is precisely what makes deep loops reviewable and resumable.

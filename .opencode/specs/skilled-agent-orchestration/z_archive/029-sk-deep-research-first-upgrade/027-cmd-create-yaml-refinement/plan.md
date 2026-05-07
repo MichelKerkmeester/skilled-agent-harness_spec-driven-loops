@@ -45,14 +45,14 @@ Implementation is organized as one documentation-asset refinement pass. The work
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Target style baseline identified in `.opencode/command/spec_kit/assets/*.yaml`
+- [x] Target style baseline identified in `.opencode/commands/spec_kit/assets/*.yaml`
 - [x] The broader create asset suite inspected for structural drift
 - [x] Scope limited to create YAML assets plus this spec packet
 
 ### Definition of Done
 - [x] The targeted create YAML assets share one recognizable top-level contract
 - [x] Feature-catalog and testing-playbook auto/confirm pairs are structurally aligned
-- [x] YAML parse checks pass for every file in `.opencode/command/create/assets/`
+- [x] YAML parse checks pass for every file in `.opencode/commands/create/assets/`
 - [x] This Level 3 packet reflects the actual refinement work and verification evidence
 <!-- /ANCHOR:quality-gates -->
 
@@ -65,7 +65,7 @@ Implementation is organized as one documentation-asset refinement pass. The work
 Documentation-asset normalization across one command-family folder.
 
 ### Key Components
-- **Style baseline**: `.opencode/command/spec_kit/assets/*.yaml`
+- **Style baseline**: `.opencode/commands/spec_kit/assets/*.yaml`
 - **Primary refinement targets**:
   - `create_feature_catalog_*`
   - `create_testing_playbook_*`
@@ -104,7 +104,7 @@ Inspect `spec_kit` and the existing create assets -> identify missing shared sec
 - [x] Add the shared top-level contract sections to `create_folder_readme_*`
 
 ### Phase 4: Verification and closure
-- [x] Parse every file in `.opencode/command/create/assets/`
+- [x] Parse every file in `.opencode/commands/create/assets/`
 - [x] Re-validate the relevant command README surfaces
 - [x] Validate this spec folder cleanly enough for closure
 - [x] Update `implementation-summary.md` and the checklist with actual evidence
@@ -119,12 +119,12 @@ Inspect `spec_kit` and the existing create assets -> identify missing shared sec
 |-----------|-------|-------|
 | YAML parse | All create YAML assets | `python3` with `yaml.safe_load` |
 | Structural spot-check | Shared top-level keys across create assets | `python3` key inspection |
-| Doc validation | `.opencode/command/create/README.txt`, `.opencode/command/README.txt` | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` |
-| Spec validation | `027-cmd-create-yaml-refinement` | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ...` |
+| Doc validation | `.opencode/commands/create/README.txt`, `.opencode/commands/README.txt` | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` |
+| Spec validation | `027-cmd-create-yaml-refinement` | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ...` |
 
 ### Planned Scenario Checks
 
-- **PC-001 Suite parse**: every file under `.opencode/command/create/assets/` parses successfully
+- **PC-001 Suite parse**: every file under `.opencode/commands/create/assets/` parses successfully
 - **PC-002 Pair symmetry**: feature-catalog auto/confirm share the same core contract
 - **PC-003 Pair symmetry**: testing-playbook auto/confirm share the same core contract
 - **PC-004 Broader normalization**: agent, changelog, and folder_readme now expose the shared top-level sections
@@ -137,7 +137,7 @@ Inspect `spec_kit` and the existing create assets -> identify missing shared sec
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/command/spec_kit/assets/*.yaml` | Internal | Available | Defines the richer workflow style we are aligning toward |
+| `.opencode/commands/spec_kit/assets/*.yaml` | Internal | Available | Defines the richer workflow style we are aligning toward |
 | Existing create YAML assets | Internal | Available | Provide the current command-specific behavior that must be preserved |
 | `sk-doc` document validator | Internal | Available | Verifies the command README surfaces still validate after the suite cleanup |
 | Spec validator | Internal | Available | Verifies this packet is no longer template scaffolding |
@@ -266,7 +266,7 @@ spec_kit YAML style baseline
 
 | Rule | Requirement |
 |------|-------------|
-| Scope lock | Only touch `.opencode/command/create/assets/`, related command README surfaces, and this spec packet |
+| Scope lock | Only touch `.opencode/commands/create/assets/`, related command README surfaces, and this spec packet |
 | Behavioral safety | Normalize structure without changing command identity or hidden execution semantics |
 | Validation before close | Re-run full YAML parse, targeted doc validation, and spec validation before finalizing |
 | Honest residuals | Record remaining warnings exactly instead of over-claiming cleanliness |

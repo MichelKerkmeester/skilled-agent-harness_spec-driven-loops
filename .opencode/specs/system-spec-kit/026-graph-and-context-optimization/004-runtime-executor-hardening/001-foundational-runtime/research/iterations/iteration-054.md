@@ -118,7 +118,7 @@ Three critical file-collision groups where multiple tasks touch the same file:
 | `mcp_server/handlers/save/post-insert.ts` | T-PIN-RET-01 (159-173), T-W1-PIN-02 (302-316), T-PIN-GOD-01 (133-376), T-RBD-03 (344-369) | **Serialize**: PIN-RET-01 first (surgical retry-counter) → T-RBD-03 (comment-only) → T-PIN-GOD-01 (large extraction) → T-W1-PIN-02 (satisfies in the already-extracted helper). |
 | `mcp_server/hooks/claude/shared.ts` | T-SAN-02 (100-119), T-W1-HOK-02 (extract shared-provenance) | **Serialize**: HOK-02 first extracts `wrapRecoveredCompactPayload` into shared-provenance.ts, then SAN-02 adds NFKC to the now-smaller `sanitizeRecoveredPayload` that remains in shared.ts. |
 | `mcp_server/handlers/memory-context.ts` | T-W1-MCX-01 (rename readiness→advisoryPreset) | Solo — no collision. |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | T-EVD-01 (evidence-marker lint), T-W1-CNS-05 (continuity-freshness lint), T-SCP-02 (normalizer grep lint) | **Batch three lint-rule additions into one validate.sh commit** to avoid three serial merges on the same file. |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | T-EVD-01 (evidence-marker lint), T-W1-CNS-05 (continuity-freshness lint), T-SCP-02 (normalizer grep lint) | **Batch three lint-rule additions into one validate.sh commit** to avoid three serial merges on the same file. |
 
 ### 2.4 Test-coupling edges
 

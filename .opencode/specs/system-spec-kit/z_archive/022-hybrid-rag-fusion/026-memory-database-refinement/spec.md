@@ -93,7 +93,7 @@ The review audit covers these dimensions, one per iteration or grouped as the re
 
 ### Files to Review
 
-All files under `.opencode/skill/system-spec-kit/mcp_server/` with focus on:
+All files under `.opencode/skills/system-spec-kit/mcp_server/` with focus on:
 - `handlers/*.ts` (13 handler modules)
 - `lib/search/*.ts` (hybrid search pipeline)
 - `lib/storage/*.ts` (causal edges, lineage, checkpoints, transactions)

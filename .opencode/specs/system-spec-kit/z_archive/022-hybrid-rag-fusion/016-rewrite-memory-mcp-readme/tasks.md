@@ -97,10 +97,10 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Feature Catalog**: `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`
-- **Simple Terms Catalog**: `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md`
-- **Tool Schemas**: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- **Shared Memory Guide**: `.opencode/skill/system-spec-kit/SHARED_MEMORY_DATABASE.md`
+- **Feature Catalog**: `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`
+- **Simple Terms Catalog**: `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md`
+- **Tool Schemas**: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- **Shared Memory Guide**: `.opencode/skills/system-spec-kit/SHARED_MEMORY_DATABASE.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

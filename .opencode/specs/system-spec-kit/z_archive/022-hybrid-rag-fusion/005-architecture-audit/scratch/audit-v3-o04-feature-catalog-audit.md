@@ -27,7 +27,7 @@ The feature catalog (006) and code audit (007) phases represent a substantial bo
 ### O4-001: 14 Snippet Files Not Referenced in Monolith Index
 - **Severity**: CRITICAL
 - **Category**: completeness
-- **Location**: `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`
+- **Location**: `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`
 - **Description**: 14 individual snippet files exist on disk but have no corresponding H3 entry or file reference in the monolith index (`FEATURE_CATALOG.md`). This means the catalog's single-source-of-truth index is incomplete.
 - **Evidence**: The following 14 files exist as snippets but are NOT linked from the index:
   - `01--retrieval/07-ast-level-section-retrieval-tool.md`
@@ -47,7 +47,7 @@ The feature catalog (006) and code audit (007) phases represent a substantial bo
 ### O4-002: Section 20 (PHASE SYSTEM) Has No Snippet Files
 - **Severity**: HIGH
 - **Category**: completeness
-- **Location**: `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` (section 20)
+- **Location**: `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` (section 20)
 - **Description**: The monolith index has a full section "20. PHASE SYSTEM" with 4 H3 feature entries (Phase detection and scoring, Phase folder creation, Recursive phase validation, Phase link validation), but there are no corresponding individual snippet files in any folder. All other sections (2-19, 21) have matching folders and individual files.
 - **Evidence**: No folder named `20--phase-system` exists. The 4 Phase System features exist only as inline content in the monolith index. All other 190 features have individual snippet files.
 - **Impact**: Inconsistent catalog structure. The Phase System features cannot be individually managed, updated, or referenced by snippet path. The gap between "197 H3 entries in index" and "194 snippet files" is explained by these 4 missing snippets plus the 1 OVERVIEW section header (197 - 194 = 3 features without files, but OVERVIEW is structural, not a feature).
@@ -140,7 +140,7 @@ The feature catalog (006) and code audit (007) phases represent a substantial bo
 ### O4-009: Missing Test File Referenced in Snippet
 - **Severity**: MEDIUM
 - **Category**: dead-code
-- **Location**: `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/19-post-save-quality-review.md`
+- **Location**: `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/19-post-save-quality-review.md`
 - **Description**: The snippet file references `scripts/tests/post-save-review.vitest.ts` in its Source Files test table, but this file does not exist. The source file `scripts/core/post-save-review.ts` exists, but its test file was never created.
 - **Evidence**:
   - `scripts/tests/post-save-review.vitest.ts` does NOT exist
@@ -179,7 +179,7 @@ The feature catalog (006) and code audit (007) phases represent a substantial bo
 ### O4-012: Index-to-Folder Category Numbering Mismatch
 - **Severity**: MEDIUM
 - **Category**: alignment
-- **Location**: `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`
+- **Location**: `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`
 - **Description**: The monolith index uses sections 2-21 (20 numbered sections), but the folder structure uses `01--` through `19--` (19 numbered folders). The offset is because the index starts at "2. RETRIEVAL" (section 1 is OVERVIEW) while folders start at `01--retrieval`. Additionally, sections 20 (PHASE SYSTEM) and 21 (FEATURE FLAG REFERENCE) map to folder `19--feature-flag-reference` only -- no `20--phase-system` folder exists.
 - **Evidence**:
   - Index: sections 2-21 (20 content sections)

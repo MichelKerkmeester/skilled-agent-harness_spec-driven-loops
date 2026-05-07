@@ -4,9 +4,9 @@
 Focused on freshness recovery and cache-key invalidation to verify that malformed generation state degrades safely and does not accidentally report live trust.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/freshness.ts:276-310` -> recovered generations force `live -> stale`, while corrupt unrecoverable generation state maps to `unavailable`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/freshness.ts:276-310` -> recovered generations force `live -> stale`, while corrupt unrecoverable generation state maps to `unavailable`.
 - `advisor-freshness.vitest.ts:211-238` -> recovered `generation.json` must not return live; unrecoverable corruption fails closed as `unavailable`.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/freshness.ts:313-318` -> cache keys include `workspaceRoot`, `sourceSignature`, and generation number before reuse.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/freshness.ts:313-318` -> cache keys include `workspaceRoot`, `sourceSignature`, and generation number before reuse.
 
 ## Findings
 

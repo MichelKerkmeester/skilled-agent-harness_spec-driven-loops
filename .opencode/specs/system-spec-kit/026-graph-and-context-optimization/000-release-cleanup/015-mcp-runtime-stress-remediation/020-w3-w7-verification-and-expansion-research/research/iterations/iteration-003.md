@@ -13,18 +13,18 @@ Trace where `_shadow` output goes and determine whether it is logged to an audit
 
 ## Evidence Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:5` defines live and shadow weights.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:10` keeps `semantic_shadow` live weight at `0.00` and shadow weight at `0.05`.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:270` constructs lane contributions.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:276` gives shadow-only lanes `weightedScore: 0` in live scoring.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:176` computes public shadow recommendations.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270` emits `_shadow`.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:280` schema-validates output.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:281` stores parsed output in prompt cache.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:79` defines the optional `_shadow` schema.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:360` translates native advisor output to the legacy CLI recommendation array.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:373` builds legacy recommendation items without `_shadow`.
-- `rg "_shadow|shadow_scoring|adaptive_shadow_runs" .opencode/skill/system-spec-kit/mcp_server` found durable shadow tables for other systems, but not a W5 advisor shadow sink.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:5` defines live and shadow weights.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:10` keeps `semantic_shadow` live weight at `0.00` and shadow weight at `0.05`.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:270` constructs lane contributions.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:276` gives shadow-only lanes `weightedScore: 0` in live scoring.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:176` computes public shadow recommendations.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270` emits `_shadow`.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:280` schema-validates output.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:281` stores parsed output in prompt cache.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:79` defines the optional `_shadow` schema.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:360` translates native advisor output to the legacy CLI recommendation array.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:373` builds legacy recommendation items without `_shadow`.
+- `rg "_shadow|shadow_scoring|adaptive_shadow_runs" .opencode/skills/system-spec-kit/mcp_server` found durable shadow tables for other systems, but not a W5 advisor shadow sink.
 
 ## Findings
 

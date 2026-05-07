@@ -153,39 +153,39 @@ The cross-skill spot check exposed a bigger issue than I expected: the `ALIGN-00
 I found a real synthesis risk: one standards agent says the reviewed TS files already have standard module headers, while a cross-skill agent claims the same files violate the header rule. I’m resolving that directly in source so I can tell you whether the research doc correctly excluded that finding.
 
 ● Read session-types.ts
-  │ .opencode/skill/system-spec-kit/scripts/types/session-types.ts
+  │ .opencode/skills/system-spec-kit/scripts/types/session-types.ts
   └ L1:30 (30 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L1:30 (29 lines read)
 
 ● Search (grep)
   │ "HEADER|MODULE|header style invariants|box-drawing|ASCII dashed module banners"
-  │ (.opencode/skill/sk-code-opencode/references/typescript/style_guide.md)
+  │ (.opencode/skills/sk-code-opencode/references/typescript/style_guide.md)
   └ 4 lines found
 
 ● Search (grep)
   │ "importanceTier|importance_tier"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 6 lines found
 
 ● Read spec-affinity.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/spec-affinity.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/spec-affinity.vitest.ts
   └ L1:180 (131 lines read)
 
 I resolved the header conflict: the files do have the documented `// MODULE:` header format, so excluding that earlier cross-skill header complaint looks correct. But I also found a stronger omission: `input-normalizer.ts` validates `importanceTier` / `importance_tier` and then appears not to carry it forward anywhere, which the final research doc does not mention.
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L70:105 (36 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L620:700 (80 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L386:460 (75 lines read)
 
 ● Search (grep)

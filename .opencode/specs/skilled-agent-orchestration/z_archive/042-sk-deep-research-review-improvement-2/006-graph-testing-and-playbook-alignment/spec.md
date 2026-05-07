@@ -77,18 +77,18 @@ Document the completed verification pass that added graph integration tests, gra
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Create | Verify relation names, weight clamping, self-loop handling, and namespace alignment across layers. |
-| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Create | Exercise large-node graphs, contradiction scanning, and traversal behavior under load. |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` | Create | Research playbook for graph-aware convergence. |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` | Create | Research playbook for `graphEvents` emission. |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` | Create | Review playbook for graph-aware convergence. |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` | Create | Review playbook for `graphEvents` emission. |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md` | Validate / Cross-reference | Existing improve-agent playbook for mutation-coverage graph tracking, created in Phase 005 and validated from this packet. |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md` | Validate / Cross-reference | Existing improve-agent playbook for trade-off detection, created in Phase 005 and validated from this packet. |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` | Validate / Cross-reference | Existing improve-agent playbook for candidate-lineage tracking, created in Phase 005 and validated from this packet. |
-| `.opencode/skill/sk-deep-research/README.md` | Modify | Surface graph capability coverage. |
-| `.opencode/skill/sk-deep-review/README.md` | Modify | Surface graph capability coverage. |
-| `.opencode/skill/sk-improve-agent/README.md` | Modify | Surface graph capability coverage. |
+| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Create | Verify relation names, weight clamping, self-loop handling, and namespace alignment across layers. |
+| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Create | Exercise large-node graphs, contradiction scanning, and traversal behavior under load. |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` | Create | Research playbook for graph-aware convergence. |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` | Create | Research playbook for `graphEvents` emission. |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` | Create | Review playbook for graph-aware convergence. |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` | Create | Review playbook for `graphEvents` emission. |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md` | Validate / Cross-reference | Existing improve-agent playbook for mutation-coverage graph tracking, created in Phase 005 and validated from this packet. |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md` | Validate / Cross-reference | Existing improve-agent playbook for trade-off detection, created in Phase 005 and validated from this packet. |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` | Validate / Cross-reference | Existing improve-agent playbook for candidate-lineage tracking, created in Phase 005 and validated from this packet. |
+| `.opencode/skills/sk-deep-research/README.md` | Modify | Surface graph capability coverage. |
+| `.opencode/skills/sk-deep-review/README.md` | Modify | Surface graph capability coverage. |
+| `.opencode/skills/sk-improve-agent/README.md` | Modify | Surface graph capability coverage. |
 <!-- /ANCHOR:scope -->
 
 ---

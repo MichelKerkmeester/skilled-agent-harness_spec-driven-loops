@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill Advisor Refinement [template:level_3/spec.md]"
-description: "Refine skill advisor routing quality and runtime performance in .opencode/skill/scripts/skill_advisor.py and adjacent script-level support files."
+description: "Refine skill advisor routing quality and runtime performance in .opencode/skills/scripts/skill_advisor.py and adjacent script-level support files."
 trigger_phrases:
   - "skill advisor"
   - "routing quality"
@@ -20,7 +20,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-This spec defines a focused refinement of the skill advisor workflow to improve recommendation correctness, preserve uncertainty safety by default, and reduce runtime overhead in repeated calls. The work is limited to `.opencode/skill/scripts/skill_advisor.py` plus adjacent script-level support files that provide caching, benchmarking, and regression gates.
+This spec defines a focused refinement of the skill advisor workflow to improve recommendation correctness, preserve uncertainty safety by default, and reduce runtime overhead in repeated calls. The work is limited to `.opencode/skills/scripts/skill_advisor.py` plus adjacent script-level support files that provide caching, benchmarking, and regression gates.
 
 **Key Decisions**: Keep dual-threshold filtering as the safe default even when `--threshold` is provided; treat slash-command bridges as a separate class from real skills and rank them lower unless slash-command intent is explicit.
 
@@ -79,26 +79,26 @@ Deliver a safer and faster skill advisor that improves top-ranked routing qualit
   8. Add structural batch mode (`--batch-file`, `--batch-stdin`).
   9. Add permanent regression and benchmark harnesses with quality/performance gates.
 - Create/update script-level support files required for benchmark and regression execution.
-- Update usage documentation for new flags and benchmark commands in `.opencode/skill/scripts/README.md` and `.opencode/skill/scripts/SET-UP_GUIDE.md`.
+- Update usage documentation for new flags and benchmark commands in `.opencode/skills/scripts/README.md` and `.opencode/skills/scripts/SET-UP_GUIDE.md`.
 
 ### Out of Scope
 
 - Editing AGENTS policy text, Gate threshold policy, or global orchestration logic outside advisor scripts.
 - Refactoring unrelated skills, SKILL.md content rewrites, or directory reorganization.
-- Any non-script codebase changes outside `.opencode/skill/scripts/`.
+- Any non-script codebase changes outside `.opencode/skills/scripts/`.
 - UI/CLI styling changes unrelated to advisor output semantics.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/scripts/skill_advisor.py` | Modify | Core routing logic, filtering defaults, scoring, intent normalization, structural mode hooks |
-| `.opencode/skill/scripts/skill_advisor_runtime.py` | Create | Cache and metadata helpers for discovery, mtime invalidation, normalized metadata |
-| `.opencode/skill/scripts/skill_advisor_regression.py` | Create | Permanent regression harness with measurable quality gates |
-| `.opencode/skill/scripts/skill_advisor_bench.py` | Create | Latency and throughput benchmark runner |
-| `.opencode/skill/scripts/fixtures/skill_advisor_regression_cases.jsonl` | Create | Versioned regression dataset with expected routing outcomes |
-| `.opencode/skill/scripts/README.md` | Modify | CLI examples for override flag, structural mode, benchmark and regression commands |
-| `.opencode/skill/scripts/SET-UP_GUIDE.md` | Modify | Setup/runbook guidance aligned with implemented flags, modes, and benchmark workflow |
+| `.opencode/skills/scripts/skill_advisor.py` | Modify | Core routing logic, filtering defaults, scoring, intent normalization, structural mode hooks |
+| `.opencode/skills/scripts/skill_advisor_runtime.py` | Create | Cache and metadata helpers for discovery, mtime invalidation, normalized metadata |
+| `.opencode/skills/scripts/skill_advisor_regression.py` | Create | Permanent regression harness with measurable quality gates |
+| `.opencode/skills/scripts/skill_advisor_bench.py` | Create | Latency and throughput benchmark runner |
+| `.opencode/skills/scripts/fixtures/skill_advisor_regression_cases.jsonl` | Create | Versioned regression dataset with expected routing outcomes |
+| `.opencode/skills/scripts/README.md` | Modify | CLI examples for override flag, structural mode, benchmark and regression commands |
+| `.opencode/skills/scripts/SET-UP_GUIDE.md` | Modify | Setup/runbook guidance aligned with implemented flags, modes, and benchmark workflow |
 
 ---
 <!-- /ANCHOR:scope -->
@@ -112,7 +112,7 @@ Deliver a safer and faster skill advisor that improves top-ranked routing qualit
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Uncertainty guard remains active by default even when `--threshold` is set. | `python3 .opencode/skill/scripts/skill_advisor.py "ambiguous prompt" --threshold 0.8` still applies uncertainty filtering unless explicit override flag is provided; verified by regression case IDs `U001-U004`. |
+| REQ-001 | Uncertainty guard remains active by default even when `--threshold` is set. | `python3 .opencode/skills/scripts/skill_advisor.py "ambiguous prompt" --threshold 0.8` still applies uncertainty filtering unless explicit override flag is provided; verified by regression case IDs `U001-U004`. |
 | REQ-002 | Confidence-only behavior is available through explicit override flag. | `--confidence-only` bypasses uncertainty gating and is documented in `README.md` and SET-UP_GUIDE.md; regression harness asserts behavior delta against default mode. |
 | REQ-003 | Command bridges are ranked separately and deprioritized relative to real skills unless slash-command intent is explicit. | Dataset cases `C001-C010` pass: real skills rank first for plain-language intents, command bridges rank first only for explicit `/spec_kit` or `/memory:save` prompts. |
 | REQ-004 | Per-process skill discovery cache with mtime invalidation is implemented. | Warm-call p95 latency improves at least 35% vs baseline in benchmark report and invalidation test confirms changed SKILL.md is reloaded. |
@@ -125,7 +125,7 @@ Deliver a safer and faster skill advisor that improves top-ranked routing qualit
 | REQ-006 | Precomputed normalized metadata is used during scoring. | Runtime helper precomputes normalized fields and advisor matching path reuses them in warm runs. |
 | REQ-007 | Margin-aware confidence and ambiguity-aware adjustment improve ranking stability. | Regression report achieves `top1_accuracy: 1.0` and `command_bridge_fp_rate: 0.0`. |
 | REQ-008 | Structural batch mode reduces subprocess overhead. | Benchmark report shows `throughput_multiplier: 25.8538x`. |
-| REQ-009 | Permanent regression and benchmark harnesses are runnable in CI/local. | Harness commands produce machine-readable artifacts in `.opencode/skill/scripts/out/` with `overall_pass: true`. |
+| REQ-009 | Permanent regression and benchmark harnesses are runnable in CI/local. | Harness commands produce machine-readable artifacts in `.opencode/skills/scripts/out/` with `overall_pass: true`. |
 
 ---
 <!-- /ANCHOR:requirements -->

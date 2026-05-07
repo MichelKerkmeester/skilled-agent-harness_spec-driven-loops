@@ -25,7 +25,7 @@ This opening pass re-anchored the packet against the originating spec, the pt-01
 > 3. Which runtime hook surfaces still surface stale or over-verbose advisor briefs? [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/014-skill-advisor-hook-improvements/spec.md:58-60]
 
 > - Finding summary: Skill-advisor threshold decisions freeze before graph conflict penalties are applied, so conflicting skills can remain marked as passing.
-> - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor.py` | Added a threshold-refresh helper and reran threshold derivation after graph conflict penalties and post-normalization so pass/fail reflects final confidence and uncertainty. [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-019.md:6-12]
+> - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor.py` | Added a threshold-refresh helper and reran threshold derivation after graph conflict penalties and post-normalization so pass/fail reflects final confidence and uncertainty. [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-019.md:6-12]
 
 > - `F-001` OpenCode uses a lower default threshold (`0.7`) than the shared runtime path (`0.8`), and the native bridge path ignores configured `thresholdConfidence`...
 > - `F-003` Codex native-hook mode bypasses the shared brief pipeline...

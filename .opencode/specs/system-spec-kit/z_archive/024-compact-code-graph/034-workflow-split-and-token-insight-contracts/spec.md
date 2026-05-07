@@ -87,8 +87,8 @@ Reserve the optional orchestration and insight packet in the continuity train wi
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers` | Modify later if activated | Expose token-insight contract surfaces after predecessor contracts stabilize. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md` | Modify later if activated | Document workflow-role boundaries and token-insight contracts. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers` | Modify later if activated | Expose token-insight contract surfaces after predecessor contracts stabilize. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md` | Modify later if activated | Document workflow-role boundaries and token-insight contracts. |
 | Packet-local docs only for now | Create | Reserve the dependency and scope contract until activation. |
 <!-- /ANCHOR:scope -->
 

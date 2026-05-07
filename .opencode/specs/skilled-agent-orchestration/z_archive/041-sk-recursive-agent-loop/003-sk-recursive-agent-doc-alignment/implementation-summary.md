@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -42,7 +42,7 @@ _memory:
 This phase closed the remaining documentation-shape work after the functional agent-improver phases were already done.
 
 What changed:
-- `.opencode/skill/sk-improve-agent/SKILL.md` now uses the expected `sk-doc` skill package structure, including a proper `REFERENCES` section
+- `.opencode/skills/sk-improve-agent/SKILL.md` now uses the expected `sk-doc` skill package structure, including a proper `REFERENCES` section
 - the skill README now includes a table of contents, overview, and clearer operator sections
 - every markdown reference and markdown asset under `sk-improve-agent` now has the required `OVERVIEW` structure
 - the canonical loop command now follows the expected command structure with `PURPOSE`, `INSTRUCTIONS`, examples, and notes
@@ -79,14 +79,14 @@ The work happened in three steps:
 ## Verification
 
 Verification completed:
-- `python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/sk-improve-agent --check`
-- `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-improve-agent/README.md --type readme`
-- `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/command/spec_kit/agent-improver.md --type command`
-- `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/agent/agent-improver.md --type agent`
-- `python3` batch validation across `.opencode/skill/sk-improve-agent/references/*.md`
-- `python3` batch validation across markdown files under `.opencode/skill/sk-improve-agent/assets/`
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop --strict`
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/003-sk-improve-agent-doc-alignment --strict`
+- `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-improve-agent --check`
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-improve-agent/README.md --type readme`
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/commands/spec_kit/agent-improver.md --type command`
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/agents/agent-improver.md --type agent`
+- `python3` batch validation across `.opencode/skills/sk-improve-agent/references/*.md`
+- `python3` batch validation across markdown files under `.opencode/skills/sk-improve-agent/assets/`
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop --strict`
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/003-sk-improve-agent-doc-alignment --strict`
 - `python3` JSON parse for `.opencode/specs/descriptions.json`
 <!-- /ANCHOR:verification -->
 

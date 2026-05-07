@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-30ae-7b52-8bf5-daff8cfdcf28
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts (539 lines).
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts (539 lines).
 
 This file captures OpenCode/Copilot session data and builds exchange objects from messages.
 
@@ -56,11 +56,11 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 Reading the full `opencode-capture.ts` line-by-line now and auditing it against your six focus areas. I’ll pull it in chunks to avoid truncation, then return findings in your exact format with line-precise references.
 exec
-/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '1,190p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '191,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '381,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-     539 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
+/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '1,190p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '191,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '381,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+     539 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
  succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Opencode Capture
@@ -127,7 +127,7 @@ exec
 codex
 I’ve finished reading all 539 lines and now I’m cross-checking edge cases and constants line-by-line (timestamp matching, exchange pairing, prompt association, truncation, and malformed JSON behavior) so the findings are complete and precise.
 exec
-/bin/zsh -lc "rg -n \"\\b\\d+\\b|'.*?'|\\\".*?\\\"\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg -n \"\\b\\d+\\b|'.*?'|\\\".*?\\\"\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 6:import * as fs from 'fs/promises';
 7:import * as fsSync from 'fs';
 8:import * as path from 'path';
@@ -150,7 +150,7 @@ exec
 190:    mode: (entry.mode as string) || 'normal',
 codex
 ### FINDING-01: Prompt History Is Global, Not Session-Scoped
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):184
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):184
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** `getRecentPrompts()` reads global `prompt-history.jsonl` and `buildExchanges()` tries to match by time only.
@@ -160,7 +160,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-02: 5-Second Timestamp Match Can Pair Wrong Prompt
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):491
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):491
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Prompt/user message match uses `Math.abs(promptTime - userMsg.created) < 5000`.
@@ -170,7 +170,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Timezone/Naive Timestamp Parsing Ambiguity
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):490
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):490
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `new Date(p.timestamp || '')` is used without validating timezone format.
@@ -180,7 +180,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Off-By-One Tolerance at Exactly 5000ms
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):491
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):491
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Uses `< 5000`, so exactly 5000ms is excluded.
@@ -190,7 +190,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: Same Prompt Can Be Reused Across Multiple Exchanges
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):488
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):488
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `prompts.find(...)` does not consume matched prompts.
@@ -200,7 +200,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Assistant Pairing Chooses First Child Response, Not Best/FInal One
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):494
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):494
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Response pairing uses first `responses.find(...)` where parent matches user message.
@@ -210,7 +210,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: Multi-Part Assistant Text Is Not Reassembled
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):368
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):368
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Each `text` part is stored as separate `ResponseInfo`; downstream pairing grabs one.
@@ -220,7 +220,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Interleaved/Tool-Only Turns Degrade to Generic Placeholder
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):508
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):508
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** If no text response is found, exchange gets `"Assistant processed request"`.
@@ -230,7 +230,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-09: Exchange Response Truncated to 500 Characters
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):500
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):500
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `assistantResponse` is hard-truncated to first 500 chars.
@@ -240,7 +240,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Tool Output Truncation (~500) Can Drop Critical Middle Context
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):416
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):416
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `truncateOutput()` keeps head/tail only around a 500-char cap.
@@ -250,7 +250,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: Truncation Is Not Grapheme-Safe
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):421
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):421
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `substring()` can split surrogate pairs/grapheme clusters.
@@ -260,7 +260,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: Non-String Tool Outputs Are Silently Lost
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):402
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):402
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `state?.output` is cast to `string`; non-string output becomes empty string.
@@ -270,7 +270,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-13: Duration Calculation Rejects Valid Zero Values
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):425
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):425
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** `if (!time || !time.start || !time.end) return null;`
@@ -280,7 +280,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-14: Project Discovery Uses Only First Session File Per Project
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):215
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):215
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `getProjectId()` reads `sessions[0]` only.
@@ -290,7 +290,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-15: One Malformed Session JSON Can Abort Entire Project Scan
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):217
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):217
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `JSON.parse` in `getProjectId()` is inside a broad outer `try`; one bad file can force `return null`.
@@ -300,7 +300,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-16: Weak Runtime Validation Masks Malformed/Mistyped Data
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):252
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):252
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Heavy `as` casting plus `||` defaults (`0`, `'unknown'`, `'general'`, etc.) can convert bad input into plausible but wrong output.
@@ -310,7 +310,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-17: Error Handling Is Largely Silent
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):130
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):130
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `readJsonSafe()` and per-line JSONL parse failures return null/skip without context.
@@ -320,7 +320,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-18: Numerous Hardcoded Values (Magic Numbers/Strings)
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):183
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):183
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Constants are inlined throughout logic.
@@ -340,7 +340,7 @@ codex
 tokens used
 30,039
 ### FINDING-01: Prompt History Is Global, Not Session-Scoped
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):184
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):184
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** `getRecentPrompts()` reads global `prompt-history.jsonl` and `buildExchanges()` tries to match by time only.
@@ -350,7 +350,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-02: 5-Second Timestamp Match Can Pair Wrong Prompt
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):491
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):491
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Prompt/user message match uses `Math.abs(promptTime - userMsg.created) < 5000`.
@@ -360,7 +360,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Timezone/Naive Timestamp Parsing Ambiguity
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):490
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):490
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `new Date(p.timestamp || '')` is used without validating timezone format.
@@ -370,7 +370,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Off-By-One Tolerance at Exactly 5000ms
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):491
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):491
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Uses `< 5000`, so exactly 5000ms is excluded.
@@ -380,7 +380,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: Same Prompt Can Be Reused Across Multiple Exchanges
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):488
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):488
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `prompts.find(...)` does not consume matched prompts.
@@ -390,7 +390,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Assistant Pairing Chooses First Child Response, Not Best/FInal One
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):494
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):494
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Response pairing uses first `responses.find(...)` where parent matches user message.
@@ -400,7 +400,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: Multi-Part Assistant Text Is Not Reassembled
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):368
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):368
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Each `text` part is stored as separate `ResponseInfo`; downstream pairing grabs one.
@@ -410,7 +410,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Interleaved/Tool-Only Turns Degrade to Generic Placeholder
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):508
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):508
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** If no text response is found, exchange gets `"Assistant processed request"`.
@@ -420,7 +420,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-09: Exchange Response Truncated to 500 Characters
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):500
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):500
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `assistantResponse` is hard-truncated to first 500 chars.
@@ -430,7 +430,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Tool Output Truncation (~500) Can Drop Critical Middle Context
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):416
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):416
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `truncateOutput()` keeps head/tail only around a 500-char cap.
@@ -440,7 +440,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: Truncation Is Not Grapheme-Safe
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):421
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):421
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `substring()` can split surrogate pairs/grapheme clusters.
@@ -450,7 +450,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: Non-String Tool Outputs Are Silently Lost
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):402
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):402
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `state?.output` is cast to `string`; non-string output becomes empty string.
@@ -460,7 +460,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-13: Duration Calculation Rejects Valid Zero Values
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):425
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):425
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** `if (!time || !time.start || !time.end) return null;`
@@ -470,7 +470,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-14: Project Discovery Uses Only First Session File Per Project
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):215
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):215
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `getProjectId()` reads `sessions[0]` only.
@@ -480,7 +480,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-15: One Malformed Session JSON Can Abort Entire Project Scan
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):217
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):217
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `JSON.parse` in `getProjectId()` is inside a broad outer `try`; one bad file can force `return null`.
@@ -490,7 +490,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-16: Weak Runtime Validation Masks Malformed/Mistyped Data
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):252
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):252
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Heavy `as` casting plus `||` defaults (`0`, `'unknown'`, `'general'`, etc.) can convert bad input into plausible but wrong output.
@@ -500,7 +500,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-17: Error Handling Is Largely Silent
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):130
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):130
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `readJsonSafe()` and per-line JSONL parse failures return null/skip without context.
@@ -510,7 +510,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-18: Numerous Hardcoded Values (Magic Numbers/Strings)
-- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts):183
+- **File:** [opencode-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts):183
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Constants are inlined throughout logic.

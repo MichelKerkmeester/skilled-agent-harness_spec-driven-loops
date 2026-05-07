@@ -2,7 +2,7 @@ You are executing iteration 8 of 10 of a deep-research loop against the Copilot 
 
 ## TOPIC
 
-Does GitHub Copilot CLI 1.0.34 (April 2026) expose any mechanism — hook, pre-prompt script, plugin, agent extension, config file, env-var injection, or MCP integration — that would let the Spec Kit Memory MCP inject (a) a per-session "startup context" payload (code-graph freshness + structural highlights) and (b) a per-prompt "advisor brief" payload (format: "Advisor: <skill> <conf>/<uncert> <status>"), mirroring the working Claude Code behavior already wired via .opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts?
+Does GitHub Copilot CLI 1.0.34 (April 2026) expose any mechanism — hook, pre-prompt script, plugin, agent extension, config file, env-var injection, or MCP integration — that would let the Spec Kit Memory MCP inject (a) a per-session "startup context" payload (code-graph freshness + structural highlights) and (b) a per-prompt "advisor brief" payload (format: "Advisor: <skill> <conf>/<uncert> <status>"), mirroring the working Claude Code behavior already wired via .opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts?
 
 ## CURRENT STATE
 

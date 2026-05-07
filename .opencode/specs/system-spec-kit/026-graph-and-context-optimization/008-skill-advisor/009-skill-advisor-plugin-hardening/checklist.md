@@ -46,8 +46,8 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-v
 
 - [x] **P1-01** Status tool reflects per-instance state. [EVIDENCE: vitest case `reports status metrics independently for each plugin instance` asserts A=`[1,2,2,3]` and B=`[0,1,1,1]` for hits/misses/bridge/lookups.]
 - [x] **P1-02** Phase 5 cache invariants preserved per-instance. [EVIDENCE: same status test asserts `cache_misses === bridge_invocations` and `cache_hits + cache_misses === advisor_lookups` for each instance.]
-- [x] **P1-03** Strict spec validation. [EVIDENCE: final `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../008-skill-advisor-plugin-hardening --strict` returned 0 errors / 0 warnings.]
-- [x] **P1-04** Canonical save invoked. [EVIDENCE: final `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json ... <packet>` exited 0.]
+- [x] **P1-03** Strict spec validation. [EVIDENCE: final `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../008-skill-advisor-plugin-hardening --strict` returned 0 errors / 0 warnings.]
+- [x] **P1-04** Canonical save invoked. [EVIDENCE: final `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json ... <packet>` exited 0.]
 - [x] **P1-05** Parent docs updated with 008 phase outcome row. [EVIDENCE: parent docs record the 008 phase outcome.]
 <!-- /ANCHOR:pre-impl -->
 

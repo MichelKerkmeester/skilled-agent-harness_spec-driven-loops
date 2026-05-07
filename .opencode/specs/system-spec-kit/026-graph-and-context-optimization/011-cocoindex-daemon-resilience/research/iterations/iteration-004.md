@@ -8,7 +8,7 @@ Close the last open key question (Q9 — socket backlog effects on perceived CPU
 
 ### P0-10 (NEW) — `multiprocessing.connection.Listener` backlog defaults to **1**
 
-`daemon.py:619` calls `Listener(sock_path, family=_connection_family())` with no `backlog=` kwarg [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:619]. Inspecting CPython's stdlib (`python3 -c 'import inspect, multiprocessing.connection as mc; print(inspect.getsource(mc.Listener.__init__))'`) shows `Listener.__init__(self, address=None, family=None, backlog=1, authkey=None)` and the inner `SocketListener.__init__` calls `self._socket.listen(backlog)` with that default of **1** [SOURCE: cpython:Lib/multiprocessing/connection.py:Listener.__init__ + SocketListener.__init__ — verified by stdlib source dump in iter-4 bash call].
+`daemon.py:619` calls `Listener(sock_path, family=_connection_family())` with no `backlog=` kwarg [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:619]. Inspecting CPython's stdlib (`python3 -c 'import inspect, multiprocessing.connection as mc; print(inspect.getsource(mc.Listener.__init__))'`) shows `Listener.__init__(self, address=None, family=None, backlog=1, authkey=None)` and the inner `SocketListener.__init__` calls `self._socket.listen(backlog)` with that default of **1** [SOURCE: cpython:Lib/multiprocessing/connection.py:Listener.__init__ + SocketListener.__init__ — verified by stdlib source dump in iter-4 bash call].
 
 **Implication.** With a kernel listen queue of 1, any second concurrent connection while the accept thread is between `accept()` calls (≈ a few microseconds normally) will see ECONNREFUSED on macOS or be queued briefly on Linux before hitting `listen` overflow. During a 564-event BrokenPipeError storm this matters ONLY if the accept thread itself stalls — which (per P0-11 below) it does not.
 
@@ -16,13 +16,13 @@ Close the last open key question (Q9 — socket backlog effects on perceived CPU
 
 ### P0-11 — Q9 verdict: accept thread is **decoupled** from BrokenPipeError loop
 
-Reading `daemon.py:644-665` [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:644-665]: `_accept_loop()` runs in a `threading.Thread(daemon=True)` and its only work per iteration is:
+Reading `daemon.py:644-665` [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:644-665]: `_accept_loop()` runs in a `threading.Thread(daemon=True)` and its only work per iteration is:
 
 1. `listener.accept()` (blocking with 0.5s timeout)
 2. `asyncio.run_coroutine_threadsafe(_spawn_handler(...), loop)` (NON-blocking enqueue)
 3. loop back
 
-The actual `handle_connection` body (which contains the buggy `send_bytes` at `daemon.py:436`/`:439`/`:441`) executes as an **asyncio task on the event loop**, not in the accept thread [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:432-451].
+The actual `handle_connection` body (which contains the buggy `send_bytes` at `daemon.py:436`/`:439`/`:441`) executes as an **asyncio task on the event loop**, not in the accept thread [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:432-451].
 
 **Conclusion for Q9.** The accept thread is fast and never blocks on BrokenPipeError. The CPU spike is therefore **NOT** caused by accept-queue starvation. With backlog=1 there is still a theoretical issue: 2+ concurrent client opens while the accept thread is mid-`accept()` will see one queued + one rejected — but in practice the accept call returns in microseconds on a hot daemon, so this is rare and not the source of sustained 54-72% CPU.
 
@@ -178,14 +178,14 @@ Tasks.md does not yet exist either. When authored, must include:
 
 ## Sources Consulted
 
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:420-451` (handle_connection error path)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:600-675` (Listener init + accept thread)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:180-373` (sys.platform branches)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:420-451` (handle_connection error path)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:600-675` (Listener init + accept thread)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:180-373` (sys.platform branches)
 - `python3 -c 'import inspect, multiprocessing.connection as mc; print(inspect.getsource(mc.Listener.__init__))'` (stdlib `Listener` and `SocketListener.__init__` showing `backlog=1` default)
 - `/Users/michelkerkmeester/.cocoindex_code/daemon.log` (564 BrokenPipeError, 2293 traceback frames)
 - `lsof /Users/michelkerkmeester/.cocoindex_code/daemon.sock` (PID 24938 still bound)
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience/spec.md` (current spec body)
-- `.opencode/skill/mcp-coco-index/mcp_server/tests/` (empty / no daemon-lifecycle tests)
+- `.opencode/skills/mcp-coco-index/mcp_server/tests/` (empty / no daemon-lifecycle tests)
 
 ## Assessment
 

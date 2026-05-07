@@ -249,9 +249,9 @@ None identified.
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts` (full file, 321 lines)
-- `.opencode/skill/system-spec-kit/scripts/core/quality-gates.ts` (full file, 77 lines)
-- `.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts` (lines 1-915, validation rules V1-V14)
+- `.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts` (full file, 321 lines)
+- `.opencode/skills/system-spec-kit/scripts/core/quality-gates.ts` (full file, 77 lines)
+- `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts` (lines 1-915, validation rules V1-V14)
 
 ## Assessment
 

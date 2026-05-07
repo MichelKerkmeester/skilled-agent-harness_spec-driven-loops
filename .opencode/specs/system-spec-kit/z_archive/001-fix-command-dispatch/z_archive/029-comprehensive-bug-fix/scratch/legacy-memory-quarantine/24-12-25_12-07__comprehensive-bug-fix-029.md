@@ -142,11 +142,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-memory/references/troubleshooting.md` - Documentation
+- `.opencode/skills/system-memory/references/troubleshooting.md` - Documentation
 
-- `.opencode/skill/mcp-leann/references/tool_catalog.md` - Documentation
+- `.opencode/skills/mcp-leann/references/tool_catalog.md` - Documentation
 
-- `.opencode/skill/mcp-code-context/assets/usage_examples.md` - Documentation
+- `.opencode/skills/mcp-code-context/assets/usage_examples.md` - Documentation
 
 - `specs/005-memory/017-comprehensive-bug-fix/spec.md` - Documentation
 
@@ -191,9 +191,9 @@ Now let me create the memory file using the generate-context.js script as requir
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-memory/references/troubleshooting.md` | Updated troubleshooting |
-| `.opencode/skill/mcp-leann/references/tool_catalog.md` | Updated tool catalog |
-| `.opencode/skill/mcp-code-context/assets/usage_examples.md` | Updated usage examples |
+| `.opencode/skills/system-memory/references/troubleshooting.md` | Updated troubleshooting |
+| `.opencode/skills/mcp-leann/references/tool_catalog.md` | Updated tool catalog |
+| `.opencode/skills/mcp-code-context/assets/usage_examples.md` | Updated usage examples |
 | `specs/005-memory/017-comprehensive-bug-fix/spec.md` | Updated spec |
 | `specs/005-memory/017-comprehensive-bug-fix/plan.md` | Updated plan |
 | `specs/005-memory/017-comprehensive-bug-fix/checklist.md` | Updated checklist |
@@ -509,180 +509,180 @@ Executed sequential_thinking_sequentialthinking
 <!-- ANCHOR:implementation-tool-read-cd06e5f0-session-1766574375551-09kpmc9f9 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/references/troubleshooting.md
+.opencode/skills/system-memory/references/troubleshooting.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/references/troubleshooting.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/references/troubleshooting.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-cd06e5f0-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-read-cd06e5f0-2-session-1766574375551-09kpmc9f9 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/mcp-leann/references/tool_catalog.md
+.opencode/skills/mcp-leann/references/tool_catalog.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-leann/references/tool_catalog.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-leann/references/tool_catalog.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-cd06e5f0-2-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-read-cd06e5f0-3-session-1766574375551-09kpmc9f9 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-cd06e5f0-3-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-memory/references/troubleshooting.md
+.opencode/skills/system-memory/references/troubleshooting.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/references/troubleshooting.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/references/troubleshooting.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-2-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-memory/references/troubleshooting.md
+.opencode/skills/system-memory/references/troubleshooting.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/references/troubleshooting.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/references/troubleshooting.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-2-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-3-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-leann/references/tool_catalog.md
+.opencode/skills/mcp-leann/references/tool_catalog.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-leann/references/tool_catalog.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-leann/references/tool_catalog.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-3-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-4-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-4-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-5-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-5-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-6-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-6-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-7-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-7-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-8-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-8-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-9-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-9-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-10-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-10-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-11-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-11-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-12-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-12-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-13-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-13-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-14-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-14-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-15-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-15-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-16-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-16-session-1766574375551-09kpmc9f9 -->
 
 <!-- ANCHOR:implementation-tool-edit-db90eb3f-17-session-1766574375551-09kpmc9f9 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-db90eb3f-17-session-1766574375551-09kpmc9f9 -->
 
@@ -1110,9 +1110,9 @@ key_topics:
   - "let"
 
 key_files:
-  - ".opencode/skill/system-memory/references/troubleshooting.md"
-  - ".opencode/skill/mcp-leann/references/tool_catalog.md"
-  - ".opencode/skill/mcp-code-context/assets/usage_examples.md"
+  - ".opencode/skills/system-memory/references/troubleshooting.md"
+  - ".opencode/skills/mcp-leann/references/tool_catalog.md"
+  - ".opencode/skills/mcp-code-context/assets/usage_examples.md"
   - "specs/005-memory/017-comprehensive-bug-fix/spec.md"
   - "specs/005-memory/017-comprehensive-bug-fix/plan.md"
   - "specs/005-memory/017-comprehensive-bug-fix/checklist.md"

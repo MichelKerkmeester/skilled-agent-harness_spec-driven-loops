@@ -22,7 +22,7 @@ See iteration-007. No contradiction found in this pass. Keep the converged recom
 
 Recommended winner: first add a Code Graph seed-fidelity packet, not a `mcp_server/lib/search` rerank packet.
 
-The fork already emits the telemetry needed for a useful handoff. `QueryResult` carries `score`, `raw_score`, `path_class`, and `rankingSignals` in `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/schema.py:24` through `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/schema.py:36`. Response-level telemetry exists as `dedupedAliases` and `uniqueResultCount` in `query.py:21` through `query.py:37`, and the daemon preserves per-result fields at `daemon.py:282` through `daemon.py:300` plus response counters at `daemon.py:469` through `daemon.py:476`. The MCP server exposes the same fields at `server.py:42` through `server.py:68` and serializes them in `server.py:152` through `server.py:172`.
+The fork already emits the telemetry needed for a useful handoff. `QueryResult` carries `score`, `raw_score`, `path_class`, and `rankingSignals` in `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py:24` through `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py:36`. Response-level telemetry exists as `dedupedAliases` and `uniqueResultCount` in `query.py:21` through `query.py:37`, and the daemon preserves per-result fields at `daemon.py:282` through `daemon.py:300` plus response counters at `daemon.py:469` through `daemon.py:476`. The MCP server exposes the same fields at `server.py:42` through `server.py:68` and serializes them in `server.py:152` through `server.py:172`.
 
 The current first downstream consumer drops most of that information. `code_graph_context` accepts CocoIndex seeds with `file`, `range`, `score`, `snippet`, and `source`, but no `raw_score`, `path_class`, or `rankingSignals` in `context.ts:16` through `context.ts:31`. It converts CocoIndex seeds at `context.ts:172` through `context.ts:180`, then returns anchors with `source`, `provider`, `score`, `snippet`, and `range` at `context.ts:245` through `context.ts:256`. The lower-level seed type has the same gap: `CocoIndexSeed` only contains `file`, `range`, `score`, `snippet`, and `source` at `seed-resolver.ts:19` through `seed-resolver.ts:27`, while `ArtifactRef` exposes no fork-specific fields at `seed-resolver.ts:49` through `seed-resolver.ts:64`. The external validator is also narrow: `tool-input-schemas.ts:464` through `tool-input-schemas.ts:482` accepts `score` and `snippet`, but not the new telemetry.
 
@@ -61,17 +61,17 @@ I would drop the earlier broad "intelligence-system seams" framing from the fina
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-007.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deep-research-strategy.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/spec.md`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/schema.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/server.py`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-context-handler.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-context-handler.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
 
 ## Suggested focus for iteration 9
 

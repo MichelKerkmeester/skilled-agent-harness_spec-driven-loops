@@ -1,7 +1,7 @@
 # Iteration 78: Q15 Verification Against Current Runtime Files
 
 ## Focus
-Verify the current state of Q15 findings from iterations 058, 062, and 065 by reading live runtime files. Specifically: confirm the four-tier fallback model, check whether MCP first-call priming is implemented, verify OpenCode's hook/instruction surface, recount `.opencode/agent/`, and detect any drift in `CODEX.md`, resume workflow assets, or Claude recovery docs.
+Verify the current state of Q15 findings from iterations 058, 062, and 065 by reading live runtime files. Specifically: confirm the four-tier fallback model, check whether MCP first-call priming is implemented, verify OpenCode's hook/instruction surface, recount `.opencode/agents/`, and detect any drift in `CODEX.md`, resume workflow assets, or Claude recovery docs.
 
 ## Findings
 
@@ -16,10 +16,10 @@ The current repository still supports the same broad fallback layering:
 This means the four-tier model remains a valid conceptual description of current runtime behavior, but Tier 2 should be described as **instruction-based memory recovery + query routing**, not as implemented session-start graph priming.
 
 [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.claude/CLAUDE.md:20-32]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:35-43]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:7-22]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:35-43]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:7-22]
 [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/CODEX.md:5-31]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml:113-155]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml:113-155]
 [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/CLAUDE.md:99-104]
 
 ### 2. MCP "first-call priming" is still a design idea, not an implemented universal mechanism
@@ -27,26 +27,26 @@ This means the four-tier model remains a valid conceptual description of current
 
 However, a repo-wide search of the MCP server found **no implemented first-call priming layer**, no `sessionPriming` response field, and no first-call tracker/interceptor. The live code therefore supports the **feasibility** claim ("`resolveTrustedSession()` could underpin universal priming") but does **not** support the stronger claim that T1.5 currently exists in the product.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:385-435]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:731]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:212]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/ search for `sessionPriming|first-call|first call|priming` returned only Claude hook/session references and no generic first-call priming implementation]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:385-435]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:731]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:212]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/ search for `sessionPriming|first-call|first call|priming` returned only Claude hook/session references and no generic first-call priming implementation]
 
 ### 3. OpenCode still has no native lifecycle hook system; it uses global MCP config, commands, and agent instructions
 Current `opencode.json` still registers MCP servers only (`sequential_thinking`, `spec_kit_memory`, `cocoindex_code`, `code_mode`) and shows no hook/lifecycle registration surface. The OpenCode runtime continues to rely on:
 
-- agent markdown definitions in `.opencode/agent/`
+- agent markdown definitions in `.opencode/agents/`
 - command/workflow files such as `spec_kit_resume_auto.yaml`
 - the universal framework in the root `CLAUDE.md`
 
 That confirms the core claim from iteration 065: OpenCode has **no native hook system** comparable to Claude Code's lifecycle hooks.
 
 [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/opencode.json:10-57]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/context.md:1-23]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml:1-18]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/context.md:1-23]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml:1-18]
 
 ### 4. OpenCode still has 10 agents with YAML frontmatter, but the "10 agents with MCP bindings" claim is now overstated
-The `.opencode/agent/` directory still contains exactly 10 markdown agent files:
+The `.opencode/agents/` directory still contains exactly 10 markdown agent files:
 
 `context`, `debug`, `deep-research`, `deep-review`, `handover`, `orchestrate`, `review`, `speckit`, `ultra-think`, `write`.
 
@@ -58,11 +58,11 @@ All 10 use YAML frontmatter. But the current frontmatter evidence does **not** s
 
 Some agent bodies still reference CocoIndex/code graph tools in their instructions, so tool awareness exists in content. But explicit frontmatter MCP bindings are currently visible only on a subset of agents, not all 10.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/ -- directory listing showing 10 files]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/context.md:1-23]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/ultra-think.md:1-23]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/debug.md:1-20]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/orchestrate.md:1-16]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/ -- directory listing showing 10 files]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/context.md:1-23]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/ultra-think.md:1-23]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/debug.md:1-20]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/orchestrate.md:1-16]
 
 ### 5. The resume flow exists, but the previously proposed code-graph freshness step has not been added
 `spec_kit_resume_auto.yaml` still defines a four-step workflow:
@@ -74,7 +74,7 @@ Some agent bodies still reference CocoIndex/code graph tools in their instructio
 
 There is still no inserted "Step 1.5" / "Step 1b" to check `code_graph_status()` or trigger `code_graph_scan()` / `ccc_reindex()`. So the prior OpenCode enhancement idea remains unimplemented.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml:113-155]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml:113-155]
 
 ### 6. "~90% parity with Claude Code hooks achievable" remains a design estimate, not a verified present-state fact
 The current codebase verifies the ingredients behind the estimate:
@@ -92,7 +92,7 @@ But the repository does **not** yet implement the strongest parity-improving pie
 Therefore the "~90% parity" number should be treated as an **architectural projection** from the proposed design, not as something verified by current code.
 
 [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/CODEX.md:5-31]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml:113-155]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml:113-155]
 [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.claude/CLAUDE.md:20-32]
 
 ## Ruled Out
@@ -108,11 +108,11 @@ None. All requested verification targets produced usable evidence.
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/CLAUDE.md`
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.claude/CLAUDE.md`
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/opencode.json`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/` (all 10 headers inspected)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/README.md`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/` (all 10 headers inspected)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/README.md`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md`
 
 ## Assessment
 - New information ratio: 0.44

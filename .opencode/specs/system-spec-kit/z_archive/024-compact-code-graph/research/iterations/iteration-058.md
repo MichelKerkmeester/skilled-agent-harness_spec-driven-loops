@@ -7,7 +7,7 @@ Investigating how non-hook CLI runtimes (OpenCode, Codex CLI, Copilot, Gemini) c
 
 ### 1. Claude Code Hooks Are the Gold Standard -- and They Are Runtime-Specific
 Claude Code has a complete 3-event lifecycle hook system (`PreCompact`, `SessionStart`, `Stop`) implemented in `hooks/claude/`. The `session-prime.ts` handler routes by source (`compact`, `startup`, `resume`, `clear`) and injects context via stdout. It includes code graph stale-index detection, CocoIndex availability checks, and 3-source merge payload injection after compaction. No other runtime has this level of integration.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:1-100]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:1-100]
 
 ### 2. CODEX.md Already Implements the Instruction-Based Fallback Pattern
 The project has `CODEX.md` at root with explicit instructions for non-hook context recovery:
@@ -19,11 +19,11 @@ This proves the instruction-file pattern is already the primary fallback mechani
 
 ### 3. `/spec_kit:resume` Command Works Across All Runtimes as the Manual Recovery Path
 The resume command provides a comprehensive 4-5 step workflow for session recovery that is completely runtime-agnostic. It uses only MCP tools (memory_context, memory_search, memory_match_triggers) -- no hooks required. Detection flow: validate path -> memory_match_triggers -> memory_context -> deterministic ranking -> user prompt. Context loading: handover.md -> memory_context(resume) -> CONTINUE_SESSION.md -> memory_search -> checklist.md. This serves as the universal "manual hook equivalent" for all runtimes.
-[SOURCE: .opencode/command/spec_kit/resume.md:1-425]
+[SOURCE: .opencode/commands/spec_kit/resume.md:1-425]
 
 ### 4. Agent Definitions Are Already Cross-Runtime with Identical MCP Tool Access
-Both `.opencode/agent/context.md` (OpenCode) and `.codex/agents/context.toml` (Codex CLI) define identical MCP server access (`spec_kit_memory`, `cocoindex_code`) and identical workflow: MEMORY FIRST -> CODEBASE SCAN -> DEEPEN -> SYNTHESIZE. The only difference is format (YAML frontmatter vs TOML) and model selection (not specified vs `gpt-5.4`). This means any MCP-based solution works identically across runtimes.
-[SOURCE: .opencode/agent/context.md:1-70, .codex/agents/context.toml:1-55]
+Both `.opencode/agents/context.md` (OpenCode) and `.codex/agents/context.toml` (Codex CLI) define identical MCP server access (`spec_kit_memory`, `cocoindex_code`) and identical workflow: MEMORY FIRST -> CODEBASE SCAN -> DEEPEN -> SYNTHESIZE. The only difference is format (YAML frontmatter vs TOML) and model selection (not specified vs `gpt-5.4`). This means any MCP-based solution works identically across runtimes.
+[SOURCE: .opencode/agents/context.md:1-70, .codex/agents/context.toml:1-55]
 
 ### 5. MCP Server Cannot Detect Session Start Without Hooks -- But Can Detect First Call
 MCP servers are stateless request handlers. They cannot detect session start, compaction, or new-session events on their own. However, the `memory_context` handler already supports `mode: "resume"` which serves as a session-start detection proxy. A potential enhancement: track the timestamp of last MCP tool call per session. If the gap between calls exceeds a threshold (e.g., >5 minutes), treat the next call as a "session restart" and proactively include recovery context. This would be a server-side heuristic that works across all runtimes.
@@ -41,9 +41,9 @@ Based on the evidence, the cross-runtime UX is already stratified into 4 tiers:
 
 [INFERENCE: synthesized from CODEX.md, CLAUDE.md Gate 1, resume.md, hooks/claude/ evidence]
 
-### 7. OpenCode Specifically Uses .opencode/agent/ Definitions -- Has the Same MCP Access
-OpenCode (Copilot) agent definitions in `.opencode/agent/` are functionally identical to Claude/Codex agents regarding MCP tool access. The key difference: OpenCode uses markdown agent files with YAML frontmatter and `mcpServers` arrays. It has NO hook system, so it relies entirely on T2 (CLAUDE.md instruction triggers) and T3 (/spec_kit:resume). The root CLAUDE.md serves as the universal instruction file that forces Gate 1 (memory_match_triggers) on every message.
-[SOURCE: .opencode/agent/context.md:1-24, CLAUDE.md Gate 1 section]
+### 7. OpenCode Specifically Uses .opencode/agents/ Definitions -- Has the Same MCP Access
+OpenCode (Copilot) agent definitions in `.opencode/agents/` are functionally identical to Claude/Codex agents regarding MCP tool access. The key difference: OpenCode uses markdown agent files with YAML frontmatter and `mcpServers` arrays. It has NO hook system, so it relies entirely on T2 (CLAUDE.md instruction triggers) and T3 (/spec_kit:resume). The root CLAUDE.md serves as the universal instruction file that forces Gate 1 (memory_match_triggers) on every message.
+[SOURCE: .opencode/agents/context.md:1-24, CLAUDE.md Gate 1 section]
 
 ### 8. Potential Enhancement: MCP "First-Call Priming" as a Universal T1.5 Mechanism
 A new approach that could bridge the T1-T2 gap: implement "first-call priming" in the MCP server itself. When any MCP tool (memory_context, memory_search, code_graph_query, etc.) is called for the first time in a session (no prior calls in the last N minutes), the response could include a `_sessionPriming` metadata section with:
@@ -63,12 +63,12 @@ This would work identically across ALL runtimes without hooks or instruction com
 None definitively eliminated this iteration. All approaches have viability within their tier.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` (lines 1-100)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/README.md` (full file)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` (lines 1-100)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md` (full file)
 - `/CODEX.md` (full file, 32 lines)
 - `/CLAUDE.md` (Gate 1, Resume workflow sections)
-- `.opencode/command/spec_kit/resume.md` (full file, 425 lines)
-- `.opencode/agent/context.md` (lines 1-80)
+- `.opencode/commands/spec_kit/resume.md` (full file, 425 lines)
+- `.opencode/agents/context.md` (lines 1-80)
 - `.codex/agents/context.toml` (lines 1-60)
 
 ## Assessment

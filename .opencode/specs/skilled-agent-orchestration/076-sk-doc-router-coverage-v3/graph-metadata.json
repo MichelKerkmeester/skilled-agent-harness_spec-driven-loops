@@ -35,9 +35,9 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md",
-      ".opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md",
-      ".opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md",
+      ".opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md",
+      ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
       "scripts/run-matrix-076.sh",
       "scripts/extract_metrics_v3.py",
       "spec.md",
@@ -49,19 +49,19 @@
       {
         "name": "004-optimization.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md",
         "source": "derived"
       },
       {
         "name": "005-install-guide.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {

@@ -6,15 +6,15 @@ Quantify structural signal behavior against the v1.0.3 corpus and Phase E gold b
 
 ## Sources Read
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:23-82`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:123-185`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:276-294`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts:41-90`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts:93-190`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts:192-198`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:45-100`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:102-145`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155-184`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:23-82`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:123-185`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:276-294`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts:41-90`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts:93-190`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts:192-198`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:45-100`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:102-145`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155-184`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-search-decision-gold-battery/measurements/v1-0-3-summary.json:1-5`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-search-decision-gold-battery/measurements/v1-0-3-summary.json:23-203`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-search-decision-gold-battery/findings-rubric-v1-0-3.json:29-174`

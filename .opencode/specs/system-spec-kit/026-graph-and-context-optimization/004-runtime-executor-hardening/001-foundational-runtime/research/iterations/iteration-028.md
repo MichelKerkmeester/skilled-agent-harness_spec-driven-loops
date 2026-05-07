@@ -6,7 +6,7 @@ I re-checked the requested Domain 2 seams against prior iterations and Phase 015
 ## Findings
 
 ### Finding R28-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `244-275`
 - **Severity:** P1
 - **Description:** A malformed hook-state file is collapsed into a fake "first stop for this session" state, so the stop hook replays transcript parsing from byte offset `0` and re-emits token accounting as if no prior cursor existed. `loadState()` returns `null` on any parse failure, and `processStopHook()` immediately turns that into `startOffset = 0` with no corruption signal.
@@ -14,7 +14,7 @@ I re-checked the requested Domain 2 seams against prior iterations and Phase 015
 - **Downstream Impact:** Stop-hook token/cost accounting can silently double-count already-parsed transcript history after temp-state corruption, and operators only see an apparently ordinary stop event with a non-zero `parsedMessageCount`. The contract boundary between "new transcript bytes arrived" and "the continuity cursor was unreadable" disappears.
 
 ### Finding R28-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `60-67, 279-309, 340-369`
 - **Severity:** P1
 - **Description:** The same `null` collapse also strips the only disambiguator that preserves the current autosave packet under transcript ambiguity. When prior hook state is unreadable, `session-stop.ts` passes `null` as `currentSpecFolder`, so `detectSpecFolder()` no longer has the existing packet anchor it needs to keep the autosave target stable; the follow-on autosave then either retargets to a lone transcript packet or silently skips because `lastSpecFolder` never becomes recoverable.

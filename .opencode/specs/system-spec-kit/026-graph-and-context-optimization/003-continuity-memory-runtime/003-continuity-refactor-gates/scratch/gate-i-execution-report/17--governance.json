@@ -40,7 +40,7 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
           "asyncEmbedding": true,
           "skipPreflight": true
         }
@@ -56,7 +56,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
             "asyncEmbedding": true,
             "skipPreflight": true
           }
@@ -193,7 +193,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Inspect `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md` frontmatter and capture the constitutional importance tier, content type, and trigger-phrase coverage 2) Inspect the body of `gate-enforcement.md` and confirm the gate cross-reference table, continuation-validation workflow, compaction-recovery guidance, and quick-reference behavior are present 3) Inspect `.opencode/skill/system-spec-kit/constitutional/README.md` and confirm it documents constitutional ranking, fixed similarity, no decay, permanence, and budget/verification rules 4) Cross-check the rule-pack references against `AGENTS.md` Section 2 to confirm the constitutional pack points back to the authoritative gate contract"
+      "Command sequence is not expressible as direct handler calls: 1) Inspect `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md` frontmatter and capture the constitutional importance tier, content type, and trigger-phrase coverage 2) Inspect the body of `gate-enforcement.md` and confirm the gate cross-reference table, continuation-validation workflow, compaction-recovery guidance, and quick-reference behavior are present 3) Inspect `.opencode/skills/system-spec-kit/constitutional/README.md` and confirm it documents constitutional ranking, fixed similarity, no decay, permanence, and budget/verification rules 4) Cross-check the rule-pack references against `AGENTS.md` Section 2 to confirm the constitutional pack points back to the authoritative gate contract"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."

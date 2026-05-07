@@ -26,7 +26,7 @@ Server 'sequential_thinking' supports tool updates. Listening for changes...
 Server 'code_mode' supports tool updates. Listening for changes...
 Server 'code_mode' supports prompt updates. Listening for changes...
 Skill conflict detected: "system-spec-kit" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/system-spec-kit/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/system-spec-kit/SKILL.md".Skill conflict detected: "sk-improve-prompt" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/sk-improve-prompt/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/sk-improve-prompt/SKILL.md".Skill conflict detected: "sk-git" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/sk-git/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/sk-git/SKILL.md".Skill conflict detected: "sk-doc" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/sk-doc/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/sk-doc/SKILL.md".Skill conflict detected: "sk-code-web" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/sk-code-web/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/sk-code-web/SKILL.md".Skill conflict detected: "sk-code-review" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/sk-code-review/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/sk-code-review/SKILL.md".Skill conflict detected: "sk-code-opencode" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/sk-code-opencode/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/sk-code-opencode/SKILL.md".Skill conflict detected: "sk-code-full-stack" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/sk-code-full-stack/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/sk-code-full-stack/SKILL.md".Skill conflict detected: "mcp-figma" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/mcp-figma/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/mcp-figma/SKILL.md".Skill conflict detected: "mcp-code-mode" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/mcp-code-mode/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/mcp-code-mode/SKILL.md".Skill conflict detected: "mcp-clickup" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/mcp-clickup/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/mcp-clickup/SKILL.md".Skill conflict detected: "mcp-chrome-devtools" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/mcp-chrome-devtools/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/mcp-chrome-devtools/SKILL.md".Skill conflict detected: "cli-gemini" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/cli-gemini/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/cli-gemini/SKILL.md".Skill conflict detected: "cli-copilot" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/cli-copilot/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/cli-copilot/SKILL.md".Skill conflict detected: "cli-codex" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/cli-codex/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/cli-codex/SKILL.md".Skill conflict detected: "cli-claude-code" from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/cli-claude-code/SKILL.md" is overriding the same skill from "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/cli-claude-code/SKILL.md".### FINDING-01: Type Contract Mismatch causes Runtime TypeError in Decision Extraction
-- **File:** .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:147
+- **File:** .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:147
 - **Severity:** CRITICAL
 - **Category:** BUG
 - **Current Behavior:** `CollectedDataForDecisions` defines `facts?: string[]`. The extraction logic assumes `obs.facts` contains only strings and directly calls `f.includes('Option')`. However, the shared `CollectedDataFull` and incoming JSON logs allow facts to be objects (`{ text?: string }`). If a fact object is encountered, calling `.includes` on it throws `TypeError: f.includes is not a function`, crashing the workflow.
@@ -39,7 +39,7 @@ Skill conflict detected: "system-spec-kit" from "/Users/michelkerkmeester/MEGA/D
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: State Mutation Bug in Observation Deduplication
-- **File:** .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:265
+- **File:** .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:265
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `deduplicateObservations` makes a shallow copy of the observation (`const obsCopy = { ...obs };`), which leaves nested arrays like `obs.facts` as references to the original object. When merging deduplicated facts, it uses `existingFacts.push(fact)`, which unintentionally mutates the shared `collectedData.observations` array, potentially corrupting data for downstream processors.
@@ -53,7 +53,7 @@ Skill conflict detected: "system-spec-kit" from "/Users/michelkerkmeester/MEGA/D
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Missing Export in Core Barrel File
-- **File:** .opencode/skill/system-spec-kit/scripts/core/index.ts:11
+- **File:** .opencode/skills/system-spec-kit/scripts/core/index.ts:11
 - **Severity:** MEDIUM
 - **Category:** ALIGNMENT
 - **Current Behavior:** `writeFilesAtomically` is an exported utility in `core/file-writer.ts` but is completely missing from the `core/index.ts` barrel file.
@@ -66,7 +66,7 @@ Skill conflict detected: "system-spec-kit" from "/Users/michelkerkmeester/MEGA/D
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-04: Dead Code / Duplicate Implementation of extractKeyTopics
-- **File:** .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:273
+- **File:** .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:273
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `session-extractor.ts` exports a custom implementation of `extractKeyTopics`. However, the main orchestrator (`workflow.ts`) actively imports and uses a different version from `core/topic-extractor.ts`. 
@@ -76,7 +76,7 @@ Skill conflict detected: "system-spec-kit" from "/Users/michelkerkmeester/MEGA/D
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Incomplete Type Definition for Observation 
-- **File:** .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:60
+- **File:** .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:60
 - **Severity:** LOW
 - **Category:** ALIGNMENT
 - **Current Behavior:** `session-extractor.ts` defines `Observation` with `facts?: Array<string | { text?: string }>`, whereas `file-extractor.ts` defines a redundant `ObservationInput` that also includes `files?: string[]` within the facts object. 
@@ -86,7 +86,7 @@ Skill conflict detected: "system-spec-kit" from "/Users/michelkerkmeester/MEGA/D
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-06: Unused Import in Session Data Collection
-- **File:** .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:18
+- **File:** .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:18
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `extractBlockers` is imported from `session-extractor.ts` but is never executed within the file (blockers are instead extracted via `buildProjectStateSnapshot`).
@@ -96,7 +96,7 @@ Skill conflict detected: "system-spec-kit" from "/Users/michelkerkmeester/MEGA/D
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-07: Misleading Comment regarding Export Casing
-- **File:** .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:316
+- **File:** .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:316
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** The module's final export block is annotated with the comment `// Snake_case exports (original)`, yet it exclusively exports `camelCase` functions (`getRecentPrompts`, `getSessionResponses`, etc.).

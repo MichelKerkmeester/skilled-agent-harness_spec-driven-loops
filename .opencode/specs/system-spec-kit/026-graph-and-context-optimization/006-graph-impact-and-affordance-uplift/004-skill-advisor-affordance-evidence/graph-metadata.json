@@ -41,17 +41,17 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/affordance-normalizer.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/affordance-normalizer.test.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/lane-attribution.test.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/routing-fixtures.affordance.test.ts",
-      ".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/24-skill-advisor-affordance-evidence.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/affordance-normalizer.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/affordance-normalizer.test.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/lane-attribution.test.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/routing-fixtures.affordance.test.ts",
+      ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/24-skill-advisor-affordance-evidence.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md",
       ".claude/settings.local.json",
       "mcp_server/package.json",
       "spec.md",
@@ -64,67 +64,67 @@
       {
         "name": "affordance-normalizer.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/affordance-normalizer.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/affordance-normalizer.ts",
         "source": "derived"
       },
       {
         "name": "types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts",
         "source": "derived"
       },
       {
         "name": "fusion.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts",
         "source": "derived"
       },
       {
         "name": "derived.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts",
         "source": "derived"
       },
       {
         "name": "graph-causal.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts",
         "source": "derived"
       },
       {
         "name": "skill_graph_compiler.py",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py",
         "source": "derived"
       },
       {
         "name": "affordance-normalizer.test.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/affordance-normalizer.test.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/affordance-normalizer.test.ts",
         "source": "derived"
       },
       {
         "name": "lane-attribution.test.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/lane-attribution.test.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/lane-attribution.test.ts",
         "source": "derived"
       },
       {
         "name": "routing-fixtures.affordance.test.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/routing-fixtures.affordance.test.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/routing-fixtures.affordance.test.ts",
         "source": "derived"
       },
       {
         "name": "24-skill-advisor-affordance-evidence.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/24-skill-advisor-affordance-evidence.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/24-skill-advisor-affordance-evidence.md",
         "source": "derived"
       },
       {
         "name": "199-skill-advisor-affordance-evidence.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md",
         "source": "derived"
       },
       {

@@ -148,7 +148,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/system-spec-kit/mcp_server/context-server.ts, .opencode/.../cognitive/attention-decay.ts, .opencode/.../126-full-spec-doc-indexing/implementation-summary.md
+- Files modified: .opencode/skills/system-spec-kit/mcp_server/context-server.ts, .opencode/.../cognitive/attention-decay.ts, .opencode/.../126-full-spec-doc-indexing/implementation-summary.md
 
 - Last: Completed Spec 126 stabilization work across test, build, and documentation work
 
@@ -163,7 +163,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/system-spec-kit/mcp_server/context-server.ts |
+| Active File | .opencode/skills/system-spec-kit/mcp_server/context-server.ts |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | Decision: Fix failing full-suite imports in context-server and attention-decay immediately because t |
@@ -185,7 +185,7 @@ Next: Continue implementation
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` - File modified (description pending)
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` - File modified (description pending)
 
 - `.opencode/.../cognitive/attention-decay.ts` - File modified (description pending)
 
@@ -234,7 +234,7 @@ Completed Spec 126 stabilization work across test, build, and documentation work
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | File modified (description pending) |
 | `.opencode/.../cognitive/attention-decay.ts` | File modified (description pending) |
 | `.opencode/.../126-full-spec-doc-indexing/implementation-summary.md` | File modified (description pending) |
 | `.opencode/.../126-full-spec-doc-indexing/checklist.md` | File modified (description pending) |
@@ -458,7 +458,7 @@ Completed Spec 126 stabilization work across test, build, and documentation work
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "../.opencode/specs/system-spec-kit/z_archive/009-full-spec-doc-indexing", limit: 10 })
@@ -470,7 +470,7 @@ ls -la ../.opencode/specs/system-spec-kit/z_archive/009-full-spec-doc-indexing/m
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/z_archive/009-full-spec-doc-indexing --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/z_archive/009-full-spec-doc-indexing --force
 ```
 
 ### Recovery Priority
@@ -661,7 +661,7 @@ trigger_phrases:
   - "indexing"
 
 key_files:
-  - ".opencode/skill/system-spec-kit/mcp_server/context-server.ts"
+  - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
   - ".opencode/.../cognitive/attention-decay.ts"
   - ".opencode/.../126-full-spec-doc-indexing/implementation-summary.md"
   - ".opencode/.../126-full-spec-doc-indexing/checklist.md"

@@ -2,7 +2,7 @@
 
 **GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open`. The orchestrator (Claude) has authorized this folder for the entire implementation session. DO NOT re-ask Gate 3. Proceed directly to implementation.
 
-**TARGET AUTHORITY**: All write paths under that spec folder AND its declared dependency `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/` are pre-approved. You may also write runtime code under `.opencode/skill/system-spec-kit/mcp_server/`, plugin code under `.opencode/plugins/`, tests under `.opencode/skill/system-spec-kit/mcp_server/tests/`.
+**TARGET AUTHORITY**: All write paths under that spec folder AND its declared dependency `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/` are pre-approved. You may also write runtime code under `.opencode/skills/system-spec-kit/mcp_server/`, plugin code under `.opencode/plugins/`, tests under `.opencode/skills/system-spec-kit/mcp_server/tests/`.
 
 You are dispatched to execute the full implementation plan for **skill-advisor release remediation**. This closes 3 P1 release blockers and 15 P2 advisories from the 008/008 deep-review.
 
@@ -27,7 +27,7 @@ After all tasks complete:
 
 3. Author `implementation-summary.md` at `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open/implementation-summary.md` using the L2 template. Include: What Was Built, How It Was Delivered (Phase 1/2/3/4), Key Decisions, Verification (commands + exit codes), Per-finding disposition table for all 18 source findings.
 4. Update `_memory.continuity.recent_action` and `completion_pct` in spec.md frontmatter.
-5. Run final validator: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open --strict`. Capture exit code.
+5. Run final validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open --strict`. Capture exit code.
 
 ## CRITICAL RULES
 

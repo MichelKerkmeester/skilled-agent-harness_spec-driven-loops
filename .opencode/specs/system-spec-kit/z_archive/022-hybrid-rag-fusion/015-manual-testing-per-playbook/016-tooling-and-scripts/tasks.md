@@ -107,11 +107,11 @@ _memory:
 - [x] T009r Execute 151: MODULE_MAP.md accuracy -- **PASS** -- MODULE_MAP.md exists at mcp_server/lib/MODULE_MAP.md, contains module inventory, feature catalog mapping, dependency directions, canonical locations
 - [x] T009s Execute 152: No symlinks in lib/ tree -- **PASS** -- `find mcp_server/lib -type l` returns 0 symlinks
 - [x] T009t Execute 154: JSON-primary deprecation posture -- **PASS** -- generate-context.ts:398-407 requires --json/--stdin/file; direct positional without flag throws with migration guidance message
-- [x] T009u Execute 181: Template Compliance Contract Enforcement -- **PASS** -- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict .opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2` exits 0 with 0 errors; feature catalog 18 and `scripts/tests/test-phase-command-workflows.js:123-149` confirm the 3-layer contract
+- [x] T009u Execute 181: Template Compliance Contract Enforcement -- **PASS** -- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2` exits 0 with 0 errors; feature catalog 18 and `scripts/tests/test-phase-command-workflows.js:123-149` confirm the 3-layer contract
 - [x] T009v Execute M-009: Runtime Family Count Census -- **PASS** -- runtime census commands return 9 agent files for base, ChatGPT, Claude, Codex, and Gemini families
 - [x] T009w Execute M-010: Runtime Lineage Naming Parity -- **PASS** -- basename `diff -u` comparisons return no output and no active runtime-agent research file name exists in Markdown or TOML form
 - [x] T009x Execute M-011: Gemini Runtime Path Resolution -- **PASS** -- `readlink .gemini` returns `.agents`, `.gemini/agents` matches `.agents/agents`, and the resolved Gemini agent count is 9
-- [x] T009y Execute 186: /memory:manage command routing -- **PASS** -- `.opencode/command/memory/manage.md:18-28` defaults no-args to stats and rejects unknown modes, `:71-92` defines the supported patterns, `:133-155` covers the full routing tree, and `:162-164` calls `memory_stats()` + `memory_list()`
+- [x] T009y Execute 186: /memory:manage command routing -- **PASS** -- `.opencode/commands/memory/manage.md:18-28` defaults no-args to stats and rejects unknown modes, `:71-92` defines the supported patterns, `:133-155` covers the full routing tree, and `:162-164` calls `memory_stats()` + `memory_list()`
 
 ### T010: Group E -- JSON Mode Structured Summary Hardening (16 IDs)
 - [x] T010 Execute 153 parent + 153-A through 153-O (16 IDs total)

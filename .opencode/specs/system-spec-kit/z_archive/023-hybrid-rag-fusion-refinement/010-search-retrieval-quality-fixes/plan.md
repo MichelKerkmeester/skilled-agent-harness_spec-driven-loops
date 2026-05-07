@@ -55,7 +55,7 @@ Fix six retrieval quality issues in the Spec Kit Memory search pipeline, priorit
 | RC2-A | `memory-context.ts` | 494-511 | `enforceTokenBudget()` metadata-only append |
 | RC3-B | `memory-search.ts` | 591-597 | Intent confidence floor |
 
-All paths relative to `.opencode/skill/system-spec-kit/`.
+All paths relative to `.opencode/skills/system-spec-kit/`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -293,7 +293,7 @@ if (detectedIntent && intentConfidence < 0.25 && !explicitIntent) {
 | `mcp_server/handlers/memory-search.ts` | Search handler — intent classification | Modify (Fix 6) |
 | `mcp_server/lib/search/folder-discovery.ts` | Folder discovery utility | Read-only (Fix 4 may modify) |
 
-All paths relative to `.opencode/skill/system-spec-kit/`.
+All paths relative to `.opencode/skills/system-spec-kit/`.
 
 ---
 

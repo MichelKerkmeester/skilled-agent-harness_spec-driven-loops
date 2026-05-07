@@ -39,7 +39,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/command/improve/prompt.md",
+      ".opencode/commands/improve/prompt.md",
       ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
       ".opencode/specs/descriptions.json",
       ".codex/config.toml",
@@ -50,7 +50,7 @@
       {
         "name": "prompt.md",
         "kind": "doc",
-        "path": ".opencode/command/improve/prompt.md",
+        "path": ".opencode/commands/improve/prompt.md",
         "source": "derived"
       },
       {

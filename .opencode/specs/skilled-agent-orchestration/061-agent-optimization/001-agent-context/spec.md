@@ -63,7 +63,7 @@ Improvement focus: **LEAF retrieval discipline; no-dispatch invariant; CocoIndex
 ## 3. SCOPE
 
 ### In Scope
-- Canonical agent body: `.opencode/agent/context.md`
+- Canonical agent body: `.opencode/agents/context.md`
 - Runtime mirrors: `.claude/agents/context.md`, `.gemini/agents/context.md`, `.codex/agents/context.toml`
 - Frontmatter / behavioral rules / output verification / anti-patterns refinements
 - Score-weighting dimensions: scope discipline (no Write tool path leakage), tool routing accuracy
@@ -78,7 +78,7 @@ Improvement focus: **LEAF retrieval discipline; no-dispatch invariant; CocoIndex
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| `.opencode/agent/context.md` | Update | Promoted candidate body |
+| `.opencode/agents/context.md` | Update | Promoted candidate body |
 | `.claude/agents/context.md` | Update | Mirror sync |
 | `.gemini/agents/context.md` | Update | Mirror sync |
 | `.codex/agents/context.toml` | Update | Mirror sync (TOML) |

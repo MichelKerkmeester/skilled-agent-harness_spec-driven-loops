@@ -28,11 +28,11 @@ Two top-level command reapplications in `.claude/settings.local.json` to restore
 ## Steps
 1. Replace `"bash": "true"` in `hooks.UserPromptSubmit[0]` with:
    ```
-   cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js
+   cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js
    ```
 2. Replace `"bash": "true"` in `hooks.SessionStart[0]` with:
    ```
-   cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js
+   cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js
    ```
 3. Bump `timeoutSec` from 3 → 5 on both wrappers.
 4. Validate: `jq . .claude/settings.local.json`.

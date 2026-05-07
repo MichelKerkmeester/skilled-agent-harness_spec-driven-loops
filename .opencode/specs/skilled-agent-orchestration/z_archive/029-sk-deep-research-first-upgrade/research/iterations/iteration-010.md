@@ -97,7 +97,7 @@ For sk-deep-research, the clearest lesson is that portability improves when the 
 - `/tmp/deep-research-029-wave2/ARIS/skills/skills-codex/auto-review-loop/SKILL.md`
 - `/tmp/deep-research-029-wave2/ARIS/skills/skills-codex-claude-review/README.md`
 - `/tmp/deep-research-029-wave2/ARIS/skills/skills-codex/README_CN.md`
-- `.opencode/skill/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
 - `.opencode/specs/03--commands-and-skills/029-sk-deep-research-first-upgrade/research/research/research.md`
 
 ## Assessment

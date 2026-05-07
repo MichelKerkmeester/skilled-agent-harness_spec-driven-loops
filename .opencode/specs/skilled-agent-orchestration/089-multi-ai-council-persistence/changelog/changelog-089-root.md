@@ -25,9 +25,9 @@ All 4 runtimes verified to have §16 CALLER PERSISTENCE PROTOCOL + §17 SUMMARY 
 - Create folder + description.json (via create.sh)
 - Author plan.md (canonical template anchors with L2/L3 add-ons)
 - Author implementation-summary.md placeholder (canonical anchors)
-- Create directory .opencode/skill/system-spec-kit/scripts/multi-ai-council/
+- Create directory .opencode/skills/system-spec-kit/scripts/multi-ai-council/
 - Author persist-artifacts.cjs (Node CJS, parser/renderer/builder/state-line exports + CLI)
-- Add §17 Caller Persistence Protocol to .opencode/agent/multi-ai-council.md
+- Add §17 Caller Persistence Protocol to .opencode/agents/multi-ai-council.md
 
 ### Changed
 
@@ -62,8 +62,8 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - CHK-100 Planning-only invariant preserved: agent retains write/edit/bash/patch deny across all 4 runtimes
-- CHK-101 ADR-001 lightweight bound preserved: no .opencode/skill/multi-ai-council/ folder
+- CHK-101 ADR-001 lightweight bound preserved: no .opencode/skills/multi-ai-council/ folder
 - CHK-102 AGENTS.md / runtime mirror conventions followed (per memory feedback_new_agent_mirror_all_runtimes)
-- Run bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet-089> --strict (exit 0)
+- Run bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet-089> --strict (exit 0)
 - Generate nested changelog via nested-changelog.js
 - Run /memory:save via generate-context.js

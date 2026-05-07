@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] Reconsolidation merge mutates `memory_index` without syncing the in-memory BM25 singleton
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 
 **Issue** The merge path archives the old row and inserts a replacement row directly in `memory_index`, but it never removes the archived document from the in-memory BM25 index or adds the merged replacement. The bridge then returns early, so the normal save path that would at least call `bm25.addDocument(...)` never runs. That leaves the process-local BM25 index out of sync with the database until a restart or a full rebuild happens.
 
@@ -12,7 +12,7 @@
 **Fix** Add an explicit BM25 sync step for reconsolidation merges after the DB transaction commits: remove `existingMemory.id`, add `newMemoryId` using the same text composition as `rebuildFromDatabase()`, or call a scoped rebuild helper for the affected IDs. Do not rely on restart-time rebuilds for this path.
 
 ### [P1] Live BM25 updates do not index the same document shape that rebuilds and FTS scoring use
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
 
 **Issue** The rebuild path indexes `title + normalized content_text + trigger_phrases + file_path`, but most live mutation paths feed the singleton only raw content or summary text. That means the in-memory BM25 index has different tokens, different normalization, and effectively different field weighting than the DB-backed rebuild/FTS paths. Queries that depend on title, trigger phrases, file-path terms, or normalized markdown content can therefore behave differently before and after a rebuild.
 
@@ -21,7 +21,7 @@
 **Fix** Centralize BM25 document construction behind one helper, for example `buildBm25DocumentText(row)` inside `bm25-index.ts`, and use it everywhere: rebuilds, saves, updates, chunking, lineage writes, and unarchive. That helper should include the same fields and `normalizeContentForBM25()` call every time. If field weighting is intended for the in-memory engine too, encode fields separately or simulate the weights during token construction instead of silently dropping them in live updates.
 
 ### [P1] Assistive auto-merge archives rows in SQL but never evicts them from BM25, so the singleton can grow with stale archived documents
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts`
 
 **Issue** Assistive auto-merge marks the older memory as archived with a direct `UPDATE`, but it does not call the BM25 archive sync used elsewhere. The save then continues normally and indexes the new memory, so the singleton keeps the archived old document and adds the replacement. Over repeated near-duplicate saves this causes stale archived entries to accumulate in memory even though the authoritative rebuild path would exclude them.
 

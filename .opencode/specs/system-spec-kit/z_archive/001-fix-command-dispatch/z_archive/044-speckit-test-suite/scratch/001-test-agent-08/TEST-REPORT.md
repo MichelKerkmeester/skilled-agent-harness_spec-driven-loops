@@ -1,7 +1,7 @@
 # Test Agent 8: Generate Context Script - Test Report
 
 **Test Date:** 2025-12-26
-**Script:** `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+**Script:** `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 **Sandbox:** `specs/006-speckit-test-suite/scratch/001-test-agent-08/`
 
 ---

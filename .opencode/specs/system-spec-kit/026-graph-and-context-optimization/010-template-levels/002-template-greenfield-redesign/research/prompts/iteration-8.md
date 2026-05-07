@@ -22,12 +22,12 @@ Three sub-tasks:
    Preset C: `phase-parent` (kind=phase-parent, capabilities=[])
 
    Pipeline steps to walk for each:
-   - Step 1 — User invokes: `bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --preset <X> --name "Sample" .opencode/specs/sample/`
+   - Step 1 — User invokes: `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --preset <X> --name "Sample" .opencode/specs/sample/`
    - Step 2 — `create.sh` reads manifest, resolves preset → kind + capabilities
    - Step 3 — `create.sh` computes file list (core docs from kind + addAuthoredDocs from capabilities)
    - Step 4 — For each file, `create.sh` calls `copy_template` which calls inline-gate renderer
    - Step 5 — `create.sh` emits `description.json` + `graph-metadata.json` with kind + capabilities embedded
-   - Step 6 — User runs `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sample/ --strict`
+   - Step 6 — User runs `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sample/ --strict`
    - Step 7 — Validator reads packet's frontmatter for kind + capabilities, reads manifest for required files, checks
    - Step 8 — Validator runs section checks (check-sections.sh) using inline-gate-aware logic from iter 6
    - For each step, document: input artifact, output artifact, what could go wrong, validator behavior.

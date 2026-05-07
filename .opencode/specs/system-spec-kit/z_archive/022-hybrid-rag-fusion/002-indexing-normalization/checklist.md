@@ -251,13 +251,13 @@ contextType: "implementation"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md | Evidence: `spec.md` exists and contains scoped requirements for `004-frontmatter-indexing`.
 - [x] CHK-002 [P0] Technical approach defined in plan.md | Evidence: `plan.md` exists and defines migration/reindex approach for this child spec.
-- [x] CHK-003 [P1] Dependencies identified and available | Evidence: `npm run build` passed in `.opencode/skill/system-spec-kit`.
+- [x] CHK-003 [P1] Dependencies identified and available | Evidence: `npm run build` passed in `.opencode/skills/system-spec-kit`.
 
 ---
 
 ### Code Quality
 
-- [x] CHK-010 [P0] Parser and migration code pass lint/format checks | Evidence: `npm run typecheck` passed in `.opencode/skill/system-spec-kit`.
+- [x] CHK-010 [P0] Parser and migration code pass lint/format checks | Evidence: `npm run typecheck` passed in `.opencode/skills/system-spec-kit`.
 - [x] CHK-011 [P0] No runtime warnings in migration + reindex commands | Evidence: Reindex reached `STATUS=OK`. Observed warnings were legacy anchor-content warnings in archived docs and were non-fatal (operational caveat recorded).
 - [x] CHK-012 [P1] Error handling implemented for malformed frontmatter | Evidence: `node scripts/tests/test-frontmatter-backfill.js` and `node scripts/tests/test-template-comprehensive.js` passed.
 - [x] CHK-013 [P1] Changes follow system-spec-kit patterns | Evidence: `scripts/templates/compose.sh` and `scripts/templates/compose.sh --verify` passed.
@@ -277,7 +277,7 @@ contextType: "implementation"
 
 - [x] CHK-030 [P0] No hardcoded secrets added by migration tooling | Evidence: Secret scan over changed system-spec-kit files found no matches for `(API_KEY|SECRET|TOKEN|PASSWORD|BEGIN PRIVATE KEY|VOYAGE_API_KEY)`.
 - [x] CHK-031 [P0] Input validation implemented for frontmatter parser | Evidence: `npm run test --workspace mcp_server -- tests/memory-parser.vitest.ts` passed, and `test-frontmatter-backfill.js` now asserts malformed frontmatter skip/no-rewrite behavior (`T-FMB-007`, `T-FMB-009`).
-- [x] CHK-032 [P1] File write scope constrained to intended directories | Evidence: `scratch/frontmatter-final-dry-run-report-v3.json` lists rewrite roots only under `.opencode/specs` and `.opencode/skill/system-spec-kit/.opencode/specs`.
+- [x] CHK-032 [P1] File write scope constrained to intended directories | Evidence: `scratch/frontmatter-final-dry-run-report-v3.json` lists rewrite roots only under `.opencode/specs` and `.opencode/skills/system-spec-kit/.opencode/specs`.
 
 ---
 
@@ -285,7 +285,7 @@ contextType: "implementation"
 
 - [x] CHK-040 [P1] spec.md, plan.md, and tasks.md are synchronized | Evidence: Tracking docs were updated in this completion pass.
 - [x] CHK-041 [P1] Decision rationale recorded in decision-record.md | Evidence: `decision-record.md` includes ADR-001 with context, alternatives, and consequences.
-- [x] CHK-042 [P2] README notes updated if command behavior changes | Evidence: strict malformed-frontmatter behavior and `--allow-malformed` are documented in `.opencode/skill/system-spec-kit/README.md` and `.opencode/skill/system-spec-kit/scripts/memory/README.md`.
+- [x] CHK-042 [P2] README notes updated if command behavior changes | Evidence: strict malformed-frontmatter behavior and `--allow-malformed` are documented in `.opencode/skills/system-spec-kit/README.md` and `.opencode/skills/system-spec-kit/scripts/memory/README.md`.
 
 ---
 
@@ -367,7 +367,7 @@ contextType: "implementation"
 ### L3+: DOCUMENTATION VERIFICATION
 
 - [x] CHK-140 [P1] All spec documents synchronized | Evidence: `checklist.md`, `tasks.md`, and `implementation-summary.md` were updated to executed-state evidence.
-- [x] CHK-141 [P1] CLI and parser behavior documented for future contributors | Evidence: `.opencode/skill/system-spec-kit/README.md` and `.opencode/skill/system-spec-kit/scripts/memory/README.md` document strict malformed handling and CLI usage (`--allow-malformed`).
+- [x] CHK-141 [P1] CLI and parser behavior documented for future contributors | Evidence: `.opencode/skills/system-spec-kit/README.md` and `.opencode/skills/system-spec-kit/scripts/memory/README.md` document strict malformed handling and CLI usage (`--allow-malformed`).
 - [ ] CHK-142 [P2] User-facing docs updated if commands change | Deferred: No user-facing doc update evidence was provided.
 - [x] CHK-143 [P2] Knowledge transfer captured in implementation-summary.md | Evidence: Implementation summary now documents delivered outcomes and verification artifacts.
 

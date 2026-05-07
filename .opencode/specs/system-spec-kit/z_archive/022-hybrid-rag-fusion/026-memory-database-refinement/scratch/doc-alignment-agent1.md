@@ -8,7 +8,7 @@
 
 ## 1. OVERVIEW
 
-Audited and updated the in-scope code-level README files under `.opencode/skill/system-spec-kit/mcp_server/` against the live directory tree, current exports, and recent refinement changes.
+Audited and updated the in-scope code-level README files under `.opencode/skills/system-spec-kit/mcp_server/` against the live directory tree, current exports, and recent refinement changes.
 
 ## 2. README UPDATES
 
@@ -74,7 +74,7 @@ Audited and updated the in-scope code-level README files under `.opencode/skill/
 ## 3. VERIFICATION
 
 - Markdown validation:
-  - `python3 .opencode/skill/sk-doc/scripts/validate_document.py --type readme <file>`
+  - `python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme <file>`
   - Result: all 13 updated README files passed validation.
 
 - Targeted Vitest:

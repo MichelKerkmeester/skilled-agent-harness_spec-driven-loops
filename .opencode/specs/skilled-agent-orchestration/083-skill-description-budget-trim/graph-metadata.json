@@ -37,56 +37,56 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-code/SKILL.md",
-      ".opencode/skill/mcp-code-mode/SKILL.md",
-      ".opencode/skill/cli-claude-code/SKILL.md",
-      ".opencode/skill/cli-opencode/SKILL.md",
-      ".opencode/skill/sk-doc/SKILL.md",
-      ".opencode/skill/cli-gemini/SKILL.md",
-      ".opencode/skill/sk-prompt/SKILL.md",
-      ".opencode/skill/cli-codex/SKILL.md",
-      ".opencode/skill/mcp-coco-index/SKILL.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/mcp-chrome-devtools/SKILL.md",
-      ".opencode/skill/deep-review/SKILL.md",
-      ".opencode/skill/deep-agent-improvement/SKILL.md",
-      ".opencode/skill/sk-code-review/SKILL.md",
-      ".opencode/skill/sk-git/SKILL.md",
-      ".opencode/skill/deep-research/SKILL.md",
-      ".opencode/command/memory/search.md",
-      ".opencode/command/memory/manage.md",
-      ".opencode/command/doctor/code-graph.md",
-      ".opencode/command/doctor/mcp_install.md"
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/mcp-code-mode/SKILL.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/cli-gemini/SKILL.md",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/mcp-coco-index/SKILL.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/mcp-chrome-devtools/SKILL.md",
+      ".opencode/skills/deep-review/SKILL.md",
+      ".opencode/skills/deep-agent-improvement/SKILL.md",
+      ".opencode/skills/sk-code-review/SKILL.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/deep-research/SKILL.md",
+      ".opencode/commands/memory/search.md",
+      ".opencode/commands/memory/manage.md",
+      ".opencode/commands/doctor/code-graph.md",
+      ".opencode/commands/doctor/mcp_install.md"
     ],
     "entities": [
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/SKILL.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
         "name": "manage.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/manage.md",
+        "path": ".opencode/commands/memory/manage.md",
         "source": "derived"
       },
       {
         "name": "code-graph.md",
         "kind": "doc",
-        "path": ".opencode/command/doctor/code-graph.md",
+        "path": ".opencode/commands/doctor/code-graph.md",
         "source": "derived"
       },
       {
         "name": "mcp_install.md",
         "kind": "doc",
-        "path": ".opencode/command/doctor/mcp_install.md",
+        "path": ".opencode/commands/doctor/mcp_install.md",
         "source": "derived"
       },
       {

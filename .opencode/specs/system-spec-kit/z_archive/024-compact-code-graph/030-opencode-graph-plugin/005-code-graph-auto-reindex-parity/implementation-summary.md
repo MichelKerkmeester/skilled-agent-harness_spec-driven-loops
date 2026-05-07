@@ -82,9 +82,9 @@ The work followed the runtime plan directly:
 
 | Check | Result |
 |-------|--------|
-| `npx tsc --noEmit` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
+| `npx tsc --noEmit` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
 | `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/ensure-ready.vitest.ts tests/code-graph-query-handler.vitest.ts tests/code-graph-context-handler.vitest.ts` | PASS, including post-commit HEAD-drift refinement coverage |
-| `npm run build` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
+| `npm run build` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
 | Strict recursive packet validation | PASS |
 <!-- /ANCHOR:verification -->
 

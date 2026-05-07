@@ -18,8 +18,8 @@ I examined the external council query stack, its synthesis prompt, and semaphore
 - `[SOURCE: external/council-automation/council_config.py:18-28]` The council is configured around three analysis models plus a fallback, showing that model diversity is a first-class design choice.
 - `[SOURCE: external/council-automation/synthesis_prompt.md:12-21]` Final synthesis is constrained to a structured JSON object with agreements, disagreements, unique insights, actions, confidence, risks, and narrative.
 - `[SOURCE: external/council-automation/test_session_semaphore.py:29-39]` The browser session pool is tested as a shared resource rather than an ad hoc side effect.
-- `[SOURCE: .opencode/command/spec_kit/deep-research.md:136-143]` `system-spec-kit` today frames deep research as an iterative single-agent loop that produces `research/research.md`.
-- `[SOURCE: .opencode/skill/cli-copilot/SKILL.md:189-220]` The broader codebase already documents multi-model access and per-model reasoning characteristics, but as operator guidance rather than a deep-research mode.
+- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:136-143]` `system-spec-kit` today frames deep research as an iterative single-agent loop that produces `research/research.md`.
+- `[SOURCE: .opencode/skills/cli-copilot/SKILL.md:189-220]` The broader codebase already documents multi-model access and per-model reasoning characteristics, but as operator guidance rather than a deep-research mode.
 
 ## Analysis
 The external council pattern's strongest idea is not "always use three models." It is that disagreement can be treated as a structured input to synthesis instead of a nuisance. That could make `system-spec-kit`'s research output stronger on ambiguous topics, especially architecture or standards research. The downside is operational complexity: extra providers, extra cost, and extra failure modes. Because `system-spec-kit` already supports multiple runtimes and model families indirectly, the right transfer is an optional council mode or synthesis profile, not a replacement for the default loop.
@@ -30,7 +30,7 @@ confidence: medium
 finding: The council pattern is worth adopting only as an optional advanced research mode. The best borrowable piece is the structured "agreements / disagreements / unique insights / recommended actions" synthesis shape, not the full dependency stack.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/deep-research.md`, `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`, `.opencode/skill/system-spec-kit/templates/research.md`
+- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`, `.opencode/skills/system-spec-kit/templates/research.md`
 - **Change type:** added option
 - **Blast radius:** medium
 - **Prerequisites:** runtime-capability matrix must expose whether a council-style multi-model round is available

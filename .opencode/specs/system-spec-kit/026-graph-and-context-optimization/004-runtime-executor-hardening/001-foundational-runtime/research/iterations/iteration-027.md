@@ -6,7 +6,7 @@ I stayed on the requested state-honesty seams, but filtered out the source-local
 ## Findings
 
 ### Finding R27-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 - **Lines:** `187-200`
 - **Severity:** P1
 - **Description:** The graph-lifecycle lane now has a deeper state-honesty failure than the already-known boolean collapse: `post-insert.ts` records `graphLifecycle = true` whenever `onIndex(...)` returns, even when `onIndex(...)` explicitly reports `skipped: true`, and the advertised `runEnrichmentBackfill` follow-up does not enable the flags that cause those skip branches. The result is a save surface that can say graph enrichment "ran" while the only suggested recovery action still leaves graph lifecycle disabled.
@@ -14,7 +14,7 @@ I stayed on the requested state-honesty seams, but filtered out the source-local
 - **Downstream Impact:** Operators and agents can follow the documented enrichment-recovery path and still never get graph refresh, while the save response remains success-shaped and warning-free. That breaks the action boundary between "graph freshness pending but recoverable" and "graph lifecycle is administratively disabled or skipped for this document."
 
 ### Finding R27-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
 - **Lines:** `801-816`
 - **Severity:** P1
 - **Description:** The system's structural-routing guidance still treats `code_graph_query` as the authoritative next step whenever structural context looks ready or stale, but the direct query handler still has the already-documented honesty gap where readiness preflight failure is collapsed into a normal `status: "ok"` payload. That means the runtime's own routing layer can steer agents into a tool whose failure branch is observationally similar to an actually empty graph.

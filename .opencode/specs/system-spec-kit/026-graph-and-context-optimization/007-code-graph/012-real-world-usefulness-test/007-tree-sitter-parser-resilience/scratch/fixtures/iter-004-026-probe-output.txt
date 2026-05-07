@@ -1,6 +1,6 @@
 # cohort-replay
 # wts dir : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-026-probe/node_modules/web-tree-sitter
-# wasms   : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out
+# wasms   : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out
 # cohort  : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-oob-cohort.txt
 # loaded api: Parser=function Language=function from node_modules/web-tree-sitter/web-tree-sitter.js
 file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-026-probe/node_modules/web-tree-sitter/web-tree-sitter.js:1927

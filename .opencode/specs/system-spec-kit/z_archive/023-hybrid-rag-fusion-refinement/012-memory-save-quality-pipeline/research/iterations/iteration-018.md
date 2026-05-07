@@ -30,7 +30,7 @@ Systematically enumerate edge cases for JSON-mode saves and document expected be
 3. No decision observations since `keyDecisions` is empty/absent.
 4. `_manualDecisions` is NOT set.
 
-The conversation extractor downstream receives 0 `userPrompts` and hits the fallback path (iteration 001 finding: lines 241-267), creating 1-3 synthetic Assistant-role messages from the sessionSummary via `String()` coercion. [SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:445-595] [SOURCE: iteration-001 finding on conversation extractor fallback]
+The conversation extractor downstream receives 0 `userPrompts` and hits the fallback path (iteration 001 finding: lines 241-267), creating 1-3 synthetic Assistant-role messages from the sessionSummary via `String()` coercion. [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:445-595] [SOURCE: iteration-001 finding on conversation extractor fallback]
 
 **Expected Behavior:** Should produce a valid memory. The session summary provides enough semantic content for the title, OVERVIEW section, and CONTINUE SESSION anchor. Quality score should be low (no files, no decisions, no tool evidence) but the memory should NOT be rejected as insufficient if the summary text is substantive (>100 chars with spec-relevant keywords).
 
@@ -58,7 +58,7 @@ The conversation extractor downstream receives 0 `userPrompts` and hits the fall
 2. The decisions become observations with type `decision` and confidence 0.50 (no explicit chosenApproach) or 0.65 (regex match found).
 3. `_manualDecisions` is also populated for downstream use by the decision extractor.
 
-The CRITICAL problem: without sessionSummary, the title builder in `core/title-builder.ts` will either use the empty string or fall back to a generic "Development session" title. The sufficiency gate at `evaluateMemorySufficiency()` explicitly checks for generic titles and REJECTS them (confirmed in `memory-sufficiency.vitest.ts` test "fails long content when the memory title stays generic"). [SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:198-261, 547-564] [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:94-123]
+The CRITICAL problem: without sessionSummary, the title builder in `core/title-builder.ts` will either use the empty string or fall back to a generic "Development session" title. The sufficiency gate at `evaluateMemorySufficiency()` explicitly checks for generic titles and REJECTS them (confirmed in `memory-sufficiency.vitest.ts` test "fails long content when the memory title stays generic"). [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:198-261, 547-564] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:94-123]
 
 **Expected Behavior:** Should produce a valid memory -- the decisions provide real semantic substance. The title builder SHOULD derive a meaningful title from the keyDecisions when sessionSummary is absent (e.g., "ESM imports migration decisions" from the first decision). Currently, this path produces a generic title -> sufficiency rejection, which is incorrect for substantive decisions.
 
@@ -83,7 +83,7 @@ The CRITICAL problem: without sessionSummary, the title builder in `core/title-b
 
 **Current Behavior:** The slow path activates. No sessionSummary means empty summary observation. `nextSteps` is processed by `buildNextStepsObservation()` which creates a `followup` type observation titled "Next Steps" with facts: `Next: Run the full ESM compliance test suite.`, `Follow-up: Update import paths in scripts/core/.`. The first next step becomes `NEXT_ACTION` in SessionData via `collectSessionData()`.
 
-With no observations of substance, no userPrompts, no recentContext, no files, and no sessionSummary, the memory is extremely thin. The sufficiency gate should reject this: no primary evidence items, no spec-relevant observations, and if any title is generated it will be generic. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:323-412 (nextSteps normalization tests)] [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:49-71 (insufficient context pattern)]
+With no observations of substance, no userPrompts, no recentContext, no files, and no sessionSummary, the memory is extremely thin. The sufficiency gate should reject this: no primary evidence items, no spec-relevant observations, and if any title is generated it will be generic. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:323-412 (nextSteps normalization tests)] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:49-71 (insufficient context pattern)]
 
 **Expected Behavior:** CORRECTLY REJECTED by the sufficiency gate. Next steps alone do not constitute durable context -- they are forward-looking pointers without evidence of work done. Expected rejection code: `INSUFFICIENT_CONTEXT_ABORT`.
 
@@ -118,7 +118,7 @@ With no observations of substance, no userPrompts, no recentContext, no files, a
 - `import { search } from './lib/search.js'` -- contains file path pattern
 - `Tool: Edit File: mcp_server/lib/index.ts` in facts -- this is a LEGITIMATE tool evidence string, but the contamination filter's `tool title with path` pattern (per iteration 003 findings, contamination-filter.vitest.ts lines 84-127) will match it
 
-The contamination filter does NOT have markdown-awareness. It does not skip fenced code blocks (```` ``` ... ``` ````). It scans the full text. Source-capability-aware downgrade (claude-code-capture gets `low` severity for tool-title-with-path) only applies when `sourceCapabilities` or `captureSource` metadata is passed. JSON-mode saves do NOT set capture source, so the default behavior applies: `tool title with path` = HIGH severity = quality score capped at 0.60. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/contamination-filter.vitest.ts:84-127 (source capability downgrades)] [SOURCE: iteration-003 finding on V8 being in validate-memory-quality.ts not contamination-filter.ts]
+The contamination filter does NOT have markdown-awareness. It does not skip fenced code blocks (```` ``` ... ``` ````). It scans the full text. Source-capability-aware downgrade (claude-code-capture gets `low` severity for tool-title-with-path) only applies when `sourceCapabilities` or `captureSource` metadata is passed. JSON-mode saves do NOT set capture source, so the default behavior applies: `tool title with path` = HIGH severity = quality score capped at 0.60. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/contamination-filter.vitest.ts:84-127 (source capability downgrades)] [SOURCE: iteration-003 finding on V8 being in validate-memory-quality.ts not contamination-filter.ts]
 
 **Expected Behavior:** Code blocks in observation narratives should be preserved verbatim. The contamination filter should NOT flag code examples or tool evidence strings in facts as contamination. Two possible fixes: (1) strip fenced code blocks before contamination scanning, (2) set an appropriate captureSource for JSON-mode saves so the tool-path downgrade applies.
 
@@ -147,7 +147,7 @@ The contamination filter does NOT have markdown-awareness. It does not skip fenc
 5. **OVERVIEW in rendered markdown:** The template renderer places SUMMARY directly into the OVERVIEW section. No length guard.
 6. **Embedding input:** The final rendered markdown (potentially 10K+ chars just from SUMMARY) is sent to the embedding provider. Very long documents may: (a) exceed embedding model token limits (voyage-4: 32K tokens), (b) dilute embedding relevance signal as the summary dominates the vector.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:272-289] [SOURCE: iteration-006 finding on --json path bypassing data-loader validation]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:272-289] [SOURCE: iteration-006 finding on --json path bypassing data-loader validation]
 
 **Expected Behavior:** The pipeline should cap SUMMARY/OVERVIEW text at a reasonable length (2000-3000 chars recommended) to prevent:
 - Oversized memories wasting retrieval token budget
@@ -191,7 +191,7 @@ Downstream effects:
 - **Quality scoring:** The file count may actually help (HAS_FILES = true, FILE_COUNT = 100+) but the descriptions will all be placeholder text ("Modified workflow", "Modified config") which the sufficiency gate marks as NOT primary evidence (confirmed in `memory-sufficiency.vitest.ts` test "does not count placeholder file descriptions as primary evidence")
 - **Embedding relevance:** 100+ file paths will dominate the embedding vector, reducing relevance for semantic queries about the actual session content
 
-This is explicitly called out in the research config as question 6: "What key_files scoping strategy prevents 300+ entry lists while preserving useful file references?" [SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:478-515] [SOURCE: research/deep-research-config.json question 6]
+This is explicitly called out in the research config as question 6: "What key_files scoping strategy prevents 300+ entry lists while preserving useful file references?" [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:478-515] [SOURCE: research/deep-research-config.json question 6]
 
 **Expected Behavior:** The pipeline should cap FILES at a configurable limit (30-50 entries recommended) with a summary note: "... and N more files modified". The capping strategy should:
 1. Prioritize files that match the spec folder's known paths (via spec-affinity scoring already available in `spec-affinity.ts`)
@@ -222,7 +222,7 @@ This is explicitly called out in the research config as question 6: "What key_fi
 }
 ```
 
-**Current Behavior:** `transformKeyDecision()` handles object format correctly: extracts `decision`, `chosenOption`, `rationale`, `alternatives`. Appends "Alternatives considered: ..." to decision text. Sets confidence to 0.70 (>1 alternative). This is the BETTER path for decisions -- it produces distinct values for CHOSEN, RATIONALE, and OPTIONS, avoiding the 4x repetition documented in iteration 005. [SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:204-261]
+**Current Behavior:** `transformKeyDecision()` handles object format correctly: extracts `decision`, `chosenOption`, `rationale`, `alternatives`. Appends "Alternatives considered: ..." to decision text. Sets confidence to 0.70 (>1 alternative). This is the BETTER path for decisions -- it produces distinct values for CHOSEN, RATIONALE, and OPTIONS, avoiding the 4x repetition documented in iteration 005. [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:204-261]
 
 **Risk Level:** LOW -- Object decisions are handled correctly.
 
@@ -246,10 +246,10 @@ None -- this was a systematic analysis, not an exploratory search.
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:198-600` (normalizeInputData, transformKeyDecision, buildSessionSummaryObservation, fast/slow paths)
-- `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` (existing JSON-mode tests for nextSteps, importanceTier, FILES)
-- `.opencode/skill/system-spec-kit/scripts/tests/contamination-filter.vitest.ts` (source-capability downgrades)
-- `.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts` (generic title rejection, placeholder description rejection)
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:198-600` (normalizeInputData, transformKeyDecision, buildSessionSummaryObservation, fast/slow paths)
+- `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` (existing JSON-mode tests for nextSteps, importanceTier, FILES)
+- `.opencode/skills/system-spec-kit/scripts/tests/contamination-filter.vitest.ts` (source-capability downgrades)
+- `.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts` (generic title rejection, placeholder description rejection)
 - `research/deep-research-config.json` (research questions, especially Q6 on key_files scoping)
 - Prior iteration findings: 001 (conversation extractor), 003 (V8 contamination), 005 (decision 4x repetition), 006 (data pipeline)
 

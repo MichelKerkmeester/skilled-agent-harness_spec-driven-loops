@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 005 of 20. The packet root is
 
 **Angle A5 — Schema validation gaps**
 
-Audit `JSON.parse` and `zod.parse` usage across `.opencode/skill/system-spec-kit/mcp_server/`. Where are schema validations missing (raw `JSON.parse` without zod)? Where are unsafe `as` casts used after parse? Where can adversarial input bypass validation? Audit path traversal: are user-provided paths normalized + bounded to workspace root? Cite file:line for each gap.
+Audit `JSON.parse` and `zod.parse` usage across `.opencode/skills/system-spec-kit/mcp_server/`. Where are schema validations missing (raw `JSON.parse` without zod)? Where are unsafe `as` casts used after parse? Where can adversarial input bypass validation? Audit path traversal: are user-provided paths normalized + bounded to workspace root? Cite file:line for each gap.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

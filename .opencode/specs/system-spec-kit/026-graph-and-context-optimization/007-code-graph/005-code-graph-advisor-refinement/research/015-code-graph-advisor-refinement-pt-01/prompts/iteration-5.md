@@ -10,13 +10,13 @@ Last 4 ratios: 0.88 → 0.86 → 0.84 → 0.85 | Trend: high-stable, productive
 **Next focus (iter 5):** RQ-05 (scan throughput & incremental accuracy) + RQ-06 groundwork (query latency & cache hit ratio).
 
 1. **RQ-05 close:** Read and analyze:
-   - `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` — scan driver
-   - `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts` — per-file AST parse
-   - `.opencode/skill/system-spec-kit/mcp_server/code-graph/bench/` or any benchmark harness — if present, what does it measure?
-   - `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` — persistence layer, incremental accuracy (mtime vs content-hash)
+   - `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` — scan driver
+   - `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts` — per-file AST parse
+   - `.opencode/skills/system-spec-kit/mcp_server/code-graph/bench/` or any benchmark harness — if present, what does it measure?
+   - `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` — persistence layer, incremental accuracy (mtime vs content-hash)
    Quantify: throughput ceiling per language (if measurable or inferable), incremental-skip correctness (mtime false-negatives: does a file with unchanged mtime but changed content get skipped?), worst-case per-file parse time.
 
-2. **RQ-06 groundwork:** Grep for query latency measurement in `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/code-graph-query.ts` + `lib/code-graph-query.ts` + any cache layer. Catalog cache-keying strategy (is it workspaceRoot + sourceSignature only, or does it include query shape?). Identify where near-duplicate prompts would miss.
+2. **RQ-06 groundwork:** Grep for query latency measurement in `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/code-graph-query.ts` + `lib/code-graph-query.ts` + any cache layer. Catalog cache-keying strategy (is it workspaceRoot + sourceSignature only, or does it include query shape?). Identify where near-duplicate prompts would miss.
 
 ## STATE FILES (absolute paths)
 

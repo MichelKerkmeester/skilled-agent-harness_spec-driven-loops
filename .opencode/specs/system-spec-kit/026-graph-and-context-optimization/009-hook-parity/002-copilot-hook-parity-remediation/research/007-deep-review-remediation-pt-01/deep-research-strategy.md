@@ -118,7 +118,7 @@ Implication: Copilot has its OWN agent + skill + MCP registration model. The res
 - `mcp-config.json` — assumed to exist per `--additional-mcp-config` doc text; not verified yet.
 
 ### Related prior work
-- Spec 020 (`skill-advisor-hook-surface`) wired Claude Code's SessionStart + UserPromptSubmit hooks via `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`. That's the reference implementation to parity-match.
+- Spec 020 (`skill-advisor-hook-surface`) wired Claude Code's SessionStart + UserPromptSubmit hooks via `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`. That's the reference implementation to parity-match.
 - Spec 046 (`cli-codex-tone-of-voice`, closed) established the user-global AGENTS.md pattern for Codex CLI at `<repo>/.codex/AGENTS.md` symlinked from `~/.codex/AGENTS.md`. Copilot may have an analogous user-global file path — TBD.
 
 ---

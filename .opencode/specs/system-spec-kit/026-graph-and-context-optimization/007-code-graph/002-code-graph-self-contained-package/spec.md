@@ -17,12 +17,12 @@ _memory:
     next_safe_action: "Dispatch cli-codex gpt-5.4 high fast on 028"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/code-graph/"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/"
-      - ".opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-*.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tools/index.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph/"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/"
+      - ".opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-*.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-scaffold-r01"

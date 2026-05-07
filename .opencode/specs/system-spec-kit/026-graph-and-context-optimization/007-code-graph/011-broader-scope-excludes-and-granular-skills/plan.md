@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Ready for final handoff"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts"
     session_dedup:
       fingerprint: "sha256:2222222222222222222222222222222222222222222222222222222222222222"
       session_id: "026-007-011-plan"
@@ -100,8 +100,8 @@ Scan args plus env vars feed `resolveIndexScopePolicy()`. The resulting policy c
 | Docs | Operator guidance. | Updated README and env reference. | Strict validation plus doc grep. |
 
 Required inventories:
-- Same-class producers: `rg -n ".opencode/(skill|agent|command|specs|plugins)" .opencode/skill/system-spec-kit/mcp_server/ --type ts`.
-- Consumers: `rg -n "resolveIndexScopePolicy|IndexScopePolicy|excludedSkillGlobs" .opencode/skill/system-spec-kit/mcp_server/ --type ts`.
+- Same-class producers: `rg -n ".opencode/(skill|agent|command|specs|plugins)" .opencode/skills/system-spec-kit/mcp_server/ --type ts`.
+- Consumers: `rg -n "resolveIndexScopePolicy|IndexScopePolicy|excludedSkillGlobs" .opencode/skills/system-spec-kit/mcp_server/ --type ts`.
 - Matrix axes: five folders x default/env/per-call, plus skills boolean true/list/env csv/empty list.
 - Algorithm invariant: skill-list fingerprint sorts selected skill names before serialization.
 <!-- /ANCHOR:affected-surfaces -->

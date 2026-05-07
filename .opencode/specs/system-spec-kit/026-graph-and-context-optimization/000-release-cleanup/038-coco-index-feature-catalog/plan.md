@@ -170,7 +170,7 @@ Source files and tests produce feature candidates. Categories define directory l
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Catalog taxonomy or scope is rejected.
-- **Procedure**: Remove `.opencode/skill/mcp-coco-index/feature_catalog/` and this packet folder's authored files. Runtime code is untouched.
+- **Procedure**: Remove `.opencode/skills/mcp-coco-index/feature_catalog/` and this packet folder's authored files. Runtime code is untouched.
 <!-- /ANCHOR:rollback -->
 
 ---

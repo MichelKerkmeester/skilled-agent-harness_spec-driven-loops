@@ -1,8 +1,8 @@
 # Deep Review Strategy: Command Alignment
 
 ## Review Target
-- `.opencode/command/spec_kit/` (8 commands + 17 YAML assets + README.txt)
-- `.opencode/command/memory/` (6 commands + README.txt)
+- `.opencode/commands/spec_kit/` (8 commands + 17 YAML assets + README.txt)
+- `.opencode/commands/memory/` (6 commands + README.txt)
 
 ## Dimensions
 
@@ -67,10 +67,10 @@
 
 | File | Purpose |
 |------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Canonical 33-tool inventory |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Tool parameter schemas |
-| `.opencode/command/memory/README.txt` | Coverage matrix |
-| `.opencode/command/spec_kit/README.txt` | Command overview |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Canonical 33-tool inventory |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Tool parameter schemas |
+| `.opencode/commands/memory/README.txt` | Coverage matrix |
+| `.opencode/commands/spec_kit/README.txt` | Command overview |
 
 ## Known Context
 

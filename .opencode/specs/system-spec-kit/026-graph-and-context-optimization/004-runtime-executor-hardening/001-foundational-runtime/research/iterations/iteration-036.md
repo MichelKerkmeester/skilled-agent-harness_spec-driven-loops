@@ -6,7 +6,7 @@ I filtered out the already-written temp-file and generic unlocked RMW findings f
 ## Findings
 
 ### Finding R36-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `140-155`, `170-176`
 - **Severity:** P2
 - **Description:** `loadMostRecentState()` makes its freshness decision from a `statSync()` taken before it reads the JSON payload, while `saveState()` replaces the whole file via temp-write plus `renameSync()`. A concurrent writer can therefore swap in a new generation between the `mtime` read and the `readFileSync()`, so the loader ranks one generation but returns another.
@@ -14,7 +14,7 @@ I filtered out the already-written temp-file and generic unlocked RMW findings f
 - **Downstream Impact:** Startup and resume consumers can recover a session summary or `lastSpecFolder` from a different generation than the freshness metadata that selected it. That can make a stale state look current, or make a current state lose the "newest" tie-break while continuity consumers still trust the returned payload.
 
 ### Finding R36-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
 - **Lines:** `reconsolidation-bridge.ts:453-501`; `memory-save.ts:2159-2170`, `2250-2304`
 - **Severity:** P2
 - **Description:** The assistive reconsolidation lane still computes and surfaces review recommendations from a pre-transaction search snapshot. Because `runReconsolidationIfEnabled()` runs before the normal writer transaction starts, a concurrent save can merge, supersede, or re-scope the recommended candidate before the current save commits, leaving the returned recommendation stale on arrival.
@@ -22,7 +22,7 @@ I filtered out the already-written temp-file and generic unlocked RMW findings f
 - **Downstream Impact:** Operators or follow-up tooling can receive a review recommendation for a memory that has already been deprecated, merged away, or moved out of scope by another save. That creates advisory cleanup work against the wrong target while the current save still succeeds normally.
 
 ### Finding R36-003
-- **File:** `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts`; `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`
+- **File:** `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts`; `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
 - **Lines:** `data-loader.ts:63-68`; `generate-context.ts:61-83`
 - **Severity:** P2
 - **Description:** The live file-input loader still hard-codes `/tmp/save-context-data.json` in its `NO_DATA_FILE` error contract, so the executable path itself teaches callers to reuse the same shared handoff filename even though the CLI help now prefers `--stdin`, `--json`, or an arbitrary temp file.

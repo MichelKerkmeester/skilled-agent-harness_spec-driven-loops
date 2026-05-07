@@ -84,7 +84,7 @@ _memory:
 
 > **Sub-phase C — Resume + Hook Brief + Documentation.** Documentation sync shipped; hook brief polish + example fixture deferred.
 
-- [x] T019 Patch `/spec_kit:resume` for phase-parent — evidence: `.opencode/command/spec_kit/resume.md` step 3b (lines 60-75) ALREADY lists child phases with completion status when target is a phase parent. The list-fallback redirect is already in place.
+- [x] T019 Patch `/spec_kit:resume` for phase-parent — evidence: `.opencode/commands/spec_kit/resume.md` step 3b (lines 60-75) ALREADY lists child phases with completion status when target is a phase parent. The list-fallback redirect is already in place.
 - [D] T020 Patch hook brief assembler — DEFERRED — startup brief reads spec docs structurally; without the parent's heavy docs (which are no longer required) the brief naturally returns less but fewer-and-truer signals. Explicit redirect-to-child polish is a follow-on.
 - [x] T021 Update CLAUDE.md §1 Tools & Search resume ladder — evidence: `CLAUDE.md:98` "Phase parent branch" line added to fallback ladder
 - [x] T022 Update CLAUDE.md (combined with T021 note above; CLAUDE.md only has §1 resume ladder section + the phase-parent ladder addendum covers content discipline)

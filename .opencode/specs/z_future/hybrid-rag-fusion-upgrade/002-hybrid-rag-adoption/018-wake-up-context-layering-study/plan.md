@@ -12,12 +12,12 @@ contextType: "planning"
 # Plan: 018-wake-up-context-layering-study
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
 - `.opencode/plugins/spec-kit-compact-code-graph.js`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts`
 
 ## Investigation Order
 1. Baseline today's bootstrap, resume, and compaction-recovery outputs.

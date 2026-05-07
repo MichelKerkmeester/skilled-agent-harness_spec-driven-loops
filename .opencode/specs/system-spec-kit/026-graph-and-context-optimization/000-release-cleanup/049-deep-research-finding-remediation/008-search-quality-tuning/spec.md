@@ -21,11 +21,11 @@ _memory:
     next_safe_action: "Commit and push to origin main"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-008-search-quality"
@@ -38,7 +38,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -162,7 +162,7 @@ Land five surgical fixes that close F-011-C1-01..05 without disturbing the exist
 Dependencies:
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §11 (C1: search quality)
 - Existing W3-W13 stress harness must keep passing
-- Validate: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies
 <!-- /ANCHOR:risks -->
 

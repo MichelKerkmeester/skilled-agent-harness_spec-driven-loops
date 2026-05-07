@@ -50,12 +50,12 @@ Document the final contract so future maintenance reflects what actually shipped
 
 ### In Scope
 - Reformat `system-spec-kit` and `mcp-coco-index` manual testing playbooks into feature-catalog-style packages with one root playbook plus numbered root-level category folders of per-feature files.
-- Align `system-spec-kit/feature_catalog/`, including `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md`, to the final header/frontmatter contract, including unnumbered `TABLE OF CONTENTS`, numbered all-caps H2 sections, and feature-catalog-style snippet framing.
+- Align `system-spec-kit/feature_catalog/`, including `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md`, to the final header/frontmatter contract, including unnumbered `TABLE OF CONTENTS`, numbered all-caps H2 sections, and feature-catalog-style snippet framing.
 - Integrate former playbook sidecar guidance into the root playbook and remove the old review-protocol and subagent-utilization-ledger sidecar model from the shipped contract.
 - Add frontmatter to feature-catalog and manual-testing per-feature files, align divider usage between numbered sections, and mirror the feature-catalog category structure into the `.claude` manual-testing-playbook tree.
 - Expand `sk-doc` with template bundles for both feature catalogs and testing playbooks, then add standards/workflow references for both families plus the missing agent-creation reference.
-- Regroup `sk-doc/references/` into `global/` and `specific/`, and update all downstream consumers including `.opencode/skill/sk-doc/SKILL.md`, `.opencode/skill/sk-doc/README.md`, `.opencode/skill/sk-doc/references/global/quick_reference.md`, `.opencode/skill/sk-doc/references/global/workflows.md`, create-command assets, and `.opencode/agent/write.md`.
-- Capture follow-on naming alignment such as `.opencode/skill/sk-doc/references/specific/install_guide_creation.md` and other path updates that landed during the same documentation modernization cycle.
+- Regroup `sk-doc/references/` into `global/` and `specific/`, and update all downstream consumers including `.opencode/skills/sk-doc/SKILL.md`, `.opencode/skills/sk-doc/README.md`, `.opencode/skills/sk-doc/references/global/quick_reference.md`, `.opencode/skills/sk-doc/references/global/workflows.md`, create-command assets, and `.opencode/agents/write.md`.
+- Capture follow-on naming alignment such as `.opencode/skills/sk-doc/references/specific/install_guide_creation.md` and other path updates that landed during the same documentation modernization cycle.
 
 ### Out of Scope
 - Building recursive validators for all per-feature files.
@@ -66,17 +66,17 @@ Document the final contract so future maintenance reflects what actually shipped
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/` | Modify | Convert the package to the integrated root-playbook contract with numbered category folders and richer orchestrator-led per-feature files. |
-| `.opencode/skill/system-spec-kit/feature_catalog/` | Modify | Align the root catalogs and per-feature files to the final frontmatter, header, TOC, and snippet conventions. |
-| `.opencode/skill/mcp-coco-index/manual_testing_playbook/` | Modify | Align the root playbook and per-feature files to the same integrated package contract. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/` | Modify | Convert the package to the integrated root-playbook contract with numbered category folders and richer orchestrator-led per-feature files. |
+| `.opencode/skills/system-spec-kit/feature_catalog/` | Modify | Align the root catalogs and per-feature files to the final frontmatter, header, TOC, and snippet conventions. |
+| `.opencode/skills/mcp-coco-index/manual_testing_playbook/` | Modify | Align the root playbook and per-feature files to the same integrated package contract. |
 | `.claude/skills/system-spec-kit/manual_testing_playbook/` | Modify | Mirror the 19-folder feature-catalog layout into the Claude playbook tree. |
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` | Modify | Ship the final root-playbook and per-feature templates in a dedicated bundle folder. |
-| `.opencode/skill/sk-doc/assets/documentation/feature_catalog/` | Create | Add the root and per-feature feature-catalog template bundle. |
-| `.opencode/skill/sk-doc/references/specific/` | Create/Modify | Add creation guides for playbooks, feature catalogs, and agents, and align install-guide naming. |
-| `.opencode/skill/sk-doc/references/global/` | Modify | Keep quick-reference and workflow docs aligned with the grouped reference tree. |
-| `.opencode/command/create/` | Modify | Update create-command paths so agent and documentation workflows resolve the regrouped `sk-doc` references. |
-| `.opencode/agent/write.md` | Modify | Update reference discovery wording to match nested `references/**/*.md` layout. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts` | Modify | Assert NEW-125 summary content from the root playbook and detailed content from the per-feature file. |
+| `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` | Modify | Ship the final root-playbook and per-feature templates in a dedicated bundle folder. |
+| `.opencode/skills/sk-doc/assets/documentation/feature_catalog/` | Create | Add the root and per-feature feature-catalog template bundle. |
+| `.opencode/skills/sk-doc/references/specific/` | Create/Modify | Add creation guides for playbooks, feature catalogs, and agents, and align install-guide naming. |
+| `.opencode/skills/sk-doc/references/global/` | Modify | Keep quick-reference and workflow docs aligned with the grouped reference tree. |
+| `.opencode/commands/create/` | Modify | Update create-command paths so agent and documentation workflows resolve the regrouped `sk-doc` references. |
+| `.opencode/agents/write.md` | Modify | Update reference discovery wording to match nested `references/**/*.md` layout. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts` | Modify | Assert NEW-125 summary content from the root playbook and detailed content from the per-feature file. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -88,7 +88,7 @@ Document the final contract so future maintenance reflects what actually shipped
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Manual testing playbooks use the integrated root-playbook contract | The root playbook document, such as `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`, owns review/orchestration policy, while numbered category folders hold the per-feature execution truth. |
+| REQ-001 | Manual testing playbooks use the integrated root-playbook contract | The root playbook document, such as `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`, owns review/orchestration policy, while numbered category folders hold the per-feature execution truth. |
 | REQ-002 | Feature catalogs use the final feature-catalog header and snippet contract | Root catalogs and per-feature files use aligned frontmatter, intro flow, unnumbered TOC, and numbered all-caps sections. |
 | REQ-003 | `sk-doc` authoring guidance matches the shipped structure | Template bundles, creation references, grouped reference paths, and runtime-facing docs all point to the same current contract. |
 | REQ-004 | Downstream runtime consumers resolve the new paths | Create-command assets and other routing docs reference real `sk-doc` files after the template/reference reorganization. |
@@ -109,7 +109,7 @@ Document the final contract so future maintenance reflects what actually shipped
 
 - **SC-001**: `system-spec-kit` and `mcp-coco-index` ship root playbooks that act as directory, review, and orchestration surfaces, with per-feature playbook files stored under numbered root-level category folders.
 - **SC-002**: `system-spec-kit/feature_catalog/` and its companion “simple terms” catalog follow the same frontmatter and header conventions taught by `sk-doc`.
-- **SC-003**: `sk-doc` ships dedicated template bundles and standards/workflow references for both feature catalogs and testing playbooks, plus the missing `.opencode/skill/sk-doc/references/specific/agent_creation.md` reference.
+- **SC-003**: `sk-doc` ships dedicated template bundles and standards/workflow references for both feature catalogs and testing playbooks, plus the missing `.opencode/skills/sk-doc/references/specific/agent_creation.md` reference.
 - **SC-004**: `sk-doc` reference grouping and downstream path consumers are synchronized so no runtime-facing workflow points at stale flat-reference paths.
 
 ### Acceptance Scenarios
@@ -117,7 +117,7 @@ Document the final contract so future maintenance reflects what actually shipped
 1. **Given** `system-spec-kit` ships both a feature catalog and a manual testing playbook, **when** a maintainer opens the root docs and per-feature files, **then** both document families follow the same frontmatter/header conventions and numbered category-folder contract.
 2. **Given** the old manual playbook sidecar docs were removed, **when** an operator follows the shipped playbook package, **then** review protocol and orchestration guidance are found in the root playbook instead of parallel canonical sidecar files.
 3. **Given** `sk-doc` is used to author a new feature catalog or testing playbook, **when** the creator loads the templates and creation references, **then** the bundle folders, grouped references, and workflow docs all describe the same current contract.
-4. **Given** create-command and write-agent workflows rely on `sk-doc` references, **when** they resolve grouped-reference paths, **then** the runtime consumers point at real files including `.opencode/skill/sk-doc/references/specific/agent_creation.md`.
+4. **Given** create-command and write-agent workflows rely on `sk-doc` references, **when** they resolve grouped-reference paths, **then** the runtime consumers point at real files including `.opencode/skills/sk-doc/references/specific/agent_creation.md`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

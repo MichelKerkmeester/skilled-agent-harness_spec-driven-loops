@@ -12,11 +12,11 @@ The high-confidence shape is one request-scoped search decision envelope that re
 
 Top actionable findings:
 
-1. **P1: W3 trust tree has zero production consumers.** `buildTrustTree` is exported and tested, but caller search found only the module itself and the W3 test (`.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65`, `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts:3`).
-2. **P1: W4 is wired but underfed.** Stage 3 invokes `decideConditionalRerank`, but with an empty plan set to `complexity: 'unknown'`, so rich QueryPlan triggers cannot fire (`.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:327`, `:328`).
-3. **P1: W5 shadow diagnostics have no durable learning sink.** `_shadow` is emitted from advisor output, but the legacy CLI translation drops it and no advisor-specific sink was found (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:373`).
-4. **P1: W6 calibration is test-only.** The helper computes duplicate-density telemetry, but no production consumer imports it (`.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:36`, `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:3`).
-5. **P1: W7 stress cells are static harness fixtures.** The W7 tests call static measurement runners, not real degraded graph states (`.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155`, `:172`).
+1. **P1: W3 trust tree has zero production consumers.** `buildTrustTree` is exported and tested, but caller search found only the module itself and the W3 test (`.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65`, `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts:3`).
+2. **P1: W4 is wired but underfed.** Stage 3 invokes `decideConditionalRerank`, but with an empty plan set to `complexity: 'unknown'`, so rich QueryPlan triggers cannot fire (`.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:327`, `:328`).
+3. **P1: W5 shadow diagnostics have no durable learning sink.** `_shadow` is emitted from advisor output, but the legacy CLI translation drops it and no advisor-specific sink was found (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:373`).
+4. **P1: W6 calibration is test-only.** The helper computes duplicate-density telemetry, but no production consumer imports it (`.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:36`, `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:3`).
+5. **P1: W7 stress cells are static harness fixtures.** The W7 tests call static measurement runners, not real degraded graph states (`.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155`, `:172`).
 
 ## 2. Research Questions Answered
 
@@ -52,10 +52,10 @@ Answer: **HIGH evidence**. `memory_search` touches W4 through the pipeline (`mem
 
 Answer: **HIGH evidence**. The requested `find` audit, excluding `node_modules` and `dist`, found two concrete empty directory deletion candidates:
 
-- `.opencode/skill/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
-- `.opencode/skill/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
+- `.opencode/skills/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
+- `.opencode/skills/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
 
-Placeholder-only directories were also found, but they look intentional: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/out`, `.opencode/skill/system-spec-kit/scripts/test-fixtures/001-empty-folder`, and `.opencode/skill/system-spec-kit/scripts/test-fixtures/012-anchors-empty-memory/memory`.
+Placeholder-only directories were also found, but they look intentional: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out`, `.opencode/skills/system-spec-kit/scripts/test-fixtures/001-empty-folder`, and `.opencode/skills/system-spec-kit/scripts/test-fixtures/012-anchors-empty-memory/memory`.
 
 ### RQ9 - Enterprise readiness
 
@@ -151,8 +151,8 @@ Concrete fix: add real or ephemeral DB integration tests for code graph degraded
 
 Candidates:
 
-- `.opencode/skill/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
-- `.opencode/skill/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
+- `.opencode/skills/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
+- `.opencode/skills/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
 
 Do not delete in this packet; Phase G or cleanup can remove after owner confirmation.
 
@@ -267,86 +267,86 @@ Stop reason: max iteration 10 reached. Convergence threshold was `<= 0.10` for t
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:68`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:69`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:70`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:25`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:52`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:205`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:253`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts:3`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts:7`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:15`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:26`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:57`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:60`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:63`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:66`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:69`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:327`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:328`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:332`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:643`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:912`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:921`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:949`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1101`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1128`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:99`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:5`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:10`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:270`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:276`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:176`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:280`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:281`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:79`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:360`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:373`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:14`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:31`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:36`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:39`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:41`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:76`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:3`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:7`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:27`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:131`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:163`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:214`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:242`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:151`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:166`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts:7`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-empty.vitest.ts:7`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-full-scan.vitest.ts:7`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-unavailable.vitest.ts:7`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:139`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:172`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts:127`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1414`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1439`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1454`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1476`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1551`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:2439`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:342`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:351`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:546`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:129`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:92`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:361`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:288`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:152`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:267`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:478`
-- `find .opencode/skill/system-spec-kit -type d -empty -not -path '*/node_modules/*' -not -path '*/dist/*'`
-- `find .opencode/skill/system-spec-kit/mcp_server -type d -empty -not -path '*/node_modules/*' -not -path '*/dist/*'`
-- `rg "import .*trust-tree|from .*trust-tree|buildTrustTree|calibrateCocoIndexOverfetch|cocoindex-calibration" .opencode/skill/system-spec-kit/mcp_server`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:25`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:52`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:205`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:253`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts:3`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts:7`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:15`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:26`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:57`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:60`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:63`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:66`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:69`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:327`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:328`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:332`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:643`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:912`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:921`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:949`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1101`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1128`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:99`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:5`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:10`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:270`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:276`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:176`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:280`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:281`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:79`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:360`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:373`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:14`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:31`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:36`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:39`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:41`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:76`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:3`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:7`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:27`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:131`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:163`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:214`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:242`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:151`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:166`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts:7`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-empty.vitest.ts:7`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-full-scan.vitest.ts:7`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-unavailable.vitest.ts:7`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:139`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:172`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts:127`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1414`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1439`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1454`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1476`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1551`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2439`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:342`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:351`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:546`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:129`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:92`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:361`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:288`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:152`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:267`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:478`
+- `find .opencode/skills/system-spec-kit -type d -empty -not -path '*/node_modules/*' -not -path '*/dist/*'`
+- `find .opencode/skills/system-spec-kit/mcp_server -type d -empty -not -path '*/node_modules/*' -not -path '*/dist/*'`
+- `rg "import .*trust-tree|from .*trust-tree|buildTrustTree|calibrateCocoIndexOverfetch|cocoindex-calibration" .opencode/skills/system-spec-kit/mcp_server`
 
 ## 9. Open Questions / Deferred
 

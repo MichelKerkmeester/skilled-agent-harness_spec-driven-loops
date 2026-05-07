@@ -118,8 +118,8 @@ None identified — all code paths are relevant to the problem.
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts` (full file, 316 lines)
-- `.opencode/skill/system-spec-kit/scripts/types/session-types.ts` (lines 123-193, type definitions)
+- `.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts` (full file, 316 lines)
+- `.opencode/skills/system-spec-kit/scripts/types/session-types.ts` (lines 123-193, type definitions)
 
 ## Assessment
 

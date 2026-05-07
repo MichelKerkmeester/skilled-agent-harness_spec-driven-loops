@@ -1,7 +1,7 @@
 # Deprecated Files Scan - system-spec-kit
 
 **Scan Date:** 2026-01-16
-**Scan Target:** `.opencode/skill/system-spec-kit/`
+**Scan Target:** `.opencode/skills/system-spec-kit/`
 **Status:** Complete
 
 ---
@@ -26,31 +26,31 @@ Found **8 file categories** requiring attention:
 
 **Files:**
 ```
-FILE: .opencode/skill/system-spec-kit/lib/complexity/features.js
+FILE: .opencode/skills/system-spec-kit/lib/complexity/features.js
 TYPE: deprecated
 EVIDENCE: @deprecated JSDoc tag (line 7-17): "COMPLEXITY_GATE DEPRECATION NOTICE"
 ACTION: REVIEW
 
-FILE: .opencode/skill/system-spec-kit/lib/complexity/detector.js
+FILE: .opencode/skills/system-spec-kit/lib/complexity/detector.js
 TYPE: deprecated
 EVIDENCE: Used by deprecated expand-template.js script
 ACTION: REVIEW
 
-FILE: .opencode/skill/system-spec-kit/lib/complexity/index.js
+FILE: .opencode/skills/system-spec-kit/lib/complexity/index.js
 TYPE: deprecated
 EVIDENCE: Exports deprecated complexity module
 ACTION: REVIEW
 
-FILE: .opencode/skill/system-spec-kit/lib/complexity/classifier.js
+FILE: .opencode/skills/system-spec-kit/lib/complexity/classifier.js
 TYPE: deprecated
 EVIDENCE: Part of deprecated complexity system
 ACTION: REVIEW
 
-FILE: .opencode/skill/system-spec-kit/lib/complexity/scorers/research.js
-FILE: .opencode/skill/system-spec-kit/lib/complexity/scorers/multi-agent.js
-FILE: .opencode/skill/system-spec-kit/lib/complexity/scorers/scope.js
-FILE: .opencode/skill/system-spec-kit/lib/complexity/scorers/coordination.js
-FILE: .opencode/skill/system-spec-kit/lib/complexity/scorers/risk.js
+FILE: .opencode/skills/system-spec-kit/lib/complexity/scorers/research.js
+FILE: .opencode/skills/system-spec-kit/lib/complexity/scorers/multi-agent.js
+FILE: .opencode/skills/system-spec-kit/lib/complexity/scorers/scope.js
+FILE: .opencode/skills/system-spec-kit/lib/complexity/scorers/coordination.js
+FILE: .opencode/skills/system-spec-kit/lib/complexity/scorers/risk.js
 TYPE: deprecated
 EVIDENCE: Part of deprecated complexity scoring system
 ACTION: REVIEW
@@ -79,24 +79,24 @@ Per `lib/complexity/features.js` (lines 7-17):
 
 **Files:**
 ```
-FILE: .opencode/skill/system-spec-kit/lib/expansion/marker-parser.js
+FILE: .opencode/skills/system-spec-kit/lib/expansion/marker-parser.js
 TYPE: deprecated
 EVIDENCE: @deprecated JSDoc tag (line 19-23): "COMPLEXITY_GATE markers are deprecated as of Spec 069/071"
 ACTION: REVIEW
 
-FILE: .opencode/skill/system-spec-kit/lib/expansion/preprocessor.js
+FILE: .opencode/skills/system-spec-kit/lib/expansion/preprocessor.js
 TYPE: deprecated
 EVIDENCE: Used by deprecated expand-template.js script
 ACTION: REVIEW
 
-FILE: .opencode/skill/system-spec-kit/lib/expansion/index.js
+FILE: .opencode/skills/system-spec-kit/lib/expansion/index.js
 TYPE: deprecated
 EVIDENCE: Exports deprecated expansion module
 ACTION: REVIEW
 
-FILE: .opencode/skill/system-spec-kit/lib/expansion/generators/checklist-items.js
-FILE: .opencode/skill/system-spec-kit/lib/expansion/generators/user-stories.js
-FILE: .opencode/skill/system-spec-kit/lib/expansion/generators/phases.js
+FILE: .opencode/skills/system-spec-kit/lib/expansion/generators/checklist-items.js
+FILE: .opencode/skills/system-spec-kit/lib/expansion/generators/user-stories.js
+FILE: .opencode/skills/system-spec-kit/lib/expansion/generators/phases.js
 TYPE: deprecated
 EVIDENCE: Part of deprecated template expansion system
 ACTION: REVIEW
@@ -118,12 +118,12 @@ Per `lib/expansion/marker-parser.js` (lines 19-23):
 
 **Files:**
 ```
-FILE: .opencode/skill/system-spec-kit/scripts/expand-template.js
+FILE: .opencode/skills/system-spec-kit/scripts/expand-template.js
 TYPE: deprecated
 EVIDENCE: Uses deprecated lib/expansion module; references obsolete templates/complexity/
 ACTION: DELETE
 
-FILE: .opencode/skill/system-spec-kit/scripts/detect-complexity.js
+FILE: .opencode/skills/system-spec-kit/scripts/detect-complexity.js
 TYPE: deprecated
 EVIDENCE: Uses deprecated lib/complexity module; optional feature in create-spec-folder.sh
 ACTION: DELETE
@@ -150,22 +150,22 @@ ACTION: DELETE
 
 **Files:**
 ```
-FILE: .opencode/skill/system-spec-kit/templates/complexity/ai-protocol.md
+FILE: .opencode/skills/system-spec-kit/templates/complexity/ai-protocol.md
 TYPE: obsolete
 EVIDENCE: Superseded by level_3+/ templates; no code references
 ACTION: DELETE
 
-FILE: .opencode/skill/system-spec-kit/templates/complexity/dependency-graph.md
+FILE: .opencode/skills/system-spec-kit/templates/complexity/dependency-graph.md
 TYPE: obsolete
 EVIDENCE: Superseded by level_2+/ templates; no code references
 ACTION: DELETE
 
-FILE: .opencode/skill/system-spec-kit/templates/complexity/effort-estimation.md
+FILE: .opencode/skills/system-spec-kit/templates/complexity/effort-estimation.md
 TYPE: obsolete
 EVIDENCE: Superseded by level_2+/ templates; no code references
 ACTION: DELETE
 
-FILE: .opencode/skill/system-spec-kit/templates/complexity/extended-checklist.md
+FILE: .opencode/skills/system-spec-kit/templates/complexity/extended-checklist.md
 TYPE: obsolete
 EVIDENCE: Superseded by level_3+/ templates; no code references
 ACTION: DELETE
@@ -180,17 +180,17 @@ ACTION: DELETE
 These files are **NOT orphaned** - they're intentional compatibility shims:
 
 ```
-FILE: .opencode/skill/system-spec-kit/scripts/lib/retry-manager.js
+FILE: .opencode/skills/system-spec-kit/scripts/lib/retry-manager.js
 TYPE: re-export wrapper
 EVIDENCE: Exports from ../../mcp_server/lib/providers/retry-manager.js (canonical source)
 ACTION: KEEP
 
-FILE: .opencode/skill/system-spec-kit/scripts/lib/embeddings.js
+FILE: .opencode/skills/system-spec-kit/scripts/lib/embeddings.js
 TYPE: re-export wrapper
 EVIDENCE: Exports from ../../shared/embeddings.js (canonical source)
 ACTION: KEEP
 
-FILE: .opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.js
+FILE: .opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.js
 TYPE: re-export wrapper
 EVIDENCE: Likely exports from ../../shared/trigger-extractor.js
 ACTION: KEEP
@@ -205,17 +205,17 @@ ACTION: KEEP
 These were already deleted in working tree but staged for commit:
 
 ```
-FILE: .opencode/skill/system-spec-kit/database/context-index__voyage__voyage-3.5__1024.sqlite
+FILE: .opencode/skills/system-spec-kit/database/context-index__voyage__voyage-3.5__1024.sqlite
 TYPE: deleted
 EVIDENCE: Git status shows 'D' flag
 ACTION: Already handled (commit pending)
 
-FILE: .opencode/skill/system-spec-kit/mcp_server/lib/confidence-tracker.js
+FILE: .opencode/skills/system-spec-kit/mcp_server/lib/confidence-tracker.js
 TYPE: moved/reorganized
 EVIDENCE: Git status shows 'D' flag but file exists at mcp_server/lib/scoring/confidence-tracker.js
 ACTION: Verify git properly tracked the move
 
-FILE: .opencode/skill/system-spec-kit/mcp_server/lib/importance-tiers.js
+FILE: .opencode/skills/system-spec-kit/mcp_server/lib/importance-tiers.js
 TYPE: moved/reorganized
 EVIDENCE: Git status shows 'D' flag but file exists at mcp_server/lib/scoring/importance-tiers.js
 ACTION: Verify git properly tracked the move
@@ -237,14 +237,14 @@ ACTION: Verify git properly tracked the move
 These test files are **active** and should be kept:
 
 ```
-FILE: .opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js
-FILE: .opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js
-FILE: .opencode/skill/system-spec-kit/mcp_server/tests/summary-generator.test.js
-FILE: .opencode/skill/system-spec-kit/mcp_server/tests/co-activation.test.js
-FILE: .opencode/skill/system-spec-kit/mcp_server/tests/working-memory.test.js
-FILE: .opencode/skill/system-spec-kit/mcp_server/tests/modularization.test.js
-FILE: .opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.test.js
-FILE: .opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.test.js
+FILE: .opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js
+FILE: .opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js
+FILE: .opencode/skills/system-spec-kit/mcp_server/tests/summary-generator.test.js
+FILE: .opencode/skills/system-spec-kit/mcp_server/tests/co-activation.test.js
+FILE: .opencode/skills/system-spec-kit/mcp_server/tests/working-memory.test.js
+FILE: .opencode/skills/system-spec-kit/mcp_server/tests/modularization.test.js
+FILE: .opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.test.js
+FILE: .opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.test.js
 TYPE: test file
 EVIDENCE: Active test suites for MCP server features
 ACTION: KEEP
@@ -258,13 +258,13 @@ ACTION: KEEP
 
 1. **Delete obsolete template folder:**
    ```bash
-   rm -rf .opencode/skill/system-spec-kit/templates/complexity/
+   rm -rf .opencode/skills/system-spec-kit/templates/complexity/
    ```
 
 2. **Delete deprecated scripts:**
    ```bash
-   rm .opencode/skill/system-spec-kit/scripts/expand-template.js
-   rm .opencode/skill/system-spec-kit/scripts/detect-complexity.js
+   rm .opencode/skills/system-spec-kit/scripts/expand-template.js
+   rm .opencode/skills/system-spec-kit/scripts/detect-complexity.js
    ```
 
 3. **Update create-spec-folder.sh:**
@@ -275,8 +275,8 @@ ACTION: KEEP
 
 4. **Remove deprecated lib modules:**
    ```bash
-   rm -rf .opencode/skill/system-spec-kit/lib/complexity/
-   rm -rf .opencode/skill/system-spec-kit/lib/expansion/
+   rm -rf .opencode/skills/system-spec-kit/lib/complexity/
+   rm -rf .opencode/skills/system-spec-kit/lib/expansion/
    ```
    - First verify no external tools/workflows depend on these
    - Estimated removal: ~1,500 LOC

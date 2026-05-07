@@ -9,7 +9,7 @@ The design remains C+F hybrid: kind plus capabilities drive author-owned scaffol
 ## Actions Taken
 
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-005.md` first, preserving the Q10 decision for inline gates.
-- Loaded `.opencode/skill/sk-deep-research/SKILL.md` to preserve the LEAF iteration contract and artifact expectations.
+- Loaded `.opencode/skills/sk-deep-research/SKILL.md` to preserve the LEAF iteration contract and artifact expectations.
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/deep-research-state.jsonl` to preserve prior ratios, executor shape, and graph-event style.
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/deltas/iter-005.jsonl` to match finding and graph-event JSONL conventions.
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-004.md` to preserve the manifest schema axes, preset matrix, and golden-test assumptions.
@@ -19,7 +19,7 @@ The design remains C+F hybrid: kind plus capabilities drive author-owned scaffol
 
 ### Inline-Gate Grammar (EBNF)
 
-Inline gates should use a dedicated TypeScript renderer, not a sed pipeline and not ad hoc runtime stripping inside each validator. The new module should live at `.opencode/skill/system-spec-kit/mcp_server/lib/templates/inline-gates.ts`, with a tiny shell wrapper callable from `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`. The same renderer should be used by scaffolding, `check-template-headers.sh`, and section validation fixtures so every consumer sees the same post-gate document.
+Inline gates should use a dedicated TypeScript renderer, not a sed pipeline and not ad hoc runtime stripping inside each validator. The new module should live at `.opencode/skills/system-spec-kit/mcp_server/lib/templates/inline-gates.ts`, with a tiny shell wrapper callable from `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`. The same renderer should be used by scaffolding, `check-template-headers.sh`, and section validation fixtures so every consumer sees the same post-gate document.
 
 Canonical syntax:
 
@@ -78,9 +78,9 @@ Same-section de-duplication should happen before rendering. The manifest loader 
 
 Validator interaction:
 
-- `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh` should validate only post-gate active anchors.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` should compare generated docs against post-gate template headers.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh` should consume active `sectionProfile.minimumCounts`, if present.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh` should validate only post-gate active anchors.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` should compare generated docs against post-gate template headers.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh` should consume active `sectionProfile.minimumCounts`, if present.
 - A stripped inactive section is not missing. A declared active section that fails to render is a hard error.
 
 Design clarification added by this stress test: inline gates are a shared parser-renderer contract owned by the manifest loader, not a string filter embedded in `create.sh`.
@@ -122,7 +122,7 @@ Forward-compat guarantee: a packet saved under manifest v1 and read by manifest 
 
 Capability deprecation should be soft first. A deprecated capability stays resolvable with a `deprecatedSince`, `replacement`, and diagnostic. Hard-error is reserved for new scaffolds that request an unknown capability or for a major-version manifest that has intentionally removed the capability. Silent-drop is unsafe because it can hide missing authored docs.
 
-Presets should stay inside `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`, not in a sibling file. A preset is just a named `kind + capabilities` bundle. To prevent name sprawl, add a preset namespace with `namespace: "core"` as the default and make the canonical identity `core:simple-change`. The CLI can accept `simple-change` only when the name is unique across namespaces.
+Presets should stay inside `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`, not in a sibling file. A preset is just a named `kind + capabilities` bundle. To prevent name sprawl, add a preset namespace with `namespace: "core"` as the default and make the canonical identity `core:simple-change`. The CLI can accept `simple-change` only when the name is unique across namespaces.
 
 Adding a section to an existing capability should not retroactively require that section from existing packets. It affects new packet snapshots and refreshed snapshots only. If the team wants a global rule change, that is a migration, not a manifest edit.
 
@@ -233,10 +233,10 @@ Verdict: does not break C+F if the source of truth is explicit. It needs drift d
 
 ## Questions Remaining
 
-- Iteration 7 should read the current `.opencode/skill/system-spec-kit/scripts/spec/create.sh`, `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`, and `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh` sources and produce concrete diffs for the manifest-driven refactor.
+- Iteration 7 should read the current `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`, and `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh` sources and produce concrete diffs for the manifest-driven refactor.
 - The implementation plan should decide the exact JSON Schema spelling for `templateContract`, `directories`, `supportsKinds`, `conflictsWith`, and preset namespaces.
 - The final synthesis should decide whether `schemaVersion` from iteration 4 is replaced by `manifestVersion` or kept as a short-lived alias during implementation. Greenfield preference is `manifestVersion`.
 
 ## Next Focus
 
-Iteration 7 should do INTEGRATION PROBE: read `.opencode/skill/system-spec-kit/scripts/spec/create.sh`, `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`, `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh`, `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`, and `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh`, then produce concrete diffs for the proposed C+F manifest integration.
+Iteration 7 should do INTEGRATION PROBE: read `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`, `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh`, `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`, and `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh`, then produce concrete diffs for the proposed C+F manifest integration.

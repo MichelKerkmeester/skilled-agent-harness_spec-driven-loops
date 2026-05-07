@@ -187,7 +187,7 @@ After 13 rounds of sequential thinking, here are my key findings and recommendat
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/scripts/validate-spec.sh` - Script
+- `.opencode/skills/system-spec-kit/scripts/validate-spec.sh` - Script
 
 - `specs/004-speckit/012-path-scoped-rules/plan.md` - Documentation
 
@@ -253,7 +253,7 @@ After 13 rounds of sequential thinking, here are
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/scripts/validate-spec.sh` | Updated validate spec |
+| `.opencode/skills/system-spec-kit/scripts/validate-spec.sh` | Updated validate spec |
 | `specs/004-speckit/012-path-scoped-rules/plan.md` | Specs/004-speckit/012-path-scoped-rules/plan.md |
 | `specs/004-speckit/012-path-scoped-rules/checklist.md` | Specs/004-speckit/012-path-scoped-rules/checklist.md |
 | `specs/.../012-path-scoped-rules/implementation-summary.md` | Updated implementation summary |
@@ -491,18 +491,18 @@ Check placeholder detection logic
 <!-- ANCHOR:implementation-tool-read-beab60e4-session-1766584299317-s0apps3k0 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh
+.opencode/skills/system-spec-kit/scripts/validate-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/validate-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/validate-spec.sh
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-beab60e4-session-1766584299317-s0apps3k0 -->
 
 <!-- ANCHOR:implementation-tool-edit-df69d91d-session-1766584299317-s0apps3k0 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh
+.opencode/skills/system-spec-kit/scripts/validate-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/validate-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/validate-spec.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-df69d91d-session-1766584299317-s0apps3k0 -->
 
@@ -526,18 +526,18 @@ specs/004-speckit/012-path-scoped-rules/plan.md
 <!-- ANCHOR:implementation-tool-read-beab60e4-3-session-1766584299317-s0apps3k0 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh
+.opencode/skills/system-spec-kit/scripts/validate-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/validate-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/validate-spec.sh
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-beab60e4-3-session-1766584299317-s0apps3k0 -->
 
 <!-- ANCHOR:implementation-tool-edit-df69d91d-2-session-1766584299317-s0apps3k0 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh
+.opencode/skills/system-spec-kit/scripts/validate-spec.sh
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/validate-spec.sh
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/validate-spec.sh
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-df69d91d-2-session-1766584299317-s0apps3k0 -->
 
@@ -1691,7 +1691,7 @@ trigger_phrases:
   []
 
 key_files:
-  - ".opencode/skill/system-spec-kit/scripts/validate-spec.sh"
+  - ".opencode/skills/system-spec-kit/scripts/validate-spec.sh"
   - "specs/004-speckit/012-path-scoped-rules/plan.md"
   - "specs/004-speckit/012-path-scoped-rules/checklist.md"
   - "specs/.../012-path-scoped-rules/implementation-summary.md"

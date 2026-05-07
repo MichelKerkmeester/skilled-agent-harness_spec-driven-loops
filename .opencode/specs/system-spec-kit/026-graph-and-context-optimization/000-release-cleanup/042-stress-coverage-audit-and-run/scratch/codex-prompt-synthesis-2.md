@@ -10,8 +10,8 @@ You are parsing the captured `npm run stress` log for spec-kit packet 042. Repos
 
 1. **Stress run log** — `<PACKET>/logs/stress-run-<UTC-timestamp>.log` (only one file in `logs/`; find it with `ls logs/`)
 2. **Coverage matrix** — `<PACKET>/coverage-matrix.csv` (54 rows; columns include `feature_id`, `stress_test_files`, `supplementary_stress_files`)
-3. **Stress baseline** (if present) — `.opencode/skill/system-spec-kit/mcp_server/stress_test/README.md` (search for "skip", "flake", "known-failure" sections)
-4. **Stress runner config** — `.opencode/skill/system-spec-kit/mcp_server/vitest.stress.config.ts` and `package.json` script `stress`
+3. **Stress baseline** (if present) — `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md` (search for "skip", "flake", "known-failure" sections)
+4. **Stress runner config** — `.opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts` and `package.json` script `stress`
 
 ## Output: `stress-run-report.md`
 

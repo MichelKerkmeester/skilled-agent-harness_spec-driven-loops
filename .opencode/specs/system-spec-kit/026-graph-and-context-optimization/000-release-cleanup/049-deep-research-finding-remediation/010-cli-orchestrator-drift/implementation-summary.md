@@ -16,12 +16,12 @@ _memory:
     next_safe_action: "validate.sh --strict, then commit + push"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-opencode/SKILL.md"
-      - ".opencode/skill/cli-opencode/references/agent_delegation.md"
-      - ".opencode/skill/cli-copilot/SKILL.md"
-      - ".opencode/skill/cli-codex/assets/prompt_templates.md"
-      - ".opencode/skill/cli-claude-code/assets/prompt_templates.md"
-      - ".opencode/skill/cli-gemini/assets/prompt_templates.md"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-opencode/references/agent_delegation.md"
+      - ".opencode/skills/cli-copilot/SKILL.md"
+      - ".opencode/skills/cli-codex/assets/prompt_templates.md"
+      - ".opencode/skills/cli-claude-code/assets/prompt_templates.md"
+      - ".opencode/skills/cli-gemini/assets/prompt_templates.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-010-cli-drift"
@@ -34,7 +34,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -59,23 +59,23 @@ Six CLI orchestrator skills had documentation drift that produced contradictory 
 
 | Finding | File | Fix |
 |---------|------|-----|
-| F-007-B2-01 (P1) | `.opencode/skill/cli-opencode/SKILL.md:292-294` | Subagent table now states two legal dispatch surfaces explicitly: generic subagents via `--agent orchestrate`, command-owned loop executors via their parent commands. The contradiction (claiming subagents are not directly invokable then routing through orchestrate without distinction) is resolved. |
-| F-007-B2-02 (P1) | `.opencode/skill/cli-opencode/references/agent_delegation.md:224-227` | The AGENT ROUTING MATRIX previously contained `opencode run --agent deep-research`, `opencode run --agent deep-review`, `opencode run --agent improve-agent` direct-invocation examples that contradicted the §3 statement "dispatched only by their parent commands." Replaced with explicit "Command-only" rows pointing to `/spec_kit:deep-research`, `/spec_kit:deep-review`, `/improve:agent`. |
-| F-007-B2-03 (P1) | `.opencode/skill/cli-copilot/SKILL.md:280` | Effort-flag prose said the CLI flag is "preferred for scripted `-p` usage" but the example didn't pass `--reasoning-effort`. Replaced with two equivalent surfaces (CLI flag preferred; config-file persistent default) and stated precedence: CLI flag > config > model default. |
-| F-007-B2-04 (P2) | `.opencode/skill/cli-codex/assets/prompt_templates.md:52-55` | Single-file and multi-file templates now pin `--model gpt-5.5 -c model_reasoning_effort="high"`. Flag table corrects `--full-auto` description (it equals `--ask-for-approval never --sandbox workspace-write`, not "low-friction mode"). `service_tier="fast"` description changed from "always pass" to "opt-in only" per project memory rule (never default to fast). |
-| F-007-B2-05 (P2) | `.opencode/skill/cli-claude-code/assets/prompt_templates.md:53` | Single-file Component template now pins `--model claude-sonnet-4-6`. |
-| F-007-B2-06 (P2) | `.opencode/skill/cli-gemini/assets/prompt_templates.md:45-47` | Single-File Application section split into Safe (`--approval-mode interactive`) and Approved-write (`--yolo`, with explicit "REQUIRES caller approval" warning). |
+| F-007-B2-01 (P1) | `.opencode/skills/cli-opencode/SKILL.md:292-294` | Subagent table now states two legal dispatch surfaces explicitly: generic subagents via `--agent orchestrate`, command-owned loop executors via their parent commands. The contradiction (claiming subagents are not directly invokable then routing through orchestrate without distinction) is resolved. |
+| F-007-B2-02 (P1) | `.opencode/skills/cli-opencode/references/agent_delegation.md:224-227` | The AGENT ROUTING MATRIX previously contained `opencode run --agent deep-research`, `opencode run --agent deep-review`, `opencode run --agent improve-agent` direct-invocation examples that contradicted the §3 statement "dispatched only by their parent commands." Replaced with explicit "Command-only" rows pointing to `/spec_kit:deep-research`, `/spec_kit:deep-review`, `/improve:agent`. |
+| F-007-B2-03 (P1) | `.opencode/skills/cli-copilot/SKILL.md:280` | Effort-flag prose said the CLI flag is "preferred for scripted `-p` usage" but the example didn't pass `--reasoning-effort`. Replaced with two equivalent surfaces (CLI flag preferred; config-file persistent default) and stated precedence: CLI flag > config > model default. |
+| F-007-B2-04 (P2) | `.opencode/skills/cli-codex/assets/prompt_templates.md:52-55` | Single-file and multi-file templates now pin `--model gpt-5.5 -c model_reasoning_effort="high"`. Flag table corrects `--full-auto` description (it equals `--ask-for-approval never --sandbox workspace-write`, not "low-friction mode"). `service_tier="fast"` description changed from "always pass" to "opt-in only" per project memory rule (never default to fast). |
+| F-007-B2-05 (P2) | `.opencode/skills/cli-claude-code/assets/prompt_templates.md:53` | Single-file Component template now pins `--model claude-sonnet-4-6`. |
+| F-007-B2-06 (P2) | `.opencode/skills/cli-gemini/assets/prompt_templates.md:45-47` | Single-File Application section split into Safe (`--approval-mode interactive`) and Approved-write (`--yolo`, with explicit "REQUIRES caller approval" warning). |
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/cli-opencode/SKILL.md` | Modified | F-007-B2-01: clarified dispatch contract with command-only rows for deep-loop and improve-* |
-| `.opencode/skill/cli-opencode/references/agent_delegation.md` | Modified | F-007-B2-02: removed direct-dispatch bypass rows |
-| `.opencode/skill/cli-copilot/SKILL.md` | Modified | F-007-B2-03: reconciled effort-flag surface with example, documented precedence |
-| `.opencode/skill/cli-codex/assets/prompt_templates.md` | Modified | F-007-B2-04: pinned model+effort, corrected `--full-auto`, marked service_tier opt-in |
-| `.opencode/skill/cli-claude-code/assets/prompt_templates.md` | Modified | F-007-B2-05: pinned default model |
-| `.opencode/skill/cli-gemini/assets/prompt_templates.md` | Modified | F-007-B2-06: split safe vs approved-write templates |
+| `.opencode/skills/cli-opencode/SKILL.md` | Modified | F-007-B2-01: clarified dispatch contract with command-only rows for deep-loop and improve-* |
+| `.opencode/skills/cli-opencode/references/agent_delegation.md` | Modified | F-007-B2-02: removed direct-dispatch bypass rows |
+| `.opencode/skills/cli-copilot/SKILL.md` | Modified | F-007-B2-03: reconciled effort-flag surface with example, documented precedence |
+| `.opencode/skills/cli-codex/assets/prompt_templates.md` | Modified | F-007-B2-04: pinned model+effort, corrected `--full-auto`, marked service_tier opt-in |
+| `.opencode/skills/cli-claude-code/assets/prompt_templates.md` | Modified | F-007-B2-05: pinned default model |
+| `.opencode/skills/cli-gemini/assets/prompt_templates.md` | Modified | F-007-B2-06: split safe vs approved-write templates |
 | Spec docs (this packet) | Created/Modified | spec/plan/tasks/checklist/implementation-summary |
 <!-- /ANCHOR:what-built -->
 

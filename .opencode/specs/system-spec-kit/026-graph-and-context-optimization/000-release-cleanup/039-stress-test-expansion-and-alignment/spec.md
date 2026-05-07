@@ -66,7 +66,7 @@ Make stress_test auditable as a standards-aligned, catalog-aware regression suit
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| .opencode/skill/system-spec-kit/mcp_server/stress_test/**/*.ts | Modify/Create | Alignment fixes and new tests. |
+| .opencode/skills/system-spec-kit/mcp_server/stress_test/**/*.ts | Modify/Create | Alignment fixes and new tests. |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/039-stress-test-expansion-and-alignment/ | Create | Packet docs and logs. |
 <!-- /ANCHOR:scope -->
 

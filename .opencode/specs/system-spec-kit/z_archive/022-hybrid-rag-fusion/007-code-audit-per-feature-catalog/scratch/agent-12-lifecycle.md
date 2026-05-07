@@ -1,6 +1,6 @@
 ## Agent 12 - Mutation/lifecycle validation perfection
 
-- Scope executed: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts` and `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts`.
+- Scope executed: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts` and `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts`.
 - Boundary respected: no edits under `.opencode/specs/**` other than this required scratch note; no changes in `feature_catalog/**` or `manual_testing_playbook/**`.
 
 ### Problem
@@ -22,12 +22,12 @@ The ingest start handler rejected traversal only after calling `path.normalize()
 
 ### Verification
 
-- `npm exec vitest run tests/handler-memory-ingest.vitest.ts tests/handler-memory-ingest-edge.vitest.ts` (run from `.opencode/skill/system-spec-kit/mcp_server`) -> pass, 21 tests.
-- `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server` -> pass, 0 findings.
+- `npm exec vitest run tests/handler-memory-ingest.vitest.ts tests/handler-memory-ingest-edge.vitest.ts` (run from `.opencode/skills/system-spec-kit/mcp_server`) -> pass, 21 tests.
+- `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` -> pass, 0 findings.
 
 ### Documentation review
 
-- Reviewed `.opencode/skill/system-spec-kit/mcp_server/lib/storage/README.md` for direct lifecycle/doc drift.
+- Reviewed `.opencode/skills/system-spec-kit/mcp_server/lib/storage/README.md` for direct lifecycle/doc drift.
 - No update was required because the fix changes ingest-path input validation behavior in the handler layer and does not alter storage/checkpoint/recovery contracts documented there.
 
 ### Copilot delegation note

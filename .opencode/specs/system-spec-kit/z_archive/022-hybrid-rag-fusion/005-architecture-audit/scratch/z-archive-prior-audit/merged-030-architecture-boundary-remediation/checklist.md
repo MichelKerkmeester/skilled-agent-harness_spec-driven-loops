@@ -85,7 +85,7 @@ SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 ## Enforcement Automation
 
 - [x] CHK-030 [P1] Pre-commit hook or CI step exists and runs boundary checks [EVIDENCE: closed via canonical 012 CHK-502; CI workflow `.github/workflows/system-spec-kit-boundary-enforcement.yml` is mandatory and runs scripts boundary checks]
-- [x] CHK-031 [P1] Enforcement completes in < 5 seconds [EVIDENCE: timed run on 2026-03-06 from `.opencode/skill/system-spec-kit`: `npm run check --workspace=scripts` = `real 2.42`, `npm run check:ast --workspace=scripts` = `real 1.80`; combined 4.22s]
+- [x] CHK-031 [P1] Enforcement completes in < 5 seconds [EVIDENCE: timed run on 2026-03-06 from `.opencode/skills/system-spec-kit`: `npm run check --workspace=scripts` = `real 2.42`, `npm run check:ast --workspace=scripts` = `real 1.80`; combined 4.22s]
 - [x] CHK-032 [P2] Enforcement blocks merge on violation (CI exit code non-zero) [EVIDENCE: closed via canonical 012 CHK-502 CI-gated enforcement policy and workflow]
 <!-- /ANCHOR:enforcement -->
 

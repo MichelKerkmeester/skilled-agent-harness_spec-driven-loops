@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const parser = require('../../../../.opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js');
+const parser = require('../../../../.opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js');
 
 const fixturePath = path.join(__dirname, 'fixture-memory.md');
 

@@ -62,10 +62,10 @@ Add a consistent self-invocation guard pattern to the CLI bridge skills so each 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/cli-claude-code/SKILL.md` | Modify | Clarify Claude Code self-invocation guard |
-| `.opencode/skill/cli-gemini/SKILL.md` | Modify | Add Gemini self-invocation guard |
-| `.opencode/skill/cli-codex/SKILL.md` | Modify | Add Codex self-invocation guard |
-| `.opencode/skill/cli-copilot/SKILL.md` | Modify | Strengthen Copilot self-invocation guard |
+| `.opencode/skills/cli-claude-code/SKILL.md` | Modify | Clarify Claude Code self-invocation guard |
+| `.opencode/skills/cli-gemini/SKILL.md` | Modify | Add Gemini self-invocation guard |
+| `.opencode/skills/cli-codex/SKILL.md` | Modify | Add Codex self-invocation guard |
+| `.opencode/skills/cli-copilot/SKILL.md` | Modify | Strengthen Copilot self-invocation guard |
 <!-- /ANCHOR:scope -->
 
 ---

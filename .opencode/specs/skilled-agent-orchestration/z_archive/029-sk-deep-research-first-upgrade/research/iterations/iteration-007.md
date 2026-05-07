@@ -112,5 +112,5 @@ AutoResearchClaw's biggest contribution beyond Wave 1 is not another stop metric
 - `/tmp/deep-research-029-wave2/AutoResearchClaw/tests/test_paper_verifier.py`
 - `/tmp/deep-research-029-wave2/AutoResearchClaw/tests/test_convergence_evaluator.py`
 - `/tmp/deep-research-029-wave2/AutoResearchClaw/tests/test_memory_system.py`
-- `.opencode/skill/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
 - `.opencode/specs/03--commands-and-skills/029-sk-deep-research-first-upgrade/research/research/research.md`

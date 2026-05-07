@@ -18,11 +18,11 @@ Synthesize iters 1-4 into concrete recommendations. For each, include:
 - HOW TO VERIFY (test or audit command)
 
 Target surfaces:
-1. `.opencode/skill/system-spec-kit/scripts/templates/level_*/` FIX template — what to add
-2. `.opencode/skill/sk-code-review/SKILL.md` — finding classification field (class-of-bug vs instance)
-3. `.opencode/skill/sk-deep-review/references/convergence.md` — security-sensitive convergence stricter
+1. `.opencode/skills/system-spec-kit/scripts/templates/level_*/` FIX template — what to add
+2. `.opencode/skills/sk-code-review/SKILL.md` — finding classification field (class-of-bug vs instance)
+3. `.opencode/skills/sk-deep-review/references/convergence.md` — security-sensitive convergence stricter
 4. `/spec_kit:plan` flow — require "Affected Surfaces" enumeration
-5. NEW: "fix completeness checklist" file at `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md`
+5. NEW: "fix completeness checklist" file at `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md`
 
 Plus draft ADR-001 for .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/decision-record.md:
 - Title: "Adopt class-of-bug-aware FIX prompts to compress multi-round trajectories"

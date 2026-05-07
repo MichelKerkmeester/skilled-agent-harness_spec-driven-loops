@@ -6,7 +6,7 @@ I stayed in the same five runtime seams from Iteration 11, but filtered out the 
 ## Findings
 
 ### Finding R13-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `60-67, 308-312`
 - **Severity:** P1
 - **Description:** Claude stop-hook autosave silently skips the entire `generate-context` call when the temp-state record lacks either `lastSpecFolder` or `sessionSummary`. Caller perception: stop processing completed normally, so continuity capture was attempted if autosave was enabled. Reality: `runContextAutosave()` returns before logging anything, and `processStopHook()` still logs `Session ... stop processing complete`.
@@ -14,7 +14,7 @@ I stayed in the same five runtime seams from Iteration 11, but filtered out the 
 - **Downstream Impact:** Any earlier ambiguity or state-write miss that leaves `lastSpecFolder` / `sessionSummary` unset turns into silent continuity loss at session end. Resume and memory-search consumers keep relying on stale prior saves, but the hook surface looks indistinguishable from a healthy stop event.
 
 ### Finding R13-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
 - **Lines:** `280-285, 457-475, 831-860`
 - **Severity:** P1
 - **Description:** Graph-metadata derivation fail-opens unreadable canonical docs into "doc missing" semantics. Caller perception: the packet legitimately lacks certain canonical docs, so derived status/key-topics/key-files reflect repository truth. Reality: `readDoc()` collapses I/O failure into `null`, `collectPacketDocs()` silently drops the document, and `deriveStatus()` then reinterprets the reduced doc set as `planned` (missing `implementation-summary.md`) or `complete` (implementation summary present but checklist absent).
@@ -22,7 +22,7 @@ I stayed in the same five runtime seams from Iteration 11, but filtered out the 
 - **Downstream Impact:** A permission error, transient read failure, or broken canonical doc can silently rewrite packet status and derived metadata without surfacing corruption. That poisons `graph-metadata.json`, search/routing status buckets, and any packet graph view that trusts the derived status as authoritative.
 
 ### Finding R13-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `340-364`
 - **Severity:** P2
 - **Description:** `outline` queries silently degrade unknown or path-mismatched files into an `ok` payload with `nodeCount: 0`. Caller perception: the requested file exists in the graph and simply contains no symbols. Reality: the handler never resolves or validates the subject path; it forwards the raw string to `queryOutline()` and serializes whatever empty array comes back as a successful outline.
@@ -30,7 +30,7 @@ I stayed in the same five runtime seams from Iteration 11, but filtered out the 
 - **Downstream Impact:** Structural priming and file-outline tooling can misread a typo, absolute/relative mismatch, or not-yet-indexed file as an intentionally empty source file. That suppresses retries or reindex decisions and makes graph incompleteness look benign.
 
 ### Finding R13-004
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - **Lines:** `261-270, 438-442`
 - **Severity:** P1
 - **Description:** Save-time reconsolidation fails open on internal exceptions. Caller perception: the save genuinely had no reconsolidation outcome, so a normal create/index path is correct. Reality: once `allowSaveTimeReconsolidation` is active, any thrown error from checkpoint lookup, `reconsolidate(...)`, similarity callbacks, or conflict-store helpers is caught, reduced to a console warning, and the handler falls through to the normal create path without surfacing a structured warning.
@@ -38,7 +38,7 @@ I stayed in the same five runtime seams from Iteration 11, but filtered out the 
 - **Downstream Impact:** Near-duplicate memories can be indexed as brand-new rows exactly when the dedup/merge subsystem is broken. Operators get, at best, a console warning, while the persisted save result loses the evidence that reconsolidation was attempted and failed.
 
 ### Finding R13-005
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 - **Lines:** `96-109, 210-214`
 - **Severity:** P2
 - **Description:** Causal-link enrichment treats partially unresolved link sets as a successful run. Caller perception: causal-link enrichment completed normally because `executionStatus.status === 'ran'` and `enrichmentStatus.causalLinks === true`. Reality: `processCausalLinks()` can return unresolved references, `post-insert.ts` only logs a warning, and the save-response warning layer never classifies that as partial enrichment failure.

@@ -18,7 +18,7 @@ Produce a detailed, reproducible comparison of MCP server test outcomes between:
 
 ### Post-update run (current workspace)
 
-- Working directory: `.opencode/skill/system-spec-kit/mcp_server`
+- Working directory: `.opencode/skills/system-spec-kit/mcp_server`
 - Command:
 
 ```bash

@@ -1,5 +1,5 @@
 # Agent: ultra-think
-# Converted from: .opencode/agent/ultra-think.md
+# Converted from: .opencode/agents/ultra-think.md
 name = "ultra-think"
 description = "Multi-strategy planning architect that dispatches diverse thinking strategies for optimal plans. Outputs plans only, never modifies files."
 sandbox_mode = "read-only"
@@ -455,7 +455,7 @@ Fix verification gaps first
 
 | Command        | Purpose                  | Path                               |
 | -------------- | ------------------------ | ---------------------------------- |
-| `/memory:save` | Preserve session context | `.opencode/skill/system-spec-kit/` |
+| `/memory:save` | Preserve session context | `.opencode/skills/system-spec-kit/` |
 
 ### Skills
 

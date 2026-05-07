@@ -53,7 +53,7 @@ Current `.claude/settings.local.json` again carries those top-level fields. `Use
      "UserPromptSubmit": [
        {
 +        "type": "command",
-+        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
++        "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
 +        "timeoutSec": 5,
          "hooks": [
            { "type": "command", "command": "bash -c '...claude/user-prompt-submit.js'", "timeout": 3 }

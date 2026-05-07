@@ -50,11 +50,11 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T-010: Create assets/deep_research_config.json
-- [x] T-011: Create .opencode/skill/sk-deep-research/assets/deep_research_strategy.md
-- [x] T-012: Create .opencode/skill/sk-deep-research/references/loop_protocol.md
-- [x] T-013: Create .opencode/skill/sk-deep-research/references/state_format.md
-- [x] T-014: Create .opencode/skill/sk-deep-research/references/convergence.md
-- [x] T-015: Create .opencode/skill/sk-deep-research/references/quick_reference.md
+- [x] T-011: Create .opencode/skills/sk-deep-research/assets/deep_research_strategy.md
+- [x] T-012: Create .opencode/skills/sk-deep-research/references/loop_protocol.md
+- [x] T-013: Create .opencode/skills/sk-deep-research/references/state_format.md
+- [x] T-014: Create .opencode/skills/sk-deep-research/references/convergence.md
+- [x] T-015: Create .opencode/skills/sk-deep-research/references/quick_reference.md
 - [x] T-016: Create SKILL.md (8 sections)
 - [x] T-017: Create README.md
 <!-- /ANCHOR:phase-2 -->
@@ -68,22 +68,22 @@ _memory:
 ### Phase 4: Command (/spec_kit:deep-research)
 
 - [x] T-030: Create .agents/commands/spec_kit/deep-research.toml
-- [x] T-031: Create .opencode/command/spec_kit/deep-research.md
-- [x] T-032: Create .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml
-- [x] T-033: Create .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+- [x] T-031: Create .opencode/commands/spec_kit/deep-research.md
+- [x] T-032: Create .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+- [x] T-033: Create .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
 
 ### Phase 5: Registration Updates
 
 - [x] T-040: Update CLAUDE.md (agent routing table)
 - [x] T-041: Update .claude/agents/orchestrate.md (agent selection)
-- [x] T-042: Update .opencode/skill/README.md (catalog count)
-- [x] T-043: Update .opencode/skill/skill-advisor/scripts/skill_advisor.py (keywords)
+- [x] T-042: Update .opencode/skills/README.md (catalog count)
+- [x] T-043: Update .opencode/skills/skill-advisor/scripts/skill_advisor.py (keywords)
 - [x] T-044: Update .opencode/specs/descriptions.json (add entry)
 
 ### Phase 5.5: Legacy @research Removal
 
 - [x] T-050: Delete 6 agent definitions (research.md/toml across all runtimes)
-- [x] T-051: Delete command definition (.opencode/command/spec_kit/research/research/research.md + .agents/commands/spec_kit/research.toml)
+- [x] T-051: Delete command definition (.opencode/commands/spec_kit/research/research/research.md + .agents/commands/spec_kit/research.toml)
 - [x] T-052: Delete 2 YAML workflows (spec_kit_research_auto.yaml + spec_kit_research_confirm.yaml)
 - [x] T-053: Update spec_kit YAML workflows (plan/complete, auto/confirm) — agent_availability references
 - [x] T-054: Update orchestrate agents (all 5 runtimes) — routing tables, dispatch templates
@@ -109,19 +109,19 @@ _memory:
   - Wrap each JSONL line parse in try/catch, skip malformed lines
   - Add default values for missing fields: `status ?? "complete"`, `newInfoRatio ?? 0`
   - Log warning count after parse: "N of M lines skipped"
-  - Files: `.opencode/skill/sk-deep-research/references/state_format.md`, `.opencode/skill/sk-deep-research/references/convergence.md`
+  - Files: `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/references/convergence.md`
 
 - [ ] T-101: **Exhausted Approaches Enhancement** (REQ-011, Effort: S)
   - Add structured format: `### [Category] -- BLOCKED (iteration NNN, N attempts)`
   - Add positive selection: `### [Category] -- PRODUCTIVE (newInfoRatio > 0.70)`
   - Agent MUST check exhausted approaches BEFORE choosing iteration focus
-  - Files: `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`, `.claude/agents/deep-research.md`
+  - Files: `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`, `.claude/agents/deep-research.md`
 
 - [ ] T-102: **State Recovery Fallback** (REQ-012, Effort: S)
   - Add recovery function: scan `research/iterations/iteration-*.md` `## Assessment` sections
   - Extract: run number, newInfoRatio, questions addressed/answered
   - Reconstruct JSONL from parsed data when primary JSONL corrupted
-  - Files: `.opencode/skill/sk-deep-research/references/loop_protocol.md`, `.opencode/skill/sk-deep-research/references/state_format.md`
+  - Files: `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/skills/sk-deep-research/references/state_format.md`
 
 - [ ] T-103: **Iteration Reflection Section** (REQ-013, Effort: S)
   - Add `## Reflection` section to iteration template between Assessment and Next Focus
@@ -135,7 +135,7 @@ _memory:
     - Tier 3: State corruption -- reconstruct from iteration files (T-102)
     - Tier 4: Repeated systemic failure -- escalate to user with diagnostic
     - Tier 5: Agent dispatch failure -- orchestrator absorbs work in direct mode
-  - Files: `.opencode/skill/sk-deep-research/references/convergence.md`, `.claude/agents/deep-research.md`
+  - Files: `.opencode/skills/sk-deep-research/references/convergence.md`, `.claude/agents/deep-research.md`
 
 - [ ] T-105: **Composite Convergence Algorithm** (REQ-015, Effort: M)
   - Replace single-signal `shouldContinue()` with 3-signal weighted vote:
@@ -145,7 +145,7 @@ _memory:
   - Stop when weighted stop-score > 0.60 consensus threshold
   - Graceful degradation: if < 4 iterations, omit MAD signal, redistribute weights
   - Expose individual signal values in JSONL event record
-  - Files: `.opencode/skill/sk-deep-research/references/convergence.md`, YAML workflows (convergence check step)
+  - Files: `.opencode/skills/sk-deep-research/references/convergence.md`, YAML workflows (convergence check step)
 
 ### Phase 7: P2 -- Enrichment & User Control (Adopt Next)
 
@@ -153,13 +153,13 @@ _memory:
   - Add convention for `research ideas backlog file` as parking lot
   - Check at 3 points: strategy init, stuck recovery, auto-resume message
   - Protocol-only change -- no code, just agent + loop protocol update
-  - Files: `.opencode/skill/sk-deep-research/references/loop_protocol.md`, `.claude/agents/deep-research.md`
+  - Files: `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.claude/agents/deep-research.md`
 
 - [ ] T-111: **Sentinel Pause File** (REQ-017, Effort: S)
   - Before each dispatch, check for `research/.deep-research-pause`
   - If present: log `{"type":"event","event":"paused"}`, halt with message
   - On resume: log `{"type":"event","event":"resumed"}`
-  - Files: `.opencode/skill/sk-deep-research/references/loop_protocol.md`, YAML workflows (pre-dispatch check)
+  - Files: `.opencode/skills/sk-deep-research/references/loop_protocol.md`, YAML workflows (pre-dispatch check)
 
 - [ ] T-112: **Compact State Summary Injection** (REQ-018, Effort: S)
   - Generate 200-token structured summary at dispatch time:
@@ -167,7 +167,7 @@ _memory:
     - Last 2 iteration focuses + newInfoRatios
     - Active stuck recovery state, current "Next Focus"
   - Inject as preamble to every agent dispatch prompt
-  - Files: `.opencode/skill/sk-deep-research/references/loop_protocol.md`, YAML workflows (dispatch step)
+  - Files: `.opencode/skills/sk-deep-research/references/loop_protocol.md`, YAML workflows (dispatch step)
 
 - [ ] T-113: **Enriched Stuck Recovery Heuristics** (REQ-019, Effort: S)
   - Add 3 explicit strategies to stuck recovery:
@@ -175,21 +175,21 @@ _memory:
     - (2) Combine Prior Findings: synthesize 2 highest-ratio iterations into new question
     - (3) Audit Low-Value: re-read iterations with ratio < 0.20, extract buried insights
   - Orchestrator selects strategy based on stuck condition type
-  - Files: `.opencode/skill/sk-deep-research/references/convergence.md`
+  - Files: `.opencode/skills/sk-deep-research/references/convergence.md`
 
 - [ ] T-114: **Segment-Based State Partitioning** (REQ-020, Effort: S)
   - Add `"segment"` field to JSONL iteration records (default: 1)
   - Add `{"type":"event","event":"segment_start","segment":N}` record type
   - Convergence algorithm filters by current segment for rolling averages
   - Cross-segment analysis available by reading full JSONL
-  - Files: `.opencode/skill/sk-deep-research/references/state_format.md`, `.opencode/skill/sk-deep-research/references/convergence.md`, `assets/`
+  - Files: `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/references/convergence.md`, `assets/`
 
 - [ ] T-115: **Scored Branching with Pruning** (REQ-021, Effort: L)
   - Extend wave orchestration: Wave 1 → score all branches by newInfoRatio → Wave 2 prunes below-median
   - Add breakthrough detection: if any branch > 2x wave average, explore ADJACENT questions
   - Post-breakthrough: don't refine the breakthrough, explore what it enables
   - Requires orchestrator scoring+dispatch loop (not pre-assigned focuses)
-  - Files: `.opencode/skill/sk-deep-research/references/loop_protocol.md`, YAML workflows, SKILL.md
+  - Files: `.opencode/skills/sk-deep-research/references/loop_protocol.md`, YAML workflows, SKILL.md
 
 ### Phase 8: P3 -- Polish (Consider Later)
 
@@ -198,7 +198,7 @@ _memory:
   - Compare latest ratio against noise floor (MAD * 1.4826)
   - Log advisory event `{"type":"event","event":"ratio_within_noise"}` if within 1.0x floor
   - Does not override convergence, provides diagnostic signal
-  - Files: `.opencode/skill/sk-deep-research/references/convergence.md`
+  - Files: `.opencode/skills/sk-deep-research/references/convergence.md`
 
 - [ ] T-121: **Progress Visualization** (REQ-023, Effort: S)
   - Generate markdown convergence summary after each iteration:
@@ -206,14 +206,14 @@ _memory:
     - Questions progress: N answered / M total (progress bar)
     - Findings count, wave completion status
   - Append to strategy.md or emit as `progress summary artifact in `scratch/``
-  - Files: `.opencode/skill/sk-deep-research/references/quick_reference.md`, agent output format
+  - Files: `.opencode/skills/sk-deep-research/references/quick_reference.md`, agent output format
 
 - [ ] T-122: **Git Commit Per Iteration** (REQ-024, Effort: S)
   - After each iteration: `git add research/deep-research-state.jsonl research/iterations/iteration-NNN.md research strategy state file`
   - Commit: `chore(deep-research): iteration NNN complete`
   - Targeted git add (NOT `-A`) to avoid binary/artifact bloat
   - Sanitize commit messages (lesson from pi-autoresearch PR #13)
-  - Files: `.opencode/skill/sk-deep-research/references/loop_protocol.md`, YAML workflows
+  - Files: `.opencode/skills/sk-deep-research/references/loop_protocol.md`, YAML workflows
 
 ### Phase 9: P4 -- Track (Future)
 
@@ -221,14 +221,14 @@ _memory:
   - Add `"fileProtection"` map to config JSON:
     `{"config.json":"immutable","state.jsonl":"append-only","strategy.md":"mutable","iteration-*.md":"write-once"}`
   - Orchestrator validates agent outputs against declarations before writing
-  - Files: `assets/deep_research_config.json`, `.opencode/skill/sk-deep-research/references/state_format.md`
+  - Files: `assets/deep_research_config.json`, `.opencode/skills/sk-deep-research/references/state_format.md`
 
 - [ ] T-131: **True Context Isolation via `claude -p`** (REQ-026, Effort: L)
   - Replace Task tool dispatch with `claude -p` shell invocation per iteration
   - Generate self-contained prompt from strategy.md + config + last N summaries
   - Execute: `claude -p "$(cat prompt.md)" --max-turns 50 --effort high`
   - Claude-only backend (Codex confirmed unreliable per karpathy Issue #57)
-  - Files: `.opencode/skill/sk-deep-research/references/loop_protocol.md`, YAML workflows (major restructure)
+  - Files: `.opencode/skills/sk-deep-research/references/loop_protocol.md`, YAML workflows (major restructure)
 
 - [ ] T-132: **Research Simplicity Criterion** (REQ-027, Effort: S)
   - Add soft quality criterion to iteration assessment

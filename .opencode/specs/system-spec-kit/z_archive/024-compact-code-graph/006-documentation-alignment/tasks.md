@@ -67,15 +67,15 @@ Template compliance shim anchor for cross-refs.
 
 These checklist items preserve the original Phase 006 hook-documentation delivery record. They are historical packet context, not a claim that every file listed below still appears in the current 2026-04-02 worktree diff.
 
-- [x] Create feature catalog entries for PreCompact Hook, SessionStart Priming, Stop Token Tracking, Cross-Runtime Fallback, Runtime Detection, CocoIndex Integration — entries in `.opencode/skill/system-spec-kit/feature_catalog/`
+- [x] Create feature catalog entries for PreCompact Hook, SessionStart Priming, Stop Token Tracking, Cross-Runtime Fallback, Runtime Detection, CocoIndex Integration — entries in `.opencode/skills/system-spec-kit/feature_catalog/`
 - [x] Create manual testing playbook scenarios for each hook type and cross-runtime fallback — 11 playbook files in category 22 enhanced with prereqs, sub-scenarios, pass/fail criteria; dedicated cross-runtime consistency playbook remains a future gap
-- [x] Update `.opencode/skill/system-spec-kit/SKILL.md` with Hook System section — lifecycle, registration (`.claude/settings.local.json`), script locations, design principle (hooks = transport)
-- [x] Update `.opencode/skill/system-spec-kit/SKILL.md` with Code Graph section — CocoIndex (semantic) + Code Graph (structural) + Memory (session) complementary architecture
-- [x] Update `.opencode/skill/system-spec-kit/ARCHITECTURE.md` with hook architecture diagram — Mermaid diagram section added covering PreCompact -> cache -> SessionStart -> inject lifecycle
+- [x] Update `.opencode/skills/system-spec-kit/SKILL.md` with Hook System section — lifecycle, registration (`.claude/settings.local.json`), script locations, design principle (hooks = transport)
+- [x] Update `.opencode/skills/system-spec-kit/SKILL.md` with Code Graph section — CocoIndex (semantic) + Code Graph (structural) + Memory (session) complementary architecture
+- [x] Update `.opencode/skills/system-spec-kit/ARCHITECTURE.md` with hook architecture diagram — Mermaid diagram section added covering PreCompact -> cache -> SessionStart -> inject lifecycle
 - [x] Update token-tracking data flow docs with the current hook-state reality — avoid stale `pendingStopSave` claims and keep JSON hook-state behavior accurate
 - [x] Capture root `README.md` context preservation status accurately — not delivered in Phase 006 and tracked as a future gap
-- [x] Update `.opencode/skill/system-spec-kit/README.md` with hook features in feature list
-- [x] Update `.opencode/skill/README.md` with revised system-spec-kit description
+- [x] Update `.opencode/skills/system-spec-kit/README.md` with hook features in feature list
+- [x] Update `.opencode/skills/README.md` with revised system-spec-kit description
 - [x] Update `AGENTS.md` to reflect Phase 005 agent definition changes
 - [x] Update `AGENTS_example_fs_enterprises.md` where relevant
 - [x] All feature catalog entries follow existing format conventions
@@ -84,8 +84,8 @@ These checklist items preserve the original Phase 006 hook-documentation deliver
 - [x] Capture reference-doc status accurately — no spec-local evidence that an additional follow-up reference doc was created in this phase, so it is marked as not created
 - [x] Capture asset-template status accurately — no spec-local evidence that an additional prompt/template asset was created in this phase, so it is marked as not created
 - [x] All updated docs pass sk-doc DQI quality standards — proper frontmatter, anchors, and sections
-- [x] Cross-references between feature catalog, playbook, `.opencode/skill/system-spec-kit/SKILL.md`, and `.opencode/skill/system-spec-kit/ARCHITECTURE.md` verified consistent
-- [x] Record future documentation gaps explicitly — dedicated cross-runtime consistency playbook, fuller `.opencode/skill/system-spec-kit/ARCHITECTURE.md` runtime adapter docs, and root README context preservation mention remain follow-up work
+- [x] Cross-references between feature catalog, playbook, `.opencode/skills/system-spec-kit/SKILL.md`, and `.opencode/skills/system-spec-kit/ARCHITECTURE.md` verified consistent
+- [x] Record future documentation gaps explicitly — dedicated cross-runtime consistency playbook, fuller `.opencode/skills/system-spec-kit/ARCHITECTURE.md` runtime adapter docs, and root README context preservation mention remain follow-up work
 - [x] No stale references to pre-hook compaction approach remain in updated files
 
 ---
@@ -112,4 +112,4 @@ These step labels preserve the earlier audit lineage for this follow-up packet. 
 - [x] Refresh stale summary references in `../../../../skill/system-spec-kit/README.md` and `../../../../skill/system-spec-kit/mcp_server/README.md` — top-level stats, related-doc cross-references, feature catalog counts, reference-file counts, and manual playbook counts now match the checked-in docs
 - [x] Refresh command-surface wording in `../../../../skill/system-spec-kit/feature_catalog/feature_catalog.md` and `../../../../skill/system-spec-kit/feature_catalog/feature_catalog.md` — both roots now distinguish the 43-tool MCP surface from the smaller slash-command subset
 - [x] Refresh stale tool-surface totals in `../../../../skill/system-spec-kit/references/memory/memory_system.md` and `../../../../skill/system-spec-kit/references/config/environment_variables.md` — memory reference now lists the code graph, session, and CCC tools; strict-schema docs now point to all 43 tools
-- [x] Audit `../../../../skill/mcp-coco-index/` for 023/024 follow-through — follow-up edits were required in `.opencode/skill/mcp-coco-index/README.md`, `.opencode/skill/mcp-coco-index/SKILL.md`, and the category-07 / root manual testing playbook docs to align recovery semantics and integrated code-graph wording with current behavior
+- [x] Audit `../../../../skill/mcp-coco-index/` for 023/024 follow-through — follow-up edits were required in `.opencode/skills/mcp-coco-index/README.md`, `.opencode/skills/mcp-coco-index/SKILL.md`, and the category-07 / root manual testing playbook docs to align recovery semantics and integrated code-graph wording with current behavior

@@ -124,7 +124,7 @@ but generate-description.js auto-regen still overwrites hand-authored fields
 in rich description.json files (29 of 86 packet files in 026 tree per 018
 research.md §5).
 
-Sources: .opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts,
+Sources: .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts,
 all 86 description.json files under .opencode/specs/, 018/002-cluster-consumers
 T-CNS-04/T-CNS-05 code (continuity-freshness validator + lastUpdated backfill),
 018 Wave B description-repair-helper.
@@ -300,8 +300,8 @@ Scope: Accuracy research for Gate 3 classifier and skill-advisor routing.
 Both classifiers gate every non-trivial task. Gate 3 is HARD-block.
 Skill-advisor at confidence >= 0.8 mandates skill invocation.
 
-Sources: .opencode/skill/system-spec-kit/shared/gate-3-classifier.ts,
-.opencode/skill/skill-advisor/scripts/skill_advisor.py, CLAUDE.md
+Sources: .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts,
+.opencode/skills/skill-advisor/scripts/skill_advisor.py, CLAUDE.md
 §2 Gates 1-4, existing false-positive notes (analyze/decompose/phase).
 
 Method: build a labeled corpus of ~200 prompts (real + edge cases),
@@ -321,7 +321,7 @@ Executor: cli-codex gpt-5.4 high fast.
 
 #### SSK-DR-1 — Template v2.2 + validator ruleset joint audit [DEEP-REVIEW]
 
-**Why**: Templates under `.opencode/skill/system-spec-kit/templates/level_{1,2,3}/` and the validator at `scripts/spec/validate.sh` are coupled by design but evolve separately. Recent validator output on the 026 root shows `PHASE_LINKS` warnings on 015/016/017/018 missing `| **Parent Spec** | ../spec.md |` — which is a template-v2.2-mandated field that child-packet specs don't consistently carry. Either the validator is over-strict or the templates under-emit. Both need joint review.
+**Why**: Templates under `.opencode/skills/system-spec-kit/templates/level_{1,2,3}/` and the validator at `scripts/spec/validate.sh` are coupled by design but evolve separately. Recent validator output on the 026 root shows `PHASE_LINKS` warnings on 015/016/017/018 missing `| **Parent Spec** | ../spec.md |` — which is a template-v2.2-mandated field that child-packet specs don't consistently carry. Either the validator is over-strict or the templates under-emit. Both need joint review.
 
 **Scope** (10-12 iterations):
 - Enumerate every anchor and required field in every template (level_1, level_2, level_3, core + addendum).
@@ -335,7 +335,7 @@ Executor: cli-codex gpt-5.4 high fast.
 /spec_kit:deep-review :confirm
 
 Scope: Template v2.2 + validator ruleset joint audit. The templates under
-.opencode/skill/system-spec-kit/templates/level_{1,2,3}/ and the validator
+.opencode/skills/system-spec-kit/templates/level_{1,2,3}/ and the validator
 at scripts/spec/validate.sh (rules: FILE_EXISTS, PLACEHOLDER_FILLED,
 SECTIONS_PRESENT, TEMPLATE_HEADERS, PHASE_LINKS, SPEC_DOC_INTEGRITY,
 ANCHORS_VALID, CROSS_ANCHOR_CONTAMINATION, POST_SAVE_FINGERPRINT,
@@ -378,7 +378,7 @@ index. No single invariant spec exists. Root validator runs already show
 benign-classified drift (CONTINUITY_FRESHNESS deltaMs=-8455798 treated as
 clock skew).
 
-Sources: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts,
+Sources: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts,
 scripts/spec-folder/generate-description.ts, scripts/core/workflow.ts (H-56-1
 fix at :1259 + :1333), scripts/core/post-save-review.ts, validator rules
 CONTINUITY_FRESHNESS + POST_SAVE_FINGERPRINT + SPEC_DOC_INTEGRITY.
@@ -402,13 +402,13 @@ Executor: cli-codex gpt-5.4 high fast.
 
 **Why**: Gate 4 (HARD block) says iterative research/review loops MUST use skill-owned commands (`/spec_kit:deep-research`, `/spec_kit:deep-review`), not agents directly. But the CLAUDE.md skill ecosystem lists skills, commands, and agents overlapping at several boundaries (e.g., `sk-deep-research` skill, `@deep-research` agent, `/spec_kit:deep-research` command — three names, one concept). Review target: enumerate every skill/command/agent and their invocation surface; find overlap, duplication, or contract drift.
 
-**Scope** (7-10 iterations): every `.opencode/skill/*/SKILL.md`, every `.opencode/command/*/`, every `.opencode/agent/*` (plus `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` if populated). Map callers/callees. Report P0 for broken Gate 4 enforcement, P1 for redundancy, P2 for naming clarity.
+**Scope** (7-10 iterations): every `.opencode/skills/*/SKILL.md`, every `.opencode/commands/*/`, every `.opencode/agents/*` (plus `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` if populated). Map callers/callees. Report P0 for broken Gate 4 enforcement, P1 for redundancy, P2 for naming clarity.
 
 ---
 
 #### SSK-RR-3 — Cross-runtime portability research [DEEP-RESEARCH]
 
-**Why**: CLAUDE.md §5 Runtime Agent Directory Resolution says pick `.opencode/agent/` vs `.claude/agents/` vs `.codex/agents/` vs `.gemini/agents/` based on active runtime. But most system-spec-kit internals (templates, validator, MCP server) are runtime-neutral in intent but OpenCode-first in practice. Research target: which pieces actually work cross-runtime unmodified, which are coupled, and what portability debt exists.
+**Why**: CLAUDE.md §5 Runtime Agent Directory Resolution says pick `.opencode/agents/` vs `.claude/agents/` vs `.codex/agents/` vs `.gemini/agents/` based on active runtime. But most system-spec-kit internals (templates, validator, MCP server) are runtime-neutral in intent but OpenCode-first in practice. Research target: which pieces actually work cross-runtime unmodified, which are coupled, and what portability debt exists.
 
 **Scope** (10-12 iterations): enumerate every cross-runtime touchpoint (agent directories, MCP server wiring, command dispatch, skill invocation, memory storage). Test or dry-run on all four runtimes where possible. Report portability debt per touchpoint + prioritized decoupling backlog.
 

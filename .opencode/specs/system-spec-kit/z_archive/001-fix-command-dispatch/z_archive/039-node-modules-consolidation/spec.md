@@ -72,7 +72,7 @@ Use npm workspaces to share a single node_modules at the root level.
 
 ### Target Structure
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── package.json          # NEW: Root workspace config
 ├── node_modules/         # NEW: Shared dependencies (~967MB)
 ├── mcp_server/

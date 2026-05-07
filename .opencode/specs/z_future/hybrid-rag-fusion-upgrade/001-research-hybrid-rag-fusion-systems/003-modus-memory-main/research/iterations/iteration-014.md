@@ -34,7 +34,7 @@ DEEP DIVE - STRONGEST PATTERN: Go deep on the single most impactful pattern from
 - **Impact**: **medium**
 
 ### Finding 5: **Public has auditability and advisory signals, but still lacks the durable triage object that makes Modus’s pattern useful**
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417-435`; `.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:84-110,183-186,342-343`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:201-223`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:91-139`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:141-180`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-776`; `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:108-179,233-274`
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417-435`; `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:84-110,183-186,342-343`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:201-223`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:91-139`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:141-180`; `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-776`; `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:108-179,233-274`
 - **What it does**: Public’s review-tier reconsolidation only creates an `assistiveRecommendation` payload and console warning; it is forwarded in the `memory_save` response but not persisted as a reviewable object. Meanwhile `memory_update`, `memory_delete`, and `memory_bulk_delete` act directly, protected by transactionality, checkpoints, and the append-only mutation ledger. `memory_validate` updates confidence, negative-feedback state, and promotion eligibility, but only emits hints like “consider updating or deleting.”
 - **Why it matters for us**: Public’s gap is no longer retrieval math or mutation safety. The missing layer is a persistent operator inbox that can hold borderline reconsolidation, supersession, promotion, or deprecation proposals and then feed accept/reject outcomes back into existing confidence and feedback systems.
 - **Recommendation**: **NEW FEATURE**
@@ -51,14 +51,14 @@ DEEP DIVE - STRONGEST PATTERN: Go deep on the single most impactful pattern from
 - `external/internal/markdown/parser.go`
 - `external/internal/markdown/writer.go`
 - `external/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 
 ## Assessment
 - New information ratio: **0.74**

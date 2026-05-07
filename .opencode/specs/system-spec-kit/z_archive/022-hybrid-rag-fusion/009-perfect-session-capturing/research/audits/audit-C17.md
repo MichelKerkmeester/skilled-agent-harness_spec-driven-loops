@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-ed91-70b3-a843-98bf3ef00cfe
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts (97 lines).
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts (97 lines).
 
 This file writes the final memory file to disk.
 
@@ -56,7 +56,7 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 Reviewing the target file line-by-line now and mapping each of your six audit areas directly to exact line references. I’ll capture every issue I find, including small edge-case gaps.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: File Writer
      3	// ---------------------------------------------------------------
@@ -80,7 +80,7 @@ exec
 codex
 I’ve read the full `file-writer.ts` and now I’m tracing the imported placeholder validator to verify exactly which placeholder patterns are caught versus missed.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Validation Utils
      3	// ---------------------------------------------------------------
@@ -102,14 +102,14 @@ exec
     19	    throw new Error(`\u274C Malformed placeholder in ${filename}`);
     20	  }
 exec
-/bin/zsh -lc "rg -n \"writeFilesAtomically\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:59:export async function writeFilesAtomically(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:845:  const writtenFiles: string[] = await writeFilesAtomically(contextDir, files);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1564:      await fileWriter.writeFilesAtomically(tempDir, { 'test.md': 'Content with {{LEAKED_PLACEHOLDER}}' });
+/bin/zsh -lc "rg -n \"writeFilesAtomically\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:59:export async function writeFilesAtomically(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:845:  const writtenFiles: string[] = await writeFilesAtomically(contextDir, files);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1564:      await fileWriter.writeFilesAtomically(tempDir, { 'test.md': 'Content with {{LEAKED_PLACEHOLDER}}' });
 codex
 I confirmed where `writeFilesAtomically` is called; next I’m checking the call-site to see whether directory creation and recovery are handled outside this module or not.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '800,900p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '800,900p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    800	  if (cleanedContent !== rawContent) {
    801	    files[ctxFilename] = cleanedContent;
    802	    log('   Stripped leaked HTML tags from content');
@@ -131,7 +131,7 @@ exec
    818	    messageCount: conversations.MESSAGES.length,
    819	    toolCount: sessionData.TOOL_COUNT,
 exec
-/bin/zsh -lc "rg -n \"contextDir|mkdir\\(|ensure.*context\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | head -n 40" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"contextDir|mkdir\\(|ensure.*context\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | head -n 40" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 78:  contextDir: string;
 485:    const contextDir: string = await setupContextDirectory(specFolder);
 486:    log(`   Created: ${contextDir}\n`);
@@ -142,7 +142,7 @@ exec
 895:        await updateMetadataWithEmbedding(contextDir, memoryId);
 927:        contextDir,
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '430,540p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '430,540p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    430	      log('   Using pre-loaded data');
    431	    } else if (loadDataFn) {
    432	      collectedData = await loadDataFn();
@@ -164,13 +164,13 @@ exec
    448	    });
    449	    const specsDir: string = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
 exec
-/bin/zsh -lc "rg -n \"function setupContextDirectory|setupContextDirectory\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/README.md:102:await setupContextDirectory('specs/<###-feature-name>');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:485:    const contextDir: string = await setupContextDirectory(specFolder);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/directory-setup.ts:18:async function setupContextDirectory(specFolder: string): Promise<string> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1097:      await setupContextDirectory('/nonexistent/path/to/spec/folder');
+/bin/zsh -lc "rg -n \"function setupContextDirectory|setupContextDirectory\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/README.md:102:await setupContextDirectory('specs/<###-feature-name>');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:485:    const contextDir: string = await setupContextDirectory(specFolder);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:18:async function setupContextDirectory(specFolder: string): Promise<string> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1097:      await setupContextDirectory('/nonexistent/path/to/spec/folder');
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/directory-setup.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Directory Setup
      3	// ---------------------------------------------------------------
@@ -192,7 +192,7 @@ exec
     19	  let sanitizedPath: string;
     20	  try {
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js' | sed -n '1520,1660p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js' | sed -n '1520,1660p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
   1520	    fail('T-023: Collect session data module', error.message);
   1521	  }
   1522	}
@@ -215,7 +215,7 @@ exec
   1539	        workflow.indexMemory === undefined) {
 codex
 ### FINDING-01: Predictable Temp File Name Causes Concurrency Races
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:79`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:79`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Temp path is always `filePath + ".tmp"`, so concurrent writes to the same filename can overwrite each other’s temp file.
@@ -225,7 +225,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: No True Rollback Across Multi-File Writes
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:63`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:63`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** If writing file N fails, files 1..N-1 remain written.
@@ -235,7 +235,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Atomic Rename Without Durability Sync
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:81`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:84`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:81`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:84`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Writes temp + rename, but does not `fsync` temp file or parent directory.
@@ -245,7 +245,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-04: Writer Does Not Ensure Parent Directory Exists
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:70`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:70`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Assumes `contextDir` already exists; write fails with `ENOENT` otherwise.
@@ -255,7 +255,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: Placeholder Detection Misses Many Real Placeholder Forms
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:9`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:9`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Detects only `{{[A-Z_]+}}`.
@@ -265,7 +265,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Unbalanced Template Blocks Only Warn, Do Not Block Write
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:24`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:24`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Mismatch between open/close template blocks emits warning only.
@@ -275,7 +275,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-07: Malformed Placeholder Check Only Catches EOF-Open Pattern
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:16`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:16`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `{{[^}]*$` only catches a very specific “unclosed at end-of-file” case.
@@ -285,7 +285,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Multiline HTML Comments Are Counted as Substance
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:17`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:17`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `<!--.*?-->` without dotall misses multiline comments, so comment blocks can inflate substance length.
@@ -295,7 +295,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: Substance Gate Can Be Bypassed by Low-Value Filler
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:22`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:22`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Any stripped content >=200 chars passes, even repetitive or meaningless text.
@@ -305,7 +305,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Duplicate Check Silently Skips Unreadable Existing Files
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:51`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:51`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Any read error during duplicate scan is swallowed; duplicate may go undetected.
@@ -315,7 +315,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: Duplicate Detection Is Byte-Exact, Not Semantic
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:33`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:33`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Hash compares raw bytes; line-ending/whitespace-only variants are treated as different.
@@ -325,7 +325,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-12: Duplicate Check Has TOCTOU Race Window
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:67`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:67`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Duplicate check runs before write/rename; concurrent process can write same content after check.
@@ -341,7 +341,7 @@ codex
 tokens used
 17,236
 ### FINDING-01: Predictable Temp File Name Causes Concurrency Races
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:79`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:79`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Temp path is always `filePath + ".tmp"`, so concurrent writes to the same filename can overwrite each other’s temp file.
@@ -351,7 +351,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: No True Rollback Across Multi-File Writes
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:63`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:63`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** If writing file N fails, files 1..N-1 remain written.
@@ -361,7 +361,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Atomic Rename Without Durability Sync
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:81`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:84`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:81`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:84`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Writes temp + rename, but does not `fsync` temp file or parent directory.
@@ -371,7 +371,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-04: Writer Does Not Ensure Parent Directory Exists
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:70`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:70`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Assumes `contextDir` already exists; write fails with `ENOENT` otherwise.
@@ -381,7 +381,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: Placeholder Detection Misses Many Real Placeholder Forms
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:9`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:9`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Detects only `{{[A-Z_]+}}`.
@@ -391,7 +391,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Unbalanced Template Blocks Only Warn, Do Not Block Write
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:24`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:24`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Mismatch between open/close template blocks emits warning only.
@@ -401,7 +401,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-07: Malformed Placeholder Check Only Catches EOF-Open Pattern
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:16`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:16`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `{{[^}]*$` only catches a very specific “unclosed at end-of-file” case.
@@ -411,7 +411,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Multiline HTML Comments Are Counted as Substance
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:17`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:17`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `<!--.*?-->` without dotall misses multiline comments, so comment blocks can inflate substance length.
@@ -421,7 +421,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: Substance Gate Can Be Bypassed by Low-Value Filler
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:22`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:22`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Any stripped content >=200 chars passes, even repetitive or meaningless text.
@@ -431,7 +431,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Duplicate Check Silently Skips Unreadable Existing Files
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:51`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:51`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Any read error during duplicate scan is swallowed; duplicate may go undetected.
@@ -441,7 +441,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: Duplicate Detection Is Byte-Exact, Not Semantic
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:33`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:33`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Hash compares raw bytes; line-ending/whitespace-only variants are treated as different.
@@ -451,7 +451,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-12: Duplicate Check Has TOCTOU Race Window
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:67`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:67`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Duplicate check runs before write/rename; concurrent process can write same content after check.

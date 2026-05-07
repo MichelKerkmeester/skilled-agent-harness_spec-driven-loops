@@ -48,7 +48,7 @@ _memory:
 ## Phase 2: Implementation
 
 ### Sub-phase 2a: Deletions
-- [ ] T002 [P] Delete skill folder (`.opencode/skill/mcp-clickup/`)
+- [ ] T002 [P] Delete skill folder (`.opencode/skills/mcp-clickup/`)
 - [ ] T003 [P] Delete changelog folder (`.opencode/changelog/mcp-clickup/`)
 
 ### Sub-phase 2b: Advisor data edits
@@ -60,8 +60,8 @@ _memory:
 - [ ] T009 [P] `python3 -m json.tool` round-trip on both JSON files
 
 ### Sub-phase 2c: Doc edits
-- [ ] T010 [P] Edit `.opencode/skill/mcp-code-mode/graph-metadata.json` (line 18)
-- [ ] T011 [P] Edit `.opencode/skill/README.md` (lines 58, 159, 205, 262)
+- [ ] T010 [P] Edit `.opencode/skills/mcp-code-mode/graph-metadata.json` (line 18)
+- [ ] T011 [P] Edit `.opencode/skills/README.md` (lines 58, 159, 205, 262)
 - [ ] T012 [P] Edit `.opencode/install_guides/README.md` (lines 822, 1469)
 - [ ] T013 [P] Edit `.opencode/install_guides/SET-UP - AGENTS.md` (line 1221)
 - [ ] T014 [P] Edit `README.md` root (line 809)

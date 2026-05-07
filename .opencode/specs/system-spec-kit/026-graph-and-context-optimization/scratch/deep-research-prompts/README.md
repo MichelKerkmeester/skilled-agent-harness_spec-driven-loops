@@ -95,9 +95,9 @@ Follow-ups: [open questions, proposed next spec-folder, implementation hooks]
 ## Source
 
 Based on:
-- `.opencode/skill/sk-deep-research/SKILL.md`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-research/references/convergence.md`
-- `.opencode/skill/sk-deep-research/references/quick_reference.md`
-- `.opencode/command/spec_kit/deep-research.md` + `assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/skill/sk-deep-review/` (for parallel structure — review ↔ research symmetry)
+- `.opencode/skills/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-research/references/convergence.md`
+- `.opencode/skills/sk-deep-research/references/quick_reference.md`
+- `.opencode/commands/spec_kit/deep-research.md` + `assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/skills/sk-deep-review/` (for parallel structure — review ↔ research symmetry)

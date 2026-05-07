@@ -42,18 +42,18 @@ V1 closed findings (already verified clean in run 2 — DO NOT re-flag):
 
 ## Scope files
 
-- .opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/README.md
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md
+- .opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/README.md
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md
 
 ## Convergence
 

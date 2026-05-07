@@ -94,34 +94,34 @@ Remove the entire vestigial readiness scaffolding mechanically. No new behavior.
 
 | File | Action | Lines (approx) |
 |------|--------|-----|
-| `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts` | Edit | -25 lines (flag + 3 functions) |
-| `.opencode/skill/system-spec-kit/mcp_server/core/index.ts` | Edit | -3 lines (re-exports) |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Edit | -15 lines (import + 2 call sites + comments) |
-| `.opencode/skill/system-spec-kit/mcp_server/api/indexing.ts` | Edit | remove warmup readiness marker |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts` | Edit | remove scheduler readiness wait |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts` (and dist .d.ts) | Edit | -2 lines (re-exports) |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts` | Edit | remove lazy handler readiness exports |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Edit | remove health dependency on deleted readiness flag |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts` | Edit | -2 lines (mocks) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts` | Edit | -4 lines (2 mock blocks) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts` | Edit | -4 lines (2 mock blocks) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts` | Edit | -2 lines (mocks) |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts` | Edit | -2 lines (mocks) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts` | Edit | -2 lines (mocks) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-constitutional-memory.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-embedding-semantic-search.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-4-stage-search-pipeline.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts` | Edit | remove readiness mocks/comment discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts` | Edit | -10 lines (T519-H2 + T519-H2b + mock list entry) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts` | Edit | varies (mock list entries) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts` | Edit | remove readiness setup calls, expectations, and suite |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts` | Edit | remove readiness export expectations |
+| `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts` | Edit | -25 lines (flag + 3 functions) |
+| `.opencode/skills/system-spec-kit/mcp_server/core/index.ts` | Edit | -3 lines (re-exports) |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Edit | -15 lines (import + 2 call sites + comments) |
+| `.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts` | Edit | remove warmup readiness marker |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts` | Edit | remove scheduler readiness wait |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts` (and dist .d.ts) | Edit | -2 lines (re-exports) |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts` | Edit | remove lazy handler readiness exports |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Edit | remove health dependency on deleted readiness flag |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts` | Edit | -2 lines (mocks) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts` | Edit | -4 lines (2 mock blocks) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts` | Edit | -4 lines (2 mock blocks) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts` | Edit | -2 lines (mocks) |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts` | Edit | -2 lines (mocks) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts` | Edit | -2 lines (mocks) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-constitutional-memory.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-embedding-semantic-search.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-4-stage-search-pipeline.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts` | Edit | remove readiness mocks/comment discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts` | Edit | -10 lines (T519-H2 + T519-H2b + mock list entry) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts` | Edit | varies (mock list entries) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts` | Edit | remove readiness setup calls, expectations, and suite |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts` | Edit | remove readiness mocks discovered by pre-flight grep |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts` | Edit | remove readiness export expectations |
 
 Pre-flight grep found these additional runtime and test references outside the original narrow list. They are included in scope because REQ-001 requires zero non-dist TypeScript references to the deleted readiness symbols.
 <!-- /ANCHOR:scope -->

@@ -59,7 +59,7 @@ Severity: High
 Category: Import Policy Violation
 Location: `scripts/evals/run-redaction-calibration.ts:75`
 Description: The script builds an absolute path to `mcp_server/dist/lib/extraction/redaction-gate.js` and then `require()`s it. Because the path is assembled dynamically, neither import-policy checker sees it. In this workspace the constructed path is also wrong.
-Evidence: The dynamic load is at `scripts/evals/run-redaction-calibration.ts:75-79`. A filesystem check showed `mcp_server/dist/lib/extraction/redaction-gate.js` is missing from the workspace root, while `.opencode/skill/system-spec-kit/mcp_server/dist/lib/extraction/redaction-gate.js` exists.
+Evidence: The dynamic load is at `scripts/evals/run-redaction-calibration.ts:75-79`. A filesystem check showed `mcp_server/dist/lib/extraction/redaction-gate.js` is missing from the workspace root, while `.opencode/skills/system-spec-kit/mcp_server/dist/lib/extraction/redaction-gate.js` exists.
 Impact: The script both violates the intended scripts->runtime boundary and fails at runtime in the current layout.
 Recommended Fix: Resolve the package root like the other eval scripts and consume the redaction gate through an allowed API surface or an explicit, governed allowlist entry.
 

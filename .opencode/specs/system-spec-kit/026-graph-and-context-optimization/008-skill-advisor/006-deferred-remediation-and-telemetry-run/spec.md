@@ -97,13 +97,13 @@ What we CANNOT close without live AI sessions: empirical proof that AIs skip SKI
 - Template the user can invoke inside a Claude Code / Codex / Gemini / Copilot session to:
   - Hook Read tool calls (or log from the advisor hook)
   - Emit `recordSmartRouterCompliance` per user prompt
-  - Accumulate JSONL in `.opencode/skill/.smart-router-telemetry/`
+  - Accumulate JSONL in `.opencode/skills/.smart-router-telemetry/`
 - Provide documentation showing how a user enables this in their settings for each runtime
 - No live execution in this phase — just the template + docs
 
 **Track 4 — Telemetry analysis report generator**
 - Script: `scripts/observability/smart-router-analyze.ts`
-- Reads `.opencode/skill/.smart-router-telemetry/compliance.jsonl`
+- Reads `.opencode/skills/.smart-router-telemetry/compliance.jsonl`
 - Aggregates: per-skill compliance-class distribution, over/under-load ratios, ON_DEMAND trigger rate, advisor accuracy (if ground-truth available)
 - Emits markdown report with decision-support data: "Should we enforce tier compliance? Based on N records, answer is..."
 
@@ -120,13 +120,13 @@ What we CANNOT close without live AI sessions: empirical proof that AIs skip SKI
 |-----------|--------|-------|
 | `.codex/settings.json` | Create | 1 |
 | `.codex/policy.json` | Create | 1 |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts` | Create | 2 |
-| `.opencode/skill/system-spec-kit/scripts/observability/live-session-wrapper.ts` | Create | 3 |
-| `.opencode/skill/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md` | Create | 3 docs |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze.ts` | Create | 4 |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts` | Create | 2 tests |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts` | Create | 4 tests |
-| measurement report output under `.opencode/skill/system-spec-kit/scripts/observability/` | Create | 2 output |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts` | Create | 2 |
+| `.opencode/skills/system-spec-kit/scripts/observability/live-session-wrapper.ts` | Create | 3 |
+| `.opencode/skills/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md` | Create | 3 docs |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze.ts` | Create | 4 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts` | Create | 2 tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts` | Create | 4 tests |
+| measurement report output under `.opencode/skills/system-spec-kit/scripts/observability/` | Create | 2 output |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -245,6 +245,6 @@ What we CANNOT close without live AI sessions: empirical proof that AIs skip SKI
 - Research inputs:
   - `../004-smart-router-context-efficacy/001-initial-research/research/research.md` (V4/V7 open)
   - `../004-smart-router-context-efficacy/002-skill-md-intent-router-efficacy/research/research.md` (V3/V4/V5/V9 open)
-- Reference doc: `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
-- Telemetry primitive: `.opencode/skill/system-spec-kit/scripts/observability/smart-router-telemetry.ts` (023 Area E)
+- Reference doc: `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- Telemetry primitive: `.opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts` (023 Area E)
 - Corpus: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening/001-initial-research/005-routing-accuracy/research/019-system-hardening-pt-03/corpus/labeled-prompts.jsonl`

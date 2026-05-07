@@ -16,7 +16,7 @@ Pin file:line for every "validation auto-fires" claim across the codebase. Speci
 
 1. Does `validate.sh --strict` auto-fire on PostToolUse for spec doc edits in any runtime hook config (Claude / Codex / Copilot / Gemini / OpenCode)?
 2. Does `generate-context.js` auto-fire after spec edits, or only when `/memory:save` is invoked?
-3. Are there any hooks under `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/` or `.opencode/hooks/` or per-runtime config dirs that fire validation OR context generation automatically?
+3. Are there any hooks under `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/` or `.opencode/hooks/` or per-runtime config dirs that fire validation OR context generation automatically?
 4. Are there any background daemons / file watchers / cron paths that re-validate spec docs on change?
 5. What gets re-indexed on memory_save / generate-context.js — and is THAT auto-triggered?
 
@@ -29,15 +29,15 @@ For each finding:
 
 ### Source files to read (representative)
 
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` (and source `.ts`)
-- `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/`
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` (and source `.ts`)
+- `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/`
 - `.opencode/hooks/` (if present)
 - `.claude/settings.local.json`, `.claude/settings.json`
 - `.codex/settings.json`, `.codex/hooks.json` (if present)
 - `.opencode/opencode.json` (hooks config)
 - `.gemini/settings.json` (if hook config exists)
-- Any docs in `.opencode/skill/system-spec-kit/references/hooks/` or `references/config/`
+- Any docs in `.opencode/skills/system-spec-kit/references/hooks/` or `references/config/`
 - CLAUDE.md, AGENTS.md, SKILL.md (search for "auto-validate" / "auto-fires" / "auto-reindex" claims)
 
 ### Constraints

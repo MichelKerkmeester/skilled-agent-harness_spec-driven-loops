@@ -4,33 +4,33 @@
 
 ### [P1] Active projection failures are downgraded to best-effort, so committed rows can disappear from all normal reads
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
 
 **Issue**
 The mutation layer treats `active_memory_projection` updates as optional in both the insert/update path and the deferred-indexing path. If the base `memory_index` row is written successfully but projection maintenance fails, the function still returns success. Most read paths in the store only surface rows that join through `active_memory_projection`, so this creates a silent "committed but unreadable" state.
 
 **Evidence**
-`index_memory()` updates an existing row via `update_memory()` and then performs `upsert_active_projection()` outside that transaction, swallowing any error at lines 173-193. The insert path also catches and ignores projection failures inside the transaction at lines 217-221. `index_memory_deferred()` is not transactional at all and likewise ignores projection failures after both `UPDATE` and `INSERT` at lines 276-323. On the read side, the store’s prepared statements and counts all join `active_memory_projection` at `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:395-438`, so a missing projection row makes the memory effectively vanish from normal list/count/search surfaces.
+`index_memory()` updates an existing row via `update_memory()` and then performs `upsert_active_projection()` outside that transaction, swallowing any error at lines 173-193. The insert path also catches and ignores projection failures inside the transaction at lines 217-221. `index_memory_deferred()` is not transactional at all and likewise ignores projection failures after both `UPDATE` and `INSERT` at lines 276-323. On the read side, the store’s prepared statements and counts all join `active_memory_projection` at `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:395-438`, so a missing projection row makes the memory effectively vanish from normal list/count/search surfaces.
 
 **Fix**
 Make projection maintenance part of the required mutation contract. Run the base row write and `upsert_active_projection()` in the same transaction, and let any projection failure abort the mutation. If legacy databases must be supported, detect missing lineage tables once during initialization and gate the feature there instead of swallowing per-write failures.
 
 ### [P1] `SQLiteVectorStore` can switch another store instance onto the wrong database under concurrent use
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
 
 **Issue**
 The module keeps the active database handle in process-global variables (`db`, `db_path`, `sqlite_vec_available_flag`). A `SQLiteVectorStore` instance only pins its custom path during `_ensureInitialized()`. After that, its methods delegate to helpers that reopen the "current" global connection instead of the instance’s configured path. Two store instances using different database paths can therefore interleave and read/write the wrong database.
 
 **Evidence**
-The active connection is global at lines 308-321. `initialize_db()` immediately returns the global `db` when one is already active and no explicit `custom_path` is supplied at lines 598-610. The store instance only calls `initialize_db(this.dbPath)` once in `_ensureInitialized()` at lines 742-745, but later `upsert()` calls `index_memory()` at lines 800-844 and `delete()` calls `delete_memory()` at lines 856-859; those mutation helpers in `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts` reopen the database with plain `initialize_db()` at lines 131, 248, 340, 472, 542, and 584. That means whichever store most recently changed the global active connection wins.
+The active connection is global at lines 308-321. `initialize_db()` immediately returns the global `db` when one is already active and no explicit `custom_path` is supplied at lines 598-610. The store instance only calls `initialize_db(this.dbPath)` once in `_ensureInitialized()` at lines 742-745, but later `upsert()` calls `index_memory()` at lines 800-844 and `delete()` calls `delete_memory()` at lines 856-859; those mutation helpers in `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts` reopen the database with plain `initialize_db()` at lines 131, 248, 340, 472, 542, and 584. That means whichever store most recently changed the global active connection wins.
 
 **Fix**
 Stop routing mutations and queries through a mutable global connection. Thread an explicit `Database.Database` handle or explicit resolved database path through the store methods and helper APIs, or make each `SQLiteVectorStore` own an immutable connection object for its lifetime.
 
 ### [P1] Startup recovery can replay multiple pending files for the same target in arbitrary order and overwrite newer content
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts`
 
 **Issue**
 The recovery path accepts unique-suffixed pending files for the same logical target, but recovery processes them one-by-one in filesystem enumeration order with no grouping or winner selection. If two failed saves exist for the same original path, startup recovery can rename one into place and then rename an older sibling over it.
@@ -43,7 +43,7 @@ Group pending files by `originalPath` before recovery, sort each group by a dete
 
 ### [P2] `executeAtomicSave()` still exposes a split-brain window where the DB commits but the file never reaches its final path
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts`
 
 **Issue**
 The helper is documented as an atomic file-plus-database save, but it cannot roll back the database once the callback succeeds. If the rename fails after the DB mutation commits, the caller gets `success: false` plus `dbCommitted: true`, but the system is left in a partial state until a later recovery pass repairs it.
@@ -56,7 +56,7 @@ Either narrow the contract so the helper is clearly "best-effort with recovery" 
 
 ### [P2] Delete paths intentionally commit even when secondary vector cleanup fails
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
 
 **Issue**
 The delete flows treat failures in `vec_memories` cleanup as warnings, then continue deleting the primary `memory_index` row and return success. That creates an avoidable partial delete inside the same SQLite database: the metadata row is gone, but orphaned vector rows remain behind.

@@ -19,12 +19,12 @@ _memory:
     next_safe_action: "All phases complete; user runs final validate + commit"
     blockers: []
     key_files:
-      - .opencode/agent/code.md
-      - .opencode/agent/orchestrate.md
-      - .opencode/agent/review.md
-      - .opencode/agent/write.md
-      - .opencode/skill/sk-code/SKILL.md
-      - .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+      - .opencode/agents/code.md
+      - .opencode/agents/orchestrate.md
+      - .opencode/agents/review.md
+      - .opencode/agents/write.md
+      - .opencode/skills/sk-code/SKILL.md
+      - .opencode/skills/system-spec-kit/scripts/spec/validate.sh
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-01-spec-scaffold"
@@ -46,10 +46,10 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-This packet creates `.opencode/agent/code.md` — a write-capable, stack-agnostic LEAF sub-agent that delegates stack detection to `sk-code` and is dispatched only by `@orchestrate` via convention-floor caller restriction. Three phases:
+This packet creates `.opencode/agents/code.md` — a write-capable, stack-agnostic LEAF sub-agent that delegates stack detection to `sk-code` and is dispatched only by `@orchestrate` via convention-floor caller restriction. Three phases:
 
 1. **Spec scaffolding** — author all Level-3 spec docs; register child 059 with parent 022 phase-parent; validate.
-2. **Research dispatch** — three parallel deep-research streams covering external orchestrators (`oh-my-opencode-slim`, `opencode-swarm-main`) and our own `.opencode/agent/` inventory. Outcome: `research/synthesis.md` with finalized D3 mechanism + canonical `code.md` skeleton.
+2. **Research dispatch** — three parallel deep-research streams covering external orchestrators (`oh-my-opencode-slim`, `opencode-swarm-main`) and our own `.opencode/agents/` inventory. Outcome: `research/synthesis.md` with finalized D3 mechanism + canonical `code.md` skeleton.
 3. **Synthesis + implementation** — author `code.md`, update orchestrate.md routing, sync AGENTS.md triad, smoke-test, validate, save.
 
 ---
@@ -92,7 +92,7 @@ The interaction shape is:
 ```
 user / external trigger
   └─→ @orchestrate (depth 0, primary)
-        └─→ Task { subagent_type: "general", agent_def: ".opencode/agent/code.md", prompt: "...Depth: 1..." }
+        └─→ Task { subagent_type: "general", agent_def: ".opencode/agents/code.md", prompt: "...Depth: 1..." }
               └─→ @code (depth 1, LEAF, mode: subagent, task: deny)
                     ├─ §0 DISPATCH GATE checks for "Depth: 1" marker
                     ├─ §1 RECEIVE → READ PACKET → INVOKE sk-code → IMPLEMENT → VERIFY → RETURN
@@ -122,7 +122,7 @@ Three parallel streams, all using `cli-codex` with `gpt-5.5 high fast` (initial 
 |--------|--------|--------------|
 | **01** | `.opencode/specs/z_future/improved-agent-orchestration/external/oh-my-opencode-slim/` | Skill auto-loading patterns; caller-restriction mechanisms; write-capable safety; dispatch contracts |
 | **02** | `.opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/` | Architect-led swarm patterns; harness-level worker boundary; verification handoff; failure modes |
-| **03** | `.opencode/agent/` (our own) | Existing 10 agents + governance; identify caller-restriction precedent; recommend final body structure + routing-table diff |
+| **03** | `.opencode/agents/` (our own) | Existing 10 agents + governance; identify caller-restriction precedent; recommend final body structure + routing-table diff |
 
 Dispatch mechanics: each stream ran inside its own background general-purpose sub-agent, executing the YAML `phase_init` + `phase_loop` against its stream subfolder. Convergence detection allowed early termination per stream (max 8 iters; actual stops at 4, 5, 5).
 
@@ -132,8 +132,8 @@ Cross-stream synthesis written to `research/synthesis.md` reconciling sources an
 
 1. `research/synthesis.md` authored with consensus-per-question table, headline insights, finalized D3 diff text, canonical `code.md` skeleton, Phase 3 task order.
 2. `decision-record.md` ADR-3 (D3) updated to Accepted (post-research) with convention-floor mechanism + cross-stream citations.
-3. `.opencode/agent/code.md` authored: frontmatter per ADR-2; §0 dispatch gate + §0 illegal nesting + §1 6-step workflow + §2 scope boundaries + §3 escalation contract.
-4. `.opencode/agent/orchestrate.md` updated: §2 routing-table row 6 replaced with `@code`; LEAF list updated; Agent Files extended.
+3. `.opencode/agents/code.md` authored: frontmatter per ADR-2; §0 dispatch gate + §0 illegal nesting + §1 6-step workflow + §2 scope boundaries + §3 escalation contract.
+4. `.opencode/agents/orchestrate.md` updated: §2 routing-table row 6 replaced with `@code`; LEAF list updated; Agent Files extended.
 5. AGENTS.md sibling triad synced: canonical `AGENTS.md` + `AGENTS_Barter.md` carry the new `@code` description.
 6. Smoke-test prompts documented in `implementation-summary.md` §Verification (T032 orchestrator dispatch + T033 direct-call refusal); live behavioral execution requires post-merge orchestrator dispatch.
 7. Final strict validate executed; remaining strict-validate findings documented as known limitations (pre-existing template-conformance gaps from Phase 1, NOT introduced by Phase 3).
@@ -151,7 +151,7 @@ Cross-stream synthesis written to `research/synthesis.md` reconciling sources an
 Three classes of test cover this packet:
 
 **A. Static validation (run during Phase 1 and Phase 3):**
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict`
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict`
 - Expected outcome: exit 0 (in scope) OR documented known-limitation drift (strict-validate quirks pre-existing from Phase 1 spec docs).
 
 **B. Smoke tests (Phase 3, T032/T033 — live behavioral):**
@@ -178,23 +178,23 @@ Live behavioral tests are documented but require a post-merge fresh session (can
 - `specs/skilled-agent-orchestration/059-agent-implement-code/research/synthesis.md`
 - `specs/skilled-agent-orchestration/059-agent-implement-code/research/stream-{01,02,03}-…/research.md` + state packets
 - `specs/skilled-agent-orchestration/022-mcp-coco-integration/context-index.md` (parent-level transition note)
-- `.opencode/agent/code.md` (the agent file)
+- `.opencode/agents/code.md` (the agent file)
 
 **To modify (existing files):**
-- `.opencode/agent/orchestrate.md` — §2 routing table + LEAF list + Agent Files
+- `.opencode/agents/orchestrate.md` — §2 routing table + LEAF list + Agent Files
 - `AGENTS.md` (canonical) — §5 Agent Routing
 - `AGENTS_Barter.md` (Barter symlink) — §5 Agent Routing
 - `specs/skilled-agent-orchestration/022-mcp-coco-integration/{description,graph-metadata}.json`
 
 **To reuse (read-only references):**
-- `.opencode/agent/review.md` — primary template (frontmatter shape, body structure, §0 ILLEGAL NESTING block)
-- `.opencode/agent/write.md` — closest write-capable LEAF analog (path-boundary body prose pattern)
-- `.opencode/agent/orchestrate.md` — dispatch contract pattern + §2 NDP `Depth: 1` marker
-- `.opencode/skill/sk-code/SKILL.md` — invocation contract; stack detection
-- `.opencode/skill/cli-opencode/SKILL.md` — convention-floor caller-restriction precedent (D3)
-- `.opencode/skill/system-spec-kit/templates/level_3/` — Level 3 templates
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` — strict validator
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` — full canonical save script
+- `.opencode/agents/review.md` — primary template (frontmatter shape, body structure, §0 ILLEGAL NESTING block)
+- `.opencode/agents/write.md` — closest write-capable LEAF analog (path-boundary body prose pattern)
+- `.opencode/agents/orchestrate.md` — dispatch contract pattern + §2 NDP `Depth: 1` marker
+- `.opencode/skills/sk-code/SKILL.md` — invocation contract; stack detection
+- `.opencode/skills/cli-opencode/SKILL.md` — convention-floor caller-restriction precedent (D3)
+- `.opencode/skills/system-spec-kit/templates/level_3/` — Level 3 templates
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` — strict validator
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` — full canonical save script
 
 **External (research sources, read-only):**
 - `.opencode/specs/z_future/improved-agent-orchestration/external/oh-my-opencode-slim/`
@@ -210,16 +210,16 @@ Live behavioral tests are documented but require a post-merge fresh session (can
 If `@code` proves problematic in production (unexpected harness behavior, regression in `@orchestrate` routing, etc.), rollback is straightforward because the packet is additive and convention-based:
 
 1. **Hard rollback (full revert):**
-   - `git revert <commit>` — undoes the `.opencode/agent/code.md` creation, the `orchestrate.md` row swap, and the AGENTS.md triad sync as a single reversal.
+   - `git revert <commit>` — undoes the `.opencode/agents/code.md` creation, the `orchestrate.md` row swap, and the AGENTS.md triad sync as a single reversal.
    - Verification: `@orchestrate` falls back to its prior implementation routing (whatever was at row 6 before — historically `@general`).
 
 2. **Soft rollback (keep `code.md`, disable routing):**
    - Restore the prior `@general` row in `orchestrate.md` §2 routing table.
    - Remove the `@code` row from `AGENTS.md` + `AGENTS_Barter.md`.
-   - Leave `.opencode/agent/code.md` in place (orphaned but harmless; nothing dispatches to it without the routing table entry + orchestrator-side selection).
+   - Leave `.opencode/agents/code.md` in place (orphaned but harmless; nothing dispatches to it without the routing table entry + orchestrator-side selection).
 
 3. **Tightening rollback (keep `@code`, restrict scope):**
-   - Edit `.opencode/agent/code.md` §2 to add a tighter scope boundary (e.g., specific allowed-paths regex) without reverting the rest.
+   - Edit `.opencode/agents/code.md` §2 to add a tighter scope boundary (e.g., specific allowed-paths regex) without reverting the rest.
    - Document the tightening in a follow-on packet's decision-record.
 
 4. **D3 mechanism rollback (if convention-floor proves insufficient):**
@@ -248,7 +248,7 @@ The `decision-record.md` provides full ADR rationale for each design choice; con
 - `research/synthesis.md` authored with finalized D3 diff text + canonical `code.md` skeleton
 
 **Phase 3 done when:**
-- `.opencode/agent/code.md` exists with ADR-2 frontmatter + body sections
+- `.opencode/agents/code.md` exists with ADR-2 frontmatter + body sections
 - `orchestrate.md` §2 routing table includes `@code` row
 - AGENTS.md triad updated
 - ADR-3 (D3) finalized

@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -44,31 +44,31 @@ The deep-research path migration is now landed across the repo surfaces touched 
 ### Command, Skill, and Runtime Contract
 
 - Deep-research command and skill docs were updated to the canonical packet contract:
-  - `.opencode/command/spec_kit/deep-research.md`
-  - `.opencode/skill/sk-deep-research/SKILL.md`
-  - `.opencode/skill/sk-deep-research/README.md`
-  - `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-  - `.opencode/skill/sk-deep-research/references/state_format.md`
-  - `.opencode/skill/sk-deep-research/references/quick_reference.md`
-  - manual playbook files under `.opencode/skill/sk-deep-research/manual_testing_playbook/`
-- Runtime parity fixes landed on the touched agent-guidance surfaces, including `.opencode/agent/speckit.md` and `.claude/agents/speckit.md`.
+  - `.opencode/commands/spec_kit/deep-research.md`
+  - `.opencode/skills/sk-deep-research/SKILL.md`
+  - `.opencode/skills/sk-deep-research/README.md`
+  - `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+  - `.opencode/skills/sk-deep-research/references/state_format.md`
+  - `.opencode/skills/sk-deep-research/references/quick_reference.md`
+  - manual playbook files under `.opencode/skills/sk-deep-research/manual_testing_playbook/`
+- Runtime parity fixes landed on the touched agent-guidance surfaces, including `.opencode/agents/speckit.md` and `.claude/agents/speckit.md`.
 - The `.agents` parity follow-up also landed:
   - `.agents/commands/spec_kit/plan.toml`
   - `.agents/commands/spec_kit/complete.toml`
   - `.agents/commands/spec_kit/phase.toml`
   - `.agents/workflows/spec_kit_research.md`
 - Those `.agents` surfaces were aligned away from stale `/spec_kit:research` and `@research` references and now point at `/spec_kit:deep-research`, `@deep-research`, and the canonical OpenCode deep-research command entrypoint.
-- Final release housekeeping also landed for the skill package: `.opencode/skill/sk-deep-research/SKILL.md` is now version `1.2.2.0`, and `.opencode/changelog/12--sk-deep-research/v1.2.2.0.md` was added to record this migration release.
+- Final release housekeeping also landed for the skill package: `.opencode/skills/sk-deep-research/SKILL.md` is now version `1.2.2.0`, and `.opencode/changelog/12--sk-deep-research/v1.2.2.0.md` was added to record this migration release.
 
 ### Helper Logic and Migration Support
 
 - Path-sensitive helper logic was updated in:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`
-  - `.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts`
-  - `.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts`
-  - `.opencode/skill/system-spec-kit/scripts/migrate-deep-research-paths.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`
+  - `.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts`
+  - `.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts`
+  - `.opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts`
 - Supporting `system-spec-kit` docs, examples, and fixtures were updated so touched first-party references now match the landed packet contract.
 - A post-closeout representative migrated-packet check exposed a migration-utility regression where same-packet research references were being rewritten into a duplicated nested form. The source utility was then fixed so it collapses same-packet duplicate research-path references for bare and dot-relative forms, and only rewrites safe bare or packet-relative research-document references instead of broadly mutating arbitrary paths that happen to end with the same filename.
 
@@ -121,16 +121,16 @@ The migration landed in four coordinated tracks. First, command and skill surfac
 
 | Check | Result |
 |-------|--------|
-| `npm run --workspaces=false build` in `.opencode/skill/system-spec-kit` | PASS, including the rerun after the migration-utility fix |
-| `npm run --workspaces=false typecheck` in `.opencode/skill/system-spec-kit` | PASS |
-| `npm run --workspaces=false test:cli` in `.opencode/skill/system-spec-kit` | PASS |
-| `npm run test:core -- tests/folder-scoring.vitest.ts tests/full-spec-doc-indexing.vitest.ts tests/memory-types.vitest.ts tests/artifact-routing.vitest.ts` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
-| `node scripts/tests/test-phase-command-workflows.js` in `.opencode/skill/system-spec-kit` | PASS, now 72/72 |
+| `npm run --workspaces=false build` in `.opencode/skills/system-spec-kit` | PASS, including the rerun after the migration-utility fix |
+| `npm run --workspaces=false typecheck` in `.opencode/skills/system-spec-kit` | PASS |
+| `npm run --workspaces=false test:cli` in `.opencode/skills/system-spec-kit` | PASS |
+| `npm run test:core -- tests/folder-scoring.vitest.ts tests/full-spec-doc-indexing.vitest.ts tests/memory-types.vitest.ts tests/artifact-routing.vitest.ts` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
+| `node scripts/tests/test-phase-command-workflows.js` in `.opencode/skills/system-spec-kit` | PASS, now 72/72 |
 | Initial migration utility run over `.opencode/specs` | PASS with `Moved files: 0`, `Rewritten text files: 347`, `Skipped conflicts: 0` |
 | Migration utility rerun after the rewrite fix | PASS with `Moved files: 0`, `Rewritten text files: 300`, `Skipped conflicts: 0` |
 | Post-migration corpus sweeps | PASS with zero residual root research docs outside canonical packet roots, zero legacy `scratch/iteration-*`, and zero direct legacy `review/iteration-*` |
 | Representative migrated-packet strict validation | PASS for `023-esm-module-compliance` with `0` errors and `0` warnings |
-| Strict validation for this packet | PASS via `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`, including the post-closeout resync |
+| Strict validation for this packet | PASS via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`, including the post-closeout resync |
 | Full disposable live `/spec_kit:deep-research` or review-mode smoke | NOT RUN IN THIS SESSION |
 <!-- /ANCHOR:verification -->
 

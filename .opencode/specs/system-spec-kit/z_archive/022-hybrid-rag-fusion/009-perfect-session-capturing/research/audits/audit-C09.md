@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-8f23-7d22-b9b9-a54eb8ea534d
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts (478 lines).
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts (478 lines).
 
 This file extracts session metadata: tool counts, context type, importance tier, project phase, session ID.
 
@@ -56,10 +56,10 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m going to audit that file line-by-line now, starting by loading the full 478-line source with line numbers in chunks so I can cite exact issues accurately. After that I’ll map findings to your six focus areas and report each one in your exact format.
 exec
-/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts' | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-     479 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
+/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts' | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+     479 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
  succeeded in 51ms:
    261	          const normalizedTool = tool.toLowerCase();
    262	          if (
@@ -105,77 +105,77 @@ exec
 codex
 I’ve read the full file (it is actually 479 lines in this checkout, not 478) and I’m now cross-checking how tool events are represented elsewhere so I can verify whether the tool list here is complete or missing types.
 exec
-/bin/zsh -lc "rg -n \"tool names|WebFetch|WebSearch|MultiEdit|Notebook|mcp|memory_\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"tool:\\s*[A-Za-z_]+|\\b(Read|Edit|Write|Bash|Grep|Glob|Task|WebFetch|WebSearch|Skill)\\b\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"countToolsByType|ToolCounts|contextType|importanceTier|projectPhase\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"tool names|WebFetch|WebSearch|MultiEdit|Notebook|mcp|memory_\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"tool:\\s*[A-Za-z_]+|\\b(Read|Edit|Write|Bash|Grep|Glob|Task|WebFetch|WebSearch|Skill)\\b\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"countToolsByType|ToolCounts|contextType|importanceTier|projectPhase\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 Total output lines: 303
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/scripts-registry.json:37:        "mcp_server/lib/search/vector-index.ts",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/scripts-registry.json:38:        "mcp_server/handlers/memory-index.ts"
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/check-api-boundary.sh:5:# Enforce one-way API boundary: mcp_server/lib/ must NEVER import
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/check-api-boundary.sh:6:# from mcp_server/api/. The api/ directory is a stable public
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/check-api-boundary.sh:16:MCP_DIR="$(dirname "$SCRIPT_DIR")/mcp_server"
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:22:  memory_id: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:78:    console.log('\n[Step 1] Finding orphaned memory_history entries...');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:83:        SELECT h.memory_id
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:84:        FROM memory_history h
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:85:        LEFT JOIN memory_index m ON h.memory_id = m.id
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:99:        console.warn('memory_history discovery warning:', errMsg);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:107:      LEFT JOIN memory_index m ON v.rowid = m.id
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:135:          const deleteHistoryStmt = database.prepare('DELETE FROM memory_history WHERE memory_id = ?');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:136:          for (const { memory_id } of orphanedHistory) {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:137:            deleteHistoryStmt.run(memory_id);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:161:    const memoryCount: CountResult = database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as CountResult;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:166:      historyCount = database.prepare('SELECT COUNT(*) as count FROM memory_history').get() as CountResult;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/setup/rebuild-native-modules.sh:21:# Step 1: Rebuild better-sqlite3 (mcp_server)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/scripts-registry.json:37:        "mcp_server/lib/search/vector-index.ts",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/scripts-registry.json:38:        "mcp_server/handlers/memory-index.ts"
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/check-api-boundary.sh:5:# Enforce one-way API boundary: mcp_server/lib/ must NEVER import
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/check-api-boundary.sh:6:# from mcp_server/api/. The api/ directory is a stable public
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/check-api-boundary.sh:16:MCP_DIR="$(dirname "$SCRIPT_DIR")/mcp_server"
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:22:  memory_id: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:78:    console.log('\n[Step 1] Finding orphaned memory_history entries...');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:83:        SELECT h.memory_id
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:84:        FROM memory_history h
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:85:        LEFT JOIN memory_index m ON h.memory_id = m.id
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:99:        console.warn('memory_history discovery warning:', errMsg);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:107:      LEFT JOIN memory_index m ON v.rowid = m.id
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:135:          const deleteHistoryStmt = database.prepare('DELETE FROM memory_history WHERE memory_id = ?');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:136:          for (const { memory_id } of orphanedHistory) {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:137:            deleteHistoryStmt.run(memory_id);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:161:    const memoryCount: CountResult = database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as CountResult;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:166:      historyCount = database.prepare('SELECT COUNT(*) as count FROM memory_history').get() as CountResult;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh:21:# Step 1: Rebuild better-sqlite3 (mcp_server)
  succeeded in 50ms:
 Total output lines: 554
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts:143:type AfterToolCallback = (tool: string, callId: string, result: unknown) => Promise<void>;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts:167:function runAfterToolCallbacks(tool: string, callId: string, result: unknown): void {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/README.md:62:- **5-channel hybrid search** (Vector, FTS5, BM25, Skill Graph, Degree) finds what you mean, not what you typed
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/README.md:454:| Skill Graph| Causal edge graph traversal       | 1.5x   | Graph-aware relevance                        |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/README.md:981:| Intent-aware context             | `memory_context({ input: "...", intent: "fix_bug" })`           | Task-specific context                     |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/README.md:1167:| Skill README     | `../README.md`                                | Complete skill documentation        |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts:4:// Dispatch for L1 Orchestration tool: memory_context (T303).
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:434:      tool: toolName,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:450:      tool: toolName,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:981:| **Current Task** | ${currentTask || 'N/A'} |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/SKILL.md:4:allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/SKILL.md:367:| Task                 | LOC Est. | Level | Rationale                      |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/SKILL.md:467:- **NEVER:** Create memory files manually via Write/Edit (AGENTS.md Memory Save Rule)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/SKILL.md:657:   - Read all existing spec files (spec.md, plan.md, tasks.md, implementation-summary.md) for context
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/SKILL.md:694:- [ ] Context saved via `generate-context.js` script (NEVER manual Write/Edit)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/SKILL.md:736:### Cross-Skill Workflows
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/SKILL.md:764:| Direction      | Skill                   | Integration                                           |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:56:// Read version from package.json at module load time (CJS __dirname is available)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts:143:type AfterToolCallback = (tool: string, callId: string, result: unknown) => Promise<void>;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts:167:function runAfterToolCallbacks(tool: string, callId: string, result: unknown): void {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/README.md:62:- **5-channel hybrid search** (Vector, FTS5, BM25, Skill Graph, Degree) finds what you mean, not what you typed
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/README.md:454:| Skill Graph| Causal edge graph traversal       | 1.5x   | Graph-aware relevance                        |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/README.md:981:| Intent-aware context             | `memory_context({ input: "...", intent: "fix_bug" })`           | Task-specific context                     |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/README.md:1167:| Skill README     | `../README.md`                                | Complete skill documentation        |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts:4:// Dispatch for L1 Orchestration tool: memory_context (T303).
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:434:      tool: toolName,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:450:      tool: toolName,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:981:| **Current Task** | ${currentTask || 'N/A'} |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/SKILL.md:4:allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/SKILL.md:367:| Task                 | LOC Est. | Level | Rationale                      |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/SKILL.md:467:- **NEVER:** Create memory files manually via Write/Edit (AGENTS.md Memory Save Rule)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/SKILL.md:657:   - Read all existing spec files (spec.md, plan.md, tasks.md, implementation-summary.md) for context
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/SKILL.md:694:- [ ] Context saved via `generate-context.js` script (NEVER manual Write/Edit)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/SKILL.md:736:### Cross-Skill Workflows
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/SKILL.md:764:| Direction      | Skill                   | Integration                                           |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:56:// Read version from package.json at module load time (CJS __dirname is available)
  succeeded in 50ms:
 Total output lines: 568
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:22:  importanceTier?: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:56:const importanceTierEnum = z.enum([
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:95:  tier: importanceTierEnum.optional(),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:96:  contextType: z.string().optional(),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:166:  importanceTier: importanceTierEnum.optional(),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:184:  tier: importanceTierEnum,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:355:  memory_search: ['query', 'concepts', 'specFolder', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace'],
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:362:  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/README.md:51:**Shared validators** -- Reusable building blocks (`positiveInt`, `positiveIntMax`, `boundedNumber`, `intentEnum`, `importanceTierEnum`, `relationEnum`) keep per-tool schema definitions concise.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:64:  contextType?: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:111:  importanceTier?: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/handover.md:10:contextType: "general"
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/utils/validators.ts:19:  contextType: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/utils/validators.ts:30:  contextType?: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/utils/validators.ts:48:  contextType: 100,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/utils/validators.ts:97:    ['contextType', INPUT_LIMITS.contextType],
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:89:      context_type: parsed.contextType,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:90:      importance_tier: parsed.importanceTier,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:22:  importanceTier?: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:56:const importanceTierEnum = z.enum([
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:95:  tier: importanceTierEnum.optional(),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:96:  contextType: z.string().optional(),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:166:  importanceTier: importanceTierEnum.optional(),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:184:  tier: importanceTierEnum,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:355:  memory_search: ['query', 'concepts', 'specFolder', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace'],
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:362:  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/README.md:51:**Shared validators** -- Reusable building blocks (`positiveInt`, `positiveIntMax`, `boundedNumber`, `intentEnum`, `importanceTierEnum`, `relationEnum`) keep per-tool schema definitions concise.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:64:  contextType?: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:111:  importanceTier?: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/handover.md:10:contextType: "general"
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/utils/validators.ts:19:  contextType: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/utils/validators.ts:30:  contextType?: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/utils/validators.ts:48:  contextType: 100,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/utils/validators.ts:97:    ['contextType', INPUT_LIMITS.contextType],
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:89:      context_type: parsed.contextType,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:90:      importance_tier: parsed.importanceTier,
 codex
 I’m now validating this extractor against nearby canonical logic (`tool-detection`, `entity-scope`, and config thresholds) so findings are grounded in project expectations rather than generic style feedback.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/entity-scope.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/config/config.jsonc' | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/entity-scope.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/config/config.jsonc' | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Tool Detection
      3	// ---------------------------------------------------------------
@@ -241,9 +241,9 @@ exec
 codex
 I’ve found adjacent canonical logic and config; next I’m checking the existing tests around this extractor to confirm intended edge-case behavior (especially null/empty inputs and phase/context mapping).
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js' | sed -n '1080,1225p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js' | sed -n '1420,1525p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js' | sed -n '1940,2035p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js' | sed -n '1080,1225p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js' | sed -n '1420,1525p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js' | sed -n '1940,2035p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
   1420	    } else {
   1421	      fail('T-022b: getChannel returns string', typeof channel);
   1422	    }
@@ -307,8 +307,8 @@ exec
   1958	    } else {
   1959	      fail('T-027t: calculateExpiryEpoch returns 7 days for temporary', `Got ${tempExpiry}, expected ${expectedTemp}`);
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '320,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '320,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    320	  }
    321	
    322	  if (deltaUncert > 20) {
@@ -351,8 +351,8 @@ exec
     19	  buildProjectStateSnapshot,
     20	  calculateSessionDuration,
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '281,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '281,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Opencode Capture
      3	// ---------------------------------------------------------------
@@ -395,7 +395,7 @@ exec
    299	        messages.push({
    300	          id: msg.id as string,
 exec
-/bin/zsh -lc "rg -n \"messageCount|detectSessionCharacteristics|buildProjectStateSnapshot|countToolsByType\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg -n \"messageCount|detectSessionCharacteristics|buildProjectStateSnapshot|countToolsByType\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 18:  detectSessionCharacteristics,
 19:  buildProjectStateSnapshot,
 366:  messageCount: number
@@ -413,7 +413,7 @@ exec
 747:      messageCount,
 786:    MESSAGE_COUNT: messageCount,
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '640,770p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '640,770p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    640	        relative !== '..' &&
    641	        !relative.startsWith('../') &&
    642	        !path.isAbsolute(relative)
@@ -439,7 +439,7 @@ Audited the file end-to-end (current checkout is **479** lines).
 Session ID check result: this file uses `crypto.randomBytes()` (secure), **not** `Math.random()`.
 
 ### FINDING-01: Tool Detection Uses Substring Matching (False Positives)
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):263
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):263
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Tool hits are detected with `includes("tool: read")` / `includes("read(")` style checks.
@@ -449,7 +449,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Repeated Tool Mentions in One Fact Are Undercounted
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):266
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):266
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** A fact containing multiple same-tool calls increments count once.
@@ -459,7 +459,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Tool Type List Is Hardcoded and Non-Exhaustive
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):252
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):252
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Only 10 hardcoded tool names are counted.
@@ -469,7 +469,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-04: Prompt Text Can Inflate Tool Usage Counts
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):272
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):272
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** User prompt text containing `ToolName(` increases counts even if tool was never executed.
@@ -479,7 +479,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Decision Context Is Lost When No Tools Were Used
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):152
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):152
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `total === 0` immediately returns `general`, even if `decisionCount > 0`.
@@ -489,7 +489,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-06: No-Tool Sessions (>=3 Messages) Fall Through to IMPLEMENTATION
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):181
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):181
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** With `total=0` and `messageCount>=3`, ratio checks evaluate with `0/0` (NaN), then default returns `IMPLEMENTATION`.
@@ -499,7 +499,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Feature+Write Heuristic Classifies as REVIEW (Likely Inverted)
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):192
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):192
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** `hasFeatures && writeTools > 0` returns `REVIEW`.
@@ -509,7 +509,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Critical Path Detection Is Path-Format Fragile
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):166
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):166
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Critical detection uses case-sensitive `includes('/core/')` style checks.
@@ -519,7 +519,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: Importance Tier Logic Is Overly Coarse
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):165
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):165
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Only `critical`, `important`, `normal` are produced.
@@ -529,7 +529,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Tool-Only Sessions Can Be Misclassified
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):251
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):251
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Tool counting relies on observation facts + prompt text; direct tool execution streams are not an input.
@@ -539,7 +539,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-11: 0/1-Message No-Tool Sessions Are Forced to RESEARCH
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):182
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):182
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** `total===0 && messageCount<3` always returns `RESEARCH`.
@@ -561,7 +561,7 @@ Audited the file end-to-end (current checkout is **479** lines).
 Session ID check result: this file uses `crypto.randomBytes()` (secure), **not** `Math.random()`.
 
 ### FINDING-01: Tool Detection Uses Substring Matching (False Positives)
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):263
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):263
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Tool hits are detected with `includes("tool: read")` / `includes("read(")` style checks.
@@ -571,7 +571,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Repeated Tool Mentions in One Fact Are Undercounted
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):266
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):266
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** A fact containing multiple same-tool calls increments count once.
@@ -581,7 +581,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Tool Type List Is Hardcoded and Non-Exhaustive
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):252
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):252
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Only 10 hardcoded tool names are counted.
@@ -591,7 +591,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-04: Prompt Text Can Inflate Tool Usage Counts
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):272
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):272
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** User prompt text containing `ToolName(` increases counts even if tool was never executed.
@@ -601,7 +601,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Decision Context Is Lost When No Tools Were Used
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):152
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):152
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `total === 0` immediately returns `general`, even if `decisionCount > 0`.
@@ -611,7 +611,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-06: No-Tool Sessions (>=3 Messages) Fall Through to IMPLEMENTATION
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):181
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):181
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** With `total=0` and `messageCount>=3`, ratio checks evaluate with `0/0` (NaN), then default returns `IMPLEMENTATION`.
@@ -621,7 +621,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Feature+Write Heuristic Classifies as REVIEW (Likely Inverted)
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):192
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):192
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** `hasFeatures && writeTools > 0` returns `REVIEW`.
@@ -631,7 +631,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Critical Path Detection Is Path-Format Fragile
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):166
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):166
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Critical detection uses case-sensitive `includes('/core/')` style checks.
@@ -641,7 +641,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: Importance Tier Logic Is Overly Coarse
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):165
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):165
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Only `critical`, `important`, `normal` are produced.
@@ -651,7 +651,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Tool-Only Sessions Can Be Misclassified
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):251
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):251
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Tool counting relies on observation facts + prompt text; direct tool execution streams are not an input.
@@ -661,7 +661,7 @@ Session ID check result: this file uses `crypto.randomBytes()` (secure), **not**
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-11: 0/1-Message No-Tool Sessions Are Forced to RESEARCH
-- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts):182
+- **File:** [session-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts):182
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** `total===0 && messageCount<3` always returns `RESEARCH`.

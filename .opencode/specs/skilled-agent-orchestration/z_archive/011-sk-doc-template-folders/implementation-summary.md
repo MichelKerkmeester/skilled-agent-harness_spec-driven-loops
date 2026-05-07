@@ -60,38 +60,38 @@ Updated all path references across 26 active files spanning sk-doc internals, co
 ### Files Updated — Path References (21 from original scope + 5 discovered)
 
 **sk-doc internal (7 files):**
-1. `.opencode/skill/sk-doc/SKILL.md` — 7 replacements across 6 locations
-2. .opencode/skill/sk-doc/references/quick_reference.md — 2 replacements + tree restructure
-3. .opencode/skill/sk-doc/references/core_standards.md — 4 replacements
-4. .opencode/skill/sk-doc/references/optimization.md — 3 replacements
-5. .opencode/skill/sk-doc/references/validation.md — 3 replacements
-6. .opencode/skill/sk-doc/references/workflows.md — 2 replacements
-7. .opencode/skill/sk-doc/references/skill_creation.md — 6 replacements + tree restructure
+1. `.opencode/skills/sk-doc/SKILL.md` — 7 replacements across 6 locations
+2. .opencode/skills/sk-doc/references/quick_reference.md — 2 replacements + tree restructure
+3. .opencode/skills/sk-doc/references/core_standards.md — 4 replacements
+4. .opencode/skills/sk-doc/references/optimization.md — 3 replacements
+5. .opencode/skills/sk-doc/references/validation.md — 3 replacements
+6. .opencode/skills/sk-doc/references/workflows.md — 2 replacements
+7. .opencode/skills/sk-doc/references/skill_creation.md — 6 replacements + tree restructure
 
 **Command system (12 files):**
-8. `.opencode/command/create/assets/create_skill_auto.yaml` — 3 replacements
-9. `.opencode/command/create/assets/create_skill_confirm.yaml` — 3 replacements
-10. `.opencode/command/create/assets/create_skill_reference_auto.yaml` — 2 replacements
-11. `.opencode/command/create/assets/create_skill_reference_confirm.yaml` — 2 replacements
-12. `.opencode/command/create/assets/create_agent_auto.yaml` — 1 replacement
-13. `.opencode/command/create/assets/create_agent_confirm.yaml` — 1 replacement
-14. `.opencode/command/create/assets/create_skill_asset_auto.yaml` — 2 replacements
-15. `.opencode/command/create/assets/create_skill_asset_confirm.yaml` — 2 replacements
-16. `.opencode/command/create/agent.md` — 2 replacements
-17. `.opencode/command/create/README.txt` — 2 replacements
-18. .opencode/command/create/skill_asset.md — 1 replacement
-19. .opencode/command/create/skill_reference.md — 1 replacement
+8. `.opencode/commands/create/assets/create_skill_auto.yaml` — 3 replacements
+9. `.opencode/commands/create/assets/create_skill_confirm.yaml` — 3 replacements
+10. `.opencode/commands/create/assets/create_skill_reference_auto.yaml` — 2 replacements
+11. `.opencode/commands/create/assets/create_skill_reference_confirm.yaml` — 2 replacements
+12. `.opencode/commands/create/assets/create_agent_auto.yaml` — 1 replacement
+13. `.opencode/commands/create/assets/create_agent_confirm.yaml` — 1 replacement
+14. `.opencode/commands/create/assets/create_skill_asset_auto.yaml` — 2 replacements
+15. `.opencode/commands/create/assets/create_skill_asset_confirm.yaml` — 2 replacements
+16. `.opencode/commands/create/agent.md` — 2 replacements
+17. `.opencode/commands/create/README.txt` — 2 replacements
+18. .opencode/commands/create/skill_asset.md — 1 replacement
+19. .opencode/commands/create/skill_reference.md — 1 replacement
 
 **Template self-references (2 files):**
-20. `.opencode/skill/sk-doc/assets/agents/agent_template.md` — 2 replacements
-21. `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` — 1 replacement
+20. `.opencode/skills/sk-doc/assets/agents/agent_template.md` — 2 replacements
+21. `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` — 1 replacement
 
 **Additional discovered files (5 files):**
 22. `.opencode/install_guides/SET-UP - Skill Creation.md` — 3 replacements
 23. `.opencode/install_guides/SET-UP - Opencode Agents.md` — 6 replacements
-24. `.opencode/agent/write.md` — 7 replacements
-25. .opencode/agent/chatgpt/write.md — 7 replacements
-26. `.opencode/skill/README.md` — 3 replacements
+24. `.opencode/agents/write.md` — 7 replacements
+25. .opencode/agents/chatgpt/write.md — 7 replacements
+26. `.opencode/skills/README.md` — 3 replacements
 
 ---
 

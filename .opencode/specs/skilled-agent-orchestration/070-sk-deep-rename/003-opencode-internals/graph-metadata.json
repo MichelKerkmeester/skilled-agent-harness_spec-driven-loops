@@ -38,12 +38,12 @@
       "checklist.md",
       "description.json",
       "graph-metadata.json",
-      ".opencode/skill/sk-code-review/graph-metadata.json",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json",
+      ".opencode/skills/sk-code-review/graph-metadata.json",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json",
       ".opencode/agent",
-      ".opencode/command/spec_kit",
-      ".opencode/skill/system-spec-kit/mcp_server",
-      ".opencode/skill/system-spec-kit/scripts",
+      ".opencode/commands/spec_kit",
+      ".opencode/skills/system-spec-kit/mcp_server",
+      ".opencode/skills/system-spec-kit/scripts",
       ".opencode/specs"
     ],
     "entities": [

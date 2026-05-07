@@ -110,7 +110,7 @@ Applied fixes to the memory save workflow documentation. Updated save.md command
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/command/memory/save.md` | Command and SKILL |
+| `.opencode/commands/memory/save.md` | Command and SKILL |
 | `.opencode/skills/workflows-memory/SKILL.md` | Updated skill |
 | `.opencode/.../scripts/generate-context.js` | When running without input data |
 
@@ -392,7 +392,7 @@ key_topics:
   - "workflow"
 
 key_files:
-  - ".opencode/command/memory/save.md"
+  - ".opencode/commands/memory/save.md"
   - ".opencode/skills/workflows-memory/SKILL.md"
   - ".opencode/.../scripts/generate-context.js"
 

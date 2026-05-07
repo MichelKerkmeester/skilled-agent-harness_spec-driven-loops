@@ -52,15 +52,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 Update research auto workflow paths to the `research/` packet root and research iteration folder (`.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
-- [x] T006 Update research confirm workflow paths to the `research/` packet root and research iteration folder (`.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`)
-- [x] T007 Update review auto workflow logic so review iterations always land in `review/iterations/` (`.opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`)
-- [x] T008 Update review confirm workflow logic so review iterations always land in `review/iterations/` (`.opencode/command/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`)
-- [x] T009 [P] Update the command entrypoint packet explanations (`.opencode/command/spec_kit/deep-research.md`)
+- [x] T005 Update research auto workflow paths to the `research/` packet root and research iteration folder (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
+- [x] T006 Update research confirm workflow paths to the `research/` packet root and research iteration folder (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`)
+- [x] T007 Update review auto workflow logic so review iterations always land in `review/iterations/` (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`)
+- [x] T008 Update review confirm workflow logic so review iterations always land in `review/iterations/` (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`)
+- [x] T009 [P] Update the command entrypoint packet explanations (`.opencode/commands/spec_kit/deep-research.md`)
 - [x] T010 [P] Update canonical runtime packet guidance and parity surfaces touched in this migration
 - [x] T011 [P] Update mirrored runtime agent guidance in the touched `.opencode` and `.claude` surfaces
-- [x] T012 [P] Update `sk-deep-research` docs, references, assets, diagrams, and playbooks (`.opencode/skill/sk-deep-research/`)
-- [x] T013 [P] Update `system-spec-kit` helper logic, docs, shell outputs, fixtures, and scoring or migration support for the new packet roots (`.opencode/skill/system-spec-kit/`)
+- [x] T012 [P] Update `sk-deep-research` docs, references, assets, diagrams, and playbooks (`.opencode/skills/sk-deep-research/`)
+- [x] T013 [P] Update `system-spec-kit` helper logic, docs, shell outputs, fixtures, and scoring or migration support for the new packet roots (`.opencode/skills/system-spec-kit/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,9 +68,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T014 Add and run targeted tests for artifact routing, memory type classification, folder scoring, and spec-doc indexing (`.opencode/skill/system-spec-kit/mcp_server/tests/`)
+- [x] T014 Add and run targeted tests for artifact routing, memory type classification, folder scoring, and spec-doc indexing (`.opencode/skills/system-spec-kit/mcp_server/tests/`)
 - [x] T015 Run command or workflow validation coverage for the touched command surfaces (`node scripts/tests/test-phase-command-workflows.js`, now 72/72)
-- [x] T016 Build and run the migration utility over tracked `.opencode/specs/` packets (`.opencode/skill/system-spec-kit/scripts/migrate-deep-research-paths.ts`)
+- [x] T016 Build and run the migration utility over tracked `.opencode/specs/` packets (`.opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts`)
 - [x] T017 Run repo-wide path sweeps for stale canonical references (`find .opencode/specs ...` zero-count checks after migration)
 - [x] T018 Validate the 035 packet with strict spec validation and confirm migrated corpus state with post-migration sweeps
 - [x] T019 Update `implementation-summary.md` with implemented results, verification evidence, and residual risks once migration work is complete

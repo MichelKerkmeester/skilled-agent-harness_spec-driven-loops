@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -41,8 +41,8 @@ _memory:
 
 Phase `005` corrected the remaining agent-improver package and runtime parity gaps after the earlier functional phases were already complete.
 
-- `.opencode/skill/sk-improve-agent/SKILL.md` now follows the stricter `sk-doc` skill template family rather than only passing minimal validation
-- `.opencode/skill/sk-improve-agent/README.md`, every reference file, and every markdown asset now follow the matching `sk-doc` template family
+- `.opencode/skills/sk-improve-agent/SKILL.md` now follows the stricter `sk-doc` skill template family rather than only passing minimal validation
+- `.opencode/skills/sk-improve-agent/README.md`, every reference file, and every markdown asset now follow the matching `sk-doc` template family
 - the mutator agent was renamed from `agent-improvement-loop` to `agent-improver` across OpenCode, Claude, Gemini, `.agents`, and Codex runtime surfaces
 - the canonical command and wrapper TOMLs were rewritten to the current command-template shape
 - YAML dispatch now targets `@agent-improver`
@@ -77,11 +77,11 @@ The work was delivered in three passes: correct the source package docs, rename 
 
 | Check | Scope | Result |
 |-------|-------|--------|
-| `package_skill.py --check` | `.opencode/skill/sk-improve-agent/` | PASS |
-| `validate_document.py --type skill` | `.opencode/skill/sk-improve-agent/SKILL.md` | PASS |
-| `validate_document.py --type readme` | `.opencode/skill/sk-improve-agent/README.md` | PASS |
-| `validate_document.py --type command` | `.opencode/command/spec_kit/agent-improver.md` | PASS |
-| `validate_document.py --type agent` | `.opencode/agent/agent-improver.md` | PASS |
+| `package_skill.py --check` | `.opencode/skills/sk-improve-agent/` | PASS |
+| `validate_document.py --type skill` | `.opencode/skills/sk-improve-agent/SKILL.md` | PASS |
+| `validate_document.py --type readme` | `.opencode/skills/sk-improve-agent/README.md` | PASS |
+| `validate_document.py --type command` | `.opencode/commands/spec_kit/agent-improver.md` | PASS |
+| `validate_document.py --type agent` | `.opencode/agents/agent-improver.md` | PASS |
 | `validate_document.py --type reference` | all agent-improver references | PASS |
 | `validate_document.py --type asset` | markdown agent-improver assets | PASS |
 | `node --check` | agent-improver scripts | PASS |

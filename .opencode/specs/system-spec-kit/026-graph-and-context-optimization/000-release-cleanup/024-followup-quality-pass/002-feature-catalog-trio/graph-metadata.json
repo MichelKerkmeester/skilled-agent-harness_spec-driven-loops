@@ -43,14 +43,14 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/05-advisor-rebuild.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/05-advisor-rebuild.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/002-feature-catalog-trio/checklist.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/002-feature-catalog-trio/description.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/002-feature-catalog-trio/discovery-notes.md",
@@ -88,43 +88,43 @@
       {
         "name": "feature_catalog.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
         "source": "derived"
       },
       {
         "name": "12-memory-retention-sweep.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
         "source": "derived"
       },
       {
         "name": "37-cli-matrix-adapter-runners.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
         "source": "derived"
       },
       {
         "name": "38-codex-hook-freshness-smoke-check.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
         "source": "derived"
       },
       {
         "name": "24-code-graph-readiness-contract.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md",
         "source": "derived"
       },
       {
         "name": "02-advisor-status.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md",
         "source": "derived"
       },
       {
         "name": "05-advisor-rebuild.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/05-advisor-rebuild.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/05-advisor-rebuild.md",
         "source": "derived"
       },
       {

@@ -13,30 +13,30 @@
 ## Files Modified (30+)
 
 ### Memory Commands
-- .opencode/command/memory/save.md
-- .opencode/command/memory/search.md
-- .opencode/command/memory/load.md
-- .opencode/command/memory/checkpoint.md
+- .opencode/commands/memory/save.md
+- .opencode/commands/memory/search.md
+- .opencode/commands/memory/load.md
+- .opencode/commands/memory/checkpoint.md
 
 ### Memory Skill
-- .opencode/skill/system-memory/scripts/generate-context.js
-- .opencode/skill/system-memory/references/semantic_memory.md
-- .opencode/skill/system-memory/references/troubleshooting.md
-- .opencode/skill/system-memory/references/trigger_config.md
-- .opencode/skill/system-memory/README.md
+- .opencode/skills/system-memory/scripts/generate-context.js
+- .opencode/skills/system-memory/references/semantic_memory.md
+- .opencode/skills/system-memory/references/troubleshooting.md
+- .opencode/skills/system-memory/references/trigger_config.md
+- .opencode/skills/system-memory/README.md
 
 ### SpecKit Skill
-- .opencode/skill/system-spec-kit/SKILL.md
-- .opencode/skill/system-spec-kit/templates/debug-delegation.md
-- .opencode/skill/system-spec-kit/templates/handover.md
-- .opencode/skill/system-spec-kit/references/template_guide.md
-- .opencode/skill/system-spec-kit/scripts/README.md
-- .opencode/skill/system-spec-kit/scripts/common.sh
-- .opencode/skill/system-spec-kit/scripts/lib/common.sh
+- .opencode/skills/system-spec-kit/SKILL.md
+- .opencode/skills/system-spec-kit/templates/debug-delegation.md
+- .opencode/skills/system-spec-kit/templates/handover.md
+- .opencode/skills/system-spec-kit/references/template_guide.md
+- .opencode/skills/system-spec-kit/scripts/README.md
+- .opencode/skills/system-spec-kit/scripts/common.sh
+- .opencode/skills/system-spec-kit/scripts/lib/common.sh
 
 ### Commands
-- .opencode/command/README.md (NEW)
-- .opencode/command/spec_kit/resume.md
+- .opencode/commands/README.md (NEW)
+- .opencode/commands/spec_kit/resume.md
 
 ### Root Level
 - AGENTS.md

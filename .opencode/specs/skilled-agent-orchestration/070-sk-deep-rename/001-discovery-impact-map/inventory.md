@@ -4,7 +4,7 @@ description: "Canonical active-scope inventory for sk-deep-review and sk-deep-re
 ---
 # Inventory: Phase 001 Discovery Impact Map
 
-Generated on 2026-05-05 by cli-codex. Scope includes active text files under `.opencode`, `.claude`, `.codex`, `.gemini`, root `*.md`/`*.json`, and `specs`, excluding `z_archive/`, `.git/`, `node_modules/`, historical changelog folders, binary databases, and generated `dist/` except checked-in `.opencode/skill/system-spec-kit/scripts/dist/*.js`. The Phase 001 output folder itself is excluded so generated inventory files do not inventory themselves.
+Generated on 2026-05-05 by cli-codex. Scope includes active text files under `.opencode`, `.claude`, `.codex`, `.gemini`, root `*.md`/`*.json`, and `specs`, excluding `z_archive/`, `.git/`, `node_modules/`, historical changelog folders, binary databases, and generated `dist/` except checked-in `.opencode/skills/system-spec-kit/scripts/dist/*.js`. The Phase 001 output folder itself is excluded so generated inventory files do not inventory themselves.
 
 ## Total Reference Counts
 
@@ -52,93 +52,93 @@ Generated on 2026-05-05 by cli-codex. Scope includes active text files under `.o
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/manual_testing_playbook.md` | 84 | 84 | 0 | 002 |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | 77 | 0 | 77 | 002 |
-| `.opencode/skill/sk-deep-review/README.md` | 25 | 21 | 4 | 002 |
-| `.opencode/skill/sk-deep-review/graph-metadata.json` | 20 | 19 | 1 | 002 |
-| `.opencode/skill/sk-deep-research/graph-metadata.json` | 18 | 1 | 17 | 002 |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md` | 16 | 0 | 16 | 002 |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md` | 15 | 15 | 0 | 002 |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/024-jsonl-reconstruction-from-review-iteration-files.md` | 15 | 15 | 0 | 002 |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/024-dashboard-generation-after-iteration.md` | 14 | 0 | 14 | 002 |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/011-stop-on-max-iterations.md` | 14 | 0 | 14 | 002 |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/manual_testing_playbook.md` | 84 | 84 | 0 | 002 |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | 77 | 0 | 77 | 002 |
+| `.opencode/skills/sk-deep-review/README.md` | 25 | 21 | 4 | 002 |
+| `.opencode/skills/sk-deep-review/graph-metadata.json` | 20 | 19 | 1 | 002 |
+| `.opencode/skills/sk-deep-research/graph-metadata.json` | 18 | 1 | 17 | 002 |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md` | 16 | 0 | 16 | 002 |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md` | 15 | 15 | 0 | 002 |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/024-jsonl-reconstruction-from-review-iteration-files.md` | 15 | 15 | 0 | 002 |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/024-dashboard-generation-after-iteration.md` | 14 | 0 | 14 | 002 |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/011-stop-on-max-iterations.md` | 14 | 0 | 14 | 002 |
 ### skill-graph
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | 11 | 6 | 5 | 002 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | 11 | 6 | 5 | 002 |
 ### opencode-skill-md
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/SKILL.md` | 4 | 1 | 3 | 003 |
-| `.opencode/skill/cli-opencode/SKILL.md` | 2 | 1 | 1 | 003 |
+| `.opencode/skills/system-spec-kit/SKILL.md` | 4 | 1 | 3 | 003 |
+| `.opencode/skills/cli-opencode/SKILL.md` | 2 | 1 | 1 | 003 |
 ### opencode-references
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/skill/README.md` | 8 | 4 | 4 | 003 |
-| `.opencode/skill/sk-code/manual_testing_playbook/04--skill-advisor-integration/001-advisor-probe-battery.md` | 6 | 4 | 2 | 003 |
-| `.opencode/skill/system-spec-kit/README.md` | 2 | 0 | 2 | 003 |
-| `.opencode/skill/system-spec-kit/references/structure/folder_structure.md` | 2 | 1 | 1 | 003 |
-| `.opencode/skill/sk-code-review/graph-metadata.json` | 1 | 1 | 0 | 003 |
-| `.opencode/skill/sk-code-review/references/quick_reference.md` | 1 | 1 | 0 | 003 |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md` | 1 | 0 | 1 | 003 |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md` | 1 | 0 | 1 | 003 |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` | 1 | 0 | 1 | 003 |
-| `.opencode/skill/system-spec-kit/ARCHITECTURE.md` | 1 | 1 | 0 | 003 |
+| `.opencode/skills/README.md` | 8 | 4 | 4 | 003 |
+| `.opencode/skills/sk-code/manual_testing_playbook/04--skill-advisor-integration/001-advisor-probe-battery.md` | 6 | 4 | 2 | 003 |
+| `.opencode/skills/system-spec-kit/README.md` | 2 | 0 | 2 | 003 |
+| `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | 2 | 1 | 1 | 003 |
+| `.opencode/skills/sk-code-review/graph-metadata.json` | 1 | 1 | 0 | 003 |
+| `.opencode/skills/sk-code-review/references/quick_reference.md` | 1 | 1 | 0 | 003 |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md` | 1 | 0 | 1 | 003 |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md` | 1 | 0 | 1 | 003 |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` | 1 | 0 | 1 | 003 |
+| `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | 1 | 1 | 0 | 003 |
 ### opencode-agent
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/agent/deep-review.md` | 3 | 3 | 0 | 003 |
-| `.opencode/agent/deep-research.md` | 1 | 0 | 1 | 003 |
-| `.opencode/agent/orchestrate.md` | 1 | 0 | 1 | 003 |
+| `.opencode/agents/deep-review.md` | 3 | 3 | 0 | 003 |
+| `.opencode/agents/deep-research.md` | 1 | 0 | 1 | 003 |
+| `.opencode/agents/orchestrate.md` | 1 | 0 | 1 | 003 |
 ### opencode-command
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | 17 | 0 | 17 | 003 |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | 17 | 0 | 17 | 003 |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | 15 | 15 | 0 | 003 |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | 15 | 15 | 0 | 003 |
-| `.opencode/command/spec_kit/deep-research.md` | 10 | 2 | 8 | 003 |
-| `.opencode/command/spec_kit/deep-review.md` | 9 | 6 | 3 | 003 |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | 17 | 0 | 17 | 003 |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | 17 | 0 | 17 | 003 |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | 15 | 15 | 0 | 003 |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | 15 | 15 | 0 | 003 |
+| `.opencode/commands/spec_kit/deep-research.md` | 10 | 2 | 8 | 003 |
+| `.opencode/commands/spec_kit/deep-review.md` | 9 | 6 | 3 | 003 |
 ### mcp-server
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | 47 | 24 | 23 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/python/test_skill_advisor.py` | 15 | 2 | 13 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | 12 | 7 | 5 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | 10 | 3 | 7 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` | 4 | 2 | 2 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | 2 | 1 | 1 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` | 2 | 1 | 1 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/scoring-constants.ts` | 1 | 0 | 1 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | 47 | 24 | 23 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/python/test_skill_advisor.py` | 15 | 2 | 13 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | 12 | 7 | 5 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | 10 | 3 | 7 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` | 4 | 2 | 2 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | 2 | 1 | 1 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` | 2 | 1 | 1 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/scoring-constants.ts` | 1 | 0 | 1 | 003 |
 ### script
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/scripts/.folder-list.txt` | 24 | 1 | 23 | 003 |
-| `.opencode/skill/system-spec-kit/scripts/.scan-lines.txt` | 24 | 1 | 23 | 003 |
-| `.opencode/skill/system-spec-kit/scripts/.unscanned.txt` | 11 | 0 | 11 | 003 |
-| `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | 6 | 3 | 3 | 003 |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md` | 2 | 1 | 1 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/.folder-list.txt` | 24 | 1 | 23 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/.scan-lines.txt` | 24 | 1 | 23 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/.unscanned.txt` | 11 | 0 | 11 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | 6 | 3 | 3 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md` | 2 | 1 | 1 | 003 |
 ### test-fixture
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/prompt-pack.vitest.ts` | 16 | 8 | 8 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | 10 | 5 | 5 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | 9 | 9 | 0 | 003 |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | 9 | 0 | 9 | 003 |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | 8 | 8 | 0 | 003 |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | 6 | 6 | 0 | 003 |
-| `.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts` | 3 | 3 | 0 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/remediation-008-docs.vitest.ts` | 2 | 1 | 1 | 003 |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts` | 1 | 1 | 0 | 003 |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | 1 | 0 | 1 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/prompt-pack.vitest.ts` | 16 | 8 | 8 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | 10 | 5 | 5 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | 9 | 9 | 0 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | 9 | 0 | 9 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | 8 | 8 | 0 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | 6 | 6 | 0 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts` | 3 | 3 | 0 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/remediation-008-docs.vitest.ts` | 2 | 1 | 1 | 003 |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts` | 1 | 1 | 0 | 003 |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | 1 | 0 | 1 | 003 |
 ### spec-folder-active
 
 | File | Matches | Review | Research | Phase |

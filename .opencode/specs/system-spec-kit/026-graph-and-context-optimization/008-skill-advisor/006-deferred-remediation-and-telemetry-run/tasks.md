@@ -17,9 +17,9 @@ _memory:
     blockers:
       - ".codex directory is not writable in this sandbox; Track 1 config files are blocked"
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts"
-      - ".opencode/skill/system-spec-kit/scripts/observability/live-session-wrapper.ts"
-      - ".opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/live-session-wrapper.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze.ts"
     completion_pct: 90
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 ---
@@ -58,12 +58,12 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Implement static smart-router measurement harness (`.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts`)
-- [x] T005 Add measurement harness tests (`.opencode/skill/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts`)
-- [x] T006 Implement live-session wrapper template (`.opencode/skill/system-spec-kit/scripts/observability/live-session-wrapper.ts`)
-- [x] T007 Document live-session wrapper setup for four runtimes (`.opencode/skill/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md`)
-- [x] T008 Implement telemetry analyzer CLI (`.opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze.ts`)
-- [x] T009 Add analyzer tests (`.opencode/skill/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts`)
+- [x] T004 Implement static smart-router measurement harness (`.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts`)
+- [x] T005 Add measurement harness tests (`.opencode/skills/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts`)
+- [x] T006 Implement live-session wrapper template (`.opencode/skills/system-spec-kit/scripts/observability/live-session-wrapper.ts`)
+- [x] T007 Document live-session wrapper setup for four runtimes (`.opencode/skills/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md`)
+- [x] T008 Implement telemetry analyzer CLI (`.opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze.ts`)
+- [x] T009 Add analyzer tests (`.opencode/skills/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,7 +75,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 - [x] T011 Run new targeted Vitest suites [Evidence: 2 files, 7 tests passed]
 - [x] T012 Run Phase 020/current regression tests requested by the phase [Evidence: targeted advisor/hook set, 20 files, 138 tests passed]
 - [x] T013 Run TypeScript noEmit checks [Evidence: scripts and mcp_server typecheck passed]
-- [x] T014 Run strict spec validation for the 024 folder [Evidence: `NODE_OPTIONS='--import ./.opencode/skill/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs' validate.sh ... --strict` passed with errors=0]
+- [x] T014 Run strict spec validation for the 024 folder [Evidence: `NODE_OPTIONS='--import ./.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs' validate.sh ... --strict` passed with errors=0]
 <!-- /ANCHOR:phase-3 -->
 
 ---

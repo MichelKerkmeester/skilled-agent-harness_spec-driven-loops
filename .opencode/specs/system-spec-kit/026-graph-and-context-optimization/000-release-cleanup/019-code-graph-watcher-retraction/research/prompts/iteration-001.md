@@ -12,22 +12,22 @@ Per the 013 research-report's recommendation, the **β path** (cheaper option) i
 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/research-report.md` (Section 4 P1-1 verdict; Section 6 Packet 032 scope)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/iterations/iteration-004.md` (Hunter→Skeptic→Referee detail for P1-1)
-- `.opencode/skill/system-spec-kit/mcp_server/README.md:515-518` (the offending claim)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329-442` (the actual self-heal mechanism)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:177-356` (the manual full-scan path)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-828` (the read-path block-with-required-action behavior)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:274` (proof: only spec-doc/skill-graph watchers)
+- `.opencode/skills/system-spec-kit/mcp_server/README.md:515-518` (the offending claim)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329-442` (the actual self-heal mechanism)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:177-356` (the manual full-scan path)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-828` (the read-path block-with-required-action behavior)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:274` (proof: only spec-doc/skill-graph watchers)
 
 ### Implementation
 
-1. **Edit `.opencode/skill/system-spec-kit/mcp_server/README.md` lines 515-518**: replace the structural code-graph watcher claim with a "Code-graph freshness model" subsection that says:
+1. **Edit `.opencode/skills/system-spec-kit/mcp_server/README.md` lines 515-518**: replace the structural code-graph watcher claim with a "Code-graph freshness model" subsection that says:
    - Read-path self-heal: `code_graph/lib/ensure-ready.ts` selectively reindexes changed tracked files when query/context handlers run
    - Manual full repair: `code_graph_scan` is operator-triggered (file:line ref)
    - Status surface: `code_graph_status` is read-only diagnostic
    - Required-action behavior: query handler blocks and emits required-action when full scan is needed (file:line ref)
 2. **Search the codebase for any other "watcher" or "real-time" claim about code-graph** (grep for "watch" + "code_graph", "real-time" + "graph", etc.) — fix each occurrence to reference the read-path/manual contract.
 3. **Update related docs that may inherit the false claim**:
-   - `.opencode/skill/system-spec-kit/SKILL.md` — search for code-graph automation language
+   - `.opencode/skills/system-spec-kit/SKILL.md` — search for code-graph automation language
    - `CLAUDE.md` — search for code-graph automation language
    - `references/config/hook_system.md` — confirm no false watcher claim
 4. **Add a brief note in the README** referencing 013's research-report for the full reality matrix.

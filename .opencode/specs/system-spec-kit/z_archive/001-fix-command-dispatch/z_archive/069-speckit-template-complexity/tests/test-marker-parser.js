@@ -8,7 +8,7 @@
  * Run with: node test-marker-parser.js
  */
 
-const markerParser = require('../../../../.opencode/skill/system-spec-kit/lib/expansion/marker-parser');
+const markerParser = require('../../../../.opencode/skills/system-spec-kit/lib/expansion/marker-parser');
 
 let passed = 0;
 let failed = 0;

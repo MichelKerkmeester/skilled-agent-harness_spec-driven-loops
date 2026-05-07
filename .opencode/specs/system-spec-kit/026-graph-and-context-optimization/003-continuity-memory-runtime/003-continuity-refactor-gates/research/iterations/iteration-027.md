@@ -51,7 +51,7 @@ Target: `save_latency_p95 < 2s`
 
 | Stage | Budget | Expected | P99 | Critical path | Parallelizable | Dominance / telemetry hook |
 |---|---:|---:|---:|---|---|---|
-| Command entry + session context collection | 80ms | 50ms | 120ms | Yes | No | Instrument in `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` around JSON assembly |
+| Command entry + session context collection | 80ms | 50ms | 120ms | Yes | No | Instrument in `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` around JSON assembly |
 | Chunk extraction + `contentRouter` classification | 220ms | 120ms | 350ms | Yes | Yes, across chunks | Future `contentRouter` span; this is the first large CPU bucket |
 | Routing plan build + confidence arbitration | 80ms | 40ms | 120ms | Yes | Partially | Emit route counts and confidence bands before mutation |
 | Spec-folder mutex acquisition | 120ms | 40ms | 200ms | Yes | No | Instrument around `withSpecFolderLock` in `handlers/save/spec-folder-mutex.ts` |
@@ -138,7 +138,7 @@ Use stage-level histograms plus one roll-up per path:
 
 Preferred integration points:
 
-- Reuse `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts` for read/resume histograms.
+- Reuse `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts` for read/resume histograms.
 - Extend `handlers/memory-save.ts` plus `save/response-builder.ts` for write-path timing.
 - Add future `resume-ladder.ts` stage spans rather than burying them in a single session-resume timer.
 - Report `budget_burn = observed_p95 / stage_budget` per stage.

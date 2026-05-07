@@ -9,7 +9,7 @@
 
 ### Level 1 Templates (Baseline - Minimal)
 
-**Location**: `.opencode/skill/system-spec-kit/templates/level_1/`
+**Location**: `.opencode/skills/system-spec-kit/templates/level_1/`
 
 | File | Size | Status | Notes |
 |------|------|--------|-------|
@@ -22,7 +22,7 @@
 
 ### Level 2 Templates (Verification - Standard)
 
-**Location**: `.opencode/skill/system-spec-kit/templates/level_2/`
+**Location**: `.opencode/skills/system-spec-kit/templates/level_2/`
 
 | File | Size | Status | Notes |
 |------|------|--------|-------|
@@ -113,19 +113,19 @@ This marker serves as:
 
 ```bash
 # Check files exist
-ls -la .opencode/skill/system-spec-kit/templates/level_1/
+ls -la .opencode/skills/system-spec-kit/templates/level_1/
 # Expected: spec.md, plan.md, tasks.md, implementation-summary.md
 
 # Check for level marker
-head -1 .opencode/skill/system-spec-kit/templates/level_1/spec.md
+head -1 .opencode/skills/system-spec-kit/templates/level_1/spec.md
 # Expected: <!-- SPECKIT_LEVEL: 1 -->
 
 # Verify Complexity Assessment removed
-grep -c "Complexity Assessment" .opencode/skill/system-spec-kit/templates/level_1/spec.md
+grep -c "Complexity Assessment" .opencode/skills/system-spec-kit/templates/level_1/spec.md
 # Expected: 0
 
 # Verify Phase Dependencies removed
-grep -c "4.1 PHASE DEPENDENCIES" .opencode/skill/system-spec-kit/templates/level_1/plan.md
+grep -c "4.1 PHASE DEPENDENCIES" .opencode/skills/system-spec-kit/templates/level_1/plan.md
 # Expected: 0
 ```
 
@@ -133,23 +133,23 @@ grep -c "4.1 PHASE DEPENDENCIES" .opencode/skill/system-spec-kit/templates/level
 
 ```bash
 # Check files exist
-ls -la .opencode/skill/system-spec-kit/templates/level_2/
+ls -la .opencode/skills/system-spec-kit/templates/level_2/
 # Expected: spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md
 
 # Check for level marker
-head -1 .opencode/skill/system-spec-kit/templates/level_2/spec.md
+head -1 .opencode/skills/system-spec-kit/templates/level_2/spec.md
 # Expected: <!-- SPECKIT_LEVEL: 2 -->
 
 # Verify Complexity Assessment present
-grep -c "Complexity Assessment" .opencode/skill/system-spec-kit/templates/level_2/spec.md
+grep -c "Complexity Assessment" .opencode/skills/system-spec-kit/templates/level_2/spec.md
 # Expected: 1
 
 # Verify Phase Dependencies present
-grep -c "4.1 PHASE DEPENDENCIES" .opencode/skill/system-spec-kit/templates/level_2/plan.md
+grep -c "4.1 PHASE DEPENDENCIES" .opencode/skills/system-spec-kit/templates/level_2/plan.md
 # Expected: 1
 
 # Verify Extended Verification removed
-grep -c "Extended Verification" .opencode/skill/system-spec-kit/templates/level_2/checklist.md
+grep -c "Extended Verification" .opencode/skills/system-spec-kit/templates/level_2/checklist.md
 # Expected: 0
 ```
 

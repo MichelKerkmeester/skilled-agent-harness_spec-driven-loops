@@ -41,10 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/reduce-state.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs",
       "review/parallel-review-summary.md",
       "improvement/benchmark-runs/handover/run-001.json",
       "improvement/benchmark-runs/handover/run-002.json",
@@ -57,8 +57,8 @@
       "improvement/promotion-invalid-target.log",
       "improvement/rollback-invalid-target.log",
       "improvement/mirror-drift-report.md",
-      ".opencode/skill/sk-improve-agent/SKILL.md",
-      ".opencode/skill/sk-improve-agent/README.md",
+      ".opencode/skills/sk-improve-agent/SKILL.md",
+      ".opencode/skills/sk-improve-agent/README.md",
       "plan.md",
       "tasks.md"
     ],
@@ -66,25 +66,25 @@
       {
         "name": "run-benchmark.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs",
         "source": "derived"
       },
       {
         "name": "score-candidate.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
         "source": "derived"
       },
       {
         "name": "reduce-state.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
         "name": "promote-candidate.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs",
         "source": "derived"
       },
       {
@@ -156,13 +156,13 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/SKILL.md",
+        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/README.md",
+        "path": ".opencode/skills/sk-improve-agent/README.md",
         "source": "derived"
       },
       {

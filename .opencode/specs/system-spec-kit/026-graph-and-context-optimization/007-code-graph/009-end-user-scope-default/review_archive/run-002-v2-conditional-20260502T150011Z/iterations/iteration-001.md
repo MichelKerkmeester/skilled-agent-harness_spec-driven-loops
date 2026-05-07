@@ -2,36 +2,36 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:1-82`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:1-52`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:1-167`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1-130`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1292-1305`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1451-1475`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:1-180`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:230-255`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:580-600`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:1-190`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:260-320`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:520-570`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:1-140`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:180-405`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:1-260`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:1-150`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:559-576`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:1-130`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:489-496`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:679-686`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:742-748`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:250-310`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:1-180`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:230-560`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:1-170`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts:215-222`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:520-570`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:614-632`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:232-280`
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:258-264`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:1-82`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:1-52`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:1-167`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1-130`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1292-1305`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1451-1475`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:1-180`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:230-255`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:580-600`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:1-190`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:260-320`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:520-570`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:1-140`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:180-405`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:1-260`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:1-150`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:559-576`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:1-130`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:489-496`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:679-686`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:742-748`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:250-310`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:1-180`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:230-560`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:1-170`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts:215-222`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:520-570`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:614-632`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:232-280`
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:258-264`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/spec.md:1-180`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/plan.md:1-180`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/decision-record.md:1-170`
@@ -53,17 +53,17 @@ None.
 
 #### R2-I1-P2-001: Skill-scope path literals still have multiple source-code representations
 
-The central policy exports `CODE_GRAPH_SKILL_EXCLUDE_GLOBS` for the default glob exclusion, and most callers reuse that for config-level behavior. However, the same `.opencode/skill` scope is still represented independently as a private regex in `index-scope.ts` and as a SQL `LIKE` literal in `code-graph-db.ts`. That leaves three source-code encodings of the same scope contract: the exported glob, the path-level regex guard, and the status/count SQL predicate. If this scope expands beyond `.opencode/skill/**`, future maintainers must update multiple representations manually, which weakens the "single consistent policy" design called out in the plan.
+The central policy exports `CODE_GRAPH_SKILL_EXCLUDE_GLOBS` for the default glob exclusion, and most callers reuse that for config-level behavior. However, the same `.opencode/skill` scope is still represented independently as a private regex in `index-scope.ts` and as a SQL `LIKE` literal in `code-graph-db.ts`. That leaves three source-code encodings of the same scope contract: the exported glob, the path-level regex guard, and the status/count SQL predicate. If this scope expands beyond `.opencode/skills/**`, future maintainers must update multiple representations manually, which weakens the "single consistent policy" design called out in the plan.
 
 Evidence:
 
-- `index-scope-policy.ts:9` exports `CODE_GRAPH_SKILL_EXCLUDE_GLOBS = ['**/.opencode/skill/**']`.
+- `index-scope-policy.ts:9` exports `CODE_GRAPH_SKILL_EXCLUDE_GLOBS = ['**/.opencode/skills/**']`.
 - `index-scope.ts:48-50` defines a separate `EXCLUDED_SKILL_INTERNALS_FOR_CODE_GRAPH` regex for `\.opencode/skill`.
 - `index-scope.ts:63-64` applies that separate regex through `shouldIndexForCodeGraph()`.
-- `code-graph-db.ts:586-592` counts tracked skill files with `WHERE file_path LIKE '%.opencode/skill/%'`.
+- `code-graph-db.ts:586-592` counts tracked skill files with `WHERE file_path LIKE '%.opencode/skills/%'`.
 - `plan.md:127-129` describes the intended architecture as one consistent policy applied at both scope layers.
 
-Severity: P2. This is a maintainability drift risk, not a current behavior failure: tests show default exclusion, env opt-in, per-call opt-in, and per-call false precedence are covered, and the current literals agree for the present `.opencode/skill/**` scope.
+Severity: P2. This is a maintainability drift risk, not a current behavior failure: tests show default exclusion, env opt-in, per-call opt-in, and per-call false precedence are covered, and the current literals agree for the present `.opencode/skills/**` scope.
 
 Suggested remediation: keep `CODE_GRAPH_SKILL_EXCLUDE_GLOBS` as the public glob surface, but add a policy-owned helper/constant for path-segment matching and SQL/status counting so `index-scope.ts` and `code-graph-db.ts` do not each hand-code the same path contract.
 

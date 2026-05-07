@@ -16,13 +16,13 @@ _memory:
     next_safe_action: "Run validate.sh strict, then commit + push"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/test-helpers/env-snapshot.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/test-helpers/env-snapshot.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-009-test-reliability"
@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -60,12 +60,12 @@ Six tests across the stress-test and unit-test surface had reliability defects t
 
 | Finding | File | Fix |
 |---------|------|-----|
-| F-015-C5-01 (P1) | `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts:15` | Replaced the literal `'/Users/michelkerkmeester/.../Public'` REPO_ROOT with `const ORIGINAL_CWD = process.cwd()` captured at module load. The `afterAll` hook now restores the captured cwd instead of an absolute developer path. The test runs on any machine. |
-| F-015-C5-02 (P2) | `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts:194-195` | Wrapped `expect(summary.p50).toBeLessThan(300)` and `expect(summary.p95).toBeLessThan(500)` inside `if (process.env.BENCHMARK === '1') { ... }`. CI runs assert correctness (`memory.source === 'handover'`) without the latency budget; benchmark runs (BENCHMARK=1) keep the absolute thresholds intact. |
-| F-015-C5-03 (P2) | `.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:305-358` | Replaced real `setTimeout` waits + elapsed-time assertions with `vi.useFakeTimers()` + `vi.setSystemTime` deterministic time control. `vi.useRealTimers()` runs in the describe-block `afterEach` so other describes are unaffected. |
-| F-015-C5-04 (P1) | `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:69-78` | Snapshot env keys (`SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED`, `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`) in `beforeEach` via the shared helper, restore in `afterEach` via the returned `restore()` function. Restore runs even on test failure. |
-| F-015-C5-05 (P2) | `.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts:58-77` | Snapshot `SPECKIT_MMR` in `beforeEach` via the shared helper, restore in `afterEach`. Same try/finally guarantee as C5-04. |
-| F-015-C5-06 (P2) | `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:33-35` | Replaced the fixed `path.join(process.cwd(), 'tmp-test-fixtures', ...)` with `fs.mkdtempSync(path.join(process.cwd(), 'tmp-test-fixtures-'))`. Each run now gets a unique random suffix so concurrent runs no longer collide and a crashed run's leftover dir does not affect the next run. The mkdtemp root stays inside `process.cwd()` because `handleMemorySave`'s `ALLOWED_BASE_PATHS` rejects paths under `os.tmpdir()` unless `MEMORY_BASE_PATH` is set at module load — adjusting that gate would require product-code changes that are out of scope for this test-only remediation. |
+| F-015-C5-01 (P1) | `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts:15` | Replaced the literal `'/Users/michelkerkmeester/.../Public'` REPO_ROOT with `const ORIGINAL_CWD = process.cwd()` captured at module load. The `afterAll` hook now restores the captured cwd instead of an absolute developer path. The test runs on any machine. |
+| F-015-C5-02 (P2) | `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts:194-195` | Wrapped `expect(summary.p50).toBeLessThan(300)` and `expect(summary.p95).toBeLessThan(500)` inside `if (process.env.BENCHMARK === '1') { ... }`. CI runs assert correctness (`memory.source === 'handover'`) without the latency budget; benchmark runs (BENCHMARK=1) keep the absolute thresholds intact. |
+| F-015-C5-03 (P2) | `.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:305-358` | Replaced real `setTimeout` waits + elapsed-time assertions with `vi.useFakeTimers()` + `vi.setSystemTime` deterministic time control. `vi.useRealTimers()` runs in the describe-block `afterEach` so other describes are unaffected. |
+| F-015-C5-04 (P1) | `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:69-78` | Snapshot env keys (`SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED`, `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`) in `beforeEach` via the shared helper, restore in `afterEach` via the returned `restore()` function. Restore runs even on test failure. |
+| F-015-C5-05 (P2) | `.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts:58-77` | Snapshot `SPECKIT_MMR` in `beforeEach` via the shared helper, restore in `afterEach`. Same try/finally guarantee as C5-04. |
+| F-015-C5-06 (P2) | `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:33-35` | Replaced the fixed `path.join(process.cwd(), 'tmp-test-fixtures', ...)` with `fs.mkdtempSync(path.join(process.cwd(), 'tmp-test-fixtures-'))`. Each run now gets a unique random suffix so concurrent runs no longer collide and a crashed run's leftover dir does not affect the next run. The mkdtemp root stays inside `process.cwd()` because `handleMemorySave`'s `ALLOWED_BASE_PATHS` rejects paths under `os.tmpdir()` unless `MEMORY_BASE_PATH` is set at module load — adjusting that gate would require product-code changes that are out of scope for this test-only remediation. |
 
 ### Files Changed
 

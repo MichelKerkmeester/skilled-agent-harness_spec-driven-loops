@@ -44,8 +44,8 @@ contextType: "implementation"
 - [x] T001 Create spec folder structure (`.opencode/specs/03--commands-and-skills/012-cmd-create-emoji-enforcement/`)
 - [x] T002 Document requirements in spec.md
 - [x] T003 Document technical approach in plan.md
-- [x] T004 Search `.opencode/command/create` for emoji validation functions (grep "emoji", "icon", validation patterns) [Evidence: Analyzed folder_readme.md, skill.md, skill_asset.md]
-- [x] T005 Search `.opencode/command/create/assets` for emoji requirements in templates (grep markdown files for emoji patterns) [Evidence: Found 10 YAML templates with emoji guidance]
+- [x] T004 Search `.opencode/commands/create` for emoji validation functions (grep "emoji", "icon", validation patterns) [Evidence: Analyzed folder_readme.md, skill.md, skill_asset.md]
+- [x] T005 Search `.opencode/commands/create/assets` for emoji requirements in templates (grep markdown files for emoji patterns) [Evidence: Found 10 YAML templates with emoji guidance]
 - [x] T006 Document current enforcement mechanism in implementation-summary.md baseline [Evidence: Baseline documented]
 - [x] T007 Create file map of all locations requiring changes [Evidence: All files mapped and updated]
 
@@ -61,10 +61,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T008 Remove emoji validation from main command logic (`.opencode/command/create/*.{js,ts}`) [Evidence: Updated folder_readme.md, skill.md, skill_asset.md]
-- [x] T009 [P] Update command template files to remove emoji requirements (`.opencode/command/create/assets/command/*.md`) [Evidence: No command templates modified - N/A]
-- [x] T010 [P] Update skill template files to remove emoji requirements (`.opencode/command/create/assets/skill/*.md`) [Evidence: Updated 4 YAML files: create_skill_asset, create_skill_reference, create_skill_confirm, create_agent]
-- [x] T011 [P] Update agent template files to remove emoji requirements (`.opencode/command/create/assets/agent/*.md`) [Evidence: Updated 2 YAML files: create_agent_auto, create_agent_confirm]
+- [x] T008 Remove emoji validation from main command logic (`.opencode/commands/create/*.{js,ts}`) [Evidence: Updated folder_readme.md, skill.md, skill_asset.md]
+- [x] T009 [P] Update command template files to remove emoji requirements (`.opencode/commands/create/assets/command/*.md`) [Evidence: No command templates modified - N/A]
+- [x] T010 [P] Update skill template files to remove emoji requirements (`.opencode/commands/create/assets/skill/*.md`) [Evidence: Updated 4 YAML files: create_skill_asset, create_skill_reference, create_skill_confirm, create_agent]
+- [x] T011 [P] Update agent template files to remove emoji requirements (`.opencode/commands/create/assets/agent/*.md`) [Evidence: Updated 2 YAML files: create_agent_auto, create_agent_confirm]
 - [x] T012 Update inline help text and documentation comments to reflect emoji removal [Evidence: Updated all user_instructions and assistant_instructions in YAML templates]
 - [x] T013 Verify no console.log statements reference emoji enforcement [Evidence: Verified - no console enforcement statements]
 - [x] T014 Update any error messages that mention emoji requirements [Evidence: Updated guidance text in templates]

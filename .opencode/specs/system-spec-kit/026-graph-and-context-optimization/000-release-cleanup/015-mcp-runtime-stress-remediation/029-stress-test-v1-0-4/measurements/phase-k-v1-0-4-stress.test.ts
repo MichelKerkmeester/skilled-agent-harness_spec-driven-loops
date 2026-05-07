@@ -8,41 +8,41 @@ import {
 import { dirname, resolve } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { MCPResponse } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/types.js';
+import type { MCPResponse } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/types.js';
 import {
   SEARCH_QUALITY_EXTENDED_CORPUS,
   type SearchQualityCase,
   type SearchQualityChannel,
   type SearchQualityCorpus,
   type SearchQualityWorkstream,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.js';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.js';
 import {
   createMeasurementRunners,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.js';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.js';
 import {
   runSearchQualityHarness,
   type SearchQualityCandidate,
   type SearchQualityCaseResult,
   type SearchQualityChannelOutput,
   type SearchQualityRunners,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.js';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.js';
 import {
   summarizeSearchQualityRun,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.js';
-import { routeQuery } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.js';
-import { createEmptyQueryPlan, type QueryPlan } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.js';
-import { decideConditionalRerank } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.js';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.js';
+import { routeQuery } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.js';
+import { createEmptyQueryPlan, type QueryPlan } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.js';
+import { decideConditionalRerank } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.js';
 import {
   computeSearchDecisionSlaMetrics,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.js';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.js';
 import type {
   SearchDecisionEnvelope,
   ShadowDeltaTelemetry,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.js';
-import type { PipelineResult } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.js';
-import { handleMemorySearch } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.js';
-import { executePipeline } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.js';
-import { getGraphReadinessSnapshot } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.js';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.js';
+import type { PipelineResult } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.js';
+import { handleMemorySearch } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.js';
+import { executePipeline } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.js';
+import { getGraphReadinessSnapshot } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.js';
 
 interface PriorV103Summary {
   allVariant: {
@@ -54,7 +54,7 @@ interface PriorV103Summary {
   deltaVsPhaseEBaseline: Record<string, number>;
 }
 
-vi.mock('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/core/index.js', async (importOriginal) => {
+vi.mock('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/core/index.js', async (importOriginal) => {
   const actual = await importOriginal() as Record<string, unknown>;
   return {
     ...actual,
@@ -62,11 +62,11 @@ vi.mock('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.open
   };
 });
 
-vi.mock('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.js', () => ({
+vi.mock('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.js', () => ({
   executePipeline: vi.fn(),
 }));
 
-vi.mock('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.js', () => ({
+vi.mock('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.js', () => ({
   getGraphReadinessSnapshot: vi.fn(),
 }));
 

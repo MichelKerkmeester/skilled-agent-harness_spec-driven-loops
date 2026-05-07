@@ -14,18 +14,18 @@ Ten iterations covered the live router/save runtime, Tier-3 end-to-end behavior,
 ## 2. Findings
 
 ### P1-001 [P1] Metadata-only continuity can be written to a non-canonical host doc
-- File: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1054`
+- File: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1054`
 - Evidence: `resolveMetadataHostDocPath()` prefers the current non-memory document when `spec-frontmatter` is targeted, but the canonical continuity contract says the primary `_memory.continuity` block lives in `implementation-summary.md` and the resume ladder reads that file first. Because `handleMemorySave()` accepts spec docs as direct inputs, a routed `metadata_only` save on `spec.md` or `tasks.md` can update continuity on a document the recovery ladder does not treat as canonical.
 - Recommendation: Always target `implementation-summary.md` for `spec-frontmatter` when that file exists, and add a focused regression that saves metadata-only content through a non-memory spec doc input.
 
 ### P1-002 [P1] Removed Tier-3 flag wording still ships across the doc-alignment surfaces
-- File: `.opencode/command/memory/save.md:93`
+- File: `.opencode/commands/memory/save.md:93`
 - Evidence: The runtime/config mirrors now describe Tier 3 as always on and the feature-flag reference marks `SPECKIT_TIER3_ROUTING` as removed, but `save.md`, `save_workflow.md`, the skill surface, the phase-004 packet docs, and the canonical save playbook still describe an opt-in/disabled-state path. That directly contradicts the stated post-flag-removal review scope and the current config notes.
 - Recommendation: Remove the opt-in/default-off story everywhere it survives, then re-run the doc sweep against the primary docs, packet-local `004` docs, and the playbook mirror together.
 
 ### P1-003 [P1] Child phases 001-003 are still not strict-clean despite verified-looking closeout state
 - File: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/002-content-routing-accuracy/001-fix-delivery-progress-confusion/tasks.md:6`
-- Evidence: `001`, `002`, and `003` mark their task lists complete and record `completion_pct: 100`, but rerunning `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase> --strict` on 2026-04-13 fails all three phases with the same structural problems: missing required anchors, missing `_memory` frontmatter blocks, missing template-source headers, and missing Level-2 template headers. That means the packet docs are not actually verified to the standard their closeout artifacts imply.
+- Evidence: `001`, `002`, and `003` mark their task lists complete and record `completion_pct: 100`, but rerunning `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase> --strict` on 2026-04-13 fails all three phases with the same structural problems: missing required anchors, missing `_memory` frontmatter blocks, missing template-source headers, and missing Level-2 template headers. That means the packet docs are not actually verified to the standard their closeout artifacts imply.
 - Recommendation: Re-open the child packet docs, bring them onto the current Level-2 template contract, and only then restate completion/verification status.
 
 ### P2-001 [P2] The phase-004 verification sweep did not actually guard the removed-flag semantics it claimed to cover
@@ -48,5 +48,5 @@ Ten iterations covered the live router/save runtime, Tier-3 end-to-end behavior,
 ## 5. Cross-References
 
 - Config mirrors correctly say always on: `.mcp.json:24`, `opencode.json:33`, `.claude/mcp.json:23`, `.vscode/mcp.json:24`, `.gemini/settings.json:40`.
-- Feature-flag reference correctly says removed: `.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md:130`.
+- Feature-flag reference correctly says removed: `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md:130`.
 - Child validation reruns on 2026-04-13: `validate.sh --strict` returned `RESULT: FAILED` for `001`, `002`, and `003`, and `RESULT: PASSED` for `004`.

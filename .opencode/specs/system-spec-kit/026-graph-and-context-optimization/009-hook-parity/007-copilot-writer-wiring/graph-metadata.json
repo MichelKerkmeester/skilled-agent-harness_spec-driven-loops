@@ -42,8 +42,8 @@
     "status": "implemented",
     "key_files": [
       ".claude/settings.local.json",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
       ".github/hooks/superset-notify.json",
       "dist/hooks/copilot/user-prompt-submit.js",
       "dist/hooks/copilot/session-prime.js",
@@ -62,13 +62,13 @@
       {
         "name": "user-prompt-submit.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts",
         "source": "derived"
       },
       {
         "name": "user-prompt-submit.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
         "source": "derived"
       },
       {

@@ -30,7 +30,7 @@ _memory:
 # Decision Record: Multi-AI Council Deferrals — state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command wiring docs (packet-089 deferrals)
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -138,6 +138,6 @@ Write in direct, active voice.]
 <!--
 Level 3 Decision Record (Addendum): One ADR per major decision.
 Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
 

@@ -41,8 +41,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -54,13 +54,13 @@
       {
         "name": "input-normalizer.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
         "source": "derived"
       },
       {
         "name": "validate-memory-quality.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
         "source": "derived"
       },
       {

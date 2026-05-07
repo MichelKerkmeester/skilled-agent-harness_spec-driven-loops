@@ -28,7 +28,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 002 turns semantic convergence from an abstract idea into a concrete implementation plan. The coverage graph is the fourth graph system in the existing Spec Kit Memory stack, following the causal graph, the code structural graph, and the graph-signal layer already present under `.opencode/skill/system-spec-kit/mcp_server/`.
+Phase 002 turns semantic convergence from an abstract idea into a concrete implementation plan. The coverage graph is the fourth graph system in the existing Spec Kit Memory stack, following the causal graph, the code structural graph, and the graph-signal layer already present under `.opencode/skills/system-spec-kit/mcp_server/`.
 
 The design target is explicit reuse, not greenfield invention. Research findings revise the reuse estimate to roughly 35-45% direct reuse, 25-30% adapted reuse, and the remainder genuinely new loop semantics. Edge management from `causal-edges.ts`, degree/depth metrics from `graph-signals.ts`, contradiction-reporting patterns from `contradiction-detection.ts`, and SQLite setup patterns from `code-graph-db.ts` transfer well, but contradiction adjudication, convergence design, and reducer/MCP integration are not plug-and-play. Phase 001 remains the legal stop-decision foundation. Phase 002 adds graph context so low novelty only permits STOP when coverage, verification, and contradiction state agree.
 
@@ -56,7 +56,7 @@ The design target is explicit reuse, not greenfield invention. Research findings
 **Primary Dependency Surfaces**:
 - Parent packet `042-sk-deep-research-review-improvement-2` defines the broader runtime-improvement program for `sk-deep-research` and `sk-deep-review`.
 - Phase 001 `001-runtime-truth-foundation` defines the stop-decision contract that Phase 002 must extend rather than replace.
-- Existing Spec Kit Memory graph systems under `.opencode/skill/system-spec-kit/mcp_server/` provide the extraction baseline and the implementation pattern.
+- Existing Spec Kit Memory graph systems under `.opencode/skills/system-spec-kit/mcp_server/` provide the extraction baseline and the implementation pattern.
 
 **Deliverables**:
 - Shared coverage-graph CommonJS helpers for edge management, signals, contradictions, and convergence.
@@ -117,45 +117,45 @@ Define an implementation-ready semantic coverage graph that reuses existing grap
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs` | Create | Shared edge manager, relation-weight maps, clamping, self-loop prevention, edge update history, and provenance traversal helpers extracted from `causal-edges.ts`. |
-| `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs` | Create | Shared degree, depth, momentum, and clustering/signal helpers adapted from `graph-signals.ts` and related graph utilities. |
-| `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs` | Create | CONTRADICTS-edge discovery and reporting helpers specialized for deep-loop semantics. |
-| `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs` | Create | Research/review convergence-signal assembly and typed decision-trace helpers. |
+| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs` | Create | Shared edge manager, relation-weight maps, clamping, self-loop prevention, edge update history, and provenance traversal helpers extracted from `causal-edges.ts`. |
+| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs` | Create | Shared degree, depth, momentum, and clustering/signal helpers adapted from `graph-signals.ts` and related graph utilities. |
+| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs` | Create | CONTRADICTS-edge discovery and reporting helpers specialized for deep-loop semantics. |
+| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs` | Create | Research/review convergence-signal assembly and typed decision-trace helpers. |
 
 #### MCP Server Additions
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` | Create | SQLite bootstrap, schema versioning, migrations, idempotent upsert support, and snapshot persistence for `deep-loop-graph.sqlite`. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts` | Create | Query engine for gap detection, provenance chains, contradiction lookup, and hot-node ranking. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts` | Create | Server-side metric computation and snapshot generation layered on top of the shared signal helpers. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts` | Create | Handler for bulk node/edge upserts with idempotency, clamping, and self-loop rejection. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts` | Create | Handler for structured coverage-graph queries. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts` | Create | Handler for graph health, counts, relation breakdowns, and signal summaries. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts` | Create | Handler for typed graph-aware convergence assessment and blocker reporting. |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Modify | Add input schemas and tool definitions for the four new `deep_loop_graph_*` MCP tools. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` | Create | SQLite bootstrap, schema versioning, migrations, idempotent upsert support, and snapshot persistence for `deep-loop-graph.sqlite`. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts` | Create | Query engine for gap detection, provenance chains, contradiction lookup, and hot-node ranking. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts` | Create | Server-side metric computation and snapshot generation layered on top of the shared signal helpers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts` | Create | Handler for bulk node/edge upserts with idempotency, clamping, and self-loop rejection. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts` | Create | Handler for structured coverage-graph queries. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts` | Create | Handler for graph health, counts, relation breakdowns, and signal summaries. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts` | Create | Handler for typed graph-aware convergence assessment and blocker reporting. |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Modify | Add input schemas and tool definitions for the four new `deep_loop_graph_*` MCP tools. |
 
 #### Reducer, References, and Agents
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Ingest iteration `graphEvents`, define the reducer/MCP contract, push graph deltas to MCP, query convergence, enforce the fallback authority chain, and keep a local JSON fallback path. |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add the `graphEvents` JSONL contract and graph-backed reducer outputs. |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Define graph-aware convergence language, decision interplay with `newInfoRatio`, and legal STOP semantics. |
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add the `graphEvents` JSONL contract for review iterations. |
-| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Define graph-aware review convergence signals and contradiction handling. |
-| `.opencode/agent/deep-research.md` | Modify | Require research iterations to emit graph nodes and edges into JSONL state. |
-| `.opencode/agent/deep-review.md` | Modify | Require review iterations to emit graph nodes and edges into JSONL state. |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Ingest iteration `graphEvents`, define the reducer/MCP contract, push graph deltas to MCP, query convergence, enforce the fallback authority chain, and keep a local JSON fallback path. |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add the `graphEvents` JSONL contract and graph-backed reducer outputs. |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Define graph-aware convergence language, decision interplay with `newInfoRatio`, and legal STOP semantics. |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add the `graphEvents` JSONL contract for review iterations. |
+| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Define graph-aware review convergence signals and contradiction handling. |
+| `.opencode/agents/deep-research.md` | Modify | Require research iterations to emit graph nodes and edges into JSONL state. |
+| `.opencode/agents/deep-review.md` | Modify | Require review iterations to emit graph nodes and edges into JSONL state. |
 
 #### Tests
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts` | Create | Verify edge insertion, update, deletion, self-loop prevention, and provenance traversal. |
-| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts` | Create | Verify degree, depth, momentum, and clustering/signal computations. |
-| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts` | Create | Verify research/review convergence signals and typed STOP decisions. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts` | Create | Verify schema creation, namespace isolation, idempotent upsert behavior, and snapshot persistence. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts` | Create | Verify tool validation, handler behavior, and rendered output contracts. |
+| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts` | Create | Verify edge insertion, update, deletion, self-loop prevention, and provenance traversal. |
+| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts` | Create | Verify degree, depth, momentum, and clustering/signal computations. |
+| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts` | Create | Verify research/review convergence signals and typed STOP decisions. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts` | Create | Verify schema creation, namespace isolation, idempotent upsert behavior, and snapshot persistence. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts` | Create | Verify tool validation, handler behavior, and rendered output contracts. |
 
 ### Reuse Baseline and Mapping
 

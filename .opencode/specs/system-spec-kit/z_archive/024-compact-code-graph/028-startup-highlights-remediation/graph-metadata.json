@@ -39,7 +39,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,7 +50,7 @@
       {
         "name": "startup-brief.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts",
         "source": "derived"
       },
       {

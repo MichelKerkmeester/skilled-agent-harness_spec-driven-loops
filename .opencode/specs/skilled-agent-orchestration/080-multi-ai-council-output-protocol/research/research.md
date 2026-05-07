@@ -13,7 +13,7 @@ Go on lightweight-bound preservation. Packet 081 should ship five tightly scoped
 
 ## 2. RESEARCH TOPIC
 
-How to further improve the multi-ai-council agent (`.opencode/agent/multi-ai-council.md`) and the `ai-council/` output protocol convention introduced in packet 080. Reference deep-research and deep-review skill patterns as inspiration for iteration mechanics, convergence detection, state schema, resume semantics, and quality gates — BUT do NOT promote multi-ai-council into a dedicated skill folder unless the lightweight bound (ADR-001) provably fails.
+How to further improve the multi-ai-council agent (`.opencode/agents/multi-ai-council.md`) and the `ai-council/` output protocol convention introduced in packet 080. Reference deep-research and deep-review skill patterns as inspiration for iteration mechanics, convergence detection, state schema, resume semantics, and quality gates — BUT do NOT promote multi-ai-council into a dedicated skill folder unless the lightweight bound (ADR-001) provably fails.
 
 Investigate three threads:
 
@@ -38,9 +38,9 @@ Investigate three threads:
 
 | Question | One-line answer |
 | --- | --- |
-| Q1 | Use a Node CJS helper at `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`, with exported parser/render functions, fixture tests, and exit codes 0/1/2. |
+| Q1 | Use a Node CJS helper at `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`, with exported parser/render functions, fixture tests, and exit codes 0/1/2. |
 | Q2 | Add §17 to the agent body as the short normative caller protocol; put long examples and schema details in references. |
-| Q3 | Create `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md` as the markdown source of truth for §8 output shape and parser requiredness. |
+| Q3 | Create `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md` as the markdown source of truth for §8 output shape and parser requiredness. |
 | Q4 | Keep `validate.sh --strict` free-form for `ai-council/`; use opt-in helper-owned advisory checks only after persistence exists. |
 | Q5 | Do not add Skill Advisor boosts for `multi-ai-council` while it remains an agent; direct user/orchestrator dispatch is the clean boundary. |
 | Q6 | Add test-time normalized mirror parity across `.opencode`, `.claude`, `.gemini`, and `.codex`; do not require byte-for-byte equality. |
@@ -60,13 +60,13 @@ The helper should be a Node CJS script, not Bash. Iteration 1 found the helper i
 Recommended path:
 
 ```text
-.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs
+.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs
 ```
 
 Recommended CLI:
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs \
+node .opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs \
   <packet-spec-folder> \
   [--round NNN] \
   [--input-file FILE] \
@@ -112,7 +112,7 @@ The schema should be markdown, not JSON Schema. Iteration 3 found the council re
 Recommended path:
 
 ```text
-.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md
+.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md
 ```
 
 The artifact should define:
@@ -190,7 +190,7 @@ Minimum markers:
 - `## 14. STATE SCHEMA - JSONL EVENT TYPES`
 - `## 15. CONVERGENCE SIGNAL - 2/3 AGREEMENT RULE`
 - `ai-council-state.jsonl`
-- `Reference: .opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md`
+- `Reference: .opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md`
 
 Commit hooks are not needed for v1.1. Test-time enforcement is enough.
 
@@ -292,18 +292,18 @@ Triggers:
 Packet 081 should be a helper/schema/protocol/test packet. It should not modify packet 080's `spec.md`, and it should not add a dedicated skill folder.
 
 1. Add the persistence helper:
-   - Path: `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`
+   - Path: `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`
    - Exports: parser, renderer, artifact builder, state-line renderer.
    - CLI: `<packet-spec-folder> [--round NNN] [--input-file FILE] [--strict-output]`.
    - Exit codes: 0 success, 1 pre-write parse/invocation failure, 2 partial-write recovery.
 
 2. Add parser fixtures:
-   - `.opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md`
-   - `.opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md`
-   - `.opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md`
+   - `.opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md`
+   - `.opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md`
+   - `.opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md`
 
 3. Add helper tests:
-   - Path: `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts`
+   - Path: `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts`
    - Assertions:
      - Full output writes report, seats, deliberation, and state JSONL.
      - Minimal output accepts composition-row fallback.
@@ -311,7 +311,7 @@ Packet 081 should be a helper/schema/protocol/test packet. It should not modify 
      - Parser exports report missing strict sections without touching filesystem.
 
 4. Add shared schema artifact:
-   - Path: `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`
+   - Path: `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md`
    - Contents:
      - Requiredness matrix.
      - Heading aliases if needed.
@@ -320,7 +320,7 @@ Packet 081 should be a helper/schema/protocol/test packet. It should not modify 
      - Schema-change lockstep rule.
 
 5. Update agent body §8 and add §17:
-   - Canonical: `.opencode/agent/multi-ai-council.md`
+   - Canonical: `.opencode/agents/multi-ai-council.md`
    - Mirrors:
      - `.claude/agents/multi-ai-council.md`
      - `.gemini/agents/multi-ai-council.md`
@@ -331,20 +331,20 @@ Packet 081 should be a helper/schema/protocol/test packet. It should not modify 
    - §17 must state forward-only scope and no retroactive migration.
 
 6. Harden validator regression:
-   - Path: `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts`
+   - Path: `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts`
    - Replace weak filesystem-only partial-layout coverage with a synthetic valid spec folder that runs `validate.sh --strict`.
    - Assert arbitrary `ai-council/` internals do not fail strict validation.
 
 7. Add mirror parity:
-   - Preferred: general checker under `.opencode/skill/system-spec-kit/scripts/` with a council fixture.
-   - Fallback: `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts`.
+   - Preferred: general checker under `.opencode/skills/system-spec-kit/scripts/` with a council fixture.
+   - Fallback: `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts`.
    - Compare normalized contract markers, not full file bytes.
 
 8. Run focused verification:
    - `vitest` helper test.
    - Existing council validator test.
    - New mirror parity test.
-   - `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet-081-folder> --strict`.
+   - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet-081-folder> --strict`.
 
 ## 8. PACKET 082+ DEFERRED ITEMS
 
@@ -396,7 +396,7 @@ These are useful but should not block packet 081.
 
 ## 10. RULED-OUT DIRECTIONS
 
-- Dedicated `.opencode/skill/multi-ai-council/` folder for packet 081.
+- Dedicated `.opencode/skills/multi-ai-council/` folder for packet 081.
 - JSON Schema as the primary §8 contract.
 - Reference-only §17 with no agent-body caller protocol.
 - Full body-only §17 playbook that pushes details into the mirrored agent body.
@@ -419,21 +419,21 @@ These are useful but should not block packet 081.
 | Question | Primary iteration | Key file/line/section cited |
 | --- | --- | --- |
 | Q1 helper shape | `iteration-001.md` | Deep reducer conventions; `deep-research/scripts/reduce-state.cjs`; `deep-review/scripts/reduce-state.cjs`; packet 080 `ai-council/council-report.md`; existing `multi-ai-council-validator.vitest.ts`. |
-| Q2 §17 placement | `iteration-002.md` | `.opencode/agent/multi-ai-council.md` §12-§15; `decision-record.md` ADR-001 lines 57 and 71 as cited by iter 2; `council-report.md` lines 74-80 and 131-139 as cited by iter 2. |
-| Q3 output schema | `iteration-003.md` | `.opencode/agent/multi-ai-council.md` §8 lines 393-463 as cited by iter 3; `council-report.md` lines 140-154; `references/multi-ai-council/folder-layout.md`; `state-format.md`. |
+| Q2 §17 placement | `iteration-002.md` | `.opencode/agents/multi-ai-council.md` §12-§15; `decision-record.md` ADR-001 lines 57 and 71 as cited by iter 2; `council-report.md` lines 74-80 and 131-139 as cited by iter 2. |
+| Q3 output schema | `iteration-003.md` | `.opencode/agents/multi-ai-council.md` §8 lines 393-463 as cited by iter 3; `council-report.md` lines 140-154; `references/multi-ai-council/folder-layout.md`; `state-format.md`. |
 | Q4 validator policy | `iteration-004.md` | `decision-record.md` ADR-004 lines 171 and 177 as cited by iter 4; `multi-ai-council-validator.vitest.ts`; `validate.sh` warning/strict behavior; validation orchestrator strict summary. |
-| Q5 advisor routing | `iteration-005.md` | Skill Advisor runtime discovery in `skill_advisor_runtime.py` lines 153 and 191 as cited by iter 5; explicit scorer boosts; `.opencode/agent/orchestrate.md` line 97. |
+| Q5 advisor routing | `iteration-005.md` | Skill Advisor runtime discovery in `skill_advisor_runtime.py` lines 153 and 191 as cited by iter 5; explicit scorer boosts; `.opencode/agents/orchestrate.md` line 97. |
 | Q6 mirror sync | `iteration-006.md` | Four mirror files; `.codex/agents/README.txt` lines 8 and 21; `deep-research-contract-parity.vitest.ts` lines 35-40 and 59-72 as cited by iter 6. |
-| Q7 state compat | `iteration-007.md` | `.opencode/agent/multi-ai-council.md` lines 621-637 as cited by iter 7; `state-format.md` lines 7-43 and 60; packet 080 `ai-council-state.jsonl` lines 1 and 14. |
-| Q8 memory save | `iteration-008.md` | `.opencode/command/memory/save.md` lines 90-103; `content-router.ts` lines 1062-1085 and 1280-1298; `generate-context.ts` lines 89-144; thin continuity writer lines 778-915 as cited by iter 8. |
-| Q9 ADD risks | `iteration-009.md` | `council-report.md` ADD-1 through ADD-6; `.opencode/agent/orchestrate.md` lines 97, 111-121, 748-749; ADR-003 and ADR-004 sections. |
+| Q7 state compat | `iteration-007.md` | `.opencode/agents/multi-ai-council.md` lines 621-637 as cited by iter 7; `state-format.md` lines 7-43 and 60; packet 080 `ai-council-state.jsonl` lines 1 and 14. |
+| Q8 memory save | `iteration-008.md` | `.opencode/commands/memory/save.md` lines 90-103; `content-router.ts` lines 1062-1085 and 1280-1298; `generate-context.ts` lines 89-144; thin continuity writer lines 778-915 as cited by iter 8. |
+| Q9 ADD risks | `iteration-009.md` | `council-report.md` ADD-1 through ADD-6; `.opencode/agents/orchestrate.md` lines 97, 111-121, 748-749; ADR-003 and ADR-004 sections. |
 | Q10 lightweight bound | `iteration-010.md` | `decision-record.md` ADR-001 lines 51, 57, 71; ADR-003 lines 137-157; ADR-004 lines 171-184; sibling deep-review/deep-research skill machinery. |
 <!-- /ANCHOR:evidence-trail -->
 
 ## 12. NON-GOALS REAFFIRMED
 
 - Preserve ADR-001's lightweight bound unless it provably fails.
-- Do not create `.opencode/skill/multi-ai-council/` for packet 081.
+- Do not create `.opencode/skills/multi-ai-council/` for packet 081.
 - Do not add `/spec_kit:council`.
 - Do not auto-dispatch the council through advisor or hooks.
 - Do not replace `scratch/` for ad-hoc council notes.
@@ -563,49 +563,49 @@ Packet 080 docs and artifacts:
 
 Agent and mirror surfaces:
 
-- `.opencode/agent/multi-ai-council.md`
+- `.opencode/agents/multi-ai-council.md`
 - `.claude/agents/multi-ai-council.md`
 - `.gemini/agents/multi-ai-council.md`
 - `.codex/agents/multi-ai-council.toml`
-- `.opencode/agent/orchestrate.md`
+- `.opencode/agents/orchestrate.md`
 - `.codex/agents/README.txt`
 
 Existing multi-ai-council references:
 
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/folder-layout.md`
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md`
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/convergence-signals.md`
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md`
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/folder-layout.md`
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md`
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/convergence-signals.md`
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md`
 
 Sibling deep-skill patterns:
 
-- `.opencode/skill/deep-research/SKILL.md`
-- `.opencode/skill/deep-research/scripts/reduce-state.cjs`
-- `.opencode/skill/deep-research/references/state_format.md`
-- `.opencode/skill/deep-review/SKILL.md`
-- `.opencode/skill/deep-review/scripts/reduce-state.cjs`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
+- `.opencode/skills/deep-research/SKILL.md`
+- `.opencode/skills/deep-research/scripts/reduce-state.cjs`
+- `.opencode/skills/deep-research/references/state_format.md`
+- `.opencode/skills/deep-review/SKILL.md`
+- `.opencode/skills/deep-review/scripts/reduce-state.cjs`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
 
 Spec-kit memory and validation surfaces:
 
-- `.opencode/command/memory/save.md`
-- `.opencode/skill/system-spec-kit/references/memory/save_workflow.md`
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts`
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/validation/orchestrator.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts`
+- `.opencode/commands/memory/save.md`
+- `.opencode/skills/system-spec-kit/references/memory/save_workflow.md`
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts`
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts`
 
 Advisor surfaces:
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor_runtime.py`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor_runtime.py`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
 
 ADRs and decisions:
 
-- ADR-001: lightweight bound; no `.opencode/skill/multi-ai-council/` folder.
+- ADR-001: lightweight bound; no `.opencode/skills/multi-ai-council/` folder.
 - ADR-003: `ai-council-state.jsonl` remains documented and convention-only for v1.
 - ADR-004: `ai-council/` remains free-form under spec validation.
 

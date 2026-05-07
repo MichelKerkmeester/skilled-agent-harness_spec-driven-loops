@@ -1,8 +1,8 @@
 # Agent: deep-review
-# Converted from: .opencode/agent/deep-review.md
+# Converted from: .opencode/agents/deep-review.md
 #
 # Phase 008 ADR-003: structural graph routing is provisioned via the shared
-# MCP server tool registration (see .opencode/skill/system-spec-kit/mcp_server/
+# MCP server tool registration (see .opencode/skills/system-spec-kit/mcp_server/
 # tool-schemas.ts). Codex CLI receives `code_graph_query` and
 # `code_graph_context` through the same MCP channel as other deep-loop tools;
 # no explicit TOML tool whitelist is required for availability.
@@ -112,7 +112,7 @@ Perform 3-5 analysis actions using available tools:
 - `[INFERENCE: based on X and Y]` when deriving from multiple sources
 
 #### Step 4: Classify Findings
-Before assigning severity, load `.opencode/skill/sk-code-review/references/review_core.md`.
+Before assigning severity, load `.opencode/skills/sk-code-review/references/review_core.md`.
 
 Use the shared `P0` / `P1` / `P2` definitions and evidence requirements from `review_core.md`, then tag each finding with one primary review dimension: `correctness`, `security`, `traceability`, or `maintainability`.
 
@@ -272,7 +272,7 @@ If approaching 13 tool calls, stop review and proceed to writing findings.
 
 ## 3. REVIEW CONTRACT
 
-This agent loads shared review doctrine from .opencode/skill/sk-code-review/references/review_core.md for severity definitions, evidence requirements, and baseline check families.
+This agent loads shared review doctrine from .opencode/skills/sk-code-review/references/review_core.md for severity definitions, evidence requirements, and baseline check families.
 
 ### Review Dimensions
 
@@ -316,7 +316,7 @@ Deferred (reserved, not runtime-supported):
 - `fork`: Earlier drafts described this as a child review session from an earlier lineage point. Not emitted today.
 - `completed-continue`: Earlier drafts described re-opening a completed session for additional review coverage. Not emitted today.
 
-See `.opencode/skill/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)` for the canonical event contract.
+See `.opencode/skills/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)` for the canonical event contract.
 
 Always treat these config fields as required read-only lineage metadata:
 - `sessionId`
@@ -516,8 +516,8 @@ Return this summary to the dispatcher after completing the iteration:
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-review` | Autonomous review loop | `.opencode/command/spec_kit/deep-review.md` |
-| `/memory:save` | Save review context | `.opencode/command/memory/save.md` |
+| `/spec_kit:deep-review` | Autonomous review loop | `.opencode/commands/spec_kit/deep-review.md` |
+| `/memory:save` | Save review context | `.opencode/commands/memory/save.md` |
 
 ### Skills
 

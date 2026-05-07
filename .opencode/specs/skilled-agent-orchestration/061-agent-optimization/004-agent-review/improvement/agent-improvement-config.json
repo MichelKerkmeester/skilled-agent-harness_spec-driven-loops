@@ -30,8 +30,8 @@
     "manifest": "improvement/target-manifest.jsonc",
     "candidates": "improvement/candidates",
     "benchmarkRoot": "improvement/benchmark-runs",
-    "targetProfiles": ".opencode/skill/sk-improve-agent/assets/target-profiles",
-    "fixtureCatalog": ".opencode/skill/sk-improve-agent/assets/fixtures"
+    "targetProfiles": ".opencode/skills/sk-improve-agent/assets/target-profiles",
+    "fixtureCatalog": ".opencode/skills/sk-improve-agent/assets/fixtures"
   },
   "targets": {
     "activeProfile": "dynamic",

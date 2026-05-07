@@ -17,8 +17,8 @@ When a JSON-mode save provides a plain string decision (e.g., `"Use ESM modules 
 
 The template at `context_template.md` lines 492-566 renders ALL five of these: `{{TITLE}}`, `{{CONTEXT}}`, `{{DESCRIPTION}}`, `{{CHOSEN}}`, and `{{RATIONALE}}`. For a simple string decision, the reader sees the same text 4-5 times.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:197-362]
-[SOURCE: .opencode/skill/system-spec-kit/templates/context_template.md:492-566]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:197-362]
+[SOURCE: .opencode/skills/system-spec-kit/templates/context_template.md:492-566]
 
 ### Finding 2: The title/rationale split heuristic is insufficient
 
@@ -29,7 +29,7 @@ const titleMatch = decisionText.match(/^(?:Decision\s*(?:\d+\s*)?:\s*)?(.+?)(?:\
 
 The fallback at lines 218-221 tries splitting at the first sentence boundary. However, most JSON-sourced decisions are single sentences without separators, so both heuristics return the entire text as `title` with an empty `fallbackRationale`.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:214-221]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:214-221]
 
 ### Finding 3: Design for minimum viable decision block format
 
@@ -110,7 +110,7 @@ Proposed: `CONTEXT = rationaleFromInput ? rationaleFromInput.substring(0, 120) :
 
 When rationale exists, use it directly as CONTEXT (it explains "why"). When rationale is absent, CONTEXT should be empty (the compact block handles this).
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:329-332]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:329-332]
 
 ## Ruled Out
 - **Deduplication at template level only**: Would require complex mustache conditionals comparing field values, which mustache does not support. Dedup must happen at the extractor level.
@@ -120,9 +120,9 @@ When rationale exists, use it directly as CONTEXT (it explains "why"). When rati
 None identified this iteration.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts` (full file, 624 lines)
-- `.opencode/skill/system-spec-kit/templates/context_template.md` (lines 490-570, decision block)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` (lines 1285-1330, template data assembly)
+- `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts` (full file, 624 lines)
+- `.opencode/skills/system-spec-kit/templates/context_template.md` (lines 490-570, decision block)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` (lines 1285-1330, template data assembly)
 
 ## Assessment
 - New information ratio: 1.0

@@ -1,5 +1,5 @@
 ### Finding 4: Public already has a partial analogue, but it stops at memory lineage rather than first-class facts
-- **Source**: [causal-edges.ts#L18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts#L18), [causal-edges.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts#L138), [temporal-edges.ts#L31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts#L31), [temporal-edges.ts#L68](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts#L68), [corrections.ts#L365](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts#L365), [README.md#L982](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L982), [schemas/tool-input-schemas.ts#L415](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts#L415)
+- **Source**: [causal-edges.ts#L18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts#L18), [causal-edges.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts#L138), [temporal-edges.ts#L31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts#L31), [temporal-edges.ts#L68](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts#L68), [corrections.ts#L365](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts#L365), [README.md#L982](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L982), [schemas/tool-input-schemas.ts#L415](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts#L415)
 - **Evidence type**: source-confirmed
 - **What it does**: Public has causal relations, optional temporal columns on those edges, and correction-driven `supersedes` / `derived_from` linkage. But the exposed tool surface is still lineage-oriented: `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`. There is no entity/predicate/object fact query, no `as_of`, and no fact timeline tool.
 - **Why it matters for us**: The gap is narrower than it looks. Public does not need a wholesale graph rewrite; it needs a separate fact model and a user-facing query layer if we want MemPalace-style temporal recall.
@@ -7,7 +7,7 @@
 - **Impact**: high
 
 ### Finding 5: MemPalace’s fact plane is useful, but its provenance and hygiene are too loose for direct adoption
-- **Source**: [knowledge_graph.py#L104](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/knowledge_graph.py#L104), [knowledge_graph.py#L129](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/knowledge_graph.py#L129), [mcp_server.py#L423](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L423), [mcp_server.py#L477](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L477), [generate-context.js#L85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js#L85)
+- **Source**: [knowledge_graph.py#L104](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/knowledge_graph.py#L104), [knowledge_graph.py#L129](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/knowledge_graph.py#L129), [mcp_server.py#L423](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L423), [mcp_server.py#L477](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L477), [generate-context.js#L85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js#L85)
 - **Evidence type**: source-confirmed
 - **What it does**: MemPalace normalizes entities with simple string munging, allows fact insertion with optional provenance fields, and relies on protocol discipline rather than hard source contracts. Meanwhile its diary still writes compressed reflective text into the main drawer collection. Public’s JSON-primary save path is stricter about authoritative session capture and scope.
 - **Why it matters for us**: The right transfer is the plane separation, not the loose write path. If Public adopts temporal facts, they should be derived from structured save evidence or explicit approved mutations, not free-form manual assertions mixed with diary-style material.
@@ -15,7 +15,7 @@
 - **Impact**: medium
 
 ### Finding 6: Palace graph and temporal KG are intentionally different systems, and Public should keep that separation too
-- **Source**: [palace_graph.py#L33](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/palace_graph.py#L33), [palace_graph.py#L99](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/palace_graph.py#L99), [README.md#L482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/README.md#L482), [tools/index.ts#L5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tools/index.ts#L5), [context-server.ts#L784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L784)
+- **Source**: [palace_graph.py#L33](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/palace_graph.py#L33), [palace_graph.py#L99](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/palace_graph.py#L99), [README.md#L482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/README.md#L482), [tools/index.ts#L5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tools/index.ts#L5), [context-server.ts#L784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L784)
 - **Evidence type**: source-confirmed
 - **What it does**: MemPalace’s palace graph is derived from Chroma metadata like shared rooms and wings; the KG is explicit temporal triples. Public has a similar architectural instinct already: structural bootstrap and routing are separate from memory tools.
 - **Why it matters for us**: We should not collapse code graph, causal graph, and any future fact graph into one “graph feature.” The cleaner design is separate planes with clear query intents.
@@ -37,12 +37,12 @@
 - [test_knowledge_graph.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/test_knowledge_graph.py)
 - [test_mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/test_mcp_server.py)
 - [BENCHMARKS.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/benchmarks/BENCHMARKS.md)
-- [causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts)
-- [temporal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts)
-- [corrections.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts)
+- [temporal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts)
+- [corrections.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
 
 ## Assessment
@@ -107,10 +107,10 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
 9. Trace structural navigation next in `external/mempalace/palace_graph.py` and `external/mempalace/knowledge_graph.py`. Keep these separate in your notes: palace graph traversal is metadata-derived from ChromaDB rooms/halls/wings, while the knowledge graph is a separate SQLite temporal triple store with invalidation.
 10. Trace ingestion behavior next. Read `external/mempalace/miner.py`, `external/mempalace/convo_miner.py`, `external/mempalace/general_extractor.py`, and `external/mempalace/onboarding.py`. Focus on chunking strategy, room detection, no-summary posture, heuristic extraction, onboarding assumptions, and whether the system truly keeps everything or selectively restructures it during ingest.
 11. Read hook and benchmark artifacts after the implementation core: `external/hooks/README.md`, `external/hooks/mempal_save_hook.sh`, `external/hooks/mempal_precompact_hook.sh`, and `external/benchmarks/BENCHMARKS.md`. Treat these as crucial to the product story, but distinguish carefully between executable behavior, experimental behavior, and benchmark claims that require caution.
-12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
+12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
 13. Before the main research pass, validate the phase folder with this exact command:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
     ```
 14. After validation passes, run `spec_kit:deep-research` with this exact topic:
     ```text
@@ -118,7 +118,7 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
     ```
 15. Save all outputs inside `research/`, with `research/research.md` as the canonical report. Every meaningful finding must cite exact file paths, say whether the evidence is `source-confirmed`, `README-documented`, `benchmark-documented`, or mixed, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, identify the affected subsystem, and note migration or truthfulness risk. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
     ```
 
 ## 6. Research Questions
@@ -332,7 +332,7 @@ exec
 2023:- when user asked to “Let 3 ultra-think agents review all work done in .../023-hybrid-rag-fusion-refinement,” run multi-agent read-only review with severity-ranked findings and exact file+line evidence [Task 1]
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1333ms:
 
 ───────────────────────────────────────────────────────────────
@@ -347,7 +347,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -444,7 +444,7 @@ Knowledge Graph:
 exec
 /bin/zsh -lc "sed -n '280,310p' /Users/michelkerkmeester/.codex/memories/MEMORY.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
 # Task Group: Graph-and-Context Research Packet Extensions (026)
@@ -495,7 +495,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -8044,9 +8044,9 @@ exec
    290	        record_metric("kg_stats", f"avg_ms_at_{n_triples}", round(avg_ms, 2))
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "error|catch|try|timeout|health|status|resume|bootstrap|compaction|compact|save|JSON-primary|recovery|strict|validate|fallback|dedup|session|causal|timeline|as_of|governed" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skill/system-spec-kit/mcp_server/context-server.ts .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/plugins/spec-kit-compact-code-graph.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "error|catch|try|timeout|health|status|resume|bootstrap|compaction|compact|save|JSON-primary|recovery|strict|validate|fallback|dedup|session|causal|timeline|as_of|governed" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skills/system-spec-kit/mcp_server/context-server.ts .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/plugins/spec-kit-compact-code-graph.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Memory Search
@@ -8310,200 +8310,200 @@ exec
    260	      : null;
 
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:9:import * as sessionManager from '../lib/session/session-manager.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:18:import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:19:import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:39:} from '../lib/telemetry/eval-channel-tracking.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:40:import type { EvalChannelPayload } from '../lib/telemetry/eval-channel-tracking.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:53:import { validateQuery, requireDb, toErrorMessage } from '../utils/index.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:69:} from '../lib/search/session-transition.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:89:  deduplicateResults as deduplicateWithSessionState,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:93:} from '../lib/search/session-state.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:103:// Feature catalog: Quality-aware 3-tier search fallback
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:139:  contentSource?: 'reassembled_chunks' | 'file_read_fallback';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:145:  dedupStats: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:173:// EvalChannelPayload — now imported from lib/telemetry/eval-channel-tracking.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:194:  sessionId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:210:  sessionTransition?: SessionTransitionTrace;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:213:  /** Phase B T019: Dual-level retrieval — 'local' (entity), 'global' (community), 'auto' (local + fallback). */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:218:// resolveEvalScore, collectEvalChannelsFromRow — now imported from lib/telemetry/eval-channel-tracking.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:220:function attachTelemetryMeta(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:222:  telemetryPayload: Record<string, unknown>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:224:  const firstEntry = response?.content?.[0];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:225:  if (!firstEntry || typeof firstEntry.text !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:229:  try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:230:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:236:      _telemetry: telemetryPayload,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:241:      content: [{ ...firstEntry, text: JSON.stringify(envelope, null, 2) }],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:243:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:244:    const message = toErrorMessage(error);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:245:    console.warn('[memory-search] Failed to attach telemetry payload:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:251:  const firstEntry = response?.content?.[0];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:252:  if (!firstEntry || typeof firstEntry.text !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:256:  try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:257:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:264:  } catch {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:270:  const firstEntry = response?.content?.[0];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:271:  if (!firstEntry || typeof firstEntry.text !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:275:  try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:276:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:290:  } catch {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:297:): { firstEntry: { type: 'text'; text: string }; envelope: Record<string, unknown> } | null {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:298:  const firstEntry = response?.content?.[0];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:299:  if (!firstEntry || firstEntry.type !== 'text' || typeof firstEntry.text !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:303:  try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:305:      firstEntry,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:306:      envelope: JSON.parse(firstEntry.text) as Record<string, unknown>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:308:  } catch {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:315:  firstEntry: { type: 'text'; text: string },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:320:    content: [{ ...firstEntry, text: JSON.stringify(envelope, null, 2) }],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:324:function buildSessionStatePayload(sessionId: string): Record<string, unknown> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:325:  const session = retrievalSessionStateManager.getOrCreate(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:327:    activeGoal: session.activeGoal,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:328:    seenResultIds: Array.from(session.seenResultIds),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:329:    openQuestions: [...session.openQuestions],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:330:    preferredAnchors: [...session.preferredAnchors],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:365:  if (typeof data.fallbackState !== 'string' && snapshot) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:366:    data.fallbackState = snapshot.fallbackState;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:370:  return replaceResponseEnvelope(response, parsed.firstEntry, parsed.envelope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:426:  return replaceResponseEnvelope(response, parsed.firstEntry, parsed.envelope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:429:// summarizeGraphWalkDiagnostics, buildEvalChannelPayloads — now imported from lib/telemetry/eval-channel-tracking.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:450:function applySessionDedup(results: MemorySearchRow[], sessionId: string, enableDedup: boolean): DedupResult {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:451:  if (!enableDedup || !sessionId || !sessionManager.isEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:454:      dedupStats: { enabled: false, sessionId: null }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:458:  const { filtered, dedupStats } = sessionManager.filterSearchResults(sessionId, results as Parameters<typeof sessionManager.filterSearchResults>[1]);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:461:    sessionManager.markResultsSent(sessionId, filtered as Parameters<typeof sessionManager.markResultsSent>[1]);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:466:    dedupStats: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:467:      ...dedupStats,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:468:      sessionId
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:511:    sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:527:    sessionTransition,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:533:  const normalizedScope = normalizeScopeContext({ tenantId, userId, agentId, sessionId, sharedSpaceId });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:538:    sessionId: normalizedScope.sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:547:    return { content: [{ type: 'text', text: JSON.stringify({ error: 'Either "query" (string), "concepts" (array with 2-5 items), or "cursor" (string) is required.' }) }] };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:555:        error: 'Cursor is invalid, expired, or out of scope',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:558:        recovery: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:559:          hint: 'Retry the original search to generate a fresh continuation cursor',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:585:  // BUG-007: Validate query first with proper error handling
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:588:    try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:589:      normalizedQuery = validateQuery(query);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:590:    } catch (validationError: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:595:          error: message,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:598:          recovery: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:614:      error: 'Either query (string), concepts (array of 2-5 strings), or cursor (string) is required',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:617:      recovery: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:626:      error: 'specFolder must be a string',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:629:      recovery: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:635:  // Eval logger — capture query at pipeline entry (fail-safe)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:638:  try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:639:    const evalEntry = logSearchQuery({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:644:    _evalQueryId = evalEntry.queryId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:645:    _evalRunId = evalEntry.evalRunId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:646:  } catch (_error: unknown) { /* eval logging must never break search */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:675:    if (classification.fallback) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:676:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (fallback: ${classification.reason})`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:678:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:685:    console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:695:    try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:699:        console.error(`[memory-search] Intent-to-profile auto-routing: '${detectedIntent}' → profile '${autoProfile}'`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:701:    } catch (_autoProfileErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:706:  // Re-run artifact routing with detected intent for fallback coverage
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:711:  // Create retrieval trace at pipeline entry
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:714:    sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:744:    sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:767:        throw new Error('Embedding model not ready after 30s timeout. Try again later.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:797:      sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:812:    // Phase B T018/T019: Community search fallback — inject community members on weak results
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:825:        try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:856:        } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:858:          console.warn(`[memory-search] Community search fallback failed (fail-open): ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:886:    if (sessionId && isSessionRetrievalStateEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:889:        retrievalSessionStateManager.updateGoal(sessionId, activeGoal);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:892:        retrievalSessionStateManager.setAnchors(sessionId, anchors);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:895:      const goalRefinement = refineForGoal(resultsForFormatting, sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:907:      console.error(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:908:        `[memory-search] Lexical capability path '${lexicalCapability.lexicalPath}' (fallbackState: ${lexicalCapability.fallbackState})`
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:921:      extraData.fallbackState = lexicalCapability.fallbackState;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:968:    try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:978:    } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:985:      session: { applied: pipelineResult.metadata.stage2.sessionBoostApplied },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1006:      normalizedQuery,   // REQ-D5-001/D5-004: pass query for recovery + confidence context
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1007:      specFolder ?? null // REQ-D5-001: pass specFolder for recovery narrowing detection
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1012:      try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1018:      } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1036:        formatted = replaceResponseEnvelope(formatted, parsedFormatted.firstEntry, parsedFormatted.envelope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1054:  if (sessionId && isSessionRetrievalStateEnabled() && !sessionManager.isEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1062:      const deduped = deduplicateWithSessionState(existingResults, sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1063:      data.results = deduped.results as SessionAwareResult[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1064:      data.count = deduped.results.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1065:      data.sessionDedup = deduped.metadata;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1067:      responseToReturn = replaceResponseEnvelope(responseToReturn, parsedResponse.firstEntry, parsedResponse.envelope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1071:  // Apply session deduplication AFTER cache
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1072:  if (sessionId && enableDedup && sessionManager.isEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1075:      try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1077:      } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1079:        console.warn('[memory-search] Failed to parse cached response for dedup:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1086:    // P1-018 — Validate response shape before dedup. If the cached response
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1087:    // Doesn't have the expected data.results array, log a warning and skip dedup
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1088:    // Rather than silently falling through to the un-deduped response.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1095:      console.warn('[memory-search] Cached response shape mismatch: missing "data" object, skipping dedup');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1097:      console.warn('[memory-search] Cached response shape mismatch: "data.results" is not an array, skipping dedup');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1101:      const { results: dedupedResults } = applySessionDedup(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1103:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1108:      const dedupedCount = dedupedResults.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1109:      const filteredCount = originalCount - dedupedCount;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1116:      data.results = dedupedResults;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1117:      data.count = dedupedCount;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1119:      const dedupStats = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1121:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1123:        returnedCount: dedupedCount,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1129:      resultsData.dedupStats = dedupStats;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1132:        (resultsData.meta as Record<string, unknown>).dedupStats = dedupStats;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1136:        resultsData.summary += ` (${filteredCount} duplicates filtered, ~${tokensSaved} tokens saved)`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1146:  if (sessionId && isSessionRetrievalStateEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1159:        retrievalSessionStateManager.markSeen(sessionId, returnedIds);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1162:      data.sessionState = buildSessionStatePayload(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1168:      responseToReturn = replaceResponseEnvelope(responseToReturn, parsedResponse.firstEntry, parsedResponse.envelope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1172:  if (includeTrace && sessionTransition) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1173:    responseToReturn = attachSessionTransitionTrace(responseToReturn, sessionTransition);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1176:  if (retrievalTelemetry.isExtendedTelemetryEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1177:    const telemetry = retrievalTelemetry.createTelemetry();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1178:    retrievalTelemetry.recordTransitionDiagnostics(telemetry, sessionTransition);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1179:    retrievalTelemetry.recordGraphWalkDiagnostics(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1180:      telemetry,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1183:    responseToReturn = attachTelemetryMeta(responseToReturn, retrievalTelemetry.toJSON(telemetry));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1187:  try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1188:    const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1193:      try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1201:      } catch (_error: unknown) { /* ignore parse errors */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1208:        session_id: sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1213:  } catch (_error: unknown) { /* instrumentation must never cause search to fail */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1216:  try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1220:      try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1228:      } catch (_error: unknown) { /* ignore parse errors */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1249:  } catch (_error: unknown) { /* eval logging must never break search */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1253:  try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1255:      const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1258:        try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1265:        } catch (_error: unknown) { /* ignore parse errors */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1275:            sessionId: sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1281:  } catch (_error: unknown) { /* feedback logging must never break search */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1285:  try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1287:      const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1291:        try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1308:        } catch (_error: unknown) { /* ignore parse errors */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1314:          trackQueryAndDetect(db, sessionId ?? null, normalizedQuery, queryId, shownIds);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1319:          logResultCited(db, sessionId ?? null, queryId, shownIds);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1323:  } catch (_error: unknown) { /* query flow tracking must never break search */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1328:    const firstEntry = responseToReturn?.content?.[0];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1329:    if (firstEntry && typeof firstEntry.text === 'string') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1330:      try {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1331:        const profiled = applyProfileToEnvelope(effectiveProfile, firstEntry.text);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1332:        if (profiled !== firstEntry.text) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1335:            content: [{ ...firstEntry, text: profiled }],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1338:      } catch (_profileError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:9:import * as sessionManager from '../lib/session/session-manager.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:18:import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:19:import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:39:} from '../lib/telemetry/eval-channel-tracking.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:40:import type { EvalChannelPayload } from '../lib/telemetry/eval-channel-tracking.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:53:import { validateQuery, requireDb, toErrorMessage } from '../utils/index.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:69:} from '../lib/search/session-transition.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:89:  deduplicateResults as deduplicateWithSessionState,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:93:} from '../lib/search/session-state.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:103:// Feature catalog: Quality-aware 3-tier search fallback
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:139:  contentSource?: 'reassembled_chunks' | 'file_read_fallback';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:145:  dedupStats: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:173:// EvalChannelPayload — now imported from lib/telemetry/eval-channel-tracking.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:194:  sessionId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:210:  sessionTransition?: SessionTransitionTrace;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:213:  /** Phase B T019: Dual-level retrieval — 'local' (entity), 'global' (community), 'auto' (local + fallback). */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:218:// resolveEvalScore, collectEvalChannelsFromRow — now imported from lib/telemetry/eval-channel-tracking.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:220:function attachTelemetryMeta(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:222:  telemetryPayload: Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:224:  const firstEntry = response?.content?.[0];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:225:  if (!firstEntry || typeof firstEntry.text !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:229:  try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:230:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:236:      _telemetry: telemetryPayload,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:241:      content: [{ ...firstEntry, text: JSON.stringify(envelope, null, 2) }],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:243:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:244:    const message = toErrorMessage(error);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:245:    console.warn('[memory-search] Failed to attach telemetry payload:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:251:  const firstEntry = response?.content?.[0];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:252:  if (!firstEntry || typeof firstEntry.text !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:256:  try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:257:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:264:  } catch {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:270:  const firstEntry = response?.content?.[0];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:271:  if (!firstEntry || typeof firstEntry.text !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:275:  try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:276:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:290:  } catch {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:297:): { firstEntry: { type: 'text'; text: string }; envelope: Record<string, unknown> } | null {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:298:  const firstEntry = response?.content?.[0];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:299:  if (!firstEntry || firstEntry.type !== 'text' || typeof firstEntry.text !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:303:  try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:305:      firstEntry,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:306:      envelope: JSON.parse(firstEntry.text) as Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:308:  } catch {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:315:  firstEntry: { type: 'text'; text: string },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:320:    content: [{ ...firstEntry, text: JSON.stringify(envelope, null, 2) }],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:324:function buildSessionStatePayload(sessionId: string): Record<string, unknown> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:325:  const session = retrievalSessionStateManager.getOrCreate(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:327:    activeGoal: session.activeGoal,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:328:    seenResultIds: Array.from(session.seenResultIds),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:329:    openQuestions: [...session.openQuestions],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:330:    preferredAnchors: [...session.preferredAnchors],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:365:  if (typeof data.fallbackState !== 'string' && snapshot) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:366:    data.fallbackState = snapshot.fallbackState;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:370:  return replaceResponseEnvelope(response, parsed.firstEntry, parsed.envelope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:426:  return replaceResponseEnvelope(response, parsed.firstEntry, parsed.envelope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:429:// summarizeGraphWalkDiagnostics, buildEvalChannelPayloads — now imported from lib/telemetry/eval-channel-tracking.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:450:function applySessionDedup(results: MemorySearchRow[], sessionId: string, enableDedup: boolean): DedupResult {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:451:  if (!enableDedup || !sessionId || !sessionManager.isEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:454:      dedupStats: { enabled: false, sessionId: null }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:458:  const { filtered, dedupStats } = sessionManager.filterSearchResults(sessionId, results as Parameters<typeof sessionManager.filterSearchResults>[1]);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:461:    sessionManager.markResultsSent(sessionId, filtered as Parameters<typeof sessionManager.markResultsSent>[1]);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:466:    dedupStats: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:467:      ...dedupStats,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:468:      sessionId
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:511:    sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:527:    sessionTransition,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:533:  const normalizedScope = normalizeScopeContext({ tenantId, userId, agentId, sessionId, sharedSpaceId });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:538:    sessionId: normalizedScope.sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:547:    return { content: [{ type: 'text', text: JSON.stringify({ error: 'Either "query" (string), "concepts" (array with 2-5 items), or "cursor" (string) is required.' }) }] };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:555:        error: 'Cursor is invalid, expired, or out of scope',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:558:        recovery: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:559:          hint: 'Retry the original search to generate a fresh continuation cursor',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:585:  // BUG-007: Validate query first with proper error handling
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:588:    try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:589:      normalizedQuery = validateQuery(query);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:590:    } catch (validationError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:595:          error: message,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:598:          recovery: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:614:      error: 'Either query (string), concepts (array of 2-5 strings), or cursor (string) is required',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:617:      recovery: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:626:      error: 'specFolder must be a string',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:629:      recovery: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:635:  // Eval logger — capture query at pipeline entry (fail-safe)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:638:  try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:639:    const evalEntry = logSearchQuery({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:644:    _evalQueryId = evalEntry.queryId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:645:    _evalRunId = evalEntry.evalRunId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:646:  } catch (_error: unknown) { /* eval logging must never break search */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:675:    if (classification.fallback) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:676:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (fallback: ${classification.reason})`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:678:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:685:    console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:695:    try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:699:        console.error(`[memory-search] Intent-to-profile auto-routing: '${detectedIntent}' → profile '${autoProfile}'`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:701:    } catch (_autoProfileErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:706:  // Re-run artifact routing with detected intent for fallback coverage
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:711:  // Create retrieval trace at pipeline entry
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:714:    sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:744:    sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:767:        throw new Error('Embedding model not ready after 30s timeout. Try again later.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:797:      sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:812:    // Phase B T018/T019: Community search fallback — inject community members on weak results
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:825:        try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:856:        } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:858:          console.warn(`[memory-search] Community search fallback failed (fail-open): ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:886:    if (sessionId && isSessionRetrievalStateEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:889:        retrievalSessionStateManager.updateGoal(sessionId, activeGoal);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:892:        retrievalSessionStateManager.setAnchors(sessionId, anchors);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:895:      const goalRefinement = refineForGoal(resultsForFormatting, sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:907:      console.error(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:908:        `[memory-search] Lexical capability path '${lexicalCapability.lexicalPath}' (fallbackState: ${lexicalCapability.fallbackState})`
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:921:      extraData.fallbackState = lexicalCapability.fallbackState;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:968:    try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:978:    } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:985:      session: { applied: pipelineResult.metadata.stage2.sessionBoostApplied },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1006:      normalizedQuery,   // REQ-D5-001/D5-004: pass query for recovery + confidence context
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1007:      specFolder ?? null // REQ-D5-001: pass specFolder for recovery narrowing detection
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1012:      try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1018:      } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1036:        formatted = replaceResponseEnvelope(formatted, parsedFormatted.firstEntry, parsedFormatted.envelope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1054:  if (sessionId && isSessionRetrievalStateEnabled() && !sessionManager.isEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1062:      const deduped = deduplicateWithSessionState(existingResults, sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1063:      data.results = deduped.results as SessionAwareResult[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1064:      data.count = deduped.results.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1065:      data.sessionDedup = deduped.metadata;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1067:      responseToReturn = replaceResponseEnvelope(responseToReturn, parsedResponse.firstEntry, parsedResponse.envelope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1071:  // Apply session deduplication AFTER cache
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1072:  if (sessionId && enableDedup && sessionManager.isEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1075:      try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1077:      } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1079:        console.warn('[memory-search] Failed to parse cached response for dedup:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1086:    // P1-018 — Validate response shape before dedup. If the cached response
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1087:    // Doesn't have the expected data.results array, log a warning and skip dedup
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1088:    // Rather than silently falling through to the un-deduped response.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1095:      console.warn('[memory-search] Cached response shape mismatch: missing "data" object, skipping dedup');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1097:      console.warn('[memory-search] Cached response shape mismatch: "data.results" is not an array, skipping dedup');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1101:      const { results: dedupedResults } = applySessionDedup(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1103:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1108:      const dedupedCount = dedupedResults.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1109:      const filteredCount = originalCount - dedupedCount;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1116:      data.results = dedupedResults;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1117:      data.count = dedupedCount;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1119:      const dedupStats = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1121:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1123:        returnedCount: dedupedCount,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1129:      resultsData.dedupStats = dedupStats;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1132:        (resultsData.meta as Record<string, unknown>).dedupStats = dedupStats;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1136:        resultsData.summary += ` (${filteredCount} duplicates filtered, ~${tokensSaved} tokens saved)`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1146:  if (sessionId && isSessionRetrievalStateEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1159:        retrievalSessionStateManager.markSeen(sessionId, returnedIds);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1162:      data.sessionState = buildSessionStatePayload(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1168:      responseToReturn = replaceResponseEnvelope(responseToReturn, parsedResponse.firstEntry, parsedResponse.envelope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1172:  if (includeTrace && sessionTransition) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1173:    responseToReturn = attachSessionTransitionTrace(responseToReturn, sessionTransition);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1176:  if (retrievalTelemetry.isExtendedTelemetryEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1177:    const telemetry = retrievalTelemetry.createTelemetry();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1178:    retrievalTelemetry.recordTransitionDiagnostics(telemetry, sessionTransition);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1179:    retrievalTelemetry.recordGraphWalkDiagnostics(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1180:      telemetry,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1183:    responseToReturn = attachTelemetryMeta(responseToReturn, retrievalTelemetry.toJSON(telemetry));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1187:  try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1188:    const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1193:      try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1201:      } catch (_error: unknown) { /* ignore parse errors */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1208:        session_id: sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1213:  } catch (_error: unknown) { /* instrumentation must never cause search to fail */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1216:  try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1220:      try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1228:      } catch (_error: unknown) { /* ignore parse errors */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1249:  } catch (_error: unknown) { /* eval logging must never break search */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1253:  try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1255:      const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1258:        try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1265:        } catch (_error: unknown) { /* ignore parse errors */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1275:            sessionId: sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1281:  } catch (_error: unknown) { /* feedback logging must never break search */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1285:  try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1287:      const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1291:        try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1308:        } catch (_error: unknown) { /* ignore parse errors */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1314:          trackQueryAndDetect(db, sessionId ?? null, normalizedQuery, queryId, shownIds);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1319:          logResultCited(db, sessionId ?? null, queryId, shownIds);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1323:  } catch (_error: unknown) { /* query flow tracking must never break search */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1328:    const firstEntry = responseToReturn?.content?.[0];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1329:    if (firstEntry && typeof firstEntry.text === 'string') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1330:      try {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1331:        const profiled = applyProfileToEnvelope(effectiveProfile, firstEntry.text);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1332:        if (profiled !== firstEntry.text) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1335:            content: [{ ...firstEntry, text: profiled }],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1338:      } catch (_profileError: unknown) {
 .opencode/plugins/spec-kit-compact-code-graph.js:4:'use strict';
 .opencode/plugins/spec-kit-compact-code-graph.js:36:const PLUGIN_ID = 'spec-kit-compact-code-graph';
 .opencode/plugins/spec-kit-compact-code-graph.js:44:const BRIDGE_PATH = fileURLToPath(new URL('./spec-kit-compact-code-graph-bridge.mjs', import.meta.url));
@@ -8560,426 +8560,426 @@ exec
 .opencode/plugins/spec-kit-compact-code-graph.js:399:        sessionID: input.sessionID,
 .opencode/plugins/spec-kit-compact-code-graph.js:406:      const block = plan?.compaction;
 .opencode/plugins/spec-kit-compact-code-graph.js:412:      if (output.context.some((entry) => entry.includes(rendered))) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:42:import { validateInputLengths } from './utils/index.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:71:  validateConfiguredEmbeddingsProvider,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:85:import * as sessionBoost from './lib/search/session-boost.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:86:import * as causalBoost from './lib/search/causal-boost.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:106:import { initScoringObservability } from './lib/telemetry/scoring-observability.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:109:// T099: Retry manager for background embedding retry job (REQ-031, CHK-179)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:110:import * as retryManager from './lib/providers/retry-manager.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:111:import { buildErrorResponse, getDefaultErrorCodeForTool, getRecoveryHint } from './lib/errors.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:112:// T001-T004: Session deduplication
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:113:import * as sessionManager from './lib/session/session-manager.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:115:// Phase 023: Context metrics — lightweight session quality tracking
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:116:import { recordMetricEvent } from './lib/session/context-metrics.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:120:// T107: Transaction manager for pending file recovery on startup (REQ-033)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:131:import { getSessionSnapshot } from './lib/session/session-snapshot.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:138:  status: string;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:139:  error?: string;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:154:  error?: string;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:155:  errorCode?: string;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:165:    status: 'ok' | 'error';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:167:    error?: string;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:169:  sessionPrimed?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:242:  status: 'ok' | 'timeout' | 'unavailable';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:248:  error?: string;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:258:  surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:281:function isMutationStatus(status: string | undefined): boolean {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:282:  return status === 'indexed' || status === 'updated' || status === 'reinforced' || status === 'deferred';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:360:  const transportSessionId = typeof (extra as { sessionId?: unknown } | null)?.sessionId === 'string'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:361:    ? ((extra as { sessionId?: string }).sessionId ?? null)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:363:  const explicitSessionId = typeof args.sessionId === 'string'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:364:    ? args.sessionId
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:365:    : typeof args.session_id === 'string'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:366:      ? args.session_id
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:376:// REQ-014: Sticky session for follow_on_tool_use correlation.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:377:// Stores the last resolved session ID so non-search tools (e.g. memory_stats)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:378:// that lack an explicit sessionId param can still correlate with a prior search.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:389:      void callback(tool, callId, result).catch((error: unknown) => {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:390:        const message = error instanceof Error ? error.message : String(error);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:391:        console.error(`[context-server] afterTool callback failed for '${tool}' (${callId}): ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:444:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:448:  } catch {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:518:      for (const entry of graphDb.queryEdgesFrom(node.symbolId)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:523:        const neighborNode = entry.targetNode;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:534:        bucket.relationTypes.add(entry.edge.edgeType);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:541:            relation: entry.edge.edgeType,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:546:      for (const entry of graphDb.queryEdgesTo(node.symbolId)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:551:        const neighborNode = entry.sourceNode;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:562:        bucket.relationTypes.add(entry.edge.edgeType);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:569:            relation: entry.edge.edgeType,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:594:    status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:616:  let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:620:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:634:      } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:636:          status: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:641:          error: error instanceof Error ? error.message : String(error),
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:647:  const timeoutPromise = new Promise<DispatchGraphContextMeta>((resolve) => {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:648:    timeoutHandle = setTimeout(() => {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:650:        status: 'timeout',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:659:  const graphContext = await Promise.race([buildPromise, timeoutPromise]);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:660:  if (timeoutHandle) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:661:    clearTimeout(timeoutHandle);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:669:  sessionPrimeContext: AutoSurfaceResult,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:676:  const constitutionalCount = Array.isArray(sessionPrimeContext.constitutional)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:677:    ? sessionPrimeContext.constitutional.length
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:679:  const codeGraphStatus = sessionPrimeContext.codeGraphStatus;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:680:  const codeGraphState = codeGraphStatus?.status === 'ok'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:681:    ? 'loaded code graph status'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:682:    : 'code graph status unavailable';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:689:  const pkg = sessionPrimeContext.primePackage;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:700:  meta.sessionPriming = sessionPrimeContext;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:704:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:722:    const retry = typeof byStatus.retry === 'number' ? byStatus.retry : 0;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:731:      staleCount: pending + failed + retry,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:733:  } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:738:// (CHK-076): Instructions are computed once at startup and NOT refreshed during the session.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:764:  // Phase 024 / Item 4: Session recovery digest from session-snapshot
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:765:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:766:    const { getSessionSnapshot } = await import('./lib/session/session-snapshot.js');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:768:    const hasData = snap.specFolder || snap.graphFreshness !== 'error' || snap.sessionQuality !== 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:777:      lines.push(`- Session quality: ${snap.sessionQuality}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:780:  } catch { /* session-snapshot not available — skip digest */ }
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:782:  // Phase 027: Structural bootstrap guidance for non-hook runtimes
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:791:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:792:    const { getSessionSnapshot: getSnap } = await import('./lib/session/session-snapshot.js');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:809:  } catch { /* tool routing snapshot unavailable — skip */ }
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:819:async function invalidateReinitializedDbCaches(): Promise<void> {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:820:  const invalidatedEntries = toolCache.clear();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:822:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:827:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:828:    const message = error instanceof Error ? error.message : String(error);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:829:    console.error(`[context-server] Failed to clear trigger cache after DB reinit: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:832:  if (invalidatedEntries > 0) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:833:    console.error(`[context-server] Cleared ${invalidatedEntries} tool-cache entries after DB reinitialization`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:865:  const sessionTrackingId = resolveSessionTrackingId(args, _extra);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:866:  if (sessionTrackingId) lastKnownSessionId = sessionTrackingId;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:868:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:870:    validateInputLengths(args);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:874:    // T018: Track last tool call timestamp for all tools except session_health.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:875:    if (name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:876:      recordToolCall(sessionTrackingId);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:883:      recordMetricEvent({ kind: 'memory_recovery' });
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:894:      await invalidateReinitializedDbCaches();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:897:    let sessionPrimeContext: AutoSurfaceResult | null = null;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:898:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:899:      sessionPrimeContext = await primeSessionIfNeeded(
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:902:        sessionTrackingId,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:904:    } catch (primeErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:906:      console.error(`[context-server] Session priming failed (non-fatal): ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:918:        try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:924:        } catch (surfaceErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:926:          console.error(`[context-server] Auto-surface failed (non-fatal): ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:930:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:932:      } catch (surfaceErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:934:        console.error(`[context-server] Tool-dispatch auto-surface failed (non-fatal): ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:965:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:968:        const db = (() => { try { return requireDb(); } catch { return null; } })();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:969:        const followOnSessionId = sessionTrackingId ?? lastKnownSessionId;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:973:      } catch { /* follow_on_tool_use logging must never break dispatch */ }
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:981:        try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:989:        } catch {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:995:        try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1014:        } catch {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1021:    // near mentioned file paths and session continuity warnings.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1023:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1027:          try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1034:          } catch {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1038:      } catch (enrichErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1039:        // Passive enrichment is strictly non-fatal
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1054:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1066:          if (sessionPrimeContext && !result.isError) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1067:            injectSessionPrimeHints(envelope, meta, sessionPrimeContext);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1080:            console.error(`[token-budget] ${name} response (${meta.tokenCount} tokens) exceeds budget (${budget})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1113:      } catch (_parseErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1119:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1120:    // REQ-004: Include recovery hints in all error responses
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1121:    const err = error instanceof Error ? error : new Error(String(error));
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1122:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1123:      const errorResponse = buildErrorResponse(name, err, args);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1125:      return wrapForMCP(errorResponse as any, true);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1126:    } catch (wrapError: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1127:      const fallbackError = wrapError instanceof Error ? wrapError.message : String(wrapError);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1128:      console.error(`[context-server] Failed to build MCP error envelope for '${name}': ${fallbackError}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1129:      const fallbackCode = getDefaultErrorCodeForTool(name);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1132:        error: 'Request failed.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1133:        code: fallbackCode,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1134:        recovery: getRecoveryHint(name, fallbackCode),
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1162:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1164:      for (const entry of fs.readdirSync(skillDir, { withFileTypes: true })) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1165:        if (!entry.isDirectory() || entry.name.startsWith('.')) continue;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1166:        const constDir = path.join(skillDir, entry.name, 'constitutional');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1169:    } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1178: * CHK-188: Pending files processed by recovery job on next startup.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1184:  console.error('[context-server] Checking for pending memory files...');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1186:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1187:    // BUG-028 FIX: Restrict scan to known memory file locations to prevent OOM when scanning large workspaces.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1208:    const recoveryResult: PendingRecoveryResult = {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1216:    if (recoveryResult.found > 0) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1217:      console.error(`[context-server] Pending file recovery: ${recoveryResult.recovered} recovered, ${recoveryResult.failed} failed (${recoveryResult.found} total)`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1219:      console.error('[context-server] No pending memory files found');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1222:    return recoveryResult;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1223:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1224:    const message = error instanceof Error ? error.message : String(error);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1225:    console.error(`[context-server] Pending file recovery error: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1232:    console.error('[context-server] Startup scan already in progress, skipping');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1237:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1238:    console.error('[context-server] Waiting for embedding model to be ready...');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1242:      console.error('[context-server] Startup scan skipped: embedding model not ready');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1243:      console.error('[context-server] Run memory_index_scan manually after model loads');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1250:    console.error('[context-server] Starting background scan for new memory files...');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1262:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1276:      } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1282:      console.error('[context-server] No memory files found in workspace');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1286:    console.error(`[context-server] Found ${allFiles.length} memory files, checking for changes...`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1290:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1292:        if (result.status === 'indexed') indexed++;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1293:        else if (result.status === 'updated') updated++;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1295:      } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1297:        const message = error instanceof Error ? error.message : String(error);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1298:        console.error(`[context-server] Failed to index ${path.basename(filePath)}: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1303:      console.error(`[context-server] Startup scan: ${indexed} new, ${updated} updated, ${unchanged} unchanged, ${failed} failed`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1305:      console.error(`[context-server] Startup scan: all ${unchanged} files up to date`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1309:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1317:      } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1325:      console.error(`[context-server] Atomicity metrics: ${metrics.totalAtomicWrites} successful, ${metrics.totalErrors} failed, ${metrics.totalRecoveries} recovered`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1327:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1328:    const message = error instanceof Error ? error.message : String(error);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1329:    console.error(`[context-server] Startup scan error: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1360:  console.error(`[context-server] ${reason}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1362:  runCleanupStep('sessionManager', () => sessionManager.shutdown());
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1364:  runCleanupStep('retryManager', () => retryManager.stopBackgroundJob());
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1402:    console.error(`[context-server] Shutdown deadline exceeded after ${SHUTDOWN_DEADLINE_MS}ms`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1418:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1425:  } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1440:        try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1442:        } catch (_histErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1450:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1452:    } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1484:  console.error(
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1488:  validateConfiguredEmbeddingsProvider();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1491:  // Validates API key at startup to fail fast with actionable error messages
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1495:    console.error('[context-server] Validating embedding API key...');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1496:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1497:      startupEmbeddingConfig = await resolveStartupEmbeddingConfig({ timeout: API_KEY_VALIDATION_TIMEOUT_MS });
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1503:          console.warn('[context-server] ===== API KEY VALIDATION SKIPPED (network error) =====');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1505:          console.warn(`[context-server] Error: ${validation.error}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1514:          console.error('[context-server] ===== API KEY VALIDATION FAILED =====');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1515:          console.error(`[context-server] Provider: ${validation.provider}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1516:          console.error(`[context-server] Error: ${validation.error}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1517:          console.error(`[context-server] Error Code: ${validation.errorCode || 'E050'}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1519:            console.error('[context-server] Recovery Actions:');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1521:              console.error(`[context-server]   ${i + 1}. ${action}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1524:          console.error('[context-server] =====================================');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1525:          console.error('[context-server] FATAL: Cannot start MCP server with invalid API key');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1526:          console.error('[context-server] Set SPECKIT_SKIP_API_VALIDATION=true to bypass (not recommended)');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1536:        console.error(`[context-server] API key validated (provider: ${validation.provider})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1538:    } catch (validationError: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1540:      console.error(`[context-server] API key validation error: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1541:      console.error('[context-server] Continuing startup - validation will occur on first use');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1553:  console.error('[context-server] Initializing database...');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1556:  console.error('[context-server] Database initialized');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1557:  console.error('[context-server] Database path: ' + DATABASE_PATH);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1560:  // P4-12/P4-19 FIX: Pass sessionManager and incrementalIndex so db-state can
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1567:    sessionManager,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1570:      sessionBoost,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1571:      causalBoost,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1582:  console.error('[context-server] Lazy loading enabled - embedding model will initialize on first use');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1583:  console.error('[context-server] SPECKIT_EAGER_WARMUP and SPECKIT_LAZY_LOADING are deprecated compatibility flags');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1588:  try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1590:    console.error(`[context-server] Integrity check: ${report.totalMemories}/${report.totalMemories + report.missingVectors} valid entries`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1591:    if (report.orphanedVectors > 0) console.error(`[context-server] WARNING: ${report.orphanedVectors} orphaned entries detected`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1594:    const dimValidation = vectorIndex.validateEmbeddingDimension();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1596:      console.error(`[context-server] ===== EMBEDDING DIMENSION MISMATCH =====`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1597:      console.error(`[context-server] ${dimValidation.warning}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1598:      console.error(`[context-server] =========================================`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1599:      console.error('[context-server] FATAL: Refusing to start with mismatched embedding dimensions');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1602:      console.error(`[context-server] Embedding dimension validated: ${dimValidation.stored}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1610:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1612:      console.error('[context-server] Scoring observability initialized');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1613:    } catch (scoringObsErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1619:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1622:        console.error(`[context-server] Learned triggers ready (migrated=${migrated}, fts5Isolated=${isolated})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1623:      } catch (learnedErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1645:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1648:    } catch {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1652:    console.error('[context-server] Startup health: memory_index=%d, active_memory_projection=%d', memoryCount, projectionCount);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1656:      console.error('[context-server] Auto-backfill triggered: %d rows seeded into active_memory_projection', result.seeded);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1660:      console.error('[context-server] WARNING: Database has 0 memories — search will return no results until memories are saved');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1673:    sessionBoost.init(database);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1674:    causalBoost.init(database);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1681:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1684:        console.error(
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1689:      } catch (graphRefreshErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1694:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1698:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1701:        console.error(`[context-server] BM25 index rebuilt from database: ${count} documents`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1702:      } catch (bm25Err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1709:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1713:      console.error('[context-server] Cognitive memory modules initialized');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1714:      console.error(`[context-server] Working memory: ${workingMemory.isEnabled()}, Co-activation: ${coActivation.isEnabled()}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1715:    } catch (cognitiveErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1720:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1722:      console.error('[context-server] Extraction adapter initialized');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1723:    } catch (extractionErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1729:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1734:        console.error(`[context-server] Archival manager initialized (background job started)`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1736:        console.error(`[context-server] Archival manager initialized (background job: not started)`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1738:    } catch (archivalErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1743:    // T099: Background retry job for pending embeddings (REQ-031, CHK-179)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1745:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1746:      const retryJobResult = retryManager.startBackgroundJob({
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1750:      if (retryJobResult) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1751:        console.error('[context-server] Background retry job started (interval: 5min, batch: 5)');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1753:        console.error('[context-server] Background retry job already running or disabled');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1755:    } catch (retryErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1756:      const message = retryErr instanceof Error ? retryErr.message : String(retryErr);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1757:      console.warn('[context-server] Background retry job failed to start:', message);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1763:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1766:        console.error('[context-server] Shadow feedback evaluation scheduler started');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1768:        console.error('[context-server] Shadow feedback evaluation scheduler not started (already running or disabled)');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1770:    } catch (shadowEvalErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1777:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1780:        console.error(`[context-server] Batch learning: ${batchResult.shadowApplied} shadow-applied, ${batchResult.skippedMinSupport} skipped (min-support), window=${Math.round((batchResult.runAt - batchResult.windowStart) / 86_400_000)}d`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1782:        console.error('[context-server] Batch learning: no eligible candidates in window (or flag disabled)');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1784:    } catch (batchErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1789:    // T001-T004: Session deduplication module
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1790:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1791:      const sessionResult = sessionManager.init(database);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1792:      if (sessionResult.success) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1793:        console.error(`[context-server] Session manager initialized (enabled: ${sessionManager.isEnabled()})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1796:        // Reset any sessions that were active when server last crashed
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1797:        const recoveryResult = sessionManager.resetInterruptedSessions();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1798:        if (recoveryResult.interruptedCount > 0) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1799:          console.error(`[context-server] Crash recovery: marked ${recoveryResult.interruptedCount} sessions as interrupted`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1800:          // Log interrupted sessions for visibility
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1801:          const interrupted = sessionManager.getInterruptedSessions();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1802:          if (interrupted.sessions && interrupted.sessions.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1803:            console.error('[context-server] Recoverable sessions:', interrupted.sessions.map((s: { sessionId: string }) => s.sessionId).join(', '));
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1807:        console.warn('[context-server] Session manager initialization returned:', sessionResult.error);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1809:    } catch (sessionErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1810:      const message = sessionErr instanceof Error ? sessionErr.message : String(sessionErr);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1814:    // P0-3: Async ingestion job queue initialization + crash recovery reset.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1815:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1822:        console.error(`[context-server] Ingest crash recovery reset ${ingestInit.resetCount} incomplete job(s) to queued`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1824:    } catch (ingestInitErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1831:      try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1838:              if (isMutationStatus(result.status)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1839:                try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1841:                    indexed: result.status === 'indexed' || result.status === 'deferred' ? 1 : 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1842:                    updated: result.status === 'updated' || result.status === 'reinforced' ? 1 : 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1847:                    status: result.status,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1849:                } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1858:          console.error(`[context-server] File watcher started for ${watchPaths.length} path(s)`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1862:      } catch (watchErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1867:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1869:    console.error('[context-server] Integrity check failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1875:    try {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1880:    } catch (instructionErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1888:  console.error('[context-server] Context MCP server running on stdio');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1897:  main().catch((err: unknown) => { console.error('[context-server] Fatal error:', err); process.exit(1); });
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:1:"use strict";
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:42:exports.validateArguments = validateArguments;
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:48:// CLI entry point -- parses arguments, validates spec folder, and runs the memory workflow
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:57:const collect_session_data_1 = require("../extractors/collect-session-data");
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:70:  --stdin           Read structured JSON from stdin (preferred when a caller already has curated session data)
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:72:  --session-id <uuid>  Explicit session ID to attach to the saved memory metadata
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85:Preferred save path (JSON-PRIMARY):
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:87:  - The AI has strictly better information about its own session than any DB query can reconstruct.
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:93:    but they must not reroute the save to another folder.
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:95:JSON Data Format (with preflight/postflight, session/git, and tool/exchange enrichment):
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:101:      { "tool": "Read", "inputSummary": "Read data-loader.ts", "outputSummary": "585 lines", "status": "success", "durationEstimate": "fast" },
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:102:      { "tool": "Edit", "inputSummary": "Added deprecation warning", "outputSummary": "Inserted 10 lines", "status": "success" }
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:105:      { "userInput": "Implement the JSON-primary plan", "assistantResponse": "Updated 8 files...", "timestamp": "ISO-8601" }
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:126:  - toolCalls[]: AI-summarized tool calls with tool name, input/output summaries, status, duration
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:149:    try {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:152:    catch (_err) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:155:    console.error(`\nWarning: Received ${signal} signal, shutting down gracefully...`);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:170:    return (0, path_security_1.validateFilePath)(path.resolve(core_1.CONFIG.PROJECT_ROOT, normalizedInput), (0, core_1.getSpecsDirectories)()) !== null;
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:190:                        (0, path_security_1.validateFilePath)(candidate, (0, core_1.getSpecsDirectories)()) !== null) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:219:        // (findChildFolderSync in validateArguments handles this, so just report the error here)
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:297:        stdin.on('error', reject);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:305:    try {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:308:    catch (error) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:309:        const errMsg = error instanceof Error ? error.message : String(error);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:319:        console.error('--stdin requires piped input');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:328:    // Validation: empty --json is a user error, not a crash
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:330:        console.log(JSON.stringify({ error: 'VALIDATION_ERROR', message: 'Empty --json input' }));
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:349:        sessionId: null,
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:356:    // Extract --session-id <uuid> from argv before positional parsing
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:357:    let sessionId = null;
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:360:        if (argv[i] === '--session-id') {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:363:                throw new Error('--session-id requires a non-empty value');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:365:            sessionId = candidate.trim();
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:373:        return { dataFile: null, specFolderArg: null, collectedData: null, sessionId };
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:377:        return { ...structured, sessionId };
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:388:        sessionId,
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:391:function validateArguments() {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:401:    // --- Subfolder support: before failing, try to find the folder as a child ---
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:408:            console.error(`   Resolved child folder "${inputBaseName}" → ${resolved}`);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:412:        // FindChildFolder logs its own error for ambiguous matches
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:414:    console.error(`\nError: Invalid spec folder format: ${specFolderArg}`);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:415:    console.error(`   Reason: ${validation.reason}`);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:416:    console.error('Expected format: ###-feature-name (e.g., "122-skill-standardization")\n');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:419:        try {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:423:                console.error('Did you mean:');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:424:                matches.forEach((m) => console.error(`  - ${m}`));
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:427:                // --- Subfolder support: multi-level deep scan as fallback ---
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:430:                for (const topEntry of available) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:431:                    const isSpec = core_1.SPEC_FOLDER_PATTERN.test(topEntry);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:432:                    const isCategory = core_1.CATEGORY_FOLDER_PATTERN.test(topEntry);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:435:                    const topPath = path.join(specsDir, topEntry);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:436:                    try {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:443:                            deepMatches.push(`${topEntry}/${child}`);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:447:                            for (const midEntry of topChildren) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:448:                                if (!core_1.SPEC_FOLDER_PATTERN.test(midEntry))
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:450:                                const midPath = path.join(topPath, midEntry);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:451:                                try {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:457:                                        deepMatches.push(`${topEntry}/${midEntry}/${gc}`);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:460:                                catch (_error) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:461:                                    if (_error instanceof Error) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:468:                    catch (_error) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:469:                        if (_error instanceof Error) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:475:                    console.error('Did you mean (in subfolders):');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:476:                    deepMatches.forEach((m) => console.error(`  - ${m}`));
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:482:                        console.error('Available spec folders:');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:483:                        allSpecs.forEach((f) => console.error(`  - ${f}`));
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:488:        catch (error) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:489:            const errMsg = error instanceof Error ? error.message : String(error);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:490:            console.error('[generate-context] Failed to list spec folders:', errMsg);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:493:    console.error('\nUsage: node generate-context.js [--stdin [spec-folder-name] | --json <json> [spec-folder-name] | <data-file> [spec-folder-name]]\n');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:500:    console.error('Starting memory skill...\n');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:501:    try {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:505:        validateArguments();
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:513:            collectSessionDataFn: collect_session_data_1.collectSessionData,
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:514:            sessionId: parsed.sessionId ?? undefined,
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:517:    catch (error) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:518:        const errMsg = error instanceof Error ? error.message : String(error);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:519:        const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|required a non-empty JSON object|JSON object payload|no longer supported|session-id requires/.test(errMsg);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:521:            console.error(`\nError: ${errMsg}`);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:524:            console.error('Unexpected Error:', errMsg);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:525:            if (error instanceof Error) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:526:                console.error(error.stack);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:537:    main().catch((error) => {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:538:        const errMsg = error instanceof Error ? error.message : String(error);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:539:        console.error(`Fatal error: ${errMsg}`);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:540:        if (error instanceof Error) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:541:            console.error(error.stack);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:42:import { validateInputLengths } from './utils/index.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:71:  validateConfiguredEmbeddingsProvider,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:85:import * as sessionBoost from './lib/search/session-boost.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:86:import * as causalBoost from './lib/search/causal-boost.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:106:import { initScoringObservability } from './lib/telemetry/scoring-observability.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:109:// T099: Retry manager for background embedding retry job (REQ-031, CHK-179)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:110:import * as retryManager from './lib/providers/retry-manager.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:111:import { buildErrorResponse, getDefaultErrorCodeForTool, getRecoveryHint } from './lib/errors.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:112:// T001-T004: Session deduplication
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:113:import * as sessionManager from './lib/session/session-manager.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:115:// Phase 023: Context metrics — lightweight session quality tracking
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:116:import { recordMetricEvent } from './lib/session/context-metrics.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:120:// T107: Transaction manager for pending file recovery on startup (REQ-033)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:131:import { getSessionSnapshot } from './lib/session/session-snapshot.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:138:  status: string;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:139:  error?: string;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:154:  error?: string;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:155:  errorCode?: string;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:165:    status: 'ok' | 'error';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:167:    error?: string;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:169:  sessionPrimed?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:242:  status: 'ok' | 'timeout' | 'unavailable';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:248:  error?: string;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:258:  surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:281:function isMutationStatus(status: string | undefined): boolean {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:282:  return status === 'indexed' || status === 'updated' || status === 'reinforced' || status === 'deferred';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:360:  const transportSessionId = typeof (extra as { sessionId?: unknown } | null)?.sessionId === 'string'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:361:    ? ((extra as { sessionId?: string }).sessionId ?? null)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:363:  const explicitSessionId = typeof args.sessionId === 'string'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:364:    ? args.sessionId
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:365:    : typeof args.session_id === 'string'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:366:      ? args.session_id
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:376:// REQ-014: Sticky session for follow_on_tool_use correlation.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:377:// Stores the last resolved session ID so non-search tools (e.g. memory_stats)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:378:// that lack an explicit sessionId param can still correlate with a prior search.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:389:      void callback(tool, callId, result).catch((error: unknown) => {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:390:        const message = error instanceof Error ? error.message : String(error);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:391:        console.error(`[context-server] afterTool callback failed for '${tool}' (${callId}): ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:444:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:448:  } catch {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:518:      for (const entry of graphDb.queryEdgesFrom(node.symbolId)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:523:        const neighborNode = entry.targetNode;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:534:        bucket.relationTypes.add(entry.edge.edgeType);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:541:            relation: entry.edge.edgeType,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:546:      for (const entry of graphDb.queryEdgesTo(node.symbolId)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:551:        const neighborNode = entry.sourceNode;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:562:        bucket.relationTypes.add(entry.edge.edgeType);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:569:            relation: entry.edge.edgeType,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:594:    status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:616:  let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:620:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:634:      } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:636:          status: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:641:          error: error instanceof Error ? error.message : String(error),
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:647:  const timeoutPromise = new Promise<DispatchGraphContextMeta>((resolve) => {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:648:    timeoutHandle = setTimeout(() => {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:650:        status: 'timeout',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:659:  const graphContext = await Promise.race([buildPromise, timeoutPromise]);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:660:  if (timeoutHandle) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:661:    clearTimeout(timeoutHandle);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:669:  sessionPrimeContext: AutoSurfaceResult,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:676:  const constitutionalCount = Array.isArray(sessionPrimeContext.constitutional)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:677:    ? sessionPrimeContext.constitutional.length
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:679:  const codeGraphStatus = sessionPrimeContext.codeGraphStatus;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:680:  const codeGraphState = codeGraphStatus?.status === 'ok'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:681:    ? 'loaded code graph status'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:682:    : 'code graph status unavailable';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:689:  const pkg = sessionPrimeContext.primePackage;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:700:  meta.sessionPriming = sessionPrimeContext;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:704:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:722:    const retry = typeof byStatus.retry === 'number' ? byStatus.retry : 0;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:731:      staleCount: pending + failed + retry,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:733:  } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:738:// (CHK-076): Instructions are computed once at startup and NOT refreshed during the session.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:764:  // Phase 024 / Item 4: Session recovery digest from session-snapshot
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:765:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:766:    const { getSessionSnapshot } = await import('./lib/session/session-snapshot.js');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:768:    const hasData = snap.specFolder || snap.graphFreshness !== 'error' || snap.sessionQuality !== 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:777:      lines.push(`- Session quality: ${snap.sessionQuality}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:780:  } catch { /* session-snapshot not available — skip digest */ }
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:782:  // Phase 027: Structural bootstrap guidance for non-hook runtimes
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:791:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:792:    const { getSessionSnapshot: getSnap } = await import('./lib/session/session-snapshot.js');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:809:  } catch { /* tool routing snapshot unavailable — skip */ }
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:819:async function invalidateReinitializedDbCaches(): Promise<void> {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:820:  const invalidatedEntries = toolCache.clear();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:822:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:827:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:828:    const message = error instanceof Error ? error.message : String(error);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:829:    console.error(`[context-server] Failed to clear trigger cache after DB reinit: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:832:  if (invalidatedEntries > 0) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:833:    console.error(`[context-server] Cleared ${invalidatedEntries} tool-cache entries after DB reinitialization`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:865:  const sessionTrackingId = resolveSessionTrackingId(args, _extra);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:866:  if (sessionTrackingId) lastKnownSessionId = sessionTrackingId;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:868:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:870:    validateInputLengths(args);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:874:    // T018: Track last tool call timestamp for all tools except session_health.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:875:    if (name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:876:      recordToolCall(sessionTrackingId);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:883:      recordMetricEvent({ kind: 'memory_recovery' });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:894:      await invalidateReinitializedDbCaches();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:897:    let sessionPrimeContext: AutoSurfaceResult | null = null;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:898:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:899:      sessionPrimeContext = await primeSessionIfNeeded(
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:902:        sessionTrackingId,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:904:    } catch (primeErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:906:      console.error(`[context-server] Session priming failed (non-fatal): ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:918:        try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:924:        } catch (surfaceErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:926:          console.error(`[context-server] Auto-surface failed (non-fatal): ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:930:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:932:      } catch (surfaceErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:934:        console.error(`[context-server] Tool-dispatch auto-surface failed (non-fatal): ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:965:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:968:        const db = (() => { try { return requireDb(); } catch { return null; } })();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:969:        const followOnSessionId = sessionTrackingId ?? lastKnownSessionId;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:973:      } catch { /* follow_on_tool_use logging must never break dispatch */ }
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:981:        try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:989:        } catch {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:995:        try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1014:        } catch {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1021:    // near mentioned file paths and session continuity warnings.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1023:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1027:          try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1034:          } catch {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1038:      } catch (enrichErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1039:        // Passive enrichment is strictly non-fatal
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1054:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1066:          if (sessionPrimeContext && !result.isError) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1067:            injectSessionPrimeHints(envelope, meta, sessionPrimeContext);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1080:            console.error(`[token-budget] ${name} response (${meta.tokenCount} tokens) exceeds budget (${budget})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1113:      } catch (_parseErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1119:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1120:    // REQ-004: Include recovery hints in all error responses
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1121:    const err = error instanceof Error ? error : new Error(String(error));
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1122:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1123:      const errorResponse = buildErrorResponse(name, err, args);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1125:      return wrapForMCP(errorResponse as any, true);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1126:    } catch (wrapError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1127:      const fallbackError = wrapError instanceof Error ? wrapError.message : String(wrapError);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1128:      console.error(`[context-server] Failed to build MCP error envelope for '${name}': ${fallbackError}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1129:      const fallbackCode = getDefaultErrorCodeForTool(name);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1132:        error: 'Request failed.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1133:        code: fallbackCode,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1134:        recovery: getRecoveryHint(name, fallbackCode),
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1162:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1164:      for (const entry of fs.readdirSync(skillDir, { withFileTypes: true })) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1165:        if (!entry.isDirectory() || entry.name.startsWith('.')) continue;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1166:        const constDir = path.join(skillDir, entry.name, 'constitutional');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1169:    } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1178: * CHK-188: Pending files processed by recovery job on next startup.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1184:  console.error('[context-server] Checking for pending memory files...');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1186:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1187:    // BUG-028 FIX: Restrict scan to known memory file locations to prevent OOM when scanning large workspaces.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1208:    const recoveryResult: PendingRecoveryResult = {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1216:    if (recoveryResult.found > 0) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1217:      console.error(`[context-server] Pending file recovery: ${recoveryResult.recovered} recovered, ${recoveryResult.failed} failed (${recoveryResult.found} total)`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1219:      console.error('[context-server] No pending memory files found');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1222:    return recoveryResult;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1223:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1224:    const message = error instanceof Error ? error.message : String(error);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1225:    console.error(`[context-server] Pending file recovery error: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1232:    console.error('[context-server] Startup scan already in progress, skipping');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1237:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1238:    console.error('[context-server] Waiting for embedding model to be ready...');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1242:      console.error('[context-server] Startup scan skipped: embedding model not ready');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1243:      console.error('[context-server] Run memory_index_scan manually after model loads');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1250:    console.error('[context-server] Starting background scan for new memory files...');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1262:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1276:      } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1282:      console.error('[context-server] No memory files found in workspace');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1286:    console.error(`[context-server] Found ${allFiles.length} memory files, checking for changes...`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1290:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1292:        if (result.status === 'indexed') indexed++;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1293:        else if (result.status === 'updated') updated++;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1295:      } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1297:        const message = error instanceof Error ? error.message : String(error);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1298:        console.error(`[context-server] Failed to index ${path.basename(filePath)}: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1303:      console.error(`[context-server] Startup scan: ${indexed} new, ${updated} updated, ${unchanged} unchanged, ${failed} failed`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1305:      console.error(`[context-server] Startup scan: all ${unchanged} files up to date`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1309:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1317:      } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1325:      console.error(`[context-server] Atomicity metrics: ${metrics.totalAtomicWrites} successful, ${metrics.totalErrors} failed, ${metrics.totalRecoveries} recovered`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1327:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1328:    const message = error instanceof Error ? error.message : String(error);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1329:    console.error(`[context-server] Startup scan error: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1360:  console.error(`[context-server] ${reason}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1362:  runCleanupStep('sessionManager', () => sessionManager.shutdown());
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1364:  runCleanupStep('retryManager', () => retryManager.stopBackgroundJob());
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1402:    console.error(`[context-server] Shutdown deadline exceeded after ${SHUTDOWN_DEADLINE_MS}ms`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1418:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1425:  } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1440:        try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1442:        } catch (_histErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1450:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1452:    } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1484:  console.error(
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1488:  validateConfiguredEmbeddingsProvider();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1491:  // Validates API key at startup to fail fast with actionable error messages
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1495:    console.error('[context-server] Validating embedding API key...');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1496:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1497:      startupEmbeddingConfig = await resolveStartupEmbeddingConfig({ timeout: API_KEY_VALIDATION_TIMEOUT_MS });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1503:          console.warn('[context-server] ===== API KEY VALIDATION SKIPPED (network error) =====');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1505:          console.warn(`[context-server] Error: ${validation.error}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1514:          console.error('[context-server] ===== API KEY VALIDATION FAILED =====');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1515:          console.error(`[context-server] Provider: ${validation.provider}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1516:          console.error(`[context-server] Error: ${validation.error}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1517:          console.error(`[context-server] Error Code: ${validation.errorCode || 'E050'}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1519:            console.error('[context-server] Recovery Actions:');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1521:              console.error(`[context-server]   ${i + 1}. ${action}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1524:          console.error('[context-server] =====================================');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1525:          console.error('[context-server] FATAL: Cannot start MCP server with invalid API key');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1526:          console.error('[context-server] Set SPECKIT_SKIP_API_VALIDATION=true to bypass (not recommended)');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1536:        console.error(`[context-server] API key validated (provider: ${validation.provider})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1538:    } catch (validationError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1540:      console.error(`[context-server] API key validation error: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1541:      console.error('[context-server] Continuing startup - validation will occur on first use');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1553:  console.error('[context-server] Initializing database...');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1556:  console.error('[context-server] Database initialized');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1557:  console.error('[context-server] Database path: ' + DATABASE_PATH);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1560:  // P4-12/P4-19 FIX: Pass sessionManager and incrementalIndex so db-state can
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1567:    sessionManager,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1570:      sessionBoost,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1571:      causalBoost,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1582:  console.error('[context-server] Lazy loading enabled - embedding model will initialize on first use');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1583:  console.error('[context-server] SPECKIT_EAGER_WARMUP and SPECKIT_LAZY_LOADING are deprecated compatibility flags');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1588:  try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1590:    console.error(`[context-server] Integrity check: ${report.totalMemories}/${report.totalMemories + report.missingVectors} valid entries`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1591:    if (report.orphanedVectors > 0) console.error(`[context-server] WARNING: ${report.orphanedVectors} orphaned entries detected`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1594:    const dimValidation = vectorIndex.validateEmbeddingDimension();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1596:      console.error(`[context-server] ===== EMBEDDING DIMENSION MISMATCH =====`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1597:      console.error(`[context-server] ${dimValidation.warning}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1598:      console.error(`[context-server] =========================================`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1599:      console.error('[context-server] FATAL: Refusing to start with mismatched embedding dimensions');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1602:      console.error(`[context-server] Embedding dimension validated: ${dimValidation.stored}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1610:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1612:      console.error('[context-server] Scoring observability initialized');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1613:    } catch (scoringObsErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1619:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1622:        console.error(`[context-server] Learned triggers ready (migrated=${migrated}, fts5Isolated=${isolated})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1623:      } catch (learnedErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1645:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1648:    } catch {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1652:    console.error('[context-server] Startup health: memory_index=%d, active_memory_projection=%d', memoryCount, projectionCount);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1656:      console.error('[context-server] Auto-backfill triggered: %d rows seeded into active_memory_projection', result.seeded);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1660:      console.error('[context-server] WARNING: Database has 0 memories — search will return no results until memories are saved');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1673:    sessionBoost.init(database);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1674:    causalBoost.init(database);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1681:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1684:        console.error(
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1689:      } catch (graphRefreshErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1694:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1698:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1701:        console.error(`[context-server] BM25 index rebuilt from database: ${count} documents`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1702:      } catch (bm25Err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1709:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1713:      console.error('[context-server] Cognitive memory modules initialized');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1714:      console.error(`[context-server] Working memory: ${workingMemory.isEnabled()}, Co-activation: ${coActivation.isEnabled()}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1715:    } catch (cognitiveErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1720:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1722:      console.error('[context-server] Extraction adapter initialized');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1723:    } catch (extractionErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1729:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1734:        console.error(`[context-server] Archival manager initialized (background job started)`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1736:        console.error(`[context-server] Archival manager initialized (background job: not started)`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1738:    } catch (archivalErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1743:    // T099: Background retry job for pending embeddings (REQ-031, CHK-179)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1745:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1746:      const retryJobResult = retryManager.startBackgroundJob({
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1750:      if (retryJobResult) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1751:        console.error('[context-server] Background retry job started (interval: 5min, batch: 5)');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1753:        console.error('[context-server] Background retry job already running or disabled');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1755:    } catch (retryErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1756:      const message = retryErr instanceof Error ? retryErr.message : String(retryErr);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1757:      console.warn('[context-server] Background retry job failed to start:', message);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1763:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1766:        console.error('[context-server] Shadow feedback evaluation scheduler started');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1768:        console.error('[context-server] Shadow feedback evaluation scheduler not started (already running or disabled)');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1770:    } catch (shadowEvalErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1777:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1780:        console.error(`[context-server] Batch learning: ${batchResult.shadowApplied} shadow-applied, ${batchResult.skippedMinSupport} skipped (min-support), window=${Math.round((batchResult.runAt - batchResult.windowStart) / 86_400_000)}d`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1782:        console.error('[context-server] Batch learning: no eligible candidates in window (or flag disabled)');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1784:    } catch (batchErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1789:    // T001-T004: Session deduplication module
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1790:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1791:      const sessionResult = sessionManager.init(database);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1792:      if (sessionResult.success) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1793:        console.error(`[context-server] Session manager initialized (enabled: ${sessionManager.isEnabled()})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1796:        // Reset any sessions that were active when server last crashed
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1797:        const recoveryResult = sessionManager.resetInterruptedSessions();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1798:        if (recoveryResult.interruptedCount > 0) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1799:          console.error(`[context-server] Crash recovery: marked ${recoveryResult.interruptedCount} sessions as interrupted`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1800:          // Log interrupted sessions for visibility
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1801:          const interrupted = sessionManager.getInterruptedSessions();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1802:          if (interrupted.sessions && interrupted.sessions.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1803:            console.error('[context-server] Recoverable sessions:', interrupted.sessions.map((s: { sessionId: string }) => s.sessionId).join(', '));
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1807:        console.warn('[context-server] Session manager initialization returned:', sessionResult.error);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1809:    } catch (sessionErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1810:      const message = sessionErr instanceof Error ? sessionErr.message : String(sessionErr);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1814:    // P0-3: Async ingestion job queue initialization + crash recovery reset.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1815:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1822:        console.error(`[context-server] Ingest crash recovery reset ${ingestInit.resetCount} incomplete job(s) to queued`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1824:    } catch (ingestInitErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1831:      try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1838:              if (isMutationStatus(result.status)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1839:                try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1841:                    indexed: result.status === 'indexed' || result.status === 'deferred' ? 1 : 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1842:                    updated: result.status === 'updated' || result.status === 'reinforced' ? 1 : 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1847:                    status: result.status,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1849:                } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1858:          console.error(`[context-server] File watcher started for ${watchPaths.length} path(s)`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1862:      } catch (watchErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1867:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1869:    console.error('[context-server] Integrity check failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1875:    try {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1880:    } catch (instructionErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1888:  console.error('[context-server] Context MCP server running on stdio');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1897:  main().catch((err: unknown) => { console.error('[context-server] Fatal error:', err); process.exit(1); });
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:1:"use strict";
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:42:exports.validateArguments = validateArguments;
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:48:// CLI entry point -- parses arguments, validates spec folder, and runs the memory workflow
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:57:const collect_session_data_1 = require("../extractors/collect-session-data");
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:70:  --stdin           Read structured JSON from stdin (preferred when a caller already has curated session data)
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:72:  --session-id <uuid>  Explicit session ID to attach to the saved memory metadata
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85:Preferred save path (JSON-PRIMARY):
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:87:  - The AI has strictly better information about its own session than any DB query can reconstruct.
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:93:    but they must not reroute the save to another folder.
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:95:JSON Data Format (with preflight/postflight, session/git, and tool/exchange enrichment):
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:101:      { "tool": "Read", "inputSummary": "Read data-loader.ts", "outputSummary": "585 lines", "status": "success", "durationEstimate": "fast" },
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:102:      { "tool": "Edit", "inputSummary": "Added deprecation warning", "outputSummary": "Inserted 10 lines", "status": "success" }
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:105:      { "userInput": "Implement the JSON-primary plan", "assistantResponse": "Updated 8 files...", "timestamp": "ISO-8601" }
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:126:  - toolCalls[]: AI-summarized tool calls with tool name, input/output summaries, status, duration
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:149:    try {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:152:    catch (_err) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:155:    console.error(`\nWarning: Received ${signal} signal, shutting down gracefully...`);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:170:    return (0, path_security_1.validateFilePath)(path.resolve(core_1.CONFIG.PROJECT_ROOT, normalizedInput), (0, core_1.getSpecsDirectories)()) !== null;
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:190:                        (0, path_security_1.validateFilePath)(candidate, (0, core_1.getSpecsDirectories)()) !== null) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:219:        // (findChildFolderSync in validateArguments handles this, so just report the error here)
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:297:        stdin.on('error', reject);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:305:    try {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:308:    catch (error) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:309:        const errMsg = error instanceof Error ? error.message : String(error);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:319:        console.error('--stdin requires piped input');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:328:    // Validation: empty --json is a user error, not a crash
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:330:        console.log(JSON.stringify({ error: 'VALIDATION_ERROR', message: 'Empty --json input' }));
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:349:        sessionId: null,
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:356:    // Extract --session-id <uuid> from argv before positional parsing
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:357:    let sessionId = null;
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:360:        if (argv[i] === '--session-id') {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:363:                throw new Error('--session-id requires a non-empty value');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:365:            sessionId = candidate.trim();
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:373:        return { dataFile: null, specFolderArg: null, collectedData: null, sessionId };
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:377:        return { ...structured, sessionId };
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:388:        sessionId,
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:391:function validateArguments() {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:401:    // --- Subfolder support: before failing, try to find the folder as a child ---
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:408:            console.error(`   Resolved child folder "${inputBaseName}" → ${resolved}`);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:412:        // FindChildFolder logs its own error for ambiguous matches
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:414:    console.error(`\nError: Invalid spec folder format: ${specFolderArg}`);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:415:    console.error(`   Reason: ${validation.reason}`);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:416:    console.error('Expected format: ###-feature-name (e.g., "122-skill-standardization")\n');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:419:        try {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:423:                console.error('Did you mean:');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:424:                matches.forEach((m) => console.error(`  - ${m}`));
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:427:                // --- Subfolder support: multi-level deep scan as fallback ---
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:430:                for (const topEntry of available) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:431:                    const isSpec = core_1.SPEC_FOLDER_PATTERN.test(topEntry);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:432:                    const isCategory = core_1.CATEGORY_FOLDER_PATTERN.test(topEntry);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:435:                    const topPath = path.join(specsDir, topEntry);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:436:                    try {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:443:                            deepMatches.push(`${topEntry}/${child}`);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:447:                            for (const midEntry of topChildren) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:448:                                if (!core_1.SPEC_FOLDER_PATTERN.test(midEntry))
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:450:                                const midPath = path.join(topPath, midEntry);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:451:                                try {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:457:                                        deepMatches.push(`${topEntry}/${midEntry}/${gc}`);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:460:                                catch (_error) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:461:                                    if (_error instanceof Error) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:468:                    catch (_error) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:469:                        if (_error instanceof Error) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:475:                    console.error('Did you mean (in subfolders):');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:476:                    deepMatches.forEach((m) => console.error(`  - ${m}`));
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:482:                        console.error('Available spec folders:');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:483:                        allSpecs.forEach((f) => console.error(`  - ${f}`));
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:488:        catch (error) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:489:            const errMsg = error instanceof Error ? error.message : String(error);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:490:            console.error('[generate-context] Failed to list spec folders:', errMsg);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:493:    console.error('\nUsage: node generate-context.js [--stdin [spec-folder-name] | --json <json> [spec-folder-name] | <data-file> [spec-folder-name]]\n');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:500:    console.error('Starting memory skill...\n');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:501:    try {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:505:        validateArguments();
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:513:            collectSessionDataFn: collect_session_data_1.collectSessionData,
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:514:            sessionId: parsed.sessionId ?? undefined,
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:517:    catch (error) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:518:        const errMsg = error instanceof Error ? error.message : String(error);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:519:        const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|required a non-empty JSON object|JSON object payload|no longer supported|session-id requires/.test(errMsg);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:521:            console.error(`\nError: ${errMsg}`);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:524:            console.error('Unexpected Error:', errMsg);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:525:            if (error instanceof Error) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:526:                console.error(error.stack);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:537:    main().catch((error) => {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:538:        const errMsg = error instanceof Error ? error.message : String(error);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:539:        console.error(`Fatal error: ${errMsg}`);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:540:        if (error instanceof Error) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:541:            console.error(error.stack);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '740,940p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '740,940p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    740	// Don't support. If index changes significantly, restart the server to refresh instructions.
    741	async function buildServerInstructions(): Promise<string> {
@@ -9184,9 +9184,9 @@ exec
    940	    }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '80,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '80,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '300,560p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '300,560p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     80	
     81	Output:
@@ -10821,7 +10821,7 @@ exec
 codex
 I’ve narrowed this down to a few failure patterns that feel genuinely transferable for us: silent data loss risk on write IDs, truncation-or-silence in health surfaces, brittle hook behavior under timeout or malformed input, and migration/repair flows that still rely on “extract everything, then hope the rebuild count matches.” I’m pulling a last comparison slice from Public’s recovery and validation paths so each recommendation is grounded against what we already do better.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '540,780p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '540,780p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    540	  });
    541	
@@ -11232,9 +11232,9 @@ EDGE CASES & FAILURE MODES: How does this system handle errors, corruption, migr
 - [external/tests/benchmarks/test_mcp_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_mcp_bench.py)
 - [external/tests/benchmarks/test_layers_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_layers_bench.py)
 - [external/tests/benchmarks/test_knowledge_graph_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_knowledge_graph_bench.py)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
 
 ## Assessment
@@ -11330,9 +11330,9 @@ EDGE CASES & FAILURE MODES: How does this system handle errors, corruption, migr
 - [external/tests/benchmarks/test_mcp_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_mcp_bench.py)
 - [external/tests/benchmarks/test_layers_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_layers_bench.py)
 - [external/tests/benchmarks/test_knowledge_graph_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_knowledge_graph_bench.py)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
 
 ## Assessment

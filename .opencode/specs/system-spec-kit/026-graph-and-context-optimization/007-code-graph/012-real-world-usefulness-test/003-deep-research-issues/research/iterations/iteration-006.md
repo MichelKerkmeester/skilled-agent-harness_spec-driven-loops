@@ -20,11 +20,11 @@ Traced the hook entry scripts and payload docs under `mcp_server/hooks/{claude,c
 Startup network check: no hook startup entrypoint imports `fetch` or HTTP clients. Claude, Gemini, Copilot, and Codex startup paths call `buildStartupBrief()`, which reads local code-graph DB/readiness, hook state, and CocoIndex availability. Prompt-time advisor hooks do spawn a local Python advisor subprocess; OpenCode prompt-time plugin spawns its bridge and may call the local OpenCode client to recover the prompt when the transform input lacks one.
 
 ## FINDINGS
-- P1 `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:63` - Copilot offline preflight docs say the session-prime writer "prints a status JSON", but `session-prime.ts` writes the raw startup/compact text payload to stdout; recommended remediation: either change the script to emit a stable JSON status envelope for smoke mode or update the preflight text to verify the actual stdout contract.
-- P1 `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/README.md:24` - Gemini docs list startup, compaction, stop, and prompt hook files, but the only registration section is for the `BeforeAgent` advisor path; recommended remediation: add SessionStart/PreCompress-or-compact/SessionEnd registration and smoke examples that assert `hookSpecificOutput.additionalContext`.
-- P2 `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:30` - Claude docs register only `UserPromptSubmit` even though the script table lists `PreCompact`, `SessionStart`, and `Stop`; recommended remediation: document the non-advisor hook payload contracts and add smoke commands for startup/compact/stop.
-- P2 `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts:206` - `--smoke` exists only for Codex `SessionStart`; there is no equivalent flag across prompt-time and non-Codex runtime entrypoints, so smoke coverage is asymmetric; recommended remediation: standardize `--smoke` or documented offline preflight modes for every runtime entry script.
-- P2 `.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:40` - OpenCode has no `mcp_server/hooks/opencode/` folder and the root hooks docs only say OpenCode uses a plugin/bridge path; recommended remediation: add an OpenCode hook/runtime README section that points to the exact plugin, bridge, payload insertion point, and status/smoke command.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:63` - Copilot offline preflight docs say the session-prime writer "prints a status JSON", but `session-prime.ts` writes the raw startup/compact text payload to stdout; recommended remediation: either change the script to emit a stable JSON status envelope for smoke mode or update the preflight text to verify the actual stdout contract.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md:24` - Gemini docs list startup, compaction, stop, and prompt hook files, but the only registration section is for the `BeforeAgent` advisor path; recommended remediation: add SessionStart/PreCompress-or-compact/SessionEnd registration and smoke examples that assert `hookSpecificOutput.additionalContext`.
+- P2 `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:30` - Claude docs register only `UserPromptSubmit` even though the script table lists `PreCompact`, `SessionStart`, and `Stop`; recommended remediation: document the non-advisor hook payload contracts and add smoke commands for startup/compact/stop.
+- P2 `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts:206` - `--smoke` exists only for Codex `SessionStart`; there is no equivalent flag across prompt-time and non-Codex runtime entrypoints, so smoke coverage is asymmetric; recommended remediation: standardize `--smoke` or documented offline preflight modes for every runtime entry script.
+- P2 `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:40` - OpenCode has no `mcp_server/hooks/opencode/` folder and the root hooks docs only say OpenCode uses a plugin/bridge path; recommended remediation: add an OpenCode hook/runtime README section that points to the exact plugin, bridge, payload insertion point, and status/smoke command.
 
 ## EVIDENCE
 Prior/native context:
@@ -40,47 +40,47 @@ research/deep-research-strategy.md:23 lists focus dimension 5 as "Hook payload f
 Smoke flag / smoke docs:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts:199-215 implements --smoke and explicitly avoids session-prime/API/files.
+.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts:199-215 implements --smoke and explicitly avoids session-prime/API/files.
 rg -n -e "--smoke" mcp_server/hooks matched only codex/session-start.ts.
-.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:53-77 documents an offline unauthenticated preflight, but not a --smoke flag.
-.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md:40-57 documents SessionStart and prompt-hook smoke checks.
+.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:53-77 documents an offline unauthenticated preflight, but not a --smoke flag.
+.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md:40-57 documents SessionStart and prompt-hook smoke checks.
 ```
 
 Payload format docs and code:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:37-41 defines JSON hookSpecificOutput.additionalContext for UserPromptSubmit.
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:391-396 writes formatted plain text to stdout for Claude session priming.
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:7-12 lists PreCompact, SessionStart, UserPromptSubmit, and Stop scripts.
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:30-48 documents only UserPromptSubmit registration.
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:37-41 defines JSON hookSpecificOutput.additionalContext for UserPromptSubmit.
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:391-396 writes formatted plain text to stdout for Claude session priming.
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:7-12 lists PreCompact, SessionStart, UserPromptSubmit, and Stop scripts.
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:30-48 documents only UserPromptSubmit registration.
 
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/shared.ts:41-55 documents Gemini JSON output and additionalContext.
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/shared.ts:73-100 formats Gemini output with hookSpecificOutput.additionalContext.
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:307-312 uses formatGeminiOutput for startup output.
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/README.md:15-20 lists session-prime, compact-inject, user-prompt-submit, session-stop, compact-cache, and shared.ts.
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/README.md:24-50 documents only BeforeAgent advisor registration.
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/shared.ts:41-55 documents Gemini JSON output and additionalContext.
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/shared.ts:73-100 formats Gemini output with hookSpecificOutput.additionalContext.
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:307-312 uses formatGeminiOutput for startup output.
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md:15-20 lists session-prime, compact-inject, user-prompt-submit, session-stop, compact-cache, and shared.ts.
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md:24-50 documents only BeforeAgent advisor registration.
 
-.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:27-36 documents next-prompt freshness and custom-instructions delivery rather than model-visible additionalContext.
-.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:63 says session-prime "prints a status JSON".
-.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:224-240 builds the startup/compact output and writes `${output}\n`, not JSON.
-.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:233-238 refreshes instructions and returns `{}`.
+.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:27-36 documents next-prompt freshness and custom-instructions delivery rather than model-visible additionalContext.
+.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:63 says session-prime "prints a status JSON".
+.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:224-240 builds the startup/compact output and writes `${output}\n`, not JSON.
+.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:233-238 refreshes instructions and returns `{}`.
 ```
 
 Startup and prompt-time execution:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:5 says startup brief is built from local code graph and hook state with no MCP round-trip.
-.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:187-224 reads stats/readiness and startup highlights from local code graph storage.
-.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:306-365 builds startup output from graph, hook state, and CocoIndex availability.
-.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts:225-263 runs the local Python `skill_advisor.py` subprocess over stdin.
-.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts:268-274 timeboxes each advisor subprocess attempt.
+.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:5 says startup brief is built from local code graph and hook state with no MCP round-trip.
+.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:187-224 reads stats/readiness and startup highlights from local code graph storage.
+.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:306-365 builds startup output from graph, hook state, and CocoIndex availability.
+.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts:225-263 runs the local Python `skill_advisor.py` subprocess over stdin.
+.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts:268-274 timeboxes each advisor subprocess attempt.
 ```
 
 OpenCode path:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:40 says OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not a hooks subfolder.
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:126 says prompt advice can use the OpenCode plugin bridge.
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:40 says OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not a hooks subfolder.
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:126 says prompt advice can use the OpenCode plugin bridge.
 .opencode/plugins/README.md:43 identifies `spec-kit-skill-advisor.js` as the prompt-time OpenCode advisor plugin.
 .opencode/plugins/README.md:50-56 locates bridge modules under `mcp_server/plugin_bridges/`.
 .opencode/plugins/spec-kit-skill-advisor.js:37 defines the skill-advisor bridge path.

@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 003 of 20. The packet root is
 
 **Angle A3 — Resource leaks across mcp_server**
 
-Audit long-running paths for resource leaks: (a) FD leaks (open file handles not closed on error/throw paths), (b) unbounded memory growth (caches without TTL or size cap, watcher arrays that grow without prune), (c) subprocess zombies (spawn without await/close handling). Look at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/`, `mcp_server/code_graph/lib/`, and `mcp_server/lib/`. Cite specific allocators and their cleanup sites with file:line.
+Audit long-running paths for resource leaks: (a) FD leaks (open file handles not closed on error/throw paths), (b) unbounded memory growth (caches without TTL or size cap, watcher arrays that grow without prune), (c) subprocess zombies (spawn without await/close handling). Look at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/`, `mcp_server/code_graph/lib/`, and `mcp_server/lib/`. Cite specific allocators and their cleanup sites with file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

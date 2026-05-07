@@ -42,9 +42,9 @@ This phase aligned the command and agent surfaces with the hook-aware recovery m
 
 | File | What changed |
 |------|-------------|
-| `.opencode/command/spec_kit/resume.md` | Updated the resume command to use `profile: "resume"`. |
-| `.opencode/command/memory/save.md` | Added guidance to avoid immediate duplicate saves. |
-| `.opencode/agent/context.md` | Aligned agent guidance with hook-aware resume behavior. |
+| `.opencode/commands/spec_kit/resume.md` | Updated the resume command to use `profile: "resume"`. |
+| `.opencode/commands/memory/save.md` | Added guidance to avoid immediate duplicate saves. |
+| `.opencode/agents/context.md` | Aligned agent guidance with hook-aware resume behavior. |
 | `.codex/agents/context.toml` | Mirrored the same recovery wording in Codex agent definitions. |
 
 ---

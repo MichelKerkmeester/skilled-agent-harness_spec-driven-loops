@@ -2,9 +2,9 @@
 
 **Test Date:** 2025-12-26
 **Scripts Tested:**
-- `.opencode/skill/system-spec-kit/scripts/validate-spec.sh` (v2.0.0)
-- `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-evidence.sh`
+- `.opencode/skills/system-spec-kit/scripts/validate-spec.sh` (v2.0.0)
+- `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh`
 
 ## Test Results Summary
 

@@ -5,11 +5,11 @@ Correctness review of the packet's documented derived-field limits against the l
 
 ## Files Reviewed
 - `spec.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
 
 ## Findings
 ### P1 - Required
-- **F003**: Documented 16-entity cap drifts from live parser behavior - `spec.md:30` - The packet says derived `entities` are capped at 16, but `deriveEntities()` currently returns up to 24 entries. [SOURCE: spec.md:29-30; .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:897-912]
+- **F003**: Documented 16-entity cap drifts from live parser behavior - `spec.md:30` - The packet says derived `entities` are capped at 16, but `deriveEntities()` currently returns up to 24 entries. [SOURCE: spec.md:29-30; .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:897-912]
 
 ## Ruled Out
 - The reviewed parser paths did not contradict the packet's stated 12-item limits for trigger phrases, key topics, or key files during this pass.

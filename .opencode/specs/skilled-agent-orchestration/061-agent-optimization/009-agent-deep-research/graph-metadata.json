@@ -41,7 +41,7 @@
     "promoted_iter": "iter-5",
     "promotion_rationale": "iter-5 synthesis additions; under 600 line limit",
     "mirrors_synced": [
-      ".opencode/agent/deep-research.md",
+      ".opencode/agents/deep-research.md",
       ".claude/agents/deep-research.md",
       ".gemini/agents/deep-research.md",
       ".codex/agents/deep-research.toml"

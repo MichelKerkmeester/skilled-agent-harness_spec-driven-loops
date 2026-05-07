@@ -85,7 +85,7 @@ spec.md → plan.md → tasks.md → execute (delete + edit) → validator → i
 - [x] `description.json` and `graph-metadata.json` created (will be refreshed by `generate-context.js` on save)
 
 ### Phase 2: Deletions
-- [ ] Delete `.opencode/skill/mcp-clickup/` (recursive)
+- [ ] Delete `.opencode/skills/mcp-clickup/` (recursive)
 - [ ] Delete `.opencode/changelog/mcp-clickup/` (recursive)
 
 ### Phase 3: Advisor data edits
@@ -96,8 +96,8 @@ spec.md → plan.md → tasks.md → execute (delete + edit) → validator → i
 - [ ] Edit advisor `graph-metadata.json` — drop one routing edge
 
 ### Phase 4: Doc edits
-- [ ] `.opencode/skill/mcp-code-mode/graph-metadata.json` — drop one cross-link
-- [ ] `.opencode/skill/README.md` — 4 edits (count 5→4, table row, tree, runtime matrix)
+- [ ] `.opencode/skills/mcp-code-mode/graph-metadata.json` — drop one cross-link
+- [ ] `.opencode/skills/README.md` — 4 edits (count 5→4, table row, tree, runtime matrix)
 - [ ] `.opencode/install_guides/README.md` — 2 edits (install row + 18→17)
 - [ ] `.opencode/install_guides/SET-UP - AGENTS.md` — 1 edit (18→17)
 - [ ] `README.md` (root) — 1 edit (skill listing line)
@@ -139,7 +139,7 @@ spec.md → plan.md → tasks.md → execute (delete + edit) → validator → i
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Skill graph fails JSON parse OR validate.sh shows hard errors after edits.
-- **Procedure**: `git checkout HEAD -- <affected-files>` to revert each file individually; restore deleted directories with `git restore --staged --worktree .opencode/skill/mcp-clickup .opencode/changelog/mcp-clickup` (assumes deletions not yet committed).
+- **Procedure**: `git checkout HEAD -- <affected-files>` to revert each file individually; restore deleted directories with `git restore --staged --worktree .opencode/skills/mcp-clickup .opencode/changelog/mcp-clickup` (assumes deletions not yet committed).
 <!-- /ANCHOR:rollback -->
 
 ---

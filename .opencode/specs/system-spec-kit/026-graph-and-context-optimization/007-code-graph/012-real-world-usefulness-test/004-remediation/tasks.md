@@ -85,8 +85,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T018 Run code graph tests (`cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run code_graph/tests/`)
-- [x] T019 Run TypeScript build (`cd .opencode/skill/system-spec-kit/mcp_server && npm run build`)
+- [x] T018 Run code graph tests (`cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run code_graph/tests/`)
+- [x] T019 Run TypeScript build (`cd .opencode/skills/system-spec-kit/mcp_server && npm run build`)
 - [x] T020 Run child strict validation (`validate.sh 004-remediation --strict`)
 - [x] T021 Run parent strict validation (`validate.sh 012-real-world-usefulness-test --strict`)
 - [x] T022 Update implementation summary and checklist evidence (`implementation-summary.md`, `checklist.md`)

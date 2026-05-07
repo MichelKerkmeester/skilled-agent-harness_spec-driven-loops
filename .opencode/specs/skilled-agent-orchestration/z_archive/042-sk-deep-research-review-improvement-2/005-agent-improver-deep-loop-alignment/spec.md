@@ -51,7 +51,7 @@ The implementation landed in commit `080cf549e` and shipped in `.opencode/change
 | **Phase** | 5 of 8 |
 | **Predecessor** | `../004-offline-loop-optimizer/spec.md` |
 | **Successor** | `../006-graph-testing-and-playbook-alignment/spec.md` |
-| **Runtime Target** | `.opencode/skill/sk-improve-agent/` |
+| **Runtime Target** | `.opencode/skills/sk-improve-agent/` |
 | **Historical Note** | The phase slug keeps `agent-improver`, but the active runtime surface was renamed to `sk-improve-agent` in Phase 007. |
 <!-- /ANCHOR:metadata -->
 
@@ -84,8 +84,8 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 
 ### In Scope
 
-- Document the delivered journal, coverage, trade-off, lineage, and stability runtime surfaces now living under `.opencode/skill/sk-improve-agent/`.
-- Document the delivered command and runtime-agent updates for `.opencode/command/improve/agent.md` and `.opencode/agent/improve-agent.md`.
+- Document the delivered journal, coverage, trade-off, lineage, and stability runtime surfaces now living under `.opencode/skills/sk-improve-agent/`.
+- Document the delivered command and runtime-agent updates for `.opencode/commands/improve/agent.md` and `.opencode/agents/improve-agent.md`.
 - Record the shipped verification surfaces: 5 dedicated Vitest suites, playbook scenarios, changelog evidence, and implementation commit.
 - Bring the phase packet into current Level 3 template alignment with completed-state metadata, evidence-backed tasks, and verification checklist items.
 
@@ -100,18 +100,18 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Created | Append-only improvement-session journal with validated event types. |
-| `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` | Created | Improvement-scoped coverage graph and exhausted-mutation tracking. |
-| `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs` | Created | Pareto-aware cross-dimension trade-off detection. |
-| `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs` | Created | Directed lineage graph for optional parallel candidates. |
-| `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs` | Created | Replay stability scoring and advisory optimizer support. |
-| `.opencode/skill/sk-improve-agent/scripts/tests/*.vitest.ts` | Created | Dedicated tests for each new runtime-truth helper. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_config.json` | Modified | Added journal, coverage, trajectory, parallel-wave, and optimizer settings. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_charter.md` | Modified | Added audit-trail and legal-stop obligations. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_strategy.md` | Modified | Added convergence, trade-off, and exhaustion guidance. |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Modified | Published the runtime-truth contract for improve-agent. |
-| `.opencode/agent/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
-| `.opencode/command/improve/agent.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
+| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Created | Append-only improvement-session journal with validated event types. |
+| `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` | Created | Improvement-scoped coverage graph and exhausted-mutation tracking. |
+| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs` | Created | Pareto-aware cross-dimension trade-off detection. |
+| `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs` | Created | Directed lineage graph for optional parallel candidates. |
+| `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs` | Created | Replay stability scoring and advisory optimizer support. |
+| `.opencode/skills/sk-improve-agent/scripts/tests/*.vitest.ts` | Created | Dedicated tests for each new runtime-truth helper. |
+| `.opencode/skills/sk-improve-agent/assets/improvement_config.json` | Modified | Added journal, coverage, trajectory, parallel-wave, and optimizer settings. |
+| `.opencode/skills/sk-improve-agent/assets/improvement_charter.md` | Modified | Added audit-trail and legal-stop obligations. |
+| `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modified | Added convergence, trade-off, and exhaustion guidance. |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Modified | Published the runtime-truth contract for improve-agent. |
+| `.opencode/agents/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
+| `.opencode/commands/improve/agent.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -128,7 +128,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 | REQ-003 | The phase must add dimension-aware trade-off detection. | `trade-off-detector.cjs` exists and shipped with dedicated test coverage. |
 | REQ-004 | The phase must add candidate-lineage tracking for optional parallel exploration. | `candidate-lineage.cjs` exists, with supporting tests and playbook coverage. |
 | REQ-005 | The phase must add benchmark stability measurement for replay quality. | `benchmark-stability.cjs` exists and is referenced in changelog and test evidence. |
-| REQ-006 | The phase packet must reflect the current runtime surface names. | Phase documentation points to `.opencode/skill/sk-improve-agent/` and `.opencode/agent/improve-agent.md`, not missing `agent-improver` runtime paths. |
+| REQ-006 | The phase packet must reflect the current runtime surface names. | Phase documentation points to `.opencode/skills/sk-improve-agent/` and `.opencode/agents/improve-agent.md`, not missing `agent-improver` runtime paths. |
 | REQ-007 | The phase packet must satisfy the current Level 3 contract. | `validate.sh --strict` passes for this phase folder with all required headings, anchors, and template markers present. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -170,7 +170,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Commit `080cf549e` is the primary landing point for the phase. | High | Cite the commit directly and tie closeout evidence to live repo paths plus `v1.1.0.0`. |
-| Dependency | Phase 007 renamed the active runtime surfaces after Phase 005 landed. | Medium | Preserve historical context in prose, but point all live references at `sk-improve-agent` and `.opencode/agent/improve-agent.md`. |
+| Dependency | Phase 007 renamed the active runtime surfaces after Phase 005 landed. | Medium | Preserve historical context in prose, but point all live references at `sk-improve-agent` and `.opencode/agents/improve-agent.md`. |
 | Risk | Packet docs can accidentally reintroduce the retired `agent-improver` runtime path. | Medium | Use only live runtime paths in specs, tasks, checklist, and implementation summary. |
 | Risk | Packet docs can freeze unsupported lifecycle wording that `v1.2.1.0` later retracted. | Medium | Explicitly note that the later patch release narrowed the lifecycle surface and keep this packet aligned to current reality. |
 | Risk | Static-profile examples from older improve-agent docs could be copied forward as canon. | Low | Use dynamic target-family wording and cite current `supportedProfiles: []` state in the active config. |
@@ -200,7 +200,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 
 ### Historical Naming
 
-- The phase slug still says `agent-improver`, but the active skill and runtime files are now `sk-improve-agent` and `.opencode/agent/improve-agent.md`.
+- The phase slug still says `agent-improver`, but the active skill and runtime files are now `sk-improve-agent` and `.opencode/agents/improve-agent.md`.
 - The landing commit created files under the pre-rename skill path; Phase 007 later renamed those runtime surfaces without invalidating the phase outcome.
 
 ### Lifecycle Drift
@@ -228,7 +228,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Packet points to retired `agent-improver` runtime paths. | High | All live references now target `.opencode/agent/improve-agent.md` and `.opencode/skill/sk-improve-agent/`. |
+| R-001 | Packet points to retired `agent-improver` runtime paths. | High | All live references now target `.opencode/agents/improve-agent.md` and `.opencode/skills/sk-improve-agent/`. |
 | R-002 | Packet repeats unsupported multi-session lifecycle promises. | Medium | Current packet cites the `v1.2.1.0` retraction and avoids freezing superseded wording. |
 | R-003 | Architectural rationale is lost during template cleanup. | Medium | `decision-record.md` consolidates the five accepted phase decisions with rationale and consequences. |
 | R-004 | Phase evidence appears weak because the packet only cites files. | Medium | Tasks and checklist items cite commit `080cf549e`, `v1.1.0.0`, current file paths, and strict validation. |
@@ -257,18 +257,18 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 
 - `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md`
 - `.opencode/changelog/15--sk-improve-agent/v1.2.1.0.md`
-- `.opencode/skill/sk-improve-agent/SKILL.md`
-- `.opencode/skill/sk-improve-agent/assets/improvement_config.json`
-- `.opencode/skill/sk-improve-agent/assets/improvement_charter.md`
-- `.opencode/skill/sk-improve-agent/assets/improvement_strategy.md`
-- `.opencode/skill/sk-improve-agent/references/loop_protocol.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`
+- `.opencode/skills/sk-improve-agent/SKILL.md`
+- `.opencode/skills/sk-improve-agent/assets/improvement_config.json`
+- `.opencode/skills/sk-improve-agent/assets/improvement_charter.md`
+- `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md`
+- `.opencode/skills/sk-improve-agent/references/loop_protocol.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`

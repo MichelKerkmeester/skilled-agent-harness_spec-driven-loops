@@ -7,7 +7,7 @@ Inspect the full active-corpus miss table after sanitization to identify the rea
 1. The active corpus still contains `881` missing `key_files`, down from `2,126` in Wave 1. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 2. The dominant residual family is path-like misses (`757`), with phrase-like misses (`99`) a distant second. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 3. Forty-eight remaining misses are still shell-command snippets, mostly `cd ... && node ...` or `cd ... && npx vitest run ...`, which means the current `keepKeyFile()` predicate is still too permissive for command-shaped paths. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
-4. Top repeated misses now look like stale or under-normalized repo-relative references, not generic prose: `hooks/memory-surface.ts`, `memory/metadata.json`, `.opencode/agent/agent-improver.md`, `handlers/memory-search.ts`, and `handlers/memory-context.ts`. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
+4. Top repeated misses now look like stale or under-normalized repo-relative references, not generic prose: `hooks/memory-surface.ts`, `memory/metadata.json`, `.opencode/agents/agent-improver.md`, `handlers/memory-search.ts`, and `handlers/memory-context.ts`. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 5. `key_files` cap pressure improved but did not disappear: cap hits fell from `159` to `93`. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/019-research-graph-metadata-validation/research/research.md] [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 
 ## Ruled Out
@@ -17,7 +17,7 @@ Inspect the full active-corpus miss table after sanitization to identify the rea
 - The first category regex under-counted command-shaped misses because `cd ...` entries were still falling through into the path-like bucket.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:562-568`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:562-568`
 - Full active-corpus `key_files` miss table derived from the 2026-04-13 bash + jq scan
 
 ## Assessment

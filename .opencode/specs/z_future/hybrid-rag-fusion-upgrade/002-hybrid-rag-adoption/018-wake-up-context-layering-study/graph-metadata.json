@@ -40,12 +40,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/plugins/spec-kit-compact-code-graph.js",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -55,19 +55,19 @@
       {
         "name": "session-bootstrap.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
         "source": "derived"
       },
       {
         "name": "memory-context.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
         "source": "derived"
       },
       {
         "name": "context-server.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
         "source": "derived"
       },
       {
@@ -79,13 +79,13 @@
       {
         "name": "session-bootstrap.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
         "source": "derived"
       },
       {
         "name": "memory-search-ux-hooks.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts",
         "source": "derived"
       },
       {

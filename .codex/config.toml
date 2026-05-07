@@ -8,14 +8,14 @@ args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
  
 [mcp_servers.spec_kit_memory]
 command = "node"
-args = [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"]
+args = [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]
 
 [mcp_servers.spec_kit_memory.env]
 EMBEDDINGS_PROVIDER = "auto"
-MEMORY_DB_PATH = ".opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite"
+MEMORY_DB_PATH = ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
 SPECKIT_SESSION_BOOST = "true"
 SPECKIT_CAUSAL_BOOST = "true"
-_NOTE_1_DATABASE = "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite"
+_NOTE_1_DATABASE = "Stores vectors in: .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
 _NOTE_2_PROVIDERS = "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)"
 _NOTE_3_EMBEDDINGS_PROVIDER = "Current: 'hf-local' (free, offline). Options: 'auto', 'voyage', 'openai'"
 _NOTE_4_CLOUD_PROVIDERS = "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER=auto"
@@ -30,18 +30,18 @@ SPECKIT_CODE_GRAPH_INDEX_SPECS = "false"
 SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
 
 [mcp_servers.cocoindex_code]
-command = ".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc"
+command = ".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc"
 args = ["mcp"]
 
 [mcp_servers.cocoindex_code.env]
 COCOINDEX_CODE_ROOT_PATH = "."
-_NOTE_1 = "Install: bash .opencode/skill/mcp-coco-index/scripts/install.sh"
+_NOTE_1 = "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh"
 _NOTE_2 = "Default embedding: all-MiniLM-L6-v2 (local, no API key needed)"
 _NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
 
 [mcp_servers.code_mode]
 command = "node"
-args = [".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"]
+args = [".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"]
 
 [mcp_servers.code_mode.env]
 UTCP_CONFIG_FILE = ".utcp_config.json"

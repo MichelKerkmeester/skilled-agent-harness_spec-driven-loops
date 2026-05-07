@@ -85,7 +85,7 @@ Actionable tasks for each checklist item. Complete in order within each phase.
 
 ### P1.4 - Align Templates
 
-- [ ] List all templates in `.opencode/skill/system-spec-kit/templates/`
+- [ ] List all templates in `.opencode/skills/system-spec-kit/templates/`
 - [ ] Compare each to actual expected output
 - [ ] Update file lists in templates
 - [ ] Update folder structure in templates

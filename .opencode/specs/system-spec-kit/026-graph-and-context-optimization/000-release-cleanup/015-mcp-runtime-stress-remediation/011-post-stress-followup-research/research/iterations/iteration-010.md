@@ -12,9 +12,9 @@ Answered; see iteration-005 through iteration-007. The final synthesis should ke
 
 Refined implementation sketch:
 
-1. Add a typed Copilot prompt helper beside `resolveCopilotPromptArg` in `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:66` through `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:70`. Suggested shape: `buildCopilotPromptArg({ promptPath, prompt, targetAuthority })`, where `targetAuthority` is either `{ kind: "approved", specFolder }` or `{ kind: "missing", writeIntent: boolean }`.
-2. Replace the deep-research call site at `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:601` through `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:606`, before the existing `copilot -p ... --allow-all-tools --no-ask-user` dispatch at lines 617 through 625.
-3. Replace the deep-review shell prompt-size branch at `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:669` through `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:683` with the same Node helper path, so review and research loops cannot diverge.
+1. Add a typed Copilot prompt helper beside `resolveCopilotPromptArg` in `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:66` through `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:70`. Suggested shape: `buildCopilotPromptArg({ promptPath, prompt, targetAuthority })`, where `targetAuthority` is either `{ kind: "approved", specFolder }` or `{ kind: "missing", writeIntent: boolean }`.
+2. Replace the deep-research call site at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:601` through `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:606`, before the existing `copilot -p ... --allow-all-tools --no-ask-user` dispatch at lines 617 through 625.
+3. Replace the deep-review shell prompt-size branch at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:669` through `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:683` with the same Node helper path, so review and research loops cannot diverge.
 4. Source approved authority only from workflow-owned resolved spec-folder state. Recovered memory, prompt body text, bootstrap summaries, and graph `last_active_child_id` stay advisory evidence.
 
 Why this is the right boundary: Recommendation §1 says the failure is Copilot auto-selecting a folder from bootstrap context during `/memory:save` and mutating without operator authorization at `findings.md:113` through `findings.md:116`; the memory-save rewrite says the intended default is planner-first, stopping short of mutation, at `004-memory-save-rewrite/spec.md:56` through `004-memory-save-rewrite/spec.md:60`. Because Copilot is invoked with mutation authority in the deep-loop executor, the command-owned prompt wrapper is the load-bearing seam.
@@ -38,11 +38,11 @@ Answered; see iteration-006 through iteration-009. Final synthesis should map th
 
 Refined implementation sketch:
 
-1. Keep the mocked fallback unit coverage in `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:120` through `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:174`. It already asserts no fallback for fresh reads, `rg` on readiness errors, and read-path full-scan boundary options.
+1. Keep the mocked fallback unit coverage in `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:120` through `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:174`. It already asserts no fallback for fresh reads, `rg` on readiness errors, and read-path full-scan boundary options.
 2. Add one deterministic integration-style sweep under an isolated `SPEC_KIT_DB_DIR`, using the same environment-isolation pattern already present in the test corpus. The target behavior is not a production rewrite: it should force an empty/no-tracked-files graph without running `code_graph_scan`, then call `handleCodeGraphQuery` and assert `fallbackDecision.nextTool === "code_graph_scan"`.
 3. Cover three buckets only: empty or broad stale state -> `code_graph_scan`; readiness exception -> `rg`; fresh or selective-inline state -> no `fallbackDecision`.
 
-The production path is already explicit. `buildFallbackDecision` maps readiness errors to `rg` and full-scan-needed states to `code_graph_scan` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:791` through `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:807`, and the blocked payload carries that decision at lines 815 through 828. `ensure-ready.ts` creates the relevant full-scan states for empty graphs, no tracked files, HEAD changes, and broad stale sets at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:151` through `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:217`. Recommendation §2's defect was the stress harness, not the handler: v1.0.2 never exercised the degraded path because the graph was healthy after pre-flight recovery at `findings.md:118` through `findings.md:121`.
+The production path is already explicit. `buildFallbackDecision` maps readiness errors to `rg` and full-scan-needed states to `code_graph_scan` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:791` through `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:807`, and the blocked payload carries that decision at lines 815 through 828. `ensure-ready.ts` creates the relevant full-scan states for empty graphs, no tracked files, HEAD changes, and broad stale sets at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:151` through `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:217`. Recommendation §2's defect was the stress harness, not the handler: v1.0.2 never exercised the degraded path because the graph was healthy after pre-flight recovery at `findings.md:118` through `findings.md:121`.
 
 Ranked alternatives:
 
@@ -56,9 +56,9 @@ Answered; see iteration-006 through iteration-009. Final synthesis should transl
 
 Refined implementation sketch:
 
-1. Extract a read-only readiness snapshot helper from the detection part of `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`. The current `ensureCodeGraphReady` path has cache and cleanup behavior at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329` through `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:373`; status should not inherit mutation or cache semantics.
-2. Use that helper in `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:158` through `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:225` so `code_graph_status` reports action-level readiness. Today it calls `getGraphFreshness`, then always builds a readiness block with `action: "none"` at lines 163 through 194, which hides the operational distinction between `full_scan` and `selective_reindex`.
-3. Leave `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:49` at `DEFAULT_DEBOUNCE_MS = 2000` until status can prove whether drift remains. The watcher already waits for write stability at lines 251 through 253, coalesces per-file timers at lines 278 through 284, and listens to add/change/unlink at lines 433 through 440.
+1. Extract a read-only readiness snapshot helper from the detection part of `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`. The current `ensureCodeGraphReady` path has cache and cleanup behavior at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329` through `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:373`; status should not inherit mutation or cache semantics.
+2. Use that helper in `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:158` through `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:225` so `code_graph_status` reports action-level readiness. Today it calls `getGraphFreshness`, then always builds a readiness block with `action: "none"` at lines 163 through 194, which hides the operational distinction between `full_scan` and `selective_reindex`.
+3. Leave `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:49` at `DEFAULT_DEBOUNCE_MS = 2000` until status can prove whether drift remains. The watcher already waits for write stability at lines 251 through 253, coalesces per-file timers at lines 278 through 284, and listens to add/change/unlink at lines 433 through 440.
 
 Why this wins: Recommendation §3 recorded a 4-hour staleness drift and offered either debounce tightening or a status self-check at `findings.md:123` through `findings.md:126`. The current source evidence points to a reporting gap first: status collapses readiness action, while `ensure-ready` can already distinguish empty/full-scan/selective states.
 
@@ -75,13 +75,13 @@ Close as a small seed-fidelity packet. This is Recommendation §4-adjacent only 
 
 Recommended first implementation:
 
-1. Extend `ContextHandlerArgs.seeds` in `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:16` through `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:31` with optional `rawScore?: number`, `raw_score?: number`, `pathClass?: string`, `path_class?: string`, and `rankingSignals?: string[]`.
-2. Normalize wire names in the CocoIndex seed branch at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:166` through `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:180`.
-3. Extend `CocoIndexSeed` and `ArtifactRef` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:20` through `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:27` and `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:49` through `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:64`, then preserve fields in `resolveCocoIndexSeed` at lines 95 through 110.
-4. Extend `codeGraphSeedSchema` at `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:464` through `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:482`.
-5. Emit those fields on returned anchors next to existing provider/score/snippet/range fields at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:245` through `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:256`.
+1. Extend `ContextHandlerArgs.seeds` in `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:16` through `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:31` with optional `rawScore?: number`, `raw_score?: number`, `pathClass?: string`, `path_class?: string`, and `rankingSignals?: string[]`.
+2. Normalize wire names in the CocoIndex seed branch at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:166` through `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:180`.
+3. Extend `CocoIndexSeed` and `ArtifactRef` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:20` through `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:27` and `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:49` through `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:64`, then preserve fields in `resolveCocoIndexSeed` at lines 95 through 110.
+4. Extend `codeGraphSeedSchema` at `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:464` through `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:482`.
+5. Emit those fields on returned anchors next to existing provider/score/snippet/range fields at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:245` through `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:256`.
 
-The upstream fork has enough telemetry to preserve. `QueryResult` carries `score`, `raw_score`, `path_class`, and `rankingSignals` at `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/schema.py:24` through `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/schema.py:36`. The query layer stores response counters `dedupedAliases` and `uniqueResultCount` at `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:21` through `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:37`, and applies the bounded implementation-intent rerank at `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:192` through `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:216`.
+The upstream fork has enough telemetry to preserve. `QueryResult` carries `score`, `raw_score`, `path_class`, and `rankingSignals` at `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py:24` through `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py:36`. The query layer stores response counters `dedupedAliases` and `uniqueResultCount` at `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:21` through `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:37`, and applies the bounded implementation-intent rerank at `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:192` through `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:216`.
 
 Ranked alternatives:
 
@@ -111,7 +111,7 @@ Close with exactly two downstream briefs. Do not let this become a broad archite
 Recommendation §5, the higher-N variance pass at `findings.md:133` through `findings.md:136`, should remain a separate evaluation packet. It is not a blocker for these two code packets, but it should gate any claim that the stress-remediation system is durably closed.
 
 ## Sources read this iteration (delta from prior)
-- `.opencode/skill/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deep-research-strategy.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-009.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-005.md`
@@ -119,19 +119,19 @@ Recommendation §5, the higher-N variance pass at `findings.md:133` through `fin
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-007.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/spec.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/schema.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts`
 
 ## Suggested focus for iteration 11
 

@@ -14,7 +14,7 @@
 
 ## Agent A10: System-Spec-Kit SKILL.md (1 file)
 
-### 1. `.opencode/skill/system-spec-kit/SKILL.md`
+### 1. `.opencode/skills/system-spec-kit/SKILL.md`
 **Priority**: P0
 **Changes**:
 - Updated to explicitly document post-spec126 hardening coverage
@@ -30,7 +30,7 @@
 
 ## Agent A11: Memory Reference Files (3 files)
 
-### 2. `.opencode/skill/system-spec-kit/references/memory/memory_system.md`
+### 2. `.opencode/skills/system-spec-kit/references/memory/memory_system.md`
 **Priority**: P0
 **Changes**:
 - Updated baseline wording to keep 5 sources, 7 intents, schema v13, and includeSpecDocs terminology aligned
@@ -40,14 +40,14 @@
   - Metadata preservation
   - Stable causal edge IDs
 
-### 3. `.opencode/skill/system-spec-kit/references/memory/readme_indexing.md`
+### 3. `.opencode/skills/system-spec-kit/references/memory/readme_indexing.md`
 **Priority**: P0
 **Changes**:
 - Updated source naming to "Memory Files"
 - Added schema v13 alignment notes
 - Added hardening alignment notes
 
-### 4. `.opencode/skill/system-spec-kit/references/memory/save_workflow.md`
+### 4. `.opencode/skills/system-spec-kit/references/memory/save_workflow.md`
 **Priority**: P0
 **Changes**:
 - Updated to show all 5 indexed sources
@@ -58,27 +58,27 @@
 
 ## Agent A12: Template Reference Files (4 files)
 
-### 5. `.opencode/skill/system-spec-kit/references/templates/level_specifications.md`
+### 5. `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
 **Priority**: P1
 **Changes**:
 - Updated Level docs to align with current v2.2 template architecture
 - Added script-assisted verification flow (validate.sh, check-completion.sh, check-placeholders.sh)
 
-### 6. `.opencode/skill/system-spec-kit/references/templates/template_guide.md`
+### 6. `.opencode/skills/system-spec-kit/references/templates/template_guide.md`
 **Priority**: P1
 **Changes**:
 - Added explicit Level 3+ guidance
 - Included copy commands from templates/level_3+/
 - Added stronger governance/AI protocol expectations
 
-### 7. `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
+### 7. `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
 **Priority**: P1
 **Changes**:
 - Corrected mismatches with current implementation state
 - Added required implementation-summary.md at Level 3/3+
 - Updated metadata level values (1/2/3/3+)
 
-### 8. `.opencode/skill/system-spec-kit/references/structure/sub_folder_versioning.md`
+### 8. `.opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md`
 **Priority**: P1
 **Changes**:
 - Updated sub-folder workflow language to include create.sh --subfolder behavior
@@ -89,7 +89,7 @@
 ## Verification
 
 **Method**: Manual accuracy check against:
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` for parameter accuracy
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` for parameter accuracy
 - Consistency check for 5-source indexing, 7 intents, schema v13 references
 **Result**: All files updated with concrete evidence, no placeholder text remaining
 **Scope Compliance**: Documentation-only updates, no code changes

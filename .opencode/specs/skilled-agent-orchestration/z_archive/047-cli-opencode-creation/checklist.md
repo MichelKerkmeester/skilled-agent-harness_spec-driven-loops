@@ -64,12 +64,12 @@ _memory:
 
 - [x] CHK-010 [P0] All 36 tasks marked [x] with (verified) evidence — see tasks.md Phase 2 + Phase 3
 - [x] CHK-011 [P0] Skill folder contains exactly 9 files: 3 root (the cli-opencode SKILL document, the cli-opencode README, the cli-opencode graph-metadata file) + 2 assets (the cli-opencode prompt_quality_card asset, the cli-opencode prompt_templates asset) + 4 references (the cli-opencode cli_reference file, the cli-opencode integration_patterns file, the cli-opencode opencode_tools file, the cli-opencode agent_delegation file)
-- [x] CHK-012 [P0] SKILL.md frontmatter at `.opencode/skill/cli-opencode/SKILL.md:1-7` has all 4 mandatory fields: `name: cli-opencode`, `description` (115 chars, within 80-150 band), `allowed-tools: [Bash, Read, Glob, Grep]`, `version: 1.0.0`
+- [x] CHK-012 [P0] SKILL.md frontmatter at `.opencode/skills/cli-opencode/SKILL.md:1-7` has all 4 mandatory fields: `name: cli-opencode`, `description` (115 chars, within 80-150 band), `allowed-tools: [Bash, Read, Glob, Grep]`, `version: 1.0.0`
 - [x] CHK-013 [P0] SKILL.md has all 8 anchored sections (`when-to-use`, `smart-routing`, `how-it-works`, `rules`, `references`, `success-criteria`, `integration-points`, `related-resources`) in canonical order
 - [x] CHK-014 [P0] Self-invocation guard present in §1 ("When NOT to use" sub-section first paragraph) AND §2 (Self-Invocation Guard pseudocode block, lines ~91-117)
 - [x] CHK-015 [P1] SKILL.md length 696 lines — slightly above the 450-650 band but within peer territory (cli-codex/SKILL.md = 683 lines). Documented as a minor deviation in implementation-summary.md.
 - [x] CHK-016 [P1] cli_reference.md cites v1.3.17 baseline at §1 (Overview), §9 (Version Drift), and §11 (related)
-- [x] CHK-017 [P1] No emojis in any skill file. Verified via grep on `.opencode/skill/cli-opencode/`. cli-codex SKILL.md uses Section header emojis (✅/❌/⚠️) but cli-claude-code does not — cli-opencode follows the cli-claude-code convention (plain ALL-CAPS labels).
+- [x] CHK-017 [P1] No emojis in any skill file. Verified via grep on `.opencode/skills/cli-opencode/`. cli-codex SKILL.md uses Section header emojis (✅/❌/⚠️) but cli-claude-code does not — cli-opencode follows the cli-claude-code convention (plain ALL-CAPS labels).
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -86,7 +86,7 @@ _memory:
 - [x] CHK-026 [P0] Acceptance Scenario 2 — Documented dispatch path verified at SKILL.md §3 + integration_patterns.md §3. Self-invocation guard pseudocode permits this case when parallel-session keywords are present.
 - [x] CHK-027 [P0] Acceptance Scenario 3 — Self-invocation refusal flow verified at SKILL.md §2 (pseudocode) + integration_patterns.md §5 (refusal message) + SKILL.md §4 NEVER rule. Layered detection per ADR-001.
 - [x] CHK-028 [P0] Acceptance Scenario 4 — EXERCISED. cli-opencode confidence 0.95 (≥ 0.80) on prompt "delegate to opencode CLI for parallel research". Evidence at `scratch/advisor-recommendations.log`.
-- [x] CHK-029 [P0] Acceptance Scenario 5 — EXERCISED. `.opencode/skill/README.md:44/54/57` and `.opencode/README.md:57` show updated counts; CLI table has 5 rows; tree includes cli-opencode/.
+- [x] CHK-029 [P0] Acceptance Scenario 5 — EXERCISED. `.opencode/skills/README.md:44/54/57` and `.opencode/README.md:57` show updated counts; CLI table has 5 rows; tree includes cli-opencode/.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -109,7 +109,7 @@ _memory:
 - [x] CHK-041 [P0] Decision record covers all 5 ADRs with Context / Decision / Alternatives / Consequences / Five-Checks / Implementation — verified during pre-implementation read
 - [x] CHK-042 [P0] All 4 existing cli-* graph-metadata.json files have a sibling edge to cli-opencode at weight 0.5 / context "CLI orchestrator peer". Round-trip symmetry verified in skill-graph.json adjacency block: cli-claude-code, cli-codex, cli-copilot, cli-gemini all have cli-opencode in their siblings; cli-opencode has all 4 in its siblings.
 - [x] CHK-043 [P0] Changelog v1.0.0.0.md ships with sk-doc compact format at `.opencode/changelog/cli-opencode/v1.0.0.0.md`. Hand-authored from the canonical template.
-- [x] CHK-044 [P0] All 8 line-anchored patches applied to `.opencode/skill/README.md`: line 44 (count), line 54 (stats — 2 sub-edits), line 57 (CLI count + list), line 134 ("five CLI skills"), insert after 151 (table row), insert after 201 (tree entry), insert after 257 (signals row), insert after 509 (related-docs link).
+- [x] CHK-044 [P0] All 8 line-anchored patches applied to `.opencode/skills/README.md`: line 44 (count), line 54 (stats — 2 sub-edits), line 57 (CLI count + list), line 134 ("five CLI skills"), insert after 151 (table row), insert after 201 (tree entry), insert after 257 (signals row), insert after 509 (related-docs link).
 - [x] CHK-045 [P0] All 2 line-anchored patches applied to `.opencode/README.md`: line 57 (Skills count) and insert after line 141 (SKILLS OVERVIEW row).
 - [x] CHK-046 [P1] sk-doc DQI on changelog — script dispatch unavailable from leaf-agent context; hand-authored format follows the canonical sk-doc compact template (WHY-first paragraph, H4 categories, Files Changed table, Upgrade footer, no Oxford commas, no em-dashes, no semicolons).
 - [x] CHK-047 [P1] Cross-references between this packet and 046-cli-codex-tone-of-voice are present in spec.md (referenced 5+ times as "most recent cli-* sibling spec — copy structural patterns").
@@ -121,7 +121,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P0] Skill folder at correct path: `.opencode/skill/cli-opencode/`
+- [x] CHK-050 [P0] Skill folder at correct path: `.opencode/skills/cli-opencode/`
 - [x] CHK-051 [P0] Changelog bucket at correct path: `.opencode/changelog/cli-opencode/v1.0.0.0.md`
 - [x] CHK-052 [P0] No skill files leaked outside cli-opencode folder. Sibling graph-metadata edits are in-scope per spec REQ-006. README patches are in-scope per spec REQ-011/REQ-012. SQLite write is in-scope per spec REQ-008.
 - [x] CHK-053 [P1] References folder has exactly 4 files: cli_reference, integration_patterns, opencode_tools, agent_delegation.

@@ -25,7 +25,7 @@ Spec: `030-architecture-boundary-remediation` (archived under `010-architecture-
    - Decision captured: accept short-term risk with explicit P2 AST upgrade timeline.
 
 2. Created `check-allowlist-expiry.ts` at:
-   `.opencode/skill/system-spec-kit/scripts/evals/check-allowlist-expiry.ts`
+   `.opencode/skills/system-spec-kit/scripts/evals/check-allowlist-expiry.ts`
    - Loads `import-policy-allowlist.json`.
    - Parses `expiresAt` values in `YYYY-MM-DD` format.
    - Warns when expiry is within 30 days.

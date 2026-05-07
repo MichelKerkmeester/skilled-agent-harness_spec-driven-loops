@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "plan.md"
       - "../review/review-report.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-007"
@@ -81,7 +81,7 @@ Small, evidence-driven remediation packet with one bounded patch per finding cla
 - **Review evidence**: `../review/review-report.md`.
 - **Narrative docs**: Phase 002/003/004 spec docs and graph metadata named by P0-004.
 - **Changelog links**: `.opencode/changelog/deep-review` and `.opencode/changelog/deep-research`.
-- **Advisor source**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
+- **Advisor source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
 - **Deferral record**: `decision-record.md`.
 
 ### Data Flow
@@ -151,9 +151,9 @@ The review report identifies finding surfaces. Phase 007 patches only those surf
 
 - Phase 006 review report exists and lists actionable P0/P1 findings.
 - Phase 002/003/004 child docs and graph metadata are writable.
-- `.opencode/skill/deep-review/changelog` and `.opencode/skill/deep-research/changelog` exist.
+- `.opencode/skills/deep-review/changelog` and `.opencode/skills/deep-research/changelog` exist.
 - `/usr/bin/python3` is available for JSON parse and assertion checks.
-- The spec validator is available under `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- The spec validator is available under `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 <!-- /ANCHOR:dependencies -->
 
 ---

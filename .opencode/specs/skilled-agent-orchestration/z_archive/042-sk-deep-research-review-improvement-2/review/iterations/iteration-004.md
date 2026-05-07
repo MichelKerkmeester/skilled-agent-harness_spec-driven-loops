@@ -9,7 +9,7 @@ completedAt: 2026-04-12T09:53:22Z
 
 # Deep Review Iteration 004 — maintainability
 
-**Focus:** Phase 001-002 code structure: review 4 CJS shared libraries in .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-*.cjs for module boundaries, error handling, function complexity, and export surface area. Check vitest coverage in scripts/tests/coverage-graph-*.vitest.ts files.
+**Focus:** Phase 001-002 code structure: review 4 CJS shared libraries in .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-*.cjs for module boundaries, error handling, function complexity, and export surface area. Check vitest coverage in scripts/tests/coverage-graph-*.vitest.ts files.
 
 ---
 
@@ -32,7 +32,7 @@ TARGET: Spec folder 042-sk-deep-research-review-improvement-2 and all implementa
 This bundle delivered runtime truth, semantic coverage graph, wave execution, and offline optimization across ~200 files and +19K lines for sk-deep-research, sk-deep-review, and sk-improve-agent.
 
 DIMENSION: maintainability
-FOCUS: Phase 001-002 code structure: review 4 CJS shared libraries in .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-*.cjs for module boundaries, error handling, function complexity, and export surface area. Check vitest coverage in scripts/tests/coverage-graph-*.vitest.ts files.
+FOCUS: Phase 001-002 code structure: review 4 CJS shared libraries in .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-*.cjs for module boundaries, error handling, function complexity, and export surface area. Check vitest coverage in scripts/tests/coverage-graph-*.vitest.ts files.
 
 INSTRUCTIONS:
 1. Read the files mentioned in the focus area carefully.
@@ -67,7 +67,7 @@ mcp: spec_kit_memory/memory_match_triggers started
 mcp: spec_kit_memory/memory_match_triggers (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "deep review maintainability review of .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-*.cjs and scripts/tests/coverage-graph-*.vitest.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "deep review maintainability review of .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-*.cjs and scripts/tests/coverage-graph-*.vitest.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 457ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-IKzw201K' (errno=Operation not permitted)
 [
@@ -116,7 +116,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-IKzw201K' (errno=Opera
 codex
 Skill routing points strongly to `sk-code-review` and `sk-deep-review`, so I’m using those review standards for this pass. I’m also doing a quick memory lookup for prior packet context, then I’ll read the target libraries and their tests line-by-line before drafting findings.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-review
@@ -340,7 +340,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
     text = _task_text(task)
 
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-review
@@ -359,7 +359,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -589,40 +589,40 @@ exec
 codex
 I didn’t get anything useful from memory for this packet, so I’m staying grounded in the current tree. Next I’m mapping the exact library and test files, then I’ll inspect structure, exports, and assertion gaps together so the findings stay evidence-based.
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/scripts/lib scripts/tests | rg 'coverage-graph-.*\\.(cjs|vitest\\.ts)"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/scripts/lib scripts/tests | rg 'coverage-graph-.*\\.(cjs|vitest\\.ts)"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 rg: scripts/tests: No such file or directory (os error 2)
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs
 
 mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit | rg 'coverage-graph-.*vitest\\.ts"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit | rg 'coverage-graph-.*vitest\\.ts"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts
 
 exec
-/bin/zsh -lc 'rg -n "coverage-graph-.*vitest" .opencode/skill/system-spec-kit' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "coverage-graph-.*vitest" .opencode/skills/system-spec-kit' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 codex
 The file map is a little uneven: there are four shared libraries, but only three directly named unit-test files plus broader integration/cross-layer/stress tests. I’m reading all of them now so I can judge whether the export surface and failure paths are actually covered, especially for `coverage-graph-contradictions.cjs`.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	// ADR-001: sourceDiversity is an adapter replicating the MCP handler's canonical algorithm. Do not diverge. See ./mcp_server/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
@@ -1410,7 +1410,7 @@ exec
    260	 * @returns {number} Count of edges involving this node within the window
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -1616,9 +1616,9 @@ exec
    202	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    261	
    262	  const results = [];
@@ -1912,7 +1912,7 @@ exec
    419	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    261	 */
    262	function computeMomentum(graph, nodeId, windowSize, sessionId) {
@@ -2035,9 +2035,9 @@ exec
    379	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import { createRequire } from 'node:module';
@@ -2323,7 +2323,7 @@ exec
      9	
     10	const coreModule = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+    12	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
     13	)) as {
     14	  RESEARCH_RELATION_WEIGHTS: Readonly<Record<string, number>>;
     15	  REVIEW_RELATION_WEIGHTS: Readonly<Record<string, number>>;
@@ -2564,9 +2564,9 @@ exec
    250	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import { createRequire } from 'node:module';
@@ -2579,7 +2579,7 @@ exec
      9	
     10	const coreModule = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+    12	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
     13	)) as {
     14	  createGraph: () => { nodes: Map<string, object>; edges: Map<string, object> };
     15	  insertEdge: (graph: ReturnType<typeof coreModule.createGraph>, source: string, target: string, relation: string, weight?: number) => string | null;
@@ -2588,7 +2588,7 @@ exec
     18	
     19	const signalsModule = require(path.join(
     20	  WORKSPACE_ROOT,
-    21	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+    21	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
     22	)) as {
     23	  computeDegree: (graph: ReturnType<typeof coreModule.createGraph>, nodeId: string) => { inDegree: number; outDegree: number; total: number };
     24	  computeDepth: (graph: ReturnType<typeof coreModule.createGraph>, nodeId: string) => number;
@@ -2792,7 +2792,7 @@ exec
     24	
     25	const coreModule = require(path.join(
     26	  WORKSPACE_ROOT,
-    27	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+    27	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
     28	)) as {
     29	  RESEARCH_RELATION_WEIGHTS: Readonly<Record<string, number>>;
     30	  REVIEW_RELATION_WEIGHTS: Readonly<Record<string, number>>;
@@ -2805,7 +2805,7 @@ exec
     37	
     38	const signalsModule = require(path.join(
     39	  WORKSPACE_ROOT,
-    40	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+    40	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
     41	)) as {
     42	  computeDegree: (graph: any, nodeId: string) => { inDegree: number; outDegree: number; total: number };
     43	  computeAllDepths: (graph: any) => Map<string, number>;
@@ -2814,7 +2814,7 @@ exec
     46	
     47	const convergenceModule = require(path.join(
     48	  WORKSPACE_ROOT,
-    49	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+    49	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
     50	)) as {
     51	  computeSourceDiversity: (graph: any) => number;
     52	  computeEvidenceDepth: (graph: any) => number;
@@ -2826,7 +2826,7 @@ exec
     58	
     59	const contradictionsModule = require(path.join(
     60	  WORKSPACE_ROOT,
-    61	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+    61	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
     62	)) as {
     63	  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
     64	  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
@@ -3048,9 +3048,9 @@ exec
    280	  });
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '281,560p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '281,560p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    281	
    282	  // ── REQ-GT-005: Namespace isolation ───────────────────────────
@@ -3294,7 +3294,7 @@ exec
     38	
     39	const coreModule = require(path.join(
     40	  WORKSPACE_ROOT,
-    41	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+    41	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
     42	)) as {
     43	  RESEARCH_RELATION_WEIGHTS: Readonly<Record<string, number>>;
     44	  createGraph: () => CjsGraph;
@@ -3312,7 +3312,7 @@ exec
     56	
     57	const cjsSignalsModule = require(path.join(
     58	  WORKSPACE_ROOT,
-    59	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+    59	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
     60	)) as {
     61	  computeDegree: (graph: CjsGraph, nodeId: string) => { inDegree: number; outDegree: number; total: number };
     62	  computeAllDepths: (graph: CjsGraph) => Map<string, number>;
@@ -3320,7 +3320,7 @@ exec
     64	
     65	const cjsContradictionsModule = require(path.join(
     66	  WORKSPACE_ROOT,
-    67	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+    67	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
     68	)) as {
     69	  scanContradictions: (graph: CjsGraph) => Array<{ edgeId: string; source: string; target: string }>;
     70	  reportContradictions: (graph: CjsGraph) => { total: number; pairs: unknown[]; byNode: Map<string, unknown[]> };
@@ -3329,7 +3329,7 @@ exec
     73	
     74	const cjsConvergenceModule = require(path.join(
     75	  WORKSPACE_ROOT,
-    76	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+    76	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
     77	)) as {
     78	  computeQuestionCoverage: (graph: CjsGraph) => number;
     79	  evaluateGraphGates: (graph: CjsGraph) => {
@@ -3576,7 +3576,7 @@ exec
    320	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	/**
      2	 * Coverage Graph Stress Tests (Phase 006 — REQ-GT-007, REQ-GT-008)
@@ -3601,7 +3601,7 @@ exec
     21	
     22	const coreModule = require(path.join(
     23	  WORKSPACE_ROOT,
-    24	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+    24	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
     25	)) as {
     26	  RESEARCH_RELATION_WEIGHTS: Readonly<Record<string, number>>;
     27	  createGraph: () => { nodes: Map<string, any>; edges: Map<string, any> };
@@ -3612,7 +3612,7 @@ exec
     32	
     33	const signalsModule = require(path.join(
     34	  WORKSPACE_ROOT,
-    35	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+    35	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
     36	)) as {
     37	  computeDegree: (graph: any, nodeId: string) => { inDegree: number; outDegree: number; total: number };
     38	  computeAllDepths: (graph: any) => Map<string, number>;
@@ -3621,7 +3621,7 @@ exec
     41	
     42	const convergenceModule = require(path.join(
     43	  WORKSPACE_ROOT,
-    44	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+    44	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
     45	)) as {
     46	  computeSourceDiversity: (graph: any) => number;
     47	  computeEvidenceDepth: (graph: any) => number;
@@ -3631,7 +3631,7 @@ exec
     51	
     52	const contradictionsModule = require(path.join(
     53	  WORKSPACE_ROOT,
-    54	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+    54	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
     55	)) as {
     56	  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
     57	  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
@@ -3920,9 +3920,9 @@ exec
    340	        for (let i = 0; i < 4; i++) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '341,640p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '341,640p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts | sed -n '321,640p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts | sed -n '321,640p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    341	          coreModule.insertEdge(
    342	            graph,
@@ -4095,152 +4095,152 @@ exec
    415	});
 
 exec
-/bin/zsh -lc "rg -n \"coverage-graph-(core|convergence|signals|contradictions)\\.cjs|computeSourceDiversity|computeGraphConvergence|scanContradictions|computeMomentum|traverseProvenance\" .opencode/skill/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"coverage-graph-(core|convergence|signals|contradictions)\\.cjs|computeSourceDiversity|computeGraphConvergence|scanContradictions|computeMomentum|traverseProvenance\" .opencode/skills/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md:1601:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
-.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md:1603:The momentum signal applies as an additive bonus in Stage 2 of the pipeline, capped at +0.05 per result. Batch computation via `computeMomentumScores()` is session-cached to avoid repeated database queries within a single search request. Cache invalidation follows the established pattern from `graph-search-fn.ts`: caches clear on edge mutations via `clearGraphSignalsCache()`.
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md:21:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md:23:The momentum signal applies as an additive bonus in Stage 2 of the pipeline, capped at +0.05 per result. Batch computation via `computeMomentumScores()` is session-cached to avoid repeated database queries within a single search request. Cache invalidation follows the established pattern from `graph-search-fn.ts`: caches clear on edge mutations via `clearGraphSignalsCache()`.
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:2:// Covers: snapshotDegrees, computeMomentum,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:9:  computeMomentum,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:10:  computeMomentumScores,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:109:  computeMomentumScores(db, memoryIds);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:210:  // 2. computeMomentum
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:211:  describe('computeMomentum', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:213:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:229:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:244:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:255:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:261:      const momentum = computeMomentum(db, 999);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:266:  // 3. computeMomentumScores
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:267:  describe('computeMomentumScores', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:272:      const scores = computeMomentumScores(db, [1, 2, 3]);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:283:      const scores1 = computeMomentumScores(db, [1, 2]);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:286:      const scores2 = computeMomentumScores(db, [1, 2]);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:294:      const scores = computeMomentumScores(db, []);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:645:      computeMomentumScores(db, [1, 2]);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:665:      const scores1 = computeMomentumScores(db, [1]);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:672:      const stale = computeMomentumScores(db, [1]);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:677:      const fresh = computeMomentumScores(db, [1]);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:709:      const momentumBefore = computeMomentumScores(db, [1]).get(1) ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:716:      const momentumAfter = computeMomentumScores(db, [1]).get(1) ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:741:      const momentumBefore = computeMomentumScores(db, [1]).get(1) ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:754:      const momentumAfterInsert = computeMomentumScores(db, [1]).get(1) ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:768:      const momentumAfterUndo = computeMomentumScores(db, [1]).get(1) ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:896:      const momentum = computeMomentum(db, 9999);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:919:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:941:      expect(() => computeMomentum(db, 100)).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:8:  scanContradictions,
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:143:  it('T-N3-06: scanContradictions with heuristic (no vec)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:148:    const pairs = scanContradictions(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:156:  it('T-N3-07: scanContradictions returns empty on no data', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:160:    const pairs = scanContradictions(db);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:13:const { computeClusterMetrics } = require('./coverage-graph-signals.cjs');
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:154:function computeSourceDiversity(graph) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:295:function computeGraphConvergence(graph, signals) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:317:  const sourceDiversity = computeSourceDiversity(graph);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:377:  const diversity = computeSourceDiversity(graph);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:409:  computeSourceDiversity,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:415:  computeGraphConvergence,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253: * Adapted from graph-signals.ts computeMomentum():
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:262:function computeMomentum(graph, nodeId, windowSize, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:372:  computeMomentum,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:255:function traverseProvenance(graph, nodeId, maxDepth) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:380:  traverseProvenance,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:76:function scanContradictions(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:116:  const raw = scanContradictions(graph, sessionId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:199:  scanContradictions,
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:158:export function computeMomentum(db: Database.Database, memoryId: number): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:166:    console.warn(`[graph-signals] computeMomentum failed for ${memoryId}: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:175:export function computeMomentumScores(db: Database.Database, memoryIds: number[]): Map<number, number> {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:186:    const momentum = computeMomentum(db, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:574:    const momentumScores = computeMomentumScores(db, ids);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:41:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:59:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:67:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:69:  scanContradictions: (graph: CjsGraph) => Array<{ edgeId: string; source: string; target: string }>;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:76:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:191:    expect(cjsContradictionsModule.scanContradictions(graph)).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:341:    const cjsContradictions = cjsContradictionsModule.scanContradictions(graph)
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:5: *   - CJS modules: coverage-graph-core.cjs, coverage-graph-signals.cjs,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:6: *     coverage-graph-convergence.cjs, coverage-graph-contradictions.cjs
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:27:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:40:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:49:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:51:  computeSourceDiversity: (graph: any) => number;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:54:  computeGraphConvergence: (graph: any, signals?: object) => { graphScore: number; blendedScore: number; components: object };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:61:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:63:  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:341:    it('computeSourceDiversity returns 0 for empty graph', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:343:      expect(convergenceModule.computeSourceDiversity(graph)).toBe(0);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:346:    it('computeSourceDiversity returns canonical per-question average for populated graph', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:356:      const diversity = convergenceModule.computeSourceDiversity(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:373:    it('computeGraphConvergence produces valid score range [0, 1]', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:379:      const result = convergenceModule.computeGraphConvergence(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:386:    it('computeGraphConvergence blends with Phase 1 compositeStop signal', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:390:      const withoutPhase1 = convergenceModule.computeGraphConvergence(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:391:      const withPhase1 = convergenceModule.computeGraphConvergence(graph, {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:420:    it('scanContradictions uses CONTRADICTS relation from both weight maps', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:425:    it('scanContradictions returns structured pairs', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:429:      const contradictions = contradictionsModule.scanContradictions(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:474:      const convergence = convergenceModule.computeGraphConvergence(graph);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:104:| `computeMomentum` | graph-signals.ts | Computes single-node momentum from recent degree deltas |
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:105:| `computeMomentumScores` | graph-signals.ts | Batch momentum computation with session caching |
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:36:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:38:  computeSourceDiversity: (graph: CjsGraph) => number;
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:42:  computeGraphConvergence: (graph: CjsGraph, signals?: { compositeStop?: number }) => {
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:214:      const cjsSourceDiversity = convergenceModule.computeSourceDiversity(graph);
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:218:      const cjsConvergence = convergenceModule.computeGraphConvergence(graph, {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:12:  'scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:16:  computeSourceDiversity: (graph: Graph) => number;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:19:  computeGraphConvergence: (graph: Graph, signals?: { compositeStop?: number }) => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:100:    expect(convergenceModule.computeSourceDiversity(graph)).toBe(1);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:104:    expect(convergenceModule.computeSourceDiversity(makeGraph([], []))).toBe(0);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:169:    const result = convergenceModule.computeGraphConvergence(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:186:    const result = convergenceModule.computeGraphConvergence(graph, { compositeStop: 0.8 });
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:24:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:29:  traverseProvenance: (graph: any, nodeId: string, maxDepth?: number) => Array<{ id: string; depth: number; relation: string; weight: number; path: string[] }>;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:35:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:44:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:46:  computeSourceDiversity: (graph: any) => number;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:49:  computeGraphConvergence: (graph: any, signals?: object) => { graphScore: number; blendedScore: number; components: object };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:54:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:56:  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:175:      const diversity = convergenceModule.computeSourceDiversity(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:200:      const convergence = convergenceModule.computeGraphConvergence(graph, {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:242:      const contradictions = contradictionsModule.scanContradictions(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:276:      const contradictions = contradictionsModule.scanContradictions(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:294:      const chain = coreModule.traverseProvenance(graph, 'n-0', 100);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:311:      const chain = coreModule.traverseProvenance(graph, 'a');
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:323:      const chain = coreModule.traverseProvenance(graph, 'node-0', 10);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555:export function computeMomentum(specFolder: string, loopType: LoopType): Record<string, number> | null {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:12:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:21:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:26:  computeMomentum: (graph: ReturnType<typeof coreModule.createGraph>, nodeId: string, windowSize?: number) => number;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117:  describe('computeMomentum', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:125:      const momentum = signalsModule.computeMomentum(graph, 'a', 600000);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:132:      const momentum = signalsModule.computeMomentum(graph, 'stale', 300000);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:140:      const momentum = signalsModule.computeMomentum(graph, 'target', 600000);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:12:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:21:  traverseProvenance: (graph: ReturnType<typeof coreModule.createGraph>, nodeId: string, maxDepth?: number) => Array<{ id: string; depth: number; relation: string; weight: number; path: string[] }>;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:177:  describe('traverseProvenance', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:182:      const result = coreModule.traverseProvenance(graph, 'a', 5);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:193:      const result = coreModule.traverseProvenance(graph, 'a', 2);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:203:      const result = coreModule.traverseProvenance(graph, 'a', 5);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:212:      const result = coreModule.traverseProvenance(graph, 'a', 5);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:220:      const result = coreModule.traverseProvenance(graph, 'isolated', 5);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:88:export function scanContradictions(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:99:      pairs.push(...scanContradictionsVector(database));
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:101:      pairs.push(...scanContradictionsHeuristic(database));
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:105:    console.warn(`[consolidation] scanContradictions error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:125:function scanContradictionsVector(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:188:function scanContradictionsHeuristic(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:440:  const contradictionPairs = scanContradictions(database);
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:1601:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:1603:The momentum signal applies as an additive bonus in Stage 2 of the pipeline, capped at +0.05 per result. Batch computation via `computeMomentumScores()` is session-cached to avoid repeated database queries within a single search request. Cache invalidation follows the established pattern from `graph-search-fn.ts`: caches clear on edge mutations via `clearGraphSignalsCache()`.
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md:21:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md:23:The momentum signal applies as an additive bonus in Stage 2 of the pipeline, capped at +0.05 per result. Batch computation via `computeMomentumScores()` is session-cached to avoid repeated database queries within a single search request. Cache invalidation follows the established pattern from `graph-search-fn.ts`: caches clear on edge mutations via `clearGraphSignalsCache()`.
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:2:// Covers: snapshotDegrees, computeMomentum,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:9:  computeMomentum,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:10:  computeMomentumScores,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:109:  computeMomentumScores(db, memoryIds);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:210:  // 2. computeMomentum
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:211:  describe('computeMomentum', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:213:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:229:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:244:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:255:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:261:      const momentum = computeMomentum(db, 999);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:266:  // 3. computeMomentumScores
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:267:  describe('computeMomentumScores', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:272:      const scores = computeMomentumScores(db, [1, 2, 3]);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:283:      const scores1 = computeMomentumScores(db, [1, 2]);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:286:      const scores2 = computeMomentumScores(db, [1, 2]);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:294:      const scores = computeMomentumScores(db, []);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:645:      computeMomentumScores(db, [1, 2]);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:665:      const scores1 = computeMomentumScores(db, [1]);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:672:      const stale = computeMomentumScores(db, [1]);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:677:      const fresh = computeMomentumScores(db, [1]);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:709:      const momentumBefore = computeMomentumScores(db, [1]).get(1) ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:716:      const momentumAfter = computeMomentumScores(db, [1]).get(1) ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:741:      const momentumBefore = computeMomentumScores(db, [1]).get(1) ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:754:      const momentumAfterInsert = computeMomentumScores(db, [1]).get(1) ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:768:      const momentumAfterUndo = computeMomentumScores(db, [1]).get(1) ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:896:      const momentum = computeMomentum(db, 9999);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:919:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:941:      expect(() => computeMomentum(db, 100)).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:8:  scanContradictions,
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:143:  it('T-N3-06: scanContradictions with heuristic (no vec)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:148:    const pairs = scanContradictions(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:156:  it('T-N3-07: scanContradictions returns empty on no data', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:160:    const pairs = scanContradictions(db);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:13:const { computeClusterMetrics } = require('./coverage-graph-signals.cjs');
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:154:function computeSourceDiversity(graph) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:295:function computeGraphConvergence(graph, signals) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:317:  const sourceDiversity = computeSourceDiversity(graph);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:377:  const diversity = computeSourceDiversity(graph);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:409:  computeSourceDiversity,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:415:  computeGraphConvergence,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253: * Adapted from graph-signals.ts computeMomentum():
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:262:function computeMomentum(graph, nodeId, windowSize, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:372:  computeMomentum,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:255:function traverseProvenance(graph, nodeId, maxDepth) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:380:  traverseProvenance,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:76:function scanContradictions(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:116:  const raw = scanContradictions(graph, sessionId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:199:  scanContradictions,
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:158:export function computeMomentum(db: Database.Database, memoryId: number): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:166:    console.warn(`[graph-signals] computeMomentum failed for ${memoryId}: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:175:export function computeMomentumScores(db: Database.Database, memoryIds: number[]): Map<number, number> {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:186:    const momentum = computeMomentum(db, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:574:    const momentumScores = computeMomentumScores(db, ids);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:41:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:59:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:67:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:69:  scanContradictions: (graph: CjsGraph) => Array<{ edgeId: string; source: string; target: string }>;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:76:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:191:    expect(cjsContradictionsModule.scanContradictions(graph)).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:341:    const cjsContradictions = cjsContradictionsModule.scanContradictions(graph)
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:5: *   - CJS modules: coverage-graph-core.cjs, coverage-graph-signals.cjs,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:6: *     coverage-graph-convergence.cjs, coverage-graph-contradictions.cjs
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:27:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:40:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:49:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:51:  computeSourceDiversity: (graph: any) => number;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:54:  computeGraphConvergence: (graph: any, signals?: object) => { graphScore: number; blendedScore: number; components: object };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:61:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:63:  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:341:    it('computeSourceDiversity returns 0 for empty graph', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:343:      expect(convergenceModule.computeSourceDiversity(graph)).toBe(0);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:346:    it('computeSourceDiversity returns canonical per-question average for populated graph', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:356:      const diversity = convergenceModule.computeSourceDiversity(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:373:    it('computeGraphConvergence produces valid score range [0, 1]', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:379:      const result = convergenceModule.computeGraphConvergence(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:386:    it('computeGraphConvergence blends with Phase 1 compositeStop signal', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:390:      const withoutPhase1 = convergenceModule.computeGraphConvergence(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:391:      const withPhase1 = convergenceModule.computeGraphConvergence(graph, {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:420:    it('scanContradictions uses CONTRADICTS relation from both weight maps', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:425:    it('scanContradictions returns structured pairs', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:429:      const contradictions = contradictionsModule.scanContradictions(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:474:      const convergence = convergenceModule.computeGraphConvergence(graph);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:104:| `computeMomentum` | graph-signals.ts | Computes single-node momentum from recent degree deltas |
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:105:| `computeMomentumScores` | graph-signals.ts | Batch momentum computation with session caching |
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:36:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:38:  computeSourceDiversity: (graph: CjsGraph) => number;
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:42:  computeGraphConvergence: (graph: CjsGraph, signals?: { compositeStop?: number }) => {
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:214:      const cjsSourceDiversity = convergenceModule.computeSourceDiversity(graph);
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:218:      const cjsConvergence = convergenceModule.computeGraphConvergence(graph, {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:12:  'scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:16:  computeSourceDiversity: (graph: Graph) => number;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:19:  computeGraphConvergence: (graph: Graph, signals?: { compositeStop?: number }) => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:100:    expect(convergenceModule.computeSourceDiversity(graph)).toBe(1);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:104:    expect(convergenceModule.computeSourceDiversity(makeGraph([], []))).toBe(0);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:169:    const result = convergenceModule.computeGraphConvergence(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:186:    const result = convergenceModule.computeGraphConvergence(graph, { compositeStop: 0.8 });
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:24:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:29:  traverseProvenance: (graph: any, nodeId: string, maxDepth?: number) => Array<{ id: string; depth: number; relation: string; weight: number; path: string[] }>;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:35:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:44:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:46:  computeSourceDiversity: (graph: any) => number;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:49:  computeGraphConvergence: (graph: any, signals?: object) => { graphScore: number; blendedScore: number; components: object };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:54:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:56:  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:175:      const diversity = convergenceModule.computeSourceDiversity(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:200:      const convergence = convergenceModule.computeGraphConvergence(graph, {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:242:      const contradictions = contradictionsModule.scanContradictions(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:276:      const contradictions = contradictionsModule.scanContradictions(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:294:      const chain = coreModule.traverseProvenance(graph, 'n-0', 100);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:311:      const chain = coreModule.traverseProvenance(graph, 'a');
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:323:      const chain = coreModule.traverseProvenance(graph, 'node-0', 10);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555:export function computeMomentum(specFolder: string, loopType: LoopType): Record<string, number> | null {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:12:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:21:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:26:  computeMomentum: (graph: ReturnType<typeof coreModule.createGraph>, nodeId: string, windowSize?: number) => number;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117:  describe('computeMomentum', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:125:      const momentum = signalsModule.computeMomentum(graph, 'a', 600000);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:132:      const momentum = signalsModule.computeMomentum(graph, 'stale', 300000);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:140:      const momentum = signalsModule.computeMomentum(graph, 'target', 600000);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:12:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:21:  traverseProvenance: (graph: ReturnType<typeof coreModule.createGraph>, nodeId: string, maxDepth?: number) => Array<{ id: string; depth: number; relation: string; weight: number; path: string[] }>;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:177:  describe('traverseProvenance', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:182:      const result = coreModule.traverseProvenance(graph, 'a', 5);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:193:      const result = coreModule.traverseProvenance(graph, 'a', 2);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:203:      const result = coreModule.traverseProvenance(graph, 'a', 5);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:212:      const result = coreModule.traverseProvenance(graph, 'a', 5);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:220:      const result = coreModule.traverseProvenance(graph, 'isolated', 5);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:88:export function scanContradictions(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:99:      pairs.push(...scanContradictionsVector(database));
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:101:      pairs.push(...scanContradictionsHeuristic(database));
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:105:    console.warn(`[consolidation] scanContradictions error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:125:function scanContradictionsVector(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:188:function scanContradictionsHeuristic(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:440:  const contradictionPairs = scanContradictions(database);
 
 codex
 I’ve got the code and test surface loaded now. I’m checking a couple of branch-level behaviors against how these helpers are actually consumed, because the maintainability risks here look more like drift and untested boundary contracts than cosmetic structure issues.
 exec
-/bin/zsh -lc "sed -n '520,660p' .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '520,660p' .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     iteration,
     signals,
@@ -4301,7 +4301,7 @@ export function computeMomentum(specFolder: string, loopType: LoopType): Record<
 }
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 import path from 'node:path';
 import { createRequire } from 'node:module';
@@ -4338,7 +4338,7 @@ type CjsGraph = {
 
 const convergenceModule = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
 )) as {
   computeSourceDiversity: (graph: CjsGraph) => number;
   computeEvidenceDepth: (graph: CjsGraph) => number;
@@ -4559,55 +4559,55 @@ describe('graph-convergence parity', () => {
 });
 
 exec
-/bin/zsh -lc "rg -n \"getNodes\\(|getEdges\\(|getEdgesFrom\\(|getEdgesTo\\(|computeDegree\\(|computeDepth\\(|computeAllDepths\\(|computeMomentum\\(|computeClusterMetrics\\(|evaluateGraphGates\\(|scanContradictions\\(|reportContradictions\\(|contradictionDensity\\(|traverseProvenance\\(\" .opencode/skill/system-spec-kit -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"getNodes\\(|getEdges\\(|getEdgesFrom\\(|getEdgesTo\\(|computeDegree\\(|computeDepth\\(|computeAllDepths\\(|computeMomentum\\(|computeClusterMetrics\\(|evaluateGraphGates\\(|scanContradictions\\(|reportContradictions\\(|contradictionDensity\\(|traverseProvenance\\(\" .opencode/skills/system-spec-kit -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:283:  const nodes = getNodes(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:284:  const edges = getEdges(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:307:  const nodes = getNodes(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:308:  const edges = getEdges(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:320:  const nodes = getNodes(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:321:  const edges = getEdges(ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:158:export function computeMomentum(db: Database.Database, memoryId: number): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:186:    const momentum = computeMomentum(db, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:81:  const nodes = getNodes(ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:82:  const edges = getEdges(ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:176:  const nodes = getNodes(ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:177:  const edges = getEdges(ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555:export function computeMomentum(specFolder: string, loopType: LoopType): Record<string, number> | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:379:export function getNodes(ns: Namespace): CoverageNode[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:471:export function getEdges(ns: Namespace): CoverageEdge[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:479:export function getEdgesFrom(ns: Namespace, sourceId: string): CoverageEdge[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:489:export function getEdgesTo(ns: Namespace, targetId: string): CoverageEdge[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:427:function getEdgesFrom(sourceId: string, limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:452:function getEdgesTo(targetId: string, limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:522:      ? getEdgesFrom(node.id, edgeLimit)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:523:      : getEdgesTo(node.id, edgeLimit);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:88:export function scanContradictions(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:440:  const contradictionPairs = scanContradictions(database);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:313:  const cluster = computeClusterMetrics(graph);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:369:function evaluateGraphGates(graph) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:85:function computeDegree(graph, nodeId, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:155:function computeDepth(graph, nodeId, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:204:function computeAllDepths(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253: * Adapted from graph-signals.ts computeMomentum():
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:262:function computeMomentum(graph, nodeId, windowSize, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:301:function computeClusterMetrics(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:255:function traverseProvenance(graph, nodeId, maxDepth) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:311:function getNodes(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:320:function getEdges(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:329:function getEdgesFrom(graph, nodeId, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:345:function getEdgesTo(graph, nodeId, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:76:function scanContradictions(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112:function reportContradictions(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:116:  const raw = scanContradictions(graph, sessionId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:172:function contradictionDensity(graph, sessionId) {
-.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md:1601:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md:21:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:283:  const nodes = getNodes(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:284:  const edges = getEdges(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:307:  const nodes = getNodes(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:308:  const edges = getEdges(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:320:  const nodes = getNodes(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:321:  const edges = getEdges(ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:158:export function computeMomentum(db: Database.Database, memoryId: number): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:186:    const momentum = computeMomentum(db, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:81:  const nodes = getNodes(ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:82:  const edges = getEdges(ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:176:  const nodes = getNodes(ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:177:  const edges = getEdges(ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555:export function computeMomentum(specFolder: string, loopType: LoopType): Record<string, number> | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:379:export function getNodes(ns: Namespace): CoverageNode[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:471:export function getEdges(ns: Namespace): CoverageEdge[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:479:export function getEdgesFrom(ns: Namespace, sourceId: string): CoverageEdge[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:489:export function getEdgesTo(ns: Namespace, targetId: string): CoverageEdge[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:427:function getEdgesFrom(sourceId: string, limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:452:function getEdgesTo(targetId: string, limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:522:      ? getEdgesFrom(node.id, edgeLimit)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:523:      : getEdgesTo(node.id, edgeLimit);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:88:export function scanContradictions(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:440:  const contradictionPairs = scanContradictions(database);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:313:  const cluster = computeClusterMetrics(graph);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:369:function evaluateGraphGates(graph) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:85:function computeDegree(graph, nodeId, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:155:function computeDepth(graph, nodeId, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:204:function computeAllDepths(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253: * Adapted from graph-signals.ts computeMomentum():
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:262:function computeMomentum(graph, nodeId, windowSize, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:301:function computeClusterMetrics(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:255:function traverseProvenance(graph, nodeId, maxDepth) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:311:function getNodes(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:320:function getEdges(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:329:function getEdgesFrom(graph, nodeId, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:345:function getEdgesTo(graph, nodeId, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:76:function scanContradictions(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112:function reportContradictions(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:116:  const raw = scanContradictions(graph, sessionId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:172:function contradictionDensity(graph, sessionId) {
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:1601:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md:21:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
 
 exec
-/bin/zsh -lc "sed -n '250,360p' .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '250,360p' .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Coverage Graph Signals
@@ -4944,252 +4944,252 @@ function computeScopedReviewSignals(ns: Namespace): ReviewConvergenceSignals {
   }
 
 exec
-/bin/zsh -lc "rg -n \"resetEdgeIdCounter|__testables|buildAdjacencyList\" .opencode/skill/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"resetEdgeIdCounter|__testables|buildAdjacencyList\" .opencode/skills/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1349:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1501:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:514: * Internal helpers exported for testing via __testables.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:516:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts:9:import { __testables } from '../lib/search/cross-encoder';
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts:19:} = __testables;
-.opencode/skill/system-spec-kit/mcp_server/tests/query-surrogates.vitest.ts:23:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/query-surrogates.vitest.ts:31:const { tokenize, keywordOverlap, MAX_SURROGATE_QUESTIONS, MIN_SURROGATE_QUESTIONS, MAX_SUMMARY_LENGTH, MIN_MATCH_THRESHOLD } = __testables;
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:11:  Parameters<typeof handler.__testables.collapseAndReassembleChunkResults>[0][number];
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:327:   collapseAndReassembleChunkResults is exported via __testables.
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:331:  const { collapseAndReassembleChunkResults } = handler.__testables;
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:404:  it('T002-7: collapseAndReassembleChunkResults is exported via __testables', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:17:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:725:// 9. __testables.deduplicateEntities (internal helper)
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:728:describe('__testables.deduplicateEntities', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:735:    const result = __testables.deduplicateEntities(raw);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:744:    const result = __testables.deduplicateEntities([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:754:    const result = __testables.deduplicateEntities(raw);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:764:    const result = __testables.deduplicateEntities(raw);
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:24:import { __testables as stage2Testables } from '../lib/search/pipeline/stage2-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:135:    const { __testables } = await import('../lib/search/pipeline/stage2-fusion');
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:142:    const adjusted = __testables.applyFeedbackSignals(
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:143:      results as Parameters<typeof __testables.applyFeedbackSignals>[0],
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/README.md:69:| `file-watcher.ts` | `startFileWatcher()`, `WatcherConfig`, `FSWatcher`, `__testables` |
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:484:    const prepared = memorySearch.__testables.collapseAndReassembleChunkResults([
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:470: * Defines the __testables constant.
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:472:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:409:        hybridSearch.__testables.canonicalResultId(r.id as number | string)
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:614:      const canonicalIds = results.map((r) => hybridSearch.__testables.canonicalResultId(r.id));
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1024:  const { mergeRawCandidate } = hybridSearch.__testables;
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:502:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:26:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:184:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:189:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:219:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:339:    __testables.registerGlobalRefreshFn(() => {});
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:368:    __testables.registerGlobalRefreshFn(() => { called.push(Date.now()); });
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:385:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:391:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:578:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:584:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:638:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:645:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:730:    __testables.registerLlmBackfillFn((id) => { backfilledIds.push(id); });
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:742:    __testables.registerLlmBackfillFn((id) => { backfilledIds.push(id); });
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:760:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:766:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:796:    __testables.registerGlobalRefreshFn(() => { log.push('global-refresh'); });
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:815:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:822:    __testables.clearDirtyNodes();
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:781:  return results.map((result) => hybridSearch.__testables.canonicalResultId(result.id));
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:9:// We test the internal helpers via __testables and mock external deps
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:13:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:301:    const merged = __testables.mergeResults(
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:311:    const healthy = __testables.checkDegradation([
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:318:    const weak = __testables.checkDegradation([
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:341:    const calibrated = __testables.calibrateTier3Scores(existing, structural);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:365:    const limited = __testables.applyResultLimit(rows, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposer.vitest.ts:8:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposer.vitest.ts:12:const { MIN_FRAGMENT_TOKEN_COUNT, MIN_QUERY_LENGTH_FOR_DECOMPOSITION } = __testables;
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:5:import { __testables } from '../lib/search/pipeline/stage1-candidate-gen';
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:27:    expect(__testables.decomposeQueryFacets('graph pruning')).toEqual(['graph pruning']);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:32:      __testables.decomposeQueryFacets(
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:40:      __testables.decomposeQueryFacets(
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:47:    const facets = __testables.decomposeQueryFacets(
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:51:    expect(facets).toHaveLength(__testables.MAX_QUERY_DECOMPOSITION_FACETS);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:56:    const merged = __testables.mergeByFacetCoverage([
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:72:    const pool = __testables.buildQueryDecompositionPool(
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:83:    const pool = __testables.buildQueryDecompositionPool(
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:94:    const pool = __testables.buildQueryDecompositionPool(
-.opencode/skill/system-spec-kit/mcp_server/tests/concept-routing.vitest.ts:7:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/concept-routing.vitest.ts:10:const { BUILTIN_CONCEPT_ALIASES, MIN_NOUN_PHRASE_TOKEN_LENGTH, MAX_CONCEPTS_PER_QUERY } = __testables;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2452:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:8:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:165:    expect(__testables.isDotfilePath('/workspace/.opencode/specs/001-test/spec.md')).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:169:    expect(__testables.isDotfilePath('/workspace/specs/001-test/.DS_Store')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:170:    expect(__testables.isDotfilePath('/workspace/specs/001-test/.git/config')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:174:    expect(__testables.shouldIgnoreWatchTarget('/workspace/.opencode/specs')).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:175:    expect(__testables.shouldIgnoreWatchTarget('/workspace/specs')).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:176:    expect(__testables.shouldIgnoreWatchTarget('/workspace/specs/001-test/spec.txt')).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:182:    const scopedPath = __testables.getWatchScopedPath(filePath, [watchRoot]);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:185:    expect(__testables.shouldIgnoreWatchTarget(scopedPath ?? filePath)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:189:    expect(__testables.isMarkdownPath('/workspace/specs/001-test/spec.md')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:190:    expect(__testables.isMarkdownPath('/workspace/specs/001-test/spec.txt')).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:14:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:111:  expect(__testables.momentumCache.size).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:112:  expect(__testables.depthCache.size).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:116:  expect(__testables.momentumCache.size).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:117:  expect(__testables.depthCache.size).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:648:      expect(__testables.momentumCache.size).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:649:      expect(__testables.depthCache.size).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:653:      expect(__testables.momentumCache.size).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:654:      expect(__testables.depthCache.size).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:687:      expect(__testables.momentumCache.size).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:688:      expect(__testables.depthCache.size).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:915:      const degree = __testables.getCurrentDegree(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:952:  // 9. __testables internal helpers
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:953:  describe('__testables internal helpers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:959:      expect(__testables.getCurrentDegree(db, 1)).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:960:      expect(__testables.getCurrentDegree(db, 2)).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:961:      expect(__testables.getCurrentDegree(db, 4)).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:962:      expect(__testables.getCurrentDegree(db, 999)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:971:      expect(__testables.getPastDegree(db, 1)).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:977:      expect(__testables.getPastDegree(db, 1)).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:980:    it('buildAdjacencyList constructs correct graph structure', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:985:      const { adjacency, allNodes, inDegree } = __testables.buildAdjacencyList(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1005:      const { adjacency } = __testables.buildAdjacencyList(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1006:      const undirected = __testables.buildUndirectedAdjacency(adjacency);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1018:      const scores = __testables.computeGraphWalkScores(db, [10, 20, 30]);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1029:      const scores = __testables.computeGraphWalkScores(db, [2]);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1035:      expect(__testables.clamp(0.5, 0, 1)).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1036:      expect(__testables.clamp(-1, 0, 1)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1037:      expect(__testables.clamp(2, 0, 1)).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1038:      expect(__testables.clamp(0.03, 0, 0.05)).toBe(0.03);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1039:      expect(__testables.clamp(0.1, 0, 0.05)).toBe(0.05);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1040:      expect(__testables.clamp(-0.5, 0, 0.05)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:446:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:3:import { __testables, truncateToBudget, estimateResultTokens } from '../lib/search/hybrid-search';
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:5:type InjectContextualTreeInput = Parameters<typeof __testables.injectContextualTree>[0];
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:6:type InjectContextualTreeResult = ReturnType<typeof __testables.injectContextualTree>;
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:30:    const injected = __testables.injectContextualTree(row, cache);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:53:    const injected = __testables.injectContextualTree(row, cache);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:99:    const injected = truncated.results.map((row) => __testables.injectContextualTree(row, cache));
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:135:    const injected = truncated.results.map((row) => __testables.injectContextualTree(row, cache));
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:156:    const injected = __testables.injectContextualTree(row, emptyCache);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:180:    const injected = __testables.injectContextualTree(row, cache);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:200:    const injected = __testables.injectContextualTree(row, cache);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:35:  resetEdgeIdCounter: () => void;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:113:    coreModule.resetEdgeIdCounter();
-.opencode/skill/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:6:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:132:    const merged = __testables.mergeSmallCommunities(groups, adjacency);
-.opencode/skill/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:187:    const communities = __testables.buildCommunitiesFromAssignments(db, communityAssignments);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:649:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:3:import { __testables } from '../handlers/memory-search';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:14:} = __testables;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:238:export const __testables = {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:112: * Adapted from graph-signals.ts buildAdjacencyList().
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:117:function buildAdjacencyList(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:160:  const { adjacency, inDegree } = buildAdjacencyList(graph, sessionId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:206:  const { adjacency, inDegree } = buildAdjacencyList(graph, sessionId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:376:  __testables: {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:377:    buildAdjacencyList,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:104:import { handleMemorySearch, __testables } from '../handlers/memory-search';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:139:    const payloads = __testables.buildEvalChannelPayloads([
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:54:  resetEdgeIdCounter: () => void;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:134:    coreModule.resetEdgeIdCounter();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:535:export const __testables = {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:357:function resetEdgeIdCounter() {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:388:  resetEdgeIdCounter,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:290:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:10:  __testables as tfidfTestables,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:17:  __testables as summaryTestables,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:582:   7. Cosine Similarity (via __testables)
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:16:  resetEdgeIdCounter: () => void;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:32:    coreModule.resetEdgeIdCounter();
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:30:  resetEdgeIdCounter: () => void;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:104:    coreModule.resetEdgeIdCounter();
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:25:  resetEdgeIdCounter: () => void;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:30:    coreModule.resetEdgeIdCounter();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts:1146:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:15:  __testables,
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:302:      const matches = __testables.findCrossDocumentMatchesForMemory(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:322:      const matches = __testables.findCrossDocumentMatchesForMemory(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:497:      const { MAX_EDGES_PER_NODE } = __testables;
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:866:  describe('__testables', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:868:      expect(__testables.MAX_EDGES_PER_NODE).toBe(20);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:872:      expect(typeof __testables.normalizeEntityName).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:873:      expect(__testables.normalizeEntityName('TEST')).toBe('test');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:877:      expect(typeof __testables.sanitizeDensityThreshold).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:878:      expect(typeof __testables.getEntityLinkingDensityThreshold).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:879:      expect(typeof __testables.getGlobalEdgeDensityStats).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:883:      expect(typeof __testables.getEdgeCount).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:886:      const count = __testables.getEdgeCount(db, '1');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:891:      expect(__testables.getEdgeCount(db, '1')).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:892:      expect(__testables.getEdgeCount(db, '2')).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:896:      expect(typeof __testables.getSpecFolder).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:899:      expect(__testables.getSpecFolder(db, 999)).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:903:      expect(__testables.getSpecFolder(db, 1)).toBe('specs/001-test');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/tfidf-summarizer.ts:244:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-architecture-remediation.vitest.ts:7:import { __testables as stage2Testables } from '../lib/search/pipeline/stage2-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-integration.vitest.ts:11:import { __testables as stage1Testables } from '../lib/search/pipeline/stage1-candidate-gen.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:573:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts:382:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:39:import { __testables } from '../lib/search/pipeline/stage3-rerank';
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:70:    const result = await __testables.applyCrossEncoderReranking('query', input, RERANK_OPTIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:93:    const result = await __testables.applyCrossEncoderReranking('query', input, RERANK_OPTIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:116:    const result = await __testables.applyCrossEncoderReranking('query', input, RERANK_OPTIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:4:import { __testables } from '../lib/search/local-reranker';
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:10:    expect(__testables.extractNumericScore({ score: 0.75 })).toBe(0.75);
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:11:    expect(__testables.extractNumericScore({ relevance: '0.5' })).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:15:    expect(__testables.extractNumericScore([0.1, 0.2, 0.3])).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:16:    expect(__testables.extractNumericScore({ embedding: [0.1, 0.2, 0.3] })).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:22:    const score = await __testables.scorePrompt({
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:31:    await expect(__testables.scorePrompt({
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:53:      await __testables.scorePrompt(mockContext, `query: test query\ndocument: candidate document ${i}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:293:    // __testables.resolveRowText works for all candidates and that the source code
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:304:    expect(mod.__testables.resolveModelPath).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1443:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:715:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1173:      const testables = (module as { __testables?: { main?: () => Promise<void> } }).__testables
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1207:        testables: (module as { __testables?: RuntimeHarness['testables'] }).__testables,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:359:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:435:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:31:import { __testables as stage4Testables } from '../lib/search/pipeline/stage4-filter';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:587:// -- Exported internal functions (also exposed via __testables) --
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1386:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:362:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:54:function buildAdjacencyList(db: Database.Database): WeightedAdjacencyList {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:380:  const adjacency = buildAdjacencyList(db);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:421:  const adjacency = buildLegacyAdjacency(buildAdjacencyList(db));
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:549:    const adjacency = buildAdjacencyList(db);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:705:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:706:  buildAdjacencyList,
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:202:function buildAdjacencyList(db: Database.Database): { adjacency: Map<number, number[]>; allNodes: Set<number>; inDegree: Map<number, number> } {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:232:    console.warn(`[graph-signals] buildAdjacencyList failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:273:  const { adjacency } = buildAdjacencyList(db);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:504:    const { adjacency, allNodes } = buildAdjacencyList(db);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:634:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:637:  buildAdjacencyList,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-cache.ts:209:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1349:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1501:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:514: * Internal helpers exported for testing via __testables.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:516:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts:9:import { __testables } from '../lib/search/cross-encoder';
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts:19:} = __testables;
+.opencode/skills/system-spec-kit/mcp_server/tests/query-surrogates.vitest.ts:23:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/query-surrogates.vitest.ts:31:const { tokenize, keywordOverlap, MAX_SURROGATE_QUESTIONS, MIN_SURROGATE_QUESTIONS, MAX_SUMMARY_LENGTH, MIN_MATCH_THRESHOLD } = __testables;
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:11:  Parameters<typeof handler.__testables.collapseAndReassembleChunkResults>[0][number];
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:327:   collapseAndReassembleChunkResults is exported via __testables.
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:331:  const { collapseAndReassembleChunkResults } = handler.__testables;
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:404:  it('T002-7: collapseAndReassembleChunkResults is exported via __testables', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:17:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:725:// 9. __testables.deduplicateEntities (internal helper)
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:728:describe('__testables.deduplicateEntities', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:735:    const result = __testables.deduplicateEntities(raw);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:744:    const result = __testables.deduplicateEntities([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:754:    const result = __testables.deduplicateEntities(raw);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:764:    const result = __testables.deduplicateEntities(raw);
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:24:import { __testables as stage2Testables } from '../lib/search/pipeline/stage2-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:135:    const { __testables } = await import('../lib/search/pipeline/stage2-fusion');
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:142:    const adjusted = __testables.applyFeedbackSignals(
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:143:      results as Parameters<typeof __testables.applyFeedbackSignals>[0],
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/README.md:69:| `file-watcher.ts` | `startFileWatcher()`, `WatcherConfig`, `FSWatcher`, `__testables` |
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:484:    const prepared = memorySearch.__testables.collapseAndReassembleChunkResults([
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:470: * Defines the __testables constant.
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:472:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:409:        hybridSearch.__testables.canonicalResultId(r.id as number | string)
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:614:      const canonicalIds = results.map((r) => hybridSearch.__testables.canonicalResultId(r.id));
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1024:  const { mergeRawCandidate } = hybridSearch.__testables;
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:502:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:26:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:184:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:189:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:219:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:339:    __testables.registerGlobalRefreshFn(() => {});
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:368:    __testables.registerGlobalRefreshFn(() => { called.push(Date.now()); });
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:385:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:391:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:578:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:584:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:638:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:645:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:730:    __testables.registerLlmBackfillFn((id) => { backfilledIds.push(id); });
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:742:    __testables.registerLlmBackfillFn((id) => { backfilledIds.push(id); });
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:760:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:766:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:796:    __testables.registerGlobalRefreshFn(() => { log.push('global-refresh'); });
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:815:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:822:    __testables.clearDirtyNodes();
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:781:  return results.map((result) => hybridSearch.__testables.canonicalResultId(result.id));
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:9:// We test the internal helpers via __testables and mock external deps
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:13:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:301:    const merged = __testables.mergeResults(
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:311:    const healthy = __testables.checkDegradation([
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:318:    const weak = __testables.checkDegradation([
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:341:    const calibrated = __testables.calibrateTier3Scores(existing, structural);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:365:    const limited = __testables.applyResultLimit(rows, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposer.vitest.ts:8:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposer.vitest.ts:12:const { MIN_FRAGMENT_TOKEN_COUNT, MIN_QUERY_LENGTH_FOR_DECOMPOSITION } = __testables;
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:5:import { __testables } from '../lib/search/pipeline/stage1-candidate-gen';
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:27:    expect(__testables.decomposeQueryFacets('graph pruning')).toEqual(['graph pruning']);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:32:      __testables.decomposeQueryFacets(
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:40:      __testables.decomposeQueryFacets(
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:47:    const facets = __testables.decomposeQueryFacets(
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:51:    expect(facets).toHaveLength(__testables.MAX_QUERY_DECOMPOSITION_FACETS);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:56:    const merged = __testables.mergeByFacetCoverage([
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:72:    const pool = __testables.buildQueryDecompositionPool(
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:83:    const pool = __testables.buildQueryDecompositionPool(
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:94:    const pool = __testables.buildQueryDecompositionPool(
+.opencode/skills/system-spec-kit/mcp_server/tests/concept-routing.vitest.ts:7:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/concept-routing.vitest.ts:10:const { BUILTIN_CONCEPT_ALIASES, MIN_NOUN_PHRASE_TOKEN_LENGTH, MAX_CONCEPTS_PER_QUERY } = __testables;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2452:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:8:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:165:    expect(__testables.isDotfilePath('/workspace/.opencode/specs/001-test/spec.md')).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:169:    expect(__testables.isDotfilePath('/workspace/specs/001-test/.DS_Store')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:170:    expect(__testables.isDotfilePath('/workspace/specs/001-test/.git/config')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:174:    expect(__testables.shouldIgnoreWatchTarget('/workspace/.opencode/specs')).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:175:    expect(__testables.shouldIgnoreWatchTarget('/workspace/specs')).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:176:    expect(__testables.shouldIgnoreWatchTarget('/workspace/specs/001-test/spec.txt')).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:182:    const scopedPath = __testables.getWatchScopedPath(filePath, [watchRoot]);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:185:    expect(__testables.shouldIgnoreWatchTarget(scopedPath ?? filePath)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:189:    expect(__testables.isMarkdownPath('/workspace/specs/001-test/spec.md')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:190:    expect(__testables.isMarkdownPath('/workspace/specs/001-test/spec.txt')).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:14:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:111:  expect(__testables.momentumCache.size).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:112:  expect(__testables.depthCache.size).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:116:  expect(__testables.momentumCache.size).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:117:  expect(__testables.depthCache.size).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:648:      expect(__testables.momentumCache.size).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:649:      expect(__testables.depthCache.size).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:653:      expect(__testables.momentumCache.size).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:654:      expect(__testables.depthCache.size).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:687:      expect(__testables.momentumCache.size).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:688:      expect(__testables.depthCache.size).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:915:      const degree = __testables.getCurrentDegree(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:952:  // 9. __testables internal helpers
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:953:  describe('__testables internal helpers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:959:      expect(__testables.getCurrentDegree(db, 1)).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:960:      expect(__testables.getCurrentDegree(db, 2)).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:961:      expect(__testables.getCurrentDegree(db, 4)).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:962:      expect(__testables.getCurrentDegree(db, 999)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:971:      expect(__testables.getPastDegree(db, 1)).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:977:      expect(__testables.getPastDegree(db, 1)).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:980:    it('buildAdjacencyList constructs correct graph structure', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:985:      const { adjacency, allNodes, inDegree } = __testables.buildAdjacencyList(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1005:      const { adjacency } = __testables.buildAdjacencyList(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1006:      const undirected = __testables.buildUndirectedAdjacency(adjacency);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1018:      const scores = __testables.computeGraphWalkScores(db, [10, 20, 30]);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1029:      const scores = __testables.computeGraphWalkScores(db, [2]);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1035:      expect(__testables.clamp(0.5, 0, 1)).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1036:      expect(__testables.clamp(-1, 0, 1)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1037:      expect(__testables.clamp(2, 0, 1)).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1038:      expect(__testables.clamp(0.03, 0, 0.05)).toBe(0.03);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1039:      expect(__testables.clamp(0.1, 0, 0.05)).toBe(0.05);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:1040:      expect(__testables.clamp(-0.5, 0, 0.05)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:446:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:3:import { __testables, truncateToBudget, estimateResultTokens } from '../lib/search/hybrid-search';
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:5:type InjectContextualTreeInput = Parameters<typeof __testables.injectContextualTree>[0];
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:6:type InjectContextualTreeResult = ReturnType<typeof __testables.injectContextualTree>;
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:30:    const injected = __testables.injectContextualTree(row, cache);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:53:    const injected = __testables.injectContextualTree(row, cache);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:99:    const injected = truncated.results.map((row) => __testables.injectContextualTree(row, cache));
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:135:    const injected = truncated.results.map((row) => __testables.injectContextualTree(row, cache));
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:156:    const injected = __testables.injectContextualTree(row, emptyCache);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:180:    const injected = __testables.injectContextualTree(row, cache);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:200:    const injected = __testables.injectContextualTree(row, cache);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:35:  resetEdgeIdCounter: () => void;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:113:    coreModule.resetEdgeIdCounter();
+.opencode/skills/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:6:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:132:    const merged = __testables.mergeSmallCommunities(groups, adjacency);
+.opencode/skills/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:187:    const communities = __testables.buildCommunitiesFromAssignments(db, communityAssignments);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:649:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:3:import { __testables } from '../handlers/memory-search';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:14:} = __testables;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:238:export const __testables = {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:112: * Adapted from graph-signals.ts buildAdjacencyList().
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:117:function buildAdjacencyList(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:160:  const { adjacency, inDegree } = buildAdjacencyList(graph, sessionId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:206:  const { adjacency, inDegree } = buildAdjacencyList(graph, sessionId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:376:  __testables: {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:377:    buildAdjacencyList,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:104:import { handleMemorySearch, __testables } from '../handlers/memory-search';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:139:    const payloads = __testables.buildEvalChannelPayloads([
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:54:  resetEdgeIdCounter: () => void;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:134:    coreModule.resetEdgeIdCounter();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:535:export const __testables = {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:357:function resetEdgeIdCounter() {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:388:  resetEdgeIdCounter,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:290:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:10:  __testables as tfidfTestables,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:17:  __testables as summaryTestables,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:582:   7. Cosine Similarity (via __testables)
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:16:  resetEdgeIdCounter: () => void;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:32:    coreModule.resetEdgeIdCounter();
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:30:  resetEdgeIdCounter: () => void;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:104:    coreModule.resetEdgeIdCounter();
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:25:  resetEdgeIdCounter: () => void;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:30:    coreModule.resetEdgeIdCounter();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts:1146:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:15:  __testables,
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:302:      const matches = __testables.findCrossDocumentMatchesForMemory(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:322:      const matches = __testables.findCrossDocumentMatchesForMemory(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:497:      const { MAX_EDGES_PER_NODE } = __testables;
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:866:  describe('__testables', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:868:      expect(__testables.MAX_EDGES_PER_NODE).toBe(20);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:872:      expect(typeof __testables.normalizeEntityName).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:873:      expect(__testables.normalizeEntityName('TEST')).toBe('test');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:877:      expect(typeof __testables.sanitizeDensityThreshold).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:878:      expect(typeof __testables.getEntityLinkingDensityThreshold).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:879:      expect(typeof __testables.getGlobalEdgeDensityStats).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:883:      expect(typeof __testables.getEdgeCount).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:886:      const count = __testables.getEdgeCount(db, '1');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:891:      expect(__testables.getEdgeCount(db, '1')).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:892:      expect(__testables.getEdgeCount(db, '2')).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:896:      expect(typeof __testables.getSpecFolder).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:899:      expect(__testables.getSpecFolder(db, 999)).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:903:      expect(__testables.getSpecFolder(db, 1)).toBe('specs/001-test');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/tfidf-summarizer.ts:244:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-architecture-remediation.vitest.ts:7:import { __testables as stage2Testables } from '../lib/search/pipeline/stage2-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-integration.vitest.ts:11:import { __testables as stage1Testables } from '../lib/search/pipeline/stage1-candidate-gen.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:573:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts:382:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:39:import { __testables } from '../lib/search/pipeline/stage3-rerank';
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:70:    const result = await __testables.applyCrossEncoderReranking('query', input, RERANK_OPTIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:93:    const result = await __testables.applyCrossEncoderReranking('query', input, RERANK_OPTIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:116:    const result = await __testables.applyCrossEncoderReranking('query', input, RERANK_OPTIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:4:import { __testables } from '../lib/search/local-reranker';
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:10:    expect(__testables.extractNumericScore({ score: 0.75 })).toBe(0.75);
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:11:    expect(__testables.extractNumericScore({ relevance: '0.5' })).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:15:    expect(__testables.extractNumericScore([0.1, 0.2, 0.3])).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:16:    expect(__testables.extractNumericScore({ embedding: [0.1, 0.2, 0.3] })).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:22:    const score = await __testables.scorePrompt({
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:31:    await expect(__testables.scorePrompt({
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:53:      await __testables.scorePrompt(mockContext, `query: test query\ndocument: candidate document ${i}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:293:    // __testables.resolveRowText works for all candidates and that the source code
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:304:    expect(mod.__testables.resolveModelPath).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1443:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:715:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1173:      const testables = (module as { __testables?: { main?: () => Promise<void> } }).__testables
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1207:        testables: (module as { __testables?: RuntimeHarness['testables'] }).__testables,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:359:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:435:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:31:import { __testables as stage4Testables } from '../lib/search/pipeline/stage4-filter';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:587:// -- Exported internal functions (also exposed via __testables) --
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1386:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:362:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:54:function buildAdjacencyList(db: Database.Database): WeightedAdjacencyList {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:380:  const adjacency = buildAdjacencyList(db);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:421:  const adjacency = buildLegacyAdjacency(buildAdjacencyList(db));
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:549:    const adjacency = buildAdjacencyList(db);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:705:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:706:  buildAdjacencyList,
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:202:function buildAdjacencyList(db: Database.Database): { adjacency: Map<number, number[]>; allNodes: Set<number>; inDegree: Map<number, number> } {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:232:    console.warn(`[graph-signals] buildAdjacencyList failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:273:  const { adjacency } = buildAdjacencyList(db);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:504:    const { adjacency, allNodes } = buildAdjacencyList(db);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:634:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:637:  buildAdjacencyList,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-cache.ts:209:export const __testables = {
 
 exec
-/bin/zsh -lc "rg -n \"computeMomentum\\(|evaluateGraphGates\\(|scanContradictions\\(|reportContradictions\\(|contradictionDensity\\(\" .opencode/skill/system-spec-kit/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"computeMomentum\\(|evaluateGraphGates\\(|scanContradictions\\(|reportContradictions\\(|contradictionDensity\\(\" .opencode/skills/system-spec-kit/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:369:function evaluateGraphGates(graph) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253: * Adapted from graph-signals.ts computeMomentum():
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:262:function computeMomentum(graph, nodeId, windowSize, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:76:function scanContradictions(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112:function reportContradictions(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:116:  const raw = scanContradictions(graph, sessionId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:172:function contradictionDensity(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:369:function evaluateGraphGates(graph) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253: * Adapted from graph-signals.ts computeMomentum():
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:262:function computeMomentum(graph, nodeId, windowSize, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:76:function scanContradictions(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112:function reportContradictions(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:116:  const raw = scanContradictions(graph, sessionId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:172:function contradictionDensity(graph, sessionId) {
 
 exec
-/bin/zsh -lc "rg -n \"coverage-graph-core\\.cjs|coverage-graph-signals\\.cjs|coverage-graph-convergence\\.cjs|coverage-graph-contradictions\\.cjs\" .opencode/skill/system-spec-kit -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"coverage-graph-core\\.cjs|coverage-graph-signals\\.cjs|coverage-graph-convergence\\.cjs|coverage-graph-contradictions\\.cjs\" .opencode/skills/system-spec-kit -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:13:const { computeClusterMetrics } = require('./coverage-graph-signals.cjs');
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:13:const { computeClusterMetrics } = require('./coverage-graph-signals.cjs');
 
 codex
 I’ve narrowed the likely issues to a few concrete contract risks rather than broad style concerns. I’m doing one last pass on actual consumers and test execution now, mainly to distinguish “untested but unused” from “untested and easy to regress.”
 exec
-/bin/zsh -lc "rg -n '\"test\"|vitest' package.json .opencode/skill/system-spec-kit/package.json" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n '\"test\"|vitest' package.json .opencode/skills/system-spec-kit/package.json" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/package.json:20:    "test": "npm run --workspaces=false test:root",
-.opencode/skill/system-spec-kit/package.json:24:    "test:task-enrichment": "node mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts",
+.opencode/skills/system-spec-kit/package.json:20:    "test": "npm run --workspaces=false test:root",
+.opencode/skills/system-spec-kit/package.json:24:    "test:task-enrichment": "node mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts",
 
 exec
 /bin/zsh -lc 'git diff --no-ext-diff --stat' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -5200,7 +5200,7 @@ git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEM
  2 files changed, 5 insertions(+)
 
 exec
-/bin/zsh -lc "sed -n '1,120p' .opencode/skill/system-spec-kit/package.json" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,120p' .opencode/skills/system-spec-kit/package.json" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {
   "name": "system-spec-kit",
@@ -5255,38 +5255,38 @@ exec
 }
 
 exec
-/bin/zsh -lc 'node .opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/coverage-graph-core.vitest.ts scripts/tests/coverage-graph-signals.vitest.ts scripts/tests/coverage-graph-convergence.vitest.ts scripts/tests/coverage-graph-integration.vitest.ts scripts/tests/coverage-graph-cross-layer.vitest.ts scripts/tests/coverage-graph-stress.vitest.ts --root .opencode/skill/system-spec-kit --config mcp_server/vitest.config.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-2026-04-12T09:51:08.417868Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/zsh -lc 'node .opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/coverage-graph-core.vitest.ts scripts/tests/coverage-graph-signals.vitest.ts scripts/tests/coverage-graph-convergence.vitest.ts scripts/tests/coverage-graph-integration.vitest.ts scripts/tests/coverage-graph-cross-layer.vitest.ts scripts/tests/coverage-graph-stress.vitest.ts --root .opencode/skill/system-spec-kit --config mcp_server/vitest.config.ts'`: SandboxDenied { message: "failed to load config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts\n\n⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯\nError: EPERM: operation not permitted, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n    at async open (node:internal/fs/promises:636:25)\n    at async Object.writeFile (node:internal/fs/promises:1239:14)\n    at async loadConfigFromBundledFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34665:3)\n    at async bundleAndLoadConfigFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34528:17)\n    at async loadConfigFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34495:42)\n    at async resolveConfig (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34119:22)\n    at async _createServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:25993:65)\n    at async createViteServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:8820:17)\n    at async createVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14161:18)\n    at async prepareVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14528:14) {\n  errno: -1,\n  code: 'EPERM',\n  syscall: 'open',\n  path: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n}\n\n\n\n", output: ExecToolCallOutput { exit_code: 1, stdout: StreamOutput { text: "", truncated_after_lines: None }, stderr: StreamOutput { text: "failed to load config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts\n\n⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯\nError: EPERM: operation not permitted, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n    at async open (node:internal/fs/promises:636:25)\n    at async Object.writeFile (node:internal/fs/promises:1239:14)\n    at async loadConfigFromBundledFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34665:3)\n    at async bundleAndLoadConfigFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34528:17)\n    at async loadConfigFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34495:42)\n    at async resolveConfig (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34119:22)\n    at async _createServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:25993:65)\n    at async createViteServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:8820:17)\n    at async createVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14161:18)\n    at async prepareVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14528:14) {\n  errno: -1,\n  code: 'EPERM',\n  syscall: 'open',\n  path: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n}\n\n\n\n", truncated_after_lines: None }, aggregated_output: StreamOutput { text: "failed to load config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts\n\n⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯\nError: EPERM: operation not permitted, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n    at async open (node:internal/fs/promises:636:25)\n    at async Object.writeFile (node:internal/fs/promises:1239:14)\n    at async loadConfigFromBundledFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34665:3)\n    at async bundleAndLoadConfigFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34528:17)\n    at async loadConfigFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34495:42)\n    at async resolveConfig (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34119:22)\n    at async _createServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:25993:65)\n    at async createViteServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:8820:17)\n    at async createVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14161:18)\n    at async prepareVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14528:14) {\n  errno: -1,\n  code: 'EPERM',\n  syscall: 'open',\n  path: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n}\n\n\n\n", truncated_after_lines: None }, duration: 0ns, timed_out: false } }
+/bin/zsh -lc 'node .opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/coverage-graph-core.vitest.ts scripts/tests/coverage-graph-signals.vitest.ts scripts/tests/coverage-graph-convergence.vitest.ts scripts/tests/coverage-graph-integration.vitest.ts scripts/tests/coverage-graph-cross-layer.vitest.ts scripts/tests/coverage-graph-stress.vitest.ts --root .opencode/skills/system-spec-kit --config mcp_server/vitest.config.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+2026-04-12T09:51:08.417868Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/zsh -lc 'node .opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/coverage-graph-core.vitest.ts scripts/tests/coverage-graph-signals.vitest.ts scripts/tests/coverage-graph-convergence.vitest.ts scripts/tests/coverage-graph-integration.vitest.ts scripts/tests/coverage-graph-cross-layer.vitest.ts scripts/tests/coverage-graph-stress.vitest.ts --root .opencode/skills/system-spec-kit --config mcp_server/vitest.config.ts'`: SandboxDenied { message: "failed to load config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts\n\n⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯\nError: EPERM: operation not permitted, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n    at async open (node:internal/fs/promises:636:25)\n    at async Object.writeFile (node:internal/fs/promises:1239:14)\n    at async loadConfigFromBundledFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34665:3)\n    at async bundleAndLoadConfigFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34528:17)\n    at async loadConfigFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34495:42)\n    at async resolveConfig (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34119:22)\n    at async _createServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:25993:65)\n    at async createViteServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:8820:17)\n    at async createVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14161:18)\n    at async prepareVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14528:14) {\n  errno: -1,\n  code: 'EPERM',\n  syscall: 'open',\n  path: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n}\n\n\n\n", output: ExecToolCallOutput { exit_code: 1, stdout: StreamOutput { text: "", truncated_after_lines: None }, stderr: StreamOutput { text: "failed to load config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts\n\n⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯\nError: EPERM: operation not permitted, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n    at async open (node:internal/fs/promises:636:25)\n    at async Object.writeFile (node:internal/fs/promises:1239:14)\n    at async loadConfigFromBundledFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34665:3)\n    at async bundleAndLoadConfigFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34528:17)\n    at async loadConfigFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34495:42)\n    at async resolveConfig (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34119:22)\n    at async _createServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:25993:65)\n    at async createViteServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:8820:17)\n    at async createVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14161:18)\n    at async prepareVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14528:14) {\n  errno: -1,\n  code: 'EPERM',\n  syscall: 'open',\n  path: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n}\n\n\n\n", truncated_after_lines: None }, aggregated_output: StreamOutput { text: "failed to load config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts\n\n⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯\nError: EPERM: operation not permitted, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n    at async open (node:internal/fs/promises:636:25)\n    at async Object.writeFile (node:internal/fs/promises:1239:14)\n    at async loadConfigFromBundledFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34665:3)\n    at async bundleAndLoadConfigFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34528:17)\n    at async loadConfigFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34495:42)\n    at async resolveConfig (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34119:22)\n    at async _createServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:25993:65)\n    at async createViteServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:8820:17)\n    at async createVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14161:18)\n    at async prepareVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14528:14) {\n  errno: -1,\n  code: 'EPERM',\n  syscall: 'open',\n  path: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'\n}\n\n\n\n", truncated_after_lines: None }, duration: 0ns, timed_out: false } }
  exited 1 in 136ms:
-failed to load config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts
+failed to load config from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts
 
 ⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯
-Error: EPERM: operation not permitted, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'
+Error: EPERM: operation not permitted, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'
     at async open (node:internal/fs/promises:636:25)
     at async Object.writeFile (node:internal/fs/promises:1239:14)
-    at async loadConfigFromBundledFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34665:3)
-    at async bundleAndLoadConfigFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34528:17)
-    at async loadConfigFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34495:42)
-    at async resolveConfig (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34119:22)
-    at async _createServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:25993:65)
-    at async createViteServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:8820:17)
-    at async createVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14161:18)
-    at async prepareVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14528:14) {
+    at async loadConfigFromBundledFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34665:3)
+    at async bundleAndLoadConfigFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34528:17)
+    at async loadConfigFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34495:42)
+    at async resolveConfig (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:34119:22)
+    at async _createServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:25993:65)
+    at async createViteServer (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:8820:17)
+    at async createVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14161:18)
+    at async prepareVitest (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/dist/chunks/cli-api.Bxr1Nn49.js:14528:14) {
   errno: -1,
   code: 'EPERM',
   syscall: 'open',
-  path: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'
+  path: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/.vite-temp/vitest.config.ts.timestamp-1775987468411-de2428259a7bb.mjs'
 }
 
 
 
 
 exec
-/bin/zsh -lc "sed -n '460,520p' .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '460,520p' .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "sessionId|session_id|session" .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-*.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "sessionId|session_id|session" .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-*.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '360,460p' .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '360,460p' .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 /** Get an edge by ID inside a namespace. */
 export function getEdge(ns: Namespace, id: string): CoverageEdge | null {
@@ -5351,41 +5351,41 @@ export function updateEdge(
 /** Delete an edge by ID inside a namespace. */
 
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:100:function makeResearchNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:105:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:112:function makeReviewNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:117:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:161:    upsertNode(makeResearchNode('spec-clamp', 'session-clamp', 'finding-clamp', 'FINDING', 'Clamp finding'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:162:    upsertNode(makeResearchNode('spec-clamp', 'session-clamp', 'question-clamp', 'QUESTION', 'Clamp question'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:168:      sessionId: 'session-clamp',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:177:      { specFolder: 'spec-clamp', loopType: 'research', sessionId: 'session-clamp' },
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:187:      sessionId: 'session-empty',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:219:    upsertNode(makeResearchNode('spec-loop', 'session-loop', 'loop-node', 'SOURCE', 'Loop source'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:224:      sessionId: 'session-loop',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:234:    expect(getEdges({ specFolder: 'spec-loop', loopType: 'research', sessionId: 'session-loop' })).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:239:    const sessionId = 'session-signals';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:240:    const ns: Namespace = { specFolder, loopType: 'research', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:258:      makeResearchNode(specFolder, sessionId, 'question-1', 'QUESTION', 'Question 1'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:259:      makeResearchNode(specFolder, sessionId, 'finding-1', 'FINDING', 'Finding 1'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:260:      makeResearchNode(specFolder, sessionId, 'finding-2', 'FINDING', 'Finding 2'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:261:      makeResearchNode(specFolder, sessionId, 'source-1', 'SOURCE', 'Source 1', { quality_class: 'primary' }),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:262:      makeResearchNode(specFolder, sessionId, 'source-2', 'SOURCE', 'Source 2', { quality_class: 'secondary' }),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:270:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:280:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:290:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:300:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:310:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:354:    const researchNs: Namespace = { specFolder, loopType: 'research', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:355:    const reviewNs: Namespace = { specFolder, loopType: 'review', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:357:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-question', 'QUESTION', 'Research question'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:358:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-a', 'FINDING', 'Research finding A'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:359:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-b', 'FINDING', 'Research finding B'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:364:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:371:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-dimension', 'DIMENSION', 'Correctness'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:372:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-file', 'FILE', 'coverage-graph.ts', { hotspot_score: 2 }));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:373:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-finding', 'FINDING', 'Review finding'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:378:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:100:function makeResearchNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:105:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:112:function makeReviewNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:117:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:161:    upsertNode(makeResearchNode('spec-clamp', 'session-clamp', 'finding-clamp', 'FINDING', 'Clamp finding'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:162:    upsertNode(makeResearchNode('spec-clamp', 'session-clamp', 'question-clamp', 'QUESTION', 'Clamp question'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:168:      sessionId: 'session-clamp',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:177:      { specFolder: 'spec-clamp', loopType: 'research', sessionId: 'session-clamp' },
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:187:      sessionId: 'session-empty',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:219:    upsertNode(makeResearchNode('spec-loop', 'session-loop', 'loop-node', 'SOURCE', 'Loop source'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:224:      sessionId: 'session-loop',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:234:    expect(getEdges({ specFolder: 'spec-loop', loopType: 'research', sessionId: 'session-loop' })).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:239:    const sessionId = 'session-signals';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:240:    const ns: Namespace = { specFolder, loopType: 'research', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:258:      makeResearchNode(specFolder, sessionId, 'question-1', 'QUESTION', 'Question 1'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:259:      makeResearchNode(specFolder, sessionId, 'finding-1', 'FINDING', 'Finding 1'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:260:      makeResearchNode(specFolder, sessionId, 'finding-2', 'FINDING', 'Finding 2'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:261:      makeResearchNode(specFolder, sessionId, 'source-1', 'SOURCE', 'Source 1', { quality_class: 'primary' }),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:262:      makeResearchNode(specFolder, sessionId, 'source-2', 'SOURCE', 'Source 2', { quality_class: 'secondary' }),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:270:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:280:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:290:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:300:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:310:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:354:    const researchNs: Namespace = { specFolder, loopType: 'research', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:355:    const reviewNs: Namespace = { specFolder, loopType: 'review', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:357:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-question', 'QUESTION', 'Research question'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:358:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-a', 'FINDING', 'Research finding A'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:359:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-b', 'FINDING', 'Research finding B'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:364:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:371:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-dimension', 'DIMENSION', 'Correctness'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:372:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-file', 'FILE', 'coverage-graph.ts', { hotspot_score: 2 }));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:373:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-finding', 'FINDING', 'Review finding'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:378:      sessionId,
 
  succeeded in 0ms:
   `).run(
@@ -5491,68 +5491,68 @@ export function upsertEdge(edge: CoverageEdge): string | null {
 /** Get an edge by ID inside a namespace. */
 
 exec
-/bin/zsh -lc "rg -n \"contradictionDensity|reportContradictions|scanContradictions|computeMomentum\\(|sessionId\" .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-*.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"contradictionDensity|reportContradictions|scanContradictions|computeMomentum\\(|sessionId\" .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-*.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:125:      const momentum = signalsModule.computeMomentum(graph, 'a', 600000);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:132:      const momentum = signalsModule.computeMomentum(graph, 'stale', 300000);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:140:      const momentum = signalsModule.computeMomentum(graph, 'target', 600000);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:63:  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:64:  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:420:    it('scanContradictions uses CONTRADICTS relation from both weight maps', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:425:    it('scanContradictions returns structured pairs', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:429:      const contradictions = contradictionsModule.scanContradictions(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:436:    it('reportContradictions includes total and pairs', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:441:      const report = contradictionsModule.reportContradictions(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:56:  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:57:  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:242:      const contradictions = contradictionsModule.scanContradictions(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:249:    it('reportContradictions handles large contradiction sets', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:263:      const report = contradictionsModule.reportContradictions(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:276:      const contradictions = contradictionsModule.scanContradictions(graph);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:69:  scanContradictions: (graph: CjsGraph) => Array<{ edgeId: string; source: string; target: string }>;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:70:  reportContradictions: (graph: CjsGraph) => { total: number; pairs: unknown[]; byNode: Map<string, unknown[]> };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:71:  contradictionDensity: (graph: CjsGraph) => number;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:100:function makeResearchNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:105:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:112:function makeReviewNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:117:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:168:      sessionId: 'session-clamp',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:177:      { specFolder: 'spec-clamp', loopType: 'research', sessionId: 'session-clamp' },
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:187:      sessionId: 'session-empty',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:191:    expect(cjsContradictionsModule.scanContradictions(graph)).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:192:    expect(cjsContradictionsModule.reportContradictions(graph).total).toBe(0);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:193:    expect(cjsContradictionsModule.contradictionDensity(graph)).toBe(0);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:209:      contradictionDensity: 0,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:224:      sessionId: 'session-loop',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:234:    expect(getEdges({ specFolder: 'spec-loop', loopType: 'research', sessionId: 'session-loop' })).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:239:    const sessionId = 'session-signals';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:240:    const ns: Namespace = { specFolder, loopType: 'research', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:258:      makeResearchNode(specFolder, sessionId, 'question-1', 'QUESTION', 'Question 1'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:259:      makeResearchNode(specFolder, sessionId, 'finding-1', 'FINDING', 'Finding 1'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:260:      makeResearchNode(specFolder, sessionId, 'finding-2', 'FINDING', 'Finding 2'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:261:      makeResearchNode(specFolder, sessionId, 'source-1', 'SOURCE', 'Source 1', { quality_class: 'primary' }),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:262:      makeResearchNode(specFolder, sessionId, 'source-2', 'SOURCE', 'Source 2', { quality_class: 'secondary' }),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:270:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:280:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:290:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:300:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:310:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:341:    const cjsContradictions = cjsContradictionsModule.scanContradictions(graph)
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:354:    const researchNs: Namespace = { specFolder, loopType: 'research', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:355:    const reviewNs: Namespace = { specFolder, loopType: 'review', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:357:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-question', 'QUESTION', 'Research question'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:358:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-a', 'FINDING', 'Research finding A'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:359:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-b', 'FINDING', 'Research finding B'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:364:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:371:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-dimension', 'DIMENSION', 'Correctness'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:372:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-file', 'FILE', 'coverage-graph.ts', { hotspot_score: 2 }));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:373:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-finding', 'FINDING', 'Review finding'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:378:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:413:    expect(computeResearchSignals(researchNs).contradictionDensity).toBe(1);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:125:      const momentum = signalsModule.computeMomentum(graph, 'a', 600000);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:132:      const momentum = signalsModule.computeMomentum(graph, 'stale', 300000);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:140:      const momentum = signalsModule.computeMomentum(graph, 'target', 600000);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:63:  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:64:  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:420:    it('scanContradictions uses CONTRADICTS relation from both weight maps', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:425:    it('scanContradictions returns structured pairs', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:429:      const contradictions = contradictionsModule.scanContradictions(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:436:    it('reportContradictions includes total and pairs', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:441:      const report = contradictionsModule.reportContradictions(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:56:  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:57:  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:242:      const contradictions = contradictionsModule.scanContradictions(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:249:    it('reportContradictions handles large contradiction sets', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:263:      const report = contradictionsModule.reportContradictions(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:276:      const contradictions = contradictionsModule.scanContradictions(graph);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:69:  scanContradictions: (graph: CjsGraph) => Array<{ edgeId: string; source: string; target: string }>;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:70:  reportContradictions: (graph: CjsGraph) => { total: number; pairs: unknown[]; byNode: Map<string, unknown[]> };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:71:  contradictionDensity: (graph: CjsGraph) => number;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:100:function makeResearchNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:105:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:112:function makeReviewNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:117:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:168:      sessionId: 'session-clamp',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:177:      { specFolder: 'spec-clamp', loopType: 'research', sessionId: 'session-clamp' },
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:187:      sessionId: 'session-empty',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:191:    expect(cjsContradictionsModule.scanContradictions(graph)).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:192:    expect(cjsContradictionsModule.reportContradictions(graph).total).toBe(0);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:193:    expect(cjsContradictionsModule.contradictionDensity(graph)).toBe(0);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:209:      contradictionDensity: 0,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:224:      sessionId: 'session-loop',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:234:    expect(getEdges({ specFolder: 'spec-loop', loopType: 'research', sessionId: 'session-loop' })).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:239:    const sessionId = 'session-signals';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:240:    const ns: Namespace = { specFolder, loopType: 'research', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:258:      makeResearchNode(specFolder, sessionId, 'question-1', 'QUESTION', 'Question 1'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:259:      makeResearchNode(specFolder, sessionId, 'finding-1', 'FINDING', 'Finding 1'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:260:      makeResearchNode(specFolder, sessionId, 'finding-2', 'FINDING', 'Finding 2'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:261:      makeResearchNode(specFolder, sessionId, 'source-1', 'SOURCE', 'Source 1', { quality_class: 'primary' }),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:262:      makeResearchNode(specFolder, sessionId, 'source-2', 'SOURCE', 'Source 2', { quality_class: 'secondary' }),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:270:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:280:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:290:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:300:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:310:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:341:    const cjsContradictions = cjsContradictionsModule.scanContradictions(graph)
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:354:    const researchNs: Namespace = { specFolder, loopType: 'research', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:355:    const reviewNs: Namespace = { specFolder, loopType: 'review', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:357:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-question', 'QUESTION', 'Research question'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:358:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-a', 'FINDING', 'Research finding A'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:359:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-b', 'FINDING', 'Research finding B'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:364:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:371:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-dimension', 'DIMENSION', 'Correctness'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:372:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-file', 'FILE', 'coverage-graph.ts', { hotspot_score: 2 }));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:373:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-finding', 'FINDING', 'Review finding'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:378:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:413:    expect(computeResearchSignals(researchNs).contradictionDensity).toBe(1);
 
 exec
-/bin/zsh -lc "rg -n \"computeDepth\\(|computeAllDepths\\(\" .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"computeDepth\\(|computeAllDepths\\(\" .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 68:      expect(signalsModule.computeDepth(graph, 'a')).toBe(0);
 69:      expect(signalsModule.computeDepth(graph, 'b')).toBe(1);
@@ -5568,7 +5568,7 @@ codex
 1. Finding ID: `F-004-001`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:89)  
+File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:89)  
 Line: `89-116, 159-176, 311-349`  
 Title: Session-scoped reads are inconsistent with the module’s own auto-created nodes  
 Description: `insertEdge()` synthesizes missing nodes without any `sessionId`, but every session-aware reader/filter only trusts `node.sessionId` or `node.metadata.sessionId`. That means a caller can build a graph entirely through the public insert API, attach `metadata.sessionId` to edges, and still lose those nodes from `getNodes()` and any signal helper that depends on node-level session matching. This makes the session-aware export surface easy to misuse and hard to reason about.  
@@ -5590,10 +5590,10 @@ Recommendation: Centralize graph/session normalization in one shared helper and 
 2. Finding ID: `F-004-002`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253)  
+File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253)  
 Line: `253-283`  
 Title: `computeMomentum` has drifted away from the canonical runtime contract  
-Description: The CJS helper exports `computeMomentum(graph, nodeId, windowSize, sessionId)` as a recent-edge counter, while the canonical runtime implementation exports `computeMomentum(specFolder, loopType)` as a snapshot-to-snapshot delta calculator in [.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555). Same name, different meaning. That is a long-term drift trap for maintainers, especially because the requested test suite only validates the CJS behavior in [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117).  
+Description: The CJS helper exports `computeMomentum(graph, nodeId, windowSize, sessionId)` as a recent-edge counter, while the canonical runtime implementation exports `computeMomentum(specFolder, loopType)` as a snapshot-to-snapshot delta calculator in [.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555). Same name, different meaning. That is a long-term drift trap for maintainers, especially because the requested test suite only validates the CJS behavior in [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117).  
 Evidence:
 ```js
 // CJS
@@ -5616,7 +5616,7 @@ Recommendation: Rename the CJS helper to something contract-specific like `compu
 3. Finding ID: `F-004-003`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:143)  
+File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:143)  
 Line: `143-146, 194-195`  
 Title: Cycle-handling contract is documented one way and implemented another  
 Description: The depth routine claims cycles are handled by “capping at the number of nodes,” but the implementation actually assigns `0` to nodes that never reach zero in-degree. That is not a harmless comment mismatch: it makes cyclic nodes indistinguishable from roots and hides complexity from downstream consumers. The requested unit tests only cover DAGs and empty graphs, so this divergence is currently unguarded.  
@@ -5632,7 +5632,7 @@ Recommendation: Either implement the documented fallback for cyclic components o
 4. Finding ID: `F-004-004`  
 Severity: `P2`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112)  
+File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112)  
 Line: `112-190`  
 Title: The contradictions module’s higher-risk branches are only lightly covered  
 Description: This module exposes session-aware scanning, enriched reporting, and density calculation, but the requested `coverage-graph-*.vitest.ts` suite never gives it the same direct coverage that `core`, `signals`, and `convergence` receive. In the requested files, `contradictionDensity()` is only asserted for the empty graph case, and there is no targeted check for session filtering, `byNode` grouping behavior, or evidence/reason propagation. That makes the export surface harder to refactor safely.  
@@ -5650,9 +5650,9 @@ function contradictionDensity(graph, sessionId) {
 }
 ```
 Requested test coverage is limited to:
-- [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:191)
-- [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:425)
-- [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:242)  
+- [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:191)
+- [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:425)
+- [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:242)  
 Recommendation: Add a dedicated `coverage-graph-contradictions.vitest.ts` or expand the existing suite with session-scoped contradiction graphs, non-empty `contradictionDensity()` assertions, and `reportContradictions()` enrichment checks.
 
 **ITERATION SUMMARY**  
@@ -5675,7 +5675,7 @@ tokens used
 1. Finding ID: `F-004-001`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:89)  
+File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:89)  
 Line: `89-116, 159-176, 311-349`  
 Title: Session-scoped reads are inconsistent with the module’s own auto-created nodes  
 Description: `insertEdge()` synthesizes missing nodes without any `sessionId`, but every session-aware reader/filter only trusts `node.sessionId` or `node.metadata.sessionId`. That means a caller can build a graph entirely through the public insert API, attach `metadata.sessionId` to edges, and still lose those nodes from `getNodes()` and any signal helper that depends on node-level session matching. This makes the session-aware export surface easy to misuse and hard to reason about.  
@@ -5697,10 +5697,10 @@ Recommendation: Centralize graph/session normalization in one shared helper and 
 2. Finding ID: `F-004-002`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253)  
+File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253)  
 Line: `253-283`  
 Title: `computeMomentum` has drifted away from the canonical runtime contract  
-Description: The CJS helper exports `computeMomentum(graph, nodeId, windowSize, sessionId)` as a recent-edge counter, while the canonical runtime implementation exports `computeMomentum(specFolder, loopType)` as a snapshot-to-snapshot delta calculator in [.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555). Same name, different meaning. That is a long-term drift trap for maintainers, especially because the requested test suite only validates the CJS behavior in [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117).  
+Description: The CJS helper exports `computeMomentum(graph, nodeId, windowSize, sessionId)` as a recent-edge counter, while the canonical runtime implementation exports `computeMomentum(specFolder, loopType)` as a snapshot-to-snapshot delta calculator in [.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555). Same name, different meaning. That is a long-term drift trap for maintainers, especially because the requested test suite only validates the CJS behavior in [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117).  
 Evidence:
 ```js
 // CJS
@@ -5723,7 +5723,7 @@ Recommendation: Rename the CJS helper to something contract-specific like `compu
 3. Finding ID: `F-004-003`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:143)  
+File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:143)  
 Line: `143-146, 194-195`  
 Title: Cycle-handling contract is documented one way and implemented another  
 Description: The depth routine claims cycles are handled by “capping at the number of nodes,” but the implementation actually assigns `0` to nodes that never reach zero in-degree. That is not a harmless comment mismatch: it makes cyclic nodes indistinguishable from roots and hides complexity from downstream consumers. The requested unit tests only cover DAGs and empty graphs, so this divergence is currently unguarded.  
@@ -5739,7 +5739,7 @@ Recommendation: Either implement the documented fallback for cyclic components o
 4. Finding ID: `F-004-004`  
 Severity: `P2`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112)  
+File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112)  
 Line: `112-190`  
 Title: The contradictions module’s higher-risk branches are only lightly covered  
 Description: This module exposes session-aware scanning, enriched reporting, and density calculation, but the requested `coverage-graph-*.vitest.ts` suite never gives it the same direct coverage that `core`, `signals`, and `convergence` receive. In the requested files, `contradictionDensity()` is only asserted for the empty graph case, and there is no targeted check for session filtering, `byNode` grouping behavior, or evidence/reason propagation. That makes the export surface harder to refactor safely.  
@@ -5757,9 +5757,9 @@ function contradictionDensity(graph, sessionId) {
 }
 ```
 Requested test coverage is limited to:
-- [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:191)
-- [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:425)
-- [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:242)  
+- [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:191)
+- [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:425)
+- [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:242)  
 Recommendation: Add a dedicated `coverage-graph-contradictions.vitest.ts` or expand the existing suite with session-scoped contradiction graphs, non-empty `contradictionDensity()` assertions, and `reportContradictions()` enrichment checks.
 
 **ITERATION SUMMARY**  

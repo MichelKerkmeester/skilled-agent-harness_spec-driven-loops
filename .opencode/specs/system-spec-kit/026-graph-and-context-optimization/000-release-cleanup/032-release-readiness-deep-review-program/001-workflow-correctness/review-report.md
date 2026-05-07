@@ -32,13 +32,13 @@ Rationale: P0 remains active. Even if an operator follows `/memory:manage` corre
 
 **Evidence:**
 
-- `.opencode/command/memory/manage.md:567` through `.opencode/command/memory/manage.md:577` documents a confirmation gate and hard stop before deletion.
-- `.opencode/command/memory/manage.md:613` through `.opencode/command/memory/manage.md:615` then calls `spec_kit_memory_memory_delete({ id: <id> })`, with no confirmation field in the call.
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:281` through `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:290` defines `memory_delete` so `id` alone satisfies single-delete mode, while `confirm` is only described as a safety gate when provided.
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:258` through `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:266` states branch 1 requires only `id`; branch 2 requires `specFolder + confirm:true`.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:71` through `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:74` enforces `confirm` only for spec-folder bulk delete.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:91` through `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:99` deletes the single record when `numericId` is present.
-- Control comparison: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:76` through `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:78` rejects bulk delete without `confirm:true`, and `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:580` through `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:584` requires `confirmName` for checkpoint deletion.
+- `.opencode/commands/memory/manage.md:567` through `.opencode/commands/memory/manage.md:577` documents a confirmation gate and hard stop before deletion.
+- `.opencode/commands/memory/manage.md:613` through `.opencode/commands/memory/manage.md:615` then calls `spec_kit_memory_memory_delete({ id: <id> })`, with no confirmation field in the call.
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:281` through `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:290` defines `memory_delete` so `id` alone satisfies single-delete mode, while `confirm` is only described as a safety gate when provided.
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:258` through `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:266` states branch 1 requires only `id`; branch 2 requires `specFolder + confirm:true`.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:71` through `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:74` enforces `confirm` only for spec-folder bulk delete.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:91` through `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:99` deletes the single record when `numericId` is present.
+- Control comparison: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:76` through `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:78` rejects bulk delete without `confirm:true`, and `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:580` through `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:584` requires `confirmName` for checkpoint deletion.
 
 **Fix:** Require `confirm:true` for all `memory_delete` mutations, including single-record `id` deletion. For protected tiers, add a stronger `confirmTitle` or equivalent typed confirmation field. Update `/memory:manage delete` to call the tool with the same field and add tests for `id` without confirmation being rejected.
 
@@ -50,14 +50,14 @@ Rationale: P0 remains active. Even if an operator follows `/memory:manage` corre
 
 **Evidence:**
 
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:24` through `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:27` declares autonomous execution with no approvals.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:616` through `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:623` adds a final user-response handover prompt whose default is to wait for user response.
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:12` through `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:16` declares autonomous execution with no approvals.
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:547` contains closeout activities that display a prompt and wait for response.
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:592` says `do_not_prompt_for_user_approval`, contradicting the wait above.
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:23` through `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:29` declares autonomous execution with no approvals.
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:30` through `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:34` says checkpoints still pause for confirmation after optional workflows.
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:1080` through `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:1082` explicitly sets `pause_for_confirmation: true` in autonomous behavior.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:24` through `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:27` declares autonomous execution with no approvals.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:616` through `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:623` adds a final user-response handover prompt whose default is to wait for user response.
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:12` through `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:16` declares autonomous execution with no approvals.
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:547` contains closeout activities that display a prompt and wait for response.
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:592` says `do_not_prompt_for_user_approval`, contradicting the wait above.
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:23` through `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:29` declares autonomous execution with no approvals.
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:30` through `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:34` says checkpoints still pause for confirmation after optional workflows.
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:1080` through `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:1082` explicitly sets `pause_for_confirmation: true` in autonomous behavior.
 
 **Fix:** Move all approval waits to confirm variants. In auto variants, convert closeout prompts to non-blocking status output or deterministic defaults. Keep only true safety stops, such as low-confidence or failed-validation stops, and label those as failure/escalation gates rather than approval checkpoints.
 
@@ -69,10 +69,10 @@ Rationale: P0 remains active. Even if an operator follows `/memory:manage` corre
 
 **Evidence:**
 
-- `.opencode/command/memory/save.md:120` through `.opencode/command/memory/save.md:128` defines the `/memory:save` contract inline in markdown, including its script and trigger.
-- `.opencode/command/memory/search.md:65` through `.opencode/command/memory/search.md:75` defines an inline YAML-like operating mode block, not an external `assets/memory_search_*.yaml` workflow.
-- `.opencode/command/memory/manage.md:37` through `.opencode/command/memory/manage.md:44` defines an inline YAML-like operating mode block, not an external `assets/memory_manage_*.yaml` workflow.
-- `.opencode/command/spec_kit/plan.md:13` through `.opencode/command/spec_kit/plan.md:19` shows the contrasting SpecKit command pattern: first action is to load an external YAML asset and execute it step by step.
+- `.opencode/commands/memory/save.md:120` through `.opencode/commands/memory/save.md:128` defines the `/memory:save` contract inline in markdown, including its script and trigger.
+- `.opencode/commands/memory/search.md:65` through `.opencode/commands/memory/search.md:75` defines an inline YAML-like operating mode block, not an external `assets/memory_search_*.yaml` workflow.
+- `.opencode/commands/memory/manage.md:37` through `.opencode/commands/memory/manage.md:44` defines an inline YAML-like operating mode block, not an external `assets/memory_manage_*.yaml` workflow.
+- `.opencode/commands/spec_kit/plan.md:13` through `.opencode/commands/spec_kit/plan.md:19` shows the contrasting SpecKit command pattern: first action is to load an external YAML asset and execute it step by step.
 - Prior matrix context: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/findings.md:25` through `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/findings.md:38` shows memory and workflow executor coverage is already conditional or blocked across non-native surfaces.
 
 **Fix:** Either create `memory_save_{auto,confirm}.yaml`, `memory_search_{auto,confirm}.yaml`, and `memory_manage_{auto,confirm}.yaml` with explicit INIT/preflight contracts, or update the canonical command contract to declare memory commands markdown-only and add a validator that checks inline markdown workflows for required bindings and destructive gates.
@@ -85,11 +85,11 @@ Rationale: P0 remains active. Even if an operator follows `/memory:manage` corre
 
 **Evidence:**
 
-- `.opencode/command/memory/save.md:130` through `.opencode/command/memory/save.md:133` says default canonical save behavior is `plan-only` with explicit follow-up actions, and graph refresh/reindex are deferred freshness actions.
-- `.opencode/command/memory/save.md:341` through `.opencode/command/memory/save.md:371` says Step 5 executes `generate-context.js` as the standard save path.
-- `.opencode/command/memory/save.md:349` through `.opencode/command/memory/save.md:355` says after `generate-context.js`, graph metadata refresh and Step 11.5 auto-indexing occur.
-- `.opencode/command/memory/save.md:548` through `.opencode/command/memory/save.md:553` lists `Bash (node generate-context.js)` as the required context-save call.
-- `.opencode/skill/system-spec-kit/SKILL.md:507` through `.opencode/skill/system-spec-kit/SKILL.md:509` says memory saves must use `generate-context.js` and that canonical saves refresh `description.json` and `graph-metadata.json`.
+- `.opencode/commands/memory/save.md:130` through `.opencode/commands/memory/save.md:133` says default canonical save behavior is `plan-only` with explicit follow-up actions, and graph refresh/reindex are deferred freshness actions.
+- `.opencode/commands/memory/save.md:341` through `.opencode/commands/memory/save.md:371` says Step 5 executes `generate-context.js` as the standard save path.
+- `.opencode/commands/memory/save.md:349` through `.opencode/commands/memory/save.md:355` says after `generate-context.js`, graph metadata refresh and Step 11.5 auto-indexing occur.
+- `.opencode/commands/memory/save.md:548` through `.opencode/commands/memory/save.md:553` lists `Bash (node generate-context.js)` as the required context-save call.
+- `.opencode/skills/system-spec-kit/SKILL.md:507` through `.opencode/skills/system-spec-kit/SKILL.md:509` says memory saves must use `generate-context.js` and that canonical saves refresh `description.json` and `graph-metadata.json`.
 
 **Fix:** Pick one default. For release readiness, use mutation-first only when explicitly approved, or make `plan-only` return a structured plan and never claim the save completed. If `generate-context.js` is mandatory, remove the plan-only default wording and keep dry-run/planner behavior behind an explicit flag.
 
@@ -101,9 +101,9 @@ Rationale: P0 remains active. Even if an operator follows `/memory:manage` corre
 
 **Evidence:**
 
-- `.opencode/command/memory/manage.md:797` through `.opencode/command/memory/manage.md:805` requires explicit confirmation and `confirmName` before checkpoint deletion.
-- `.opencode/command/memory/manage.md:970` through `.opencode/command/memory/manage.md:972` lists checkpoint delete as a single direct operation without `[confirm]`.
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:387` through `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:405` requires `confirmName` for `checkpoint_delete`.
+- `.opencode/commands/memory/manage.md:797` through `.opencode/commands/memory/manage.md:805` requires explicit confirmation and `confirmName` before checkpoint deletion.
+- `.opencode/commands/memory/manage.md:970` through `.opencode/commands/memory/manage.md:972` lists checkpoint delete as a single direct operation without `[confirm]`.
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:387` through `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:405` requires `confirmName` for `checkpoint_delete`.
 
 **Fix:** Update the operation matrix to `checkpoint_list() -> [confirmName] -> checkpoint_delete()` and list abort behavior on missing confirmation.
 
@@ -150,28 +150,28 @@ Evidence quality: every active finding has file:line evidence. Scope stayed read
 
 ## 8. Sources
 
-- `.opencode/command/spec_kit/plan.md`
-- `.opencode/command/spec_kit/implement.md`
-- `.opencode/command/spec_kit/complete.md`
-- `.opencode/command/spec_kit/resume.md`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml`
-- `.opencode/command/memory/save.md`
-- `.opencode/command/memory/search.md`
-- `.opencode/command/memory/manage.md`
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/skill/sk-deep-review/SKILL.md`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts`
+- `.opencode/commands/spec_kit/plan.md`
+- `.opencode/commands/spec_kit/implement.md`
+- `.opencode/commands/spec_kit/complete.md`
+- `.opencode/commands/spec_kit/resume.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml`
+- `.opencode/commands/memory/save.md`
+- `.opencode/commands/memory/search.md`
+- `.opencode/commands/memory/manage.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/skills/sk-deep-review/SKILL.md`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/findings.md`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix/methodology-correction.md`
 

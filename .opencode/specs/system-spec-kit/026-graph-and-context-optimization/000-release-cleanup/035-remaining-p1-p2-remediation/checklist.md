@@ -122,5 +122,5 @@ _memory:
 
 - `npm run build`: PASS
 - `npx vitest run tests/memory-retention-sweep.vitest.ts tests/deep-loop/post-dispatch-validate.vitest.ts tests/tool-input-schema.vitest.ts tests/gemini-user-prompt-submit-hook.vitest.ts`: PASS, 4 files and 107 tests
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/035-remaining-p1-p2-remediation --strict`: PASS, 0 errors and 0 warnings
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/035-remaining-p1-p2-remediation --strict`: PASS, 0 errors and 0 warnings
 <!-- /ANCHOR:summary -->

@@ -48,18 +48,18 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tools/types.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/index.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
       "tools/memory-tools.ts",
       "tools/types.ts",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/checklist.md"
@@ -98,67 +98,67 @@
       {
         "name": "memory-retention-sweep.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
         "source": "derived"
       },
       {
         "name": "session-manager.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
         "source": "derived"
       },
       {
         "name": "memory-tools.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts",
         "source": "derived"
       },
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {
         "name": "tool-input-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
         "name": "types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tools/types.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
         "source": "derived"
       },
       {
         "name": "index.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/index.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
         "source": "derived"
       },
       {
         "name": "memory-retention-sweep.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
         "source": "derived"
       },
       {
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
         "source": "derived"
       },
       {
         "name": "scope-governance.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
         "source": "derived"
       },
       {

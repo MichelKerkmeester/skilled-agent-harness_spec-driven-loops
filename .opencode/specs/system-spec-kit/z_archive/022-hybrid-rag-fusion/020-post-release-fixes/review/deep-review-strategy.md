@@ -28,7 +28,7 @@ Serve as the persistent review brain for the canonical `review/` packet under `0
 <!-- ANCHOR:topic -->
 ## 2. TOPIC
 
-Release-readiness deep review of `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/020-post-release-fixes`, expanded first into runtime code-hunt territory and then into a strict live feature-catalog plus backing-code audit of the `255` feature entries under `.opencode/skill/system-spec-kit/feature_catalog/`.
+Release-readiness deep review of `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/020-post-release-fixes`, expanded first into runtime code-hunt territory and then into a strict live feature-catalog plus backing-code audit of the `255` feature entries under `.opencode/skills/system-spec-kit/feature_catalog/`.
 
 ---
 

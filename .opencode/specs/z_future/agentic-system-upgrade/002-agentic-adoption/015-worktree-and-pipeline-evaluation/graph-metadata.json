@@ -38,9 +38,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/sk-git/SKILL.md",
-      ".opencode/skill/sk-git/references/finish_workflows.md",
-      ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/references/finish_workflows.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -50,19 +50,19 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-git/SKILL.md",
+        "path": ".opencode/skills/sk-git/SKILL.md",
         "source": "derived"
       },
       {
         "name": "finish_workflows.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-git/references/finish_workflows.md",
+        "path": ".opencode/skills/sk-git/references/finish_workflows.md",
         "source": "derived"
       },
       {
         "name": "spec_kit_implement_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
         "source": "derived"
       },
       {

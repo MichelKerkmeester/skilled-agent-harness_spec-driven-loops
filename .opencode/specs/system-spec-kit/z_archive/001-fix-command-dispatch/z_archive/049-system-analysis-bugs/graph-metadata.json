@@ -45,12 +45,12 @@
       "scripts/rules/check-files.sh",
       "scripts/rules/check-frontmatter.sh",
       "templates/handover.md",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-folder-naming.sh",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-files.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-folder-naming.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
       "handover.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-frontmatter.sh",
-      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "scripts/package.json",
       "checklist.md",
       "spec.md",
@@ -93,7 +93,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

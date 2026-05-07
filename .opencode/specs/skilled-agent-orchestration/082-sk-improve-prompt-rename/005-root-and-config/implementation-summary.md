@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 005 Root and Config"
-description: "Rotated 35 sk-improve-prompt → sk-prompt references across 9 root and config files (root README, AGENTS.md, install guides, .opencode/skill/README, observability JSONL/report, system-spec-kit changelog v3.4, agent-orchestration changelog v2.4)."
+description: "Rotated 35 sk-improve-prompt → sk-prompt references across 9 root and config files (root README, AGENTS.md, install guides, .opencode/skills/README, observability JSONL/report, system-spec-kit changelog v3.4, agent-orchestration changelog v2.4)."
 trigger_phrases:
   - "082 phase 005"
   - "root config rotation"
@@ -30,7 +30,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -63,10 +63,10 @@ The largest single file in this phase was `smart-router-measurement-results.json
 | `AGENTS.md` | Modified (1 ref) | Framework instructions |
 | `.opencode/install_guides/SET-UP - AGENTS.md` | Modified (2 refs) | Install guide skill table |
 | `.opencode/install_guides/README.md` | Modified (3 refs) | Install guide catalog |
-| `.opencode/skill/README.md` | Modified (4 refs) | Skill directory catalog |
-| `.opencode/skill/system-spec-kit/changelog/v3.4.0.0.md` | Modified (1 ref) | Active system-spec-kit changelog |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` | Modified (15 refs) | Forward-facing measurement IDs |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md` | Modified (1 ref) | Forward-facing measurement report |
+| `.opencode/skills/README.md` | Modified (4 refs) | Skill directory catalog |
+| `.opencode/skills/system-spec-kit/changelog/v3.4.0.0.md` | Modified (1 ref) | Active system-spec-kit changelog |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` | Modified (15 refs) | Forward-facing measurement IDs |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md` | Modified (1 ref) | Forward-facing measurement report |
 | `.opencode/changelog/agent-orchestration/v2.4.0.0.md` | Modified (4 refs) | Agent-orchestration changelog (active) |
 <!-- /ANCHOR:what-built -->
 

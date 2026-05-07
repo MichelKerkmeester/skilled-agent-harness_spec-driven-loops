@@ -19,11 +19,11 @@ _memory:
     next_safe_action: "Commit + push to origin main"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts"
-      - ".opencode/command/doctor/assets/doctor_code-graph_auto.yaml"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts"
+      - ".opencode/commands/doctor/assets/doctor_code-graph_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-001-code-graph-consistency"
@@ -36,7 +36,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -67,7 +67,7 @@ Nine surgical fixes across the code-graph indexer, the shared SQLite layer, the 
 | F-014-C4-01 (P2) | `mcp_server/code_graph/lib/code-graph-db.ts` | `ensureFreshFiles()` and `isFileStale()` now hash on mtime drift before declaring a file stale: a touch with unchanged content is fresh. Avoids gratuitous reindex on `git checkout` of touched-but-unchanged files. |
 | F-014-C4-02 (P2) | `mcp_server/code_graph/lib/ensure-ready.ts` | When raw Git HEAD differs but `git diff` between old/new HEAD touches no path in `getTrackedFiles()`, `detectState()` no longer escalates to `full_scan`. The HEAD pointer is updated; freshness reports `fresh`. Falls back to current behavior on git failure. |
 | F-014-C4-03 (P1) | `mcp_server/code_graph/lib/ensure-ready.ts` | Added a candidate manifest (count + sha256 digest) persisted in `code_graph_metadata.candidate_manifest`. On `detectState()`, if the on-disk indexable file count or digest diverges from the stored manifest, freshness flips to stale + full_scan. Bounded — no per-path storage, no eager filesystem scan. |
-| F-014-C4-04 (P1) | `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml` | Phase 1 Analysis no longer calls `detect_changes({})` (which is diff-driven, not index-health-driven). The fallback path that was already in the YAML at line 103 (`derive stale set from git status --porcelain + index timestamps`) becomes the primary path; missed-set comes from filesystem walk minus index. The output shape is unchanged. |
+| F-014-C4-04 (P1) | `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml` | Phase 1 Analysis no longer calls `detect_changes({})` (which is diff-driven, not index-health-driven). The fallback path that was already in the YAML at line 103 (`derive stale set from git status --porcelain + index timestamps`) becomes the primary path; missed-set comes from filesystem walk minus index. The output shape is unchanged. |
 | F-004-A4-02 (P2) | `mcp_server/code_graph/lib/code-graph-context.ts` | `resolveSubjectToRef` now uses an internal typed `ResolveSubjectResult` (`resolved` / `unresolved` / `unavailable`) so the DB-error case is distinct from "no row." The legacy `null`-returning wrapper is preserved for backward compatibility, but emits a `console.warn` when the underlying DB call fails so the silent-error path is auditable from logs. |
 | F-004-A4-03 (P2) | `mcp_server/code_graph/lib/code-graph-db.ts` | Added `*WithDiagnostics()` companions for the three metadata getters (`getLastDetectorProvenanceSummary`, `getLastGraphEdgeEnrichmentSummary`, `getLastGoldVerification`) returning a discriminated `MetadataReadResult<T>` (`absent` / `resolved` / `corrupt` / `invalid-shape`) so callers can distinguish absent, corrupt-JSON, and shape-mismatch. The original API (returns `null` on error) is preserved. |
 
@@ -79,7 +79,7 @@ Nine surgical fixes across the code-graph indexer, the shared SQLite layer, the 
 | `mcp_server/code_graph/lib/code-graph-db.ts` | Modified | F-002-A2-02 busy_timeout + F-014-C4-01 hash-before-stale + F-004-A4-03 metadata diagnostics |
 | `mcp_server/code_graph/handlers/query.ts` | Modified | F-002-A2-03 snapshot-stable read transaction |
 | `mcp_server/code_graph/lib/code-graph-context.ts` | Modified | F-004-A4-02 typed resolve-subject return |
-| `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml` | Modified | F-014-C4-04 redefine Phase 1 Analysis around existing outputs |
+| `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml` | Modified | F-014-C4-04 redefine Phase 1 Analysis around existing outputs |
 | `mcp_server/code_graph/tests/code-graph-atomic-persistence.vitest.ts` | Created | F-002-A2-01 atomic-write boundary |
 | `mcp_server/code_graph/tests/code-graph-busy-timeout.vitest.ts` | Created | F-002-A2-02 busy retry under contention |
 | `mcp_server/code_graph/tests/code-graph-stale-mtime-vs-hash.vitest.ts` | Created | F-014-C4-01 touch-only is fresh |

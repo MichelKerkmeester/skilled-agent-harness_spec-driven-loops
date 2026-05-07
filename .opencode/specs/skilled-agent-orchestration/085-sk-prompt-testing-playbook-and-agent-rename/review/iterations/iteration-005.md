@@ -68,7 +68,7 @@ vs canonical `.opencode`:
 ```
 120: description = "Improve-prompt specialist for framework selection, CLEAR validation..."
 ```
-Should read `"Prompt-improver specialist..."` to match the canonical `.opencode/agent/prompt-improver.md:3`.
+Should read `"Prompt-improver specialist..."` to match the canonical `.opencode/agents/prompt-improver.md:3`.
 
 ### 5. Scenario file count
 ```
@@ -92,7 +92,7 @@ RESULT: PASSED — Errors: 0, Warnings: 0
 
 ### 9. Agent file existence (all 4 runtimes)
 ```
-.opencode/agent/prompt-improver.md — exists
+.opencode/agents/prompt-improver.md — exists
 .claude/agents/prompt-improver.md — exists
 .codex/agents/prompt-improver.toml — exists
 .gemini/agents/prompt-improver.md — exists
@@ -100,7 +100,7 @@ RESULT: PASSED — Errors: 0, Warnings: 0
 
 ### 10. Agent READMEs all reference `prompt-improver`
 ```
-.opencode/agent/README.txt:19: prompt-improver — Prompt engineering
+.opencode/agents/README.txt:19: prompt-improver — Prompt engineering
 .claude/agents/README.txt:18: prompt-improver — Prompt engineering
 .codex/agents/README.txt:22: prompt-improver — Prompt engineering
 .gemini/agents/README.txt:19: prompt-improver — Prompt engineering
@@ -108,8 +108,8 @@ RESULT: PASSED — Errors: 0, Warnings: 0
 
 ### 11. SKILL.md — exactly 1 `## RELATED PLAYBOOK` link
 ```
-.opencode/skill/sk-prompt/SKILL.md:453:## RELATED PLAYBOOK
-.opencode/skill/sk-prompt/SKILL.md:455:Manual validation lives at `manual_testing_playbook/manual_testing_playbook.md`.
+.opencode/skills/sk-prompt/SKILL.md:453:## RELATED PLAYBOOK
+.opencode/skills/sk-prompt/SKILL.md:455:Manual validation lives at `manual_testing_playbook/manual_testing_playbook.md`.
 ```
 
 ### 12. Scenario files all reference `@prompt-improver` (spot-check confirmed)

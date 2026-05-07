@@ -37,7 +37,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown (command prompts), YAML (workflow configs) |
 | **Framework** | SpecKit command system |
-| **Storage** | File-based (`.opencode/command/spec_kit/`) |
+| **Storage** | File-based (`.opencode/commands/spec_kit/`) |
 | **Testing** | Manual verification via `/spec_kit:plan:auto :with-phases` |
 
 ### Overview

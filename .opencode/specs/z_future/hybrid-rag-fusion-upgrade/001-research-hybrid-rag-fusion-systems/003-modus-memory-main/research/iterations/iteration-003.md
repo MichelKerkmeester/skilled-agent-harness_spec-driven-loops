@@ -6,7 +6,7 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 ## Findings
 
 ### Finding 1: Modus exposes a very thin MCP transport: stdio JSON-RPC with only `initialize`, `tools/list`, and `tools/call`
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/server.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/main.go`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/server.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/main.go`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 - **What it does**: `Server.Run()` reads newline-delimited JSON from stdin and `handle()` only recognizes `initialize`, `notifications/initialized`, `tools/list`, and `tools/call`. The binary starts this server directly from `main.go` after building the in-memory index and registering tools. There is no inbound HTTP listener, no resource/prompt surface, no session bootstrap tool, and no orchestration layer comparable to Public’s `memory_context`, `session_bootstrap`, `code_graph_query`, or `code_graph_context`.
 - **Why it matters for us**: This is a portability win for a single-purpose local binary, but it is a surface-area downgrade relative to Public’s retrieval/orchestration server. It is useful as a minimal transport reference, not as a model for Public’s primary MCP surface.
 - **Recommendation**: reject
@@ -27,14 +27,14 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 - **Impact**: medium
 
 ### Finding 4: Tool registration and argument validation are loose enough that adopting Modus’s MCP schema pattern would weaken Public
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/server.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/vault.go`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/server.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/vault.go`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
 - **What it does**: Modus stores `InputSchema` as generic `interface{}` and passes raw `map[string]interface{}` into handlers. Validation is decentralized and uneven: many handlers use loose type assertions and defaults, while filesystem safety is enforced mostly by `vault.safePath()` on read/write/list operations. Public, by contrast, has centralized schema definitions, strict Zod validation, explicit `additionalProperties: false`, safe path validators, and governance/session fields baked into tool schemas.
 - **Why it matters for us**: This is a material safety and operability gap. Public’s current tool layer is already stronger on input validation, scope governance, and explicit contracts; replacing it with Modus’s pattern would be regression, not simplification.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: Modus search tools hide side effects and capability changes behind ambient conditions rather than explicit flags
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/client.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/client.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 - **What it does**: `vault_search` silently switches to librarian-expanded multi-query retrieval when the sidecar is reachable, otherwise falls back to direct search. `memory_search` silently spawns async `ReinforceFact()` calls for every returned fact. There are no per-call controls for disabling reinforcement, forcing plain lexical search, asking for provenance, selecting a presentation profile, or scoping session behavior. Public exposes those controls explicitly through `trackAccess`, `includeTrace`, `profile`, `sessionId`, intent routing, and governed scope fields.
 - **Why it matters for us**: Search-as-read with hidden write side effects is risky for operators and harder to reason about in evaluations. Public’s explicit opt-in `trackAccess` model is materially safer and easier to benchmark than Modus’s always-on recall reinforcement.
 - **Recommendation**: reject
@@ -66,11 +66,11 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/import_khoj.go`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/docs/librarian.md`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
 
 ## Assessment
 - **New information ratio**: 0.87

@@ -41,11 +41,11 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/system-spec-kit/scripts/core/workflow.ts",
-      ".opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts",
-      ".opencode/skill/system-spec-kit/scripts/core/post-save-review.ts",
-      ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skill/system-spec-kit/scripts/types/session-types.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
+      ".opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
+      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
+      ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -57,31 +57,31 @@
       {
         "name": "workflow.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/core/workflow.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
         "source": "derived"
       },
       {
         "name": "template-renderer.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts",
         "source": "derived"
       },
       {
         "name": "post-save-review.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/core/post-save-review.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
         "source": "derived"
       },
       {
         "name": "input-normalizer.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
         "source": "derived"
       },
       {
         "name": "session-types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/types/session-types.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
         "source": "derived"
       },
       {

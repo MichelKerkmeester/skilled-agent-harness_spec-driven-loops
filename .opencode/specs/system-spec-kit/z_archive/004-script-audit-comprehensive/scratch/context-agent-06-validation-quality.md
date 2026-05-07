@@ -3,7 +3,7 @@
 
 **Audit Date:** 2026-02-15  
 **Auditor:** Context Agent 06  
-**Scope:** `.opencode/skill/system-spec-kit/scripts/validation/` + quality-check hooks  
+**Scope:** `.opencode/skills/system-spec-kit/scripts/validation/` + quality-check hooks  
 **Total Files Scanned:** 8 shell scripts  
 **Standard Reference:** POSIX shell best practices + system-spec-kit validation standards
 
@@ -40,7 +40,7 @@ The validation and quality-check scripts exhibit **moderate compliance** (68% co
 
 **Primary Scripts Audited:**
 ```
-.opencode/skill/system-spec-kit/scripts/validation/
+.opencode/skills/system-spec-kit/scripts/validation/
 ├── validate.sh              # Orchestrator (315 lines)
 ├── check-level.sh           # Level detection (220 lines)
 ├── check-sections.sh        # Required sections (120 lines)

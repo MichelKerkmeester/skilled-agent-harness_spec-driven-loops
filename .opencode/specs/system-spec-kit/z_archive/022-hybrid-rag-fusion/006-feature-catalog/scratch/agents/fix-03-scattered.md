@@ -14,8 +14,8 @@ I’m verifying each doc claim against the current `mcp_server` and `scripts` co
   └ {"summary":"Matched 3 memories via trigger phrases","data":{"matchType":"trig...
 
 ● Run skill advisor and create session plan (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Fix specific feature catalog markdown
-  │ inaccuracies by verifying claims against .opencode/skill/system-spec-kit/mcp_server and
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Fix specific feature catalog markdown
+  │ inaccuracies by verifying claims against .opencode/skills/system-spec-kit/mcp_server and
   │ scripts, then editing the docs and showing the changes" --threshold 0.8 && mkdir -p
   │ '/Users/michelkerkmeester/.copilot/session-state/9110f89d-49b6-4a0e-996b-530fcaf63cd5' && cat
   │ > …
@@ -25,265 +25,265 @@ I’ve got the doc-writing guidance and started source verification. Next I’m 
 
 ✗ Search (grep)
   │ "export function is[A-Za-z0-9_]+"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search-flags.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search-flags.ts)
   └ rg: /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search-flags.ts: IO error for
+    Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search-flags.ts: IO error for
     operation on /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search-flags.ts: No such file or
+    Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search-flags.ts: No such file or
     directory (os error 2)
 
 ● Read 02-feature-flag-sunset-audit.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md
   └ 38 lines read
 
 ● Read 02-relative-score-fusion-in-shadow-mode.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-
   │ in-shadow-mode.md
   └ 48 lines read
 
 ● Read 16-typed-traversal.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/16-typed-traversal.m
+  │ .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/16-typed-traversal.m
   │ d
   └ 51 lines read
 
 ● Read 13-scoring-and-fusion-corrections.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-fusio
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-fusio
   │ n-corrections.md
   └ 73 lines read
 
 ● Read 03-checkpoint-restore-checkpointrestore.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/05--lifecycle/03-checkpoint-restore-checkpointre
+  │ .opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/03-checkpoint-restore-checkpointre
   │ store.md
   └ 150 lines read
 
 ● Read 05-quality-proxy-formula.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-quality-proxy-
+  │ .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-quality-proxy-
   │ formula.md
   └ 54 lines read
 
 ● Read 08-mathmax-min-stack-overflow-elimination.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min-
+  │ .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min-
   │ stack-overflow-elimination.md
   └ 78 lines read
 
 ● Search (grep)
   │ "RSF|relative score fusion|fuseResultsRsf|shadow mode" in *.{ts,md}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Search (grep)
   │ "typed traversal|spec-ahead-of-implementation|describe\.skip|it\.skip|skip\(" in *.vitest.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 5 lines found
 
 ● Search (grep)
   │ "fuseResultsMulti|fuseResultsCrossVariant|fuseResultsRsfMulti|fuseResultsRsfCrossVariant" in
-  │ *.ts (.opencode/skill/system-spec-kit)
+  │ *.ts (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Search (grep)
   │ "clearExisting|rollback|restoreCheckpoint|CheckpointRestore" in *.ts
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Search (grep)
   │ "quality proxy|correlat|ground-truth|manual assessment" in *.{ts,md,py}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Search (grep)
-  │ "Math\.(max|min)\((\.\.\.)" in *.{ts,js} (.opencode/skill/system-spec-kit)
+  │ "Math\.(max|min)\((\.\.\.)" in *.{ts,js} (.opencode/skills/system-spec-kit)
   └ 22 lines found
 
 I found the target docs. A couple of repo-wide searches were too broad, so I’m narrowing to the exact implementation files now to pin each wording change to a concrete source line.
 
 ● Search (grep)
   │ "fuseResultsMulti|fuseResultsCrossVariant|fuseResultsRsfMulti|fuseResultsRsfCrossVariant|canonic
-  │ alRrfId" (.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts)
+  │ alRrfId" (.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts)
   └ 13 lines found
 
 ● Search (glob)
-  │ "**/search-flags.ts" in .opencode/skill/system-spec-kit
+  │ "**/search-flags.ts" in .opencode/skills/system-spec-kit
   └ 1 file found
 
 ● Search (grep)
   │ "RSF|relative score fusion|rsfShadow|fuseResultsRsf|shadow" in *.vitest.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 5 lines found
 
 ● Search (grep)
   │ "RSF|relative score fusion|rsfShadow|fuseResultsRsf|shadow" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib)
   └ 5 lines found
 
 ● Search (grep)
   │ "spec-ahead-of-implementation|describe\.skip|it\.skip|skip\(" in *sparse-first-graph*.vitest.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 2 lines found
 
 ● Search (grep)
   │ "clearExisting|BEGIN|ROLLBACK|transaction|merge|skip rather than
   │ duplicated|spec_folder|file_path|anchor_id"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts)
   └ 14 lines found
 
 ● Search (grep)
   │ "quality proxy|avgRelevance|topResult|countSaturation|latencyPenalty|manual|ground
-  │ truth|correlat" (.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts)
+  │ truth|correlat" (.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts)
   └ 36 lines found
 
 ● Search (grep)
   │ "Math\.(min|max)\(\.\.\.|reduce\(|AI-WHY"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts)
   └ 4 lines found
 
 ● Search (grep)
   │ "Math\.(min|max)\(\.\.\.|reduce\(|AI-WHY"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts)
   └ 1 line found
 
 ● Search (grep)
   │ "Math\.(min|max)\(\.\.\.|reduce\(|AI-WHY"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts)
   └ 1 line found
 
 ● Read search-flags.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "export function is[A-Za-z0-9_]+"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts)
   └ 1 file found
 
 ● Read causal-boost.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts
   └ L1:260 (260 lines read)
 
 ● Read sparse-first-graph.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/sparse-first-graph.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/sparse-first-graph.vitest.ts
   └ L1:120 (31 lines read)
 
 ● Search (grep)
   │ "RSF|relative score fusion|rsfShadow|fuseResultsRsf|Stage 2|stage 2" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search)
   └ 53 lines found
 
 ● Search (grep)
   │ "RSF|relative score fusion|rsfShadow|fuseResultsRsf" in *.vitest.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 5 lines found
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
   └ L340:470 (131 lines read)
 
 ● Read eval-quality-proxy.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts
   └ L1:240 (214 lines read)
 
 ● Read rrf-fusion.ts
-  │ .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts
+  │ .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts
   └ L250:540 (291 lines read)
 
 I’ve confirmed the `53` helper count and the skipped typed-traversal test. I’m pulling the remaining precise evidence for RSF residual references and checkpoint restore behavior before patching the docs in one pass.
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
   └ L520:760 (241 lines read)
 
 ● Read stage2-fusion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
   └ L30:60 (31 lines read)
 
 ● Read stage2-fusion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
   └ L430:450 (21 lines read)
 
 ● Read stage2-fusion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
   └ L900:915 (16 lines read)
 
 ● Read feature-eval-query-intelligence.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts
   └ L35:55 (21 lines read)
 
 ● Read cross-feature-integration-eval.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts
   └ L145:250 (105 lines read)
 
 ● Read search-fallback-tiered.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts
   └ L20:40 (21 lines read)
 
 ● Search (grep)
   │ "fully removed from the codebase|fully removed|module, tests, and shadow metadata deleted"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion
+  │ (.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion
   │ -in-shadow-mode.md)
   └ 2 lines found
 
 ● Search (grep)
   │ "function restoreCheckpoint|restoreCheckpoint\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts)
   └ 1 line found
 
 ● Search (grep)
   │ "function isTypedTraversalEnabled|export function isTypedTraversalEnabled"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts)
   └ 1 line found
 
 ● Search (grep)
-  │ "Runtime|runtime|partial|planned|spec-ahead|pending implementation" (.opencode/skill/system-spec
+  │ "Runtime|runtime|partial|planned|spec-ahead|pending implementation" (.opencode/skills/system-spec
   │ -kit/feature_catalog/10--graph-signal-activation/16-typed-traversal.md)
   └ No matches found
 
 ● Search (grep)
-  │ "fuseResultsRsfMulti|fuseResultsRsfCrossVariant" (.opencode/skill/system-spec-kit/feature_catalo
+  │ "fuseResultsRsfMulti|fuseResultsRsfCrossVariant" (.opencode/skills/system-spec-kit/feature_catalo
   │ g/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md)
   └ 1 line found
 
 ● Search (grep)
-  │ "Correlation testing|confirmed the proxy" (.opencode/skill/system-spec-kit/feature_catalog/09--e
+  │ "Correlation testing|confirmed the proxy" (.opencode/skills/system-spec-kit/feature_catalog/09--e
   │ valuation-and-measurement/05-quality-proxy-formula.md)
   └ 1 line found
 
 ● Search (grep)
-  │ "elimination|residual production spread sites" (.opencode/skill/system-spec-kit/feature_catalog/
+  │ "elimination|residual production spread sites" (.opencode/skills/system-spec-kit/feature_catalog/
   │ 08--bug-fixes-and-data-integrity/08-mathmax-min-stack-overflow-elimination.md)
   └ 4 lines found
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
   └ L1478:1685 (208 lines read)
 
 ● Read search-flags.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts
   └ L480:520 (41 lines read)
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
   └ L1680:1805 (126 lines read)
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
   └ L1805:1885 (22 lines read)
 
 I’ve got the remaining evidence. I’m patching the seven markdown files now, with the changes limited to the inaccurate claims you flagged and the nearby wording needed to keep each entry internally consistent.
 
 ● Edit
   │ Edit
-  │ .opencode/skill/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fu
+  │ .opencode/skills/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fu
   │ sion-in-shadow-mode.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/16-typed-traver
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/16-typed-traver
   │ sal.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-
   │ fusion-corrections.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/05--lifecycle/03-checkpoint-restore-checkpo
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/03-checkpoint-restore-checkpo
   │ intrestore.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-quality-p
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-quality-p
   │ roxy-formula.md
-  └ Edit .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax
+  └ Edit .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax
     -min-stack-overflow-elimination.md
 
 The edits are in. I’m running the markdown validator against the seven touched catalog files and then I’ll surface the exact diffs for each file so you can review the remediation quickly.
@@ -291,9 +291,9 @@ The edits are in. I’m running the markdown validator against the seven touched
 ● Validate edited docs and summarize diff (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/sk-doc' &&
   │ python3 scripts/validate_document.py '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/feature_catalog/17--governance/02-feature-flag-suns
+  │ Env/Public/.opencode/skills/system-spec-kit/feature_catalog/17--governance/02-feature-flag-suns
   │ et-audit.md' && python3 scripts/validate_document.py
-  │ '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit…
+  │ '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit…
   └ 31 lines...
 
 The content edits are sound, but the repo’s validator is treating these per-feature catalog files like README-style docs and flagging a missing TOC. I’m checking whether that validator has a mode switch; otherwise I’ll use a narrower sanity check and call out the validator mismatch explicitly.
@@ -304,10 +304,10 @@ The content edits are sound, but the repo’s validator is treating these per-fe
 
 ● Run diff sanity checks on edited docs (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && git --no-pager diff
-  │ --check -- '.opencode/skill/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sun
-  │ set-audit.md' '.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/02-relat
-  │ ive-score-fusion-in-shadow-mode.md' '.opencode/skill/system-spec-kit/feature_catalog/10--graph
-  │ -signal-activation/16-typed-traversal.md' '.opencode/skill/system-spec-kit/feature_catalog/11-…
+  │ --check -- '.opencode/skills/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sun
+  │ set-audit.md' '.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/02-relat
+  │ ive-score-fusion-in-shadow-mode.md' '.opencode/skills/system-spec-kit/feature_catalog/10--graph
+  │ -signal-activation/16-typed-traversal.md' '.opencode/skills/system-spec-kit/feature_catalog/11-…
   └ 22 lines...
 
 ● Search (grep)
@@ -332,44 +332,44 @@ I found the validator mismatch: it auto-detects any generic `.md` file as `readm
 ● Validate edited docs as reference entries (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.agents/skills/sk-doc' &&
   │ python3 scripts/validate_document.py '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/feature_catalog/17--governance/02-feature-flag-suns
+  │ Env/Public/.opencode/skills/system-spec-kit/feature_catalog/17--governance/02-feature-flag-suns
   │ et-audit.md' --type reference && python3 scripts/validate_document.py
-  │ '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit…
+  │ '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit…
   └ 43 lines...
 
 ● Search (grep)
   │ "53 exported `is\*` functions"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md)
   └ 1 line found
 
 ● Search (grep)
-  │ "runtime code was removed|residual test references|RRF / RSF" (.opencode/skill/system-spec-kit/f
+  │ "runtime code was removed|residual test references|RRF / RSF" (.opencode/skills/system-spec-kit/f
   │ eature_catalog/12--query-intelligence/02-relative-score-fusion-in-shadow-mode.md)
   └ 5 lines found
 
 ● Search (grep)
-  │ "partially wired|spec-ahead-of-implementation|partial/planned" (.opencode/skill/system-spec-kit/
+  │ "partially wired|spec-ahead-of-implementation|partial/planned" (.opencode/skills/system-spec-kit/
   │ feature_catalog/10--graph-signal-activation/16-typed-traversal.md)
   └ 3 lines found
 
 ● Search (grep)
-  │ "fuseResultsMulti\(|fuseResultsCrossVariant\(|RRF ID canonicalization" (.opencode/skill/system-s
+  │ "fuseResultsMulti\(|fuseResultsCrossVariant\(|RRF ID canonicalization" (.opencode/skills/system-s
   │ pec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md)
   └ 3 lines found
 
 ● Search (grep)
-  │ "clearExisting=true|partial restore|best-effort partial" (.opencode/skill/system-spec-kit/featur
+  │ "clearExisting=true|partial restore|best-effort partial" (.opencode/skills/system-spec-kit/featur
   │ e_catalog/05--lifecycle/03-checkpoint-restore-checkpointrestore.md)
   └ 2 lines found
 
 ● Search (grep)
-  │ "designed to correlate|verified correlation study" (.opencode/skill/system-spec-kit/feature_cata
+  │ "designed to correlate|verified correlation study" (.opencode/skills/system-spec-kit/feature_cata
   │ log/09--evaluation-and-measurement/05-quality-proxy-formula.md)
   └ 1 line found
 
 ● Search (grep)
   │ "hardening|Residual production spread sites still remain|cleanup is not complete"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min
+  │ (.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min
   │ -stack-overflow-elimination.md)
   └ 4 lines found
 
@@ -402,7 +402,7 @@ I found the validator mismatch: it auto-detects any generic `.md` file as `readm
   │ 22    **Pipeline status:** The 4-stage pipeline is the sole runtime path. The
   │       `SPECKIT_PIPELINE_V2` environment variable is not consumed by runtime code.
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md
+  └ .opencode/skills/system-spec-kit/feature_catalog/17--governance/02-feature-flag-sunset-audit.md
 
 ● Show diff 02-relative-score-fusion-in-shadow-mode.md
   │
@@ -477,7 +477,7 @@ I found the validator mismatch: it auto-detects any generic `.md` file as `readm
   │ 44
   │ 45     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-
+  └ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-
     in-shadow-mode.md
 
 ● Show diff 16-typed-traversal.md
@@ -545,7 +545,7 @@ I found the validator mismatch: it auto-detects any generic `.md` file as `readm
   │ 47
   │ 48     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/16-typed-traversal.m
+  └ .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/16-typed-traversal.m
     d
 
 ● Show diff 13-scoring-and-fusion-corrections.md
@@ -605,7 +605,7 @@ I found the validator mismatch: it auto-detects any generic `.md` file as `readm
   │       `syncScoreAliasesInPlace()`. This keeps downstream ranking consistent with the latest
   │       pipeline score; it does not preserve the prior value with `Math.max(...)`.
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-fusio
+  └ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-fusio
     n-corrections.md
 
 ● Show diff 03-checkpoint-restore-checkpointrestore.md
@@ -664,7 +664,7 @@ I found the validator mismatch: it auto-detects any generic `.md` file as `readm
   │        restored memories immediately discoverable without forcing a full re-embedding pass.
   │
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/05--lifecycle/03-checkpoint-restore-checkpointre
+  └ .opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/03-checkpoint-restore-checkpointre
     store.md
 
 ● Show diff 05-quality-proxy-formula.md
@@ -684,7 +684,7 @@ I found the validator mismatch: it auto-detects any generic `.md` file as `readm
   │ 23
   │ 24     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-quality-proxy-
+  └ .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-quality-proxy-
     formula.md
 
 ● Show diff 08-mathmax-min-stack-overflow-elimination.md
@@ -731,7 +731,7 @@ I found the validator mismatch: it auto-detects any generic `.md` file as `readm
   │ 20     - `rsf-fusion.ts` (deleted): 6 instances were fixed before module removal
   │ 21     - `causal-boost.ts`: 1 instance
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min-
+  └ .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min-
     stack-overflow-elimination.md
 
 Done. I fixed the seven feature-catalog entries and showed the diff for each above.

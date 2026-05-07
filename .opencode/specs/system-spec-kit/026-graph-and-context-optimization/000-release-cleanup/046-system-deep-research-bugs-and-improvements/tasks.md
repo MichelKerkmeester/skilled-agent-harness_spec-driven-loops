@@ -99,8 +99,8 @@ _memory:
 - **Specification**: `spec.md` (20 angles in §3 Scope)
 - **Plan**: `plan.md`
 - **Workflow**: `/spec_kit:deep-research:auto`
-- **Workflow YAML**: `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- **Skill protocol**: `.opencode/skill/sk-deep-research/SKILL.md`
+- **Workflow YAML**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Skill protocol**: `.opencode/skills/sk-deep-research/SKILL.md`
 - **Outputs**:
   - `research/iterations/iteration-NNN.md` (×20)
   - `research/deltas/iter-NNN.jsonl` (×20)

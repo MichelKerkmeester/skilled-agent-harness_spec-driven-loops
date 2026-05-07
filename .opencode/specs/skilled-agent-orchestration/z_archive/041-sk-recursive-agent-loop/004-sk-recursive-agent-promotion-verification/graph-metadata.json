@@ -40,7 +40,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-improve-agent/references/evaluator_contract.md",
+      ".opencode/skills/sk-improve-agent/references/evaluator_contract.md",
       "improvement/score-handover-candidate-002.json",
       "improvement/handover-candidate-validation.log",
       "improvement/benchmark-runs/handover/run-001.json",
@@ -53,7 +53,7 @@
       "improvement/promotion-validation.log",
       "improvement/rollback-001.json",
       "improvement/post-rollback-compare.txt",
-      ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
       ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
@@ -65,7 +65,7 @@
       {
         "name": "evaluator_contract.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/references/evaluator_contract.md",
+        "path": ".opencode/skills/sk-improve-agent/references/evaluator_contract.md",
         "source": "derived"
       },
       {
@@ -125,7 +125,7 @@
       {
         "name": "score-candidate.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
         "source": "derived"
       },
       {

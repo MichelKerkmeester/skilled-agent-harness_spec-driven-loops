@@ -130,4 +130,4 @@ Defer P2 cleanup to backlog unless bundled naturally with a Tier alpha or beta c
 3. Should ephemeral governed retention delete embedding-cache rows by content hash, or document embedding cache as reusable derived data with TTL/health exposure?
 4. Should `memory_index_scan` and `memory_ingest_start` accept governance metadata, or be documented as operator-maintenance paths outside governed ingest?
 5. Should raw MCP tool args be validated once at the server boundary before session priming, with module dispatchers consuming parsed args?
-6. Can an operator run `npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests` from a normal shell to produce live runtime hook verdicts?
+6. Can an operator run `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests` from a normal shell to produce live runtime hook verdicts?

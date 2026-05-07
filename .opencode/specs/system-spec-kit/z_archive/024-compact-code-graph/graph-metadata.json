@@ -94,7 +94,7 @@
       "implementation-summary.md",
       "dist/hooks/memory-surface.js",
       "handlers/memory-context.ts",
-      ".opencode/agent/context.md",
+      ".opencode/agents/context.md",
       ".claude/agents/context.md"
     ],
     "entities": [
@@ -203,7 +203,7 @@
       {
         "name": "context.md",
         "kind": "doc",
-        "path": ".opencode/agent/context.md",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {

@@ -28,7 +28,7 @@ Read-only retrieval agent and the **exclusive entry point for exploration tasks*
 
 For prior-work recovery, follow `/spec_kit:resume` order: `handover.md` -> `_memory.continuity` -> packet spec docs. Memory tools add saved rules, prior decisions, and cross-packet context, but active packet docs remain runtime truth.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as canonical runtime path references. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless mirror/integration state is explicitly requested.
+**Path Convention**: Use only `.opencode/agents/*.md` as canonical runtime path references. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless mirror/integration state is explicitly requested.
 
 > **Routing Rule**: No other agent performs exploration directly. The orchestrator routes exploration through @context for continuity-first retrieval, structured output, and consistent Context Packages. @context is LEAF-only.
 
@@ -358,13 +358,13 @@ Use CocoIndex only for semantic discovery when exact tokens are unknown; use exa
 
 | Agent | File | Relationship |
 | --- | --- | --- |
-| Orchestrator | `.opencode/agent/orchestrate.md` | Primary dispatcher — sends exploration requests and receives Context Packages |
+| Orchestrator | `.opencode/agents/orchestrate.md` | Primary dispatcher — sends exploration requests and receives Context Packages |
 
 ### Complementary Agents
 
 | Agent | File | Relationship |
 | --- | --- | --- |
-| @deep-research | `.opencode/agent/deep-research.md` | Deeper alternative selected when iterative investigation is needed |
+| @deep-research | `.opencode/agents/deep-research.md` | Deeper alternative selected when iterative investigation is needed |
 | @general | Built-in | Implementation agent that may use @context findings after retrieval completes |
 | Spec authoring | Distributed governance | Spec docs use @context findings through main-agent governance |
 

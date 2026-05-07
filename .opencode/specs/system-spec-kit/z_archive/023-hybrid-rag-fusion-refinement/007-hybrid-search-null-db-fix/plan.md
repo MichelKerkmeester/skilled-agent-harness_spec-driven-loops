@@ -195,7 +195,7 @@ All channels except BM25 depend on `db` or `vectorSearchFn` being non-null.
 | `mcp_server/dist/core/db-state.js` | reinitializeDatabase, rebindDatabaseConsumers | Possible fix target |
 | `mcp_server/dist/context-server.js` | Server startup init sequence | Read-only reference |
 
-All paths relative to `.opencode/skill/system-spec-kit/`.
+All paths relative to `.opencode/skills/system-spec-kit/`.
 
 ---
 
@@ -203,6 +203,6 @@ All paths relative to `.opencode/skill/system-spec-kit/`.
 ## 8. ROLLBACK PLAN
 
 - **Trigger**: Fix causes other MCP tool failures or data corruption
-- **Procedure**: Revert changes to dist/ files via `git checkout -- .opencode/skill/system-spec-kit/mcp_server/dist/`
+- **Procedure**: Revert changes to dist/ files via `git checkout -- .opencode/skills/system-spec-kit/mcp_server/dist/`
 - **Recovery**: Restart MCP server; search will be broken again but other tools functional
 <!-- /ANCHOR:rollback -->

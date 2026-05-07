@@ -37,8 +37,8 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/command/memory/save.md",
-      ".opencode/command/memory/search.md",
+      ".opencode/commands/memory/save.md",
+      ".opencode/commands/memory/search.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -47,13 +47,13 @@
       {
         "name": "save.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/save.md",
+        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {

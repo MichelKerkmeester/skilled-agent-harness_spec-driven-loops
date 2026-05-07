@@ -104,7 +104,7 @@ The `sk-code-opencode` skill enforces `snake_case` for JavaScript functions, par
 - Build/utility scripts
 - Skill documentation
 
-**Rollback**: `git checkout -- .opencode/skill/system-spec-kit/` restores all JS files
+**Rollback**: `git checkout -- .opencode/skills/system-spec-kit/` restores all JS files
 
 ---
 

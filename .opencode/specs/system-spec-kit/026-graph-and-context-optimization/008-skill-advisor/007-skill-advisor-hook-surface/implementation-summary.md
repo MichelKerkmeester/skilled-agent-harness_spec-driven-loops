@@ -22,7 +22,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 > **Release ready.** All 8 implementation children converged; T9 integration gauntlet PASS.
 
@@ -56,7 +56,7 @@ Component stack (landed on main; commits listed in Dispatch Log):
 - **020/006 Claude hook** — `hooks/claude/user-prompt-submit.ts` via JSON `hookSpecificOutput.additionalContext`; registered in `.claude/settings.local.json`.
 - **020/007 Gemini + Copilot hooks** — `hooks/gemini/user-prompt-submit.ts` (JSON additionalContext), `hooks/copilot/user-prompt-submit.ts` (SDK `onUserPromptSubmitted` preferred, wrapper-fallback when SDK local-unavailable). Wrapper explicitly rejects notification-only `{}` as model-visible.
 - **020/008 Codex integration** — `lib/codex-hook-policy.ts` dynamic detector (500ms probes → live/partial/unavailable), `hooks/codex/user-prompt-submit.ts` (stdin-canonical, argv-fallback), `hooks/codex/pre-tool-use.ts` (Bash-only deny from `.codex/policy.json`; PostToolUse is audit-only), `hooks/codex/prompt-wrapper.ts` fallback. Parity test extended to 4 runtimes.
-- **020/009 documentation + release contract** — 650-line reference doc (skill-advisor-hook in `.opencode/skill/system-spec-kit/references/hooks/`, DQI 97/100) with capability matrix + failure-mode playbook + observability contract + performance budgets + migration notes + concurrency + disable flag + privacy contract + troubleshooting; validation playbook; CLAUDE.md §Gate 2 update; 4 runtime READMEs.
+- **020/009 documentation + release contract** — 650-line reference doc (skill-advisor-hook in `.opencode/skills/system-spec-kit/references/hooks/`, DQI 97/100) with capability matrix + failure-mode playbook + observability contract + performance budgets + migration notes + concurrency + disable flag + privacy contract + troubleshooting; validation playbook; CLAUDE.md §Gate 2 update; 4 runtime READMEs.
 
 Live dogfood: the Claude hook fired in the orchestrating session itself during T5-T10 — observed `Advisor: stale; use cli-codex 0.95/0.15 pass` (and later `sk-doc`, `cli-claude-code`) context injections matching the prompt topic.
 <!-- /ANCHOR:what-built -->
@@ -177,8 +177,8 @@ These are documented as out-of-scope; they do not block Phase 020 release.
 - [x] Cross-runtime parity: 4 runtimes × 5 canonical fixtures = identical additionalContext — [advisor-runtime-parity.vitest.ts](../../../../skill/system-spec-kit/mcp_server/tests/advisor-runtime-parity.vitest.ts), extended by 008
 - [x] 019/004 200-prompt corpus: 200/200 top-1 parity — [advisor-corpus-parity.vitest.ts](../../../../skill/system-spec-kit/mcp_server/tests/advisor-corpus-parity.vitest.ts) and [005 summary](005-advisor-renderer-and-regression-harness/implementation-summary.md)
 - [x] Cache hit p95 ≤ 50 ms + cache hit rate ≥ 60% on 30-turn replay — [advisor-timing.vitest.ts](../../../../skill/system-spec-kit/mcp_server/tests/advisor-timing.vitest.ts), 005 bench: p95 `0.016 ms`, hit rate `66.7%`
-- [x] Disable flag verified: `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` stops adapter work — skill-advisor-hook reference (§9) in `.opencode/skill/system-spec-kit/references/hooks/` and runtime hook tests for Claude, Gemini, Copilot and Codex
-- [x] Documentation published — reference doc (skill-advisor-hook) and validation playbook (skill-advisor-hook-validation) in `.opencode/skill/system-spec-kit/references/hooks/`, `CLAUDE.md` §Gate 2, and runtime READMEs under `.opencode/skill/system-spec-kit/mcp_server/hooks/`
+- [x] Disable flag verified: `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` stops adapter work — skill-advisor-hook reference (§9) in `.opencode/skills/system-spec-kit/references/hooks/` and runtime hook tests for Claude, Gemini, Copilot and Codex
+- [x] Documentation published — reference doc (skill-advisor-hook) and validation playbook (skill-advisor-hook-validation) in `.opencode/skills/system-spec-kit/references/hooks/`, `CLAUDE.md` §Gate 2, and runtime READMEs under `.opencode/skills/system-spec-kit/mcp_server/hooks/`
 
 ---
 
@@ -191,7 +191,7 @@ These are documented as out-of-scope; they do not block Phase 020 release.
 **Status:** Complete (2026-04-19). Implemented the `"advisor"` producer in `lib/context/shared-payload.ts` with source vocabulary (`skill-inventory`, `skill-graph`, `advisor-runtime`), exported `AdvisorEnvelopeMetadata` with whitelist fields, added metadata validation and privacy rejection for prompt-derived provenance (`kind:user-prompt`, unanchored `sha256:*`), plus coercion helper. Tests: `shared-payload-advisor.vitest.ts` covering 6 acceptance scenarios. Verification: vitest PASS (6 tests), tsc PASS, validate.sh PASS (errors=0).
 
 ### 003-advisor-freshness-and-source-cache
-**Status:** Complete (2026-04-19). Implemented `getAdvisorFreshness(workspaceRoot)` in `lib/skill-advisor/freshness.ts` walking advisor authority list, computing per-skill fingerprints, projecting freshness onto shared envelope vocabulary (`live/stale/absent/unavailable`), generation-tagged. Cache: 15-minute LRU, 16-entry bound, keyed by workspace root + source signature + generation. Generation counter: persisted to `.opencode/skill/.advisor-state/generation.json` with atomic temp-file rename, corrupt-counter recovery. Tests: 11 tests covering AS1-AS10. Verification: vitest PASS (11 tests), cold/warm p50 bench ≤ 0.1ms, tsc PASS.
+**Status:** Complete (2026-04-19). Implemented `getAdvisorFreshness(workspaceRoot)` in `lib/skill-advisor/freshness.ts` walking advisor authority list, computing per-skill fingerprints, projecting freshness onto shared envelope vocabulary (`live/stale/absent/unavailable`), generation-tagged. Cache: 15-minute LRU, 16-entry bound, keyed by workspace root + source signature + generation. Generation counter: persisted to `.opencode/skills/.advisor-state/generation.json` with atomic temp-file rename, corrupt-counter recovery. Tests: 11 tests covering AS1-AS10. Verification: vitest PASS (11 tests), cold/warm p50 bench ≤ 0.1ms, tsc PASS.
 
 ### 004-advisor-brief-producer-cache-policy
 **Status:** Complete (2026-04-19). Shipped `buildSkillAdvisorBrief(prompt, options)` as Phase 020 orchestration core. Components: `prompt-policy.ts` (NFKC canonical fold, fire/skip rules), `prompt-cache.ts` (5-min HMAC exact cache, session-scoped secret, source-signature invalidation), `subprocess.ts` (python3 1000ms timeout, SIGKILL, SQLITE_BUSY retry), `skill-advisor-brief.ts` orchestration (typed `AdvisorHookResult`, 80-token default/120-token hard cap, deleted-skill suppression). Non-live freshness: stale→ok with badge, absent→skipped, unavailable→degraded, timeout→fail_open. Tests: 26/26 PASS across 4 vitest files. Warm-cache p95 0.452ms, cold subprocess p95 58.373ms.
@@ -209,7 +209,7 @@ These are documented as out-of-scope; they do not block Phase 020 release.
 **Status:** Complete (2026-04-19) — code/test surface only; `.codex/` registration snippets deferred due to sandbox EPERM. Shipped `lib/codex-hook-policy.ts` dynamic detector (`codex --version` + `codex hooks list` probes → live/partial/unavailable), `hooks/codex/user-prompt-submit.ts` (stdin canonical, argv fallback), `hooks/codex/pre-tool-use.ts` (Bash-only deny from `.codex/policy.json`; PostToolUse audit-only), `hooks/codex/prompt-wrapper.ts` (fallback when detector=unavailable). Parity extended to 4 runtimes (Claude/Gemini/Copilot/Codex). Sandbox captured `codex-cli 0.121.0`; `hooks list` failed → detector outcome `partial`.
 
 ### 009-documentation-and-release-contract
-**Status:** Complete (2026-04-19). Published skill-advisor-hook reference doc (650 lines, DQI 97/100) in `.opencode/skill/system-spec-kit/references/hooks/` with capability matrix, failure-mode playbook, observability contract, performance budgets, migration notes, concurrency, disable flag, privacy contract, troubleshooting. Published skill-advisor-hook-validation (8-step manual playbook). Updated `CLAUDE.md` §Gate 2 (hook primary, direct CLI fallback). Updated 4 runtime READMEs (`hooks/claude/`, `hooks/gemini/`, `hooks/copilot/`, `hooks/codex/`). `.codex/settings.json` and `.codex/policy.json` documented as snippets only per 008 sandbox deferral.
+**Status:** Complete (2026-04-19). Published skill-advisor-hook reference doc (650 lines, DQI 97/100) in `.opencode/skills/system-spec-kit/references/hooks/` with capability matrix, failure-mode playbook, observability contract, performance budgets, migration notes, concurrency, disable flag, privacy contract, troubleshooting. Published skill-advisor-hook-validation (8-step manual playbook). Updated `CLAUDE.md` §Gate 2 (hook primary, direct CLI fallback). Updated 4 runtime READMEs (`hooks/claude/`, `hooks/gemini/`, `hooks/copilot/`, `hooks/codex/`). `.codex/settings.json` and `.codex/policy.json` documented as snippets only per 008 sandbox deferral.
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations

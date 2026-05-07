@@ -75,8 +75,8 @@ Produce a severity-classified `review-report.md` for the deep-loop workflow inte
 
 ### In Scope
 
-- Audit `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/`.
-- Audit deep-research and deep-review YAML assets under `.opencode/command/spec_kit/assets/`.
+- Audit `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/`.
+- Audit deep-research and deep-review YAML assets under `.opencode/commands/spec_kit/assets/`.
 - Audit deep-research and deep-review reducer behavior and workflow references.
 - Cross-check prior packets 028, 037/005, 038, and representative 045 release-readiness packet format.
 - Write packet-local docs and final `review-report.md`.

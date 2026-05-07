@@ -37,7 +37,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown (scenario .md files); cli-copilot for batch authoring |
 | **Framework** | sk-code playbook structure as template |
-| **Storage** | `.opencode/skill/sk-doc/manual_testing_playbook/` |
+| **Storage** | `.opencode/skills/sk-doc/manual_testing_playbook/` |
 | **Testing** | grep-based REQ verification + manual review |
 
 ### Overview
@@ -90,8 +90,8 @@ Single batched authoring dispatch. cli-copilot handles all 16 files in one promp
 - [ ] Wait for completion (monitor for 16 files present)
 
 ### Phase 3: Verification
-- [ ] `find .opencode/skill/sk-doc/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l` = 15
-- [ ] `test -f .opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md`
+- [ ] `find .opencode/skills/sk-doc/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l` = 15
+- [ ] `test -f .opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md`
 - [ ] grep frontmatter fields across scenarios
 - [ ] Commit on main with prescribed message
 <!-- /ANCHOR:phases -->

@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "Refresh graph-metadata.json via generate-context.js, then final commit"
     blockers: []
     key_files:
-      - .opencode/skill/sk-doc/SKILL.md
+      - .opencode/skills/sk-doc/SKILL.md
       - .opencode/specs/skilled-agent-orchestration/068-sk-doc-organization/spec.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -29,7 +29,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -58,7 +58,7 @@ The Opus verifier's job was to break correlation with cli-codex and Claude (both
 
 ### P2 cosmetic fix (SKILL.md narrative)
 
-Lines 162 and 434 of `.opencode/skill/sk-doc/SKILL.md` listed `assets/agents/` as a resource domain in descriptive prose. Those references were updated to reflect the new flat layout — `agent_template.md` and `command_template.md` now sit at `assets/` root, and `feature_catalog/` and `testing_playbook/` were added as additional root-level entries. Folder-name semantic alignment with the new structure.
+Lines 162 and 434 of `.opencode/skills/sk-doc/SKILL.md` listed `assets/agents/` as a resource domain in descriptive prose. Those references were updated to reflect the new flat layout — `agent_template.md` and `command_template.md` now sit at `assets/` root, and `feature_catalog/` and `testing_playbook/` were added as additional root-level entries. Folder-name semantic alignment with the new structure.
 
 ### Files Changed
 
@@ -68,7 +68,7 @@ Lines 162 and 434 of `.opencode/skill/sk-doc/SKILL.md` listed `assets/agents/` a
 | `068-sk-doc-organization/003-verify-and-ship/plan.md` | Created | Sequential gate chain + bounded remediation loop |
 | `068-sk-doc-organization/003-verify-and-ship/tasks.md` | Created | 18 numbered tasks across setup/implementation/closeout |
 | `068-sk-doc-organization/003-verify-and-ship/implementation-summary.md` | Created | This file — verifier outcomes |
-| `.opencode/skill/sk-doc/SKILL.md` | Modified | P2 narrative fix at L162 + L434 (assets/agents/ → flat layout) |
+| `.opencode/skills/sk-doc/SKILL.md` | Modified | P2 narrative fix at L162 + L434 (assets/agents/ → flat layout) |
 | `068-sk-doc-organization/graph-metadata.json` | Modified | derived.last_known_status refresh |
 | `068-sk-doc-organization/00{1,2,3}-*/graph-metadata.json` | Modified | child metadata refresh |
 <!-- /ANCHOR:what-built -->
@@ -80,7 +80,7 @@ Lines 162 and 434 of `.opencode/skill/sk-doc/SKILL.md` listed `assets/agents/` a
 
 Sequential 3-gate chain: validate.sh --strict (exit 0) → @review opus dispatch with sk-code-review (VERDICT: PASS) → graph-metadata refresh + commit. No remediation cycles needed (verifier passed first try). Runtime: ~3 minutes for the full verification gate (Opus verifier ran 8 deterministic checks + 3 sampled file reads + Hunter/Skeptic/Referee narrative).
 
-The discovery in Phase 2 that `.claude/commands/` and `.codex/prompts/` are symlinks to `.opencode/command/` simplified Phase 3's verification too — symlink confirmation was a single `readlink` call, not a complex byte-comparison sweep.
+The discovery in Phase 2 that `.claude/commands/` and `.codex/prompts/` are symlinks to `.opencode/commands/` simplified Phase 3's verification too — symlink confirmation was a single `readlink` call, not a complex byte-comparison sweep.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -107,13 +107,13 @@ The discovery in Phase 2 that `.claude/commands/` and `.codex/prompts/` are syml
 | @review (Opus + sk-code-review) verdict | PASS — all 8 deterministic checks green; Hunter/Skeptic/Referee found 0 P0/P1, 1 P2 (cosmetic SKILL.md prose, fixed inline) |
 | Residual `rg` in active scope | 0 hits (rg exit 1) |
 | Symlink confirmation | PASS — `.claude/commands` → `../.opencode/command`; `.codex/prompts` → absolute path to `.opencode/command` |
-| `diff -q .opencode/agent/create.md .claude/agents/create.md` | PASS — empty (byte-identical) |
-| `diff -q .opencode/agent/create.md .gemini/agents/create.md` | PASS — empty (byte-identical) |
+| `diff -q .opencode/agents/create.md .claude/agents/create.md` | PASS — empty (byte-identical) |
+| `diff -q .opencode/agents/create.md .gemini/agents/create.md` | PASS — empty (byte-identical) |
 | `tomllib.loads()` × 5 (4 .gemini + .codex agent) | PASS — all 5 exit 0 |
 | FS state Phase 1 outcomes | PASS — agents/ deleted, 4 items at assets/ root |
 | Branch state | main; 0 surviving feature branches |
 | Template byte-content preservation | PASS — moved files (agent_template.md, command_template.md, feature_catalog/*, testing_playbook/*) open with correct headers, no content drift |
-| Sample 3 files content check | PASS — SKILL.md, .opencode/agent/create.md, .gemini/commands/create/feature-catalog.toml all show NEW path strings, OLD strings absent, no surprise content |
+| Sample 3 files content check | PASS — SKILL.md, .opencode/agents/create.md, .gemini/commands/create/feature-catalog.toml all show NEW path strings, OLD strings absent, no surprise content |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -125,9 +125,9 @@ The discovery in Phase 2 that `.claude/commands/` and `.codex/prompts/` are syml
 
 2. **`.opencode/specs/**` retains OLD path references.** Spec folder records (063 sk-doc-agent-template-alignment, 057 cmd-spec-kit-ux-upgrade, 064 agent-create, 069 sk-code-motion-dev-and-playbook, 026/000 release-cleanup iteration logs/research/review/audit/resource-map files, z_archive/ packets) reference `assets/agents/` and `assets/documentation/feature_catalog|testing_playbook` because they document repo state at the time of those packets. This is intentional historical accuracy, NOT stale-reference debt. Memory rule + reviewer Skeptic confirmed.
 
-3. **`.opencode/skill/sk-doc/changelog/v<next>.md` not authored.** REQ-008 (P1) deferred — a dedicated changelog packet is recommended rather than bundling the version-numbering decision into 068. Follow-up.
+3. **`.opencode/skills/sk-doc/changelog/v<next>.md` not authored.** REQ-008 (P1) deferred — a dedicated changelog packet is recommended rather than bundling the version-numbering decision into 068. Follow-up.
 
-4. **`.opencode/skill/sk-doc/changelog/v1.1.3.0.md` and `v1.4.0.0.md` retain OLD path references.** Intentional — these document path state at v1.1.3.0 and v1.4.0.0 release time, not current state. Excluded from sweep by design.
+4. **`.opencode/skills/sk-doc/changelog/v1.1.3.0.md` and `v1.4.0.0.md` retain OLD path references.** Intentional — these document path state at v1.1.3.0 and v1.4.0.0 release time, not current state. Excluded from sweep by design.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -135,5 +135,5 @@ The discovery in Phase 2 that `.claude/commands/` and `.codex/prompts/` are syml
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

@@ -92,25 +92,25 @@ Make root-level placement the default: review/ and research/ folders are always 
 
 | File | Change |
 |------|--------|
-| `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` | NEW: shared path resolver |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Use shared resolver (line 1140) |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Use shared resolver (line 822) |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Computed artifact root in state_paths |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Same |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Same |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Same |
-| `.opencode/agent/deep-review.md` | Updated dispatch paths |
-| `.opencode/agent/deep-research.md` | Updated dispatch paths |
+| `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | NEW: shared path resolver |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Use shared resolver (line 1140) |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Use shared resolver (line 822) |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Computed artifact root in state_paths |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Same |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Same |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Same |
+| `.opencode/agents/deep-review.md` | Updated dispatch paths |
+| `.opencode/agents/deep-research.md` | Updated dispatch paths |
 | `.claude/agents/deep-review.md` | Mirror of above |
 | `.claude/agents/deep-research.md` | Mirror of above |
 | `.gemini/agents/deep-review.md` | Mirror of above |
 | `.gemini/agents/deep-research.md` | Mirror of above |
 | `.codex/agents/deep-review.toml` | Mirror of above |
 | `.codex/agents/deep-research.toml` | Mirror of above |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Convention documentation |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Convention documentation |
-| `.opencode/skill/sk-deep-review/README.md` | Updated folder structure |
-| `.opencode/skill/sk-deep-research/README.md` | Updated folder structure |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Convention documentation |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Convention documentation |
+| `.opencode/skills/sk-deep-review/README.md` | Updated folder structure |
+| `.opencode/skills/sk-deep-research/README.md` | Updated folder structure |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -138,7 +138,7 @@ Make root-level placement the default: review/ and research/ folders are always 
 - Deep-review on a nested phase writes iterations to `{root}/review/{phase}/iterations/`
 - Deep-research on a nested phase writes iterations to `{root}/research/{phase}/iterations/`
 - Reducer reads state from the root-level path, not the child-local path
-- `grep -r '{spec_folder}/review/' .opencode/command/spec_kit/assets/` returns 0 hits (all replaced with computed paths)
+- `grep -r '{spec_folder}/review/' .opencode/commands/spec_kit/assets/` returns 0 hits (all replaced with computed paths)
 - All 8 agent definition files (4 runtimes x 2 skills) reference the root-level convention
 <!-- /ANCHOR:success-criteria -->
 

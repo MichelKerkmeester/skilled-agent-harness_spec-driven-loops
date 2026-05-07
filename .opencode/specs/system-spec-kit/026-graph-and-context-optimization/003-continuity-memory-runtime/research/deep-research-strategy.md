@@ -101,7 +101,7 @@ Forensic audit of the 002-continuity-memory-runtime packet — the parent and it
 <!-- /ANCHOR:ruled-out-directions -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Iteration 1 — Map the runtime surface area. Enumerate every executable script, MCP tool, and shared runtime module that the four child phases (001–004) added or modified under `.opencode/skill/system-spec-kit/`, `.opencode/skill/sk-deep-research/`, and `.opencode/skill/sk-deep-review/`. Produce a files × packets matrix so subsequent iterations can walk targeted slices. Keep scope tight: include only modules whose commit-lineage or packet-owned trigger phrases point into 002-continuity-memory-runtime.
+Iteration 1 — Map the runtime surface area. Enumerate every executable script, MCP tool, and shared runtime module that the four child phases (001–004) added or modified under `.opencode/skills/system-spec-kit/`, `.opencode/skills/sk-deep-research/`, and `.opencode/skills/sk-deep-review/`. Produce a files × packets matrix so subsequent iterations can walk targeted slices. Keep scope tight: include only modules whose commit-lineage or packet-owned trigger phrases point into 002-continuity-memory-runtime.
 
 ---
 
@@ -138,8 +138,8 @@ Structural graph (stale, scanned today): 1426 files, 52157 nodes, 30235 edges. M
 - Lifecycle branches: `resume`, `restart` (live); `fork`, `completed-continue` (deferred).
 - Machine-owned sections: reducer controls Sections 3, 6, 7–11.
 - Canonical pause sentinel: `research/002-continuity-memory-runtime-pt-01/.deep-research-pause`.
-- Capability matrix: `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`.
-- Capability resolver: `.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs`.
+- Capability matrix: `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`.
+- Capability resolver: `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs`.
 - Current generation: 1.
 - Executor: `cli-copilot` / `gpt-5.4` / reasoning-effort `high` / max 3 concurrent copilot dispatches (account-level throttle).
 - Started: 2026-04-23T20:04:56Z.

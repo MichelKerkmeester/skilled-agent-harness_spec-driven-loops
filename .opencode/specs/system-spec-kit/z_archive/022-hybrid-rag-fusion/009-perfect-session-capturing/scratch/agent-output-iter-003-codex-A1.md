@@ -20,16 +20,16 @@ Investigate whether the 30 P2 items share root causes that enable batch remediat
 
 ## Files to Examine
 Read ALL these source files and identify shared patterns across the P2 findings:
-- `.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts`
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts`
-- `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts`
-- `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts`
-- `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts`
-- `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts`
-- `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts`
-- `.opencode/skill/system-spec-kit/scripts/core/config.ts`
-- `.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts`
+- `.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts`
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts`
+- `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts`
+- `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts`
+- `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts`
+- `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts`
+- `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts`
+- `.opencode/skills/system-spec-kit/scripts/core/config.ts`
+- `.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts`
 
 ## Known P2 Categories (30 items)
 From the remediation manifest, P2 items cover:
@@ -68,17 +68,17 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’ll audit the listed extractor/core files plus the detailed P2 report, then cluster the 30 items by shared root causes and propose a batch-first remediation sequence. I’m starting by loading the relevant files with line numbers so we can ground each recommendation in evidence.
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts .opencode/skill/system-spec-kit/scripts/core/config.ts .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA5-O09-session-extractor.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-     860 .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
-    1157 .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
-    2477 .opencode/skill/system-spec-kit/scripts/core/workflow.ts
-     199 .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
-     614 .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
-     447 .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
-    1005 .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
-     556 .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
-     369 .opencode/skill/system-spec-kit/scripts/core/config.ts
-     356 .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts .opencode/skills/system-spec-kit/scripts/core/config.ts .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA5-O09-session-extractor.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+     860 .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
+    1157 .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
+    2477 .opencode/skills/system-spec-kit/scripts/core/workflow.ts
+     199 .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
+     614 .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
+     447 .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
+    1005 .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
+     556 .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
+     369 .opencode/skills/system-spec-kit/scripts/core/config.ts
+     356 .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
      252 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA5-O09-session-extractor.md
     8292 total
 exec
@@ -86,7 +86,7 @@ exec
 AGENTS.md
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/AGENTS.md
 exec
-/bin/zsh -lc 'ls -la .opencode/skill/system-spec-kit/scripts/extractors && ls -la .opencode/skill/system-spec-kit/scripts/core && ls -la .opencode/skill/system-spec-kit/scripts/utils' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'ls -la .opencode/skills/system-spec-kit/scripts/extractors && ls -la .opencode/skills/system-spec-kit/scripts/core && ls -la .opencode/skills/system-spec-kit/scripts/utils' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 total 648
 drwxr-xr-x@ 21 michelkerkmeester  staff    672 Mar 20 08:28 .
 drwxr-xr-x@ 34 michelkerkmeester  staff   1088 Mar 19 19:58 ..
@@ -110,7 +110,7 @@ drwxr-xr-x@ 34 michelkerkmeester  staff   1088 Mar 19 19:58 ..
 codex
 I’ve confirmed the files and sizes; next I’m pulling the review skill guidance and then extracting the concrete P2 findings/functions so the grouping is evidence-based rather than thematic guesswork.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: sk-code-review
 description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
@@ -137,7 +137,7 @@ exec
 title: "QA5 Audit O09 — session-extractor.ts"
 auditor: "Claude Opus 4.6 (@review agent)"
 date: "2026-03-09"
-file: ".opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts"
+file: ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts"
 loc: 475
 score: 79/100
 recommendation: "ACCEPTABLE — PASS with notes"
@@ -154,7 +154,7 @@ recommendation: "ACCEPTABLE — PASS with notes"
 | **Patterns**       | 16/20 | Good structure; duplicate `extractKeyTopics` across modules is a pattern debt |
 | **Maintainability**| 11/15 | Well-organized sections; some functions lack JSDoc |
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Investigate whether 30 P2 items share root causes enabling batch remediation across system-spec-kit extractor/core files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 577ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Investigate whether 30 P2 items share root causes enabling batch remediation across system-spec-kit extractor/core files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 577ms:
 [
   {
     "skill": "system-spec-kit",
@@ -220,27 +220,27 @@ cocoindex_code.search({"query":"extractKeyTopics duplicate detectContextType det
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA5-O09-session-extractor.md",
 exec
-/bin/zsh -lc "rg -n \"calculateSessionDuration|detectRelatedDocs|extractBlockers|detectContextType|detectProjectPhase|extractKeyTopics|countToolsByType|new RegExp|timestamp|Date\\.parse|isNaN|tool|quality|dedup|dedup|deduplicate\" .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts .opencode/skill/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:27:  calculateSessionDuration,
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:29:  detectRelatedDocs,
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:126:  if (score === null || score === undefined || isNaN(score)) {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:144:  if (delta === null || delta === undefined || isNaN(delta)) {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:180:      typeof preflight.timestamp === 'string' ||
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:210:    PREFLIGHT_TIMESTAMP: preflight?.timestamp ?? DEFAULT_VALUE,
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:399:  toolCounts: ToolCounts,
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:424:  const totalTools = Object.values(toolCounts).reduce((a, b) => a + b, 0);
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:425:  const writeTools = (toolCounts.Write || 0) + (toolCounts.Edit || 0);
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:579:  toolCounts: ToolCounts;
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:595:    observations, userPrompts, toolCounts, recentContext,
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:602:    observations, userPrompts.length, toolCounts, sessionStatus, collectedData
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:610:  // F-19 — Guard against invalid timestamps that cause RangeError on toISOString()
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:612:  if (lastPrompt?.timestamp) {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:613:    const d = new Date(lastPrompt.timestamp);
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:614:    lastActivity = isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString();
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:731:    { sessionId?: string; messageCount?: number; toolCount?: number; nextAction?: string; lastAction?: string; duration?: string; blockers?: string } | undefined;
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:763:    : calculateSessionDuration(userPrompts, now);
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:819:  const { contextType, importanceTier, decisionCount, toolCounts } =
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:822:  // Phase 1B: session.toolCount overrides heuristic tool count
+/bin/zsh -lc "rg -n \"calculateSessionDuration|detectRelatedDocs|extractBlockers|detectContextType|detectProjectPhase|extractKeyTopics|countToolsByType|new RegExp|timestamp|Date\\.parse|isNaN|tool|quality|dedup|dedup|deduplicate\" .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts .opencode/skills/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:27:  calculateSessionDuration,
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:29:  detectRelatedDocs,
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:126:  if (score === null || score === undefined || isNaN(score)) {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:144:  if (delta === null || delta === undefined || isNaN(delta)) {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:180:      typeof preflight.timestamp === 'string' ||
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:210:    PREFLIGHT_TIMESTAMP: preflight?.timestamp ?? DEFAULT_VALUE,
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:399:  toolCounts: ToolCounts,
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:424:  const totalTools = Object.values(toolCounts).reduce((a, b) => a + b, 0);
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:425:  const writeTools = (toolCounts.Write || 0) + (toolCounts.Edit || 0);
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:579:  toolCounts: ToolCounts;
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:595:    observations, userPrompts, toolCounts, recentContext,
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:602:    observations, userPrompts.length, toolCounts, sessionStatus, collectedData
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:610:  // F-19 — Guard against invalid timestamps that cause RangeError on toISOString()
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:612:  if (lastPrompt?.timestamp) {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:613:    const d = new Date(lastPrompt.timestamp);
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:614:    lastActivity = isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString();
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:731:    { sessionId?: string; messageCount?: number; toolCount?: number; nextAction?: string; lastAction?: string; duration?: string; blockers?: string } | undefined;
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:763:    : calculateSessionDuration(userPrompts, now);
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:819:  const { contextType, importanceTier, decisionCount, toolCounts } =
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:822:  // Phase 1B: session.toolCount overrides heuristic tool count
 codex
 I’ve located the key hotspots in `session-extractor` and adjacent modules; next I’m pulling the synthesis/remediation manifests so the root-cause grouping covers all 30 P2 entries rather than only the 8 from O09.
 exec
@@ -272,7 +272,7 @@ Source basis: `audit-QA10-O19-reconciliation.md` is treated as the authority for
 **Date:** 2026-03-09
 **Scope:** All 17 Opus audit files (QA1 through QA8)
 **Synthesized by:** Claude Opus 4.6 (@review agent)
-**Pipeline:** `.opencode/skill/system-spec-kit/scripts/`
+**Pipeline:** `.opencode/skills/system-spec-kit/scripts/`
 
 ---
 
@@ -455,7 +455,7 @@ exec
 codex
 I’m now doing a full pass over the 10 requested source files with line-numbered excerpts around the P2-relevant logic (timestamps, tool handling, types, dedup, scoring) so the root-cause grouping is anchored to actual implementation details.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Session Extractor
      3	// ---------------------------------------------------------------
@@ -477,8 +477,8 @@ exec
     19	import type {
     20	  FileEntry,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts | sed -n '261,556p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts | sed -n '261,556p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Decision Extractor
      3	// ---------------------------------------------------------------
@@ -521,7 +521,7 @@ exec
    279	  const blockerKeywords = /\b(?:block(?:ed|er|ing)?|stuck|issue|problem|error|fail(?:ed|ing)?|cannot|can't)\b/i;
    280	  for (const obs of observations) {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Input Normalizer
      3	// ---------------------------------------------------------------
@@ -543,8 +543,8 @@ exec
     19	// 2. TYPES
     20	// ───────────────────────────────────────────────────────────────
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts | sed -n '341,680p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '321,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts | sed -n '341,680p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '321,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    341	          HAS_CAVEATS: false,
    342	          CAVEATS: [],
    343	          HAS_FOLLOWUP: false,
@@ -587,8 +587,8 @@ exec
    339	
    340	// ───────────────────────────────────────────────────────────────
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '761,1160p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '761,1160p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: File Extractor
      3	// ---------------------------------------------------------------
@@ -631,7 +631,7 @@ exec
    779	  const discoveredIds = extractSpecIds(text);
    780	  // Original check: no foreign spec IDs
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts | sed -n '281,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts | sed -n '281,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    281	    const fileBasename = getPathBasename(filePath);
    282	
    283	    // Priority 1: Exact full path match
@@ -655,7 +655,7 @@ exec
 codex
 I’ve completed full line-level passes for `session/decision/input/file` extractors; next I’m doing the same for `collect-session-data`, `opencode-capture`, `workflow`, `config`, `contamination-filter`, and `quality-scorer` to close the cross-file root-cause map.
 exec
-/bin/zsh -lc 'rg -n "continuationCount|getSimFactory|OUTCOMES|timestamp|RangeError|sessionInfo|detectSessionCharacteristics|calculateSessionDuration|detectRelatedDocs|TOOL_COUNT|toolCounts|lastActivity|isNaN|TITLE derivation" .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "continuationCount|getSimFactory|OUTCOMES|timestamp|RangeError|sessionInfo|detectSessionCharacteristics|calculateSessionDuration|detectRelatedDocs|TOOL_COUNT|toolCounts|lastActivity|isNaN|TITLE derivation" .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 25:  detectSessionCharacteristics,
 27:  calculateSessionDuration,
 29:  detectRelatedDocs,
@@ -677,7 +677,7 @@ exec
 614:    lastActivity = isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString();
 616:    lastActivity = new Date().toISOString();
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '261,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '261,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    261	      LEARNING_SUMMARY: generateLearningSummary(deltaKnow, deltaUncert, deltaContext, learningIndex)
    262	    };
    263	  }
@@ -699,7 +699,7 @@ exec
    279	
    280	function generateLearningSummary(
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Collect Session Data
      3	// ---------------------------------------------------------------
@@ -721,7 +721,7 @@ exec
     19	import { coerceFactsToText } from '../utils/fact-coercion';
     20	import { detectSpecFolder } from '../spec-folder';
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '621,1015p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '621,1015p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    621	    COMPLETION_PERCENT: completionPercent,
    622	    LAST_ACTIVITY_TIMESTAMP: lastActivity,
    623	    SESSION_DURATION: duration,
@@ -743,7 +743,7 @@ exec
    639	}
    640	
 exec
-/bin/zsh -lc "rg -n \"timestamp|tolerance|TOOL_OUTPUT_MAX_LENGTH|toolPreviewLines|buildExchanges|NaN|session_title|sessionId|capturedAt|new Date\\(|isNaN|relevance|match\" .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"timestamp|tolerance|TOOL_OUTPUT_MAX_LENGTH|toolPreviewLines|buildExchanges|NaN|session_title|sessionId|capturedAt|new Date\\(|isNaN|relevance|match\" .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 25:  timestamp: string | null;
 56:  timestamp: number;
 68:  timestamp: number;
@@ -765,7 +765,7 @@ exec
 375:        if (!p.timestamp) return false;
 376:        const ts = new Date(p.timestamp).getTime();
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Opencode Capture
      3	// ---------------------------------------------------------------
@@ -787,8 +787,8 @@ exec
     19	   1. INTERFACES
     20	------------------------------------------------------------------*/
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts | sed -n '321,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts | sed -n '621,920p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts | sed -n '321,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts | sed -n '621,920p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    321	    return false;
    322	  }
    323	
@@ -831,7 +831,7 @@ exec
    639	    return [];
    640	  }
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Contamination Filter
      3	// ---------------------------------------------------------------
@@ -853,7 +853,7 @@ exec
     19	interface DenylistEntry {
     20	  label: string;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Workflow
      3	// ───────────────────────────────────────────────────────────────
@@ -875,7 +875,7 @@ exec
     19	  extractDiagrams,
     20	  extractPhasesFromData,
 exec
-/bin/zsh -lc 'rg -n "scoreMemoryQuality|scoreMemoryQualityV2|quality_score|quality_flags|injectQualityMetadata|dedup|detectContextType|detectProjectPhase|extractKeyTopics|ensureMinTriggerPhrases|_manualTriggerPhrases|filterPipeline|contamination|toolCounts|TOOL_COUNT|QUALITY_ABORT_THRESHOLD" .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "scoreMemoryQuality|scoreMemoryQualityV2|quality_score|quality_flags|injectQualityMetadata|dedup|detectContextType|detectProjectPhase|extractKeyTopics|ensureMinTriggerPhrases|_manualTriggerPhrases|filterPipeline|contamination|toolCounts|TOOL_COUNT|QUALITY_ABORT_THRESHOLD" .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 25:import { scoreMemoryQuality } from './quality-scorer';
 26:import { extractKeyTopics } from './topic-extractor';
 39:import { filterContamination, getContaminationPatternLabels, SEVERITY_RANK, type ContaminationSeverity } from '../extractors/contamination-filter';
@@ -897,7 +897,7 @@ exec
 1282:          ...(enriched._manualTriggerPhrases || []),
 1317:      // Merge FILES (deduplicate by path)
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '840,1060p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '840,1060p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    840	    'halfLifeDays',
    841	  );
    842	
@@ -919,9 +919,9 @@ exec
    858	    RECENCY_WEIGHT: readNumber(
    859	      rawDecayFactors || rawClassification,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1480,1705p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1750,2010p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1160,1345p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1480,1705p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1750,2010p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1160,1345p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1480	        specFolderName = relative;
   1481	        break;
   1482	      }
@@ -985,7 +985,7 @@ exec
   1178	    // Git provenance metadata — JSON-provided fields take priority via ??
   1179	    if (gitContext) {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2038,2275p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2038,2275p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2038	      CHUNK_COUNT: 1,
   2039	      MEMORY_TITLE: memoryTitle,
   2040	      MEMORY_DASHBOARD_TITLE: memoryDashboardTitle,
@@ -1007,7 +1007,7 @@ exec
   2056	        // Frontmatter quality_score is 0.0-1.0 (v2 scorer). Different metrics.
   2057	        _note: 'qualityScore is 0-100 scale (legacy scorer); frontmatter quality_score is 0.0-1.0 (v2 scorer)',
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2276,2477p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2276,2477p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2276	      if (!existing) {
   2277	        const specsBaseDirs = Array.from(new Set([
   2278	          ...getSpecsDirectories(),
@@ -1029,7 +1029,7 @@ exec
   2294	        // Integration-tested via workflow-memory-tracking.vitest.ts (F3 coverage).
   2295	        const rawSeq = Number(existing.memorySequence) || 0;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/config.ts | sed -n '1,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/config.ts | sed -n '1,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Config
      3	// ---------------------------------------------------------------
@@ -1051,7 +1051,7 @@ exec
     19	export interface WorkflowConfig {
     20	  maxResultPreview: number;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '1,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '1,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Quality Scorer
      3	// ---------------------------------------------------------------
@@ -1073,7 +1073,7 @@ exec
     19	  validateDescription,
     20	} from '../utils/file-helpers';
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts | sed -n '1,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts | sed -n '1,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Quality Scorer
      3	// ---------------------------------------------------------------
@@ -1095,42 +1095,42 @@ exec
     19	------------------------------------------------------------------*/
     20	
 exec
-/bin/zsh -lc 'rg -n "scoreMemoryQuality|qualityFlags|duplicate_observations|dedup|contamination|threshold|sufficiency|warning" .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:15:import type { ContaminationSeverity } from './contamination-filter';
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:32:  contaminationSeverity?: ContaminationSeverity | null;
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:36:  sufficiencyScore?: number;
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:66:function scoreMemoryQuality(inputs: QualityInputs): QualityScoreResult {
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:71:    contaminationSeverity = null,
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:75:    sufficiencyScore,
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:86:      emptyContentFlags.push('has_contamination');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:94:      warnings: ['No rendered content was available for quality scoring.'],
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:95:      qualityFlags: emptyContentFlags,
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:98:      insufficiency: null,
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:103:  const qualityFlags = new Set<QualityFlag>();
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:104:  const warnings: string[] = [];
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:105:  let sufficiencyCap: number | null = null;
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:112:      qualityFlags.add('has_placeholders');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:115:      qualityFlags.add('has_fallback_decision');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:118:      qualityFlags.add('sparse_semantic_fields');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:121:      qualityFlags.add('has_placeholders');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:124:      qualityFlags.add('has_tool_state_mismatch');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:127:      qualityFlags.add('has_spec_relevance_mismatch');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:130:      qualityFlags.add('has_contaminated_title');
+/bin/zsh -lc 'rg -n "scoreMemoryQuality|qualityFlags|duplicate_observations|dedup|contamination|threshold|sufficiency|warning" .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:15:import type { ContaminationSeverity } from './contamination-filter';
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:32:  contaminationSeverity?: ContaminationSeverity | null;
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:36:  sufficiencyScore?: number;
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:66:function scoreMemoryQuality(inputs: QualityInputs): QualityScoreResult {
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:71:    contaminationSeverity = null,
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:75:    sufficiencyScore,
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:86:      emptyContentFlags.push('has_contamination');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:94:      warnings: ['No rendered content was available for quality scoring.'],
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:95:      qualityFlags: emptyContentFlags,
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:98:      insufficiency: null,
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:103:  const qualityFlags = new Set<QualityFlag>();
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:104:  const warnings: string[] = [];
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:105:  let sufficiencyCap: number | null = null;
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:112:      qualityFlags.add('has_placeholders');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:115:      qualityFlags.add('has_fallback_decision');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:118:      qualityFlags.add('sparse_semantic_fields');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:121:      qualityFlags.add('has_placeholders');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:124:      qualityFlags.add('has_tool_state_mismatch');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:127:      qualityFlags.add('has_spec_relevance_mismatch');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:130:      qualityFlags.add('has_contaminated_title');
 exec
 /bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-003-codex-A1.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "sed -n '1,260p' .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-001-codex-A1.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 **1) P1-03 / P1-04 / P1-09 with exact locations and real-world impact**
 
 1. `P1-03` (`assistant pairing chooses first child`)  
-Location: [opencode-capture.ts:808](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:808), [opencode-capture.ts:812](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:812), [opencode-capture.ts:832](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:832).  
+Location: [opencode-capture.ts:808](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:808), [opencode-capture.ts:812](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:812), [opencode-capture.ts:832](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:832).  
 Verdict: **runtime risk**. In branched assistant replies, `assistant_message_id` is bound to first child, not terminal/best child, so exchange linkage metadata can be wrong.
 
 2. `P1-04` (`multi-part assistant text not reassembled`)  
-Location: text parts emitted per part in [opencode-capture.ts:649](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:649), [opencode-capture.ts:652](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:652), reassembly logic in [opencode-capture.ts:818](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:818).  
+Location: text parts emitted per part in [opencode-capture.ts:649](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:649), [opencode-capture.ts:652](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:652), reassembly logic in [opencode-capture.ts:818](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:818).  
 Verdict: **runtime risk (partial)**. Direct-child text parts are joined, but continuation chains (`assistant -> assistant`) are still missed because matching only uses `parent_id === userMsg.id`.
 
 3. `P1-09` (`file-format detection heuristic ambiguous`)  
-Location: fast-path detection in [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:409)-[input-normalizer.ts:434](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:434).  
+Location: fast-path detection in [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:409)-[input-normalizer.ts:434](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:434).  
 Verdict: **runtime risk**. Presence of any one “normalized-ish” field can short-circuit full normalization, so mixed-shape payloads can produce semantically wrong/incomplete output.
 
 **2) Categorization of the 67 remaining items**
@@ -1187,7 +1187,7 @@ exec
 # QA10-O20: Final Quality Score — 5-Dimension Rubric
 
 **Date:** 2026-03-09
-**Scope:** 14-file pipeline codebase under `.opencode/skill/system-spec-kit/scripts/`
+**Scope:** 14-file pipeline codebase under `.opencode/skills/system-spec-kit/scripts/`
 **Scored by:** Claude Opus 4.6 (@review agent)
 **Inputs:** O18 Opus Synthesis, O19 Cross-Model Reconciliation, direct source file verification
 **Confidence:** HIGH — all 14 source files read, all P0/P1 findings verified against source
@@ -1212,22 +1212,22 @@ I’m using your category list plus direct code evidence; the current manifest s
 1. Root-cause groups (30 total)
 - `G1: Heuristic parsing without canonical contracts` (`11/30`)
   - Timestamp/unit ambiguity, heuristic tool matching, relevance matching, regex-only decision parsing.
-  - Evidence: [input-normalizer.ts:909](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:909), [input-normalizer.ts:933](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:933), [input-normalizer.ts:752](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:752), [session-extractor.ts:323](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:323), [decision-extractor.ts:390](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:390).
+  - Evidence: [input-normalizer.ts:909](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:909), [input-normalizer.ts:933](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:933), [input-normalizer.ts:752](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:752), [session-extractor.ts:323](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:323), [decision-extractor.ts:390](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:390).
 - `G2: Duplicate logic / drift between similar modules` (`7/30`)
   - Duplicate topic extraction, overlapping context/phase classification, dual quality-scoring paths.
-  - Evidence: [session-extractor.ts:454](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:454), [session-extractor.ts:119](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:119), [session-extractor.ts:162](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:162), [workflow.ts:25](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:25), [workflow.ts:41](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:41), [workflow.ts:2127](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2127), [workflow.ts:2183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2183).
+  - Evidence: [session-extractor.ts:454](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:454), [session-extractor.ts:119](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:119), [session-extractor.ts:162](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:162), [workflow.ts:25](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:25), [workflow.ts:41](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:41), [workflow.ts:2127](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2127), [workflow.ts:2183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2183).
 - `G3: Type-contract erosion (broad shapes/casts)` (`6/30`)
   - Loose object shapes and casting reduce static guarantees across boundaries.
-  - Evidence: [input-normalizer.ts:95](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:95), [input-normalizer.ts:119](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:119), [collect-session-data.ts:876](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:876).
+  - Evidence: [input-normalizer.ts:95](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:95), [input-normalizer.ts:119](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:119), [collect-session-data.ts:876](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:876).
 - `G4: Dedup semantics under-specified` (`3/30`)
   - Title/file-key dedup can merge meaningfully different observations/files.
-  - Evidence: [file-extractor.ts:395](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:395), [quality-scorer.ts:281](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:281).
+  - Evidence: [file-extractor.ts:395](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:395), [quality-scorer.ts:281](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:281).
 - `G5: Micro-performance anti-patterns` (`2/30`)
   - Regex cloning in filter loop, sequential I/O in related-doc detection.
-  - Evidence: [contamination-filter.ts:155](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:155), [session-extractor.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:415).
+  - Evidence: [contamination-filter.ts:155](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:155), [session-extractor.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:415).
 - `G6: Low-impact polish mixed into P2` (`1/30`)
   - Broad blocker regex false positives are mostly output-noise risk.
-  - Evidence: [session-extractor.ts:279](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:279).
+  - Evidence: [session-extractor.ts:279](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:279).
 
 2. Batch effort vs individual fixes
 - `G1` individual: high (many one-off regex/heuristic edits). batch: medium (`shared normalizers for timestamp/tool/relevance/decision cues`).
@@ -1272,22 +1272,22 @@ I’m using your category list plus direct code evidence; the current manifest s
 1. Root-cause groups (30 total)
 - `G1: Heuristic parsing without canonical contracts` (`11/30`)
   - Timestamp/unit ambiguity, heuristic tool matching, relevance matching, regex-only decision parsing.
-  - Evidence: [input-normalizer.ts:909](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:909), [input-normalizer.ts:933](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:933), [input-normalizer.ts:752](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:752), [session-extractor.ts:323](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:323), [decision-extractor.ts:390](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:390).
+  - Evidence: [input-normalizer.ts:909](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:909), [input-normalizer.ts:933](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:933), [input-normalizer.ts:752](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:752), [session-extractor.ts:323](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:323), [decision-extractor.ts:390](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:390).
 - `G2: Duplicate logic / drift between similar modules` (`7/30`)
   - Duplicate topic extraction, overlapping context/phase classification, dual quality-scoring paths.
-  - Evidence: [session-extractor.ts:454](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:454), [session-extractor.ts:119](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:119), [session-extractor.ts:162](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:162), [workflow.ts:25](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:25), [workflow.ts:41](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:41), [workflow.ts:2127](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2127), [workflow.ts:2183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2183).
+  - Evidence: [session-extractor.ts:454](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:454), [session-extractor.ts:119](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:119), [session-extractor.ts:162](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:162), [workflow.ts:25](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:25), [workflow.ts:41](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:41), [workflow.ts:2127](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2127), [workflow.ts:2183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2183).
 - `G3: Type-contract erosion (broad shapes/casts)` (`6/30`)
   - Loose object shapes and casting reduce static guarantees across boundaries.
-  - Evidence: [input-normalizer.ts:95](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:95), [input-normalizer.ts:119](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:119), [collect-session-data.ts:876](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:876).
+  - Evidence: [input-normalizer.ts:95](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:95), [input-normalizer.ts:119](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:119), [collect-session-data.ts:876](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:876).
 - `G4: Dedup semantics under-specified` (`3/30`)
   - Title/file-key dedup can merge meaningfully different observations/files.
-  - Evidence: [file-extractor.ts:395](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:395), [quality-scorer.ts:281](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:281).
+  - Evidence: [file-extractor.ts:395](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:395), [quality-scorer.ts:281](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:281).
 - `G5: Micro-performance anti-patterns` (`2/30`)
   - Regex cloning in filter loop, sequential I/O in related-doc detection.
-  - Evidence: [contamination-filter.ts:155](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:155), [session-extractor.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:415).
+  - Evidence: [contamination-filter.ts:155](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:155), [session-extractor.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:415).
 - `G6: Low-impact polish mixed into P2` (`1/30`)
   - Broad blocker regex false positives are mostly output-noise risk.
-  - Evidence: [session-extractor.ts:279](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:279).
+  - Evidence: [session-extractor.ts:279](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:279).
 
 2. Batch effort vs individual fixes
 - `G1` individual: high (many one-off regex/heuristic edits). batch: medium (`shared normalizers for timestamp/tool/relevance/decision cues`).

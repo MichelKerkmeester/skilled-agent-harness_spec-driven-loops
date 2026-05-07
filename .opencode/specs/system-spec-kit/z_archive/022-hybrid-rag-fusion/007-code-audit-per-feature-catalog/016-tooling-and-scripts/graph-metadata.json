@@ -41,14 +41,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md",
-      ".opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md",
+      ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
       "scripts/utils/template-structure.js",
       "mcp_server/api/index.ts",
       "scripts/spec/check-completion.sh",
       "checklist.md",
       "scripts/ops/runbook.sh",
-      ".opencode/skill/system-spec-kit/nodes/phase-system.md",
+      ".opencode/skills/system-spec-kit/nodes/phase-system.md",
       "scripts/spec/create.sh",
       "scripts/spec/validate.sh",
       "scripts/core/tree-thinning.ts",
@@ -66,13 +66,13 @@
       {
         "name": "18-template-compliance-contract-enforcement.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md",
         "source": "derived"
       },
       {
         "name": "template_compliance_contract.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md",
+        "path": ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
         "source": "derived"
       },
       {
@@ -108,7 +108,7 @@
       {
         "name": "phase-system.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/nodes/phase-system.md",
+        "path": ".opencode/skills/system-spec-kit/nodes/phase-system.md",
         "source": "derived"
       },
       {

@@ -14,13 +14,13 @@ Real memory files contain 15-30 trigger phrases dominated by path fragments, n-g
 ### F2: HIGH -- Path fragment detection in post-save-review catches only single-token fragments
 The `post-save-review.ts` PATH_FRAGMENT_PATTERNS (lines 184-189) detect single short words (`/^[a-z]{1,4}$/`), stopwords, directory names, and generic file stems. However, multi-token path fragments like `"system spec kit/022 hybrid rag fusion/005 architecture audit"` and `"kit/022"` are NOT detected because they contain slashes/numbers and are multi-word. The first trigger phrase in almost every sampled memory is a full path-to-spec-folder slug (e.g., `"system spec kit/022 hybrid rag fusion/019 deep research rag improvement"`). These consume trigger phrase slots and add no retrieval value since the path is already indexed via file_path metadata.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:184-194]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:184-194]
 
 ### F3: HIGH -- Manual trigger phrases are stored on `_manualTriggerPhrases` but auto-extracted phrases can dilute them
 In `input-normalizer.ts`, when the AI provides explicit `triggerPhrases`, they are copied to `_manualTriggerPhrases` (line 451). These manual phrases are then passed to `buildSessionSummaryObservation()` as `facts` (line 278-279, line 550). However, the downstream template/frontmatter rendering likely adds auto-extracted phrases ON TOP of the manual ones, creating a diluted set where the intentional domain-specific phrases are buried among noise.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:430-451]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:549-551]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:430-451]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:549-551]
 
 ### F4: HIGH -- Contrast between manual-quality and auto-extracted trigger phrases is stark
 Compare the spec-kit-phase-system memory (older, likely manually curated): `["spec kit phase system", "spec 139", "phase decomposition workflow", "spec kit:phase", "recommend-level phasing"]` -- 5 precise, domain-relevant phrases. Versus the architecture-audit memory (auto-extracted): 30 phrases dominated by function names (`"estimate token count"`, `"extract quality score"`), path tokens (`"kit/022"`, `"fusion/005"`), and fragments (`"and missing"`, `"audit"`). The manually curated set would perform dramatically better in trigger matching because every phrase maps to a real retrieval intent.
@@ -31,30 +31,30 @@ Compare the spec-kit-phase-system memory (older, likely manually curated): `["sp
 ### F5: IMPORTANT -- memory_search() ranking uses a 4-channel hybrid pipeline
 After indexing, search ranking is determined by: (1) Vector similarity via Voyage AI 1024d embeddings, (2) FTS5/BM25 full-text scoring, (3) Graph connectivity (co-activation + causal signals), (4) Typed-weighted degree scoring. These are fused via intent-weighted adaptive RRF, then MMR diversity reranking, then confidence gap truncation. This means trigger_phrases primarily affect the `memory_match_triggers` fast-path (binary match, not scored) and BM25/FTS5 channels, while the vector channel depends on the embedding of the full content.
 
-[SOURCE: .opencode/skill/system-spec-kit/README.md:281]
-[SOURCE: .opencode/skill/system-spec-kit/README.md:629]
+[SOURCE: .opencode/skills/system-spec-kit/README.md:281]
+[SOURCE: .opencode/skills/system-spec-kit/README.md:629]
 
 ### F6: IMPORTANT -- Deferred indexing creates potentially "invisible" memories for vector search
 When embedding generation fails or async mode is requested, memories get `embedding_status = 'pending'` and are searchable ONLY via BM25/FTS5, not vector similarity. The save pipeline README explicitly states: "remains searchable via BM25/FTS5" (line 69). This means memories with failed embeddings are partially invisible -- they appear in BM25-matching queries but NOT in semantic similarity searches. There is no documented monitoring or alerting for memories stuck in pending state.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:69]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:69]
 
 ### F7: IMPORTANT -- Trigger matcher is binary, not scored
 The `memory-triggers.ts` handler (line 227) assigns score 1.0 to all trigger matches -- they are binary hit/miss. This means a memory with 30 noisy triggers that happens to match one generic word ranks equal to a memory with 5 precise triggers that matches the exact domain concept. The match quality signal is completely lost.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:227]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:227]
 
 ### F8: MEDIUM -- The save pipeline has 9 stages, with trigger phrases having no dedicated validation stage
 The save pipeline flow is: dedup -> embedding -> save-quality-gate -> pe-orchestration -> reconsolidation -> create-record -> db-helpers -> post-insert -> response-builder. None of these stages validate trigger phrase quality (e.g., minimum phrase length, maximum count, path-fragment filtering, deduplication against file_path). The post-save-review catches some issues AFTER the save, but it runs post-hoc and only flags for manual AI patching -- it does not prevent bad trigger phrases from entering the index.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:52-62]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:52-62]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts` (full file, 383 lines)
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` (trigger phrase grep, 15+ matches)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md` (full file, 88 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts` (grep results)
-- `.opencode/skill/system-spec-kit/README.md` (grep results on ranking/search)
+- `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts` (full file, 383 lines)
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` (trigger phrase grep, 15+ matches)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md` (full file, 88 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts` (grep results)
+- `.opencode/skills/system-spec-kit/README.md` (grep results on ranking/search)
 - 5 real memory files (frontmatter analysis)
 
 ## Assessment

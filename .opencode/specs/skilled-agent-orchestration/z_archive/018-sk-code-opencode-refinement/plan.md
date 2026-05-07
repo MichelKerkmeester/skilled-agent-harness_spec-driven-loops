@@ -26,7 +26,7 @@ SPECKIT_TEMPLATE_SOURCE: "plan-core + level2-verify + level3-arch + level3plus-g
 |--------|-------|
 | **Language/Stack** | Markdown standards docs, shell-based verification commands |
 | **Framework** | system-spec-kit Level 3+ workflow |
-| **Storage** | Repository docs under `.opencode/skill/` and spec artifacts under `.opencode/specs/` |
+| **Storage** | Repository docs under `.opencode/skills/` and spec artifacts under `.opencode/specs/` |
 | **Testing** | `rg` policy assertions, spec validation script, mandatory global quality sweep protocol |
 
 ### Overview
@@ -83,15 +83,15 @@ Governance-first documentation refactor with deterministic verification and clos
 - [ ] Capture pre-change baseline snippets for comment policy, header conventions, and checklist principle coverage.
 
 ### Phase 2: Core Policy Implementation (`sk-code-opencode`)
-- [ ] Update `.opencode/skill/sk-code-opencode/SKILL.md` with reduced inline-comment policy and AI-oriented semantics.
-- [ ] Update `.opencode/skill/sk-code-opencode/references/shared/universal_patterns.md` with parse-first comment allowlist.
-- [ ] Preserve and reinforce numbered ALL-CAPS section header conventions in `.opencode/skill/sk-code-opencode/references/shared/code_organization.md`.
+- [ ] Update `.opencode/skills/sk-code-opencode/SKILL.md` with reduced inline-comment policy and AI-oriented semantics.
+- [ ] Update `.opencode/skills/sk-code-opencode/references/shared/universal_patterns.md` with parse-first comment allowlist.
+- [ ] Preserve and reinforce numbered ALL-CAPS section header conventions in `.opencode/skills/sk-code-opencode/references/shared/code_organization.md`.
 - [ ] Align language style guides for `javascript`, `typescript`, `python`, `shell`, and `config` with shared policy.
 
 ### Phase 3: Checklist and Optional Alignment Implementation
-- [ ] Update universal and language checklist files in `.opencode/skill/sk-code-opencode/assets/checklists/` with KISS/DRY and SOLID coverage depth.
+- [ ] Update universal and language checklist files in `.opencode/skills/sk-code-opencode/assets/checklists/` with KISS/DRY and SOLID coverage depth.
 - [ ] Decide on optional `sk-code-review` scope using mismatch evidence from verification pre-check.
-- [ ] If triggered, apply minimal updates to `.opencode/skill/sk-code-review/SKILL.md` and targeted review references only.
+- [ ] If triggered, apply minimal updates to `.opencode/skills/sk-code-review/SKILL.md` and targeted review references only.
 
 ### Phase 4: Verification and Evidence Collection
 - [ ] Run file-level verification command set in Section 5 for every changed file.
@@ -114,49 +114,49 @@ Governance-first documentation refactor with deterministic verification and clos
 | Policy assertions | Comment threshold, AI semantics markers, header invariants | `rg` |
 | Checklist assertions | KISS/DRY/SOLID markers in universal and language checklists | `rg` |
 | Scope guard | Changed-file scope stays inside spec-defined paths | `git diff --name-only`, manual compare against `spec.md` scope table |
-| Spec artifact validation | Level 3+ docs are structurally valid and placeholder-free | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` |
+| Spec artifact validation | Level 3+ docs are structurally valid and placeholder-free | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` |
 
 ### File-Level Verification Command Set
 
 ```bash
 # 1) Scope files changed in implementation
-rg --files .opencode/skill/sk-code-opencode \
-  .opencode/skill/sk-code-review > /tmp/043-scope-files.txt
+rg --files .opencode/skills/sk-code-opencode \
+  .opencode/skills/sk-code-review > /tmp/043-scope-files.txt
 
 # 2) Reduced comment policy and AI semantics markers
 rg -n "Maximum 3 comments per 10 lines|WHY|GUARD|INVARIANT|REQ-|BUG-|SEC-|RISK|PERF" \
-  .opencode/skill/sk-code-opencode/SKILL.md \
-  .opencode/skill/sk-code-opencode/references/shared/universal_patterns.md \
-  .opencode/skill/sk-code-opencode/references/javascript/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/typescript/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/python/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/shell/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/config/style_guide.md
+  .opencode/skills/sk-code-opencode/SKILL.md \
+  .opencode/skills/sk-code-opencode/references/shared/universal_patterns.md \
+  .opencode/skills/sk-code-opencode/references/javascript/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/typescript/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/python/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/shell/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/config/style_guide.md
 
 # 3) Numbered ALL-CAPS header non-regression checks
 rg -n "^## [0-9]+\\. [A-Z0-9 ()/:-]+$" \
-  .opencode/skill/sk-code-opencode/references/shared/code_organization.md \
-  .opencode/skill/sk-code-opencode/references/javascript/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/typescript/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/python/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/shell/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/config/style_guide.md
+  .opencode/skills/sk-code-opencode/references/shared/code_organization.md \
+  .opencode/skills/sk-code-opencode/references/javascript/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/typescript/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/python/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/shell/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/config/style_guide.md
 
 # 4) KISS/DRY/SOLID checklist coverage
 rg -n "KISS|DRY|SRP|OCP|LSP|ISP|DIP" \
-  .opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/python_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/shell_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md
+  .opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md
 
 # 5) Optional review alignment checks (run only if review files changed)
 rg -n "KISS|DRY|SOLID|module|adapter|interface|abstraction|responsibility|dependency|boundary" \
-  .opencode/skill/sk-code-review/SKILL.md \
-  .opencode/skill/sk-code-review/references/quick_reference.md \
-  .opencode/skill/sk-code-review/references/code_quality_checklist.md \
-  .opencode/skill/sk-code-review/references/solid_checklist.md
+  .opencode/skills/sk-code-review/SKILL.md \
+  .opencode/skills/sk-code-review/references/quick_reference.md \
+  .opencode/skills/sk-code-review/references/code_quality_checklist.md \
+  .opencode/skills/sk-code-review/references/solid_checklist.md
 ```
 <!-- /ANCHOR:testing -->
 

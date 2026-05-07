@@ -69,7 +69,7 @@ user cancelled MCP tool call
 exec
 /bin/zsh -lc "rg --files -g 'AGENTS.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep review iteration 8 for spec folder 042-sk-deep-research-review-improvement-2. Focus on maintainability of Phase 003-004 abstractions: wave-coordination-board.cjs and wave-segment-state.cjs, coupling to coverage-graph modules, optimizer replay tests and fixture quality." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "Deep review iteration 8 for spec folder 042-sk-deep-research-review-improvement-2. Focus on maintainability of Phase 003-004 abstractions: wave-coordination-board.cjs and wave-segment-state.cjs, coupling to coverage-graph modules, optimizer replay tests and fixture quality." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 188ms:
 AGENTS.md
 .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/external/opencode-lcm-master/AGENTS.md
@@ -147,7 +147,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-Lc2cGafx' (errno=Opera
 codex
 I’ve got the routing signal: `sk-deep-review`, `sk-code-review`, and `system-spec-kit` all clear the threshold, so I’m following a review-first workflow and keeping the spec folder as the truth anchor. The memory trigger call didn’t return usable context, so I’m doing a lightweight direct memory lookup next and then I’ll read the focused implementation files with their test coverage.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-review
@@ -374,9 +374,9 @@ exec
 /bin/zsh -lc 'rg -n "042-sk-deep-research-review-improvement-2|sk-deep-research-review-improvement-2|wave-coordination-board|wave-segment-state|optimizer-replay-corpus|optimizer-replay-runner|coverage graph|coverage-graph" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-review
@@ -395,7 +395,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -844,7 +844,7 @@ COMMAND_BOOSTS = {
 codex
 I’ve confirmed the review/deep-review skill path and I’m pulling the stack-specific review overlay now so I can judge maintainability against the repo’s own patterns, not generic preferences. Next I’m locating the exact Phase 003-004 files and tracing their coverage-graph touchpoints before I score any findings.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-opencode
@@ -1078,7 +1078,7 @@ user cancelled MCP tool call
 codex
 The target packet isn’t under `.opencode/specs`, so I’m re-anchoring against the repo’s actual `specs/` tree and locating the implementation from there. The CocoIndex MCP call also didn’t stick in this environment, so I’m falling back to exact repo-local tracing with `rg` and direct reads.
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/sk-code-review/references/review_core.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/sk-code-review/references/review_core.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: Review Core Doctrine
@@ -1180,7 +1180,7 @@ Suggested shape:
 - [code_quality_checklist.md](./code_quality_checklist.md) - Correctness, KISS, DRY, and maintainability checks.
 
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/sk-code-review/references/test_quality_checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/sk-code-review/references/test_quality_checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: Test Quality Checklist
@@ -1347,23 +1347,23 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/tasks.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts
 
 codex
 I’ve found the packet and the concrete implementation files under `system-spec-kit/scripts/lib` and `scripts/tests`. I’m reading the phase specs plus the actual board/state/test files together so I can judge whether the abstractions match their intended boundaries and whether the tests really defend those boundaries.
@@ -1378,21 +1378,21 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:44:**Phase Context**: This phase adds orchestrator-managed parallel batches on top of the coverage-graph substrate from Phase 002. The goal is scale without architectural drift: the workers stay LEAF, while orchestration logic handles segmentation, fan-out, pruning, promotion, and merge.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:55:- v2 graph/cluster-enhanced segmentation using the Phase 002 coverage graph once the graph surfaces are operational.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:87:- Add v2 graph/cluster-enhanced segmentation that refines decomposition using the Phase 002 coverage graph once it is operational.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:110:| `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:111:| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:110:| `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:111:| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:144:| REQ-001 | The phase MUST define two segmentation versions for both large review scopes and large research scopes. | v1 uses deterministic heuristics such as file-count thresholds, directory grouping, simple hotspot ranking, domain counts, authority levels, and stable cluster assignment; v2 explicitly layers Phase 002 coverage-graph or cluster signals on top of v1 once the graph surfaces are operational. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:153:| REQ-005 | Each segment MUST use Phase 002 graph signals independently for convergence, pruning, promotion, and v2 decomposition upgrades. | Segment convergence explicitly references coverage-graph status or convergence outputs; prune logic can retire converged or stuck segments without dropping unresolved global gaps silently; graph-enhanced segmentation is blocked until the Phase 002 coverage graph is operational. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:284:- Predecessor phase: `../002-semantic-coverage-graph/spec.md`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:115:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:132:- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:133:- `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:115:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:132:- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:133:- `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:151:**Why third**: v2 only becomes trustworthy after Phase 002 coverage-graph surfaces are operational. It should refine decomposition, not replace the heuristic baseline.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:175:- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:176:- `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:175:- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:176:- `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:264:| Phase 3b graph-enhanced segmentation | Medium | Depends on Phase 002 coverage graph being operational and stable enough to refine v1 safely. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:139:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:142:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:139:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:142:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/checklist.md:33:- [x] CHK-001 [P0] The phase fixes `040` as the required replay corpus and keeps `028` optional while excluding `042` as training input until traces exist. [EVIDENCE: spec.md REQ-001 and REQ-002; implementation-summary.md "Replay Corpus"] [TESTS: optimizer-replay-corpus.vitest.ts]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/checklist.md:54:- [x] CHK-020 [P0] The phase names dedicated tests for corpus extraction, rubric scoring, search bounds, replay determinism, and promotion gating. [EVIDENCE: spec.md test file list; tasks.md T001-T007] [TESTS: optimizer-replay-corpus.vitest.ts; optimizer-rubric.vitest.ts; optimizer-search.vitest.ts; optimizer-replay-runner.vitest.ts; optimizer-promote.vitest.ts]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/checklist.md:67:- [x] CHK-032 [P1] Older traces without graph or wave metrics are marked unavailable instead of fabricated. [EVIDENCE: spec.md REQ-009 and acceptance scenarios] [TESTS: optimizer-replay-corpus.vitest.ts; optimizer-rubric.vitest.ts]
@@ -1402,41 +1402,41 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/checklist.md:145:- [x] CHK-132 [P2] Missing graph or wave metrics are represented honestly for older traces. [EVIDENCE: spec.md REQ-009 and acceptance scenarios] [TESTS: optimizer-replay-corpus.vitest.ts]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-001.md:45:Security, with emphasis on session scoping and fail-closed behavior across the coverage-graph handlers, read helpers, and review/research reducer corruption paths. If that stays clean, rotate into traceability across the confirm YAML mirrors and reference docs.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:4:This pass audited security on the coverage-graph runtime surfaces, concentrating on whether session-scoped handlers actually stay isolated once data reaches the shared SQLite store. I reviewed the graph handlers, shared DB/query helpers, reducer fail-closed behavior, and the phase 008 session-isolation contract, then rotated into the shipped REQ-024 regression coverage to see whether the current tests would catch an isolation break.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:19:- **F004**: Coverage-graph writes are not session-isolated when IDs collide — `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154` — `coverage_nodes` and `coverage_edges` key rows by bare `id` only (`.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:152-192`), and both upsert paths decide update vs insert with `WHERE id = ?` instead of the full namespace (`.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302`, `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`). A later session that reuses an earlier node or edge ID mutates the existing row rather than creating a session-local record, violating REQ-012’s `specFolder + loopType + sessionId` isolation contract (`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md:99-100`) and creating a cross-session overwrite/leak path underneath handlers that otherwise pass `sessionId`.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:22:- **F005**: Session-isolation regression omits the ID-collision path — `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62` — The REQ-024 suite only inserts disjoint node and edge IDs per session (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) across `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62-91`, so it proves filtered reads on non-overlapping fixtures but never exercises the global-ID overwrite path in `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`. The test can stay green while the runtime still corrupts session isolation under shared IDs.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:19:- **F004**: Coverage-graph writes are not session-isolated when IDs collide — `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154` — `coverage_nodes` and `coverage_edges` key rows by bare `id` only (`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:152-192`), and both upsert paths decide update vs insert with `WHERE id = ?` instead of the full namespace (`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302`, `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`). A later session that reuses an earlier node or edge ID mutates the existing row rather than creating a session-local record, violating REQ-012’s `specFolder + loopType + sessionId` isolation contract (`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md:99-100`) and creating a cross-session overwrite/leak path underneath handlers that otherwise pass `sessionId`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:22:- **F005**: Session-isolation regression omits the ID-collision path — `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62` — The REQ-024 suite only inserts disjoint node and edge IDs per session (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) across `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62-91`, so it proves filtered reads on non-overlapping fixtures but never exercises the global-ID overwrite path in `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`. The test can stay green while the runtime still corrupts session isolation under shared IDs.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:34:- Novelty justification: F004 is a new runtime isolation defect in the shared coverage-graph storage layer that was not part of iteration 1’s review-loop contract pass. F005 is new because the shipped REQ-024 regression suite does not cover the collision pattern that makes F004 actionable.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:41:- Handler fallback without `sessionId`: The `all_sessions_default` path is explicitly documented bootstrap/debug behavior rather than a hidden bypass — `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:70`, `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:174`, `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:71`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:41:- Handler fallback without `sessionId`: The `all_sessions_default` path is explicitly documented bootstrap/debug behavior rather than a hidden bypass — `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:70`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:174`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:71`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:37:6. Convergence per segment: Each segment needs its own convergence assessment. Should each segment have its own coverage graph instance? Or one graph with segment-scoped queries?
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:581:   102	- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:582:   103	- `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:581:   102	- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:582:   103	- `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:692:    22	Phase 003 adds orchestrator-managed parallel wave execution so deep research and deep review can handle very large targets without abandoning the LEAF-worker model. It formalizes deterministic segmentation, packet-local coordination, segment-level convergence, and auditable merge behavior on top of the coverage-graph foundation from Phase 002.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:707:    37	| **Predecessor** | `002-semantic-coverage-graph` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:713:    43	**Phase Context**: This phase adds orchestrator-managed parallel batches on top of the coverage-graph substrate from Phase 002. The goal is scale without architectural drift: the workers stay LEAF, while orchestration logic handles segmentation, fan-out, pruning, promotion, and merge.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:769:    99	| `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Coordination-board schema, status transitions, conflict tracking, and renderer helpers. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:770:   100	| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:769:    99	| `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Coordination-board schema, status transitions, conflict tracking, and renderer helpers. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:770:   100	| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:811:   141	| REQ-005 | Each segment MUST use Phase 002 graph signals independently for convergence, pruning, and promotion. | Segment convergence explicitly references coverage-graph status or convergence outputs; prune logic can retire converged or stuck segments without dropping unresolved global gaps silently. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:1006:    72	| T003 | Pending | REQ-003, REQ-004 | `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/sk-deep-research/references/state_format.md`; `.opencode/skill/sk-deep-review/references/state_format.md` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:1024:    90	| T006 | Pending | REQ-003, REQ-005 | `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:1027:    93	| T009 | Pending | REQ-004 | `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skill/sk-deep-research/references/state_format.md`; `.opencode/skill/sk-deep-review/references/state_format.md` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:1047:   113	| T011 | Pending | REQ-004, REQ-007 | `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4130:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:111:| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:1006:    72	| T003 | Pending | REQ-003, REQ-004 | `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:1024:    90	| T006 | Pending | REQ-003, REQ-005 | `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:1027:    93	| T009 | Pending | REQ-004 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:1047:   113	| T011 | Pending | REQ-004, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4130:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:111:| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4247:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:43:**Phase Context**: This phase adds orchestrator-managed parallel batches on top of the coverage-graph substrate from Phase 002. The goal is scale without architectural drift: the workers stay LEAF, while orchestration logic handles segmentation, fan-out, pruning, promotion, and merge.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4704:6. **Convergence per segment**. Focus: whether each segment needs its own graph/coverage instance. Findings: convergence docs already say segment filtering should apply only to the current segment while hard stops still count all iterations and cross-segment analysis still reads the full JSONL ([convergence.md:23](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L23), [convergence.md:305](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L305)); the workers already expect the orchestrator to add `segment` and `convergenceSignals` to iteration records ([deep-research.md:189](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L189), [deep-review.md:253](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L253)); review STOP is explicitly global because it depends on total P0/P1 counts, full-dimension coverage, and global quality gates ([spec_kit_deep-review_auto.yaml:340](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml#L340)). Novel insight: one global coverage graph plus segment-scoped queries is cleaner than spinning up a separate graph per segment. Open question: how should unresolved nodes from retired segments contribute to the final global stop-decision trace?
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4752:6. **Convergence per segment**. Focus: whether each segment needs its own graph/coverage instance. Findings: convergence docs already say segment filtering should apply only to the current segment while hard stops still count all iterations and cross-segment analysis still reads the full JSONL ([convergence.md:23](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L23), [convergence.md:305](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L305)); the workers already expect the orchestrator to add `segment` and `convergenceSignals` to iteration records ([deep-research.md:189](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L189), [deep-review.md:253](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L253)); review STOP is explicitly global because it depends on total P0/P1 counts, full-dimension coverage, and global quality gates ([spec_kit_deep-review_auto.yaml:340](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml#L340)). Novel insight: one global coverage graph plus segment-scoped queries is cleaner than spinning up a separate graph per segment. Open question: how should unresolved nodes from retired segments contribute to the final global stop-decision trace?
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4704:6. **Convergence per segment**. Focus: whether each segment needs its own graph/coverage instance. Findings: convergence docs already say segment filtering should apply only to the current segment while hard stops still count all iterations and cross-segment analysis still reads the full JSONL ([convergence.md:23](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L23), [convergence.md:305](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L305)); the workers already expect the orchestrator to add `segment` and `convergenceSignals` to iteration records ([deep-research.md:189](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L189), [deep-review.md:253](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L253)); review STOP is explicitly global because it depends on total P0/P1 counts, full-dimension coverage, and global quality gates ([spec_kit_deep-review_auto.yaml:340](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml#L340)). Novel insight: one global coverage graph plus segment-scoped queries is cleaner than spinning up a separate graph per segment. Open question: how should unresolved nodes from retired segments contribute to the final global stop-decision trace?
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4752:6. **Convergence per segment**. Focus: whether each segment needs its own graph/coverage instance. Findings: convergence docs already say segment filtering should apply only to the current segment while hard stops still count all iterations and cross-segment analysis still reads the full JSONL ([convergence.md:23](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L23), [convergence.md:305](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L305)); the workers already expect the orchestrator to add `segment` and `convergenceSignals` to iteration records ([deep-research.md:189](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L189), [deep-review.md:253](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L253)); review STOP is explicitly global because it depends on total P0/P1 counts, full-dimension coverage, and global quality gates ([spec_kit_deep-review_auto.yaml:340](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml#L340)). Novel insight: one global coverage graph plus segment-scoped queries is cleaner than spinning up a separate graph per segment. Open question: how should unresolved nodes from retired segments contribute to the final global stop-decision trace?
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-003.md:4:This pass stayed on security around graph identity generation and cross-session reuse, then rotated into traceability and maintainability on the visible confirm/reference mirrors. I reviewed the coverage-graph upsert path, the confirm YAML graphEvents transforms, and the published state-format references to see whether the session namespace is encoded in the live contract or only carried as an out-of-band parameter.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-003.md:37:- In-memory `coverage-graph-core.cjs` edge auto-ID generation: not on the visible deep-loop write path for this bundle — live research/review graph persistence goes through `deep_loop_graph_upsert` from the confirm/auto YAMLs, not through `insertEdge()` in the in-memory helper.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-003.md:40:- Looking for a second handler-side auth or validation bypass in `mcp_server/handlers/coverage-graph/upsert.ts`: the handler validates `specFolder`, `loopType`, `sessionId`, relation/kind enums, and self-loops, so this pass did not uncover a new security defect there beyond the pre-existing bare-ID storage semantics already captured in F004.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:66:- If Phase 002 coverage graph is not operational, block v2 graph-enhanced segmentation and stay on v1 heuristic planning.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:95:| T003 | Completed | REQ-003, REQ-004 | `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/sk-deep-research/references/state_format.md`; `.opencode/skill/sk-deep-review/references/state_format.md` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:98:| T-WE-NEW-4 | Completed | REQ-004 | `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/sk-deep-research/references/state_format.md`; `.opencode/skill/sk-deep-review/references/state_format.md` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:121:| T006 | Completed | REQ-003, REQ-008 | `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:124:| T009 | Completed | REQ-004, REQ-008 | `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skill/sk-deep-research/references/state_format.md`; `.opencode/skill/sk-deep-review/references/state_format.md` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:143:| T011 | Completed | REQ-004, REQ-008, REQ-009 | `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1102:    71	| T002 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1120:    89	| T005 | Pending | REQ-003 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1142:   111	| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1274:   103	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1292:   121	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:95:| T003 | Completed | REQ-003, REQ-004 | `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:98:| T-WE-NEW-4 | Completed | REQ-004 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:121:| T006 | Completed | REQ-003, REQ-008 | `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:124:| T009 | Completed | REQ-004, REQ-008 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/tasks.md:143:| T011 | Completed | REQ-004, REQ-008, REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1102:    71	| T002 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1120:    89	| T005 | Pending | REQ-003 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1142:   111	| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1274:   103	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1292:   121	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1703:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/description.json
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6240:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/README.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6241:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/description.json
@@ -1446,28 +1446,28 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6245:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/scratch/.gitkeep
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6246:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6247:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/tasks.md
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7501:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:108:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7503:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:111:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7620:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:71:| T002 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7623:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:89:| T005 | Pending | REQ-003 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7626:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:111:| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7501:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:108:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7503:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:111:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7620:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:71:| T002 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7623:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:89:| T005 | Pending | REQ-003 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7626:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:111:| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-008.md:4:This pass revisited the remaining session-isolation and graph namespace surfaces, concentrating on whether any late phase 008 write-path or regression additions actually close the shared-ID collision gap. I reviewed the coverage-graph storage semantics, the visible graph-upsert steps, the dedicated phase 008 isolation/graph tests, and the phase 008 closure summary to separate real downgrade evidence from documentation-only closure claims.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-008.md:22:- **F013**: Phase 008 implementation summary overclaims REQ-024 closure — `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59` — The summary says `session-isolation.vitest.ts` validates that concurrent sessions cannot see each other's graph nodes, but the shipped suite only seeds disjoint node and edge IDs (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) and asserts filtered reads on those non-overlapping fixtures at `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91`. The underlying storage layer still upserts by bare `id` only at `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`, so phase 008 only proved session-scoped reads, not shared-ID collision isolation. The implementation summary therefore reports REQ-024 as fully closed on evidence that does not cover the active collision hazard already captured by F004/F005.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:50:      "file": ".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:52:      "description": "`coverage_nodes` and `coverage_edges` key rows by bare `id` only (`.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:152-192`), and both upsert paths decide update vs insert with `WHERE id = ?` instead of the full namespace (`.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302`, `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`). A later session that reuses an earlier node or edge ID mutates the existing row rather than creating a session-local record, violating REQ-012’s `specFolder + loopType + sessionId` isolation contract (`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md:99-100`) and creating a cross-session overwrite/leak path underneath handlers that otherwise pass `sessionId`.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:232:      "description": "The REQ-024 suite only inserts disjoint node and edge IDs per session (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) across `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62-91`, so it proves filtered reads on non-overlapping fixtures but never exercises the global-ID overwrite path in `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`. The test can stay green while the runtime still corrupts session isolation under shared IDs.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:292:      "description": "The summary says `session-isolation.vitest.ts` validates that concurrent sessions cannot see each other's graph nodes, but the shipped suite only seeds disjoint node and edge IDs (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) and asserts filtered reads on those non-overlapping fixtures at `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91`. The underlying storage layer still upserts by bare `id` only at `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`, so phase 008 only proved session-scoped reads, not shared-ID collision isolation. The implementation summary therefore reports REQ-024 as fully closed on evidence that does not cover the active collision hazard already captured by F004/F005.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:2:{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"correctness contracts on review loop runtime","dimensions":["correctness","traceability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",".opencode/skill/sk-deep-review/scripts/reduce-state.cjs",".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",".opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml",".opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml",".opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts",".opencode/command/spec_kit/deep-review.md",".opencode/agent/deep-review.md"],"findingsCount":3,"findingsSummary":{"P0":0,"P1":2,"P2":1},"findingsNew":{"P0":0,"P1":2,"P2":1},"newFindingsRatio":1,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T13:57:15Z","durationMs":429000}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:3:{"type":"iteration","mode":"review","run":2,"status":"complete","focus":"security session scoping on coverage graph runtime","dimensions":["security","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",".opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts",".opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts",".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts",".opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts",".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",".opencode/skill/sk-deep-review/scripts/reduce-state.cjs",".opencode/skill/sk-improve-agent/scripts/reduce-state.cjs",".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",".opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml",".opencode/skill/sk-deep-research/references/loop_protocol.md",".opencode/skill/sk-deep-review/references/loop_protocol.md"],"findingsCount":5,"findingsSummary":{"P0":0,"P1":3,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.4,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:00:52Z","durationMs":520000}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:4:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"graph identity namespace contracts","dimensions":["security","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml",".opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml",".opencode/skill/sk-deep-research/references/state_format.md",".opencode/skill/sk-deep-review/references/state_format.md"],"findingsCount":6,"findingsSummary":{"P0":0,"P1":4,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.17,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:05:25Z","durationMs":300000}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:9:{"type":"iteration","mode":"review","run":8,"status":"complete","focus":"session-isolation closure claims and graph namespace coverage","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts",".opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",".opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml",".opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml"],"findingsCount":13,"findingsSummary":{"P0":0,"P1":8,"P2":5},"findingsNew":{"P0":0,"P1":0,"P2":1},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:23:58Z","durationMs":240000}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:76:| T001 | Completed | REQ-001, REQ-002 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:78:| T003 | Completed | REQ-004 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-008.md:22:- **F013**: Phase 008 implementation summary overclaims REQ-024 closure — `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59` — The summary says `session-isolation.vitest.ts` validates that concurrent sessions cannot see each other's graph nodes, but the shipped suite only seeds disjoint node and edge IDs (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) and asserts filtered reads on those non-overlapping fixtures at `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91`. The underlying storage layer still upserts by bare `id` only at `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`, so phase 008 only proved session-scoped reads, not shared-ID collision isolation. The implementation summary therefore reports REQ-024 as fully closed on evidence that does not cover the active collision hazard already captured by F004/F005.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:50:      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:52:      "description": "`coverage_nodes` and `coverage_edges` key rows by bare `id` only (`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:152-192`), and both upsert paths decide update vs insert with `WHERE id = ?` instead of the full namespace (`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302`, `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`). A later session that reuses an earlier node or edge ID mutates the existing row rather than creating a session-local record, violating REQ-012’s `specFolder + loopType + sessionId` isolation contract (`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md:99-100`) and creating a cross-session overwrite/leak path underneath handlers that otherwise pass `sessionId`.",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:232:      "description": "The REQ-024 suite only inserts disjoint node and edge IDs per session (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) across `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62-91`, so it proves filtered reads on non-overlapping fixtures but never exercises the global-ID overwrite path in `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`. The test can stay green while the runtime still corrupts session isolation under shared IDs.",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:292:      "description": "The summary says `session-isolation.vitest.ts` validates that concurrent sessions cannot see each other's graph nodes, but the shipped suite only seeds disjoint node and edge IDs (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) and asserts filtered reads on those non-overlapping fixtures at `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91`. The underlying storage layer still upserts by bare `id` only at `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`, so phase 008 only proved session-scoped reads, not shared-ID collision isolation. The implementation summary therefore reports REQ-024 as fully closed on evidence that does not cover the active collision hazard already captured by F004/F005.",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:2:{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"correctness contracts on review loop runtime","dimensions":["correctness","traceability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts",".opencode/commands/spec_kit/deep-review.md",".opencode/agents/deep-review.md"],"findingsCount":3,"findingsSummary":{"P0":0,"P1":2,"P2":1},"findingsNew":{"P0":0,"P1":2,"P2":1},"newFindingsRatio":1,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T13:57:15Z","durationMs":429000}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:3:{"type":"iteration","mode":"review","run":2,"status":"complete","focus":"security session scoping on coverage graph runtime","dimensions":["security","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts",".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/loop_protocol.md"],"findingsCount":5,"findingsSummary":{"P0":0,"P1":3,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.4,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:00:52Z","durationMs":520000}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:4:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"graph identity namespace contracts","dimensions":["security","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",".opencode/skills/sk-deep-research/references/state_format.md",".opencode/skills/sk-deep-review/references/state_format.md"],"findingsCount":6,"findingsSummary":{"P0":0,"P1":4,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.17,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:05:25Z","durationMs":300000}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:9:{"type":"iteration","mode":"review","run":8,"status":"complete","focus":"session-isolation closure claims and graph namespace coverage","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"],"findingsCount":13,"findingsSummary":{"P0":0,"P1":8,"P2":5},"findingsNew":{"P0":0,"P1":0,"P2":1},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:23:58Z","durationMs":240000}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:76:| T001 | Completed | REQ-001, REQ-002 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:78:| T003 | Completed | REQ-004 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/implementation-summary.md:35:Deep research and deep review can now handle very large targets through orchestrator-managed parallel wave execution without abandoning the LEAF-worker model. The implementation adds deterministic segmentation, packet-local coordination, segment-level convergence, and auditable merge behavior on top of the Phase 002 coverage-graph foundation.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-dashboard.md:46:| 2 | security session scoping on coverage graph runtime | security/traceability/maintainability | 0.40 | 0/3/2 | complete |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:160:### Handler fallback without `sessionId`: The `all_sessions_default` path is explicitly documented bootstrap/debug behavior rather than a hidden bypass — `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:70`, `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:174`, `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:71` -- BLOCKED (iteration 2, 1 attempts)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:161:- What was tried: Handler fallback without `sessionId`: The `all_sessions_default` path is explicitly documented bootstrap/debug behavior rather than a hidden bypass — `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:70`, `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:174`, `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:71`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:163:- Do NOT retry: Handler fallback without `sessionId`: The `all_sessions_default` path is explicitly documented bootstrap/debug behavior rather than a hidden bypass — `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:70`, `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:174`, `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:71`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:160:### Handler fallback without `sessionId`: The `all_sessions_default` path is explicitly documented bootstrap/debug behavior rather than a hidden bypass — `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:70`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:174`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:71` -- BLOCKED (iteration 2, 1 attempts)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:161:- What was tried: Handler fallback without `sessionId`: The `all_sessions_default` path is explicitly documented bootstrap/debug behavior rather than a hidden bypass — `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:70`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:174`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:71`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:163:- Do NOT retry: Handler fallback without `sessionId`: The `all_sessions_default` path is explicitly documented bootstrap/debug behavior rather than a hidden bypass — `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:70`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:174`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:71`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:175:### In-memory `coverage-graph-core.cjs` edge auto-ID generation: not on the visible deep-loop write path for this bundle — live research/review graph persistence goes through `deep_loop_graph_upsert` from the confirm/auto YAMLs, not through `insertEdge()` in the in-memory helper. -- BLOCKED (iteration 3, 1 attempts)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:176:- What was tried: In-memory `coverage-graph-core.cjs` edge auto-ID generation: not on the visible deep-loop write path for this bundle — live research/review graph persistence goes through `deep_loop_graph_upsert` from the confirm/auto YAMLs, not through `insertEdge()` in the in-memory helper.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:178:- Do NOT retry: In-memory `coverage-graph-core.cjs` edge auto-ID generation: not on the visible deep-loop write path for this bundle — live research/review graph persistence goes through `deep_loop_graph_upsert` from the confirm/auto YAMLs, not through `insertEdge()` in the in-memory helper.
@@ -1475,34 +1475,34 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:196:- What was tried: Looking for a second handler-side auth or validation bypass in `mcp_server/handlers/coverage-graph/upsert.ts`: the handler validates `specFolder`, `loopType`, `sessionId`, relation/kind enums, and self-loops, so this pass did not uncover a new security defect there beyond the pre-existing bare-ID storage semantics already captured in F004.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:198:- Do NOT retry: Looking for a second handler-side auth or validation bypass in `mcp_server/handlers/coverage-graph/upsert.ts`: the handler validates `specFolder`, `loopType`, `sessionId`, relation/kind enums, and self-loops, so this pass did not uncover a new security defect there beyond the pre-existing bare-ID storage semantics already captured in F004.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:263:| 002-semantic-coverage-graph | SQLite coverage graph: core + signals + contradictions + convergence + query + MCP handlers | mid 042 |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:290:- `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/{convergence,query,status,upsert}.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:291:- `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/{coverage-graph-db,coverage-graph-query,coverage-graph-signals}.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:292:- `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-{core,signals,contradictions,convergence}.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:290:- `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/{convergence,query,status,upsert}.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:291:- `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/{coverage-graph-db,coverage-graph-query,coverage-graph-signals}.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:292:- `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-{core,signals,contradictions,convergence}.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:299:- `coverage-graph-{convergence,cross-layer,integration,stress}.vitest.ts` (aligned with ADR-001 canonical)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:47:      ".opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:48:      ".opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:47:      ".opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:48:      ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:95:        "name": "wave-coordination-board.cjs",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:97:        "path": ".opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:97:        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:101:        "name": "wave-segment-state.cjs",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:103:        "path": ".opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:103:        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/graph-metadata.json:161:    "causal_summary": "Phase 003 adds orchestrator-managed parallel wave execution so deep research and deep review can handle very large targets without abandoning the LEAF-worker model. It formalizes deterministic segmentation, packet-local coordination, segment-level convergence, and auditable merge behavior on top of the coverage-graph foundation from Phase 002.",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:16:- **Scope**: Entire 042 bundle — `spec.md` plus all 8 phase folders (`001` through `008`) and shipped runtime code across `sk-deep-research`, `sk-deep-review`, `sk-improve-agent`, the `system-spec-kit` coverage-graph stack, 6 YAML workflows, vitest suites, changelog surfaces, and packet-root completion artifacts.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:21:The dominant pattern across the 10 iterations was contract drift, not isolated code polish. The bundle added meaningful reducer, workflow, and test hardening, but several user-visible promises still do not match the live execution path: STOP gating does not consume claim-adjudication state, lifecycle branches are advertised without persisted lineage transitions, and the coverage-graph namespace contract is still weak at both storage and documentation layers.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:36:| F004 | P1 | security | Coverage-graph writes are not session-isolated when IDs collide | `I002` (`iteration-002.md:19`) | `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154`; `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` | 2 | 2 | active |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:37:| F005 | P2 | security | Session-isolation regression omits the ID-collision path | `I002` (`iteration-002.md:22`) | `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62`; `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376` | 2 | 2 | active |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:36:| F004 | P1 | security | Coverage-graph writes are not session-isolated when IDs collide | `I002` (`iteration-002.md:19`) | `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` | 2 | 2 | active |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:37:| F005 | P2 | security | Session-isolation regression omits the ID-collision path | `I002` (`iteration-002.md:22`) | `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376` | 2 | 2 | active |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:65:- **Risk**: the coverage graph still mutates rows by bare ID, so two sessions reusing the same node or edge ID can overwrite each other.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:131:- **Target surfaces**: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`, `.opencode/skill/sk-deep-research/references/state_format.md`, `.opencode/skill/sk-deep-review/references/state_format.md`, phase 008 closeout docs
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:131:- **Target surfaces**: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`, `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-review/references/state_format.md`, phase 008 closeout docs
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:217:3. **T003 [security] Change coverage-graph upsert identity to a session-safe namespace**  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:218:Target files: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed  
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:218:Target files: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed  
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:296:| 2 | security session scoping on coverage graph runtime | security, traceability, maintainability | 0 | 1 | 1 | 0.40 | complete |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:309:- **Run 2** found the only active security runtime defect: bare-ID coverage-graph upserts still permit cross-session overwrite.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:349:| `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` |  | X | X |  |  |  |  | X |  |  |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:57:      ".opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:60:      ".opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:349:| `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` |  | X | X |  |  |  |  | X |  |  |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:57:      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:60:      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:140:        "name": "optimizer-replay-corpus.vitest.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:142:        "path": ".opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:142:        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:158:        "name": "optimizer-replay-runner.vitest.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:160:        "path": ".opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/graph-metadata.json:160:        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
 
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -1618,30 +1618,30 @@ exec
    105	
    106	| File Path | Change Type | Description |
    107	|-----------|-------------|-------------|
-   108	| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
-   109	| `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
-   110	| `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
-   111	| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
-   112	| `.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
-   113	| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
-   114	| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
-   115	| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-   116	| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-   117	| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
-   118	| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add `hotspot-inventory.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
-   119	| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-   120	| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-   121	| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
-   122	| `.opencode/command/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
-   123	| `.opencode/command/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
-   124	| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
-   125	| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
-   126	| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
-   127	| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
-   128	| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
-   129	| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
-   130	| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
-   131	| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
+   108	| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
+   109	| `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
+   110	| `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
+   111	| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
+   112	| `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
+   113	| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
+   114	| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
+   115	| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+   116	| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+   117	| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
+   118	| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add `hotspot-inventory.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
+   119	| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+   120	| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+   121	| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
+   122	| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
+   123	| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
+   124	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
+   125	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
+   126	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
+   127	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
+   128	| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
+   129	| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
+   130	| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
+   131	| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
    132	<!-- /ANCHOR:scope -->
    133	
    134	---
@@ -1823,10 +1823,10 @@ exec
     68	
     69	After phase 008 landed, a **10-iteration Codex GPT-5.4 `spec_kit:deep-review` closing audit** (`rvw-2026-04-11T13-50-06Z`) surfaced 16 residual findings (0 P0 / 10 P1 / 6 P2) that Parts A–D did not catch. The verdict was CONDITIONAL, and the full `review/` packet routed into a five-lane remediation pass that landed in the same packet:
     70	
-    71	1. **Lane 1 — Claim-Adjudication Stop Gate Wiring** closed F002 and F007 by adding a universal STOP veto pre-check and a dedicated `claimAdjudicationGate` in the review legal-stop decision tree, plus persisted `claim_adjudication` events, typed packet docs in `.opencode/skill/sk-deep-review/references/state_format.md` §9, and matching `.opencode/skill/sk-deep-review/references/loop_protocol.md` §Step 4a. New REQs: REQ-026, REQ-027.
+    71	1. **Lane 1 — Claim-Adjudication Stop Gate Wiring** closed F002 and F007 by adding a universal STOP veto pre-check and a dedicated `claimAdjudicationGate` in the review legal-stop decision tree, plus persisted `claim_adjudication` events, typed packet docs in `.opencode/skills/sk-deep-review/references/state_format.md` §9, and matching `.opencode/skills/sk-deep-review/references/loop_protocol.md` §Step 4a. New REQs: REQ-026, REQ-027.
     72	2. **Lane 2 — Coverage-Graph Session Isolation** closed F004, F005, F006, and F013 by bumping `deep-loop-graph.sqlite` to v2 with a composite primary key of `(spec_folder, loop_type, session_id, id)` on both `coverage_nodes` and `coverage_edges`, migrating via drop-and-recreate, adding a shared-ID collisions regression to `session-isolation.vitest.ts`, and documenting the typed `graphEvents` payload shape and namespace rules in both state_format references. New REQs: REQ-028, REQ-029.
     73	3. **Lane 3 — Lifecycle Persistence** closed F010, F011, and F012 by retracting the unimplemented `fork` and `completed-continue` branches from the review + research confirm workflows, wiring real event emission for `resumed` and `restarted`, and narrowing sk-improve-agent's `Resume/Continuation Semantics` to the shipped one-session model. New REQs: REQ-030, REQ-031.
-    74	4. **Lane 4 — Canonical Contract Cleanup** closed F001, F003, F008, and F009 by rewriting the canonical `.opencode/agent/deep-review.md` iteration skeleton to match `reduce-state.cjs:186`, adding `review_dimensions_json` pre-serialization in both review workflows, replacing the phantom `legalStop` record in `.opencode/skill/sk-deep-review/references/convergence.md` with the canonical persisted `blocked_stop` event shape, and correcting Signal 3 of the 3-signal convergence vote to `Dimension Coverage`. New REQs: REQ-032, REQ-033.
+    74	4. **Lane 4 — Canonical Contract Cleanup** closed F001, F003, F008, and F009 by rewriting the canonical `.opencode/agents/deep-review.md` iteration skeleton to match `reduce-state.cjs:186`, adding `review_dimensions_json` pre-serialization in both review workflows, replacing the phantom `legalStop` record in `.opencode/skills/sk-deep-review/references/convergence.md` with the canonical persisted `blocked_stop` event shape, and correcting Signal 3 of the 3-signal convergence vote to `Dimension Coverage`. New REQs: REQ-032, REQ-033.
     75	5. **Lane 5 — Release-Readiness Reconciliation** closed F013, F014, F015, and F016 by rewriting the phase-008 closeout surfaces, the packet-root completion surfaces below, and the reducer-owned `ACTIVE RISKS` dashboard section so non-P0 release-readiness debt stays visible. New REQ: REQ-034.
     76	
     77	Each lane shipped as an independent commit with targeted vitest and tsc verification. The closing audit is therefore the source of truth for what was still outstanding after phase 008, and the five-lane remediation is the source of truth for how the outstanding debt was absorbed.
@@ -1983,24 +1983,24 @@ exec
     97	
     98	| File Path | Change Type | Description |
     99	|-----------|-------------|-------------|
-   100	| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
-   101	| `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
-   102	| `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs` | Create | Search bounded deterministic numeric config candidates. |
-   103	| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
-   104	| `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
-   105	| `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
-   106	| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-   107	| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-   108	| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-   109	| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-   110	| `.opencode/command/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-   111	| `.opencode/command/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-   112	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-   113	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
-   114	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |
-   115	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-   116	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
-   117	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
+   100	| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
+   101	| `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
+   102	| `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs` | Create | Search bounded deterministic numeric config candidates. |
+   103	| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
+   104	| `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
+   105	| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
+   106	| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+   107	| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+   108	| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+   109	| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+   110	| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+   111	| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+   112	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+   113	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
+   114	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |
+   115	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+   116	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
+   117	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
    118	<!-- /ANCHOR:scope -->
    119	
    120	---
@@ -2146,9 +2146,9 @@ exec
    260	<!-- ANCHOR:questions -->
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -2694,9 +2694,9 @@ exec
    260	      board.dedupeLog.push({
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import fs from 'node:fs';
      2	import path from 'node:path';
@@ -2711,7 +2711,7 @@ exec
     11	
     12	const replayRunner = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs',
+    14	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs',
     15	)) as {
     16	  DEFAULT_CONFIG: Record<string, number | boolean>;
     17	  evaluateConvergence: (
@@ -2743,7 +2743,7 @@ exec
     43	
     44	const replayCorpus = require(path.join(
     45	  WORKSPACE_ROOT,
-    46	  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
+    46	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
     47	)) as {
     48	  buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: any[] };
     49	};
@@ -2968,7 +2968,7 @@ exec
     11	
     12	const replayCorpus = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
+    14	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
     15	)) as {
     16	  PACKET_FAMILIES: Record<string, { role: string; required: boolean; compatibilityGrade: string }>;
     17	  REQUIRED_ENTRY_FIELDS: readonly string[];
@@ -3237,9 +3237,9 @@ exec
    280	      expect(entry.metadata.extractedAt <= after).toBe(true);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs | sed -n '281,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs | sed -n '281,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    281	   5. SERIALIZATION
    282	----------------------------------------------------------------*/
@@ -3570,9 +3570,9 @@ exec
    455	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -4200,7 +4200,7 @@ exec
    302	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -4484,426 +4484,426 @@ exec
    280	    const latest = ratios[ratios.length - 1];
 
 exec
-/bin/zsh -lc 'rg -n "wave-coordination-board|wave-segment-state|coverage-graph|graphCoverage|graphConvergence|deep_loop_graph|waveSegments|convergenceScore|compositeStop|sessionId|mergeSegmentStates|updateBoard|createSegmentState|createBoard" .opencode/skill/system-spec-kit/scripts/lib .opencode/skill/system-spec-kit/scripts/optimizer .opencode/skill/system-spec-kit/scripts/tests' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "wave-coordination-board|wave-segment-state|coverage-graph|graphCoverage|graphConvergence|deep_loop_graph|waveSegments|convergenceScore|compositeStop|sessionId|mergeSegmentStates|updateBoard|createSegmentState|createBoard" .opencode/skills/system-spec-kit/scripts/lib .opencode/skills/system-spec-kit/scripts/optimizer .opencode/skills/system-spec-kit/scripts/tests' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:27:  compositeStopScore: { min: 0.40, max: 0.80, step: 0.05 },
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:10:// always include explicit keys: sessionId, generation, segment,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:24:  'sessionId',
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:62: * @param {string} config.sessionId - Parent session identifier
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:70:function createSegmentState(segmentId, config) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:74:  if (!config || !isNonEmptyString(config.sessionId)) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:82:    sessionId: config.sessionId,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:98:    convergenceScore: 0,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:111: * Every record includes sessionId, generation, segment, wave, and findingId.
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:127:    sessionId: segmentState.sessionId,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:137:    sessionId: segmentState.sessionId,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:161:    sessionId: record.sessionId || segmentState.sessionId,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:185:function mergeSegmentStates(states, mergeStrategy) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:258:    // Sort by sessionId, generation, segment, wave, findingId (then timestamp as tiebreaker)
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:259:    if ((a.sessionId || '') !== (b.sessionId || '')) return (a.sessionId || '').localeCompare(b.sessionId || '');
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:397:  createSegmentState,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:402:  mergeSegmentStates,
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:219:        (i) => i.convergenceSignals && i.convergenceSignals.graphCoverage !== undefined,
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:222:        (i) => i.convergenceSignals && i.convergenceSignals.waveSegments !== undefined,
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:312:    (records.find((r) => r.sessionId) || {}).sessionId ||
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:2:// ADR-001: sourceDiversity is an adapter replicating the MCP handler's canonical algorithm. Do not diverge. See ./mcp_server/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:13:const { computeClusterMetrics } = require('./coverage-graph-signals.cjs');
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:285: * compositeStop score from Phase 1. It adds structural awareness:
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:291: * @param {{ compositeStop?: number, rollingAvg?: number, madScore?: number }} [signals={}]
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:307:        compositeStop: null,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:334:  const compositeStop = typeof signals.compositeStop === 'number' ? signals.compositeStop : null;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:335:  const blendedScore = compositeStop !== null
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:336:    ? (compositeStop * 0.6) + (graphScore * 0.4)
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:349:      compositeStop: compositeStop !== null ? compositeStop : null,
-.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json:50:      "name": "compositeStopScore",
-.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json:91:      "name": "sessionId",
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:26:  compositeStopScore: 0.60,
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:67:  const compositeStopScore = config.compositeStopScore ?? DEFAULT_CONFIG.compositeStopScore;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:84:  const compositeScore = convergenceSignals.compositeStop ?? rollingAvg;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:87:  // compositePass is an additional signal only when compositeStop was
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:90:  const hasExplicitComposite = convergenceSignals.compositeStop !== undefined;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:91:  const compositePass = hasExplicitComposite && compositeScore >= compositeStopScore;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:215:    if (graphMetrics.graphConvergence > 0 || waveMetrics.convergenceScore > 0) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:29:  if (typeof node.sessionId === 'string' && node.sessionId) return node.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:30:  if (node.metadata && typeof node.metadata === 'object' && typeof node.metadata.sessionId === 'string' && node.metadata.sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:31:    return node.metadata.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:38:  if (typeof edge.sessionId === 'string' && edge.sessionId) return edge.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:39:  if (edge.metadata && typeof edge.metadata === 'object' && typeof edge.metadata.sessionId === 'string' && edge.metadata.sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:40:    return edge.metadata.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:48:function matchesSession(graph, record, sessionId, recordType) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:49:  if (!sessionId) return true;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:53:  return actualSessionId === sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:56:function getFilteredNodeIds(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:60:    if (matchesSession(graph, node, sessionId, 'node')) results.push(nodeId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:65:function getFilteredEdges(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:69:    if (matchesSession(graph, edge, sessionId, 'edge')) results.push(edge);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:85:function computeDegree(graph, nodeId, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:90:  if (!node || !matchesSession(graph, node, sessionId, 'node')) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:96:  for (const edge of getFilteredEdges(graph, sessionId)) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:117:function buildAdjacencyList(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:125:  for (const nodeId of getFilteredNodeIds(graph, sessionId)) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:130:  for (const edge of getFilteredEdges(graph, sessionId)) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:155:function computeDepth(graph, nodeId, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:158:  if (!matchesSession(graph, graph.nodes.get(nodeId), sessionId, 'node')) return 0;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:160:  const { adjacency, inDegree } = buildAdjacencyList(graph, sessionId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:204:function computeAllDepths(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:206:  const { adjacency, inDegree } = buildAdjacencyList(graph, sessionId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:238:  for (const nodeId of getFilteredNodeIds(graph, sessionId)) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:262:function computeMomentum(graph, nodeId, windowSize, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:265:  if (!node || !matchesSession(graph, node, sessionId, 'node')) return 0;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:274:  for (const edge of getFilteredEdges(graph, sessionId)) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:301:function computeClusterMetrics(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:305:  const filteredNodeIds = getFilteredNodeIds(graph, sessionId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:316:  for (const edge of getFilteredEdges(graph, sessionId)) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:127: * @param {string} [options.sessionId] - Session identifier (auto-generated if absent)
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:143:    sessionId: opts.sessionId || `wave-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:166: * @param {string} config.sessionId - Session identifier
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:176:  if (!config || !isNonEmptyString(config.sessionId) || !config.waveNumber) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:182:  const waveId = `${config.sessionId}-w${config.waveNumber}`;
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:203:    sessionId: config.sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:221:      sessionId: 'copilot-parity',
-.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:47:  sessionId?: string;
-.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:143:  const sessionId: string = config.sessionId || generateSessionId();
-.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:175:    SESSION_ID: sessionId,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:91:  if (typeof node.sessionId === 'string' && node.sessionId) return node.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:92:  if (node.metadata && typeof node.metadata === 'object' && typeof node.metadata.sessionId === 'string' && node.metadata.sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:93:    return node.metadata.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:100:  if (typeof edge.sessionId === 'string' && edge.sessionId) return edge.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:101:  if (edge.metadata && typeof edge.metadata === 'object' && typeof edge.metadata.sessionId === 'string' && edge.metadata.sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:102:    return edge.metadata.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:110:function matchesSession(graph, record, sessionId, recordType) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:111:  if (!sessionId) return true;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:115:  return actualSessionId === sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:174:    sessionId: typeof metadata.sessionId === 'string' && metadata.sessionId ? metadata.sessionId : undefined,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:311:function getNodes(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:315:    if (matchesSession(graph, node, sessionId, 'node')) results.push(node);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:320:function getEdges(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:324:    if (matchesSession(graph, edge, sessionId, 'edge')) results.push(edge);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:329:function getEdgesFrom(graph, nodeId, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:333:    if (edge.source === nodeId && matchesSession(graph, edge, sessionId, 'edge')) results.push(edge);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:345:function getEdgesTo(graph, nodeId, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:349:    if (edge.target === nodeId && matchesSession(graph, edge, sessionId, 'edge')) results.push(edge);
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:51:  run: (context: { sessionId: string }) => Promise<T>,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:58:  const sessionId = `session-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:70:    return await run({ sessionId });
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:82:  sessionId: string,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:99:    claudeSessionId: sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:100:    speckitSessionId: `speckit-${sessionId}`,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:125:  saveState(sessionId, state);
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:375:      await withHookSandbox(async ({ sessionId }) => {
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:378:        const liveStartup = handleStartup({ session_id: sessionId, specFolder: VALID_SPEC_FOLDER });
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:380:        seedHookState(sessionId, scenario);
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:384:        const cachedStartup = handleStartup({ session_id: sessionId, specFolder: VALID_SPEC_FOLDER });
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:58:      sessionId: 'session-test',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:84:      sessionId: 'session-test',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:106:      sessionId: 'foreign-session',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:137:      sessionId: 'codex-evidence',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:176:      sessionId: 'generic-infra',
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:54:          sessionId: 'session-001',
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:71:      '{"type":"iteration","run":2,"status":"insight","focus":"Second pass","findingsCount":2,"newInfoRatio":0.4,"answeredQuestions":["Question B"],"keyQuestions":["Question B","Question C"],"sourcesQueried":["https://example.com/two","memory:previous-run"],"toolsUsed":["Read","Grep"],"convergenceSignals":{"compositeStop":0.61},"timestamp":"2026-04-03T00:10:00Z","durationMs":1200}',
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:257:    expect(firstDashboard).toContain('convergenceScore: 0.61');
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:465:    const sessionId = generateSessionId();
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:466:    assertMatch(sessionId, /^session-\d+-[a-z0-9]+$/, 'EXT-Session-016: Session ID format correct');
-.opencode/skill/system-spec-kit/scripts/tests/detector-regression-floor.vitest.ts.test.ts:51:    const graphCoverage = predictGraphCoverage('oauth adapter', {
-.opencode/skill/system-spec-kit/scripts/tests/detector-regression-floor.vitest.ts.test.ts:62:    expect(graphCoverage).toEqual({
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:20:      graphConvergenceScore: number;
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:25:        convergenceScore: number;
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:49:function writeConfig(specFolder: string, sessionId: string): void {
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:54:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:61:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:197:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-blocked","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:205:    expect(result.registry.graphConvergenceScore).toBe(0.41);
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:216:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-allowed","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:225:    expect(result.registry.graphConvergenceScore).toBe(0.92);
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:228:    expect(result.dashboard).toContain('graphConvergenceScore: 0.92');
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:233:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-default","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:239:    expect(result.registry.graphConvergenceScore).toBe(0);
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:253:      '{"type":"config","topic":"Handler-shape fixture","sessionId":"graph-stop-handler","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:255:      '{"type":"event","event":"graph_convergence","decision":"STOP_ALLOWED","score":0.74,"signals":{"questionCoverage":0.8,"claimVerificationRate":0.7,"contradictionDensity":0.05,"sourceDiversity":2.1,"evidenceDepth":3.2,"score":0.74},"blockers":[],"trace":[],"timestamp":"2026-04-11T00:06:00Z","sessionId":"graph-stop-handler","generation":1}',
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:263:    expect(result.registry.graphConvergenceScore).toBe(0.74);
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:266:    expect(result.dashboard).toContain('graphConvergenceScore: 0.74');
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:39:  if (typeof node.sessionId === 'string' && node.sessionId) return node.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:40:  if (node.metadata && typeof node.metadata === 'object' && typeof node.metadata.sessionId === 'string' && node.metadata.sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:41:    return node.metadata.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:48:  if (typeof edge.sessionId === 'string' && edge.sessionId) return edge.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:49:  if (edge.metadata && typeof edge.metadata === 'object' && typeof edge.metadata.sessionId === 'string' && edge.metadata.sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:50:    return edge.metadata.sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:58:function matchesSession(graph, edge, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:59:  if (!sessionId) return true;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:60:  return getEdgeSessionId(graph, edge) === sessionId;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:76:function scanContradictions(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:82:    if (!matchesSession(graph, edge, sessionId)) continue;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112:function reportContradictions(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:116:  const raw = scanContradictions(graph, sessionId);
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:172:function contradictionDensity(graph, sessionId) {
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:176:    if (sessionId && getNodeSessionId(node) !== sessionId) continue;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:185:    if (!matchesSession(graph, edge, sessionId)) continue;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:12:  'scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:19:  computeGraphConvergence: (graph: Graph, signals?: { compositeStop?: number }) => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:27:      compositeStop: number | null;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:65: * coverage-graph-convergence helper AFTER it was refactored into a thin
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:75:describe('coverage-graph-convergence', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:177:  it('blends the graph score with compositeStop when stop-trace signals exist', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:186:    const result = convergenceModule.computeGraphConvergence(graph, { compositeStop: 0.8 });
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:187:    expect(result.components.compositeStop).toBe(0.8);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:12:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:28:describe('coverage-graph-core', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:12:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:21:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:30:describe('coverage-graph-signals', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:12:  '.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:16:  createBoard: (opts: { sessionId: string; generation?: number; loopType: string; target?: string }) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:17:  updateBoard: (board: any, results: any[]) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:28:  '.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:32:  createSegmentState: (id: string, config: { sessionId: string; generation?: number; waveId?: string; loopType?: string; files?: string[]; domains?: string[] }) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:35:  mergeSegmentStates: (states: any[], strategy?: string) => { merged: any; conflicts: any[]; dedupeLog: any[] };
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:47:describe('wave-coordination-board', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:49:  describe('createBoard', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:51:      const b = board.createBoard({ sessionId: 'sess-1', loopType: 'review', target: 'my-repo' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:53:      expect(b.sessionId).toBe('sess-1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:60:    it('throws for missing sessionId', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:61:      expect(board.createBoard({ loopType: 'review' } as any)).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:65:      expect(board.createBoard({ sessionId: 's', loopType: 'invalid' } as any)).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:69:  describe('updateBoard', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:71:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:72:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:81:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:82:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:91:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:92:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:104:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:105:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:121:      const b = board.createBoard({ sessionId: 's1', generation: 2, loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:127:      expect(record.sessionId).toBe('s1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:136:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:145:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:152:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:153:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:175:describe('wave-segment-state', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:179:      expect(segState.MERGE_KEYS).toEqual(['sessionId', 'generation', 'segment', 'wave', 'findingId']);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:183:  describe('createSegmentState', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:185:      const s = segState.createSegmentState('seg-1', { sessionId: 'sess-1', files: ['a.ts'] });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:187:      expect(s.sessionId).toBe('sess-1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:194:      expect(segState.createSegmentState('', { sessionId: 's' })).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:197:    it('throws for missing sessionId', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:198:      expect(segState.createSegmentState('seg-1', {} as any)).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:204:      const state = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 2, waveId: 'w1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:206:      expect(record.sessionId).toBe('s1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:216:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:219:      expect(state.jsonlRecords[0].sessionId).toBe('s1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:224:  describe('mergeSegmentStates', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:226:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:229:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:232:      const result = segState.mergeSegmentStates([s1, s2]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:238:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:241:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:244:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:250:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:253:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:256:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:262:      const s1 = segState.createSegmentState('seg-2', { sessionId: 's1', generation: 1 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:265:      const s2 = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 1 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:268:      const result = segState.mergeSegmentStates([s1, s2]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:275:      const result = segState.mergeSegmentStates([]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:282:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:294:        '{"sessionId":"s1","generation":1,"segment":"seg-1","wave":"w1","findingId":"f1","valid":true}',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:296:        '{"sessionId":"s1","generation":1,"segment":"seg-1","wave":"w1","findingId":"f2","also":"valid"}',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:308:        sessionId: 's1', generation: 1, segment: 'seg-1', wave: 'w1', findingId: 'f1',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:315:      const result = segState.validateMergeKeys({ sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:11:} from '../../mcp_server/lib/coverage-graph/coverage-graph-signals.js';
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:36:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:42:  computeGraphConvergence: (graph: CjsGraph, signals?: { compositeStop?: number }) => {
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:52:      compositeStop: number | null;
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:118:function computeTsEquivalentBlend(nodes: ResearchNode[], edges: ResearchEdge[], compositeStop: number) {
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:136:    blendedScore: round3((compositeStop * 0.6) + (graphScore * 0.4)),
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:143:    compositeStop: number;
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:155:      compositeStop: 0.2,
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:167:      compositeStop: 0.55,
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:186:      compositeStop: 0.9,
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:219:        compositeStop: testCase.compositeStop,
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:229:        testCase.compositeStop,
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:190: * @param sessionId - Session identifier for fallback label
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:195:  sessionId: string,
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:203:  return `${cliName} session ${sessionId.slice(0, 8)}`;
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:18:} from '../../mcp_server/lib/coverage-graph/coverage-graph-db.js';
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:19:import { handleCoverageGraphConvergence } from '../../mcp_server/handlers/coverage-graph/convergence.js';
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:26:function makeNode(id: string, sessionId: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:31:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:38:function makeEdge(id: string, sessionId: string, sourceId: string, targetId: string, relation: CoverageEdge['relation']): CoverageEdge {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:43:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-session-isolation-'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:106:  it('returns only the requested session nodes when sessionId is provided', () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:110:      sessionId: SESSION_A,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:137:  it('returns only the requested session edges when sessionId is provided', () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:141:      sessionId: SESSION_A,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:165:  it('computes convergence from the session-scoped subset and defaults to all sessions when sessionId is omitted', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:169:      sessionId: SESSION_A,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:175:      sessionId: SESSION_A,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:192:    expect(aggregateData.namespace.sessionId).toBeUndefined();
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:216:  const nsX = { specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE, sessionId: SESSION_X };
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:217:  const nsY = { specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE, sessionId: SESSION_Y };
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:219:  function collisionNode(sessionId: string, id: string, name: string): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:224:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:230:  function collisionEdge(sessionId: string, id: string, sourceId: string, targetId: string): CoverageEdge {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:235:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:246:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-collision-'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:300:    expect(edgeX?.sessionId).toBe(SESSION_X);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:301:    expect(edgeY?.sessionId).toBe(SESSION_Y);
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:92:    const convergenceScores = segmentStates.map(s => s.convergenceScore || 0);
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:93:    segmentConvergenceScore = convergenceScores.reduce((a, b) => a + b, 0) / convergenceScores.length;
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:96:    const unconverged = segmentStates.filter(s => (s.convergenceScore || 0) < (1.0 - thresh));
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:175: * @param {number} [signals.convergenceScore] - Current convergence score
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:193:  const convergenceScore = typeof signals.convergenceScore === 'number' ? signals.convergenceScore : 0;
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:194:  if (convergenceScore >= (1.0 - thresh)) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:197:      reason: `Segment converged: score ${convergenceScore.toFixed(3)} >= threshold ${(1.0 - thresh).toFixed(3)}`,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:24:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:35:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:44:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:54:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:102:describe('coverage-graph-stress', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:201:        compositeStop: 0.5,
-.opencode/skill/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts:135:      sessionId: 'hit-current-3',
-.opencode/skill/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts:150:      sessionId: 'hit-current-4',
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:61: * @param {string} options.sessionId - Session identifier
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:67:function createBoard(options) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:68:  if (!options || !isNonEmptyString(options.sessionId)) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:79:    sessionId: options.sessionId,
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:118:function updateBoard(board, segmentResults) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:172: * Keys: sessionId, generation, segment, wave, findingId.
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:176: * @param {object} board - Board context for sessionId/generation
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:188:    sessionId: board.sessionId,
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:307:  lines.push(`| Session | ${board.sessionId || 'N/A'} |`);
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:444:  createBoard,
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:445:  updateBoard,
-.opencode/skill/system-spec-kit/scripts/tests/causal-links-auto-populate.vitest.ts:89:        sessionId: 'implementation-save-2',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:71:      sessionId: 'hit-current-3',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:85:      sessionId: 'miss-current-2',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:98:      sessionId: 'ambiguity-current-3',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:125:        sessionId: 'hit-current-3',
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:215:      // Our sample data does not have graphCoverage, so expect warning
-.opencode/skill/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:32:function createSessionData(specFolderName: string, sessionId: string): SessionData {
-.opencode/skill/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:55:    SESSION_ID: sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:84:  it('passes options.sessionId as the third collectSessionDataFn argument', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:115:        sessionId: explicitSessionId,
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:79:    const sessionId = 'test-session-123';
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:84:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:97:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:34:  '.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:36:  createBoard: (opts: any) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:37:  updateBoard: (board: any, results: any[]) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:51:  '.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:53:  createSegmentState: (id: string, config: any) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:55:  mergeSegmentStates: (states: any[], strategy?: string) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:67:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:70:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:79:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:109:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:112:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:115:      const result = segState.mergeSegmentStates([s1, s2]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:124:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:127:          { convergenceScore: 0.98 },
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:128:          { convergenceScore: 0.01 },
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:139:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:142:          { convergenceScore: 0.98 },
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:143:          { convergenceScore: 0.97 },
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:158:        convergenceScore: 0.98,
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:169:        convergenceScore: 0.1,
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:180:        convergenceScore: 0.3,
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:190:        convergenceScore: 0.99,
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:259:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:268:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:62:    sessionId: 'rvw-fail-closed',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:117:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:119:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:141:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:142:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:179:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:182:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:195:    expect(result.registry.sessionId).toBe('rvw-fail-closed');
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:22:} from '../../mcp_server/lib/coverage-graph/coverage-graph-db.js';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:26:} from '../../mcp_server/lib/coverage-graph/coverage-graph-query.js';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:31:} from '../../mcp_server/lib/coverage-graph/coverage-graph-signals.js';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:41:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:59:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:67:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:76:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:100:function makeResearchNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:105:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:112:function makeReviewNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:117:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:128:describe('coverage-graph cross-layer integration', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:132:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-cross-layer-'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:168:      sessionId: 'session-clamp',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:177:      { specFolder: 'spec-clamp', loopType: 'research', sessionId: 'session-clamp' },
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:187:      sessionId: 'session-empty',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:224:      sessionId: 'session-loop',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:234:    expect(getEdges({ specFolder: 'spec-loop', loopType: 'research', sessionId: 'session-loop' })).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:239:    const sessionId = 'session-signals';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:240:    const ns: Namespace = { specFolder, loopType: 'research', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:258:      makeResearchNode(specFolder, sessionId, 'question-1', 'QUESTION', 'Question 1'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:259:      makeResearchNode(specFolder, sessionId, 'finding-1', 'FINDING', 'Finding 1'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:260:      makeResearchNode(specFolder, sessionId, 'finding-2', 'FINDING', 'Finding 2'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:261:      makeResearchNode(specFolder, sessionId, 'source-1', 'SOURCE', 'Source 1', { quality_class: 'primary' }),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:262:      makeResearchNode(specFolder, sessionId, 'source-2', 'SOURCE', 'Source 2', { quality_class: 'secondary' }),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:270:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:280:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:290:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:300:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:310:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:354:    const researchNs: Namespace = { specFolder, loopType: 'research', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:355:    const reviewNs: Namespace = { specFolder, loopType: 'review', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:357:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-question', 'QUESTION', 'Research question'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:358:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-a', 'FINDING', 'Research finding A'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:359:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-b', 'FINDING', 'Research finding B'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:364:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:371:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-dimension', 'DIMENSION', 'Correctness'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:372:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-file', 'FILE', 'coverage-graph.ts', { hotspot_score: 2 }));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:373:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-finding', 'FINDING', 'Review finding'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:378:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:401:        name: 'coverage-graph.ts',
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:58:      'convergenceScore',
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:117:    expect(stateFormat).toContain('convergenceScore');
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:579:  if ((step.toolName === 'memory_context' || step.toolName === 'memory_search') && typeof args.sessionId === 'string') {
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:580:    const candidate = args.sessionId.trim();
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:584:        args.sessionId = runtimeState.lastSessionId;
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:586:        delete args.sessionId;
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:874:    : typeof data.sessionId === 'string'
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:875:      ? data.sessionId
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:1:{"type":"config","mode":"review","topic":"Review of graph optimization module","reviewTarget":"specs/040-graph-optimization","reviewTargetType":"spec-folder","reviewDimensions":["correctness","security","traceability","maintainability"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"stuckThreshold":2,"createdAt":"2026-03-20T14:00:00Z","specFolder":"040-graph-optimization","releaseReadinessState":"in-progress"}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:2:{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"D1 Correctness - reducer logic review","dimensions":["correctness"],"filesReviewed":["src/graph-reducer.ts","src/parser.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":4,"findingsSummary":{"P0":1,"P1":2,"P2":1},"findingsNew":{"P0":1,"P1":2,"P2":1},"newFindingsRatio":0.90,"timestamp":"2026-03-20T14:12:00Z","durationMs":72000}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:3:{"type":"iteration","mode":"review","run":2,"status":"complete","focus":"D2 Security - injection prevention audit","dimensions":["security","correctness"],"filesReviewed":["src/sanitizer.ts","src/input-validator.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":6,"findingsSummary":{"P0":1,"P1":3,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.40,"timestamp":"2026-03-20T14:24:00Z","durationMs":65000}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"D3 Traceability + D4 Maintainability sweep","dimensions":["traceability","maintainability"],"filesReviewed":["specs/040/spec.md","src/graph-reducer.ts","src/utils.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":7,"findingsSummary":{"P0":0,"P1":3,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":2},"newFindingsRatio":0.08,"convergenceSignals":{"rollingAvg":0.09,"madScore":0.06,"noveltyRatio":0.08,"compositeStop":0.62},"timestamp":"2026-03-20T14:36:00Z","durationMs":58000}
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:19:  createWaveContext: (target: string, loopType: 'review' | 'research', options?: { sessionId?: string; generation?: number }) => object;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:20:  dispatchWave: (segments: object[], config: { sessionId: string; generation?: number; waveNumber: number; maxParallel?: number }) => { waveId: string; dispatches: object[]; timestamp: string; totalSegments: number; activeSegments: number; deferredSegments: number };
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:90:      expect(ctx.sessionId).toMatch(/^wave-/);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:116:        sessionId: 'test-session',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:128:        sessionId: 'test',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:137:      expect(lifecycle.dispatchWave([], { sessionId: 's', waveNumber: 1 })).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/sample-iterations.jsonl:1:{"type":"config","mode":"research","topic":"Legacy holdout replay fixture","maxIterations":5,"convergenceThreshold":0.15,"stuckThreshold":3,"sessionId":"replay-028-fixture"}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json:6:  "compositeStopScore": 0.60
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json:6:  "compositeStopScore": 0.55
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl:1:{"type":"config","mode":"review","topic":"Replay fixture for 040","maxIterations":7,"convergenceThreshold":0.10,"stuckThreshold":2,"sessionId":"replay-040-fixture"}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl:4:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"Final pass","findingsCount":4,"newFindingsRatio":0.05,"convergenceSignals":{"rollingAvg":0.08,"madScore":0.04,"noveltyRatio":0.05,"compositeStop":0.65},"timestamp":"2026-03-20T14:30:00Z","durationMs":50000}
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:5: *   - CJS modules: coverage-graph-core.cjs, coverage-graph-signals.cjs,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:6: *     coverage-graph-convergence.cjs, coverage-graph-contradictions.cjs
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:7: *   - TS/MCP layer: coverage-graph-db.ts (types and constants)
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:27:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:40:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:49:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:61:  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:71: * coverage-graph-db.ts. We define them here as test fixtures so we
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:74: * IMPORTANT: If coverage-graph-db.ts changes, these must be updated.
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:111:describe('coverage-graph-integration: CJS ↔ TS contract alignment', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:271:      const selfLoopConstraintDocumented = true; // From reading coverage-graph-db.ts line 178
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:386:    it('computeGraphConvergence blends with Phase 1 compositeStop signal', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:392:        compositeStop: 0.9,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:395:      // Blended score with high compositeStop should be >= graph-only score
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:27:  compositeStopScore: { min: 0.40, max: 0.80, step: 0.05 },
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:10:// always include explicit keys: sessionId, generation, segment,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:24:  'sessionId',
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:62: * @param {string} config.sessionId - Parent session identifier
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:70:function createSegmentState(segmentId, config) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:74:  if (!config || !isNonEmptyString(config.sessionId)) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:82:    sessionId: config.sessionId,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:98:    convergenceScore: 0,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:111: * Every record includes sessionId, generation, segment, wave, and findingId.
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:127:    sessionId: segmentState.sessionId,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:137:    sessionId: segmentState.sessionId,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:161:    sessionId: record.sessionId || segmentState.sessionId,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:185:function mergeSegmentStates(states, mergeStrategy) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:258:    // Sort by sessionId, generation, segment, wave, findingId (then timestamp as tiebreaker)
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:259:    if ((a.sessionId || '') !== (b.sessionId || '')) return (a.sessionId || '').localeCompare(b.sessionId || '');
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:397:  createSegmentState,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:402:  mergeSegmentStates,
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:219:        (i) => i.convergenceSignals && i.convergenceSignals.graphCoverage !== undefined,
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:222:        (i) => i.convergenceSignals && i.convergenceSignals.waveSegments !== undefined,
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:312:    (records.find((r) => r.sessionId) || {}).sessionId ||
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:2:// ADR-001: sourceDiversity is an adapter replicating the MCP handler's canonical algorithm. Do not diverge. See ./mcp_server/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:13:const { computeClusterMetrics } = require('./coverage-graph-signals.cjs');
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:285: * compositeStop score from Phase 1. It adds structural awareness:
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:291: * @param {{ compositeStop?: number, rollingAvg?: number, madScore?: number }} [signals={}]
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:307:        compositeStop: null,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:334:  const compositeStop = typeof signals.compositeStop === 'number' ? signals.compositeStop : null;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:335:  const blendedScore = compositeStop !== null
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:336:    ? (compositeStop * 0.6) + (graphScore * 0.4)
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:349:      compositeStop: compositeStop !== null ? compositeStop : null,
+.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:50:      "name": "compositeStopScore",
+.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:91:      "name": "sessionId",
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:26:  compositeStopScore: 0.60,
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:67:  const compositeStopScore = config.compositeStopScore ?? DEFAULT_CONFIG.compositeStopScore;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:84:  const compositeScore = convergenceSignals.compositeStop ?? rollingAvg;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:87:  // compositePass is an additional signal only when compositeStop was
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:90:  const hasExplicitComposite = convergenceSignals.compositeStop !== undefined;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:91:  const compositePass = hasExplicitComposite && compositeScore >= compositeStopScore;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:215:    if (graphMetrics.graphConvergence > 0 || waveMetrics.convergenceScore > 0) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:29:  if (typeof node.sessionId === 'string' && node.sessionId) return node.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:30:  if (node.metadata && typeof node.metadata === 'object' && typeof node.metadata.sessionId === 'string' && node.metadata.sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:31:    return node.metadata.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:38:  if (typeof edge.sessionId === 'string' && edge.sessionId) return edge.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:39:  if (edge.metadata && typeof edge.metadata === 'object' && typeof edge.metadata.sessionId === 'string' && edge.metadata.sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:40:    return edge.metadata.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:48:function matchesSession(graph, record, sessionId, recordType) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:49:  if (!sessionId) return true;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:53:  return actualSessionId === sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:56:function getFilteredNodeIds(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:60:    if (matchesSession(graph, node, sessionId, 'node')) results.push(nodeId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:65:function getFilteredEdges(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:69:    if (matchesSession(graph, edge, sessionId, 'edge')) results.push(edge);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:85:function computeDegree(graph, nodeId, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:90:  if (!node || !matchesSession(graph, node, sessionId, 'node')) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:96:  for (const edge of getFilteredEdges(graph, sessionId)) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:117:function buildAdjacencyList(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:125:  for (const nodeId of getFilteredNodeIds(graph, sessionId)) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:130:  for (const edge of getFilteredEdges(graph, sessionId)) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:155:function computeDepth(graph, nodeId, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:158:  if (!matchesSession(graph, graph.nodes.get(nodeId), sessionId, 'node')) return 0;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:160:  const { adjacency, inDegree } = buildAdjacencyList(graph, sessionId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:204:function computeAllDepths(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:206:  const { adjacency, inDegree } = buildAdjacencyList(graph, sessionId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:238:  for (const nodeId of getFilteredNodeIds(graph, sessionId)) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:262:function computeMomentum(graph, nodeId, windowSize, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:265:  if (!node || !matchesSession(graph, node, sessionId, 'node')) return 0;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:274:  for (const edge of getFilteredEdges(graph, sessionId)) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:301:function computeClusterMetrics(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:305:  const filteredNodeIds = getFilteredNodeIds(graph, sessionId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:316:  for (const edge of getFilteredEdges(graph, sessionId)) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:127: * @param {string} [options.sessionId] - Session identifier (auto-generated if absent)
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:143:    sessionId: opts.sessionId || `wave-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:166: * @param {string} config.sessionId - Session identifier
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:176:  if (!config || !isNonEmptyString(config.sessionId) || !config.waveNumber) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:182:  const waveId = `${config.sessionId}-w${config.waveNumber}`;
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:203:    sessionId: config.sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:221:      sessionId: 'copilot-parity',
+.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:47:  sessionId?: string;
+.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:143:  const sessionId: string = config.sessionId || generateSessionId();
+.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:175:    SESSION_ID: sessionId,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:91:  if (typeof node.sessionId === 'string' && node.sessionId) return node.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:92:  if (node.metadata && typeof node.metadata === 'object' && typeof node.metadata.sessionId === 'string' && node.metadata.sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:93:    return node.metadata.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:100:  if (typeof edge.sessionId === 'string' && edge.sessionId) return edge.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:101:  if (edge.metadata && typeof edge.metadata === 'object' && typeof edge.metadata.sessionId === 'string' && edge.metadata.sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:102:    return edge.metadata.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:110:function matchesSession(graph, record, sessionId, recordType) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:111:  if (!sessionId) return true;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:115:  return actualSessionId === sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:174:    sessionId: typeof metadata.sessionId === 'string' && metadata.sessionId ? metadata.sessionId : undefined,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:311:function getNodes(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:315:    if (matchesSession(graph, node, sessionId, 'node')) results.push(node);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:320:function getEdges(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:324:    if (matchesSession(graph, edge, sessionId, 'edge')) results.push(edge);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:329:function getEdgesFrom(graph, nodeId, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:333:    if (edge.source === nodeId && matchesSession(graph, edge, sessionId, 'edge')) results.push(edge);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:345:function getEdgesTo(graph, nodeId, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:349:    if (edge.target === nodeId && matchesSession(graph, edge, sessionId, 'edge')) results.push(edge);
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:51:  run: (context: { sessionId: string }) => Promise<T>,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:58:  const sessionId = `session-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:70:    return await run({ sessionId });
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:82:  sessionId: string,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:99:    claudeSessionId: sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:100:    speckitSessionId: `speckit-${sessionId}`,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:125:  saveState(sessionId, state);
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:375:      await withHookSandbox(async ({ sessionId }) => {
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:378:        const liveStartup = handleStartup({ session_id: sessionId, specFolder: VALID_SPEC_FOLDER });
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:380:        seedHookState(sessionId, scenario);
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:384:        const cachedStartup = handleStartup({ session_id: sessionId, specFolder: VALID_SPEC_FOLDER });
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:58:      sessionId: 'session-test',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:84:      sessionId: 'session-test',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:106:      sessionId: 'foreign-session',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:137:      sessionId: 'codex-evidence',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:176:      sessionId: 'generic-infra',
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:54:          sessionId: 'session-001',
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:71:      '{"type":"iteration","run":2,"status":"insight","focus":"Second pass","findingsCount":2,"newInfoRatio":0.4,"answeredQuestions":["Question B"],"keyQuestions":["Question B","Question C"],"sourcesQueried":["https://example.com/two","memory:previous-run"],"toolsUsed":["Read","Grep"],"convergenceSignals":{"compositeStop":0.61},"timestamp":"2026-04-03T00:10:00Z","durationMs":1200}',
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:257:    expect(firstDashboard).toContain('convergenceScore: 0.61');
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:465:    const sessionId = generateSessionId();
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:466:    assertMatch(sessionId, /^session-\d+-[a-z0-9]+$/, 'EXT-Session-016: Session ID format correct');
+.opencode/skills/system-spec-kit/scripts/tests/detector-regression-floor.vitest.ts.test.ts:51:    const graphCoverage = predictGraphCoverage('oauth adapter', {
+.opencode/skills/system-spec-kit/scripts/tests/detector-regression-floor.vitest.ts.test.ts:62:    expect(graphCoverage).toEqual({
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:20:      graphConvergenceScore: number;
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:25:        convergenceScore: number;
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:49:function writeConfig(specFolder: string, sessionId: string): void {
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:54:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:61:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:197:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-blocked","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:205:    expect(result.registry.graphConvergenceScore).toBe(0.41);
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:216:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-allowed","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:225:    expect(result.registry.graphConvergenceScore).toBe(0.92);
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:228:    expect(result.dashboard).toContain('graphConvergenceScore: 0.92');
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:233:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-default","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:239:    expect(result.registry.graphConvergenceScore).toBe(0);
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:253:      '{"type":"config","topic":"Handler-shape fixture","sessionId":"graph-stop-handler","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:255:      '{"type":"event","event":"graph_convergence","decision":"STOP_ALLOWED","score":0.74,"signals":{"questionCoverage":0.8,"claimVerificationRate":0.7,"contradictionDensity":0.05,"sourceDiversity":2.1,"evidenceDepth":3.2,"score":0.74},"blockers":[],"trace":[],"timestamp":"2026-04-11T00:06:00Z","sessionId":"graph-stop-handler","generation":1}',
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:263:    expect(result.registry.graphConvergenceScore).toBe(0.74);
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:266:    expect(result.dashboard).toContain('graphConvergenceScore: 0.74');
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:39:  if (typeof node.sessionId === 'string' && node.sessionId) return node.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:40:  if (node.metadata && typeof node.metadata === 'object' && typeof node.metadata.sessionId === 'string' && node.metadata.sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:41:    return node.metadata.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:48:  if (typeof edge.sessionId === 'string' && edge.sessionId) return edge.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:49:  if (edge.metadata && typeof edge.metadata === 'object' && typeof edge.metadata.sessionId === 'string' && edge.metadata.sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:50:    return edge.metadata.sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:58:function matchesSession(graph, edge, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:59:  if (!sessionId) return true;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:60:  return getEdgeSessionId(graph, edge) === sessionId;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:76:function scanContradictions(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:82:    if (!matchesSession(graph, edge, sessionId)) continue;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:112:function reportContradictions(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:116:  const raw = scanContradictions(graph, sessionId);
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:172:function contradictionDensity(graph, sessionId) {
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:176:    if (sessionId && getNodeSessionId(node) !== sessionId) continue;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:185:    if (!matchesSession(graph, edge, sessionId)) continue;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:12:  'scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:19:  computeGraphConvergence: (graph: Graph, signals?: { compositeStop?: number }) => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:27:      compositeStop: number | null;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:65: * coverage-graph-convergence helper AFTER it was refactored into a thin
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:75:describe('coverage-graph-convergence', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:177:  it('blends the graph score with compositeStop when stop-trace signals exist', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:186:    const result = convergenceModule.computeGraphConvergence(graph, { compositeStop: 0.8 });
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:187:    expect(result.components.compositeStop).toBe(0.8);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:12:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts:28:describe('coverage-graph-core', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:12:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:21:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:30:describe('coverage-graph-signals', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:12:  '.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:16:  createBoard: (opts: { sessionId: string; generation?: number; loopType: string; target?: string }) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:17:  updateBoard: (board: any, results: any[]) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:28:  '.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:32:  createSegmentState: (id: string, config: { sessionId: string; generation?: number; waveId?: string; loopType?: string; files?: string[]; domains?: string[] }) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:35:  mergeSegmentStates: (states: any[], strategy?: string) => { merged: any; conflicts: any[]; dedupeLog: any[] };
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:47:describe('wave-coordination-board', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:49:  describe('createBoard', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:51:      const b = board.createBoard({ sessionId: 'sess-1', loopType: 'review', target: 'my-repo' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:53:      expect(b.sessionId).toBe('sess-1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:60:    it('throws for missing sessionId', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:61:      expect(board.createBoard({ loopType: 'review' } as any)).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:65:      expect(board.createBoard({ sessionId: 's', loopType: 'invalid' } as any)).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:69:  describe('updateBoard', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:71:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:72:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:81:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:82:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:91:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:92:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:104:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:105:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:121:      const b = board.createBoard({ sessionId: 's1', generation: 2, loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:127:      expect(record.sessionId).toBe('s1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:136:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:145:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:152:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:153:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:175:describe('wave-segment-state', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:179:      expect(segState.MERGE_KEYS).toEqual(['sessionId', 'generation', 'segment', 'wave', 'findingId']);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:183:  describe('createSegmentState', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:185:      const s = segState.createSegmentState('seg-1', { sessionId: 'sess-1', files: ['a.ts'] });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:187:      expect(s.sessionId).toBe('sess-1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:194:      expect(segState.createSegmentState('', { sessionId: 's' })).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:197:    it('throws for missing sessionId', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:198:      expect(segState.createSegmentState('seg-1', {} as any)).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:204:      const state = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 2, waveId: 'w1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:206:      expect(record.sessionId).toBe('s1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:216:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:219:      expect(state.jsonlRecords[0].sessionId).toBe('s1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:224:  describe('mergeSegmentStates', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:226:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:229:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:232:      const result = segState.mergeSegmentStates([s1, s2]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:238:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:241:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:244:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:250:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:253:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:256:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:262:      const s1 = segState.createSegmentState('seg-2', { sessionId: 's1', generation: 1 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:265:      const s2 = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 1 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:268:      const result = segState.mergeSegmentStates([s1, s2]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:275:      const result = segState.mergeSegmentStates([]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:282:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:294:        '{"sessionId":"s1","generation":1,"segment":"seg-1","wave":"w1","findingId":"f1","valid":true}',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:296:        '{"sessionId":"s1","generation":1,"segment":"seg-1","wave":"w1","findingId":"f2","also":"valid"}',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:308:        sessionId: 's1', generation: 1, segment: 'seg-1', wave: 'w1', findingId: 'f1',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:315:      const result = segState.validateMergeKeys({ sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:11:} from '../../mcp_server/lib/coverage-graph/coverage-graph-signals.js';
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:36:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:42:  computeGraphConvergence: (graph: CjsGraph, signals?: { compositeStop?: number }) => {
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:52:      compositeStop: number | null;
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:118:function computeTsEquivalentBlend(nodes: ResearchNode[], edges: ResearchEdge[], compositeStop: number) {
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:136:    blendedScore: round3((compositeStop * 0.6) + (graphScore * 0.4)),
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:143:    compositeStop: number;
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:155:      compositeStop: 0.2,
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:167:      compositeStop: 0.55,
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:186:      compositeStop: 0.9,
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:219:        compositeStop: testCase.compositeStop,
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:229:        testCase.compositeStop,
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:190: * @param sessionId - Session identifier for fallback label
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:195:  sessionId: string,
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:203:  return `${cliName} session ${sessionId.slice(0, 8)}`;
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:18:} from '../../mcp_server/lib/coverage-graph/coverage-graph-db.js';
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:19:import { handleCoverageGraphConvergence } from '../../mcp_server/handlers/coverage-graph/convergence.js';
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:26:function makeNode(id: string, sessionId: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:31:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:38:function makeEdge(id: string, sessionId: string, sourceId: string, targetId: string, relation: CoverageEdge['relation']): CoverageEdge {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:43:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-session-isolation-'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:106:  it('returns only the requested session nodes when sessionId is provided', () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:110:      sessionId: SESSION_A,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:137:  it('returns only the requested session edges when sessionId is provided', () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:141:      sessionId: SESSION_A,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:165:  it('computes convergence from the session-scoped subset and defaults to all sessions when sessionId is omitted', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:169:      sessionId: SESSION_A,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:175:      sessionId: SESSION_A,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:192:    expect(aggregateData.namespace.sessionId).toBeUndefined();
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:216:  const nsX = { specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE, sessionId: SESSION_X };
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:217:  const nsY = { specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE, sessionId: SESSION_Y };
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:219:  function collisionNode(sessionId: string, id: string, name: string): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:224:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:230:  function collisionEdge(sessionId: string, id: string, sourceId: string, targetId: string): CoverageEdge {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:235:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:246:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-collision-'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:300:    expect(edgeX?.sessionId).toBe(SESSION_X);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:301:    expect(edgeY?.sessionId).toBe(SESSION_Y);
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:92:    const convergenceScores = segmentStates.map(s => s.convergenceScore || 0);
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:93:    segmentConvergenceScore = convergenceScores.reduce((a, b) => a + b, 0) / convergenceScores.length;
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:96:    const unconverged = segmentStates.filter(s => (s.convergenceScore || 0) < (1.0 - thresh));
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:175: * @param {number} [signals.convergenceScore] - Current convergence score
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:193:  const convergenceScore = typeof signals.convergenceScore === 'number' ? signals.convergenceScore : 0;
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:194:  if (convergenceScore >= (1.0 - thresh)) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:197:      reason: `Segment converged: score ${convergenceScore.toFixed(3)} >= threshold ${(1.0 - thresh).toFixed(3)}`,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:24:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:35:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:44:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:54:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:102:describe('coverage-graph-stress', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:201:        compositeStop: 0.5,
+.opencode/skills/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts:135:      sessionId: 'hit-current-3',
+.opencode/skills/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts:150:      sessionId: 'hit-current-4',
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:61: * @param {string} options.sessionId - Session identifier
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:67:function createBoard(options) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:68:  if (!options || !isNonEmptyString(options.sessionId)) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:79:    sessionId: options.sessionId,
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:118:function updateBoard(board, segmentResults) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:172: * Keys: sessionId, generation, segment, wave, findingId.
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:176: * @param {object} board - Board context for sessionId/generation
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:188:    sessionId: board.sessionId,
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:307:  lines.push(`| Session | ${board.sessionId || 'N/A'} |`);
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:444:  createBoard,
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:445:  updateBoard,
+.opencode/skills/system-spec-kit/scripts/tests/causal-links-auto-populate.vitest.ts:89:        sessionId: 'implementation-save-2',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:71:      sessionId: 'hit-current-3',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:85:      sessionId: 'miss-current-2',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:98:      sessionId: 'ambiguity-current-3',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:125:        sessionId: 'hit-current-3',
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:215:      // Our sample data does not have graphCoverage, so expect warning
+.opencode/skills/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:32:function createSessionData(specFolderName: string, sessionId: string): SessionData {
+.opencode/skills/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:55:    SESSION_ID: sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:84:  it('passes options.sessionId as the third collectSessionDataFn argument', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:115:        sessionId: explicitSessionId,
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:79:    const sessionId = 'test-session-123';
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:84:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:97:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:34:  '.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:36:  createBoard: (opts: any) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:37:  updateBoard: (board: any, results: any[]) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:51:  '.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:53:  createSegmentState: (id: string, config: any) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:55:  mergeSegmentStates: (states: any[], strategy?: string) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:67:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:70:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:79:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:109:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:112:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:115:      const result = segState.mergeSegmentStates([s1, s2]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:124:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:127:          { convergenceScore: 0.98 },
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:128:          { convergenceScore: 0.01 },
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:139:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:142:          { convergenceScore: 0.98 },
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:143:          { convergenceScore: 0.97 },
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:158:        convergenceScore: 0.98,
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:169:        convergenceScore: 0.1,
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:180:        convergenceScore: 0.3,
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:190:        convergenceScore: 0.99,
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:259:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:268:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:62:    sessionId: 'rvw-fail-closed',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:117:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:119:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:141:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:142:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:179:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:182:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:195:    expect(result.registry.sessionId).toBe('rvw-fail-closed');
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:22:} from '../../mcp_server/lib/coverage-graph/coverage-graph-db.js';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:26:} from '../../mcp_server/lib/coverage-graph/coverage-graph-query.js';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:31:} from '../../mcp_server/lib/coverage-graph/coverage-graph-signals.js';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:41:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:59:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:67:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:76:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:100:function makeResearchNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:105:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:112:function makeReviewNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:117:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:128:describe('coverage-graph cross-layer integration', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:132:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-cross-layer-'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:168:      sessionId: 'session-clamp',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:177:      { specFolder: 'spec-clamp', loopType: 'research', sessionId: 'session-clamp' },
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:187:      sessionId: 'session-empty',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:224:      sessionId: 'session-loop',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:234:    expect(getEdges({ specFolder: 'spec-loop', loopType: 'research', sessionId: 'session-loop' })).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:239:    const sessionId = 'session-signals';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:240:    const ns: Namespace = { specFolder, loopType: 'research', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:258:      makeResearchNode(specFolder, sessionId, 'question-1', 'QUESTION', 'Question 1'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:259:      makeResearchNode(specFolder, sessionId, 'finding-1', 'FINDING', 'Finding 1'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:260:      makeResearchNode(specFolder, sessionId, 'finding-2', 'FINDING', 'Finding 2'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:261:      makeResearchNode(specFolder, sessionId, 'source-1', 'SOURCE', 'Source 1', { quality_class: 'primary' }),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:262:      makeResearchNode(specFolder, sessionId, 'source-2', 'SOURCE', 'Source 2', { quality_class: 'secondary' }),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:270:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:280:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:290:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:300:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:310:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:354:    const researchNs: Namespace = { specFolder, loopType: 'research', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:355:    const reviewNs: Namespace = { specFolder, loopType: 'review', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:357:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-question', 'QUESTION', 'Research question'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:358:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-a', 'FINDING', 'Research finding A'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:359:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-b', 'FINDING', 'Research finding B'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:364:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:371:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-dimension', 'DIMENSION', 'Correctness'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:372:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-file', 'FILE', 'coverage-graph.ts', { hotspot_score: 2 }));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:373:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-finding', 'FINDING', 'Review finding'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:378:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:401:        name: 'coverage-graph.ts',
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:58:      'convergenceScore',
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:117:    expect(stateFormat).toContain('convergenceScore');
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:579:  if ((step.toolName === 'memory_context' || step.toolName === 'memory_search') && typeof args.sessionId === 'string') {
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:580:    const candidate = args.sessionId.trim();
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:584:        args.sessionId = runtimeState.lastSessionId;
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:586:        delete args.sessionId;
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:874:    : typeof data.sessionId === 'string'
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:875:      ? data.sessionId
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:1:{"type":"config","mode":"review","topic":"Review of graph optimization module","reviewTarget":"specs/040-graph-optimization","reviewTargetType":"spec-folder","reviewDimensions":["correctness","security","traceability","maintainability"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"stuckThreshold":2,"createdAt":"2026-03-20T14:00:00Z","specFolder":"040-graph-optimization","releaseReadinessState":"in-progress"}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:2:{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"D1 Correctness - reducer logic review","dimensions":["correctness"],"filesReviewed":["src/graph-reducer.ts","src/parser.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":4,"findingsSummary":{"P0":1,"P1":2,"P2":1},"findingsNew":{"P0":1,"P1":2,"P2":1},"newFindingsRatio":0.90,"timestamp":"2026-03-20T14:12:00Z","durationMs":72000}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:3:{"type":"iteration","mode":"review","run":2,"status":"complete","focus":"D2 Security - injection prevention audit","dimensions":["security","correctness"],"filesReviewed":["src/sanitizer.ts","src/input-validator.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":6,"findingsSummary":{"P0":1,"P1":3,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.40,"timestamp":"2026-03-20T14:24:00Z","durationMs":65000}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"D3 Traceability + D4 Maintainability sweep","dimensions":["traceability","maintainability"],"filesReviewed":["specs/040/spec.md","src/graph-reducer.ts","src/utils.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":7,"findingsSummary":{"P0":0,"P1":3,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":2},"newFindingsRatio":0.08,"convergenceSignals":{"rollingAvg":0.09,"madScore":0.06,"noveltyRatio":0.08,"compositeStop":0.62},"timestamp":"2026-03-20T14:36:00Z","durationMs":58000}
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:19:  createWaveContext: (target: string, loopType: 'review' | 'research', options?: { sessionId?: string; generation?: number }) => object;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:20:  dispatchWave: (segments: object[], config: { sessionId: string; generation?: number; waveNumber: number; maxParallel?: number }) => { waveId: string; dispatches: object[]; timestamp: string; totalSegments: number; activeSegments: number; deferredSegments: number };
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:90:      expect(ctx.sessionId).toMatch(/^wave-/);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:116:        sessionId: 'test-session',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:128:        sessionId: 'test',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:137:      expect(lifecycle.dispatchWave([], { sessionId: 's', waveNumber: 1 })).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/sample-iterations.jsonl:1:{"type":"config","mode":"research","topic":"Legacy holdout replay fixture","maxIterations":5,"convergenceThreshold":0.15,"stuckThreshold":3,"sessionId":"replay-028-fixture"}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json:6:  "compositeStopScore": 0.60
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json:6:  "compositeStopScore": 0.55
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl:1:{"type":"config","mode":"review","topic":"Replay fixture for 040","maxIterations":7,"convergenceThreshold":0.10,"stuckThreshold":2,"sessionId":"replay-040-fixture"}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl:4:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"Final pass","findingsCount":4,"newFindingsRatio":0.05,"convergenceSignals":{"rollingAvg":0.08,"madScore":0.04,"noveltyRatio":0.05,"compositeStop":0.65},"timestamp":"2026-03-20T14:30:00Z","durationMs":50000}
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:5: *   - CJS modules: coverage-graph-core.cjs, coverage-graph-signals.cjs,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:6: *     coverage-graph-convergence.cjs, coverage-graph-contradictions.cjs
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:7: *   - TS/MCP layer: coverage-graph-db.ts (types and constants)
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:27:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:40:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:49:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:61:  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:71: * coverage-graph-db.ts. We define them here as test fixtures so we
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:74: * IMPORTANT: If coverage-graph-db.ts changes, these must be updated.
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:111:describe('coverage-graph-integration: CJS ↔ TS contract alignment', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:271:      const selfLoopConstraintDocumented = true; // From reading coverage-graph-db.ts line 178
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:386:    it('computeGraphConvergence blends with Phase 1 compositeStop signal', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:392:        compositeStop: 0.9,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:395:      // Blended score with high compositeStop should be >= graph-only score
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -5551,7 +5551,7 @@ exec
 codex
 I have the core code now. I’m checking two things in parallel: whether the wave board/state abstractions are actually being exercised by the wave runtime, and whether the optimizer tests would catch the fragile branches inside `replay-corpus.cjs` and `replay-runner.cjs` instead of only proving the happy path.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import { createRequire } from 'node:module';
@@ -5564,7 +5564,7 @@ exec
      9	
     10	const lifecycle = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs',
+    12	  '.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs',
     13	)) as {
     14	  LIFECYCLE_PHASES: ReadonlyArray<string>;
     15	  SEGMENT_STATUSES: ReadonlyArray<string>;
@@ -5815,203 +5815,203 @@ exec
    260	});
 
 exec
-/bin/zsh -lc 'rg -n "graphBonus|compositeStop|graphMetrics|waveMetrics|skippedLines|20%|malformed|loadSampleCorpusEntry|sample-config-baseline|sample-config-candidate" .opencode/skill/system-spec-kit/scripts/tests .opencode/skill/system-spec-kit/scripts/optimizer' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "graphBonus|compositeStop|graphMetrics|waveMetrics|skippedLines|20%|malformed|loadSampleCorpusEntry|sample-config-baseline|sample-config-candidate" .opencode/skills/system-spec-kit/scripts/tests .opencode/skills/system-spec-kit/scripts/optimizer' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:27:  compositeStopScore: { min: 0.40, max: 0.80, step: 0.05 },
-.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json:50:      "name": "compositeStopScore",
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:26:  compositeStopScore: 0.60,
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:67:  const compositeStopScore = config.compositeStopScore ?? DEFAULT_CONFIG.compositeStopScore;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:84:  const compositeScore = convergenceSignals.compositeStop ?? rollingAvg;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:87:  // compositePass is an additional signal only when compositeStop was
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:90:  const hasExplicitComposite = convergenceSignals.compositeStop !== undefined;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:91:  const compositePass = hasExplicitComposite && compositeScore >= compositeStopScore;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:135:      graphBonus: 1.0,
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:210:  let graphBonus = 1.0;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:211:  if (corpusEntry.graphMetrics || corpusEntry.waveMetrics) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:212:    const graphMetrics = corpusEntry.graphMetrics || {};
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:213:    const waveMetrics = corpusEntry.waveMetrics || {};
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:215:    if (graphMetrics.graphConvergence > 0 || waveMetrics.convergenceScore > 0) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:216:      graphBonus = 1.1;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:231:    graphBonus,
-.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs:82:  const { iterationsUsed, maxIterations, converged, graphBonus } = replayResults;
-.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs:92:  if (typeof graphBonus === 'number' && graphBonus > 1.0) {
-.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs:93:    efficiency *= graphBonus;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:109: * Tracks skipped/malformed lines for diagnostics.
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:112: * @returns {{ records: object[]; skippedLines: Array<{ lineNumber: number; content: string; error: string }>; totalLines: number }} Parsed records with skip metadata.
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:117:  const skippedLines = [];
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:127:      skippedLines.push({
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:135:  return { records, skippedLines, totalLines: nonBlankCount };
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:289:  const { records, skippedLines, totalLines } = parsed;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:291:  // P1-4: Reject traces where >20% of non-blank lines are malformed
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:292:  if (totalLines > 0 && skippedLines.length / totalLines > 0.20) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:294:      `Too many malformed JSONL lines: ${skippedLines.length}/${totalLines} (${(skippedLines.length / totalLines * 100).toFixed(1)}%) exceeds 20% threshold`,
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:299:  if (skippedLines.length > 0) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:301:      `Skipped ${skippedLines.length} malformed JSONL line(s) out of ${totalLines}`,
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:320:  if (skippedLines.length > 0) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:321:    entry.metadata.skippedLines = skippedLines;
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1341:  it('rejects malformed rendered memories before write when the template contract is violated', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:42:  computeGraphConvergence: (graph: CjsGraph, signals?: { compositeStop?: number }) => {
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:52:      compositeStop: number | null;
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:118:function computeTsEquivalentBlend(nodes: ResearchNode[], edges: ResearchEdge[], compositeStop: number) {
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:136:    blendedScore: round3((compositeStop * 0.6) + (graphScore * 0.4)),
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:143:    compositeStop: number;
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:155:      compositeStop: 0.2,
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:167:      compositeStop: 0.55,
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:186:      compositeStop: 0.9,
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:219:        compositeStop: testCase.compositeStop,
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:229:        testCase.compositeStop,
-.opencode/skill/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts:45:/** Build memory with raw frontmatter (for testing malformed YAML). */
-.opencode/skill/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts:104:      expect(v13!.message).toContain('malformed frontmatter');
-.opencode/skill/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts:113:      expect(v13!.message).toContain('malformed frontmatter');
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:541:              narrative: 'Verified that literal anchor examples from the session render as escaped text instead of malformed real anchors.',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:19:  computeGraphConvergence: (graph: Graph, signals?: { compositeStop?: number }) => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:27:      compositeStop: number | null;
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:177:  it('blends the graph score with compositeStop when stop-trace signals exist', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:186:    const result = convergenceModule.computeGraphConvergence(graph, { compositeStop: 0.8 });
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:187:    expect(result.components.compositeStop).toBe(0.8);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:53:function loadSampleCorpusEntry(): Record<string, any> {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:105:      const entry = loadSampleCorpusEntry();
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:107:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:123:      const entry = loadSampleCorpusEntry();
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:125:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:134:      const entry = loadSampleCorpusEntry();
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:142:      const entry = loadSampleCorpusEntry();
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:144:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:169:      const entry = loadSampleCorpusEntry();
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:171:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:174:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-candidate.json'), 'utf8'),
-.opencode/skill/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:2:// Keeps intentionally malformed archived JSON fixtures invalid while allowing narrow verifier exceptions
-.opencode/skill/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:31:const MALFORMED_FIXTURE_PATH = path.join(FIXTURE_DIR, 'malformed.json');
-.opencode/skill/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:33:describe('alignment drift malformed fixture preservation', () => {
-.opencode/skill/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:34:  it('keeps the archived malformed fixture invalid JSON', () => {
-.opencode/skill/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:38:    expect(fixtureContent).toContain('This JSON is malformed');
-.opencode/skill/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:54:    expect(result.stdout).not.toContain('malformed.json');
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:216:  it('exits non-zero on malformed inline JSON before calling runWorkflow', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/test-template-system.js:801:          fail(`T-070e: ${level.name}/${fileName} has single top frontmatter`, 'Missing or malformed top frontmatter');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:292:    it('handles malformed JSONL lines', () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:94:  it('rejects malformed trigger_phrases frontmatter shapes', () => {
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:44:  assert(v3.failedRules.includes('V3'), 'V3 should fail malformed spec_folder');
-.opencode/skill/system-spec-kit/scripts/tests/validate-memory-quality.vitest.ts:6:  it('flags malformed YAML frontmatter through V13', () => {
-.opencode/skill/system-spec-kit/scripts/tests/validate-memory-quality.vitest.ts:22:    expect(v13?.message).toMatch(/malformed frontmatter YAML/i);
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:196:    facts: ['Evidence: Redis benchmark shows 20% faster reads']
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:1414:    // Test malformed input handling
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:1422:    // Test extractFilesFromData with malformed data
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:1438:    // Test decision extractor with malformed decisions
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:201:        compositeStop: 0.5,
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:71:      '{"type":"iteration","run":2,"status":"insight","focus":"Second pass","findingsCount":2,"newInfoRatio":0.4,"answeredQuestions":["Question B"],"keyQuestions":["Question B","Question C"],"sourcesQueried":["https://example.com/two","memory:previous-run"],"toolsUsed":["Read","Grep"],"convergenceSignals":{"compositeStop":0.61},"timestamp":"2026-04-03T00:10:00Z","durationMs":1200}',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:386:    it('computeGraphConvergence blends with Phase 1 compositeStop signal', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:392:        compositeStop: 0.9,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:395:      // Blended score with high compositeStop should be >= graph-only score
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:24:  parseJSONL: (content: string) => { records: object[]; skippedLines: Array<{ lineNumber: number; content: string; error: string }>; totalLines: number };
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:66:      expect(result.skippedLines).toHaveLength(0);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:77:    it('should track malformed lines with metadata (P1-4)', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:81:      expect(result.skippedLines).toHaveLength(1);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:82:      expect(result.skippedLines[0].lineNumber).toBe(2);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:83:      expect(result.skippedLines[0].content).toBe('not-json');
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:84:      expect(result.skippedLines[0].error).toBeDefined();
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:88:    it('should truncate long malformed line content to 200 chars (P1-4)', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:92:      expect(result.skippedLines).toHaveLength(1);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:93:      expect(result.skippedLines[0].content.length).toBeLessThanOrEqual(203); // 200 + '...'
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:328:    it('should reject traces where >20% of lines are malformed', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:329:      // 5 lines total, 2 valid, 3 malformed = 60% malformed
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:336:      expect(result.errors.some((e: string) => e.includes('malformed') && e.includes('20%'))).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:340:    it('should accept traces with malformed lines under 20% threshold', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:341:      // 10 lines, 1 malformed = 10%
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:360:      expect(result.warnings.some((w: string) => w.includes('Skipped 1 malformed'))).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:361:      expect(result.corpus[0].metadata.skippedLines).toHaveLength(1);
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:4://  - Test 1: malformed JSONL triggers corruptionWarnings + non-zero exit unless --lenient
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:110:  it('reports corruptionWarnings and flags hasCorruption when JSONL is malformed', () => {
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-extended.sh:679:    run_isolated_rule_test "Multiple files, one malformed anchor" "check-anchors.sh" "013-anchors-multiple-files" "fail" 1
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:249:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:205:  // T-FMB-007: Strict mode skips malformed frontmatter and reports failure.
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:208:    tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'frontmatter-malformed-'));
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:210:    const specDir = path.join(specsRoot, '001-malformed');
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:214:    const malformedInput = '---\ntitle: "Unclosed frontmatter"\ncontextType: implementation\n# Missing closing delimiter on purpose\n';
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:217:      malformedInput,
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:221:    const reportPath = path.join(tmpRoot, 'malformed-report.json');
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:233:    const malformedCount = report.summary.malformedSkipped || 0;
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:236:    const unchanged = postRun === malformedInput;
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:238:    if (exitedNonZero && malformedCount > 0 && failedCount > 0 && unchanged) {
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:239:      pass('T-FMB-007: Strict malformed handling reports and fails', `malformed=${malformedCount}, failed=${failedCount}, unchanged=${unchanged}`);
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:241:      fail('T-FMB-007: Strict malformed handling reports and fails', `exitedNonZero=${exitedNonZero}, malformed=${malformedCount}, failed=${failedCount}, unchanged=${unchanged}`);
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:244:    fail('T-FMB-007: Strict malformed handling reports and fails', error.message);
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:282:  // T-FMB-009: Malformed in-block list is treated as malformed and not rewritten.
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:294:      path.join(ROOT, 'specs', '007-malformed-list', 'spec.md')
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:297:    if (result.malformedFrontmatter && result.content === input) {
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:298:      pass('T-FMB-009: Malformed in-block list is skipped', 'malformedFrontmatter=true and content unchanged');
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:300:      fail('T-FMB-009: Malformed in-block list is skipped', `malformed=${result.malformedFrontmatter}, unchanged=${result.content === input}`);
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl:4:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"Final pass","findingsCount":4,"newFindingsRatio":0.05,"convergenceSignals":{"rollingAvg":0.08,"madScore":0.04,"noveltyRatio":0.05,"compositeStop":0.65},"timestamp":"2026-03-20T14:30:00Z","durationMs":50000}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"D3 Traceability + D4 Maintainability sweep","dimensions":["traceability","maintainability"],"filesReviewed":["specs/040/spec.md","src/graph-reducer.ts","src/utils.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":7,"findingsSummary":{"P0":0,"P1":3,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":2},"newFindingsRatio":0.08,"convergenceSignals":{"rollingAvg":0.09,"madScore":0.06,"noveltyRatio":0.08,"compositeStop":0.62},"timestamp":"2026-03-20T14:36:00Z","durationMs":58000}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json:6:  "compositeStopScore": 0.60
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json:6:  "compositeStopScore": 0.55
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC2-degraded-fallback.json:14:      "prompt": "We chose to preserve placeholder extraction when the payload is malformed or decision-less."
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:27:  compositeStopScore: { min: 0.40, max: 0.80, step: 0.05 },
+.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:50:      "name": "compositeStopScore",
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:26:  compositeStopScore: 0.60,
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:67:  const compositeStopScore = config.compositeStopScore ?? DEFAULT_CONFIG.compositeStopScore;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:84:  const compositeScore = convergenceSignals.compositeStop ?? rollingAvg;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:87:  // compositePass is an additional signal only when compositeStop was
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:90:  const hasExplicitComposite = convergenceSignals.compositeStop !== undefined;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:91:  const compositePass = hasExplicitComposite && compositeScore >= compositeStopScore;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:135:      graphBonus: 1.0,
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:210:  let graphBonus = 1.0;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:211:  if (corpusEntry.graphMetrics || corpusEntry.waveMetrics) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:212:    const graphMetrics = corpusEntry.graphMetrics || {};
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:213:    const waveMetrics = corpusEntry.waveMetrics || {};
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:215:    if (graphMetrics.graphConvergence > 0 || waveMetrics.convergenceScore > 0) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:216:      graphBonus = 1.1;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:231:    graphBonus,
+.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs:82:  const { iterationsUsed, maxIterations, converged, graphBonus } = replayResults;
+.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs:92:  if (typeof graphBonus === 'number' && graphBonus > 1.0) {
+.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs:93:    efficiency *= graphBonus;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:109: * Tracks skipped/malformed lines for diagnostics.
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:112: * @returns {{ records: object[]; skippedLines: Array<{ lineNumber: number; content: string; error: string }>; totalLines: number }} Parsed records with skip metadata.
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:117:  const skippedLines = [];
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:127:      skippedLines.push({
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:135:  return { records, skippedLines, totalLines: nonBlankCount };
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:289:  const { records, skippedLines, totalLines } = parsed;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:291:  // P1-4: Reject traces where >20% of non-blank lines are malformed
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:292:  if (totalLines > 0 && skippedLines.length / totalLines > 0.20) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:294:      `Too many malformed JSONL lines: ${skippedLines.length}/${totalLines} (${(skippedLines.length / totalLines * 100).toFixed(1)}%) exceeds 20% threshold`,
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:299:  if (skippedLines.length > 0) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:301:      `Skipped ${skippedLines.length} malformed JSONL line(s) out of ${totalLines}`,
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:320:  if (skippedLines.length > 0) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:321:    entry.metadata.skippedLines = skippedLines;
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1341:  it('rejects malformed rendered memories before write when the template contract is violated', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:42:  computeGraphConvergence: (graph: CjsGraph, signals?: { compositeStop?: number }) => {
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:52:      compositeStop: number | null;
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:118:function computeTsEquivalentBlend(nodes: ResearchNode[], edges: ResearchEdge[], compositeStop: number) {
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:136:    blendedScore: round3((compositeStop * 0.6) + (graphScore * 0.4)),
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:143:    compositeStop: number;
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:155:      compositeStop: 0.2,
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:167:      compositeStop: 0.55,
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:186:      compositeStop: 0.9,
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:219:        compositeStop: testCase.compositeStop,
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:229:        testCase.compositeStop,
+.opencode/skills/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts:45:/** Build memory with raw frontmatter (for testing malformed YAML). */
+.opencode/skills/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts:104:      expect(v13!.message).toContain('malformed frontmatter');
+.opencode/skills/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts:113:      expect(v13!.message).toContain('malformed frontmatter');
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:541:              narrative: 'Verified that literal anchor examples from the session render as escaped text instead of malformed real anchors.',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:19:  computeGraphConvergence: (graph: Graph, signals?: { compositeStop?: number }) => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:27:      compositeStop: number | null;
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:177:  it('blends the graph score with compositeStop when stop-trace signals exist', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:186:    const result = convergenceModule.computeGraphConvergence(graph, { compositeStop: 0.8 });
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:187:    expect(result.components.compositeStop).toBe(0.8);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:53:function loadSampleCorpusEntry(): Record<string, any> {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:105:      const entry = loadSampleCorpusEntry();
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:107:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:123:      const entry = loadSampleCorpusEntry();
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:125:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:134:      const entry = loadSampleCorpusEntry();
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:142:      const entry = loadSampleCorpusEntry();
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:144:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:169:      const entry = loadSampleCorpusEntry();
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:171:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:174:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-candidate.json'), 'utf8'),
+.opencode/skills/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:2:// Keeps intentionally malformed archived JSON fixtures invalid while allowing narrow verifier exceptions
+.opencode/skills/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:31:const MALFORMED_FIXTURE_PATH = path.join(FIXTURE_DIR, 'malformed.json');
+.opencode/skills/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:33:describe('alignment drift malformed fixture preservation', () => {
+.opencode/skills/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:34:  it('keeps the archived malformed fixture invalid JSON', () => {
+.opencode/skills/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:38:    expect(fixtureContent).toContain('This JSON is malformed');
+.opencode/skills/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts:54:    expect(result.stdout).not.toContain('malformed.json');
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:216:  it('exits non-zero on malformed inline JSON before calling runWorkflow', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/test-template-system.js:801:          fail(`T-070e: ${level.name}/${fileName} has single top frontmatter`, 'Missing or malformed top frontmatter');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:292:    it('handles malformed JSONL lines', () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:94:  it('rejects malformed trigger_phrases frontmatter shapes', () => {
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:44:  assert(v3.failedRules.includes('V3'), 'V3 should fail malformed spec_folder');
+.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality.vitest.ts:6:  it('flags malformed YAML frontmatter through V13', () => {
+.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality.vitest.ts:22:    expect(v13?.message).toMatch(/malformed frontmatter YAML/i);
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:196:    facts: ['Evidence: Redis benchmark shows 20% faster reads']
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:1414:    // Test malformed input handling
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:1422:    // Test extractFilesFromData with malformed data
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:1438:    // Test decision extractor with malformed decisions
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:201:        compositeStop: 0.5,
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:71:      '{"type":"iteration","run":2,"status":"insight","focus":"Second pass","findingsCount":2,"newInfoRatio":0.4,"answeredQuestions":["Question B"],"keyQuestions":["Question B","Question C"],"sourcesQueried":["https://example.com/two","memory:previous-run"],"toolsUsed":["Read","Grep"],"convergenceSignals":{"compositeStop":0.61},"timestamp":"2026-04-03T00:10:00Z","durationMs":1200}',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:386:    it('computeGraphConvergence blends with Phase 1 compositeStop signal', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:392:        compositeStop: 0.9,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:395:      // Blended score with high compositeStop should be >= graph-only score
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:24:  parseJSONL: (content: string) => { records: object[]; skippedLines: Array<{ lineNumber: number; content: string; error: string }>; totalLines: number };
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:66:      expect(result.skippedLines).toHaveLength(0);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:77:    it('should track malformed lines with metadata (P1-4)', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:81:      expect(result.skippedLines).toHaveLength(1);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:82:      expect(result.skippedLines[0].lineNumber).toBe(2);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:83:      expect(result.skippedLines[0].content).toBe('not-json');
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:84:      expect(result.skippedLines[0].error).toBeDefined();
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:88:    it('should truncate long malformed line content to 200 chars (P1-4)', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:92:      expect(result.skippedLines).toHaveLength(1);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:93:      expect(result.skippedLines[0].content.length).toBeLessThanOrEqual(203); // 200 + '...'
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:328:    it('should reject traces where >20% of lines are malformed', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:329:      // 5 lines total, 2 valid, 3 malformed = 60% malformed
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:336:      expect(result.errors.some((e: string) => e.includes('malformed') && e.includes('20%'))).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:340:    it('should accept traces with malformed lines under 20% threshold', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:341:      // 10 lines, 1 malformed = 10%
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:360:      expect(result.warnings.some((w: string) => w.includes('Skipped 1 malformed'))).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:361:      expect(result.corpus[0].metadata.skippedLines).toHaveLength(1);
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:4://  - Test 1: malformed JSONL triggers corruptionWarnings + non-zero exit unless --lenient
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:110:  it('reports corruptionWarnings and flags hasCorruption when JSONL is malformed', () => {
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh:679:    run_isolated_rule_test "Multiple files, one malformed anchor" "check-anchors.sh" "013-anchors-multiple-files" "fail" 1
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:249:        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:205:  // T-FMB-007: Strict mode skips malformed frontmatter and reports failure.
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:208:    tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'frontmatter-malformed-'));
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:210:    const specDir = path.join(specsRoot, '001-malformed');
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:214:    const malformedInput = '---\ntitle: "Unclosed frontmatter"\ncontextType: implementation\n# Missing closing delimiter on purpose\n';
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:217:      malformedInput,
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:221:    const reportPath = path.join(tmpRoot, 'malformed-report.json');
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:233:    const malformedCount = report.summary.malformedSkipped || 0;
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:236:    const unchanged = postRun === malformedInput;
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:238:    if (exitedNonZero && malformedCount > 0 && failedCount > 0 && unchanged) {
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:239:      pass('T-FMB-007: Strict malformed handling reports and fails', `malformed=${malformedCount}, failed=${failedCount}, unchanged=${unchanged}`);
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:241:      fail('T-FMB-007: Strict malformed handling reports and fails', `exitedNonZero=${exitedNonZero}, malformed=${malformedCount}, failed=${failedCount}, unchanged=${unchanged}`);
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:244:    fail('T-FMB-007: Strict malformed handling reports and fails', error.message);
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:282:  // T-FMB-009: Malformed in-block list is treated as malformed and not rewritten.
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:294:      path.join(ROOT, 'specs', '007-malformed-list', 'spec.md')
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:297:    if (result.malformedFrontmatter && result.content === input) {
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:298:      pass('T-FMB-009: Malformed in-block list is skipped', 'malformedFrontmatter=true and content unchanged');
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:300:      fail('T-FMB-009: Malformed in-block list is skipped', `malformed=${result.malformedFrontmatter}, unchanged=${result.content === input}`);
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl:4:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"Final pass","findingsCount":4,"newFindingsRatio":0.05,"convergenceSignals":{"rollingAvg":0.08,"madScore":0.04,"noveltyRatio":0.05,"compositeStop":0.65},"timestamp":"2026-03-20T14:30:00Z","durationMs":50000}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"D3 Traceability + D4 Maintainability sweep","dimensions":["traceability","maintainability"],"filesReviewed":["specs/040/spec.md","src/graph-reducer.ts","src/utils.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":7,"findingsSummary":{"P0":0,"P1":3,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":2},"newFindingsRatio":0.08,"convergenceSignals":{"rollingAvg":0.09,"madScore":0.06,"noveltyRatio":0.08,"compositeStop":0.62},"timestamp":"2026-03-20T14:36:00Z","durationMs":58000}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json:6:  "compositeStopScore": 0.60
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json:6:  "compositeStopScore": 0.55
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC2-degraded-fallback.json:14:      "prompt": "We chose to preserve placeholder extraction when the payload is malformed or decision-less."
 
 exec
-/bin/zsh -lc "rg -n \"require\\(.*wave-coordination-board|require\\(.*wave-segment-state|createBoard\\(|updateBoard\\(|renderDashboard\\(|createSegmentState\\(|mergeSegmentStates\\(|serializeJsonl\\(|parseJsonl\\(\" .opencode/skill/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"require\\(.*wave-coordination-board|require\\(.*wave-segment-state|createBoard\\(|updateBoard\\(|renderDashboard\\(|createSegmentState\\(|mergeSegmentStates\\(|serializeJsonl\\(|parseJsonl\\(\" .opencode/skills/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:70:function createSegmentState(segmentId, config) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:185:function mergeSegmentStates(states, mergeStrategy) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:291:function serializeJsonl(segmentState) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:308:function parseJsonl(jsonlString) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:67:function createBoard(options) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:118:function updateBoard(board, segmentResults) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:292:function renderDashboard(board) {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:67:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:70:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:79:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:109:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:112:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:115:      const result = segState.mergeSegmentStates([s1, s2]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:124:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:139:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:259:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:268:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:51:      const b = board.createBoard({ sessionId: 'sess-1', loopType: 'review', target: 'my-repo' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:61:      expect(board.createBoard({ loopType: 'review' } as any)).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:65:      expect(board.createBoard({ sessionId: 's', loopType: 'invalid' } as any)).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:71:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:72:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:81:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:82:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:91:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:92:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:104:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:105:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:121:      const b = board.createBoard({ sessionId: 's1', generation: 2, loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:136:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:145:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:146:      const md = board.renderDashboard(b);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:152:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:153:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:157:      const md = board.renderDashboard(b);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:165:      const md = board.renderDashboard(null);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:185:      const s = segState.createSegmentState('seg-1', { sessionId: 'sess-1', files: ['a.ts'] });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:194:      expect(segState.createSegmentState('', { sessionId: 's' })).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:198:      expect(segState.createSegmentState('seg-1', {} as any)).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:204:      const state = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 2, waveId: 'w1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:216:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:226:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:229:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:232:      const result = segState.mergeSegmentStates([s1, s2]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:238:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:241:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:244:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:250:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:253:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:256:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:262:      const s1 = segState.createSegmentState('seg-2', { sessionId: 's1', generation: 1 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:265:      const s2 = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 1 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:268:      const result = segState.mergeSegmentStates([s1, s2]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:275:      const result = segState.mergeSegmentStates([]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:282:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:286:      const jsonl = segState.serializeJsonl(state);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:287:      const parsed = segState.parseJsonl(jsonl);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:298:      const parsed = segState.parseJsonl(jsonl);
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:70:function createSegmentState(segmentId, config) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:185:function mergeSegmentStates(states, mergeStrategy) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:291:function serializeJsonl(segmentState) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:308:function parseJsonl(jsonlString) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:67:function createBoard(options) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:118:function updateBoard(board, segmentResults) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:292:function renderDashboard(board) {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:67:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:70:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:79:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:109:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:112:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:115:      const result = segState.mergeSegmentStates([s1, s2]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:124:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:139:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:259:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:268:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:51:      const b = board.createBoard({ sessionId: 'sess-1', loopType: 'review', target: 'my-repo' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:61:      expect(board.createBoard({ loopType: 'review' } as any)).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:65:      expect(board.createBoard({ sessionId: 's', loopType: 'invalid' } as any)).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:71:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:72:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:81:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:82:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:91:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:92:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:104:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:105:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:121:      const b = board.createBoard({ sessionId: 's1', generation: 2, loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:136:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:145:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:146:      const md = board.renderDashboard(b);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:152:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:153:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:157:      const md = board.renderDashboard(b);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:165:      const md = board.renderDashboard(null);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:185:      const s = segState.createSegmentState('seg-1', { sessionId: 'sess-1', files: ['a.ts'] });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:194:      expect(segState.createSegmentState('', { sessionId: 's' })).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:198:      expect(segState.createSegmentState('seg-1', {} as any)).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:204:      const state = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 2, waveId: 'w1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:216:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:226:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:229:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:232:      const result = segState.mergeSegmentStates([s1, s2]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:238:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:241:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:244:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:250:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:253:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:256:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:262:      const s1 = segState.createSegmentState('seg-2', { sessionId: 's1', generation: 1 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:265:      const s2 = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 1 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:268:      const result = segState.mergeSegmentStates([s1, s2]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:275:      const result = segState.mergeSegmentStates([]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:282:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:286:      const jsonl = segState.serializeJsonl(state);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:287:      const parsed = segState.parseJsonl(jsonl);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:298:      const parsed = segState.parseJsonl(jsonl);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import { createRequire } from 'node:module';
@@ -6024,7 +6024,7 @@ exec
      9	
     10	const board = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
+    12	  '.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
     13	)) as {
     14	  BOARD_STATUSES: ReadonlyArray<string>;
     15	  FINDING_MERGE_STATES: ReadonlyArray<string>;
@@ -6040,7 +6040,7 @@ exec
     25	
     26	const segState = require(path.join(
     27	  WORKSPACE_ROOT,
-    28	  '.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs',
+    28	  '.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs',
     29	)) as {
     30	  MERGE_KEYS: ReadonlyArray<string>;
     31	  SEGMENT_STATE_STATUSES: ReadonlyArray<string>;
@@ -6353,7 +6353,7 @@ exec
      9	
     10	const lifecycle = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs',
+    12	  '.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs',
     13	)) as {
     14	  canFanOut: (engine: any) => any;
     15	  createWaveContext: (target: string, loopType: 'review' | 'research', opts?: any) => any;
@@ -6365,7 +6365,7 @@ exec
     21	
     22	const planner = require(path.join(
     23	  WORKSPACE_ROOT,
-    24	  '.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs',
+    24	  '.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs',
     25	)) as {
     26	  shouldActivateReviewWave: (files: any[], metrics?: any) => any;
     27	  shouldActivateResearchWave: (domains: any[], metrics?: any) => any;
@@ -6375,7 +6375,7 @@ exec
     31	
     32	const board = require(path.join(
     33	  WORKSPACE_ROOT,
-    34	  '.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
+    34	  '.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
     35	)) as {
     36	  createBoard: (opts: any) => any;
     37	  updateBoard: (board: any, results: any[]) => any;
@@ -6383,7 +6383,7 @@ exec
     39	
     40	const convergence = require(path.join(
     41	  WORKSPACE_ROOT,
-    42	  '.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs',
+    42	  '.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs',
     43	)) as {
     44	  evaluateWaveConvergence: (board: any, signals: any, threshold?: number) => any;
     45	  shouldPruneSegment: (segment: any, signals: any, threshold?: number) => any;
@@ -6392,7 +6392,7 @@ exec
     48	
     49	const segState = require(path.join(
     50	  WORKSPACE_ROOT,
-    51	  '.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs',
+    51	  '.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs',
     52	)) as {
     53	  createSegmentState: (id: string, config: any) => any;
     54	  appendRecord: (state: any, record: any) => any;
@@ -6626,7 +6626,7 @@ exec
    282	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -6852,7 +6852,7 @@ exec
 codex
 I’ve isolated one likely structural problem already: the wave board/state helpers are tested, but the orchestrator lifecycle still keeps its own merge and state model instead of delegating to them. I’m confirming whether that’s just layering by design or an actual contract split, and I’m reading the rest of the optimizer corpus suite now to avoid missing edge-case tests that land later in the file.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '281,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '281,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    281	    });
    282	
@@ -6950,7 +6950,7 @@ exec
    374	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs | sed -n '320,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs | sed -n '320,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    320	
    321	/**
@@ -7071,25 +7071,25 @@ exec
    436	};
 
 exec
-/bin/zsh -lc 'rg -n "last terminal|terminal event|synthesis_complete|stop_decision|stopped|graphBonus|hasGraphMetrics|hasWaveMetrics" .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "last terminal|terminal event|synthesis_complete|stop_decision|stopped|graphBonus|hasGraphMetrics|hasWaveMetrics" .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:263:        { type: 'event', event: 'synthesis_complete', stopReason: 'converged', totalIterations: 1 },
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:274:        { type: 'event', event: 'synthesis_complete', stopReason: 'converged', totalIterations: 1 },
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:284:      const content = '{"type":"config","maxIterations":7}\n{"type":"iteration","run":1,"status":"complete"}\n{"type":"event","event":"synthesis_complete","stopReason":"converged","totalIterations":1}\n';
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:297:  describe('P1-3: last terminal event wins', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:298:    it('should use the LAST terminal event, not the first', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:302:        { type: 'event', event: 'stop_decision', stopReason: 'early_stop', totalIterations: 1 },
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:304:        { type: 'event', event: 'synthesis_complete', stopReason: 'converged', totalIterations: 2, verdict: 'complete' },
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:312:    it('should not pick an intermediate stop_decision over a later synthesis_complete', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:316:        { type: 'event', event: 'stop_decision', stopReason: 'stuck', totalIterations: 1, verdict: null },
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:319:        { type: 'event', event: 'synthesis_complete', stopReason: 'natural', totalIterations: 3, verdict: 'synthesized' },
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:352:        '{"type":"event","event":"synthesis_complete","stopReason":"converged","totalIterations":7}',
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:365:      const content = '{"type":"config","maxIterations":7}\n{"type":"iteration","run":1,"status":"complete"}\n{"type":"event","event":"synthesis_complete","stopReason":"converged","totalIterations":1}\n';
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:263:        { type: 'event', event: 'synthesis_complete', stopReason: 'converged', totalIterations: 1 },
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:274:        { type: 'event', event: 'synthesis_complete', stopReason: 'converged', totalIterations: 1 },
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:284:      const content = '{"type":"config","maxIterations":7}\n{"type":"iteration","run":1,"status":"complete"}\n{"type":"event","event":"synthesis_complete","stopReason":"converged","totalIterations":1}\n';
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:297:  describe('P1-3: last terminal event wins', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:298:    it('should use the LAST terminal event, not the first', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:302:        { type: 'event', event: 'stop_decision', stopReason: 'early_stop', totalIterations: 1 },
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:304:        { type: 'event', event: 'synthesis_complete', stopReason: 'converged', totalIterations: 2, verdict: 'complete' },
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:312:    it('should not pick an intermediate stop_decision over a later synthesis_complete', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:316:        { type: 'event', event: 'stop_decision', stopReason: 'stuck', totalIterations: 1, verdict: null },
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:319:        { type: 'event', event: 'synthesis_complete', stopReason: 'natural', totalIterations: 3, verdict: 'synthesized' },
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:352:        '{"type":"event","event":"synthesis_complete","stopReason":"converged","totalIterations":7}',
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:365:      const content = '{"type":"config","maxIterations":7}\n{"type":"iteration","run":1,"status":"complete"}\n{"type":"event","event":"synthesis_complete","stopReason":"converged","totalIterations":1}\n';
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	{
      2	  "convergenceThreshold": 0.08,
@@ -7109,9 +7109,9 @@ exec
      7	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	{"type":"config","mode":"review","topic":"Replay fixture for 040","maxIterations":7,"convergenceThreshold":0.10,"stuckThreshold":2,"sessionId":"replay-040-fixture"}
      2	{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"Initial review","findingsCount":3,"newFindingsRatio":0.85,"timestamp":"2026-03-20T14:10:00Z","durationMs":60000}
@@ -7128,7 +7128,7 @@ exec
      6	{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":3,"verdict":"CONDITIONAL","activeP0":0,"activeP1":3,"activeP2":4,"dimensionCoverage":1.0,"stopReason":"converged","legalStop":{"blockedBy":[],"gateResults":{"findingStability":{"pass":true,"detail":"Stable."},"dimensionCoverage":{"pass":true,"detail":"All dimensions covered."},"p0Resolution":{"pass":true,"detail":"P0 resolved."},"evidenceDensity":{"pass":true,"detail":"Sufficient."},"hotspotSaturation":{"pass":true,"detail":"Saturated."}},"replayInputs":{"iterationCount":3,"newFindingsRatio":0.08,"noveltyRatio":0.08,"dimensionsExamined":["correctness","security","traceability","maintainability"],"hotspotCoverage":{"saturated":2,"required":2},"stopScore":0.62}},"timestamp":"2026-03-20T14:38:00Z"}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '320,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '320,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    320	  if (skippedLines.length > 0) {
    321	    entry.metadata.skippedLines = skippedLines;
@@ -7214,9 +7214,9 @@ exec
    401	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts | sed -n '100,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts | sed -n '100,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '150,230p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '150,230p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    100	    });
    101	  });
@@ -7428,7 +7428,7 @@ codex
 1. `F-008-001`
 Severity: `P1`
 Dimension: `maintainability`
-File: [wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:67)
+File: [wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:67)
 Line: `67-103`, `118-163`, `302-312`
 Title: Canonical board never owns the lifecycle status it renders
 Description: Phase 003 positions `board.json` as the canonical execution ledger with status transitions, but the implementation only initializes `status` once and later renders it verbatim. `updateBoard()` merges segments and findings, yet never advances board-level status from `initialized` to `planning`/`executing`/`merging`/`completed`. That leaves the “canonical” ledger stale and forces lifecycle truth to live elsewhere.
@@ -7438,7 +7438,7 @@ Recommendation: Add one authoritative board transition API, or have lifecycle he
 2. `F-008-002`
 Severity: `P1`
 Dimension: `maintainability`
-File: [wave-lifecycle.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:131), [wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:219), [wave-segment-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:185)
+File: [wave-lifecycle.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:131), [wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:219), [wave-segment-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:185)
 Line: `wave-lifecycle.cjs:131-153, 234-315`; `wave-coordination-board.cjs:219-279`; `wave-segment-state.cjs:185-277`
 Title: Merge and provenance rules are implemented three different ways
 Description: The wave lifecycle keeps its own `segments`, `waves`, `mergedResults`, and `joinWave()` logic instead of delegating to the board/state abstractions that were introduced for exactly that purpose. As a result, duplicate detection, conflict handling, and promotion semantics have already diverged across the three helpers, which makes future fixes easy to apply inconsistently.
@@ -7448,7 +7448,7 @@ Recommendation: Pick one merge contract as authoritative and make the other laye
 3. `F-008-003`
 Severity: `P1`
 Dimension: `maintainability`
-File: [replay-runner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:209), [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:215), [optimizer-replay-corpus.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:207), [optimizer-replay-runner.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:103)
+File: [replay-runner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:209), [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:215), [optimizer-replay-corpus.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:207), [optimizer-replay-runner.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:103)
 Line: `replay-runner.cjs:209-218`; `replay-corpus.cjs:215-224, 334-344`; `optimizer-replay-corpus.vitest.ts:207-217`; `optimizer-replay-runner.vitest.ts:103-185`
 Title: Graph-aware replay scoring is schema-disconnected and effectively untested
 Description: The replay runner expects top-level `graphMetrics` or `waveMetrics` on corpus entries to award the `graphBonus`, but the corpus builder only emits `metadata.hasGraphMetrics` / `metadata.hasWaveMetrics` booleans and warning strings. That means the graph-aware branch is disconnected from the builder that is supposed to feed it, and the tests only verify the “metrics unavailable” path.
@@ -7458,7 +7458,7 @@ Recommendation: Normalize the schema so `buildCorpus()` emits the exact metric s
 4. `F-008-004`
 Severity: `P1`
 Dimension: `maintainability`
-File: [optimizer-replay-runner.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:168), [sample-config-baseline.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json:1), [sample-config-candidate.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json:1), [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5)
+File: [optimizer-replay-runner.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:168), [sample-config-baseline.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json:1), [sample-config-candidate.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json:1), [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5)
 Line: `optimizer-replay-runner.vitest.ts:168-184`; fixture lines `1-6`; corpus lines `5-6`
 Title: The alternate-config replay test does not verify that config changes matter
 Description: The test named “should produce different results for different configs” never compares results; it only checks that both runs produced a first signal object. With the current fixture, both configs can converge the same way anyway, so this test would still pass if the candidate config stopped affecting replay entirely.
@@ -7489,7 +7489,7 @@ tokens used
 1. `F-008-001`
 Severity: `P1`
 Dimension: `maintainability`
-File: [wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:67)
+File: [wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:67)
 Line: `67-103`, `118-163`, `302-312`
 Title: Canonical board never owns the lifecycle status it renders
 Description: Phase 003 positions `board.json` as the canonical execution ledger with status transitions, but the implementation only initializes `status` once and later renders it verbatim. `updateBoard()` merges segments and findings, yet never advances board-level status from `initialized` to `planning`/`executing`/`merging`/`completed`. That leaves the “canonical” ledger stale and forces lifecycle truth to live elsewhere.
@@ -7499,7 +7499,7 @@ Recommendation: Add one authoritative board transition API, or have lifecycle he
 2. `F-008-002`
 Severity: `P1`
 Dimension: `maintainability`
-File: [wave-lifecycle.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:131), [wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:219), [wave-segment-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:185)
+File: [wave-lifecycle.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:131), [wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:219), [wave-segment-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:185)
 Line: `wave-lifecycle.cjs:131-153, 234-315`; `wave-coordination-board.cjs:219-279`; `wave-segment-state.cjs:185-277`
 Title: Merge and provenance rules are implemented three different ways
 Description: The wave lifecycle keeps its own `segments`, `waves`, `mergedResults`, and `joinWave()` logic instead of delegating to the board/state abstractions that were introduced for exactly that purpose. As a result, duplicate detection, conflict handling, and promotion semantics have already diverged across the three helpers, which makes future fixes easy to apply inconsistently.
@@ -7509,7 +7509,7 @@ Recommendation: Pick one merge contract as authoritative and make the other laye
 3. `F-008-003`
 Severity: `P1`
 Dimension: `maintainability`
-File: [replay-runner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:209), [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:215), [optimizer-replay-corpus.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:207), [optimizer-replay-runner.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:103)
+File: [replay-runner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:209), [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:215), [optimizer-replay-corpus.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:207), [optimizer-replay-runner.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:103)
 Line: `replay-runner.cjs:209-218`; `replay-corpus.cjs:215-224, 334-344`; `optimizer-replay-corpus.vitest.ts:207-217`; `optimizer-replay-runner.vitest.ts:103-185`
 Title: Graph-aware replay scoring is schema-disconnected and effectively untested
 Description: The replay runner expects top-level `graphMetrics` or `waveMetrics` on corpus entries to award the `graphBonus`, but the corpus builder only emits `metadata.hasGraphMetrics` / `metadata.hasWaveMetrics` booleans and warning strings. That means the graph-aware branch is disconnected from the builder that is supposed to feed it, and the tests only verify the “metrics unavailable” path.
@@ -7519,7 +7519,7 @@ Recommendation: Normalize the schema so `buildCorpus()` emits the exact metric s
 4. `F-008-004`
 Severity: `P1`
 Dimension: `maintainability`
-File: [optimizer-replay-runner.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:168), [sample-config-baseline.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json:1), [sample-config-candidate.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json:1), [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5)
+File: [optimizer-replay-runner.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:168), [sample-config-baseline.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json:1), [sample-config-candidate.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json:1), [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5)
 Line: `optimizer-replay-runner.vitest.ts:168-184`; fixture lines `1-6`; corpus lines `5-6`
 Title: The alternate-config replay test does not verify that config changes matter
 Description: The test named “should produce different results for different configs” never compares results; it only checks that both runs produced a first signal object. With the current fixture, both configs can converge the same way anyway, so this test would still pass if the candidate config stopped affecting replay entirely.

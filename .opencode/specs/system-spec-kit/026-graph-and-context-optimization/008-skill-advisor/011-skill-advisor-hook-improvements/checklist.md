@@ -58,7 +58,7 @@ Packet-local `applied/T-###.md` reports are not present in this checkout. The ta
 - [x] [P1] T-010 Add a durable prompt-safe diagnostics sink and health surface. [Evidence: `tasks.md` Phase 2 `T-010`; `implementation-summary.md` Files Changed rows for `skill-advisor/lib/metrics.ts` and the Claude, Gemini, Copilot, and Codex hook adapters.]
 - [x] [P1] T-011 Add accepted/corrected/ignored outcome capture. [Evidence: `tasks.md` Phase 2 `T-011`; `implementation-summary.md` What Was Built bullet on outcome totals plus Files Changed rows for `skill-advisor/lib/metrics.ts`, `handlers/advisor-validate.ts`, and `schemas/advisor-tool-schemas.ts`.]
 - [x] [P1] T-012 Run OpenCode parity regressions. [Evidence: `implementation-summary.md` Verification row `OpenCode parity vitest`.]
-- [x] [P1] T-013 Run Codex parity regressions. [Evidence: `implementation-summary.md` verification row `Codex hook + wrapper verification`; `.opencode/skill/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/codex-prompt-wrapper.vitest.ts`]
+- [x] [P1] T-013 Run Codex parity regressions. [Evidence: `implementation-summary.md` verification row `Codex hook + wrapper verification`; `.opencode/skills/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts`; `.opencode/skills/system-spec-kit/mcp_server/tests/codex-prompt-wrapper.vitest.ts`]
 - [x] [P1] T-014 Run validator and cross-consistency checks. [Evidence: `implementation-summary.md` Verification rows `Validator vitest` and `Cross-consistency grep`.]
 - [x] [P1] T-015 Run telemetry persistence and outcome-learning verification. [Evidence: `implementation-summary.md` Verification row `Direct handler smokes`.]
 <!-- /ANCHOR:pre-impl -->
@@ -75,7 +75,7 @@ Packet-local `applied/T-###.md` reports are not present in this checkout. The ta
 <!-- ANCHOR:testing -->
 
 - [x] Direct bridge smoke returned the unified threshold metadata. [Evidence: `implementation-summary.md` Verification row `Direct bridge smoke`.]
-- [x] Codex verification evidence covers both prompt-safe fail-open output and success-path brief injection. [Evidence: `implementation-summary.md` verification row `Codex hook + wrapper verification`; `.opencode/skill/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/codex-prompt-wrapper.vitest.ts`]
+- [x] Codex verification evidence covers both prompt-safe fail-open output and success-path brief injection. [Evidence: `implementation-summary.md` verification row `Codex hook + wrapper verification`; `.opencode/skills/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts`; `.opencode/skills/system-spec-kit/mcp_server/tests/codex-prompt-wrapper.vitest.ts`]
 - [x] Direct handler/output smokes returned the new public fields and telemetry totals. [Evidence: `implementation-summary.md` Verification row `Direct handler smokes`.]
 <!-- /ANCHOR:testing -->
 
@@ -89,8 +89,8 @@ Packet-local `applied/T-###.md` reports are not present in this checkout. The ta
 ## Documentation
 <!-- ANCHOR:docs -->
 
-- [x] Public README now documents `workspaceRoot`, `effectiveThresholds`, and `thresholdSemantics`. [Evidence: `implementation-summary.md` Files Changed row for `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md`; `implementation-summary.md` Verification row `Cross-consistency grep`.]
-- [x] Hook reference now documents the plugin-helper bridge path and the `0.8 / 0.35` OpenCode contract. [Evidence: `implementation-summary.md` Files Changed row for `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`.]
+- [x] Public README now documents `workspaceRoot`, `effectiveThresholds`, and `thresholdSemantics`. [Evidence: `implementation-summary.md` Files Changed row for `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md`; `implementation-summary.md` Verification row `Cross-consistency grep`.]
+- [x] Hook reference now documents the plugin-helper bridge path and the `0.8 / 0.35` OpenCode contract. [Evidence: `implementation-summary.md` Files Changed row for `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`.]
 <!-- /ANCHOR:docs -->
 
 ## File Organization

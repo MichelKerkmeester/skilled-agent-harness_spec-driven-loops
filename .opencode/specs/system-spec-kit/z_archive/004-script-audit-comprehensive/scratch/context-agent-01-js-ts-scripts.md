@@ -3,7 +3,7 @@
 
 **Audit Date:** 2026-02-15  
 **Auditor:** Context Agent 01  
-**Scope:** `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts`  
+**Scope:** `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts`  
 **Total Files Scanned:** 106 TypeScript files  
 **Standard Reference:** `workflows-code--opencode` TypeScript Style Guide
 

@@ -65,7 +65,7 @@ The session capturing pipeline is in a strong state. The JSON-primary contract i
 ### O6-006: JSON Mode Path Working Correctly — Verified
 - **Severity**: LOW
 - **Category**: architecture (positive finding)
-- **Location**: `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`, `scripts/loaders/data-loader.ts`, `scripts/core/workflow.ts`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`, `scripts/loaders/data-loader.ts`, `scripts/core/workflow.ts`
 - **Description**: The JSON-primary save contract is enforced at three independent layers: (1) `generate-context.ts` throws `RECOVERY_MODE_REQUIRED` if a spec folder is passed positionally without `--recovery`, (2) `data-loader.ts` throws `RECOVERY_MODE_REQUIRED` if `allowRecovery` is false and no data file exists, (3) `workflow.ts` throws `RECOVERY_MODE_REQUIRED` if `_source !== 'file'` and `allowRecovery` is false. All three layers log appropriate warnings.
 - **Evidence**: generate-context.ts:436-441, data-loader.ts:559-563, workflow.ts:1370-1375 all contain independent RECOVERY_MODE_REQUIRED guards.
 - **Impact**: Positive — the triple-layer enforcement means recovery mode cannot be accidentally triggered. This is the desired behavior per the JSON-primary deprecation design.
@@ -74,7 +74,7 @@ The session capturing pipeline is in a strong state. The JSON-primary contract i
 ### O6-007: Recovery Mode Path Working Correctly — Verified
 - **Severity**: LOW
 - **Category**: architecture (positive finding)
-- **Location**: `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:566-598`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:566-598`
 - **Description**: When `--recovery` is explicitly passed, the data-loader falls through to native capture backends (opencode, claude-code, codex, copilot, gemini) in a configurable priority order. The deprecation warning is logged. The `SYSTEM_SPEC_KIT_CAPTURE_SOURCE` env var and per-CLI env detection work correctly for capture source routing.
 - **Evidence**: data-loader.ts:570-574 logs the recovery warning. Lines 580-590 iterate the native capture backends. The `buildNativeCaptureOrder` function reorders based on preferred source. Five capture modules (opencode, claude-code, codex, copilot, gemini) are lazy-loaded with proper error handling.
 - **Impact**: Positive — crash recovery still works when explicitly requested. The deprecation is operational, not removal.
@@ -83,7 +83,7 @@ The session capturing pipeline is in a strong state. The JSON-primary contract i
 ### O6-008: Post-Save Quality Review (Step 10.5) Is Shipped and Integrated
 - **Severity**: MEDIUM
 - **Category**: architecture (positive with caveat)
-- **Location**: `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts`, `workflow.ts:2322-2331`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts`, `workflow.ts:2322-2331`
 - **Description**: The post-save quality review module exists, is imported in workflow.ts, and runs after file write but before indexing (Step 10.5). It compares saved frontmatter against the original JSON payload to detect silent field overrides (RC1-RC5 root causes). However, it only runs when `inputMode !== 'stateless'`, meaning recovery-mode saves do not get quality reviewed.
 - **Evidence**: workflow.ts:2323 — `if (ctxFileWritten && captureCapabilities.inputMode !== 'stateless')`. Post-save review is skipped entirely for recovery saves.
 - **Impact**: Recovery-mode saves, which are already lower quality by nature (heuristic DB extraction), do not get the quality review that would detect contamination. This is a gap in the quality safety net for the most error-prone save path.

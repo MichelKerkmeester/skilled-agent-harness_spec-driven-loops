@@ -29,8 +29,8 @@
 1. **level_specifications.md** - No references to `templates/cross-cutting/` path exist. The document correctly references:
    - Section 9: "CROSS-CUTTING TEMPLATES (ANY LEVEL)" (lines 587-631)
    - Template sources point to correct locations:
-     - `.opencode/skill/system-spec-kit/templates/handover.md` (line 599)
-     - `.opencode/skill/system-spec-kit/templates/debug-delegation.md` (line 600)
+     - `.opencode/skills/system-spec-kit/templates/handover.md` (line 599)
+     - `.opencode/skills/system-spec-kit/templates/debug-delegation.md` (line 600)
    - Related resources section correctly links to level-specific folders (lines 644-668)
 
 2. **template_guide.md** - No references to `templates/cross-cutting/` path exist. The document correctly references:
@@ -58,7 +58,7 @@ Lines 27-35 of `opencode.json`:
 ```json
 "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
 "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
-"_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
+"_NOTE_1_DATABASE": "Stores vectors in: .opencode/skills/system-spec-kit/database/context-index.sqlite",
 "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
 "_NOTE_3_AUTO_DETECTION": "Provider priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local fallback",
 "_NOTE_4_EMBEDDINGS_PROVIDER": "Set to: 'auto' (default), 'voyage', 'openai', or 'hf-local' to force specific provider",

@@ -49,9 +49,9 @@
     "status": "complete",
     "key_files": [
       "decision-record.md",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -63,8 +63,8 @@
       "004-adaptive-retrieval-loops/spec.md",
       "005-hierarchical-scope-governance/spec.md",
       "006-shared-memory-rollout/spec.md",
-      ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "mcp_server/lib/governance/scope-governance.ts",
       "mcp_server/lib/search/vector-index-mutations.ts",
       "mcp_server/tests/memory-governance.vitest.ts"
@@ -79,19 +79,19 @@
       {
         "name": "capability-flags.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
         "source": "derived"
       },
       {
         "name": "lineage-state.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts",
         "source": "derived"
       },
       {
         "name": "scope-governance.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
         "source": "derived"
       },
       {
@@ -127,13 +127,13 @@
       {
         "name": "INSTALL_GUIDE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
         "source": "derived"
       },
       {
         "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {

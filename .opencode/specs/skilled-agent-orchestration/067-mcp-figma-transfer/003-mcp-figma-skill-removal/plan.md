@@ -142,7 +142,7 @@ Apply the line-level edit map produced by Explore Agent 1, then physically remov
 - [x] Spec docs authored
 
 ### Definition of Done
-- [ ] `.opencode/skill/mcp-figma/` deleted (rm -rf)
+- [ ] `.opencode/skills/mcp-figma/` deleted (rm -rf)
 - [ ] All 31 cross-ref edits applied
 - [ ] All 4 mcp-code-mode strips applied
 - [ ] 127 figma-developer-mcp tool refs preserved
@@ -206,7 +206,7 @@ Apply the line-level edit map produced by Explore Agent 1, then physically remov
    - Line 1173: DELETE the `figma` MCP/stdio bullet
    - Line 1187: PATCH — replace the `figma.figma_get_file({fileKey: ...})` example with another tool
 
-9. **.opencode/skill/README.md** (lines 54, 58, 161, 204, 258)
+9. **.opencode/skills/README.md** (lines 54, 58, 161, 204, 258)
    - Line 54: PATCH `Total skill folders: 17` → `16`
    - Line 58: PATCH `MCP integration skills: 4` → `3`; remove `mcp-figma` from list
    - Line 161: DELETE the `mcp-figma | 1.0.7.0 | Figma design file access...` row
@@ -217,15 +217,15 @@ Apply the line-level edit map produced by Explore Agent 1, then physically remov
    - `SKILL.md:476` — DELETE_LINE: "Related skills: `mcp-figma` for Figma access through Code Mode..."
    - `README.md:451` — DELETE_LINE: `| [mcp-figma](../mcp-figma/SKILL.md) | Figma design file access via Code Mode |`
    - `references/architecture.md:514` — DELETE_LINE: `- `mcp-figma` - Figma design file access (via Code Mode)`
-   - `manual_testing_playbook/06--third-party-via-cm/001-figma-file-metadata.md:88` — DELETE_LINE: `| `.opencode/skill/mcp-figma/SKILL.md` | Figma MCP tool catalog |`
+   - `manual_testing_playbook/06--third-party-via-cm/001-figma-file-metadata.md:88` — DELETE_LINE: `| `.opencode/skills/mcp-figma/SKILL.md` | Figma MCP tool catalog |`
 
 ### Phase 3C — Skill folder deletion
-1. `rm -rf "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-figma/"`
+1. `rm -rf "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-figma/"`
 2. Verify deletion: `test ! -d ...mcp-figma/` returns 0
 
 ### Phase 3D — Commit 4 (deletion + cross-ref patches)
 1. `git status -s` — verify only the 14 expected files (+ deletion marker for mcp-figma folder)
-2. Stage selectively (NEVER `-A`): `git add` on each modified file + `git add -A .opencode/skill/mcp-figma/` (for deletion)
+2. Stage selectively (NEVER `-A`): `git add` on each modified file + `git add -A .opencode/skills/mcp-figma/` (for deletion)
 3. Verify pre-existing dirty tree (7 modified + 6 untracked) NOT staged
 4. Commit: `chore: remove mcp-figma skill and patch cross-references`
 
@@ -310,23 +310,23 @@ Before any edit, capture current `grep -rn "mcp-figma" Code_Environment/Public/`
 | root README.md | 825-829 | DELETE_NODE | mcp-figma subsection (header + description, ~5 lines) |
 | root README.md | 1173 | DELETE_LINE | `- **`figma`** (MCP/stdio) - Design files...` |
 | root README.md | 1187 | PATCH_VALUE | rewrite `figma.figma_get_file({fileKey:` example |
-| .opencode/skill/README.md | 54 | PATCH_VALUE | `Total skill folders 17 → 16` |
-| .opencode/skill/README.md | 58 | PATCH_VALUE | `MCP integration skills 4 → 3`; remove `mcp-figma` from list |
-| .opencode/skill/README.md | 161 | DELETE_LINE | `| `mcp-figma` | 1.0.7.0 | Figma design file access...` |
-| .opencode/skill/README.md | 204 | DELETE_LINE | `├── mcp-figma/ | # Figma design file access via MCP` |
-| .opencode/skill/README.md | 258 | DELETE_LINE | `| `mcp-figma` | Yes | Yes | No |` |
+| .opencode/skills/README.md | 54 | PATCH_VALUE | `Total skill folders 17 → 16` |
+| .opencode/skills/README.md | 58 | PATCH_VALUE | `MCP integration skills 4 → 3`; remove `mcp-figma` from list |
+| .opencode/skills/README.md | 161 | DELETE_LINE | `| `mcp-figma` | 1.0.7.0 | Figma design file access...` |
+| .opencode/skills/README.md | 204 | DELETE_LINE | `├── mcp-figma/ | # Figma design file access via MCP` |
+| .opencode/skills/README.md | 258 | DELETE_LINE | `| `mcp-figma` | Yes | Yes | No |` |
 | mcp-code-mode/SKILL.md | 476 | DELETE_LINE | "Related skills: `mcp-figma` for Figma access through Code Mode..." |
 | mcp-code-mode/README.md | 451 | DELETE_LINE | `| [mcp-figma](../mcp-figma/SKILL.md) | Figma design file access via Code Mode |` |
 | mcp-code-mode/references/architecture.md | 514 | DELETE_LINE | `- `mcp-figma` - Figma design file access (via Code Mode)` |
-| mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/001-figma-file-metadata.md | 88 | DELETE_LINE | `| `.opencode/skill/mcp-figma/SKILL.md` | Figma MCP tool catalog |` |
+| mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/001-figma-file-metadata.md | 88 | DELETE_LINE | `| `.opencode/skills/mcp-figma/SKILL.md` | Figma MCP tool catalog |` |
 
 ---
 
 ### 6. VERIFICATION GATES
 
 ### Hook E (re-grep cleanliness)
-- `grep -rn "mcp-figma" Code_Environment/Public/ --include="*.md" --include="*.json" --include="*.ts" --include="*.js" --include="*.py" --include="*.sh"` — zero hits outside `.opencode/specs/**` + `.opencode/skill/system-spec-kit/z_archive/**` + `.opencode/specs/z_future/**`
-- `grep -rn "figma-developer-mcp\|figma\.figma_\|figma_FIGMA_API_KEY" Code_Environment/Public/.opencode/skill/mcp-code-mode/` — ≥120 hits (preserves D1 KEEP set; original was 127)
+- `grep -rn "mcp-figma" Code_Environment/Public/ --include="*.md" --include="*.json" --include="*.ts" --include="*.js" --include="*.py" --include="*.sh"` — zero hits outside `.opencode/specs/**` + `.opencode/skills/system-spec-kit/z_archive/**` + `.opencode/specs/z_future/**`
+- `grep -rn "figma-developer-mcp\|figma\.figma_\|figma_FIGMA_API_KEY" Code_Environment/Public/.opencode/skills/mcp-code-mode/` — ≥120 hits (preserves D1 KEEP set; original was 127)
 
 ### Hook F (advisor test suite)
 - Find test runner; execute; exit 0

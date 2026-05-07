@@ -14,11 +14,11 @@ I compared the local gate-and-routing language with the external repo's lighter 
 ## Evidence
 - `[SOURCE: AGENTS.md:159-177]` Gate 1 and Gate 2 are both positioned as mandatory pre-execution gates, adding visible setup ceremony before substantive work.
 - `[SOURCE: AGENTS.md:169-176]` Gate 2 requires running `skill_advisor.py` for non-trivial tasks and explicitly reporting the routing result.
-- `[SOURCE: .opencode/skill/scripts/skill_advisor.py:7-16]` The advisor is a dedicated routing engine with thresholding, filtering, and diagnostic modes.
-- `[SOURCE: .opencode/skill/scripts/skill_advisor.py:83-104]` The advisor maintains a broad synonym-expansion layer to map user phrasing into skill concepts.
-- `[SOURCE: .opencode/skill/scripts/skill_advisor.py:211-259]` It also maintains intent boosters and direct skill mappings, which confirms substantial routing machinery behind a simple operator action.
-- `[SOURCE: .opencode/skill/sk-improve-prompt/SKILL.md:12-15]` `sk-improve-prompt` is a specialized prompt-enhancement capability, not a daily-core execution workflow.
-- `[SOURCE: .opencode/skill/sk-improve-agent/SKILL.md:17-20]` `sk-improve-agent` is a bounded evaluator-first workflow for targeted agent improvement, clearly a specialist mode.
+- `[SOURCE: .opencode/skills/scripts/skill_advisor.py:7-16]` The advisor is a dedicated routing engine with thresholding, filtering, and diagnostic modes.
+- `[SOURCE: .opencode/skills/scripts/skill_advisor.py:83-104]` The advisor maintains a broad synonym-expansion layer to map user phrasing into skill concepts.
+- `[SOURCE: .opencode/skills/scripts/skill_advisor.py:211-259]` It also maintains intent boosters and direct skill mappings, which confirms substantial routing machinery behind a simple operator action.
+- `[SOURCE: .opencode/skills/sk-improve-prompt/SKILL.md:12-15]` `sk-improve-prompt` is a specialized prompt-enhancement capability, not a daily-core execution workflow.
+- `[SOURCE: .opencode/skills/sk-improve-agent/SKILL.md:17-20]` `sk-improve-agent` is a bounded evaluator-first workflow for targeted agent improvement, clearly a specialist mode.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/agents/orchestrator.md:140-146]` The external repo inherits standards and patterns behind the scenes instead of exposing a similarly explicit routing ceremony at the operator boundary.
 
 ## Analysis
@@ -32,7 +32,7 @@ confidence: high
 finding: `system-spec-kit` should keep skill routing and niche skills, but make routing implicit and move specialist skills to an advanced opt-in layer instead of presenting them as part of the default everyday surface.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `AGENTS.md`, `.opencode/skill/scripts/skill_advisor.py`, `.opencode/skill/sk-improve-prompt/SKILL.md`, `.opencode/skill/sk-improve-agent/SKILL.md`
+- **Target file or module:** `AGENTS.md`, `.opencode/skills/scripts/skill_advisor.py`, `.opencode/skills/sk-improve-prompt/SKILL.md`, `.opencode/skills/sk-improve-agent/SKILL.md`
 - **Change type:** nice-to-have
 - **Blast radius:** operator-surface
 - **Prerequisites:** define the default skill set versus advanced skill catalog

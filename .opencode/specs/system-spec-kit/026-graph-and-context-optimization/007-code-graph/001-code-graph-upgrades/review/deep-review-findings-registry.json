@@ -11,10 +11,10 @@
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/scratch/test-prompts-all-clis.md:13",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/scratch/test-prompts-all-clis.md:28",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/scratch/test-prompts-all-clis.md:30",
-        ".opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:18",
-        ".opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:31",
-        ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:82",
-        ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:110"
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:18",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:31",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:82",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:110"
       ]
     }
   ],

@@ -1,7 +1,7 @@
 # Verification Log (2026-03-04)
 
 ## 1) npm run check --workspace=scripts
-- cwd: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit
+- cwd: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit
 - started_at: 2026-03-04T19:09:39Z
 
 ```text
@@ -22,12 +22,12 @@ sys 0.34
 ```
 
 ## 2) Targeted Phase 6 Vitest Suite
-- cwd: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server
+- cwd: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server
 - started_at: 2026-03-04T19:09:49Z
 
 ```text
 
- RUN  v4.0.18 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server
+ RUN  v4.0.18 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server
 
 stderr | tests/learned-feedback.vitest.ts > Learned Triggers Schema > R11-SCH01: migrateLearnedTriggers adds column
 [learned-triggers-schema] Migration complete: learned_triggers column added

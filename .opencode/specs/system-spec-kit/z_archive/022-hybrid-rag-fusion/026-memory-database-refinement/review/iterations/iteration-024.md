@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] Explicit `focused` mode disables the intent-aware ranking it advertises
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
 
 **Issue** `memory_context` documents `focused` as the intent-optimized path, but explicit `mode: "focused"` requests do not classify intent unless the caller also supplies `intent`. `resolveEffectiveMode()` only runs the classifier inside the `requestedMode === "auto"` branch, and `executeFocusedStrategy()` then forces `autoDetectIntent: false` when delegating to `memory_search`. The same query therefore gets intent-aware ranking in `auto -> focused`, but loses that optimization in explicit `focused`, producing inconsistent results for the same logical retrieval path.
 
@@ -12,7 +12,7 @@
 **Fix** When `effectiveMode === "focused"` and no explicit intent was provided, either classify intent before calling `executeFocusedStrategy()` or pass `autoDetectIntent: true` through to `memory_search`. That keeps explicit `focused` behavior aligned with the auto-routed focused lane.
 
 ### [P1] Resumed sessions in auto mode are not reconstructed unless the prompt happens to contain resume keywords
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
 
 **Issue** The handler resolves trusted session state up front, but `resolveEffectiveMode()` discards it with `void session` and only chooses `resume` from prompt text heuristics. A caller reconnecting with a valid session and asking something like "show blockers" or "what changed" will be routed by generic intent/length heuristics instead of the resume lane, so it misses resume anchors and the auto-resume prompt-context injection.
 
@@ -21,7 +21,7 @@
 **Fix** Treat `session.resumed` as a first-class routing signal in auto mode. A practical fix is to prefer `resume` whenever a trusted session is resumed and the caller did not explicitly request another mode, with the query heuristic acting as a booster rather than the sole trigger.
 
 ### [P2] Auto-discovered spec folders are found too late to be persisted for later resume recovery
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
 
 **Issue** The handler persists session state before running folder discovery. If the current request omits `specFolder` and discovery finds one from the prompt, the live search uses the discovered folder, but the session record still stores `null` for `spec_folder`. Any later resume flow that depends on persisted session scope can therefore reconstruct the session without the folder that this turn already recovered.
 
@@ -30,7 +30,7 @@
 **Fix** Run folder discovery before the first `saveSessionState()` call, or write the session state a second time after discovery when `options.specFolder` was populated. That keeps persisted resume state aligned with the scope actually used for retrieval.
 
 ### [P1] Underlying handler errors are wrapped as successful L1 context responses
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
 
 **Issue** The strategy helpers blindly spread the `MCPResponse` returned by `memory_search` / `memory_match_triggers` into `ContextResult`, and the main handler only converts thrown exceptions into `E_STRATEGY`. If a downstream handler returns a normal MCP error envelope (`isError: true`) instead of throwing, `memory_context` still emits a success summary like "Context retrieved via focused mode", with the real error buried inside nested `content[0].text`.
 

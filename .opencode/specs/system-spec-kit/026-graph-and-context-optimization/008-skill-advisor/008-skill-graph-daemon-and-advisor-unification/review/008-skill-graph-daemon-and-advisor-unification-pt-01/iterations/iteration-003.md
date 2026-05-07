@@ -12,29 +12,29 @@ D3 Traceability: spec/code alignment, checklist evidence, feature catalog consis
 - `checklist.md`
 - `decision-record.md`
 - `implementation-summary.md`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/skill-graph-tools.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/derived/sync.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/lifecycle/schema-migration.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/05--auto-update-daemon/003-daemon-lifecycle-shutdown.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/05--auto-update-daemon/005-rebuild-from-source.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/03--compat-and-disable/004-daemon-absent-fallback.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/skill-graph-tools.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/derived/sync.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/lifecycle/schema-migration.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/05--auto-update-daemon/003-daemon-lifecycle-shutdown.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/05--auto-update-daemon/005-rebuild-from-source.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/03--compat-and-disable/004-daemon-absent-fallback.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts`
 
 ## Findings — P0
 
@@ -48,12 +48,12 @@ The iteration prompt asked for a P1 if all four active issue invariants lacked t
 
 Evidence:
 
-- `advisor_recommend` only fail-opens for `freshness === 'absent'` before scoring; unavailable freshness continues into `scoreAdvisorPrompt()` via `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:161` and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:195`.
-- The handler tests cover disabled, absent, and stale states, but the direct MCP unavailable branch is absent from the adjacent coverage: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:238`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:249`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:338`.
-- `skill_graph_scan` is registered as a public dispatcher path and calls the scan handler directly: `.opencode/skill/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:16`, `.opencode/skill/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:53`.
-- The scan handler indexes and publishes a live generation with no caller-authority input or check: `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:25`, `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:40`, `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:42`.
-- Existing daemon tests cover watcher backoff, single-writer lease, and generation publication, but not concurrent corruption rebuild safety: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:187`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:307`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:320`.
-- Error-envelope coverage redacts prompt fields, but it does not assert filesystem path redaction for advisor diagnostics: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:355`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts:97`.
+- `advisor_recommend` only fail-opens for `freshness === 'absent'` before scoring; unavailable freshness continues into `scoreAdvisorPrompt()` via `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:161` and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:195`.
+- The handler tests cover disabled, absent, and stale states, but the direct MCP unavailable branch is absent from the adjacent coverage: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:238`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:249`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:338`.
+- `skill_graph_scan` is registered as a public dispatcher path and calls the scan handler directly: `.opencode/skills/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:16`, `.opencode/skills/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:53`.
+- The scan handler indexes and publishes a live generation with no caller-authority input or check: `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:25`, `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:40`, `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:42`.
+- Existing daemon tests cover watcher backoff, single-writer lease, and generation publication, but not concurrent corruption rebuild safety: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:187`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:307`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:320`.
+- Error-envelope coverage redacts prompt fields, but it does not assert filesystem path redaction for advisor diagnostics: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:355`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts:97`.
 
 Concrete fix:
 
@@ -69,8 +69,8 @@ Evidence:
 
 - `spec.md` names only `advisor_recommend`, `advisor_status`, and `advisor_validate` as the MCP advisor tools: `spec.md:76`.
 - `REQ-006` likewise accepts only the three advisor tool contracts: `spec.md:116`.
-- The actual public MCP schema exposes `skill_graph_scan` as a maintenance tool with only optional `skillsRoot` input and no authority/session/caller field: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:673`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:676`.
-- OP-003 instructs operators to call `skill_graph_scan({})` for corrupt-state recovery but has no negative scenario for an external or untrusted caller: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md:47`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md:50`.
+- The actual public MCP schema exposes `skill_graph_scan` as a maintenance tool with only optional `skillsRoot` input and no authority/session/caller field: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:673`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:676`.
+- OP-003 instructs operators to call `skill_graph_scan({})` for corrupt-state recovery but has no negative scenario for an external or untrusted caller: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md:47`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md:50`.
 
 Concrete fix:
 
@@ -83,9 +83,9 @@ The catalog and implementation summary claim `derived_generated` is capped at `0
 Evidence:
 
 - The implementation summary says native scoring uses `derived_generated (0.10)`: `implementation-summary.md:120`.
-- The five-lane feature catalog repeats `derived_generated 0.10`: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md:3`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md:38`.
-- The weights-config catalog also says `derived_generated: 0.10`: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md:31`.
-- Runtime source of truth sets `DERIVED_GENERATED_WEIGHT = 0.15`: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:8`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:11`.
+- The five-lane feature catalog repeats `derived_generated 0.10`: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md:3`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md:38`.
+- The weights-config catalog also says `derived_generated: 0.10`: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md:31`.
+- Runtime source of truth sets `DERIVED_GENERATED_WEIGHT = 0.15`: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:8`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:11`.
 
 Concrete fix:
 
@@ -98,7 +98,7 @@ The packet claims a named promotion gate bundle, but the code surface reviewed e
 Evidence:
 
 - `implementation-summary.md` claims `lib/promotion/gate-bundle.ts` evaluates 12 named gates and produces named failed gates: `implementation-summary.md:129`.
-- No `skill_advisor/lib/promotion/gate-bundle.ts` file exists in the reviewed runtime tree; the actual validation handler builds `slices` inline under corpus, holdout, parity, safety, and latency: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts:420`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts:453`.
+- No `skill_advisor/lib/promotion/gate-bundle.ts` file exists in the reviewed runtime tree; the actual validation handler builds `slices` inline under corpus, holdout, parity, safety, and latency: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts:420`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts:453`.
 - The only ADR collapses promotion gates into one implementation note and does not define the named gate-bundle contract: `decision-record.md:57`, `decision-record.md:59`.
 
 Concrete fix:
@@ -149,7 +149,7 @@ Prior DR-008-D1-P2-001 already owns the finding. This iteration only quantifies 
 
 Status: fail.
 
-Advisor catalog entries exist under `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`. The MCP tool catalog is mostly consistent with the actual `advisor_*` tool surface, but scorer catalogs and docs disagree with runtime on `derived_generated` weight (`0.10` claimed vs `0.15` implemented). See DR-008-D3-P2-002.
+Advisor catalog entries exist under `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`. The MCP tool catalog is mostly consistent with the actual `advisor_*` tool surface, but scorer catalogs and docs disagree with runtime on `derived_generated` weight (`0.10` claimed vs `0.15` implemented). See DR-008-D3-P2-002.
 
 The catalog set does not document `skill_graph_scan` as an advisor capability, which matches its location as a broader skill graph tool, but that leaves the public maintenance scan authority boundary undocumented alongside the advisor recovery playbooks.
 
@@ -175,7 +175,7 @@ Targeted drift count for runtime package paths in root docs: 6 instances of `mcp
 - `implementation-summary.md:114`
 - `implementation-summary.md:120`
 
-Related stale runtime reference: `spec.md:92` names `.opencode/skill/skill-advisor/scripts/skill_advisor.py`, while the shipped native shim is under `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`.
+Related stale runtime reference: `spec.md:92` names `.opencode/skills/skill-advisor/scripts/skill_advisor.py`, while the shipped native shim is under `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`.
 
 ### T6 — ADR implementation
 
@@ -189,9 +189,9 @@ Status: partial.
 
 The packet spans TypeScript MCP, Python shim, and plugin bridge, but docs mix current and stale paths:
 
-- Current runtime directory exists as `.opencode/skill/system-spec-kit/mcp_server/skill_advisor`.
-- Docs repeatedly cite `.opencode/skill/system-spec-kit/mcp_server/skill-advisor`.
-- The plugin root `.opencode/plugins/spec-kit-skill-advisor.js` exists, while the implementation summary also discusses `spec-kit-skill-advisor-bridge.mjs`; the actual MCP bridge lives under `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`.
+- Current runtime directory exists as `.opencode/skills/system-spec-kit/mcp_server/skill_advisor`.
+- Docs repeatedly cite `.opencode/skills/system-spec-kit/mcp_server/skill-advisor`.
+- The plugin root `.opencode/plugins/spec-kit-skill-advisor.js` exists, while the implementation summary also discusses `spec-kit-skill-advisor-bridge.mjs`; the actual MCP bridge lives under `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`.
 
 ### T8 — test_invariant mapping
 
@@ -212,7 +212,7 @@ This is logged as DR-008-D3-P1-001.
 
 - Claim: Tests cover the shipped advisor invariants.
 - Evidence for claim: Handler tests cover happy path, disabled, absent, stale, cache, sanitization, and dispatcher registration.
-- Counter-evidence: The active finding invariants requested for this pass are not directly tested; see `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:238`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:249`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:338`, and `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:25-48`.
+- Counter-evidence: The active finding invariants requested for this pass are not directly tested; see `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:238`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:249`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:338`, and `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:25-48`.
 - Adjudication: fail. New P1 because all four requested active invariants lack targeted regression tests.
 
 ### DR-008-D3-P2-001

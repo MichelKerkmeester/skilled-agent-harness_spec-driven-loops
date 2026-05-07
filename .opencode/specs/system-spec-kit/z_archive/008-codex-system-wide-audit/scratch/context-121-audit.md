@@ -203,7 +203,7 @@ Spec folder `system-spec-kit/z_archive/004-script-audit-comprehensive` exists **
 **4. Reindex Memory with Correct Path**
    - Use generate-context.js script to properly create memory entry:
      ```bash
-     node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
+     node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
        specs/system-spec-kit/z_archive/004-script-audit-comprehensive
      ```
    - Delete orphaned Memory ID #1346

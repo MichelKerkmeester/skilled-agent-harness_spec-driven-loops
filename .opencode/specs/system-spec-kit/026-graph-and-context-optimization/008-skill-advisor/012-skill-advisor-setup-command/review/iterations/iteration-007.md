@@ -133,18 +133,18 @@ Result: `p0_resolved=0`, `p0_outstanding=0`. There were no P0s to mark resolved;
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deltas/iteration-002.json:1-59`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deltas/iteration-004.json:1-78`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deltas/iteration-005.json:1-101`
-- `.opencode/command/spec_kit/skill-advisor.md:1-80`
-- `.opencode/command/spec_kit/skill-advisor.md:180-260`
-- `.opencode/command/spec_kit/skill-advisor.md:300-325`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:45-76`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:120-190`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:198-232`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:45-123`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:128-141`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:198-256`
+- `.opencode/commands/spec_kit/skill-advisor.md:1-80`
+- `.opencode/commands/spec_kit/skill-advisor.md:180-260`
+- `.opencode/commands/spec_kit/skill-advisor.md:300-325`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:45-76`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:120-190`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:198-232`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:45-123`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:128-141`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:198-256`
 - `.opencode/install_guides/SET-UP - Skill Advisor.md:1-36`
 - `.opencode/install_guides/SET-UP - Skill Advisor.md:108-132`
-- `.opencode/skill/system-spec-kit/mcp_server/README.md:570-604`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md:570-604`
 
 ## Convergence Signals
 

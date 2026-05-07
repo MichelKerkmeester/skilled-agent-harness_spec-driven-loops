@@ -144,7 +144,7 @@ Full execution completes when T101-T504 are all `[x]`. That happens in a separat
 - **Parent root packet**: `../spec.md`
 - **Sibling defects packet**: `../../005-memory-search-runtime-bugs/` — cross-reference target
 - **CLI skills under test**:
-  - `.opencode/skill/cli-codex/SKILL.md`
-  - `.opencode/skill/cli-copilot/SKILL.md`
-  - `.opencode/skill/cli-opencode/SKILL.md`
+  - `.opencode/skills/cli-codex/SKILL.md`
+  - `.opencode/skills/cli-copilot/SKILL.md`
+  - `.opencode/skills/cli-opencode/SKILL.md`
 <!-- /ANCHOR:cross-refs -->

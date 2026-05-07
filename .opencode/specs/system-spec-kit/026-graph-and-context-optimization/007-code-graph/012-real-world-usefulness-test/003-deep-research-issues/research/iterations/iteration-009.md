@@ -12,10 +12,10 @@ Read the research charter, available prior iterations (`iteration-001.md` throug
 The focus was whether a readiness result such as `{ freshness: "stale", action: "full_scan" }` has a production path that auto-rescans when the scope is unambiguous. The answer is no for current read/verification handlers. The underlying helper can perform inline full scans when `allowInlineFullScan` is enabled, but all production read-like call sites explicitly disable it.
 
 ## FINDINGS
-- P1 `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089` - `code_graph_query` disables inline full scans with `allowInlineFullScan:false`, and `shouldBlockReadPath()` then blocks every `full_scan` readiness result whose `inlineIndexPerformed` is not true; recommended remediation: add a guarded auto-rescan path for mechanically safe `stale/full_scan` cases, or add a structured reason code that lets the handler distinguish safe broad drift from destructive scope drift before blocking.
-- P1 `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:166` - `code_graph_context` mirrors the same policy: `allowInlineIndex:true` permits selective repair, but `allowInlineFullScan:false` forces stale/full-scan states into `requiredAction:"code_graph_scan"` instead of auto-rescanning; recommended remediation: centralize read-path readiness policy so query/context/verify make one shared, testable decision about safe full rescans.
-- P2 `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:32` - `ReadyResult` exposes `freshness`, `action`, optional `files`, `inlineIndexPerformed`, and a free-form `reason`, but no machine-readable full-scan cause or safety classification; recommended remediation: add fields such as `reasonCode`, `scopeDrift`, `candidateManifestDrift`, or `autoFullScanSafety` so future auto-rescan logic does not parse human strings.
-- P2 `.opencode/skill/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts:284` - tests explicitly lock the current read-path policy as "refuses inline full scan" when `allowInlineFullScan:false`, but there is no production caller or regression fixture that enables guarded inline full-scan for unambiguous stale states; recommended remediation: add a fixture for the desired safe-auto-rescan case before changing handler defaults.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089` - `code_graph_query` disables inline full scans with `allowInlineFullScan:false`, and `shouldBlockReadPath()` then blocks every `full_scan` readiness result whose `inlineIndexPerformed` is not true; recommended remediation: add a guarded auto-rescan path for mechanically safe `stale/full_scan` cases, or add a structured reason code that lets the handler distinguish safe broad drift from destructive scope drift before blocking.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:166` - `code_graph_context` mirrors the same policy: `allowInlineIndex:true` permits selective repair, but `allowInlineFullScan:false` forces stale/full-scan states into `requiredAction:"code_graph_scan"` instead of auto-rescanning; recommended remediation: centralize read-path readiness policy so query/context/verify make one shared, testable decision about safe full rescans.
+- P2 `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:32` - `ReadyResult` exposes `freshness`, `action`, optional `files`, `inlineIndexPerformed`, and a free-form `reason`, but no machine-readable full-scan cause or safety classification; recommended remediation: add fields such as `reasonCode`, `scopeDrift`, `candidateManifestDrift`, or `autoFullScanSafety` so future auto-rescan logic does not parse human strings.
+- P2 `.opencode/skills/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts:284` - tests explicitly lock the current read-path policy as "refuses inline full scan" when `allowInlineFullScan:false`, but there is no production caller or regression fixture that enables guarded inline full-scan for unambiguous stale states; recommended remediation: add a fixture for the desired safe-auto-rescan case before changing handler defaults.
 
 ## EVIDENCE
 Native rerun established the user-visible failure this dimension is trying to reduce:
@@ -31,72 +31,72 @@ Native rerun established the user-visible failure this dimension is trying to re
 `readiness-contract.ts` only decorates the ready result; it does not decide or trigger rescans:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:241-248
+.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:241-248
 buildReadinessBlock(readiness) returns the original readiness fields plus canonicalReadiness and trustState.
 ```
 
 `ensure-ready.ts` has the inline full-scan machinery, but it is option-gated:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:44-47
+.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:44-47
 EnsureReadyOptions includes allowInlineIndex and allowInlineFullScan.
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:496-499
+.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:496-499
 allowInlineFullScan defaults to allowInlineIndex.
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:527-535
+.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:527-535
 If state.action is full_scan and allowInlineFullScan is false, the helper returns inlineIndexPerformed:false and appends "inline full scan skipped for read path".
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:548-573
+.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:548-573
 If full_scan is allowed, the helper runs indexWithTimeout(), updates graph scope/git head/candidate manifest, then returns inlineIndexPerformed:true.
 ```
 
 Production read/verification call sites found:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089-1092
+.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089-1092
 ensureCodeGraphReady(process.cwd(), { allowInlineIndex:true, allowInlineFullScan:false })
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:166-169
+.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:166-169
 ensureCodeGraphReady(process.cwd(), { allowInlineIndex:true, allowInlineFullScan:false })
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:154-156
+.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:154-156
 ensureCodeGraphReady(canonicalRootDir, { allowInlineIndex: args.allowInlineIndex ?? false, allowInlineFullScan:false })
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:249-252
+.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:249-252
 ensureCodeGraphReady(canonicalRootDir, { allowInlineIndex:false, allowInlineFullScan:false })
 ```
 
 Blocking behavior is explicit:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-789
+.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-789
 shouldBlockReadPath returns true for action="full_scan" when inlineIndexPerformed is not true.
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:799-804
+.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:799-804
 fallbackDecision tells callers to run code_graph_scan, not an automatic rescan.
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62-73
+.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62-73
 context blocks crashed readiness and full_scan without inlineIndexPerformed.
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:89-93
+.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:89-93
 context fallbackDecision also points to code_graph_scan.
 ```
 
 Existing tests document the current behavior:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts:284-300
+.opencode/skills/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts:284-300
 The helper "refuses inline full scan for read paths" when allowInlineFullScan:false.
 
-.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-query-handler.vitest.ts:190-214
+.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-query-handler.vitest.ts:190-214
 Query returns an explicit blocked contract when readiness requires full_scan.
 ```
 
 Search evidence:
 
 ```text
-rg "ensureCodeGraphReady\\(|allowInlineFullScan\\s*:\\s*true|allowInlineFullScan\\s*:\\s*false" .opencode/skill/system-spec-kit/mcp_server/code_graph .opencode/skill/system-spec-kit/mcp_server/tests
+rg "ensureCodeGraphReady\\(|allowInlineFullScan\\s*:\\s*true|allowInlineFullScan\\s*:\\s*false" .opencode/skills/system-spec-kit/mcp_server/code_graph .opencode/skills/system-spec-kit/mcp_server/tests
 Production matches all used allowInlineFullScan:false; no production allowInlineFullScan:true match was found.
 ```
 

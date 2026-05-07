@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "memory save"
     blockers: []
     key_files:
-      - ".opencode/skill/deep-agent-improvement/SKILL.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/deep-agent-improvement/SKILL.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000084"
       session_id: "079-impl-summary"
@@ -29,7 +29,7 @@ _memory:
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Implementation Summary: Rename `sk-improve-agent` → `deep-agent-improvement`
 
@@ -59,7 +59,7 @@ The skill `sk-improve-agent` is now `deep-agent-improvement`, joining the `deep-
 
 ### Skill folder rename
 
-Skill folder `.opencode/skill/sk-improve-agent/` renamed to `.opencode/skill/deep-agent-improvement/` via `git mv`. The convenience symlink `.opencode/changelog/sk-improve-agent` was deleted and recreated as `.opencode/changelog/deep-agent-improvement` pointing at the new skill's `changelog/` directory.
+Skill folder `.opencode/skills/sk-improve-agent/` renamed to `.opencode/skills/deep-agent-improvement/` via `git mv`. The convenience symlink `.opencode/changelog/sk-improve-agent` was deleted and recreated as `.opencode/changelog/deep-agent-improvement` pointing at the new skill's `changelog/` directory.
 
 ### Advisor scoring tables migrated (CRITICAL)
 
@@ -69,24 +69,24 @@ Skill folder `.opencode/skill/sk-improve-agent/` renamed to `.opencode/skill/dee
 
 | Surface | Action | Notes |
 |---------|--------|-------|
-| `.opencode/skill/sk-improve-agent/` → `.opencode/skill/deep-agent-improvement/` | Renamed | `git mv` (T-001); 116 files now under new path |
+| `.opencode/skills/sk-improve-agent/` → `.opencode/skills/deep-agent-improvement/` | Renamed | `git mv` (T-001); 116 files now under new path |
 | `.opencode/changelog/sk-improve-agent` symlink | Renamed + Retargeted | Now `.opencode/changelog/deep-agent-improvement → ../skill/deep-agent-improvement/changelog` (T-002) |
 | 60 in-skill files (SKILL.md, README.md, graph-metadata.json, scripts, assets, changelog v1.0..v1.2.2, feature_catalog, manual_testing_playbook, references, test-fixtures) | Modified | All `sk-improve-agent` refs migrated; new `changelog/v1.3.0.0.md` and `v1.4.0.0.md` document the rename (T-003..T-009) |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modified | 156 phrase routing entries (T-010) |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Modified | Registry key + edges + trigger phrases (T-011) |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:270` | Modified | Penalty list (T-012) |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts:315,343` | Modified | Test fixture skill IDs (T-013) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/remediation-008-docs.vitest.ts:22` | Modified | Path string assertion (T-014) |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/skill_advisor/**/*.js` | Regenerated | `npm run build` (T-015) — fusion.js dist mirror correct |
-| `.opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite` | Rebuilt | `advisor_rebuild` (T-016) skillCount=18 |
-| `.opencode/skill/sk-improve-prompt/graph-metadata.json:32` | Modified | Sibling target (T-017) |
-| `.opencode/skill/README.md` | Modified | Skill index + directory tree (T-018) |
-| `.opencode/skill/system-spec-kit/changelog/v3.3.0.0.md`, `v3.4.0.0.md` | Modified | Path strings only; narrative untouched (T-019) |
-| `.opencode/command/improve/agent.md` + 32-ref auto.yaml + 33-ref confirm.yaml + README.txt | Modified | Canonical .opencode/ command surface (T-020..T-023) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modified | 156 phrase routing entries (T-010) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Modified | Registry key + edges + trigger phrases (T-011) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:270` | Modified | Penalty list (T-012) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts:315,343` | Modified | Test fixture skill IDs (T-013) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/remediation-008-docs.vitest.ts:22` | Modified | Path string assertion (T-014) |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/**/*.js` | Regenerated | `npm run build` (T-015) — fusion.js dist mirror correct |
+| `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite` | Rebuilt | `advisor_rebuild` (T-016) skillCount=18 |
+| `.opencode/skills/sk-improve-prompt/graph-metadata.json:32` | Modified | Sibling target (T-017) |
+| `.opencode/skills/README.md` | Modified | Skill index + directory tree (T-018) |
+| `.opencode/skills/system-spec-kit/changelog/v3.3.0.0.md`, `v3.4.0.0.md` | Modified | Path strings only; narrative untouched (T-019) |
+| `.opencode/commands/improve/agent.md` + 32-ref auto.yaml + 33-ref confirm.yaml + README.txt | Modified | Canonical .opencode/ command surface (T-020..T-023) |
 | `.claude/commands/improve/` (4 files) | Modified | Runtime mirror (T-024) |
 | `.gemini/commands/improve/improve-agent.toml` + README.txt | Modified | Runtime mirror (T-025); no YAML assets in this dir |
 | `.codex/commands/improve/` | N/A — does not exist | Codex runtime has only `.codex/agents/improve-agent.toml`; no commands dir (T-026 N/A) |
-| `.opencode/agent/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, `.codex/agents/improve-agent.toml` | Modified | Skill matrix line per file; agent name `improve-agent` itself unchanged (T-027..T-030) |
+| `.opencode/agents/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, `.codex/agents/improve-agent.toml` | Modified | Skill matrix line per file; agent name `improve-agent` itself unchanged (T-027..T-030) |
 | `README.md` (root) | Modified | Lines 848 + 1220 (T-031) |
 | `AGENTS.md` (root) and `CLAUDE.md` → AGENTS.md (symlink) | Modified | Line 324 (T-032). CLAUDE.md is a symlink to AGENTS.md so updates transitively |
 | `.opencode/install_guides/README.md` (2 refs) + `SET-UP - AGENTS.md` (1 ref) | Modified | T-033 |
@@ -129,7 +129,7 @@ Total elapsed wall-clock: ~5 hours including spec authoring (90 min), CLI dispat
 | Check | Result |
 |-------|--------|
 | Strict spec validation pre-dispatch (`validate.sh ... --strict`) | PASS — Errors: 0, Warnings: 0 (after restructuring with proper anchors + headers + frontmatter ordering) |
-| Folder rename (`ls .opencode/skill/deep-agent-improvement/SKILL.md`) | PASS — file exists; `.opencode/skill/sk-improve-agent` returns ENOENT |
+| Folder rename (`ls .opencode/skills/deep-agent-improvement/SKILL.md`) | PASS — file exists; `.opencode/skills/sk-improve-agent` returns ENOENT |
 | Symlink (`readlink .opencode/changelog/deep-agent-improvement`) | PASS — `../skill/deep-agent-improvement/changelog`; old symlink absent |
 | Residual grep (active code, ex-historical) | PASS — `0` lines (excluding `specs/` historical record + skill changelog v1.0..v1.2.2 narrative + system-spec-kit changelog v3.3/v3.4 narrative) |
 | Advisor source files (`grep -c` per file) | PASS — `skill_advisor.py: 0`, `skill-graph.json: 0`, `fusion.ts: 0`, `graph-metadata.json (advisor): 0`, `native-scorer.vitest.ts: 0`, `remediation-008-docs.vitest.ts: 0` |
@@ -146,7 +146,7 @@ Total elapsed wall-clock: ~5 hours including spec authoring (90 min), CLI dispat
 
 | REQ ID | Status | Evidence |
 |--------|--------|----------|
-| REQ-001 (folder rename) | MET | `.opencode/skill/deep-agent-improvement/SKILL.md` exists; old path absent |
+| REQ-001 (folder rename) | MET | `.opencode/skills/deep-agent-improvement/SKILL.md` exists; old path absent |
 | REQ-002 (skill_id + name) | MET | `jq '.skill_id'` returns `"deep-agent-improvement"`; SKILL.md frontmatter `name: deep-agent-improvement` |
 | REQ-003 (advisor migrated) | MET | `grep -c 'sk-improve-agent' skill_advisor.py` → 0; `native-scorer.vitest.ts` passes |
 | REQ-004 (SQLite rebuilt) | MET | `advisor_rebuild` returned `rebuilt: true, skillCount: 18` |
@@ -156,7 +156,7 @@ Total elapsed wall-clock: ~5 hours including spec authoring (90 min), CLI dispat
 | REQ-008 (symlink) | MET | `readlink` resolves new path; old absent |
 | REQ-009 (validate.sh strict) | MET | Pre-dispatch strict pass; post-dispatch validation re-runnable |
 | REQ-010 (vitest pass) | MET (partial) | `native-scorer.vitest.ts` passes; `remediation-008-docs` fail is unrelated to rename |
-| REQ-011 (new changelog) | MET | `.opencode/skill/deep-agent-improvement/changelog/v1.3.0.0.md` and `v1.4.0.0.md` exist |
+| REQ-011 (new changelog) | MET | `.opencode/skills/deep-agent-improvement/changelog/v1.3.0.0.md` and `v1.4.0.0.md` exist |
 | REQ-012 (root docs) | MET | `README.md`, `AGENTS.md`, `CLAUDE.md` (via symlink): 0 hits |
 | REQ-013 (install guides) | MET | `.opencode/install_guides/README.md`, `SET-UP - AGENTS.md`: 0 hits |
 | REQ-014 (this file) | MET | This file authored with verification evidence |
@@ -188,4 +188,4 @@ Total elapsed wall-clock: ~5 hours including spec authoring (90 min), CLI dispat
 - **Checklist**: `checklist.md`
 - **Resource Map**: `resource-map.md`
 - **Precedent**: `specs/skilled-agent-orchestration/070-sk-deep-rename/`
-- **New changelog entries**: `.opencode/skill/deep-agent-improvement/changelog/v1.3.0.0.md` (rename milestone) and `v1.4.0.0.md` (companion entry from cli-copilot Phase 3)
+- **New changelog entries**: `.opencode/skills/deep-agent-improvement/changelog/v1.3.0.0.md` (rename milestone) and `v1.4.0.0.md` (companion entry from cli-copilot Phase 3)

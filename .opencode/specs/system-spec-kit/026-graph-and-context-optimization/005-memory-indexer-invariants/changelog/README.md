@@ -30,7 +30,7 @@ The packet ships at Level 3 with full spec docs: `spec.md` (399 lines, 13 sectio
 
 ## How to read these
 
-Each phase changelog follows the canonical nested-changelog template at `.opencode/skill/system-spec-kit/templates/changelog/phase.md`. Sections are:
+Each phase changelog follows the canonical nested-changelog template at `.opencode/skills/system-spec-kit/templates/changelog/phase.md`. Sections are:
 
 - **Summary**: what changed and why it matters, in plain language
 - **Added**: new capabilities or surfaces
@@ -42,7 +42,7 @@ Each phase changelog follows the canonical nested-changelog template at `.openco
 
 For review-only phases, the Added, Changed, and Fixed sections read "None - review-only phase." The Verification section cites the review report and finding counts. Follow-Ups list active P1 and P2 items from the review.
 
-Voice rules per `.opencode/skill/sk-doc/references/global/hvr_rules.md` apply throughout. Technical jargon on first use includes a brief parenthetical definition.
+Voice rules per `.opencode/skills/sk-doc/references/global/hvr_rules.md` apply throughout. Technical jargon on first use includes a brief parenthetical definition.
 
 ## Where to find the full story
 

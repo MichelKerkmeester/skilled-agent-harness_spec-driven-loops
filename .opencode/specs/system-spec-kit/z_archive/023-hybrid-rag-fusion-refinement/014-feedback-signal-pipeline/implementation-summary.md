@@ -86,11 +86,11 @@ The result is a packet that is truthful, structurally valid, and ready to close.
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS - rerun 2026-04-03 exited 0 |
-| `cd .opencode/skill/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/query-flow-tracker.vitest.ts tests/context-server.vitest.ts tests/feedback-ledger.vitest.ts` | PASS - rerun 2026-04-03, 3 files / 451 tests |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS - rerun 2026-04-03 exited 0 |
+| `cd .opencode/skills/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/query-flow-tracker.vitest.ts tests/context-server.vitest.ts tests/feedback-ledger.vitest.ts` | PASS - rerun 2026-04-03, 3 files / 451 tests |
 | `tests/query-flow-tracker.vitest.ts` content audit | PASS - snake_case ledger assertions fixed and DB-level packet flow test added for citation + follow-on tool use + reformulation |
-| `cd .opencode/skill/system-spec-kit/mcp_server && node --input-type=module ...` benchmark | PASS - `averageMs: 0.030233255999999983`, `p95Ms: 0.06591600000000142`, `maxMs: 0.43650000000000233`, supporting the `<5ms` async-overhead claim |
-| `cd .opencode/skill/system-spec-kit && ./scripts/spec/validate.sh ../../specs/system-spec-kit/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline` | PASS - validator issues repaired in this audit after restoring required anchors/sections |
+| `cd .opencode/skills/system-spec-kit/mcp_server && node --input-type=module ...` benchmark | PASS - `averageMs: 0.030233255999999983`, `p95Ms: 0.06591600000000142`, `maxMs: 0.43650000000000233`, supporting the `<5ms` async-overhead claim |
+| `cd .opencode/skills/system-spec-kit && ./scripts/spec/validate.sh ../../specs/system-spec-kit/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline` | PASS - validator issues repaired in this audit after restoring required anchors/sections |
 | Historical live MCP verification | PRIOR EVIDENCE RETAINED - packet still records the earlier post-restart run where all five event types emitted; this refresh did not claim a new restart-based live rerun |
 | Shadow-only status | PASS - `feedbackSignalsApplied` can remain `off` while the ledger still records events; this matches current design |
 <!-- /ANCHOR:verification -->

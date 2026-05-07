@@ -1,9 +1,9 @@
 # Agent 3: Functional Correctness — Phase Scoring Algorithm
 
-**Reviewed file:** `.opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh`
+**Reviewed file:** `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh`
 **Reference documents:**
 - `.opencode/specs/system-spec-kit/021-spec-kit-phase-system/spec.md` (REQ-001)
-- `.opencode/skill/system-spec-kit/references/structure/phase_definitions.md` (scoring dimensions)
+- `.opencode/skills/system-spec-kit/references/structure/phase_definitions.md` (scoring dimensions)
 
 **Date:** 2026-03-08
 **Reviewer model:** claude-opus-4-6

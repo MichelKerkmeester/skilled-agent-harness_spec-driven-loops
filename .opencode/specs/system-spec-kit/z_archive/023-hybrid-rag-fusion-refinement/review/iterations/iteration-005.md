@@ -16,12 +16,12 @@ D5 Performance — save and startup overhead
 ## Findings
 ### P2-023-009: Folder-wide duplicate hashing adds avoidable latency to the hot save path
 - Dimension: D5 Performance
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1447]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1663]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1669]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/file-writer.ts:94]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/file-writer.ts:105]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/file-writer.ts:129]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1447]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1663]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1669]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/file-writer.ts:94]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/file-writer.ts:105]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/file-writer.ts:129]
 - Impact: Each save still rescans and rehashes the whole target folder after preflight, so save latency grows with folder history even on the normal non-duplicate path.
 - Final severity: P2
 
@@ -34,12 +34,12 @@ D5 Performance — save and startup overhead
 - No blocker-level startup regression was proven in the current tree.
 
 ## Sources Reviewed
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/file-writer.ts:105]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/file-writer.ts:129]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/file-writer.ts:94]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1447]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1663]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1669]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/file-writer.ts:105]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/file-writer.ts:129]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/file-writer.ts:94]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1447]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1663]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1669]
 
 ## Assessment
 - Confirmed findings: 1

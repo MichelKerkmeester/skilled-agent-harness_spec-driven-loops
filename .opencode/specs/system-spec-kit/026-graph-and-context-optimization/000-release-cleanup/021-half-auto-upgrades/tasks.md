@@ -76,7 +76,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T020 Run new targeted tests. [EVIDENCE: `hooks-codex-freshness.vitest.ts` and `advisor-rebuild.vitest.ts`, 4 tests passed]
-- [x] T021 Run TypeScript build. [EVIDENCE: `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` passed]
+- [x] T021 Run TypeScript build. [EVIDENCE: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` passed]
 - [x] T022 Run strict validator. [EVIDENCE: final strict validator passed]
 - [x] T023 Inspect status for unrelated pre-existing changes. [EVIDENCE: `.opencode/specs/...` unrelated changes left untouched]
 <!-- /ANCHOR:phase-3 -->

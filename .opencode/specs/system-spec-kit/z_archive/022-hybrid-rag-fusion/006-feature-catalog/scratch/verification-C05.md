@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce97-ed70-7ce3-9975-1b526e478098
 --------
 user
-You are a feature catalog verification agent. Read these specific feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md. For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
+You are a feature catalog verification agent. Read these specific feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md. For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
 
 OUTPUT FORMAT (repeat for each feature file):
 ---
@@ -37,7 +37,7 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m treating this as a read-only verification pass: first I’ll load the relevant skill guidance and inspect the six feature snippets, then I’ll cross-check each listed source file under `mcp_server/` against the actual implementation.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 ---
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -59,7 +59,7 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Verify six system-spec-kit feature catalog snippets against actual mcp_server code, checking Current Reality accuracy, path validity, and missing source files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 695ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Verify six system-spec-kit feature catalog snippets against actual mcp_server code, checking Current Reality accuracy, path validity, and missing source files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 695ms:
 [
   {
     "skill": "system-spec-kit",
@@ -83,12 +83,12 @@ exec
 codex
 Skill routing points to `system-spec-kit`, which fits this verification task, so I’m following that workflow while keeping this read-only. I’m also checking for any deeper `AGENTS.md` files that might govern the feature catalog or `mcp_server` folders before I compare docs to code.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "rg --files -g 'AGENTS.md' .opencode ." in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 # Chunk collapse deduplication
 
@@ -226,144 +226,144 @@ Two guard/edge-case issues were fixed:
 codex
 I have the six snippets in hand now. Next I’m locating the real implementation points for each bug/fix so I can tell the difference between “listed path exists” and “this file actually owns the behavior described.”
 exec
-/bin/zsh -lc 'rg -n "includeContent|dedup|duplicate chunk|collapse" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/tests' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "mem:|graph channel|graph-search|edgeId|numeric IDs|candidateMemoryIds|memoryIds" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/tests' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"fan-effect|fan effect|sqrt\\(|neighbor_count|co-activation strength|spread-activation|coactivation|co-activation\" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"temporal-contiguity|extraction-adapter|most-recent memory|most recent memory|returns null|j = i \\+ 1|j=i\\+1|resolution failure\" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "SHA-256|SHA256|sha256|content_hash|contentHash|embedding step|embedding generation|duplicate" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"reconsolidation|frequency_counter|importance_weight|CREATE TABLE IF NOT EXISTS|ALTER TABLE ADD COLUMN|database\\.transaction\\(|WHERE .*AND .*OR|\\.changes > 0|changes > 0|causal-edges|memory-save|checkpoint|checkpoints\" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:60:  dedupStats: {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:355:    console.warn(`[session-manager] Database not initialized for batch dedup. dbUnavailableMode=${SESSION_CONFIG.dbUnavailableMode}. ${allow ? 'Allowing' : 'Blocking'} batch.`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:665:      dedupStats: { enabled: false, filtered: 0, total: results?.length || 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:691:    dedupStats: {
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:169:├── session-manager.vitest.ts              # Session deduplication
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:270:├── integration-session-dedup.vitest.ts    # Session dedup integration
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:291:├── content-hash-dedup.vitest.ts          # Content hash deduplication
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:667:| Embedding Cache | `embedding-cache.vitest.ts` | Embedding cache deduplication and hit rates |
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:138:    it('T033.1: -ing suffix removal + double-consonant dedup', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:139:      // AI-WHY: Fix #18 — "running" → "runn" → "run" (doubled consonant collapsed)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:3:description: "Session management for the Spec Kit Memory MCP server. Handles session deduplication, crash recovery and context persistence."
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:6:  - "session deduplication"
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:12:> Session management for the Spec Kit Memory MCP server. Handles deduplication and crash recovery with context persistence.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:40:| Token Savings | ~50% | On follow-up queries via deduplication |
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:63: session-manager.ts  # Session deduplication, crash recovery, state management (~28KB)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:71:| `session-manager.ts` | Core session tracking, deduplication, state persistence, CONTINUE_SESSION.md |
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:140:const { filtered, dedupStats } = filterSearchResults(sessionId, results);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:142:console.log(`Filtered ${dedupStats.filtered} duplicates`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:143:console.log(`Token savings: ${dedupStats.tokenSavingsEstimate}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:254:| Session dedup disabled | Check `DISABLE_SESSION_DEDUP` env var |
+/bin/zsh -lc 'rg -n "includeContent|dedup|duplicate chunk|collapse" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/tests' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "mem:|graph channel|graph-search|edgeId|numeric IDs|candidateMemoryIds|memoryIds" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/tests' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"fan-effect|fan effect|sqrt\\(|neighbor_count|co-activation strength|spread-activation|coactivation|co-activation\" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"temporal-contiguity|extraction-adapter|most-recent memory|most recent memory|returns null|j = i \\+ 1|j=i\\+1|resolution failure\" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "SHA-256|SHA256|sha256|content_hash|contentHash|embedding step|embedding generation|duplicate" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"reconsolidation|frequency_counter|importance_weight|CREATE TABLE IF NOT EXISTS|ALTER TABLE ADD COLUMN|database\\.transaction\\(|WHERE .*AND .*OR|\\.changes > 0|changes > 0|causal-edges|memory-save|checkpoint|checkpoints\" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:60:  dedupStats: {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:355:    console.warn(`[session-manager] Database not initialized for batch dedup. dbUnavailableMode=${SESSION_CONFIG.dbUnavailableMode}. ${allow ? 'Allowing' : 'Blocking'} batch.`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:665:      dedupStats: { enabled: false, filtered: 0, total: results?.length || 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:691:    dedupStats: {
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:169:├── session-manager.vitest.ts              # Session deduplication
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:270:├── integration-session-dedup.vitest.ts    # Session dedup integration
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:291:├── content-hash-dedup.vitest.ts          # Content hash deduplication
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:667:| Embedding Cache | `embedding-cache.vitest.ts` | Embedding cache deduplication and hit rates |
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:138:    it('T033.1: -ing suffix removal + double-consonant dedup', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:139:      // AI-WHY: Fix #18 — "running" → "runn" → "run" (doubled consonant collapsed)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:3:description: "Session management for the Spec Kit Memory MCP server. Handles session deduplication, crash recovery and context persistence."
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:6:  - "session deduplication"
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:12:> Session management for the Spec Kit Memory MCP server. Handles deduplication and crash recovery with context persistence.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:40:| Token Savings | ~50% | On follow-up queries via deduplication |
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:63: session-manager.ts  # Session deduplication, crash recovery, state management (~28KB)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:71:| `session-manager.ts` | Core session tracking, deduplication, state persistence, CONTINUE_SESSION.md |
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:140:const { filtered, dedupStats } = filterSearchResults(sessionId, results);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:142:console.log(`Filtered ${dedupStats.filtered} duplicates`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:143:console.log(`Token savings: ${dedupStats.tokenSavingsEstimate}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:254:| Session dedup disabled | Check `DISABLE_SESSION_DEDUP` env var |
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:84:    it('T528-5: Missing edgeId for CausalUnlink rejected', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:230:├── graph-search-fn.vitest.ts              # Graph search functions
-.opencode/skill/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:18:} from '../lib/search/graph-search-fn';
-.opencode/skill/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:342:    it('handles numeric IDs by converting to strings', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:46: * When all channels active (baseline): returns memoryIds 1..count (high quality).
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:272:    it('disables graph channel correctly', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:4:// Validates the full search pipeline works with the graph channel
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:111:  it('graph-search-fn exports: createUnifiedGraphSearchFn', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:112:    const mod = await import('../lib/search/graph-search-fn');
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:272:  it('setting SPECKIT_GRAPH_UNIFIED=true enables the graph channel flag', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:16:} from '../lib/search/graph-search-fn';
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:23: * Handles SQL patterns used by the committed graph-search-fn.ts:
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:295:      // Committed computeMaxTypedDegree takes only database (no memoryIds)
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:8:import { clearDegreeCache, computeDegreeScores } from '../lib/search/graph-search-fn';
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:475:    let edgeId: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:479:      edgeId = causalEdges.insertEdge('1', '2', 'caused', 0.5, 'original');
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:483:      const ok = causalEdges.updateEdge(edgeId, { strength: 0.9 });
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:490:      const ok = causalEdges.updateEdge(edgeId, { evidence: 'updated evidence' });
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:497:      const ok = causalEdges.updateEdge(edgeId, { strength: 0.3, evidence: 'both updated' });
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:505:      causalEdges.updateEdge(edgeId, { strength: 5.0 });
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:84:    it('T528-5: Missing edgeId for CausalUnlink rejected', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:230:├── graph-search-fn.vitest.ts              # Graph search functions
+.opencode/skills/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:18:} from '../lib/search/graph-search-fn';
+.opencode/skills/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:342:    it('handles numeric IDs by converting to strings', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:46: * When all channels active (baseline): returns memoryIds 1..count (high quality).
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:272:    it('disables graph channel correctly', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:4:// Validates the full search pipeline works with the graph channel
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:111:  it('graph-search-fn exports: createUnifiedGraphSearchFn', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:112:    const mod = await import('../lib/search/graph-search-fn');
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:272:  it('setting SPECKIT_GRAPH_UNIFIED=true enables the graph channel flag', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:16:} from '../lib/search/graph-search-fn';
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:23: * Handles SQL patterns used by the committed graph-search-fn.ts:
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:295:      // Committed computeMaxTypedDegree takes only database (no memoryIds)
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:8:import { clearDegreeCache, computeDegreeScores } from '../lib/search/graph-search-fn';
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:475:    let edgeId: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:479:      edgeId = causalEdges.insertEdge('1', '2', 'caused', 0.5, 'original');
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:483:      const ok = causalEdges.updateEdge(edgeId, { strength: 0.9 });
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:490:      const ok = causalEdges.updateEdge(edgeId, { evidence: 'updated evidence' });
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:497:      const ok = causalEdges.updateEdge(edgeId, { strength: 0.3, evidence: 'both updated' });
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:505:      causalEdges.updateEdge(edgeId, { strength: 5.0 });
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:541:  const denominator = Math.sqrt(normA) * Math.sqrt(normB);
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:62:    // N = 2, bonus = 0.3 * 0.4 / sqrt(2) = 0.12 / 1.41421356... = 0.08485281...
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:64:    const expected = 0.8 + (0.3 * 0.4) / Math.sqrt(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:80:    // N = 10, bonus = 0.3 * 4.45 / sqrt(10) = 1.335 / 3.16227766... = 0.42213203...
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:83:    const expected = 0.9 + (0.3 * sumRemaining) / Math.sqrt(10);
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:100:    // N = 3, bonus = 0.3 * 1.0 / sqrt(3) = 0.3 / 1.73205... = 0.17320508...
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:102:    const expected = 0.5 + (0.3 * 1.0) / Math.sqrt(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:113:    // N = 3, bonus = 0.3 * 1.2 / sqrt(3) = 0.36 / 1.73205... = 0.20784609...
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:115:    const expected = 0.9 + (0.3 * (0.9 + 0.3)) / Math.sqrt(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:231:    const expected = 0.8 + (0.3 * 0.4) / Math.sqrt(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:263:    // mem-2 MPAB: 0.5 + 0.3 * 1.5 / sqrt(4) = 0.5 + 0.45/2 = 0.725
-.opencode/skill/system-spec-kit/mcp_server/tests/interfaces.vitest.ts:214:    norm = Math.sqrt(norm);
-.opencode/skill/system-spec-kit/mcp_server/tests/interfaces.vitest.ts:231:  norm = Math.sqrt(norm);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:262:  const denom = Math.sqrt(normA) * Math.sqrt(normB);
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:37:The test suite validates all critical functionality of the Spec Kit Memory MCP server. Tests cover cognitive memory features (attention decay, working memory, co-activation and confidence tracking), tier classification, summary generation, search pipelines, MCP tool handlers and integration scenarios. All tests use **Vitest** as the test framework with `.vitest.ts` file extensions.
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:126:├── co-activation.vitest.ts                # Related memory activation
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:419:| Cognitive | Attention decay, working memory, co-activation, tier classification |
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:611:npx vitest run tests/attention-decay.vitest.ts tests/co-activation.vitest.ts tests/working-memory.vitest.ts tests/tier-classifier.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:657:| Co-Activation | `co-activation.vitest.ts` | Related memory boosting, spreading activation |
-.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:3:// Converted from: co-activation.test.ts (custom runner)
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:541:  const denominator = Math.sqrt(normA) * Math.sqrt(normB);
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:62:    // N = 2, bonus = 0.3 * 0.4 / sqrt(2) = 0.12 / 1.41421356... = 0.08485281...
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:64:    const expected = 0.8 + (0.3 * 0.4) / Math.sqrt(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:80:    // N = 10, bonus = 0.3 * 4.45 / sqrt(10) = 1.335 / 3.16227766... = 0.42213203...
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:83:    const expected = 0.9 + (0.3 * sumRemaining) / Math.sqrt(10);
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:100:    // N = 3, bonus = 0.3 * 1.0 / sqrt(3) = 0.3 / 1.73205... = 0.17320508...
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:102:    const expected = 0.5 + (0.3 * 1.0) / Math.sqrt(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:113:    // N = 3, bonus = 0.3 * 1.2 / sqrt(3) = 0.36 / 1.73205... = 0.20784609...
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:115:    const expected = 0.9 + (0.3 * (0.9 + 0.3)) / Math.sqrt(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:231:    const expected = 0.8 + (0.3 * 0.4) / Math.sqrt(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-aggregation.vitest.ts:263:    // mem-2 MPAB: 0.5 + 0.3 * 1.5 / sqrt(4) = 0.5 + 0.45/2 = 0.725
+.opencode/skills/system-spec-kit/mcp_server/tests/interfaces.vitest.ts:214:    norm = Math.sqrt(norm);
+.opencode/skills/system-spec-kit/mcp_server/tests/interfaces.vitest.ts:231:  norm = Math.sqrt(norm);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:262:  const denom = Math.sqrt(normA) * Math.sqrt(normB);
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:37:The test suite validates all critical functionality of the Spec Kit Memory MCP server. Tests cover cognitive memory features (attention decay, working memory, co-activation and confidence tracking), tier classification, summary generation, search pipelines, MCP tool handlers and integration scenarios. All tests use **Vitest** as the test framework with `.vitest.ts` file extensions.
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:126:├── co-activation.vitest.ts                # Related memory activation
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:419:| Cognitive | Attention decay, working memory, co-activation, tier classification |
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:611:npx vitest run tests/attention-decay.vitest.ts tests/co-activation.vitest.ts tests/working-memory.vitest.ts tests/tier-classifier.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:657:| Co-Activation | `co-activation.vitest.ts` | Related memory boosting, spreading activation |
+.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:3:// Converted from: co-activation.test.ts (custom runner)
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:94:import { initExtractionAdapter } from './lib/extraction/extraction-adapter';
-.opencode/skill/system-spec-kit/shared/embeddings.ts:545:/** Get current embedding profile (sync - returns null if not initialized) */
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:59:  it('returns null for single-segment path', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:63:  it('returns null for empty string', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:79:  it('returns null for path with leading slash only', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:80:    // "/foo" has lastSlash at 0, so <= 0 guard returns null
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:31: * Delegates to the spec.md file in the same directory (or returns null).
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:189:    it('RF5: Flag OFF means reconsolidate returns null', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:642:    it('RO5: Flag OFF returns null (normal store)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:56:    // Negative quality_score is treated as absent. Without a tier, returns null.
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:236:  it('T15: returns null when row has no signals (no tier, no quality_score, no content)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:243:  it('T15b: returns null for unknown/missing importance_tier with no other signals', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:209:  it('proceeds without rollback metadata when checkpoint creation returns null on non-critical tier', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:257:  it('aborts critical tier bulk delete when checkpoint creation returns null', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:78:  // T015-03: Cache miss returns null for unknown hash
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:80:  it('T015-03: cache miss returns null', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:427:  it('returns null for a missing file', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:432:  it('returns null for malformed JSON content', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:672:  it('returns null for missing spec.md', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:738:  it('returns null for missing description.json', () => {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:94:import { initExtractionAdapter } from './lib/extraction/extraction-adapter';
+.opencode/skills/system-spec-kit/shared/embeddings.ts:545:/** Get current embedding profile (sync - returns null if not initialized) */
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:59:  it('returns null for single-segment path', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:63:  it('returns null for empty string', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:79:  it('returns null for path with leading slash only', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:80:    // "/foo" has lastSlash at 0, so <= 0 guard returns null
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:31: * Delegates to the spec.md file in the same directory (or returns null).
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:189:    it('RF5: Flag OFF means reconsolidate returns null', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:642:    it('RO5: Flag OFF returns null (normal store)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:56:    // Negative quality_score is treated as absent. Without a tier, returns null.
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:236:  it('T15: returns null when row has no signals (no tier, no quality_score, no content)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:243:  it('T15b: returns null for unknown/missing importance_tier with no other signals', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:209:  it('proceeds without rollback metadata when checkpoint creation returns null on non-critical tier', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:257:  it('aborts critical tier bulk delete when checkpoint creation returns null', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:78:  // T015-03: Cache miss returns null for unknown hash
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:80:  it('T015-03: cache miss returns null', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:427:  it('returns null for a missing file', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:432:  it('returns null for malformed JSON content', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:672:  it('returns null for missing spec.md', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:738:  it('returns null for missing description.json', () => {
  succeeded in 51ms:
 Total output lines: 644
 
-.opencode/skill/system-spec-kit/shared/chunking.ts:15: * Maximum text length for embedding generation.
-.opencode/skill/system-spec-kit/shared/embeddings.ts:68: * Generate SHA256 hash key for cache lookup.
-.opencode/skill/system-spec-kit/shared/embeddings.ts:80:  return crypto.createHash('sha256').update(`${providerName}:${text}`).digest('hex').substring(0, 32);
-.opencode/skill/system-spec-kit/shared/embeddings.ts:591:  // Core embedding generation
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:63:  content_hash: string | null;
-.opencode/skill/system-spec-kit/shared/index.ts:81:  // Core embedding generation
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:19: * Canonical shared implementation — replaces duplicates in memory-indexer.ts and memory-parser.ts.
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:32: * Canonical shared implementation — replaces duplicates in memory-indexer.ts and memory-parser.ts.
-.opencode/skill/system-spec-kit/mcp_server/README.md:66:- **Session awareness** prevents duplicate context and saves tokens
-.opencode/skill/system-spec-kit/mcp_server/README.md:573:Prevents duplicate memories from polluting the index:
-.opencode/skill/system-spec-kit/mcp_server/README.md:965:// - variants[] with filePath + contentHash
-.opencode/skill/system-spec-kit/shared/types.ts:453: * Previously duplicated across:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:137:    // AI-WHY: Persist mutated content from quality loop; recompute content_hash
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:141:      parsed.contentHash = memoryParser.computeContentHash(parsed.content);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:245:    SELECT id, content_hash FROM memory_index
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:251:  `).get(parsed.specFolder, canonicalFilePath, filePath) as { id: number; content_hash: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:316:        check_duplicates: !force,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:396: * `indexMemoryFile` requires async embedding generation while
+.opencode/skills/system-spec-kit/shared/chunking.ts:15: * Maximum text length for embedding generation.
+.opencode/skills/system-spec-kit/shared/embeddings.ts:68: * Generate SHA256 hash key for cache lookup.
+.opencode/skills/system-spec-kit/shared/embeddings.ts:80:  return crypto.createHash('sha256').update(`${providerName}:${text}`).digest('hex').substring(0, 32);
+.opencode/skills/system-spec-kit/shared/embeddings.ts:591:  // Core embedding generation
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:63:  content_hash: string | null;
+.opencode/skills/system-spec-kit/shared/index.ts:81:  // Core embedding generation
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:19: * Canonical shared implementation — replaces duplicates in memory-indexer.ts and memory-parser.ts.
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:32: * Canonical shared implementation — replaces duplicates in memory-indexer.ts and memory-parser.ts.
+.opencode/skills/system-spec-kit/mcp_server/README.md:66:- **Session awareness** prevents duplicate context and saves tokens
+.opencode/skills/system-spec-kit/mcp_server/README.md:573:Prevents duplicate memories from polluting the index:
+.opencode/skills/system-spec-kit/mcp_server/README.md:965:// - variants[] with filePath + contentHash
+.opencode/skills/system-spec-kit/shared/types.ts:453: * Previously duplicated across:
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:137:    // AI-WHY: Persist mutated content from quality loop; recompute content_hash
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:141:      parsed.contentHash = memoryParser.computeContentHash(parsed.content);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:245:    SELECT id, content_hash FROM memory_index
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:251:  `).get(parsed.specFolder, canonicalFilePath, filePath) as { id: number; content_hash: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:316:        check_duplicates: !force,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:396: * `indexMemoryFile` requires async embedding generation while
  succeeded in 52ms:
 Total output lines: 1252
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:64:import * as checkpointsLib from './lib/storage/checkpoints';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:700:  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch, sessionManager, incrementalIndex });
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:845:    checkpointsLib.init(database);
-.opencode/skill/system-spec-kit/shared/normalization.ts:32:  importance_weight: number;
-.opencode/skill/system-spec-kit/shared/normalization.ts:125:    importanceWeight: row.importance_weight,
-.opencode/skill/system-spec-kit/shared/normalization.ts:170:  if (memory.importanceWeight !== undefined) row.importance_weight = memory.importanceWeight;
-.opencode/skill/system-spec-kit/shared/normalization.ts:215:  if (row.importance_weight !== undefined) mem.importanceWeight = row.importance_weight;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:11:import * as checkpoints from '../lib/storage/checkpoints';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:13:import * as causalEdges from '../lib/storage/causal-edges';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:102:  // Create auto-checkpoint before bulk deletion (unless explicitly skipped)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:103:  let checkpointName: string | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:109:      const checkpoint = checkpoints.createCheckpoint({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:113:          reason: `auto-checkpoint before bulk delete of ${affectedCount} "${tier}" memories`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:120:      if (!checkpoint) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:121:        const checkpointError = `Checkpoint creation failed before deleting ${tier} memories`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:123:          throw new Error(`${checkpointError}. Aborting high-safety bulk delete.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:125:        console.warn(`[memory-bulk-delete] ${checkpointError}. Proceeding without rollback.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:127:        checkpointName = checkpoint.name;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:64:import * as checkpointsLib from './lib/storage/checkpoints';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:700:  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch, sessionManager, incrementalIndex });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:845:    checkpointsLib.init(database);
+.opencode/skills/system-spec-kit/shared/normalization.ts:32:  importance_weight: number;
+.opencode/skills/system-spec-kit/shared/normalization.ts:125:    importanceWeight: row.importance_weight,
+.opencode/skills/system-spec-kit/shared/normalization.ts:170:  if (memory.importanceWeight !== undefined) row.importance_weight = memory.importanceWeight;
+.opencode/skills/system-spec-kit/shared/normalization.ts:215:  if (row.importance_weight !== undefined) mem.importanceWeight = row.importance_weight;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:11:import * as checkpoints from '../lib/storage/checkpoints';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:13:import * as causalEdges from '../lib/storage/causal-edges';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:102:  // Create auto-checkpoint before bulk deletion (unless explicitly skipped)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:103:  let checkpointName: string | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:109:      const checkpoint = checkpoints.createCheckpoint({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:113:          reason: `auto-checkpoint before bulk delete of ${affectedCount} "${tier}" memories`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:120:      if (!checkpoint) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:121:        const checkpointError = `Checkpoint creation failed before deleting ${tier} memories`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:123:          throw new Error(`${checkpointError}. Aborting high-safety bulk delete.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:125:        console.warn(`[memory-bulk-delete] ${checkpointError}. Proceeding without rollback.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:127:        checkpointName = checkpoint.name;
 codex
 The initial search is already showing a pattern: some snippets look tightly aligned, while others have source-file lists that point to broad surrounding modules instead of the concrete implementation files. I’m drilling into the actual fix sites now so I can call out exactly what is accurate versus merely adjacent.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts | sed -n '130,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts | sed -n '360,410p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts | sed -n '1,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '1138,1175p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts | sed -n '130,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts | sed -n '360,410p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts | sed -n '1,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '1138,1175p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    130	  if (!sanitized) return [];
    131	
    132	  // AI-WHY: BM25-inspired weights: title(10) highest signal, content(5), triggers(2), folder(1)
@@ -448,9 +448,9 @@ exec
     19	    id: string;
     20	    source_id: string;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '648,708p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts | sed -n '100,135p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts | sed -n '332,352p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '648,708p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts | sed -n '100,135p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts | sed -n '332,352p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    648	
    649	    // AI-WHY: Degree channel re-ranks based on causal-edge connectivity.
    650	    // Graduated: default-ON. Set SPECKIT_DEGREE_BOOST=false to disable.
@@ -514,10 +514,10 @@ exec
    350	  // 8. Edge type weight constants
    351	  // -----------------------------------------------------------
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts | sed -n '112,205p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '170,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"includeContent.*collapseAndReassembleChunkResults|collapseAndReassembleChunkResults\\(|includeContent\" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '724,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts | sed -n '112,205p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '170,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"includeContent.*collapseAndReassembleChunkResults|collapseAndReassembleChunkResults\\(|includeContent\" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '724,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    112	});
    113	
    114	/* ---------------------------------------------------------------
@@ -560,26 +560,26 @@ exec
    188	    }
    189	  }
  succeeded in 50ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:382:    const prepared = memorySearch.__testables.collapseAndReassembleChunkResults([
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:118:  includeContent?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:274:  includeContent: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:301:  includeContent,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:326:    includeContent,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:376:function collapseAndReassembleChunkResults(results: MemorySearchRow[]): ChunkReassemblyResult {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:599:    includeContent: includeContent = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:748:    includeContent,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:790:          includeContent,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:876:          includeContent,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:70:  includeContent?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:745:            const collapsed = collapseAndReassembleChunkResults(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:962:        includeContent: options.includeContent ?? false,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1580: * @param options - Optional includeContent flag and queryId for overflow logging.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1586:  options?: { includeContent?: boolean; queryId?: string }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1589:  const includeContent = options?.includeContent ?? false;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1603:  // AI-WHY: Single-result overflow with includeContent: return summary fallback
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1604:  if (sorted.length === 1 && includeContent) {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:117:   Tests verify dedup runs regardless of the includeContent flag.
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:148:    const result = collapseAndReassembleChunkResults([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:382:    const prepared = memorySearch.__testables.collapseAndReassembleChunkResults([
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:118:  includeContent?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:274:  includeContent: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:301:  includeContent,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:326:    includeContent,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:376:function collapseAndReassembleChunkResults(results: MemorySearchRow[]): ChunkReassemblyResult {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:599:    includeContent: includeContent = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:748:    includeContent,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:790:          includeContent,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:876:          includeContent,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:70:  includeContent?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:745:            const collapsed = collapseAndReassembleChunkResults(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:962:        includeContent: options.includeContent ?? false,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1580: * @param options - Optional includeContent flag and queryId for overflow logging.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1586:  options?: { includeContent?: boolean; queryId?: string }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1589:  const includeContent = options?.includeContent ?? false;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1603:  // AI-WHY: Single-result overflow with includeContent: return summary fallback
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1604:  if (sorted.length === 1 && includeContent) {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:117:   Tests verify dedup runs regardless of the includeContent flag.
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:148:    const result = collapseAndReassembleChunkResults([]);
  succeeded in 52ms:
    724	      }
    725	
@@ -602,8 +602,8 @@ exec
    742	            const nonChunkResults = fusedHybridResults.filter(
    743	              r => (r as Record<string, unknown>).parentMemoryId == null || (r as Record<string, unknown>).chunkIndex == null
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '720,820p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '360,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '720,820p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '360,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    360	  return applyRoutingWeights(results as WeightedResult[], routingResult.strategy) as MemorySearchRow[];
    361	}
    362	
@@ -646,9 +646,9 @@ exec
    738	    limit,
    739	    mode,
 exec
-/bin/zsh -lc "rg -n \"collapseAndReassembleChunkResults\\(|__testables\" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1040,1090p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts | sed -n '1,210p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg -n \"collapseAndReassembleChunkResults\\(|__testables\" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1040,1090p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts | sed -n '1,210p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 376:function collapseAndReassembleChunkResults(results: MemorySearchRow[]): ChunkReassemblyResult {
 1056:export const __testables = {
  succeeded in 51ms:
@@ -694,10 +694,10 @@ exec
     19	  mpabScore: number;
     20	  /** Number of chunk hits that contributed to this score. */
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/mcp_server | rg 'co-activation\\.ts"'$|temporal-contiguity'"\\.ts"'$|extraction-adapter'"\\.ts"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts | sed -n '1,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '520,565p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts | sed -n '60,110p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/mcp_server | rg 'co-activation\\.ts"'$|temporal-contiguity'"\\.ts"'$|extraction-adapter'"\\.ts"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts | sed -n '1,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '520,565p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts | sed -n '60,110p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
    520	      const { results: boosted, metadata: cbMeta } = causalBoost.applyCausalBoost(results);
    521	      results = boosted as PipelineRow[];
    522	      metadata.causalBoostApplied = cbMeta.applied;
@@ -740,9 +740,9 @@ exec
     78	    it('No related memories returns base score', () => {
     79	      expect(coActivation.boostScore(0.5, 0, 80)).toBe(0.5);
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts
  succeeded in 50ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Co Activation
@@ -765,9 +765,9 @@ exec
     19	
     20	const CO_ACTIVATION_CONFIG = {
 exec
-/bin/zsh -lc "rg -n \"function spreadActivation|activationScore|boostScore\\(|fanDivisor|Math\\.sqrt\\(Math\\.max\\(1, relatedCount\\)\\)\" .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts | sed -n '220,335p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts | sed -n '309,352p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg -n \"function spreadActivation|activationScore|boostScore\\(|fanDivisor|Math\\.sqrt\\(Math\\.max\\(1, relatedCount\\)\\)\" .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts | sed -n '220,335p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts | sed -n '309,352p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    309	describe('T003a: Co-activation sublinear scaling (R17 fan-effect)', () => {
    310	
    311	  it('T003a.1 — doubling relatedCount does NOT double the boost (pure fan-effect)', () => {
@@ -818,8 +818,8 @@ exec
    238	      SELECT
    239	        CASE WHEN ce.source_id = ? THEN CAST(ce.target_id AS INTEGER)
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts | sed -n '334,370p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '900,925p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts | sed -n '334,370p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '900,925p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    900	      // C138: Co-activation spreading — enrich with temporal neighbors
    901	      const topIds = reranked
    902	        .slice(0, SPREAD_ACTIVATION_TOP_N)
@@ -864,11 +864,11 @@ exec
 codex
 I’ve confirmed one important nuance already: the co-activation snippet’s narrative matches the code, but its source list is incomplete because the “Stage 2 hot path” it mentions lives in pipeline files that aren’t listed. I’m doing the same implementation-vs-list check for the remaining three heavier features now.
 exec
-/bin/zsh -lc 'test -e .opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts && echo exists || echo missing' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '220,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts | sed -n '796,810p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts | sed -n '1,185p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts | sed -n '1,90p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc 'test -e .opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts && echo exists || echo missing' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '220,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts | sed -n '796,810p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts | sed -n '1,185p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts | sed -n '1,90p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
 exists
  succeeded in 51ms:
    220	        };
@@ -892,7 +892,7 @@ exists
    238	
    239	  // -- Sprint 4: TM-06 Reconsolidation-on-Save --
 exec
-/bin/zsh -lc "rg -n \"checkContentHashDedup|content_hash.*spec_folder|duplicate content|embedding.*skip|status === 'duplicate'|content-hash dedup\" .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg -n \"checkContentHashDedup|content_hash.*spec_folder|duplicate content|embedding.*skip|status === 'duplicate'|content-hash dedup\" .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    796	      database.exec(`ALTER TABLE memory_index ADD COLUMN context_type TEXT DEFAULT 'general'`);
    797	      console.warn('[vector-index] Migration: Added context_type column');
    798	    } catch (e: unknown) {
@@ -951,30 +951,30 @@ exec
     19	
     20	export async function generateOrCacheEmbedding(
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:398:        ? 'SELECT id, file_path FROM memory_index WHERE content_hash = ? AND spec_folder = ? LIMIT 1'
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:401:      const paramsArray: unknown[] = spec_folder ? [content_hash, spec_folder] : [content_hash];
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:43:export function checkContentHashDedup(
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:214:    message: result.message ?? (result.status === 'duplicate' ? 'Memory skipped (duplicate content)' : `Memory ${result.status} successfully`),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:291:  } else if (result.status === 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:116:          SELECT id, content_hash, spec_folder, file_path
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:        SELECT file_path, content_hash, spec_folder
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:835:      "query": "memory_save keeps failing with duplicate content hash error",
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:25: * needed for the content-hash dedup check.
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:56:function checkContentHashDedup(
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:111:      const result = checkContentHashDedup(db, 'specs/test-folder', hash);
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:120:      const result = checkContentHashDedup(db, 'specs/test-folder', hash);
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:125:      const content = 'This is duplicate content saved under two different paths.';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:138:      const result = checkContentHashDedup(db, 'specs/dedup-test', hash);
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:164:      const result = checkContentHashDedup(db, 'specs/changed-content', modifiedHash);
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:178:      const result = checkContentHashDedup(db, 'specs/pending-test', hash);
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:190:      const result = checkContentHashDedup(db, folder, hash);
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:247:      const result = checkContentHashDedup(db, folder, hash);
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:265:      const result = checkContentHashDedup(db, folder, hash);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:381:        } else if (result.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:398:        ? 'SELECT id, file_path FROM memory_index WHERE content_hash = ? AND spec_folder = ? LIMIT 1'
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:401:      const paramsArray: unknown[] = spec_folder ? [content_hash, spec_folder] : [content_hash];
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:43:export function checkContentHashDedup(
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:214:    message: result.message ?? (result.status === 'duplicate' ? 'Memory skipped (duplicate content)' : `Memory ${result.status} successfully`),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:291:  } else if (result.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:116:          SELECT id, content_hash, spec_folder, file_path
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:        SELECT file_path, content_hash, spec_folder
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:835:      "query": "memory_save keeps failing with duplicate content hash error",
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:25: * needed for the content-hash dedup check.
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:56:function checkContentHashDedup(
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:111:      const result = checkContentHashDedup(db, 'specs/test-folder', hash);
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:120:      const result = checkContentHashDedup(db, 'specs/test-folder', hash);
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:125:      const content = 'This is duplicate content saved under two different paths.';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:138:      const result = checkContentHashDedup(db, 'specs/dedup-test', hash);
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:164:      const result = checkContentHashDedup(db, 'specs/changed-content', modifiedHash);
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:178:      const result = checkContentHashDedup(db, 'specs/pending-test', hash);
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:190:      const result = checkContentHashDedup(db, folder, hash);
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:247:      const result = checkContentHashDedup(db, folder, hash);
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:265:      const result = checkContentHashDedup(db, folder, hash);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:381:        } else if (result.status === 'duplicate') {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '50,190p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts | sed -n '1,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts | sed -n '200,310p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '50,190p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts | sed -n '1,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts | sed -n '200,310p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Dedup
      3	// ---------------------------------------------------------------
@@ -1038,12 +1038,12 @@ exec
    218	  }
    219	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts | sed -n '170,235p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '430,455p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"frequency_counter|importance_weight|Math\\.min\\(1\\.0, currentWeight \\+ 0\\.1\\)\" .opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts .opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts | sed -n '560,720p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"database\\.transaction\\(|CREATE TABLE IF NOT EXISTS checkpoints|ALTER TABLE checkpoints ADD COLUMN|ensureCheckpointsTable|ensureCheckpointColumns\" .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts .opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"WHERE .*AND \\(.*OR.*\\)|WHERE .*AND .*OR .*|deleteEdge\\(|changes > 0|\\.changes > 0\" .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts .opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts .opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts | sed -n '170,235p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '430,455p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"frequency_counter|importance_weight|Math\\.min\\(1\\.0, currentWeight \\+ 0\\.1\\)\" .opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts | sed -n '560,720p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"database\\.transaction\\(|CREATE TABLE IF NOT EXISTS checkpoints|ALTER TABLE checkpoints ADD COLUMN|ensureCheckpointsTable|ensureCheckpointColumns\" .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts .opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"WHERE .*AND \\(.*OR.*\\)|WHERE .*AND .*OR .*|deleteEdge\\(|changes > 0|\\.changes > 0\" .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts .opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts .opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    430	    const msg = error instanceof Error ? error.message : String(error);
    431	    console.warn(`[causal-edges] updateEdge error: ${msg}`);
    432	    return false;
@@ -1086,26 +1086,26 @@ exec
    188	 * @returns MergeResult with merge details
    189	 */
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:10://   boost importance_weight)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:38:  importance_weight?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:181: * memory, boosts the importance_weight, and updates the embedding
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:202:  // Boost importance_weight on merge (capped at 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:203:  const currentWeight = existingMemory.importance_weight ?? 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:204:  const boostedWeight = Math.min(1.0, currentWeight + 0.1);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:229:            importance_weight = ?,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:71:    importance_weight: 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:91:        importance_weight REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:340:    it('MP1: Merges content and boosts importance_weight', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:343:        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, importance_weight, created_at, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:350:        importance_weight: 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:364:      const row = testDb.prepare('SELECT content_text, importance_weight FROM memory_index WHERE id = 100').get();
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:365:      expect(row.importance_weight).toBeCloseTo(0.6);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:370:    it('MP2: importance_weight defaults to 0.5 if not present', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:372:        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, importance_weight, created_at, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:379:        importance_weight: undefined,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:557:        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, importance_weight, created_at, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:562:        makeSimilarMemory({ id: 400, similarity: 0.90, content_text: 'Existing content', importance_weight: 0.5 }),
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:659:        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, importance_weight, created_at, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:10://   boost importance_weight)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:38:  importance_weight?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:181: * memory, boosts the importance_weight, and updates the embedding
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:202:  // Boost importance_weight on merge (capped at 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:203:  const currentWeight = existingMemory.importance_weight ?? 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:204:  const boostedWeight = Math.min(1.0, currentWeight + 0.1);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:229:            importance_weight = ?,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:71:    importance_weight: 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:91:        importance_weight REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:340:    it('MP1: Merges content and boosts importance_weight', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:343:        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, importance_weight, created_at, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:350:        importance_weight: 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:364:      const row = testDb.prepare('SELECT content_text, importance_weight FROM memory_index WHERE id = 100').get();
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:365:      expect(row.importance_weight).toBeCloseTo(0.6);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:370:    it('MP2: importance_weight defaults to 0.5 if not present', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:372:        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, importance_weight, created_at, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:379:        importance_weight: undefined,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:557:        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, importance_weight, created_at, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:562:        makeSimilarMemory({ id: 400, similarity: 0.90, content_text: 'Existing content', importance_weight: 0.5 }),
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:659:        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, importance_weight, created_at, updated_at)
  succeeded in 50ms:
    560	
    561	    return (row as CheckpointEntry) || null;
@@ -1128,26 +1128,26 @@ exec
    578	    }
    579	
  succeeded in 50ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:48:    CREATE TABLE IF NOT EXISTS checkpoints (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:260:        CREATE TABLE IF NOT EXISTS checkpoints (
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:393:    const checkpointInfo = database.transaction(() => {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:700:    const restoreTx = database.transaction(() => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:48:    CREATE TABLE IF NOT EXISTS checkpoints (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:260:        CREATE TABLE IF NOT EXISTS checkpoints (
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:393:    const checkpointInfo = database.transaction(() => {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:700:    const restoreTx = database.transaction(() => {
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:532:      const ok = causalEdges.deleteEdge(edgeId);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:538:      causalEdges.deleteEdge(edgeId);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:544:      const ok = causalEdges.deleteEdge(99999);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:411:      const changed = (result as { changes: number }).changes > 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:436:function deleteEdge(edgeId: number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:443:    if ((result as { changes: number }).changes > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:446:    return (result as { changes: number }).changes > 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:462:    if ((result as { changes: number }).changes > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:533:        if (deleteEdge(edge.id)) deleted++;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:672:      return (result as { changes: number }).changes > 0;
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:532:      const ok = causalEdges.deleteEdge(edgeId);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:538:      causalEdges.deleteEdge(edgeId);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:544:      const ok = causalEdges.deleteEdge(99999);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:411:      const changed = (result as { changes: number }).changes > 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:436:function deleteEdge(edgeId: number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:443:    if ((result as { changes: number }).changes > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:446:    return (result as { changes: number }).changes > 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:462:    if ((result as { changes: number }).changes > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:533:        if (deleteEdge(edge.id)) deleted++;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:672:      return (result as { changes: number }).changes > 0;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '454,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts | sed -n '230,275p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"source_id = \\? AND \\(target_id = \\? OR source_id = \\?\\)|WHERE .*\\(.*OR.*\\)\" .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts .opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"changes > 0|updated_at = datetime\\('now'\\)|UPDATE memory_index|return .*changes\" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '454,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts | sed -n '230,275p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"source_id = \\? AND \\(target_id = \\? OR source_id = \\?\\)|WHERE .*\\(.*OR.*\\)\" .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts .opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"changes > 0|updated_at = datetime\\('now'\\)|UPDATE memory_index|return .*changes\" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
    230	
    231	  vectorIndex.updateMemory({
    232	    id: memoryId,
@@ -1187,18 +1187,18 @@ exec
    469	    return 0;
    470	  }
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:165:      UPDATE memory_index
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:171:          updated_at = datetime('now')
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:201:      UPDATE memory_index
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:203:          updated_at = datetime('now')
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:249:    UPDATE memory_index
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:256:        updated_at = datetime('now'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:165:      UPDATE memory_index
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:171:          updated_at = datetime('now')
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:201:      UPDATE memory_index
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:203:          updated_at = datetime('now')
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:249:    UPDATE memory_index
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:256:        updated_at = datetime('now'),
  exited 1 in 52ms:
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts | sed -n '275,305p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"if \\(updateResult\\.changes === 0\\)|if \\(.*changes.*=== 0\\)|return .*updateResult\\.changes\" .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "REINFORCE|SUPERSEDE|unchanged|duplicate|changes === 0" .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts | sed -n '275,305p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"if \\(updateResult\\.changes === 0\\)|if \\(.*changes.*=== 0\\)|return .*updateResult\\.changes\" .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "REINFORCE|SUPERSEDE|unchanged|duplicate|changes === 0" .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    275	    memoryId
    276	  );
    277	
@@ -1220,25 +1220,25 @@ exec
    293	    triggerPhrases: parsed.triggerPhrases,
    294	    contextType: parsed.contextType,
  succeeded in 53ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:175:    if ((updateResult as { changes: number }).changes === 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:207:    if ((result as { changes: number }).changes === 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:278:  if ((updateResult as { changes: number }).changes === 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:175:    if ((updateResult as { changes: number }).changes === 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:207:    if ((result as { changes: number }).changes === 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:278:  if ((updateResult as { changes: number }).changes === 0) {
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:294:  it('leaves properly closed anchors unchanged', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:37:      const validActions = ['CREATE', 'UPDATE', 'REINFORCE', 'SUPERSEDE', 'CREATE_LINKED'];
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:59:    it('T511: Near-duplicate (sim=0.97) NOT created as new', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:63:    it('T512: Near-duplicate triggers REINFORCE action', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:67:    it('T513: Exact duplicate (sim=1.0) returns REINFORCE', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:83:    it('T517: REINFORCE includes candidate reference', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:87:    it('T518: REINFORCE includes similarity in reason', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:91:    it('T519: REINFORCE action count trackable', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:105:    it('T522: Contradiction triggers SUPERSEDE action', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:133:    it('T529: SUPERSEDE includes contradiction details', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:294:  it('leaves properly closed anchors unchanged', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:37:      const validActions = ['CREATE', 'UPDATE', 'REINFORCE', 'SUPERSEDE', 'CREATE_LINKED'];
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:59:    it('T511: Near-duplicate (sim=0.97) NOT created as new', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:63:    it('T512: Near-duplicate triggers REINFORCE action', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:67:    it('T513: Exact duplicate (sim=1.0) returns REINFORCE', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:83:    it('T517: REINFORCE includes candidate reference', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:87:    it('T518: REINFORCE includes similarity in reason', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:91:    it('T519: REINFORCE action count trackable', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:105:    it('T522: Contradiction triggers SUPERSEDE action', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:133:    it('T529: SUPERSEDE includes contradiction details', () => {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '100,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '520,545p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "WHERE .* OR .*|AND .* OR .*|OR .*AND" .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"operator precedence|parentheses|delete wrong rows|deleteEdge\\(|deleteEdgesForMemory\" .opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '100,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '520,545p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "WHERE .* OR .*|AND .* OR .*|OR .*AND" .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"operator precedence|parentheses|delete wrong rows|deleteEdge\\(|deleteEdgesForMemory\" .opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 460:      WHERE source_id = ? OR target_id = ?
 694:      WHERE source_id = ? OR target_id = ?
 721:         OR (last_accessed IS NOT NULL AND last_accessed < datetime('now', '-' || ? || ' days'))
@@ -1285,25 +1285,25 @@ exec
    118	    database.exec('CREATE INDEX IF NOT EXISTS idx_causal_source ON causal_edges(source_id)');
    119	    database.exec('CREATE INDEX IF NOT EXISTS idx_causal_target ON causal_edges(target_id)');
  succeeded in 53ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:19://         deleteEdge, deleteEdgesForMemory, getGraphStats,
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:532:      const ok = causalEdges.deleteEdge(edgeId);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:538:      causalEdges.deleteEdge(edgeId);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:544:      const ok = causalEdges.deleteEdge(99999);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:550:     deleteEdgesForMemory
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:553:  describe('deleteEdgesForMemory', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:554:    it('DM1: deleteEdgesForMemory removes 3 edges', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:562:      const count = causalEdges.deleteEdgesForMemory('2');
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:573:      causalEdges.deleteEdgesForMemory('2');
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:581:      const count = causalEdges.deleteEdgesForMemory('999');
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:604:    it('DC2: deleteEdgesForMemory invalidates cached degree scores', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:608:      const deleted = causalEdges.deleteEdgesForMemory('1');
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:131:      const deleted = causalEdges.deleteEdge(deleteTarget);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:218:      const deleted = causalEdges.deleteEdge(edgeIdToDelete);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:226:      causalEdges.deleteEdge(edgeIdToDelete);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:19://         deleteEdge, deleteEdgesForMemory, getGraphStats,
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:532:      const ok = causalEdges.deleteEdge(edgeId);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:538:      causalEdges.deleteEdge(edgeId);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:544:      const ok = causalEdges.deleteEdge(99999);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:550:     deleteEdgesForMemory
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:553:  describe('deleteEdgesForMemory', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:554:    it('DM1: deleteEdgesForMemory removes 3 edges', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:562:      const count = causalEdges.deleteEdgesForMemory('2');
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:573:      causalEdges.deleteEdgesForMemory('2');
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:581:      const count = causalEdges.deleteEdgesForMemory('999');
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:604:    it('DC2: deleteEdgesForMemory invalidates cached degree scores', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:608:      const deleted = causalEdges.deleteEdgesForMemory('1');
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:131:      const deleted = causalEdges.deleteEdge(deleteTarget);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:218:      const deleted = causalEdges.deleteEdge(edgeIdToDelete);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:226:      causalEdges.deleteEdge(edgeIdToDelete);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '170,230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "source_id.*target_id|target_id.*source_id|DELETE FROM causal_edges|SELECT .*causal_edges" .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '680,730p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '170,230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "source_id.*target_id|target_id.*source_id|DELETE FROM causal_edges|SELECT .*causal_edges" .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '680,730p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
    170	    const rowId = database.transaction(() => {
    171	      // AI-WHY: Check if edge exists (for weight_history logging on conflict update).
    172	      // This SELECT is intentional: we need the old strength to decide whether
@@ -1367,11 +1367,11 @@ exec
    698	    const msg = error instanceof Error ? error.message : String(error);
    699	    console.warn(`[causal-edges] countEdgesForNode error: ${msg}`);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts | sed -n '40,78p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts | sed -n '1,90p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts | sed -n '160,205p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts | sed -n '90,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'test -e .opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts && test -e .opencode/skill/system-spec-kit/mcp_server/lib/errors/index.ts && test -e .opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts && echo all-exist' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts | sed -n '40,78p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts | sed -n '1,90p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts | sed -n '160,205p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts | sed -n '90,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'test -e .opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts && test -e .opencode/skills/system-spec-kit/mcp_server/lib/errors/index.ts && test -e .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts && echo all-exist' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
     40	/**
     41	 * Apply temporal-contiguity boost to vector search results.
     42	 *
@@ -1462,12 +1462,12 @@ I’ve checked the concrete implementation points for all six features now. I’
 codex
 The sandbox is refusing here-doc temp files, so I’m switching to a straight `python3 -c` invocation for the path-existence pass. No changes to the workspace, just a safer way to collect the same evidence.
 exec
-/bin/zsh -lc "python3 -c \"from pathlib import Path; import re; base=Path('/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit'); feats=['feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md','feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md','feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md','feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md','feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md','feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md'];
+/bin/zsh -lc "python3 -c \"from pathlib import Path; import re; base=Path('/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit'); feats=['feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md','feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md','feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md','feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md','feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md','feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md'];
 for rel in feats:
  p=base/rel; t=p.read_text(); paths=re.findall(r'"'`([''^`]+)`'"', t); print('FEATURE', p.name); [print('OK' if (base/x).exists() else 'MISSING', x) for x in paths]; print()\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 53ms:
 zsh:3: unmatched "
 exec
-/bin/zsh -lc "python3 -c 'from pathlib import Path; import re; base=Path(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit\"); feats=[\"feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md\"]; 
+/bin/zsh -lc "python3 -c 'from pathlib import Path; import re; base=Path(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit\"); feats=[\"feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md\"]; 
 for rel in feats:
     p=base/rel; t=p.read_text(); paths=re.findall(r\""'`([''^`]+)`", t); print("FEATURE", p.name); 
     for x in paths: print("OK" if (base/x).exists() else "MISSING", x); 
@@ -1493,7 +1493,7 @@ FEATURE 02-chunk-collapse-deduplication.md
 MISSING includeContent=true
 MISSING includeContent=false
 exec
-/bin/zsh -lc "python3 -c 'from pathlib import Path; import re; base=Path(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit\"); feats=[\"feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md\"]; 
+/bin/zsh -lc "python3 -c 'from pathlib import Path; import re; base=Path(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit\"); feats=[\"feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/02-chunk-collapse-deduplication.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/03-co-activation-fan-effect-divisor.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-content-hash-deduplication.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/05-database-and-schema-safety.md\",\"feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-edge-cases.md\"]; 
 for rel in feats:
     p=base/rel; t=p.read_text().splitlines(); paths=[]; in_src=False
     for line in t:
@@ -1519,9 +1519,9 @@ BAD NONE
 06-guards-and-edge-cases.md
 BAD NONE
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts | sed -n '188,230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"includeContent|collapseAndReassembleChunkResults\\(\" .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts | sed -n '401,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts | sed -n '188,230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"includeContent|collapseAndReassembleChunkResults\\(\" .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts | sed -n '401,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 210:    await collapseAndReassembleChunkResults(results);
 411:async function collapseAndReassembleChunkResults(
  succeeded in 53ms:

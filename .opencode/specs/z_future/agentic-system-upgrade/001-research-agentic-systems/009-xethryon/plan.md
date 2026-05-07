@@ -93,7 +93,7 @@ Existing phase artifacts and read-only external repo evidence feed the new itera
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Structural validation | Phase packet docs and references | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict <phase>` |
+| Structural validation | Phase packet docs and references | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <phase>` |
 | Formatting sanity | Whitespace and patch hygiene | `git diff --check -- <phase>` |
 | Artifact verification | Presence of iterations, state, dashboard, synthesis | `ls`, `sed`, `tail` |
 <!-- /ANCHOR:testing -->

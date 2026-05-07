@@ -33,12 +33,12 @@
 ### B2. Stale hook paths (real, unambiguous) — 2 occurrences
 | File | Stale ref | Correct path |
 |---|---|---|
-| 002-session-start-hook/spec.md:137 | `.opencode/skill/system-spec-kit/scripts/dist/hooks/claude/session-prime.js` | `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js` |
-| 003-stop-hook-tracking/spec.md:174 | `.opencode/skill/system-spec-kit/scripts/dist/hooks/claude/session-stop.js` | `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js` |
+| 002-session-start-hook/spec.md:137 | `.opencode/skills/system-spec-kit/scripts/dist/hooks/claude/session-prime.js` | `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js` |
+| 003-stop-hook-tracking/spec.md:174 | `.opencode/skills/system-spec-kit/scripts/dist/hooks/claude/session-stop.js` | `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js` |
 
 ### B3. Missing reference file `hvr_rules.md` — 21 occurrences
-- All refs point to `.opencode/skill/sk-doc/references/hvr_rules.md` (missing).
-- Correct path on disk: `.opencode/skill/sk-doc/references/global/hvr_rules.md`
+- All refs point to `.opencode/skills/sk-doc/references/hvr_rules.md` (missing).
+- Correct path on disk: `.opencode/skills/sk-doc/references/global/hvr_rules.md`
 - Unambiguous fix: add `global/` segment to all 21 refs.
 
 ### B4. `.claude/CLAUDE.md` refs (22 occurrences) — AMBIGUOUS

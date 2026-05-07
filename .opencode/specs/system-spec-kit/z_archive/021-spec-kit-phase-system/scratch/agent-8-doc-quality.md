@@ -10,11 +10,11 @@
 
 | # | File | Short Name |
 |---|------|------------|
-| 1 | `.opencode/skill/system-spec-kit/references/structure/phase_definitions.md` | phase_definitions |
-| 2 | `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md` | quick_reference (phase sections) |
-| 3 | `.opencode/skill/system-spec-kit/references/structure/sub_folder_versioning.md` | sub_folder_versioning (phase sections) |
-| 4 | `.opencode/skill/system-spec-kit/templates/addendum/phase/phase-parent-section.md` | phase-parent-section |
-| 5 | `.opencode/skill/system-spec-kit/templates/addendum/phase/phase-child-header.md` | phase-child-header |
+| 1 | `.opencode/skills/system-spec-kit/references/structure/phase_definitions.md` | phase_definitions |
+| 2 | `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md` | quick_reference (phase sections) |
+| 3 | `.opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md` | sub_folder_versioning (phase sections) |
+| 4 | `.opencode/skills/system-spec-kit/templates/addendum/phase/phase-parent-section.md` | phase-parent-section |
+| 5 | `.opencode/skills/system-spec-kit/templates/addendum/phase/phase-child-header.md` | phase-child-header |
 
 **Standard reference:** `sk-doc/SKILL.md` and `sk-doc/references/hvr_rules.md`
 

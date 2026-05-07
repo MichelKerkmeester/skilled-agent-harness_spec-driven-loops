@@ -105,9 +105,9 @@ This subtree delivered substantial verified implementation work, even though the
 
 | Area | Changes |
 | ---- | ------- |
-| `.opencode/skill/mcp-coco-index/mcp_server/.cocoindex_code/` | Rebuilt semantic-code indexing against the active repository and tightened exclusions. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` | Added first-use initialization for structural graph lookups. |
-| `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts` | Preserved lexical provenance after fused ranking. |
+| `.opencode/skills/mcp-coco-index/mcp_server/.cocoindex_code/` | Rebuilt semantic-code indexing against the active repository and tightened exclusions. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` | Added first-use initialization for structural graph lookups. |
+| `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts` | Preserved lexical provenance after fused ranking. |
 | `.mcp.json`, `.claude/mcp.json`, `.vscode/mcp.json`, `opencode.json`, and paired Barter config surfaces | Made adaptive-fusion defaults explicit across active client configurations. |
 
 ### Nested Implementation Phases

@@ -9,8 +9,8 @@ DESIGN ELIMINATION ROUND. Score the five candidate designs against the parser-co
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-001.md` first to preserve the parser and irreducible-core baseline.
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-002.md` second to preserve the addon lifecycle and level-validator baseline.
 - Loaded the `sk-deep-research` quick reference and iteration contract.
-- Re-read `.opencode/skill/system-spec-kit/templates/README.md` and `.opencode/skill/system-spec-kit/assets/template_mapping.md` to verify current level rows, phase-parent behavior, and Level 3+ section-only expansion.
-- Listed the broader current template, rule, utility, metadata, and validation source surface under `.opencode/skill/system-spec-kit/`; the broad touched surface is 151 files, while this research packet's stated current template-system comparison baseline remains 86 files.
+- Re-read `.opencode/skills/system-spec-kit/templates/README.md` and `.opencode/skills/system-spec-kit/assets/template_mapping.md` to verify current level rows, phase-parent behavior, and Level 3+ section-only expansion.
+- Listed the broader current template, rule, utility, metadata, and validation source surface under `.opencode/skills/system-spec-kit/`; the broad touched surface is 151 files, while this research packet's stated current template-system comparison baseline remains 86 files.
 - Scored designs F, C+F hybrid, B, D, and G against R1-R7.
 
 ## Findings
@@ -47,21 +47,21 @@ Concrete source surface estimate: 15 files.
 
 | Source file | Purpose |
 |---|---|
-| `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` | Single manifest for doc kinds, capabilities, owners, triggers, absence behavior, metadata requirements, and section profiles |
-| `.opencode/skill/system-spec-kit/templates/manifest/spec.md.tmpl` | Markdown source for ordinary authored spec docs |
-| `.opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl` | Markdown source for authored implementation plans |
-| `.opencode/skill/system-spec-kit/templates/manifest/tasks.md.tmpl` | Markdown source for authored task lists |
-| `.opencode/skill/system-spec-kit/templates/manifest/implementation-summary.md.tmpl` | Markdown source for authored completion and `_memory.continuity` records |
-| `.opencode/skill/system-spec-kit/templates/manifest/checklist.md.tmpl` | Markdown source gated by `capability=qa-verification` |
-| `.opencode/skill/system-spec-kit/templates/manifest/decision-record.md.tmpl` | Markdown source gated by `capability=architecture-decisions` |
-| `.opencode/skill/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl` | Markdown source for `kind=phase-parent` lean parent `spec.md` |
-| `.opencode/skill/system-spec-kit/templates/manifest/resource-map.md.tmpl` | Optional author-scaffolded root path ledger |
-| `.opencode/skill/system-spec-kit/templates/manifest/context-index.md.tmpl` | Optional author-scaffolded phase-parent migration bridge |
-| `.opencode/skill/system-spec-kit/templates/manifest/handover.md.tmpl` | Command-owned lazy output template for `/memory:save` routing |
-| `.opencode/skill/system-spec-kit/templates/manifest/debug-delegation.md.tmpl` | Command-scaffolded and `@debug`-owned lazy output template |
-| `.opencode/skill/system-spec-kit/templates/manifest/research.md.tmpl` | Workflow-owned packet output template for `/spec_kit:deep-research` and `/spec_kit:deep-review` |
-| `.opencode/skill/system-spec-kit/scripts/templates/scaffold-from-manifest.ts` | Scaffolder that copies authored docs and reserves lazy outputs by lifecycle |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/validation/validate-from-manifest.ts` | Validator adapter that replaces level hardcoding with manifest-derived required docs and section profiles |
+| `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` | Single manifest for doc kinds, capabilities, owners, triggers, absence behavior, metadata requirements, and section profiles |
+| `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl` | Markdown source for ordinary authored spec docs |
+| `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl` | Markdown source for authored implementation plans |
+| `.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl` | Markdown source for authored task lists |
+| `.opencode/skills/system-spec-kit/templates/manifest/implementation-summary.md.tmpl` | Markdown source for authored completion and `_memory.continuity` records |
+| `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl` | Markdown source gated by `capability=qa-verification` |
+| `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl` | Markdown source gated by `capability=architecture-decisions` |
+| `.opencode/skills/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl` | Markdown source for `kind=phase-parent` lean parent `spec.md` |
+| `.opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl` | Optional author-scaffolded root path ledger |
+| `.opencode/skills/system-spec-kit/templates/manifest/context-index.md.tmpl` | Optional author-scaffolded phase-parent migration bridge |
+| `.opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl` | Command-owned lazy output template for `/memory:save` routing |
+| `.opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl` | Command-scaffolded and `@debug`-owned lazy output template |
+| `.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl` | Workflow-owned packet output template for `/spec_kit:deep-research` and `/spec_kit:deep-review` |
+| `.opencode/skills/system-spec-kit/scripts/templates/scaffold-from-manifest.ts` | Scaffolder that copies authored docs and reserves lazy outputs by lifecycle |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/validation/validate-from-manifest.ts` | Validator adapter that replaces level hardcoding with manifest-derived required docs and section profiles |
 
 NFR-M02 verdict: pass. The finalist source surface is 15 files, which is under the hard ceiling of 30 and exactly at the preferred ceiling of 15. Against the stated 86-file current baseline, that is an 82.6% reduction. Against the broad 151-file touched surface listed in this iteration, it is a 90.1% reduction.
 

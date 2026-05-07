@@ -54,14 +54,14 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | CLI fallback, deterministic probes, and Python parity |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` | Created | OK | Explicit command/skill alias groups |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts` | Updated | OK | Testing-playbook command bridge |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Updated | OK | Testing-playbook primary intent calibration |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Testing-playbook and ambiguous debug/review signals |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/` | Checked | OK | Advisor status/recommend handler surface |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Checked | OK | MCP tool registration and trust context |
-| `.opencode/skill/system-spec-kit/**/graph-metadata.json` | Checked | OK | No route metadata edits required |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | CLI fallback, deterministic probes, and Python parity |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` | Created | OK | Explicit command/skill alias groups |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts` | Updated | OK | Testing-playbook command bridge |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Updated | OK | Testing-playbook primary intent calibration |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Testing-playbook and ambiguous debug/review signals |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/` | Checked | OK | Advisor status/recommend handler surface |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Checked | OK | MCP tool registration and trust context |
+| `.opencode/skills/system-spec-kit/**/graph-metadata.json` | Checked | OK | No route metadata edits required |
 <!-- /ANCHOR:skills -->
 
 <!-- ANCHOR:tests -->
@@ -69,5 +69,5 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/` | Updated | OK | Native scorer, graph health, and full regression suite |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/` | Updated | OK | Native scorer, graph health, and full regression suite |
 <!-- /ANCHOR:tests -->

@@ -36,12 +36,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,37 +51,37 @@
       {
         "name": "fsrs-scheduler.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
         "source": "derived"
       },
       {
         "name": "fsrs.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts",
         "source": "derived"
       },
       {
         "name": "memory-search.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
         "source": "derived"
       },
       {
         "name": "fsrs-scheduler.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts",
         "source": "derived"
       },
       {
         "name": "fsrs-hybrid-decay.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts",
         "source": "derived"
       },
       {
         "name": "types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts",
         "source": "derived"
       },
       {

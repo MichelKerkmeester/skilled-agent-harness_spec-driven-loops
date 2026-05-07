@@ -19,15 +19,15 @@ Audit the shipped code for **010/001 (clean-room license audit)** and **010/002 
    - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/002-code-graph-phase-runner-and-detect-changes/implementation-summary.md`
 
 3. The shipped code (audit target):
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/phase-runner.ts`
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` (lines 1369–1525, where `runPhases` is wrapped)
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts`
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/diff-parser.ts`
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.js` (or `.ts`)
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/phase-runner.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` (lines 1369–1525, where `runPhases` is wrapped)
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/diff-parser.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.js` (or `.ts`)
 
 4. The shipped tests (claim of coverage):
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/phase-runner.test.ts`
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/phase-runner.test.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts`
 
 5. Spot-check (do NOT trust without verification):
    - `LICENSE` at root (was the LICENSE/scrub posture defensible?)

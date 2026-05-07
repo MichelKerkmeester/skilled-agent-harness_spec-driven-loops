@@ -38,7 +38,7 @@
     "promotion_decision": "operator_override",
     "promotion_rationale": "qualitative improvements (write-boundary hardening, query routing matrix, tool selection flow) not measurable by structural-presence dimensions; explicit user approval",
     "mirrors_synced": [
-      ".opencode/agent/context.md",
+      ".opencode/agents/context.md",
       ".claude/agents/context.md",
       ".gemini/agents/context.md",
       ".codex/agents/context.toml"

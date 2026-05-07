@@ -50,16 +50,16 @@ contextType: "implementation"
 ## Files Modified This Session
 Key files that received edits (not pre-applied):
 
-1. `.opencode/skill/system-spec-kit/SKILL.md` — Level 1-3 to 1-3+ (2 edits)
-2. `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` — LOC counts (5 edits)
-3. `.opencode/skill/system-spec-kit/references/templates/level_selection_guide.md` — LOC + deprecated content
-4. `.opencode/skill/system-spec-kit/references/config/environment_variables.md` — Voyage + validate-spec.sh path
-5. `.opencode/skill/system-spec-kit/references/validation/validation_rules.md` — validate-spec.sh paths (3 edits)
-6. `.opencode/skill/system-spec-kit/assets/level_decision_matrix.md` — Level 3+
-7. `.opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md` — Level 3+
-8. `.opencode/skill/system-spec-kit/assets/template_mapping.md` — Level 3+
-9. `.opencode/agent/write.md` — task permission (deny → allow → deny, reverted)
-10. `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.js` — indentation fix
+1. `.opencode/skills/system-spec-kit/SKILL.md` — Level 1-3 to 1-3+ (2 edits)
+2. `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` — LOC counts (5 edits)
+3. `.opencode/skills/system-spec-kit/references/templates/level_selection_guide.md` — LOC + deprecated content
+4. `.opencode/skills/system-spec-kit/references/config/environment_variables.md` — Voyage + validate-spec.sh path
+5. `.opencode/skills/system-spec-kit/references/validation/validation_rules.md` — validate-spec.sh paths (3 edits)
+6. `.opencode/skills/system-spec-kit/assets/level_decision_matrix.md` — Level 3+
+7. `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md` — Level 3+
+8. `.opencode/skills/system-spec-kit/assets/template_mapping.md` — Level 3+
+9. `.opencode/agents/write.md` — task permission (deny → allow → deny, reverted)
+10. `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.js` — indentation fix
 
 ## Deferred Items
 - Task 4.2: ALLOWED_BASE_PATHS consolidation across 3 files (core/config.js, formatters/search-results.js, lib/search/vector-index.js). Each has different path sets. Consolidation requires deeper analysis to avoid breaking path validation. Recommend separate spec folder.
@@ -91,8 +91,8 @@ Key files that received edits (not pre-applied):
 - Rule: Subagents MUST have `task: deny`. Do NOT change modes to Claude Code conventions.
 
 ### Additional Files Modified
-- `.opencode/skill/system-spec-kit/SKILL.md` — 6 AGENTS.md refs reverted
-- `.opencode/agent/orchestrate.md` — 2 AGENTS.md refs reverted
+- `.opencode/skills/system-spec-kit/SKILL.md` — 6 AGENTS.md refs reverted
+- `.opencode/agents/orchestrate.md` — 2 AGENTS.md refs reverted
 - `feature-summary.md` — Post-implementation corrections documented
 - `implementation-summary.md` — Post-implementation corrections documented
 - `checklist.md` — Updated to reflect corrections

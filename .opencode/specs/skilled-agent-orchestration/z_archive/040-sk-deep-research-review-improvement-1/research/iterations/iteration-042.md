@@ -8,7 +8,7 @@ Orchestrator bootstrap parity across Codex/OpenCode/Claude/Gemini.
 
 ## Evidence
 - `.codex/agents/orchestrate.toml:12,26`
-- `.opencode/agent/orchestrate.md:20`
+- `.opencode/agents/orchestrate.md:20`
 - `.claude/agents/orchestrate.md:1-26`
 - `.gemini/agents/orchestrate.md:1-26`
 

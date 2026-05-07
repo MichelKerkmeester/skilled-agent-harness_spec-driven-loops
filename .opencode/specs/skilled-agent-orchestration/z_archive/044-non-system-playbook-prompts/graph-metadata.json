@@ -37,8 +37,8 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
-      ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
+      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
+      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
       "checklist.md",
       "spec.md",
       "plan.md",
@@ -49,13 +49,13 @@
       {
         "name": "manual_testing_playbook_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook_snippet_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
         "source": "derived"
       },
       {

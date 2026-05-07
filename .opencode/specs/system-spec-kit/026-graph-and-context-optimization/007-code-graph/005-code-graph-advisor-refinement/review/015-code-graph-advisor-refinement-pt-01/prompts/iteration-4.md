@@ -32,7 +32,7 @@ Artifact dir: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 
 4. **PR 7 parity test — assertion completeness:** Verify the test catches the EXACT regression class that PR 2 fixed (top-level `bash:` field or copilot adapter ref). Try to construct a counterexample settings file that would pass the test but trigger the F23.1 bug. If you find one, that's a P1 (test is incomplete).
 
-5. **Hook command path resolution security:** `bash -c 'cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/<event>.js'` — verify:
+5. **Hook command path resolution security:** `bash -c 'cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/<event>.js'` — verify:
    - the `cd` target is git-toplevel or pwd; what if neither resolves to the user's intended repo (e.g. git submodule, detached worktree)?
    - the relative path `.opencode/...` could resolve outside expected scope under unusual cwd
    - is `node` the system node or a specific version?

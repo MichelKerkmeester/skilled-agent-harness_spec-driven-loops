@@ -43,7 +43,7 @@ Result: `4 passed`, `107 passed`, `0 failed`.
 Requested TypeScript check:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -5
+cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -5
 ```
 
 Result: no output, exit code `0`.

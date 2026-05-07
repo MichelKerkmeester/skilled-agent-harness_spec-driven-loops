@@ -1,7 +1,7 @@
 # Phase 12: Meta-Review Remediation — Agent Prompt
 
 **Spec folder:** `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/026-memory-database-refinement`
-**MCP server root:** `.opencode/skill/system-spec-kit/mcp_server`
+**MCP server root:** `.opencode/skills/system-spec-kit/mcp_server`
 **Review report:** `review/review-report.md` (v2 meta-review, 29 findings)
 **Tasks:** `tasks.md` Phase 12 (T200-T272)
 
@@ -31,7 +31,7 @@ Fix all 17 remaining code findings from the 10-iteration meta-review. Documentat
 **Codex prompt:**
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Fix checkpoint restore scope isolation in .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+Fix checkpoint restore scope isolation in .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
 
 PROBLEM: When a checkpoint has spec_folder, getCurrentMemoryIdsForSpecFolder() at line ~1563 ignores the caller's tenant/user/agent/sharedSpace scope. The clear path at ~861 deletes by spec_folder alone. A scoped restore can erase other tenants' rows.
 
@@ -41,7 +41,7 @@ FIX:
 3. Add 3 tests in the appropriate test file: scoped restore preserves other tenant rows, unscoped restore works folder-wide, merge-mode respects scope
 
 Do NOT modify any handler files. Only modify lib/storage/checkpoints.ts and test files.
-Run: cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/checkpoints-storage.vitest.ts after your changes.
+Run: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/checkpoints-storage.vitest.ts after your changes.
 "
 ```
 
@@ -58,7 +58,7 @@ These 6 fixes can run in parallel — each touches a different file.
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Fix token-budget truncation in .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+Fix token-budget truncation in .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
 
 PROBLEM: truncateToBudget() around line 2157-2188 can return an empty array when every candidate exceeds the budget, causing valid searches to show 'no results'.
 
@@ -75,7 +75,7 @@ Only modify hybrid-search.ts and its test file.
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Fix atomic save TOCTOU race in .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+Fix atomic save TOCTOU race in .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
 
 PROBLEM: atomicSaveMemory() at line ~1210 renames pendingPath to final path BEFORE acquiring the spec-folder mutex at ~1215 (inside processPreparedMemory at ~463). Two concurrent saves can overwrite each other.
 
@@ -92,7 +92,7 @@ Only modify handlers/memory-save.ts and test files.
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Fix PE filtering recall loss in .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts
+Fix PE filtering recall loss in .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts
 
 PROBLEM: findSimilarMemories() at line ~79 calls vectorSearch with limit*3, then filters by scope at ~87-96. In a noisy multi-tenant corpus, all top matches can be out-of-scope, missing the real in-scope duplicate.
 
@@ -109,7 +109,7 @@ Only modify handlers/pe-gating.ts and test files.
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Fix deferred chunk anchor identity in .opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
+Fix deferred chunk anchor identity in .opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
 
 PROBLEM: The deferred path at line ~316-327 calls indexMemoryDeferred without anchorId. The embedded path at ~301-315 correctly passes anchorId: chunk.label. Deferred children share null-anchor key, causing overwrites.
 
@@ -126,7 +126,7 @@ Only modify handlers/chunking-orchestrator.ts and test files.
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Fix anchor extraction safety in .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts
+Fix anchor extraction safety in .opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts
 
 PROBLEM: extractAnchors() at line ~845 is regex-based and independent of validateAnchors() which uses a proper stack. Malformed anchors are detected by validation but still consumed by extraction, returning corrupted content.
 
@@ -143,7 +143,7 @@ Only modify lib/parsing/memory-parser.ts and test files.
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Fix graph-signal cache invalidation in .opencode/skill/system-spec-kit/mcp_server/
+Fix graph-signal cache invalidation in .opencode/skills/system-spec-kit/mcp_server/
 
 PROBLEM: graph-signals.ts caches momentum/depth at module level. causal-edges.ts correctly clears it, but 3 other files mutate causal_edges directly without clearing:
 - lib/search/vector-index-mutations.ts ~line 73-79 (memory removal)
@@ -167,7 +167,7 @@ Modify: vector-index-mutations.ts, corrections.ts (if it exists, skip if not), g
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Harden shared-memory auth in .opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts
+Harden shared-memory auth in .opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts
 
 PROBLEM: validateCallerAuth at line ~143-212 trusts actorUserId/actorAgentId from tool arguments. Admin status is derived by comparing these to env vars. Any client can impersonate admin.
 
@@ -187,7 +187,7 @@ Only modify handlers/shared-memory.ts and test files.
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Fix constitutional cache DB isolation in .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts
+Fix constitutional cache DB isolation in .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts
 
 PROBLEM: The constitutional cache at line ~566-571 keys only on (spec_folder, includeArchived). After set_active_database_connection at ~381-404 switches the DB, cached results from the old DB can leak into queries on the new DB.
 
@@ -207,7 +207,7 @@ Only modify lib/search/vector-index-store.ts and test files.
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Deduplicate schema definitions in .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
+Deduplicate schema definitions in .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
 
 PROBLEM: memory_conflicts DDL is defined in 3 places: createMemoryConflictsTable() at ~178, migration v4 at ~401, and bootstrap at ~1962. Companion indexes duplicated similarly.
 
@@ -223,7 +223,7 @@ Only modify lib/search/vector-index-schema.ts. Run: npx vitest run tests/vector-
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Consolidate fallback policy in .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+Consolidate fallback policy in .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
 
 PROBLEM: The fallback ladder is implemented twice: searchWithFallback() at ~1553-1603 and collectRawCandidates() at ~1469-1538, with the same thresholds and retry logic that must be maintained in lockstep.
 
@@ -241,7 +241,7 @@ Run these as a single batch. Each is small and independent.
 
 ```
 codex exec -m gpt-5.4 -c 'model_reasoning_effort="high"' --full-auto "
-Fix 6 P2 advisories across the MCP server at .opencode/skill/system-spec-kit/mcp_server/
+Fix 6 P2 advisories across the MCP server at .opencode/skills/system-spec-kit/mcp_server/
 
 1. embedding-cache.ts ~line 37: Add 'dimensions' to PRIMARY KEY so two dimension variants for the same content/model can coexist. Update INSERT OR REPLACE accordingly. If a migration is needed, add it to vector-index-schema.ts.
 
@@ -272,7 +272,7 @@ For each fix, add or update a test. Run npx tsc --noEmit after all changes.
 
 After each batch:
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit && npx vitest run --reporter=verbose 2>&1 | tail -5
+cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit && npx vitest run --reporter=verbose 2>&1 | tail -5
 ```
 
 ---

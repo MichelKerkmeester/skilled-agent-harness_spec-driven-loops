@@ -44,12 +44,12 @@ This consolidated spec combined two delivered streams: canonical-path deduplicat
 
 ### Changes Made
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` - Added canonical-path-aware scan/filter behavior and normalized frontmatter parse and compose handling.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts` - Deduplicated merged scan batches before indexing so alias roots do not inflate counts or create duplicate work.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts` - Standardized tier precedence so metadata, inline markers, and defaults resolve in one deterministic order.
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js` - Delivered dry-run/apply migration flow and idempotency checks for canonical frontmatter normalization.
-- `.opencode/skill/system-spec-kit/templates/level_3/spec.md` and `.opencode/skill/system-spec-kit/templates/level_3/plan.md` - Updated templates to emit canonical frontmatter structure.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts`, `handler-memory-index.vitest.ts`, `importance-tiers.vitest.ts`, `memory-parser-extended.vitest.ts`, `full-spec-doc-indexing.vitest.ts`, and `index-refresh.vitest.ts` - Added and extended regression coverage for deduplication, tier precedence, normalized parsing, and index rebuild behavior.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` - Added canonical-path-aware scan/filter behavior and normalized frontmatter parse and compose handling.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` - Deduplicated merged scan batches before indexing so alias roots do not inflate counts or create duplicate work.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts` - Standardized tier precedence so metadata, inline markers, and defaults resolve in one deterministic order.
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js` - Delivered dry-run/apply migration flow and idempotency checks for canonical frontmatter normalization.
+- `.opencode/skills/system-spec-kit/templates/level_3/spec.md` and `.opencode/skills/system-spec-kit/templates/level_3/plan.md` - Updated templates to emit canonical frontmatter structure.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts`, `handler-memory-index.vitest.ts`, `importance-tiers.vitest.ts`, `memory-parser-extended.vitest.ts`, `full-spec-doc-indexing.vitest.ts`, and `index-refresh.vitest.ts` - Added and extended regression coverage for deduplication, tier precedence, normalized parsing, and index rebuild behavior.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -62,7 +62,7 @@ This consolidated spec combined two delivered streams: canonical-path deduplicat
 - PASS - `npm run build`, template compose verification, `test-template-system.js`, `test-template-comprehensive.js`, and `test-frontmatter-backfill.js` verified the frontmatter normalization toolchain.
 - PASS - Migration apply and dry-run idempotency evidence showed successful rewrite plus `changed 0` on the final dry-run rerun.
 - PASS - Reindex completed successfully after migration, with prior notes indicating `STATUS=OK` on repeated runs.
-- PASS - `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../003-index-tier-anomalies` passed before consolidation and remains the recorded validation evidence for the delivered child work.
+- PASS - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../003-index-tier-anomalies` passed before consolidation and remains the recorded validation evidence for the delivered child work.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -143,15 +143,15 @@ A deep-research audit (3 iterations, 14 agent runs, 73 findings) was conducted a
 
 | File | Finding(s) |
 |------|------------|
-| `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` | BUG-001, BUG-003, BUG-006 |
-| `.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts` | AFFINITY-001, AFFINITY-002, AFFINITY-003 |
-| `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts` | STD-014, ERR-001 |
-| `.opencode/skill/system-spec-kit/scripts/types/session-types.ts` | BUG-006 (interface update) |
-| `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` | BUG-006 (propagation) |
-| `.opencode/skill/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts` | TCOV-001 (new file, 21 tests) |
-| `.opencode/skill/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts` | TCOV-005 (4 failure-path tests) |
-| `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` | ACTION test update |
-| `.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py` | ALIGN-001 |
+| `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` | BUG-001, BUG-003, BUG-006 |
+| `.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts` | AFFINITY-001, AFFINITY-002, AFFINITY-003 |
+| `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts` | STD-014, ERR-001 |
+| `.opencode/skills/system-spec-kit/scripts/types/session-types.ts` | BUG-006 (interface update) |
+| `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` | BUG-006 (propagation) |
+| `.opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts` | TCOV-001 (new file, 21 tests) |
+| `.opencode/skills/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts` | TCOV-005 (4 failure-path tests) |
+| `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` | ACTION test update |
+| `.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py` | ALIGN-001 |
 
 ### Testing Status
 

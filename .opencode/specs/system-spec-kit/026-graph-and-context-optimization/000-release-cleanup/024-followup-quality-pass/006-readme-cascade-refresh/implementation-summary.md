@@ -20,8 +20,8 @@ _memory:
     blockers: []
     key_files:
       - "target-list.md"
-      - ".opencode/skill/system-spec-kit/README.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/README.md"
+      - ".opencode/skills/system-spec-kit/README.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/README.md"
       - "parent architecture doc"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -67,22 +67,22 @@ The README cascade now matches the live post-031-037 state. The parent docs and 
 | `target-list.md` | Created | Record discovery, audit findings, exclusions, and verification |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md` | Created | Level 2 packet structure |
 | `description.json`, `graph-metadata.json` | Created | Packet metadata and dependency graph |
-| `.opencode/skill/system-spec-kit/README.md` | Modified | Update 54-tool count, feature/playbook counts, structure tree, and related links |
+| `.opencode/skills/system-spec-kit/README.md` | Modified | Update 54-tool count, feature/playbook counts, structure tree, and related links |
 | Parent skill instruction doc | Modified | Update MCP package version, layer count, and catalog/playbook counts |
 | Parent architecture doc | Modified | Add matrix/stress architecture notes and refresh code graph/advisor tool lists |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modified | Update tool count, Skill Advisor tools, structure tree, paths, and version footer |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modified | Update 54-tool claim and skill_advisor links |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/README.md` | Modified | Add retention sweep and refreshed code_graph handler paths |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` | Modified | Add verify/detect/CCC tool coverage and correct folder name |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/README.md` | Modified | Add verify, detect_changes, and CCC handlers |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/README.md` | Modified | Refresh live library category/module counts and governance entry |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/governance/README.md` | Modified | Add retention sweep helper |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/README.md` | Modified | Fix code_graph related-doc link |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md` | Modified | Add freshness smoke-check helper |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/README.md` | Modified | Update schema registry explanation for 54-tool surface |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/README.md` | Modified | Add `advisor-rebuild.ts` to handler/API references |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/INSTALL_GUIDE.md` | Modified | Add advisor_rebuild expectation and fix test paths |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/README.md` | Modified | Add retention sweep dispatch note |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | Update tool count, Skill Advisor tools, structure tree, paths, and version footer |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modified | Update 54-tool claim and skill_advisor links |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/README.md` | Modified | Add retention sweep and refreshed code_graph handler paths |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` | Modified | Add verify/detect/CCC tool coverage and correct folder name |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/README.md` | Modified | Add verify, detect_changes, and CCC handlers |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/README.md` | Modified | Refresh live library category/module counts and governance entry |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/README.md` | Modified | Add retention sweep helper |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/README.md` | Modified | Fix code_graph related-doc link |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md` | Modified | Add freshness smoke-check helper |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/README.md` | Modified | Update schema registry explanation for 54-tool surface |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/README.md` | Modified | Add `advisor-rebuild.ts` to handler/API references |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/INSTALL_GUIDE.md` | Modified | Add advisor_rebuild expectation and fix test paths |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/README.md` | Modified | Add retention sweep dispatch note |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -116,7 +116,7 @@ Discovery used the requested `find` and `git log` commands plus targeted `rg` ch
 | Package version check | PASS - `@spec-kit/mcp-server` v1.8.0 and `@modelcontextprotocol/sdk` ^1.24.3 read from `package.json` |
 | Stale claim search | PASS - scoped stale 51-tool/hyphenated-path hits repaired or identified as unrelated spec-folder examples |
 | Markdown local link check | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/006-readme-cascade-refresh --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/006-readme-cascade-refresh --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

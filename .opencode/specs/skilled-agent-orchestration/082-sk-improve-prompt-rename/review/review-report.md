@@ -105,8 +105,8 @@ All 5 probes return **sk-prompt as top-1**. ✅
 
 | Path | Status |
 |------|--------|
-| `.opencode/skill/sk-prompt/` | ✅ exists (8 entries) |
-| `.opencode/skill/sk-improve-prompt` | ✅ does not exist |
+| `.opencode/skills/sk-prompt/` | ✅ exists (8 entries) |
+| `.opencode/skills/sk-improve-prompt` | ✅ does not exist |
 | `.opencode/changelog/sk-prompt → ../skill/sk-prompt/changelog` | ✅ symlink retargeted |
 | `.opencode/changelog/sk-improve-prompt` | ✅ does not exist |
 
@@ -119,9 +119,9 @@ All 11 edge cases from `001-discovery-impact-map/edge-cases.md` re-tested and cl
 | Identity | Path | Status |
 |----------|------|--------|
 | Agent name | `@improve-prompt` | ✅ unchanged |
-| Agent file | `.opencode/agent/improve-prompt.md` (+ 3 runtime mirrors) | ✅ unchanged |
+| Agent file | `.opencode/agents/improve-prompt.md` (+ 3 runtime mirrors) | ✅ unchanged |
 | Command | `/improve:prompt` | ✅ unchanged |
-| Command file | `.opencode/command/improve/prompt.md` | ✅ unchanged |
+| Command file | `.opencode/commands/improve/prompt.md` | ✅ unchanged |
 | **Skill name** | `sk-improve-prompt` → `sk-prompt` | ✅ rotated (only this) |
 
 ### Frozen continuity

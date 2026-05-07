@@ -105,8 +105,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Command file in `.opencode/command/doctor/` (verified)
-- [x] CHK-051 [P1] Workflow assets in `.opencode/command/doctor/assets/` (verified)
+- [x] CHK-050 [P1] Command file in `.opencode/commands/doctor/` (verified)
+- [x] CHK-051 [P1] Workflow assets in `.opencode/commands/doctor/assets/` (verified)
 - [x] CHK-052 [P1] Install guide in `.opencode/install_guides/` (verified)
 - [x] CHK-053 [P1] Diagnostic report path under packet-local scratch (verified)
 <!-- /ANCHOR:file-org -->

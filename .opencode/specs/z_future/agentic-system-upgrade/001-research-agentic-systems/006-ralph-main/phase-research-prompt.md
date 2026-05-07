@@ -47,7 +47,7 @@ Ralph is a compact autonomous agent loop implemented primarily as a single Bash 
 11. Before any deep-research run, ensure this phase folder contains `spec.md`, `plan.md`, `tasks.md`, and `checklist.md`. Use `@speckit` when supported; otherwise follow existing Spec Kit templates manually.
 12. Validate the phase folder before deep research with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/006-ralph-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/006-ralph-main" --strict
     ```
 13. After validation passes, run deep research against this same phase folder using this topic:
     ```text
@@ -56,7 +56,7 @@ Ralph is a compact autonomous agent loop implemented primarily as a single Bash 
 14. Compare Ralph directly against current `Code_Environment/Public` capabilities: Spec Kit Memory, handover documents, validation scripts, runtime prompts, and agent-routing surfaces. Address overlap with `002-babysitter-main` explicitly by separating minimal loop orchestration from deterministic event-sourced replay.
 15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, explain what Ralph does, why it matters here, whether to `adopt now`, `prototype later`, or `reject`, what Public subsystem it affects, and what migration or validation risk comes with it. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/006-ralph-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/006-ralph-main"
     ```
 
 ## 6. Research Questions

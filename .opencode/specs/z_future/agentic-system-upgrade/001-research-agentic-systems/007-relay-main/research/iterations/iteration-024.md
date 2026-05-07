@@ -12,11 +12,11 @@ Public's role separation is precise for implementation, but operators likely do 
 Compared the orchestrator's agent roster and single-hop model with the dedicated contracts for `context-prime`, `context`, and `handover`, then contrasted them with Relay's smaller point-person and workflow patterns.
 
 ## Evidence
-- The orchestrator roster explicitly calls out separate `@context-prime`, `@context`, and `@handover` agents. [SOURCE: .opencode/agent/orchestrate.md:169-183]
-- The same orchestrator contract splits work into `UNDERSTANDING` via `@context`, then `ACTION` via implementation agents including `@handover`. [SOURCE: .opencode/agent/orchestrate.md:408-417]
-- `context-prime` is a dedicated session bootstrap specialist centered on `session_bootstrap()` and optional `session_health()`. [SOURCE: .opencode/agent/context-prime.md:22-39] [SOURCE: .opencode/agent/context-prime.md:57-66]
-- `context` is the exclusive exploration agent for all retrieval tasks, with a 3-layer memory/codebase/deep-memory process and a structured Context Package. [SOURCE: .opencode/agent/context.md:25-32] [SOURCE: .opencode/agent/context.md:43-53] [SOURCE: .opencode/agent/context.md:127-168]
-- `handover` is yet another dedicated continuation agent that rereads spec files, memory files, and summaries to generate `handover.md`. [SOURCE: .opencode/agent/handover.md:22-47] [SOURCE: .opencode/agent/handover.md:49-82]
+- The orchestrator roster explicitly calls out separate `@context-prime`, `@context`, and `@handover` agents. [SOURCE: .opencode/agents/orchestrate.md:169-183]
+- The same orchestrator contract splits work into `UNDERSTANDING` via `@context`, then `ACTION` via implementation agents including `@handover`. [SOURCE: .opencode/agents/orchestrate.md:408-417]
+- `context-prime` is a dedicated session bootstrap specialist centered on `session_bootstrap()` and optional `session_health()`. [SOURCE: .opencode/agents/context-prime.md:22-39] [SOURCE: .opencode/agents/context-prime.md:57-66]
+- `context` is the exclusive exploration agent for all retrieval tasks, with a 3-layer memory/codebase/deep-memory process and a structured Context Package. [SOURCE: .opencode/agents/context.md:25-32] [SOURCE: .opencode/agents/context.md:43-53] [SOURCE: .opencode/agents/context.md:127-168]
+- `handover` is yet another dedicated continuation agent that rereads spec files, memory files, and summaries to generate `handover.md`. [SOURCE: .opencode/agents/handover.md:22-47] [SOURCE: .opencode/agents/handover.md:49-82]
 - Relay's operator surface instead centers one active lead or workflow runner, with a point-person pattern for escalation and only a few visible coordination modes. [SOURCE: external/packages/sdk/src/workflows/README.md:70-121] [SOURCE: external/docs/plugin-claude-code.md:27-63]
 
 ## Analysis
@@ -27,7 +27,7 @@ confidence: high
 finding: Public should merge bootstrap, retrieval, and continuation into a smaller operator-facing context surface, even if the implementation still keeps separate internal permissions for bootstrap-only, retrieval-only, and handover-write tasks.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md`, `.opencode/agent/context-prime.md`, `.opencode/agent/context.md`, `.opencode/agent/handover.md`, `/spec_kit:resume`
+- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/context.md`, `.opencode/agents/handover.md`, `/spec_kit:resume`
 - **Change type:** agent surface merger
 - **Blast radius:** high
 - **Prerequisites:** define which responsibilities stay separate internally and which names disappear from operator-facing docs

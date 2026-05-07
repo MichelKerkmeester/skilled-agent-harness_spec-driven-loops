@@ -4,10 +4,10 @@
 
 - Dimension: `correctness`
 - Reviewed surfaces:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
 
 ## Findings
 

@@ -115,7 +115,7 @@ Create a compliant packet that documents the intended sk-coco-index command inte
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Future inspection of `.opencode/skill/mcp-coco-index/` and command surfaces | Exact implementation scope remains provisional until that review happens | Keep this packet in Draft status |
+| Dependency | Future inspection of `.opencode/skills/mcp-coco-index/` and command surfaces | Exact implementation scope remains provisional until that review happens | Keep this packet in Draft status |
 | Risk | Empty starting context may tempt fabricated detail | The packet could overstate work that has not happened | Keep requirements and tasks narrowly scoped to planning |
 | Risk | Later implementation may require a higher documentation level | The packet could need expansion once concrete changes are known | Reassess the level during implementation planning |
 

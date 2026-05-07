@@ -10,7 +10,7 @@
 ### Finding 002-F1
 - **Severity**: P2
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/structure/folder_structure.md:252`
+- **File**: `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:252`
 - **Title**: Sub-folder examples flatten phased packets into generic iterations
 - **Evidence**: "Iterative Work (Sub-folders)" shows flat `001-endpoint-analysis/` pattern
 - **Expected**: Show 022 pattern: root coordination packet with point-in-time spec.md + numbered child phase packets
@@ -20,7 +20,7 @@
 ### Finding 002-F2
 - **Severity**: P1
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/structure/folder_routing.md:254`
+- **File**: `.opencode/skills/system-spec-kit/references/structure/folder_routing.md:254`
 - **Title**: Fallback routing uses numeric heuristics instead of explicit root-or-phase targeting
 - **Evidence**: "Suggests highest-numbered" via `ls specs/ | grep "^[0-9]" | sort -rn | head -1`
 - **Expected**: Phase-aware guidance: prefer explicit root packet or explicit full phase path
@@ -30,7 +30,7 @@
 ### Finding 002-F3
 - **Severity**: P1
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/structure/phase_definitions.md:124`
+- **File**: `.opencode/skills/system-spec-kit/references/structure/phase_definitions.md:124`
 - **Title**: Child phase spec example teaches pre-normalization YAML back-reference format
 - **Evidence**: Uses YAML `parent: specs/###-parent-feature/` and `phase: 1 of 3`
 - **Expected**: Match 022 reality: in-document metadata table with Parent Spec, Predecessor, Successor
@@ -40,7 +40,7 @@
 ### Finding 002-F4
 - **Severity**: P1
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/structure/phase_definitions.md:207`
+- **File**: `.opencode/skills/system-spec-kit/references/structure/phase_definitions.md:207`
 - **Title**: PHASE_LINKS rules omit neighboring-phase navigation requirements
 - **Evidence**: Only checks parent back-reference, status consistency, naming convention
 - **Expected**: Include predecessor/successor checks per 022 normalization
@@ -50,7 +50,7 @@
 ### Finding 002-F5
 - **Severity**: P2
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/structure/sub_folder_versioning.md:205`
+- **File**: `.opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md:205`
 - **Title**: Nested-path guidance stops at parent/child, not 022-style deeper packet families
 - **Evidence**: Examples only show two-level nesting: `003-parent/121-child`
 - **Expected**: Cover deeper trees like 022->001-epic->010-sprint (3+ levels)

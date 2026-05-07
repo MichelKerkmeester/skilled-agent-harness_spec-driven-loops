@@ -128,10 +128,10 @@ Current active review artifacts live under `review/`. The live state file record
 <!-- MACHINE-OWNED: START -->
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|---------------------|----------------|----------|--------|
-| `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` | D1, D2 | cycle-3 | 1 P1 | patched, needs recheck |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml` | D1, D2 | cycle-3 | 1 P1 | patched, needs recheck |
-| `.opencode/skill/sk-code-review/SKILL.md` | D1 | cycle-3 | 1 P1 | patched, needs recheck |
-| `.opencode/skill/sk-code-review/references/review_core.md` | D1 | cycle-3 | 1 P1 | patched, needs recheck |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` | D1, D2 | cycle-3 | 1 P1 | patched, needs recheck |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` | D1, D2 | cycle-3 | 1 P1 | patched, needs recheck |
+| `.opencode/skills/sk-code-review/SKILL.md` | D1 | cycle-3 | 1 P1 | patched, needs recheck |
+| `.opencode/skills/sk-code-review/references/review_core.md` | D1 | cycle-3 | 1 P1 | patched, needs recheck |
 | `review/deep-review-strategy.md` | D3 | cycle-3 | 1 P1 | restored, needs recheck |
 <!-- MACHINE-OWNED: END -->
 

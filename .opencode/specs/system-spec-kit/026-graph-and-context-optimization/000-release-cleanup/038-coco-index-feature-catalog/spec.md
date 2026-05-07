@@ -74,7 +74,7 @@ Create a canonical feature catalog that maps current `mcp-coco-index` capabiliti
 
 ### In Scope
 
-- Create `.opencode/skill/mcp-coco-index/feature_catalog/feature_catalog.md`.
+- Create `.opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md`.
 - Create per-feature files in numbered `NN--category/` folders.
 - Cite real source and validation file anchors.
 - Create Level 2 packet docs and audit logs.
@@ -90,7 +90,7 @@ Create a canonical feature catalog that maps current `mcp-coco-index` capabiliti
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/mcp-coco-index/feature_catalog/` | Create | Root catalog plus per-feature snippets |
+| `.opencode/skills/mcp-coco-index/feature_catalog/` | Create | Root catalog plus per-feature snippets |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/038-coco-index-feature-catalog/` | Create | Packet docs, metadata and reports |
 <!-- /ANCHOR:scope -->
 
@@ -134,13 +134,13 @@ Create a canonical feature catalog that maps current `mcp-coco-index` capabiliti
 
 ### Scenario 1: Root Catalog Navigation
 
-Given a reader opens `.opencode/skill/mcp-coco-index/feature_catalog/feature_catalog.md`
+Given a reader opens `.opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md`
 When they scan the table of contents and category sections
 Then they can reach every per-feature file through a relative link.
 
 ### Scenario 2: Per-Feature Shape
 
-Given a per-feature catalog file under `.opencode/skill/mcp-coco-index/feature_catalog/`
+Given a per-feature catalog file under `.opencode/skills/mcp-coco-index/feature_catalog/`
 When the first four H2 headings are inspected
 Then they are `OVERVIEW`, `CURRENT REALITY`, `SOURCE FILES`, and `SOURCE METADATA`.
 

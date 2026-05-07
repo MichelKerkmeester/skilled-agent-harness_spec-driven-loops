@@ -45,7 +45,7 @@ Dual-Graph would scan ALL of this into a single graph, which:
 
 ### 3. CocoIndex Code Already Provides Similar Value
 
-Our CocoIndex Code MCP (`.opencode/skill/mcp-coco-index/`) already offers:
+Our CocoIndex Code MCP (`.opencode/skills/mcp-coco-index/`) already offers:
 - Semantic code search via vector embeddings
 - Natural language query → relevant code discovery
 - MCP integration (native stdio transport)
@@ -84,6 +84,6 @@ Our repo is a meta-framework where:
 - Checked if graph_scan accepts path filters — not documented
 
 ## Sources
-- [SOURCE: .opencode/skill/README.md] — Skill catalog (16+ skills)
+- [SOURCE: .opencode/skills/README.md] — Skill catalog (16+ skills)
 - [SOURCE: CLAUDE.md] — Gate system, agent routing
-- [SOURCE: .opencode/skill/mcp-coco-index/] — Existing semantic code search
+- [SOURCE: .opencode/skills/mcp-coco-index/] — Existing semantic code search

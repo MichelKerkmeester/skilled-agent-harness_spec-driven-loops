@@ -18,7 +18,7 @@ This phase closes the latest search-runtime drift in the packet. It fixed the FT
 
 **Problem:** The old command output forced users to scan long paths instead of seeing the result set as grouped work areas.
 
-**Fix:** Design 10, the folder-as-tree-group layout, now drives both `.opencode/command/memory/search.md` and `.agents/commands/memory/search.toml`.
+**Fix:** Design 10, the folder-as-tree-group layout, now drives both `.opencode/commands/memory/search.md` and `.agents/commands/memory/search.toml`.
 
 ### Focused-mode search no longer gets trapped by folder promotion
 
@@ -80,7 +80,7 @@ Verification in the phase packet records successful build output, live search re
 | `mcp_server/lib/search/pipeline/types.ts` | Added the `activeChannels` field to stage output typing. |
 | `mcp_server/lib/search/pipeline/stage2-fusion.ts` | Added graph zero-contribution diagnostics. |
 | `mcp_server/handlers/memory-context.ts` | Stopped folder discovery from promoting the wrong filter path in the audited focused-mode case. |
-| `.opencode/command/memory/search.md` | Applied the folder-grouped dashboard layout. |
+| `.opencode/commands/memory/search.md` | Applied the folder-grouped dashboard layout. |
 | `.agents/commands/memory/search.toml` | Applied the same folder-grouped dashboard layout for agent command output. |
 | `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard/*.md` | Captured the phase scope, tasks, checklist, and implementation summary for the completed work. |
 

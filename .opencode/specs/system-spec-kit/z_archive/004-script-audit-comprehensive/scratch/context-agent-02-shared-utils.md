@@ -1,7 +1,7 @@
 # Context Audit C02 - Shared Utilities
 
-- Scope: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/shared`
-- Alignment target: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-code--opencode`
+- Scope: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/shared`
+- Alignment target: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/workflows-code--opencode`
 - Method: high-value read-only scan focused on utility correctness, contract drift, import/export mismatches, and silent failure modes.
 - Exclusion honored: issues attributable only to node_modules relocation were excluded.
 

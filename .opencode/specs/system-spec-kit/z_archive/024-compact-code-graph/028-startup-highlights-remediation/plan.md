@@ -100,7 +100,7 @@ This surfaces nodes that are *called by* many others — the most depended-upon 
 
 ### Technical Context
 
-- The query lives in `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`.
+- The query lives in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`.
 - The runtime consumer already expects compact startup highlights rather than a large report payload.
 - Validation for this phase is documentation-heavy, but runtime proof still depends on build/test evidence from the underlying implementation.
 

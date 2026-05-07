@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -67,12 +67,12 @@ Phase 008 partially closed the three Packet 070 P1 findings. It added stronger r
 | `graph-metadata.json` | Created/updated | Canonical metadata and complete status |
 | `implementation-summary.md` | Created + revised | Final cleanup summary with revert + partial-status notes |
 | `../graph-metadata.json` | Updated | Added Phase 008 child ID |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Updated → reverted family + extended signals | Family back to `sk-deep`; deep-review signals 4 → 13; sk-code-review anti-signals 0 → 10 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Reverted | `ALLOWED_FAMILIES` back to original `sk-deep` (cli-codex's `deep-loop` change reverted by orchestrator) |
-| `.opencode/skill/deep-review/graph-metadata.json` | Family reverted to `sk-deep`; intent_signals extended 4 → 13 | Canonical positive signal home |
-| `.opencode/skill/deep-research/graph-metadata.json` | Family reverted to `sk-deep` | Aligned with deep-review |
-| `.opencode/skill/sk-code-review/graph-metadata.json` | Added 10 anti-signals | Canonical anti-signal home (compiler does not propagate, but data is preserved) |
-| `.opencode/skill/sk-code/graph-metadata.json` | Updated | Normalized `motion_dev` entity kind from `reference-category` → `reference` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Updated → reverted family + extended signals | Family back to `sk-deep`; deep-review signals 4 → 13; sk-code-review anti-signals 0 → 10 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Reverted | `ALLOWED_FAMILIES` back to original `sk-deep` (cli-codex's `deep-loop` change reverted by orchestrator) |
+| `.opencode/skills/deep-review/graph-metadata.json` | Family reverted to `sk-deep`; intent_signals extended 4 → 13 | Canonical positive signal home |
+| `.opencode/skills/deep-research/graph-metadata.json` | Family reverted to `sk-deep` | Aligned with deep-review |
+| `.opencode/skills/sk-code-review/graph-metadata.json` | Added 10 anti-signals | Canonical anti-signal home (compiler does not propagate, but data is preserved) |
+| `.opencode/skills/sk-code/graph-metadata.json` | Updated | Normalized `motion_dev` entity kind from `reference-category` → `reference` |
 <!-- /ANCHOR:what-built -->
 
 ---

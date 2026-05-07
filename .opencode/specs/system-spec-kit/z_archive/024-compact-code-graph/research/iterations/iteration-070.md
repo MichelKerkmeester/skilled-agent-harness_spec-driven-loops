@@ -7,13 +7,13 @@ Investigate performance characteristics of proposed improvements by analyzing th
 
 ### 1. Hook Timeout Budget: 1800ms Hard Cap with Process.exit
 The `HOOK_TIMEOUT_MS` constant in `shared.ts` is set to **1800ms** with a comment: "must stay under 2s hard cap." The `withTimeout()` utility wraps `parseHookStdin()` with this budget. Critically, `compact-inject.ts` ends with `process.exit(0)` in a `.finally()` block -- meaning even on error, the hook terminates cleanly. The 1800ms applies to the entire hook execution including stdin parsing, transcript reading, merge pipeline, and state caching.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:6-7]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:245-249]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:6-7]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:245-249]
 
 ### 2. Current Budget Usage: ~1-50ms for Merge Pipeline, ~1700ms Headroom
 The `compact-inject.ts` code measures the merge pipeline with `performance.now()` and warns at >1500ms. The merge pipeline (`mergeCompactBrief`) is pure JavaScript string manipulation -- no I/O, no SQLite, no network calls. Current operations: transcript file read (sync `readFileSync`), regex extraction of file paths/topics/attention signals, budget allocation (pure math), section rendering (string concatenation), deduplication (regex replacement). Realistic execution time: **1-5ms for merge, 5-20ms for transcript read** depending on file size (50 lines). This leaves approximately **1750-1790ms of headroom** within the 1800ms budget for auto-enrichment additions.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:192-202]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:107-184]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:192-202]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:107-184]
 
 ### 3. SQLite Query Performance: Sub-Millisecond for Indexed Lookups
 The `code-graph-db.ts` uses `better-sqlite3` (synchronous, in-process SQLite) with WAL mode. All query-critical columns are indexed: `symbol_id` (UNIQUE), `file_path`, `kind`, `name`, `source_id+edge_type`, `target_id+edge_type`. For a 1-hop neighborhood expansion:
@@ -25,8 +25,8 @@ The `code-graph-db.ts` uses `better-sqlite3` (synchronous, in-process SQLite) wi
 - **Total 1-hop expansion: ~1-9ms** for a typical symbol
 
 The `expandAnchor()` function has a configurable `deadlineMs` (default 400ms) budget, which is far more than needed for SQLite-only queries. This budget is more relevant for future network calls.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:205-238]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:180-249]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:205-238]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:180-249]
 
 ### 4. Token Estimation: 4 chars/token Heuristic with ~15-25% Error Margin
 Both `shared.ts` and `compact-merger.ts` use the same heuristic: `Math.ceil(text.length / 4)` for token estimation. This is a well-known approximation that tends to **overestimate** for English prose and **underestimate** for code with many short identifiers and punctuation. Typical error margins:
@@ -36,13 +36,13 @@ Both `shared.ts` and `compact-merger.ts` use the same heuristic: `Math.ceil(text
 - The `truncateToTokenBudget()` in `shared.ts` provides a hard character cap (maxTokens * 4) as a safety net
 
 For the budget allocator, the error compounds: if constitutional content is pure text (~20% overestimate) and codeGraph is pure code (~20% underestimate), the allocator may give constitutional less than needed and codeGraph more than needed. The **net effect is acceptable** for rough budget control but means actual token usage may deviate from target by up to 25%.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:83-89]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:46-48]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:83-89]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:46-48]
 
 ### 5. Staleness Check: Single MAX Query, Sub-Millisecond
 The `computeFreshness()` function in `code-graph-context.ts` runs `SELECT MAX(indexed_at) FROM code_files` -- a single aggregate query. This is **global staleness** (newest file indexed), not per-file. Cost: <0.1ms on indexed SQLite. The `isFileStale()` function in `code-graph-db.ts` checks a single row by indexed `file_path` -- also <0.1ms. For auto-enrichment, a per-file staleness check for N files costs ~0.1 * N ms, so checking 20 files costs ~2ms.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:164-177]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:172-177]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:164-177]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:172-177]
 
 ### 6. CocoIndex Search Latency: MCP Roundtrip, Estimated 100-500ms
 CocoIndex is an external MCP server (`mcp__cocoindex_code__search`). The latency includes:
@@ -112,12 +112,12 @@ For the MCP tool path (non-hook auto-enrichment during tool dispatch):
 None -- all approaches investigated yielded useful performance data.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts` (lines 6-102)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts` (lines 1-249)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (lines 1-339)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts` (lines 1-330)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts` (lines 1-184)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts` (lines 1-131)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts` (lines 6-102)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts` (lines 1-249)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (lines 1-339)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts` (lines 1-330)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts` (lines 1-184)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts` (lines 1-131)
 
 ## Assessment
 - New information ratio: 0.72

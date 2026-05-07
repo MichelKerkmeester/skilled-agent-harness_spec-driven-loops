@@ -51,49 +51,49 @@ Delete both skill folders, prune every cross-reference, and neutralize sk-code's
 ## 3. SCOPE
 
 ### In Scope
-- Delete `.opencode/skill/sk-code-full-stack/` (82 files) and `.opencode/skill/sk-code-web/` (46 files)
+- Delete `.opencode/skills/sk-code-full-stack/` (82 files) and `.opencode/skills/sk-code-web/` (46 files)
 - Neutralize sk-code's 10 `_placeholder.md` pointers (5 references/<stack>/ + 5 assets/<stack>/)
 - Strip mcp-clickup-pattern entries from `skill_advisor.py`, `skill-graph.json`, advisor `graph-metadata.json`, eval fixtures, routing-accuracy labels, and `.smart-router-telemetry/compliance.jsonl`
 - Update the four sibling READMEs/install guides + root README + AGENTS.md + CLAUDE.md
 - Update sk-code-review (overlay routing target swap), sk-code-opencode README, mcp-chrome-devtools, four cli-* orchestrator SKILL.md files, sk-doc, sk-git, sk-improve-prompt, system-spec-kit reference docs that list the deprecated names
-- Update four runtime agent-definition files (deep-review across `.claude/`, `.codex/`, `.gemini/`, `.opencode/agent/`)
+- Update four runtime agent-definition files (deep-review across `.claude/`, `.codex/`, `.gemini/`, `.opencode/agents/`)
 - Prune SQLite databases (skill-graph, code-graph, voyage context-index)
 - Validate the new spec folder with `validate.sh --strict`
 
 ### Out of Scope
 - Inline-migrating non-web stack content into sk-code (user explicitly declined)
-- Editing historical `.opencode/specs/...` packets and `.opencode/skill/system-spec-kit/scripts/observability/` reports — frozen audit trail (same rule as 053)
+- Editing historical `.opencode/specs/...` packets and `.opencode/skills/system-spec-kit/scripts/observability/` reports — frozen audit trail (same rule as 053)
 - AGENTS_Barter.md / AGENTS_example_fs_enterprises.md (verified zero hits — durable triad sync is a no-op for this packet)
 
 ### Files to Change
 
 | Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-code-full-stack/**` | Delete | 82 files |
-| `.opencode/skill/sk-code-web/**` | Delete | 46 files |
-| `.opencode/skill/sk-code/{references,assets}/{react,nodejs,go,swift,react-native}/_placeholder.md` | Modify | 10 files — neutralize pointers |
-| `.opencode/skill/sk-code/{SKILL.md, README.md, graph-metadata.json, CHANGELOG.md, description.json, changelog/v1.0.0.0.md}` | Modify | Self-reference cleanup |
-| `.opencode/skill/sk-code/references/{router,universal,webflow}/*.md` (multiple) | Modify | Drop sk-code-full-stack/sk-code-web mentions |
-| `.opencode/skill/sk-code/assets/{universal,webflow}/checklists/*.md` | Modify | Drop deprecated names |
+| `.opencode/skills/sk-code-full-stack/**` | Delete | 82 files |
+| `.opencode/skills/sk-code-web/**` | Delete | 46 files |
+| `.opencode/skills/sk-code/{references,assets}/{react,nodejs,go,swift,react-native}/_placeholder.md` | Modify | 10 files — neutralize pointers |
+| `.opencode/skills/sk-code/{SKILL.md, README.md, graph-metadata.json, CHANGELOG.md, description.json, changelog/v1.0.0.0.md}` | Modify | Self-reference cleanup |
+| `.opencode/skills/sk-code/references/{router,universal,webflow}/*.md` (multiple) | Modify | Drop sk-code-full-stack/sk-code-web mentions |
+| `.opencode/skills/sk-code/assets/{universal,webflow}/checklists/*.md` | Modify | Drop deprecated names |
 | `system-spec-kit/.../skill_advisor/scripts/{skill_advisor.py, skill-graph.json}` | Modify | Advisor data |
 | `system-spec-kit/.../skill_advisor/graph-metadata.json` | Modify | Cross-skill edges |
 | `system-spec-kit/.../skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | Modify | Retarget P1-FULLSTACK-001 |
 | `system-spec-kit/.../skill_advisor/scripts/routing-accuracy/labeled-prompts.jsonl` | Modify | Retarget skill_top_1 labels |
-| `.opencode/skill/.smart-router-telemetry/compliance.jsonl` | Modify | Drop 3+ rows |
-| `.opencode/skill/sk-code-review/{SKILL.md, README.md, graph-metadata.json}` and `references/*.md` | Modify | Overlay-target swap (~7 files) |
-| `.opencode/skill/sk-code-opencode/{SKILL.md, README.md}` | Modify | Cosmetic |
-| `.opencode/skill/mcp-chrome-devtools/{SKILL.md, README.md, examples/README.md}` | Modify | Cross-skill paths |
-| `.opencode/skill/cli-{claude-code,codex,gemini}/SKILL.md` and `cli-opencode/assets/prompt_templates.md` | Modify | Narrative cross-refs |
-| `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` | Modify | Template example |
-| `.opencode/skill/sk-git/README.md` | Modify | Cross-ref |
-| `.opencode/skill/sk-improve-prompt/SKILL.md` | Modify | Cross-ref |
-| `.opencode/skill/system-spec-kit/{assets/level_decision_matrix.md, references/**/*.md}` | Modify | Many doc refs |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/shadow-sink.vitest.ts` | Modify | Test file |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts` | Modify | Stress test |
+| `.opencode/skills/.smart-router-telemetry/compliance.jsonl` | Modify | Drop 3+ rows |
+| `.opencode/skills/sk-code-review/{SKILL.md, README.md, graph-metadata.json}` and `references/*.md` | Modify | Overlay-target swap (~7 files) |
+| `.opencode/skills/sk-code-opencode/{SKILL.md, README.md}` | Modify | Cosmetic |
+| `.opencode/skills/mcp-chrome-devtools/{SKILL.md, README.md, examples/README.md}` | Modify | Cross-skill paths |
+| `.opencode/skills/cli-{claude-code,codex,gemini}/SKILL.md` and `cli-opencode/assets/prompt_templates.md` | Modify | Narrative cross-refs |
+| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` | Modify | Template example |
+| `.opencode/skills/sk-git/README.md` | Modify | Cross-ref |
+| `.opencode/skills/sk-improve-prompt/SKILL.md` | Modify | Cross-ref |
+| `.opencode/skills/system-spec-kit/{assets/level_decision_matrix.md, references/**/*.md}` | Modify | Many doc refs |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/shadow-sink.vitest.ts` | Modify | Test file |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts` | Modify | Stress test |
 | Root `README.md`, `AGENTS.md`, `CLAUDE.md` | Modify | Doc surfaces |
 | `.opencode/install_guides/{README.md, SET-UP - AGENTS.md, SET-UP - Opencode Agents.md}` | Modify | Install guides |
-| `.{claude,codex,gemini}/agents/deep-review.{md,toml}` and `.opencode/agent/deep-review.md` | Modify | Agent definitions |
-| `.opencode/skill/system-spec-kit/mcp_server/database/{skill-graph,code-graph,context-index__voyage__voyage-4__1024}.sqlite` | Modify | SQL DELETE |
+| `.{claude,codex,gemini}/agents/deep-review.{md,toml}` and `.opencode/agents/deep-review.md` | Modify | Agent definitions |
+| `.opencode/skills/system-spec-kit/mcp_server/database/{skill-graph,code-graph,context-index__voyage__voyage-4__1024}.sqlite` | Modify | SQL DELETE |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -105,16 +105,16 @@ Delete both skill folders, prune every cross-reference, and neutralize sk-code's
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Both skill folders removed | `ls .opencode/skill/sk-code-full-stack` and `ls .opencode/skill/sk-code-web` each return "No such file or directory" |
-| REQ-002 | sk-code self-contained | `grep -rn "sk-code-full-stack\|sk-code-web" .opencode/skill/sk-code/` returns zero hits OUTSIDE intentional historical metadata (`graph-metadata.json supersedes` array kept by design) |
-| REQ-003 | Advisor data coherent | `grep -rn "sk-code-full-stack\|sk-code-web" .opencode/skill/system-spec-kit/mcp_server/skill_advisor/` returns zero hits |
+| REQ-001 | Both skill folders removed | `ls .opencode/skills/sk-code-full-stack` and `ls .opencode/skills/sk-code-web` each return "No such file or directory" |
+| REQ-002 | sk-code self-contained | `grep -rn "sk-code-full-stack\|sk-code-web" .opencode/skills/sk-code/` returns zero hits OUTSIDE intentional historical metadata (`graph-metadata.json supersedes` array kept by design) |
+| REQ-003 | Advisor data coherent | `grep -rn "sk-code-full-stack\|sk-code-web" .opencode/skills/system-spec-kit/mcp_server/skill_advisor/` returns zero hits |
 | REQ-004 | Skill graph self-consistent | `skill-graph.json` parses; `skill_count` 22 → 20; deprecated keys absent from `families.sk-code`, `adjacency`, peer adjacency `siblings`, `signals` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Doc surfaces updated | Root README, .opencode/skill/README, install guides, AGENTS.md, CLAUDE.md zero hits |
+| REQ-005 | Doc surfaces updated | Root README, .opencode/skills/README, install guides, AGENTS.md, CLAUDE.md zero hits |
 | REQ-006 | Cross-skill refs retargeted | sk-code-review, sk-code-opencode, mcp-chrome-devtools, cli-* orchestrators, sk-doc, sk-git, sk-improve-prompt, system-spec-kit zero hits |
 | REQ-007 | Agent definitions synced | All four runtime deep-review.md/toml files retarget overlay list to `sk-code-opencode / sk-code` |
 | REQ-008 | SQLite DBs pruned | `skill-graph.sqlite` count 22 → 20; `code-graph.sqlite` zero rows under deprecated paths; voyage `memory_index` rows for deprecated content purged |

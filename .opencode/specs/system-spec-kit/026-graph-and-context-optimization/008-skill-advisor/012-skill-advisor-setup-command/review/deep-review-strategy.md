@@ -34,19 +34,19 @@ Audit the implementation of the new `/spec_kit:skill-advisor` slash command, its
 - `description.json`
 
 ### Files to audit (out-of-folder implementation)
-- `.opencode/command/spec_kit/skill-advisor.md` (command markdown)
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml` (autonomous workflow)
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml` (interactive workflow)
-- `.opencode/command/spec_kit/README.txt` (commands index update)
+- `.opencode/commands/spec_kit/skill-advisor.md` (command markdown)
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml` (autonomous workflow)
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml` (interactive workflow)
+- `.opencode/commands/spec_kit/README.txt` (commands index update)
 - `.opencode/install_guides/SET-UP - Skill Advisor.md` (user-facing setup guide)
 - `.opencode/README.md` (Section 5 commands list + Current Counts table)
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` (Section 3.1.14 SKILL ADVISOR addendum)
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` (Section 3.1.14 SKILL ADVISOR addendum)
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/{context-index.md, spec.md, tasks.md}` (parent doc updates)
 
 ### Sources of evidence
 - The packet docs in canonical read order: spec → plan → tasks → checklist → implementation-summary
 - The implementation files listed above
-- The strict spec-folder validator: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <folder> --strict`
+- The strict spec-folder validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict`
 - sk-doc's `extract_structure.py` for command markdown DQI baseline (already 94/100 Excellent)
 - Existing `/spec_kit:resume`, `/spec_kit:plan`, `/spec_kit:deep-review` command markdown for cross-command convention parity
 - The skill-advisor source files referenced by the new command's mutation boundaries: `lib/scorer/lanes/{explicit,lexical}.ts`, `lib/scorer/weights-config.ts`, per-skill `graph-metadata.json`

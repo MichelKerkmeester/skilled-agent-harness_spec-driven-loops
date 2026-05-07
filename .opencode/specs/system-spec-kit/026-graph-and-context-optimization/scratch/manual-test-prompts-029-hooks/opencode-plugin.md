@@ -154,7 +154,7 @@ Before answering anything else: check your system prompt for a section labeled "
 ```
 Paste this:
 
-Look at .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts. What does the buildOpencodeTransport() helper do and when is it called? Cite file:line references explicitly. If your context includes an "OpenCode Retrieved Context" block, quote the first 5 bullet points from it verbatim.
+Look at .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts. What does the buildOpencodeTransport() helper do and when is it called? Cite file:line references explicitly. If your context includes an "OpenCode Retrieved Context" block, quote the first 5 bullet points from it verbatim.
 ```
 
 **Expected signals:**
@@ -169,7 +169,7 @@ Look at .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts. W
 ```
 Paste this:
 
-Which files in .opencode/skill/system-spec-kit/mcp_server/hooks/ implement PreToolUse policy enforcement? List them with file:line references for the main entry functions. Quote any "OpenCode Retrieved Context" bullets at the end of your response.
+Which files in .opencode/skills/system-spec-kit/mcp_server/hooks/ implement PreToolUse policy enforcement? List them with file:line references for the main entry functions. Quote any "OpenCode Retrieved Context" bullets at the end of your response.
 ```
 
 **Expected:**
@@ -185,7 +185,7 @@ Context-padding preamble (send 3 separate messages to fill):
 Message 1:
 Paste this:
 
-Explain in detail every MCP tool under .opencode/skill/system-spec-kit/mcp_server/tools/index.ts. For each tool: what it does, its input schema, and the handler file. Aim for comprehensive coverage (≥20 tools if that many exist).
+Explain in detail every MCP tool under .opencode/skills/system-spec-kit/mcp_server/tools/index.ts. For each tool: what it does, its input schema, and the handler file. Aim for comprehensive coverage (≥20 tools if that many exist).
 ```
 
 ```

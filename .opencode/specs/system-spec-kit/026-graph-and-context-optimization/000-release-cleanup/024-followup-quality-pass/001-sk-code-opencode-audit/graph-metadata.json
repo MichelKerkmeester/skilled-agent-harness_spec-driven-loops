@@ -42,21 +42,21 @@
       "tasks.md",
       "checklist.md",
       "tests/matrix-adapter-test-utils.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts"
     ],
     "entities": [
       {
@@ -92,85 +92,85 @@
       {
         "name": "memory-retention-sweep.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
         "source": "derived"
       },
       {
         "name": "freshness-smoke-check.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
         "source": "derived"
       },
       {
         "name": "scope-governance.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
         "source": "derived"
       },
       {
         "name": "session-manager.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
         "source": "derived"
       },
       {
         "name": "adapter-cli-claude-code.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
         "source": "derived"
       },
       {
         "name": "adapter-cli-codex.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts",
         "source": "derived"
       },
       {
         "name": "adapter-cli-copilot.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts",
         "source": "derived"
       },
       {
         "name": "adapter-cli-gemini.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts",
         "source": "derived"
       },
       {
         "name": "adapter-cli-opencode.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
         "source": "derived"
       },
       {
         "name": "adapter-common.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
         "source": "derived"
       },
       {
         "name": "run-matrix.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
         "source": "derived"
       },
       {
         "name": "tool-input-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
         "name": "advisor-rebuild.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts",
         "source": "derived"
       },
       {
         "name": "advisor-status.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts",
         "source": "derived"
       },
       {

@@ -12,8 +12,8 @@ Compared the external starter-kit profile system and clean-mode behavior to the 
 ## Evidence
 - The external repo's config file defines profiles such as `clean`, `default`, `quick`, and `enterprise`, each bundling framework, hosting, options, MCP servers, and package choices for new project scaffolds. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/claude-mastery-project.conf:53-116]
 - The external `/new-project` command treats those profiles as scaffold blueprints and uses `clean` mode to explicitly skip source code, test tooling, and framework assumptions. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/commands/new-project.md:153-218]
-- The local template guide defines Levels 1-3 around documentation and governance depth, not app archetype. [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:15-25] [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:77-127]
-- The local phase system similarly classifies work by complexity, dependency structure, and management needs rather than framework stack. [SOURCE: .opencode/skill/system-spec-kit/references/structure/phase_definitions.md:17-27] [SOURCE: .opencode/skill/system-spec-kit/references/structure/phase_definitions.md:82-141]
+- The local template guide defines Levels 1-3 around documentation and governance depth, not app archetype. [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:15-25] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:77-127]
+- The local phase system similarly classifies work by complexity, dependency structure, and management needs rather than framework stack. [SOURCE: .opencode/skills/system-spec-kit/references/structure/phase_definitions.md:17-27] [SOURCE: .opencode/skills/system-spec-kit/references/structure/phase_definitions.md:82-141]
 
 ## Analysis
 This is another place where the external repo is useful mainly as a contrast. Starter-kit profiles answer "what kind of project do you want scaffolded?" `system-spec-kit` levels answer "how much governance and documentation does this work require?" Those are not interchangeable questions. Replacing local levels with external-style profiles would blur the repo's core decision model. The borrowable idea is narrower: profile-like presets may help with ergonomic defaults or reporting views, but they should not replace the governance hierarchy.
@@ -44,7 +44,7 @@ rejection: `system-spec-kit` should not replace its Level 1/2/3(+phase) model wi
 - **Priority:** rejected
 
 ## Counter-evidence sought
-I looked for a way to map external profiles onto the local lifecycle without losing the "how much governance does this work need?" question. The reviewed level and phase docs suggest that mapping would distort the local model rather than clarify it. [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:168-237]
+I looked for a way to map external profiles onto the local lifecycle without losing the "how much governance does this work need?" question. The reviewed level and phase docs suggest that mapping would distort the local model rather than clarify it. [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:168-237]
 
 ## Follow-up questions for next iteration
 None. Phase 2 has enough evidence to synthesize a merged report.

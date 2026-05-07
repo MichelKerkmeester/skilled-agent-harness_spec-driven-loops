@@ -185,15 +185,15 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `.opencode/.../lib/checkpoints.js` - Core checkpoints
 
-- `.opencode/skill/system-spec-kit/scripts/generate-context.js` - React context provider
+- `.opencode/skills/system-spec-kit/scripts/generate-context.js` - React context provider
 
-- `.opencode/skill/system-spec-kit/scripts/validate-spec.sh` - Script
+- `.opencode/skills/system-spec-kit/scripts/validate-spec.sh` - Script
 
-- `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` - Script
+- `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` - Script
 
 - `.opencode/.../rules/check-evidence.sh` - Script
 
-- `.opencode/skill/system-spec-kit/SKILL.md` - Documentation
+- `.opencode/skills/system-spec-kit/SKILL.md` - Documentation
 
 **How to Extend**:
 
@@ -241,13 +241,13 @@ Comprehensive analysis and remediation of the Spec Kit & Memory system. First, 1
 | `.opencode/.../lib/vector-index.js` | Modified during session |
 | `.opencode/.../src/context-server.js` | Modified during session |
 | `.opencode/.../lib/checkpoints.js` | Modified during session |
-| `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Modified during session |
-| `.opencode/skill/system-spec-kit/scripts/validate-spec.sh` | Modified during session |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` | Modified during session |
+| `.opencode/skills/system-spec-kit/scripts/generate-context.js` | Modified during session |
+| `.opencode/skills/system-spec-kit/scripts/validate-spec.sh` | Modified during session |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | Modified during session |
 | `.opencode/.../rules/check-evidence.sh` | Modified during session |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified during session |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified during session |
 | `AGENTS.md` | Modified during session |
-| `.opencode/command/spec_kit/complete.md` | Modified during session |
+| `.opencode/commands/spec_kit/complete.md` | Modified during session |
 
 <!-- /ANCHOR:summary-session-1766733156909-cjtwy3s3j-003-memory-and-spec-kit/043-post-merge-refinement-final -->
 
@@ -740,13 +740,13 @@ key_files:
   - ".opencode/.../lib/vector-index.js"
   - ".opencode/.../src/context-server.js"
   - ".opencode/.../lib/checkpoints.js"
-  - ".opencode/skill/system-spec-kit/scripts/generate-context.js"
-  - ".opencode/skill/system-spec-kit/scripts/validate-spec.sh"
-  - ".opencode/skill/system-spec-kit/scripts/rules/check-files.sh"
+  - ".opencode/skills/system-spec-kit/scripts/generate-context.js"
+  - ".opencode/skills/system-spec-kit/scripts/validate-spec.sh"
+  - ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh"
   - ".opencode/.../rules/check-evidence.sh"
-  - ".opencode/skill/system-spec-kit/SKILL.md"
+  - ".opencode/skills/system-spec-kit/SKILL.md"
   - "AGENTS.md"
-  - ".opencode/command/spec_kit/complete.md"
+  - ".opencode/commands/spec_kit/complete.md"
 
 # Relationships
 related_sessions:

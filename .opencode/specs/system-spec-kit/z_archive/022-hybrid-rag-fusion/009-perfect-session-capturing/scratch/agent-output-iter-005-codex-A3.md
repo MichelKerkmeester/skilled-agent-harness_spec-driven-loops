@@ -19,9 +19,9 @@ Verify the tree-thinning and content merging pipeline for correctness.
 **Q1 (extended).** Is tree-thinning (P1-12, marked DONE) actually working correctly? Does merged content survive to rendered output?
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts` — Full read
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` — Where tree-thinning output is consumed
-- `.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts` — Does thinned content reach the renderer?
+- `.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts` — Full read
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` — Where tree-thinning output is consumed
+- `.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts` — Does thinned content reach the renderer?
 
 ## Known Context
 - P1-12 "Tree-thinning merged content not carried forward to rendered output" was marked DONE
@@ -51,19 +51,19 @@ exec
 AGENTS.md
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/AGENTS.md
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Verify tree-thinning and content merging pipeline for correctness; trace output through workflow and renderer" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 607ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Verify tree-thinning and content merging pipeline for correctness; trace output through workflow and renderer" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 607ms:
 []
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-     285 .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts
-    2477 .opencode/skill/system-spec-kit/scripts/core/workflow.ts
-     221 .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+     285 .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts
+    2477 .opencode/skills/system-spec-kit/scripts/core/workflow.ts
+     221 .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts
     2983 total
 codex
 I found one governing `AGENTS.md` at repo root (plus one in an archived scratch subtree that does not cover these files). Next I’m mapping where `tree-thinning` output is produced and consumed in `workflow.ts`/renderer so we can verify whether merged content survives or gets dropped.
 exec
-/bin/zsh -lc 'rg -n "tree[- ]?thinn|thinn|thin|merged|template-data|render|memory" .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "tree[- ]?thinn|thinn|thin|merged|template-data|render|memory" .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 406ms:
+/bin/zsh -lc 'rg -n "tree[- ]?thinn|thinn|thin|merged|template-data|render|memory" .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "tree[- ]?thinn|thinn|thin|merged|template-data|render|memory" .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 406ms:
 8:// Mustache-based template engine — renders memory files from collected session data
 47:  // in successful flows and should not emit false-positive template-data warnings.
 71:// Values containing {{...}} patterns could be re-expanded during recursive section rendering.
@@ -107,7 +107,7 @@ cocoindex_code.search({"query":"Where is tree-thinning output consumed and passe
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C18.md\",\n      \"language\": \"markdown\",\n      \"content\": \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:192: * This makes tree thinning effective in the generated context output (instead of\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:602:  log('Step 7.6: Applying tree thinning...');\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:611:      `${thinningResult.stats.thinnedCount} content-as-summary, ` +\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:17:  mergeThreshold: number;\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:21:  memoryThinThreshold: number;\",\n      \"start_line\": 238,\n      \"end_line\": 242,\n      \"score\": 0.6990226097431105\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. CURRENT REALITY\\n\\nTree thinning is a pre-pipeline token-reduction step for spec-folder consolidation. `applyTreeThinning()` classifies files by token count, keeps larger files intact, uses content-as-summary for medium files and merges small files into parent-level summaries.\\n\\nIntegration happens in `scripts/core/workflow.ts` at Step 7.6, where rendered file changes are transformed into thinning inputs, processed through `applyTreeThinning()` and then applied back to the effective file set before downstream retrieval/scoring logic.\\n\\n---\",\n      \"start_line\": 11,\n      \"end_line\": 17,\n      \"score\": 0.6633776351836502\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. CURRENT REALITY\\n\\nTree thinning is a pre-pipeline token-reduction step for spec-folder consolidation. `applyTreeThinning()` classifies files by token count, keeps larger files intact, uses content-as-summary for medium files and merges small files into parent-level summaries.\\n\\nIntegration happens in `scripts/core/workflow.ts` at Step 7.6, where rendered file changes are transformed into thinning inputs, processed through `applyTreeThinning()` and then applied back to the effective file set before downstream retrieval/scoring logic.\\n\\n---\",\n      \"start_line\": 11,\n      \"end_line\": 17,\n      \"score\": 0.6633776351836502\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C18.md\",\n      \"language\": \"markdown\",\n      \"content\": \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/README.md:40:- `tree-thinning.ts` - bottom-up merging of small files during context loading to reduce token overhead (pre-pipeline)\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:53:import { applyTreeThinning } from './tree-thinning';\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:57:} from './tree-thinning';\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:183: * Apply tree-thinning decisions to the semantic file-change list that feeds\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:187: * - `keep` and `content-as-summary` rows remain as individual entries.\",\n      \"start_line\": 233,\n      \"end_line\": 237,\n      \"score\": 0.6329126458837049\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 3. SOURCE FILES\\n\\n### Implementation\\n\\n| File | Layer | Role |\\n|------|-------|------|\\n| `scripts/core/tree-thinning.ts` | Core script (primary) | Tree thinning model and implementation (`applyTreeThinning()`, thresholds, parent merges) |\\n| `scripts/core/workflow.ts` | Core workflow (integration) | Step 7.6 integration (`applyTreeThinning()` and `applyThinningToFileChanges()`) |\\n\\n### Tests\\n\\n| File | Focus |\\n|------|-------|\\n| `scripts/tests/tree-thinning.vitest.ts` | Tree-thinning thresholds, merge behavior, boundary handling and invariants |\\n\\n---\\n\\n## 4. SOURCE METADATA\\n\\n- Group: Tooling and scripts\\n- Source feature title: Tree thinning for spec folder consolidation\\n- Current reality source: FEATURE_CATALOG.md\",\n      \"start_line\": 19,\n      \"end_line\": 40,\n      \"score\": 0.6299112863387233\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 3. SOURCE FILES\\n\\n### Implementation\\n\\n| File | Layer | Role |\\n|------|-------|------|\\n| `scripts/core/tree-thinning.ts` | Core script (primary) | Tree thinning model and implementation (`applyTreeThinning()`, thresholds, parent merges) |\\n| `scripts/core/workflow.ts` | Core workflow (integration) | Step 7.6 integration (`applyTreeThinning()` and `applyThinningToFileChanges()`) |\\n\\n### Tests\\n\\n| File | Focus |\\n|------|-------|\\n| `scripts/tests/tree-thinning.vitest.ts` | Tree-thinning thresholds, merge behavior, boundary handling and invariants |\\n\\n---\\n\\n## 4. SOURCE METADATA\\n\\n- Group: Tooling and scripts\\n- Source feature title: Tree thinning for spec folder consolidation\\n- Current reality source: FEATURE_CATALOG.md\",\n      \"start_line\": 19,\n      \"end_line\": 40,\n      \"score\": 0.6299112863387233\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X04.md\",\n      \"language\": \"markdown\",\n      \"content\": \"Then read 5+ real memory files to compare template vs output:\\n- Find memory files: look for .md files in any memory/ subdirectory under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/\\n\\nFor EACH section in the template, verify:\\n- Is the placeholder correctly populated by the renderer?\\n- What happens when the data for that section is empty?\\n- Are there placeholder strings (like {{variable}}) leaking into output?\\n- Is the section omitted cleanly when empty, or does it leave artifacts?\\n- Is whitespace handling correct (no double blank lines, no trailing spaces)?\\n- Does tree-thinning preserve essential content or remove too aggressively?\\n- Are there sections in the template that are NEVER populated by the pipeline?\\n- Are there data fields extracted but NEVER rendered in the template?\\n\\nAlso check: markdown formatting correctness, heading hierarchy, list formatting, code block integrity in generated files. \\n\\nOUTPUT FORMAT — repeat this block for EACH finding:\",\n      \"start_line\": 21,\n      \"end_line\": 36,\n      \"score\": 0.6202295765691996\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X03.md\",\n      \"language\": \"markdown\",\n      \"content\": \"     248 .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts\\n     950 .opencode/skill/system-spec-kit/scripts/core/workflow.ts\\ncodex\\nI’ve mapped the likely fault boundaries. The next pass is a direct source read, split into chunks so I can inspect full implementations instead of relying on grep alone; I’m starting with the shared utilities and the smaller core/loader/renderer modules, because those define most of the normalization and path/error contracts the larger pipeline files build on.\\nexec\",\n      \"start_line\": 259,\n      \"end_line\": 263,\n      \"score\": 0.6129047439300148\n    }\n  ],\n  \"total_returned\": 8,\n  \"offset\": 0,\n  \"message\": null\n}"
+      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C18.md\",\n      \"language\": \"markdown\",\n      \"content\": \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:192: * This makes tree thinning effective in the generated context output (instead of\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:602:  log('Step 7.6: Applying tree thinning...');\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:611:      `${thinningResult.stats.thinnedCount} content-as-summary, ` +\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:17:  mergeThreshold: number;\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:21:  memoryThinThreshold: number;\",\n      \"start_line\": 238,\n      \"end_line\": 242,\n      \"score\": 0.6990226097431105\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. CURRENT REALITY\\n\\nTree thinning is a pre-pipeline token-reduction step for spec-folder consolidation. `applyTreeThinning()` classifies files by token count, keeps larger files intact, uses content-as-summary for medium files and merges small files into parent-level summaries.\\n\\nIntegration happens in `scripts/core/workflow.ts` at Step 7.6, where rendered file changes are transformed into thinning inputs, processed through `applyTreeThinning()` and then applied back to the effective file set before downstream retrieval/scoring logic.\\n\\n---\",\n      \"start_line\": 11,\n      \"end_line\": 17,\n      \"score\": 0.6633776351836502\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. CURRENT REALITY\\n\\nTree thinning is a pre-pipeline token-reduction step for spec-folder consolidation. `applyTreeThinning()` classifies files by token count, keeps larger files intact, uses content-as-summary for medium files and merges small files into parent-level summaries.\\n\\nIntegration happens in `scripts/core/workflow.ts` at Step 7.6, where rendered file changes are transformed into thinning inputs, processed through `applyTreeThinning()` and then applied back to the effective file set before downstream retrieval/scoring logic.\\n\\n---\",\n      \"start_line\": 11,\n      \"end_line\": 17,\n      \"score\": 0.6633776351836502\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C18.md\",\n      \"language\": \"markdown\",\n      \"content\": \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/README.md:40:- `tree-thinning.ts` - bottom-up merging of small files during context loading to reduce token overhead (pre-pipeline)\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:53:import { applyTreeThinning } from './tree-thinning';\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:57:} from './tree-thinning';\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:183: * Apply tree-thinning decisions to the semantic file-change list that feeds\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:187: * - `keep` and `content-as-summary` rows remain as individual entries.\",\n      \"start_line\": 233,\n      \"end_line\": 237,\n      \"score\": 0.6329126458837049\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 3. SOURCE FILES\\n\\n### Implementation\\n\\n| File | Layer | Role |\\n|------|-------|------|\\n| `scripts/core/tree-thinning.ts` | Core script (primary) | Tree thinning model and implementation (`applyTreeThinning()`, thresholds, parent merges) |\\n| `scripts/core/workflow.ts` | Core workflow (integration) | Step 7.6 integration (`applyTreeThinning()` and `applyThinningToFileChanges()`) |\\n\\n### Tests\\n\\n| File | Focus |\\n|------|-------|\\n| `scripts/tests/tree-thinning.vitest.ts` | Tree-thinning thresholds, merge behavior, boundary handling and invariants |\\n\\n---\\n\\n## 4. SOURCE METADATA\\n\\n- Group: Tooling and scripts\\n- Source feature title: Tree thinning for spec folder consolidation\\n- Current reality source: FEATURE_CATALOG.md\",\n      \"start_line\": 19,\n      \"end_line\": 40,\n      \"score\": 0.6299112863387233\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 3. SOURCE FILES\\n\\n### Implementation\\n\\n| File | Layer | Role |\\n|------|-------|------|\\n| `scripts/core/tree-thinning.ts` | Core script (primary) | Tree thinning model and implementation (`applyTreeThinning()`, thresholds, parent merges) |\\n| `scripts/core/workflow.ts` | Core workflow (integration) | Step 7.6 integration (`applyTreeThinning()` and `applyThinningToFileChanges()`) |\\n\\n### Tests\\n\\n| File | Focus |\\n|------|-------|\\n| `scripts/tests/tree-thinning.vitest.ts` | Tree-thinning thresholds, merge behavior, boundary handling and invariants |\\n\\n---\\n\\n## 4. SOURCE METADATA\\n\\n- Group: Tooling and scripts\\n- Source feature title: Tree thinning for spec folder consolidation\\n- Current reality source: FEATURE_CATALOG.md\",\n      \"start_line\": 19,\n      \"end_line\": 40,\n      \"score\": 0.6299112863387233\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X04.md\",\n      \"language\": \"markdown\",\n      \"content\": \"Then read 5+ real memory files to compare template vs output:\\n- Find memory files: look for .md files in any memory/ subdirectory under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/\\n\\nFor EACH section in the template, verify:\\n- Is the placeholder correctly populated by the renderer?\\n- What happens when the data for that section is empty?\\n- Are there placeholder strings (like {{variable}}) leaking into output?\\n- Is the section omitted cleanly when empty, or does it leave artifacts?\\n- Is whitespace handling correct (no double blank lines, no trailing spaces)?\\n- Does tree-thinning preserve essential content or remove too aggressively?\\n- Are there sections in the template that are NEVER populated by the pipeline?\\n- Are there data fields extracted but NEVER rendered in the template?\\n\\nAlso check: markdown formatting correctness, heading hierarchy, list formatting, code block integrity in generated files. \\n\\nOUTPUT FORMAT — repeat this block for EACH finding:\",\n      \"start_line\": 21,\n      \"end_line\": 36,\n      \"score\": 0.6202295765691996\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X03.md\",\n      \"language\": \"markdown\",\n      \"content\": \"     248 .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts\\n     950 .opencode/skills/system-spec-kit/scripts/core/workflow.ts\\ncodex\\nI’ve mapped the likely fault boundaries. The next pass is a direct source read, split into chunks so I can inspect full implementations instead of relying on grep alone; I’m starting with the shared utilities and the smaller core/loader/renderer modules, because those define most of the normalization and path/error contracts the larger pipeline files build on.\\nexec\",\n      \"start_line\": 259,\n      \"end_line\": 263,\n      \"score\": 0.6129047439300148\n    }\n  ],\n  \"total_returned\": 8,\n  \"offset\": 0,\n  \"message\": null\n}"
     }
   ],
   "structuredContent": {
@@ -116,7 +116,7 @@ cocoindex_code.search({"query":"Where is tree-thinning output consumed and passe
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C18.md",
         "language": "markdown",
-        "content": "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:192: * This makes tree thinning effective in the generated context output (instead of\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:602:  log('Step 7.6: Applying tree thinning...');\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:611:      `${thinningResult.stats.thinnedCount} content-as-summary, ` +\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:17:  mergeThreshold: number;\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:21:  memoryThinThreshold: number;",
+        "content": "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:192: * This makes tree thinning effective in the generated context output (instead of\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:602:  log('Step 7.6: Applying tree thinning...');\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:611:      `${thinningResult.stats.thinnedCount} content-as-summary, ` +\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:17:  mergeThreshold: number;\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:21:  memoryThinThreshold: number;",
         "start_line": 238,
         "end_line": 242,
         "score": 0.6990226097431105
@@ -126,7 +126,7 @@ cocoindex_code.search({"query":"Where is tree-thinning output consumed and passe
 codex
 I’ve located the key integration points in `workflow.ts` (Step 7.6 plus `applyThinningToFileChanges`) and confirmed the renderer itself is a generic Mustache engine. I’m now doing a full source read of `tree-thinning.ts` and the exact workflow blocks that build template data and write the final memory file.
 exec
-/bin/zsh -lc 'nl -ba .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'nl -ba .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Tree Thinning
      3	// ---------------------------------------------------------------
@@ -148,7 +148,7 @@ exec
     19	export interface ThinningConfig {
     20	  /** Files under this token count are merged into parent document */
 exec
-/bin/zsh -lc 'nl -ba .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'nl -ba .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Template Renderer
      3	// ---------------------------------------------------------------
@@ -170,7 +170,7 @@ exec
     19	// 3. TYPES
     20	// ───────────────────────────────────────────────────────────────
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1760,1885p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1760,1885p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1760	
   1761	  // Patch TOOL_COUNT for enriched stateless saves so V7 does not flag
   1762	  // Synthetic file paths as contradictory with zero tool usage.
@@ -192,8 +192,8 @@ exec
   1778	  log('Step 7.5: Generating semantic summary...');
   1779	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '660,730p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '380,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '660,730p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '380,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    660	  const ignoredDirs = new Set(['memory', 'scratch', '.git', 'node_modules']);
    661	
    662	  const visit = (currentDir: string, relativeDir: string): void => {
@@ -236,7 +236,7 @@ exec
    398	  };
    399	}
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1940,2125p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1940,2125p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1940	    // CG-04: Domain-specific stopwords for single-word trigger phrases from folder names
   1941	    const FOLDER_STOPWORDS = new Set([
   1942	      'system', 'spec', 'kit', 'hybrid', 'rag', 'fusion', 'agents', 'alignment',
@@ -258,7 +258,7 @@ exec
   1958	      }
   1959	    }
 exec
-/bin/zsh -lc 'rg -n "function (resolveTreeThinningContent|compactMergedContent|pickCarrierIndex|getParentDirectory|capText|enhanceFilesWithSemanticDescriptions|extractFileChanges|formatSummaryAsMarkdown|populateTemplate|buildKeyFiles)" .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "function (resolveTreeThinningContent|compactMergedContent|pickCarrierIndex|getParentDirectory|capText|enhanceFilesWithSemanticDescriptions|extractFileChanges|formatSummaryAsMarkdown|populateTemplate|buildKeyFiles)" .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 312:function getParentDirectory(filePath: string): string {
 318:function capText(value: string, maxLength: number): string {
 331:function pickCarrierIndex(indices: number[], files: FileChange[]): number {
@@ -268,7 +268,7 @@ exec
 codex
 I’ve confirmed `effectiveFiles` is what gets injected into template data, but I still need to inspect helper functions that may truncate or reshape merged notes before rendering. I’m checking those now (`compactMergedContent`, `resolveTreeThinningContent`, carrier selection).
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '280,370p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '280,370p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    280	      .replace(/\n{3,}/g, '\n\n');
    281	
    282	    preservedAnchorIds.forEach((anchor, index) => {
@@ -290,7 +290,7 @@ exec
    298	  'plan.md',
    299	  'tasks.md',
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '600,670p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '600,670p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    600	    return '';
    601	  }
    602	}
@@ -312,14 +312,14 @@ exec
    618	};
    619	
 exec
-/bin/zsh -lc "rg -n \"\\{\\{#FILES\\}\\}|FILE_PATH|DESCRIPTION|HAS_FILES|merged-small-files|Tree-thinning\" .opencode/skill/system-spec-kit/scripts -g '*template*.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/test-fixtures/051-with-templates/templates/template.md:7:Fill in [DESCRIPTION] here.
+/bin/zsh -lc "rg -n \"\\{\\{#FILES\\}\\}|FILE_PATH|DESCRIPTION|HAS_FILES|merged-small-files|Tree-thinning\" .opencode/skills/system-spec-kit/scripts -g '*template*.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/test-fixtures/051-with-templates/templates/template.md:7:Fill in [DESCRIPTION] here.
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit -g '*context*_template*.md' -g '*template.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/templates/context_template.md
-.opencode/skill/system-spec-kit/scripts/test-fixtures/051-with-templates/templates/template.md
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit -g '*context*_template*.md' -g '*template.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/templates/context_template.md
+.opencode/skills/system-spec-kit/scripts/test-fixtures/051-with-templates/templates/template.md
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/templates/context_template.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/templates/context_template.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
      2	title: "{{MEMORY_DASHBOARD_TITLE}}"
      3	description: "{{MEMORY_DESCRIPTION}}"
@@ -341,7 +341,7 @@ exec
     19	  - "research": >50% Read/Grep/Glob tools, minimal Write/Edit
     20	  - "implementation": >30% Write/Edit tools
 exec
-/bin/zsh -lc 'rg -n "HAS_FILES|#FILES|FILE_PATH|DESCRIPTION|DETAILED CHANGES|KEY_FILES" .opencode/skill/system-spec-kit/templates/context_template.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "HAS_FILES|#FILES|FILE_PATH|DESCRIPTION|DETAILED CHANGES|KEY_FILES" .opencode/skills/system-spec-kit/templates/context_template.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 3:description: "{{MEMORY_DESCRIPTION}}"
 158:- {{GAP_DESCRIPTION}}
 179:{{#HAS_OBSERVATIONS}}- [DETAILED CHANGES](#detailed-changes)
@@ -363,8 +363,8 @@ exec
 680:| Memory File Exists | {{MEMORY_FILE_EXISTS}} | {{MEMORY_FILE_PATH}} |
 716:- ✅ {{GAP_DESCRIPTION}}
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/templates/context_template.md | sed -n '360,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/templates/context_template.md | sed -n '320,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/templates/context_template.md | sed -n '360,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/templates/context_template.md | sed -n '320,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    360	<!-- ANCHOR:graph-context -->
    361	{{GRAPH_CONTEXT}}
    362	<!-- /ANCHOR:graph-context -->
@@ -407,7 +407,7 @@ exec
    338	**Key Files:**
    339	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/templates/context_template.md | sed -n '820,855p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/templates/context_template.md | sed -n '820,855p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    820	file_count: {{FILE_COUNT}}
    821	captured_file_count: {{CAPTURED_FILE_COUNT}}
    822	filesystem_file_count: {{FILESYSTEM_FILE_COUNT}}
@@ -429,11 +429,11 @@ exec
    838	
    839	key_files:
 exec
-/bin/zsh -lc 'rg -n "export function estimateTokenCount|function estimateTokenCount" -S .opencode/skill/system-spec-kit .opencode/packages @spec-kit 2>/dev/null | head -n 20' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/shared/utils/token-estimate.ts:9:export function estimateTokenCount(text: string | null | undefined): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1565:function estimateTokenCount(text: string): number {
+/bin/zsh -lc 'rg -n "export function estimateTokenCount|function estimateTokenCount" -S .opencode/skills/system-spec-kit .opencode/packages @spec-kit 2>/dev/null | head -n 20' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/shared/utils/token-estimate.ts:9:export function estimateTokenCount(text: string | null | undefined): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1565:function estimateTokenCount(text: string): number {
 exec
-/bin/zsh -lc 'nl -ba .opencode/skill/system-spec-kit/shared/utils/token-estimate.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'nl -ba .opencode/skills/system-spec-kit/shared/utils/token-estimate.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Token Estimate
      3	// ---------------------------------------------------------------
@@ -449,37 +449,37 @@ exec
     13	  return Math.ceil(text.length / 4);
     14	}
 exec
-/bin/zsh -lc 'rg -n "P1-12|tree-thinning merged content not carried forward|merged-small-files|applyThinningToFileChanges|content-as-summary" .opencode/skill/system-spec-kit/scripts -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:420: * - `keep` and `content-as-summary` rows remain as individual entries.
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:428:function applyThinningToFileChanges(
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:495:      ? `${parentDir}/(merged-small-files)`
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:496:      : '(merged-small-files)';
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:698:    .filter((file) => !file.FILE_PATH.includes('(merged-small-files)'))
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1840:  const effectiveFiles = applyThinningToFileChanges(enhancedFiles, thinningResult);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1843:      `${thinningResult.stats.thinnedCount} content-as-summary, ` +
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.js:86:            return 'content-as-summary';
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.js:98:        return 'content-as-summary';
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.js:146:    const thinnedCount = thinned.filter((f) => f.action === 'content-as-summary').length;
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.js:149:    // Summaries for content-as-summary files, and by collapsing merged children.
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.js:153:        if (f.action === 'content-as-summary') {
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:49:  action: 'keep' | 'content-as-summary' | 'merged-into-parent';
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:179:      return 'content-as-summary';
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:192:    return 'content-as-summary';
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:253:    (f) => f.action === 'content-as-summary'
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:260:  // Summaries for content-as-summary files, and by collapsing merged children.
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:264:    if (f.action === 'content-as-summary') {
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.d.ts:29:    action: 'keep' | 'content-as-summary' | 'merged-into-parent';
-.opencode/skill/system-spec-kit/scripts/tests/tree-thinning.vitest.ts:113:    // 200 tokens >= mergeThreshold(200), so falls into content-as-summary range
+/bin/zsh -lc 'rg -n "P1-12|tree-thinning merged content not carried forward|merged-small-files|applyThinningToFileChanges|content-as-summary" .opencode/skills/system-spec-kit/scripts -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:420: * - `keep` and `content-as-summary` rows remain as individual entries.
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:428:function applyThinningToFileChanges(
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:495:      ? `${parentDir}/(merged-small-files)`
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:496:      : '(merged-small-files)';
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:698:    .filter((file) => !file.FILE_PATH.includes('(merged-small-files)'))
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1840:  const effectiveFiles = applyThinningToFileChanges(enhancedFiles, thinningResult);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1843:      `${thinningResult.stats.thinnedCount} content-as-summary, ` +
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.js:86:            return 'content-as-summary';
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.js:98:        return 'content-as-summary';
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.js:146:    const thinnedCount = thinned.filter((f) => f.action === 'content-as-summary').length;
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.js:149:    // Summaries for content-as-summary files, and by collapsing merged children.
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.js:153:        if (f.action === 'content-as-summary') {
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:49:  action: 'keep' | 'content-as-summary' | 'merged-into-parent';
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:179:      return 'content-as-summary';
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:192:    return 'content-as-summary';
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:253:    (f) => f.action === 'content-as-summary'
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:260:  // Summaries for content-as-summary files, and by collapsing merged children.
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:264:    if (f.action === 'content-as-summary') {
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.d.ts:29:    action: 'keep' | 'content-as-summary' | 'merged-into-parent';
+.opencode/skills/system-spec-kit/scripts/tests/tree-thinning.vitest.ts:113:    // 200 tokens >= mergeThreshold(200), so falls into content-as-summary range
 exec
-/bin/zsh -lc 'rg -n "applyThinningToFileChanges|merged-small-files|Tree-thinning merged|Step 7.6|effectiveFiles|FILES: effectiveFiles|tree thinning" .opencode/skill/system-spec-kit/scripts/tests -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:102:    `This section explains the auto-detection fix ${index + 1} with enough detail to keep tree thinning from collapsing the spec into a synthetic placeholder row.`
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:780:      trigger_phrases: ['tree thinning', 'workflow integration', 'memory sequence'],
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:794:    expect(rendered).toContain('Tree-thinning merged 3 small files');
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:169:    SUMMARY: 'Verified tree thinning merges several small sibling file descriptions into the rendered workflow memory while preserving save bookkeeping.',
+/bin/zsh -lc 'rg -n "applyThinningToFileChanges|merged-small-files|Tree-thinning merged|Step 7.6|effectiveFiles|FILES: effectiveFiles|tree thinning" .opencode/skills/system-spec-kit/scripts/tests -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:102:    `This section explains the auto-detection fix ${index + 1} with enough detail to keep tree thinning from collapsing the spec into a synthetic placeholder row.`
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:780:      trigger_phrases: ['tree thinning', 'workflow integration', 'memory sequence'],
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:794:    expect(rendered).toContain('Tree-thinning merged 3 small files');
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:169:    SUMMARY: 'Verified tree thinning merges several small sibling file descriptions into the rendered workflow memory while preserving save bookkeeping.',
 codex
 I found an end-to-end test that explicitly checks for a `Tree-thinning merged ...` line in rendered output, so I’m reviewing that test next to assess what the P1-12 fix actually guarantees versus what it does not guarantee.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '720,840p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '720,840p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    720	  it('aborts on insufficient context before writing files or mutating description tracking', async () => {
    721	    const harness = createHarness();
    722	    configureHarnessEnvironment(harness);
@@ -501,16 +501,16 @@ exec
    738	    })).rejects.toThrow(/INSUFFICIENT_CONTEXT_ABORT/);
    739	
 exec
-/bin/zsh -lc 'rg -n "buildTreeThinningSessionData|tree thinning" .opencode/skill/system-spec-kit/scripts/tests -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:102:    `This section explains the auto-detection fix ${index + 1} with enough detail to keep tree thinning from collapsing the spec into a synthetic placeholder row.`
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:12:import { buildRichSessionData, buildSparseSessionData, buildTreeThinningSessionData } from './fixtures/session-data-factory';
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:780:      trigger_phrases: ['tree thinning', 'workflow integration', 'memory sequence'],
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:787:      collectSessionDataFn: async (_collectedData, specFolderName) => buildTreeThinningSessionData(specFolderName || harness.specRelativePath),
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:167:function buildTreeThinningSessionData(specFolderName: string): SessionData {
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:169:    SUMMARY: 'Verified tree thinning merges several small sibling file descriptions into the rendered workflow memory while preserving save bookkeeping.',
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:201:  buildTreeThinningSessionData,
+/bin/zsh -lc 'rg -n "buildTreeThinningSessionData|tree thinning" .opencode/skills/system-spec-kit/scripts/tests -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:102:    `This section explains the auto-detection fix ${index + 1} with enough detail to keep tree thinning from collapsing the spec into a synthetic placeholder row.`
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:12:import { buildRichSessionData, buildSparseSessionData, buildTreeThinningSessionData } from './fixtures/session-data-factory';
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:780:      trigger_phrases: ['tree thinning', 'workflow integration', 'memory sequence'],
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:787:      collectSessionDataFn: async (_collectedData, specFolderName) => buildTreeThinningSessionData(specFolderName || harness.specRelativePath),
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:167:function buildTreeThinningSessionData(specFolderName: string): SessionData {
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:169:    SUMMARY: 'Verified tree thinning merges several small sibling file descriptions into the rendered workflow memory while preserving save bookkeeping.',
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:201:  buildTreeThinningSessionData,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts | sed -n '130,215p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts | sed -n '130,215p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    130	
    131	/* ───────────────────────────────────────────────────────────────
    132	   2. BUILDERS
@@ -532,29 +532,29 @@ exec
    148	    HAS_FILES: false,
    149	    FILE_COUNT: 0,
 exec
-/bin/zsh -lc "rg -n \"template-data|Missing template data|validateMemoryTemplateContract|template contract|warn\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:71:import { validateMemoryTemplateContract } from '@spec-kit/shared/parsing/memory-template-contract';
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:168:      reason: 'Rendered memory failed the template contract, so semantic indexing was skipped.',
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1018:  const healthLine = `spec_folder_health: ${JSON.stringify({ pass: health.pass, score: health.score, errors: health.errors, warnings: health.warnings })}`;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1168:        console.warn(`[workflow] file-source enrichment degraded (spec): ${msg}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1173:        console.warn(`[workflow] file-source enrichment degraded (git): ${msg}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1227:    console.warn(`   Warning: File-source enrichment failed: ${err instanceof Error ? err.message : String(err)}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1251:        console.warn(`[workflow] enrichment degraded: ${msg}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1256:        console.warn(`[workflow] enrichment degraded: ${msg}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1350:    console.warn(`   Warning: Stateless enrichment failed: ${err instanceof Error ? err.message : String(err)}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1388:    const warn = silent ? (): void => {} : console.warn.bind(console);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1422:        // Q1: Downgrade Block A from hard abort to warning when spec folder was explicitly
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1429:        warn(`   ${alignMsg}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1448:          warn(`   ${alignMsg}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1614:            warn(`   ${postAlignMsg}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1807:    warn(`   Warning: Low quality content detected (score: ${filterStats.qualityScore}/100, threshold: ${filterPipeline.config.quality?.warnThreshold || 20})`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1965:    warn(`   Warning: Pre-extraction of trigger phrases failed: ${errMsg}`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2146:      log(`   Spec doc health: ${specDocHealth.errors} errors, ${specDocHealth.warnings} warnings (score: ${specDocHealth.score})`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2154:  // CG-07b: Validate template contract BEFORE any banner/warning is prepended.
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2158:  const templateContractEarly = validateMemoryTemplateContract(files[ctxFilename]);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2163:    const contractAbortMsg = `QUALITY_GATE_ABORT: Rendered memory violated template contract: ${contractDetails}`;
+/bin/zsh -lc "rg -n \"template-data|Missing template data|validateMemoryTemplateContract|template contract|warn\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:71:import { validateMemoryTemplateContract } from '@spec-kit/shared/parsing/memory-template-contract';
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:168:      reason: 'Rendered memory failed the template contract, so semantic indexing was skipped.',
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1018:  const healthLine = `spec_folder_health: ${JSON.stringify({ pass: health.pass, score: health.score, errors: health.errors, warnings: health.warnings })}`;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1168:        console.warn(`[workflow] file-source enrichment degraded (spec): ${msg}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1173:        console.warn(`[workflow] file-source enrichment degraded (git): ${msg}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1227:    console.warn(`   Warning: File-source enrichment failed: ${err instanceof Error ? err.message : String(err)}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1251:        console.warn(`[workflow] enrichment degraded: ${msg}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1256:        console.warn(`[workflow] enrichment degraded: ${msg}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1350:    console.warn(`   Warning: Stateless enrichment failed: ${err instanceof Error ? err.message : String(err)}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1388:    const warn = silent ? (): void => {} : console.warn.bind(console);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1422:        // Q1: Downgrade Block A from hard abort to warning when spec folder was explicitly
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1429:        warn(`   ${alignMsg}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1448:          warn(`   ${alignMsg}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1614:            warn(`   ${postAlignMsg}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1807:    warn(`   Warning: Low quality content detected (score: ${filterStats.qualityScore}/100, threshold: ${filterPipeline.config.quality?.warnThreshold || 20})`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1965:    warn(`   Warning: Pre-extraction of trigger phrases failed: ${errMsg}`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2146:      log(`   Spec doc health: ${specDocHealth.errors} errors, ${specDocHealth.warnings} warnings (score: ${specDocHealth.score})`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2154:  // CG-07b: Validate template contract BEFORE any banner/warning is prepended.
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2158:  const templateContractEarly = validateMemoryTemplateContract(files[ctxFilename]);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2163:    const contractAbortMsg = `QUALITY_GATE_ABORT: Rendered memory violated template contract: ${contractDetails}`;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '410,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '410,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    410	
    411	/* ───────────────────────────────────────────────────────────────
    412	   7. TESTS
@@ -576,7 +576,7 @@ exec
    428	      collectSessionDataFn: async (_collectedData, specFolderName) => buildRichSessionData(specFolderName || harness.specRelativePath),
    429	      silent: true,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Workflow
      3	// ───────────────────────────────────────────────────────────────
@@ -598,7 +598,7 @@ exec
     19	  extractDiagrams,
     20	  extractPhasesFromData,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/types/session-types.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/types/session-types.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Session Types
      3	// ---------------------------------------------------------------
@@ -620,7 +620,7 @@ exec
     19	  ACTION?: string;
     20	  MODIFICATION_MAGNITUDE?: ModificationMagnitude;
 exec
-/bin/zsh -lc 'rg -n "P1-12|Tree-thinning merged content not carried forward to rendered output|carried forward" .opencode/specs .opencode/skill/system-spec-kit -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "P1-12|Tree-thinning merged content not carried forward to rendered output|carried forward" .opencode/specs .opencode/skills/system-spec-kit -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/specs/system-spec-kit/z_archive/004-script-audit-comprehensive/scratch/review-agent-10-alignment.md:18:The inflation originates from the "Method" section (lines 9-10), which states counts are "preserved from that completed analysis" of a prior session (`ses_39f8e0126ffeK5R1CF2ni6lGMa`). This means the 85 count was carried forward from a previous context window without the corresponding evidence. The current document provides no basis for 80 of those findings.
 .opencode/specs/system-spec-kit/z_archive/004-script-audit-comprehensive/scratch/review-agent-10-alignment.md:124:- **Prior session reference:** `ses_39f8e0126ffeK5R1CF2ni6lGMa` (source of phantom count; evidence not carried forward)
 .opencode/specs/system-spec-kit/z_archive/004-script-audit-comprehensive/scratch/review-agent-05-memory.md:5:**Rationale:** All 3 findings confirmed against source code with correct file:line citations. One input file (`context-agent-05-memory-indexing.md`) is missing — the build agent transparently acknowledges this (build file line 3) and compensated via direct static inspection. Line references have minor offset discrepancies (±3 lines) likely due to source edits between context and build runs, but all point to the correct code constructs. Evidence quality is HIGH for the 3 validated findings; coverage is MEDIUM because the missing context shard may have contained additional lower-severity findings that were not carried forward.
@@ -633,7 +633,7 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-005-codex-A3.md:19:**Q1 (extended).** Is tree-thinning (P1-12, marked DONE) actually working correctly? Does merged content survive to rendered output?
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-005-codex-A3.md:27:- P1-12 "Tree-thinning merged content not carried forward to rendered output" was marked DONE
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-005-codex-A3.md:35:4. Cross-reference with P1-12 fix: Was the fix complete or partial?
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-005-codex-A3.md:452:/bin/zsh -lc 'rg -n "P1-12|tree-thinning merged content not carried forward|merged-small-files|applyThinningToFileChanges|content-as-summary" .opencode/skill/system-spec-kit/scripts -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-005-codex-A3.md:452:/bin/zsh -lc 'rg -n "P1-12|tree-thinning merged content not carried forward|merged-small-files|applyThinningToFileChanges|content-as-summary" .opencode/skills/system-spec-kit/scripts -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-005-codex-A3.md:480:I found an end-to-end test that explicitly checks for a `Tree-thinning merged ...` line in rendered output, so I’m reviewing that test next to assess what the P1-12 fix actually guarantees versus what it does not guarantee.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/qa/qa-13-alignment-drift.md:203:.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/analysis-summary.md:89:**Remaining:** Additional data-loss vectors exist in relevance filtering (P0-05), tree-thinning merge content (P1-12), and long-path dedup key collision (P1-15).
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/qa/qa-13-alignment-drift.md:534:    89	**Remaining:** Additional data-loss vectors exist in relevance filtering (P0-05), tree-thinning merge content (P1-12), and long-path dedup key collision (P1-15).
@@ -699,7 +699,7 @@ drwxr-xr-x@ 36 michelkerkmeester  staff  1152 Mar 20 08:30 ..
 -rw-r--r--@  1 michelkerkmeester  staff  4370 Mar 19 09:12 tasks.md
 exec
 /bin/zsh -lc 'nl -ba .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/022-research-remediation/implementation-summary.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-     1	<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skill/system-spec-kit/templates/implementation-summary.md -->
+     1	<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skills/system-spec-kit/templates/implementation-summary.md -->
      2	<!-- anchor:implementation-summary:start -->
      3	
      4	# Implementation Summary: Research Remediation — Wave 1
@@ -722,9 +722,9 @@ exec
 codex
 I’ve confirmed the current code path and now I’m cross-checking local git history/spec artifacts for what P1-12 actually changed, so we can judge whether the “DONE” status was complete or only addressed one segment of the pipeline.
 exec
-/bin/zsh -lc 'git log --oneline -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | head -n 40' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'git log --oneline -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts | head -n 40' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "git log --oneline --grep='P1-12\\|tree-thinning\\|thinning\\|merged content' --all | head -n 40" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'git blame -L 415,512 .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 936ms:
+/bin/zsh -lc 'git blame -L 415,512 .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 936ms:
 git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
 git: error: couldn't create cache file '/tmp/xcrun_db-dyYNaP9n' (errno=Operation not permitted)
 fac24a5bc fix(pipeline): implement 013-auto-detection-fixes with review-driven corrections
@@ -774,25 +774,25 @@ git: error: couldn't create cache file '/tmp/xcrun_db-3NZ1lyhD' (errno=Operation
 0feb292a1b (michelkerkmeester-barter 2026-02-28 14:54:41 +0100 431) ): FileChange[] {
 0feb292a1b (michelkerkmeester-barter 2026-02-28 14:54:41 +0100 432)   if (!Array.isArray(files) || files.length === 0) {
 exec
-/bin/zsh -lc 'git show --stat --oneline 0feb292a1b -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "git show --oneline -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 759ms:
+/bin/zsh -lc 'git show --stat --oneline 0feb292a1b -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "git show --oneline -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 759ms:
 
  succeeded in 761ms:
 0feb292a1 feat(spec-kit): advance sprint6 indexing and sk-doc-visual design system
  .../skill/system-spec-kit/scripts/core/workflow.ts | 165 ++++++++++++++++++++-
  1 file changed, 157 insertions(+), 8 deletions(-)
 exec
-/bin/zsh -lc "git show 0feb292a1b -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 613ms:
+/bin/zsh -lc "git show 0feb292a1b -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 613ms:
 commit 0feb292a1bab4fddd97e721015adba5e55ae80aa
 Author: michelkerkmeester-barter <82775228+MichelKerkmeester@users.noreply.github.com>
 Date:   Sat Feb 28 14:54:41 2026 +0100
 
     feat(spec-kit): advance sprint6 indexing and sk-doc-visual design system
 
-diff --git a/.opencode/skill/system-spec-kit/scripts/core/workflow.ts b/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
+diff --git a/.opencode/skills/system-spec-kit/scripts/core/workflow.ts b/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
 index 0e3a82822..5bc241bed 100644
---- a/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-+++ b/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
+--- a/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
++++ b/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
 @@ -47,7 +47,10 @@ import { indexMemory, updateMetadataWithEmbedding } from './memory-indexer';
  import * as simFactory from '../lib/simulation-factory';
  import { loadCollectedData as loadCollectedDataFromLoader } from '../loaders/data-loader';
@@ -804,7 +804,7 @@ index 0e3a82822..5bc241bed 100644
 +} from './tree-thinning';
  
 exec
-/bin/zsh -lc 'git blame -L 1960,1972 .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 663ms:
+/bin/zsh -lc 'git blame -L 1960,1972 .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 663ms:
 c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1960) 
 0feb292a1b (michelkerkmeester-barter 2026-02-28 14:54:41 +0100 1961)     preExtractedTriggers = ensureMinTriggerPhrases(preExtractedTriggers, effectiveFiles, specFolderName);
 c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1962)     log(`   Pre-extracted ${preExtractedTriggers.length} trigger phrases`);
@@ -819,7 +819,7 @@ c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1967)
 5857911b93 (michelkerkmeester-barter 2026-03-16 22:29:10 +0100 1971)   const causalLinks = buildCausalLinksContext(collectedData);
 5857911b93 (michelkerkmeester-barter 2026-03-16 22:29:10 +0100 1972) 
 exec
-/bin/zsh -lc 'git blame -L 1831,1843 .opencode/skill/system-spec-kit/scripts/core/workflow.ts && git blame -L 632,655 .opencode/skill/system-spec-kit/scripts/core/workflow.ts && git blame -L 341,347 .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 2.23s:
+/bin/zsh -lc 'git blame -L 1831,1843 .opencode/skills/system-spec-kit/scripts/core/workflow.ts && git blame -L 632,655 .opencode/skills/system-spec-kit/scripts/core/workflow.ts && git blame -L 341,347 .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 2.23s:
 99f0ff7314 (michelkerkmeester-barter 2026-02-28 20:16:59 +0100 1831)   // Step 7.6: Tree thinning — pre-pipeline token reduction
 50e9c13e26 (michelkerkmeester-barter 2026-02-28 14:24:01 +0100 1832)   // Operates on spec folder files BEFORE pipeline stages and scoring.
 50e9c13e26 (michelkerkmeester-barter 2026-02-28 14:24:01 +0100 1833)   // Bottom-up merging of small files reduces token overhead in the retrieval pipeline.
@@ -841,14 +841,14 @@ git: error: couldn't create cache file '/tmp/xcrun_db-by7FLmyj' (errno=Operation
 5857911b93 (michelkerkmeester-barter 2026-03-16 22:29:10 +0100 633)   const rawPath = typeof file.FILE_PATH === 'string' ? file.FILE_PATH.trim() : '';
 5857911b93 (michelkerkmeester-barter 2026-03-16 22:29:10 +0100 634)   if (rawPath.length === 0) {
 exec
-/bin/zsh -lc 'git show --stat --oneline 5857911b93 -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/022-research-remediation/tasks.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 670ms:
+/bin/zsh -lc 'git show --stat --oneline 5857911b93 -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/022-research-remediation/tasks.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 670ms:
 git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
 git: error: couldn't create cache file '/tmp/xcrun_db-xZx4FtXL' (errno=Operation not permitted)
 5857911b9 fix(specs): deep-verify and fix ~90 stale path references in 022 memories and docs
  .../skill/system-spec-kit/scripts/core/workflow.ts | 374 ++++++++++++++++++++-
  1 file changed, 359 insertions(+), 15 deletions(-)
 exec
-/bin/zsh -lc "git show 5857911b93 -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | rg -n \"resolveTreeThinningContent|slice\\(0, 500\\)|buildKeyFiles\\(|FILES: effectiveFiles|keyFiles =\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 624ms:
+/bin/zsh -lc "git show 5857911b93 -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts | rg -n \"resolveTreeThinningContent|slice\\(0, 500\\)|buildKeyFiles\\(|FILES: effectiveFiles|keyFiles =\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 624ms:
 63:+function resolveTreeThinningContent(file: FileChange, specFolderPath: string): string {
 83:+    return fsSync.readFileSync(candidatePath, 'utf8').slice(0, 500) || file.DESCRIPTION || '';
 124:+function buildKeyFiles(effectiveFiles: FileChange[], specFolderPath: string): Array<{ FILE_PATH: string }> {
@@ -856,7 +856,7 @@ exec
 386:-  const keyFiles = effectiveFiles
 396:+  const keyFiles = buildKeyFiles(effectiveFiles, specFolder);
 exec
-/bin/zsh -lc "git show 5857911b93 -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '40,110p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 849ms:
+/bin/zsh -lc "git show 5857911b93 -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '40,110p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 849ms:
 git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
 git: error: couldn't create cache file '/tmp/xcrun_db-UunWb0Fc' (errno=Operation not permitted)
 git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
@@ -878,7 +878,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-QCU9No3u' (errno=Operation
 +  BLOCKS: string[];
 +  RELATED_TO: string[];
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1898,1968p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1898,1968p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1898	  const memoryTitle = buildMemoryTitle(preferredMemoryTask, specFolderName, sessionData.DATE, contentSlug);
   1899	  // Keep dashboard titles stable across duplicate-save retries so content dedup
   1900	  // compares the rendered memory itself, not a collision suffix.
@@ -900,7 +900,7 @@ exec
   1916	      if (d.TITLE) triggerSourceParts.push(d.TITLE);
   1917	      if (d.RATIONALE) triggerSourceParts.push(d.RATIONALE);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '220,289p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '220,289p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    220	  return combined.length > 0 ? [combined[0]] : ['session'];
    221	}
    222	
@@ -922,31 +922,31 @@ exec
    238	  if (combined.length === 1) {
    239	    return [combined[0], topicFromFolder.replace(/-/g, ' ').toLowerCase() || 'session'];
 exec
-/bin/zsh -lc 'rg -n "createHarness|specFolderPath|workflow-e2e.vitest.ts|test-integration.vitest.ts|workflow-fixture-notes.md" .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/fixtures -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:77:  specFolderPath: string;
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:107:function createHarness(): WorkflowHarness {
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:109:  const specFolderPath = path.join(repoRoot, '.opencode', 'specs', SPEC_RELATIVE_PATH);
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:110:  const contextDir = path.join(specFolderPath, 'memory');
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:116:  fs.mkdirSync(path.join(specFolderPath, 'scratch'), { recursive: true });
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:121:    path.join(specFolderPath, 'spec.md'),
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:140:      '| `scripts/tests/workflow-e2e.vitest.ts` | Add | Real save-pipeline E2E coverage |',
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:141:      '| `scripts/tests/test-integration.vitest.ts` | Add | Legacy integration parity in Vitest |',
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:145:  fs.writeFileSync(path.join(specFolderPath, 'plan.md'), '# Plan\n\n## Summary\n\nAdd real workflow integration coverage.\n', 'utf-8');
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:146:  fs.writeFileSync(path.join(specFolderPath, 'tasks.md'), '- [ ] Add workflow save E2E coverage\n- [ ] Migrate legacy integration runner\n', 'utf-8');
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:147:  fs.writeFileSync(path.join(specFolderPath, 'checklist.md'), '## P0\n- [ ] Filesystem side effects verified\n', 'utf-8');
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:148:  fs.writeFileSync(path.join(specFolderPath, 'decision-record.md'), '## DR-010\n\n**Decision:** Keep the real write path under test.\n', 'utf-8');
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:149:  writeJson(path.join(specFolderPath, 'description.json'), buildPerFolderDescription(SPEC_RELATIVE_PATH));
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:153:    specFolderPath,
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:194:          'scripts/tests/test-integration.vitest.ts',
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:212:        FILE_PATH: 'scripts/tests/test-integration.vitest.ts',
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:269:  const raw = fs.readFileSync(path.join(harness.specFolderPath, 'description.json'), 'utf-8');
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:285:  process.env.MEMORY_ALLOWED_PATHS = [harness.repoRoot, harness.specFolderPath, harness.contextDir].join(path.delimiter);
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:419:    const harness = createHarness();
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:427:      specFolderArg: harness.specFolderPath,
+/bin/zsh -lc 'rg -n "createHarness|specFolderPath|workflow-e2e.vitest.ts|test-integration.vitest.ts|workflow-fixture-notes.md" .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/fixtures -S' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:77:  specFolderPath: string;
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:107:function createHarness(): WorkflowHarness {
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:109:  const specFolderPath = path.join(repoRoot, '.opencode', 'specs', SPEC_RELATIVE_PATH);
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:110:  const contextDir = path.join(specFolderPath, 'memory');
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:116:  fs.mkdirSync(path.join(specFolderPath, 'scratch'), { recursive: true });
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:121:    path.join(specFolderPath, 'spec.md'),
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:140:      '| `scripts/tests/workflow-e2e.vitest.ts` | Add | Real save-pipeline E2E coverage |',
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:141:      '| `scripts/tests/test-integration.vitest.ts` | Add | Legacy integration parity in Vitest |',
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:145:  fs.writeFileSync(path.join(specFolderPath, 'plan.md'), '# Plan\n\n## Summary\n\nAdd real workflow integration coverage.\n', 'utf-8');
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:146:  fs.writeFileSync(path.join(specFolderPath, 'tasks.md'), '- [ ] Add workflow save E2E coverage\n- [ ] Migrate legacy integration runner\n', 'utf-8');
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:147:  fs.writeFileSync(path.join(specFolderPath, 'checklist.md'), '## P0\n- [ ] Filesystem side effects verified\n', 'utf-8');
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:148:  fs.writeFileSync(path.join(specFolderPath, 'decision-record.md'), '## DR-010\n\n**Decision:** Keep the real write path under test.\n', 'utf-8');
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:149:  writeJson(path.join(specFolderPath, 'description.json'), buildPerFolderDescription(SPEC_RELATIVE_PATH));
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:153:    specFolderPath,
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:194:          'scripts/tests/test-integration.vitest.ts',
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:212:        FILE_PATH: 'scripts/tests/test-integration.vitest.ts',
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:269:  const raw = fs.readFileSync(path.join(harness.specFolderPath, 'description.json'), 'utf-8');
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:285:  process.env.MEMORY_ALLOWED_PATHS = [harness.repoRoot, harness.specFolderPath, harness.contextDir].join(path.delimiter);
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:419:    const harness = createHarness();
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:427:      specFolderArg: harness.specFolderPath,
 codex
 I’m now checking the E2E harness setup itself to see whether the test data is strong enough to detect semantic content loss, or only confirms that a merge marker string is present.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '100,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '100,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    100	}
    101	
    102	function writeJson(filePath: string, value: unknown): void {
@@ -968,7 +968,7 @@ exec
    118	  fs.mkdirSync(dataDir, { recursive: true });
    119	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '170,235p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '170,235p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    170	    ],
    171	    user_prompts: [
    172	      {
@@ -990,12 +990,12 @@ exec
    188	          'Tool: Bash Result: exercised the workflow against isolated temp-repo fixtures.',
    189	          'Decision: Keep the render, quality, and file-writing path real while only narrowing mocks outside the save boundary.',
 exec
-/bin/zsh -lc 'git show --stat --oneline 99f0ff7314 -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 599ms:
+/bin/zsh -lc 'git show --stat --oneline 99f0ff7314 -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 599ms:
 99f0ff731 feat(spec-kit): implement Sprint 8 deferred features and remove tracking prefixes from tests
- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | 8 ++++----
+ .opencode/skills/system-spec-kit/scripts/core/workflow.ts | 8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 exec
-/bin/zsh -lc "git show 99f0ff7314 -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 567ms:
+/bin/zsh -lc "git show 99f0ff7314 -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 567ms:
 commit 99f0ff7314d656ba136f0387c48ece8741f04eac
 Author: michelkerkmeester-barter <82775228+MichelKerkmeester@users.noreply.github.com>
 Date:   Sat Feb 28 20:16:59 2026 +0100
@@ -1011,28 +1011,28 @@ Date:   Sat Feb 28 20:16:59 2026 +0100
     
     Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 
-diff --git a/.opencode/skill/system-spec-kit/scripts/core/workflow.ts b/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
+diff --git a/.opencode/skills/system-spec-kit/scripts/core/workflow.ts b/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
 index 5bc241bed..c6789a1c9 100644
---- a/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-+++ b/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
+--- a/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
++++ b/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
 @@ -174,7 +174,7 @@ function pickCarrierIndex(indices: number[], files: FileChange[]): number {
 exec
-/bin/zsh -lc 'git show --stat --oneline 3febaedafb -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 1.31s:
+/bin/zsh -lc 'git show --stat --oneline 3febaedafb -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 1.31s:
 3febaedaf fix(spec-kit): apply 012 session capturing QA fixes + 008 bug-fix code audits
  .../skill/system-spec-kit/scripts/core/workflow.ts | 186 ++++++++++++++++++---
  1 file changed, 163 insertions(+), 23 deletions(-)
 exec
-/bin/zsh -lc "git show 3febaedafb -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | rg -n \"compactMergedContent|mergeNote|highlights|mergedSummary|slice\\(0, 500\\)|buildKeyFiles\\(|_synthetic\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 656ms:
+/bin/zsh -lc "git show 3febaedafb -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts | rg -n \"compactMergedContent|mergeNote|highlights|mergedSummary|slice\\(0, 500\\)|buildKeyFiles\\(|_synthetic\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 656ms:
 36:+function compactMergedContent(value: string): string {
 51:-    const highlights = childFiles
 55:+    const mergedContent = compactMergedContent(mergedGroup.mergedSummary);
 57:     const mergeNote = capText(
 58:-      `Tree-thinning merged ${childFiles.length} small files (${childNames.join(', ')}). ${highlights}`,
 exec
-/bin/zsh -lc "git show 3febaedafb -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '20,95p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 510ms:
+/bin/zsh -lc "git show 3febaedafb -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '20,95p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 510ms:
 index f1a18825e..fdf65005d 100644
---- a/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-+++ b/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
+--- a/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
++++ b/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
 @@ -34,6 +34,8 @@ import {
    type ValidationSignal,
  } from '../extractors/quality-scorer';
@@ -1051,8 +1051,8 @@ index f1a18825e..fdf65005d 100644
 +    .replace(/<!--\s*merged from:\s*([^>]+)\s*-->/gi, 'Merged from $1:')
 +    .replace(/\n\s*---\s*\n/g, ' | ')
 exec
-/bin/zsh -lc 'rg -n "buildMergedSummary|resolveAction|mergeThreshold|contentAsTextThreshold" .opencode/skill/system-spec-kit/scripts/core/tree-thinning.js' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"function resolveTreeThinningContent|slice\\(0, 500\\)|applyThinningToFileChanges|compactMergedContent|FILES: effectiveFiles|const keyFiles = buildKeyFiles\\(\" .opencode/skill/system-spec-kit/scripts/core/workflow.js" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "buildMergedSummary|resolveAction|mergeThreshold|contentAsTextThreshold" .opencode/skills/system-spec-kit/scripts/core/tree-thinning.js' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"function resolveTreeThinningContent|slice\\(0, 500\\)|applyThinningToFileChanges|compactMergedContent|FILES: effectiveFiles|const keyFiles = buildKeyFiles\\(\" .opencode/skills/system-spec-kit/scripts/core/workflow.js" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 17:    mergeThreshold: 200,
 18:    contentAsTextThreshold: 500,
 67:function buildMergedSummary(children) {
@@ -1062,9 +1062,9 @@ exec
 126:        const action = resolveAction(tokenCount, memory, cfg);
 142:            mergedSummary: buildMergedSummary(children),
  exited 2 in 0ms:
-rg: .opencode/skill/system-spec-kit/scripts/core/workflow.js: IO error for operation on .opencode/skill/system-spec-kit/scripts/core/workflow.js: No such file or directory (os error 2)
+rg: .opencode/skills/system-spec-kit/scripts/core/workflow.js: IO error for operation on .opencode/skills/system-spec-kit/scripts/core/workflow.js: No such file or directory (os error 2)
 exec
-/bin/zsh -lc "ls -la .opencode/skill/system-spec-kit/scripts/core | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "ls -la .opencode/skills/system-spec-kit/scripts/core | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 total 408
 drwxr-xr-x@ 16 michelkerkmeester  staff    512 Mar 20 08:26 .
 drwxr-xr-x@ 34 michelkerkmeester  staff   1088 Mar 19 19:58 ..
@@ -1085,7 +1085,7 @@ drwxr-xr-x@ 34 michelkerkmeester  staff   1088 Mar 19 19:58 ..
 codex
 I’ve finished tracing the pipeline and comparing it to the original P1-12 intent. I’m now synthesizing concrete yes/no answers for each deliverable item, with exact drop points and a practical fix plan ordered by impact.
 exec
-/bin/zsh -lc "git show 689147e76e -- .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 626ms:
+/bin/zsh -lc "git show 689147e76e -- .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 626ms:
 commit 689147e76ea591ed3a1a338e6bda93a1013c853f
 Author: michelkerkmeester-barter <82775228+MichelKerkmeester@users.noreply.github.com>
 Date:   Wed Mar 18 18:04:56 2026 +0100
@@ -1099,10 +1099,10 @@ Date:   Wed Mar 18 18:04:56 2026 +0100
     
     Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>
 
-diff --git a/.opencode/skill/system-spec-kit/scripts/core/workflow.ts b/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
+diff --git a/.opencode/skills/system-spec-kit/scripts/core/workflow.ts b/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
 index 911f172dd..22fbd758b 100644
---- a/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-+++ b/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
+--- a/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
++++ b/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
 @@ -1276,12 +1276,14 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
        const specAffinity = evaluateCollectedDataSpecAffinity(collectedData, specAffinityTargets);
  
@@ -1110,22 +1110,22 @@ codex
 **Verdict:** P1-12 is only **partially fixed**. Tree-thinning output is now wired into rendering, but merged content is still truncated/dropped in multiple paths, so “all merged content survives” is **false**.
 
 1. **Pipeline trace (tree-thinning → final render)**
-- Tree-thinning builds `mergedSummary` from child content in [`tree-thinning.ts:152`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:152) and returns groups in [`tree-thinning.ts:244`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:244).
-- Workflow applies thinning at Step 7.6 in [`workflow.ts:1835`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1835) and maps to `effectiveFiles` via [`workflow.ts:1840`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1840).
-- Renderer input uses `FILES: effectiveFiles` in [`workflow.ts:1983`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1983), and template prints them in table rows at [`context_template.md:342`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:342).
-- Rendering itself does not thin/drop file rows directly (Mustache expansion in [`template-renderer.ts:96`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:96), [`template-renderer.ts:208`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:208)).
+- Tree-thinning builds `mergedSummary` from child content in [`tree-thinning.ts:152`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:152) and returns groups in [`tree-thinning.ts:244`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:244).
+- Workflow applies thinning at Step 7.6 in [`workflow.ts:1835`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1835) and maps to `effectiveFiles` via [`workflow.ts:1840`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1840).
+- Renderer input uses `FILES: effectiveFiles` in [`workflow.ts:1983`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1983), and template prints them in table rows at [`context_template.md:342`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:342).
+- Rendering itself does not thin/drop file rows directly (Mustache expansion in [`template-renderer.ts:96`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:96), [`template-renderer.ts:208`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:208)).
 
 2. **Does all merged content appear in final memory?**
 - **No.**
-- Input to thinning is truncated to first 500 chars per file in [`workflow.ts:652`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:652), so merge/classification/summary never sees full file content.
-- Merge note content is compacted and then capped (`900`) in [`workflow.ts:341`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:341), [`workflow.ts:473`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:473), [`workflow.ts:487`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:487).  
+- Input to thinning is truncated to first 500 chars per file in [`workflow.ts:652`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:652), so merge/classification/summary never sees full file content.
+- Merge note content is compacted and then capped (`900`) in [`workflow.ts:341`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:341), [`workflow.ts:473`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:473), [`workflow.ts:487`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:487).  
   If a carrier description is already long, new merge notes can be truncated away.
 
 3. **Silent drop paths**
-- Pre-thinning truncation: [`workflow.ts:652`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:652).
-- Post-merge truncation/capping: [`workflow.ts:473`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:473), [`workflow.ts:487`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:487).
-- Synthetic merge entries excluded from `key_files` metadata path via filter [`workflow.ts:698`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:698), and current call uses pre-thinned set [`workflow.ts:1968`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1968).
-- HTML cleanup can strip parts of merged text containing HTML/comment syntax after render: [`workflow.ts:2090`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2090), [`workflow.ts:273`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:273).
+- Pre-thinning truncation: [`workflow.ts:652`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:652).
+- Post-merge truncation/capping: [`workflow.ts:473`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:473), [`workflow.ts:487`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:487).
+- Synthetic merge entries excluded from `key_files` metadata path via filter [`workflow.ts:698`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:698), and current call uses pre-thinned set [`workflow.ts:1968`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1968).
+- HTML cleanup can strip parts of merged text containing HTML/comment syntax after render: [`workflow.ts:2090`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2090), [`workflow.ts:273`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:273).
 
 4. **P1-12 fix status (complete vs partial)**
 - **Complete for original wiring bug:** merged thinning now does reach rendered `FILES` output (`effectiveFiles` injection).
@@ -1135,7 +1135,7 @@ codex
 - Remove/raise `slice(0, 500)` to at least threshold-safe size (or full file with hard upper bound > `contentAsTextThreshold * 4` chars).
 - Stop storing full merged payload in table `DESCRIPTION`; keep short summary there and add a dedicated rendered section (array field) for full merged details.
 - Restore `keyFiles` source to post-thinning (`effectiveFiles`) and decide explicitly whether synthetic merged entries belong in `key_files`.
-- Add E2E assertions for actual merged child content, not only marker phrase (current test only checks `contains('Tree-thinning merged 3 small files')` at [`workflow-e2e.vitest.ts:794`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:794)).
+- Add E2E assertions for actual merged child content, not only marker phrase (current test only checks `contains('Tree-thinning merged 3 small files')` at [`workflow-e2e.vitest.ts:794`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:794)).
 
 I did static verification only; I could not run full tests in this read-only sandbox.
 tokens used
@@ -1143,22 +1143,22 @@ tokens used
 **Verdict:** P1-12 is only **partially fixed**. Tree-thinning output is now wired into rendering, but merged content is still truncated/dropped in multiple paths, so “all merged content survives” is **false**.
 
 1. **Pipeline trace (tree-thinning → final render)**
-- Tree-thinning builds `mergedSummary` from child content in [`tree-thinning.ts:152`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:152) and returns groups in [`tree-thinning.ts:244`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:244).
-- Workflow applies thinning at Step 7.6 in [`workflow.ts:1835`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1835) and maps to `effectiveFiles` via [`workflow.ts:1840`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1840).
-- Renderer input uses `FILES: effectiveFiles` in [`workflow.ts:1983`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1983), and template prints them in table rows at [`context_template.md:342`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:342).
-- Rendering itself does not thin/drop file rows directly (Mustache expansion in [`template-renderer.ts:96`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:96), [`template-renderer.ts:208`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:208)).
+- Tree-thinning builds `mergedSummary` from child content in [`tree-thinning.ts:152`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:152) and returns groups in [`tree-thinning.ts:244`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:244).
+- Workflow applies thinning at Step 7.6 in [`workflow.ts:1835`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1835) and maps to `effectiveFiles` via [`workflow.ts:1840`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1840).
+- Renderer input uses `FILES: effectiveFiles` in [`workflow.ts:1983`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1983), and template prints them in table rows at [`context_template.md:342`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:342).
+- Rendering itself does not thin/drop file rows directly (Mustache expansion in [`template-renderer.ts:96`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:96), [`template-renderer.ts:208`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:208)).
 
 2. **Does all merged content appear in final memory?**
 - **No.**
-- Input to thinning is truncated to first 500 chars per file in [`workflow.ts:652`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:652), so merge/classification/summary never sees full file content.
-- Merge note content is compacted and then capped (`900`) in [`workflow.ts:341`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:341), [`workflow.ts:473`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:473), [`workflow.ts:487`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:487).  
+- Input to thinning is truncated to first 500 chars per file in [`workflow.ts:652`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:652), so merge/classification/summary never sees full file content.
+- Merge note content is compacted and then capped (`900`) in [`workflow.ts:341`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:341), [`workflow.ts:473`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:473), [`workflow.ts:487`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:487).  
   If a carrier description is already long, new merge notes can be truncated away.
 
 3. **Silent drop paths**
-- Pre-thinning truncation: [`workflow.ts:652`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:652).
-- Post-merge truncation/capping: [`workflow.ts:473`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:473), [`workflow.ts:487`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:487).
-- Synthetic merge entries excluded from `key_files` metadata path via filter [`workflow.ts:698`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:698), and current call uses pre-thinned set [`workflow.ts:1968`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1968).
-- HTML cleanup can strip parts of merged text containing HTML/comment syntax after render: [`workflow.ts:2090`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2090), [`workflow.ts:273`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:273).
+- Pre-thinning truncation: [`workflow.ts:652`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:652).
+- Post-merge truncation/capping: [`workflow.ts:473`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:473), [`workflow.ts:487`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:487).
+- Synthetic merge entries excluded from `key_files` metadata path via filter [`workflow.ts:698`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:698), and current call uses pre-thinned set [`workflow.ts:1968`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1968).
+- HTML cleanup can strip parts of merged text containing HTML/comment syntax after render: [`workflow.ts:2090`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2090), [`workflow.ts:273`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:273).
 
 4. **P1-12 fix status (complete vs partial)**
 - **Complete for original wiring bug:** merged thinning now does reach rendered `FILES` output (`effectiveFiles` injection).
@@ -1168,6 +1168,6 @@ tokens used
 - Remove/raise `slice(0, 500)` to at least threshold-safe size (or full file with hard upper bound > `contentAsTextThreshold * 4` chars).
 - Stop storing full merged payload in table `DESCRIPTION`; keep short summary there and add a dedicated rendered section (array field) for full merged details.
 - Restore `keyFiles` source to post-thinning (`effectiveFiles`) and decide explicitly whether synthetic merged entries belong in `key_files`.
-- Add E2E assertions for actual merged child content, not only marker phrase (current test only checks `contains('Tree-thinning merged 3 small files')` at [`workflow-e2e.vitest.ts:794`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:794)).
+- Add E2E assertions for actual merged child content, not only marker phrase (current test only checks `contains('Tree-thinning merged 3 small files')` at [`workflow-e2e.vitest.ts:794`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:794)).
 
 I did static verification only; I could not run full tests in this read-only sandbox.

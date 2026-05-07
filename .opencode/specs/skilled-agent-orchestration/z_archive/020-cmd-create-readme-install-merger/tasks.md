@@ -37,7 +37,7 @@ SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 
 - [x] T001 Capture merge objectives and scope in `spec.md` (`.opencode/specs/03--commands-and-skills/020-cmd-create-readme-install-merger/spec.md`)
 - [x] T002 Document canonical naming proposal and routing model in `plan.md` (`.opencode/specs/03--commands-and-skills/020-cmd-create-readme-install-merger/plan.md`)
-- [x] T003 [P] Build evidence baseline table from current command assets (`.opencode/command/create/*.md` and `.opencode/command/create/assets/*.yaml`)
+- [x] T003 [P] Build evidence baseline table from current command assets (`.opencode/commands/create/*.md` and `.opencode/commands/create/assets/*.yaml`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -45,7 +45,7 @@ SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Define preferred unified command contract and alias mapping artifact (`.opencode/command/create/folder_readme.md` plus the retained runtime wrapper surfaces)
+- [x] T004 Define preferred unified command contract and alias mapping artifact (`.opencode/commands/create/folder_readme.md` plus the retained runtime wrapper surfaces)
 - [x] T005 Define shared setup resolver and input normalization schema (canonical wrapper plus retained alias behavior in markdown and TOML command surfaces)
 - [x] T006 Define shared YAML kernel and operation branch boundaries (canonical wrapper routes README/install branches while legacy wrappers preserve entry compatibility)
 - [x] T007 Define migration and deprecation timeline with rollback triggers (catalog/runtime refs updated; alias retirement remains explicitly pending)

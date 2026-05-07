@@ -8,13 +8,13 @@ READ-ONLY deep-review audit. Output: `review-report.md` with severity-classified
 
 ### Target surface
 
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- `.opencode/skill/system-spec-kit/scripts/spec/lib/` (validator helpers)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts` (TS phase-parent detector)
-- `.opencode/skill/system-spec-kit/scripts/dist/spec/is-phase-parent.js` (compiled JS)
-- `.opencode/skill/system-spec-kit/shared/lib/shell-common.sh` (shell phase-parent detector — SOT pair)
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
-- `.opencode/skill/system-spec-kit/templates/` (Level 1, 2, 3 templates)
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- `.opencode/skills/system-spec-kit/scripts/spec/lib/` (validator helpers)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts` (TS phase-parent detector)
+- `.opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js` (compiled JS)
+- `.opencode/skills/system-spec-kit/shared/lib/shell-common.sh` (shell phase-parent detector — SOT pair)
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
+- `.opencode/skills/system-spec-kit/templates/` (Level 1, 2, 3 templates)
 - A representative sample of `.opencode/specs/**/*.md` (spec docs)
 
 ### Audit dimensions + integrity-specific questions

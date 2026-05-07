@@ -36,9 +36,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/references/workflows/quick_reference.md",
-      ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "references/workflows/quick_reference.md",
       "spec.md",
       "plan.md",
@@ -49,19 +49,19 @@
       {
         "name": "quick_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/workflows/quick_reference.md",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
         "source": "derived"
       },
       {
         "name": "context-server.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
         "source": "derived"
       },
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {

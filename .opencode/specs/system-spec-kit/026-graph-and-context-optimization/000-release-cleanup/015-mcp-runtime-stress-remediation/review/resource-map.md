@@ -25,24 +25,24 @@
 
 ### Runtime and Test Code
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1160-1188` - handler snapshot to envelope path.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts:1-88` - snapshot/richer payload mapper.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:280-310` - TC-3 passing degradedReadiness assertion.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` - W10 path preservation sample.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts` - sampled stale structural failures after 026.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts` - sampled broad-suite line-limit failures.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts` - sampled readiness mock cleanup surface.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1160-1188` - handler snapshot to envelope path.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts:1-88` - snapshot/richer payload mapper.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:280-310` - TC-3 passing degradedReadiness assertion.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` - W10 path preservation sample.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts` - sampled stale structural failures after 026.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts` - sampled broad-suite line-limit failures.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts` - sampled readiness mock cleanup surface.
 
 ### Skill Contract Code and Docs
 
-- `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs:1-180` - flat-first resolver.
-- `.opencode/skill/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:1-177` - flat/reuse/branch test matrix.
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` - synthesis staging step.
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` - synthesis staging step.
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` - synthesis staging step.
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` - synthesis staging step.
-- `.opencode/skill/system-spec-kit/mcp_server/core/README.md:34-45` - stale embedding-readiness doc sentence.
-- `.opencode/skill/system-spec-kit/references/structure/folder_structure.md:190-222` - stale pt-01-first example and corrected flat-first prose.
+- `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:1-180` - flat-first resolver.
+- `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:1-177` - flat/reuse/branch test matrix.
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` - synthesis staging step.
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` - synthesis staging step.
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` - synthesis staging step.
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` - synthesis staging step.
+- `.opencode/skills/system-spec-kit/mcp_server/core/README.md:34-45` - stale embedding-readiness doc sentence.
+- `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:190-222` - stale pt-01-first example and corrected flat-first prose.
 
 ## Remediation Candidates
 
@@ -52,8 +52,8 @@
 | F-002 | `025-memory-search-degraded-readiness-wiring/tasks.md:83` | Update tasks/completion criteria to reflect final `tsc --noEmit` pass after 026; remove blocked marker or add resolution note. | P1 |
 | F-004 | `028-deep-review-skill-contract-fixes/spec.md:17` | Update `_memory.continuity`, status, and completion percentage to match `implementation-summary.md`. | P1 |
 | F-005 | `026-readiness-scaffolding-cleanup/implementation-summary.md:58` | Decide broad-suite policy: fix unrelated stale failures or carry an explicit release-readiness allowlist. | P1 |
-| F-003 | `.opencode/skill/system-spec-kit/mcp_server/core/README.md:40` | Remove `embedding-readiness state` from `db-state.ts` ownership list. | P2 |
-| F-006 | `.opencode/skill/system-spec-kit/references/structure/folder_structure.md:196` | Change the first-run child example to flat `research/`/`review/`; show `pt-NN` only for conflict/branch cases. | P2 |
+| F-003 | `.opencode/skills/system-spec-kit/mcp_server/core/README.md:40` | Remove `embedding-readiness state` from `db-state.ts` ownership list. | P2 |
+| F-006 | `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:196` | Change the first-run child example to flat `research/`/`review/`; show `pt-NN` only for conflict/branch cases. | P2 |
 
 ## Coverage Gaps
 

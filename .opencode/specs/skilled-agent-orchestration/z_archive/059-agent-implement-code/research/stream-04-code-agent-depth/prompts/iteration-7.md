@@ -64,10 +64,10 @@ Refine into the explicit precedence matrix mirroring @review §3:
 
 ## ACTIONS
 
-1. Read `.opencode/agent/review.md:237-279` (Orchestrator Integration + Output Format).
-2. Read `.opencode/agent/review.md:70-99` (Capability Scan — Skills + Tools tables; baseline+overlay model).
-3. Read `.opencode/agent/code.md` (current — confirm what's already there so the proposal sharpens rather than duplicates).
-4. Read `.opencode/agent/orchestrate.md` (search for "RETURN:", "Skills:", "Depth:" — what the orchestrator actually parses from sub-agent responses).
+1. Read `.opencode/agents/review.md:237-279` (Orchestrator Integration + Output Format).
+2. Read `.opencode/agents/review.md:70-99` (Capability Scan — Skills + Tools tables; baseline+overlay model).
+3. Read `.opencode/agents/code.md` (current — confirm what's already there so the proposal sharpens rather than duplicates).
+4. Read `.opencode/agents/orchestrate.md` (search for "RETURN:", "Skills:", "Depth:" — what the orchestrator actually parses from sub-agent responses).
 5. Synthesize Q8 expanded RETURN format + gate types + circuit breaker, AND Q9 baseline+overlay precedence matrix.
 
 ## OUTPUT CONTRACT

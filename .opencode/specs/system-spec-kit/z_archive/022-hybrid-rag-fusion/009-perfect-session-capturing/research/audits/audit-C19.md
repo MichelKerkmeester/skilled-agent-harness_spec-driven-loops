@@ -11,8 +11,8 @@ session id: 019cceca-04ff-7b32-85b8-1bb31530e482
 --------
 user
 You are a code auditor. Read EVERY LINE of these TWO files:
-1. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts (273 lines) — configuration management
-2. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts (61 lines) — content filtering
+1. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts (273 lines) — configuration management
+2. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts (61 lines) — content filtering
 
 Audit specifically:
 CONFIG:
@@ -62,8 +62,8 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m auditing both files line-by-line now and will focus strictly on the eight areas you listed. First I’ll load the exact source with line numbers so every finding can reference precise locations.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/config.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/config.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Contamination Filter
      3	// ---------------------------------------------------------------
@@ -106,7 +106,7 @@ exec
     19	  maxConversationMessages: number;
     20	  maxToolOutputLines: number;
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Audit configuration loading/schema/env overrides/missing values and denylist contamination filter behavior in two TypeScript files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 925ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Audit configuration loading/schema/env overrides/missing values and denylist contamination filter behavior in two TypeScript files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 925ms:
 [
   {
     "skill": "sk-code-review",
@@ -128,26 +128,26 @@ exec
 codex
 I’ve finished a full read of both files and I’m now verifying edge cases (schema strictness, env overrides, and regex behavior) against exact line ranges before I write the findings.
 exec
-/bin/zsh -lc "rg -n \"process\\.env|TOOL_OUTPUT_MAX_LENGTH|TIMESTAMP_MATCH_TOLERANCE_MS|validateConfig\\(|JSON\\.parse|DEFAULT_DENYLIST|normalizeWhitespace|replace\\(\" '.opencode/skill/system-spec-kit/scripts/core/config.ts' '.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:6:const DEFAULT_DENYLIST: RegExp[] = [
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:51:function normalizeWhitespace(input: string): string {
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:53:    .replace(/\s+/g, ' ')
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:54:    .replace(/\s+([,.;!?])/g, '$1')
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:60:  denylist: RegExp[] = DEFAULT_DENYLIST
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:73:      cleaned = cleaned.replace(pattern, ' ');
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:78:    cleanedText: normalizeWhitespace(cleaned),
-.opencode/skill/system-spec-kit/scripts/core/config.ts:54:  TOOL_OUTPUT_MAX_LENGTH: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:55:  TIMESTAMP_MATCH_TOLERANCE_MS: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:73:function validateConfig(merged: WorkflowConfig, defaults: WorkflowConfig): WorkflowConfig {
-.opencode/skill/system-spec-kit/scripts/core/config.ts:198:      const userConfig = JSON.parse(jsonContent) as Partial<WorkflowConfig>;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:200:      return validateConfig(merged, defaultConfig);
-.opencode/skill/system-spec-kit/scripts/core/config.ts:239:  TOOL_OUTPUT_MAX_LENGTH: userConfig.toolOutputMaxLength,
-.opencode/skill/system-spec-kit/scripts/core/config.ts:240:  TIMESTAMP_MATCH_TOLERANCE_MS: userConfig.timestampMatchToleranceMs
+/bin/zsh -lc "rg -n \"process\\.env|TOOL_OUTPUT_MAX_LENGTH|TIMESTAMP_MATCH_TOLERANCE_MS|validateConfig\\(|JSON\\.parse|DEFAULT_DENYLIST|normalizeWhitespace|replace\\(\" '.opencode/skills/system-spec-kit/scripts/core/config.ts' '.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:6:const DEFAULT_DENYLIST: RegExp[] = [
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:51:function normalizeWhitespace(input: string): string {
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:53:    .replace(/\s+/g, ' ')
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:54:    .replace(/\s+([,.;!?])/g, '$1')
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:60:  denylist: RegExp[] = DEFAULT_DENYLIST
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:73:      cleaned = cleaned.replace(pattern, ' ');
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:78:    cleanedText: normalizeWhitespace(cleaned),
+.opencode/skills/system-spec-kit/scripts/core/config.ts:54:  TOOL_OUTPUT_MAX_LENGTH: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:55:  TIMESTAMP_MATCH_TOLERANCE_MS: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:73:function validateConfig(merged: WorkflowConfig, defaults: WorkflowConfig): WorkflowConfig {
+.opencode/skills/system-spec-kit/scripts/core/config.ts:198:      const userConfig = JSON.parse(jsonContent) as Partial<WorkflowConfig>;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:200:      return validateConfig(merged, defaultConfig);
+.opencode/skills/system-spec-kit/scripts/core/config.ts:239:  TOOL_OUTPUT_MAX_LENGTH: userConfig.toolOutputMaxLength,
+.opencode/skills/system-spec-kit/scripts/core/config.ts:240:  TIMESTAMP_MATCH_TOLERANCE_MS: userConfig.timestampMatchToleranceMs
 codex
 I spotted that the earlier `config.ts` capture was truncated, so I’m re-reading it in two explicit line ranges to guarantee full coverage of every line before finalizing findings.
 exec
-/bin/zsh -lc "sed -n '181,360p' '.opencode/skill/system-spec-kit/scripts/core/config.ts' | nl -ba" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,180p' '.opencode/skill/system-spec-kit/scripts/core/config.ts' | nl -ba" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '181,360p' '.opencode/skills/system-spec-kit/scripts/core/config.ts' | nl -ba" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,180p' '.opencode/skills/system-spec-kit/scripts/core/config.ts' | nl -ba" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	        }
      2	
      3	        if (inJsonBlock) {
@@ -190,7 +190,7 @@ exec
     19	  maxConversationMessages: number;
     20	  maxToolOutputLines: number;
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/config.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/config.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Config
      3	// ---------------------------------------------------------------
@@ -212,7 +212,7 @@ exec
     19	  maxConversationMessages: number;
     20	  maxToolOutputLines: number;
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Contamination Filter
      3	// ---------------------------------------------------------------
@@ -234,21 +234,21 @@ exec
     19	  /\bI'll proceed\b/gi,
     20	  /\bI'll handle\b/gi,
 exec
-/bin/zsh -lc "rg -n \"function stripJsoncComments|export .*stripJsoncComments|stripJsoncComments\" -g '*.ts' .opencode/skill/system-spec-kit/scripts .opencode/skill/system-spec-kit -S" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/scripts/core/config.ts:9:import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
-.opencode/skill/system-spec-kit/scripts/core/config.ts:165:      const stripped: string = stripJsoncComments(configContent);
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:8:import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:127:      const jsonContent: string = stripJsoncComments(configContent);
-.opencode/skill/system-spec-kit/shared/index.ts:193:  stripJsoncComments,
-.opencode/skill/system-spec-kit/shared/utils/jsonc-strip.ts:39:export function stripJsoncComments(content: string): string {
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:8:import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:127:      const jsonContent: string = stripJsoncComments(configContent);
-.opencode/skill/system-spec-kit/scripts/core/config.ts:9:import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
-.opencode/skill/system-spec-kit/scripts/core/config.ts:165:      const stripped: string = stripJsoncComments(configContent);
+/bin/zsh -lc "rg -n \"function stripJsoncComments|export .*stripJsoncComments|stripJsoncComments\" -g '*.ts' .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit -S" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/scripts/core/config.ts:9:import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
+.opencode/skills/system-spec-kit/scripts/core/config.ts:165:      const stripped: string = stripJsoncComments(configContent);
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:8:import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:127:      const jsonContent: string = stripJsoncComments(configContent);
+.opencode/skills/system-spec-kit/shared/index.ts:193:  stripJsoncComments,
+.opencode/skills/system-spec-kit/shared/utils/jsonc-strip.ts:39:export function stripJsoncComments(content: string): string {
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:8:import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:127:      const jsonContent: string = stripJsoncComments(configContent);
+.opencode/skills/system-spec-kit/scripts/core/config.ts:9:import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
+.opencode/skills/system-spec-kit/scripts/core/config.ts:165:      const stripped: string = stripJsoncComments(configContent);
 codex
 I’m doing one quick supporting read of the shared JSONC helper to confirm whether trailing commas are actually handled or only comments are stripped; that affects config-loading accuracy.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/shared/utils/jsonc-strip.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/shared/utils/jsonc-strip.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: JSONC Strip
      3	// ---------------------------------------------------------------
@@ -270,7 +270,7 @@ exec
     19	    k--;
     20	  }
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/config/config.jsonc'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/config/config.jsonc'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// CONFIG: SPEC KIT SETTINGS
      3	// ───────────────────────────────────────────────────────────────
@@ -293,7 +293,7 @@ exec
     20	  // ─────────────────────────────────────────────────────────────
 codex
 ### FINDING-01: Config Loader Is Not Fully JSONC-Compliant
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):165, :198
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):165, :198
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Comments are stripped, then `JSON.parse` is used.
@@ -303,7 +303,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Brace-Depth Extraction Is String-Unaware
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):167, :175, :178
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):167, :175, :178
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `{`/`}` are counted blindly per character to find JSON block boundaries.
@@ -313,7 +313,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Unknown Config Keys Are Silently Accepted
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):198, :199, :200
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):198, :199, :200
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Extra keys in config are not validated/reported; they pass through merge silently.
@@ -323,7 +323,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: No Environment Variable Override Layer
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):140, :158, :216
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):140, :158, :216
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Config values come only from defaults + file.
@@ -333,7 +333,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: “Integer” Validation Does Not Enforce Integer
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):76, :93, :102, :110
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):76, :93, :102, :110
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Decimal numbers pass validation even where comments say integer fields.
@@ -343,7 +343,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-06: Filter Is Context-Blind Global String Replacement
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):69, :73
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):69, :73
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Denylist phrases are removed anywhere in input, including quoted text/code/content.
@@ -353,7 +353,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: High False-Positive Risk From Broad Patterns
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):11, :13, :30, :34
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):11, :13, :30, :34
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Generic phrases like `I need to`, `Step \d+:`, `Let me know if`, `That's a great` are stripped even when legitimate.
@@ -363,7 +363,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Denylist Coverage Is Incomplete for Common AI Chatter
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):6, :43
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):6, :43
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** There are **32** denylist patterns:  
@@ -374,7 +374,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-09: Regex Variants Are Brittle (Apostrophes/Punctuation/Tool Names)
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):8, :37, :38, :40, :41
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):8, :37, :38, :40, :41
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Patterns assume straight apostrophe (`I'll`), exact punctuation, and one-word tool names (`\w+ tool`).
@@ -384,7 +384,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Whitespace Normalization Destroys Structural Context
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):53, :54, :78
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):53, :54, :78
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** All whitespace/newlines collapse to single spaces.
@@ -394,7 +394,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: `removedPhrases` Can Contain Duplicates and Grow Unbounded
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):67, :72, :80
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):67, :72, :80
 - **Severity:** LOW
 - **Category:** PERFORMANCE
 - **Current Behavior:** Every match is appended, including duplicates; very repetitive input can produce large arrays.
@@ -413,7 +413,7 @@ codex
 tokens used
 27,313
 ### FINDING-01: Config Loader Is Not Fully JSONC-Compliant
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):165, :198
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):165, :198
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Comments are stripped, then `JSON.parse` is used.
@@ -423,7 +423,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Brace-Depth Extraction Is String-Unaware
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):167, :175, :178
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):167, :175, :178
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `{`/`}` are counted blindly per character to find JSON block boundaries.
@@ -433,7 +433,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Unknown Config Keys Are Silently Accepted
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):198, :199, :200
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):198, :199, :200
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Extra keys in config are not validated/reported; they pass through merge silently.
@@ -443,7 +443,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: No Environment Variable Override Layer
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):140, :158, :216
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):140, :158, :216
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Config values come only from defaults + file.
@@ -453,7 +453,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: “Integer” Validation Does Not Enforce Integer
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts):76, :93, :102, :110
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts):76, :93, :102, :110
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Decimal numbers pass validation even where comments say integer fields.
@@ -463,7 +463,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-06: Filter Is Context-Blind Global String Replacement
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):69, :73
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):69, :73
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Denylist phrases are removed anywhere in input, including quoted text/code/content.
@@ -473,7 +473,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: High False-Positive Risk From Broad Patterns
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):11, :13, :30, :34
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):11, :13, :30, :34
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Generic phrases like `I need to`, `Step \d+:`, `Let me know if`, `That's a great` are stripped even when legitimate.
@@ -483,7 +483,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Denylist Coverage Is Incomplete for Common AI Chatter
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):6, :43
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):6, :43
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** There are **32** denylist patterns:  
@@ -494,7 +494,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-09: Regex Variants Are Brittle (Apostrophes/Punctuation/Tool Names)
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):8, :37, :38, :40, :41
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):8, :37, :38, :40, :41
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Patterns assume straight apostrophe (`I'll`), exact punctuation, and one-word tool names (`\w+ tool`).
@@ -504,7 +504,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Whitespace Normalization Destroys Structural Context
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):53, :54, :78
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):53, :54, :78
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** All whitespace/newlines collapse to single spaces.
@@ -514,7 +514,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: `removedPhrases` Can Contain Duplicates and Grow Unbounded
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts):67, :72, :80
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts):67, :72, :80
 - **Severity:** LOW
 - **Category:** PERFORMANCE
 - **Current Behavior:** Every match is appended, including duplicates; very repetitive input can produce large arrays.

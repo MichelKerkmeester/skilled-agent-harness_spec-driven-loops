@@ -77,7 +77,7 @@ OpenCode 1.3.17 ships as a single bun-bundled binary at `/Users/michelkerkmeeste
 ├── spec-kit-compact-code-graph.js             ← plugin
 └── README.md                                  ← convention doc
 
-.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/                       ← NEW, outside loader scope
+.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/                       ← NEW, outside loader scope
 ├── spec-kit-skill-advisor-bridge.mjs
 ├── spec-kit-compact-code-graph-bridge.mjs
 └── spec-kit-opencode-message-schema.mjs
@@ -108,7 +108,7 @@ Methodology: search upstream `sst/opencode` repo + `@opencode-ai/plugin` package
 
 Atomic commit:
 1. `git grep -l "spec-kit-skill-advisor-bridge\|spec-kit-compact-code-graph-bridge\|spec-kit-opencode-message-schema"` to inventory references.
-2. `mkdir .opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`.
+2. `mkdir .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`.
 3. `git mv` the 3 helper files.
 4. Update `BRIDGE_PATH` constant in both plugin files (relative path `../plugin-helpers/...`).
 5. Update the `from './spec-kit-opencode-message-schema.mjs'` import in `spec-kit-compact-code-graph.js`.
@@ -119,7 +119,7 @@ Atomic commit:
 ### Phase 3: Regression Guard + Documentation
 
 1. Author `tests/opencode-plugins-folder-purity.vitest.ts`: scans `.opencode/plugins/*.{js,mjs,ts}` (excluding `README.md`), `import()`s each file, asserts each has a default export.
-2. Author/update a new README inside `.opencode/plugins/` with the "entrypoints only" convention, listing current plugins and pointing to `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`.
+2. Author/update a new README inside `.opencode/plugins/` with the "entrypoints only" convention, listing current plugins and pointing to `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`.
 3. Add a top-of-file comment to each relocated helper explaining why it lives outside `.opencode/plugins/` and referencing this packet.
 4. Update parent docs with phase outcome.
 5. Run strict spec validation; run `generate-context.js` for canonical save.
@@ -133,7 +133,7 @@ Atomic commit:
 Automated:
 - New: `npx vitest run tests/opencode-plugins-folder-purity.vitest.ts` (folder purity guard).
 - Existing: `npx vitest run` baseline must remain green.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` clean.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` clean.
 
 Manual smokes (cannot be automated cleanly because the TUI crash happens in the bundled bun worker and is sensitive to the user's full env):
 - `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && opencode` → reaches TUI.
@@ -238,7 +238,7 @@ The critical path is: contract probe → outcome selection → atomic move → T
 | Rule | Application |
 |------|-------------|
 | TASK-SEQ | Investigate → choose outcome → atomic move → smoke → guard → docs. Do not interleave. |
-| TASK-SCOPE | Touch only `.opencode/plugins/`, the new `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`, the regression test, and this packet's docs. |
+| TASK-SCOPE | Touch only `.opencode/plugins/`, the new `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`, the regression test, and this packet's docs. |
 | TASK-VERIFY | Record TUI smoke output (or absence of error) in checklist evidence. |
 
 **Status Reporting Format**

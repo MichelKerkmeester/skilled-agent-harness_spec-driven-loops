@@ -65,7 +65,7 @@ After iter 5 the loop's verdict was CONDITIONAL with 5 carry-forward items. Thos
 
 | Check | Result | Source |
 |---|---|---|
-| Command markdown DQI | 94/100 Excellent | `extract_structure.py .opencode/command/spec_kit/skill-advisor.md` |
+| Command markdown DQI | 94/100 Excellent | `extract_structure.py .opencode/commands/spec_kit/skill-advisor.md` |
 | Install guide DQI | 99/100 Excellent | `extract_structure.py '.opencode/install_guides/SET-UP - Skill Advisor.md'` |
 | HVR banned-word grep | 0 hits (grep exit 1) | `grep -niE 'leverage\|robust\|...'` across command + install guide + summary |
 | Both YAMLs parse | PASS | `python3 -c "import yaml; yaml.safe_load(...)"` |

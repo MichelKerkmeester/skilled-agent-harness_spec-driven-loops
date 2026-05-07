@@ -453,7 +453,7 @@ Prevents duplicate processing when sessions restart.
 - dotmd: Hybrid search implementation, RRF fusion, protocol abstractions
 - seu-claude: Hexagonal architecture, Task DAG, tree-sitter strategies
 - drift: Cortex V2 decay model, causal graph, learning system
-- system-speckit: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/`
+- system-speckit: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/`
   - MCP server: `mcp_server/` (17 tools, 32+ lib modules)
   - Scripts: `scripts/` (48 JS scripts)
   - FSRS implementation: `mcp_server/lib/cognitive/attention-decay.js`

@@ -41,11 +41,11 @@ However, template changes are infrequent (estimated: a few times per quarter). T
 
 **Recommendation**: Create the reference file manually now (iteration 6 data is verified against CLI output). Build the generation script as a follow-up task only if template changes become frequent enough to justify it.
 
-[SOURCE: `node .opencode/skill/system-spec-kit/scripts/utils/template-structure.js contract 2 <basename>` -- verified for all 5 Level 2 doc types]
+[SOURCE: `node .opencode/skills/system-spec-kit/scripts/utils/template-structure.js contract 2 <basename>` -- verified for all 5 Level 2 doc types]
 
 ### Finding 2: Complete Shared Reference File Content (Copy-Pasteable)
 
-The following is the COMPLETE content for `.opencode/skill/system-spec-kit/references/template-compliance-contract.md`. This is the canonical single-source-of-truth artifact that all 4 CLI @speckit agent definitions reference.
+The following is the COMPLETE content for `.opencode/skills/system-spec-kit/references/template-compliance-contract.md`. This is the canonical single-source-of-truth artifact that all 4 CLI @speckit agent definitions reference.
 
 ````markdown
 ---
@@ -74,7 +74,7 @@ system (`validate.sh`) enforces these contracts post-write.
 After writing ANY spec folder `.md` file, immediately run:
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <SPEC_FOLDER> --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <SPEC_FOLDER> --strict
 ```
 
 Fix ALL errors before proceeding to the next file or workflow step.
@@ -210,8 +210,8 @@ When templates in `templates/level_N/` change:
 2. Update this file with the new headers/anchors
 3. Update the inline compact contract in all 4 @speckit agent definitions:
    - `.claude/agents/speckit.md`
-   - `.opencode/agent/speckit.md`
-   - `.opencode/agent/chatgpt/speckit.md`
+   - `.opencode/agents/speckit.md`
+   - `.opencode/agents/chatgpt/speckit.md`
    - `.codex/agents/speckit.toml`
 4. Bump the `version` and `last_synced` fields in the frontmatter above
 5. Run `validate.sh` on a sample spec folder to confirm the updated contract is correct
@@ -260,7 +260,7 @@ Based on all 8 iterations of research, the recommended implementation sequence i
 | Step | Action | Impact | Effort |
 |------|--------|--------|--------|
 | B1 | Replace spec.md-only scaffold with full 49-line contract in `.claude/agents/speckit.md` | Layer 1 for Claude Code | 20 min |
-| B2 | Replicate B1 to `.opencode/agent/speckit.md` and `.opencode/agent/chatgpt/speckit.md` | Layer 1 for Copilot + ChatGPT | 10 min |
+| B2 | Replicate B1 to `.opencode/agents/speckit.md` and `.opencode/agents/chatgpt/speckit.md` | Layer 1 for Copilot + ChatGPT | 10 min |
 | B3 | Replicate B1 to `.codex/agents/speckit.toml` (TOML-formatted) | Layer 1 for Codex | 10 min |
 
 **Phase C: Directive Consolidation (Day 2, ~30 min)**
@@ -291,10 +291,10 @@ Based on all 8 iterations of research, the recommended implementation sequence i
 
 ### Finding 5: The "ChatGPT" Agent Path Discrepancy
 
-In reviewing the multi-CLI agent surface, iteration 6 listed Gemini CLI as the 4th agent definition (`.gemini/agents/speckit.md`), while iteration 4 and the dispatch instructions reference ChatGPT (`.opencode/agent/chatgpt/speckit.md`). Both exist. The complete list of @speckit agent definitions that need updating is actually 4 distinct paths:
+In reviewing the multi-CLI agent surface, iteration 6 listed Gemini CLI as the 4th agent definition (`.gemini/agents/speckit.md`), while iteration 4 and the dispatch instructions reference ChatGPT (`.opencode/agents/chatgpt/speckit.md`). Both exist. The complete list of @speckit agent definitions that need updating is actually 4 distinct paths:
 - `.claude/agents/speckit.md` (Claude Code)
-- `.opencode/agent/speckit.md` (Copilot/OpenCode base)
-- `.opencode/agent/chatgpt/speckit.md` (ChatGPT profile)
+- `.opencode/agents/speckit.md` (Copilot/OpenCode base)
+- `.opencode/agents/chatgpt/speckit.md` (ChatGPT profile)
 - `.codex/agents/speckit.toml` (Codex CLI)
 
 The Gemini CLI path (`.gemini/agents/speckit.md`) may also exist as a 5th surface, depending on the current symlink/directory structure. Implementation should check for and update all existing @speckit agent definitions.
@@ -323,8 +323,8 @@ This simplifies the 8-iteration, 521-line research body into a "do this" checkli
 [INFERENCE: simplification of prior iteration synthesis]
 
 ## Sources Consulted
-- `node .opencode/skill/system-spec-kit/scripts/utils/template-structure.js contract 2 <basename>` -- all 5 Level 2 doc types (automation feasibility)
-- `.opencode/skill/system-spec-kit/references/` directory listing (existing structure)
+- `node .opencode/skills/system-spec-kit/scripts/utils/template-structure.js contract 2 <basename>` -- all 5 Level 2 doc types (automation feasibility)
+- `.opencode/skills/system-spec-kit/references/` directory listing (existing structure)
 - research/research.md full text (521 lines, gap review)
 - iteration-006.md (verified contract text source)
 - iteration-008.md (implementation blueprint source)

@@ -51,7 +51,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -88,12 +88,12 @@ The final scoped diff reported `124 files changed, 488 insertions(+), 320 deleti
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` | Modified | Set the root playbook modernization contract future playbooks should inherit |
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` | Modified | Set the per-scenario modernization contract for generated scenario docs |
-| `.opencode/skill/mcp-coco-index/manual_testing_playbook/` | Modified | Rewrote root and scenario prompt wording without changing scenario inventory |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/` | Modified | Rewrote prompt wording, synchronized runtime-truth index rows `07-008..07-010`, and updated RT-027 to fresh-session continuation guidance |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/` | Modified | Harmonized existing rich-style wording with the shared modernization contract |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/` | Modified | Harmonized existing rich-style wording with the shared modernization contract |
+| `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` | Modified | Set the root playbook modernization contract future playbooks should inherit |
+| `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` | Modified | Set the per-scenario modernization contract for generated scenario docs |
+| `.opencode/skills/mcp-coco-index/manual_testing_playbook/` | Modified | Rewrote root and scenario prompt wording without changing scenario inventory |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/` | Modified | Rewrote prompt wording, synchronized runtime-truth index rows `07-008..07-010`, and updated RT-027 to fresh-session continuation guidance |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/` | Modified | Harmonized existing rich-style wording with the shared modernization contract |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/` | Modified | Harmonized existing rich-style wording with the shared modernization contract |
 | `.opencode/specs/skilled-agent-orchestration/044-non-system-playbook-prompts/` | Modified | Closed the packet with completed tasks, checklist evidence, and this implementation summary |
 <!-- /ANCHOR:what-built -->
 
@@ -102,7 +102,7 @@ The final scoped diff reported `124 files changed, 488 insertions(+), 320 deleti
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The rewrite shipped target by target so each root playbook stayed aligned with its scenario files while the shared `sk-doc` templates were updated in the same workstream. Confidence came from three layers: root playbook validation with `python3 .opencode/skill/sk-doc/scripts/validate_document.py`, a stale-term sweep across all five targets, and strict packet validation with `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/044-non-system-playbook-prompts --strict`.
+The rewrite shipped target by target so each root playbook stayed aligned with its scenario files while the shared `sk-doc` templates were updated in the same workstream. Confidence came from three layers: root playbook validation with `python3 .opencode/skills/sk-doc/scripts/validate_document.py`, a stale-term sweep across all five targets, and strict packet validation with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/044-non-system-playbook-prompts --strict`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -125,13 +125,13 @@ The rewrite shipped target by target so each root playbook stayed aligned with i
 
 | Check | Result |
 |-------|--------|
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md` | PASS, document type `readme`, total issues `0` |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md` | PASS, document type `readme`, total issues `0` |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | PASS, document type `readme`, total issues `0` |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-deep-review/manual_testing_playbook/manual_testing_playbook.md` | PASS, document type `readme`, total issues `0` |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md` | PASS, document type `readme`, total issues `0` |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md` | PASS, document type `readme`, total issues `0` |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | PASS, document type `readme`, total issues `0` |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-deep-review/manual_testing_playbook/manual_testing_playbook.md` | PASS, document type `readme`, total issues `0` |
 | Stale-term sweep across the five requested targets | PASS, `total_markdown_files=126`, `orchestrator_prompt_label=0`, `deprecated_improve_agent_command=0`, `resume_flag=0`, `resume_mode=0` |
 | `git --no-pager diff --stat -- <requested targets> .opencode/specs/skilled-agent-orchestration/044-non-system-playbook-prompts` | PASS, `124 files changed, 488 insertions(+), 320 deletions(-)` |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/044-non-system-playbook-prompts --strict` | PASS, exit code `0`, errors `0`, warnings `0` |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/044-non-system-playbook-prompts --strict` | PASS, exit code `0`, errors `0`, warnings `0` |
 <!-- /ANCHOR:verification -->
 
 ---

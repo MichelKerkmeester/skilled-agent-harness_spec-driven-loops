@@ -9,18 +9,18 @@ This pass followed the telemetry surfaces instead of the scoring logic. I traced
 - `../deep-research-strategy.md`
 - `iteration-05.md`
 - `iteration-06.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
 
 ### Findings
 
-- The prompt-safe hook diagnostic schema records runtime, status, freshness, duration, cache hit, error, skill label, and generation, but it does not include any field for whether the surfaced recommendation was accepted, corrected, ignored, or contradicted later [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:41-52].
-- The shipped health collector is purely in-memory, while the hook adapters emit serialized diagnostics to stderr, so the packet-local code shows ephemeral telemetry primitives rather than a durable recommendation-quality feedback loop [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:263-309] [.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:88-101] [.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:156-169].
-- `advisor_validate` still measures only offline corpus, holdout, parity, safety, and latency slices, which means the public evaluation surface has no live runtime-outcome dimension to close the loop on recommendation quality [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:321-369].
+- The prompt-safe hook diagnostic schema records runtime, status, freshness, duration, cache hit, error, skill label, and generation, but it does not include any field for whether the surfaced recommendation was accepted, corrected, ignored, or contradicted later [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:41-52].
+- The shipped health collector is purely in-memory, while the hook adapters emit serialized diagnostics to stderr, so the packet-local code shows ephemeral telemetry primitives rather than a durable recommendation-quality feedback loop [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:263-309] [.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:88-101] [.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:156-169].
+- `advisor_validate` still measures only offline corpus, holdout, parity, safety, and latency slices, which means the public evaluation surface has no live runtime-outcome dimension to close the loop on recommendation quality [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:321-369].
 
 ### Evidence
 
@@ -30,7 +30,7 @@ This pass followed the telemetry surfaces instead of the scoring logic. I traced
 >   readonly status: AdvisorHookStatus;
 >   readonly freshness: AdvisorHookFreshness;
 >   readonly durationMs: number;
->   readonly cacheHit: boolean; [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:41-47]
+>   readonly cacheHit: boolean; [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:41-47]
 
 > export class AdvisorHookMetricsCollector {
 >   private readonly records: AdvisorHookDiagnosticRecord[] = [];
@@ -38,13 +38,13 @@ This pass followed the telemetry surfaces instead of the scoring logic. I traced
 >   record(record: AdvisorHookDiagnosticRecord): void {
 >     ...
 >     this.records.push(record);
->   } [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:282-293]
+>   } [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:282-293]
 
 > const line = serializeAdvisorHookDiagnosticRecord(createAdvisorHookDiagnosticRecord({
 >   runtime: 'claude',
 >   ...record,
 > }));
-> writeDiagnostic(line); [.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:92-98]
+> writeDiagnostic(line); [.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:92-98]
 
 ### Negative Knowledge
 

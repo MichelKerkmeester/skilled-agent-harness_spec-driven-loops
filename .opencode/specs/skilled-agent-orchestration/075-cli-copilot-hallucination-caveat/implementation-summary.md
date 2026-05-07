@@ -12,7 +12,7 @@ _memory:
     recent_action: "Caveats shipped; ready to commit + push"
     next_safe_action: "(packet final after commit + push)"
     blockers: []
-    key_files: [.opencode/skill/cli-copilot/SKILL.md, .opencode/skill/sk-doc/SKILL.md]
+    key_files: [.opencode/skills/cli-copilot/SKILL.md, .opencode/skills/sk-doc/SKILL.md]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "075-complete"
@@ -25,7 +25,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -51,8 +51,8 @@ Future maintainers and AI agents loading cli-copilot/SKILL.md or sk-doc/SKILL.md
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/cli-copilot/SKILL.md` | Modified (1 added bullet) | Routing-trace caveat in "When NOT to Use" |
-| `.opencode/skill/sk-doc/SKILL.md` | Modified (1 added paragraph) | Cross-CLI consumption note in "Resource Domains" |
+| `.opencode/skills/cli-copilot/SKILL.md` | Modified (1 added bullet) | Routing-trace caveat in "When NOT to Use" |
+| `.opencode/skills/sk-doc/SKILL.md` | Modified (1 added paragraph) | Cross-CLI consumption note in "Resource Domains" |
 | `075/{spec,plan,tasks,implementation-summary}.md` | Created | Packet docs |
 <!-- /ANCHOR:what-built -->
 

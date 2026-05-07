@@ -75,30 +75,30 @@ Make Phase 1 the durable contract for research lineage, reducer-owned state, and
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-deep-research/SKILL.md` | Modify | Freeze research-only contract, lifecycle vocabulary, and reducer ownership rules |
-| `.opencode/skill/sk-deep-research/README.md` | Modify | Replace stale mixed-mode guidance with research-only, parity-aware documentation |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Define lineage schema, event fields, reducer contract, and ownership boundaries |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document lifecycle branches, reducer sequencing, and hook/non-hook equivalence |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Tie convergence output to reducer-owned metrics |
-| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Modify | Reflect registry, lifecycle modes, and reducer-aware iteration flow |
-| `.opencode/skill/sk-deep-research/references/capability_matrix.md` | Create | Capture runtime parity and allowed provider-specific adaptations |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add lineage, reducer, registry, archive, and migration metadata |
-| `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json` | Create | Publish the machine-readable runtime capability matrix |
-| `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Reflect reducer-owned dashboard metrics and lifecycle state |
-| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Mark machine-owned sections and reducer boundaries |
-| `.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs` | Create | Resolve runtime capability records from the machine-readable matrix |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Create | Reduce JSONL and iteration artifacts into registry, strategy, and dashboard outputs |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Carry lineage, migration, registry, reducer, and completed-continue contract details |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Mirror the same contract for confirm mode |
-| `.opencode/agent/deep-research.md` | Modify | Keep OpenCode mirror aligned to reducer-owned state and registry inputs |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Modify | Freeze research-only contract, lifecycle vocabulary, and reducer ownership rules |
+| `.opencode/skills/sk-deep-research/README.md` | Modify | Replace stale mixed-mode guidance with research-only, parity-aware documentation |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Define lineage schema, event fields, reducer contract, and ownership boundaries |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document lifecycle branches, reducer sequencing, and hook/non-hook equivalence |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Tie convergence output to reducer-owned metrics |
+| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Modify | Reflect registry, lifecycle modes, and reducer-aware iteration flow |
+| `.opencode/skills/sk-deep-research/references/capability_matrix.md` | Create | Capture runtime parity and allowed provider-specific adaptations |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add lineage, reducer, registry, archive, and migration metadata |
+| `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json` | Create | Publish the machine-readable runtime capability matrix |
+| `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Reflect reducer-owned dashboard metrics and lifecycle state |
+| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Mark machine-owned sections and reducer boundaries |
+| `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` | Create | Resolve runtime capability records from the machine-readable matrix |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Create | Reduce JSONL and iteration artifacts into registry, strategy, and dashboard outputs |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Carry lineage, migration, registry, reducer, and completed-continue contract details |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Mirror the same contract for confirm mode |
+| `.opencode/agents/deep-research.md` | Modify | Keep OpenCode mirror aligned to reducer-owned state and registry inputs |
 | `.claude/agents/deep-research.md` | Modify | Keep Claude mirror aligned to the same contract |
 | `.gemini/agents/deep-research.md` | Modify | Keep Gemini mirror aligned to the same contract |
 | `.codex/agents/deep-research.toml` | Modify | Keep Codex mirror aligned to the same contract |
 | `.agents/agents/deep-research.md` | Modify | Keep the compatibility wrapper aligned to the same contract |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Create | Enforce contract parity across docs, runtime mirrors, and command assets |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Create | Prove reducer idempotency and packet-integrity behavior |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | Modify | Align DR-008 scenario wording with reducer-owned refresh behavior |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md` | Modify | Align the concrete iteration playbook scenario with the reducer contract |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Create | Enforce contract parity across docs, runtime mirrors, and command assets |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Create | Prove reducer idempotency and packet-integrity behavior |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | Modify | Align DR-008 scenario wording with reducer-owned refresh behavior |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md` | Modify | Align the concrete iteration playbook scenario with the reducer contract |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` in this phase packet | Modify | Restore strict template compliance and accurate completion tracking |
 <!-- /ANCHOR:scope -->
 
@@ -145,7 +145,7 @@ Make Phase 1 the durable contract for research lineage, reducer-owned state, and
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | [../research/recommendations-sk-deep-research.md](../research/recommendations-sk-deep-research.md) | Parent recommendations define the intended Phase 1 contract | Keep this phase packet tied to the parent research findings and preserve the same terminology |
-| Risk | Helper scripts live under `.opencode/skill/sk-deep-research/scripts/` inside an ESM package boundary | CommonJS helpers can fail if their extension does not match package loading rules | Use `.cjs` helpers and prove them through direct CLI execution plus Vitest |
+| Risk | Helper scripts live under `.opencode/skills/sk-deep-research/scripts/` inside an ESM package boundary | CommonJS helpers can fail if their extension does not match package loading rules | Use `.cjs` helpers and prove them through direct CLI execution plus Vitest |
 | Risk | Runtime YAML assets are declarative workflow contracts, not a conventional application code path | "Operational" behavior may remain partly contract-driven | Keep lifecycle and reducer expectations synchronized across docs, assets, and mirrors, then validate the reachable surfaces directly |
 <!-- /ANCHOR:risks -->
 

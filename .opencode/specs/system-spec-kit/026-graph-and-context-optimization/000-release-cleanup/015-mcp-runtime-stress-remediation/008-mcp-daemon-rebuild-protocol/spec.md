@@ -70,7 +70,7 @@ Author a canonical rebuild + restart protocol that becomes the verification cont
 ### In Scope
 - Author a single canonical reference document: `references/mcp-rebuild-restart-protocol.md` describing the 4-part verification contract.
 - Document the restart procedure for each MCP-owning client: OpenCode, Codex CLI, Claude Code.
-- Document the dist marker grep pattern: `grep -l <new-marker> .opencode/skill/system-spec-kit/mcp_server/dist/<file>.js`.
+- Document the dist marker grep pattern: `grep -l <new-marker> .opencode/skills/system-spec-kit/mcp_server/dist/<file>.js`.
 - Add a per-subsystem live-probe template (file path: `references/live-probe-template.md`) with canonical probe queries for memory_context, memory_search, code_graph, and causal_stats.
 - Add a verification checklist any implementation packet can copy into its implementation-summary.md.
 

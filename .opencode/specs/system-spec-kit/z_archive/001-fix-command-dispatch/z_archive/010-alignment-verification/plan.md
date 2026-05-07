@@ -113,9 +113,9 @@ contextType: "planning"
 
 | File | Path | Status |
 |------|------|--------|
-| search.md | `.opencode/command/memory/search.md` | ☐ To verify |
-| save.md | `.opencode/command/memory/save.md` | ☐ To verify |
-| checkpoint.md | `.opencode/command/memory/checkpoint.md` | ☐ To verify |
+| search.md | `.opencode/commands/memory/search.md` | ☐ To verify |
+| save.md | `.opencode/commands/memory/save.md` | ☐ To verify |
+| checkpoint.md | `.opencode/commands/memory/checkpoint.md` | ☐ To verify |
 
 ### Priority 4: Install Guides
 

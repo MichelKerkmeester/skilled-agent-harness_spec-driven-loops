@@ -89,8 +89,8 @@ Template compliance shim anchor for rollback.
     - Document token tracking data flow from `session-stop.ts`
 5. **Update README files:**
     - Root `README.md` — mention new context preservation capabilities if updated in this phase; otherwise document the omission as a follow-up gap
-    - `.opencode/skill/system-spec-kit/README.md` — list hook features
-    - `.opencode/skill/README.md` — update system-spec-kit description
+    - `.opencode/skills/system-spec-kit/README.md` — list hook features
+    - `.opencode/skills/README.md` — update system-spec-kit description
 6. **Update AGENTS.md if needed:**
    - Check if Phase 5 agent changes require AGENTS.md updates
    - Update agent capability descriptions

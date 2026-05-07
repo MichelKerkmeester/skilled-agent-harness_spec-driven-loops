@@ -10,7 +10,7 @@ Runtime parity gate design.
 - `.codex/agents/orchestrate.toml:12`
 - `.claude/agents/orchestrate.md:1-26`
 - `.gemini/agents/orchestrate.md:9-10,27`
-- `.opencode/agent/context-prime.md:130-134`
+- `.opencode/agents/context-prime.md:130-134`
 - `.codex/agents/context-prime.md:129-133`
 
 ## Analysis

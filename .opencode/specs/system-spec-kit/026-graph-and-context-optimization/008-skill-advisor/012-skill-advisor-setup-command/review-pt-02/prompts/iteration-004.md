@@ -21,12 +21,12 @@ You are running iteration 4 of 5 in a CLOSURE re-review loop.
 
 ```bash
 # DQI baselines (must hold band)
-python3 .opencode/skill/sk-doc/scripts/extract_structure.py .opencode/command/spec_kit/skill-advisor.md
-python3 .opencode/skill/sk-doc/scripts/extract_structure.py '.opencode/install_guides/SET-UP - Skill Advisor.md'
+python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/commands/spec_kit/skill-advisor.md
+python3 .opencode/skills/sk-doc/scripts/extract_structure.py '.opencode/install_guides/SET-UP - Skill Advisor.md'
 
 # HVR check (must remain 0 banned words)
 grep -niE 'leverage|robust|seamless|ecosystem|utilize|holistic|curate|harness|elevate|foster|empower|landscape|groundbreaking|cutting-edge|delve|illuminate|innovative|remarkable' \
-  .opencode/command/spec_kit/skill-advisor.md \
+  .opencode/commands/spec_kit/skill-advisor.md \
   '.opencode/install_guides/SET-UP - Skill Advisor.md' \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md
 ```

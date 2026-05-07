@@ -2,21 +2,21 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:27-33`, `:65-73`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:35-60`, `:63-83`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:93-99`, `:140-166`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:248-265`, `:600-615`, `:855-900`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293-304`, `:531-563`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1292-1305`, `:1375-1448`, `:1451-1489`, `:2068-2195`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/utils/workspace-path.ts:21-30`, `:42-50`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-198`, `:207-240`, `:296-302`, `:317-340`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:171-175`, `:261-279`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:103-113`, `:268-339`, `:345-390`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:99-204`, `:266-379`, `:381-460`, `:486-512`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:59-120`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-1040` (env-isolation grep sweep: no scope-env mutation surface found)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:31-42`, `:155-168`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md:31-40`, `:84-105`, `:161-177`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:27-33`, `:65-73`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:35-60`, `:63-83`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:93-99`, `:140-166`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:248-265`, `:600-615`, `:855-900`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293-304`, `:531-563`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1292-1305`, `:1375-1448`, `:1451-1489`, `:2068-2195`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/utils/workspace-path.ts:21-30`, `:42-50`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-198`, `:207-240`, `:296-302`, `:317-340`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:171-175`, `:261-279`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:103-113`, `:268-339`, `:345-390`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:99-204`, `:266-379`, `:381-460`, `:486-512`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:59-120`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-1040` (env-isolation grep sweep: no scope-env mutation surface found)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:31-42`, `:155-168`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md:31-40`, `:84-105`, `:161-177`
 
 ## Findings by Severity
 
@@ -28,9 +28,9 @@ No new P0 findings. The existing open run-3 P0 remains confirmed and continues t
 
 - **claim:** `relativizeScanError()` still treats a colon-joined pair such as `/workspace/src/a.ts:/workspace/src/b.ts` as one path-like token, so one replacement can return `src/a.ts:/workspace/src/b.ts` and leave the second workspace absolute path in the serialized `data.errors` payload.
 - **evidenceRefs:**
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:196-198`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:340`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:486-512`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:196-198`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:340`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:486-512`
 - **counterevidenceSought:** Re-checked the current helper behavior with the same regex and relativization logic; it still outputs `src/a.ts:/workspace/src/b.ts` for a colon-joined two-path error string. Also verified the response path still maps `errors` through `relativizeScanError()` before serialization.
 - **alternativeExplanation:** Colon can be a legal POSIX filename character, so not splitting on colon may be intentional for raw filesystem paths. However, this helper receives composed parser/persistence error strings, and the prior regression was specifically about preventing workspace absolute paths from reaching `data.errors`.
 - **finalSeverity:** P0

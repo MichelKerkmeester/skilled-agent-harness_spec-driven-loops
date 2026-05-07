@@ -8,10 +8,10 @@ Audit every doc touched by packets 031-036 for sk-doc template compliance. Fix a
 
 ### Read these first
 
-- `.opencode/skill/sk-doc/SKILL.md` (the skill standards)
-- `.opencode/skill/sk-doc/references/` (any embedded standard files — DQI rules, template specs, anchor conventions)
-- `.opencode/skill/sk-doc/assets/` (templates for README, install guide, feature catalog, manual testing playbook, ASCII flowcharts)
-- `.opencode/skill/sk-doc/references/hvr_rules.md` (high-value content rules)
+- `.opencode/skills/sk-doc/SKILL.md` (the skill standards)
+- `.opencode/skills/sk-doc/references/` (any embedded standard files — DQI rules, template specs, anchor conventions)
+- `.opencode/skills/sk-doc/assets/` (templates for README, install guide, feature catalog, manual testing playbook, ASCII flowcharts)
+- `.opencode/skills/sk-doc/references/hvr_rules.md` (high-value content rules)
 
 ### Files to audit (touched by 031-036)
 
@@ -23,15 +23,15 @@ git --no-pager diff --name-only $(git --no-pager log --grep '026/031\|026/032\|0
 
 Expected coverage (~30 files):
 - AGENTS.md
-- .opencode/skill/system-spec-kit/SKILL.md
-- .opencode/skill/system-spec-kit/mcp_server/README.md
-- .opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md
-- .opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md
-- .opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md
-- .opencode/skill/system-spec-kit/references/config/hook_system.md
-- .opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md
-- .opencode/skill/system-spec-kit/ARCHITECTURE.md
-- .opencode/command/memory/manage.md
+- .opencode/skills/system-spec-kit/SKILL.md
+- .opencode/skills/system-spec-kit/mcp_server/README.md
+- .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md
+- .opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md
+- .opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md
+- .opencode/skills/system-spec-kit/references/config/hook_system.md
+- .opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md
+- .opencode/skills/system-spec-kit/ARCHITECTURE.md
+- .opencode/commands/memory/manage.md
 - ... and any new READMEs introduced by 031-036
 
 ### sk-doc compliance checklist

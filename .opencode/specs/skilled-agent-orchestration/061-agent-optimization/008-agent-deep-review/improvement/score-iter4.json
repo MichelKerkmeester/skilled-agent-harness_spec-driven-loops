@@ -3,9 +3,9 @@
   "profileId": "deep-review",
   "family": "deep-review",
   "evaluationMode": "dynamic-5d",
-  "target": ".opencode/agent/deep-review.md",
+  "target": ".opencode/agents/deep-review.md",
   "candidate": "specs/skilled-agent-orchestration/061-agent-optimization/008-agent-deep-review/improvement/candidates/iter-4-candidate-001.md",
-  "baseline": ".opencode/agent/deep-review.md",
+  "baseline": ".opencode/agents/deep-review.md",
   "score": 100,
   "baselineScore": 100,
   "delta": {

@@ -86,10 +86,10 @@ _memory:
 
 ### Detection & Scoring
 
-- [x] T001 [P0] Add `determine_phasing()` function to `recommend-level.sh` with 5 phase signal scoring dimensions (`.opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh`)
-- [x] T002 [P0] Add `--recommend-phases` CLI flag to include phase scoring in output [B: T001] (`.opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh`)
-- [x] T003 [P1] Add `--phase-threshold <N>` CLI flag for threshold override (default 25) [B: T001] (`.opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh`)
-- [x] T004 [P0] Extend JSON output with `recommended_phases`, `phase_score`, `phase_reason`, `suggested_phase_count` [B: T001, T002] (`.opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh`)
+- [x] T001 [P0] Add `determine_phasing()` function to `recommend-level.sh` with 5 phase signal scoring dimensions (`.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh`)
+- [x] T002 [P0] Add `--recommend-phases` CLI flag to include phase scoring in output [B: T001] (`.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh`)
+- [x] T003 [P1] Add `--phase-threshold <N>` CLI flag for threshold override (default 25) [B: T001] (`.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh`)
+- [x] T004 [P0] Extend JSON output with `recommended_phases`, `phase_score`, `phase_reason`, `suggested_phase_count` [B: T001, T002] (`.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh`)
 - [ ] T005 [P1] Create 5 test fixtures: below threshold, at boundary, above threshold, extreme scale, no risk factors [B: T001-T004]
 <!-- /ANCHOR:phase-1 -->
 
@@ -100,13 +100,13 @@ _memory:
 
 ### Templates & Creation
 
-- [x] T006 [P0] [P] Create `../../../skill/system-spec-kit/templates/addendum/phase/phase-parent-section.md` (Phase Documentation Map template) (`.opencode/skill/system-spec-kit/scripts/templates/compose.sh`)
-- [x] T007 [P0] [P] Create `../../../skill/system-spec-kit/templates/addendum/phase/phase-child-header.md` (parent back-reference metadata block) (`.opencode/skill/system-spec-kit/scripts/templates/compose.sh`)
-- [x] T008 [P0] Add `--phase` flag to `create.sh` (mutually exclusive with `--subfolder`) [B: T006, T007] (`.opencode/skill/system-spec-kit/scripts/spec/create.sh`)
-- [x] T009 [P1] Add `--phases <N>` flag for multi-child creation with auto-numbering [B: T008] (`.opencode/skill/system-spec-kit/scripts/spec/create.sh`)
-- [x] T010 [P1] Add `--phase-names <list>` flag for descriptive child folder naming [B: T008] (`.opencode/skill/system-spec-kit/scripts/spec/create.sh`)
-- [x] T011 [P0] Implement Phase Documentation Map injection into parent spec.md [B: T006, T008] (`.opencode/skill/system-spec-kit/scripts/spec/create.sh`)
-- [x] T012 [P0] Implement parent back-reference injection into child spec.md [B: T007, T008] (`.opencode/skill/system-spec-kit/scripts/spec/create.sh`)
+- [x] T006 [P0] [P] Create `../../../skill/system-spec-kit/templates/addendum/phase/phase-parent-section.md` (Phase Documentation Map template) (`.opencode/skills/system-spec-kit/scripts/templates/compose.sh`)
+- [x] T007 [P0] [P] Create `../../../skill/system-spec-kit/templates/addendum/phase/phase-child-header.md` (parent back-reference metadata block) (`.opencode/skills/system-spec-kit/scripts/templates/compose.sh`)
+- [x] T008 [P0] Add `--phase` flag to `create.sh` (mutually exclusive with `--subfolder`) [B: T006, T007] (`.opencode/skills/system-spec-kit/scripts/spec/create.sh`)
+- [x] T009 [P1] Add `--phases <N>` flag for multi-child creation with auto-numbering [B: T008] (`.opencode/skills/system-spec-kit/scripts/spec/create.sh`)
+- [x] T010 [P1] Add `--phase-names <list>` flag for descriptive child folder naming [B: T008] (`.opencode/skills/system-spec-kit/scripts/spec/create.sh`)
+- [x] T011 [P0] Implement Phase Documentation Map injection into parent spec.md [B: T006, T008] (`.opencode/skills/system-spec-kit/scripts/spec/create.sh`)
+- [x] T012 [P0] Implement parent back-reference injection into child spec.md [B: T007, T008] (`.opencode/skills/system-spec-kit/scripts/spec/create.sh`)
 - [ ] T033 [P1] Create 4 test fixtures for Phase 2: single phase, multi-phase, with names, error cases [B: T008-T012] (`tests/fixtures/phase-2/`)
 <!-- /ANCHOR:phase-2 -->
 
@@ -135,10 +135,10 @@ _memory:
 <!-- ANCHOR:phase-4 -->
 ### Validation, Docs & Nodes
 
-- [x] T024 [P0] [P] Add `--recursive` flag to `validate.sh` with child folder discovery (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh`)
-- [x] T025 [P0] Implement per-phase validation aggregation and combined exit codes [B: T024] (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh`)
-- [x] T026 [P1] Extend JSON output with `"phases": [...]` array [B: T024] (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh`)
-- [x] T027 [P1] Create `check-phase-links.sh` validation rule script [B: T024] (`.opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh`)
+- [x] T024 [P0] [P] Add `--recursive` flag to `validate.sh` with child folder discovery (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
+- [x] T025 [P0] Implement per-phase validation aggregation and combined exit codes [B: T024] (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
+- [x] T026 [P1] Extend JSON output with `"phases": [...]` array [B: T024] (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
+- [x] T027 [P1] Create `check-phase-links.sh` validation rule script [B: T024] (`.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh`)
 - [ ] T028 [P1] Create 6 test fixtures: flat, 1-phase, 3-phase, mixed levels, empty child, broken links [B: T024-T027]
 - [x] T029 [P1] [P] Create `../../../skill/system-spec-kit/references/structure/phase_definitions.md` (`../../../skill/system-spec-kit/references/structure/phase_definitions.md`)
 - [x] T030 [P1] Update `../../../skill/system-spec-kit/references/structure/sub_folder_versioning.md`, `../../../skill/system-spec-kit/references/templates/level_specifications.md`, `../../../skill/system-spec-kit/references/templates/template_guide.md`, `../../../skill/system-spec-kit/references/workflows/quick_reference.md`, and `../../../skill/system-spec-kit/references/validation/validation_rules.md` [B: T029]

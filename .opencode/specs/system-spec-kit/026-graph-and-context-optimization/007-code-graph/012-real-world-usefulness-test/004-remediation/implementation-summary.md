@@ -17,11 +17,11 @@ _memory:
     next_safe_action: "Use final status report evidence for review or commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
     session_dedup:
       fingerprint: "sha256:a5e46142e7a8efc84bdc08ffa91efbea14222c3581c5a8eb3eeda6781fc434fb"
       session_id: "026-007-012-004-remediation"
@@ -35,7 +35,7 @@ _memory:
 # Implementation Summary: Code-Graph Bug Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -74,14 +74,14 @@ The code graph now treats bad scans as untrusted candidates instead of authorita
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modified | Added zero-node guard, promotion gate, manifest loosening, diagnostics response. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modified | Preserved prior graph rows on parser runtime errors. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` | Modified | Added diagnostics schema/API, failed scan metadata, orphan-edge filtering. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modified | Surfaced parse diagnostics and stale-but-valid file count. |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Modified | Exposed `forceZeroNodeReset`. |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modified | Validated `forceZeroNodeReset`. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/*.vitest.ts` | Modified | Added code graph regression coverage. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Modified | Covered new scan schema argument. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modified | Added zero-node guard, promotion gate, manifest loosening, diagnostics response. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modified | Preserved prior graph rows on parser runtime errors. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` | Modified | Added diagnostics schema/API, failed scan metadata, orphan-edge filtering. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modified | Surfaced parse diagnostics and stale-but-valid file count. |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Modified | Exposed `forceZeroNodeReset`. |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modified | Validated `forceZeroNodeReset`. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/*.vitest.ts` | Modified | Added code graph regression coverage. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Modified | Covered new scan schema argument. |
 | `specs/.../004-remediation/*` | Created/Modified | Added Level 2 packet artifacts and completion evidence. |
 | `specs/.../012-real-world-usefulness-test/graph-metadata.json` | Modified | Added `004-remediation` child pointer. |
 <!-- /ANCHOR:what-built -->

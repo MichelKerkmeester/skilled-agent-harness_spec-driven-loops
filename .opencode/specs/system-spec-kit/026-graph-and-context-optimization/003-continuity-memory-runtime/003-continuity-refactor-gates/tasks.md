@@ -71,7 +71,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 ## Phase 3: Verification
 
 - [x] T020 Keep the parent phase map and packet status synchronized — sub-phase folders merged into `implementation-summary.md` (`spec.md`, `plan.md`, `tasks.md`)
-- [x] T021 Run recursive strict validation as the packet progresses and resolve packet-level coordination drift before closure (`./.opencode/skill/system-spec-kit/scripts/spec/validate.sh`)
+- [x] T021 Run recursive strict validation as the packet progresses and resolve packet-level coordination drift before closure (`./.opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
 - [x] T022 Refresh the parent `implementation-summary.md` with the actual delivered outcome, verification evidence, and cleanup-verification result once all six gates close (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 

@@ -11,8 +11,8 @@ description: "Final deep-review synthesis for spec 048, de-duplicating prior fin
 - Executor: cli-copilot/gpt-5.5/high
 - Prior iterations read: `iteration-001.md` through `iteration-004.md`
 - Additional files inspected directly:
-  - `.opencode/command/create/assets/create_testing_playbook_auto.yaml`
-  - `.opencode/command/create/assets/create_testing_playbook_confirm.yaml`
+  - `.opencode/commands/create/assets/create_testing_playbook_auto.yaml`
+  - `.opencode/commands/create/assets/create_testing_playbook_confirm.yaml`
   - `.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/spec.md`
   - `.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/checklist.md`
   - `.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/decision-record.md`
@@ -24,8 +24,8 @@ description: "Final deep-review synthesis for spec 048, de-duplicating prior fin
   - `rg -l '^## 2\. SCENARIO CONTRACT$' .opencode` => 592 files.
   - `find .opencode -path '*/manual_testing_playbook/*.md' ... '^## 2\. SCENARIO CONTRACT$'` => 590 manual-testing-playbook files.
   - `rg -l '^## 2\. CURRENT REALITY$' .opencode` => 377 files, all in feature-catalog or historical spec contexts.
-  - `rg -n 'CURRENT REALITY' .opencode` => 556 matches total. Outside feature-catalog/spec history, the non-legitimate stragglers are the two create-testing-playbook workflow YAML files; `.opencode/command/create/feature-catalog.md` remains a legitimate feature-catalog context.
-- Current strict spec validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks --strict` still reports `RESULT: FAILED` with 5 errors and 5 warnings, including `SPEC_DOC_INTEGRITY`, `TEMPLATE_SOURCE`, and `TEMPLATE_HEADERS`.
+  - `rg -n 'CURRENT REALITY' .opencode` => 556 matches total. Outside feature-catalog/spec history, the non-legitimate stragglers are the two create-testing-playbook workflow YAML files; `.opencode/commands/create/feature-catalog.md` remains a legitimate feature-catalog context.
+- Current strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks --strict` still reports `RESULT: FAILED` with 5 errors and 5 warnings, including `SPEC_DOC_INTEGRITY`, `TEMPLATE_SOURCE`, and `TEMPLATE_HEADERS`.
 
 ## Findings (NEW to iter 5 — missed-finding sweep)
 
@@ -56,7 +56,7 @@ None newly discovered in iteration 5.
 ### P1 (Required, prioritized)
 
 1. Stop advertising the packet as complete until the blockers are resolved. Update `implementation-summary.md` continuity and `graph-metadata.json` status away from `complete`/100%/no blockers while this punch list remains open. [SOURCE: .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/implementation-summary.md:16-31] [SOURCE: .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/graph-metadata.json:41-42]
-2. Update future create-testing-playbook workflows from `CURRENT REALITY` to `SCENARIO CONTRACT`. The templates and sk-doc reference now use the new heading, but both create workflow YAMLs still require the old feature-file section name, which can reintroduce drift during future updates. [SOURCE: .opencode/command/create/assets/create_testing_playbook_auto.yaml:167-172] [SOURCE: .opencode/command/create/assets/create_testing_playbook_confirm.yaml:181-186] [SOURCE: .opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md:122] [SOURCE: .opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md:61]
+2. Update future create-testing-playbook workflows from `CURRENT REALITY` to `SCENARIO CONTRACT`. The templates and sk-doc reference now use the new heading, but both create workflow YAMLs still require the old feature-file section name, which can reintroduce drift during future updates. [SOURCE: .opencode/commands/create/assets/create_testing_playbook_auto.yaml:167-172] [SOURCE: .opencode/commands/create/assets/create_testing_playbook_confirm.yaml:181-186] [SOURCE: .opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md:122] [SOURCE: .opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md:61]
 3. Add explicit recovery/cleanup evidence for destructive but non-`--share` scenarios. CP-020, CP-021, CP-008, CP-013, and CX-007 need cloud/sandbox/state cleanup and recovery branches, not only local tripwire checks. [SOURCE: .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/review/iterations/iteration-002.md:24-28]
 4. Remove or quarantine the runnable Codex negative control that omits `service_tier="fast"`. CX-004 normalizes a command that violates the same auto-memory rule the scenario claims to enforce. [SOURCE: .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/review/iterations/iteration-002.md:29] [SOURCE: .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/review/iterations/iteration-002.md:88-92]
 5. Close or explicitly defer documented skill-surface coverage gaps. cli-claude-code misses five documented agents plus cost/background coverage; cli-codex misses research/write profiles and `codex cloud`; cli-gemini misses `@debug`; cli-opencode misses deep-research, deep-review, and orchestrate. [SOURCE: .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/review/iterations/iteration-003.md:27-30] [SOURCE: .opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/review/iterations/iteration-003.md:109-114]

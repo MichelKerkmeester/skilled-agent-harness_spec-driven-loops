@@ -43,11 +43,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/doctor/code-graph.md",
+      ".opencode/commands/doctor/code-graph.md",
       ".opencode/install_guides/SET-UP - Code Graph.md",
       ".opencode/README.md",
-      ".opencode/command/doctor/assets/doctor_code-graph_auto.yaml",
-      ".opencode/command/doctor/assets/doctor_code-graph_confirm.yaml",
+      ".opencode/commands/doctor/assets/doctor_code-graph_auto.yaml",
+      ".opencode/commands/doctor/assets/doctor_code-graph_confirm.yaml",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/plan.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/tasks.md",
@@ -57,8 +57,8 @@
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/staleness-model.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/spec.md",
-      ".opencode/command/doctor/mcp_install.md",
-      ".opencode/command/doctor/skill-advisor.md",
+      ".opencode/commands/doctor/mcp_install.md",
+      ".opencode/commands/doctor/skill-advisor.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/context-index.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/tasks.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/spec.md",
@@ -68,7 +68,7 @@
       {
         "name": "code-graph.md",
         "kind": "doc",
-        "path": ".opencode/command/doctor/code-graph.md",
+        "path": ".opencode/commands/doctor/code-graph.md",
         "source": "derived"
       },
       {
@@ -86,13 +86,13 @@
       {
         "name": "doctor_code-graph_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/doctor/assets/doctor_code-graph_auto.yaml",
+        "path": ".opencode/commands/doctor/assets/doctor_code-graph_auto.yaml",
         "source": "derived"
       },
       {
         "name": "doctor_code-graph_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/doctor/assets/doctor_code-graph_confirm.yaml",
+        "path": ".opencode/commands/doctor/assets/doctor_code-graph_confirm.yaml",
         "source": "derived"
       },
       {
@@ -146,13 +146,13 @@
       {
         "name": "mcp_install.md",
         "kind": "doc",
-        "path": ".opencode/command/doctor/mcp_install.md",
+        "path": ".opencode/commands/doctor/mcp_install.md",
         "source": "derived"
       },
       {
         "name": "skill-advisor.md",
         "kind": "doc",
-        "path": ".opencode/command/doctor/skill-advisor.md",
+        "path": ".opencode/commands/doctor/skill-advisor.md",
         "source": "derived"
       },
       {

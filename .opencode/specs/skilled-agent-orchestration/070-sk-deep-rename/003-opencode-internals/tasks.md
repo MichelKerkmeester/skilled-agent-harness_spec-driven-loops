@@ -16,8 +16,8 @@ _memory:
     blockers: []
     key_files:
       - "tasks.md"
-      - ".opencode/skill/sk-code-review/graph-metadata.json"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json"
+      - ".opencode/skills/sk-code-review/graph-metadata.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-003"
@@ -63,11 +63,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T006 Fix critical edge in `.opencode/skill/sk-code-review/graph-metadata.json` (evidence: residual count `0`)
-- [x] T007 Fix critical edges in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` (evidence: residual count `0`)
+- [x] T006 Fix critical edge in `.opencode/skills/sk-code-review/graph-metadata.json` (evidence: residual count `0`)
+- [x] T007 Fix critical edges in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` (evidence: residual count `0`)
 - [x] T008 Build scoped replacement file list with exclusions (evidence: initial scoped pass covered 749 files; no-ignore tail pass cleaned 264 additional active `.opencode` files)
 - [x] T009 Replace old skill IDs in allowed `.opencode/skill` docs, metadata, references, assets, and playbooks (evidence: broad active `.opencode` residual count `0` after exclusions)
-- [x] T010 Replace old skill IDs in `.opencode/agent` and `.opencode/command/spec_kit` (evidence: audit count `0`)
+- [x] T010 Replace old skill IDs in `.opencode/agent` and `.opencode/commands/spec_kit` (evidence: audit count `0`)
 - [x] T011 Replace old skill IDs in MCP server code, scripts, tests, and expected fixtures (evidence: audit count `0`)
 - [x] T012 Replace old skill IDs in active `.opencode/specs` authored docs, metadata, descriptions, research, and review artifacts (evidence: authored-doc audit count `0`; broad no-ignore active `.opencode` residual count `0`)
 - [x] T013 Validate edited JSON files parse successfully (evidence: `json_checked=96`)

@@ -49,7 +49,7 @@ The exact header + anchor contracts extracted directly from the template files:
 
 Total across all 5 types: 34 required H2s + 6 optional H2s = 40 headers, 40 anchors. Each anchor opens with `<!-- ANCHOR:name -->` and closes with `<!-- /ANCHOR:name -->`.
 
-[SOURCE: .opencode/skill/system-spec-kit/templates/level_2/*.md -- direct grep of H2 + ANCHOR patterns]
+[SOURCE: .opencode/skills/system-spec-kit/templates/level_2/*.md -- direct grep of H2 + ANCHOR patterns]
 
 ### Finding 3: Fix Wave (8c40f500d) Targeted Content Alignment, Not Structure
 
@@ -75,7 +75,7 @@ For phase spec folders, `mergeTemplateContracts()` (line 291) adds parent/child 
 
 This is the single source of truth for enforcement and can be called programmatically: `node template-structure.js contract --level 2 --basename spec.md` (though the CLI entry point needs the dist path).
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/template-structure.js:218-289]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/template-structure.js:218-289]
 
 ### Finding 5: Concrete 3-Layer Enforcement Architecture Design
 
@@ -92,13 +92,13 @@ Based on all findings from iterations 1-5, the complete enforcement architecture
 **Layer 2: Post-Write Auto-Validation Loop (catches errors)**
 - **What**: After every spec file write, automatically run `validate.sh` on the written file
 - **Where**: In the @speckit agent workflow, after each Write/Edit tool call on a spec folder document
-- **How**: Add an explicit MANDATORY instruction: "After writing ANY spec folder .md file, immediately run: `bash .opencode/skill/system-spec-kit/scripts/validate/validate.sh <spec-folder-path>`. If errors are reported, fix them before proceeding to the next file."
+- **How**: Add an explicit MANDATORY instruction: "After writing ANY spec folder .md file, immediately run: `bash .opencode/skills/system-spec-kit/scripts/validate/validate.sh <spec-folder-path>`. If errors are reported, fix them before proceeding to the next file."
 - **Current gap**: The 3 conflicting timing directives ("after each write" vs "before next step" vs "once at end") must be collapsed into ONE directive: "after each write"
 - **Impact estimate**: Would catch ~95% of remaining structural errors post-Layer-1
 
 **Layer 3: Pre-Commit Gate (blocks errors)**
 - **What**: A pre-commit hook that runs validation on all changed spec folder .md files
-- **Where**: `.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` (already exists but is NOT installed)
+- **Where**: `.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` (already exists but is NOT installed)
 - **How**: Install via `git config core.hooksPath` or symlink into `.git/hooks/pre-commit`. The hook reads `.speckit-enforce.yaml` for configuration
 - **Installation gap**: The script exists; the installation mechanism does not. Needs a setup command (e.g., `make install-hooks` or a post-checkout hook)
 - **Impact estimate**: Would catch 100% of structural errors before they reach the repository
@@ -149,8 +149,8 @@ This means Layer 1 alone achieves ~50-60% compliance. Layer 1 + Layer 2 (validat
 ## Sources Consulted
 - `git diff b88c07f82^..b88c07f82` -- Clean-slate rewrite commit (per-doc-type change analysis)
 - `git diff 8c40f500d^..8c40f500d` -- Fix wave commit (content vs structural change analysis)
-- `.opencode/skill/system-spec-kit/templates/level_2/*.md` -- All 5 Level 2 template files (H2 + anchor extraction)
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js:218-289` -- loadTemplateContract function
+- `.opencode/skills/system-spec-kit/templates/level_2/*.md` -- All 5 Level 2 template files (H2 + anchor extraction)
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js:218-289` -- loadTemplateContract function
 - Prior iterations 1-4 findings (Q1, Q2, Q3, Q5, Q7 answers)
 
 ## Assessment

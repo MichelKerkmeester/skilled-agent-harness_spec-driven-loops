@@ -45,7 +45,7 @@ _memory:
 
 - [x] T001 Review parent recommendations and current deep-research contract surfaces (`../research/recommendations-sk-deep-research.md`, target files)
 - [x] T002 Audit strict-validation issues in the named phase packet (`spec.md`, `plan.md`, `tasks.md`)
-- [x] T003 [P] Inspect runtime mirrors and workflow assets for lineage, reducer, and naming drift (`.opencode/agent/deep-research.md`, `.claude/agents/deep-research.md`, `.gemini/agents/deep-research.md`, `.codex/agents/deep-research.toml`, workflow YAML)
+- [x] T003 [P] Inspect runtime mirrors and workflow assets for lineage, reducer, and naming drift (`.opencode/agents/deep-research.md`, `.claude/agents/deep-research.md`, `.gemini/agents/deep-research.md`, `.codex/agents/deep-research.toml`, workflow YAML)
 <!-- /ANCHOR:phase-1 -->
 
 ---

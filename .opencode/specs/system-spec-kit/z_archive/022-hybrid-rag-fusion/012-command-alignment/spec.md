@@ -34,7 +34,7 @@ This spec-pack update is documentation-only and limited to the five canonical 01
 
 **Key Metrics**
 - 33 MCP tools in `TOOL_DEFINITIONS`
-- 4 live memory command files in `.opencode/command/memory/`
+- 4 live memory command files in `.opencode/commands/memory/`
 - 0 uncovered tools in the live README coverage matrix
 - `/memory:search` is the documented home for retrieval, `memory_quick_search`, analysis/eval tooling, and `memory_get_learning_history`
 - `/spec_kit:resume` is the documented home for session recovery and crash/interrupted-session continuation
@@ -179,7 +179,7 @@ Bring the 012 planning docs into line with live repo truth so that:
 
 ### Scenario B: Command-Surface Audit
 
-**Given** `.opencode/command/memory/` and `.opencode/command/spec_kit/resume.md`, **when** a reviewer compares 012 against the live command directories, **then** the pack describes a 4-command memory suite, assigns session recovery to `/spec_kit:resume`, and does not present `analyze` or `shared` as current command files.
+**Given** `.opencode/commands/memory/` and `.opencode/commands/spec_kit/resume.md`, **when** a reviewer compares 012 against the live command directories, **then** the pack describes a 4-command memory suite, assigns session recovery to `/spec_kit:resume`, and does not present `analyze` or `shared` as current command files.
 
 ### Scenario C: Ownership Audit
 
@@ -226,8 +226,8 @@ The following live command-surface changes are already present on disk and must 
 
 | Location | Drift (resolved) | Resolution |
 |----------|-------------------|------------|
-| `.opencode/command/memory/search.md` | The retrieval+analysis command now uses the `search` name instead of `analyze` | 012 must reference `/memory:search` everywhere |
-| `.opencode/command/memory/manage.md` | Shared-memory lifecycle moved under `shared` subcommands on `manage` | 012 must reference `/memory:manage shared` instead of a standalone `/memory:shared` command |
+| `.opencode/commands/memory/search.md` | The retrieval+analysis command now uses the `search` name instead of `analyze` | 012 must reference `/memory:search` everywhere |
+| `.opencode/commands/memory/manage.md` | Shared-memory lifecycle moved under `shared` subcommands on `manage` | 012 must reference `/memory:manage shared` instead of a standalone `/memory:shared` command |
 
 #### A.4 Source-of-Truth Notes
 
@@ -290,10 +290,10 @@ Run targeted stale-string checks and spec validation so the 012 pack no longer r
 ### Related Documents
 
 - **Parent Epic**: ../spec.md
-- **Tool Inventory**: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- **Parameter Mirror**: `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-- **Memory Command Directory**: `.opencode/command/memory/`
-- **Current Coverage Index**: `.opencode/command/memory/README.txt`
+- **Tool Inventory**: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- **Parameter Mirror**: `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
+- **Memory Command Directory**: `.opencode/commands/memory/`
+- **Current Coverage Index**: `.opencode/commands/memory/README.txt`
 
 ---
 

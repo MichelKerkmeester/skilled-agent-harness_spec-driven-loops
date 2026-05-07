@@ -21,16 +21,16 @@ _memory:
     next_safe_action: "Validate strict; commit + push to origin main"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts"
-      - ".opencode/skill/system-spec-kit/scripts/spec/is-phase-parent.ts"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-phase-parent-content.sh"
+      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts"
+      - ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh"
       - ".opencode/plugins/spec-kit-skill-advisor.js"
-      - ".opencode/skill/system-spec-kit/scripts/evals/check-source-dist-alignment.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/phase-parent-health.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/compat/plugin-bridge-smoke.vitest.ts"
-      - ".opencode/skill/system-spec-kit/scripts/tests/check-source-dist-alignment-orphans.vitest.ts"
+      - ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/phase-parent-health.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/compat/plugin-bridge-smoke.vitest.ts"
+      - ".opencode/skills/system-spec-kit/scripts/tests/check-source-dist-alignment-orphans.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-007-topology-build-boundary"
@@ -43,7 +43,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -70,7 +70,7 @@ You can now run the alignment checker and trust that orphans in `dist/tests`, `d
 
 | Finding | File | Fix |
 |---------|------|-----|
-| F-019-D4-02 (P2) | `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` | Added an additive `phase_path_grammar` documentation block under `phase_folder_awareness` listing flat / two-level / three-level / deep path shapes (e.g. observed `026/000/005/049/001` deep nest), the detection rule pointer to `isPhaseParent` in both TS mirrors, and the spec_id derivation rule. Existing keys remain unchanged; the runtime parser is untouched per user constraint. |
+| F-019-D4-02 (P2) | `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Added an additive `phase_path_grammar` documentation block under `phase_folder_awareness` listing flat / two-level / three-level / deep path shapes (e.g. observed `026/000/005/049/001` deep nest), the detection rule pointer to `isPhaseParent` in both TS mirrors, and the spec_id derivation rule. Existing keys remain unchanged; the runtime parser is untouched per user constraint. |
 | F-019-D4-03 (P2) | `mcp_server/lib/spec/is-phase-parent.ts` + `scripts/spec/is-phase-parent.ts` + `scripts/rules/check-phase-parent-content.sh` | Added `assessPhaseParentHealth(folder)` returning `{ childCount, status: 'ok' | 'warning' | 'error' | 'not_phase_parent', recommendation }` with thresholds at 20 (warning) and 40 (error). Counts ALL direct NNN-named children (manifest size), not only those qualifying for `isPhaseParent`. The scripts mirror also gained a CLI entrypoint (`node is-phase-parent.js health <folder>`) so `check-phase-parent-content.sh` can shell-out and append a single advisory line when the helper reports a warning or error. The shell rule soft-fails when node or the dist artifact is unavailable. |
 | F-020-D5-01 (P2) | `.opencode/plugins/spec-kit-skill-advisor.js` | Swapped the kebab-case `dist/skill-advisor/compat/index.js` path entry in `ADVISOR_SOURCE_PATHS` for the snake-case `dist/skill_advisor/compat/index.js` that actually exists on disk and matches the bridge's runtime `import('../dist/skill_advisor/compat/index.js')`. The plugin's cache signature now hashes a real file's mtime/size rather than always logging a `missing` placeholder for that entry. |
 | F-020-D5-02 (P2) | `scripts/evals/check-source-dist-alignment.ts` | Broadened `DIST_TARGETS` from 2 entries (`mcp_server/dist/lib`, `scripts/dist`) to 17 entries covering every runtime-critical mcp_server dist subtree (`lib`, `skill_advisor`, `handlers`, `formatters`, `tools`, `code_graph`, `hooks`, `matrix_runners`, `schemas`, `stress_test`, `tests`, `core`, `api`, `utils`, `configs`, `scripts`) plus `scripts/dist`. Softened missing-dist-root from `process.exit(2)` to `continue` so optional subtrees don't fail the build. Fixed `mapDistFileToSource`'s package-segment derivation to derive from the dist-root prefix instead of a hardcoded `target.label === 'mcp_server'` match. Added a 3-entry time-bounded allowlist for the F-020-D5-03 siblings (corpus.js, measurement-fixtures.js, metrics.js) pending follow-on cleanup. |
@@ -81,7 +81,7 @@ You can now run the alignment checker and trust that orphans in `dist/tests`, `d
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` | Modified | F-019-D4-02: additive `phase_path_grammar` documentation block |
+| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modified | F-019-D4-02: additive `phase_path_grammar` documentation block |
 | `mcp_server/lib/spec/is-phase-parent.ts` | Modified | F-019-D4-03: `assessPhaseParentHealth` + threshold exports |
 | `scripts/spec/is-phase-parent.ts` | Modified | F-019-D4-03: mirror health helper + CLI entrypoint |
 | `scripts/rules/check-phase-parent-content.sh` | Modified | F-019-D4-03: append health advisory via dist CLI |

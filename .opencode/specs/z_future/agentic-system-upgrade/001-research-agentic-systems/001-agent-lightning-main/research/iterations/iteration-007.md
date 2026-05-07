@@ -15,9 +15,9 @@ I reviewed Agent Lightning's zero-code-change positioning, its Claude Code examp
 - Agent Lightning describes its core proposition as near-zero-code-change optimization: agents keep running as usual while emit helpers or tracers capture prompts, tool calls, and rewards into the store. [SOURCE: external/README.md:20-23] [SOURCE: external/README.md:65-69]
 - The Claude Code example wraps an existing agent experience with a Lightning Store, an LLM proxy, and a controller, then persists raw trace streams and optional converted datasets as output artifacts. [SOURCE: external/examples/claude_code/README.md:5-12] [SOURCE: external/examples/claude_code/README.md:37-43] [SOURCE: external/examples/claude_code/README.md:105-112]
 - `LitAgent` confirms the wrapped runtime contract: the runner/trainer infrastructure manages orchestration, tracing, and persistence around the agent's rollout methods. [SOURCE: external/agentlightning/litagent/litagent.py:45-50] [SOURCE: external/agentlightning/litagent/litagent.py:181-203]
-- Public's hook system is documented very differently. It exists to automate context preservation at runtime lifecycle boundaries, and the reference explicitly says hooks are transport reliability for the same retrieval primitives used elsewhere. [SOURCE: .opencode/skill/system-spec-kit/references/config/hook_system.md:3-6]
-- Public's hook lifecycle covers `PreCompact`, `SessionStart`, and async `Stop`, all centered on cached context, prior session state, and transcript-derived metrics rather than on runtime execution tracing. [SOURCE: .opencode/skill/system-spec-kit/references/config/hook_system.md:21-35]
-- The same reference states the cross-runtime fallback path as `session_bootstrap()` and `session_resume()`, again confirming that hook scope is recovery and context delivery, not agent instrumentation. [SOURCE: .opencode/skill/system-spec-kit/references/config/hook_system.md:48-57]
+- Public's hook system is documented very differently. It exists to automate context preservation at runtime lifecycle boundaries, and the reference explicitly says hooks are transport reliability for the same retrieval primitives used elsewhere. [SOURCE: .opencode/skills/system-spec-kit/references/config/hook_system.md:3-6]
+- Public's hook lifecycle covers `PreCompact`, `SessionStart`, and async `Stop`, all centered on cached context, prior session state, and transcript-derived metrics rather than on runtime execution tracing. [SOURCE: .opencode/skills/system-spec-kit/references/config/hook_system.md:21-35]
+- The same reference states the cross-runtime fallback path as `session_bootstrap()` and `session_resume()`, again confirming that hook scope is recovery and context delivery, not agent instrumentation. [SOURCE: .opencode/skills/system-spec-kit/references/config/hook_system.md:48-57]
 
 ## Analysis
 The two systems operate at different layers. Agent Lightning's wrappers surround live execution so traces and rewards can be observed and optimized. Public's hooks exist to move context into and out of runtime sessions reliably. Both are "hooks" in a broad sense, but they are not substitutable mechanisms.
@@ -30,7 +30,7 @@ confidence: high
 finding: Agent Lightning's framework wrappers should not be merged into Public's existing hook system. The external repo's wrappers instrument execution; Public's hooks preserve context across runtime lifecycle boundaries. Treating them as the same layer would create conceptual and operational drift inside `system-spec-kit`.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/references/config/hook_system.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/references/config/hook_system.md`
 - **Change type:** rejected
 - **Blast radius:** medium
 - **Prerequisites:** none for the rejection itself; if future telemetry work is proposed, it should start as a separate observability packet

@@ -17,7 +17,7 @@ Q4: diagnose the weak-retrieval hallucination class from sibling 006 and define 
 
 Sibling 006 describes the major I2 failure as `cli-opencode` fabricating paths and packet IDs when `memory_search` returned weak retrieval evidence (`001-search-intelligence-stress-test/002-scenario-execution/findings.md:14`, `:30`, `:72-74`, `:96-102`). The I2 score file says `cli-opencode` recommended `lib/search/README.md`, `lib/search/pipeline/`, `023-hybrid-rag-fusion-refinement/...`, and `022-hybrid-rag-fusion/...`, then verified those were not valid current codebase locations (`runs/I2/cli-opencode-1/score.md:3-12`, `:18-24`).
 
-The raw run shows why the model was tempted. `memory_match_triggers` matched broad `"search"` triggers and surfaced unrelated or stale-looking packets, while `cocoindex_code_search` returned mirror/spec paths plus the canonical `.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md` entry (`runs/I2/cli-opencode-1/output.txt:3-5`). The final answer then collapsed those mixed signals into confident recommendations (`output.txt:12`).
+The raw run shows why the model was tempted. `memory_match_triggers` matched broad `"search"` triggers and surfaced unrelated or stale-looking packets, while `cocoindex_code_search` returned mirror/spec paths plus the canonical `.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md` entry (`runs/I2/cli-opencode-1/output.txt:3-5`). The final answer then collapsed those mixed signals into confident recommendations (`output.txt:12`).
 
 ### 2. The recovery payload is advisory, but not binding
 

@@ -1,7 +1,7 @@
 # Alignment Report: workflows-code--opencode vs system-spec-kit
 
 **Date:** 2026-02-15  
-**Scope:** Comparison of `.opencode/skill/system-spec-kit` vs `.opencode/skill/workflows-code--opencode`  
+**Scope:** Comparison of `.opencode/skills/system-spec-kit` vs `.opencode/skills/workflows-code--opencode`  
 **Focus:** Language standards (JS/TS/Python/Shell/JSON), verification claims, command contracts, documentation promises vs scripts  
 **Sources:** C10 (context-agent-10-alignment-matrix.md), B10 (build-agent-10-alignment-verify.md), R10 (review-agent-10-alignment.md)
 

@@ -16,13 +16,13 @@ You are a deep research agent. Run 10 research iterations on Phase 4 (Offline Lo
 Read the spec folder at .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/ — read spec.md, plan.md, tasks.md.
 
 Then read the ACTUAL implementation to ground your research:
-- .opencode/skill/sk-deep-research/scripts/reduce-state.cjs (the reducer we'd optimize)
-- .opencode/skill/sk-deep-research/references/convergence.md (thresholds we'd tune)
-- .opencode/skill/sk-deep-research/assets/deep_research_config.json (config parameters)
-- .opencode/skill/sk-deep-review/assets/deep_review_config.json
-- .opencode/skill/sk-deep-review/assets/review_mode_contract.yaml
-- .opencode/skill/system-spec-kit/mcp_server/lib/eval/ (existing eval framework)
-- .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/ (existing test fixtures)
+- .opencode/skills/sk-deep-research/scripts/reduce-state.cjs (the reducer we'd optimize)
+- .opencode/skills/sk-deep-research/references/convergence.md (thresholds we'd tune)
+- .opencode/skills/sk-deep-research/assets/deep_research_config.json (config parameters)
+- .opencode/skills/sk-deep-review/assets/deep_review_config.json
+- .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml
+- .opencode/skills/system-spec-kit/mcp_server/lib/eval/ (existing eval framework)
+- .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/ (existing test fixtures)
 
 Also search for DSPy, prompt optimization, and hyperparameter tuning patterns via --search.
 
@@ -36,7 +36,7 @@ Also search for DSPy, prompt optimization, and hyperparameter tuning patterns vi
 6. DSPy applicability: Read about DSPy's compile/evaluate loop (use --search). How does it optimize prompts? What translates to our system where prompts are in agent .md files, not code?
 7. Promotion safety: How do you ensure optimized configs don't break existing tests? What's the minimum test coverage needed before promoting a config change?
 8. Existing eval framework: Read the eval directory in the MCP server. What scoring, ablation, and k-value analysis already exists? Can it be reused for loop optimization?
-9. Prompt optimization feasibility: Agent instructions are in markdown files (.opencode/agent/deep-research.md). Can these be parameterized and optimized, or are they too coupled to agent behavior?
+9. Prompt optimization feasibility: Agent instructions are in markdown files (.opencode/agents/deep-research.md). Can these be parameterized and optimized, or are they too coupled to agent behavior?
 10. Meta-learning: Can the optimizer learn across packets? E.g., "research on code analysis topics converges faster with threshold 0.08" vs "research on architecture topics needs 0.04." What's the data model?
 
 ## OUTPUT FORMAT
@@ -54,7 +54,7 @@ mcp: spec_kit_memory/memory_match_triggers started
 mcp: spec_kit_memory/memory_match_triggers (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep research on packet 042 Phase 4 Offline Loop Optimizer for sk-deep-research/deep-review using spec docs, reducer/config/eval framework, and external search on DSPy prompt optimization and hyperparameter tuning" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "Deep research on packet 042 Phase 4 Offline Loop Optimizer for sk-deep-research/deep-review using spec docs, reducer/config/eval framework, and external search on DSPy prompt optimization and hyperparameter tuning" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 2152ms:
 2026-04-10 14:05:57.323 xcodebuild[46052:32043003]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-04-10 14:05:57.503 xcodebuild[46052:32042995] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -128,7 +128,7 @@ Research-only pass on packet 042 phase 4. I’m front-loading packet/spec contex
   • Run 10 structured research iterations with evidence and open questions
   • Synthesize feasibility, recommendations, and spec-change suggestions
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/SKILL.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/SKILL.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	name: sk-deep-research
@@ -146,7 +146,7 @@ exec
     14	Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
     15	
     16	Runtime path resolution:
-    17	- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+    17	- OpenCode/Copilot runtime: `.opencode/agents/*.md`
     18	- Claude runtime: `.claude/agents/*.md`
     19	- Codex runtime: `.codex/agents/*.toml`
     20	
@@ -352,7 +352,7 @@ exec
    220	| **Findings registry** | Reducer-owned open/resolved questions, key findings, and ruled-out directions |
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/SKILL.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/SKILL.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	name: system-spec-kit
@@ -588,7 +588,7 @@ exec
 226:- git diff --name-only HEAD~10 HEAD | grep -E '\\.(ts|tsx|mts)$' | sort -u, 87 files, verify_alignment_drift.py, TS-MODULE-HEADER publication-gate.ts replay-harness.ts, style-only stop rule, revert on failing required suites
 235:- scoped verifier baseline showed 0 errors and only two in-scope warnings (`TS-MODULE-HEADER` on `publication-gate.ts` and `test/hooks/replay-harness.ts`); this is the operative drift set for that HEAD~10 window [Task 1]
 273:- validated boundary language now used in closeouts: persisted memory file is the compact wrapper; canonical docs remain long-form owners; keep replay-safe delivery wording in implementation summaries [Task 1]
-381:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
+381:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
 389:- phase sequence now expected in `002` docs: shared schema/metadata -> replay harness -> stop timestamp -> seam validation -> resume estimator -> UserPromptSubmit gate, with producer metadata + cache token carry-forward + bootstrap authority kept as acceptance anchors [Task 6]
 641:## Task 1: Extend deep-research wave to 90 iterations and author recommendation docs for sk-deep-research/sk-deep-review, outcome success
 649:- 90 iterations, recommendations-sk-deep-research.md, recommendations-sk-deep-review.md, deep-research-state.jsonl, synthesis_complete, external wave
@@ -610,7 +610,7 @@ I’ve got the routing and baseline protocol loaded. Now I’m grounding the res
 exec
 /bin/zsh -lc "rg --files -g 'AGENTS.md' . .opencode" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'for f in .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md .opencode/skill/sk-deep-research/scripts/reduce-state.cjs .opencode/skill/sk-deep-research/references/convergence.md .opencode/skill/sk-deep-research/assets/deep_research_config.json .opencode/skill/sk-deep-review/assets/deep_review_config.json .opencode/skill/sk-deep-review/assets/review_mode_contract.yaml; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,260p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for f in .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md .opencode/skills/sk-deep-research/scripts/reduce-state.cjs .opencode/skills/sk-deep-research/references/convergence.md .opencode/skills/sk-deep-research/assets/deep_research_config.json .opencode/skills/sk-deep-review/assets/deep_review_config.json .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,260p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
@@ -690,7 +690,7 @@ user cancelled MCP tool call
     73	    ]
     74	  }
     75	}
-===== .opencode/skill/sk-deep-review/assets/review_mode_contract.yaml =====
+===== .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml =====
      1	# Canonical review-mode contract for sk-deep-review.
      2	# This file is the single source of truth for review-mode taxonomy,
      3	# convergence settings, cross-reference protocols, downstream render targets,
@@ -703,7 +703,7 @@ user cancelled MCP tool call
     10	    warning: "Generated from review_mode_contract.yaml. Do not manually edit generated sections."
     11	    beginMarker: "<!-- BEGIN GENERATED: review-mode-contract -->"
     12	    endMarker: "<!-- END GENERATED: review-mode-contract -->"
-    13	  sourceOfTruth: .opencode/skill/sk-deep-review/assets/review_mode_contract.yaml
+    13	  sourceOfTruth: .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml
     14	
     15	# Core contract definitions consumed by workflows, agents, docs, and validators.
     16	contract:
@@ -953,33 +953,33 @@ user cancelled MCP tool call
    260	        - repeatedFindings
 
 exec
-/bin/zsh -lc "printf 'EVAL FILES\\n'; rg --files .opencode/skill/system-spec-kit/mcp_server/lib/eval; printf '\\nFIXTURE FILES\\n'; rg --files .opencode/skill/system-spec-kit/mcp_server/tests/fixtures" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf 'EVAL FILES\\n'; rg --files .opencode/skills/system-spec-kit/mcp_server/lib/eval; printf '\\nFIXTURE FILES\\n'; rg --files .opencode/skills/system-spec-kit/mcp_server/tests/fixtures" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 EVAL FILES
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/edge-density.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/edge-density.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts
 
 FIXTURE FILES
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json
 
  succeeded in 213ms:
 ./AGENTS.md
@@ -1098,9 +1098,9 @@ exec
     67	
     68	| Task ID | Status | Parent REQ | Files |
     69	|---------|--------|------------|-------|
-    70	| T001 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
-    71	| T002 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
-    72	| T003 | Pending | REQ-002 | `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` |
+    70	| T001 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+    71	| T002 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+    72	| T003 | Pending | REQ-002 | `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` |
     73	
     74	- [ ] T001 Build the replay corpus extractor for packet families `028`, `040`, and `042`.
     75	- [ ] T002 Add corpus fixtures and tests that prove deterministic normalization.
@@ -1116,10 +1116,10 @@ exec
     85	
     86	| Task ID | Status | Parent REQ | Files |
     87	|---------|--------|------------|-------|
-    88	| T004 | Pending | REQ-005 | `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
-    89	| T005 | Pending | REQ-003 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
-    90	| T006 | Pending | REQ-005 | `.opencode/skill/sk-deep-research/references/convergence.md`; `.opencode/skill/sk-deep-review/references/convergence.md`; `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs` |
-    91	| T007 | Pending | REQ-006 | `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
+    88	| T004 | Pending | REQ-005 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
+    89	| T005 | Pending | REQ-003 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
+    90	| T006 | Pending | REQ-005 | `.opencode/skills/sk-deep-research/references/convergence.md`; `.opencode/skills/sk-deep-review/references/convergence.md`; `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs` |
+    91	| T007 | Pending | REQ-006 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
     92	
     93	- [ ] T004 Implement bounded candidate search across the optimizer-managed parameter families.
     94	- [ ] T005 Implement deterministic replay against baseline and candidate configs.
@@ -1136,10 +1136,10 @@ exec
    105	
    106	| Task ID | Status | Parent REQ | Files |
    107	|---------|--------|------------|-------|
-   108	| T008 | Pending | REQ-004, REQ-006 | `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` |
-   109	| T009 | Pending | REQ-007 | `.opencode/skill/sk-deep-research/assets/deep_research_config.json`; `.opencode/skill/sk-deep-review/assets/deep_review_config.json` |
-   110	| T010 | Pending | REQ-004, REQ-007 | `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/deep-review.md`; `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` |
-   111	| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+   108	| T008 | Pending | REQ-004, REQ-006 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` |
+   109	| T009 | Pending | REQ-007 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json` |
+   110	| T010 | Pending | REQ-004, REQ-007 | `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md`; `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` |
+   111	| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
    112	
    113	- [ ] T008 Implement the promotion gate that compares candidates to baseline and enforces test success.
    114	- [ ] T009 Bound optimizer-managed fields in the canonical deep-loop config files.
@@ -1269,11 +1269,11 @@ exec
     98	**Why first**: Search and promotion are meaningless until the optimizer has trustworthy source data and a scoring model that can explain what improved.
     99	
    100	**Files to change**:
-   101	- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
-   102	- `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs`
-   103	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
-   104	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts`
-   105	- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
+   101	- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
+   102	- `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs`
+   103	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
+   104	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts`
+   105	- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
    106	
    107	**Verification strategy**:
    108	- Prove packet-family extraction is deterministic and source-traceable.
@@ -1286,12 +1286,12 @@ exec
    115	**Why second**: Once the corpus and rubric are stable, the optimizer can evaluate bounded candidate configs and explain what changed.
    116	
    117	**Files to change**:
-   118	- `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`
-   119	- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`
-   120	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts`
-   121	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
-   122	- `.opencode/skill/sk-deep-research/references/convergence.md`
-   123	- `.opencode/skill/sk-deep-review/references/convergence.md`
+   118	- `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`
+   119	- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`
+   120	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts`
+   121	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
+   122	- `.opencode/skills/sk-deep-research/references/convergence.md`
+   123	- `.opencode/skills/sk-deep-review/references/convergence.md`
    124	
    125	**Verification strategy**:
    126	- Prove search candidates stay within allowed parameter families.
@@ -1304,12 +1304,12 @@ exec
    133	**Why third**: Promotion safety and config-surface boundaries are the guardrails that keep the optimizer useful instead of dangerous.
    134	
    135	**Files to change**:
-   136	- `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`
-   137	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
-   138	- `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-   139	- `.opencode/skill/sk-deep-review/assets/deep_review_config.json`
-   140	- `.opencode/command/spec_kit/deep-research.md`
-   141	- `.opencode/command/spec_kit/deep-review.md`
+   136	- `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`
+   137	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
+   138	- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+   139	- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
+   140	- `.opencode/commands/spec_kit/deep-research.md`
+   141	- `.opencode/commands/spec_kit/deep-review.md`
    142	
    143	**Verification strategy**:
    144	- Prove promotion is refused when baseline improvement is unclear or existing tests fail.
@@ -1353,7 +1353,7 @@ exec
    182	<!-- /ANCHOR:rollback -->
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/scripts/reduce-state.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/scripts/reduce-state.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Deep Research State Reducer                                              ║
@@ -1716,7 +1716,7 @@ FAMILY 042
 codex
 The first corpus inventory was too noisy because it pulled unrelated JSON from `external/` mirrors, so I’m tightening that to actual deep-loop runtime artifacts only: `deep-*-state.jsonl`, `findings-registry`, dashboards, and iteration folders. I’m also finishing the reducer read, because the optimizer’s real search space depends on what the reducer actually computes today versus what the phase spec assumes it can tune.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/scripts/reduce-state.cjs | sed -n '321,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/scripts/reduce-state.cjs | sed -n '321,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    321	    `## ${heading}`,
    322	    body.trim() ? body.trim() : '[None yet]',
@@ -2215,9 +2215,9 @@ user cancelled MCP tool call
 codex
 `CocoIndex` is not returning results in this session, so I’m falling back to direct source reads for the eval framework, while keeping the search scope narrow and evidence-based. I’m pulling the eval README plus the ablation, k-value, metrics, and dashboard files now to see what pieces of the proposed optimizer can reuse instead of reinventing.
 exec
-/bin/zsh -lc 'for f in .opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,260p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for f in .opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,260p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-===== .opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md =====
+===== .opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md =====
      1	---
      2	title: "Evaluation Modules"
      3	description: "Evaluation, logging, baselines, quality proxies, ablation, and reporting for the memory retrieval pipeline."
@@ -2294,7 +2294,7 @@ exec
     74	- `../../tests/README.md`
     75	
     76	<!-- /ANCHOR:related -->
-===== .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts =====
+===== .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts =====
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Ablation Framework (R13-S3)
      3	// ───────────────────────────────────────────────────────────────
@@ -2555,7 +2555,7 @@ exec
    258	  let missingRelevanceCount = 0;
    259	  const parentMemoryIds = new Set<number>();
    260	  const chunkMemoryIds = new Set<number>();
-===== .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts =====
+===== .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts =====
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: K-Value Sensitivity Analysis (T004A)
      3	// ───────────────────────────────────────────────────────────────
@@ -2816,7 +2816,7 @@ exec
    258	}
    259	
    260	/**
-===== .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts =====
+===== .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts =====
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Eval Metrics
      3	// ───────────────────────────────────────────────────────────────
@@ -3077,7 +3077,7 @@ exec
    258	 *
    259	 * AP = (1 / |relevant|) × Σ(Precision@k × rel(k)) for k = 1..K
    260	 * where rel(k) is 1 if the k-th result is relevant, 0 otherwise.
-===== .opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts =====
+===== .opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts =====
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Reporting Dashboard (R13-S3)
      3	// ───────────────────────────────────────────────────────────────
@@ -3338,7 +3338,7 @@ exec
    258	}
    259	
    260	/* ───────────────────────────────────────────────────────────────
-===== .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts =====
+===== .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts =====
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Eval Quality Proxy (T006G)
      3	// ───────────────────────────────────────────────────────────────
@@ -3555,9 +3555,9 @@ exec
    214	export { WEIGHTS, DEFAULT_LATENCY_TARGET_MS };
 
 exec
-/bin/zsh -lc 'for f in .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,220p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for f in .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,220p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-===== .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts =====
+===== .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts =====
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Runtime Fixtures
      3	// ───────────────────────────────────────────────────────────────
@@ -3675,11 +3675,11 @@ exec
    115	  delete process.env.GEMINI_CLI;
    116	  delete process.env.GOOGLE_GENAI_USE_VERTEXAI;
    117	}
-===== .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl =====
+===== .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl =====
      1	{"message":{"role":"user","content":"Work on .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/spec.md"}}
      2	{"message":{"role":"assistant","usage":{"input_tokens":120,"output_tokens":60,"cache_creation_input_tokens":40,"cache_read_input_tokens":20},"model":"claude-sonnet-4-6","content":"Updated the producer-side continuity packet."}}
      3	{"message":{"role":"assistant","usage":{"input_tokens":80,"output_tokens":40},"content":"Next I will wire replay isolation and idempotency coverage."}}
-===== .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json =====
+===== .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json =====
      1	{
      2	  "memories": [
      3	    {
@@ -3790,486 +3790,486 @@ exec
 codex
 I’ve confirmed there’s exactly one substantial in-repo replay corpus today: the `040` research wave with `90` iteration markdown files and a `96`-line JSONL ledger. I’m now tightening the tunable-surface inventory by pulling every threshold, switch, and prompt-bearing file that Phase 4 would realistically optimize, including the agent markdown surfaces the spec hints at.
 exec
-/bin/zsh -lc "printf 'Eval framework keyword hits\\n'; rg -n \"Ablation|K_VALUES|BASELINE_K|computeRecall|computeMRR|computeNDCG|computeMAP|computeHitRate|quality proxy|SPECKIT_ABLATION|sign-test|Recall@20|latency_p50|token_usage|sprint|trend|shadow|baseline\" .opencode/skill/system-spec-kit/mcp_server/lib/eval | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf 'Eval framework keyword hits\\n'; rg -n \"Ablation|K_VALUES|BASELINE_K|computeRecall|computeMRR|computeNDCG|computeMAP|computeHitRate|quality proxy|SPECKIT_ABLATION|sign-test|Recall@20|latency_p50|token_usage|sprint|trend|shadow|baseline\" .opencode/skills/system-spec-kit/mcp_server/lib/eval | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 Eval framework keyword hits
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:3:description: "Evaluation, logging, baselines, quality proxies, ablation, and reporting for the memory retrieval pipeline."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:8:  - "quality proxy"
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:25:`lib/eval/` contains the measurement stack for retrieval quality, eval logging, baseline comparisons, and rollout reporting. The directory currently has 14 TypeScript modules plus the static `data/ground-truth.json` fixture.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:30:- Metric computation and quality proxy scoring.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:31:- BM25 baselines, ablations, k-sensitivity, and state baselines.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:33:- Reporting dashboard and read-only shadow comparison analysis.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:42:| `bm25-baseline.ts` | BM25-only baseline measurement and baseline metric persistence |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:47:| `eval-quality-proxy.ts` | Pure quality proxy formula for latency/result quality tradeoff scoring |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:52:| `memory-state-baseline.ts` | Retrieval/isolation baseline snapshots against the active memory DB |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:54:| `shadow-scoring.ts` | Read-only shadow comparison helpers and holdout analysis |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:62:- `ablation-framework.ts` and the handler layer gate mutation-style ablation storage behind `SPECKIT_ABLATION=true`.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:63:- `reporting-dashboard.ts` is the current reporting surface for sprint/channel aggregation.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:64:- `shadow-scoring.ts` retains comparison and analysis helpers, but the legacy write path is retired; the module is now effectively read-only analysis support.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:4:// Feature catalog: BM25-only baseline
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:8:// And computes baseline metrics. Records results in eval DB.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:10:// The baseline measurement establishes the "floor" — what simple
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:23:  computeMRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:24:  computeNDCG,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:25:  computeRecall,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:26:  computeHitRate,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:40:/** Configuration options for the BM25 baseline runner. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:50:/** Metrics produced by a single BM25 baseline run. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:142: *     improve over this baseline. Each additional channel needs
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:174:        'BM25 is moderate — semantic/graph channels should demonstrably improve over this baseline. ' +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:187:      'The low keyword-only baseline confirms that semantic and graph augmentation ' +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:231:        'Defaulting to PROCEED until hybrid baseline is established.',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:414: * Record BM25 baseline metrics to the eval DB (eval_metric_snapshots table).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:428:  // Use a synthetic eval_run_id for baseline runs: negative integer based on
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:470: * Run the BM25-only baseline measurement over the ground truth query set.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:478: * deterministic results (see tests/bm25-baseline.vitest.ts).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:544:    const qMRR = computeMRR(evalResults, groundTruth, mrrK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:548:    totalNDCG    += computeNDCG(evalResults, groundTruth, ndcgK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:549:    totalRecall  += computeRecall(evalResults, groundTruth, recallK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:550:    totalHitRate += computeHitRate(evalResults, groundTruth, 1);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:5:// Aggregates metrics per sprint/eval-run, per-channel views,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:33:  /** Filter to specific sprint labels (matched against metadata). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:34:  sprintFilter?: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:39:  /** Maximum number of sprint groups to include (most recent first). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:52:/** Per-channel performance within a sprint. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:59:/** Report for a single sprint / eval-run group. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:62:  sprint: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:63:  /** Number of eval runs in this sprint group. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:65:  /** Eval run IDs included in this sprint group. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:73:  /** Earliest timestamp in this sprint group. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:75:  /** Latest timestamp in this sprint group. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:79:/** A single trend data point comparing consecutive runs. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:107:  /** Per-sprint reports. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:108:  sprints: SprintReport[];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:110:  trends: TrendEntry[];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:152: * Extract sprint label from a metadata JSON string.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:153: * Looks for "sprint" key in the JSON. Returns null if not found.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:159:    if (parsed.sprint !== undefined && parsed.sprint !== null) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:160:      return String(parsed.sprint);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:162:    if (parsed.sprintLabel) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:163:      return String(parsed.sprintLabel);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:173: * Used for trend direction interpretation.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:212:  if (!config.sprintFilter || config.sprintFilter.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:217:    const sprintFromMeta = extractSprintFromMetadata(snap.metadata);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:218:    const label = sprintFromMeta ?? `run-${snap.eval_run_id}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:219:    return config.sprintFilter!.some((filter) => label.toLowerCase().includes(filter.toLowerCase()));
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:222:  // Apply the row safeguard after sprint filtering so matching older rows are not dropped prematurely.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:265: * Group snapshots by sprint label. Sprint label is derived from:
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:266: * 1. metadata JSON "sprint" or "sprintLabel" field
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:271:  sprintFilter?: string[],
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:276:    const sprintFromMeta = extractSprintFromMetadata(snap.metadata);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:277:    const label = sprintFromMeta ?? `run-${snap.eval_run_id}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:279:    if (sprintFilter && sprintFilter.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:280:      if (!sprintFilter.some(f => label.toLowerCase().includes(f.toLowerCase()))) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:325:  sprintLabel: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:438:    sprint: sprintLabel,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:450: * Compute trend entries by comparing metrics across consecutive sprint reports.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:451: * Uses the latest value from each sprint for comparison.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:453:function computeTrends(sprints: SprintReport[]): TrendEntry[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:454:  if (sprints.length < 2) return [];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:456:  const trends: TrendEntry[] = [];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:458:  for (let i = 1; i < sprints.length; i++) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:459:    const prev = sprints[i - 1];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:460:    const curr = sprints[i];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:490:      trends.push({
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:497:        previousLabel: prev.sprint,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:498:        currentLabel: curr.sprint,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:503:  return trends;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:510:  sprints: SprintReport[],
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:511:  trends: TrendEntry[],
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:516:  lines.push(`Dashboard covers ${totalEvalRuns} eval run(s) across ${sprints.length} sprint group(s).`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:518:  if (sprints.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:519:    const latest = sprints[sprints.length - 1];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:522:      lines.push(`Latest sprint "${latest.sprint}" tracks ${metricNames.length} metric(s) across ${latest.evalRunCount} run(s).`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:535:  if (trends.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:536:    const improved = trends.filter(t => t.direction === 'improved');
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:537:    const regressed = trends.filter(t => t.direction === 'regressed');
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:538:    const unchanged = trends.filter(t => t.direction === 'unchanged');
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:570: * groups by sprint, computes summary statistics, trend analysis, and
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:574: * @returns DashboardReport with sprint details, trends, and summary.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:584:  // Group by sprint
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:585:  const sprintGroups = groupBySprint(snapshots, config.sprintFilter);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:587:  const sprintEntries = [...sprintGroups.entries()].map(([label, groupSnapshots]) => ({
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:593:  const rankedSprintEntries = [...sprintEntries].sort((left, right) => {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:626:  // Compute trends
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:627:  const trends = computeTrends(limitedSprints);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:630:  const summary = buildSummary(limitedSprints, trends, totalEvalRuns);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:636:    sprints: limitedSprints,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:637:    trends,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:665:  // Per-sprint details
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:666:  for (const sprint of report.sprints) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:667:    lines.push(`SPRINT: ${sprint.sprint}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:669:    lines.push(`  Eval runs: ${sprint.evalRunCount}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:670:    lines.push(`  Period: ${sprint.firstSeen} - ${sprint.lastSeen}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:673:    const metricNames = Object.keys(sprint.metrics).sort();
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:677:        const m = sprint.metrics[name];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:684:    const channelMetricNames = Object.keys(sprint.channelMetrics).sort();
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:688:        const channelsForMetric = sprint.channelMetrics[metricName];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:700:    const channelNames = Object.keys(sprint.channels).sort();
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:704:        const c = sprint.channels[ch];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:715:  if (report.trends.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:718:    for (const t of report.trends) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:4:// Feature catalog: Memory roadmap baseline snapshot
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:5:// Captures baseline retrieval/isolation metrics before phased rollout.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:147: * Persist a captured baseline snapshot into eval metric history.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:163:    insert.run(snapshot.evalRunId, metricName, metricValue, 'memory-state-baseline', null, metadata);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:171: * Capture baseline retrieval and isolation metrics for readiness.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:200:        source: 'memory-state-baseline',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:218:      // Ignore close failures in baseline capture path
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:6:// continuity wrappers against baseline, component-only, and combined variants.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:11:  | 'baseline'
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:18:  'baseline',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:292:    ? `ALL ${gates.length} diversity gates PASSED. Dataset ready for T008 BM25 baseline measurement.`
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:10:      "expectedResultDescription": "Memory or spec covering search-weights.json and the MAX_TRIGGERS_PER_MEMORY constant in vector-index-impl.ts. Should surface the T000c audit or related sprint-0 documentation.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:60:      "expectedResultDescription": "Should surface sprint-0 baseline measurement (T000a) which records graphHitRate=0, and any related spec memories about graph channel initialization or telemetry gaps.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:115:      "query": "which spec documents were added during the hybrid RAG fusion sprint",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:120:      "expectedResultDescription": "Should surface memories in spec folder system-spec-kit/022-hybrid-rag-fusion (89 memories) and 140-hybrid-rag-fusion-refinement. Lists spec documents created in those sprints.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:130:      "expectedResultDescription": "Should surface T000a baseline (19 skipped tests, deferred DB fixture tests) and T005 eval-logger.ts module. May surface spec tasks.md identifying coverage gaps.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:131:      "notes": "Temporal query about current state. Tests whether the baseline measurement document surfaces for \"current state\" queries."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:235:      "query": "what was being worked on in the sprint-0 measurement foundation",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:240:      "expectedResultDescription": "Topic-scoped resume query. Should surface spec folder 001-sprint-0-measurement-foundation memories with state/next-steps anchors.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:241:      "notes": "From T007b Pattern 2: variant of session resume scoped to a specific sprint/spec folder."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:305:      "query": "what are all the spec documents in sprint 0 measurement foundation",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:310:      "expectedResultDescription": "Should surface spec.md, plan.md, tasks.md, checklist.md from 001-sprint-0-measurement-foundation spec folder.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:350:      "expectedResultDescription": "Completion verification query. Should surface the sprint-0 checklist.md with T006 line items marked or unmarked, and any state anchor from recent sessions.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:355:      "query": "what tasks remain in the sprint 0 measurement foundation",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:360:      "expectedResultDescription": "Should surface the tasks.md from 001-sprint-0-measurement-foundation with incomplete tasks listed, and any session state memory with next-steps anchor.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:460:      "expectedResultDescription": "Should surface rrf-fusion.ts, adaptive-fusion.ts channel weights, and the T000a baseline note about graphHitRate=0.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:820:      "expectedResultDescription": "Should surface graph-search-fn.ts, causal-edges.ts, and the T000a baseline note about graphHitRate=0 being expected until the graph is populated.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:821:      "notes": "Manual bug report for the graph channel — relates to known T000a baseline finding."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:870:      "expectedResultDescription": "Should surface eval-metrics.ts (existing metric functions), eval-db.ts schema, and spec tasks.md for the sprint-0 eval framework.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:905:      "query": "show me the checklist for the sprint 0 hybrid RAG fusion refinement",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:910:      "expectedResultDescription": "Should surface checklist.md from the 001-sprint-0-measurement-foundation spec folder with P0/P1/P2 items.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:925:      "query": "what is the task breakdown for the T008 BM25 baseline measurement task",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:930:      "expectedResultDescription": "Should surface the tasks.md entry for T008 in 001-sprint-0-measurement-foundation with its sub-tasks and acceptance criteria.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:931:      "notes": "Manual task-lookup query for a specific task within the sprint."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:940:      "expectedResultDescription": "Should surface implementation-summary.md from the sprint-0 spec folder if it covers the eval metrics work (T006).",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:5:// Automated quality proxy metric that correlates with manual
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:32:/** Input parameters for the quality proxy computation. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:80:/** Result of the quality proxy computation. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:151: * Compute the quality proxy score for a single search result set.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:5:// Production output. Logs both production and shadow scores for A/B comparison.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:8:// - Run alternative scoring algorithms in shadow mode
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:9:// - Compare shadow vs production results
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:11:// - Comparison summaries for production vs shadow output
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:24:/** A single scored result from either production or shadow path. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:35: * Configuration for shadow scoring.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:36: * The shadowScoringFn receives the query and production results and
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:40:  /** Human-readable name for this shadow algorithm (e.g. "rrf-v2", "weighted-bm25"). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:43:   * The alternative scoring function to run in shadow mode.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:47:  shadowScoringFn: (query: string, productionResults: ScoredResult[]) => ScoredResult[] | Promise<ScoredResult[]>;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:52:/** Per-result comparison between production and shadow scores. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:57:  shadowScore: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:58:  shadowRank: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:59:  /** shadow score - production score */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:61:  /** shadow rank - production rank (negative = promoted in shadow) */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:65:/** Comparison metrics between production and shadow scoring. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:71:  /** Name of the shadow algorithm. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:81:/** Summary statistics for a shadow comparison. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:85:  /** Number of results in shadow. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:86:  shadowCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:95:  /** IDs only in production (not in shadow). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:97:  /** IDs only in shadow (not in production). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:98:  shadowOnlyIds: number[];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:101:/** Aggregated shadow scoring statistics over a time range. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:103:  /** Total number of shadow comparisons logged. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:120:  CREATE TABLE IF NOT EXISTS eval_shadow_comparisons (
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:126:    shadow_count INTEGER NOT NULL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:153: * Ensure the shadow comparisons table exists.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:194:  shadow: ScoredResult[],
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:196:  const shadowMap = buildResultMap(shadow);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:201:    const s = shadowMap.get(p.memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:235: * Run an alternative scoring algorithm in shadow mode alongside production results.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:238: * for compatibility only, so this returns null without running the shadow function.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:244: * @param shadowConfig - Configuration including the shadow scoring function.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:251:  shadowConfig: ShadowConfig,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:255:  void shadowConfig;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:260: * Compute comparison metrics between production and shadow results.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:267: * @param shadow - Shadow scored results.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:268: * @param algorithmName - Name of the shadow algorithm.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:275:  shadow: ScoredResult[],
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:280:    return _compareShadowResultsImpl(query, production, shadow, algorithmName, metadata);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:282:    console.warn('[shadow-scoring] compareShadowResults failed (non-fatal):', err instanceof Error ? err.message : String(err));
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:288:      summary: { productionCount: production.length, shadowCount: shadow.length, overlapCount: 0, meanAbsScoreDelta: 0, meanAbsRankDelta: 0, rankCorrelation: 0, productionOnlyIds: [], shadowOnlyIds: [] },
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:297:  shadow: ScoredResult[],
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:302:  const shadowMap = buildResultMap(shadow);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:307:  const shadowIds = new Set(shadow.map(r => r.memoryId));
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:312:    const s = shadowMap.get(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:322:        shadowScore: sScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:323:        shadowRank: sRank,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:331:  const productionOnlyIds = [...prodIds].filter(id => !shadowIds.has(id));
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:332:  const shadowOnlyIds = [...shadowIds].filter(id => !prodIds.has(id));
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:343:  const rankCorrelation = computeRankCorrelation(production, shadow);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:347:    shadowCount: shadow.length,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:353:    shadowOnlyIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:367: * Persist a shadow comparison to the eval database.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:382: * Retrieve aggregated shadow scoring statistics over an optional time range.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:423:      FROM eval_shadow_comparisons
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:448:      FROM eval_shadow_comparisons
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:466:    console.warn('[shadow-scoring] getShadowStats failed (non-fatal):', msg);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:17:  /** Mean Reciprocal Rank at cutoff 5, estimated against baseline ranking. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:19:  /** Kendall tau rank correlation with the baseline (K=60) ranking. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:27:  baselineK: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:95: * given a baseline (ground-truth) ranking.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:97: * For each item in the baseline top-5, find its position in the candidate
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:100:function mrr5(baselineRanking: (number | string)[], candidateRanking: (number | string)[]): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:102:  const baselineTop = baselineRanking.slice(0, cutoff);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:104:  if (baselineTop.length === 0) return 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:112:  for (const id of baselineTop) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:120:  return sumRR / baselineTop.length;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:128:const K_VALUES = [10, 20, 40, 60, 80, 100, 120] as const;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:130:/** The baseline K-value (current production default). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:131:const BASELINE_K = 60;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:139: * 3. Computes Kendall tau correlation with the K=60 baseline
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:140: * 4. Computes MRR@5 against the K=60 baseline
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:153:  for (const k of K_VALUES) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:164:  const baselineRanking = rankingsByK.get(BASELINE_K) || [];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:170:  for (const k of K_VALUES) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:181:      mrr5: mrr5(baselineRanking, ranking),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:182:      kendallTau: kendallTau(baselineRanking, ranking),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:188:    baselineK: BASELINE_K,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:220:    K_VALUES.map((k) => {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:242:    baselineK: BASELINE_K,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:254:  baselineK: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:264: * - recommendation: which K to use based on MRR@5 vs the baseline
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:279:  // Recommendation: find K with highest MRR@5; if it equals baseline, recommend staying
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:280:  let bestK = analysis.baselineK;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:281:  let bestMrr = analysis.results[analysis.baselineK]?.mrr5 ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:291:    bestK === analysis.baselineK
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:292:      ? `K=${analysis.baselineK} (current default) is optimal — no change recommended.`
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:293:      : `K=${bestK} yields the highest MRR@5 (${bestMrr.toFixed(4)}); consider switching from K=${analysis.baselineK}.`;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:313:  return { baselineK: analysis.baselineK, grid, recommendation, sensitivityCurve };
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:395:const JUDGED_K_SWEEP_VALUES = K_VALUES;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:478:  if (ks.length === 0) return BASELINE_K;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:515:    for (const k of K_VALUES) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:546:    return BASELINE_K;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:548:  return bestKByIntent[intent] ?? BASELINE_K;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:677:      globalBestK: BASELINE_K,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:714:  let globalBestK = BASELINE_K;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:744:  K_VALUES,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:745:  BASELINE_K,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:115:export function computeMRR(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:145:export function computeNDCG(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:187:export function computeRecall(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:251:  const r = computeRecall(results, groundTruth, k);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:270:export function computeMAP(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:3:description: "Evaluation, logging, baselines, quality proxies, ablation, and reporting for the memory retrieval pipeline."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:8:  - "quality proxy"
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:25:`lib/eval/` contains the measurement stack for retrieval quality, eval logging, baseline comparisons, and rollout reporting. The directory currently has 14 TypeScript modules plus the static `data/ground-truth.json` fixture.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:30:- Metric computation and quality proxy scoring.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:31:- BM25 baselines, ablations, k-sensitivity, and state baselines.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:33:- Reporting dashboard and read-only shadow comparison analysis.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:42:| `bm25-baseline.ts` | BM25-only baseline measurement and baseline metric persistence |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:47:| `eval-quality-proxy.ts` | Pure quality proxy formula for latency/result quality tradeoff scoring |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:52:| `memory-state-baseline.ts` | Retrieval/isolation baseline snapshots against the active memory DB |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:54:| `shadow-scoring.ts` | Read-only shadow comparison helpers and holdout analysis |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:62:- `ablation-framework.ts` and the handler layer gate mutation-style ablation storage behind `SPECKIT_ABLATION=true`.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:63:- `reporting-dashboard.ts` is the current reporting surface for sprint/channel aggregation.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:64:- `shadow-scoring.ts` retains comparison and analysis helpers, but the legacy write path is retired; the module is now effectively read-only analysis support.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:4:// Feature catalog: BM25-only baseline
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:8:// And computes baseline metrics. Records results in eval DB.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:10:// The baseline measurement establishes the "floor" — what simple
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:23:  computeMRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:24:  computeNDCG,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:25:  computeRecall,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:26:  computeHitRate,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:40:/** Configuration options for the BM25 baseline runner. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:50:/** Metrics produced by a single BM25 baseline run. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:142: *     improve over this baseline. Each additional channel needs
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:174:        'BM25 is moderate — semantic/graph channels should demonstrably improve over this baseline. ' +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:187:      'The low keyword-only baseline confirms that semantic and graph augmentation ' +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:231:        'Defaulting to PROCEED until hybrid baseline is established.',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:414: * Record BM25 baseline metrics to the eval DB (eval_metric_snapshots table).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:428:  // Use a synthetic eval_run_id for baseline runs: negative integer based on
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:470: * Run the BM25-only baseline measurement over the ground truth query set.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:478: * deterministic results (see tests/bm25-baseline.vitest.ts).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:544:    const qMRR = computeMRR(evalResults, groundTruth, mrrK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:548:    totalNDCG    += computeNDCG(evalResults, groundTruth, ndcgK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:549:    totalRecall  += computeRecall(evalResults, groundTruth, recallK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:550:    totalHitRate += computeHitRate(evalResults, groundTruth, 1);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:5:// Aggregates metrics per sprint/eval-run, per-channel views,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:33:  /** Filter to specific sprint labels (matched against metadata). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:34:  sprintFilter?: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:39:  /** Maximum number of sprint groups to include (most recent first). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:52:/** Per-channel performance within a sprint. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:59:/** Report for a single sprint / eval-run group. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:62:  sprint: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:63:  /** Number of eval runs in this sprint group. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:65:  /** Eval run IDs included in this sprint group. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:73:  /** Earliest timestamp in this sprint group. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:75:  /** Latest timestamp in this sprint group. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:79:/** A single trend data point comparing consecutive runs. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:107:  /** Per-sprint reports. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:108:  sprints: SprintReport[];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:110:  trends: TrendEntry[];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:152: * Extract sprint label from a metadata JSON string.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:153: * Looks for "sprint" key in the JSON. Returns null if not found.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:159:    if (parsed.sprint !== undefined && parsed.sprint !== null) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:160:      return String(parsed.sprint);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:162:    if (parsed.sprintLabel) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:163:      return String(parsed.sprintLabel);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:173: * Used for trend direction interpretation.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:212:  if (!config.sprintFilter || config.sprintFilter.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:217:    const sprintFromMeta = extractSprintFromMetadata(snap.metadata);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:218:    const label = sprintFromMeta ?? `run-${snap.eval_run_id}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:219:    return config.sprintFilter!.some((filter) => label.toLowerCase().includes(filter.toLowerCase()));
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:222:  // Apply the row safeguard after sprint filtering so matching older rows are not dropped prematurely.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:265: * Group snapshots by sprint label. Sprint label is derived from:
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:266: * 1. metadata JSON "sprint" or "sprintLabel" field
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:271:  sprintFilter?: string[],
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:276:    const sprintFromMeta = extractSprintFromMetadata(snap.metadata);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:277:    const label = sprintFromMeta ?? `run-${snap.eval_run_id}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:279:    if (sprintFilter && sprintFilter.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:280:      if (!sprintFilter.some(f => label.toLowerCase().includes(f.toLowerCase()))) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:325:  sprintLabel: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:438:    sprint: sprintLabel,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:450: * Compute trend entries by comparing metrics across consecutive sprint reports.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:451: * Uses the latest value from each sprint for comparison.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:453:function computeTrends(sprints: SprintReport[]): TrendEntry[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:454:  if (sprints.length < 2) return [];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:456:  const trends: TrendEntry[] = [];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:458:  for (let i = 1; i < sprints.length; i++) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:459:    const prev = sprints[i - 1];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:460:    const curr = sprints[i];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:490:      trends.push({
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:497:        previousLabel: prev.sprint,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:498:        currentLabel: curr.sprint,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:503:  return trends;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:510:  sprints: SprintReport[],
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:511:  trends: TrendEntry[],
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:516:  lines.push(`Dashboard covers ${totalEvalRuns} eval run(s) across ${sprints.length} sprint group(s).`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:518:  if (sprints.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:519:    const latest = sprints[sprints.length - 1];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:522:      lines.push(`Latest sprint "${latest.sprint}" tracks ${metricNames.length} metric(s) across ${latest.evalRunCount} run(s).`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:535:  if (trends.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:536:    const improved = trends.filter(t => t.direction === 'improved');
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:537:    const regressed = trends.filter(t => t.direction === 'regressed');
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:538:    const unchanged = trends.filter(t => t.direction === 'unchanged');
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:570: * groups by sprint, computes summary statistics, trend analysis, and
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:574: * @returns DashboardReport with sprint details, trends, and summary.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:584:  // Group by sprint
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:585:  const sprintGroups = groupBySprint(snapshots, config.sprintFilter);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:587:  const sprintEntries = [...sprintGroups.entries()].map(([label, groupSnapshots]) => ({
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:593:  const rankedSprintEntries = [...sprintEntries].sort((left, right) => {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:626:  // Compute trends
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:627:  const trends = computeTrends(limitedSprints);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:630:  const summary = buildSummary(limitedSprints, trends, totalEvalRuns);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:636:    sprints: limitedSprints,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:637:    trends,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:665:  // Per-sprint details
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:666:  for (const sprint of report.sprints) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:667:    lines.push(`SPRINT: ${sprint.sprint}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:669:    lines.push(`  Eval runs: ${sprint.evalRunCount}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:670:    lines.push(`  Period: ${sprint.firstSeen} - ${sprint.lastSeen}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:673:    const metricNames = Object.keys(sprint.metrics).sort();
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:677:        const m = sprint.metrics[name];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:684:    const channelMetricNames = Object.keys(sprint.channelMetrics).sort();
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:688:        const channelsForMetric = sprint.channelMetrics[metricName];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:700:    const channelNames = Object.keys(sprint.channels).sort();
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:704:        const c = sprint.channels[ch];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:715:  if (report.trends.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:718:    for (const t of report.trends) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:4:// Feature catalog: Memory roadmap baseline snapshot
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:5:// Captures baseline retrieval/isolation metrics before phased rollout.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:147: * Persist a captured baseline snapshot into eval metric history.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:163:    insert.run(snapshot.evalRunId, metricName, metricValue, 'memory-state-baseline', null, metadata);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:171: * Capture baseline retrieval and isolation metrics for readiness.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:200:        source: 'memory-state-baseline',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:218:      // Ignore close failures in baseline capture path
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:6:// continuity wrappers against baseline, component-only, and combined variants.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:11:  | 'baseline'
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:18:  'baseline',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:292:    ? `ALL ${gates.length} diversity gates PASSED. Dataset ready for T008 BM25 baseline measurement.`
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:10:      "expectedResultDescription": "Memory or spec covering search-weights.json and the MAX_TRIGGERS_PER_MEMORY constant in vector-index-impl.ts. Should surface the T000c audit or related sprint-0 documentation.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:60:      "expectedResultDescription": "Should surface sprint-0 baseline measurement (T000a) which records graphHitRate=0, and any related spec memories about graph channel initialization or telemetry gaps.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:115:      "query": "which spec documents were added during the hybrid RAG fusion sprint",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:120:      "expectedResultDescription": "Should surface memories in spec folder system-spec-kit/022-hybrid-rag-fusion (89 memories) and 140-hybrid-rag-fusion-refinement. Lists spec documents created in those sprints.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:130:      "expectedResultDescription": "Should surface T000a baseline (19 skipped tests, deferred DB fixture tests) and T005 eval-logger.ts module. May surface spec tasks.md identifying coverage gaps.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:131:      "notes": "Temporal query about current state. Tests whether the baseline measurement document surfaces for \"current state\" queries."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:235:      "query": "what was being worked on in the sprint-0 measurement foundation",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:240:      "expectedResultDescription": "Topic-scoped resume query. Should surface spec folder 001-sprint-0-measurement-foundation memories with state/next-steps anchors.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:241:      "notes": "From T007b Pattern 2: variant of session resume scoped to a specific sprint/spec folder."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:305:      "query": "what are all the spec documents in sprint 0 measurement foundation",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:310:      "expectedResultDescription": "Should surface spec.md, plan.md, tasks.md, checklist.md from 001-sprint-0-measurement-foundation spec folder.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:350:      "expectedResultDescription": "Completion verification query. Should surface the sprint-0 checklist.md with T006 line items marked or unmarked, and any state anchor from recent sessions.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:355:      "query": "what tasks remain in the sprint 0 measurement foundation",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:360:      "expectedResultDescription": "Should surface the tasks.md from 001-sprint-0-measurement-foundation with incomplete tasks listed, and any session state memory with next-steps anchor.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:460:      "expectedResultDescription": "Should surface rrf-fusion.ts, adaptive-fusion.ts channel weights, and the T000a baseline note about graphHitRate=0.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:820:      "expectedResultDescription": "Should surface graph-search-fn.ts, causal-edges.ts, and the T000a baseline note about graphHitRate=0 being expected until the graph is populated.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:821:      "notes": "Manual bug report for the graph channel — relates to known T000a baseline finding."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:870:      "expectedResultDescription": "Should surface eval-metrics.ts (existing metric functions), eval-db.ts schema, and spec tasks.md for the sprint-0 eval framework.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:905:      "query": "show me the checklist for the sprint 0 hybrid RAG fusion refinement",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:910:      "expectedResultDescription": "Should surface checklist.md from the 001-sprint-0-measurement-foundation spec folder with P0/P1/P2 items.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:925:      "query": "what is the task breakdown for the T008 BM25 baseline measurement task",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:930:      "expectedResultDescription": "Should surface the tasks.md entry for T008 in 001-sprint-0-measurement-foundation with its sub-tasks and acceptance criteria.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:931:      "notes": "Manual task-lookup query for a specific task within the sprint."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:940:      "expectedResultDescription": "Should surface implementation-summary.md from the sprint-0 spec folder if it covers the eval metrics work (T006).",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:5:// Automated quality proxy metric that correlates with manual
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:32:/** Input parameters for the quality proxy computation. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:80:/** Result of the quality proxy computation. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:151: * Compute the quality proxy score for a single search result set.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:5:// Production output. Logs both production and shadow scores for A/B comparison.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:8:// - Run alternative scoring algorithms in shadow mode
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:9:// - Compare shadow vs production results
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:11:// - Comparison summaries for production vs shadow output
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:24:/** A single scored result from either production or shadow path. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:35: * Configuration for shadow scoring.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:36: * The shadowScoringFn receives the query and production results and
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:40:  /** Human-readable name for this shadow algorithm (e.g. "rrf-v2", "weighted-bm25"). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:43:   * The alternative scoring function to run in shadow mode.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:47:  shadowScoringFn: (query: string, productionResults: ScoredResult[]) => ScoredResult[] | Promise<ScoredResult[]>;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:52:/** Per-result comparison between production and shadow scores. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:57:  shadowScore: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:58:  shadowRank: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:59:  /** shadow score - production score */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:61:  /** shadow rank - production rank (negative = promoted in shadow) */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:65:/** Comparison metrics between production and shadow scoring. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:71:  /** Name of the shadow algorithm. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:81:/** Summary statistics for a shadow comparison. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:85:  /** Number of results in shadow. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:86:  shadowCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:95:  /** IDs only in production (not in shadow). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:97:  /** IDs only in shadow (not in production). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:98:  shadowOnlyIds: number[];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:101:/** Aggregated shadow scoring statistics over a time range. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:103:  /** Total number of shadow comparisons logged. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:120:  CREATE TABLE IF NOT EXISTS eval_shadow_comparisons (
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:126:    shadow_count INTEGER NOT NULL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:153: * Ensure the shadow comparisons table exists.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:194:  shadow: ScoredResult[],
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:196:  const shadowMap = buildResultMap(shadow);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:201:    const s = shadowMap.get(p.memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:235: * Run an alternative scoring algorithm in shadow mode alongside production results.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:238: * for compatibility only, so this returns null without running the shadow function.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:244: * @param shadowConfig - Configuration including the shadow scoring function.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:251:  shadowConfig: ShadowConfig,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:255:  void shadowConfig;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:260: * Compute comparison metrics between production and shadow results.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:267: * @param shadow - Shadow scored results.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:268: * @param algorithmName - Name of the shadow algorithm.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:275:  shadow: ScoredResult[],
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:280:    return _compareShadowResultsImpl(query, production, shadow, algorithmName, metadata);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:282:    console.warn('[shadow-scoring] compareShadowResults failed (non-fatal):', err instanceof Error ? err.message : String(err));
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:288:      summary: { productionCount: production.length, shadowCount: shadow.length, overlapCount: 0, meanAbsScoreDelta: 0, meanAbsRankDelta: 0, rankCorrelation: 0, productionOnlyIds: [], shadowOnlyIds: [] },
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:297:  shadow: ScoredResult[],
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:302:  const shadowMap = buildResultMap(shadow);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:307:  const shadowIds = new Set(shadow.map(r => r.memoryId));
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:312:    const s = shadowMap.get(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:322:        shadowScore: sScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:323:        shadowRank: sRank,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:331:  const productionOnlyIds = [...prodIds].filter(id => !shadowIds.has(id));
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:332:  const shadowOnlyIds = [...shadowIds].filter(id => !prodIds.has(id));
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:343:  const rankCorrelation = computeRankCorrelation(production, shadow);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:347:    shadowCount: shadow.length,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:353:    shadowOnlyIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:367: * Persist a shadow comparison to the eval database.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:382: * Retrieve aggregated shadow scoring statistics over an optional time range.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:423:      FROM eval_shadow_comparisons
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:448:      FROM eval_shadow_comparisons
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:466:    console.warn('[shadow-scoring] getShadowStats failed (non-fatal):', msg);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:17:  /** Mean Reciprocal Rank at cutoff 5, estimated against baseline ranking. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:19:  /** Kendall tau rank correlation with the baseline (K=60) ranking. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:27:  baselineK: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:95: * given a baseline (ground-truth) ranking.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:97: * For each item in the baseline top-5, find its position in the candidate
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:100:function mrr5(baselineRanking: (number | string)[], candidateRanking: (number | string)[]): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:102:  const baselineTop = baselineRanking.slice(0, cutoff);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:104:  if (baselineTop.length === 0) return 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:112:  for (const id of baselineTop) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:120:  return sumRR / baselineTop.length;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:128:const K_VALUES = [10, 20, 40, 60, 80, 100, 120] as const;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:130:/** The baseline K-value (current production default). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:131:const BASELINE_K = 60;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:139: * 3. Computes Kendall tau correlation with the K=60 baseline
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:140: * 4. Computes MRR@5 against the K=60 baseline
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:153:  for (const k of K_VALUES) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:164:  const baselineRanking = rankingsByK.get(BASELINE_K) || [];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:170:  for (const k of K_VALUES) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:181:      mrr5: mrr5(baselineRanking, ranking),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:182:      kendallTau: kendallTau(baselineRanking, ranking),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:188:    baselineK: BASELINE_K,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:220:    K_VALUES.map((k) => {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:242:    baselineK: BASELINE_K,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:254:  baselineK: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:264: * - recommendation: which K to use based on MRR@5 vs the baseline
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:279:  // Recommendation: find K with highest MRR@5; if it equals baseline, recommend staying
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:280:  let bestK = analysis.baselineK;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:281:  let bestMrr = analysis.results[analysis.baselineK]?.mrr5 ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:291:    bestK === analysis.baselineK
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:292:      ? `K=${analysis.baselineK} (current default) is optimal — no change recommended.`
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:293:      : `K=${bestK} yields the highest MRR@5 (${bestMrr.toFixed(4)}); consider switching from K=${analysis.baselineK}.`;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:313:  return { baselineK: analysis.baselineK, grid, recommendation, sensitivityCurve };
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:395:const JUDGED_K_SWEEP_VALUES = K_VALUES;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:478:  if (ks.length === 0) return BASELINE_K;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:515:    for (const k of K_VALUES) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:546:    return BASELINE_K;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:548:  return bestKByIntent[intent] ?? BASELINE_K;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:677:      globalBestK: BASELINE_K,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:714:  let globalBestK = BASELINE_K;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:744:  K_VALUES,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:745:  BASELINE_K,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:115:export function computeMRR(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:145:export function computeNDCG(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:187:export function computeRecall(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:251:  const r = computeRecall(results, groundTruth, k);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:270:export function computeMAP(
 
 exec
-/bin/zsh -lc "printf 'deep-review convergence doc\\n'; rg --files .opencode/skill/sk-deep-review | rg 'convergence\\.md"'$'"'; printf '\\nagent surfaces\\n'; rg --files .opencode/agent | rg 'deep-(research|review)\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf 'deep-review convergence doc\\n'; rg --files .opencode/skills/sk-deep-review | rg 'convergence\\.md"'$'"'; printf '\\nagent surfaces\\n'; rg --files .opencode/agent | rg 'deep-(research|review)\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 deep-review convergence doc
-.opencode/skill/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md
-.opencode/skill/sk-deep-review/references/convergence.md
+.opencode/skills/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md
+.opencode/skills/sk-deep-review/references/convergence.md
 
 agent surfaces
-.opencode/agent/deep-research.md
-.opencode/agent/deep-review.md
+.opencode/agents/deep-research.md
+.opencode/agents/deep-review.md
 
 exec
-/bin/zsh -lc "printf 'Reducer/config/convergence threshold hits\\n'; rg -n \"maxIterations|convergenceThreshold|stuckThreshold|rollingStopThreshold|noProgressThreshold|compositeStopScore|minStabilizationPasses|refinementMultiplier|p0OverrideMinRatio|maxDurationMinutes|maxToolCallsPerIteration|maxMinutesPerIteration|progressiveSynthesis|executionMode|reviewDimensions|severityThreshold|qualityGateThreshold|machineOwnedSections|lineageMode|allowedModes\" .opencode/skill/sk-deep-research .opencode/skill/sk-deep-review | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf 'Reducer/config/convergence threshold hits\\n'; rg -n \"maxIterations|convergenceThreshold|stuckThreshold|rollingStopThreshold|noProgressThreshold|compositeStopScore|minStabilizationPasses|refinementMultiplier|p0OverrideMinRatio|maxDurationMinutes|maxToolCallsPerIteration|maxMinutesPerIteration|progressiveSynthesis|executionMode|reviewDimensions|severityThreshold|qualityGateThreshold|machineOwnedSections|lineageMode|allowedModes\" .opencode/skills/sk-deep-research .opencode/skills/sk-deep-review | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 Reducer/config/convergence threshold hits
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:3:  "maxIterations": 10,
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:4:  "convergenceThreshold": 0.05,
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:5:  "stuckThreshold": 3,
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:6:  "maxDurationMinutes": 120,
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:7:  "maxToolCallsPerIteration": 12,
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:8:  "maxMinutesPerIteration": 10,
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:9:  "progressiveSynthesis": true,
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:13:  "executionMode": "auto",
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:17:    "lineageMode": "new",
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:18:    "allowedModes": [
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:34:    "machineOwnedSections": [
-.opencode/skill/sk-deep-review/assets/deep_review_strategy.md:183:- Session lineage: sessionId=[from config.sessionId], parentSessionId=[from config.parentSessionId], generation=[from config.generation], lineageMode=[from config.lineageMode]
-.opencode/skill/sk-deep-review/assets/deep_review_strategy.md:186:- Per-iteration budget: [from config.maxToolCallsPerIteration] tool calls, [from config.maxMinutesPerIteration] minutes
-.opencode/skill/sk-deep-review/assets/deep_review_strategy.md:187:- Severity threshold: [from config.severityThreshold]
-.opencode/skill/sk-deep-review/SKILL.md:277:- `lineageMode`
-.opencode/skill/sk-deep-review/README.md:153:Review lineage metadata lives in `deep-review-config.json` and every iteration record: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`.
-.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md:36:- Session: [from config.sessionId] (generation [from config.generation], lineage [from config.lineageMode])
-.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md:39:- Iteration: [N] of [maxIterations]
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:5:  "lineageMode": "new",
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:9:  "maxIterations": 7,
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:10:  "convergenceThreshold": 0.10,
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:11:  "stuckThreshold": 2,
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:12:  "maxDurationMinutes": 120,
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:13:  "maxToolCallsPerIteration": 12,
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:14:  "maxMinutesPerIteration": 10,
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:15:  "progressiveSynthesis": false,
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:20:  "executionMode": "auto",
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:24:  "reviewDimensions": [
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:30:  "severityThreshold": "P2",
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:43:  "qualityGateThreshold": true,
-.opencode/skill/sk-deep-research/README.md:39:The packet is now lineage-aware. Every run carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`, so the workflow can distinguish an active resume from a restart, a fork, or a completed lineage that is being reopened.
-.opencode/skill/sk-deep-review/references/quick_reference.md:149:| Dimension Coverage | 0.45 | All 4 dimensions plus required traceability protocols covered, with `minStabilizationPasses >= 1` |
-.opencode/skill/sk-deep-review/references/quick_reference.md:151:**Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minStabilizationPasses=1`
-.opencode/skill/sk-deep-review/references/convergence.md:34:| `maxIterations` | 7 | Hard ceiling on loop iterations |
-.opencode/skill/sk-deep-review/references/convergence.md:35:| `convergenceThreshold` | 0.10 | General convergence sensitivity |
-.opencode/skill/sk-deep-review/references/convergence.md:36:| `rollingStopThreshold` | 0.08 | Rolling-average STOP vote threshold |
-.opencode/skill/sk-deep-review/references/convergence.md:37:| `noProgressThreshold` | 0.05 | Stuck / no-progress classification threshold |
-.opencode/skill/sk-deep-review/references/convergence.md:38:| `stuckThreshold` | 2 | Consecutive no-progress iterations before recovery |
-.opencode/skill/sk-deep-review/references/convergence.md:39:| `minStabilizationPasses` | 1 | Coverage signal requires at least one stabilization pass |
-.opencode/skill/sk-deep-review/references/convergence.md:40:| `compositeStopScore` | 0.60 | Weighted stop-score needed before guard evaluation |
-.opencode/skill/sk-deep-review/references/convergence.md:64:if len(iterations) >= config.maxIterations:       // default 7
-.opencode/skill/sk-deep-review/references/convergence.md:74:  if stabilizationPasses >= config.coverageAge.minStabilizationPasses:
-.opencode/skill/sk-deep-review/references/convergence.md:90:function countConsecutiveStuck_review(evidenceIterations, noProgressThreshold):
-.opencode/skill/sk-deep-review/references/convergence.md:95:    if i.newFindingsRatio < noProgressThreshold or i.status == "stuck":
-.opencode/skill/sk-deep-review/references/convergence.md:102:**Threshold:** `stuckThreshold = 2` consecutive no-progress iterations (using `noProgressThreshold = 0.05`).
-.opencode/skill/sk-deep-review/references/convergence.md:108:When `stuckCount >= stuckThreshold`, the orchestrator invokes the recovery protocol (Section 8) before deciding whether to continue or stop.
-.opencode/skill/sk-deep-review/references/convergence.md:126:Averages the last 2 severity-weighted `newFindingsRatio` values from evidence-bearing iterations (excludes `thought` status). Votes STOP when the average drops below `rollingStopThreshold` (0.08).
-.opencode/skill/sk-deep-review/references/convergence.md:197:refinementMultiplier = 0.5
-.opencode/skill/sk-deep-review/references/convergence.md:208:- `refinementMultiplier = 0.5` -- refinements count at half weight.
-.opencode/skill/sk-deep-review/references/convergence.md:311:When stuck detection triggers (`stuckCount >= stuckThreshold`), the orchestrator selects a targeted recovery strategy before deciding whether to continue or exit to synthesis.
-.opencode/skill/sk-deep-review/references/convergence.md:420:  "compositeStopScore": 0.70,
-.opencode/skill/sk-deep-research/assets/deep_research_strategy.md:124:- Per-iteration budget: [from config.maxToolCallsPerIteration] tool calls, [from config.maxMinutesPerIteration] minutes
-.opencode/skill/sk-deep-research/SKILL.md:221:| **Progressive synthesis** | `progressiveSynthesis` defaults to `true`; the agent may update `research/research.md` incrementally, and the orchestrator always performs the final consolidation pass |
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:407:    `- Iteration: ${registry.metrics.iterationsCompleted} of ${config.maxIterations || 0}`,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:410:    `- Lifecycle Mode: ${config.lineage?.lineageMode || 'new'}`,
-.opencode/skill/sk-deep-research/references/convergence.md:32:  if len(iterations) >= config.maxIterations:
-.opencode/skill/sk-deep-research/references/convergence.md:46:  if stuckCount >= config.stuckThreshold:
-.opencode/skill/sk-deep-research/references/convergence.md:80:    rollingStop = avgNewInfo < config.convergenceThreshold
-.opencode/skill/sk-deep-research/references/convergence.md:230:    if i.newInfoRatio < config.convergenceThreshold or i.status == "stuck":
-.opencode/skill/sk-deep-research/references/convergence.md:238:- `newInfoRatio < config.convergenceThreshold` (below the configured no-progress threshold)
-.opencode/skill/sk-deep-research/references/convergence.md:332:When `stuckCount >= stuckThreshold` (default 3):
-.opencode/skill/sk-deep-research/references/convergence.md:414:  if all(config.convergenceThreshold <= r <= 0.20 for r in recentRatios):
-.opencode/skill/sk-deep-research/references/convergence.md:423:- If `newInfoRatio > config.convergenceThreshold`: Recovery successful. Reset stuck count. Continue.
-.opencode/skill/sk-deep-research/references/convergence.md:424:- If `newInfoRatio <= config.convergenceThreshold`: Recovery failed. Exit to synthesis with gaps documented.
-.opencode/skill/sk-deep-research/references/convergence.md:668:| `rollingStopThreshold` | `0.08` | STOP vote threshold for the rolling-average signal |
-.opencode/skill/sk-deep-research/references/convergence.md:669:| `noProgressThreshold` | `0.05` | Stuck/no-progress threshold for recovery classification |
-.opencode/skill/sk-deep-research/references/convergence.md:671:| `coverageAge.minStabilizationPasses` | `1` | Coverage can vote STOP only after at least one stabilization pass |
-.opencode/skill/sk-deep-research/references/convergence.md:672:| `compositeStopScore` | `0.60` | Weighted stop-score needed before guard evaluation |
-.opencode/skill/sk-deep-research/references/convergence.md:681:  if len(iterations) >= config.maxIterations:
-.opencode/skill/sk-deep-research/references/convergence.md:690:    if stabilizationPasses >= config.coverageAge.minStabilizationPasses:
-.opencode/skill/sk-deep-research/references/convergence.md:695:  stuckCount = countConsecutiveStuck_review(evidenceIterations, config.thresholds.noProgressThreshold)
-.opencode/skill/sk-deep-research/references/convergence.md:696:  if stuckCount >= config.stuckThreshold:
-.opencode/skill/sk-deep-research/references/convergence.md:705:    rollingStop = avgRatio < config.thresholds.rollingStopThreshold
-.opencode/skill/sk-deep-research/references/convergence.md:722:    stabilizationPasses >= config.coverageAge.minStabilizationPasses
-.opencode/skill/sk-deep-research/references/convergence.md:738:    if stopScore >= config.thresholds.compositeStopScore:
-.opencode/skill/sk-deep-research/references/convergence.md:798:**Threshold:** 2 consecutive no-progress iterations. Review mode uses `noProgressThreshold = 0.05`, not the rolling stop threshold.
-.opencode/skill/sk-deep-research/references/convergence.md:834:- Require `minStabilizationPasses >= 1` before the coverage signal can vote STOP
-.opencode/skill/sk-deep-research/references/convergence.md:851:- Coverage cannot vote STOP until `minStabilizationPasses >= 1`
-.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md:35:- Iteration: [N] of [maxIterations]
-.opencode/skill/sk-deep-research/references/quick_reference.md:32:| `progressiveSynthesis` | true | Allow incremental `research/research.md` updates before final synthesis |
-.opencode/skill/sk-deep-research/references/quick_reference.md:83:> **Live lifecycle branches:** `resume`, `restart`, `fork`, `completed-continue`. `progressiveSynthesis` defaults to `true`, so `research/research.md` is updated during the loop and finalized at synthesis.
-.opencode/skill/sk-deep-research/references/quick_reference.md:117:stuckThreshold consecutive no-progress?
-.opencode/skill/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md:47:| DRV-003 | Parameterized invocation max-iterations and convergence | Verify that `--max-iterations` (default 7) and `--convergence` (default 0.10) parameters are documented consistently and flow through to the review config. | Validate the parameter contract for sk-deep-review. Confirm that `--max-iterations` (default 7) and `--convergence` (default 0.10) appear consistently across the quick reference, command entrypoint, and both YAML workflows, then return a concise user-facing pass/fail verdict. | 1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .opencode/skill/sk-deep-review/references/quick_reference.md` -> 2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/command/spec_kit/deep-review.md` -> 3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init. | Capture the parameter table from the quick reference, the argument-hint line, and the YAML user_inputs and config-creation steps. | PASS if all sources agree on defaults and the config init step propagates overrides; FAIL if defaults drift or the override path is broken. | Cross-reference the quick reference parameter table with the YAML `step_create_config` to verify the values flow through. |
-.opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md:223:Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:123:      maxIterations: 7
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:124:      convergenceThreshold: 0.10
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:125:      stuckThreshold: 2
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:137:      refinementMultiplier: 0.5
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:138:      p0OverrideMinRatio: 0.50
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:141:      minStabilizationPasses: 1
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:143:      rollingStopThreshold: 0.08
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:144:      noProgressThreshold: 0.05
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:145:      compositeStopScore: 0.60
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:162:    - lineageMode
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:250:        - lineageMode
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:322:          - lineageMode
-.opencode/skill/sk-deep-research/references/loop_protocol.md:165:Iteration: {N} of {maxIterations}
-.opencode/skill/sk-deep-research/references/loop_protocol.md:182:- **Tool call count**: tracked against `config.maxToolCallsPerIteration` (default: 12)
-.opencode/skill/sk-deep-research/references/loop_protocol.md:183:- **Elapsed time**: tracked against `config.maxMinutesPerIteration` (default: 10)
-.opencode/skill/sk-deep-research/references/loop_protocol.md:198:7. Track stuck count: skip if `status == "thought"` (no change), reset to 0 if `status == "insight"` (breakthrough counts as progress), increment if `newInfoRatio < config.convergenceThreshold`, reset otherwise
-.opencode/skill/sk-deep-research/references/loop_protocol.md:273:When stuckThreshold consecutive iterations show no progress (default: 3, configurable via config.json):
-.opencode/skill/sk-deep-research/references/loop_protocol.md:277:1. Read the last N iteration files (where N = stuckThreshold) to determine the failure pattern
-.opencode/skill/sk-deep-research/references/loop_protocol.md:458:- If `progressiveSynthesis: true` (default): research/research.md was updated each iteration. Final synthesis is a cleanup pass.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:459:- If `progressiveSynthesis: false`: research/research.md is created from scratch during synthesis.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:490:    |-- stuck_count >= stuckThreshold --> [STUCK_RECOVERY]
-.opencode/skill/sk-deep-research/references/loop_protocol.md:614:- Stuck count `>= 2` using `noProgressThreshold = 0.05`? `STUCK_RECOVERY`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:616:  - rolling average uses `rollingStopThreshold = 0.08`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:618:  - coverage has aged through `minStabilizationPasses >= 1`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:643:Iteration: {N} of {maxIterations}
-.opencode/skill/sk-deep-research/references/loop_protocol.md:681:5. Update stuck tracking using `noProgressThreshold = 0.05`
-.opencode/skill/sk-deep-review/references/loop_protocol.md:106:6. **Write config**: `{spec_folder}/review/deep-review-config.json` with `mode: "review"`, lineage metadata (`sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`), and review-specific fields including target, target type, dimensions, protocol plan, and release-readiness state.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:163:- Stuck count `>= 2` using `noProgressThreshold = 0.05`? `STUCK_RECOVERY`
-.opencode/skill/sk-deep-review/references/loop_protocol.md:165:  - Rolling average uses `rollingStopThreshold = 0.08`
-.opencode/skill/sk-deep-review/references/loop_protocol.md:167:  - Coverage has aged through `minStabilizationPasses >= 1`
-.opencode/skill/sk-deep-review/references/loop_protocol.md:176:| Rolling Average | 0.30 | Last 2 severity-weighted `newFindingsRatio` values average below `rollingStopThreshold` |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:228:Iteration: {N} of {maxIterations}
-.opencode/skill/sk-deep-review/references/loop_protocol.md:288:5. Update stuck tracking using `noProgressThreshold = 0.05`:
-.opencode/skill/sk-deep-review/references/loop_protocol.md:291:   - Increment if `newFindingsRatio < noProgressThreshold`
-.opencode/skill/sk-deep-review/references/loop_protocol.md:347:**Threshold:** 2 consecutive no-progress iterations (`noProgressThreshold = 0.05`).
-.opencode/skill/sk-deep-review/references/loop_protocol.md:511:   {"type":"event","event":"resumed","lineageMode":"resume","sessionId":"rvw-...","generation":1,"fromIteration":N}
-.opencode/skill/sk-deep-review/references/loop_protocol.md:674:Three binary gates must pass before a STOP decision is finalized. These gates are defined in `review_mode_contract.yaml` under `qualityGates` and are evaluated after the composite convergence score exceeds the `compositeStopScore` threshold.
-.opencode/skill/sk-deep-review/references/state_format.md:58:  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
-.opencode/skill/sk-deep-review/references/state_format.md:61:  "lineageMode": "new",
-.opencode/skill/sk-deep-review/references/state_format.md:64:  "maxIterations": 7,
-.opencode/skill/sk-deep-review/references/state_format.md:65:  "convergenceThreshold": 0.10,
-.opencode/skill/sk-deep-review/references/state_format.md:66:  "stuckThreshold": 2,
-.opencode/skill/sk-deep-review/references/state_format.md:67:  "severityThreshold": "P2",
-.opencode/skill/sk-deep-review/references/state_format.md:72:  "qualityGateThreshold": true,
-.opencode/skill/sk-deep-review/references/state_format.md:77:  "executionMode": "auto",
-.opencode/skill/sk-deep-review/references/state_format.md:111:| reviewDimensions | string[] | all 4 | Dimensions to evaluate |
-.opencode/skill/sk-deep-review/references/state_format.md:114:| lineageMode | string | `"new"` | `new`, `resume`, `restart`, `fork`, `completed-continue` |
-.opencode/skill/sk-deep-review/references/state_format.md:117:| maxIterations | number | 7 | Hard cap on loop iterations |
-.opencode/skill/sk-deep-review/references/state_format.md:118:| convergenceThreshold | number | 0.10 | Stop when severity-weighted new findings ratio below this |
-.opencode/skill/sk-deep-review/references/state_format.md:119:| stuckThreshold | number | 2 | Consecutive no-progress iterations before recovery |
-.opencode/skill/sk-deep-review/references/state_format.md:120:| severityThreshold | string | `"P2"` | Minimum severity to report: `P0`, `P1`, `P2` |
-.opencode/skill/sk-deep-review/references/state_format.md:122:| qualityGateThreshold | boolean | true | Whether binary quality gates are enforced |
-.opencode/skill/sk-deep-review/references/state_format.md:168:{"type":"config","mode":"review","topic":"...","reviewTarget":"...","sessionId":"rvw-...","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"createdAt":"2026-03-24T14:00:00Z","specFolder":"..."}
-.opencode/skill/sk-deep-review/references/state_format.md:181:  "lineageMode": "resume",
-.opencode/skill/sk-deep-review/references/state_format.md:192:**Required fields:** `type`, `mode`, `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`
-.opencode/skill/sk-deep-review/references/state_format.md:203:| lineageMode | string | Lifecycle mode used for this run |
-.opencode/skill/sk-deep-review/references/state_format.md:217:**Severity math:** `refinementMultiplier: 0.5`, `p0OverrideMinRatio: 0.50`, `noFindingsRatio: 0.0`
-.opencode/skill/sk-deep-review/references/state_format.md:342:  "lineageMode": "resume",
-.opencode/skill/sk-deep-review/references/state_format.md:580:Same file + line range + root cause as an existing finding = **refinement**, not new. The existing findingId is updated. Refinements count at half weight (`refinementMultiplier: 0.5`) and are tracked via `findingsRefined` in JSONL.
-.opencode/skill/sk-deep-research/references/capability_matrix.md:29:6. Lineage metadata keys: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`.
-.opencode/skill/sk-deep-research/references/state_format.md:25:| `research/research.md` | Markdown | Workflow-owned canonical synthesis output | Updated incrementally only when `progressiveSynthesis` is enabled |
-.opencode/skill/sk-deep-research/references/state_format.md:46:  "maxIterations": 10,
-.opencode/skill/sk-deep-research/references/state_format.md:47:  "convergenceThreshold": 0.05,
-.opencode/skill/sk-deep-research/references/state_format.md:48:  "stuckThreshold": 3,
-.opencode/skill/sk-deep-research/references/state_format.md:49:  "maxDurationMinutes": 120,
-.opencode/skill/sk-deep-research/references/state_format.md:50:  "progressiveSynthesis": true,
-.opencode/skill/sk-deep-research/references/state_format.md:54:  "executionMode": "auto",
-.opencode/skill/sk-deep-research/references/state_format.md:58:    "lineageMode": "new",
-.opencode/skill/sk-deep-research/references/state_format.md:68:| maxIterations | number | No | 10 | Hard cap on loop iterations |
-.opencode/skill/sk-deep-research/references/state_format.md:69:| convergenceThreshold | number | No | 0.05 | Stop when avg newInfoRatio below this |
-.opencode/skill/sk-deep-research/references/state_format.md:70:| stuckThreshold | number | No | 3 | Consecutive no-progress iterations before recovery |
-.opencode/skill/sk-deep-research/references/state_format.md:71:| maxDurationMinutes | number | No | 120 | Hard timeout for entire loop |
-.opencode/skill/sk-deep-research/references/state_format.md:72:| progressiveSynthesis | boolean | No | true | Update research/research.md after each iteration; synthesis still performs a cleanup pass |
-.opencode/skill/sk-deep-research/references/state_format.md:76:| executionMode | string | No | "auto" | auto or confirm |
-.opencode/skill/sk-deep-research/references/state_format.md:79:| lineage.lineageMode | string | Yes | "new" | `new`, `resume`, `restart`, `fork`, or `completed-continue` |
-.opencode/skill/sk-deep-research/references/state_format.md:91:  "maxIterations": 10,
-.opencode/skill/sk-deep-research/references/state_format.md:123:{"type":"config","topic":"API response time optimization","maxIterations":10,"convergenceThreshold":0.05,"createdAt":"2026-03-18T10:00:00Z","specFolder":"028-auto-deep-research"}
-.opencode/skill/sk-deep-research/references/state_format.md:274:| `lineageMode` | How the current segment began |
-.opencode/skill/sk-deep-research/references/state_format.md:455:Progressive synthesis updated after each iteration when `progressiveSynthesis` is enabled. Follows the standard 17-section research template. Lives at `{spec_folder}/research/research.md` (not in scratch/). `research/research.md` is workflow-owned canonical synthesis output.
-.opencode/skill/sk-deep-research/references/state_format.md:695:  "reviewDimensions": [
-.opencode/skill/sk-deep-research/references/state_format.md:701:  "severityThreshold": "P2",
-.opencode/skill/sk-deep-research/references/state_format.md:714:| reviewDimensions | string[] | all 4 | Dimensions to evaluate |
-.opencode/skill/sk-deep-research/references/state_format.md:715:| severityThreshold | string | `"P2"` | Minimum severity to report (`P0`, `P1`, `P2`) |
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:3:description: "Verify review stops at maxIterations (default 7) even if dimensions remain uncovered."
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:14:This scenario validates stop on max iterations for `DRV-015`. The objective is to verify that the review loop stops at `maxIterations` (default 7) even if review dimensions remain uncovered.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:26:- Objective: Verify review stops at maxIterations (default 7) even if dimensions remain uncovered.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:28:- Orchestrator prompt: Validate the hard iteration cap contract for sk-deep-review. Confirm that `maxIterations` defaults to 7, that the loop exits unconditionally at that limit regardless of dimension coverage or convergence score, and that synthesis still runs after a hard stop, then return a concise operator-facing verdict.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:30:- Desired user-facing outcome: The user is told that the review loop always terminates at maxIterations and still produces a review report even if not all dimensions were covered.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:31:- Expected signals: `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:32:- Pass/fail posture: PASS if the hard cap is enforced unconditionally and synthesis still runs; FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:47:| DRV-015 | Stop on max iterations | Verify review stops at maxIterations (default 7) even if dimensions remain uncovered. | Validate the hard iteration cap contract for sk-deep-review. Confirm that `maxIterations` defaults to 7, that the loop exits unconditionally at that limit regardless of dimension coverage or convergence score, and that synthesis still runs after a hard stop, then return a concise operator-facing verdict. | 1. `bash: rg -n 'maxIterations|hard.stop|HARD_STOP|max_iterations|iteration.*cap' .opencode/skill/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'maxIterations|max-iterations|default.*7|hard stop' .opencode/skill/sk-deep-review/references/quick_reference.md .opencode/skill/sk-deep-review/SKILL.md .opencode/skill/sk-deep-review/README.md` | `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced. | Capture the hard-stop condition from convergence.md, the YAML enforcement step, and the user-facing documentation of the default. | PASS if the hard cap is enforced unconditionally and synthesis still runs; FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop. | Privilege the convergence reference for exact algorithm and use YAML workflow steps as the enforcement authority. |
-.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/014-stuck-recovery-widens-focus-and-continues.md:47:| DR-014 | Stuck recovery widens focus and continues | Verify that stuck detection triggers a recovery path that widens focus before giving up. | Validate the stuck-recovery contract for sk-deep-research. Confirm that consecutive no-progress iterations trigger recovery, widen focus to a less-explored question, consult deferred ideas, and continue before final synthesis, then return a concise verdict. | 1. `bash: rg -n 'stuckThreshold|STUCK_RECOVERY|least-explored|recovery' .opencode/skill/sk-deep-research/references/convergence.md .opencode/skill/sk-deep-research/references/loop_protocol.md` -> 2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` -> 3. `bash: rg -n 'RECOVERY MODE|research-ideas|Exhausted Approaches' .codex/agents/deep-research.toml` | Stuck threshold is enforced, recovery resets the counter, the next focus widens scope, and the ideas backlog can be consulted during recovery. | Capture the stuck threshold, the widened-focus rule, and the runtime recovery mode behavior together. | PASS if recovery widens focus and continues before exiting to synthesis; FAIL if the contract jumps straight from stuck to termination without a recovery attempt. | Check the convergence reference and loop protocol together because one defines the trigger and the other defines the recovery ladder. |
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md:31:- Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md:47:| DRV-016 | Composite review convergence stop behavior | Verify 3-signal composite convergence (rolling avg 0.30, MAD 0.25, dimension coverage 0.45) with threshold 0.60 and severity-weighted newFindingsRatio. | Validate the composite convergence contract for sk-deep-review. Confirm the rolling average signal (weight 0.30, threshold 0.08), MAD noise floor signal (weight 0.25), and dimension coverage signal (weight 0.45, requires all 4 dimensions), their severity-weighted newFindingsRatio calculation, and the >0.60 weighted stop-score threshold, then return a concise operator-facing verdict. | 1. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|dimension coverage|0.60|severity.weighted|newFindingsRatio|0\.30|0\.25|0\.45' .opencode/skill/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'COMPOSITE|rolling_average|MAD|dimension_coverage|convergence|stop_score|severity.*weight|newFindingsRatio' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'Convergence|Rolling Average|MAD|Dimension Coverage|0\.30|0\.25|0\.45|severity.weighted|newFindingsRatio' .opencode/skill/sk-deep-review/references/quick_reference.md .opencode/skill/sk-deep-review/SKILL.md .opencode/skill/sk-deep-review/README.md` | Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions. | Capture the full signal table, YAML algorithm excerpt, severity weighting formula, and the user-facing explanation. | PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs; FAIL if any of those elements drift materially. | Privilege the convergence reference for exact math and use quick reference and SKILL.md only as secondary confirmation. |
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:3:description: "Verify the dimension coverage signal (weight 0.45) requires all 4 dimensions plus minStabilizationPasses >= 1 before contributing to convergence."
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:18:Dimension coverage is the heaviest-weighted convergence signal at 0.45. If it fires prematurely -- before all dimensions are examined or before findings have stabilized -- the review could stop with an incomplete picture. The `minStabilizationPasses` requirement ensures that coverage is not just claimed but verified through at least one follow-up iteration.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:26:- Objective: Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:28:- Orchestrator prompt: Validate the dimension coverage convergence signal for sk-deep-review. Confirm that the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered in strategy.md, requires `minStabilizationPasses >= 1` (at least one iteration after full coverage where no new dimension-first findings appear), and only then contributes its weight to the composite stop score, then return a concise operator-facing verdict.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:31:- Expected signals: Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:47:| DRV-020 | Dimension coverage convergence signal | Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1. | Validate the dimension coverage convergence signal for sk-deep-review. Confirm that the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered, requires `minStabilizationPasses >= 1`, and only then contributes to the composite stop score, then return a concise operator-facing verdict. | 1. `bash: rg -n 'dimension.coverage|Dimension Coverage|0\.45|minStabilization|stabilization|all.*dimension|4.*dimension' .opencode/skill/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'Dimension Coverage|0\.45|minStabilization|stabilization|Covered|D1|D2|D3|D4|Correctness|Security|Traceability|Maintainability' .opencode/skill/sk-deep-review/references/quick_reference.md .opencode/skill/sk-deep-review/SKILL.md .opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage. | Capture the signal definition from convergence.md, the YAML enforcement, the 4-dimension list, and the strategy template tracking coverage. | PASS if the dimension coverage signal requires all 4 dimensions and stabilization before contributing; FAIL if the signal can fire with incomplete dimension coverage or without stabilization. | Privilege the convergence reference for the signal formula and use the strategy template and YAML for enforcement confirmation. |
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:64:| `.opencode/skill/sk-deep-research/references/convergence.md` | Canonical convergence math; dimension coverage signal definition and minStabilizationPasses |
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:28:- Orchestrator prompt: Validate the stuck recovery contract for sk-deep-review. Confirm that when `stuckThreshold` consecutive iterations produce `newFindingsRatio` below `noProgressThreshold`, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state, then return a concise operator-facing verdict.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:31:- Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:47:| DRV-019 | Stuck recovery widens dimension focus | Verify stuck recovery switches to least-covered dimension when progress stalls. | Validate the stuck recovery contract for sk-deep-review. Confirm that when `stuckThreshold` consecutive iterations produce `newFindingsRatio` below `noProgressThreshold`, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state, then return a concise operator-facing verdict. | 1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .opencode/skill/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'stuck|recovery|dimension.*focus|noProgress|least.covered|Next Focus' .opencode/skill/sk-deep-review/references/quick_reference.md .opencode/skill/sk-deep-review/SKILL.md .opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | `stuckThreshold=2`, `noProgressThreshold=0.05`, recovery selects least-covered dimension, strategy.md "Next Focus" is updated, and stuck event logged to JSONL. | Capture the stuck detection algorithm from convergence.md, the YAML recovery step, and the strategy template showing dimension-focus rotation. | PASS if stuck detection and dimension-widening recovery are enforced and documented; FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing. | Privilege the convergence reference for stuck detection math and the YAML workflow for recovery enforcement; use strategy template as secondary evidence. |
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:67:| `.opencode/skill/sk-deep-review/references/quick_reference.md` | Convergence parameters including stuckThreshold; use `ANCHOR:convergence` |
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:3:description: "Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled."
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:14:This scenario validates progressive synthesis behavior for research/research.md for `DR-010`. The objective is to verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:26:- Objective: Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:28:- Orchestrator prompt: Validate the progressive-synthesis contract for sk-deep-research. Confirm that research/research.md is workflow-owned canonical output, that incremental updates are allowed when progressiveSynthesis is true, and that synthesis still finalizes the document, then return a concise verdict.
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:31:- Expected signals: The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs.
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:47:| DR-010 | Progressive synthesis behavior for research/research.md | Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled. | Validate the progressive-synthesis contract for sk-deep-research. Confirm that `research/research.md` is workflow-owned canonical output, that incremental updates are allowed when `progressiveSynthesis` is true, and that synthesis still finalizes the document, then return a concise verdict. | 1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skill/sk-deep-research/README.md .opencode/skill/sk-deep-research/references/state_format.md .opencode/skill/sk-deep-research/SKILL.md` -> 2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .codex/agents/deep-research.toml` -> 3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs. | Capture the ownership wording, the progressive update rule, and the synthesis-phase contract together. | PASS if all sources agree that progressive updates may occur but final synthesis still owns canonical completion; FAIL if ownership of `research/research.md` is contradictory. | Use the runtime agent’s Step 7 and the README configuration table to resolve terse wording. |
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:3:  "maxIterations": 10,
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:4:  "convergenceThreshold": 0.05,
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:5:  "stuckThreshold": 3,
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:6:  "maxDurationMinutes": 120,
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:7:  "maxToolCallsPerIteration": 12,
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:8:  "maxMinutesPerIteration": 10,
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:9:  "progressiveSynthesis": true,
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:13:  "executionMode": "auto",
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:17:    "lineageMode": "new",
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:18:    "allowedModes": [
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:34:    "machineOwnedSections": [
+.opencode/skills/sk-deep-review/assets/deep_review_strategy.md:183:- Session lineage: sessionId=[from config.sessionId], parentSessionId=[from config.parentSessionId], generation=[from config.generation], lineageMode=[from config.lineageMode]
+.opencode/skills/sk-deep-review/assets/deep_review_strategy.md:186:- Per-iteration budget: [from config.maxToolCallsPerIteration] tool calls, [from config.maxMinutesPerIteration] minutes
+.opencode/skills/sk-deep-review/assets/deep_review_strategy.md:187:- Severity threshold: [from config.severityThreshold]
+.opencode/skills/sk-deep-review/SKILL.md:277:- `lineageMode`
+.opencode/skills/sk-deep-review/README.md:153:Review lineage metadata lives in `deep-review-config.json` and every iteration record: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`.
+.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md:36:- Session: [from config.sessionId] (generation [from config.generation], lineage [from config.lineageMode])
+.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md:39:- Iteration: [N] of [maxIterations]
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:5:  "lineageMode": "new",
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:9:  "maxIterations": 7,
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:10:  "convergenceThreshold": 0.10,
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:11:  "stuckThreshold": 2,
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:12:  "maxDurationMinutes": 120,
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:13:  "maxToolCallsPerIteration": 12,
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:14:  "maxMinutesPerIteration": 10,
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:15:  "progressiveSynthesis": false,
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:20:  "executionMode": "auto",
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:24:  "reviewDimensions": [
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:30:  "severityThreshold": "P2",
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:43:  "qualityGateThreshold": true,
+.opencode/skills/sk-deep-research/README.md:39:The packet is now lineage-aware. Every run carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`, so the workflow can distinguish an active resume from a restart, a fork, or a completed lineage that is being reopened.
+.opencode/skills/sk-deep-review/references/quick_reference.md:149:| Dimension Coverage | 0.45 | All 4 dimensions plus required traceability protocols covered, with `minStabilizationPasses >= 1` |
+.opencode/skills/sk-deep-review/references/quick_reference.md:151:**Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minStabilizationPasses=1`
+.opencode/skills/sk-deep-review/references/convergence.md:34:| `maxIterations` | 7 | Hard ceiling on loop iterations |
+.opencode/skills/sk-deep-review/references/convergence.md:35:| `convergenceThreshold` | 0.10 | General convergence sensitivity |
+.opencode/skills/sk-deep-review/references/convergence.md:36:| `rollingStopThreshold` | 0.08 | Rolling-average STOP vote threshold |
+.opencode/skills/sk-deep-review/references/convergence.md:37:| `noProgressThreshold` | 0.05 | Stuck / no-progress classification threshold |
+.opencode/skills/sk-deep-review/references/convergence.md:38:| `stuckThreshold` | 2 | Consecutive no-progress iterations before recovery |
+.opencode/skills/sk-deep-review/references/convergence.md:39:| `minStabilizationPasses` | 1 | Coverage signal requires at least one stabilization pass |
+.opencode/skills/sk-deep-review/references/convergence.md:40:| `compositeStopScore` | 0.60 | Weighted stop-score needed before guard evaluation |
+.opencode/skills/sk-deep-review/references/convergence.md:64:if len(iterations) >= config.maxIterations:       // default 7
+.opencode/skills/sk-deep-review/references/convergence.md:74:  if stabilizationPasses >= config.coverageAge.minStabilizationPasses:
+.opencode/skills/sk-deep-review/references/convergence.md:90:function countConsecutiveStuck_review(evidenceIterations, noProgressThreshold):
+.opencode/skills/sk-deep-review/references/convergence.md:95:    if i.newFindingsRatio < noProgressThreshold or i.status == "stuck":
+.opencode/skills/sk-deep-review/references/convergence.md:102:**Threshold:** `stuckThreshold = 2` consecutive no-progress iterations (using `noProgressThreshold = 0.05`).
+.opencode/skills/sk-deep-review/references/convergence.md:108:When `stuckCount >= stuckThreshold`, the orchestrator invokes the recovery protocol (Section 8) before deciding whether to continue or stop.
+.opencode/skills/sk-deep-review/references/convergence.md:126:Averages the last 2 severity-weighted `newFindingsRatio` values from evidence-bearing iterations (excludes `thought` status). Votes STOP when the average drops below `rollingStopThreshold` (0.08).
+.opencode/skills/sk-deep-review/references/convergence.md:197:refinementMultiplier = 0.5
+.opencode/skills/sk-deep-review/references/convergence.md:208:- `refinementMultiplier = 0.5` -- refinements count at half weight.
+.opencode/skills/sk-deep-review/references/convergence.md:311:When stuck detection triggers (`stuckCount >= stuckThreshold`), the orchestrator selects a targeted recovery strategy before deciding whether to continue or exit to synthesis.
+.opencode/skills/sk-deep-review/references/convergence.md:420:  "compositeStopScore": 0.70,
+.opencode/skills/sk-deep-research/assets/deep_research_strategy.md:124:- Per-iteration budget: [from config.maxToolCallsPerIteration] tool calls, [from config.maxMinutesPerIteration] minutes
+.opencode/skills/sk-deep-research/SKILL.md:221:| **Progressive synthesis** | `progressiveSynthesis` defaults to `true`; the agent may update `research/research.md` incrementally, and the orchestrator always performs the final consolidation pass |
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:407:    `- Iteration: ${registry.metrics.iterationsCompleted} of ${config.maxIterations || 0}`,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:410:    `- Lifecycle Mode: ${config.lineage?.lineageMode || 'new'}`,
+.opencode/skills/sk-deep-research/references/convergence.md:32:  if len(iterations) >= config.maxIterations:
+.opencode/skills/sk-deep-research/references/convergence.md:46:  if stuckCount >= config.stuckThreshold:
+.opencode/skills/sk-deep-research/references/convergence.md:80:    rollingStop = avgNewInfo < config.convergenceThreshold
+.opencode/skills/sk-deep-research/references/convergence.md:230:    if i.newInfoRatio < config.convergenceThreshold or i.status == "stuck":
+.opencode/skills/sk-deep-research/references/convergence.md:238:- `newInfoRatio < config.convergenceThreshold` (below the configured no-progress threshold)
+.opencode/skills/sk-deep-research/references/convergence.md:332:When `stuckCount >= stuckThreshold` (default 3):
+.opencode/skills/sk-deep-research/references/convergence.md:414:  if all(config.convergenceThreshold <= r <= 0.20 for r in recentRatios):
+.opencode/skills/sk-deep-research/references/convergence.md:423:- If `newInfoRatio > config.convergenceThreshold`: Recovery successful. Reset stuck count. Continue.
+.opencode/skills/sk-deep-research/references/convergence.md:424:- If `newInfoRatio <= config.convergenceThreshold`: Recovery failed. Exit to synthesis with gaps documented.
+.opencode/skills/sk-deep-research/references/convergence.md:668:| `rollingStopThreshold` | `0.08` | STOP vote threshold for the rolling-average signal |
+.opencode/skills/sk-deep-research/references/convergence.md:669:| `noProgressThreshold` | `0.05` | Stuck/no-progress threshold for recovery classification |
+.opencode/skills/sk-deep-research/references/convergence.md:671:| `coverageAge.minStabilizationPasses` | `1` | Coverage can vote STOP only after at least one stabilization pass |
+.opencode/skills/sk-deep-research/references/convergence.md:672:| `compositeStopScore` | `0.60` | Weighted stop-score needed before guard evaluation |
+.opencode/skills/sk-deep-research/references/convergence.md:681:  if len(iterations) >= config.maxIterations:
+.opencode/skills/sk-deep-research/references/convergence.md:690:    if stabilizationPasses >= config.coverageAge.minStabilizationPasses:
+.opencode/skills/sk-deep-research/references/convergence.md:695:  stuckCount = countConsecutiveStuck_review(evidenceIterations, config.thresholds.noProgressThreshold)
+.opencode/skills/sk-deep-research/references/convergence.md:696:  if stuckCount >= config.stuckThreshold:
+.opencode/skills/sk-deep-research/references/convergence.md:705:    rollingStop = avgRatio < config.thresholds.rollingStopThreshold
+.opencode/skills/sk-deep-research/references/convergence.md:722:    stabilizationPasses >= config.coverageAge.minStabilizationPasses
+.opencode/skills/sk-deep-research/references/convergence.md:738:    if stopScore >= config.thresholds.compositeStopScore:
+.opencode/skills/sk-deep-research/references/convergence.md:798:**Threshold:** 2 consecutive no-progress iterations. Review mode uses `noProgressThreshold = 0.05`, not the rolling stop threshold.
+.opencode/skills/sk-deep-research/references/convergence.md:834:- Require `minStabilizationPasses >= 1` before the coverage signal can vote STOP
+.opencode/skills/sk-deep-research/references/convergence.md:851:- Coverage cannot vote STOP until `minStabilizationPasses >= 1`
+.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md:35:- Iteration: [N] of [maxIterations]
+.opencode/skills/sk-deep-research/references/quick_reference.md:32:| `progressiveSynthesis` | true | Allow incremental `research/research.md` updates before final synthesis |
+.opencode/skills/sk-deep-research/references/quick_reference.md:83:> **Live lifecycle branches:** `resume`, `restart`, `fork`, `completed-continue`. `progressiveSynthesis` defaults to `true`, so `research/research.md` is updated during the loop and finalized at synthesis.
+.opencode/skills/sk-deep-research/references/quick_reference.md:117:stuckThreshold consecutive no-progress?
+.opencode/skills/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md:47:| DRV-003 | Parameterized invocation max-iterations and convergence | Verify that `--max-iterations` (default 7) and `--convergence` (default 0.10) parameters are documented consistently and flow through to the review config. | Validate the parameter contract for sk-deep-review. Confirm that `--max-iterations` (default 7) and `--convergence` (default 0.10) appear consistently across the quick reference, command entrypoint, and both YAML workflows, then return a concise user-facing pass/fail verdict. | 1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .opencode/skills/sk-deep-review/references/quick_reference.md` -> 2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/commands/spec_kit/deep-review.md` -> 3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init. | Capture the parameter table from the quick reference, the argument-hint line, and the YAML user_inputs and config-creation steps. | PASS if all sources agree on defaults and the config init step propagates overrides; FAIL if defaults drift or the override path is broken. | Cross-reference the quick reference parameter table with the YAML `step_create_config` to verify the values flow through. |
+.opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md:223:Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:123:      maxIterations: 7
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:124:      convergenceThreshold: 0.10
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:125:      stuckThreshold: 2
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:137:      refinementMultiplier: 0.5
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:138:      p0OverrideMinRatio: 0.50
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:141:      minStabilizationPasses: 1
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:143:      rollingStopThreshold: 0.08
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:144:      noProgressThreshold: 0.05
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:145:      compositeStopScore: 0.60
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:162:    - lineageMode
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:250:        - lineageMode
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:322:          - lineageMode
+.opencode/skills/sk-deep-research/references/loop_protocol.md:165:Iteration: {N} of {maxIterations}
+.opencode/skills/sk-deep-research/references/loop_protocol.md:182:- **Tool call count**: tracked against `config.maxToolCallsPerIteration` (default: 12)
+.opencode/skills/sk-deep-research/references/loop_protocol.md:183:- **Elapsed time**: tracked against `config.maxMinutesPerIteration` (default: 10)
+.opencode/skills/sk-deep-research/references/loop_protocol.md:198:7. Track stuck count: skip if `status == "thought"` (no change), reset to 0 if `status == "insight"` (breakthrough counts as progress), increment if `newInfoRatio < config.convergenceThreshold`, reset otherwise
+.opencode/skills/sk-deep-research/references/loop_protocol.md:273:When stuckThreshold consecutive iterations show no progress (default: 3, configurable via config.json):
+.opencode/skills/sk-deep-research/references/loop_protocol.md:277:1. Read the last N iteration files (where N = stuckThreshold) to determine the failure pattern
+.opencode/skills/sk-deep-research/references/loop_protocol.md:458:- If `progressiveSynthesis: true` (default): research/research.md was updated each iteration. Final synthesis is a cleanup pass.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:459:- If `progressiveSynthesis: false`: research/research.md is created from scratch during synthesis.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:490:    |-- stuck_count >= stuckThreshold --> [STUCK_RECOVERY]
+.opencode/skills/sk-deep-research/references/loop_protocol.md:614:- Stuck count `>= 2` using `noProgressThreshold = 0.05`? `STUCK_RECOVERY`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:616:  - rolling average uses `rollingStopThreshold = 0.08`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:618:  - coverage has aged through `minStabilizationPasses >= 1`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:643:Iteration: {N} of {maxIterations}
+.opencode/skills/sk-deep-research/references/loop_protocol.md:681:5. Update stuck tracking using `noProgressThreshold = 0.05`
+.opencode/skills/sk-deep-review/references/loop_protocol.md:106:6. **Write config**: `{spec_folder}/review/deep-review-config.json` with `mode: "review"`, lineage metadata (`sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`), and review-specific fields including target, target type, dimensions, protocol plan, and release-readiness state.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:163:- Stuck count `>= 2` using `noProgressThreshold = 0.05`? `STUCK_RECOVERY`
+.opencode/skills/sk-deep-review/references/loop_protocol.md:165:  - Rolling average uses `rollingStopThreshold = 0.08`
+.opencode/skills/sk-deep-review/references/loop_protocol.md:167:  - Coverage has aged through `minStabilizationPasses >= 1`
+.opencode/skills/sk-deep-review/references/loop_protocol.md:176:| Rolling Average | 0.30 | Last 2 severity-weighted `newFindingsRatio` values average below `rollingStopThreshold` |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:228:Iteration: {N} of {maxIterations}
+.opencode/skills/sk-deep-review/references/loop_protocol.md:288:5. Update stuck tracking using `noProgressThreshold = 0.05`:
+.opencode/skills/sk-deep-review/references/loop_protocol.md:291:   - Increment if `newFindingsRatio < noProgressThreshold`
+.opencode/skills/sk-deep-review/references/loop_protocol.md:347:**Threshold:** 2 consecutive no-progress iterations (`noProgressThreshold = 0.05`).
+.opencode/skills/sk-deep-review/references/loop_protocol.md:511:   {"type":"event","event":"resumed","lineageMode":"resume","sessionId":"rvw-...","generation":1,"fromIteration":N}
+.opencode/skills/sk-deep-review/references/loop_protocol.md:674:Three binary gates must pass before a STOP decision is finalized. These gates are defined in `review_mode_contract.yaml` under `qualityGates` and are evaluated after the composite convergence score exceeds the `compositeStopScore` threshold.
+.opencode/skills/sk-deep-review/references/state_format.md:58:  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+.opencode/skills/sk-deep-review/references/state_format.md:61:  "lineageMode": "new",
+.opencode/skills/sk-deep-review/references/state_format.md:64:  "maxIterations": 7,
+.opencode/skills/sk-deep-review/references/state_format.md:65:  "convergenceThreshold": 0.10,
+.opencode/skills/sk-deep-review/references/state_format.md:66:  "stuckThreshold": 2,
+.opencode/skills/sk-deep-review/references/state_format.md:67:  "severityThreshold": "P2",
+.opencode/skills/sk-deep-review/references/state_format.md:72:  "qualityGateThreshold": true,
+.opencode/skills/sk-deep-review/references/state_format.md:77:  "executionMode": "auto",
+.opencode/skills/sk-deep-review/references/state_format.md:111:| reviewDimensions | string[] | all 4 | Dimensions to evaluate |
+.opencode/skills/sk-deep-review/references/state_format.md:114:| lineageMode | string | `"new"` | `new`, `resume`, `restart`, `fork`, `completed-continue` |
+.opencode/skills/sk-deep-review/references/state_format.md:117:| maxIterations | number | 7 | Hard cap on loop iterations |
+.opencode/skills/sk-deep-review/references/state_format.md:118:| convergenceThreshold | number | 0.10 | Stop when severity-weighted new findings ratio below this |
+.opencode/skills/sk-deep-review/references/state_format.md:119:| stuckThreshold | number | 2 | Consecutive no-progress iterations before recovery |
+.opencode/skills/sk-deep-review/references/state_format.md:120:| severityThreshold | string | `"P2"` | Minimum severity to report: `P0`, `P1`, `P2` |
+.opencode/skills/sk-deep-review/references/state_format.md:122:| qualityGateThreshold | boolean | true | Whether binary quality gates are enforced |
+.opencode/skills/sk-deep-review/references/state_format.md:168:{"type":"config","mode":"review","topic":"...","reviewTarget":"...","sessionId":"rvw-...","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"createdAt":"2026-03-24T14:00:00Z","specFolder":"..."}
+.opencode/skills/sk-deep-review/references/state_format.md:181:  "lineageMode": "resume",
+.opencode/skills/sk-deep-review/references/state_format.md:192:**Required fields:** `type`, `mode`, `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`
+.opencode/skills/sk-deep-review/references/state_format.md:203:| lineageMode | string | Lifecycle mode used for this run |
+.opencode/skills/sk-deep-review/references/state_format.md:217:**Severity math:** `refinementMultiplier: 0.5`, `p0OverrideMinRatio: 0.50`, `noFindingsRatio: 0.0`
+.opencode/skills/sk-deep-review/references/state_format.md:342:  "lineageMode": "resume",
+.opencode/skills/sk-deep-review/references/state_format.md:580:Same file + line range + root cause as an existing finding = **refinement**, not new. The existing findingId is updated. Refinements count at half weight (`refinementMultiplier: 0.5`) and are tracked via `findingsRefined` in JSONL.
+.opencode/skills/sk-deep-research/references/capability_matrix.md:29:6. Lineage metadata keys: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`.
+.opencode/skills/sk-deep-research/references/state_format.md:25:| `research/research.md` | Markdown | Workflow-owned canonical synthesis output | Updated incrementally only when `progressiveSynthesis` is enabled |
+.opencode/skills/sk-deep-research/references/state_format.md:46:  "maxIterations": 10,
+.opencode/skills/sk-deep-research/references/state_format.md:47:  "convergenceThreshold": 0.05,
+.opencode/skills/sk-deep-research/references/state_format.md:48:  "stuckThreshold": 3,
+.opencode/skills/sk-deep-research/references/state_format.md:49:  "maxDurationMinutes": 120,
+.opencode/skills/sk-deep-research/references/state_format.md:50:  "progressiveSynthesis": true,
+.opencode/skills/sk-deep-research/references/state_format.md:54:  "executionMode": "auto",
+.opencode/skills/sk-deep-research/references/state_format.md:58:    "lineageMode": "new",
+.opencode/skills/sk-deep-research/references/state_format.md:68:| maxIterations | number | No | 10 | Hard cap on loop iterations |
+.opencode/skills/sk-deep-research/references/state_format.md:69:| convergenceThreshold | number | No | 0.05 | Stop when avg newInfoRatio below this |
+.opencode/skills/sk-deep-research/references/state_format.md:70:| stuckThreshold | number | No | 3 | Consecutive no-progress iterations before recovery |
+.opencode/skills/sk-deep-research/references/state_format.md:71:| maxDurationMinutes | number | No | 120 | Hard timeout for entire loop |
+.opencode/skills/sk-deep-research/references/state_format.md:72:| progressiveSynthesis | boolean | No | true | Update research/research.md after each iteration; synthesis still performs a cleanup pass |
+.opencode/skills/sk-deep-research/references/state_format.md:76:| executionMode | string | No | "auto" | auto or confirm |
+.opencode/skills/sk-deep-research/references/state_format.md:79:| lineage.lineageMode | string | Yes | "new" | `new`, `resume`, `restart`, `fork`, or `completed-continue` |
+.opencode/skills/sk-deep-research/references/state_format.md:91:  "maxIterations": 10,
+.opencode/skills/sk-deep-research/references/state_format.md:123:{"type":"config","topic":"API response time optimization","maxIterations":10,"convergenceThreshold":0.05,"createdAt":"2026-03-18T10:00:00Z","specFolder":"028-auto-deep-research"}
+.opencode/skills/sk-deep-research/references/state_format.md:274:| `lineageMode` | How the current segment began |
+.opencode/skills/sk-deep-research/references/state_format.md:455:Progressive synthesis updated after each iteration when `progressiveSynthesis` is enabled. Follows the standard 17-section research template. Lives at `{spec_folder}/research/research.md` (not in scratch/). `research/research.md` is workflow-owned canonical synthesis output.
+.opencode/skills/sk-deep-research/references/state_format.md:695:  "reviewDimensions": [
+.opencode/skills/sk-deep-research/references/state_format.md:701:  "severityThreshold": "P2",
+.opencode/skills/sk-deep-research/references/state_format.md:714:| reviewDimensions | string[] | all 4 | Dimensions to evaluate |
+.opencode/skills/sk-deep-research/references/state_format.md:715:| severityThreshold | string | `"P2"` | Minimum severity to report (`P0`, `P1`, `P2`) |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:3:description: "Verify review stops at maxIterations (default 7) even if dimensions remain uncovered."
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:14:This scenario validates stop on max iterations for `DRV-015`. The objective is to verify that the review loop stops at `maxIterations` (default 7) even if review dimensions remain uncovered.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:26:- Objective: Verify review stops at maxIterations (default 7) even if dimensions remain uncovered.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:28:- Orchestrator prompt: Validate the hard iteration cap contract for sk-deep-review. Confirm that `maxIterations` defaults to 7, that the loop exits unconditionally at that limit regardless of dimension coverage or convergence score, and that synthesis still runs after a hard stop, then return a concise operator-facing verdict.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:30:- Desired user-facing outcome: The user is told that the review loop always terminates at maxIterations and still produces a review report even if not all dimensions were covered.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:31:- Expected signals: `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:32:- Pass/fail posture: PASS if the hard cap is enforced unconditionally and synthesis still runs; FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:47:| DRV-015 | Stop on max iterations | Verify review stops at maxIterations (default 7) even if dimensions remain uncovered. | Validate the hard iteration cap contract for sk-deep-review. Confirm that `maxIterations` defaults to 7, that the loop exits unconditionally at that limit regardless of dimension coverage or convergence score, and that synthesis still runs after a hard stop, then return a concise operator-facing verdict. | 1. `bash: rg -n 'maxIterations|hard.stop|HARD_STOP|max_iterations|iteration.*cap' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'maxIterations|max-iterations|default.*7|hard stop' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/README.md` | `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced. | Capture the hard-stop condition from convergence.md, the YAML enforcement step, and the user-facing documentation of the default. | PASS if the hard cap is enforced unconditionally and synthesis still runs; FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop. | Privilege the convergence reference for exact algorithm and use YAML workflow steps as the enforcement authority. |
+.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/014-stuck-recovery-widens-focus-and-continues.md:47:| DR-014 | Stuck recovery widens focus and continues | Verify that stuck detection triggers a recovery path that widens focus before giving up. | Validate the stuck-recovery contract for sk-deep-research. Confirm that consecutive no-progress iterations trigger recovery, widen focus to a less-explored question, consult deferred ideas, and continue before final synthesis, then return a concise verdict. | 1. `bash: rg -n 'stuckThreshold|STUCK_RECOVERY|least-explored|recovery' .opencode/skills/sk-deep-research/references/convergence.md .opencode/skills/sk-deep-research/references/loop_protocol.md` -> 2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` -> 3. `bash: rg -n 'RECOVERY MODE|research-ideas|Exhausted Approaches' .codex/agents/deep-research.toml` | Stuck threshold is enforced, recovery resets the counter, the next focus widens scope, and the ideas backlog can be consulted during recovery. | Capture the stuck threshold, the widened-focus rule, and the runtime recovery mode behavior together. | PASS if recovery widens focus and continues before exiting to synthesis; FAIL if the contract jumps straight from stuck to termination without a recovery attempt. | Check the convergence reference and loop protocol together because one defines the trigger and the other defines the recovery ladder. |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md:31:- Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md:47:| DRV-016 | Composite review convergence stop behavior | Verify 3-signal composite convergence (rolling avg 0.30, MAD 0.25, dimension coverage 0.45) with threshold 0.60 and severity-weighted newFindingsRatio. | Validate the composite convergence contract for sk-deep-review. Confirm the rolling average signal (weight 0.30, threshold 0.08), MAD noise floor signal (weight 0.25), and dimension coverage signal (weight 0.45, requires all 4 dimensions), their severity-weighted newFindingsRatio calculation, and the >0.60 weighted stop-score threshold, then return a concise operator-facing verdict. | 1. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|dimension coverage|0.60|severity.weighted|newFindingsRatio|0\.30|0\.25|0\.45' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'COMPOSITE|rolling_average|MAD|dimension_coverage|convergence|stop_score|severity.*weight|newFindingsRatio' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'Convergence|Rolling Average|MAD|Dimension Coverage|0\.30|0\.25|0\.45|severity.weighted|newFindingsRatio' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/README.md` | Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions. | Capture the full signal table, YAML algorithm excerpt, severity weighting formula, and the user-facing explanation. | PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs; FAIL if any of those elements drift materially. | Privilege the convergence reference for exact math and use quick reference and SKILL.md only as secondary confirmation. |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:3:description: "Verify the dimension coverage signal (weight 0.45) requires all 4 dimensions plus minStabilizationPasses >= 1 before contributing to convergence."
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:18:Dimension coverage is the heaviest-weighted convergence signal at 0.45. If it fires prematurely -- before all dimensions are examined or before findings have stabilized -- the review could stop with an incomplete picture. The `minStabilizationPasses` requirement ensures that coverage is not just claimed but verified through at least one follow-up iteration.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:26:- Objective: Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:28:- Orchestrator prompt: Validate the dimension coverage convergence signal for sk-deep-review. Confirm that the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered in strategy.md, requires `minStabilizationPasses >= 1` (at least one iteration after full coverage where no new dimension-first findings appear), and only then contributes its weight to the composite stop score, then return a concise operator-facing verdict.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:31:- Expected signals: Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:47:| DRV-020 | Dimension coverage convergence signal | Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1. | Validate the dimension coverage convergence signal for sk-deep-review. Confirm that the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered, requires `minStabilizationPasses >= 1`, and only then contributes to the composite stop score, then return a concise operator-facing verdict. | 1. `bash: rg -n 'dimension.coverage|Dimension Coverage|0\.45|minStabilization|stabilization|all.*dimension|4.*dimension' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'Dimension Coverage|0\.45|minStabilization|stabilization|Covered|D1|D2|D3|D4|Correctness|Security|Traceability|Maintainability' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage. | Capture the signal definition from convergence.md, the YAML enforcement, the 4-dimension list, and the strategy template tracking coverage. | PASS if the dimension coverage signal requires all 4 dimensions and stabilization before contributing; FAIL if the signal can fire with incomplete dimension coverage or without stabilization. | Privilege the convergence reference for the signal formula and use the strategy template and YAML for enforcement confirmation. |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:64:| `.opencode/skills/sk-deep-research/references/convergence.md` | Canonical convergence math; dimension coverage signal definition and minStabilizationPasses |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:28:- Orchestrator prompt: Validate the stuck recovery contract for sk-deep-review. Confirm that when `stuckThreshold` consecutive iterations produce `newFindingsRatio` below `noProgressThreshold`, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state, then return a concise operator-facing verdict.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:31:- Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:47:| DRV-019 | Stuck recovery widens dimension focus | Verify stuck recovery switches to least-covered dimension when progress stalls. | Validate the stuck recovery contract for sk-deep-review. Confirm that when `stuckThreshold` consecutive iterations produce `newFindingsRatio` below `noProgressThreshold`, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state, then return a concise operator-facing verdict. | 1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'stuck|recovery|dimension.*focus|noProgress|least.covered|Next Focus' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | `stuckThreshold=2`, `noProgressThreshold=0.05`, recovery selects least-covered dimension, strategy.md "Next Focus" is updated, and stuck event logged to JSONL. | Capture the stuck detection algorithm from convergence.md, the YAML recovery step, and the strategy template showing dimension-focus rotation. | PASS if stuck detection and dimension-widening recovery are enforced and documented; FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing. | Privilege the convergence reference for stuck detection math and the YAML workflow for recovery enforcement; use strategy template as secondary evidence. |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:67:| `.opencode/skills/sk-deep-review/references/quick_reference.md` | Convergence parameters including stuckThreshold; use `ANCHOR:convergence` |
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:3:description: "Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled."
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:14:This scenario validates progressive synthesis behavior for research/research.md for `DR-010`. The objective is to verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:26:- Objective: Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:28:- Orchestrator prompt: Validate the progressive-synthesis contract for sk-deep-research. Confirm that research/research.md is workflow-owned canonical output, that incremental updates are allowed when progressiveSynthesis is true, and that synthesis still finalizes the document, then return a concise verdict.
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:31:- Expected signals: The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs.
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:47:| DR-010 | Progressive synthesis behavior for research/research.md | Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled. | Validate the progressive-synthesis contract for sk-deep-research. Confirm that `research/research.md` is workflow-owned canonical output, that incremental updates are allowed when `progressiveSynthesis` is true, and that synthesis still finalizes the document, then return a concise verdict. | 1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skills/sk-deep-research/README.md .opencode/skills/sk-deep-research/references/state_format.md .opencode/skills/sk-deep-research/SKILL.md` -> 2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .codex/agents/deep-research.toml` -> 3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs. | Capture the ownership wording, the progressive update rule, and the synthesis-phase contract together. | PASS if all sources agree that progressive updates may occur but final synthesis still owns canonical completion; FAIL if ownership of `research/research.md` is contradictory. | Use the runtime agent’s Step 7 and the README configuration table to resolve terse wording. |
 
 exec
-/bin/zsh -lc 'for f in .opencode/skill/sk-deep-review/references/convergence.md .opencode/agent/deep-research.md .opencode/agent/deep-review.md; do if [ -f "$f" ]; then echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,260p'; fi; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for f in .opencode/skills/sk-deep-review/references/convergence.md .opencode/agents/deep-research.md .opencode/agents/deep-review.md; do if [ -f "$f" ]; then echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,260p'; fi; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-===== .opencode/skill/sk-deep-review/references/convergence.md =====
+===== .opencode/skills/sk-deep-review/references/convergence.md =====
      1	---
      2	title: Deep Review Convergence
      3	description: Stop condition algorithms, quality guards, and recovery strategies for the autonomous deep review loop.
@@ -4530,7 +4530,7 @@ exec
    258	
    259	  if len(violations) > 0:
    260	    return { passed: false, violations }
-===== .opencode/agent/deep-research.md =====
+===== .opencode/agents/deep-research.md =====
      1	---
      2	name: deep-research
      3	description: "Autonomous deep research agent executing single iteration cycles with externalized state"
@@ -4556,7 +4556,7 @@ exec
     23	
     24	Executes ONE research iteration within an autonomous loop. Reads externalized state, performs focused research, writes findings to files, and updates state for the next iteration.
     25	
-    26	**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+    26	**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
     27	
     28	**CRITICAL**: This agent executes a SINGLE iteration, not the full loop. The loop is managed by the `/spec_kit:deep-research` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what to investigate.
     29	
@@ -4791,7 +4791,7 @@ exec
    258	   - If prior iterations searched broadly, narrow to specific aspect
    259	   - If prior iterations were domain-specific, try cross-domain analysis
    260	3. Document the recovery attempt explicitly in findings
-===== .opencode/agent/deep-review.md =====
+===== .opencode/agents/deep-review.md =====
      1	---
      2	name: deep-review
      3	description: "LEAF review agent for sk-deep-review. Performs single review iteration: reads state, reviews one dimension with P0/P1/P2 findings, updates strategy and JSONL."
@@ -4816,7 +4816,7 @@ exec
     22	
     23	Executes ONE review iteration within an autonomous review loop. Reads externalized state, reviews code quality across one dimension, produces P0/P1/P2 findings with file:line evidence, and updates state for the next iteration.
     24	
-    25	**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+    25	**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
     26	
     27	**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/spec_kit:deep-review` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what dimension to review.
     28	
@@ -4911,7 +4911,7 @@ exec
    117	- `[INFERENCE: based on X and Y]` when deriving from multiple sources
    118	
    119	#### Step 4: Classify Findings
-   120	Before assigning severity, load `.opencode/skill/sk-code-review/references/review_core.md`.
+   120	Before assigning severity, load `.opencode/skills/sk-code-review/references/review_core.md`.
    121	
    122	Use the shared `P0` / `P1` / `P2` definitions and evidence requirements from `review_core.md`, then tag each finding with one primary review dimension: `correctness`, `security`, `traceability`, or `maintainability`.
    123	
@@ -5056,7 +5056,7 @@ exec
 codex
 The tuning surface is larger than just the two JSON configs: the convergence references and `review_mode_contract.yaml` embed additional thresholds, weights, and even alternate “reference-only” algorithms. I’m pulling those exact sections now so the final search-space estimate is precise instead of hand-wavy.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/references/convergence.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/references/convergence.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	title: Convergence Detection Reference
@@ -5280,9 +5280,9 @@ exec
    220	  count = 0
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/references/convergence.md | sed -n '640,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/references/convergence.md | sed -n '640,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/assets/review_mode_contract.yaml | sed -n '120,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml | sed -n '120,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    640	weightedTotal = sum(SEVERITY_WEIGHTS[f.severity] for f in all_findings_this_iteration)
    641	
@@ -5607,7 +5607,7 @@ exec
    220	      appliesTo: [agent]
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts | sed -n '124,340p'; printf '\\n===== eval-metrics =====\\n'; nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts | sed -n '110,320p'; printf '\\n===== shadow-scoring =====\\n'; nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts | sed -n '235,380p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts | sed -n '124,340p'; printf '\\n===== eval-metrics =====\\n'; nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts | sed -n '110,320p'; printf '\\n===== shadow-scoring =====\\n'; nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts | sed -n '235,380p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    124	// 3. MAIN ANALYSIS FUNCTION
    125	
@@ -6296,11 +6296,11 @@ exec
     18	
     19	## EXECUTIVE SUMMARY
     20	
-    21	Implement the first `manual_testing_playbook/` package for `.opencode/skill/sk-deep-research/` as a greenfield documentation package derived from the live deep-research command, skill, README, references, assets, and `.codex/agents/deep-research.toml`. The approved plan is fixed: 19 scenarios using IDs `DR-001` through `DR-019`, organized into 6 numbered categories, with explicit disclosure that no `feature_catalog/` exists yet for `sk-deep-research`.
+    21	Implement the first `manual_testing_playbook/` package for `.opencode/skills/sk-deep-research/` as a greenfield documentation package derived from the live deep-research command, skill, README, references, assets, and `.codex/agents/deep-research.toml`. The approved plan is fixed: 19 scenarios using IDs `DR-001` through `DR-019`, organized into 6 numbered categories, with explicit disclosure that no `feature_catalog/` exists yet for `sk-deep-research`.
     22	
     23	**Key Decisions**: keep the playbook greenfield and create-first, use the integrated `sk-doc` root-guidance contract, and preserve the approved 19-scenario ordering from entry points through synthesis and guardrails.
     24	
-    25	**Critical Dependencies**: `.opencode/skill/sk-deep-research/`, `.opencode/command/spec_kit/deep-research.md`, `.codex/agents/deep-research.toml`, and the `sk-doc` testing-playbook creation guide and templates.
+    25	**Critical Dependencies**: `.opencode/skills/sk-deep-research/`, `.opencode/commands/spec_kit/deep-research.md`, `.codex/agents/deep-research.toml`, and the `sk-doc` testing-playbook creation guide and templates.
     26	
     27	---
     28	
@@ -6336,7 +6336,7 @@ exec
     58	## 3. SCOPE
     59	
     60	### In Scope
-    61	- Implement a greenfield `manual_testing_playbook/` package under `.opencode/skill/sk-deep-research/`.
+    61	- Implement a greenfield `manual_testing_playbook/` package under `.opencode/skills/sk-deep-research/`.
     62	- Create one root playbook and 19 per-feature scenario files using stable IDs `DR-001` through `DR-019`.
     63	- Use the 6 approved category folders:
     64	  - `01--entry-points-and-modes`
@@ -6349,7 +6349,7 @@ exec
     71	- State clearly that no `feature_catalog/` exists yet and that the playbook is a greenfield create effort, not an update or migration.
     72	
     73	### Out of Scope
-    74	- Creating `.opencode/skill/sk-deep-research/feature_catalog/` in this workstream.
+    74	- Creating `.opencode/skills/sk-deep-research/feature_catalog/` in this workstream.
     75	- Modifying `sk-deep-research`, `sk-doc`, command, agent, or validator source files.
     76	- Turning reference-only concepts such as wave mode, segment partitioning, or alternate CLI dispatch into shipped runtime features.
     77	
@@ -6357,7 +6357,7 @@ exec
     79	
     80	| File Path | Change Type | Description |
     81	|-----------|-------------|-------------|
-    82	| `.opencode/skill/sk-deep-research/manual_testing_playbook/ root playbook` | Create | Root playbook with integrated review protocol, evidence rules, category summaries, and explicit no-feature-catalog disclosure |
+    82	| `.opencode/skills/sk-deep-research/manual_testing_playbook/ root playbook` | Create | Root playbook with integrated review protocol, evidence rules, category summaries, and explicit no-feature-catalog disclosure |
     83	| `01--entry-points-and-modes / DR-001` | Create | Setup prompt and topic-capture scenario |
     84	| `01--entry-points-and-modes / DR-002` | Create | Required spec-folder-choice scenario |
     85	| `01--entry-points-and-modes / DR-003` | Create | Autonomous-mode scenario |
@@ -6388,7 +6388,7 @@ exec
    110	
    111	| ID | Requirement | Acceptance Criteria |
    112	|----|-------------|---------------------|
-   113	| REQ-001 | Create the greenfield playbook package at `.opencode/skill/sk-deep-research/manual_testing_playbook/` | The package contains the root playbook file, the 6 approved category folders, and all 19 planned scenario files listed in Scope |
+   113	| REQ-001 | Create the greenfield playbook package at `.opencode/skills/sk-deep-research/manual_testing_playbook/` | The package contains the root playbook file, the 6 approved category folders, and all 19 planned scenario files listed in Scope |
    114	| REQ-002 | Use the current integrated `sk-doc` testing-playbook contract | The root playbook owns review protocol, orchestration rules, evidence expectations, and category summaries; there are no canonical sidecar review files and no `snippets/` subtree |
    115	| REQ-003 | Derive every scenario from live `sk-deep-research` sources only | Scenario content is anchored to the current command, skill, README, references, assets, and `.codex/agents/deep-research.toml`, not to deleted or missing design docs |
    116	| REQ-004 | Handle the missing feature catalog honestly | The root playbook cross-reference section and each per-feature file explicitly note that no dedicated `feature_catalog/` exists yet for `sk-deep-research` |
@@ -6432,7 +6432,7 @@ exec
    154	
    155	| Type | Item | Impact | Mitigation |
    156	|------|------|--------|------------|
-   157	| Dependency | `.opencode/skill/sk-deep-research/` docs and assets | Missing or stale anchors would weaken scenario truth | Anchor every scenario to current files and re-read live docs immediately before authoring |
+   157	| Dependency | `.opencode/skills/sk-deep-research/` docs and assets | Missing or stale anchors would weaken scenario truth | Anchor every scenario to current files and re-read live docs immediately before authoring |
    158	| Dependency | `sk-doc` playbook creation guide and templates | Contract drift would create a non-standard package | Follow the shipped creation guide and root/snippet template structure exactly |
    159	| Risk | Source docs mix live and reference-only behavior | Operators could test unshipped features as if they were live | Reserve explicit guardrail treatment for `DR-019` and label boundaries clearly |
    160	| Risk | README points at a non-existent design spec path | Authors may copy stale references into the playbook | Treat the missing path as stale documentation and exclude it from live source anchors |
@@ -6591,42 +6591,42 @@ exec
     92	
     93	| File Path | Change Type | Description |
     94	|-----------|-------------|-------------|
-    95	| `.opencode/skill/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
-    96	| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
-    97	| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
-    98	| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
-    99	| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Modify | Keep operator-facing guidance aligned with the new defaults and opt-in modes. |
-   100	| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
-   101	| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add coverage/depth, domain clustering, promotion checkpoints, semantic convergence, and council/coordination planning sections. |
-   102	| `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling convergence, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
-   103	| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
-   104	| `.opencode/skill/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
-   105	| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
-   106	| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
-   107	| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
-   108	| `.opencode/skill/sk-deep-review/references/quick_reference.md` | Modify | Keep operator-facing review guidance aligned with the new defaults and optional modes. |
-   109	| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
-   110	| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
-   111	| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
-   112	| `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling severity trends, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
+    95	| `.opencode/skills/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
+    96	| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
+    97	| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
+    98	| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
+    99	| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Modify | Keep operator-facing guidance aligned with the new defaults and opt-in modes. |
+   100	| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
+   101	| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add coverage/depth, domain clustering, promotion checkpoints, semantic convergence, and council/coordination planning sections. |
+   102	| `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling convergence, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
+   103	| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
+   104	| `.opencode/skills/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
+   105	| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
+   106	| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
+   107	| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
+   108	| `.opencode/skills/sk-deep-review/references/quick_reference.md` | Modify | Keep operator-facing review guidance aligned with the new defaults and optional modes. |
+   109	| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
+   110	| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
+   111	| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
+   112	| `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling severity trends, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
    113	
    114	#### Commands and Workflow Assets
    115	
    116	| File Path | Change Type | Description |
    117	|-----------|-------------|-------------|
-   118	| `.opencode/command/spec_kit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-   119	| `.opencode/command/spec_kit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-   120	| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
-   121	| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
-   122	| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
-   123	| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+   118	| `.opencode/commands/spec_kit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+   119	| `.opencode/commands/spec_kit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+   120	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
+   121	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+   122	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
+   123	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
    124	
    125	#### Agents and Runtime Mirrors
    126	
    127	| File Path | Change Type | Description |
    128	|-----------|-------------|-------------|
-   129	| `.opencode/agent/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
-   130	| `.opencode/agent/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
+   129	| `.opencode/agents/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
+   130	| `.opencode/agents/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
    131	| `.claude/agents/deep-research.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
    132	| `.gemini/agents/deep-research.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
    133	| `.codex/agents/deep-research.toml` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
@@ -6639,13 +6639,13 @@ exec
    140	
    141	| File Path | Change Type | Description |
    142	|-----------|-------------|-------------|
-   143	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
-   144	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
-   145	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
-   146	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
-   147	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
-   148	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
-   149	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
+   143	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
+   144	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
+   145	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
+   146	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
+   147	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
+   148	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
+   149	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
    150	
    151	<!-- /ANCHOR:scope -->
    152	---
@@ -6792,10 +6792,10 @@ exec
     72	
     73	### Key Components
     74	
-    75	- **Command layer**: `.opencode/command/spec_kit/deep-research.md` and `.opencode/command/spec_kit/deep-review.md`
+    75	- **Command layer**: `.opencode/commands/spec_kit/deep-research.md` and `.opencode/commands/spec_kit/deep-review.md`
     76	- **Workflow layer**: auto/confirm YAML assets for deep research and deep review
     77	- **Skill layer**: current contracts, references, config/strategy/dashboard assets
-    78	- **Agent layer**: canonical `.opencode/agent/` deep-loop workers plus parity mirrors if still hand-authored
+    78	- **Agent layer**: canonical `.opencode/agents/` deep-loop workers plus parity mirrors if still hand-authored
     79	- **Runtime substrate**: reducer logic and state contracts
     80	- **Verification layer**: reducer, parity, and new behavior-first Vitest suites
     81	
@@ -6835,25 +6835,25 @@ exec
    115	**Why first**: Every later improvement depends on a trusted answer to four questions: why did the loop stop, was STOP legal, where can a session resume, and can the stop decision be replayed from packet-local state.
    116	
    117	**Files to change**:
-   118	- `.opencode/skill/sk-deep-research/SKILL.md`
-   119	- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-   120	- `.opencode/skill/sk-deep-research/references/convergence.md`
-   121	- `.opencode/skill/sk-deep-research/references/state_format.md`
-   122	- `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-   123	- `.opencode/skill/sk-deep-review/SKILL.md`
-   124	- `.opencode/skill/sk-deep-review/references/loop_protocol.md`
-   125	- `.opencode/skill/sk-deep-review/references/convergence.md`
-   126	- `.opencode/skill/sk-deep-review/references/state_format.md`
-   127	- `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml`
-   128	- `.opencode/skill/sk-deep-review/assets/deep_review_config.json`
-   129	- `.opencode/command/spec_kit/deep-research.md`
-   130	- `.opencode/command/spec_kit/deep-review.md`
-   131	- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-   132	- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-   133	- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-   134	- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-   135	- `.opencode/agent/deep-research.md`
-   136	- `.opencode/agent/deep-review.md`
+   118	- `.opencode/skills/sk-deep-research/SKILL.md`
+   119	- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+   120	- `.opencode/skills/sk-deep-research/references/convergence.md`
+   121	- `.opencode/skills/sk-deep-research/references/state_format.md`
+   122	- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+   123	- `.opencode/skills/sk-deep-review/SKILL.md`
+   124	- `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+   125	- `.opencode/skills/sk-deep-review/references/convergence.md`
+   126	- `.opencode/skills/sk-deep-review/references/state_format.md`
+   127	- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
+   128	- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
+   129	- `.opencode/commands/spec_kit/deep-research.md`
+   130	- `.opencode/commands/spec_kit/deep-review.md`
+   131	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+   132	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+   133	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+   134	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+   135	- `.opencode/agents/deep-research.md`
+   136	- `.opencode/agents/deep-review.md`
    137	
    138	**Estimated complexity**: High
    139	
@@ -6869,24 +6869,24 @@ exec
    149	**Why second**: Journals, compaction, observability, and large-target decomposition all build on the Phase 1 event schema and need to exist before trust surfaces or optional modes can be trusted at scale.
    150	
    151	**Files to change**:
-   152	- `.opencode/skill/sk-deep-research/references/state_format.md`
-   153	- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-   154	- `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md`
-   155	- `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`
-   156	- `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-   157	- `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-   158	- `.opencode/skill/sk-deep-review/references/state_format.md`
-   159	- `.opencode/skill/sk-deep-review/references/loop_protocol.md`
-   160	- `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md`
-   161	- `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`
-   162	- `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml`
-   163	- `.opencode/skill/sk-deep-review/assets/deep_review_config.json`
-   164	- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-   165	- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-   166	- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-   167	- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-   168	- `.opencode/agent/deep-research.md`
-   169	- `.opencode/agent/deep-review.md`
+   152	- `.opencode/skills/sk-deep-research/references/state_format.md`
+   153	- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+   154	- `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md`
+   155	- `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
+   156	- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+   157	- `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+   158	- `.opencode/skills/sk-deep-review/references/state_format.md`
+   159	- `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+   160	- `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md`
+   161	- `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
+   162	- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
+   163	- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
+   164	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+   165	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+   166	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+   167	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+   168	- `.opencode/agents/deep-research.md`
+   169	- `.opencode/agents/deep-review.md`
    170	
    171	**Estimated complexity**: High
    172	
@@ -6902,24 +6902,24 @@ exec
    182	**Why third**: Once the substrate is durable and observable, we can safely layer the trust surfaces that decide what evidence is promoted, what convergence means semantically, and which sections stay machine-owned.
    183	
    184	**Files to change**:
-   185	- `.opencode/skill/sk-deep-research/SKILL.md`
-   186	- `.opencode/skill/sk-deep-research/references/convergence.md`
-   187	- `.opencode/skill/sk-deep-research/references/state_format.md`
-   188	- `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`
-   189	- `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md`
-   190	- `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-   191	- `.opencode/skill/sk-deep-review/SKILL.md`
-   192	- `.opencode/skill/sk-deep-review/references/convergence.md`
-   193	- `.opencode/skill/sk-deep-review/references/state_format.md`
-   194	- `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`
-   195	- `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md`
-   196	- `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml`
-   197	- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-   198	- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-   199	- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-   200	- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-   201	- `.opencode/agent/deep-research.md`
-   202	- `.opencode/agent/deep-review.md`
+   185	- `.opencode/skills/sk-deep-research/SKILL.md`
+   186	- `.opencode/skills/sk-deep-research/references/convergence.md`
+   187	- `.opencode/skills/sk-deep-research/references/state_format.md`
+   188	- `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
+   189	- `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md`
+   190	- `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+   191	- `.opencode/skills/sk-deep-review/SKILL.md`
+   192	- `.opencode/skills/sk-deep-review/references/convergence.md`
+   193	- `.opencode/skills/sk-deep-review/references/state_format.md`
+   194	- `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
+   195	- `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md`
+   196	- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
+   197	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+   198	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+   199	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+   200	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+   201	- `.opencode/agents/deep-research.md`
+   202	- `.opencode/agents/deep-review.md`
    203	
    204	**Estimated complexity**: High
    205	
@@ -6935,66 +6935,66 @@ exec
    215	**Why now**: This phase starts immediately after Phase 1 contracts stabilize so replay harnesses can protect substrate and trust-surface work while those phases are still being implemented.
    216	
    217	**Files to change**:
-   218	- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
-   219	- `.opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts`
-   220	- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`
+   218	- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
+   219	- `.opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts`
+   220	- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`
 
 codex
 The corpus gap looks real: `028` is a manual-testing packet and `042` is planning-only right now, so neither contributes loop traces yet. I’m rerunning the 040 dataset summary with a shell-safe one-liner to capture the actual track distribution and yield profile without relying on here-docs in this sandbox.
 exec
-/bin/zsh -lc "printf 'Reducer and strategy surface inventory\\n'; rg -n \"findings-registry|deep-research-dashboard|deep-research-strategy|coverageBySources|convergenceScore|nextFocus|answeredQuestions|sourcesQueried\" .opencode/skill/sk-deep-research/scripts/reduce-state.cjs .opencode/agent/deep-research.md .opencode/skill/sk-deep-research/references/state_format.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf 'Reducer and strategy surface inventory\\n'; rg -n \"findings-registry|deep-research-dashboard|deep-research-strategy|coverageBySources|convergenceScore|nextFocus|answeredQuestions|sourcesQueried\" .opencode/skills/sk-deep-research/scripts/reduce-state.cjs .opencode/agents/deep-research.md .opencode/skills/sk-deep-research/references/state_format.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 Reducer and strategy surface inventory
-.opencode/skill/sk-deep-research/references/state_format.md:21:| `deep-research-strategy.md` | Markdown | Agent context ("persistent brain") | Updated each iteration |
-.opencode/skill/sk-deep-research/references/state_format.md:22:| `deep-research-dashboard.md` | Markdown | Auto-generated session summary | Auto-generated (read-only) |
-.opencode/skill/sk-deep-research/references/state_format.md:23:| `findings-registry.json` | JSON | Reducer-owned open/resolved questions and key findings | Auto-generated (read-only) |
-.opencode/skill/sk-deep-research/references/state_format.md:95:    "deep-research-strategy.md": "mutable",
-.opencode/skill/sk-deep-research/references/state_format.md:129:{"type":"iteration","run":1,"status":"complete","focus":"Initial broad survey","findingsCount":5,"newInfoRatio":1.0,"keyQuestions":["What causes latency?","Where are bottlenecks?"],"answeredQuestions":["What causes latency?"],"timestamp":"2026-03-18T10:05:00Z","durationMs":45000}
-.opencode/skill/sk-deep-research/references/state_format.md:141:| answeredQuestions | string[] | iteration only | Questions fully answered this iteration |
-.opencode/skill/sk-deep-research/references/state_format.md:145:| sourcesQueried | string[] | No | iteration only | URLs, file paths, or memory anchors consulted during the iteration |
-.opencode/skill/sk-deep-research/references/state_format.md:174:{"type":"iteration","run":3,"status":"complete","focus":"Connection pooling","findingsCount":3,"newInfoRatio":0.4,"ruledOut":[{"approach":"HTTP/3 multiplexing","reason":"No server-side support in target environment","evidence":"docs.example.com/protocols#supported"}],"keyQuestions":["What causes latency?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":52000}
-.opencode/skill/sk-deep-research/references/state_format.md:190:{"type":"iteration","run":3,"status":"complete","focus":"Reconnection strategies","findingsCount":4,"newInfoRatio":0.7,"noveltyJustification":"2 new findings on reconnection backoff, 1 refinement of prior keepalive finding","keyQuestions":["How to handle reconnection?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
-.opencode/skill/sk-deep-research/references/state_format.md:324:   - `answeredQuestions ?? []`
-.opencode/skill/sk-deep-research/references/state_format.md:339:   - `answeredQuestions` from "Questions answered: [list]"
-.opencode/skill/sk-deep-research/references/state_format.md:344:   {"type":"iteration","run":3,"status":"reconstructed","focus":"extracted focus","findingsCount":0,"newInfoRatio":0.XX,"keyQuestions":[],"answeredQuestions":[],"timestamp":"unknown"}
-.opencode/skill/sk-deep-research/references/state_format.md:375:## 4. STRATEGY FILE (deep-research-strategy.md)
-.opencode/skill/sk-deep-research/references/state_format.md:469:## 7. DASHBOARD (research/deep-research-dashboard.md)
-.opencode/skill/sk-deep-research/references/state_format.md:477:- **Path**: `{spec_folder}/research/deep-research-dashboard.md`
-.opencode/skill/sk-deep-research/references/state_format.md:480:- **Protection**: `"deep-research-dashboard.md": "auto-generated"` in `fileProtection`
-.opencode/skill/sk-deep-research/references/state_format.md:491:| Source Diversity | Registry metrics | Source count per question and `coverageBySources` summary |
-.opencode/skill/sk-deep-research/references/state_format.md:495:1. Read `deep-research-state.jsonl`, `findings-registry.json`, and `deep-research-strategy.md` as canonical inputs
-.opencode/skill/sk-deep-research/references/state_format.md:508:    "deep-research-dashboard.md": "auto-generated",
-.opencode/skill/sk-deep-research/references/state_format.md:509:    "findings-registry.json": "auto-generated"
-.opencode/skill/sk-deep-research/references/state_format.md:528:    deep-research-strategy.md          # Agent context / persistent brain
-.opencode/skill/sk-deep-research/references/state_format.md:529:    deep-research-dashboard.md         # Auto-generated session summary (read-only)
-.opencode/skill/sk-deep-research/references/state_format.md:530:    findings-registry.json             # Reducer-owned question/finding registry
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:113:  const nextFocusSection = extractSection(markdown, 'Recommended Next Focus');
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:126:    nextFocus: normalizeText(nextFocusSection),
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:151:    iterationRecords.flatMap((record) => (Array.isArray(record.sourcesQueried) ? record.sourcesQueried : [])),
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:199:    iterationRecords.flatMap((record) => (Array.isArray(record.answeredQuestions) ? record.answeredQuestions : [])).map(normalizeText),
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:211:            Array.isArray(record.answeredQuestions)
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:212:              && record.answeredQuestions.map(normalizeText).includes(normalized),
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:244:  const coverageBySources = buildCoverageBySources(iterationFiles, iterationRecords);
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:246:  const convergenceScore =
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:271:      convergenceScore,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:272:      coverageBySources,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:349:  const nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:365:  updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus);
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:375:  const nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:439:    `- convergenceScore: ${Number(registry.metrics.convergenceScore || 0).toFixed(2)}`,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:440:    `- coverageBySources: ${JSON.stringify(registry.metrics.coverageBySources)}`,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:452:    nextFocus,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:481:  const strategyPath = path.join(researchDir, 'deep-research-strategy.md');
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:482:  const registryPath = path.join(researchDir, 'findings-registry.json');
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:483:  const dashboardPath = path.join(researchDir, 'deep-research-dashboard.md');
-.opencode/agent/deep-research.md:67:- `research/deep-research-strategy.md` -- Understand what to investigate
-.opencode/agent/deep-research.md:68:- `research/findings-registry.json` (if exists) -- Understand open/resolved questions and key findings
-.opencode/agent/deep-research.md:160:Do not treat `research/deep-research-strategy.md`, `research/findings-registry.json`, or `research/deep-research-dashboard.md` as your primary write targets. The workflow reducer owns those synchronized packet surfaces.
-.opencode/agent/deep-research.md:171:{"type":"iteration","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"timestamp":"ISO-8601","durationMs":NNNNN}
-.opencode/agent/deep-research.md:213:The orchestrator generates a research dashboard and findings registry after each iteration, summarizing progress, coverage, and convergence trends. The agent does not update those reducer-owned files directly. However, your iteration data (newInfoRatio, status, focus, ruledOut, focusTrack, toolsUsed, sourcesQueried) feeds directly into those synchronized outputs.
-.opencode/agent/deep-research.md:292:| Strategy | `research/deep-research-strategy.md` | Read only for focus selection |
-.opencode/agent/deep-research.md:293:| Findings registry | `research/findings-registry.json` | Read only |
-.opencode/agent/deep-research.md:363:- workflow reducer refreshes research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
+.opencode/skills/sk-deep-research/references/state_format.md:21:| `deep-research-strategy.md` | Markdown | Agent context ("persistent brain") | Updated each iteration |
+.opencode/skills/sk-deep-research/references/state_format.md:22:| `deep-research-dashboard.md` | Markdown | Auto-generated session summary | Auto-generated (read-only) |
+.opencode/skills/sk-deep-research/references/state_format.md:23:| `findings-registry.json` | JSON | Reducer-owned open/resolved questions and key findings | Auto-generated (read-only) |
+.opencode/skills/sk-deep-research/references/state_format.md:95:    "deep-research-strategy.md": "mutable",
+.opencode/skills/sk-deep-research/references/state_format.md:129:{"type":"iteration","run":1,"status":"complete","focus":"Initial broad survey","findingsCount":5,"newInfoRatio":1.0,"keyQuestions":["What causes latency?","Where are bottlenecks?"],"answeredQuestions":["What causes latency?"],"timestamp":"2026-03-18T10:05:00Z","durationMs":45000}
+.opencode/skills/sk-deep-research/references/state_format.md:141:| answeredQuestions | string[] | iteration only | Questions fully answered this iteration |
+.opencode/skills/sk-deep-research/references/state_format.md:145:| sourcesQueried | string[] | No | iteration only | URLs, file paths, or memory anchors consulted during the iteration |
+.opencode/skills/sk-deep-research/references/state_format.md:174:{"type":"iteration","run":3,"status":"complete","focus":"Connection pooling","findingsCount":3,"newInfoRatio":0.4,"ruledOut":[{"approach":"HTTP/3 multiplexing","reason":"No server-side support in target environment","evidence":"docs.example.com/protocols#supported"}],"keyQuestions":["What causes latency?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":52000}
+.opencode/skills/sk-deep-research/references/state_format.md:190:{"type":"iteration","run":3,"status":"complete","focus":"Reconnection strategies","findingsCount":4,"newInfoRatio":0.7,"noveltyJustification":"2 new findings on reconnection backoff, 1 refinement of prior keepalive finding","keyQuestions":["How to handle reconnection?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
+.opencode/skills/sk-deep-research/references/state_format.md:324:   - `answeredQuestions ?? []`
+.opencode/skills/sk-deep-research/references/state_format.md:339:   - `answeredQuestions` from "Questions answered: [list]"
+.opencode/skills/sk-deep-research/references/state_format.md:344:   {"type":"iteration","run":3,"status":"reconstructed","focus":"extracted focus","findingsCount":0,"newInfoRatio":0.XX,"keyQuestions":[],"answeredQuestions":[],"timestamp":"unknown"}
+.opencode/skills/sk-deep-research/references/state_format.md:375:## 4. STRATEGY FILE (deep-research-strategy.md)
+.opencode/skills/sk-deep-research/references/state_format.md:469:## 7. DASHBOARD (research/deep-research-dashboard.md)
+.opencode/skills/sk-deep-research/references/state_format.md:477:- **Path**: `{spec_folder}/research/deep-research-dashboard.md`
+.opencode/skills/sk-deep-research/references/state_format.md:480:- **Protection**: `"deep-research-dashboard.md": "auto-generated"` in `fileProtection`
+.opencode/skills/sk-deep-research/references/state_format.md:491:| Source Diversity | Registry metrics | Source count per question and `coverageBySources` summary |
+.opencode/skills/sk-deep-research/references/state_format.md:495:1. Read `deep-research-state.jsonl`, `findings-registry.json`, and `deep-research-strategy.md` as canonical inputs
+.opencode/skills/sk-deep-research/references/state_format.md:508:    "deep-research-dashboard.md": "auto-generated",
+.opencode/skills/sk-deep-research/references/state_format.md:509:    "findings-registry.json": "auto-generated"
+.opencode/skills/sk-deep-research/references/state_format.md:528:    deep-research-strategy.md          # Agent context / persistent brain
+.opencode/skills/sk-deep-research/references/state_format.md:529:    deep-research-dashboard.md         # Auto-generated session summary (read-only)
+.opencode/skills/sk-deep-research/references/state_format.md:530:    findings-registry.json             # Reducer-owned question/finding registry
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:113:  const nextFocusSection = extractSection(markdown, 'Recommended Next Focus');
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:126:    nextFocus: normalizeText(nextFocusSection),
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:151:    iterationRecords.flatMap((record) => (Array.isArray(record.sourcesQueried) ? record.sourcesQueried : [])),
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:199:    iterationRecords.flatMap((record) => (Array.isArray(record.answeredQuestions) ? record.answeredQuestions : [])).map(normalizeText),
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:211:            Array.isArray(record.answeredQuestions)
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:212:              && record.answeredQuestions.map(normalizeText).includes(normalized),
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:244:  const coverageBySources = buildCoverageBySources(iterationFiles, iterationRecords);
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:246:  const convergenceScore =
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:271:      convergenceScore,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:272:      coverageBySources,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:349:  const nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:365:  updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus);
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:375:  const nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:439:    `- convergenceScore: ${Number(registry.metrics.convergenceScore || 0).toFixed(2)}`,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:440:    `- coverageBySources: ${JSON.stringify(registry.metrics.coverageBySources)}`,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:452:    nextFocus,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:481:  const strategyPath = path.join(researchDir, 'deep-research-strategy.md');
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:482:  const registryPath = path.join(researchDir, 'findings-registry.json');
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:483:  const dashboardPath = path.join(researchDir, 'deep-research-dashboard.md');
+.opencode/agents/deep-research.md:67:- `research/deep-research-strategy.md` -- Understand what to investigate
+.opencode/agents/deep-research.md:68:- `research/findings-registry.json` (if exists) -- Understand open/resolved questions and key findings
+.opencode/agents/deep-research.md:160:Do not treat `research/deep-research-strategy.md`, `research/findings-registry.json`, or `research/deep-research-dashboard.md` as your primary write targets. The workflow reducer owns those synchronized packet surfaces.
+.opencode/agents/deep-research.md:171:{"type":"iteration","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"timestamp":"ISO-8601","durationMs":NNNNN}
+.opencode/agents/deep-research.md:213:The orchestrator generates a research dashboard and findings registry after each iteration, summarizing progress, coverage, and convergence trends. The agent does not update those reducer-owned files directly. However, your iteration data (newInfoRatio, status, focus, ruledOut, focusTrack, toolsUsed, sourcesQueried) feeds directly into those synchronized outputs.
+.opencode/agents/deep-research.md:292:| Strategy | `research/deep-research-strategy.md` | Read only for focus selection |
+.opencode/agents/deep-research.md:293:| Findings registry | `research/findings-registry.json` | Read only |
+.opencode/agents/deep-research.md:363:- workflow reducer refreshes research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
 
 exec
 /bin/zsh -lc "printf '040 iteration source counts sample\\n'; for f in .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/iterations/iteration-001.md .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/iterations/iteration-030.md .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/iterations/iteration-060.md .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/iterations/iteration-090.md; do echo \"===== "'$f ====="; rg -n '"'"'^## |''^[-*] '"' \""'$f" | sed -n '"'1,120p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -7222,10 +7222,10 @@ exec
     27	
     28	## 2. Scope and Method
     29	### 2.1 Internal Systems Analyzed
-    30	- `.opencode/skill/sk-deep-research/**`
-    31	- `.opencode/skill/sk-deep-review/**`
-    32	- `.opencode/command/spec_kit/assets/spec_kit_deep-research_*.yaml`
-    33	- `.opencode/command/spec_kit/assets/spec_kit_deep-review_*.yaml`
+    30	- `.opencode/skills/sk-deep-research/**`
+    31	- `.opencode/skills/sk-deep-review/**`
+    32	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_*.yaml`
+    33	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml`
     34	- `.codex/prompts/spec_kit-deep-research.md`
     35	- Runtime mirrors in `.codex/agents`, `.opencode/agent`, `.claude/agents`, `.gemini/agents`
     36	
@@ -7398,9 +7398,9 @@ exec
    203	The workflow offers `resume/restart/fork`, but restart/fork are not fully implemented as first-class executable branches.
    204	
    205	Evidence:
-   206	- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:124-128`
+   206	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:124-128`
 exec
-/bin/zsh -lc "printf 'Reducer write targets and inputs\\n'; nl -ba .opencode/skill/sk-deep-research/scripts/reduce-state.cjs | sed -n '466,517p'; printf '\\nDeep-review direct strategy-edit contract\\n'; nl -ba .opencode/agent/deep-review.md | sed -n '221,236p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf 'Reducer write targets and inputs\\n'; nl -ba .opencode/skills/sk-deep-research/scripts/reduce-state.cjs | sed -n '466,517p'; printf '\\nDeep-review direct strategy-edit contract\\n'; nl -ba .opencode/agents/deep-review.md | sed -n '221,236p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 Reducer write targets and inputs
    466	/**
@@ -7493,16 +7493,16 @@ Behavioral/reducer references in 042 plan
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:79:- Build a replay corpus from historical packet families `028`, `040`, and `042`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:82:- Add a deterministic replay runner for reducer and convergence logic under alternate configs.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:83:- Add a promotion gate that requires replay success plus parity and behavioral test success.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:97:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:100:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:101:| `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and enforce promotion gates. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:102:| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:103:| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:108:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:109:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:111:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify promotion gating, rollback behavior, and audit output. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:113:| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures and optimization-result snapshots. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:97:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:100:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:101:| `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and enforce promotion gates. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:102:| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:103:| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:108:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:109:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:111:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify promotion gating, rollback behavior, and audit output. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:113:| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures and optimization-result snapshots. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:125:| REQ-001 | The phase MUST build a replay corpus from real packet families `028`, `040`, and `042`. | Corpus inputs are tied to real packet artifacts, normalized into a deterministic replay format, and traceable back to their source packets and run metadata. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:127:| REQ-003 | The phase MUST provide a deterministic replay runner that can evaluate alternate configs without running live agent iterations. | Replay consumes stored traces and config candidates, produces repeatable outputs, and isolates replay from live network or human-in-the-loop variability. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:128:| REQ-004 | Candidate promotion MUST require baseline comparison plus existing parity and behavioral test success. | No optimized config is marked promotable unless replay improves against baseline and the standard deep-loop test suites still pass. |
@@ -7534,7 +7534,7 @@ Behavioral/reducer references in 042 plan
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:57:- [ ] Snapshot/compaction, replay validation, and large-target decomposition rules are designed before optional advanced modes begin.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:58:- [ ] Semantic convergence and reducer-owned machine-section boundaries are documented across both loop products.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:61:- [ ] Contract, reducer, and behavior test plans are updated with concrete file-level targets.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:78:- **Agent layer**: canonical `.opencode/agent/` deep-loop workers plus parity mirrors if still hand-authored
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:78:- **Agent layer**: canonical `.opencode/agents/` deep-loop workers plus parity mirrors if still hand-authored
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:79:- **Runtime substrate**: reducer logic and state contracts
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:80:- **Verification layer**: reducer, parity, and new behavior-first Vitest suites
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:86:  -> define typed stop-decision events, legal done gates, resume cursor, and replayable lineage schema
@@ -7554,28 +7554,28 @@ Behavioral/reducer references in 042 plan
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:208:- Semantic convergence fixtures assert novelty, contradiction density, and citation overlap participate in typed stop-decision traces instead of scalar-only thresholds.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:209:- Review contract tests prove machine-owned strategy sections are reducer-owned and no longer edited directly by `@deep-review`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:215:**Why now**: This phase starts immediately after Phase 1 contracts stabilize so replay harnesses can protect substrate and trust-surface work while those phases are still being implemented.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:218:- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:219:- `.opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:220:- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:221:- `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:222:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:223:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:224:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:218:- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:219:- `.opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:220:- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:221:- `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:222:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:223:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:224:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042/`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:229:- Create thin end-to-end harnesses first for invalid-state, resume, completed-continue, blocked-stop, and compaction-equivalence replay.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:230:- Research behavior tests should assert falsifiable question framing, citation presence, conclusion confidence, clustering, semantic convergence, and stop-reason persistence.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:231:- Review behavior tests should assert dimension rotation, citation presence, hotspot ranking, claim-adjudication gate enforcement, reducer-owned machine sections, and stop-reason persistence.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:237:**Why after early verification**: Once the foundational and trust contracts have replay-backed coverage, parity and mirror alignment can move as one bounded follow-on without guessing at unstable interim surfaces.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:251:- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:252:- `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:251:- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:252:- `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:257:- Contract parity tests must fail before mirror drift can land.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:258:- Operator-facing command examples should remain compact while replay, observability, and advanced modes are discoverable.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:259:- Confirm-mode and auto-mode docs should describe the same artifacts, lifecycle terms, and reducer-ownership boundaries.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:265:**Why last**: Council synthesis and coordination boards remain useful only after the default runtime path is durable, observable, behavior-tested, and parity-locked.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:277:- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:278:- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:295:| Contract parity | Skills, commands, agents, runtime mirrors | `pnpm vitest .opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:296:| Reducer and schema | Research reducer, review reducer contract/schema | `pnpm vitest .opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:297:| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:277:- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:278:- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:295:| Contract parity | Skills, commands, agents, runtime mirrors | `pnpm vitest .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:296:| Reducer and schema | Research reducer, review reducer contract/schema | `pnpm vitest .opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:297:| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:298:| Integration | Auto and confirm YAML flows across resume/blocked-stop/optional-mode scenarios | Workflow fixtures plus targeted `pnpm vitest` integration cases added in this packet's implementation phase |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:305:| Research blocked-stop path | Prove convergence math alone cannot terminate the loop | JSONL event with blocked stop, dashboard status, behavior test fixture |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:306:| Review all-dimensions-clean path | Prove review can stop only after dimension coverage and quality gates pass | JSONL stop reason, dashboard coverage section, behavior test fixture |
@@ -7616,14 +7616,14 @@ Behavioral/reducer references in 042 plan
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:53:- `blocked`: replay fidelity, rubric clarity, or config governance is unresolved.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:57:- If replay cannot reproduce baseline behavior reliably, block search and promotion tasks instead of tuning against noise.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:59:- If parity or behavioral tests fail after a candidate improves replay score, keep promotion blocked until the failure is reconciled.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:70:| T001 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:71:| T002 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:70:| T001 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:71:| T002 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:74:- [ ] T001 Build the replay corpus extractor for packet families `028`, `040`, and `042`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:75:- [ ] T002 Add corpus fixtures and tests that prove deterministic normalization.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:89:| T005 | Pending | REQ-003 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:91:| T007 | Pending | REQ-006 | `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:89:| T005 | Pending | REQ-003 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:91:| T007 | Pending | REQ-006 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:94:- [ ] T005 Implement deterministic replay against baseline and candidate configs.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:111:| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:111:| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:113:- [ ] T008 Implement the promotion gate that compares candidates to baseline and enforces test success.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:116:- [ ] T011 Add end-to-end promotion tests that prove rejected and accepted candidates both generate audit evidence.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:125:- [ ] Replay determinism is verified before any promotion logic is considered complete.
@@ -7639,13 +7639,13 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/description.json
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/README.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/implementation-summary.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/017-no-dimensions.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/019-plateau-detection.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/018-with-dimensions.md
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts
+.opencode/skills/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/017-no-dimensions.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/019-plateau-detection.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/018-with-dimensions.md
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/specializations/data-engineering-analytics/skills/sql-query-optimizer/SKILL.md
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/specializations/data-engineering-analytics/skills/sql-query-optimizer/README.md
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/specializations/data-engineering-analytics/skills/apache-spark-optimizer/SKILL.md
@@ -7710,7 +7710,7 @@ exec
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/specializations/domains/business/operations/skills/changeover-optimizer/SKILL.md
 
  succeeded in 232ms:
-===== .opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts =====
+===== .opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts =====
      1	import fs from 'node:fs';
      2	import path from 'node:path';
      3	import { fileURLToPath } from 'node:url';
@@ -7726,24 +7726,24 @@ exec
     13	
     14	describe('deep-review contract parity', () => {
     15	  const primaryDocs = [
-    16	    '.opencode/skill/sk-deep-review/SKILL.md',
-    17	    '.opencode/skill/sk-deep-review/README.md',
-    18	    '.opencode/skill/sk-deep-review/references/state_format.md',
-    19	    '.opencode/skill/sk-deep-review/references/loop_protocol.md',
-    20	    '.opencode/skill/sk-deep-review/references/quick_reference.md',
-    21	    '.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml',
+    16	    '.opencode/skills/sk-deep-review/SKILL.md',
+    17	    '.opencode/skills/sk-deep-review/README.md',
+    18	    '.opencode/skills/sk-deep-review/references/state_format.md',
+    19	    '.opencode/skills/sk-deep-review/references/loop_protocol.md',
+    20	    '.opencode/skills/sk-deep-review/references/quick_reference.md',
+    21	    '.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml',
     22	  ];
     23	
     24	  const runtimeMirrors = [
-    25	    '.opencode/agent/deep-review.md',
+    25	    '.opencode/agents/deep-review.md',
     26	    '.claude/agents/deep-review.md',
     27	    '.gemini/agents/deep-review.md',
     28	    '.codex/agents/deep-review.toml',
     29	  ];
     30	
     31	  const commandAssets = [
-    32	    '.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml',
-    33	    '.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml',
+    32	    '.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml',
+    33	    '.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml',
     34	  ];
     35	
     36	  it('keeps primary deep-review docs aligned on canonical artifacts and lifecycle terms', () => {
@@ -7818,7 +7818,7 @@ exec
    105	    expect(confirmContent).toContain('options: [resume, restart, fork, completed-continue]');
    106	  });
    107	});
-===== .opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts =====
+===== .opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts =====
      1	import fs from 'node:fs';
      2	import path from 'node:path';
      3	import { fileURLToPath } from 'node:url';
@@ -7836,10 +7836,10 @@ exec
     15	describe('deep-review reducer and schema contract', () => {
     16	  it('keeps reducer, severity, and release-readiness schemas stable in the canonical assets', () => {
     17	    const contract = yaml.load(
-    18	      readWorkspaceFile('.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml'),
+    18	      readWorkspaceFile('.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml'),
     19	    ) as Record<string, any>;
     20	    const config = JSON.parse(
-    21	      readWorkspaceFile('.opencode/skill/sk-deep-review/assets/deep_review_config.json'),
+    21	      readWorkspaceFile('.opencode/skills/sk-deep-review/assets/deep_review_config.json'),
     22	    ) as Record<string, any>;
     23	
     24	    expect(contract.contract.severities.map((item: { id: string }) => item.id)).toEqual(['P0', 'P1', 'P2']);
@@ -7883,8 +7883,8 @@ exec
     62	  });
     63	
     64	  it('wires reducer refresh and machine-owned report guidance into both review workflows', () => {
-    65	    const autoYaml = readWorkspaceFile('.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml');
-    66	    const confirmYaml = readWorkspaceFile('.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml');
+    65	    const autoYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml');
+    66	    const confirmYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml');
     67	
     68	    for (const [docPath, content] of [
     69	      ['auto', autoYaml],
@@ -7911,9 +7911,9 @@ exec
     90	  });
     91	
     92	  it('documents reducer metrics and machine-owned report boundaries in the review references', () => {
-    93	    const stateFormat = readWorkspaceFile('.opencode/skill/sk-deep-review/references/state_format.md');
-    94	    const loopProtocol = readWorkspaceFile('.opencode/skill/sk-deep-review/references/loop_protocol.md');
-    95	    const convergence = readWorkspaceFile('.opencode/skill/sk-deep-review/references/convergence.md');
+    93	    const stateFormat = readWorkspaceFile('.opencode/skills/sk-deep-review/references/state_format.md');
+    94	    const loopProtocol = readWorkspaceFile('.opencode/skills/sk-deep-review/references/loop_protocol.md');
+    95	    const convergence = readWorkspaceFile('.opencode/skills/sk-deep-review/references/convergence.md');
     96	
     97	    expect(stateFormat).toContain('deep-review-findings-registry.json');
     98	    expect(stateFormat).toContain('releaseReadinessState');
@@ -7930,7 +7930,7 @@ exec
    109	    expect(convergence).toContain('in-progress');
    110	  });
    111	});
-===== .opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts =====
+===== .opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts =====
      1	import fs from 'node:fs';
      2	import os from 'node:os';
      3	import path from 'node:path';
@@ -7945,7 +7945,7 @@ exec
     12	
     13	const reducerModule = require(path.join(
     14	  WORKSPACE_ROOT,
-    15	  '.opencode/skill/sk-deep-research/scripts/reduce-state.cjs',
+    15	  '.opencode/skills/sk-deep-research/scripts/reduce-state.cjs',
     16	)) as {
     17	  reduceResearchState: (specFolder: string, options?: { write?: boolean }) => {
     18	    registry: {
@@ -8151,7 +8151,7 @@ exec
    218	
    219	afterEach(() => {
    220	  while (tempDirs.length) {
-===== .opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts =====
+===== .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts =====
      1	import fs from 'node:fs';
      2	import path from 'node:path';
      3	import { createRequire } from 'node:module';
@@ -8165,7 +8165,7 @@ exec
     11	
     12	const capabilityModule = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs',
+    14	  '.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs',
     15	)) as {
     16	  listRuntimeCapabilityIds: () => string[];
     17	  loadRuntimeCapabilities: () => { matrix: { runtimes: Array<{ id: string; mirrorPath: string; commandWrapperPath?: string }> } };
@@ -8177,17 +8177,17 @@ exec
     23	
     24	describe('deep-research contract parity', () => {
     25	  const primaryDocs = [
-    26	    '.opencode/skill/sk-deep-research/SKILL.md',
-    27	    '.opencode/skill/sk-deep-research/README.md',
-    28	    '.opencode/skill/sk-deep-research/references/state_format.md',
-    29	    '.opencode/skill/sk-deep-research/references/loop_protocol.md',
-    30	    '.opencode/skill/sk-deep-research/references/quick_reference.md',
-    31	    '.opencode/skill/sk-deep-research/references/capability_matrix.md',
-    32	    '.opencode/skill/sk-deep-research/assets/deep_research_config.json',
+    26	    '.opencode/skills/sk-deep-research/SKILL.md',
+    27	    '.opencode/skills/sk-deep-research/README.md',
+    28	    '.opencode/skills/sk-deep-research/references/state_format.md',
+    29	    '.opencode/skills/sk-deep-research/references/loop_protocol.md',
+    30	    '.opencode/skills/sk-deep-research/references/quick_reference.md',
+    31	    '.opencode/skills/sk-deep-research/references/capability_matrix.md',
+    32	    '.opencode/skills/sk-deep-research/assets/deep_research_config.json',
     33	  ];
     34	
     35	  const runtimeMirrors = [
-    36	    '.opencode/agent/deep-research.md',
+    36	    '.opencode/agents/deep-research.md',
     37	    '.claude/agents/deep-research.md',
     38	    '.gemini/agents/deep-research.md',
     39	    '.codex/agents/deep-research.toml',
@@ -8195,8 +8195,8 @@ exec
     41	  ];
     42	
     43	  const commandAssets = [
-    44	    '.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml',
-    45	    '.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml',
+    44	    '.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml',
+    45	    '.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml',
     46	  ];
     47	
     48	  it('keeps primary docs aligned on canonical artifacts and the machine-readable capability source', () => {
@@ -8232,7 +8232,7 @@ exec
     78	      expect(content, `${docPath} should write the findings registry`).toContain('findings-registry.json');
     79	      expect(content, `${docPath} should mention completed-continue`).toContain('completed-continue');
     80	      expect(content, `${docPath} should invoke the reducer script`).toContain(
-    81	        'node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs {spec_folder}',
+    81	        'node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}',
     82	      );
     83	    }
     84	  });
@@ -8267,14 +8267,14 @@ web search: site:dspy.ai/dspyapi optimizers GEPA overview reflective prompt evol
 codex
 I’m at the point where the remaining questions are mostly feasibility and reuse. I’m doing one last pass to verify what’s actually missing today: whether the planned behavioral suites and optimizer scripts already exist in any form, or whether Phase 4 is truly starting from zero on those surfaces.
 exec
-/bin/zsh -lc 'for p in .opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028 .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040 .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042 .opencode/skill/system-spec-kit/scripts/optimizer; do if [ -e "$p" ]; then echo "EXISTS $p"; else echo "MISSING $p"; fi; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for p in .opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028 .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040 .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042 .opencode/skills/system-spec-kit/scripts/optimizer; do if [ -e "$p" ]; then echo "EXISTS $p"; else echo "MISSING $p"; fi; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-MISSING .opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts
-MISSING .opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts
-MISSING .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028
-MISSING .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040
-MISSING .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042
-MISSING .opencode/skill/system-spec-kit/scripts/optimizer
+MISSING .opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts
+MISSING .opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts
+MISSING .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028
+MISSING .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040
+MISSING .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042
+MISSING .opencode/skills/system-spec-kit/scripts/optimizer
 
 exec
 /bin/zsh -lc "printf 'Current 042 phase readme\\n'; nl -ba .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/README.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -8331,15 +8331,15 @@ Current 042 phase readme
     49	
     50	```bash
     51	mkdir -p specs/###-short-name
-    52	cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/###-short-name/
-    53	cp .opencode/skill/system-spec-kit/templates/level_1/plan.md specs/###-short-name/
-    54	cp .opencode/skill/system-spec-kit/templates/level_1/tasks.md specs/###-short-name/
+    52	cp .opencode/skills/system-spec-kit/templates/level_1/spec.md specs/###-short-name/
+    53	cp .opencode/skills/system-spec-kit/templates/level_1/plan.md specs/###-short-name/
+    54	cp .opencode/skills/system-spec-kit/templates/level_1/tasks.md specs/###-short-name/
     55	```
     56	
     57	At completion, add and fill:
     58	
     59	```bash
-    60	cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md specs/###-short-name/
+    60	cp .opencode/skills/system-spec-kit/templates/level_1/implementation-summary.md specs/###-short-name/
     61	```
     62	
     63	<!-- /ANCHOR:quick-start -->
@@ -8363,276 +8363,276 @@ Current 042 phase readme
     81	<!-- /ANCHOR:related -->
 
 exec
-/bin/zsh -lc "printf 'Current system-spec-kit scripts tree near tests/optimizer\\n'; find .opencode/skill/system-spec-kit/scripts -maxdepth 3 -type f | sort | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf 'Current system-spec-kit scripts tree near tests/optimizer\\n'; find .opencode/skills/system-spec-kit/scripts -maxdepth 3 -type f | sort | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 Current system-spec-kit scripts tree near tests/optimizer
-.opencode/skill/system-spec-kit/scripts/.github/hooks/superset-notify.json
-.opencode/skill/system-spec-kit/scripts/.gitignore
-.opencode/skill/system-spec-kit/scripts/.tmp/vitest-tmp/xcrun_db
-.opencode/skill/system-spec-kit/scripts/README.md
-.opencode/skill/system-spec-kit/scripts/check-api-boundary.sh
-.opencode/skill/system-spec-kit/scripts/check-links.sh
-.opencode/skill/system-spec-kit/scripts/common.sh
-.opencode/skill/system-spec-kit/scripts/config/index.ts
-.opencode/skill/system-spec-kit/scripts/core/README.md
-.opencode/skill/system-spec-kit/scripts/core/alignment-validator.ts
-.opencode/skill/system-spec-kit/scripts/core/config.ts
-.opencode/skill/system-spec-kit/scripts/core/content-cleaner.ts
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts
-.opencode/skill/system-spec-kit/scripts/core/find-predecessor-memory.ts
-.opencode/skill/system-spec-kit/scripts/core/frontmatter-editor.ts
-.opencode/skill/system-spec-kit/scripts/core/index.ts
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts
-.opencode/skill/system-spec-kit/scripts/core/quality-gates.ts
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
-.opencode/skill/system-spec-kit/scripts/core/title-builder.ts
-.opencode/skill/system-spec-kit/scripts/core/topic-extractor.ts
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts
-.opencode/skill/system-spec-kit/scripts/core/workflow-accessors.ts
-.opencode/skill/system-spec-kit/scripts/core/workflow-path-utils.ts
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-.opencode/skill/system-spec-kit/scripts/dist/config/index.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/config/index.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/config/index.js
-.opencode/skill/system-spec-kit/scripts/dist/config/index.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/alignment-validator.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/alignment-validator.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/alignment-validator.js
-.opencode/skill/system-spec-kit/scripts/dist/core/alignment-validator.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/config.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/config.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/config.js
-.opencode/skill/system-spec-kit/scripts/dist/core/config.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/content-cleaner.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/content-cleaner.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/content-cleaner.js
-.opencode/skill/system-spec-kit/scripts/dist/core/content-cleaner.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/file-writer.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/file-writer.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/file-writer.js
-.opencode/skill/system-spec-kit/scripts/dist/core/file-writer.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/find-predecessor-memory.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/find-predecessor-memory.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/find-predecessor-memory.js
-.opencode/skill/system-spec-kit/scripts/dist/core/find-predecessor-memory.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/frontmatter-editor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/frontmatter-editor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/frontmatter-editor.js
-.opencode/skill/system-spec-kit/scripts/dist/core/frontmatter-editor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/index.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/index.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/index.js
-.opencode/skill/system-spec-kit/scripts/dist/core/index.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/memory-indexer.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/memory-indexer.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/memory-indexer.js
-.opencode/skill/system-spec-kit/scripts/dist/core/memory-indexer.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/memory-metadata.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/memory-metadata.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/memory-metadata.js
-.opencode/skill/system-spec-kit/scripts/dist/core/memory-metadata.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/post-save-review.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/post-save-review.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/post-save-review.js
-.opencode/skill/system-spec-kit/scripts/dist/core/post-save-review.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/quality-gates.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/quality-gates.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/quality-gates.js
-.opencode/skill/system-spec-kit/scripts/dist/core/quality-gates.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/quality-scorer.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/quality-scorer.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/quality-scorer.js
-.opencode/skill/system-spec-kit/scripts/dist/core/quality-scorer.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/subfolder-utils.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/subfolder-utils.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/subfolder-utils.js
-.opencode/skill/system-spec-kit/scripts/dist/core/subfolder-utils.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/title-builder.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/title-builder.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/title-builder.js
-.opencode/skill/system-spec-kit/scripts/dist/core/title-builder.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/topic-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/topic-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/topic-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/core/topic-extractor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/tree-thinning.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/tree-thinning.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/tree-thinning.js
-.opencode/skill/system-spec-kit/scripts/dist/core/tree-thinning.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow-accessors.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow-accessors.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow-accessors.js
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow-accessors.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow-path-utils.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow-path-utils.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow-path-utils.js
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow-path-utils.js.map
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow.js
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-allowlist-expiry.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-allowlist-expiry.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-allowlist-expiry.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-allowlist-expiry.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports-ast.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports-ast.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports-ast.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports-ast.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-source-dist-alignment.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-source-dist-alignment.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-source-dist-alignment.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/check-source-dist-alignment.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/collect-redaction-calibration-inputs.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/collect-redaction-calibration-inputs.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/collect-redaction-calibration-inputs.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/collect-redaction-calibration-inputs.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/import-policy-rules.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/import-policy-rules.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/import-policy-rules.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/import-policy-rules.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/map-ground-truth-ids.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/map-ground-truth-ids.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/map-ground-truth-ids.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/map-ground-truth-ids.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-ablation.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-ablation.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-ablation.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-ablation.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-bm25-baseline.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-bm25-baseline.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-bm25-baseline.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-bm25-baseline.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-performance-benchmarks.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-performance-benchmarks.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-performance-benchmarks.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-performance-benchmarks.js.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-redaction-calibration.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-redaction-calibration.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-redaction-calibration.js
-.opencode/skill/system-spec-kit/scripts/dist/evals/run-redaction-calibration.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/collect-session-data.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/collect-session-data.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/collect-session-data.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/collect-session-data.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/contamination-filter.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/contamination-filter.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/contamination-filter.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/contamination-filter.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/conversation-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/conversation-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/conversation-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/conversation-extractor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/decision-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/decision-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/decision-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/decision-extractor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/diagram-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/diagram-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/diagram-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/diagram-extractor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/file-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/file-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/file-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/file-extractor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/git-context-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/git-context-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/git-context-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/git-context-extractor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/implementation-guide-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/implementation-guide-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/implementation-guide-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/implementation-guide-extractor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/index.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/index.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/index.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/index.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/quality-scorer.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/quality-scorer.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/quality-scorer.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/quality-scorer.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/session-activity-signal.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/session-activity-signal.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/session-activity-signal.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/session-activity-signal.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/session-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/session-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/session-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/session-extractor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/spec-folder-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/extractors/spec-folder-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/extractors/spec-folder-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/extractors/spec-folder-extractor.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/anchor-generator.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/anchor-generator.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/anchor-generator.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/anchor-generator.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/ascii-boxes.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/ascii-boxes.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/ascii-boxes.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/ascii-boxes.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/cli-capture-shared.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/cli-capture-shared.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/cli-capture-shared.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/cli-capture-shared.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/content-filter.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/content-filter.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/content-filter.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/content-filter.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/decision-tree-generator.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/decision-tree-generator.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/decision-tree-generator.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/decision-tree-generator.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/embeddings.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/embeddings.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/embeddings.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/embeddings.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/flowchart-generator.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/flowchart-generator.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/flowchart-generator.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/flowchart-generator.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/frontmatter-migration.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/frontmatter-migration.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/frontmatter-migration.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/frontmatter-migration.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/memory-frontmatter.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/memory-frontmatter.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/memory-frontmatter.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/memory-frontmatter.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/memory-telemetry.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/memory-telemetry.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/memory-telemetry.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/memory-telemetry.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/phase-classifier.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/phase-classifier.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/phase-classifier.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/phase-classifier.js.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/semantic-signal-extractor.d.ts
-.opencode/skill/system-spec-kit/scripts/dist/lib/semantic-signal-extractor.d.ts.map
-.opencode/skill/system-spec-kit/scripts/dist/lib/semantic-signal-extractor.js
-.opencode/skill/system-spec-kit/scripts/dist/lib/semantic-signal-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/.github/hooks/superset-notify.json
+.opencode/skills/system-spec-kit/scripts/.gitignore
+.opencode/skills/system-spec-kit/scripts/.tmp/vitest-tmp/xcrun_db
+.opencode/skills/system-spec-kit/scripts/README.md
+.opencode/skills/system-spec-kit/scripts/check-api-boundary.sh
+.opencode/skills/system-spec-kit/scripts/check-links.sh
+.opencode/skills/system-spec-kit/scripts/common.sh
+.opencode/skills/system-spec-kit/scripts/config/index.ts
+.opencode/skills/system-spec-kit/scripts/core/README.md
+.opencode/skills/system-spec-kit/scripts/core/alignment-validator.ts
+.opencode/skills/system-spec-kit/scripts/core/config.ts
+.opencode/skills/system-spec-kit/scripts/core/content-cleaner.ts
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts
+.opencode/skills/system-spec-kit/scripts/core/find-predecessor-memory.ts
+.opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts
+.opencode/skills/system-spec-kit/scripts/core/index.ts
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts
+.opencode/skills/system-spec-kit/scripts/core/quality-gates.ts
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts
+.opencode/skills/system-spec-kit/scripts/core/title-builder.ts
+.opencode/skills/system-spec-kit/scripts/core/topic-extractor.ts
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts
+.opencode/skills/system-spec-kit/scripts/core/workflow-accessors.ts
+.opencode/skills/system-spec-kit/scripts/core/workflow-path-utils.ts
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts
+.opencode/skills/system-spec-kit/scripts/dist/config/index.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/config/index.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/config/index.js
+.opencode/skills/system-spec-kit/scripts/dist/config/index.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/alignment-validator.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/alignment-validator.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/alignment-validator.js
+.opencode/skills/system-spec-kit/scripts/dist/core/alignment-validator.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/config.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/config.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/config.js
+.opencode/skills/system-spec-kit/scripts/dist/core/config.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/content-cleaner.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/content-cleaner.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/content-cleaner.js
+.opencode/skills/system-spec-kit/scripts/dist/core/content-cleaner.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/file-writer.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/file-writer.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/file-writer.js
+.opencode/skills/system-spec-kit/scripts/dist/core/file-writer.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/find-predecessor-memory.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/find-predecessor-memory.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/find-predecessor-memory.js
+.opencode/skills/system-spec-kit/scripts/dist/core/find-predecessor-memory.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/frontmatter-editor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/frontmatter-editor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/frontmatter-editor.js
+.opencode/skills/system-spec-kit/scripts/dist/core/frontmatter-editor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/index.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/index.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/index.js
+.opencode/skills/system-spec-kit/scripts/dist/core/index.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/memory-indexer.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/memory-indexer.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/memory-indexer.js
+.opencode/skills/system-spec-kit/scripts/dist/core/memory-indexer.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/memory-metadata.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/memory-metadata.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/memory-metadata.js
+.opencode/skills/system-spec-kit/scripts/dist/core/memory-metadata.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/post-save-review.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/post-save-review.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/post-save-review.js
+.opencode/skills/system-spec-kit/scripts/dist/core/post-save-review.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/quality-gates.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/quality-gates.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/quality-gates.js
+.opencode/skills/system-spec-kit/scripts/dist/core/quality-gates.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/quality-scorer.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/quality-scorer.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/quality-scorer.js
+.opencode/skills/system-spec-kit/scripts/dist/core/quality-scorer.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.js
+.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/title-builder.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/title-builder.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/title-builder.js
+.opencode/skills/system-spec-kit/scripts/dist/core/title-builder.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/topic-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/topic-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/topic-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/core/topic-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/tree-thinning.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/tree-thinning.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/tree-thinning.js
+.opencode/skills/system-spec-kit/scripts/dist/core/tree-thinning.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow-accessors.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow-accessors.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow-accessors.js
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow-accessors.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow-path-utils.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow-path-utils.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow-path-utils.js
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow-path-utils.js.map
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-allowlist-expiry.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-allowlist-expiry.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-allowlist-expiry.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-allowlist-expiry.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports-ast.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports-ast.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports-ast.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports-ast.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-no-mcp-lib-imports.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-source-dist-alignment.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-source-dist-alignment.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-source-dist-alignment.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/check-source-dist-alignment.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/collect-redaction-calibration-inputs.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/collect-redaction-calibration-inputs.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/collect-redaction-calibration-inputs.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/collect-redaction-calibration-inputs.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/import-policy-rules.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/import-policy-rules.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/import-policy-rules.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/import-policy-rules.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/map-ground-truth-ids.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/map-ground-truth-ids.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/map-ground-truth-ids.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/map-ground-truth-ids.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-ablation.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-ablation.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-ablation.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-ablation.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-bm25-baseline.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-bm25-baseline.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-bm25-baseline.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-bm25-baseline.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-performance-benchmarks.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-performance-benchmarks.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-performance-benchmarks.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-performance-benchmarks.js.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-redaction-calibration.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-redaction-calibration.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-redaction-calibration.js
+.opencode/skills/system-spec-kit/scripts/dist/evals/run-redaction-calibration.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/collect-session-data.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/collect-session-data.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/collect-session-data.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/collect-session-data.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/contamination-filter.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/contamination-filter.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/contamination-filter.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/contamination-filter.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/conversation-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/conversation-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/conversation-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/conversation-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/decision-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/decision-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/decision-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/decision-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/diagram-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/diagram-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/diagram-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/diagram-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/file-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/file-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/file-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/file-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/git-context-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/git-context-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/git-context-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/git-context-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/implementation-guide-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/implementation-guide-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/implementation-guide-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/implementation-guide-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/index.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/index.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/index.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/index.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/quality-scorer.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/quality-scorer.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/quality-scorer.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/quality-scorer.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/session-activity-signal.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/session-activity-signal.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/session-activity-signal.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/session-activity-signal.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/session-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/session-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/session-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/session-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/spec-folder-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/extractors/spec-folder-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/extractors/spec-folder-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/extractors/spec-folder-extractor.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/anchor-generator.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/anchor-generator.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/anchor-generator.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/anchor-generator.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/ascii-boxes.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/ascii-boxes.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/ascii-boxes.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/ascii-boxes.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/cli-capture-shared.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/cli-capture-shared.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/cli-capture-shared.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/cli-capture-shared.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/content-filter.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/content-filter.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/content-filter.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/content-filter.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/decision-tree-generator.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/decision-tree-generator.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/decision-tree-generator.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/decision-tree-generator.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/embeddings.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/embeddings.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/embeddings.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/embeddings.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/flowchart-generator.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/flowchart-generator.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/flowchart-generator.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/flowchart-generator.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/frontmatter-migration.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/frontmatter-migration.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/frontmatter-migration.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/frontmatter-migration.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/memory-frontmatter.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/memory-frontmatter.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/memory-frontmatter.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/memory-frontmatter.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/memory-telemetry.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/memory-telemetry.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/memory-telemetry.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/memory-telemetry.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/phase-classifier.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/phase-classifier.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/phase-classifier.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/phase-classifier.js.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/semantic-signal-extractor.d.ts
+.opencode/skills/system-spec-kit/scripts/dist/lib/semantic-signal-extractor.d.ts.map
+.opencode/skills/system-spec-kit/scripts/dist/lib/semantic-signal-extractor.js
+.opencode/skills/system-spec-kit/scripts/dist/lib/semantic-signal-extractor.js.map
 
 codex
 I’ve verified another important gap: the packet plan talks about future `deep-research-behavioral`, `deep-review-behavioral`, replay-fixture folders, and an `optimizer/` script tree, but none of those paths exist yet. I’m doing one targeted read of the current reducer tests now so I can distinguish what is already covered from what Phase 4 would still need to invent.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts | sed -n '220,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts | sed -n '220,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    220	  while (tempDirs.length) {
    221	    fs.rmSync(tempDirs.pop() as string, { recursive: true, force: true });
@@ -8694,10 +8694,10 @@ exec
     15	describe('deep-review reducer and schema contract', () => {
     16	  it('keeps reducer, severity, and release-readiness schemas stable in the canonical assets', () => {
     17	    const contract = yaml.load(
-    18	      readWorkspaceFile('.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml'),
+    18	      readWorkspaceFile('.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml'),
     19	    ) as Record<string, any>;
     20	    const config = JSON.parse(
-    21	      readWorkspaceFile('.opencode/skill/sk-deep-review/assets/deep_review_config.json'),
+    21	      readWorkspaceFile('.opencode/skills/sk-deep-review/assets/deep_review_config.json'),
     22	    ) as Record<string, any>;
     23	
     24	    expect(contract.contract.severities.map((item: { id: string }) => item.id)).toEqual(['P0', 'P1', 'P2']);
@@ -8741,8 +8741,8 @@ exec
     62	  });
     63	
     64	  it('wires reducer refresh and machine-owned report guidance into both review workflows', () => {
-    65	    const autoYaml = readWorkspaceFile('.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml');
-    66	    const confirmYaml = readWorkspaceFile('.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml');
+    65	    const autoYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml');
+    66	    const confirmYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml');
     67	
     68	    for (const [docPath, content] of [
     69	      ['auto', autoYaml],
@@ -8769,9 +8769,9 @@ exec
     90	  });
     91	
     92	  it('documents reducer metrics and machine-owned report boundaries in the review references', () => {
-    93	    const stateFormat = readWorkspaceFile('.opencode/skill/sk-deep-review/references/state_format.md');
-    94	    const loopProtocol = readWorkspaceFile('.opencode/skill/sk-deep-review/references/loop_protocol.md');
-    95	    const convergence = readWorkspaceFile('.opencode/skill/sk-deep-review/references/convergence.md');
+    93	    const stateFormat = readWorkspaceFile('.opencode/skills/sk-deep-review/references/state_format.md');
+    94	    const loopProtocol = readWorkspaceFile('.opencode/skills/sk-deep-review/references/loop_protocol.md');
+    95	    const convergence = readWorkspaceFile('.opencode/skills/sk-deep-review/references/convergence.md');
     96	
     97	    expect(stateFormat).toContain('deep-review-findings-registry.json');
     98	    expect(stateFormat).toContain('releaseReadinessState');
@@ -8790,44 +8790,44 @@ exec
    111	});
 
 exec
-/bin/zsh -lc "printf 'Prompt-bearing templates and docs\\n'; rg -n 'Recommended Next Focus|Questions addressed|Questions answered|claim-adjudication|Next Focus|What worked and why|What did not work and why|What I would do differently|Hunter|Skeptic|Referee' .opencode/agent/deep-research.md .opencode/agent/deep-review.md .opencode/skill/sk-deep-research/references/loop_protocol.md .opencode/skill/sk-deep-review/references/loop_protocol.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf 'Prompt-bearing templates and docs\\n'; rg -n 'Recommended Next Focus|Questions addressed|Questions answered|claim-adjudication|Next Focus|What worked and why|What did not work and why|What I would do differently|Hunter|Skeptic|Referee' .opencode/agents/deep-research.md .opencode/agents/deep-review.md .opencode/skills/sk-deep-research/references/loop_protocol.md .opencode/skills/sk-deep-review/references/loop_protocol.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 Prompt-bearing templates and docs
-.opencode/skill/sk-deep-research/references/loop_protocol.md:253:1. **Init**: During strategy initialization, if `research/research-ideas.md` exists from a prior session, read it and incorporate relevant ideas into the initial key questions or "Next Focus"
-.opencode/skill/sk-deep-research/references/loop_protocol.md:302:   - Determine focus from strategy "Next Focus"
-.opencode/agent/deep-review.md:51:2. DETERMINE FOCUS ─> Select dimension from strategy "Next Focus"
-.opencode/agent/deep-review.md:83:Use strategy.md "Next Focus" section to determine which dimension and specific area to review.
-.opencode/agent/deep-review.md:85:If "Next Focus" is empty or vague:
-.opencode/agent/deep-review.md:124:Every new `P0` or `P1` finding MUST include a typed claim-adjudication packet in the iteration artifact:
-.opencode/agent/deep-review.md:128:  "type": "claim-adjudication",
-.opencode/agent/deep-review.md:140:- **P0 candidate** --> Run full Hunter/Skeptic/Referee in THIS iteration BEFORE writing to JSONL
-.opencode/agent/deep-review.md:169:- Hunter: [finding assessment]
-.opencode/agent/deep-review.md:170:- Skeptic: [challenge]
-.opencode/agent/deep-review.md:171:- Referee: [verdict]
-.opencode/agent/deep-review.md:178:- Skeptic: [challenge]
-.opencode/agent/deep-review.md:179:- Referee: [verdict]
-.opencode/agent/deep-review.md:183:{"type":"claim-adjudication","claim":"One-sentence statement of the P0/P1 finding being adjudicated.","evidenceRefs":["path/to/file:line"],"counterevidenceSought":"Adjacent code, docs, and prior iterations checked for contradictory evidence.","alternativeExplanation":"Most plausible non-bug explanation considered during skeptic/referee review.","finalSeverity":"P0|P1","confidence":0.90,"downgradeTrigger":"What evidence would justify reducing severity or marking this a false positive."}
-.opencode/agent/deep-review.md:229:6. Set "Next Focus" for next iteration
-.opencode/agent/deep-review.md:390:Adapted from @review Hunter/Skeptic/Referee protocol.
-.opencode/agent/deep-review.md:401:- Challenge each Hunter finding: "Is there codebase context making this acceptable?"
-.opencode/agent/deep-review.md:406:- Weigh Hunter evidence vs Skeptic challenge for each finding
-.opencode/agent/deep-review.md:410:### Gate-Relevant P1 --> Compact Skeptic/Referee
-.opencode/agent/deep-review.md:437:7. Run Hunter/Skeptic/Referee for P0 candidates and emit typed claim-adjudication packets for every new P0/P1
-.opencode/agent/deep-review.md:479:[x] Hunter/Skeptic/Referee run on P0 candidates
-.opencode/agent/deep-review.md:480:[x] New P0/P1 findings include typed claim-adjudication packets
-.opencode/agent/deep-review.md:525:| Skipping self-check | False P0s waste remediation effort | P0 MUST have Hunter/Skeptic/Referee |
-.opencode/agent/deep-research.md:54:2. DETERMINE FOCUS ─> Pick focus from strategy "Next Focus"
-.opencode/agent/deep-research.md:85:Use strategy.md "Next Focus" section to determine what to investigate.
-.opencode/agent/deep-research.md:87:If "Next Focus" is empty or vague:
-.opencode/agent/deep-research.md:147:- Questions addressed: [list]
-.opencode/agent/deep-research.md:148:- Questions answered: [list]
-.opencode/agent/deep-research.md:151:- What worked and why: [approach that yielded results + causal explanation]
-.opencode/agent/deep-research.md:152:- What did not work and why: [approach that failed + root cause]
-.opencode/agent/deep-research.md:153:- What I would do differently: [specific adjustment for next iteration]
-.opencode/agent/deep-research.md:155:## Recommended Next Focus
-.opencode/agent/deep-research.md:245:Strategy "Next Focus" available?
-.opencode/agent/deep-research.md:356:**Questions answered**: [list or "none"]
-.opencode/agent/deep-research.md:463:│  |-- 5. Update strategy (Worked/Failed/Questions/Next Focus)            │
+.opencode/skills/sk-deep-research/references/loop_protocol.md:253:1. **Init**: During strategy initialization, if `research/research-ideas.md` exists from a prior session, read it and incorporate relevant ideas into the initial key questions or "Next Focus"
+.opencode/skills/sk-deep-research/references/loop_protocol.md:302:   - Determine focus from strategy "Next Focus"
+.opencode/agents/deep-review.md:51:2. DETERMINE FOCUS ─> Select dimension from strategy "Next Focus"
+.opencode/agents/deep-review.md:83:Use strategy.md "Next Focus" section to determine which dimension and specific area to review.
+.opencode/agents/deep-review.md:85:If "Next Focus" is empty or vague:
+.opencode/agents/deep-review.md:124:Every new `P0` or `P1` finding MUST include a typed claim-adjudication packet in the iteration artifact:
+.opencode/agents/deep-review.md:128:  "type": "claim-adjudication",
+.opencode/agents/deep-review.md:140:- **P0 candidate** --> Run full Hunter/Skeptic/Referee in THIS iteration BEFORE writing to JSONL
+.opencode/agents/deep-review.md:169:- Hunter: [finding assessment]
+.opencode/agents/deep-review.md:170:- Skeptic: [challenge]
+.opencode/agents/deep-review.md:171:- Referee: [verdict]
+.opencode/agents/deep-review.md:178:- Skeptic: [challenge]
+.opencode/agents/deep-review.md:179:- Referee: [verdict]
+.opencode/agents/deep-review.md:183:{"type":"claim-adjudication","claim":"One-sentence statement of the P0/P1 finding being adjudicated.","evidenceRefs":["path/to/file:line"],"counterevidenceSought":"Adjacent code, docs, and prior iterations checked for contradictory evidence.","alternativeExplanation":"Most plausible non-bug explanation considered during skeptic/referee review.","finalSeverity":"P0|P1","confidence":0.90,"downgradeTrigger":"What evidence would justify reducing severity or marking this a false positive."}
+.opencode/agents/deep-review.md:229:6. Set "Next Focus" for next iteration
+.opencode/agents/deep-review.md:390:Adapted from @review Hunter/Skeptic/Referee protocol.
+.opencode/agents/deep-review.md:401:- Challenge each Hunter finding: "Is there codebase context making this acceptable?"
+.opencode/agents/deep-review.md:406:- Weigh Hunter evidence vs Skeptic challenge for each finding
+.opencode/agents/deep-review.md:410:### Gate-Relevant P1 --> Compact Skeptic/Referee
+.opencode/agents/deep-review.md:437:7. Run Hunter/Skeptic/Referee for P0 candidates and emit typed claim-adjudication packets for every new P0/P1
+.opencode/agents/deep-review.md:479:[x] Hunter/Skeptic/Referee run on P0 candidates
+.opencode/agents/deep-review.md:480:[x] New P0/P1 findings include typed claim-adjudication packets
+.opencode/agents/deep-review.md:525:| Skipping self-check | False P0s waste remediation effort | P0 MUST have Hunter/Skeptic/Referee |
+.opencode/agents/deep-research.md:54:2. DETERMINE FOCUS ─> Pick focus from strategy "Next Focus"
+.opencode/agents/deep-research.md:85:Use strategy.md "Next Focus" section to determine what to investigate.
+.opencode/agents/deep-research.md:87:If "Next Focus" is empty or vague:
+.opencode/agents/deep-research.md:147:- Questions addressed: [list]
+.opencode/agents/deep-research.md:148:- Questions answered: [list]
+.opencode/agents/deep-research.md:151:- What worked and why: [approach that yielded results + causal explanation]
+.opencode/agents/deep-research.md:152:- What did not work and why: [approach that failed + root cause]
+.opencode/agents/deep-research.md:153:- What I would do differently: [specific adjustment for next iteration]
+.opencode/agents/deep-research.md:155:## Recommended Next Focus
+.opencode/agents/deep-research.md:245:Strategy "Next Focus" available?
+.opencode/agents/deep-research.md:356:**Questions answered**: [list or "none"]
+.opencode/agents/deep-research.md:463:│  |-- 5. Update strategy (Worked/Failed/Questions/Next Focus)            │
 
 web search: 
 web search: site:jmlr.org Random Search for Hyper-Parameter Optimization Bergstra JMLR
@@ -8843,23 +8843,23 @@ Open questions: are there older archived deep-loop JSONL runs outside `skilled-a
 **Iteration 2**
 Focus: Rubric design.
 - Phase 004 already names the right top-level rubric dimensions: accuracy, convergence efficiency, recovery success, and synthesis quality [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L79), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L80), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L127).
-- The current reducer already exposes useful rubric inputs: open/resolved questions, key findings, `convergenceScore`, and `coverageBySources` [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L266), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L271), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L272).
-- Deep-review already has governance-style gates that should become rubric dimensions, not just binary blockers: evidence, scope, and coverage [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L97), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L105), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L118).
+- The current reducer already exposes useful rubric inputs: open/resolved questions, key findings, `convergenceScore`, and `coverageBySources` [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L266), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L271), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L272).
+- Deep-review already has governance-style gates that should become rubric dimensions, not just binary blockers: evidence, scope, and coverage [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L97), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L105), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L118).
 Novel insight: the rubric should be two-layered: quality score plus promotability score. A candidate can be “better” yet still unshippable.
 Open questions: how much of “finding accuracy” can be inferred from artifacts alone vs needing judged labels?
 
 **Iteration 3**
 Focus: Optimizable parameter space.
-- Deep-research config exposes numeric loop knobs and budget knobs today: `maxIterations`, `convergenceThreshold`, `stuckThreshold`, `maxDurationMinutes`, `maxToolCallsPerIteration`, and `maxMinutesPerIteration` [deep_research_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/assets/deep_research_config.json#L3), [deep_research_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/assets/deep_research_config.json#L8).
-- The research convergence reference adds independent thresholds and weights that are not in config, including `0.85` entropy stop, `0.60` composite stop, and `0.80` dead-end coverage as reference-only [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L100), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L108), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L166).
-- Review adds another layer: config values, signal weights, severity math, and extra thresholds in contract [deep_review_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/deep_review_config.json#L9), [deep_review_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/deep_review_config.json#L30), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L123), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L137), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L143).
-- Prompt-bearing surfaces are also tunable in principle because the agent markdowns hardcode iteration/report templates and control text [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L145).
+- Deep-research config exposes numeric loop knobs and budget knobs today: `maxIterations`, `convergenceThreshold`, `stuckThreshold`, `maxDurationMinutes`, `maxToolCallsPerIteration`, and `maxMinutesPerIteration` [deep_research_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/assets/deep_research_config.json#L3), [deep_research_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/assets/deep_research_config.json#L8).
+- The research convergence reference adds independent thresholds and weights that are not in config, including `0.85` entropy stop, `0.60` composite stop, and `0.80` dead-end coverage as reference-only [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L100), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L108), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L166).
+- Review adds another layer: config values, signal weights, severity math, and extra thresholds in contract [deep_review_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/deep_review_config.json#L9), [deep_review_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/deep_review_config.json#L30), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L123), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L137), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L143).
+- Prompt-bearing surfaces are also tunable in principle because the agent markdowns hardcode iteration/report templates and control text [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L145).
 Novel insight: the real search space is not just “config tuning”; it is split across config JSON, convergence prose, contracts, and markdown prompt templates.
 Open questions: which of these surfaces are optimizer-managed vs constitutionally locked?
 
 **Iteration 4**
 Focus: Search strategy.
-- The repo’s current precedent for exhaustive search is tiny, one-dimensional, and bounded: `k-value-analysis.ts` sweeps exactly seven `K_VALUES` around a fixed baseline `K=60` [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L127), [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L131).
+- The repo’s current precedent for exhaustive search is tiny, one-dimensional, and bounded: `k-value-analysis.ts` sweeps exactly seven `K_VALUES` around a fixed baseline `K=60` [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L127), [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L131).
 - Phase 004 wants simultaneous tuning of thresholds, recovery policies, prompt variants, and dashboard weights [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L81), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L83), so full grid search is a bad fit.
 - External evidence supports a staged strategy: [Random Search for Hyper-Parameter Optimization](https://www.jmlr.org/papers/v13/bergstra12a.html) favors random search over grid in large spaces, while [Practical Bayesian Optimization of Machine Learning Algorithms](https://lips.cs.princeton.edu/bibliography/snoek2012practical/) becomes attractive once evaluations are expensive and the objective is stable.
 Novel insight: the right sequence is not grid vs Bayesian; it is tiny deterministic sweeps first, then bounded random search, then BO only after the replay objective is trustworthy.
@@ -8867,9 +8867,9 @@ Open questions: is the replay objective smooth enough for BO, or too discontinuo
 
 **Iteration 5**
 Focus: Evaluation cost.
-- `reduce-state.cjs` is deterministic file processing only: it reads config, JSONL, strategy, and iteration files, then writes registry/strategy/dashboard [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L475), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L502), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L504).
-- The convergence reference already defines disk-only replay validation: recompute ratios/gates from stored JSONL and compare against the persisted decision [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L786), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L794).
-- Current reducer coverage is fixture-based and LLM-free: the existing test proves idempotent reducer outputs from a temp spec folder [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L225), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L244), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L257).
+- `reduce-state.cjs` is deterministic file processing only: it reads config, JSONL, strategy, and iteration files, then writes registry/strategy/dashboard [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L475), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L502), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L504).
+- The convergence reference already defines disk-only replay validation: recompute ratios/gates from stored JSONL and compare against the persisted decision [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L786), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L794).
+- Current reducer coverage is fixture-based and LLM-free: the existing test proves idempotent reducer outputs from a temp spec folder [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L225), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L244), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L257).
 - DSPy-style prompt optimization is materially costlier: DSPy says even simple optimizer runs are around `$2` and `20` minutes, and can rise to tens of dollars depending on model/data ([DSPy docs](https://dspy.ai/)).
 Novel insight: there are really two budgets here: cheap deterministic replay for config search, and expensive LLM-in-the-loop optimization for prompt search.
 Open questions: should Phase 4 explicitly split those budgets into separate subphases?
@@ -8878,40 +8878,40 @@ Open questions: should Phase 4 explicitly split those budgets into separate subp
 Focus: DSPy applicability.
 - DSPy’s core loop is compile/evaluate: representative inputs plus a metric, then re-compile whenever code or metrics change ([DSPy docs](https://dspy.ai/)).
 - The MIPROv2 pattern maps surprisingly well: bootstrap traces, generate grounded instruction proposals, then run discrete search guided by a surrogate model ([DSPy docs](https://dspy.ai/)).
-- Our system is not DSPy-native because prompt surfaces live in markdown contracts: deep-research fixes the iteration template and JSONL schema [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L121), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L167); deep-review fixes claim-adjudication and Hunter/Skeptic/Referee [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L140), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L183).
+- Our system is not DSPy-native because prompt surfaces live in markdown contracts: deep-research fixes the iteration template and JSONL schema [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L121), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L167); deep-review fixes claim-adjudication and Hunter/Skeptic/Referee [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L140), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L183).
 Novel insight: DSPy is transferable here only if prompts become parameterized prompt packs generated from canonical templates, not hand-edited markdown blobs.
 Open questions: where should prompt variants live so parity tests and reviewers can diff them safely?
 
 **Iteration 7**
 Focus: Promotion safety.
 - Phase 004 already states the right rule: replay improvement alone is not enough; parity and behavioral tests must also pass [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L127), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L128), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L158).
-- The safety net that exists today is contract parity plus reducer/schema coverage: [deep-research-contract-parity.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts#L48), [deep-review-contract-parity.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts#L36), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L225), [deep-review-reducer-schema.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts#L15).
+- The safety net that exists today is contract parity plus reducer/schema coverage: [deep-research-contract-parity.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts#L48), [deep-review-contract-parity.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts#L36), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L225), [deep-review-reducer-schema.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts#L15).
 - The broader behavioral suites and packet replay fixtures are still only planned in `042`, not established today [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L218), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L229), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L297).
 Novel insight: until those replay/behavior suites exist, “promotion” should mean advisory patch generation, not automatic canonical-config mutation.
 Open questions: should promotable output be a patch artifact, a scored report, or a config PR template?
 
 **Iteration 8**
 Focus: Existing eval framework reuse.
-- The eval layer already has reusable measurement infrastructure: baselines, ablations, k-sensitivity, reporting, and shadow comparison analysis [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md#L25), [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md#L31), [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md#L33).
-- `ablation-framework.ts` already implements a useful pattern for controlled candidate comparison: baseline vs ablated scoring, per-channel deltas, significance testing, and result storage [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6), [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L16), [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L170).
-- `k-value-analysis.ts` and `eval-quality-proxy.ts` show two optimizer-relevant patterns: bounded sweeps with recommendations and pure composite scoring functions [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L127), [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L267), [eval-quality-proxy.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts#L8), [eval-quality-proxy.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts#L166).
-- The limits are important: the current eval layer is retrieval-shaped, and shadow runtime itself is retired [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L218), [shadow-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts#L237), [shadow-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts#L246).
+- The eval layer already has reusable measurement infrastructure: baselines, ablations, k-sensitivity, reporting, and shadow comparison analysis [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md#L25), [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md#L31), [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md#L33).
+- `ablation-framework.ts` already implements a useful pattern for controlled candidate comparison: baseline vs ablated scoring, per-channel deltas, significance testing, and result storage [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6), [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L16), [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L170).
+- `k-value-analysis.ts` and `eval-quality-proxy.ts` show two optimizer-relevant patterns: bounded sweeps with recommendations and pure composite scoring functions [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L127), [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L267), [eval-quality-proxy.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts#L8), [eval-quality-proxy.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts#L166).
+- The limits are important: the current eval layer is retrieval-shaped, and shadow runtime itself is retired [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L218), [shadow-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts#L237), [shadow-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts#L246).
 Novel insight: reuse the eval harness shape, not the retrieval semantics.
 Open questions: do optimizer runs belong in the central eval DB or stay packet-local for auditability?
 
 **Iteration 9**
 Focus: Prompt optimization feasibility.
-- Deep-research is reasonably prompt-optimizable because its artifact contract is strongly structured: fixed iteration sections, `newInfoRatio`, answered-question fields, and next-focus output [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L121), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L171), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L191).
-- Deep-review is much more tightly coupled to safety policy because the prompt itself contains severity workflow, typed claim-adjudication, and Hunter/Skeptic/Referee logic [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L140), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L221).
+- Deep-research is reasonably prompt-optimizable because its artifact contract is strongly structured: fixed iteration sections, `newInfoRatio`, answered-question fields, and next-focus output [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L121), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L171), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L191).
+- Deep-review is much more tightly coupled to safety policy because the prompt itself contains severity workflow, typed claim-adjudication, and Hunter/Skeptic/Referee logic [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L140), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L221).
 - Packet `042` already says deep-review machine-owned sections should become reducer-owned [042 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md#L184), so optimizing today’s direct-review prompt would target a surface that is supposed to shrink.
 Novel insight: optimize deep-research prompts first; keep deep-review prompts mostly hand-governed until reducer ownership lands.
 Open questions: should prompt optimization touch only wording, or also section ordering and required evidence scaffolds?
 
 **Iteration 10**
 Focus: Meta-learning across packets.
-- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L171).
+- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L171).
 - The `042` plan explicitly wants richer observability, decomposition, and semantic convergence signals, which are exactly the features a meta-learner would need [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L73), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L88), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L208).
-- But the current schema is still too thin for cross-packet generalization: `focusTrack` is optional, and there is no canonical ontology for task shape, scope size, claim confidence, or domain cluster [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L186), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L189), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L175).
+- But the current schema is still too thin for cross-packet generalization: `focusTrack` is optional, and there is no canonical ontology for task shape, scope size, claim confidence, or domain cluster [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L186), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L189), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L175).
 Novel insight: cross-packet learning is a Phase 2a/2b enabler, not a realistic Phase 4 starting assumption.
 Open questions: what packet ontology should define “code analysis”, “architecture”, “policy”, “external comparison”, and “large-target” work?
 
@@ -8949,23 +8949,23 @@ Open questions: are there older archived deep-loop JSONL runs outside `skilled-a
 **Iteration 2**
 Focus: Rubric design.
 - Phase 004 already names the right top-level rubric dimensions: accuracy, convergence efficiency, recovery success, and synthesis quality [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L79), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L80), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L127).
-- The current reducer already exposes useful rubric inputs: open/resolved questions, key findings, `convergenceScore`, and `coverageBySources` [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L266), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L271), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L272).
-- Deep-review already has governance-style gates that should become rubric dimensions, not just binary blockers: evidence, scope, and coverage [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L97), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L105), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L118).
+- The current reducer already exposes useful rubric inputs: open/resolved questions, key findings, `convergenceScore`, and `coverageBySources` [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L266), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L271), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L272).
+- Deep-review already has governance-style gates that should become rubric dimensions, not just binary blockers: evidence, scope, and coverage [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L97), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L105), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L118).
 Novel insight: the rubric should be two-layered: quality score plus promotability score. A candidate can be “better” yet still unshippable.
 Open questions: how much of “finding accuracy” can be inferred from artifacts alone vs needing judged labels?
 
 **Iteration 3**
 Focus: Optimizable parameter space.
-- Deep-research config exposes numeric loop knobs and budget knobs today: `maxIterations`, `convergenceThreshold`, `stuckThreshold`, `maxDurationMinutes`, `maxToolCallsPerIteration`, and `maxMinutesPerIteration` [deep_research_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/assets/deep_research_config.json#L3), [deep_research_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/assets/deep_research_config.json#L8).
-- The research convergence reference adds independent thresholds and weights that are not in config, including `0.85` entropy stop, `0.60` composite stop, and `0.80` dead-end coverage as reference-only [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L100), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L108), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L166).
-- Review adds another layer: config values, signal weights, severity math, and extra thresholds in contract [deep_review_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/deep_review_config.json#L9), [deep_review_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/deep_review_config.json#L30), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L123), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L137), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml#L143).
-- Prompt-bearing surfaces are also tunable in principle because the agent markdowns hardcode iteration/report templates and control text [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L145).
+- Deep-research config exposes numeric loop knobs and budget knobs today: `maxIterations`, `convergenceThreshold`, `stuckThreshold`, `maxDurationMinutes`, `maxToolCallsPerIteration`, and `maxMinutesPerIteration` [deep_research_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/assets/deep_research_config.json#L3), [deep_research_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/assets/deep_research_config.json#L8).
+- The research convergence reference adds independent thresholds and weights that are not in config, including `0.85` entropy stop, `0.60` composite stop, and `0.80` dead-end coverage as reference-only [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L100), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L108), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L166).
+- Review adds another layer: config values, signal weights, severity math, and extra thresholds in contract [deep_review_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/deep_review_config.json#L9), [deep_review_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/deep_review_config.json#L30), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L123), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L137), [review_mode_contract.yaml](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml#L143).
+- Prompt-bearing surfaces are also tunable in principle because the agent markdowns hardcode iteration/report templates and control text [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L145).
 Novel insight: the real search space is not just “config tuning”; it is split across config JSON, convergence prose, contracts, and markdown prompt templates.
 Open questions: which of these surfaces are optimizer-managed vs constitutionally locked?
 
 **Iteration 4**
 Focus: Search strategy.
-- The repo’s current precedent for exhaustive search is tiny, one-dimensional, and bounded: `k-value-analysis.ts` sweeps exactly seven `K_VALUES` around a fixed baseline `K=60` [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L127), [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L131).
+- The repo’s current precedent for exhaustive search is tiny, one-dimensional, and bounded: `k-value-analysis.ts` sweeps exactly seven `K_VALUES` around a fixed baseline `K=60` [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L127), [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L131).
 - Phase 004 wants simultaneous tuning of thresholds, recovery policies, prompt variants, and dashboard weights [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L81), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L83), so full grid search is a bad fit.
 - External evidence supports a staged strategy: [Random Search for Hyper-Parameter Optimization](https://www.jmlr.org/papers/v13/bergstra12a.html) favors random search over grid in large spaces, while [Practical Bayesian Optimization of Machine Learning Algorithms](https://lips.cs.princeton.edu/bibliography/snoek2012practical/) becomes attractive once evaluations are expensive and the objective is stable.
 Novel insight: the right sequence is not grid vs Bayesian; it is tiny deterministic sweeps first, then bounded random search, then BO only after the replay objective is trustworthy.
@@ -8973,9 +8973,9 @@ Open questions: is the replay objective smooth enough for BO, or too discontinuo
 
 **Iteration 5**
 Focus: Evaluation cost.
-- `reduce-state.cjs` is deterministic file processing only: it reads config, JSONL, strategy, and iteration files, then writes registry/strategy/dashboard [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L475), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L502), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/scripts/reduce-state.cjs#L504).
-- The convergence reference already defines disk-only replay validation: recompute ratios/gates from stored JSONL and compare against the persisted decision [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L786), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/references/convergence.md#L794).
-- Current reducer coverage is fixture-based and LLM-free: the existing test proves idempotent reducer outputs from a temp spec folder [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L225), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L244), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L257).
+- `reduce-state.cjs` is deterministic file processing only: it reads config, JSONL, strategy, and iteration files, then writes registry/strategy/dashboard [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L475), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L502), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L504).
+- The convergence reference already defines disk-only replay validation: recompute ratios/gates from stored JSONL and compare against the persisted decision [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L786), [convergence.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/convergence.md#L794).
+- Current reducer coverage is fixture-based and LLM-free: the existing test proves idempotent reducer outputs from a temp spec folder [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L225), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L244), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L257).
 - DSPy-style prompt optimization is materially costlier: DSPy says even simple optimizer runs are around `$2` and `20` minutes, and can rise to tens of dollars depending on model/data ([DSPy docs](https://dspy.ai/)).
 Novel insight: there are really two budgets here: cheap deterministic replay for config search, and expensive LLM-in-the-loop optimization for prompt search.
 Open questions: should Phase 4 explicitly split those budgets into separate subphases?
@@ -8984,40 +8984,40 @@ Open questions: should Phase 4 explicitly split those budgets into separate subp
 Focus: DSPy applicability.
 - DSPy’s core loop is compile/evaluate: representative inputs plus a metric, then re-compile whenever code or metrics change ([DSPy docs](https://dspy.ai/)).
 - The MIPROv2 pattern maps surprisingly well: bootstrap traces, generate grounded instruction proposals, then run discrete search guided by a surrogate model ([DSPy docs](https://dspy.ai/)).
-- Our system is not DSPy-native because prompt surfaces live in markdown contracts: deep-research fixes the iteration template and JSONL schema [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L121), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L167); deep-review fixes claim-adjudication and Hunter/Skeptic/Referee [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L140), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L183).
+- Our system is not DSPy-native because prompt surfaces live in markdown contracts: deep-research fixes the iteration template and JSONL schema [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L121), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L167); deep-review fixes claim-adjudication and Hunter/Skeptic/Referee [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L140), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L183).
 Novel insight: DSPy is transferable here only if prompts become parameterized prompt packs generated from canonical templates, not hand-edited markdown blobs.
 Open questions: where should prompt variants live so parity tests and reviewers can diff them safely?
 
 **Iteration 7**
 Focus: Promotion safety.
 - Phase 004 already states the right rule: replay improvement alone is not enough; parity and behavioral tests must also pass [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L127), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L128), [042.004 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md#L158).
-- The safety net that exists today is contract parity plus reducer/schema coverage: [deep-research-contract-parity.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts#L48), [deep-review-contract-parity.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts#L36), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L225), [deep-review-reducer-schema.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts#L15).
+- The safety net that exists today is contract parity plus reducer/schema coverage: [deep-research-contract-parity.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts#L48), [deep-review-contract-parity.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts#L36), [deep-research-reducer.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts#L225), [deep-review-reducer-schema.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts#L15).
 - The broader behavioral suites and packet replay fixtures are still only planned in `042`, not established today [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L218), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L229), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L297).
 Novel insight: until those replay/behavior suites exist, “promotion” should mean advisory patch generation, not automatic canonical-config mutation.
 Open questions: should promotable output be a patch artifact, a scored report, or a config PR template?
 
 **Iteration 8**
 Focus: Existing eval framework reuse.
-- The eval layer already has reusable measurement infrastructure: baselines, ablations, k-sensitivity, reporting, and shadow comparison analysis [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md#L25), [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md#L31), [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md#L33).
-- `ablation-framework.ts` already implements a useful pattern for controlled candidate comparison: baseline vs ablated scoring, per-channel deltas, significance testing, and result storage [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6), [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L16), [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L170).
-- `k-value-analysis.ts` and `eval-quality-proxy.ts` show two optimizer-relevant patterns: bounded sweeps with recommendations and pure composite scoring functions [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L127), [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L267), [eval-quality-proxy.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts#L8), [eval-quality-proxy.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts#L166).
-- The limits are important: the current eval layer is retrieval-shaped, and shadow runtime itself is retired [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L218), [shadow-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts#L237), [shadow-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts#L246).
+- The eval layer already has reusable measurement infrastructure: baselines, ablations, k-sensitivity, reporting, and shadow comparison analysis [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md#L25), [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md#L31), [eval README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md#L33).
+- `ablation-framework.ts` already implements a useful pattern for controlled candidate comparison: baseline vs ablated scoring, per-channel deltas, significance testing, and result storage [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6), [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L16), [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L170).
+- `k-value-analysis.ts` and `eval-quality-proxy.ts` show two optimizer-relevant patterns: bounded sweeps with recommendations and pure composite scoring functions [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L127), [k-value-analysis.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts#L267), [eval-quality-proxy.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts#L8), [eval-quality-proxy.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts#L166).
+- The limits are important: the current eval layer is retrieval-shaped, and shadow runtime itself is retired [ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L218), [shadow-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts#L237), [shadow-scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts#L246).
 Novel insight: reuse the eval harness shape, not the retrieval semantics.
 Open questions: do optimizer runs belong in the central eval DB or stay packet-local for auditability?
 
 **Iteration 9**
 Focus: Prompt optimization feasibility.
-- Deep-research is reasonably prompt-optimizable because its artifact contract is strongly structured: fixed iteration sections, `newInfoRatio`, answered-question fields, and next-focus output [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L121), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L171), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L191).
-- Deep-review is much more tightly coupled to safety policy because the prompt itself contains severity workflow, typed claim-adjudication, and Hunter/Skeptic/Referee logic [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L140), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-review.md#L221).
+- Deep-research is reasonably prompt-optimizable because its artifact contract is strongly structured: fixed iteration sections, `newInfoRatio`, answered-question fields, and next-focus output [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L121), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L171), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L191).
+- Deep-review is much more tightly coupled to safety policy because the prompt itself contains severity workflow, typed claim-adjudication, and Hunter/Skeptic/Referee logic [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L124), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L140), [deep-review agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-review.md#L221).
 - Packet `042` already says deep-review machine-owned sections should become reducer-owned [042 spec.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md#L184), so optimizing today’s direct-review prompt would target a surface that is supposed to shrink.
 Novel insight: optimize deep-research prompts first; keep deep-review prompts mostly hand-governed until reducer ownership lands.
 Open questions: should prompt optimization touch only wording, or also section ordering and required evidence scaffolds?
 
 **Iteration 10**
 Focus: Meta-learning across packets.
-- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L171).
+- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L171).
 - The `042` plan explicitly wants richer observability, decomposition, and semantic convergence signals, which are exactly the features a meta-learner would need [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L73), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L88), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L208).
-- But the current schema is still too thin for cross-packet generalization: `focusTrack` is optional, and there is no canonical ontology for task shape, scope size, claim confidence, or domain cluster [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L186), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L189), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L175).
+- But the current schema is still too thin for cross-packet generalization: `focusTrack` is optional, and there is no canonical ontology for task shape, scope size, claim confidence, or domain cluster [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L186), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L189), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L175).
 Novel insight: cross-packet learning is a Phase 2a/2b enabler, not a realistic Phase 4 starting assumption.
 Open questions: what packet ontology should define “code analysis”, “architecture”, “policy”, “external comparison”, and “large-target” work?
 

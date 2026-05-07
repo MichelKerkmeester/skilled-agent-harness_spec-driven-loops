@@ -1,6 +1,6 @@
 # Mirror Drift Report
 
-Canonical target: `.opencode/agent/handover.md`
+Canonical target: `.opencode/agents/handover.md`
 
 ## Surface Coverage
 
@@ -16,9 +16,9 @@ Canonical target: `.opencode/agent/handover.md`
 - `.codex/agents/handover.toml`
 - `.gemini/agents/handover.md`
 - `.gemini/commands/spec_kit/handover.toml`
-- `.opencode/agent/handover.md`
-- `.opencode/command/spec_kit/handover.md`
-- `.opencode/skill/system-spec-kit/templates/handover.md`
+- `.opencode/agents/handover.md`
+- `.opencode/commands/spec_kit/handover.md`
+- `.opencode/skills/system-spec-kit/templates/handover.md`
 
 ## Known Mirrors
 

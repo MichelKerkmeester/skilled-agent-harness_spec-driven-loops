@@ -82,16 +82,16 @@ Close the deferred items so the phase-parent surface is uniformly lean by defaul
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Add phase-parent branch importing `isPhaseParent` (or its mcp_server twin); write pointer fields at parent saves; bubble up at child saves |
-| `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` | Rebuild | Compile output of TS source |
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh` | Modify | When `--phase` mode, parent scaffolds from `templates/phase_parent/spec.md`; children unchanged |
-| `.opencode/skill/system-spec-kit/templates/context-index.md` | Create | Migration-bridge template for phase parents that have undergone reorganization |
-| `.opencode/skill/system-spec-kit/templates/resource-map.md` | Modify | Sharpen phase-parent guidance in Author Instructions §Scope shape |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-phase-parent-content.sh` | Create | P2 token-scanning validator for phase-parent content discipline |
-| `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json` | Modify | Register `PHASE_PARENT_CONTENT` rule (severity warn) |
-| `.opencode/command/spec_kit/resume.md` and `assets/spec_kit_resume_*.yaml` | Modify | Honor `last_active_child_id` redirect first; list-fallback when missing |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modify | Note phase-parent redirect in brief assembler |
-| `.opencode/skill/system-spec-kit/scripts/tests/memory/phase-parent-pointer.test.ts` (or vitest equivalent) | Create | Assert generator writes pointer at parent save and bubbles up from child save |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Add phase-parent branch importing `isPhaseParent` (or its mcp_server twin); write pointer fields at parent saves; bubble up at child saves |
+| `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` | Rebuild | Compile output of TS source |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Modify | When `--phase` mode, parent scaffolds from `templates/phase_parent/spec.md`; children unchanged |
+| `.opencode/skills/system-spec-kit/templates/context-index.md` | Create | Migration-bridge template for phase parents that have undergone reorganization |
+| `.opencode/skills/system-spec-kit/templates/resource-map.md` | Modify | Sharpen phase-parent guidance in Author Instructions §Scope shape |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh` | Create | P2 token-scanning validator for phase-parent content discipline |
+| `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` | Modify | Register `PHASE_PARENT_CONTENT` rule (severity warn) |
+| `.opencode/commands/spec_kit/resume.md` and `assets/spec_kit_resume_*.yaml` | Modify | Honor `last_active_child_id` redirect first; list-fallback when missing |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modify | Note phase-parent redirect in brief assembler |
+| `.opencode/skills/system-spec-kit/scripts/tests/memory/phase-parent-pointer.test.ts` (or vitest equivalent) | Create | Assert generator writes pointer at parent save and bubbles up from child save |
 <!-- /ANCHOR:scope -->
 
 ---

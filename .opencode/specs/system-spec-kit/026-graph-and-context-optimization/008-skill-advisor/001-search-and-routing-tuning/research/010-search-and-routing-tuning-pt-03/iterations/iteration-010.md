@@ -6,7 +6,7 @@ Consolidate the loop into a single risk-ranked view of graph metadata integrity 
 ## Findings
 1. Relationship integrity is good but shallow: all 4 declared dependencies resolve, there are 0 cycles, and there are 0 ghost children after proper path normalization. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 2. The dominant defects are semantic quality defects in derived fields, not relationship breakage: 40.13% missing `key_files`, 2,020 duplicate entities, 259 planned-with-implementation-summary mismatches, 216 over-cap trigger sets, and 130 stale timestamps. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
-3. Those defects trace back to concrete derivation behaviors: frontmatter-only status extraction, direct key-file seeding into entities, lack of trigger-phrase truncation in `deriveGraphMetadata()`, and legacy compatibility files that preserve weaker structure. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:346-353] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-471] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:523-560]
+3. Those defects trace back to concrete derivation behaviors: frontmatter-only status extraction, direct key-file seeding into entities, lack of trigger-phrase truncation in `deriveGraphMetadata()`, and legacy compatibility files that preserve weaker structure. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:346-353] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-471] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:523-560]
 4. The next remediation wave should prioritize data-quality fixes over more relationship validation work: status derivation, key-file sanitization/canonicalization, duplicate-entity suppression, trigger-cap enforcement, and legacy JSON normalization. [INFERENCE: based on the cross-question metrics and parser/backfill behavior]
 
 ## Ruled Out
@@ -16,9 +16,9 @@ Consolidate the loop into a single risk-ranked view of graph metadata integrity 
 - Treating graph integrity and graph usefulness as the same thing.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:346-353`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-471`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:523-560`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:346-353`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-471`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:523-560`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

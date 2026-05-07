@@ -6,7 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const PROJ = '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit';
+const PROJ = '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit';
 const MCP = path.join(PROJ, 'mcp_server');
 const SHARED = path.join(PROJ, 'shared');
 const CATALOG = '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/feature-catalog';

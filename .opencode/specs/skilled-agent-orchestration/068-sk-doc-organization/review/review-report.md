@@ -38,9 +38,9 @@ None.
 ### P1 — Required (need fix before ship)
 
 **P1-003-A: Broken cross-link in `frontmatter_templates.md`**
-- File: `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md:770`
+- File: `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md:770`
 - Current: `- [command_template.md](../agents/command_template.md) - Command file templates`
-- Resolves to: `.opencode/skill/sk-doc/assets/agents/command_template.md` (does not exist; agents/ rmdir'd in Phase 1)
+- Resolves to: `.opencode/skills/sk-doc/assets/agents/command_template.md` (does not exist; agents/ rmdir'd in Phase 1)
 - Fix: change `(../agents/command_template.md)` to `(../command_template.md)`
 - Root cause: Phase 2 substring sweep used pattern `assets/agents/command_template`, but the relative-path link uses `../agents/command_template` (no `assets/` prefix). The sed pattern only matched the prefixed form.
 - Dimension: traceability + correctness (broken doc reference)
@@ -48,7 +48,7 @@ None.
 ### P2 — Suggestion (in-scope, optional)
 
 **iter4-F1 (reclassified P2 by Skeptic): quick_reference.md outdated tree diagram**
-- File: `.opencode/skill/sk-doc/references/global/quick_reference.md:174-188`
+- File: `.opencode/skills/sk-doc/references/global/quick_reference.md:174-188`
 - Issue: project-structure tree depicts `assets/documentation/feature_catalog/`, `assets/documentation/testing_playbook/`, and `assets/agents/{agent_template.md,command_template.md}` (pre-reorg layout)
 - Fix: rewrite tree to show `feature_catalog/` and `testing_playbook/` at `assets/` root and `agent_template.md` + `command_template.md` at `assets/` root, with no `assets/agents/` directory
 - Root cause: structured tree diagrams are not amenable to substring substitution; Phase 2's sed pass cannot rewrite ASCII trees
@@ -56,8 +56,8 @@ None.
 
 **P2-003-A: Illustrative `assets/agents/` examples in skill creation guidance**
 - Files:
-  - `.opencode/skill/sk-doc/assets/skill/skill_md_template.md`
-  - `.opencode/skill/sk-doc/references/specific/skill_creation.md`
+  - `.opencode/skills/sk-doc/assets/skill/skill_md_template.md`
+  - `.opencode/skills/sk-doc/references/specific/skill_creation.md`
 - Issue: example/template listings of common `assets/<category>/` subdirs include `assets/agents/`. Not broken refs (don't resolve to a path), but post-reorg sk-doc itself no longer uses an `assets/agents/` subdir, so the example is inconsistent with current layout
 - Fix: replace `assets/agents/` example with another generic category name OR update to mention `agent_template.md` at root
 - Dimension: maintainability (cosmetic doc consistency)
@@ -65,7 +65,7 @@ None.
 ### P2 — Out of Scope (locked, no action)
 
 **P2-006-A: Stale path strings in router-measurement JSONL**
-- File: `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl:57,182`
+- File: `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl:57,182`
 - Issue: captured `predictedRoute` payloads still reference `assets/documentation/testing_playbook/...` from pre-relocation runs
 - Status: explicitly out-of-scope per strategy ("Build artifacts (.tmp/, dist/, observability/*.jsonl)")
 - Reason: historical experimental records, not a runtime regression; no consumer reads filesystem paths from these JSONL records
@@ -106,7 +106,7 @@ P2 (bundle in 004 if low effort):
 ### 004 acceptance criteria
 
 - [ ] P1-003-A fixed (link resolves to existing file)
-- [ ] iter4-F1 P2 fixed (tree diagram matches `ls .opencode/skill/sk-doc/assets/`)
+- [ ] iter4-F1 P2 fixed (tree diagram matches `ls .opencode/skills/sk-doc/assets/`)
 - [ ] P2-003-A fixed (illustrative examples updated)
 - [ ] validate.sh --strict on parent 068 still exits 0
 - [ ] One commit on main: `feat(sk-doc): remediate review findings (068/004)`

@@ -16,44 +16,44 @@ The current `resolveSeed()` implementation has only three fixed-resolution tiers
 
 There is no intermediate near-exact query using `ABS(start_line - ?)`, and no graduated confidence formula derived from line distance.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:168-239]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:168-239]
 
 ### 2. Claim: CocoIndex score propagation via blended confidence `resolution * 0.6 + coco * 0.4`
 **Status: FALSE.**
 
 `resolveCocoIndexSeed()` discards the CocoIndex `score` field. It converts the seed into a plain `{ filePath, startLine, endLine }` structure and delegates to `resolveSeed()`. As a result, final confidence comes entirely from the structural resolution tier and never blends in CocoIndex relevance.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:19-25]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:73-80]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:168-239]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:19-25]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:73-80]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:168-239]
 
 ### 3. Claim: manual seed fuzzy name matching via LIKE prefix fallback
 **Status: FALSE.**
 
 `resolveManualSeed()` performs exact matching only: `SELECT * FROM code_nodes WHERE name = ?`, optionally constrained by `file_path` and `kind`. There is no `LIKE`, prefix fallback, or edit-distance logic. The subject fallback in `code-graph-context.ts` is also exact-only (`symbol_id = ? OR fq_name = ? OR name = ?`).
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:82-128]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:251-276]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:82-128]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:251-276]
 
 ### 4. Claim: stale-triggered auto-reindex using existing `computeFreshness()` + `isFileStale()`
 **Status: FALSE as current behavior; helpers exist but are not wired into auto-reindex.**
 
 `computeFreshness()` is read-only metadata generation. `buildContext()` calls it and returns freshness in response metadata, but never triggers `code_graph_scan` or `ccc_reindex`. `isFileStale()` is used only inside the scan handler to skip unchanged files during an already-running incremental scan. The current code therefore has freshness/staleness primitives, but no stale-triggered reindex behavior on read.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:47-118]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:163-177]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:171-177]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:47-53]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:47-118]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:163-177]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:171-177]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:47-53]
 
 ### 5. Claim: three hybrid query patterns are implemented (semantic-first expansion, structural-first enrichment, dual-query merge)
 **Status: FALSE as current implementation.**
 
 `code_graph_context` supports three **graph expansion modes**: `neighborhood`, `outline`, and `impact`. It accepts precomputed seeds, including CocoIndex-originated seeds, then performs structural graph expansion only. It does not run CocoIndex searches internally, perform structural-first semantic enrichment, or execute dual-query merge logic. Those patterns remain research/design proposals rather than implemented behavior.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:12-23]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:47-118]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:179-249]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:660-693]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:12-23]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:47-118]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:179-249]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:660-693]
 
 ### 6. Claim: CocoIndex MCP exposes only `search`; all management is via Spec Kit Memory wrappers
 **Status: TRUE, with one nuance.**
@@ -63,9 +63,9 @@ The native CocoIndex MCP server registered in `.mcp.json` runs `ccc mcp`. The Co
 Nuance: management still exists via CLI outside MCP, so the precise verified statement is: **for MCP consumers in this repo, management flows through the Spec Kit Memory wrappers rather than the native CocoIndex MCP server.**
 
 [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.mcp.json:22-29]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/mcp-coco-index/SKILL.md:233-241]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:17-26]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:696-726]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/mcp-coco-index/SKILL.md:233-241]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:17-26]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:696-726]
 
 ### 7. Claim: missing composite index `(file_path, start_line)` is needed for near-exact performance
 **Status: PARTIALLY VERIFIED.**
@@ -83,8 +83,8 @@ What is **not** directly verifiable from current code:
 
 So the absence of the index is factual, but the performance-necessity claim remains an architectural inference rather than implemented or measured behavior.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:18-68]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:172-200]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:18-68]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:172-200]
 
 ## Synthesis
 
@@ -108,13 +108,13 @@ None. The target files were sufficient to verify all seven claims.
 
 ## Sources Consulted
 
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/mcp-coco-index/SKILL.md`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/mcp-coco-index/SKILL.md`
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.mcp.json`
 
 ## Assessment

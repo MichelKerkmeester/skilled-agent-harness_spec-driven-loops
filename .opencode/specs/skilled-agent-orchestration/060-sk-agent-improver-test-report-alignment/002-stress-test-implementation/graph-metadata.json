@@ -41,19 +41,19 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/agent/improve-agent.md",
-      ".opencode/skill/sk-improve-agent/SKILL.md",
-      ".opencode/command/improve/assets/improve_improve-agent_auto.yaml",
-      ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/scan-integration.cjs",
+      ".opencode/agents/improve-agent.md",
+      ".opencode/skills/sk-improve-agent/SKILL.md",
+      ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml",
+      ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/scan-integration.cjs",
       ".claude/agents/improve-agent.md",
       ".gemini/agents/improve-agent.md",
       ".codex/agents/improve-agent.toml",
-      ".opencode/command/improve/assets/improve_improve-agent_confirm.yaml",
-      ".opencode/skill/cli-copilot/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/commands/improve/assets/improve_improve-agent_confirm.yaml",
+      ".opencode/skills/cli-copilot/manual_testing_playbook/manual_testing_playbook.md",
       "implementation-summary.md",
       "handover.md",
-      ".opencode/command/improve/agent.md",
+      ".opencode/commands/improve/agent.md",
       "spec.md",
       "decision-record.md",
       "tasks.md",
@@ -65,31 +65,31 @@
       {
         "name": "improve-agent.md",
         "kind": "doc",
-        "path": ".opencode/agent/improve-agent.md",
+        "path": ".opencode/agents/improve-agent.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/SKILL.md",
+        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
         "source": "derived"
       },
       {
         "name": "improve_improve-agent_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/improve/assets/improve_improve-agent_auto.yaml",
+        "path": ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml",
         "source": "derived"
       },
       {
         "name": "score-candidate.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
         "source": "derived"
       },
       {
         "name": "scan-integration.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/scan-integration.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/scan-integration.cjs",
         "source": "derived"
       },
       {
@@ -101,13 +101,13 @@
       {
         "name": "improve_improve-agent_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/improve/assets/improve_improve-agent_confirm.yaml",
+        "path": ".opencode/commands/improve/assets/improve_improve-agent_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/cli-copilot/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -125,7 +125,7 @@
       {
         "name": "agent.md",
         "kind": "doc",
-        "path": ".opencode/command/improve/agent.md",
+        "path": ".opencode/commands/improve/agent.md",
         "source": "derived"
       },
       {

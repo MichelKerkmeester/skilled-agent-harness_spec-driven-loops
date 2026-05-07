@@ -139,7 +139,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/mcp_server |
+| Active File | /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/mcp_server |
 | Last Action | Tool: list |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -161,19 +161,19 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-memory/config.jsonc` - Configuration
+- `.opencode/skills/system-memory/config.jsonc` - Configuration
 
-- `.opencode/skill/system-memory/filters.jsonc` - Core filters
+- `.opencode/skills/system-memory/filters.jsonc` - Core filters
 
 - `.opencode/.../lib/search-weights.json` - Core search weights
 
 - `.opencode/.../lib/importance-tiers.js` - Core importance tiers
 
-- `.opencode/skill/system-memory/mcp_server/lib/scoring.js` - Core scoring
+- `.opencode/skills/system-memory/mcp_server/lib/scoring.js` - Core scoring
 
-- `.opencode/skill/system-memory` - Core system memory
+- `.opencode/skills/system-memory` - Core system memory
 
-- `.opencode/skill/system-memory/mcp_server` - Core mcp server
+- `.opencode/skills/system-memory/mcp_server` - Core mcp server
 
 **How to Extend**:
 
@@ -213,13 +213,13 @@ The search-weights.json file doesn't exist. Let me search for it and also check 
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-memory/config.jsonc` | Updated config |
-| `.opencode/skill/system-memory/filters.jsonc` | Updated filters |
+| `.opencode/skills/system-memory/config.jsonc` | Updated config |
+| `.opencode/skills/system-memory/filters.jsonc` | Updated filters |
 | `.opencode/.../lib/search-weights.json` | Updated search weights |
 | `.opencode/.../lib/importance-tiers.js` | Updated importance tiers |
-| `.opencode/skill/system-memory/mcp_server/lib/scoring.js` | Updated scoring |
-| `.opencode/skill/system-memory` | Updated system memory |
-| `.opencode/skill/system-memory/mcp_server` | Updated mcp server |
+| `.opencode/skills/system-memory/mcp_server/lib/scoring.js` | Updated scoring |
+| `.opencode/skills/system-memory` | Updated system memory |
+| `.opencode/skills/system-memory/mcp_server` | Updated mcp server |
 
 <!-- /ANCHOR:summary-session-1766602119853-owfqe7kr0-004-speckit/013-comprehensive-alignment-fix -->
 
@@ -240,18 +240,18 @@ The search-weights.json file doesn't exist. Let me search for it and also check 
 <!-- ANCHOR:implementation-tool-read-6ed290c4-session-1766602119853-owfqe7kr0 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/config.jsonc
+.opencode/skills/system-memory/config.jsonc
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/config.jsonc
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/config.jsonc
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-6ed290c4-session-1766602119853-owfqe7kr0 -->
 
 <!-- ANCHOR:implementation-tool-read-6ed290c4-2-session-1766602119853-owfqe7kr0 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/filters.jsonc
+.opencode/skills/system-memory/filters.jsonc
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/filters.jsonc
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/filters.jsonc
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-6ed290c4-2-session-1766602119853-owfqe7kr0 -->
 
@@ -260,52 +260,52 @@ The search-weights.json file doesn't exist. Let me search for it and also check 
 
 Executed read
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/mcp_server/lib/search-weights.json
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/mcp_server/lib/search-weights.json
 **Details:** Tool: read | Status: error
 <!-- /ANCHOR:implementation-tool-read-6ed290c4-3-session-1766602119853-owfqe7kr0 -->
 
 <!-- ANCHOR:implementation-tool-read-6ed290c4-4-session-1766602119853-owfqe7kr0 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/mcp_server/lib/importance-tiers.js
+.opencode/skills/system-memory/mcp_server/lib/importance-tiers.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/mcp_server/lib/importance-tiers.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/mcp_server/lib/importance-tiers.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-6ed290c4-4-session-1766602119853-owfqe7kr0 -->
 
 <!-- ANCHOR:implementation-tool-read-6ed290c4-5-session-1766602119853-owfqe7kr0 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/mcp_server/lib/scoring.js
+.opencode/skills/system-memory/mcp_server/lib/scoring.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/mcp_server/lib/scoring.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/mcp_server/lib/scoring.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-6ed290c4-5-session-1766602119853-owfqe7kr0 -->
 
 <!-- ANCHOR:implementation-tool-glob-fe723fff-session-1766602119853-owfqe7kr0 -->
 ### OBSERVATION: Tool: glob
 
-.opencode/skill/system-memory
+.opencode/skills/system-memory
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory
 **Details:** Tool: glob | Status: completed
 <!-- /ANCHOR:implementation-tool-glob-fe723fff-session-1766602119853-owfqe7kr0 -->
 
 <!-- ANCHOR:implementation-tool-glob-fe723fff-2-session-1766602119853-owfqe7kr0 -->
 ### OBSERVATION: Tool: glob
 
-.opencode/skill/system-memory/mcp_server
+.opencode/skills/system-memory/mcp_server
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/mcp_server
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/mcp_server
 **Details:** Tool: glob | Status: completed
 <!-- /ANCHOR:implementation-tool-glob-fe723fff-2-session-1766602119853-owfqe7kr0 -->
 
 <!-- ANCHOR:implementation-tool-list-e1926a4e-session-1766602119853-owfqe7kr0 -->
 ### OBSERVATION: Tool: list
 
-.opencode/skill/system-memory/mcp_server
+.opencode/skills/system-memory/mcp_server
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/mcp_server
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/mcp_server
 **Details:** Tool: list | Status: completed
 <!-- /ANCHOR:implementation-tool-list-e1926a4e-session-1766602119853-owfqe7kr0 -->
 
@@ -513,13 +513,13 @@ trigger_phrases:
   []
 
 key_files:
-  - ".opencode/skill/system-memory/config.jsonc"
-  - ".opencode/skill/system-memory/filters.jsonc"
+  - ".opencode/skills/system-memory/config.jsonc"
+  - ".opencode/skills/system-memory/filters.jsonc"
   - ".opencode/.../lib/search-weights.json"
   - ".opencode/.../lib/importance-tiers.js"
-  - ".opencode/skill/system-memory/mcp_server/lib/scoring.js"
-  - ".opencode/skill/system-memory"
-  - ".opencode/skill/system-memory/mcp_server"
+  - ".opencode/skills/system-memory/mcp_server/lib/scoring.js"
+  - ".opencode/skills/system-memory"
+  - ".opencode/skills/system-memory/mcp_server"
 
 # Relationships
 related_sessions:

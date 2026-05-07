@@ -100,7 +100,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts, .opencode/.../utils/input-normalizer.ts, .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+- Files modified: .opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts, .opencode/.../utils/input-normalizer.ts, .opencode/skills/system-spec-kit/scripts/core/workflow.ts
 
 - Check: plan.md, tasks.md, checklist.md
 
@@ -115,7 +115,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts |
+| Active File | .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts |
 | Last Action | 10-agent Copilot delegation fixed remaining P0/P1 findings |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -159,9 +159,9 @@ Session focused on implementing and testing features.
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/scripts/utils/(merged-small-files)` | Tree-thinning merged 1 small files (slug-utils.ts). Merged from .opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts : Updated slug utils |
+| `.opencode/skills/system-spec-kit/scripts/utils/(merged-small-files)` | Tree-thinning merged 1 small files (slug-utils.ts). Merged from .opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts : Updated slug utils |
 | `.opencode/.../utils/(merged-small-files)` | Tree-thinning merged 1 small files (input-normalizer.ts). Merged from .opencode/.../utils/input-normalizer.ts : Updated input normalizer |
-| `.opencode/skill/system-spec-kit/scripts/core/(merged-small-files)` | Tree-thinning merged 1 small files (workflow.ts). Merged from .opencode/skill/system-spec-kit/scripts/core/workflow.ts : Updated workflow |
+| `.opencode/skills/system-spec-kit/scripts/core/(merged-small-files)` | Tree-thinning merged 1 small files (workflow.ts). Merged from .opencode/skills/system-spec-kit/scripts/core/workflow.ts : Updated workflow |
 | `.opencode/.../loaders/(merged-small-files)` | Tree-thinning merged 1 small files (data-loader.ts). Merged from .opencode/.../loaders/data-loader.ts : Updated data loader |
 | `.opencode/.../extractors/(merged-small-files)` | Tree-thinning merged 3 small files (opencode-capture.ts, collect-session-data.ts, file-extractor.ts). Merged from .opencode/.../extractors/opencode-capture.ts : Updated opencode capture | Merged from .opencode/.../extractors/collect-session-data.ts : Updated collect session data | Merged from .opencode/.../extractors/file-extractor.ts : Updated file extractor |
 | `.opencode/.../renderers/(merged-small-files)` | Tree-thinning merged 1 small files (template-renderer.ts). Merged from .opencode/.../renderers/template-renderer.ts : Updated template renderer |
@@ -178,35 +178,35 @@ Session focused on implementing and testing features.
 
 ### BUGFIX: Fixed slug contamination patterns in slug-utils.ts
 
-**Files:** .opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts
+**Files:** .opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts
 
 
 
 
 ### FEATURE: Added buildToolObservationTitle in input-normalizer.ts
 
-**Files:** .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+**Files:** .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
 
 
 
 
 ### FEATURE: Added quality gate abort in workflow.ts
 
-**Files:** .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+**Files:** .opencode/skills/system-spec-kit/scripts/core/workflow.ts
 
 
 
 
 ### FEATURE: Added alignment check in workflow.ts
 
-**Files:** .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+**Files:** .opencode/skills/system-spec-kit/scripts/core/workflow.ts
 
 
 
 
 ### BUGFIX: 10-agent Copilot delegation fixed remaining P0/P1 findings
 
-**Files:** .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts, .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts, .opencode/skill/system-spec-kit/scripts/core/workflow.ts, .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts, .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts, .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
+**Files:** .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts, .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts, .opencode/skills/system-spec-kit/scripts/core/workflow.ts, .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts, .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts, .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
 
 
 
@@ -305,7 +305,7 @@ Get to 100% completion on spec 012
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing", limit: 10 })
@@ -317,7 +317,7 @@ ls -la system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memor
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --force
 ```
 
 ### Recovery Priority
@@ -443,22 +443,22 @@ trigger_phrases:
   - "and testing"
   - "session focused implementing testing"
   - "focused implementing testing features"
-  - ".opencode/skill/system-spec-kit/scripts/utils/ merged-small-files tree-thinning merged"
+  - ".opencode/skills/system-spec-kit/scripts/utils/ merged-small-files tree-thinning merged"
   - "merged small files slug-utils.ts"
-  - "merged .opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts slug utils"
-  - ".opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts slug utils .opencode/.../utils/"
+  - "merged .opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts slug utils"
+  - ".opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts slug utils .opencode/.../utils/"
   - "slug utils .opencode/.../utils/ merged-small-files"
   - "utils .opencode/.../utils/ merged-small-files tree-thinning"
   - ".opencode/.../utils/ merged-small-files tree-thinning merged"
   - "merged small files input-normalizer.ts"
   - "merged .opencode/.../utils/input-normalizer.ts input normalizer"
-  - ".opencode/.../utils/input-normalizer.ts input normalizer .opencode/skill/system-spec-kit/scripts/core/"
-  - "input normalizer .opencode/skill/system-spec-kit/scripts/core/ merged-small-files"
-  - "normalizer .opencode/skill/system-spec-kit/scripts/core/ merged-small-files tree-thinning"
-  - ".opencode/skill/system-spec-kit/scripts/core/ merged-small-files tree-thinning merged"
+  - ".opencode/.../utils/input-normalizer.ts input normalizer .opencode/skills/system-spec-kit/scripts/core/"
+  - "input normalizer .opencode/skills/system-spec-kit/scripts/core/ merged-small-files"
+  - "normalizer .opencode/skills/system-spec-kit/scripts/core/ merged-small-files tree-thinning"
+  - ".opencode/skills/system-spec-kit/scripts/core/ merged-small-files tree-thinning merged"
   - "merged small files workflow.ts"
-  - "merged .opencode/skill/system-spec-kit/scripts/core/workflow.ts workflow .opencode/.../loaders/"
-  - ".opencode/skill/system-spec-kit/scripts/core/workflow.ts workflow .opencode/.../loaders/ merged-small-files"
+  - "merged .opencode/skills/system-spec-kit/scripts/core/workflow.ts workflow .opencode/.../loaders/"
+  - ".opencode/skills/system-spec-kit/scripts/core/workflow.ts workflow .opencode/.../loaders/ merged-small-files"
   - "workflow .opencode/.../loaders/ merged-small-files tree-thinning"
   - ".opencode/.../loaders/ merged-small-files tree-thinning merged"
   - "merged small files data-loader.ts"
@@ -473,9 +473,9 @@ trigger_phrases:
   - "capturing"
 
 key_files:
-  - ".opencode/skill/system-spec-kit/scripts/utils/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/scripts/utils/(merged-small-files)"
   - ".opencode/.../utils/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/scripts/core/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/scripts/core/(merged-small-files)"
   - ".opencode/.../loaders/(merged-small-files)"
   - ".opencode/.../extractors/(merged-small-files)"
   - ".opencode/.../renderers/(merged-small-files)"

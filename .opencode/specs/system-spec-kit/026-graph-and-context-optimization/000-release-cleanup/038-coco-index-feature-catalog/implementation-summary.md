@@ -66,16 +66,16 @@ The catalog covers CLI commands, MCP search, indexing, daemon lifecycle, readine
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/mcp-coco-index/feature_catalog/feature_catalog.md` | Created | Root feature inventory and navigation |
-| `.opencode/skill/mcp-coco-index/feature_catalog/01--cli-commands/*.md` | Created | CLI command feature references |
-| `.opencode/skill/mcp-coco-index/feature_catalog/02--mcp-server/*.md` | Created | MCP search tool feature references |
-| `.opencode/skill/mcp-coco-index/feature_catalog/03--indexing-pipeline/*.md` | Created | Indexing pipeline feature references |
-| `.opencode/skill/mcp-coco-index/feature_catalog/04--daemon-and-readiness/*.md` | Created | Daemon lifecycle and readiness references |
-| `.opencode/skill/mcp-coco-index/feature_catalog/05--search-and-ranking/*.md` | Created | Search and ranking references |
-| `.opencode/skill/mcp-coco-index/feature_catalog/06--patches-and-extensions/*.md` | Created | Fork extension references |
-| `.opencode/skill/mcp-coco-index/feature_catalog/07--installation-tooling/*.md` | Created | Installer and helper script references |
-| `.opencode/skill/mcp-coco-index/feature_catalog/08--configuration/*.md` | Created | Settings and downstream adoption references |
-| `.opencode/skill/mcp-coco-index/feature_catalog/09--validation-and-tests/*.md` | Created | Automated and manual validation references |
+| `.opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md` | Created | Root feature inventory and navigation |
+| `.opencode/skills/mcp-coco-index/feature_catalog/01--cli-commands/*.md` | Created | CLI command feature references |
+| `.opencode/skills/mcp-coco-index/feature_catalog/02--mcp-server/*.md` | Created | MCP search tool feature references |
+| `.opencode/skills/mcp-coco-index/feature_catalog/03--indexing-pipeline/*.md` | Created | Indexing pipeline feature references |
+| `.opencode/skills/mcp-coco-index/feature_catalog/04--daemon-and-readiness/*.md` | Created | Daemon lifecycle and readiness references |
+| `.opencode/skills/mcp-coco-index/feature_catalog/05--search-and-ranking/*.md` | Created | Search and ranking references |
+| `.opencode/skills/mcp-coco-index/feature_catalog/06--patches-and-extensions/*.md` | Created | Fork extension references |
+| `.opencode/skills/mcp-coco-index/feature_catalog/07--installation-tooling/*.md` | Created | Installer and helper script references |
+| `.opencode/skills/mcp-coco-index/feature_catalog/08--configuration/*.md` | Created | Settings and downstream adoption references |
+| `.opencode/skills/mcp-coco-index/feature_catalog/09--validation-and-tests/*.md` | Created | Automated and manual validation references |
 | Packet docs and reports | Created | Captured scope, plan, checklist, decisions, audit and remediation |
 <!-- /ANCHOR:what-built -->
 

@@ -23,10 +23,10 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "implementation-summary.md"
-      - "../../../.opencode/skill/sk-code/SKILL.md"
-      - "../../../.opencode/skill/sk-code/references/router/code_surface_detection.md"
-      - "../../../.opencode/skill/sk-code/references/router/intent_classification.md"
-      - "../../../.opencode/skill/sk-code/references/router/resource_loading.md"
+      - "../../../.opencode/skills/sk-code/SKILL.md"
+      - "../../../.opencode/skills/sk-code/references/router/code_surface_detection.md"
+      - "../../../.opencode/skills/sk-code/references/router/intent_classification.md"
+      - "../../../.opencode/skills/sk-code/references/router/resource_loading.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05"
@@ -97,11 +97,11 @@ Apply all 9 audit remediations so routing decisions become sharper, exact Motion
 | `006-routing-precision-fixes/*.md` | Create | Phase 006 spec, plan, task ledger, checklist, and summary |
 | `006-routing-precision-fixes/graph-metadata.json` | Create | Canonical graph metadata for the phase child |
 | `006-routing-precision-fixes/spot-recheck-results/` | Create | Copied mini-matrix result YAMLs |
-| `.opencode/skill/sk-code/SKILL.md` | Modify | Router exclusions and non-Webflow pre-check |
-| `.opencode/skill/sk-code/references/router/*.md` | Modify | Intent anti-signals, explicit non-Webflow guards, exact resource contracts |
-| `.opencode/skill/sk-code/references/motion_dev/decision_matrix.md` | Modify | Contract regression examples |
-| `.opencode/skill/sk-code/assets/motion_dev/playbook_entries.md` | Modify | Contract regression examples |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Modify | Advisor signals and anti-signals |
+| `.opencode/skills/sk-code/SKILL.md` | Modify | Router exclusions and non-Webflow pre-check |
+| `.opencode/skills/sk-code/references/router/*.md` | Modify | Intent anti-signals, explicit non-Webflow guards, exact resource contracts |
+| `.opencode/skills/sk-code/references/motion_dev/decision_matrix.md` | Modify | Contract regression examples |
+| `.opencode/skills/sk-code/assets/motion_dev/playbook_entries.md` | Modify | Contract regression examples |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Modify | Advisor signals and anti-signals |
 | `005-playbook-cross-cli-execution/scripts/run_*.sh` | Modify | YAML parser quality flags and placeholder rejection |
 | `../spec.md` | Modify | Parent phase documentation map row for Phase 006 |
 <!-- /ANCHOR:scope -->
@@ -176,7 +176,7 @@ Apply all 9 audit remediations so routing decisions become sharper, exact Motion
 <!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
-- A request can mention `.opencode/skill/sk-code/SKILL.md` and still be documentation-only; doc-only language routes to `sk-doc`.
+- A request can mention `.opencode/skills/sk-code/SKILL.md` and still be documentation-only; doc-only language routes to `sk-doc`.
 - A request can mention Motion.dev and vanilla HTML/CSS/JS but explicitly say NOT Webflow; that remains UNKNOWN or N/A and loads Motion.dev peer resources only.
 - A result can include `references/motion_dev/` or another directory placeholder; the parser treats that as malformed and records `directory_placeholder_refs`.
 - A model can produce an empty or block-marker-only response excerpt; the parser emits `(no response)` and records `empty_excerpt`.

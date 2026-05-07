@@ -18,11 +18,11 @@ _memory:
     next_safe_action: "Begin Tier 1 sk-doc docs edits"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md"
-      - ".opencode/skill/sk-doc/assets/skill/skill_md_template.md"
-      - ".opencode/skill/sk-doc/references/specific/skill_creation.md"
-      - ".opencode/skill/sk-doc/scripts/quick_validate.py"
-      - ".opencode/command/doctor/skill-budget.md"
+      - ".opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md"
+      - ".opencode/skills/sk-doc/assets/skill/skill_md_template.md"
+      - ".opencode/skills/sk-doc/references/specific/skill_creation.md"
+      - ".opencode/skills/sk-doc/scripts/quick_validate.py"
+      - ".opencode/commands/doctor/skill-budget.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-086"
@@ -86,7 +86,7 @@ Bake the 083 trim-style lessons into three layers that prevent future bloat at d
 
 **Tier 3 — Drift audit command:**
 - New `/doctor:skill-budget` slash command in the `doctor:*` family
-- New `audit_descriptions.py` script walking `.opencode/skill/*/SKILL.md`, `.opencode/command/**/*.md`, and the four agent surfaces (`.opencode/agent/*.md`, `.claude/agents/*.md`, `.gemini/agents/*.md`, `.codex/agents/*.toml`)
+- New `audit_descriptions.py` script walking `.opencode/skills/*/SKILL.md`, `.opencode/commands/**/*.md`, and the four agent surfaces (`.opencode/agents/*.md`, `.claude/agents/*.md`, `.gemini/agents/*.md`, `.codex/agents/*.toml`)
 - Per-item lengths + top-N bloated + project total + headroom under 8,000 default
 - `--json` and `--fail-over=N` flags for CI/pre-commit
 - 4 runtime mirrors of the entrypoint (matching existing symlink pattern)
@@ -102,19 +102,19 @@ Bake the 083 trim-style lessons into three layers that prevent future bloat at d
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md` | Modify | New "Description Budget & Trim Style" subsection; replace line 198 |
-| `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` | Modify | Fix line 75 (200/300 contradiction) |
-| `.opencode/skill/sk-doc/references/specific/skill_creation.md` | Modify | Extend Pitfall 1 + line 397 table with budget guidance |
-| `.opencode/skill/sk-doc/assets/agent_template.md` | Modify | Cross-link callout |
-| `.opencode/skill/sk-doc/assets/command_template.md` | Modify | Cross-link callout |
-| `.opencode/skill/sk-doc/scripts/quick_validate.py` | Modify | Add description-length check + CLI flag |
-| `.opencode/skill/sk-doc/scripts/tests/<new fixtures>` | Create | Length-check test fixtures |
-| `.opencode/command/create/sk-skill.md` (+ assets/create_sk_skill_*.yaml) | Modify | Surface warnings in Step 4 |
-| `.opencode/command/create/agent.md` (+ assets/create_agent_confirm.yaml) | Modify | Call quick_validate at Step 5b |
-| `.opencode/command/doctor/skill-budget.md` | Create | New entrypoint |
-| `.opencode/command/doctor/assets/doctor_skill-budget_auto.yaml` | Create | :auto workflow |
-| `.opencode/command/doctor/assets/doctor_skill-budget_confirm.yaml` | Create | :confirm workflow |
-| `.opencode/command/doctor/scripts/audit_descriptions.py` | Create | Audit script |
+| `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md` | Modify | New "Description Budget & Trim Style" subsection; replace line 198 |
+| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` | Modify | Fix line 75 (200/300 contradiction) |
+| `.opencode/skills/sk-doc/references/specific/skill_creation.md` | Modify | Extend Pitfall 1 + line 397 table with budget guidance |
+| `.opencode/skills/sk-doc/assets/agent_template.md` | Modify | Cross-link callout |
+| `.opencode/skills/sk-doc/assets/command_template.md` | Modify | Cross-link callout |
+| `.opencode/skills/sk-doc/scripts/quick_validate.py` | Modify | Add description-length check + CLI flag |
+| `.opencode/skills/sk-doc/scripts/tests/<new fixtures>` | Create | Length-check test fixtures |
+| `.opencode/commands/create/sk-skill.md` (+ assets/create_sk_skill_*.yaml) | Modify | Surface warnings in Step 4 |
+| `.opencode/commands/create/agent.md` (+ assets/create_agent_confirm.yaml) | Modify | Call quick_validate at Step 5b |
+| `.opencode/commands/doctor/skill-budget.md` | Create | New entrypoint |
+| `.opencode/commands/doctor/assets/doctor_skill-budget_auto.yaml` | Create | :auto workflow |
+| `.opencode/commands/doctor/assets/doctor_skill-budget_confirm.yaml` | Create | :confirm workflow |
+| `.opencode/commands/doctor/scripts/audit_descriptions.py` | Create | Audit script |
 | `.claude/commands/doctor/skill-budget.md`, `.gemini/...`, `.codex/...` | Create | Symlink mirrors |
 
 <!-- /ANCHOR:scope -->
@@ -149,7 +149,7 @@ Bake the 083 trim-style lessons into three layers that prevent future bloat at d
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `validate.sh --strict` on the spec folder PASSES.
-- **SC-002**: `python3 .opencode/skill/sk-doc/scripts/quick_validate.py <test-fixture-over-soft>` emits a length warning.
+- **SC-002**: `python3 .opencode/skills/sk-doc/scripts/quick_validate.py <test-fixture-over-soft>` emits a length warning.
 - **SC-003**: `/doctor:skill-budget :auto` returns total ≈ 4,423 bytes and headroom ≥ 1,177 chars.
 - **SC-004**: Synthetic test: removing the soft-target line from `frontmatter_templates.md`, then running `/doctor:skill-budget`, surfaces drift correctly. (Then revert.)
 

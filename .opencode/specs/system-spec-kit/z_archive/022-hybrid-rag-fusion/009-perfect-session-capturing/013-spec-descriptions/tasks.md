@@ -76,7 +76,7 @@ This document records the current verified state for this scope. Use [spec.md](s
   - [x] Create `scripts/spec-folder/generate-description.ts` as a thin wrapper.
   - [x] Route the CLI through `generatePerFolderDescription()` for shared logic.
 - [x] TASK-008: Wire the Bash and Node paths together for automated folder creation
-  - [x] Call `node .opencode/skill/system-spec-kit/scripts/dist/spec-folder/generate-description.js <folder-path>` from `create.sh`.
+  - [x] Call `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js <folder-path>` from `create.sh`.
   - [x] Ensure failures surface clearly if description generation cannot complete.
 - [x] TASK-009: Extend creation-time generation to phased spec folders
   - [x] Support `--phase` workflows so each child phase folder gets its own `description.json`.
@@ -133,7 +133,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 ### Documentation & Testing Playbook
 
 - [x] TASK-022: Update the feature catalog documentation for the refactored description system
-  - [x] Revise `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md` with the per-folder architecture flow.
+  - [x] Revise `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md` with the per-folder architecture flow.
   - [x] Update the source file inventory and uniqueness behavior notes.
 - [x] TASK-023: Expand the testing playbook for the new description workflow
   - [x] Add scenarios for per-folder generation, stale detection, and aggregation behavior.
@@ -164,7 +164,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
-- **Feature Catalog**: See `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md`
+- **Feature Catalog**: See `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md`
 
 <!-- AUDIT-2026-03-16: All 25 tasks remain complete. Phase 1-2 shipped the per-folder description lifecycle and create.sh integration. Phase 2 shipped uniqueness and aggregation hardening, including reserved random fallback after 100 collisions, discovery-time repair for stale/corrupt existing description.json files, and blank-spec per-folder metadata generation. Latest targeted verification used the current workspace commands: scripts `npm run lint`, scripts `npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/slug-uniqueness.vitest.ts`, mcp_server `npx vitest run tests/folder-discovery.vitest.ts tests/folder-discovery-integration.vitest.ts tests/workflow-memory-tracking.vitest.ts tests/slug-utils-boundary.vitest.ts`. -->
 <!-- /ANCHOR:cross-refs -->

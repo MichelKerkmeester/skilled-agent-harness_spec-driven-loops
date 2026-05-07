@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Mark gates [x] with evidence as Phase 3 closes out"
     blockers: []
     key_files:
-      - .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+      - .opencode/skills/system-spec-kit/scripts/spec/validate.sh
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-01-spec-scaffold"
@@ -77,16 +77,16 @@ Spec scaffolding gates (Phase 1).
 
 Agent authoring + routing-table gates (Phase 3, T027–T031).
 
-- [x] [P0] `.opencode/agent/code.md` exists. [EVIDENCE: `ls -la .opencode/agent/code.md` returns the authored file (~120 lines).]
-- [x] [P0] code.md frontmatter matches ADR-2: `name: code`, `mode: subagent`, `temperature: 0.1`, `permission.write: allow`, `permission.edit: allow`, `permission.patch: allow`, `permission.bash: allow`, `permission.task: deny`, `permission.webfetch: deny`. [EVIDENCE: `.opencode/agent/code.md:1-20`.]
-- [x] [P0] Body §0 ILLEGAL NESTING present. [EVIDENCE: `.opencode/agent/code.md` §0.]
-- [x] [P0] Body §0 DISPATCH GATE present per ADR-3 convention-floor (refuses on missing orchestrator-context marker). [EVIDENCE: `.opencode/agent/code.md` §0 callout block.]
-- [x] [P0] Body §1 CORE WORKFLOW has 6 steps per ADR-5; VERIFY (step 5) is fail-closed. [EVIDENCE: `.opencode/agent/code.md` §1.]
-- [x] [P0] Body §1 includes `Skills Used` table delegating to `sk-code` per ADR-4. [EVIDENCE: `.opencode/agent/code.md` §1 Skills Used.]
-- [x] [P0] Body §1 STACK DELEGATION delegates to sk-code; UNKNOWN/ambiguous escalation present. [EVIDENCE: `.opencode/agent/code.md` §1 Stack Delegation Contract.]
-- [x] [P0] Body §2 SCOPE BOUNDARIES includes Bash-bypass warning. [EVIDENCE: `.opencode/agent/code.md` §2.]
-- [x] [P0] Body §3 ESCALATION & RETURN CONTRACT structured (RETURN format with files | verification | escalation classifier). [EVIDENCE: `.opencode/agent/code.md` §3.]
-- [ ] [P0] `.opencode/agent/orchestrate.md` §2 routing table includes `@code` row. [EVIDENCE: Phase 3 T028.]
+- [x] [P0] `.opencode/agents/code.md` exists. [EVIDENCE: `ls -la .opencode/agents/code.md` returns the authored file (~120 lines).]
+- [x] [P0] code.md frontmatter matches ADR-2: `name: code`, `mode: subagent`, `temperature: 0.1`, `permission.write: allow`, `permission.edit: allow`, `permission.patch: allow`, `permission.bash: allow`, `permission.task: deny`, `permission.webfetch: deny`. [EVIDENCE: `.opencode/agents/code.md:1-20`.]
+- [x] [P0] Body §0 ILLEGAL NESTING present. [EVIDENCE: `.opencode/agents/code.md` §0.]
+- [x] [P0] Body §0 DISPATCH GATE present per ADR-3 convention-floor (refuses on missing orchestrator-context marker). [EVIDENCE: `.opencode/agents/code.md` §0 callout block.]
+- [x] [P0] Body §1 CORE WORKFLOW has 6 steps per ADR-5; VERIFY (step 5) is fail-closed. [EVIDENCE: `.opencode/agents/code.md` §1.]
+- [x] [P0] Body §1 includes `Skills Used` table delegating to `sk-code` per ADR-4. [EVIDENCE: `.opencode/agents/code.md` §1 Skills Used.]
+- [x] [P0] Body §1 STACK DELEGATION delegates to sk-code; UNKNOWN/ambiguous escalation present. [EVIDENCE: `.opencode/agents/code.md` §1 Stack Delegation Contract.]
+- [x] [P0] Body §2 SCOPE BOUNDARIES includes Bash-bypass warning. [EVIDENCE: `.opencode/agents/code.md` §2.]
+- [x] [P0] Body §3 ESCALATION & RETURN CONTRACT structured (RETURN format with files | verification | escalation classifier). [EVIDENCE: `.opencode/agents/code.md` §3.]
+- [ ] [P0] `.opencode/agents/orchestrate.md` §2 routing table includes `@code` row. [EVIDENCE: Phase 3 T028.]
 
 ---
 
@@ -111,12 +111,12 @@ Smoke test gates (Phase 3, T032–T033).
 
 Permission posture + scope-lock gates.
 
-- [x] [P0] `permission.task: deny` set — agent cannot dispatch sub-agents. [EVIDENCE: `.opencode/agent/code.md` frontmatter.]
-- [x] [P0] `permission.external_directory: deny` set — agent cannot write outside repo. [EVIDENCE: `.opencode/agent/code.md` frontmatter.]
-- [x] [P0] `permission.webfetch: deny` set — agent cannot pull external URLs. [EVIDENCE: `.opencode/agent/code.md` frontmatter.]
-- [x] [P0] `permission.chrome_devtools: deny` set — agent cannot drive a browser. [EVIDENCE: `.opencode/agent/code.md` frontmatter.]
-- [x] [P0] §2 Scope Boundaries explicitly list scope-lock + spec-folder discipline + cross-stack pivot ban. [EVIDENCE: `.opencode/agent/code.md` §2.]
-- [x] [P0] §2 includes Bash-bypass warning (no shell redirection / sed / interpreter writes outside scope). [EVIDENCE: `.opencode/agent/code.md` §2 Bash-bypass paragraph.]
+- [x] [P0] `permission.task: deny` set — agent cannot dispatch sub-agents. [EVIDENCE: `.opencode/agents/code.md` frontmatter.]
+- [x] [P0] `permission.external_directory: deny` set — agent cannot write outside repo. [EVIDENCE: `.opencode/agents/code.md` frontmatter.]
+- [x] [P0] `permission.webfetch: deny` set — agent cannot pull external URLs. [EVIDENCE: `.opencode/agents/code.md` frontmatter.]
+- [x] [P0] `permission.chrome_devtools: deny` set — agent cannot drive a browser. [EVIDENCE: `.opencode/agents/code.md` frontmatter.]
+- [x] [P0] §2 Scope Boundaries explicitly list scope-lock + spec-folder discipline + cross-stack pivot ban. [EVIDENCE: `.opencode/agents/code.md` §2.]
+- [x] [P0] §2 includes Bash-bypass warning (no shell redirection / sed / interpreter writes outside scope). [EVIDENCE: `.opencode/agents/code.md` §2 Bash-bypass paragraph.]
 
 ---
 
@@ -147,7 +147,7 @@ Research artifact gates (Phase 2, T016–T026) and packet-layout discipline.
 - [x] [P0] deep-research-config.json present in each of 3 streams. [EVIDENCE: `research/stream-01-oh-my-opencode-slim/deep-research-config.json`, `research/stream-02-opencode-swarm-main/deep-research-config.json`, `research/stream-03-internal-agent-inventory/deep-research-config.json`.]
 - [x] [P0] Stream 01 (oh-my-opencode-slim) produced iteration artifacts. [EVIDENCE: 4 iterations + `research/stream-01-oh-my-opencode-slim/research.md` (354 lines).]
 - [x] [P0] Stream 02 (opencode-swarm-main) produced iteration artifacts. [EVIDENCE: 5 iterations + `research/stream-02-opencode-swarm-main/research.md` (259 lines).]
-- [x] [P0] Stream 03 (internal `.opencode/agent/`) produced iteration artifacts. [EVIDENCE: 5 iterations + `research/stream-03-internal-agent-inventory/research/research.md` (330 lines).]
+- [x] [P0] Stream 03 (internal `.opencode/agents/`) produced iteration artifacts. [EVIDENCE: 5 iterations + `research/stream-03-internal-agent-inventory/research/research.md` (330 lines).]
 - [x] [P0] Each stream either reached iter budget OR converged earlier. [EVIDENCE: All 3 converged on `all_questions_answered`/`zero-remaining-questions` strong stop signal at iters 4, 5, 5 (8 budget).]
 - [x] [P0] Earlier cli-copilot stream-01 init removed (per memory deletion rule, not archived). [EVIDENCE: `research_archive/` no longer exists; physical `rm -rf`.]
 - [x] [P0] All packet docs use canonical Level 3 template-header structure. [EVIDENCE: Phase 3 restructure of tasks.md, checklist.md, implementation-summary.md, decision-record.md.]

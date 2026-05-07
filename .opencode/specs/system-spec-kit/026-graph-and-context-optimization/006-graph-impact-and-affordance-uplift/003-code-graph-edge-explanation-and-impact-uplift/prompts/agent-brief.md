@@ -21,10 +21,10 @@ You add `reason`/`step` explanation fields to code-graph edge metadata and enric
 6. **Research basis:**
    `.../research/007-external-project-pt-02/research.md` §4 (Code Graph findings — Confidence edges, Explanation gap, Public blast radius rows), §11 Packet 2, §12 RISK-07
 7. **Existing Public code (READ before EDIT):**
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:80-100` (metadata writer at lines 85-94 per pt-02 verification)
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts` (lines 862-909 for `computeBlastRadius`; 978-981 for relationship-query output)
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts`
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:53-95` (schema reference — DO NOT modify)
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:80-100` (metadata writer at lines 85-94 per pt-02 verification)
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts` (lines 862-909 for `computeBlastRadius`; 978-981 for relationship-query output)
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:53-95` (schema reference — DO NOT modify)
 
 ## Worktree + branch
 
@@ -41,8 +41,8 @@ You add `reason`/`step` explanation fields to code-graph edge metadata and enric
 | `mcp_server/code_graph/lib/code-graph-context.ts` | **MODIFY** — propagate enriched fields through context payloads |
 | `mcp_server/code_graph/tests/blast-radius.test.ts` (or extend existing) | **MODIFY** — add tests for risk levels, min-confidence filter, ambiguity candidates, failure fallback |
 | `mcp_server/code_graph/tests/edge-metadata.test.ts` (or extend existing) | **MODIFY** — add tests for reason/step round-trip |
-| `.opencode/skill/system-spec-kit/feature_catalog/06--analysis/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/06--analysis/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/feature_catalog/06--analysis/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
 | `012/003/implementation-summary.md` | **MODIFY** — populate Status, Risk Classification Rules Decided, What Was Built, Verification Evidence |
 
 ## Files you may NOT touch
@@ -72,7 +72,7 @@ You add `reason`/`step` explanation fields to code-graph edge metadata and enric
 
 - [ ] All 16 tasks in `012/003/tasks.md` complete (T-003-A1 through T-003-D4)
 - [ ] All checklist items in `012/003/checklist.md` ticked with evidence
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../012/003 --strict` passes
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../012/003 --strict` passes
 - [ ] `vitest run code_graph/tests/` for blast_radius + edge metadata green
 - [ ] Existing `code_graph` test suite still green (no regression)
 - [ ] `tsc --noEmit` clean

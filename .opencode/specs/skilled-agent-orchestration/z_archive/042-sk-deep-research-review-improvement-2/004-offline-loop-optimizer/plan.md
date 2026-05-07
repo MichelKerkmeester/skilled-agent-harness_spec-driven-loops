@@ -133,24 +133,24 @@ Collect historical traces
 6. Advisory promotion
 
 **Files to change**:
-- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
-- `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs`
-- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`
-- `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`
-- `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`
-- `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
-- `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-- `.opencode/skill/sk-deep-review/assets/deep_review_config.json`
-- `.opencode/skill/sk-deep-research/references/convergence.md`
-- `.opencode/skill/sk-deep-review/references/convergence.md`
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/command/spec_kit/deep-review.md`
-- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
+- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
+- `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs`
+- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`
+- `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`
+- `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`
+- `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
+- `.opencode/skills/sk-deep-research/references/convergence.md`
+- `.opencode/skills/sk-deep-review/references/convergence.md`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
 
 **Verification strategy**:
 - Prove `040` extraction is deterministic and source-traceable.

@@ -71,13 +71,13 @@ Execution is organized into six phases:
 Review baseline + stack overlay contract.
 
 ### Key Components
-- **Baseline skill**: `.opencode/skill/sk-code-review/`
+- **Baseline skill**: `.opencode/skills/sk-code-review/`
 - **Overlay skills**: `sk-code-opencode`, `sk-code-web`, `sk-code-full-stack`
-- **Review runtimes**: `.opencode/agent/review.md`, .opencode/agent/chatgpt/review.md, `.gemini/agents/review.md`, `.claude/agents/review.md`
-- **Orchestration docs**: `.opencode/agent/orchestrate.md`, .opencode/agent/chatgpt/orchestrate.md, `.gemini/agents/orchestrate.md`, `.claude/agents/orchestrate.md`
+- **Review runtimes**: `.opencode/agents/review.md`, .opencode/agents/chatgpt/review.md, `.gemini/agents/review.md`, `.claude/agents/review.md`
+- **Orchestration docs**: `.opencode/agents/orchestrate.md`, .opencode/agents/chatgpt/orchestrate.md, `.gemini/agents/orchestrate.md`, `.claude/agents/orchestrate.md`
 - **Codex wrappers**: `.codex/agents/review.toml`, `.codex/agents/orchestrate.toml`
 - **Workflow dispatch**: 18 YAMLs under `spec_kit/assets` and `create/assets`
-- **Routing engine**: `.opencode/skill/scripts/skill_advisor.py`
+- **Routing engine**: `.opencode/skills/scripts/skill_advisor.py`
 
 ### Data Flow
 1. Review request arrives.
@@ -93,7 +93,7 @@ Review baseline + stack overlay contract.
 ## 5. IMPLEMENTATION PHASES
 
 ### Phase 1: Rename + package normalization
-- [x] Rename folder to `.opencode/skill/sk-code-review/`.
+- [x] Rename folder to `.opencode/skills/sk-code-review/`.
 - [x] Remove root artifact `legacy-single-hyphen-review.zip`.
 - [x] Update frontmatter/name and README package references.
 
@@ -113,7 +113,7 @@ Review baseline + stack overlay contract.
 
 ### Phase 5: Advisor + catalog updates
 - [x] Update `skill_advisor.py` boosters for review/git/visual intents.
-- [x] Update `.opencode/skill/README.md` skill counts and entries.
+- [x] Update `.opencode/skills/README.md` skill counts and entries.
 - [x] Update `.opencode/README.md` skill counts and overview row.
 
 ### Phase 6: Validation + closure docs
@@ -129,11 +129,11 @@ Review baseline + stack overlay contract.
 
 | Test Type | Scope | Tool/Command |
 |-----------|-------|--------------|
-| Skill structural validation | `sk-code-review` package | `python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/sk-code-review --json` |
-| Skill packaging | `sk-code-review` package | `python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/sk-code-review` |
-| Advisor routing scenarios | review/git/visual prompts | `python3 .opencode/skill/scripts/skill_advisor.py "..." --threshold 0.8` |
+| Skill structural validation | `sk-code-review` package | `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/sk-code-review --json` |
+| Skill packaging | `sk-code-review` package | `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-code-review` |
+| Advisor routing scenarios | review/git/visual prompts | `python3 .opencode/skills/scripts/skill_advisor.py "..." --threshold 0.8` |
 | Contract consistency | command/agent docs across all runtimes | `rg -n "standards_contract|sk-code-review|baseline\+overlay" ...` |
-| Spec validation | Level 2 docs | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/016-code-review-skill` |
+| Spec validation | Level 2 docs | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/016-code-review-skill` |
 <!-- /ANCHOR:testing -->
 
 ---

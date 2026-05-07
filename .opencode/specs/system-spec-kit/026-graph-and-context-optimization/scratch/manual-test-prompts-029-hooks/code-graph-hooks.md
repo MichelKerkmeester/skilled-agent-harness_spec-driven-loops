@@ -31,7 +31,7 @@ ls -la .opencode/plugins/spec-kit-compact-code-graph.js \
        .opencode/plugins/spec-kit-compact-code-graph-bridge.mjs
 
 # Verify mcp_server build is fresh (handler-side transport fix lives here)
-cd .opencode/skill/system-spec-kit/mcp_server && npm run build
+cd .opencode/skills/system-spec-kit/mcp_server && npm run build
 cd -
 ```
 
@@ -219,7 +219,7 @@ bash .github/hooks/scripts/session-start.sh </dev/null 2>&1 | head -20
 
 **Run in terminal:**
 ```bash
-echo '{"source":"startup","session_id":"smoke-test"}' | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js
+echo '{"source":"startup","session_id":"smoke-test"}' | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js
 ```
 
 **Expected signals:**
@@ -255,7 +255,7 @@ Gemini has `session-prime.ts` in `mcp_server/hooks/gemini/`. Not deep-smoked pre
 ### Preconditions
 
 ```bash
-ls .opencode/skill/system-spec-kit/mcp_server/hooks/gemini/
+ls .opencode/skills/system-spec-kit/mcp_server/hooks/gemini/
 # Expected: session-prime.ts, user-prompt-submit.ts, compact-inject.ts, session-stop.ts
 ```
 
@@ -263,7 +263,7 @@ ls .opencode/skill/system-spec-kit/mcp_server/hooks/gemini/
 
 **Run in terminal:**
 ```bash
-echo '{"source":"startup","session_id":"smoke"}' | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js 2>&1 | head -40
+echo '{"source":"startup","session_id":"smoke"}' | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js 2>&1 | head -40
 ```
 
 **Expected signals:**

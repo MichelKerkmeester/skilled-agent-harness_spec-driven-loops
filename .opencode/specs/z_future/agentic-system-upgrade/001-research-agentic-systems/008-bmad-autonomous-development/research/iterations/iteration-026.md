@@ -11,8 +11,8 @@ Compared BAD's one-skill module packaging to the local skill registry, loading p
 
 ## Evidence
 - BAD exposes one skill entrypoint for its entire domain workflow. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/.claude-plugin/marketplace.json:22-31]
-- The local skill system currently documents 20 skill folders, five skill domains, and a loading sequence that begins with routing before the chosen `SKILL.md` is read. [SOURCE: .opencode/skill/README.md:42-59] [SOURCE: .opencode/skill/README.md:80-109] [SOURCE: .opencode/skill/README.md:133-176]
-- The `sk-code-opencode`, `sk-code-web`, and `sk-code-full-stack` skills all solve "how do I code in this repo" from slightly different entrypoints, while `sk-doc`, `sk-code-review`, and `system-spec-kit` also participate in overlapping workflow decisions. [SOURCE: .opencode/skill/sk-code-opencode/SKILL.md:21-28] [SOURCE: .opencode/skill/sk-code-opencode/SKILL.md:42-59] [SOURCE: .opencode/skill/sk-code-web/SKILL.md:21-36] [SOURCE: .opencode/skill/sk-code-full-stack/SKILL.md:21-39] [SOURCE: .opencode/skill/sk-doc/SKILL.md:21-45]
+- The local skill system currently documents 20 skill folders, five skill domains, and a loading sequence that begins with routing before the chosen `SKILL.md` is read. [SOURCE: .opencode/skills/README.md:42-59] [SOURCE: .opencode/skills/README.md:80-109] [SOURCE: .opencode/skills/README.md:133-176]
+- The `sk-code-opencode`, `sk-code-web`, and `sk-code-full-stack` skills all solve "how do I code in this repo" from slightly different entrypoints, while `sk-doc`, `sk-code-review`, and `system-spec-kit` also participate in overlapping workflow decisions. [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:21-28] [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:42-59] [SOURCE: .opencode/skills/sk-code-web/SKILL.md:21-36] [SOURCE: .opencode/skills/sk-code-full-stack/SKILL.md:21-39] [SOURCE: .opencode/skills/sk-doc/SKILL.md:21-45]
 
 ## Analysis
 This is not evidence that the local skills are unnecessary. It is evidence that the packaging layer is too explicit. Operators should not need to decide among multiple "coding" skills up front when the system can route internally. BAD's one-skill module is too thin to copy wholesale, but the packaging lesson is strong: present fewer public entrypoints and do more internal specialization behind them.
@@ -43,7 +43,7 @@ confidence: high
 finding: The skill system is too fragmented at the packaging layer. `system-spec-kit` should merge public skill UX toward a few domain facades, starting with a unified coding entrypoint over the `sk-code-*` family.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/README.md`
+- **Target file or module:** `.opencode/skills/README.md`
 - **Change type:** packaging merge
 - **Blast radius:** medium
 - **Prerequisites:** define the public facade set and the routing signals behind each one

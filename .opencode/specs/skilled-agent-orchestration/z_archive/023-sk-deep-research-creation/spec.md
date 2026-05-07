@@ -114,21 +114,21 @@ Derived from 14-iteration deep research across 4 autoresearch repos (karpathy, A
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.claude/agents/deep-research.md` | Create | LEAF agent definition (~400 LOC) |
-| `.opencode/command/spec_kit/deep-research.md` | Create | Command spec with setup phase (~310 LOC) |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Create | Autonomous mode YAML workflow (~400 LOC) |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Create | Interactive mode YAML workflow (~470 LOC) |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Create | 8-section skill protocol (~430 LOC) |
-| `.opencode/skill/sk-deep-research/README.md` | Create | Skill overview (~160 LOC) |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Create | Loop lifecycle spec (~180 LOC) |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Create | JSONL/strategy format spec (~130 LOC) |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Create | Convergence algorithm spec (~140 LOC) |
-| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Create | One-page cheat sheet (~100 LOC) |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Create | Config template (~20 LOC) |
-| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Create | Strategy file template (~50 LOC) |
+| `.opencode/commands/spec_kit/deep-research.md` | Create | Command spec with setup phase (~310 LOC) |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Create | Autonomous mode YAML workflow (~400 LOC) |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Create | Interactive mode YAML workflow (~470 LOC) |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Create | 8-section skill protocol (~430 LOC) |
+| `.opencode/skills/sk-deep-research/README.md` | Create | Skill overview (~160 LOC) |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Create | Loop lifecycle spec (~180 LOC) |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Create | JSONL/strategy format spec (~130 LOC) |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Create | Convergence algorithm spec (~140 LOC) |
+| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Create | One-page cheat sheet (~100 LOC) |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Create | Config template (~20 LOC) |
+| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Create | Strategy file template (~50 LOC) |
 | `CLAUDE.md` | Modify | Add @deep-research to agent routing table |
 | `.claude/agents/orchestrate.md` | Modify | Add @deep-research to agent selection |
-| `.opencode/skill/README.md` | Modify | Add sk-deep-research to catalog (16 to 17) |
-| `.opencode/skill/skill-advisor/scripts/skill_advisor.py` | Modify | Add deep-research keyword mappings |
+| `.opencode/skills/README.md` | Modify | Add sk-deep-research to catalog (16 to 17) |
+| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modify | Add deep-research keyword mappings |
 | `.opencode/specs/descriptions.json` | Modify | Add 023-sk-deep-research-creation entry |
 | `.agents/commands/spec_kit/deep-research.toml` | Create | TOML registration for command |
 <!-- /ANCHOR:scope -->

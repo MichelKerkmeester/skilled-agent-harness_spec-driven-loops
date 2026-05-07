@@ -19,17 +19,17 @@ Startup runtime parity claims versus the packet's direct regression coverage.
 ### Evidence
 
 ```md
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Startup payload contract section |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts` | Startup payload contract banner transport |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts` | Claude startup payload contract regression |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts` | Codex startup payload contract regression |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Startup payload contract section |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts` | Startup payload contract banner transport |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts` | Claude startup payload contract regression |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts` | Codex startup payload contract regression |
 ```
 
 ### Recommended Fix
 
 - Add packet-local Gemini and Copilot startup hook regressions, or narrow the closeout language so the packet does not claim parity beyond the runtimes with direct test evidence.
 Target files:
-`.opencode/skill/system-spec-kit/mcp_server/tests/`
+`.opencode/skills/system-spec-kit/mcp_server/tests/`
 `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/013-code-graph-hook-improvements/implementation-summary.md`
 `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/013-code-graph-hook-improvements/resource-map.md`
 

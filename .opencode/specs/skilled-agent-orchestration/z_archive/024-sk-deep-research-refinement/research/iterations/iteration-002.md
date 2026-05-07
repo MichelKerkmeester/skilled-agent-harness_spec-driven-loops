@@ -30,7 +30,7 @@ Our 3-signal composite algorithm (rolling average w=0.30, MAD noise floor w=0.35
 [INFERENCE: based on pi-autoresearch index.ts code analysis, AGR SKILL.md analysis, autoresearch-opencode wave1-repo-recon.md, and our convergence.md]
 
 ## Sources Consulted
-- Our convergence.md: `.opencode/skill/sk-deep-research/references/convergence.md` (full read, 525 lines)
+- Our convergence.md: `.opencode/skills/sk-deep-research/references/convergence.md` (full read, 525 lines)
 - pi-autoresearch index.ts: `https://github.com/davebcn87/pi-autoresearch/blob/main/extensions/pi-autoresearch/index.ts` (WebFetch, convergence/state/segment extraction)
 - AGR SKILL.md: `https://github.com/JoaquinMulet/Artificial-General-Research/blob/main/skills/agr/SKILL.md` (WebFetch, convergence/stopping/stuck logic extraction)
 - AGR repo root: `https://github.com/JoaquinMulet/Artificial-General-Research` (WebFetch, directory structure)

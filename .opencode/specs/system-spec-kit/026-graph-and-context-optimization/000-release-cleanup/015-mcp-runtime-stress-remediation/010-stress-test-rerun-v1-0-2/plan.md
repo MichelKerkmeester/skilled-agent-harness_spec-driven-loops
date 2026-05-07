@@ -256,7 +256,7 @@ This packet executes in 4 sequenced phases; the scaffold pass authors the docs t
 1. **Pause the sweep**: `pkill -f dispatch-cli` to terminate any in-flight CLI subprocesses
 2. **Capture the partial state**: copy `./runs/` to `./runs.partial-{YYYYMMDD-HHMMSS}/` so artifacts are preserved
 3. **Triage**:
-   - Daemon issue → re-run `bash .opencode/skill/mcp-coco-index/scripts/install.sh`, restart MCP-owning client, retry T001-T003
+   - Daemon issue → re-run `bash .opencode/skills/mcp-coco-index/scripts/install.sh`, restart MCP-owning client, retry T001-T003
    - CLI installation issue → reinstall the offending binary; retry the failing cells only
    - Scoring drift → second-reviewer pass on the affected cells; if ≥2 reviewers disagree, escalate to user with the disagreement evidence
 4. **Resume from last green cell**: dispatch only the cells whose score.md is missing or marked `partial`. Do NOT re-dispatch already-scored cells (single-scorer variance would be confounded).

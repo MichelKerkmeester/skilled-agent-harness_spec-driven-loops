@@ -107,7 +107,7 @@ Reducer-generated observability surface for the active research packet.
 - Big-bang enablement across all runtimes at once (iteration 32)
 - Global lexical bypass for any slash-shaped query (iteration 32)
 - Replacing `session_resume` / `session_bootstrap` with a second explicit lifecycle authority (iteration 32)
-- Copying Engram’s coarse `project`/`personal` scope test matrix as-is — Public must test tenant/user/agent/shared-space boundaries too [`001-engram-main/external/internal/store/store_test.go:112-169`; `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:282-331`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:163-203`]. (iteration 33)
+- Copying Engram’s coarse `project`/`personal` scope test matrix as-is — Public must test tenant/user/agent/shared-space boundaries too [`001-engram-main/external/internal/store/store_test.go:112-169`; `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:282-331`; `.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:163-203`]. (iteration 33)
 - Relying on source-string assertions alone for retrieval changes — useful for smoke coverage, but insufficient for ranking, governance, or session-continuity behavior [`memory-search-integration.vitest.ts:208-257`]. (iteration 33)
 - Treating memory quality as manual QA — Public already has better automated ablation machinery, so ranking changes should not rely on ad hoc spot checks [`ablation-framework.ts:4-20,52-77`; `ablation-framework.vitest.ts:455-617`]. (iteration 33)
 - Making embeddings mandatory and eager on every save or startup, because it would worsen write latency and make boot more brittle around provider readiness. (iteration 34)

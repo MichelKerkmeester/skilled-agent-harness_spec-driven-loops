@@ -53,38 +53,38 @@ This packet should stay mostly additive in behavior, not file count. Create a he
 
 | Path | Action | Status | Phase | Reason |
 |------|--------|--------|-------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts` | Created | PLANNED | 1 | Optional shared resolver for env plus scan override. Needed only if `indexer-types.ts` and `index-scope.ts` cannot share policy cleanly without a cycle. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts` | Created | PLANNED | 1 | Optional shared resolver for env plus scan override. Needed only if `indexer-types.ts` and `index-scope.ts` cannot share policy cleanly without a cycle. |
 
 ## §2. MODIFIED FILES
 
 This section matches the current implementation diff for the packet's in-scope `mcp_server` files. The Phase 2 handler rows that were not touched by the diff were removed.
 
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/README.md
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/README.md
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts
-- .opencode/skill/system-spec-kit/mcp_server/schemas/README.md
-- .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
-- .opencode/skill/system-spec-kit/mcp_server/tests/README.md
-- .opencode/skill/system-spec-kit/mcp_server/tests/_support/README.md
-- .opencode/skill/system-spec-kit/mcp_server/tests/_support/hooks/README.md
-- .opencode/skill/system-spec-kit/mcp_server/tests/adversarial/README.md
-- .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/README.md
-- .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/README.md
-- .opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/README.md
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/README.md
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts
+- .opencode/skills/system-spec-kit/mcp_server/schemas/README.md
+- .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+- .opencode/skills/system-spec-kit/mcp_server/tests/README.md
+- .opencode/skills/system-spec-kit/mcp_server/tests/_support/README.md
+- .opencode/skills/system-spec-kit/mcp_server/tests/_support/hooks/README.md
+- .opencode/skills/system-spec-kit/mcp_server/tests/adversarial/README.md
+- .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/README.md
+- .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/README.md
+- .opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
 
-Additional packet docs outside the Gate E path filter were also updated: `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` and packet-local `plan.md`, `decision-record.md`, `checklist.md`, `implementation-summary.md`, and `resource-map.md`.
+Additional packet docs outside the Gate E path filter were also updated: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` and packet-local `plan.md`, `decision-record.md`, `checklist.md`, `implementation-summary.md`, and `resource-map.md`.
 
 ## §3. DELETED FILES
 
@@ -98,11 +98,11 @@ These files were investigated during research or are adjacent to the behavior, b
 
 | Path | Action | Status | Reason |
 |------|--------|--------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | Untouched | OK | Separate `skill-graph.sqlite` path; research found no structural graph dependency. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | Untouched | OK | Advisor status scans skill metadata separately. |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Untouched | OK | Skill graph indexing path stays separate; change only if imports reveal a direct structural graph dependency. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/ccc-reindex.ts` | Untouched | OK | CocoIndex uses its own binary and index; follow-up only. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/ccc-status.ts` | Untouched | OK | CocoIndex readiness is separate and not part of this packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | Untouched | OK | Separate `skill-graph.sqlite` path; research found no structural graph dependency. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | Untouched | OK | Advisor status scans skill metadata separately. |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Untouched | OK | Skill graph indexing path stays separate; change only if imports reveal a direct structural graph dependency. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/ccc-reindex.ts` | Untouched | OK | CocoIndex uses its own binary and index; follow-up only. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/ccc-status.ts` | Untouched | OK | CocoIndex readiness is separate and not part of this packet. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/decision-record.md` | Cited | OK | ADR-005 workflow invariance source; no edit. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/` | Cited | OK | Regression validation target; no edit. |
 | `opencode.json` | Untouched | OK | Env var can be documented without changing local runtime config in this packet. |

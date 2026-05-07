@@ -27,10 +27,10 @@ _memory:
       - "checklist.md"
       - "decision-record.md"
       - "implementation-summary.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/readiness-contract.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/readiness-contract.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts"
     completion_pct: 92
     open_questions: []
     answered_questions:
@@ -101,10 +101,10 @@ Ship the F-001 + F-003 production fixes plus F-002 / F-008 / F-009 supporting wo
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modify | Block read path on `freshness === 'error'`; emit shared degraded envelope with `rg` fallback decision (F-001) |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modify | Call snapshot first; isolate `getStats()` into try/catch; preserve snapshot on stats / post-stats failure (F-003) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/readiness-contract.vitest.ts` | Modify | Add `error → missing/unavailable` fixtures + read-path-suppression check (F-009) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts` | Create | F-001 + F-003 contract tests + cross-handler vocabulary parity sweep (F-008 proof) |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modify | Block read path on `freshness === 'error'`; emit shared degraded envelope with `rg` fallback decision (F-001) |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modify | Call snapshot first; isolate `getStats()` into try/catch; preserve snapshot on stats / post-stats failure (F-003) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/readiness-contract.vitest.ts` | Modify | Add `error → missing/unavailable` fixtures + read-path-suppression check (F-009) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts` | Create | F-001 + F-003 contract tests + cross-handler vocabulary parity sweep (F-008 proof) |
 | `spec.md` / `plan.md` / `tasks.md` / `checklist.md` / `decision-record.md` / `implementation-summary.md` | Create | Packet docs |
 | `description.json` / `graph-metadata.json` | Create | Spec metadata |
 <!-- /ANCHOR:scope -->

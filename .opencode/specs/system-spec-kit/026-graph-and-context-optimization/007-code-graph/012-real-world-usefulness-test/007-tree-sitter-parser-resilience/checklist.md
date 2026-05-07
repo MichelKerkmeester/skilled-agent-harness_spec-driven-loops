@@ -98,8 +98,8 @@ _memory:
 ## Fix Completeness
 
 - [ ] CHK-FIX-001 [P0] Finding class declared: this packet is `algorithmic` (parser-error handling) + `instance-only` for the failing fixtures themselves
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory: confirmed only one tree-sitter call site (the parser wrapper). Run: `rg -n 'tree[-_]?sitter|parseSync|parseAsync' .opencode/skill/system-spec-kit/mcp_server/code_graph/`
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed: status, scan, code-graph-db consumers of `parseDiagnostics` audited for skip-list integration. Run: `rg -n 'parseDiagnostics|parseHealth|parseError' .opencode/skill/system-spec-kit/mcp_server/code_graph/`
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory: confirmed only one tree-sitter call site (the parser wrapper). Run: `rg -n 'tree[-_]?sitter|parseSync|parseAsync' .opencode/skills/system-spec-kit/mcp_server/code_graph/`
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed: status, scan, code-graph-db consumers of `parseDiagnostics` audited for skip-list integration. Run: `rg -n 'parseDiagnostics|parseHealth|parseError' .opencode/skills/system-spec-kit/mcp_server/code_graph/`
 - [ ] CHK-FIX-004 [P0] Adversarial table tests: corrupted skip-list, missing file, concurrent writers, schema mismatch
 - [ ] CHK-FIX-005 [P1] Matrix axes documented: { scope: skills-only|broad } × { skip-list: enabled|disabled } × { skip-list state: empty|populated|corrupt } = 12 row-coverage minimum
 - [ ] CHK-FIX-006 [P1] Hostile env variant executed: `SPECKIT_PARSER_SKIP_LIST_ENABLED=false` and corrupted JSON sidecar
@@ -125,7 +125,7 @@ _memory:
 - [ ] CHK-041 [P0] `decision-record.md` records investigation outcome (REQ-005)
 - [ ] CHK-042 [P1] `implementation-summary.md` filled post-implementation (HVR-compliant voice)
 - [ ] CHK-043 [P1] End-user scope-recommendation doc updated (REQ-007)
-- [ ] CHK-044 [P2] Public README at `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` references skip-list policy
+- [ ] CHK-044 [P2] Public README at `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` references skip-list policy
 <!-- /ANCHOR:docs -->
 
 ---

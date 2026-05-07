@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Run initial inventory grep and patch scoped non-sk-code skills"
     blockers: []
     key_files:
-      - ".opencode/skill/"
+      - ".opencode/skills/"
       - "specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/"
     session_dedup:
       fingerprint: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -65,9 +65,9 @@ Make every non-`sk-code` skill codebase-agnostic while preserving `sk-code` as t
 ## 3. SCOPE
 
 ### In Scope
-- Inventory stack-specific strings in `.opencode/skill/` markdown, JSON, and TOML files outside `/sk-code/` and `/changelog/`.
+- Inventory stack-specific strings in `.opencode/skills/` markdown, JSON, and TOML files outside `/sk-code/` and `/changelog/`.
 - Patch non-`sk-code` skills to use generic service, frontend, code-surface, or `<surface>` examples.
-- Preserve runtime CLI skill names, `.opencode/` paths, historical changelogs, test fixtures, and all files under `.opencode/skill/sk-code/`.
+- Preserve runtime CLI skill names, `.opencode/` paths, historical changelogs, test fixtures, and all files under `.opencode/skills/sk-code/`.
 - Recompile and validate the skill graph after content cleanup.
 
 ### Out of Scope
@@ -81,12 +81,12 @@ Make every non-`sk-code` skill codebase-agnostic while preserving `sk-code` as t
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/` | Create/Modify | Phase packet docs, inventory note, ADR, summary |
-| `.opencode/skill/cli-*/` | Modify if matched | Replace stack-specific references in CLI skill docs/config |
-| `.opencode/skill/mcp-*/` | Modify if matched | Replace stack-specific references in MCP skill docs/examples |
-| `.opencode/skill/sk-doc/` | Modify if matched | Replace stack-specific documentation examples |
-| `.opencode/skill/sk-git/` | Modify if matched | Replace stack-specific workflow examples |
-| `.opencode/skill/sk-code-review/` | Modify if matched | Replace internal surface tags with generic `<surface>` placeholders |
-| `.opencode/skill/system-spec-kit/` | Modify if matched | Replace stack-specific routing examples and graph signals |
+| `.opencode/skills/cli-*/` | Modify if matched | Replace stack-specific references in CLI skill docs/config |
+| `.opencode/skills/mcp-*/` | Modify if matched | Replace stack-specific references in MCP skill docs/examples |
+| `.opencode/skills/sk-doc/` | Modify if matched | Replace stack-specific documentation examples |
+| `.opencode/skills/sk-git/` | Modify if matched | Replace stack-specific workflow examples |
+| `.opencode/skills/sk-code-review/` | Modify if matched | Replace internal surface tags with generic `<surface>` placeholders |
+| `.opencode/skills/system-spec-kit/` | Modify if matched | Replace stack-specific routing examples and graph signals |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -98,7 +98,7 @@ Make every non-`sk-code` skill codebase-agnostic while preserving `sk-code` as t
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Do not modify `.opencode/skill/sk-code/` | `git diff --name-only -- .opencode/skill/sk-code` returns no files |
+| REQ-001 | Do not modify `.opencode/skills/sk-code/` | `git diff --name-only -- .opencode/skills/sk-code` returns no files |
 | REQ-002 | Remove stack-specific tokens from non-`sk-code` skill docs/config | Final scoped grep returns zero hits outside `/sk-code/`, `/changelog/`, and excluded test fixtures |
 | REQ-003 | Preserve routing/scoring functionality | Skill graph compile and validate-only commands pass |
 | REQ-004 | Document the agnostic rule | `decision-record.md` contains ADR-001 with accepted rule and exceptions |
@@ -131,7 +131,7 @@ Make every non-`sk-code` skill codebase-agnostic while preserving `sk-code` as t
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Over-broad replacement changes historical or protected files | Medium | Restrict commands to `.opencode/skill/`, exclude `/sk-code/`, `/changelog/`, and test fixtures |
+| Risk | Over-broad replacement changes historical or protected files | Medium | Restrict commands to `.opencode/skills/`, exclude `/sk-code/`, `/changelog/`, and test fixtures |
 | Risk | Generic examples become unclear | Medium | Use concrete neutral examples such as `myservice.myservice_get_items({})` |
 | Risk | Metadata signals still contain stack terms | Medium | Include JSON/TOML in grep and recompile skill graph |
 | Dependency | Skill graph compiler | High | Run export and validate-only after patches |
@@ -161,7 +161,7 @@ Make every non-`sk-code` skill codebase-agnostic while preserving `sk-code` as t
 ## L2: EDGE CASES
 
 ### Protected Matches
-- Matches inside `.opencode/skill/sk-code/` remain allowed.
+- Matches inside `.opencode/skills/sk-code/` remain allowed.
 - Matches inside changelog paths remain allowed.
 - Test fixture matches are not patched unless they are user-facing skill content.
 

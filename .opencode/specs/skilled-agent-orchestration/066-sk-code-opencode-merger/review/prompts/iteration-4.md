@@ -22,7 +22,7 @@ Prior Findings: P1 ADR stale, P1 spec/plan stale, P2 resource map continuity sta
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
+Load `.opencode/skills/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
 
 ## Review Focus
 

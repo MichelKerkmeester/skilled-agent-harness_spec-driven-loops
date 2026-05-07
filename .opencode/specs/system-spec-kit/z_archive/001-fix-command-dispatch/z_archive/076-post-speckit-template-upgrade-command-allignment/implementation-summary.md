@@ -37,7 +37,7 @@ Successfully aligned **19 commands** and **20 YAML asset files** across 4 namesp
 | memory | save (1) |
 | create | folder_readme, install_guide, skill, skill_asset, skill_reference, agent (6) |
 
-**Verification**: `grep -r "🔜" .opencode/command/` returns NO matches
+**Verification**: `grep -r "🔜" .opencode/commands/` returns NO matches
 
 ### Phase 2: Parenthetical Text Removal
 
@@ -71,7 +71,7 @@ Successfully aligned **19 commands** and **20 YAML asset files** across 4 namesp
 | `create/skill.md` | `skill-name [--path...]` | `<skill-name> [--path...]` |
 | `create/agent.md` | `agent-name [--mode...]` | `<agent-name> [--mode...]` |
 
-**Verification**: `grep "<skill-name>" .opencode/command/create/skill.md` confirms fix
+**Verification**: `grep "<skill-name>" .opencode/commands/create/skill.md` confirms fix
 
 ### Phase 5: Cross-Reference Fix
 
@@ -235,7 +235,7 @@ Files: create_skill.yaml, create_skill_asset.yaml, create_skill_reference.yaml, 
 ## Files Modified (19 commands + 12 YAMLs = 31 total)
 
 ```
-.opencode/command/
+.opencode/commands/
 ├── spec_kit/
 │   ├── complete.md      ✅ Headers + OUTPUT FORMATS
 │   ├── debug.md         ✅ Headers
@@ -260,7 +260,7 @@ Files: create_skill.yaml, create_skill_asset.yaml, create_skill_reference.yaml, 
     ├── code.md          ✅ Headers
     └── index.md         ✅ Headers
 
-.opencode/command/spec_kit/assets/
+.opencode/commands/spec_kit/assets/
 ├── spec_kit_plan_auto.yaml       ✅ Level 1 + version
 ├── spec_kit_plan_confirm.yaml    ✅ Level 1 + version
 ├── spec_kit_resume_auto.yaml     ✅ Anchor-based retrieval
@@ -268,7 +268,7 @@ Files: create_skill.yaml, create_skill_asset.yaml, create_skill_reference.yaml, 
 ├── spec_kit_research_auto.yaml   ✅ Version + critical rule
 └── spec_kit_research_confirm.yaml ✅ Version + 17-section + rule
 
-.opencode/command/create/assets/
+.opencode/commands/create/assets/
 ├── create_skill.yaml             ✅ Version + mode header
 ├── create_skill_asset.yaml       ✅ Version + mode header
 ├── create_skill_reference.yaml   ✅ Version + mode header

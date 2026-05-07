@@ -11,19 +11,19 @@
   // Path to the script that generates a dynamic target profile on the fly.
   // Called with --dynamic <agent-path> when dynamicProfileEnabled is true
   // and no static profile matches the target.
-  "dynamicProfileScript": ".opencode/skill/sk-improve-agent/scripts/generate-profile.cjs",
+  "dynamicProfileScript": ".opencode/skills/sk-improve-agent/scripts/generate-profile.cjs",
 
   // Path to the integration-surface scanner that checks mirror parity,
   // command coverage, permission alignment, and resource references
   // for a given target agent across all runtime directories.
-  "integrationScanScript": ".opencode/skill/sk-improve-agent/scripts/scan-integration.cjs",
-  "profileCatalog": ".opencode/skill/sk-improve-agent/assets/target-profiles",
+  "integrationScanScript": ".opencode/skills/sk-improve-agent/scripts/scan-integration.cjs",
+  "profileCatalog": ".opencode/skills/sk-improve-agent/assets/target-profiles",
   "targets": [
     {
       "id": "handover-canonical",
       "profileId": "handover",
       "family": "session-handover",
-      "path": ".opencode/agent/handover.md",
+      "path": ".opencode/agents/handover.md",
       "classification": "canonical",
       "mutableInPhase1": false,
       "candidateOnly": false,
@@ -35,7 +35,7 @@
         "tasks.md",
         "checklist.md",
         "memory/",
-        ".opencode/skill/system-spec-kit/templates/handover.md"
+        ".opencode/skills/system-spec-kit/templates/handover.md"
       ]
     },
     {
@@ -74,7 +74,7 @@
       "id": "context-prime-candidate-only",
       "profileId": "context-prime",
       "family": "session-bootstrap",
-      "path": ".opencode/agent/context-prime.md",
+      "path": ".opencode/agents/context-prime.md",
       "classification": "candidate-only",
       "mutableInPhase1": false,
       "candidateOnly": true,
@@ -91,16 +91,16 @@
     }
   ],
   "fixed": [
-    ".opencode/command/spec_kit/handover.md",
+    ".opencode/commands/spec_kit/handover.md",
     ".agents/commands/spec_kit/handover.toml",
     ".gemini/commands/spec_kit/handover.toml",
-    ".opencode/skill/system-spec-kit/templates/handover.md"
+    ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
   "forbidden": [
-    ".opencode/command/spec_kit/handover.md",
+    ".opencode/commands/spec_kit/handover.md",
     ".agents/commands/spec_kit/handover.toml",
     ".gemini/commands/spec_kit/handover.toml",
-    ".opencode/skill/system-spec-kit/templates/handover.md"
+    ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
   "packaging": {
     "mirrorSyncMode": "downstream-only",

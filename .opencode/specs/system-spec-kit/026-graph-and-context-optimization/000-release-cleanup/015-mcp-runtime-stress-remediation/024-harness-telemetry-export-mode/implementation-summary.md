@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Use telemetryExportPath in future stress packets that need native harness telemetry artifacts"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts"
     completion_pct: 100
     open_questions: []
     answered_questions:
@@ -30,7 +30,7 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Implementation Summary
 
@@ -66,8 +66,8 @@ The search-quality harness can now accept telemetry directly from channel runner
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Modified | Added telemetry types, propagation, per-case aggregation, and opt-in JSONL export |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts` | Created | Covers in-memory preservation, JSONL export shape/counts, and no-export behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Modified | Added telemetry types, propagation, per-case aggregation, and opt-in JSONL export |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts` | Created | Covers in-memory preservation, JSONL export shape/counts, and no-export behavior |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/024-harness-telemetry-export-mode/plan.md` | Created | Documents the implementation plan |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/024-harness-telemetry-export-mode/tasks.md` | Created | Tracks packet execution tasks |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/024-harness-telemetry-export-mode/spec.md` | Modified | Updated status and continuity metadata |
@@ -76,7 +76,7 @@ The search-quality harness can now accept telemetry directly from channel runner
 
 | File/Area | Confirmation |
 |-----------|--------------|
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` | Unchanged; telemetry-mode test uses inline cases |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` | Unchanged; telemetry-mode test uses inline cases |
 | Runtime search code | Unchanged; no edits under `mcp_server/lib/search/` |
 | Runtime advisor shadow code | Unchanged; `shadow-sink.ts` was imported for type-only use |
 <!-- /ANCHOR:what-built -->
@@ -113,7 +113,7 @@ The implementation stayed inside the search-quality harness and test suite. The 
 | `find stress_test/search-quality -name '*.vitest.ts' ! -name 'harness-telemetry-export.vitest.ts' -print \| sort \| xargs npx vitest run` | PASS: 14 existing files, 24 existing tests |
 | `npx vitest run stress_test/search-quality/` | PASS: 15 files, 27 tests |
 | `npx tsc --noEmit` | PASS: exit 0 |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/024-harness-telemetry-export-mode --strict` | PASS: strict validation exit 0 |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/024-harness-telemetry-export-mode --strict` | PASS: strict validation exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

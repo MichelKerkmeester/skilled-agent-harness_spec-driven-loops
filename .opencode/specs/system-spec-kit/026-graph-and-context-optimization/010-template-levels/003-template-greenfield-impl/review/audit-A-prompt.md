@@ -1,4 +1,4 @@
-# Audit A — `.opencode/agent/` + `.opencode/command/spec_kit/`
+# Audit A — `.opencode/agents/` + `.opencode/commands/spec_kit/`
 
 You are a fresh agent doing a focused audit. No conversation context.
 
@@ -11,8 +11,8 @@ A binding constraint (ADR-005 in `002/decision-record.md`): **`Level 1/2/3/3+` i
 ## Your task: audit these directories for impact
 
 Audit ALL files under:
-- `.opencode/agent/` (11 markdown files — agent definitions read by the AI runtime)
-- `.opencode/command/spec_kit/` (6 markdown command files + `assets/` subdir — slash command definitions read by the AI runtime)
+- `.opencode/agents/` (11 markdown files — agent definitions read by the AI runtime)
+- `.opencode/commands/spec_kit/` (6 markdown command files + `assets/` subdir — slash command definitions read by the AI runtime)
 
 For each file, classify under one of these actions and add a 1-line reason:
 - **MODIFY** — must be edited because it (a) references deleted template paths (`templates/level_N`, `core`, `addendum`, `phase_parent`, `compose.sh`, `wrap-all-templates`, root `templates/{handover,debug-delegation,research,resource-map,context-index}.md`), OR (b) contains banned vocabulary (preset/capability/kind/manifest in user/AI-facing context), OR (c) describes the level-folder taxonomy in a way that becomes wrong after the manifest replaces it

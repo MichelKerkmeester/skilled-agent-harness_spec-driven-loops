@@ -48,9 +48,9 @@
       ".opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/test-report.md",
       ".opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring/spec.md",
       ".opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md",
-      ".opencode/skill/sk-improve-agent/SKILL.md",
-      ".opencode/agent/improve-agent.md",
-      ".opencode/command/improve/agent.md"
+      ".opencode/skills/sk-improve-agent/SKILL.md",
+      ".opencode/agents/improve-agent.md",
+      ".opencode/commands/improve/agent.md"
     ],
     "entities": [
       {

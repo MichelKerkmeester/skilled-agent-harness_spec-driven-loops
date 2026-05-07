@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Run inventory grep and begin command Markdown sweep"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/"
+      - ".opencode/commands/spec_kit/"
     session_dedup:
       fingerprint: "sha256:0060060060060060060060060060060060060060060060060060060060060001"
       session_id: "2026-05-02-006-command-md-yaml-alignment"
@@ -59,7 +59,7 @@ Audit the command entry docs first, then the YAML workflow assets, then add curr
 - [x] In-scope files and out-of-scope exclusions documented.
 
 ### Definition of Done
-- [ ] Stale-pattern grep returns zero hits across `.opencode/command/spec_kit/`.
+- [ ] Stale-pattern grep returns zero hits across `.opencode/commands/spec_kit/`.
 - [ ] Workflow-invariance vitest passes.
 - [ ] All 12 command YAML assets parse cleanly.
 - [ ] 006 packet validates in strict mode.
@@ -90,12 +90,12 @@ Inventory grep identifies candidate stale or banned terms. Each hit is classifie
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Command Markdown Sweep
-- [ ] Audit `.opencode/command/spec_kit/complete.md`.
-- [ ] Audit `.opencode/command/spec_kit/deep-research.md`.
-- [ ] Audit `.opencode/command/spec_kit/deep-review.md`.
-- [ ] Audit `.opencode/command/spec_kit/implement.md`.
-- [ ] Audit `.opencode/command/spec_kit/plan.md`.
-- [ ] Audit `.opencode/command/spec_kit/resume.md`.
+- [ ] Audit `.opencode/commands/spec_kit/complete.md`.
+- [ ] Audit `.opencode/commands/spec_kit/deep-research.md`.
+- [ ] Audit `.opencode/commands/spec_kit/deep-review.md`.
+- [ ] Audit `.opencode/commands/spec_kit/implement.md`.
+- [ ] Audit `.opencode/commands/spec_kit/plan.md`.
+- [ ] Audit `.opencode/commands/spec_kit/resume.md`.
 
 ### Phase 2: YAML Asset Sweep
 - [ ] Audit 6 `_auto.yaml` files.
@@ -131,7 +131,7 @@ Inventory grep identifies candidate stale or banned terms. Each hit is classifie
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/command/spec_kit/` | Internal | Green | Cannot audit command surfaces without source files. |
+| `.opencode/commands/spec_kit/` | Internal | Green | Cannot audit command surfaces without source files. |
 | PyYAML in local Python | Tooling | Unknown until run | YAML parse gate needs fallback parser if missing. |
 | Vitest dependencies under system-spec-kit MCP server | Tooling | Unknown until run | Workflow-invariance gate cannot complete if dependencies are missing. |
 | Spec validation scripts | Internal | Green | Completion verification depends on strict validation. |

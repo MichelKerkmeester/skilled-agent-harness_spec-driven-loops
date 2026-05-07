@@ -119,7 +119,7 @@ Test-only change. Production code in `executor-config.ts` and the two YAML files
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts` | Modify | Replace cli-copilot dispatch tests + smoke test with `buildCopilotPromptArg`-shaped assertions; ~+150 / -55 LOC |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts` | Modify | Replace cli-copilot dispatch tests + smoke test with `buildCopilotPromptArg`-shaped assertions; ~+150 / -55 LOC |
 <!-- /ANCHOR:scope -->
 
 ---

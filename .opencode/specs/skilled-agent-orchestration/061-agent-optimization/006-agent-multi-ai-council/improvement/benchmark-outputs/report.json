@@ -2,7 +2,7 @@
   "status": "benchmark-complete",
   "profileId": "default",
   "family": "sk-improve-agent",
-  "target": ".opencode/agent/improve-agent.md",
+  "target": ".opencode/agents/improve-agent.md",
   "label": "default-benchmark",
   "aggregateScore": 100,
   "maxScore": 100,

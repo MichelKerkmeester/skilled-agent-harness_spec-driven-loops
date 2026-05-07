@@ -18,7 +18,7 @@
       "id": "F-FM-003",
       "class": "misleading SQLite file-size/status signal",
       "frequency": 2,
-      "evidence": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/logs/iteration-001.log:23-33; .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/logs/iteration-002.log:25-30; .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:701-710"
+      "evidence": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/logs/iteration-001.log:23-33; .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/research/logs/iteration-002.log:25-30; .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:701-710"
     }
   ],
   "newFindingsCount": 3,

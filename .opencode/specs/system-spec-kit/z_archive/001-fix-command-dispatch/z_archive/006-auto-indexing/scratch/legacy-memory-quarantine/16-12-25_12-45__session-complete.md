@@ -185,7 +185,7 @@ if (importanceTier !== undefined) {
 
 ### 3. Memory Commands Consolidated (6 → 3)
 
-**Location**: `.opencode/command/memory/`
+**Location**: `.opencode/commands/memory/`
 
 | Action | Files |
 |--------|-------|
@@ -215,8 +215,8 @@ Renumbered sections 12-17 → 13-18.
 |------|---------|
 | `semantic-memory/lib/vector-index.js:497-500` | importanceTier bug fix |
 | `semantic-memory/README.md` | Added Section 12 Checkpoints |
-| `.opencode/command/memory/memory.md` | New unified command |
-| `.opencode/command/memory/save.md` | Updated with trigger editing |
+| `.opencode/commands/memory/memory.md` | New unified command |
+| `.opencode/commands/memory/save.md` | Updated with trigger editing |
 
 ## Pending Action
 

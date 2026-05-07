@@ -21,7 +21,7 @@
 ## Test Files Created (8)
 
 ### 1. test-session-learning.js
-- **Path:** `.opencode/skill/system-spec-kit/mcp_server/tests/test-session-learning.js`
+- **Path:** `.opencode/skills/system-spec-kit/mcp_server/tests/test-session-learning.js`
 - **LOC:** ~800
 - **Tests:** 161
 - **What It Does:**
@@ -33,7 +33,7 @@
   - Edge cases: Unicode, long paths, boundary scores (0, 100)
 
 ### 2. test-memory-handlers.js
-- **Path:** `.opencode/skill/system-spec-kit/mcp_server/tests/test-memory-handlers.js`
+- **Path:** `.opencode/skills/system-spec-kit/mcp_server/tests/test-memory-handlers.js`
 - **LOC:** ~1,200
 - **Tests:** 162 (137 pass, 25 skipped when no embedding model)
 - **What It Does:**
@@ -45,7 +45,7 @@
   - Includes `--quick` mode for CI without embedding model
 
 ### 3. test-cognitive-integration.js
-- **Path:** `.opencode/skill/system-spec-kit/mcp_server/tests/test-cognitive-integration.js`
+- **Path:** `.opencode/skills/system-spec-kit/mcp_server/tests/test-cognitive-integration.js`
 - **LOC:** ~600
 - **Tests:** 96
 - **What It Does:**
@@ -57,7 +57,7 @@
   - Boundary condition testing (HOT/WARM/COLD thresholds)
 
 ### 4. test-validation-system.js
-- **Path:** `.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js`
+- **Path:** `.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js`
 - **LOC:** ~700
 - **Tests:** 99
 - **What It Does:**
@@ -70,7 +70,7 @@
   - JSON output mode validation
 
 ### 5. test-template-comprehensive.js
-- **Path:** `.opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js`
+- **Path:** `.opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js`
 - **LOC:** ~900
 - **Tests:** 154 (153 pass, 1 skipped)
 - **What It Does:**
@@ -83,7 +83,7 @@
   - Context template (168 Mustache variables)
 
 ### 6. test_dual_threshold.py
-- **Path:** `.opencode/skill/system-spec-kit/scripts/tests/test_dual_threshold.py`
+- **Path:** `.opencode/skills/system-spec-kit/scripts/tests/test_dual_threshold.py`
 - **LOC:** ~400
 - **Tests:** 71
 - **What It Does:**
@@ -96,7 +96,7 @@
   - Validates formulas from AGENTS.md Section 4
 
 ### 7. test-extractors-loaders.js
-- **Path:** `.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js`
+- **Path:** `.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js`
 - **LOC:** ~1,100
 - **Tests:** 279
 - **What It Does:**
@@ -110,7 +110,7 @@
   - Learning index calculation validation
 
 ### 8. test-five-checks.js
-- **Path:** `.opencode/skill/system-spec-kit/scripts/tests/test-five-checks.js`
+- **Path:** `.opencode/skills/system-spec-kit/scripts/tests/test-five-checks.js`
 - **LOC:** ~500
 - **Tests:** 65 (63 pass, 2 skipped)
 - **What It Does:**
@@ -188,7 +188,7 @@
 ## Bug Fixes (1)
 
 ### 14. memory-crud.js
-- **Path:** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.js`
+- **Path:** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.js`
 - **Action:** Bug fix
 - **Issue:** Import mismatch - `isValidTier` (camelCase) vs `is_valid_tier` (snake_case)
 - **Changes:**
@@ -227,16 +227,16 @@
 
 ```bash
 # Run all JavaScript tests
-node .opencode/skill/system-spec-kit/mcp_server/tests/test-session-learning.js
-node .opencode/skill/system-spec-kit/mcp_server/tests/test-memory-handlers.js --quick
-node .opencode/skill/system-spec-kit/mcp_server/tests/test-cognitive-integration.js
-node .opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js
-node .opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js
-node .opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js
-node .opencode/skill/system-spec-kit/scripts/tests/test-five-checks.js
+node .opencode/skills/system-spec-kit/mcp_server/tests/test-session-learning.js
+node .opencode/skills/system-spec-kit/mcp_server/tests/test-memory-handlers.js --quick
+node .opencode/skills/system-spec-kit/mcp_server/tests/test-cognitive-integration.js
+node .opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js
+node .opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js
+node .opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js
+node .opencode/skills/system-spec-kit/scripts/tests/test-five-checks.js
 
 # Run Python tests
-cd .opencode/skill/system-spec-kit/scripts/tests
+cd .opencode/skills/system-spec-kit/scripts/tests
 pytest test_dual_threshold.py -v
 ```
 

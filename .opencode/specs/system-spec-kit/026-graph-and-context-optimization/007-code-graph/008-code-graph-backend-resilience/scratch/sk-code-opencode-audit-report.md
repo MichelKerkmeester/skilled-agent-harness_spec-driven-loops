@@ -12,11 +12,11 @@ The verdict is CONDITIONAL rather than PASS solely because the missing module he
 
 I read the following sk-code-opencode resources before scoring:
 
-- `.opencode/skill/sk-code-opencode/SKILL.md` — full file (rules §4, success criteria §5).
-- `.opencode/skill/sk-code-opencode/references/typescript/style_guide.md` — file header §2, naming §5, imports §7, comments §8.
-- `.opencode/skill/sk-code-opencode/references/typescript/quality_standards.md` — interface vs type §2, type safety §3, return type policy §6, typed errors §8, async §9.
-- `.opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md` — P0 §2, P1 §3, P2 §4.
-- `.opencode/skill/sk-code-opencode/references/shared/universal_patterns.md` — naming §2, commenting §3, reference comments §4, file org §5, security §6.
+- `.opencode/skills/sk-code-opencode/SKILL.md` — full file (rules §4, success criteria §5).
+- `.opencode/skills/sk-code-opencode/references/typescript/style_guide.md` — file header §2, naming §5, imports §7, comments §8.
+- `.opencode/skills/sk-code-opencode/references/typescript/quality_standards.md` — interface vs type §2, type safety §3, return type policy §6, typed errors §8, async §9.
+- `.opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md` — P0 §2, P1 §3, P2 §4.
+- `.opencode/skills/sk-code-opencode/references/shared/universal_patterns.md` — naming §2, commenting §3, reference comments §4, file org §5, security §6.
 
 I cross-checked against the prior deep-review report at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/review/review-report.md` and excluded any finding already covered there. Cross-references are noted inline as "covered by deep-review §N".
 

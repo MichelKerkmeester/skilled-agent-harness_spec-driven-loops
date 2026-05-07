@@ -25,39 +25,39 @@
   └ 59 lines read
 
 ● Grep "randomBytes|Math\.random" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts)
   └ 2 lines found
 
 ● Grep "toolOutputMaxLength|timestampMatchToleranceMs|maxFilesInMemory|maxObservations|minPromptLeng
 th|maxContentPreview|toolPreviewLines" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts)
   └ 28 lines found
 
 ● Grep "TOOL_OUTPUT_MAX_LENGTH|TIMESTAMP_MATCH_TOLERANCE_MS"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts)
   └ 3 lines found
 
 ● Grep "memoryId !== null|split\(.*```|code fences|<summary>|<details>"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 2 lines found
 
 ● Grep "tmp|rollback|random|crypto" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
   └ 8 lines found
 
 ● Grep "confidence|50|65|70" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts)
   └ 10 lines found
 
 ● Grep "Created|Modified|Deleted|Read|Renamed|longer"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
   └ 17 lines found
 
 ● Grep "preflight|postflight|delta" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts)
   └ 98 lines found
 
 ● Grep "NOT TESTED|REMAINING|All MEDIUM findings|>= 85|100%|performance"

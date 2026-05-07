@@ -183,7 +183,7 @@ Manual context save
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment", limit: 10 })
@@ -195,7 +195,7 @@ ls -la system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment --force
 ```
 
 ### Recovery Priority

@@ -79,8 +79,8 @@ Iterative research loop with externalized state - the sk-deep-research workflow 
 - **Loop Manager**: This conversation drives the workflow YAML phases (init, loop, synthesis, save).
 - **Iteration Agent (preferred)**: cli-codex `gpt-5.4 high` invoked via `codex exec ... --sandbox workspace-write` with explicit prompts.
 - **Iteration Agent (fallback)**: Internal `@deep-research` LEAF agent dispatched via Task tool when Codex is unavailable.
-- **Reducer**: `node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs` updates registry, strategy, and dashboard after each iteration.
-- **Memory Save Bridge**: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` produces the post-research memory artifact.
+- **Reducer**: `node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs` updates registry, strategy, and dashboard after each iteration.
+- **Memory Save Bridge**: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` produces the post-research memory artifact.
 
 ### Data Flow
 

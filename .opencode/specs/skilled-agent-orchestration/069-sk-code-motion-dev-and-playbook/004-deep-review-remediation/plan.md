@@ -123,10 +123,10 @@ Surgical remediation with evidence-driven verification.
 
 | Test Type | Scope | Command |
 |-----------|-------|---------|
-| Spec validation | Parent and child docs | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` |
-| No-clobber | Webflow pointer diff | `git diff --cached --numstat -- .opencode/skill/sk-code/references/webflow/` |
-| Citation drift | Motion timeline URL | `grep -rn "motion\\.dev/docs/timeline" .opencode/skill/sk-code/` |
-| Snippet parse | Motion snippet JS | `node --check .opencode/skill/sk-code/assets/motion_dev/snippets/*.js` |
+| Spec validation | Parent and child docs | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` |
+| No-clobber | Webflow pointer diff | `git diff --cached --numstat -- .opencode/skills/sk-code/references/webflow/` |
+| Citation drift | Motion timeline URL | `grep -rn "motion\\.dev/docs/timeline" .opencode/skills/sk-code/` |
+| Snippet parse | Motion snippet JS | `node --check .opencode/skills/sk-code/assets/motion_dev/snippets/*.js` |
 | Router regression | Bare Motion marker | `grep -n "from \\['\\\"]motion\\b\\|motion\\.dev" ...` |
 | Playbook preconditions | Root setup gates | `grep -A 2 "Global Preconditions" ... | grep "motion_dev"` |
 <!-- /ANCHOR:testing -->

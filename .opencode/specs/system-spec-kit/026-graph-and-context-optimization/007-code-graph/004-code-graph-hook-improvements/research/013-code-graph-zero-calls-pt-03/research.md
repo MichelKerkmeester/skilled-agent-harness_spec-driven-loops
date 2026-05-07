@@ -25,7 +25,7 @@ _memory:
 
 ## Summary
 
-This packet started from a prior report that `calls_from` and `calls_to` returned zero CALLS edges for `handleMemoryContext`, even though the function body clearly invokes many helpers. The current code and live `code-graph.sqlite` do not reproduce an extraction failure for the real implementation node: `handleMemoryContext` is parsed as a `function`, and its persisted graph row currently has 28 outgoing CALLS edges [iterations/iteration-02.md#evidence]. The zero-edge observation instead traces back to subject selection: the prior packet queried symbolId `0470757d9d3bfdbc`, which corresponds to the `handlers/index.ts` lazy re-export node, not the implementation function in `handlers/memory-context.ts` [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/code-graph-zero-calls-investigation.md:11,.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:310-311,.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1196-1205]. The enabling defect is operation-agnostic ambiguous-subject resolution in `code_graph_query`, which sorts matches by `file_path,start_line,symbol_id` and takes the first result, even for `calls_from`/`calls_to` where an export/import wrapper is a poor proxy for the underlying callable implementation [.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:115-126,.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:165-190]. The blast radius is broader than one symbol because `handlers/index.ts` and similar index modules manufacture many same-name wrapper nodes ahead of implementation files, including `handleMemorySearch`, `handleSessionResume`, and `handleCodeGraphQuery` [iterations/iteration-03.md#evidence,.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:212-320,.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/index.ts:5]. The primary fix is therefore in query-time subject ranking and ambiguity observability, not in the CALLS extractor itself.
+This packet started from a prior report that `calls_from` and `calls_to` returned zero CALLS edges for `handleMemoryContext`, even though the function body clearly invokes many helpers. The current code and live `code-graph.sqlite` do not reproduce an extraction failure for the real implementation node: `handleMemoryContext` is parsed as a `function`, and its persisted graph row currently has 28 outgoing CALLS edges [iterations/iteration-02.md#evidence]. The zero-edge observation instead traces back to subject selection: the prior packet queried symbolId `0470757d9d3bfdbc`, which corresponds to the `handlers/index.ts` lazy re-export node, not the implementation function in `handlers/memory-context.ts` [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/code-graph-zero-calls-investigation.md:11,.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:310-311,.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1196-1205]. The enabling defect is operation-agnostic ambiguous-subject resolution in `code_graph_query`, which sorts matches by `file_path,start_line,symbol_id` and takes the first result, even for `calls_from`/`calls_to` where an export/import wrapper is a poor proxy for the underlying callable implementation [.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:115-126,.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:165-190]. The blast radius is broader than one symbol because `handlers/index.ts` and similar index modules manufacture many same-name wrapper nodes ahead of implementation files, including `handleMemorySearch`, `handleSessionResume`, and `handleCodeGraphQuery` [iterations/iteration-03.md#evidence,.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:212-320,.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/index.ts:5]. The primary fix is therefore in query-time subject ranking and ambiguity observability, not in the CALLS extractor itself.
 
 ## Scope
 
@@ -36,7 +36,7 @@ This packet started from a prior report that `calls_from` and `calls_to` returne
 
 ## Methodology
 
-The packet ran 3 iterations and used direct source inspection plus local SQLite probes against `.opencode/skill/system-spec-kit/mcp_server/database/code-graph.sqlite`. Sources consulted included the prior investigation doc, the structural indexer, the tree-sitter parser, the code-graph DB/query layers, `handlers/index.ts`, the real implementation files for sample `handle*` functions, CF-013, and the current query-handler regression tests. Convergence did not hit the formal `<0.05` threshold, but iteration 3 reduced the open question set enough to answer the packet charter, so the run stopped at `max_iterations`.
+The packet ran 3 iterations and used direct source inspection plus local SQLite probes against `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite`. Sources consulted included the prior investigation doc, the structural indexer, the tree-sitter parser, the code-graph DB/query layers, `handlers/index.ts`, the real implementation files for sample `handle*` functions, CF-013, and the current query-handler regression tests. Convergence did not hit the formal `<0.05` threshold, but iteration 3 reduced the open question set enough to answer the packet charter, so the run stopped at `max_iterations`.
 
 ## Research Charter Recap
 
@@ -48,16 +48,16 @@ The packet ran 3 iterations and used direct source inspection plus local SQLite 
 
 ### P0
 
-- `F-001`: The reported zero-edge result is caused by querying the wrong graph node, not by missing CALLS extraction for the real implementation function. The prior packet used symbolId `0470757d9d3bfdbc`; the live graph contains a same-name lazy re-export in `handlers/index.ts` and the real implementation function in `handlers/memory-context.ts`, while `code_graph_query` resolves ambiguous names by taking the first candidate in path order [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/code-graph-zero-calls-investigation.md:11-21,.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:310-311,.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1196-1205,.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:115-126,.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:165-190,iterations/iteration-02.md#evidence].
+- `F-001`: The reported zero-edge result is caused by querying the wrong graph node, not by missing CALLS extraction for the real implementation function. The prior packet used symbolId `0470757d9d3bfdbc`; the live graph contains a same-name lazy re-export in `handlers/index.ts` and the real implementation function in `handlers/memory-context.ts`, while `code_graph_query` resolves ambiguous names by taking the first candidate in path order [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/code-graph-zero-calls-investigation.md:11-21,.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:310-311,.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1196-1205,.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:115-126,.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:165-190,iterations/iteration-02.md#evidence].
 
 ### P1
 
-- `F-002`: The ambiguity contract in `code_graph_query` is under-specified for relationship operations. It warns that multiple matches exist, but it does not rank candidates by operation semantics or surface enough selected-candidate metadata to reveal that an export/import wrapper was chosen instead of the callable implementation [.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:144-161,.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:165-190].
-- `F-003`: Existing regression coverage preserves the wrong behavior. The current ambiguity test explicitly expects `calls_from` to query the first candidate deterministically, but it does not model the `handleMemoryContext`-style collision between a wrapper/export node and an implementation function [.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:278-299].
+- `F-002`: The ambiguity contract in `code_graph_query` is under-specified for relationship operations. It warns that multiple matches exist, but it does not rank candidates by operation semantics or surface enough selected-candidate metadata to reveal that an export/import wrapper was chosen instead of the callable implementation [.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:144-161,.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:165-190].
+- `F-003`: Existing regression coverage preserves the wrong behavior. The current ambiguity test explicitly expects `calls_from` to query the first candidate deterministically, but it does not model the `handleMemoryContext`-style collision between a wrapper/export node and an implementation function [.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:278-299].
 
 ### P2
 
-- `F-004`: The issue is systemic across handler surfaces because `handlers/index.ts` and similar index modules mass-produce same-name wrapper nodes. Sample collisions include `handleMemorySearch`, `handleSessionResume`, and `handleCodeGraphQuery`, where wrapper/export nodes have zero outgoing CALLS while the implementation functions have significant non-zero outgoing counts [iterations/iteration-03.md#evidence,.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:212-320,.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/index.ts:5,.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:612,.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:540,.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:586].
+- `F-004`: The issue is systemic across handler surfaces because `handlers/index.ts` and similar index modules mass-produce same-name wrapper nodes. Sample collisions include `handleMemorySearch`, `handleSessionResume`, and `handleCodeGraphQuery`, where wrapper/export nodes have zero outgoing CALLS while the implementation functions have significant non-zero outgoing counts [iterations/iteration-03.md#evidence,.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:212-320,.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/index.ts:5,.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:612,.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:540,.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:586].
 
 ## Evidence Trail
 
@@ -71,30 +71,30 @@ The packet ran 3 iterations and used direct source inspection plus local SQLite 
 
 - `FIX-01`
   Severity: `P0`
-  Target Files: `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
+  Target Files: `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
   Concrete diff shape recommendation: change `resolveSubject()` to accept the active operation or requested edge type, rank ambiguous candidates by operation-aware preferred kinds, and for `calls_from`/`calls_to` prefer callable implementation nodes (`function`, `method`) before `export`, `import`, or wrapper `variable` nodes. Preserve the current warning behavior, but only fall back to the existing path-order heuristic when no callable candidates exist.
 
 ### Fix Bucket B — Make Ambiguity Observable
 
 - `FIX-02`
   Severity: `P1`
-  Target Files: `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
+  Target Files: `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
   Concrete diff shape recommendation: enrich ambiguity warnings with candidate metadata (`symbolId`, `kind`, `filePath`, `startLine`) and the selected candidate. This can remain backward-compatible by extending the warning object instead of replacing it. The selected node kind/file should also be exposed in the top-level payload for easier operator debugging.
 
 ### Fix Bucket C — Add Regression Coverage
 
 - `FIX-03`
   Severity: `P1`
-  Target Files: `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
+  Target Files: `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
   Concrete diff shape recommendation: add a regression case that seeds ambiguous `handleMemoryContext` candidates in the mock DB with an `export` or wrapper `variable` in `handlers/index.ts` and a `function` in `handlers/memory-context.ts`, then assert that `calls_from` and `calls_to` select the function candidate while still surfacing the ambiguity warning. Add sibling cases for `handleMemorySearch` or `handleSessionResume` only if one synthetic case is not enough to protect the selection heuristic.
 
 ## Negative Knowledge
 
-- The current zero-edge symptom is not caused by `calls_from`/`calls_to` filtering valid CALLS edges after lookup; those handlers simply read `code_edges` and strip dangling endpoints [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:515-550,.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:762-823].
+- The current zero-edge symptom is not caused by `calls_from`/`calls_to` filtering valid CALLS edges after lookup; those handlers simply read `code_edges` and strip dangling endpoints [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:515-550,.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:762-823].
 - The live `memory-context.ts` implementation is not missing a `function` node in the current parser pipeline; the direct parse probe returned `parseHealth: clean` and persisted outgoing CALLS for the actual function node [iterations/iteration-02.md#evidence].
 - Imported callees are not the specific blocker for this incident. The persisted CALLS edges for the real `handleMemoryContext` node already include imported helpers such as `checkDatabaseUpdated`, `createMCPErrorResponse`, and `buildContext` [iterations/iteration-02.md#evidence].
 - CF-013 is related historical context, but its scope was post-dedup edge reconciliation and `TESTED_BY` synthesis, not ambiguous-subject resolution [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-013.md:7-15,.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-013.md:69-71].
-- Replacing regex CALLS extraction with AST-native call-expression traversal would harden overall fidelity, but it would not fix this incident by itself because the live graph already stores CALLS edges for the correct function symbol [iterations/iteration-03.md#negative-knowledge,.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:942-973].
+- Replacing regex CALLS extraction with AST-native call-expression traversal would harden overall fidelity, but it would not fix this incident by itself because the live graph already stores CALLS edges for the correct function symbol [iterations/iteration-03.md#negative-knowledge,.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:942-973].
 
 ## Cross-Cutting Themes
 
@@ -137,7 +137,7 @@ The packet ran 3 iterations and used direct source inspection plus local SQLite 
 
 - Prior incident note: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/code-graph-zero-calls-investigation.md` framed the symptom and supplied the original symbolId and extractor hypothesis.
 - Historical adjacent fix: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-013.md` closed a different edge-reconciliation gap and was useful as a non-root-cause comparison point.
-- Existing regression surface: `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts` already owns ambiguity-resolution tests and is the natural home for the new protection.
+- Existing regression surface: `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts` already owns ambiguity-resolution tests and is the natural home for the new protection.
 
 ## Next Steps
 
@@ -157,25 +157,25 @@ The packet ran 3 iterations and used direct source inspection plus local SQLite 
 
 ### Code Paths
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:857-868`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:942-973`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1050-1061`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:645-648`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:515-550`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:115-126`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:144-161`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:165-190`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:762-823`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:212-320`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1196-1705`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:612`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:540`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/index.ts:5`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:586`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:857-868`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:942-973`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1050-1061`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:645-648`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:515-550`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:115-126`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:144-161`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:165-190`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:762-823`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:212-320`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1196-1705`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:612`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:540`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/index.ts:5`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:586`
 
 ### Tests and Packet Evidence
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:278-299`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:278-299`
 - `iterations/iteration-01.md#findings`
 - `iterations/iteration-02.md#evidence`
 - `iterations/iteration-03.md#evidence`

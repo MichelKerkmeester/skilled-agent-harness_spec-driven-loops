@@ -83,12 +83,12 @@ The work followed the Copilot report directly:
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts tests/copilot-hook-wiring.vitest.ts` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts tests/copilot-hook-wiring.vitest.ts` | PASS |
 | `jq empty .github/hooks/superset-notify.json` | PASS |
 | `./.github/hooks/scripts/session-start.sh <<< '{}'` | PASS - emitted the shared startup banner and snapshot note |
 | `./.github/hooks/scripts/superset-notify.sh sessionEnd <<< '{}'` | PASS - returned `{}` |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -6,11 +6,11 @@
 - Scope slice: extractor, both reducers, YAML synthesis emission paths
 
 ## Files Reviewed
-- `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`
-- `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs`
-- `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`
+- `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
+- `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
 
 ## Findings - New
 
@@ -31,8 +31,8 @@
 - `checklist_evidence`: pass - no unexpected shell-outs or network calls were introduced in the extractor path itself.
 
 ## Confirmed-Clean Surfaces
-- `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` only imports `node:fs` and `node:path`, rejects traversal-style `../` candidates, and ignores URLs.
-- `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` and `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` gate emission behind `--emit-resource-map` plus config opt-out rather than always writing.
+- `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` only imports `node:fs` and `node:path`, rejects traversal-style `../` candidates, and ignores URLs.
+- `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` and `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` gate emission behind `--emit-resource-map` plus config opt-out rather than always writing.
 - The YAML synthesis steps invoke the existing reducer CLI instead of introducing a second shell execution path.
 
 ## Assessment

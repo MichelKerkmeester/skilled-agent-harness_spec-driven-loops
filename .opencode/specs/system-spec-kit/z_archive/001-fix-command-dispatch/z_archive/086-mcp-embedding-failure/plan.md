@@ -68,7 +68,7 @@ After comprehensive parallel investigation by 12 opus agents, the root cause of 
 
 ```bash
 # For the user's project path (from error message):
-rm -rf "/Users/rs/.data/code/barter/ai-speckit/coder/.opencode/skill/system-spec-kit/node_modules/@huggingface/transformers/.cache/nomic-ai/nomic-embed-text-v1.5"
+rm -rf "/Users/rs/.data/code/barter/ai-speckit/coder/.opencode/skills/system-spec-kit/node_modules/@huggingface/transformers/.cache/nomic-ai/nomic-embed-text-v1.5"
 
 # Then restart MCP server - model will re-download (~274MB)
 ```

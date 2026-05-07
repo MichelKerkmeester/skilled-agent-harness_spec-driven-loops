@@ -42,9 +42,9 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Confirm spec `021-sk-doc-feature-catalog-testing-playbook` remains the source of truth for manual testing playbook package shape
-- [x] T002 Read `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md`
-- [x] T003 Read `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`
-- [x] T004 Read `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md`
+- [x] T002 Read `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md`
+- [x] T003 Read `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`
+- [x] T004 Read `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md`
 - [x] T005 Freeze naming translation `/create:testing-playbook` -> `manual_testing_playbook/`
 <!-- /ANCHOR:phase-1 -->
 
@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T010 Create `.opencode/command/create/testing-playbook.md`
-- [x] T011 Create `.opencode/command/create/assets/create_testing_playbook_auto.yaml`
-- [x] T012 Create `.opencode/command/create/assets/create_testing_playbook_confirm.yaml`
+- [x] T010 Create `.opencode/commands/create/testing-playbook.md`
+- [x] T011 Create `.opencode/commands/create/assets/create_testing_playbook_auto.yaml`
+- [x] T012 Create `.opencode/commands/create/assets/create_testing_playbook_confirm.yaml`
 - [x] T013 Create `.agents/commands/create/testing-playbook.toml`
 - [x] T014 Ensure all three command surfaces use the same operation arguments and path conventions
 - [x] T015 Ensure the workflow loads the playbook creation reference and both template files
@@ -67,14 +67,14 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T020 Update `.opencode/command/create/README.txt`
-- [x] T021 Update `.opencode/command/README.txt`
+- [x] T020 Update `.opencode/commands/create/README.txt`
+- [x] T021 Update `.opencode/commands/README.txt`
 - [x] T022 Update `.opencode/README.md`
-- [x] T023 [P] Update `.opencode/agent/write.md`
+- [x] T023 [P] Update `.opencode/agents/write.md`
 - [x] T024 [P] Update `.claude/agents/write.md`
 - [x] T025 [P] Update `.codex/agents/write.toml`
 - [x] T026 [P] Update `.agents/agents/write.md`
-- [x] T030 Run `validate_document.py` for `.opencode/command/create/testing-playbook.md`
+- [x] T030 Run `validate_document.py` for `.opencode/commands/create/testing-playbook.md`
 - [x] T031 Parse `create_testing_playbook_auto.yaml`
 - [x] T032 Parse `create_testing_playbook_confirm.yaml`
 - [x] T033 Parse `.agents/commands/create/testing-playbook.toml`

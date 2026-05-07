@@ -6,7 +6,7 @@ I focused on the `hook-state.ts` continuity contract and traced how its recency 
 ## Findings
 
 ### Finding R2-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts`
 - **Lines:** `179-183`
 - **Severity:** P1
 - **Description:** `buildStartupBrief()` asks `hook-state` for the "most recent state" without providing any scope, but `loadMostRecentState()` now hard-fails when neither `specFolder` nor `claudeSessionId` is supplied. That makes `startup-brief`'s own continuity path unreachable in real runtime execution.
@@ -14,7 +14,7 @@ I focused on the `hook-state.ts` continuity contract and traced how its recency 
 - **Downstream Impact:** Gemini SessionStart and Copilot startup banners can never surface persisted session continuity from `hook-state`, even when valid temp state exists. The shared `startup_brief` payload also loses its `session-continuity` section, so any consumer relying on the startup payload rather than Claude's separate cached-summary path gets a continuity-free startup surface.
 
 ### Finding R2-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `131-165`
 - **Severity:** P1
 - **Description:** `loadMostRecentState()` wraps the entire directory scan in one `try` block, so a single unreadable or malformed `.json` state file aborts the whole lookup and returns `null` for every caller instead of skipping the bad candidate.

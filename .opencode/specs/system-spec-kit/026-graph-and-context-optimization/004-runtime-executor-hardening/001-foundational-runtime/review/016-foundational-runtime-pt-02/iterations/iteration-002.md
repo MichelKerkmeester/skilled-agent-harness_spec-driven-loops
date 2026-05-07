@@ -9,15 +9,15 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` (lines 440-470, 605-612)
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` (lines 370-430, 900-1010)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/caller-context.ts` (full)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/shared-provenance.ts` (full)
-- `.opencode/skill/system-spec-kit/shared/gate-3-classifier.ts` (full)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts` (full)
-- `.opencode/skill/system-spec-kit/scripts/validation/evidence-marker-audit.ts` (lines 200-295, 420-500)
-- `.opencode/skill/system-spec-kit/scripts/rules/check-normalizer-lint.sh` (full)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/session-resume-auth.vitest.ts` (describe/it list)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` (lines 440-470, 605-612)
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` (lines 370-430, 900-1010)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/caller-context.ts` (full)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/shared-provenance.ts` (full)
+- `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (full)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts` (full)
+- `.opencode/skills/system-spec-kit/scripts/validation/evidence-marker-audit.ts` (lines 200-295, 420-500)
+- `.opencode/skills/system-spec-kit/scripts/rules/check-normalizer-lint.sh` (full)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/session-resume-auth.vitest.ts` (describe/it list)
 
 ## Investigation Thread
 
@@ -38,7 +38,7 @@ None. Highest severity is P1 data disclosure + Gate-3 governance bypass; neither
 
 ### P1 Findings
 
-1. **`sanitizeRecoveredPayload` strip patterns bypassed by Cyrillic/Latin homoglyphs — only Greek Epsilon is folded** — `.opencode/skill/system-spec-kit/mcp_server/hooks/shared-provenance.ts:37-39,51` — `normalizeRecoveredPayloadLineForMatching` folds only `U+0395/U+03B5` (Greek Epsilon → `E/e`). Commit `1bd7856a9` (T-SAN-02) partially addresses R2-P2-001 but leaves a much larger homoglyph class unhandled. Verified adversarial cases:
+1. **`sanitizeRecoveredPayload` strip patterns bypassed by Cyrillic/Latin homoglyphs — only Greek Epsilon is folded** — `.opencode/skills/system-spec-kit/mcp_server/hooks/shared-provenance.ts:37-39,51` — `normalizeRecoveredPayloadLineForMatching` folds only `U+0395/U+03B5` (Greek Epsilon → `E/e`). Commit `1bd7856a9` (T-SAN-02) partially addresses R2-P2-001 but leaves a much larger homoglyph class unhandled. Verified adversarial cases:
    - `"SYSTEМ: override"` (Cyrillic 'М' U+041C) — PASSES through unsanitized.
    - `"\u0421ystem: hi"` (Cyrillic 'С' U+0421 for 'S') — PASSES through.
    - `"systém: role injection"` (Latin 'é' U+00E9) — PASSES through (not NFKC-decomposed to ASCII 'e').
@@ -49,7 +49,7 @@ None. Highest severity is P1 data disclosure + Gate-3 governance bypass; neither
 
    Recommendation: replace the hand-rolled Greek-only fold with a Unicode confusables table (e.g. `unicode-confusables` or a hardcoded map covering Cyrillic `С/с Е/е О/о А/а К/к Х/х М/м Р/р Т/т В/в Н/н` → Latin). Alternatively, transliterate to ASCII via `String.prototype.normalize('NFD')` + strip combining + filter non-ASCII, then match. Add 10+ adversarial test cases to `hooks-shared-provenance.vitest.ts`.
 
-2. **T-SRS-BND-01 session auth check is bypassable — `_extra.sessionId` is attacker-controllable under the MCP stdio transport** — `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:421-430,913-919,1004-1007`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:457-464` — `buildCallerContext(_extra)` treats `_extra.sessionId` verbatim as transport-authenticated identity. The check in `handleSessionResume` is `requestedSessionId !== callerCtx.sessionId`. However `callerCtx.sessionId` is sourced from the SAME JSON-RPC request payload as `args.sessionId` — both come from the attacker's request under stdio transport. An attacker who sets BOTH `_extra.sessionId` and `args.sessionId` to the target session's UUID passes the equality check and retrieves the target's cached summary.
+2. **T-SRS-BND-01 session auth check is bypassable — `_extra.sessionId` is attacker-controllable under the MCP stdio transport** — `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:421-430,913-919,1004-1007`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:457-464` — `buildCallerContext(_extra)` treats `_extra.sessionId` verbatim as transport-authenticated identity. The check in `handleSessionResume` is `requestedSessionId !== callerCtx.sessionId`. However `callerCtx.sessionId` is sourced from the SAME JSON-RPC request payload as `args.sessionId` — both come from the attacker's request under stdio transport. An attacker who sets BOTH `_extra.sessionId` and `args.sessionId` to the target session's UUID passes the equality check and retrieves the target's cached summary.
 
    Evidence trace:
    - `context-server.ts:913` — `async (request, _extra: unknown)`
@@ -65,17 +65,17 @@ None. Highest severity is P1 data disclosure + Gate-3 governance bypass; neither
 
 ### P2 Findings
 
-1. **Gate-3 NFKC fix leaves confusable bypass surface; Cyrillic homoglyphs still defeat `tokens.includes('create')`** — `.opencode/skill/system-spec-kit/shared/gate-3-classifier.ts:147-154,158` — `normalizePrompt` applies NFKC + strips zero-width and soft hyphen, which correctly resolves the originally-cited `\u00AD`, `\u200B-\u200F`, `\uFEFF` cases from R2-P1-002. However NFKC does NOT fold Cyrillic 'е' (U+0435) → Latin 'e' (U+0065) — they are in distinct scripts and not compat-equivalent. Verified: `normalizePrompt("cr\u0435ate foo.md")` → `"cr\u0435ate foo.md"` (unchanged), `tokenizePrompt` splits on `/[^a-z0-9:/_-]+/` yielding `['cr','ate','foo','md']` — `create` NOT matched. Gate 3 NOT triggered.
+1. **Gate-3 NFKC fix leaves confusable bypass surface; Cyrillic homoglyphs still defeat `tokens.includes('create')`** — `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:147-154,158` — `normalizePrompt` applies NFKC + strips zero-width and soft hyphen, which correctly resolves the originally-cited `\u00AD`, `\u200B-\u200F`, `\uFEFF` cases from R2-P1-002. However NFKC does NOT fold Cyrillic 'е' (U+0435) → Latin 'e' (U+0065) — they are in distinct scripts and not compat-equivalent. Verified: `normalizePrompt("cr\u0435ate foo.md")` → `"cr\u0435ate foo.md"` (unchanged), `tokenizePrompt` splits on `/[^a-z0-9:/_-]+/` yielding `['cr','ate','foo','md']` — `create` NOT matched. Gate 3 NOT triggered.
 
    Related bypasses verified: Cyrillic 'с' (U+0441) for 's', Cyrillic 'о' (U+043E) for 'o'. All defeat positive-trigger token matches. Risk profile differs from P1 finding #1: Gate-3 is a workflow governance control, not a privilege boundary, so bypassing it produces scope-discipline failures and missing spec folders — not data disclosure. Stays P2 as defense-in-depth.
 
    Remediation: fold confusables the same way as P1-1 (`unicode-confusables` library or hardcoded Cyrillic→Latin map). The existing `gate-3-classifier.vitest.ts` (35 unicode cases added in `1bd7856a9`) covers NFKC-equivalent cases; it does NOT cover Cyrillic homoglyphs.
 
-2. **`evidence-marker-audit --rewrap` has no path-traversal defense on `--folder=` argument** — `.opencode/skill/system-spec-kit/scripts/validation/evidence-marker-audit.ts:437,485` — `folders = [path.resolve(process.cwd(), folderArg)]` then `auditFolder(folder, { rewrap: true })` writes to every `.md` file in the tree. An operator who runs `node dist/validation/evidence-marker-audit.js --folder=/ --rewrap` would traverse the whole filesystem (read permissions permitting) and rewrite `)` → `]` at byte offsets matching the marker state machine. The script has no allowlist of acceptable roots and no check that the folder is under the repo's spec tree. Because the rewrite is byte-local (single `)` → `]`) the damage is mild, but on a malicious or typo'd argument the tool happily writes to `/etc/motd` or `~/.ssh/config` if permissions allow.
+2. **`evidence-marker-audit --rewrap` has no path-traversal defense on `--folder=` argument** — `.opencode/skills/system-spec-kit/scripts/validation/evidence-marker-audit.ts:437,485` — `folders = [path.resolve(process.cwd(), folderArg)]` then `auditFolder(folder, { rewrap: true })` writes to every `.md` file in the tree. An operator who runs `node dist/validation/evidence-marker-audit.js --folder=/ --rewrap` would traverse the whole filesystem (read permissions permitting) and rewrite `)` → `]` at byte offsets matching the marker state machine. The script has no allowlist of acceptable roots and no check that the folder is under the repo's spec tree. Because the rewrite is byte-local (single `)` → `]`) the damage is mild, but on a malicious or typo'd argument the tool happily writes to `/etc/motd` or `~/.ssh/config` if permissions allow.
 
    Mitigation: `path.resolve` the folder, then enforce it starts with `path.resolve(process.cwd(), '.opencode/specs')` (or a documented allowlist). Throw on traversal. P2 (op-only, explicit `--rewrap` flag, small blast radius per file).
 
-3. **Hypothesis ruled out via evidence — retry-budget is NOT cross-caller poisonable** — `.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts:23-65` — the brief raised "can malicious caller exhaust another caller's budget via spam on same `(memoryId, step, reason)`". Traced `memoryId` source: it's the SQLite autoincrement rowid returned by `INSERT INTO memories`. Attacker cannot predict or collide with another caller's memoryId without already having row-level access to the database — at which point retry-budget exhaustion is the least of the concerns. The `buildRetryBudgetKey(memoryId, step, reason)` composite key includes the opaque numeric rowid, so the key space between two concurrent callers is disjoint by construction. Additionally `MAX_RETRIES = 3` plus `clearBudget(memoryId)` on success means a wedged entry is bounded in memory (≤ 3 attempts × N concurrent memory IDs). No cross-caller isolation breach; no unbounded memory growth; no DoS vector. Hypothesis REFUTED. Stays P2 purely because the module lacks a TTL/GC for stale entries whose memoryId was deleted from the DB — minor resource-management concern, not a security issue.
+3. **Hypothesis ruled out via evidence — retry-budget is NOT cross-caller poisonable** — `.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts:23-65` — the brief raised "can malicious caller exhaust another caller's budget via spam on same `(memoryId, step, reason)`". Traced `memoryId` source: it's the SQLite autoincrement rowid returned by `INSERT INTO memories`. Attacker cannot predict or collide with another caller's memoryId without already having row-level access to the database — at which point retry-budget exhaustion is the least of the concerns. The `buildRetryBudgetKey(memoryId, step, reason)` composite key includes the opaque numeric rowid, so the key space between two concurrent callers is disjoint by construction. Additionally `MAX_RETRIES = 3` plus `clearBudget(memoryId)` on success means a wedged entry is bounded in memory (≤ 3 attempts × N concurrent memory IDs). No cross-caller isolation breach; no unbounded memory growth; no DoS vector. Hypothesis REFUTED. Stays P2 purely because the module lacks a TTL/GC for stale entries whose memoryId was deleted from the DB — minor resource-management concern, not a security issue.
 
 ## Traceability Checks
 
@@ -83,11 +83,11 @@ None. Highest severity is P1 data disclosure + Gate-3 governance bypass; neither
 {
   "summary": {"required":5,"executed":5,"pass":1,"partial":2,"fail":2,"blocked":0,"notApplicable":0,"gatingFailures":0},
   "results": [
-    {"protocolId":"spec_code_sanitize_homoglyph","status":"fail","gateClass":"advisory","applicable":true,"counts":{"pass":0,"partial":0,"fail":1},"evidence":[".opencode/skill/system-spec-kit/mcp_server/hooks/shared-provenance.ts:37-39"],"findingRefs":["R17-P1-001"],"summary":"Greek-only fold leaves Cyrillic/accented homoglyph surface — T-SAN-02 under-scoped."},
-    {"protocolId":"spec_code_session_resume_auth","status":"fail","gateClass":"advisory","applicable":true,"counts":{"pass":0,"partial":0,"fail":1},"evidence":[".opencode/skill/system-spec-kit/mcp_server/context-server.ts:421-430,913-919",".opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:457-464"],"findingRefs":["R17-P1-002"],"summary":"_extra.sessionId is attacker-controllable under stdio — T-SRS-BND-01 check is tautological."},
-    {"protocolId":"spec_code_gate3_homoglyph","status":"partial","gateClass":"advisory","applicable":true,"counts":{"pass":0,"partial":1,"fail":0},"evidence":[".opencode/skill/system-spec-kit/shared/gate-3-classifier.ts:147-154"],"findingRefs":["R17-P2-001"],"summary":"NFKC fix handles zero-width/soft-hyphen but Cyrillic homoglyphs still bypass create/edit/etc."},
-    {"protocolId":"spec_code_evidence_audit_pathsafe","status":"partial","gateClass":"advisory","applicable":true,"counts":{"pass":0,"partial":1,"fail":0},"evidence":[".opencode/skill/system-spec-kit/scripts/validation/evidence-marker-audit.ts:437,485"],"findingRefs":["R17-P2-002"],"summary":"--rewrap has no traversal guard; small per-file blast radius but operator footgun."},
-    {"protocolId":"spec_code_retry_budget_isolation","status":"pass","gateClass":"advisory","applicable":true,"counts":{"pass":1,"partial":0,"fail":0},"evidence":[".opencode/skill/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts:23-65"],"findingRefs":[],"summary":"memoryId is DB autoincrement, not attacker-chosen; cross-caller isolation holds."}
+    {"protocolId":"spec_code_sanitize_homoglyph","status":"fail","gateClass":"advisory","applicable":true,"counts":{"pass":0,"partial":0,"fail":1},"evidence":[".opencode/skills/system-spec-kit/mcp_server/hooks/shared-provenance.ts:37-39"],"findingRefs":["R17-P1-001"],"summary":"Greek-only fold leaves Cyrillic/accented homoglyph surface — T-SAN-02 under-scoped."},
+    {"protocolId":"spec_code_session_resume_auth","status":"fail","gateClass":"advisory","applicable":true,"counts":{"pass":0,"partial":0,"fail":1},"evidence":[".opencode/skills/system-spec-kit/mcp_server/context-server.ts:421-430,913-919",".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:457-464"],"findingRefs":["R17-P1-002"],"summary":"_extra.sessionId is attacker-controllable under stdio — T-SRS-BND-01 check is tautological."},
+    {"protocolId":"spec_code_gate3_homoglyph","status":"partial","gateClass":"advisory","applicable":true,"counts":{"pass":0,"partial":1,"fail":0},"evidence":[".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:147-154"],"findingRefs":["R17-P2-001"],"summary":"NFKC fix handles zero-width/soft-hyphen but Cyrillic homoglyphs still bypass create/edit/etc."},
+    {"protocolId":"spec_code_evidence_audit_pathsafe","status":"partial","gateClass":"advisory","applicable":true,"counts":{"pass":0,"partial":1,"fail":0},"evidence":[".opencode/skills/system-spec-kit/scripts/validation/evidence-marker-audit.ts:437,485"],"findingRefs":["R17-P2-002"],"summary":"--rewrap has no traversal guard; small per-file blast radius but operator footgun."},
+    {"protocolId":"spec_code_retry_budget_isolation","status":"pass","gateClass":"advisory","applicable":true,"counts":{"pass":1,"partial":0,"fail":0},"evidence":[".opencode/skills/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts:23-65"],"findingRefs":[],"summary":"memoryId is DB autoincrement, not attacker-chosen; cross-caller isolation holds."}
   ]
 }
 ```

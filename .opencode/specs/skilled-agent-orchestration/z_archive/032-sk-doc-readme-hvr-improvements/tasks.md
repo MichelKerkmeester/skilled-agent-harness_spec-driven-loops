@@ -43,10 +43,10 @@ _memory:
 ## Phase 1: Setup
 
 ### Research and Brief Preparation
-- [x] T001 Read and annotate the exemplar READMEs under `.opencode/skill/system-spec-kit/`
-- [x] T002 Draft the HVR rules upgrade brief for `.opencode/skill/sk-doc/references/global/hvr_rules.md`
-- [x] T003 Draft the README template upgrade brief for `.opencode/skill/sk-doc/assets/documentation/readme_template.md`
-- [x] T004 Draft the README creation reference brief for `.opencode/skill/sk-doc/references/specific/readme_creation.md`
+- [x] T001 Read and annotate the exemplar READMEs under `.opencode/skills/system-spec-kit/`
+- [x] T002 Draft the HVR rules upgrade brief for `.opencode/skills/sk-doc/references/global/hvr_rules.md`
+- [x] T003 Draft the README template upgrade brief for `.opencode/skills/sk-doc/assets/documentation/readme_template.md`
+- [x] T004 Draft the README creation reference brief for `.opencode/skills/sk-doc/references/specific/readme_creation.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -55,9 +55,9 @@ _memory:
 ## Phase 2: Implementation
 
 ### Deliverable Workstreams
-- [x] T005 [P] Upgrade `.opencode/skill/sk-doc/references/global/hvr_rules.md`
-- [x] T006 [P] Upgrade `.opencode/skill/sk-doc/assets/documentation/readme_template.md`
-- [x] T007 [P] Create `.opencode/skill/sk-doc/references/specific/readme_creation.md`
+- [x] T005 [P] Upgrade `.opencode/skills/sk-doc/references/global/hvr_rules.md`
+- [x] T006 [P] Upgrade `.opencode/skills/sk-doc/assets/documentation/readme_template.md`
+- [x] T007 [P] Create `.opencode/skills/sk-doc/references/specific/readme_creation.md`
 - [x] T008 Collect and stage the documentation changes for review
 
 ### Review and Refinement
@@ -65,8 +65,8 @@ _memory:
 - [x] T010 Review the README template output for two-tier voice and structural patterns
 - [x] T011 Review the README creation reference for workflow completeness and cross-references
 - [x] T012 Refine prose and normalize path references across the packet
-- [x] T013 Sync related routing notes in `.opencode/skill/sk-doc/SKILL.md`
-- [x] T014 Record the codex flag warning in `.opencode/skill/cli-codex/SKILL.md` and `.opencode/skill/cli-codex/assets/prompt_templates.md`
+- [x] T013 Sync related routing notes in `.opencode/skills/sk-doc/SKILL.md`
+- [x] T014 Record the codex flag warning in `.opencode/skills/cli-codex/SKILL.md` and `.opencode/skills/cli-codex/assets/prompt_templates.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---

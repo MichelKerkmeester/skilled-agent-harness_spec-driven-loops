@@ -15,12 +15,12 @@ _memory:
     next_safe_action: "Parent 069 packet is ready for orchestration review"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code/README.md"
-      - ".opencode/skill/sk-code/references/router/"
-      - ".opencode/skill/sk-code/description.json"
-      - ".opencode/skill/sk-code/graph-metadata.json"
-      - ".opencode/skill/sk-code/changelog/changelog-069-motion-dev-and-playbook.md"
+      - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/sk-code/README.md"
+      - ".opencode/skills/sk-code/references/router/"
+      - ".opencode/skills/sk-code/description.json"
+      - ".opencode/skills/sk-code/graph-metadata.json"
+      - ".opencode/skills/sk-code/changelog/changelog-069-motion-dev-and-playbook.md"
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -37,7 +37,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -81,14 +81,14 @@ Added `changelog/changelog-069-motion-dev-and-playbook.md` summarizing Packets 1
 | `checklist.md` | Created | Verification checklist with P0 cross-ref/metadata checks |
 | `implementation-summary.md` | Created | Completion summary and validation evidence |
 | `graph-metadata.json` | Created | Validator-required child graph metadata |
-| `.opencode/skill/sk-code/references/webflow/**/*.md` | Modified | Additive `motion_dev/` See-also pointers |
-| `.opencode/skill/sk-code/assets/webflow/patterns/wait_patterns.js` | Modified | Additive JSDoc cross-stack Motion pointer |
-| `.opencode/skill/sk-code/SKILL.md` | Modified | Cross-stack Motion resource discoverability |
-| `.opencode/skill/sk-code/README.md` | Modified | Inventory entry for `motion_dev/` refs/assets |
-| `.opencode/skill/sk-code/references/router/*.md` | Modified | Existing router/resource docs expose `motion_dev/` |
-| `.opencode/skill/sk-code/description.json` | Modified | Motion keywords, trigger examples, and timestamp |
-| `.opencode/skill/sk-code/graph-metadata.json` | Modified | Motion domains, signals, and derived discoverability metadata |
-| `.opencode/skill/sk-code/changelog/changelog-069-motion-dev-and-playbook.md` | Created | Parent packet changelog entry |
+| `.opencode/skills/sk-code/references/webflow/**/*.md` | Modified | Additive `motion_dev/` See-also pointers |
+| `.opencode/skills/sk-code/assets/webflow/patterns/wait_patterns.js` | Modified | Additive JSDoc cross-stack Motion pointer |
+| `.opencode/skills/sk-code/SKILL.md` | Modified | Cross-stack Motion resource discoverability |
+| `.opencode/skills/sk-code/README.md` | Modified | Inventory entry for `motion_dev/` refs/assets |
+| `.opencode/skills/sk-code/references/router/*.md` | Modified | Existing router/resource docs expose `motion_dev/` |
+| `.opencode/skills/sk-code/description.json` | Modified | Motion keywords, trigger examples, and timestamp |
+| `.opencode/skills/sk-code/graph-metadata.json` | Modified | Motion domains, signals, and derived discoverability metadata |
+| `.opencode/skills/sk-code/changelog/changelog-069-motion-dev-and-playbook.md` | Created | Parent packet changelog entry |
 <!-- /ANCHOR:what-built -->
 
 ---

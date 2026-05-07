@@ -50,7 +50,7 @@ Comprehensive remediation of the system-spec-kit ecosystem in two phases:
 
 ---
 
-### 1. `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js`
+### 1. `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js`
 
 **Bug:** BUG-1 (Critical) — `CREATE_LINKED` missing from SQL CHECK constraint. The `prediction-error-gate.js:37` returns `CREATE_LINKED` as a valid action, but the `memory_conflicts` table rejects it with a constraint violation error, silently losing conflict tracking data.
 
@@ -66,7 +66,7 @@ action TEXT CHECK(action IN ('CREATE', 'CREATE_LINKED', 'UPDATE', 'SUPERSEDE', '
 
 ---
 
-### 2. `.opencode/agent/speckit.md`
+### 2. `.opencode/agents/speckit.md`
 
 **Bug:** BUG-2 (Critical) — Tool layers table referenced 2 ghost tools (`memory_drift_context`, `memory_drift_learn`) and showed wrong 5-layer architecture. Also missing 4 of 7 commands and had wrong template file counts.
 
@@ -114,7 +114,7 @@ action TEXT CHECK(action IN ('CREATE', 'CREATE_LINKED', 'UPDATE', 'SUPERSEDE', '
 
 ---
 
-### 3. `.opencode/skill/system-spec-kit/SKILL.md`
+### 3. `.opencode/skills/system-spec-kit/SKILL.md`
 
 **Fix:** Corrected stale section numbers in 5 cross-references + standardized template counts in Section 7 to match Section 4.
 
@@ -181,7 +181,7 @@ Gate 4 Option B                              Gate 3 Option B
 
 ---
 
-### 6. `.opencode/command/spec_kit/complete.md`
+### 6. `.opencode/commands/spec_kit/complete.md`
 
 **Fix:** Corrected 6 stale section number references.
 
@@ -208,7 +208,7 @@ Gate 4 Option B                              Gate 3 Option B
 
 ---
 
-### 12. `.opencode/command/memory/save.md`
+### 12. `.opencode/commands/memory/save.md`
 
 **Fix:** Replaced stale "Gate 5" with current naming.
 
@@ -222,7 +222,7 @@ Gate 4 Option B                              Gate 3 Option B
 
 ---
 
-### 13. `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
+### 13. `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
 
 **Fix:** Replaced stale "Gate 5" reference.
 
@@ -235,7 +235,7 @@ Gate 4 Option B                              Gate 3 Option B
 
 ---
 
-### 14. `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md`
+### 14. `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`
 
 **Fix:** Full gate renumbering — the file's internal numbering was completely misaligned with AGENTS.md. Fixed trigger comments, body headings, all inline references, and Quick Reference table.
 
@@ -253,7 +253,7 @@ Gate 4 Option B                              Gate 3 Option B
 
 ---
 
-### 15. `.opencode/skill/system-spec-kit/scripts/scripts-registry.json`
+### 15. `.opencode/skills/system-spec-kit/scripts/scripts-registry.json`
 
 ```json
 // BEFORE                              // AFTER
@@ -297,7 +297,7 @@ Gate 4 Option B                              Gate 3 Option B
 
 ---
 
-### 17. `.opencode/skill/system-spec-kit/README.md`
+### 17. `.opencode/skills/system-spec-kit/README.md`
 
 **Fix:** Template counts standardized to match SKILL.md Section 4 and actual filesystem.
 
@@ -311,7 +311,7 @@ Level 3+: 6 files, ~750 LOC                 Level 3+: 7 files, ~1080 LOC
 
 ---
 
-### 18. `.opencode/agent/research/research/research.md`
+### 18. `.opencode/agents/research/research/research.md`
 
 **Fix:** Confirmed AGENTS.md reference and section references correct.
 

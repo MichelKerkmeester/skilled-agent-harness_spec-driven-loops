@@ -38,8 +38,8 @@ This wrapper packet preserves the historical 2026-03-08 through 2026-03-26 audit
 
 The current live denominator is:
 
-- **255** feature entries across **21** numbered categories under `.opencode/skill/system-spec-kit/feature_catalog/`, excluding the root index documents
-- **290** manual-testing scenario files across the same **21** numbered categories under `.opencode/skill/system-spec-kit/manual_testing_playbook/`, excluding the root playbook index
+- **255** feature entries across **21** numbered categories under `.opencode/skills/system-spec-kit/feature_catalog/`, excluding the root index documents
+- **290** manual-testing scenario files across the same **21** numbered categories under `.opencode/skills/system-spec-kit/manual_testing_playbook/`, excluding the root playbook index
 
 The older `180`, `189`, `194`, and `224/275` figures remain historical milestones inside this packet, not the current release-control denominator.
 
@@ -55,7 +55,7 @@ The older `180`, `189`, `194`, and `224/275` figures remain historical milestone
 - Current tree now contains 189 snippets (net +9 versus snapshot baseline after taxonomy/category drift and post-snapshot additions).
 - 14 current snippets were outside executed March 8 verification ranges and are now classified in the addendum:
   - 12 appear structurally current with no immediate remediation.
-  - 2 require follow-up (`.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md`, `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md`) for source-path normalization/correction.
+  - 2 require follow-up (`.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md`, `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md`) for source-path normalization/correction.
 - Tooling narrative is clarified as planned-vs-executed: some plan text says Copilot for Stream 1, but execution artifacts are Codex-based.
 
 **Normalization Addendum (2026-03-21)**
@@ -71,8 +71,8 @@ The older `180`, `189`, `194`, and `224/275` figures remain historical milestone
 
 **Current-State Note (2026-03-27)**
 
-- Live filesystem count reports **255** feature entries across **21** numbered categories under `.opencode/skill/system-spec-kit/feature_catalog/`, excluding the root index documents [root feature catalog index](../../../../skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md) and [simple-terms index](../../../../skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md).
-- Live filesystem count reports **290** scenario files across the same **21** numbered categories under `.opencode/skill/system-spec-kit/manual_testing_playbook/`, excluding the root playbook index [root manual-testing index](../../../../skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md).
+- Live filesystem count reports **255** feature entries across **21** numbered categories under `.opencode/skills/system-spec-kit/feature_catalog/`, excluding the root index documents [root feature catalog index](../../../../skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md) and [simple-terms index](../../../../skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md).
+- Live filesystem count reports **290** scenario files across the same **21** numbered categories under `.opencode/skills/system-spec-kit/manual_testing_playbook/`, excluding the root playbook index [root manual-testing index](../../../../skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md).
 - Treat the earlier `180`, `189`, `194`, and `224/275` figures as historical milestones only.
 
 **Deep Research Addendum (2026-03-26)**

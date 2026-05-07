@@ -43,7 +43,7 @@ _memory:
 
 - [x] T001 Review the live `sk-deep-research` command, skill, README, references, assets, and Codex agent definition (`spec.md`, `plan.md`)
 - [x] T002 Confirm the current `sk-doc` testing-playbook contract and template bundle (`spec.md`, `plan.md`)
-- [x] T003 Confirm `.opencode/skill/sk-deep-research/` has no `manual_testing_playbook/` or `feature_catalog/` package (`spec.md`)
+- [x] T003 Confirm `.opencode/skills/sk-deep-research/` has no `manual_testing_playbook/` or `feature_catalog/` package (`spec.md`)
 - [x] T004 Freeze the approved 19-scenario file map, category names, and scenario coverage in the spec packet (`spec.md`, `plan.md`)
 - [ ] T005 Create the root playbook file under `manual_testing_playbook/`
 - [ ] T006 Create `01--entry-points-and-modes/`

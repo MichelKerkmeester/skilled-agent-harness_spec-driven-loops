@@ -76,7 +76,7 @@ Decompose into 2 sequential phases:
 
 - **001-prompt-improver-rename** — Rename agent file across all 4 runtimes, rotate `@improve-prompt` → `@prompt-improver` mentions in dispatcher command body, 5 cli-* prompt_quality_card mirrors, parent SKILL.md routing tables, sk-prompt SKILL.md §7 agent contract, root README/AGENTS.md, install guides, active changelogs, advisor aliases. Direct `sed` per "CLI dispatch unreliability under heavy parallelism" memory rule.
 
-- **002-sk-prompt-testing-playbook** — Author 28-scenario manual testing playbook at `.opencode/skill/sk-prompt/manual_testing_playbook/` via `/create:testing-playbook sk-prompt create :confirm`. 7 categories: mode-detection, smart-routing, depth-clear-loop, clear-scoring, framework-selection, escalation-tiers, format-modes.
+- **002-sk-prompt-testing-playbook** — Author 28-scenario manual testing playbook at `.opencode/skills/sk-prompt/manual_testing_playbook/` via `/create:testing-playbook sk-prompt create :confirm`. 7 categories: mode-detection, smart-routing, depth-clear-loop, clear-scoring, framework-selection, escalation-tiers, format-modes.
 
 ### Why this ordering
 Phase 001 (rename) executes BEFORE Phase 002 (playbook) so playbook scenarios reference the final `@prompt-improver` name throughout. Avoids double-touching the playbook surface.
@@ -91,13 +91,13 @@ Phase 001 (rename) executes BEFORE Phase 002 (playbook) so playbook scenarios re
 
 ### In Scope
 - **Phase 001** (agent rename, ~35 active-scope files):
-  - Rename 4 runtime agent files: `.opencode/agent/improve-prompt.md` → `prompt-improver.md`; `.claude/agents/improve-prompt.md` → `prompt-improver.md`; `.codex/agents/improve-prompt.toml` → `prompt-improver.toml`; `.gemini/agents/improve-prompt.md` → `prompt-improver.md`
+  - Rename 4 runtime agent files: `.opencode/agents/improve-prompt.md` → `prompt-improver.md`; `.claude/agents/improve-prompt.md` → `prompt-improver.md`; `.codex/agents/improve-prompt.toml` → `prompt-improver.toml`; `.gemini/agents/improve-prompt.md` → `prompt-improver.md`
   - Update frontmatter `name:` and `description:` fields in all 4 runtime files
   - Update body self-references inside each agent file
-  - Rotate `@improve-prompt` → `@prompt-improver` mentions in: dispatcher command body `.opencode/command/improve/prompt.md`, 5 cli-* `prompt_quality_card.md` mirrors + parent SKILL.md routing tables, `sk-prompt/SKILL.md` §7, `sk-prompt/assets/cli_prompt_quality_card.md`, `sk-prompt/graph-metadata.json`, `sk-doc/assets/agent_template.md`, sk-code advisor probe playbook
+  - Rotate `@improve-prompt` → `@prompt-improver` mentions in: dispatcher command body `.opencode/commands/improve/prompt.md`, 5 cli-* `prompt_quality_card.md` mirrors + parent SKILL.md routing tables, `sk-prompt/SKILL.md` §7, `sk-prompt/assets/cli_prompt_quality_card.md`, `sk-prompt/graph-metadata.json`, `sk-doc/assets/agent_template.md`, sk-code advisor probe playbook
   - Update `skill_advisor.py` if it hardcodes the agent name
   - Update root `README.md`, `AGENTS.md`, `.opencode/install_guides/`, active changelogs (`.opencode/changelog/agent-orchestration/v2.4.0.0.md`, `system-spec-kit/changelog/v3.4.0.0.md`)
-  - Update agent runtime READMEs (.claude/.codex/.gemini/.opencode/agent/README.txt)
+  - Update agent runtime READMEs (.claude/.codex/.gemini/.opencode/agents/README.txt)
   - Update `.opencode/specs/descriptions.json` (regenerates on memory save)
   - Update `.codex/config.toml` if it references the agent
 
@@ -148,7 +148,7 @@ Phase 001 (rename) executes BEFORE Phase 002 (playbook) so playbook scenarios re
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001 | 002 | All 4 agent files renamed; frontmatter `name:` rotated; ~31 reference files updated; `rg -l '@improve-prompt' .opencode .claude .codex .gemini` (active scope) returns 0; advisor probes still resolve | `ls .opencode/agent/prompt-improver.md` succeeds; `rg -l 'improve-prompt' --glob '!historical'` returns 0 in active scope |
+| 001 | 002 | All 4 agent files renamed; frontmatter `name:` rotated; ~31 reference files updated; `rg -l '@improve-prompt' .opencode .claude .codex .gemini` (active scope) returns 0; advisor probes still resolve | `ls .opencode/agents/prompt-improver.md` succeeds; `rg -l 'improve-prompt' --glob '!historical'` returns 0 in active scope |
 | 002 | (done) | 28 scenario files exist + linked from root; `validate_document.py` exit 0; forbidden-sidecar grep returns 0; sk-prompt SKILL.md has §RELATED PLAYBOOK link | Strict validate parent + 2 children PASS; advisor probe `"improve my prompt"` still routes to sk-prompt; manual probe of SP-001 against renamed `@prompt-improver` agent works end-to-end |
 <!-- /ANCHOR:phase-map -->
 
@@ -170,5 +170,5 @@ Phase 001 (rename) executes BEFORE Phase 002 (playbook) so playbook scenarios re
 - **Parent Spec**: See `../` (skilled-agent-orchestration)
 - **Predecessor (rename family)**: `082-sk-improve-prompt-rename/` — same shape (skill rename); 085 phase 001 mirrors its sed-based mechanical rotation pattern
 - **Predecessor (rename family, broader)**: `070-sk-deep-rename/` — 6-phase decomposition for sk-deep-* family rename
-- **sk-doc templates**: `.opencode/skill/sk-doc/assets/testing_playbook/` (root + snippet templates for Phase 002)
+- **sk-doc templates**: `.opencode/skills/sk-doc/assets/testing_playbook/` (root + snippet templates for Phase 002)
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

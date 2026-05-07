@@ -11,12 +11,12 @@ contextType: "planning"
 # Plan: 010-passive-capture-investigation
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 
 ## Investigation Order
 1. Baseline the current explicit save path from session summary to indexed memory.

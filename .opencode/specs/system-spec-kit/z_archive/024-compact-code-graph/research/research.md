@@ -644,7 +644,7 @@ Key patterns:
 
 Key findings:
 - **CODEX.md already implements T2**: Explicit compaction recovery instructions with `memory_context({ mode: "resume" })` as first action.
-- **Agent definitions are cross-runtime identical**: `.opencode/agent/`, `.codex/agents/`, `.claude/agents/` all declare same MCP server access (`spec_kit_memory`, `cocoindex_code`) with same workflow.
+- **Agent definitions are cross-runtime identical**: `.opencode/agents/`, `.codex/agents/`, `.claude/agents/` all declare same MCP server access (`spec_kit_memory`, `cocoindex_code`) with same workflow.
 - **MCP servers cannot detect session start natively**: They are stateless request handlers. Enhancement: track last-call timestamp per session; if gap > threshold, treat next call as session restart.
 - **`/spec_kit:resume` is the universal manual fallback**: 4-5 step workflow using only MCP tools (no hooks), works identically on all runtimes.
 - **Unified hook abstraction layer ruled out**: Runtime hook APIs are fundamentally incompatible (Claude: stdin/stdout JSON, Copilot: .github/hooks/*.json, Gemini: different event system).
@@ -658,7 +658,7 @@ Key findings:
 - **Token budget**: Priming tokens are additive (outside main tool budget) but capped at 300 tokens for non-memory tools, 800 for memory tools.
 - **CODEX.md gap identified**: No instruction-level trigger for code_graph_status() on session start. Enhancement: add `code_graph_status()` to "Context Retrieval Primitives" as third cross-runtime primitive alongside memory_match_triggers and memory_context.
 
-**OpenCode-Specific Integration Design** (iter 065): OpenCode is the primary non-hook runtime. Deep analysis of its agent system (.opencode/agent/), command structure (.opencode/command/spec_kit/), and MCP registration (opencode.json) reveals a 4-tier integration strategy:
+**OpenCode-Specific Integration Design** (iter 065): OpenCode is the primary non-hook runtime. Deep analysis of its agent system (.opencode/agents/), command structure (.opencode/commands/spec_kit/), and MCP registration (opencode.json) reveals a 4-tier integration strategy:
 
 - **OpenCode has NO native hook system**: Extension points are limited to MCP server registration, agent markdown definitions, and YAML command workflows.
 - **@context agent is the universal enrichment gateway**: Its 3-layer retrieval sequence is the ideal injection point -- add code_graph_context as Layer 1.5 between Memory and Codebase layers.
@@ -666,7 +666,7 @@ Key findings:
 
 | Tier | Mechanism | Where to Change | Effort | Parity |
 |------|-----------|----------------|--------|--------|
-| A: Agent instruction triggers | Add code_graph_context to @context retrieval | .opencode/agent/context.md | Low | Auto graph enrichment |
+| A: Agent instruction triggers | Add code_graph_context to @context retrieval | .opencode/agents/context.md | Low | Auto graph enrichment |
 | B: Resume command enhancement | Add index freshness step to resume | spec_kit_resume_auto.yaml | Low | Session start refresh |
 | C: CLAUDE.md universal instruction | Add auto-enrichment section | Root CLAUDE.md | Low | Index staleness check |
 | D: MCP first-call priming | Server-side session detection + auto-refresh | context-server.ts | Medium | Background preloading |
@@ -799,7 +799,7 @@ Three sub-phases with internal dependency ordering (B1 before B2/B3):
 
 ### Phase D: Cross-Runtime UX (100-168 LOC, LOW risk)
 
-- **D1 Agent instructions** (50-70 LOC): Update 4 agent definition files (`.opencode/agent/context.md`, `.claude/agents/context.md`, `.codex/agents/context.toml`, `.opencode/agent/context.md`) with Layer 1.5 code_graph_context.
+- **D1 Agent instructions** (50-70 LOC): Update 4 agent definition files (`.opencode/agents/context.md`, `.claude/agents/context.md`, `.codex/agents/context.toml`, `.opencode/agents/context.md`) with Layer 1.5 code_graph_context.
 - **D2 Resume command** (20-30 LOC): Add index freshness step to both `spec_kit_resume_auto.yaml` and `spec_kit_resume_confirm.yaml`.
 - **D3 Instruction files** (30-48 LOC): Update CLAUDE.md, CODEX.md, SKILL.md with code graph references.
 
@@ -1032,7 +1032,7 @@ Refuted items were smaller but important: the reviewed P1-3 stop-hook recursion 
 | Runtime | Primary startup surface | Hook reality | Recommended session-start pattern | Practical parity |
 |---|---|---|---|---|
 | **Claude Code** | `SessionStart` / `PreCompact` / `Stop` hooks | Full hook lifecycle | Keep hook-driven recovery, but harden stale-cache, provenance, and stop-save behavior | **100% ceiling / current leader** |
-| **OpenCode** | `AGENTS.md`, `.opencode/agent/*.md`, `spec_kit_resume_auto.yaml` | No native hooks | Add reusable Session Start Protocol + `code_graph_status()` in the earliest context-loading step; keep graph expansion query-driven | **~90%** |
+| **OpenCode** | `AGENTS.md`, `.opencode/agents/*.md`, `spec_kit_resume_auto.yaml` | No native hooks | Add reusable Session Start Protocol + `code_graph_status()` in the earliest context-loading step; keep graph expansion query-driven | **~90%** |
 | **Codex CLI** | `AGENTS.md`, `.codex/agents/context.toml` | No native hooks | Force first-turn `memory_context(...)` + `code_graph_status()` via instructions; do not rely on hook-style implicit warmup | **~85%** |
 | **Copilot CLI** | `AGENTS.md`, `.github/copilot-instructions.md`, `.github/instructions/**/*.instructions.md` | Instruction-first in this repo; optional agent profiles are not the startup contract | Put global startup priming in shared instruction files; gate graph work on structural intent and freshness, not every turn | **~80%** |
 | **Gemini CLI** | `AGENTS.md`, `.gemini/settings.json` | Upstream hooks exist, but repo parity is not wired today | Support instruction-first parity now; optionally add Gemini-native hooks later for near-Claude behavior | **~75% instruction-only / ~88% with hooks** |

@@ -89,12 +89,12 @@ Symlinking test-fixtures...
   [0;31mJSON validation failed[0m
   [0;31mMissing required JSON fields[0m
   [2mOutput:[0m
-    ./test-validation.sh: line 437: /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/validate-spec.sh: No such file or directory
+    ./test-validation.sh: line 437: /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/validate-spec.sh: No such file or directory
 [0;33m⊘[0m --strict mode: warnings become errors [2m(validator not found)[0m
 [0;31m✗[0m --quiet mode: minimal output [2m[8ms][0m
   [0;31mExpected:[0m pass, [0;31mGot:[0m fail
   [2mOutput:[0m
-    ./test-validation.sh: line 531: /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/validate-spec.sh: No such file or directory
+    ./test-validation.sh: line 531: /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/validate-spec.sh: No such file or directory
 [0;33m⊘[0m Config file: .speckit.yaml detected (parsing TODO) [2m(validator not found)[0m [2m[7ms][0m
 [0;33m⊘[0m Env var: SPECKIT_STRICT=true [2m(validator not found)[0m
 [0;33m⊘[0m Rule order: .speckit.yaml rule_order [2m(validator not found)[0m [2m[7ms][0m
@@ -224,12 +224,12 @@ Running test-embeddings-factory.js...
 🧪 Testing Embeddings Factory...
 
 1️⃣ Importing modules...
-❌ ERROR IN TESTS: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/shared/embeddings/profile'
+❌ ERROR IN TESTS: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/shared/embeddings/profile'
 Require stack:
-- /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js
-Stack: Error: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/shared/embeddings/profile'
+- /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js
+Stack: Error: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/shared/embeddings/profile'
 Require stack:
-- /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js
+- /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js
     at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)
     at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
@@ -238,8 +238,8 @@ Require stack:
     at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
     at Module.require (node:internal/modules/cjs/loader:1503:12)
     at require (node:internal/modules/helpers:152:16)
-    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:26:34)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:26:34)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
 
 >>> Running Anchor System Implementation Tests
 Running test-parser.js...
@@ -499,8 +499,8 @@ Running test-embeddings-factory.js...
 2️⃣ Verifying provider configuration...
 ❌ ERROR IN TESTS: getProviderInfo is not a function
 Stack: TypeError: getProviderInfo is not a function
-    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:35:27)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:35:27)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
     at Module._compile (node:internal/modules/cjs/loader:1760:14)
     at Object..js (node:internal/modules/cjs/loader:1892:10)
     at Module.load (node:internal/modules/cjs/loader:1480:32)
@@ -783,8 +783,8 @@ Running test-embeddings-factory.js...
    Slug: hf-local__nomic-ai_nomic-embed-text-v1.5__768
 ❌ ERROR IN TESTS: profile.getDatabasePath is not a function
 Stack: TypeError: profile.getDatabasePath is not a function
-    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:50:40)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:50:40)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
     at Module._compile (node:internal/modules/cjs/loader:1760:14)
     at Object..js (node:internal/modules/cjs/loader:1892:10)
     at Module.load (node:internal/modules/cjs/loader:1480:32)
@@ -1086,8 +1086,8 @@ Running test-embeddings-factory.js...
 6️⃣ Creating HF local provider (without warmup)...
 ❌ ERROR IN TESTS: HFLocalProvider is not a constructor
 Stack: TypeError: HFLocalProvider is not a constructor
-    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:72:25)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:72:25)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
     at Module._compile (node:internal/modules/cjs/loader:1760:14)
     at Object..js (node:internal/modules/cjs/loader:1892:10)
     at Module.load (node:internal/modules/cjs/loader:1480:32)
@@ -1389,8 +1389,8 @@ Running test-embeddings-factory.js...
 6️⃣ Creating HF local provider (without warmup)...
 ❌ ERROR IN TESTS: HFLocalProvider is not a constructor
 Stack: TypeError: HFLocalProvider is not a constructor
-    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:72:25)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:72:25)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
     at Module._compile (node:internal/modules/cjs/loader:1760:14)
     at Object..js (node:internal/modules/cjs/loader:1892:10)
     at Module.load (node:internal/modules/cjs/loader:1480:32)

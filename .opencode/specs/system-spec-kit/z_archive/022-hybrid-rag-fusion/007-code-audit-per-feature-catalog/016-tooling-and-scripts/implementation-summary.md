@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -112,9 +112,9 @@ Catalog entries for all 5 previously PARTIAL features and 1 MISMATCH were update
 
 | Field | Value |
 |-------|-------|
-| **Catalog Entry** | `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md` |
+| **Catalog Entry** | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md` |
 | **Verdict** | MATCH |
-| **Source Files** | `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md`, `.claude/agents/speckit.md`, `.opencode/agent/speckit.md`, .opencode/agent/chatgpt/speckit.md, `.codex/agents/speckit.toml`, `.gemini/agents/speckit.md`, `scripts/utils/template-structure.js` |
+| **Source Files** | `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md`, `.claude/agents/speckit.md`, `.opencode/agents/speckit.md`, .opencode/agents/chatgpt/speckit.md, `.codex/agents/speckit.toml`, `.gemini/agents/speckit.md`, `scripts/utils/template-structure.js` |
 
 The catalog entry documents a 3-layer defense-in-depth system: (1) Agent knowledge with 49-line compact contracts in 5 CLI @speckit agent definitions, (2) Post-write `validate.sh --strict` validation with exit code parsing, (3) Content minimum rules with SECTION_COUNTS thresholds. All 7 referenced source files exist. The canonical structural contract reference and agent definitions contain the described embedded contracts.
 
@@ -152,7 +152,7 @@ Operational runbook for 4 self-healing failure classes: index-drift, session-amb
 
 | Field | Value |
 |-------|-------|
-| **Source File** | `.opencode/skill/system-spec-kit/nodes/phase-system.md` (108 lines) |
+| **Source File** | `.opencode/skills/system-spec-kit/nodes/phase-system.md` (108 lines) |
 | **Classification** | BOTH_MISSING — exists in source, no catalog entry, no prior audit |
 | **Verdict** | Documented as knowledge node |
 

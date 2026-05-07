@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3 — Remove mcp-figma skill from Code_Environment/Public"
-description: "Final phase of mcp-figma transfer: physical rm -rf .opencode/skill/mcp-figma/, patch 13 cross-reference files (skill advisor scoring tables, scorer lanes, test fixtures, observability report, root README, skill index README, mcp-code-mode 4 skill-name strips), then doctor:skill-advisor :auto regen + 2 commits."
+description: "Final phase of mcp-figma transfer: physical rm -rf .opencode/skills/mcp-figma/, patch 13 cross-reference files (skill advisor scoring tables, scorer lanes, test fixtures, observability report, root README, skill index README, mcp-code-mode 4 skill-name strips), then doctor:skill-advisor :auto regen + 2 commits."
 trigger_phrases:
   - "mcp-figma-skill-removal"
   - "phase 3 figma"
@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "Run strict validator"
     blockers: []
     key_files:
-      - "Code_Environment/Public/.opencode/skill/mcp-figma/ (DELETE)"
-      - "Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
-      - "Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - "Code_Environment/Public/.opencode/skills/mcp-figma/ (DELETE)"
+      - "Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - "Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
     session_dedup:
       fingerprint: "sha256:b0938af08f85fd11d250b63c5d88ec53cfe1aac71bfd24b741d9438fde2ea83b"
       session_id: "067-003-spec-2026-05-05"
@@ -131,12 +131,12 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/spec.md; original a
 ### 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `mcp-figma` developer skill at `Code_Environment/Public/.opencode/skill/mcp-figma/` has been superseded by the new Figma MCP Agent in AI_Systems/Barter (Phase 1) and AI_Systems/Public (Phase 2). The skill folder still exists alongside live cross-references in:
+The `mcp-figma` developer skill at `Code_Environment/Public/.opencode/skills/mcp-figma/` has been superseded by the new Figma MCP Agent in AI_Systems/Barter (Phase 1) and AI_Systems/Public (Phase 2). The skill folder still exists alongside live cross-references in:
 - Skill advisor scoring tables (`graph-metadata.json`, `skill-graph.json`, `scorer/lanes/explicit.ts` + `lexical.ts`, `skill_advisor.py`)
 - Test fixtures (`routing-fixtures.affordance.test.ts`)
 - Observability report (`smart-router-measurement-report.md`)
 - Root `README.md` (skill listing + example prompt)
-- Skill index `.opencode/skill/README.md` (counts, version table, structure tree)
+- Skill index `.opencode/skills/README.md` (counts, version table, structure tree)
 - mcp-code-mode skill (4 cross-references to mcp-figma SKILL by name)
 
 Per memory rule "DELETE not archive", the skill folder must be physically removed (`rm -rf`), not z_archived or commented out. Cross-references must be patched to keep the advisor test suite green and the documentation truthful.
@@ -149,7 +149,7 @@ Atomically remove `mcp-figma` from Code_Environment/Public by: (a) deleting the 
 ### 3. SCOPE
 
 ### In Scope
-- `rm -rf` `Code_Environment/Public/.opencode/skill/mcp-figma/`
+- `rm -rf` `Code_Environment/Public/.opencode/skills/mcp-figma/`
 - Patch 9 cross-reference files (31 hits per Explore Agent 1 mapping):
   - `graph-metadata.json` (2 hits: 1 DELETE_NODE + 1 PATCH_VALUE for count)
   - `skill-graph.json` (6 hits: 5 DELETE_NODE + 1 PATCH_VALUE for skill_count)
@@ -182,7 +182,7 @@ Atomically remove `mcp-figma` from Code_Environment/Public by: (a) deleting the 
 
 | # | File Path | Change Type | Hits |
 |---|---|---|---|
-| 1 | `.opencode/skill/mcp-figma/` (entire folder) | DELETE | rm -rf |
+| 1 | `.opencode/skills/mcp-figma/` (entire folder) | DELETE | rm -rf |
 | 2 | `system-spec-kit/.../skill_advisor/graph-metadata.json` | DELETE_NODE + PATCH_VALUE | 2 |
 | 3 | `system-spec-kit/.../skill_advisor/scripts/skill-graph.json` | DELETE_NODE × 5 + PATCH_VALUE | 6 |
 | 4 | `system-spec-kit/.../scorer/lanes/explicit.ts` | DELETE_LINE × 4 | 4 |
@@ -191,7 +191,7 @@ Atomically remove `mcp-figma` from Code_Environment/Public by: (a) deleting the 
 | 7 | `system-spec-kit/.../scripts/skill_advisor.py` | DELETE_LINE × 2 + PATCH_VALUE × 3 | 5 |
 | 8 | `system-spec-kit/scripts/observability/smart-router-measurement-report.md` | DELETE_LINE | 1 |
 | 9 | root `README.md` | DELETE_NODE + DELETE_LINE + PATCH_VALUE × 2 | 4 |
-| 10 | `.opencode/skill/README.md` | PATCH_VALUE × 2 + DELETE_LINE × 4 | 6 |
+| 10 | `.opencode/skills/README.md` | PATCH_VALUE × 2 + DELETE_LINE × 4 | 6 |
 | 11 | `mcp-code-mode/SKILL.md` (line 476) | DELETE_LINE | 1 |
 | 12 | `mcp-code-mode/README.md` (line 451) | DELETE_LINE | 1 |
 | 13 | `mcp-code-mode/references/architecture.md` (line 514) | DELETE_LINE | 1 |
@@ -208,11 +208,11 @@ Atomically remove `mcp-figma` from Code_Environment/Public by: (a) deleting the 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Skill folder physically removed | `test ! -d .opencode/skill/mcp-figma/` returns true |
+| REQ-001 | Skill folder physically removed | `test ! -d .opencode/skills/mcp-figma/` returns true |
 | REQ-002 | All 31 cross-reference edits applied | Each line/node from Explore Agent 1 map removed or patched as specified |
 | REQ-003 | mcp-code-mode 4 skill-name refs stripped | grep `mcp-figma` (literal skill-name) in mcp-code-mode/ returns 0 hits |
 | REQ-004 | mcp-code-mode 127 figma-developer-mcp refs preserved | grep `figma-developer-mcp\|figma\.figma_\|figma_FIGMA_API_KEY` returns ≥120 hits in mcp-code-mode/ |
-| REQ-005 | Skill advisor tests pass post-deletion | `node .opencode/skill/system-spec-kit/scripts/dist/skill-advisor/run-tests.js` (or equivalent) exits 0 |
+| REQ-005 | Skill advisor tests pass post-deletion | `node .opencode/skills/system-spec-kit/scripts/dist/skill-advisor/run-tests.js` (or equivalent) exits 0 |
 | REQ-006 | skill-graph.json regenerated cleanly | Post-doctor:skill-advisor scan: zero `mcp-figma` references in JSON output |
 | REQ-007 | Two separate commits per D6 | Commit 4 = deletion + hand-edits; Commit 5 = advisor regen |
 | REQ-008 | Spec history mentions preserved | grep `mcp-figma` in `.opencode/specs/**/*.md` and `system-spec-kit/z_archive/**` returns hits unchanged from baseline |
@@ -222,7 +222,7 @@ Atomically remove `mcp-figma` from Code_Environment/Public by: (a) deleting the 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-010 | G1 grep cleanliness | `grep -rn "mcp-figma" Code_Environment/Public/` returns 0 outside specs / z_archive / z_future |
-| REQ-011 | G3 skill index integrity | `.opencode/skill/README.md` lists actual count of skill folders post-deletion |
+| REQ-011 | G3 skill index integrity | `.opencode/skills/README.md` lists actual count of skill folders post-deletion |
 | REQ-012 | Branch hygiene | `git branch --show-current` returns `main` post-commit; any auto-branch deleted; carry unrelated dirty tree |
 
 ### P2 - Optional
@@ -235,7 +235,7 @@ Atomically remove `mcp-figma` from Code_Environment/Public by: (a) deleting the 
 
 ### 5. SUCCESS CRITERIA
 
-- **SC-001**: `Code_Environment/Public/.opencode/skill/mcp-figma/` no longer exists
+- **SC-001**: `Code_Environment/Public/.opencode/skills/mcp-figma/` no longer exists
 - **SC-002**: 31 cross-reference edits + 4 mcp-code-mode strips applied successfully
 - **SC-003**: 127 figma-developer-mcp tool refs in mcp-code-mode/ preserved (verified post-edits)
 - **SC-004**: Skill advisor test suite green

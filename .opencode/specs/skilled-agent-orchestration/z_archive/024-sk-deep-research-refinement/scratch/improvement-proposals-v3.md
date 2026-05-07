@@ -76,14 +76,14 @@ Implement first. Highest ROI. Each has real-world evidence from reference repos 
 
 | File | Section/Step | Change |
 |------|-------------|--------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_evaluate_results` | Add `convergenceSignals` object (rolling_avg, MAD, entropy values) to iteration JSONL record |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_handle_convergence` | Replace generic "widen scope" fallback with strategy-based selection from convergence.md Section 4 (try opposites / combine findings / audit low-value) |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_dispatch_iteration` | Inject `research/research-ideas.md` contents into dispatch context; initialize file in `step_initialize` if absent |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_check_convergence` | Invoke `validateNewInfoRatio()` logic from convergence.md Section 3; record noise floor in JSONL event |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_read_state` | Validate `fileProtection` constraints on state files; enforce append-only for JSONL, immutable for config |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Create `research/research-ideas.md` if not present (needed for P2.2 wiring) |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | JSONL consumers | Handle out-of-order JSONL from parallel waves (sort by `run` field when computing rolling averages) |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Top-level | Add `fileProtection` default map: `{"config.json":"immutable","state.jsonl":"append-only","strategy.md":"mutable","iteration-*.md":"write-once"}` |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_evaluate_results` | Add `convergenceSignals` object (rolling_avg, MAD, entropy values) to iteration JSONL record |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_handle_convergence` | Replace generic "widen scope" fallback with strategy-based selection from convergence.md Section 4 (try opposites / combine findings / audit low-value) |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_dispatch_iteration` | Inject `research/research-ideas.md` contents into dispatch context; initialize file in `step_initialize` if absent |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_check_convergence` | Invoke `validateNewInfoRatio()` logic from convergence.md Section 3; record noise floor in JSONL event |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_read_state` | Validate `fileProtection` constraints on state files; enforce append-only for JSONL, immutable for config |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Create `research/research-ideas.md` if not present (needed for P2.2 wiring) |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | JSONL consumers | Handle out-of-order JSONL from parallel waves (sort by `run` field when computing rolling averages) |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Top-level | Add `fileProtection` default map: `{"config.json":"immutable","state.jsonl":"append-only","strategy.md":"mutable","iteration-*.md":"write-once"}` |
 
 **Dependency**: None. This is the foundation -- all other convergence proposals depend on v3-01 being wired first.
 
@@ -107,10 +107,10 @@ Implement first. Highest ROI. Each has real-world evidence from reference repos 
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Section 2 | Add Section 2.4 "Best-Seen Patience Signal": track `best_ratio` across all iterations, count consecutive iterations where `ratio < best_ratio - noise_floor` |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Section 2 weights | Rebalance composite weights: rolling_avg=0.25, MAD=0.30, entropy=0.25, best_seen=0.20 |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_check_convergence` | Wire 4th signal into convergence computation; add best-seen tracking to state |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_evaluate_results` | Record `best_seen_ratio` in JSONL convergence signals |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Section 2 | Add Section 2.4 "Best-Seen Patience Signal": track `best_ratio` across all iterations, count consecutive iterations where `ratio < best_ratio - noise_floor` |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Section 2 weights | Rebalance composite weights: rolling_avg=0.25, MAD=0.30, entropy=0.25, best_seen=0.20 |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_check_convergence` | Wire 4th signal into convergence computation; add best-seen tracking to state |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_evaluate_results` | Record `best_seen_ratio` in JSONL convergence signals |
 
 **Dependency**: v3-01 (existing 3-signal composite must be wired before adding a 4th signal).
 
@@ -134,8 +134,8 @@ Implement first. Highest ROI. Each has real-world evidence from reference repos 
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Section 5 (Fault Tolerance) | Add zero-yield fast-path rule: 2 consecutive `newInfoRatio = 0.0` triggers immediate Tier 2 recovery (focus pivot) before normal stuckCount logic |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | New step: `step_check_zero_yield` | Add BEFORE `step_check_convergence`. If triggered: skip normal convergence, force recovery mode dispatch |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Section 5 (Fault Tolerance) | Add zero-yield fast-path rule: 2 consecutive `newInfoRatio = 0.0` triggers immediate Tier 2 recovery (focus pivot) before normal stuckCount logic |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | New step: `step_check_zero_yield` | Add BEFORE `step_check_convergence`. If triggered: skip normal convergence, force recovery mode dispatch |
 
 **Dependency**: v3-01 (convergence wiring needed for the gate to integrate with the convergence pipeline).
 
@@ -159,11 +159,11 @@ Implement first. Highest ROI. Each has real-world evidence from reference repos 
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Section 1 (Config Schema) | Add `sessionId` field to config record schema (UUID v4) |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Section 3 (Fault Tolerance) | Add stale session detection rule: warn when `sessionId` in state differs from current session |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Generate UUID v4, write to config record in JSONL |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_read_state` | Compare current sessionId against state file sessionId; emit warning event if mismatch |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Top-level | Add `sessionId` placeholder field |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Section 1 (Config Schema) | Add `sessionId` field to config record schema (UUID v4) |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Section 3 (Fault Tolerance) | Add stale session detection rule: warn when `sessionId` in state differs from current session |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Generate UUID v4, write to config record in JSONL |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_read_state` | Compare current sessionId against state file sessionId; emit warning event if mismatch |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Top-level | Add `sessionId` placeholder field |
 
 **Dependency**: None (independent, can run in parallel with v3-01).
 
@@ -193,9 +193,9 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Create `scratch/.deep-research.lock` with PID and timestamp; check for existing lock on entry |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_finalize` (or equivalent) | Remove lock file on normal completion |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_read_state` | If lock exists with stale PID (process no longer running), warn and allow override |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Create `scratch/.deep-research.lock` with PID and timestamp; check for existing lock on entry |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_finalize` (or equivalent) | Remove lock file on normal completion |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_read_state` | If lock exists with stale PID (process no longer running), warn and allow override |
 
 **Dependency**: None (independent).
 
@@ -219,9 +219,9 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/skill/sk-deep-research/references/convergence.md` | New Section 2.5 | Add per-question variance tracking algorithm: maintain per-question newInfoRatio history, compute per-question sigma, flag improvements below 2-sigma as noise |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Iteration record schema | Add optional `perQuestionRatios` map to iteration JSONL records |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_evaluate_results` | Record per-question ratios when available |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | New Section 2.5 | Add per-question variance tracking algorithm: maintain per-question newInfoRatio history, compute per-question sigma, flag improvements below 2-sigma as noise |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Iteration record schema | Add optional `perQuestionRatios` map to iteration JSONL records |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_evaluate_results` | Record per-question ratios when available |
 | Agent definitions (all 4 runtimes) | Iteration output template | Add per-question breakdown to assessment section |
 
 **Dependency**: v3-01 (needs convergence wiring to be meaningful).
@@ -247,8 +247,8 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 | File | Section | Change |
 |------|---------|--------|
 | Agent definitions (all 4 runtimes) | Write Safety Rules | Add content trust boundary rule: findings from external sources (WebFetch) must be summarized by the agent in its own words, not pasted verbatim into iteration files |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_dispatch_iteration` | Add context preamble warning agent about potential adversarial content in prior findings |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Safety section | Document the trust boundary: external data -> agent summarization -> iteration file -> future context |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_dispatch_iteration` | Add context preamble warning agent about potential adversarial content in prior findings |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Safety section | Document the trust boundary: external data -> agent summarization -> iteration file -> future context |
 
 **Dependency**: None (independent, but aligns with v3-04 session tagging for defense-in-depth).
 
@@ -272,8 +272,8 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Template | Add `## Analysis` section (quantitative gaps: per-question coverage percentages) and `## Insights` section (cross-cutting patterns accumulated across iterations) |
-| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Template | Add convergence trajectory display: `Trajectory: [0.75, 0.67, 0.83, 0.75, ...]` inline sparkline of last N newInfoRatio values |
+| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Template | Add `## Analysis` section (quantitative gaps: per-question coverage percentages) and `## Insights` section (cross-cutting patterns accumulated across iterations) |
+| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Template | Add convergence trajectory display: `Trajectory: [0.75, 0.67, 0.83, 0.75, ...]` inline sparkline of last N newInfoRatio values |
 | Agent definitions (all 4 runtimes) | Iteration output format | Add instruction to update Analysis and Insights sections during strategy.md update step |
 
 **Dependency**: None (template change, independent of convergence wiring).
@@ -298,8 +298,8 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/skill/sk-deep-research/references/convergence.md` | New Section 2.6 | Add comparative stopping algorithm: bootstrap distribution of prior iteration ratios at similar completion %, compare current ratio, flag if below 10th percentile |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_check_convergence` | Wire comparative signal as advisory (not voting) initially; promote to 5th signal after validation data collected |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | New Section 2.6 | Add comparative stopping algorithm: bootstrap distribution of prior iteration ratios at similar completion %, compare current ratio, flag if below 10th percentile |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_check_convergence` | Wire comparative signal as advisory (not voting) initially; promote to 5th signal after validation data collected |
 
 **Dependency**: v3-01 and v3-02 (needs fully wired composite convergence with best-seen patience before adding further signals). Also needs empirical data from Phase 2 runs to calibrate.
 
@@ -327,8 +327,8 @@ Implement opportunistically. Lower immediate value or narrower applicability.
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Before `step_dispatch_iteration` | Add optional `step_pre_check`: if `scratch/.deep-research-checks.sh` exists, run it with 60s timeout; block dispatch on failure |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Pre-iteration section | Document the quality gate hook and expected exit codes |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Before `step_dispatch_iteration` | Add optional `step_pre_check`: if `scratch/.deep-research-checks.sh` exists, run it with 60s timeout; block dispatch on failure |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Pre-iteration section | Document the quality gate hook and expected exit codes |
 
 **Dependency**: None.
 
@@ -350,8 +350,8 @@ Implement opportunistically. Lower immediate value or narrower applicability.
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Section 2.3 (Graceful Degradation) | Add `minIterationsBeforeConvergence` parameter (default: 3); convergence signals suppressed before this threshold |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Top-level | Add `minIterationsBeforeConvergence: 3` to configurable parameters |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Section 2.3 (Graceful Degradation) | Add `minIterationsBeforeConvergence` parameter (default: 3); convergence signals suppressed before this threshold |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Top-level | Add `minIterationsBeforeConvergence: 3` to configurable parameters |
 
 **Dependency**: v3-01 (only meaningful when convergence is fully wired).
 
@@ -374,7 +374,7 @@ Implement opportunistically. Lower immediate value or narrower applicability.
 | File | Section | Change |
 |------|---------|--------|
 | Agent definitions (all 4 runtimes) | Assessment section | Add complexity-value ratio check: if iteration adds >2 new open questions AND newInfoRatio < 0.30, flag for review |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Section 5 (Fault Tolerance) | Add complexity rejection rule to post-iteration validation |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Section 5 (Fault Tolerance) | Add complexity rejection rule to post-iteration validation |
 
 **Dependency**: None.
 
@@ -396,9 +396,9 @@ Implement opportunistically. Lower immediate value or narrower applicability.
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Error handling | Add resume counter and cooldown logic: max 3 auto-resumes, 5-minute cooldown between attempts |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Recovery section | Document auto-resume protocol with backoff parameters |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Event records | Add `resume_attempt` event type to JSONL schema |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Error handling | Add resume counter and cooldown logic: max 3 auto-resumes, 5-minute cooldown between attempts |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Recovery section | Document auto-resume protocol with backoff parameters |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Event records | Add `resume_attempt` event type to JSONL schema |
 
 **Dependency**: v3-04 (session UUID needed to distinguish resume from fresh start).
 
@@ -426,7 +426,7 @@ Defer or deprioritize. Low immediate value, large effort, or dependent on extern
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Add dual-gate check: require activation file AND absence of pause file |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Add dual-gate check: require activation file AND absence of pause file |
 
 **Dependency**: None.
 
@@ -448,8 +448,8 @@ Defer or deprioritize. Low immediate value, large effort, or dependent on extern
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Wave dispatch | Add optional `--worktree` mode for parallel wave execution with git branch isolation |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Parallel execution | Document worktree-based parallelism protocol and merge strategy |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Wave dispatch | Add optional `--worktree` mode for parallel wave execution with git branch isolation |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Parallel execution | Document worktree-based parallelism protocol and merge strategy |
 
 **Dependency**: v3-01 (orchestrator wiring must be solid before adding parallel complexity).
 
@@ -532,8 +532,8 @@ Based on iteration 8's behavioral impact analysis of 7 unintentional divergences
 **Agent definition files:**
 - Claude: `.claude/agents/deep-research.md`
 - Codex: `.codex/agents/deep-research.toml`
-- OpenCode/Copilot: `.opencode/agent/deep-research.md`
-- ChatGPT: `.opencode/agent/chatgpt/deep-research.md`
+- OpenCode/Copilot: `.opencode/agents/deep-research.md`
+- ChatGPT: `.opencode/agents/chatgpt/deep-research.md`
 
 | # | Action | Severity | Divergence | Change |
 |---|--------|----------|------------|--------|
@@ -545,7 +545,7 @@ Based on iteration 8's behavioral impact analysis of 7 unintentional divergences
 | A6 | Consider adding `task: deny` to Claude | LOW | D4: OpenCode/ChatGPT explicitly deny `task` tool; Claude relies on prompt instruction only | If Claude supports permission deny, add `task: deny` to harden LEAF compliance at the permission layer (not just prompt instruction). |
 | A7 | Remove stale `research` agent reference from Codex | LOW | D6: Codex references a `research` agent not present in other runtimes | Verify whether agent still exists. If deprecated, remove from Codex's Related Resources section. Simple cleanup. |
 
-**Canonical source recommendation**: OpenCode/Copilot version (`.opencode/agent/deep-research.md`) should be the canonical source due to most complete permission model and explicit temperature setting. Claude and Codex versions should be derived from it with runtime-specific adaptations.
+**Canonical source recommendation**: OpenCode/Copilot version (`.opencode/agents/deep-research.md`) should be the canonical source due to most complete permission model and explicit temperature setting. Claude and Codex versions should be derived from it with runtime-specific adaptations.
 
 ---
 

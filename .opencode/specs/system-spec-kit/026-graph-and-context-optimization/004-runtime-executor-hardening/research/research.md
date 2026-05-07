@@ -38,17 +38,17 @@ Did not investigate:
 
 ## Key Findings
 ### P0
-- `F-001` correctness: Non-native first-write provenance is internally inconsistent. `iteration-01.md` and `iteration-10.md` show that the prompt pack omits `executor`, validation requires it on the final iteration record, and YAML only records executor audit after validation, creating a fail-by-design path for spec-compliant non-native runs. [Evidence: `iterations/iteration-01.md`, `iterations/iteration-10.md`; .opencode/skill/sk-deep-research/assets/prompt_pack_iteration.md.tmpl:38-48; .opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:145-150; .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:586-617]
-- `F-002` correctness/reliability: Timeout and crash handling are documented but not wired. `iteration-05.md`, `iteration-06.md`, and `iteration-10.md` show that `emitDispatchFailure`, `iteration_timeout`, and retry behavior exist in helpers or prose, yet the live YAML steps never invoke them, so executor failures collapse into generic validator outcomes. [Evidence: `iterations/iteration-05.md`, `iterations/iteration-06.md`, `iterations/iteration-10.md`; .opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts:128-149; .opencode/skill/sk-deep-research/references/loop_protocol.md:232-241; .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:836-840]
+- `F-001` correctness: Non-native first-write provenance is internally inconsistent. `iteration-01.md` and `iteration-10.md` show that the prompt pack omits `executor`, validation requires it on the final iteration record, and YAML only records executor audit after validation, creating a fail-by-design path for spec-compliant non-native runs. [Evidence: `iterations/iteration-01.md`, `iterations/iteration-10.md`; .opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl:38-48; .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:145-150; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:586-617]
+- `F-002` correctness/reliability: Timeout and crash handling are documented but not wired. `iteration-05.md`, `iteration-06.md`, and `iteration-10.md` show that `emitDispatchFailure`, `iteration_timeout`, and retry behavior exist in helpers or prose, yet the live YAML steps never invoke them, so executor failures collapse into generic validator outcomes. [Evidence: `iterations/iteration-05.md`, `iterations/iteration-06.md`, `iterations/iteration-10.md`; .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts:128-149; .opencode/skills/sk-deep-research/references/loop_protocol.md:232-241; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:836-840]
 
 ### P1
-- `F-003` security/architecture: `sandboxMode` is accepted in config for multiple CLI kinds but ignored by the executor branches, while Copilot always runs with `--allow-all-tools`. `iteration-02.md` and `iteration-04.md` show config-to-command drift that can mislead operators about the actual permission posture. [Evidence: `iterations/iteration-02.md`, `iterations/iteration-04.md`; .opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:30-35; .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:516-585]
-- `F-004` correctness/docs: Copilot's large-prompt `@path` wrapper remains a stuck-wrapper risk because only command-shape tests cover it. `iteration-03.md` and `iteration-08.md` show that the wrapper path is documented and string-tested, but not proven to write iteration artifacts in a real run. [Evidence: `iterations/iteration-03.md`, `iterations/iteration-08.md`; .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:528-551; .opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts:8-160]
-- `F-005` architecture/docs: stop-reason and recovery naming drift persists between YAML, references, and reducer behavior. `iteration-07.md` shows the live path expects `stuckRecovery`, while some references still describe persisted `stuck_recovery`. [Evidence: `iterations/iteration-07.md`; .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:454-470; .opencode/skill/sk-deep-research/references/convergence.md:711-757; .opencode/skill/sk-deep-research/scripts/reduce-state.cjs:324-383]
+- `F-003` security/architecture: `sandboxMode` is accepted in config for multiple CLI kinds but ignored by the executor branches, while Copilot always runs with `--allow-all-tools`. `iteration-02.md` and `iteration-04.md` show config-to-command drift that can mislead operators about the actual permission posture. [Evidence: `iterations/iteration-02.md`, `iterations/iteration-04.md`; .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:30-35; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:516-585]
+- `F-004` correctness/docs: Copilot's large-prompt `@path` wrapper remains a stuck-wrapper risk because only command-shape tests cover it. `iteration-03.md` and `iteration-08.md` show that the wrapper path is documented and string-tested, but not proven to write iteration artifacts in a real run. [Evidence: `iterations/iteration-03.md`, `iterations/iteration-08.md`; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:528-551; .opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts:8-160]
+- `F-005` architecture/docs: stop-reason and recovery naming drift persists between YAML, references, and reducer behavior. `iteration-07.md` shows the live path expects `stuckRecovery`, while some references still describe persisted `stuck_recovery`. [Evidence: `iterations/iteration-07.md`; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:454-470; .opencode/skills/sk-deep-research/references/convergence.md:711-757; .opencode/skills/sk-deep-research/scripts/reduce-state.cjs:324-383]
 - `F-006` performance/reliability: the shipped matrix still lacks live smoke coverage for the main failure paths that the specs/checklists promised, including executor timeout wiring, consecutive-failure recovery, and non-native artifact success. `iteration-08.md` and `iteration-09.md` show the release evidence is still unit-heavy and grep-heavy. [Evidence: `iterations/iteration-08.md`, `iterations/iteration-09.md`; .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution/001-executor-feature/checklist.md:86-119; .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution/002-runtime-matrix/implementation-summary.md:180-199]
 
 ### P2
-- `F-007` docs/other: merged skill and command surfaces still mix "Reserved", "Shipped", and deferred-language artifacts in ways that make operator expectations fuzzy, especially around timeout defaults and cross-CLI recursion. [Evidence: `iterations/iteration-05.md`, `iterations/iteration-09.md`; .opencode/skill/sk-deep-research/SKILL.md:68-71; .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution/002-runtime-matrix/implementation-summary.md:194-199]
+- `F-007` docs/other: merged skill and command surfaces still mix "Reserved", "Shipped", and deferred-language artifacts in ways that make operator expectations fuzzy, especially around timeout defaults and cross-CLI recursion. [Evidence: `iterations/iteration-05.md`, `iterations/iteration-09.md`; .opencode/skills/sk-deep-research/SKILL.md:68-71; .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution/002-runtime-matrix/implementation-summary.md:194-199]
 
 ## Evidence Trail
 - `iterations/iteration-01.md`: "literal implementation of that contract cannot satisfy non-native validation." This is the core provenance mismatch, backed by the prompt pack, validator, and YAML ordering.
@@ -88,16 +88,16 @@ The investigation did not early-stop; it completed all 10 iterations. Convergenc
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution/002-runtime-matrix/implementation-summary.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-sk-deep-cli-runtime-execution/001-executor-feature/research/017-sk-deep-cli-runtime-execution-pt-01/research.md`
-- `.opencode/skill/sk-deep-research/SKILL.md`
-- `.opencode/skill/sk-deep-research/assets/prompt_pack_iteration.md.tmpl`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-research/references/convergence.md`
-- `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/dispatch-failure.vitest.ts`
+- `.opencode/skills/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-research/references/convergence.md`
+- `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/dispatch-failure.vitest.ts`

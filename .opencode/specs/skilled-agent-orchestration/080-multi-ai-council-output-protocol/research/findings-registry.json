@@ -19,7 +19,7 @@
     "The lightweight bound remains valid; no dedicated multi-ai-council skill folder is justified by the researched follow-ons."
   ],
   "ruledOutDirections": [
-    "Dedicated .opencode/skill/multi-ai-council/ folder for packet 081",
+    "Dedicated .opencode/skills/multi-ai-council/ folder for packet 081",
     "JSON Schema as the primary §8 contract",
     "Reference-only §17",
     "validate.sh --strict enforcement of ai-council/council-report.md",

@@ -19,14 +19,14 @@
 - `.opencode/specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/implementation-summary.md`
 - `.gemini/commands/improve/improve-agent.toml`
 - `.gemini/commands/improve/README.txt`
-- `.opencode/command/improve/agent.md`
-- `.opencode/command/improve/README.txt`
-- `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml`
-- `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml`
-- `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md`
-- `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md`
-- `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md`
-- `.opencode/skill/sk-code-review/references/review_core.md`
+- `.opencode/commands/improve/agent.md`
+- `.opencode/commands/improve/README.txt`
+- `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`
+- `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml`
+- `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md`
+- `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md`
+- `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md`
+- `.opencode/skills/sk-code-review/references/review_core.md`
 
 ## Findings - New
 
@@ -42,11 +42,11 @@
   - Affected surface hints: [`implementation-summary.md`, `tasks.md`, `checklist.md`, `release-readiness synthesis`]
   - Claim adjudication: {"type":"gate-relevant-P1","claim":"Packet completion cannot be traced to the task/checklist ledgers because those ledgers remain unchecked while implementation-summary claims all P0/P1 criteria are met.","evidenceRefs":["specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/implementation-summary.md:33","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/tasks.md:128","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/tasks.md:130","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/checklist.md:139","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/checklist.md:140"],"counterevidenceSought":"Checked whether mirror `.opencode/specs/...` task/checklist copies differed materially; they carry the same unchecked task and checklist state, so the contradiction is not a specs-vs-mirror copy artifact.","alternativeExplanation":"The implementer may have run the checks but failed to update task/checklist state; that still blocks traceable completion because the authoritative ledgers remain unchecked.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade only if the packet explicitly declares tasks/checklist intentionally frozen and provides another accepted completion ledger."}
 
-- **F005**: Resource map marks active stale-reference surfaces OK -- specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:57 -- The resource map marks `.gemini/commands/improve/README.txt` and `.gemini/commands/improve/improve-agent.toml` as `Updated | OK`, and also marks the CP-041/CP-042 playbooks as `Updated | OK`, but active evidence still shows Gemini README/TOML referencing obsolete `improve_improve-agent_{auto,confirm}.yaml` names and the playbooks still `cat .opencode/agent/improve-agent.md`. This means the packet's coverage inventory incorrectly certifies the active F001/F002 stale-reference surfaces as OK.
+- **F005**: Resource map marks active stale-reference surfaces OK -- specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:57 -- The resource map marks `.gemini/commands/improve/README.txt` and `.gemini/commands/improve/improve-agent.toml` as `Updated | OK`, and also marks the CP-041/CP-042 playbooks as `Updated | OK`, but active evidence still shows Gemini README/TOML referencing obsolete `improve_improve-agent_{auto,confirm}.yaml` names and the playbooks still `cat .opencode/agents/improve-agent.md`. This means the packet's coverage inventory incorrectly certifies the active F001/F002 stale-reference surfaces as OK.
   - Finding class: matrix/evidence
-  - Scope proof: Resource-map OK rows for Gemini command surfaces are at lines 57 and 83, playbook OK rows are at lines 112-113; active stale evidence is in `.gemini/commands/improve/README.txt:158`, `.gemini/commands/improve/improve-agent.toml:60`, `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77`, and `015-active-critic-overfit.md:73`.
+  - Scope proof: Resource-map OK rows for Gemini command surfaces are at lines 57 and 83, playbook OK rows are at lines 112-113; active stale evidence is in `.gemini/commands/improve/README.txt:158`, `.gemini/commands/improve/improve-agent.toml:60`, `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77`, and `015-active-critic-overfit.md:73`.
   - Affected surface hints: [`resource-map.md`, `Gemini command mirror`, `manual testing playbook`, `F001`, `F002`]
-  - Claim adjudication: {"type":"gate-relevant-P1","claim":"The resource map is materially inaccurate because it certifies as OK active surfaces that still contain the prior iteration's stale reference defects.","evidenceRefs":["specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:57","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:83","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:112","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:113",".gemini/commands/improve/README.txt:158",".gemini/commands/improve/improve-agent.toml:60",".opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77",".opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md:73"],"counterevidenceSought":"Checked OpenCode command references and found them using the new asset names; this supports limiting the finding to Gemini command mirror plus the two active playbook command blocks rather than the entire command family.","alternativeExplanation":"Resource-map status may have been a planned target state, but its vocabulary says OK and the rows are in the active inventory, so it is being used as current evidence.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade only if resource-map OK is redefined as future intended state and not accepted as verification evidence."}
+  - Claim adjudication: {"type":"gate-relevant-P1","claim":"The resource map is materially inaccurate because it certifies as OK active surfaces that still contain the prior iteration's stale reference defects.","evidenceRefs":["specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:57","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:83","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:112","specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:113",".gemini/commands/improve/README.txt:158",".gemini/commands/improve/improve-agent.toml:60",".opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77",".opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md:73"],"counterevidenceSought":"Checked OpenCode command references and found them using the new asset names; this supports limiting the finding to Gemini command mirror plus the two active playbook command blocks rather than the entire command family.","alternativeExplanation":"Resource-map status may have been a planned target state, but its vocabulary says OK and the rows are in the active inventory, so it is being used as current evidence.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade only if resource-map OK is redefined as future intended state and not accepted as verification evidence."}
 
 ### P2 Findings
 
@@ -57,7 +57,7 @@
 - `tasks.md` / `checklist.md` vs implementation-summary: **FAIL**. Implementation-summary claims COMPLETE at `implementation-summary.md:33`, while task completion and checklist verification remain unchecked at `tasks.md:128-131` and `checklist.md:139-140`.
 - Resource-map classification of F001/F002 surfaces: **FAIL**. The map marks Gemini command docs and active playbook files OK at `resource-map.md:57`, `resource-map.md:83`, and `resource-map.md:112-113`, but active files still show the stale references covered by F001/F002.
 - REQ-005: **PARTIAL/FAIL**. OpenCode command references inspected use `@deep-agent-improvement` and new YAML filenames, but active Gemini command docs still reference obsolete YAML asset filenames and active playbooks still load the removed agent path.
-- REQ-008: **PASS for existence/content shape**. `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md:13` exists and documents the rename, 079 predecessor, 085/001 precedent, YAML filename renames, and migration notes.
+- REQ-008: **PASS for existence/content shape**. `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:13` exists and documents the rename, 079 predecessor, 085/001 precedent, YAML filename renames, and migration notes.
 - REQ-010: **FAIL**. `implementation-summary.md` exists but contains unresolved placeholders and lacks concrete commit SHAs while claiming `REQ-010` met at `implementation-summary.md:125` and commit rows at `implementation-summary.md:133-134` remain `[POPULATE]`.
 - REQ-011: **UNVERIFIED/FAIL as documented evidence**. `implementation-summary.md:126` claims `/memory:save` was met, but the packet evidence reviewed does not show a concrete invocation/output; checklist CHK-042 remains unchecked at `checklist.md:118`.
 - REQ-012: **UNVERIFIED/PARTIAL**. `implementation-summary.md:127` claims branch hygiene passed, but checklist CHK-052 remains unchecked at `checklist.md:129`; this iteration did not use git state as primary evidence.
@@ -65,9 +65,9 @@
 
 ## Integration Evidence
 
-- `.opencode/command/improve/agent.md:269-270` and `.opencode/command/improve/README.txt:160-161` reference `improve_deep-agent-improvement_{auto,confirm}.yaml` as expected.
+- `.opencode/commands/improve/agent.md:269-270` and `.opencode/commands/improve/README.txt:160-161` reference `improve_deep-agent-improvement_{auto,confirm}.yaml` as expected.
 - `.gemini/commands/improve/improve-agent.toml:60-61` and `.gemini/commands/improve/README.txt:158-159` still reference `improve_improve-agent_{auto,confirm}.yaml`, preserving F001 as an active traceability failure.
-- `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77` and `015-active-critic-overfit.md:73` still `cat .opencode/agent/improve-agent.md`, preserving F002 as an active traceability failure.
+- `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77` and `015-active-critic-overfit.md:73` still `cat .opencode/agents/improve-agent.md`, preserving F002 as an active traceability failure.
 
 ## Edge Cases
 
@@ -78,7 +78,7 @@
 ## Confirmed-Clean Surfaces
 
 - OpenCode command docs/assets inspected use the renamed YAML asset names and `@deep-agent-improvement` references.
-- `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md` exists and materially covers REQ-008 content expectations.
+- `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md` exists and materially covers REQ-008 content expectations.
 - Reviewed `.opencode/specs/...` mirror docs are not materially divergent from `specs/...` for the traceability questions inspected.
 
 ## Ruled Out

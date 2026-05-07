@@ -19,10 +19,10 @@ You add display-only trust badges (`confidence`, `extractionAge`, `lastAccessAge
 5. **Research basis:**
    `.../research/007-external-project-pt-02/research.md` §5 (Memory findings), §11 Packet 4, §12 RISK-06
 6. **Existing Public code (READ before EDIT):**
-   - `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` (lines 82-94 schema — DO NOT modify; columns: `strength`, `evidence`, `source_anchor`, `target_anchor`, `extracted_at`, `created_by`, `last_accessed`)
-   - `.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts` (lines 327-338 `computeTraversalFreshnessFactor` decay logic — DO NOT modify)
-   - `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts` (target — add `trustBadges` to envelope)
-   - `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts` (target — propagate badges)
+   - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` (lines 82-94 schema — DO NOT modify; columns: `strength`, `evidence`, `source_anchor`, `target_anchor`, `extracted_at`, `created_by`, `last_accessed`)
+   - `.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts` (lines 327-338 `computeTraversalFreshnessFactor` decay logic — DO NOT modify)
+   - `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts` (target — add `trustBadges` to envelope)
+   - `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts` (target — propagate badges)
 
 ## Worktree + branch
 
@@ -37,8 +37,8 @@ You add display-only trust badges (`confidence`, `extractionAge`, `lastAccessAge
 | `mcp_server/formatters/search-results.ts` | **MODIFY** — add `trustBadges: { confidence, extractionAge, lastAccessAge, orphan, weightHistoryChanged }` to `MemoryResultEnvelope` (additive) |
 | `mcp_server/lib/response/profile-formatters.ts` | **MODIFY** — propagate badges into search results |
 | `mcp_server/tests/memory/trust-badges.test.ts` (or similar) | **CREATE** — badge population, age calculation, orphan detection, weight-history rendering |
-| `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
 | `012/005/implementation-summary.md` | **MODIFY** — populate Display Placement Decision, What Was Built, Static Check Results |
 
 ## Files you may NOT touch
@@ -72,7 +72,7 @@ You add display-only trust badges (`confidence`, `extractionAge`, `lastAccessAge
 
 - [ ] All 16 tasks in `012/005/tasks.md` complete (T-005-A1 through T-005-D5)
 - [ ] All checklist items in `012/005/checklist.md` ticked with evidence
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../012/005 --strict` passes
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../012/005 --strict` passes
 - [ ] `vitest run` for memory tests green
 - [ ] Existing memory test suite still green (no regression)
 - [ ] `tsc --noEmit` clean

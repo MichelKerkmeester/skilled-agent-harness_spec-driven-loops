@@ -61,7 +61,7 @@ _memory:
 ### 6 new content files
 
 ```
-.opencode/skill/sk-code/assets/opencode/
+.opencode/skills/sk-code/assets/opencode/
 ├── checklists/
 │   ├── skill_authoring.md         (NEW)
 │   ├── agent_authoring.md         (NEW)
@@ -89,7 +89,7 @@ A Python-style dict in SKILL.md §2 Smart Routing makes the surface contract mac
 ```python
 STACK_FOLDERS = {
     "WEBFLOW": ["src/2_javascript/", "*.webflow.js"],
-    "OPENCODE": [".opencode/skill/", ".opencode/agent/", ".opencode/command/", ".opencode/specs/"],
+    "OPENCODE": [".opencode/skills/", ".opencode/agents/", ".opencode/commands/", ".opencode/specs/"],
     "MOTION_DEV": ["references/motion_dev/", "assets/motion_dev/"],
 }
 ```

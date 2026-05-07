@@ -1,7 +1,7 @@
 # W2-A3 Test Verification Report
 
 Date: 2026-03-08
-Target: `.opencode/skill/system-spec-kit/mcp_server`
+Target: `.opencode/skills/system-spec-kit/mcp_server`
 
 ## Commands Executed
 

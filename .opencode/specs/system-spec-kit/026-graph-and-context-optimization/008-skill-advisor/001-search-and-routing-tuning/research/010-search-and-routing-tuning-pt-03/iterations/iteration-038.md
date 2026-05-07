@@ -17,7 +17,7 @@ Validate the entity surface after the scoped canonical-path preference fix, then
 - None. The scoped leak rerun refined the residual entity problem without revealing another broad parser failure.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:474-559`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:474-559`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/019-research-graph-metadata-validation/research/iterations/iteration-034.md:8-11`
 - Live 2026-04-13 bash + jq scan over `.opencode/specs/`
 

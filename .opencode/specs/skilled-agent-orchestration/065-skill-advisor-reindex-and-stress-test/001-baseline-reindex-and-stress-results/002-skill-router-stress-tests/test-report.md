@@ -9,7 +9,7 @@
 
 ## METHODOLOGY
 
-The campaign authored six CP scenarios across ambiguous routing, false-positive resistance, low-confidence honesty, multi-skill workflow, novel phrasing, and adversarial confusables. The handover allowed a pragmatic direct-advisor mode because the advisor is the system under test; each CP was called once through `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "<prompt>" --threshold 0.0`, then copied into the three executor result slots with provenance recorded in each JSON file.
+The campaign authored six CP scenarios across ambiguous routing, false-positive resistance, low-confidence honesty, multi-skill workflow, novel phrasing, and adversarial confusables. The handover allowed a pragmatic direct-advisor mode because the advisor is the system under test; each CP was called once through `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "<prompt>" --threshold 0.0`, then copied into the three executor result slots with provenance recorded in each JSON file.
 
 Scoring used the scenario frontmatter only: exact skill ids and numeric confidence thresholds. Empty advisor responses count as `top1_confidence=0.0`. With identical current-session result copies, each CP has 3/3 agreement by construction; aggregate verdicts therefore reflect deterministic advisor behavior rather than external CLI variance.
 

@@ -42,7 +42,7 @@ _memory:
 
 - [x] CHK-001 [P0] Requirements documented in `spec.md` [Doc: `.opencode/specs/03--commands-and-skills/033-skill-command-readme-rewrite/spec.md`]
 - [x] CHK-002 [P0] Technical approach defined in `plan.md` [Doc: `.opencode/specs/03--commands-and-skills/033-skill-command-readme-rewrite/plan.md`]
-- [x] CHK-003 [P1] Standards baseline identified [Refs: `.opencode/skill/sk-doc/references/specific/readme_creation.md`, `.opencode/skill/sk-doc/assets/documentation/readme_template.md`, `.opencode/skill/sk-doc/references/global/hvr_rules.md`]
+- [x] CHK-003 [P1] Standards baseline identified [Refs: `.opencode/skills/sk-doc/references/specific/readme_creation.md`, `.opencode/skills/sk-doc/assets/documentation/readme_template.md`, `.opencode/skills/sk-doc/references/global/hvr_rules.md`]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -50,8 +50,8 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Skill README rewrite targets identified under `.opencode/skill/` [Review: packet scope and tasks]
-- [x] CHK-011 [P0] Command README surfaces mapped to the current `.txt` files under `.opencode/command/` [Review: packet scope and plan]
+- [x] CHK-010 [P0] Skill README rewrite targets identified under `.opencode/skills/` [Review: packet scope and tasks]
+- [x] CHK-011 [P0] Command README surfaces mapped to the current `.txt` files under `.opencode/commands/` [Review: packet scope and plan]
 - [ ] CHK-012 [P1] Remaining wording and evidence warnings reviewed for follow-up
 - [ ] CHK-013 [P1] Packet narrative rechecked against every underlying README surface
 <!-- /ANCHOR:code-quality -->
@@ -83,7 +83,7 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` synchronized after repair [Doc sync: 2026-03-31 packet update]
-- [x] CHK-041 [P1] `checklist.md` created from the Level 2 template [Template: `.opencode/skill/system-spec-kit/templates/level_2/checklist.md`]
+- [x] CHK-041 [P1] `checklist.md` created from the Level 2 template [Template: `.opencode/skills/system-spec-kit/templates/level_2/checklist.md`]
 - [ ] CHK-042 [P2] Additional README-level evidence captured for historical completeness
 <!-- /ANCHOR:docs -->
 

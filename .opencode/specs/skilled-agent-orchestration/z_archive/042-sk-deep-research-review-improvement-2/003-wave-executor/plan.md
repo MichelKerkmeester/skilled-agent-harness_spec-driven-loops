@@ -116,13 +116,13 @@ Inventory target
 **Why first**: Wave execution is blocked until the system can prove a safe fan-out/join path. The current YAML engine has no native parallel dispatch, so this proof must land before any segmentation or merge design can be treated as buildable.
 
 **Files to change**:
-- `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/command/spec_kit/deep-review.md`
+- `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/deep-review.md`
 
 **Verification strategy**:
 - Prove the current YAML path cannot natively fan out or join safely.
@@ -137,13 +137,13 @@ Inventory target
 **Why second**: Once fan-out/join is proven, the safest first implementation is a deterministic v1 based on inventories, thresholds, and explicit machine-owned artifacts rather than graph-coupled behavior.
 
 **Files to change**:
-- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs`
-- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`
-- `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
-- `.opencode/skill/sk-deep-research/references/state_format.md`
-- `.opencode/skill/sk-deep-review/references/state_format.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-- `.opencode/skill/sk-deep-review/assets/deep_review_config.json`
+- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`
+- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`
+- `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+- `.opencode/skills/sk-deep-research/references/state_format.md`
+- `.opencode/skills/sk-deep-review/references/state_format.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
 
 **Verification strategy**:
 - Prove planner determinism from the same inventory input.
@@ -160,12 +160,12 @@ Inventory target
 **Why third**: v2 only becomes trustworthy after Phase 002 coverage-graph surfaces are operational. It should refine decomposition, not replace the heuristic baseline.
 
 **Files to change**:
-- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs`
-- `.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-review/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`
-- `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`
+- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`
+- `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
+- `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
 
 **Verification strategy**:
 - Prove v2 decomposition consumes Phase 002 graph signals and stays blocked if the graph is not operational.
@@ -180,22 +180,22 @@ Inventory target
 **Why fourth**: Merge correctness, join safety, and resume behavior are the operational guardrails that make wave mode safe to trust after the prerequisite and segmentation layers are in place.
 
 **Files to change**:
-- `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
-- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`
-- `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
-- `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`
-- `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`
-- `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/command/spec_kit/deep-review.md`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
+- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`
+- `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+- `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
+- `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
+- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`
 
 **Verification strategy**:
 - Prove segment-local lineage survives interruption and resume.

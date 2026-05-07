@@ -21,7 +21,7 @@ _memory:
 
 ## Bug Fix: Stale Command Path (D1)
 
-- [x] T001: Fix command slug and path in `.opencode/agent/agent-improver.md` line 156
+- [x] T001: Fix command slug and path in `.opencode/agents/agent-improver.md` line 156
 - [x] T002: Sync fix to `.claude/agents/agent-improver.md`
 - [x] T003: Sync fix to `.agents/agents/agent-improver.md`
 - [x] T004: Sync fix to `.codex/agents/agent-improver.toml`

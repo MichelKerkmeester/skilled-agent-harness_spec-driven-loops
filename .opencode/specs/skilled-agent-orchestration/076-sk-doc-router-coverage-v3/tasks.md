@@ -44,8 +44,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Author SD-016 (OPTIMIZATION) at `.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md`
-- [x] T002 Author SD-017 (INSTALL_GUIDE) at `.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md`
+- [x] T001 Author SD-016 (OPTIMIZATION) at `.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md`
+- [x] T002 Author SD-017 (INSTALL_GUIDE) at `.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md`
 - [x] T003 Update manual_testing_playbook.md Categories table (row 1) + Scenario Index list
 <!-- /ANCHOR:phase-1 -->
 
@@ -74,7 +74,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] T010 `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3 --strict` exits 0
+- [ ] T010 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3 --strict` exits 0
 - [ ] T011 `git add` + commit "feat(076): sk-doc router coverage v3 — OPTIMIZATION + INSTALL_GUIDE intents + bullet-aware extractor"
 - [ ] T012 `git push origin main` succeeds
 <!-- /ANCHOR:completion -->

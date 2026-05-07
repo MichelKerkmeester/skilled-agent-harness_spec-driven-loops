@@ -51,9 +51,9 @@ Evidence: `implementation-summary.md`, `tasks.md`, `checklist.md`, `resource-map
 ### T-006: [x] Run advisor tests
 Evidence: `npx vitest run skill_advisor/tests` passed 40 files / 293 tests.
 ### T-007: [x] Run typecheck and build
-Evidence: `npm run typecheck` and `npm run build` both passed in `.opencode/skill/system-spec-kit/mcp_server`.
+Evidence: `npm run typecheck` and `npm run build` both passed in `.opencode/skills/system-spec-kit/mcp_server`.
 ### T-008: [x] Run strict spec validation
-Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test --strict` passed with 0 errors and 0 warnings.
+Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test --strict` passed with 0 errors and 0 warnings.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

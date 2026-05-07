@@ -4,17 +4,17 @@ You are cli-codex (gpt-5.5 high fast) implementing **037/005-stress-test-folder-
 
 ### Goal
 
-Operator's explicit directive: "make a dedicated folder for the stress test inside `.opencode/skill/system-spec-kit/mcp_server/` so we can easily maintain and update it from there. Should not be in tests folder but dedicated folder."
+Operator's explicit directive: "make a dedicated folder for the stress test inside `.opencode/skills/system-spec-kit/mcp_server/` so we can easily maintain and update it from there. Should not be in tests folder but dedicated folder."
 
 Migrate the stress-test logic out of `mcp_server/tests/` into a NEW dedicated folder `mcp_server/stress_test/`. Update all imports, references, and config so the migration is transparent (build green, tests still runnable, docs accurate).
 
 ### Read these first
 
-- `.opencode/skill/system-spec-kit/mcp_server/tests/` — survey existing files; identify which are stress-test (vs unit/integration tests)
-- `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts` (or equivalent) — test discovery config
-- `.opencode/skill/system-spec-kit/mcp_server/package.json` — test scripts
+- `.opencode/skills/system-spec-kit/mcp_server/tests/` — survey existing files; identify which are stress-test (vs unit/integration tests)
+- `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` (or equivalent) — test discovery config
+- `.opencode/skills/system-spec-kit/mcp_server/package.json` — test scripts
 - Stress-test references in:
-  - `.opencode/skill/system-spec-kit/mcp_server/README.md`
+  - `.opencode/skills/system-spec-kit/mcp_server/README.md`
   - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/` (any pointers to current paths)
   - `specs/system-spec-kit/026-graph-and-context-optimization/030-v1-0-4-full-matrix-stress-test-design/` (matrix design citations)
   - Any `*.md` files mentioning `stress-test` or `stress_test`
@@ -23,14 +23,14 @@ Migrate the stress-test logic out of `mcp_server/tests/` into a NEW dedicated fo
 
 ```bash
 # Find candidate stress-test files in tests/
-find .opencode/skill/system-spec-kit/mcp_server/tests -type f -iname '*stress*'
-find .opencode/skill/system-spec-kit/mcp_server -type f -iname '*stress*'
+find .opencode/skills/system-spec-kit/mcp_server/tests -type f -iname '*stress*'
+find .opencode/skills/system-spec-kit/mcp_server -type f -iname '*stress*'
 
 # Find references in code
-grep -rn "stress" .opencode/skill/system-spec-kit/mcp_server/ --include='*.ts' --include='*.tsx' | head -50
+grep -rn "stress" .opencode/skills/system-spec-kit/mcp_server/ --include='*.ts' --include='*.tsx' | head -50
 
 # Find references in docs
-grep -rn "stress[-_]test" .opencode/skill/system-spec-kit/ --include='*.md' | head -50
+grep -rn "stress[-_]test" .opencode/skills/system-spec-kit/ --include='*.md' | head -50
 grep -rn "tests/stress" .opencode --include='*.md' --include='*.ts' --include='*.json' | head
 ```
 
@@ -46,7 +46,7 @@ Write `migration-plan.md` at packet root with the classification.
 #### Step 1: Create new folder
 
 ```bash
-mkdir -p .opencode/skill/system-spec-kit/mcp_server/stress_test
+mkdir -p .opencode/skills/system-spec-kit/mcp_server/stress_test
 ```
 
 Add `mcp_server/stress_test/README.md` documenting:
@@ -81,7 +81,7 @@ Add appropriate npm scripts. Document in stress_test/README.md.
 #### Step 6: Update doc references
 
 Find every reference to `tests/stress*` or `stress` in tests/ across:
-- `.opencode/skill/system-spec-kit/mcp_server/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md`
 - All packet docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/` and `030-v1-0-4-full-matrix-stress-test-design/`
 - Any other refs surfaced by Phase 1 discovery
 
@@ -90,7 +90,7 @@ Update each reference to the new `stress_test/` path.
 ### Verification (Phase 3)
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npm run build  # MUST pass
 npm test       # MUST pass (no broken imports from the move)
 npm run stress 2>&1 | head -50   # Smoke check: stress tests are runnable

@@ -1,6 +1,6 @@
 # Agent 5 Architecture Analysis
 
-Scope: cross-boundary analysis between `.opencode/skill/system-spec-kit/scripts/` and `.opencode/skill/system-spec-kit/mcp_server/`.
+Scope: cross-boundary analysis between `.opencode/skills/system-spec-kit/scripts/` and `.opencode/skills/system-spec-kit/mcp_server/`.
 
 Method: inspected directory READMEs, entrypoints, dependency imports, and representative runtime modules for memory/index/eval/tooling concerns.
 

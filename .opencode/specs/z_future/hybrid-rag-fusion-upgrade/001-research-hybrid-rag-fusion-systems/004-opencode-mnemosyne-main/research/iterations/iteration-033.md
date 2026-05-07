@@ -39,7 +39,7 @@ ACCUMULATED FINDINGS SUMMARY:
 - **Impact**: high
 
 ### Finding 4: Hard expiry should stay opt-in and explicitly ephemeral
-- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
+- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
 - **What it does**: Public supports explicit `retentionPolicy` and `deleteAfter`, and governed ingest rejects `ephemeral` saves without a future expiry. I found test/audit evidence for a `retention_sweep` action, but I did not locate a concrete runtime sweep implementation in this checkout.
 - **Why it matters**: This is the correct shape for hard expiry: explicit, narrow, and policy-driven. The gap is operational visibility, not the policy model itself.
 --
@@ -52,7 +52,7 @@ ACCUMULATED FINDINGS SUMMARY:
 - **Impact**: high
 
 ### Finding 3: Reversible forgetting is stronger than hard deletion for durable memory
-- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
+- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
 - **What it does**: Public archives low-value memories instead of immediately deleting them, removes archived rows from BM25/vector retrieval, and supports unarchive. The save-time reconsolidation path also archives older near-duplicates rather than physically deleting them.
 --- Iteration 28 ---
 ## Findings
@@ -61,7 +61,7 @@ ACCUMULATED FINDINGS SUMMARY:
 - **Impact**: high
 
 ### Finding 3: Reversible forgetting is stronger than hard deletion for durable memory
-- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
+- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
 - **What it does**: Public archives low-value memories instead of immediately deleting them, removes archived rows from BM25/vector retrieval, and supports unarchive. The save-time reconsolidation path also archives older near-duplicates rather than physically deleting them.
 - **Why it matters**: For long-lived systems, “forgetting” should usually mean reversible removal from active retrieval, not destruction. That preserves lineage, auditability, and recovery when the system over-prunes.
 - **Recommendation**: adopt now
@@ -80,14 +80,14 @@ ACCUMULATED FINDINGS SUMMARY:
 - **Impact**: high
 
 ### Finding 5: Public already measures index integrity and storage health
-- **Source**: [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [memory-crud-stats.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
+- **Source**: [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [memory-crud-stats.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
 - **What it does**: Public reports embedding readiness and retry stats, vector availability, FTS5 parity, alias conflicts, orphan-edge cleanup, by-status embedding counts, trigger totals, tier breakdown, database size, last indexed time, and startup projection health.
 --
 ## Findings
 - **Why it matters**: This is the right architecture for long-lived memory. Permanence, recall probability, and current-session salience should stay independent so we do not accidentally make durable rules feel “old” or recent noise feel “important.”
 - **Recommendation**: adopt now
 ### Finding 8: Reject re-platforming Public’s retrieval or mutation core around Mnemosyne
-- **Source**: [external/src/index.ts:104-135](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [memory-search.ts:771-809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts), [hybrid-search.ts:1530-1590](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts), [mcp-coco-index/README.md:85-143](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md), [archival-manager.ts:490-555](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts)
+- **Source**: [external/src/index.ts:104-135](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [memory-search.ts:771-809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts), [hybrid-search.ts:1530-1590](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts), [mcp-coco-index/README.md:85-143](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md), [archival-manager.ts:490-555](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts)
 - **Evidence type**: both
 - **What it does**: Mnemosyne exposes a thin search/delete/store contract, while Public already has a deeper hybrid pipeline, confidence truncation, derived indexes, soft archival, and a separate semantic-code-search role for CocoIndex.
 - **Why it matters**: The transfer value is wrapper ergonomics and compaction behavior, not ranking math, hard-delete semantics, or system fusion.
@@ -101,7 +101,7 @@ ACCUMULATED FINDINGS SUMMARY:
 - Best immediate moves: add the compaction memory action card, and formalize Public’s existing validation/archival/health telemetry as the benchmark baseline.
 - Best near-term builds: compaction continuity benchmarking and an audited inline `memory_remember` path.
 - Strongest rejections: basename-derived scope, `core=true` as a primary-surface shortcut, and any attempt to replace Public’s retrieval/mutation core with Mnemosyne’s thinner wrapper model.
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`; the same run emitted the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`; the same run emitted the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 - This was a static-analysis synthesis only. The sandbox is read-only, so I did not update `research/research.md`, `checklist.md`, `implementation-summary.md`, or save memory artifacts in the phase folder.
 
 ## Recommended Next Focus
@@ -127,8 +127,8 @@ Open two packet-ready follow-ons first: one `P1` packet for the transport-owned 
 ## Findings
 ### Finding N: [Title]
 - **Source**: file path(s)
-- [memory-crud-stats.ts:126-175](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts#L126)
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` -> `RESULT: PASSED`, `Errors: 0`, `Warnings: 0`, with the known read-only temp warning.
+- [memory-crud-stats.ts:126-175](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts#L126)
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` -> `RESULT: PASSED`, `Errors: 0`, `Warnings: 0`, with the known read-only temp warning.
 
 ## Assessment
 - New information ratio: `0.08`
@@ -199,7 +199,7 @@ The plugin exposes five memory tools: `memory_recall`, `memory_recall_global`, `
 
 ### 4.3 What This Repo Already Has
 
-`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
 
 What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
 
@@ -215,11 +215,11 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
 9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
 10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
 12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
 13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -227,7 +227,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
     ```
 
 ## 6. Research Questions
@@ -258,7 +258,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 - Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
 - Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
 - Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
 - Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
 - Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
 - Do not edit anything under `external/` or outside this phase folder.
@@ -379,7 +379,7 @@ hook: UserPromptSubmit Completed
 codex
 I’m treating this as a read-only deep-research pass for iteration 33, focused specifically on testing strategy for the patterns we’ve been evaluating. I’ll pull just the most relevant prior memory context first, then inspect the external wrapper and our current test surfaces to turn this into a concrete unit/integration/regression test plan.
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -397,7 +397,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -615,12 +615,12 @@ exec
 295:## Task 2: Extend Contextador deep-research from 13 to 20 iterations and fold into v2 synthesis without changing verdict, outcome success
 303:- 003-contextador, spec_kit:deep-research, maxIterations 20, deep-research-config.json, reduce-state.cjs, research-v2.md, recommendations-v2.md, findings-registry-v2.json, F-CROSS-089..F-CROSS-093
 368:- when the user asked "Run /spec_kit:deep-research ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
-381:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
+381:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
 382:- closeout integration for this packet should update `research-v2.md`, `recommendations-v2.md`, `findings-registry-v2.json`, and `deep-research-dashboard.md` while leaving historical `research/research.md` snapshot content intact [Task 2][Task 4]
 404:scope: per-phase prompt artifacts that enforce Level 3 Spec Kit documentation before `spec_kit:deep-research` against each phase `external/` tree
 415:- 999-feature-roadmap, 001-research-agentic-systems, phase-research-prompt.md, Level 3 Spec Kit docs, spec_kit:deep-research, external/
 429:- when the user asked to “Add a prompt in each phase folder ... create level 3 speckit documentation ... utilize spec_kit:deep-research BUT need to create proper spec documentation in the folder first,” prompts should enforce: use the existing phase folder, author Level 3 docs first, then research that phase `external/` tree with evidence-backed outcomes and checklist/implementation-summary/memory updates [Task 1]
-436:- gate sequence that worked: validate phase docs first with `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict`, then run `spec_kit:deep-research`, then generate context/memory artifacts [Task 1][Task 2]
+436:- gate sequence that worked: validate phase docs first with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict`, then run `spec_kit:deep-research`, then generate context/memory artifacts [Task 1][Task 2]
 456:## Task 2: Rename packet `023-esm-module-compliance` to `023-hybrid-rag-fusion-refinement` and sync changelog references, outcome success
 464:- 023-hybrid-rag-fusion-refinement, memory_index_scan, memory_quick_search, parentChain, B3-hybrid-rag-fusion-refinement, .opencode/changelog
 466:## Task 3: Refresh references for renamed packet `040-sk-auto-deep-research-review-improvement`, outcome success
@@ -671,109 +671,109 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts
 
 exec
-/bin/zsh -lc "find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests -maxdepth 2 -type f | sort | rg 'memory|search|context|governance|health|feedback|archiv|compaction|causal|trigger|session|reconsolidation'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests -maxdepth 2 -type f | sort | rg 'memory|search|context|governance|health|feedback|archiv|compaction|causal|trigger|session|reconsolidation'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-context-handler.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/community-search.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/context-server-error-envelope.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/feedback-denylist.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-list-edge.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-delete-cascade.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-dedup-order.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-save.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-cleanup-ordering.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager-health.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-extended.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-flags.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-learning.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-state.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/workflow-memory-tracking.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-context-handler.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/community-search.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/context-server-error-envelope.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/feedback-denylist.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-list-edge.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-delete-cascade.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-dedup-order.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-cleanup-ordering.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager-health.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-extended.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-flags.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-learning.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/workflow-memory-tracking.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts
 
 exec
 /bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -1437,11 +1437,11 @@ user cancelled MCP tool call
 codex
 The semantic code search tool didn’t return results on the first attempt, so I’m falling back to direct source reads for this pass rather than stalling. I’m now pulling the exact test files that define today’s retrieval, save, archival, feedback, and session behavior so the final plan can plug into what already exists instead of proposing a parallel test universe.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import Database from 'better-sqlite3';
      2	import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -2229,7 +2229,7 @@ exec
    260	              cacheWriteTokens: { certainty: 'estimated', authority: 'estimated' },
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// TEST: ARCHIVAL MANAGER
      2	import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
@@ -2493,9 +2493,9 @@ exec
    260	      setupTestDb();
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// TEST: Memory Search Quality Filter
      2	import { describe, expect, it } from 'vitest';
@@ -2938,7 +2938,7 @@ exec
    260	      // 4 out of 5 agree exactly = 80%
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import { beforeEach, describe, expect, it, vi } from 'vitest';
      2	
@@ -3065,7 +3065,7 @@ exec
    123	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// TEST: SessionStart Hook
@@ -3284,7 +3284,7 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/tsconfig.json
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// TEST: MEMORY SAVE INTEGRATION
      2	import { describe, it, expect } from 'vitest';
@@ -3454,7 +3454,7 @@ exec
    166	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import { beforeEach, describe, expect, it, vi } from 'vitest';
      2	
@@ -3698,7 +3698,7 @@ exec
    240	        qualityFlags: [],
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// TEST: INTEGRATION SEARCH PIPELINE
      2	import { describe, it, expect } from 'vitest';
@@ -3944,7 +3944,7 @@ exec
 codex
 I’ve got enough of the testing landscape to see the shape now: this repo already separates contract tests, integration tests with real SQLite fixtures, and ranking/quality telemetry tests, while the external wrapper has essentially no test suite at all. I’m doing one more pass over the exact runtime sources behind feedback, search quality, and bootstrap so I can turn that into a concrete test matrix instead of just listing test categories.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '720,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '720,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    720	    normalizedQuery,
    721	    hasValidConcepts,
@@ -4209,7 +4209,7 @@ exec
    980	    }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Context Server
@@ -4473,7 +4473,7 @@ exec
    260	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Ground Truth Feedback
@@ -4737,233 +4737,233 @@ exec
    260	
 
 exec
-/bin/zsh -lc "rg -n \"recordUserSelection|generateLlmJudgeLabels|computeJudgeAgreement|getGroundTruthCorpusSize|Recall|ablation|eval\" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/handlers | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"recordUserSelection|generateLlmJudgeLabels|computeJudgeAgreement|getGroundTruthCorpusSize|Recall|ablation|eval\" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/handlers | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:28:} from '../lib/eval/ablation-framework.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:33:} from '../lib/eval/reporting-dashboard.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:37:} from '../lib/eval/k-value-analysis.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:48:// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:49:// Feature catalog: Ablation studies (eval_run_ablation)
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:53:  mode?: 'ablation' | 'k_sensitivity';
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:223:/** Handle eval_run_ablation tool — runs ablation analysis or K-sensitivity sweep.
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:225: * @returns MCP response with ablation report or K-sensitivity results
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:240:      'Ablation is disabled. Set SPECKIT_ABLATION=true to run ablation studies.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:254:        context: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:278:        evaluationMode: true,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:297:      alignmentContext: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:314:    tool: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:315:    summary: `Ablation run complete (${report.results.length} channels, baseline=${report.overallBaselineRecall.toFixed(4)})`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:323:        ? (stored ? 'Ablation metrics stored to eval_metric_snapshots' : 'Ablation metrics storage failed')
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:331:  'memory retrieval',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:377:    tool: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:402:    tool: 'eval_reporting_dashboard',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:403:    summary: `Dashboard generated (${report.sprints.length} sprint groups, ${report.totalEvalRuns} eval runs)`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:418:const handle_eval_run_ablation = handleEvalRunAblation;
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:419:const handle_eval_reporting_dashboard = handleEvalReportingDashboard;
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:420:const handle_eval_k_sensitivity = handleEvalKSensitivity;
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:423:  handle_eval_run_ablation,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:424:  handle_eval_reporting_dashboard,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:425:  handle_eval_k_sensitivity,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:123:      evaluateResearchConvergence(
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:130:      evaluateReviewConvergence(
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:175:function evaluateResearchConvergence(
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:282:function evaluateReviewConvergence(
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:749: * @param args - Tenant, user, or agent scope to evaluate.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:572:    const evaluateBatch = () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:601:        evaluateBatch();
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:605:          evaluateBatch();
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:617:      evaluateBatch();
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:75:type EvalReportingModule = typeof import('./eval-reporting.js');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:93:let evalReportingModule: Promise<EvalReportingModule> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:172:  if (!evalReportingModule) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:173:    evalReportingModule = loadHandlerModule<EvalReportingModule>('eval-reporting');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:175:  return evalReportingModule;
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:305:export const handle_eval_run_ablation = lazyFunction(getEvalReportingModule, 'handle_eval_run_ablation');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:306:export const handle_eval_reporting_dashboard = lazyFunction(getEvalReportingModule, 'handle_eval_reporting_dashboard');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:12:import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled } from '../lib/search/search-flags.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:19:import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:39:} from '../lib/telemetry/eval-channel-tracking.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:40:import type { EvalChannelPayload } from '../lib/telemetry/eval-channel-tracking.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:43:import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:62:// Retrieval trace contracts (C136-08)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:63:import { createTrace } from '@spec-kit/shared/contracts/retrieval-trace';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:87:import { evaluatePublicationGate } from '../lib/context/publication-gate.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:90:  isSessionRetrievalStateEnabled,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:91:  manager as retrievalSessionStateManager,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:173:// EvalChannelPayload — now imported from lib/telemetry/eval-channel-tracking.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:213:  /** Phase B T019: Dual-level retrieval — 'local' (entity), 'global' (community), 'auto' (local + fallback). */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:214:  retrievalLevel?: 'local' | 'global' | 'auto';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:218:// resolveEvalScore, collectEvalChannelsFromRow — now imported from lib/telemetry/eval-channel-tracking.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:325:  const session = retrievalSessionStateManager.getOrCreate(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:405:    const gateResult = evaluatePublicationGate({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:429:// summarizeGraphWalkDiagnostics, buildEvalChannelPayloads — now imported from lib/telemetry/eval-channel-tracking.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:529:    retrievalLevel: retrievalLevel = 'auto',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:636:  let _evalQueryId = 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:637:  let _evalRunId = 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:639:    const evalEntry = logSearchQuery({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:644:    _evalQueryId = evalEntry.queryId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:645:    _evalRunId = evalEntry.evalRunId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:646:  } catch (_error: unknown) { /* eval logging must never break search */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:654:  // Intent-aware retrieval
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:711:  // Create retrieval trace at pipeline entry
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:750:  let _evalChannelPayloads: EvalChannelPayload[] = [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:815:      isDualRetrievalEnabled() &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:818:      (retrievalLevel === 'global' || retrievalLevel === 'auto')
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:822:        (retrievalLevel === 'global') ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:823:        (resultsForFormatting.length < 3 && retrievalLevel === 'auto');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:886:    if (sessionId && isSessionRetrievalStateEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:889:        retrievalSessionStateManager.updateGoal(sessionId, activeGoal);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:892:        retrievalSessionStateManager.setAnchors(sessionId, anchors);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:966:      extraData.retrievalTrace = pipelineResult.trace;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:982:    _evalChannelPayloads = buildEvalChannelPayloads(resultsForFormatting);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:992:      appliedBoosts.communityFallback = { applied: true, retrievalLevel };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1054:  if (sessionId && isSessionRetrievalStateEnabled() && !sessionManager.isEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1146:  if (sessionId && isSessionRetrievalStateEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1159:        retrievalSessionStateManager.markSeen(sessionId, returnedIds);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1176:  if (retrievalTelemetry.isExtendedTelemetryEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1177:    const telemetry = retrievalTelemetry.createTelemetry();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1178:    retrievalTelemetry.recordTransitionDiagnostics(telemetry, sessionTransition);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1179:    retrievalTelemetry.recordGraphWalkDiagnostics(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1183:    responseToReturn = attachTelemetryMeta(responseToReturn, retrievalTelemetry.toJSON(telemetry));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1217:    if (_evalRunId && _evalQueryId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1230:        evalRunId: _evalRunId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1231:        queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1238:      for (const payload of _evalChannelPayloads) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1240:          evalRunId: _evalRunId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1241:          queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1249:  } catch (_error: unknown) { /* eval logging must never break search */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1268:          const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1310:        const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:25:import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:94:  if (retrievalTelemetry.isExtendedTelemetryEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:95:    const telemetry = retrievalTelemetry.createTelemetry();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:96:    retrievalTelemetry.recordLifecycleForecastDiagnostics(telemetry, forecast, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:102:    telemetryPayload = retrievalTelemetry.toJSON(telemetry);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:16:import { recordUserSelection } from '../lib/eval/ground-truth-feedback.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:736:    groundTruthSelectionId = recordUserSelection(queryId, memoryId, {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:10:// - Log comparison data to eval database
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:16:import { initEvalDb, getEvalDb } from './eval-db.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:120:  CREATE TABLE IF NOT EXISTS eval_shadow_comparisons (
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:140: * Get the eval DB instance. Prefers the already-initialized singleton
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:367: * Persist a shadow comparison to the eval database.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:423:      FROM eval_shadow_comparisons
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:448:      FROM eval_shadow_comparisons
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:36:The MCP Server Library provides the core functionality for the Spec Kit Memory MCP server. It implements cognitive memory features including semantic search, attention decay, importance scoring and intelligent context retrieval. These modules work together to provide AI assistants with human-like memory recall and context awareness.
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:42:| Module Categories | 29 | architecture, cache, chunking, code-graph, cognitive, collab, config, contracts, errors, eval, extraction, feedback, governance, graph, interfaces, learning, manage, ops, parsing, providers, response, scoring, search, session, spec, storage, telemetry, utils, validation |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:48:| Last Verified | 2026-03-28 | Module category and TypeScript file counts revalidated against the live source tree |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:134:├── search/                     # Search and retrieval (62 modules)
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:147:│   ├── artifact-routing.ts     # 9 artifact classes with per-type retrieval strategies
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:233:├── eval/                       # Evaluation and metrics (9 modules)
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:234:│   ├── eval-db.ts              # Evaluation database
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:235:│   ├── eval-logger.ts          # Evaluation logging
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:236:│   ├── eval-metrics.ts         # Evaluation metrics
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:237:│   ├── eval-quality-proxy.ts   # Quality proxy scoring
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:265:├── contracts/                  # Proxy docs for shared retrieval contracts
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:266:│   └── README.md               # Points to ../shared/contracts/retrieval-trace.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:268:├── telemetry/                  # Retrieval telemetry metrics (4 modules)
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:270:│   ├── retrieval-telemetry.ts  # Latency, mode, fallback and quality metrics
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:289:│   └── shadow-scoring.ts       # Shadow evaluation and promotion gating
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:344:| `eval/edge-density.ts` | Edge density measurement for graph analysis |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:356:### Search and Retrieval
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:447:| **Impact** | Improves context coherence across multiple retrievals |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:19://   - Selections are persisted to the eval DB for durability.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:22:import { initEvalDb, getEvalDb } from './eval-db.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:46:  /** The query ID (from eval_queries) or a generated query hash. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:121:  CREATE TABLE IF NOT EXISTS eval_user_selections (
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:134:  CREATE TABLE IF NOT EXISTS eval_llm_judge_labels (
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:151: * Get the eval DB instance. Prefers the already-initialized singleton
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:221: * @param queryId - Identifier for the query (can be eval_queries.id or a hash).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:226:export function recordUserSelection(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:236:      INSERT INTO eval_user_selections
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:256:    console.warn('[ground-truth-feedback] recordUserSelection failed (non-fatal):', msg);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:283:      FROM eval_user_selections
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:341:export function generateLlmJudgeLabels(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:390: * Persist LLM-judge labels to the eval database.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:404:      INSERT OR REPLACE INTO eval_llm_judge_labels
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:449:export function computeJudgeAgreement(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:507: *   - Manual/synthetic pairs from eval_ground_truth table.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:508: *   - User selection pairs from eval_user_selections table.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:509: *   - LLM-judge pairs from eval_llm_judge_labels table.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:513:export function getGroundTruthCorpusSize(): GroundTruthCorpusSummary {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:520:      'SELECT COUNT(*) as cnt FROM eval_ground_truth',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:526:      'SELECT COUNT(DISTINCT query_id || \':\' || memory_id) as cnt FROM eval_user_selections',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:532:      'SELECT COUNT(*) as cnt FROM eval_llm_judge_labels',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:544:    console.warn('[ground-truth-feedback] getGroundTruthCorpusSize failed (non-fatal):', msg);
-.opencode/skill/system-spec-kit/mcp_server/lib/manage/README.md:34:The former graph-authority helper was removed because the active retrieval pipeline uses typed-weighted degree scoring and graph signal helpers instead.
-.opencode/skill/system-spec-kit/mcp_server/lib/manage/README.md:67:- Any future helpers added here should be batch-oriented and separate from the live retrieval path.
-.opencode/skill/system-spec-kit/mcp_server/lib/manage/README.md:87:- `../search/graph-search-fn.ts` — typed-weighted degree scoring used by the live retrieval path.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:37:import { logSearchQuery, logFinalResult } from '../lib/eval/eval-logger.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:244:  let _evalQueryId = 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:245:  let _evalRunId = 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:247:    const evalEntry = logSearchQuery({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:252:    _evalQueryId = evalEntry.queryId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:253:    _evalRunId = evalEntry.evalRunId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:254:  } catch (_error: unknown) { /* eval logging must never break triggers handler */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:258:      if (_evalRunId && _evalQueryId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:260:          evalRunId: _evalRunId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:261:          queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:269:      /* eval logging must never break triggers handler */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/edge-density.ts:201:    '  Target    : Raise density to >= 0.5 (moderate) before enabling graph retrieval.',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/edge-density.ts:204:    '              first, as they contribute most to retrieval quality.',
-.opencode/skill/system-spec-kit/mcp_server/lib/interfaces/README.md:42:| **Document-Type Indexing Alignment** | Retrieval pipeline preserves document metadata (`documentType`, `specLevel`) through storage boundaries |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:36:import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:45:import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:60:// Feature catalog: Unified context retrieval (memory_context)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:660:    description: 'Semantic search with full context retrieval',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1015:  const telemetryMeta = retrievalTelemetry.isExtendedTelemetryEnabled()
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1018:          const t = retrievalTelemetry.createTelemetry();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1019:          retrievalTelemetry.recordMode(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1027:            retrievalTelemetry.recordFallback(t, `pressure override: ${requestedMode} -> ${effectiveMode}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1029:          retrievalTelemetry.recordTransitionDiagnostics(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1033:          return { _telemetry: retrievalTelemetry.toJSON(t) };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1078:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1079: * @param args - Context retrieval arguments (intent, mode, specFolder, anchors, etc.)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1207:  let _evalQueryId = 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1208:  let _evalRunId = 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1210:    const evalEntry = logSearchQuery({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1215:    _evalQueryId = evalEntry.queryId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1216:    _evalRunId = evalEntry.evalRunId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1332:      // Auto-profile is best-effort — never breaks context retrieval
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1541:    if (_evalRunId && _evalQueryId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1554:        evalRunId: _evalRunId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1555:        queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1566:        evalRunId: _evalRunId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1567:        queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:39:- `eval-reporting.ts` - Ablation, k-sensitivity, and dashboard handlers.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:68:- `quality-loop.ts` supports `emitEvalMetrics` so callers can suppress eval-side writes while still using the quality loop itself.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/index.ts:39:export { evaluateAndApplyPeDecision } from './pe-orchestration.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:4:// Feature catalog: Ablation studies (eval_run_ablation)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:6:// Controlled ablation studies for search channel contribution analysis.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:7:// Selectively disables one search channel at a time, measures Recall@20
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:9:// Contribution to retrieval quality.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:13:// - Ablation runner with ground truth evaluation
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:14:// - Delta calculation (baseline vs ablated Recall@20)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:16:// - Results storage in eval_metric_snapshots table
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:17:// - Human-readable ablation report formatting
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:22:import { initEvalDb, getEvalDb } from './eval-db.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:24:  computeRecall,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:30:} from './eval-metrics.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:31:import type { EvalResult, GroundTruthEntry } from './eval-metrics.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:43: * Anything else (undefined, "false", "1", ...) disables ablation studies.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:54:/** All channels available for ablation. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:63:/** Configuration for an ablation study. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:69:  /** Recall cutoff K. Defaults to 20. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:102: * A search function that the ablation runner calls for each query.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:118:  /** Recall@K with all channels enabled. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:119:  baselineRecall20: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:120:  /** Recall@K with this channel disabled. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:121:  ablatedRecall20: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:122:  /** ablatedRecall20 - baselineRecall20. Negative means channel contributes positively. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:132:  /** Total queries evaluated. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:145:/** All 9 metrics tracked per ablation channel. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:158:/** Failure captured for a single channel ablation run. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:160:  /** Channel that failed during ablation. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:28:} from '../lib/eval/ablation-framework.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:33:} from '../lib/eval/reporting-dashboard.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:37:} from '../lib/eval/k-value-analysis.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:48:// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:49:// Feature catalog: Ablation studies (eval_run_ablation)
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:53:  mode?: 'ablation' | 'k_sensitivity';
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:223:/** Handle eval_run_ablation tool — runs ablation analysis or K-sensitivity sweep.
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:225: * @returns MCP response with ablation report or K-sensitivity results
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:240:      'Ablation is disabled. Set SPECKIT_ABLATION=true to run ablation studies.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:254:        context: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:278:        evaluationMode: true,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:297:      alignmentContext: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:314:    tool: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:315:    summary: `Ablation run complete (${report.results.length} channels, baseline=${report.overallBaselineRecall.toFixed(4)})`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:323:        ? (stored ? 'Ablation metrics stored to eval_metric_snapshots' : 'Ablation metrics storage failed')
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:331:  'memory retrieval',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:377:    tool: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:402:    tool: 'eval_reporting_dashboard',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:403:    summary: `Dashboard generated (${report.sprints.length} sprint groups, ${report.totalEvalRuns} eval runs)`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:418:const handle_eval_run_ablation = handleEvalRunAblation;
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:419:const handle_eval_reporting_dashboard = handleEvalReportingDashboard;
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:420:const handle_eval_k_sensitivity = handleEvalKSensitivity;
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:423:  handle_eval_run_ablation,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:424:  handle_eval_reporting_dashboard,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:425:  handle_eval_k_sensitivity,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:123:      evaluateResearchConvergence(
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:130:      evaluateReviewConvergence(
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:175:function evaluateResearchConvergence(
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:282:function evaluateReviewConvergence(
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:749: * @param args - Tenant, user, or agent scope to evaluate.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:572:    const evaluateBatch = () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:601:        evaluateBatch();
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:605:          evaluateBatch();
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:617:      evaluateBatch();
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:75:type EvalReportingModule = typeof import('./eval-reporting.js');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:93:let evalReportingModule: Promise<EvalReportingModule> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:172:  if (!evalReportingModule) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:173:    evalReportingModule = loadHandlerModule<EvalReportingModule>('eval-reporting');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:175:  return evalReportingModule;
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:305:export const handle_eval_run_ablation = lazyFunction(getEvalReportingModule, 'handle_eval_run_ablation');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:306:export const handle_eval_reporting_dashboard = lazyFunction(getEvalReportingModule, 'handle_eval_reporting_dashboard');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:12:import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled } from '../lib/search/search-flags.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:19:import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:39:} from '../lib/telemetry/eval-channel-tracking.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:40:import type { EvalChannelPayload } from '../lib/telemetry/eval-channel-tracking.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:43:import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:62:// Retrieval trace contracts (C136-08)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:63:import { createTrace } from '@spec-kit/shared/contracts/retrieval-trace';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:87:import { evaluatePublicationGate } from '../lib/context/publication-gate.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:90:  isSessionRetrievalStateEnabled,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:91:  manager as retrievalSessionStateManager,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:173:// EvalChannelPayload — now imported from lib/telemetry/eval-channel-tracking.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:213:  /** Phase B T019: Dual-level retrieval — 'local' (entity), 'global' (community), 'auto' (local + fallback). */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:214:  retrievalLevel?: 'local' | 'global' | 'auto';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:218:// resolveEvalScore, collectEvalChannelsFromRow — now imported from lib/telemetry/eval-channel-tracking.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:325:  const session = retrievalSessionStateManager.getOrCreate(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:405:    const gateResult = evaluatePublicationGate({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:429:// summarizeGraphWalkDiagnostics, buildEvalChannelPayloads — now imported from lib/telemetry/eval-channel-tracking.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:529:    retrievalLevel: retrievalLevel = 'auto',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:636:  let _evalQueryId = 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:637:  let _evalRunId = 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:639:    const evalEntry = logSearchQuery({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:644:    _evalQueryId = evalEntry.queryId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:645:    _evalRunId = evalEntry.evalRunId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:646:  } catch (_error: unknown) { /* eval logging must never break search */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:654:  // Intent-aware retrieval
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:711:  // Create retrieval trace at pipeline entry
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:750:  let _evalChannelPayloads: EvalChannelPayload[] = [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:815:      isDualRetrievalEnabled() &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:818:      (retrievalLevel === 'global' || retrievalLevel === 'auto')
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:822:        (retrievalLevel === 'global') ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:823:        (resultsForFormatting.length < 3 && retrievalLevel === 'auto');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:886:    if (sessionId && isSessionRetrievalStateEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:889:        retrievalSessionStateManager.updateGoal(sessionId, activeGoal);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:892:        retrievalSessionStateManager.setAnchors(sessionId, anchors);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:966:      extraData.retrievalTrace = pipelineResult.trace;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:982:    _evalChannelPayloads = buildEvalChannelPayloads(resultsForFormatting);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:992:      appliedBoosts.communityFallback = { applied: true, retrievalLevel };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1054:  if (sessionId && isSessionRetrievalStateEnabled() && !sessionManager.isEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1146:  if (sessionId && isSessionRetrievalStateEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1159:        retrievalSessionStateManager.markSeen(sessionId, returnedIds);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1176:  if (retrievalTelemetry.isExtendedTelemetryEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1177:    const telemetry = retrievalTelemetry.createTelemetry();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1178:    retrievalTelemetry.recordTransitionDiagnostics(telemetry, sessionTransition);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1179:    retrievalTelemetry.recordGraphWalkDiagnostics(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1183:    responseToReturn = attachTelemetryMeta(responseToReturn, retrievalTelemetry.toJSON(telemetry));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1217:    if (_evalRunId && _evalQueryId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1230:        evalRunId: _evalRunId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1231:        queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1238:      for (const payload of _evalChannelPayloads) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1240:          evalRunId: _evalRunId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1241:          queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1249:  } catch (_error: unknown) { /* eval logging must never break search */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1268:          const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1310:        const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:25:import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:94:  if (retrievalTelemetry.isExtendedTelemetryEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:95:    const telemetry = retrievalTelemetry.createTelemetry();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:96:    retrievalTelemetry.recordLifecycleForecastDiagnostics(telemetry, forecast, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:102:    telemetryPayload = retrievalTelemetry.toJSON(telemetry);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:16:import { recordUserSelection } from '../lib/eval/ground-truth-feedback.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:736:    groundTruthSelectionId = recordUserSelection(queryId, memoryId, {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:10:// - Log comparison data to eval database
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:16:import { initEvalDb, getEvalDb } from './eval-db.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:120:  CREATE TABLE IF NOT EXISTS eval_shadow_comparisons (
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:140: * Get the eval DB instance. Prefers the already-initialized singleton
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:367: * Persist a shadow comparison to the eval database.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:423:      FROM eval_shadow_comparisons
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:448:      FROM eval_shadow_comparisons
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:36:The MCP Server Library provides the core functionality for the Spec Kit Memory MCP server. It implements cognitive memory features including semantic search, attention decay, importance scoring and intelligent context retrieval. These modules work together to provide AI assistants with human-like memory recall and context awareness.
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:42:| Module Categories | 29 | architecture, cache, chunking, code-graph, cognitive, collab, config, contracts, errors, eval, extraction, feedback, governance, graph, interfaces, learning, manage, ops, parsing, providers, response, scoring, search, session, spec, storage, telemetry, utils, validation |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:48:| Last Verified | 2026-03-28 | Module category and TypeScript file counts revalidated against the live source tree |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:134:├── search/                     # Search and retrieval (62 modules)
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:147:│   ├── artifact-routing.ts     # 9 artifact classes with per-type retrieval strategies
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:233:├── eval/                       # Evaluation and metrics (9 modules)
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:234:│   ├── eval-db.ts              # Evaluation database
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:235:│   ├── eval-logger.ts          # Evaluation logging
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:236:│   ├── eval-metrics.ts         # Evaluation metrics
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:237:│   ├── eval-quality-proxy.ts   # Quality proxy scoring
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:265:├── contracts/                  # Proxy docs for shared retrieval contracts
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:266:│   └── README.md               # Points to ../shared/contracts/retrieval-trace.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:268:├── telemetry/                  # Retrieval telemetry metrics (4 modules)
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:270:│   ├── retrieval-telemetry.ts  # Latency, mode, fallback and quality metrics
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:289:│   └── shadow-scoring.ts       # Shadow evaluation and promotion gating
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:344:| `eval/edge-density.ts` | Edge density measurement for graph analysis |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:356:### Search and Retrieval
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:447:| **Impact** | Improves context coherence across multiple retrievals |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:19://   - Selections are persisted to the eval DB for durability.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:22:import { initEvalDb, getEvalDb } from './eval-db.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:46:  /** The query ID (from eval_queries) or a generated query hash. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:121:  CREATE TABLE IF NOT EXISTS eval_user_selections (
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:134:  CREATE TABLE IF NOT EXISTS eval_llm_judge_labels (
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:151: * Get the eval DB instance. Prefers the already-initialized singleton
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:221: * @param queryId - Identifier for the query (can be eval_queries.id or a hash).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:226:export function recordUserSelection(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:236:      INSERT INTO eval_user_selections
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:256:    console.warn('[ground-truth-feedback] recordUserSelection failed (non-fatal):', msg);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:283:      FROM eval_user_selections
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:341:export function generateLlmJudgeLabels(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:390: * Persist LLM-judge labels to the eval database.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:404:      INSERT OR REPLACE INTO eval_llm_judge_labels
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:449:export function computeJudgeAgreement(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:507: *   - Manual/synthetic pairs from eval_ground_truth table.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:508: *   - User selection pairs from eval_user_selections table.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:509: *   - LLM-judge pairs from eval_llm_judge_labels table.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:513:export function getGroundTruthCorpusSize(): GroundTruthCorpusSummary {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:520:      'SELECT COUNT(*) as cnt FROM eval_ground_truth',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:526:      'SELECT COUNT(DISTINCT query_id || \':\' || memory_id) as cnt FROM eval_user_selections',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:532:      'SELECT COUNT(*) as cnt FROM eval_llm_judge_labels',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:544:    console.warn('[ground-truth-feedback] getGroundTruthCorpusSize failed (non-fatal):', msg);
+.opencode/skills/system-spec-kit/mcp_server/lib/manage/README.md:34:The former graph-authority helper was removed because the active retrieval pipeline uses typed-weighted degree scoring and graph signal helpers instead.
+.opencode/skills/system-spec-kit/mcp_server/lib/manage/README.md:67:- Any future helpers added here should be batch-oriented and separate from the live retrieval path.
+.opencode/skills/system-spec-kit/mcp_server/lib/manage/README.md:87:- `../search/graph-search-fn.ts` — typed-weighted degree scoring used by the live retrieval path.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:37:import { logSearchQuery, logFinalResult } from '../lib/eval/eval-logger.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:244:  let _evalQueryId = 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:245:  let _evalRunId = 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:247:    const evalEntry = logSearchQuery({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:252:    _evalQueryId = evalEntry.queryId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:253:    _evalRunId = evalEntry.evalRunId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:254:  } catch (_error: unknown) { /* eval logging must never break triggers handler */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:258:      if (_evalRunId && _evalQueryId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:260:          evalRunId: _evalRunId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:261:          queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:269:      /* eval logging must never break triggers handler */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/edge-density.ts:201:    '  Target    : Raise density to >= 0.5 (moderate) before enabling graph retrieval.',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/edge-density.ts:204:    '              first, as they contribute most to retrieval quality.',
+.opencode/skills/system-spec-kit/mcp_server/lib/interfaces/README.md:42:| **Document-Type Indexing Alignment** | Retrieval pipeline preserves document metadata (`documentType`, `specLevel`) through storage boundaries |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:36:import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:45:import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:60:// Feature catalog: Unified context retrieval (memory_context)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:660:    description: 'Semantic search with full context retrieval',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1015:  const telemetryMeta = retrievalTelemetry.isExtendedTelemetryEnabled()
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1018:          const t = retrievalTelemetry.createTelemetry();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1019:          retrievalTelemetry.recordMode(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1027:            retrievalTelemetry.recordFallback(t, `pressure override: ${requestedMode} -> ${effectiveMode}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1029:          retrievalTelemetry.recordTransitionDiagnostics(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1033:          return { _telemetry: retrievalTelemetry.toJSON(t) };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1078:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1079: * @param args - Context retrieval arguments (intent, mode, specFolder, anchors, etc.)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1207:  let _evalQueryId = 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1208:  let _evalRunId = 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1210:    const evalEntry = logSearchQuery({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1215:    _evalQueryId = evalEntry.queryId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1216:    _evalRunId = evalEntry.evalRunId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1332:      // Auto-profile is best-effort — never breaks context retrieval
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1541:    if (_evalRunId && _evalQueryId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1554:        evalRunId: _evalRunId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1555:        queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1566:        evalRunId: _evalRunId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1567:        queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:39:- `eval-reporting.ts` - Ablation, k-sensitivity, and dashboard handlers.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:68:- `quality-loop.ts` supports `emitEvalMetrics` so callers can suppress eval-side writes while still using the quality loop itself.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/index.ts:39:export { evaluateAndApplyPeDecision } from './pe-orchestration.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:4:// Feature catalog: Ablation studies (eval_run_ablation)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:6:// Controlled ablation studies for search channel contribution analysis.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:7:// Selectively disables one search channel at a time, measures Recall@20
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:9:// Contribution to retrieval quality.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:13:// - Ablation runner with ground truth evaluation
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:14:// - Delta calculation (baseline vs ablated Recall@20)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:16:// - Results storage in eval_metric_snapshots table
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:17:// - Human-readable ablation report formatting
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:22:import { initEvalDb, getEvalDb } from './eval-db.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:24:  computeRecall,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:30:} from './eval-metrics.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:31:import type { EvalResult, GroundTruthEntry } from './eval-metrics.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:43: * Anything else (undefined, "false", "1", ...) disables ablation studies.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:54:/** All channels available for ablation. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:63:/** Configuration for an ablation study. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:69:  /** Recall cutoff K. Defaults to 20. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:102: * A search function that the ablation runner calls for each query.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:118:  /** Recall@K with all channels enabled. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:119:  baselineRecall20: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:120:  /** Recall@K with this channel disabled. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:121:  ablatedRecall20: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:122:  /** ablatedRecall20 - baselineRecall20. Negative means channel contributes positively. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:132:  /** Total queries evaluated. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:145:/** All 9 metrics tracked per ablation channel. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:158:/** Failure captured for a single channel ablation run. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:160:  /** Channel that failed during ablation. */
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts | sed -n '223,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts | sed -n '223,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    223	/** Handle eval_run_ablation tool — runs ablation analysis or K-sensitivity sweep.
    224	 * @param args - Ablation arguments (channels, queries, recallK, mode)
@@ -5367,7 +5367,7 @@ exec
    260	  const chunkMemoryIds = new Set<number>();
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// TEST: memory_context per-channel eval logging (T056)
      2	import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -5494,7 +5494,7 @@ exec
 codex
 I’m at the verification part of the pass now. I’m running the phase validator exactly as specified and doing one final source sweep for existing evaluation hooks so the iteration can end with a test plan that’s both evidence-backed and immediately implementable in this codebase.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import fs from 'fs';
      2	import os from 'os';
@@ -5718,7 +5718,7 @@ exec
    220	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// TEST: SEARCH ARCHIVAL
      2	// Converted from: t206-search-archival.test.ts (custom runner)
@@ -5840,7 +5840,7 @@ exec
    118	});
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1546ms:
 
 ───────────────────────────────────────────────────────────────
@@ -5855,7 +5855,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -5904,7 +5904,7 @@ exec
    433	
    434	- in this repo `specs/` is a symlink to `.opencode/specs`; phase prompt/spec work should be applied under `.opencode/specs/...` paths [Task 1]
    435	- prompt artifact placement for this phase family is phase-root `phase-research-prompt.md` (not `scratch/`) and should reference that phase’s own `external/` tree [Task 1][Task 2]
-   436	- gate sequence that worked: validate phase docs first with `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict`, then run `spec_kit:deep-research`, then generate context/memory artifacts [Task 1][Task 2]
+   436	- gate sequence that worked: validate phase docs first with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict`, then run `spec_kit:deep-research`, then generate context/memory artifacts [Task 1][Task 2]
    437	
    438	## Failures and how to do differently
 
@@ -5912,7 +5912,7 @@ exec
    378	
    379	- prompt authoring pattern for this packet family: keep the 13-section TIDD-EC structure, include ordered evidence reading, and force evidence tags (`source-confirmed`, `README-documented`, `benchmark-documented`) per finding [Task 1]
    380	- MemPalace-specific guardrails that proved useful: AAAK remains experimental/lossy, raw ChromaDB verbatim posture is baseline, and benchmark/README claims need code-backed verification before adoption [Task 1]
-   381	- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
+   381	- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
    382	- closeout integration for this packet should update `research-v2.md`, `recommendations-v2.md`, `findings-registry-v2.json`, and `deep-research-dashboard.md` while leaving historical `research/research.md` snapshot content intact [Task 2][Task 4]
    383	- Claudest continuation is now an execution-ready sequence to preserve in order: FTS helper and forced-degrade tests -> stop-hook metadata patch -> normalized analytics reader -> cached-summary fast path -> verifier/discoverer split -> token-insight contracts [Task 3]
    384	- Graphify closeout guidance is additive rather than replacement: enrich existing payload confidence/provenance and layered runtime hints (`session-prime`, `compact-inject`, `response-hints`), keep low-level invalidation as already covered by Public indexing, and defer clustering metadata to a later phase [Task 4]
@@ -5933,7 +5933,7 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - **Source strength**: primary
 
 ### Finding 2: Memory quality needs a dedicated regression lane based on ground truth and ablation, separate from handler correctness
-- **Source**: [ground-truth-feedback.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L6), [ground-truth-feedback.ts:120](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L120), [ground-truth-feedback.ts:226](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L226), [ablation-framework.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6), [ablation-framework.ts:45](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L45), [eval-reporting.ts:227](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts#L227), [ground-truth-feedback.vitest.ts:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts#L55)
+- **Source**: [ground-truth-feedback.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L6), [ground-truth-feedback.ts:120](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L120), [ground-truth-feedback.ts:226](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L226), [ablation-framework.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6), [ablation-framework.ts:45](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L45), [eval-reporting.ts:227](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts#L227), [ground-truth-feedback.vitest.ts:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts#L55)
 - **What it does**: Public already records user selections, persists deterministic judge labels, checks agreement targets, and runs Recall@K ablation against channel toggles with parent-alignment guards.
 - **Why it matters**: Adopted patterns like session boosts, archival, trigger fallback, and reconsolidation can remain functionally correct while degrading retrieval quality. Those failures only show up in dataset-level evaluation.
 - **Recommendation**: adopt now
@@ -5941,7 +5941,7 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - **Source strength**: primary
 
 ### Finding 3: Promote real SQLite fixture tests to the main path for save/search/archive/reconsolidation, and demote static-source assertions to smoke coverage
-- **Source**: [handler-memory-search.vitest.ts:36](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts#L36), [integration-search-pipeline.vitest.ts:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts#L41), [search-archival.vitest.ts:64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts#L64), [archival-manager.vitest.ts:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts#L62), [memory-save-ux-regressions.vitest.ts:170](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts#L170), [reconsolidation-bridge.vitest.ts:114](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts#L114)
+- **Source**: [handler-memory-search.vitest.ts:36](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts#L36), [integration-search-pipeline.vitest.ts:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts#L41), [search-archival.vitest.ts:64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts#L64), [archival-manager.vitest.ts:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts#L62), [memory-save-ux-regressions.vitest.ts:170](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts#L170), [reconsolidation-bridge.vitest.ts:114](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts#L114)
 - **What it does**: Current coverage mixes deferred DB tests, static source assertions, and stronger in-memory SQLite fixtures for archival, save UX, and reconsolidation.
 - **Why it matters**: The adopted patterns are stateful. The highest-value regressions are around row state, lexical/vector index coherence, lineage preservation, and UX payload shape after mutations.
 - **Recommendation**: adopt now
@@ -5949,7 +5949,7 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - **Source strength**: primary
 
 ### Finding 4: Compaction and bootstrap behavior should be protected with payload snapshots, semantic assertions, and fail-closed trust tests
-- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [spec-kit-compact-code-graph.js:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L9), [hook-session-start.vitest.ts:53](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L53), [hook-session-start.vitest.ts:151](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L151), [session-bootstrap.vitest.ts:77](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts#L77)
+- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [spec-kit-compact-code-graph.js:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L9), [hook-session-start.vitest.ts:53](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L53), [hook-session-start.vitest.ts:151](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L151), [session-bootstrap.vitest.ts:77](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts#L77)
 - **What it does**: Mnemosyne preserves tool awareness through compaction prompt injection; Public already has structural compaction transport plus tests for sanitized recovered payloads, provenance wrappers, and trust-boundary handling in bootstrap.
 - **Why it matters**: This is injected-text behavior, so silent regressions are likely unless we snapshot the payload contract and assert on meaning, not just tool availability.
 - **Recommendation**: adopt now
@@ -5957,7 +5957,7 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - **Source strength**: both
 
 ### Finding 5: If we adopt project/global facade ergonomics, test scope and offline-failure matrices before testing convenience UX
-- **Source**: [external/src/index.ts:27](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L27), [external/src/index.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L67), [external/src/index.ts:118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-governance.vitest.ts:23](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L23), [memory-governance.vitest.ts:37](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L37), [memory-governance.vitest.ts:195](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L195)
+- **Source**: [external/src/index.ts:27](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L27), [external/src/index.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L67), [external/src/index.ts:118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-governance.vitest.ts:23](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L23), [memory-governance.vitest.ts:37](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L37), [memory-governance.vitest.ts:195](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L195)
 - **What it does**: The wrapper derives project scope from a basename, remaps `"global"` to `"default"`, lazily initializes global storage, and returns a user-facing missing-binary fallback, while Public enforces governed tenant/user/session/shared-space filters and audit rows.
 - **Why it matters**: The biggest risk in a Mnemosyne-style adapter is wrong-scope retrieval or confusing failure handling, not missed convenience behavior.
 - **Recommendation**: prototype later
@@ -5968,18 +5968,18 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - [external/src/index.ts:4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L4)
 - [external/README.md:37](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L37)
 - [external/package.json:8](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L8)
-- [memory-search.ts:771](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L771)
-- [ground-truth-feedback.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L6)
-- [ablation-framework.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6)
-- [hook-session-start.vitest.ts:53](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L53)
-- [session-bootstrap.vitest.ts:77](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts#L77)
+- [memory-search.ts:771](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L771)
+- [ground-truth-feedback.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L6)
+- [ablation-framework.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6)
+- [hook-session-start.vitest.ts:53](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L53)
+- [session-bootstrap.vitest.ts:77](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts#L77)
 
 ## Assessment
 - **New information ratio**: `0.23`
 - **Questions addressed**: unit-vs-integration boundaries, memory-quality regression strategy, compaction/bootstrapping verification, scope/offline-failure testing, and how much of Mnemosyne to test directly versus as an adapter contract.
 - **Questions answered**: wrapper behavior should be unit-tested with mocks; stateful Public behaviors should use real SQLite fixtures; retrieval quality should be gated by ablation/ground-truth metrics; compaction needs payload snapshots; scope/offline matrices should precede any facade rollout.
 - **Novelty justification**: This pass adds a concrete three-lane testing architecture tied to current Public sources instead of only comparing feature patterns at the design level.
-- **Validation**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- **Validation**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 - **Execution note**: This was read-only static analysis. I did not update `research/research.md`, `checklist.md`, `implementation-summary.md`, or save memory artifacts in the phase folder.
 
 ## Ruled Out
@@ -6015,7 +6015,7 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - **Source strength**: primary
 
 ### Finding 2: Memory quality needs a dedicated regression lane based on ground truth and ablation, separate from handler correctness
-- **Source**: [ground-truth-feedback.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L6), [ground-truth-feedback.ts:120](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L120), [ground-truth-feedback.ts:226](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L226), [ablation-framework.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6), [ablation-framework.ts:45](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L45), [eval-reporting.ts:227](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts#L227), [ground-truth-feedback.vitest.ts:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts#L55)
+- **Source**: [ground-truth-feedback.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L6), [ground-truth-feedback.ts:120](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L120), [ground-truth-feedback.ts:226](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L226), [ablation-framework.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6), [ablation-framework.ts:45](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L45), [eval-reporting.ts:227](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts#L227), [ground-truth-feedback.vitest.ts:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts#L55)
 - **What it does**: Public already records user selections, persists deterministic judge labels, checks agreement targets, and runs Recall@K ablation against channel toggles with parent-alignment guards.
 - **Why it matters**: Adopted patterns like session boosts, archival, trigger fallback, and reconsolidation can remain functionally correct while degrading retrieval quality. Those failures only show up in dataset-level evaluation.
 - **Recommendation**: adopt now
@@ -6023,7 +6023,7 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - **Source strength**: primary
 
 ### Finding 3: Promote real SQLite fixture tests to the main path for save/search/archive/reconsolidation, and demote static-source assertions to smoke coverage
-- **Source**: [handler-memory-search.vitest.ts:36](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts#L36), [integration-search-pipeline.vitest.ts:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts#L41), [search-archival.vitest.ts:64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts#L64), [archival-manager.vitest.ts:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts#L62), [memory-save-ux-regressions.vitest.ts:170](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts#L170), [reconsolidation-bridge.vitest.ts:114](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts#L114)
+- **Source**: [handler-memory-search.vitest.ts:36](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts#L36), [integration-search-pipeline.vitest.ts:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts#L41), [search-archival.vitest.ts:64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts#L64), [archival-manager.vitest.ts:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts#L62), [memory-save-ux-regressions.vitest.ts:170](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts#L170), [reconsolidation-bridge.vitest.ts:114](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts#L114)
 - **What it does**: Current coverage mixes deferred DB tests, static source assertions, and stronger in-memory SQLite fixtures for archival, save UX, and reconsolidation.
 - **Why it matters**: The adopted patterns are stateful. The highest-value regressions are around row state, lexical/vector index coherence, lineage preservation, and UX payload shape after mutations.
 - **Recommendation**: adopt now
@@ -6031,7 +6031,7 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - **Source strength**: primary
 
 ### Finding 4: Compaction and bootstrap behavior should be protected with payload snapshots, semantic assertions, and fail-closed trust tests
-- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [spec-kit-compact-code-graph.js:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L9), [hook-session-start.vitest.ts:53](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L53), [hook-session-start.vitest.ts:151](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L151), [session-bootstrap.vitest.ts:77](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts#L77)
+- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [spec-kit-compact-code-graph.js:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L9), [hook-session-start.vitest.ts:53](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L53), [hook-session-start.vitest.ts:151](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L151), [session-bootstrap.vitest.ts:77](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts#L77)
 - **What it does**: Mnemosyne preserves tool awareness through compaction prompt injection; Public already has structural compaction transport plus tests for sanitized recovered payloads, provenance wrappers, and trust-boundary handling in bootstrap.
 - **Why it matters**: This is injected-text behavior, so silent regressions are likely unless we snapshot the payload contract and assert on meaning, not just tool availability.
 - **Recommendation**: adopt now
@@ -6039,7 +6039,7 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - **Source strength**: both
 
 ### Finding 5: If we adopt project/global facade ergonomics, test scope and offline-failure matrices before testing convenience UX
-- **Source**: [external/src/index.ts:27](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L27), [external/src/index.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L67), [external/src/index.ts:118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-governance.vitest.ts:23](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L23), [memory-governance.vitest.ts:37](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L37), [memory-governance.vitest.ts:195](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L195)
+- **Source**: [external/src/index.ts:27](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L27), [external/src/index.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L67), [external/src/index.ts:118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-governance.vitest.ts:23](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L23), [memory-governance.vitest.ts:37](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L37), [memory-governance.vitest.ts:195](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L195)
 - **What it does**: The wrapper derives project scope from a basename, remaps `"global"` to `"default"`, lazily initializes global storage, and returns a user-facing missing-binary fallback, while Public enforces governed tenant/user/session/shared-space filters and audit rows.
 - **Why it matters**: The biggest risk in a Mnemosyne-style adapter is wrong-scope retrieval or confusing failure handling, not missed convenience behavior.
 - **Recommendation**: prototype later
@@ -6050,18 +6050,18 @@ TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integrati
 - [external/src/index.ts:4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L4)
 - [external/README.md:37](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L37)
 - [external/package.json:8](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L8)
-- [memory-search.ts:771](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L771)
-- [ground-truth-feedback.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L6)
-- [ablation-framework.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6)
-- [hook-session-start.vitest.ts:53](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L53)
-- [session-bootstrap.vitest.ts:77](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts#L77)
+- [memory-search.ts:771](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L771)
+- [ground-truth-feedback.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts#L6)
+- [ablation-framework.ts:6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts#L6)
+- [hook-session-start.vitest.ts:53](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts#L53)
+- [session-bootstrap.vitest.ts:77](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts#L77)
 
 ## Assessment
 - **New information ratio**: `0.23`
 - **Questions addressed**: unit-vs-integration boundaries, memory-quality regression strategy, compaction/bootstrapping verification, scope/offline-failure testing, and how much of Mnemosyne to test directly versus as an adapter contract.
 - **Questions answered**: wrapper behavior should be unit-tested with mocks; stateful Public behaviors should use real SQLite fixtures; retrieval quality should be gated by ablation/ground-truth metrics; compaction needs payload snapshots; scope/offline matrices should precede any facade rollout.
 - **Novelty justification**: This pass adds a concrete three-lane testing architecture tied to current Public sources instead of only comparing feature patterns at the design level.
-- **Validation**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- **Validation**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 - **Execution note**: This was read-only static analysis. I did not update `research/research.md`, `checklist.md`, `implementation-summary.md`, or save memory artifacts in the phase folder.
 
 ## Ruled Out

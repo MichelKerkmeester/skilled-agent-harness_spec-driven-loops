@@ -15,10 +15,10 @@ _memory:
     next_safe_action: "Refresh graph-metadata for 004 + parent; commit"
     blockers: []
     key_files:
-      - .opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md
-      - .opencode/skill/sk-doc/references/global/quick_reference.md
-      - .opencode/skill/sk-doc/assets/skill/skill_md_template.md
-      - .opencode/skill/sk-doc/references/specific/skill_creation.md
+      - .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md
+      - .opencode/skills/sk-doc/references/global/quick_reference.md
+      - .opencode/skills/sk-doc/assets/skill/skill_md_template.md
+      - .opencode/skills/sk-doc/references/specific/skill_creation.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase4-complete"
@@ -31,7 +31,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -58,24 +58,24 @@ The 7-iteration deep-review (cli-copilot fallback after cli-codex stalled 3×) c
 
 ### P1 Fix (broken cross-link)
 
-`.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md:770` — the link `[command_template.md](../agents/command_template.md)` now reads `[command_template.md](../command_template.md)` and resolves to the real file at `assets/command_template.md` (relocated in Phase 1 commit ccd73ef55).
+`.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md:770` — the link `[command_template.md](../agents/command_template.md)` now reads `[command_template.md](../command_template.md)` and resolves to the real file at `assets/command_template.md` (relocated in Phase 1 commit ccd73ef55).
 
 ### P2 Fix #1 (project-structure tree)
 
-`.opencode/skill/sk-doc/references/global/quick_reference.md:174-189` — the ASCII tree previously showed `assets/documentation/feature_catalog/`, `assets/documentation/testing_playbook/`, and `assets/agents/{agent_template.md, command_template.md}`. It now shows the four promoted items at `assets/` root and no `assets/agents/` line. Tree also surfaces `readme_code_template.md` and `changelog_template.md` which were always in `documentation/` but missing from the prior tree (parallel cleanup).
+`.opencode/skills/sk-doc/references/global/quick_reference.md:174-189` — the ASCII tree previously showed `assets/documentation/feature_catalog/`, `assets/documentation/testing_playbook/`, and `assets/agents/{agent_template.md, command_template.md}`. It now shows the four promoted items at `assets/` root and no `assets/agents/` line. Tree also surfaces `readme_code_template.md` and `changelog_template.md` which were always in `documentation/` but missing from the prior tree (parallel cleanup).
 
 ### P2 Fix #2 (illustrative examples)
 
-`.opencode/skill/sk-doc/assets/skill/skill_md_template.md:593` and `.opencode/skill/sk-doc/references/specific/skill_creation.md:56` — both lines listed `assets/agents/` as one option in a "subfolders allowed" illustrative example. Both now read `Example: \`assets/skill/\`, \`assets/documentation/\`, \`assets/flowcharts/\`` — same illustrative principle, no stale subfolder reference.
+`.opencode/skills/sk-doc/assets/skill/skill_md_template.md:593` and `.opencode/skills/sk-doc/references/specific/skill_creation.md:56` — both lines listed `assets/agents/` as one option in a "subfolders allowed" illustrative example. Both now read `Example: \`assets/skill/\`, \`assets/documentation/\`, \`assets/flowcharts/\`` — same illustrative principle, no stale subfolder reference.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md` | Modified (1 line) | P1 link fix |
-| `.opencode/skill/sk-doc/references/global/quick_reference.md` | Modified (~16 lines) | P2 ASCII tree rewrite |
-| `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` | Modified (1 line) | P2 illustrative example |
-| `.opencode/skill/sk-doc/references/specific/skill_creation.md` | Modified (1 line) | P2 illustrative example |
+| `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md` | Modified (1 line) | P1 link fix |
+| `.opencode/skills/sk-doc/references/global/quick_reference.md` | Modified (~16 lines) | P2 ASCII tree rewrite |
+| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` | Modified (1 line) | P2 illustrative example |
+| `.opencode/skills/sk-doc/references/specific/skill_creation.md` | Modified (1 line) | P2 illustrative example |
 | `068/004-remediation/{spec,plan,tasks,implementation-summary}.md` | Created | Phase 4 spec docs |
 | `068/spec.md` | Modified | Added Phase 4 row to Phase Documentation Map; updated Phase 1-3 status to Complete |
 | `068/graph-metadata.json` (parent + 4 children) | Modified | children_ids includes 004; status refresh |
@@ -113,7 +113,7 @@ cli-codex was non-functional in this session (3 stalls, 0 output across attempts
 | Check | Result |
 |-------|--------|
 | P1 fix: `grep -n "command_template.md" frontmatter_templates.md:770` matches `(../command_template.md)` | PASS |
-| P1 fix: `test -f .opencode/skill/sk-doc/assets/command_template.md` exits 0 | PASS — file exists |
+| P1 fix: `test -f .opencode/skills/sk-doc/assets/command_template.md` exits 0 | PASS — file exists |
 | P2 #1 fix: `rg -c "assets/agents/" quick_reference.md` returns 0 | PASS |
 | P2 #2 fix (file 1): `rg -c "assets/agents/" skill_md_template.md` returns 0 | PASS |
 | P2 #2 fix (file 2): `rg -c "assets/agents/" skill_creation.md` returns 0 | PASS |
@@ -133,7 +133,7 @@ cli-codex was non-functional in this session (3 stalls, 0 output across attempts
 
 3. **`.opencode/specs/**` historical records retain OLD references.** Intentional historical accuracy. Not stale-reference debt.
 
-4. **`.opencode/skill/sk-doc/changelog/v1.1.3.0.md` and `v1.4.0.0.md` retain OLD references.** Preserve release-time accuracy. Not touched.
+4. **`.opencode/skills/sk-doc/changelog/v1.1.3.0.md` and `v1.4.0.0.md` retain OLD references.** Preserve release-time accuracy. Not touched.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -141,5 +141,5 @@ cli-codex was non-functional in this session (3 stalls, 0 output across attempts
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

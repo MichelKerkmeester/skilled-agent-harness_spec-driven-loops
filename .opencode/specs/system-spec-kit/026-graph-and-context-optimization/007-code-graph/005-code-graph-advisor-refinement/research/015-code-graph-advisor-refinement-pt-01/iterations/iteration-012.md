@@ -34,7 +34,7 @@ The 12 gates in `gate-bundle.ts` are listed below with line numbers, the regress
 class each is **designed to catch**, the class each **misses** (mapped to iter 3
 Cat A/B/C + new gaps surfaced this iter), scope adequacy, and dependencies on other
 gates. All line references are to
-`.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts`.
+`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts`.
 
 | # | Gate name | Lines | Catches | Misses (category) | Scoped properly? | Depends on | Enhancement |
 |---|-----------|-------|---------|-------------------|------------------|------------|-------------|
@@ -77,14 +77,14 @@ gates. All line references are to
   consuming `input.shadowCycleHistory: ShadowCycleResult[]` and asserting
   `.length >= 2 && all(passed)`.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts:1-185`
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts:1-185`
 + iter 3 F15 Cat A/B/C
 + iter 6 F13/F14
 + iter 11 F37-v2 §3]
 
 ### F37-#7-RESOLUTION — Git-log archaeology resolves to "delete dead code", not "wire it up"
 
-`git log --all --oneline -- .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/`
+`git log --all --oneline -- .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/`
 returns exactly 3 commits, in reverse-chrono order:
 
 1. `a663cbe78f fix(027): scan-findings Themes 2-7 — 34 findings closed` — does not
@@ -109,7 +109,7 @@ returns exactly 3 commits, in reverse-chrono order:
 
 ```
 $ grep -rn "evaluatePromotionGateBundle\|writeGateBundleAuditArtifact" \
-    --include="*.ts" .opencode/skill/system-spec-kit/mcp_server/skill-advisor/ \
+    --include="*.ts" .opencode/skills/system-spec-kit/mcp_server/skill-advisor/ \
     | grep -v /dist/ | grep -v ".vitest."
 (zero results)
 ```
@@ -183,8 +183,8 @@ uncalled accumulates audit surface and creates a misleading test-coverage signal
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts:1-185` (full read)
-- `git log --all --oneline -- .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts:1-185` (full read)
+- `git log --all --oneline -- .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/`
 - `git log --all --format=%H%n%s%n%b -- .opencode/.../gate-bundle.ts` (full bodies of `5696acf4a6` and `97a318d83b`)
 - `grep -rn "evaluatePromotionGateBundle\|writeGateBundleAuditArtifact"` (production call-site sweep)
 - `grep -rn "shadow-cycle\|two-cycle-requirement\|weight-delta-cap\|semantic-lock\|promotion/rollback"` (sibling module call-site sweep)

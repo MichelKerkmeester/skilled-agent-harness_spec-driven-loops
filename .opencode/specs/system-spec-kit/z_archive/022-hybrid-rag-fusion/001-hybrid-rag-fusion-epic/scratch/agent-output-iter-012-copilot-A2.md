@@ -6,8 +6,8 @@ I’m pulling prior context and routing guidance first, then I’ll trace the qu
   └ {"summary":"Matched 5 memories via trigger phrases","data":{"matchType":"trig...
 
 ● Run skill advisor for research task (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Deep research iteration 12/20 on
-  │ hybrid-rag-fusion system at .opencode/skill/system-spec-kit/mcp_server/lib/search/. Focus: Query
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Deep research iteration 12/20 on
+  │ hybrid-rag-fusion system at .opencode/skills/system-spec-kit/mcp_server/lib/search/. Focus: Query
   │ expansion effectiveness. Read source files, trace data flows, find bugs, dead code, architecture
   │ issues. Report with file:line citations." --threshold 0.8
   └ 59 lines...
@@ -16,11 +16,11 @@ I’ve got the routing/context baseline. Next I’m mapping the search pipeline 
 
 ● Search (grep)
   │ "expand|expansion|query variant|variants|synonym|rewrite|bm25|fts5|fusion|rrf|recall|rerank" in
-  │ **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server/lib/search)
+  │ **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server/lib/search)
   └ 5 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/lib/search/**/*"
+  │ ".opencode/skills/system-spec-kit/mcp_server/lib/search/**/*"
   └ 58 files found
 
 ● memory_context
@@ -32,134 +32,134 @@ I’ve got the routing/context baseline. Next I’m mapping the search pipeline 
 I found one interesting clue already: the focused memory pipeline exposed an `r12-embedding-expansion` candidate step adding very generic terms like `tool`, `anchor`, `spec`, and `memory`, which looks potentially noisy. I’m drilling into where those terms come from and whether they materially affect recall/precision.
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ 1 line read
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ 1 line read
 
 ● Read query-expander.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-expander.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/query-expander.ts
   └ 95 lines read
 
 ● Search (grep)
   │ "query-expander|QueryExpander|expandQuery|expandQueries|embedding-expansion|expandEmbedding|r12-
   │ embedding-expansion|expandedTerms|combinedQuery|multiQuery|deepExpansion" in **/*.{ts,js,md}
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search)
   └ 31 lines found
 
 ● Read embedding-expansion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts
   └ 304 lines read
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L130:230 (101 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L320:430 (111 lines read)
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L1:260 (259 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L620:710 (82 lines read)
 
 ● Read query-classifier.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts
   └ L1:240 (223 lines read)
 
 ● Read query-router.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts
   └ L1:260 (166 lines read)
 
 ● Read search-flags.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts
   └ L1:260 (251 lines read)
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L260:520 (261 lines read)
 
 ● Search (grep)
   │ "buildDeepQueryVariants\(|expandQuery\(" in **/*.{ts,js,md}
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search)
   └ 4 lines found
 
 ● Search (grep)
   │ "searchWithFallback\(|routeQuery\(|forceAllChannels|classifyQueryComplexity\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
   └ 7 lines found
 
 I’ve confirmed there are two distinct expansion paths: rule-based deep-mode variants and embedding-based R12 expansion. Now I’m checking whether both paths actually affect ranking or if one is effectively shadow/dead behavior.
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L240:320 (81 lines read)
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L540:760 (220 lines read)
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L1460:1515 (56 lines read)
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L1040:1135 (96 lines read)
 
 ● Read README.md
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/README.md
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/README.md
   └ L260:320 (61 lines read)
 
 ● Read orchestrator.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts
   └ L1:280 (78 lines read)
 
 ● Read types.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "type PipelineRow|interface PipelineRow" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search)
   └ 1 line found
 
 ● Search (grep)
-  │ "canonicalResultId\(" in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server/lib/search)
+  │ "canonicalResultId\(" in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server/lib/search)
   └ 7 lines found
 
 ● Search (grep)
   │ "Expand acronyms|fix typos|preprocess" in **/*.md
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search)
   └ 1 line found
 
 I found a bigger architectural wrinkle: Stage 1’s “candidate generation” is calling `searchWithFallback()`, which already runs fusion/reranking internally before Stage 2 and Stage 3 run again. I’m validating whether that means expansion effectiveness is being distorted by double-ranking rather than cleanly measured.
 
 ● Read stage2-fusion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
   └ L1:260 (260 lines read)
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L760:1045 (286 lines read)
 
 ● Read stage3-rerank.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts
   └ L1:220 (219 lines read)
 
 ● Read README.md
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md
   └ L1:220 (117 lines read)
 
 ● Search (grep)
   │ "resolveEffectiveScore|rrfScore|intentAdjustedScore|score|similarity"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts)
   └ 59 lines found
 
 I’ve got several candidate findings. I’m doing one independent pass in parallel to sanity-check the data-flow interpretation before I finalize the report.
@@ -167,7 +167,7 @@ I’ve got several candidate findings. I’m doing one independent pass in paral
 ● Explore Audit expansion flow
   │ Check exports (shell)
   │   │ cd /Users/michelkerkmeester/MEGA/Development/Opencode\ Env/Public && grep "hybridSearch,"
-  │   │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │   │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   │   └ 2 lines...
   └ Create comprehensive audit findings (shell)
       │ cat > /tmp/audit_findings.txt << 'EOF'
@@ -177,19 +177,19 @@ I’ve got several candidate findings. I’m doing one independent pass in paral
       └ Permission denied and could not request permission from user
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L1190:1215 (26 lines read)
 
 ● Read stage2-fusion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
   └ L300:380 (81 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L388:405 (17 lines read)
 
 ● Search (grep)
-  │ "triggerPhrases" in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server/lib/search)
+  │ "triggerPhrases" in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server/lib/search)
   └ 28 lines found
 
 Findings for query-expansion effectiveness:

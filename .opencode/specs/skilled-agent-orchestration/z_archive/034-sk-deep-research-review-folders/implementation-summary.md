@@ -55,27 +55,27 @@ Implemented the full review-folder contract across the planned surfaces:
 Implementation was delivered in three coordinated tracks:
 
 - Main-thread workflow and asset changes:
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
-  - `.opencode/skill/sk-deep-research/assets/review_mode_contract.yaml`
-  - `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`
-  - `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
+  - `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml`
+  - `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
+  - `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md`
 - Shared command-surface compatibility follow-up:
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-  - `.opencode/command/spec_kit/deep-research.md`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+  - `.opencode/commands/spec_kit/deep-research.md`
   - `.agents/commands/spec_kit/deep-research.toml`
 - Parallel runtime parity pass:
-  - `.opencode/agent/deep-review.md`
+  - `.opencode/agents/deep-review.md`
   - `.claude/agents/deep-review.md`
   - `.codex/agents/deep-review.toml`
   - `.gemini/agents/deep-review.md`
 - Parallel documentation and playbook sync:
-  - `.opencode/command/spec_kit/deep-research.md`
-  - `.opencode/skill/sk-deep-research/SKILL.md`
-  - `.opencode/skill/sk-deep-research/README.md`
-  - review-focused references under `.opencode/skill/sk-deep-research/references/`
-  - review playbooks under `.opencode/skill/sk-deep-research/manual_testing_playbook/07--review-mode/`
+  - `.opencode/commands/spec_kit/deep-research.md`
+  - `.opencode/skills/sk-deep-research/SKILL.md`
+  - `.opencode/skills/sk-deep-research/README.md`
+  - review-focused references under `.opencode/skills/sk-deep-research/references/`
+  - review playbooks under `.opencode/skills/sk-deep-research/manual_testing_playbook/07--review-mode/`
   - shared pause or resume playbooks `015` and `016`
 <!-- /ANCHOR:how-delivered -->
 
@@ -104,7 +104,7 @@ Implementation was delivered in three coordinated tracks:
 | Doc and playbook sweep | PASS via worker verification over the review-mode docs, references, and playbooks, plus the follow-up recovery-text corrections in the shared loop protocol and README |
 | `.agents` command wrapper parity | PASS via direct inspection of `.agents/commands/spec_kit/deep-research.toml` after updating its description and argument hint to match the shared command entrypoint |
 | Review-path contract sweep | PASS for targeted surfaces; remaining review-side `scratch/` references are deliberate legacy-migration inputs |
-| Strict packet validation | PASS via `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh 'specs/03--commands-and-skills/034-sk-deep-research-review-folders' --strict` |
+| Strict packet validation | PASS via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 'specs/03--commands-and-skills/034-sk-deep-research-review-folders' --strict` |
 | Live review-run replay | NOT RUN in this session |
 <!-- /ANCHOR:verification -->
 

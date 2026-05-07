@@ -36,13 +36,13 @@ This document captures architectural decisions made during plan-mode design (202
 
 **Status**: Accepted (2026-04-26, confirmed by user)
 
-**Context**: The sk-doc standards reference at `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` (lines 26, 75) prescribes `MANUAL_TESTING_PLAYBOOK.md` (uppercase). The root playbook template's contract section also references `MANUAL_TESTING_PLAYBOOK.md`. However, all 5 in-tree playbooks use lowercase `manual_testing_playbook.md`:
+**Context**: The sk-doc standards reference at `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` (lines 26, 75) prescribes `MANUAL_TESTING_PLAYBOOK.md` (uppercase). The root playbook template's contract section also references `MANUAL_TESTING_PLAYBOOK.md`. However, all 5 in-tree playbooks use lowercase `manual_testing_playbook.md`:
 
-- `.opencode/skill/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skill/sk-deep-review/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/sk-deep-review/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`
 
 This is a doc-vs-practice divergence that has persisted across multiple shipped playbooks.
 

@@ -39,7 +39,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Bash + git (file relocation only) |
 | **Framework** | system-spec-kit phase decomposition |
-| **Storage** | Filesystem (`.opencode/skill/sk-doc/assets/`) |
+| **Storage** | Filesystem (`.opencode/skills/sk-doc/assets/`) |
 | **Testing** | `ls -la` + `test ! -e` + `git status` |
 
 ### Overview
@@ -93,15 +93,15 @@ state-pre  -> git mv #1 -> git mv #2 -> git mv #3 -> git mv #4 -> rmdir -> state
 - [x] Verify source paths exist (no move-from-nothing)
 
 ### Phase 2: Core Implementation
-- [x] `git mv .opencode/skill/sk-doc/assets/documentation/feature_catalog .opencode/skill/sk-doc/assets/feature_catalog`
-- [x] `git mv .opencode/skill/sk-doc/assets/documentation/testing_playbook .opencode/skill/sk-doc/assets/testing_playbook`
-- [x] `git mv .opencode/skill/sk-doc/assets/agents/agent_template.md .opencode/skill/sk-doc/assets/agent_template.md`
-- [x] `git mv .opencode/skill/sk-doc/assets/agents/command_template.md .opencode/skill/sk-doc/assets/command_template.md`
-- [x] `rmdir .opencode/skill/sk-doc/assets/agents`
+- [x] `git mv .opencode/skills/sk-doc/assets/documentation/feature_catalog .opencode/skills/sk-doc/assets/feature_catalog`
+- [x] `git mv .opencode/skills/sk-doc/assets/documentation/testing_playbook .opencode/skills/sk-doc/assets/testing_playbook`
+- [x] `git mv .opencode/skills/sk-doc/assets/agents/agent_template.md .opencode/skills/sk-doc/assets/agent_template.md`
+- [x] `git mv .opencode/skills/sk-doc/assets/agents/command_template.md .opencode/skills/sk-doc/assets/command_template.md`
+- [x] `rmdir .opencode/skills/sk-doc/assets/agents`
 
 ### Phase 3: Verification
-- [x] `ls -la .opencode/skill/sk-doc/assets/` shows new layout
-- [x] `test ! -e .opencode/skill/sk-doc/assets/agents` exits 0
+- [x] `ls -la .opencode/skills/sk-doc/assets/` shows new layout
+- [x] `test ! -e .opencode/skills/sk-doc/assets/agents` exits 0
 - [x] `git status --porcelain` shows 6 R lines (renames)
 - [x] One commit on main with prescribed message
 <!-- /ANCHOR:phases -->

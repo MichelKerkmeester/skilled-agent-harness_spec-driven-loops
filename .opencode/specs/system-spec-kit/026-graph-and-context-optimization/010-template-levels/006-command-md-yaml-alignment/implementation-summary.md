@@ -15,18 +15,18 @@ _memory:
     next_safe_action: "optional advisory cleanup for F001/F002"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/complete.md"
-      - ".opencode/command/spec_kit/plan.md"
-      - ".opencode/command/spec_kit/implement.md"
-      - ".opencode/command/spec_kit/resume.md"
-      - ".opencode/command/spec_kit/deep-research.md"
-      - ".opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml"
+      - ".opencode/commands/spec_kit/complete.md"
+      - ".opencode/commands/spec_kit/plan.md"
+      - ".opencode/commands/spec_kit/implement.md"
+      - ".opencode/commands/spec_kit/resume.md"
+      - ".opencode/commands/spec_kit/deep-research.md"
+      - ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/006-command-md-yaml-alignment/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0060060060060060060060060060060060060060060060060060060060060005"
@@ -41,7 +41,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -88,24 +88,24 @@ Seven YAML assets changed. The complete and plan auto/confirm workflows no longe
 
 | File | Audit Outcome |
 |------|---------------|
-| `.opencode/command/spec_kit/complete.md` | Modified: exit taxonomy, `SPECKIT_POST_VALIDATE`, path hardening, system-error failure mode. |
-| `.opencode/command/spec_kit/deep-research.md` | Modified: validation orchestrator performance note. |
-| `.opencode/command/spec_kit/deep-review.md` | Audited clean; no edits needed. |
-| `.opencode/command/spec_kit/implement.md` | Modified: strict completion validation taxonomy. |
-| `.opencode/command/spec_kit/plan.md` | Modified: phase creation syntax and path hardening. |
-| `.opencode/command/spec_kit/resume.md` | Modified: parallel continuity-save advisory lock note. |
-| `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
-| `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified: validation orchestrator notes added to targeted strict validation steps. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Audited clean; parsed successfully. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Audited clean; parsed successfully. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Audited clean; parsed successfully. |
-| `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` | Modified: pre-completion validation outcomes aligned to current taxonomy. |
-| `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml` | Modified: pre-completion validation outcomes aligned to current taxonomy. |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
-| `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` | Audited clean; parsed successfully. |
-| `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` | Audited clean; parsed successfully. |
+| `.opencode/commands/spec_kit/complete.md` | Modified: exit taxonomy, `SPECKIT_POST_VALIDATE`, path hardening, system-error failure mode. |
+| `.opencode/commands/spec_kit/deep-research.md` | Modified: validation orchestrator performance note. |
+| `.opencode/commands/spec_kit/deep-review.md` | Audited clean; no edits needed. |
+| `.opencode/commands/spec_kit/implement.md` | Modified: strict completion validation taxonomy. |
+| `.opencode/commands/spec_kit/plan.md` | Modified: phase creation syntax and path hardening. |
+| `.opencode/commands/spec_kit/resume.md` | Modified: parallel continuity-save advisory lock note. |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified: validation orchestrator notes added to targeted strict validation steps. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Audited clean; parsed successfully. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Audited clean; parsed successfully. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Audited clean; parsed successfully. |
+| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modified: pre-completion validation outcomes aligned to current taxonomy. |
+| `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml` | Modified: pre-completion validation outcomes aligned to current taxonomy. |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` | Audited clean; parsed successfully. |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` | Audited clean; parsed successfully. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -113,7 +113,7 @@ Seven YAML assets changed. The complete and plan auto/confirm workflows no longe
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The audit started with exact stale-pattern and banned-vocabulary greps across `.opencode/command/spec_kit/`; both returned zero hits for the requested patterns. A second targeted sweep found stale deleted phase addendum filenames and old validation semantics outside the initial stale-pattern expression. Each YAML edit was limited to prose strings and validated immediately with PyYAML.
+The audit started with exact stale-pattern and banned-vocabulary greps across `.opencode/commands/spec_kit/`; both returned zero hits for the requested patterns. A second targeted sweep found stale deleted phase addendum filenames and old validation semantics outside the initial stale-pattern expression. Each YAML edit was limited to prose strings and validated immediately with PyYAML.
 
 After edits, the full verification set passed: stale-pattern grep returned zero hits, workflow-invariance vitest reported 1 file and 2 tests passed, all 12 YAML assets parsed, packet 006 strict validation passed, and sibling packets 003, 004, and 005 strict validation passed. Parent `010-template-levels/graph-metadata.json` now includes child 006 and points `derived.last_active_child_id` at this packet.
 <!-- /ANCHOR:how-delivered -->
@@ -139,7 +139,7 @@ After edits, the full verification set passed: stale-pattern grep returned zero 
 
 | Check | Result |
 |-------|--------|
-| Gate A stale-pattern grep | PASS: zero hits across `.opencode/command/spec_kit/`. |
+| Gate A stale-pattern grep | PASS: zero hits across `.opencode/commands/spec_kit/`. |
 | Banned-vocabulary grep | PASS: zero hits for `preset`, `capability`, `capabilities`, `kind`, or `manifest` in command scope. |
 | Gate B workflow-invariance vitest | PASS: 1 file passed, 2 tests passed, duration 243ms. |
 | Gate C all YAML parse | PASS: 12 OK, 0 FAIL. |

@@ -68,14 +68,14 @@ Added a structured graph metadata system to all 20 skill folders and integrated 
 ### Files Modified/Created
 
 #### Created
-- `.opencode/skill/*/graph-metadata.json` (21 files)
-- `.opencode/skill/skill-advisor/scripts/skill_graph_compiler.py`
-- `.opencode/skill/skill-advisor/scripts/skill-graph.json` (generated)
+- `.opencode/skills/*/graph-metadata.json` (21 files)
+- `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py`
+- `.opencode/skills/skill-advisor/scripts/skill-graph.json` (generated)
 - `011-skill-advisor-graph/` spec folder docs (7 files)
 
 #### Modified
-- `.opencode/skill/skill-advisor/scripts/skill_advisor.py` — Added graph loading, 3 boost functions, 3 call-site insertions, health check extension (~110 lines added)
-- `.opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` — Fixed 3 wrong expectations, added 3 new graph-specific cases
+- `.opencode/skills/skill-advisor/scripts/skill_advisor.py` — Added graph loading, 3 boost functions, 3 call-site insertions, health check extension (~110 lines added)
+- `.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` — Fixed 3 wrong expectations, added 3 new graph-specific cases
 
 <!-- /ANCHOR:how-delivered -->
 

@@ -1,18 +1,18 @@
 ● Todo added: Review collect-session-data.ts against sk-code-opencode rules
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 1-300
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 1-300
   └ 300 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 301-600
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 301-600
   └ 300 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 601-838
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 601-838
   └ 238 lines read
 
 ● Todo completed: review-collect-session-data
 
 ### FINDING-01: Module header is not PascalCase and does not match required style
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1-3`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1-3`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header is `// MODULE: Collect Session Data` with spaces/colon format, not PascalCase module token.
@@ -22,7 +22,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-02: Section headers do not follow required numbered ALL-CAPS single-line style
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:49-51,150-152,361-363,595-597,604-606,612-614,820-822`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:49-51,150-152,361-363,595-597,604-606,612-614,820-822`
 - **Severity:** HIGH
 - **Category:** ALIGNMENT
 - **Current Behavior:** Uses multi-line block separators (`/* --- */`) and mixed numbering scheme (`1.5`, `2.5`) instead of required `// N. SECTION` style.
@@ -32,7 +32,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Exported functions are missing TSDoc blocks
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:154,172,186,198,306,365,391,415,483,519,561,608,616,824-838`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:154,172,186,198,306,365,391,415,483,519,561,608,616,824-838`
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Functions exported via the bottom export list have explicit types but no `/** ... */` TSDoc on declarations.
@@ -42,7 +42,7 @@
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-04: Limited use of `readonly` for immutable collections (P2)
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:421-425,531,545-559`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:421-425,531,545-559`
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Immutable intent arrays/config-like structures are declared mutable (`RegExp[]`, `string[]`, mutable interface properties).

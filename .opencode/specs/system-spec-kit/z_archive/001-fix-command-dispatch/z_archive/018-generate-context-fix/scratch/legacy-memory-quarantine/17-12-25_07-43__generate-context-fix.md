@@ -113,7 +113,7 @@ Investigated and fixed the generate-context.js short output issue. Root cause id
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/command/memory/save.md` | Updated save |
+| `.opencode/commands/memory/save.md` | Updated save |
 | `.opencode/skills/workflows-memory/SKILL.md` | Updated skill |
 | `.opencode/.../scripts/generate-context.js` | Short output issue |
 | `specs/.../memory/17-12-25_07-34__generate-context-fix.md` | Modified during session |
@@ -475,7 +475,7 @@ key_topics:
   - "constructed"
 
 key_files:
-  - ".opencode/command/memory/save.md"
+  - ".opencode/commands/memory/save.md"
   - ".opencode/skills/workflows-memory/SKILL.md"
   - ".opencode/.../scripts/generate-context.js"
   - "specs/.../memory/17-12-25_07-34__generate-context-fix.md"

@@ -36,7 +36,7 @@ export async function runGeminiHookTests(sandbox: SandboxDetection = detectSandb
 
   const hook = await runCommand({
     command: 'node',
-    args: ['.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/user-prompt-submit.js'],
+    args: ['.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/user-prompt-submit.js'],
     stdin: JSON.stringify({
       session_id: 'packet-043-gemini',
       hook_event_name: 'BeforeAgent',
@@ -61,7 +61,7 @@ export async function runGeminiHookTests(sandbox: SandboxDetection = detectSandb
         [CONFIG_PATH]: readSnippet(CONFIG_PATH),
       },
     },
-    ['.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:200'],
+    ['.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:200'],
     CONFIG_PATH,
   );
 

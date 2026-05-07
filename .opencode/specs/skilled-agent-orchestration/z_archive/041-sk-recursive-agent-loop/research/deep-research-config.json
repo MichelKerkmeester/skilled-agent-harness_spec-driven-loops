@@ -38,10 +38,10 @@
       "next-focus"
     ]
   },
-  "capabilityMatrixPath": ".opencode/skill/sk-deep-research/assets/runtime_capabilities.json",
-  "capabilityMatrixDocPath": ".opencode/skill/sk-deep-research/references/capability_matrix.md",
-  "runtimeCapabilityResolver": ".opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs",
-  "reducerScriptPath": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+  "capabilityMatrixPath": ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/sk-deep-research/references/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
   "pauseSentinelPath": "research/.deep-research-pause",
   "archiveRoot": "research/archive",
   "migrationWindowDays": 28,

@@ -81,9 +81,9 @@ This phase was delivered inside the existing MCP server and then re-verified wit
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh [phase-folder]` | PASS |
-| `npx tsc --noEmit` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
-| `npm run build` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh [phase-folder]` | PASS |
+| `npx tsc --noEmit` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
+| `npm run build` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
 | `npx vitest run tests/graph-search-fn.vitest.ts tests/graph-roadmap-finalization.vitest.ts tests/graph-regression-flag-off.vitest.ts` | PASS |
 | Playbook procedure `NEW-120` present | PASS |
 | Consolidated roadmap suite (`15` files, `159` tests) | PASS |

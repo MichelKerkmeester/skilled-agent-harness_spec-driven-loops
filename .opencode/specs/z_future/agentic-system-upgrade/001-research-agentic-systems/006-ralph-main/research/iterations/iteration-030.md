@@ -11,8 +11,8 @@ Walked a representative `system-spec-kit` feature flow from Gate 3 through spec 
 
 ## Evidence
 - Ralph's documented workflow is compact: create a PRD, convert it into Ralph's story format, then run the loop until complete. [SOURCE: external/README.md:88-130]
-- `system-spec-kit`'s common feature flow can involve Gate 3, documentation-level decisions, planning prompts, implementation prompts, completion prompts, validation, memory save behavior, and optional handover/recovery tooling. [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:342-443] [SOURCE: .opencode/command/spec_kit/plan.md:31-145] [SOURCE: .opencode/command/spec_kit/implement.md:35-120] [SOURCE: .opencode/command/spec_kit/complete.md:1-4] [SOURCE: .opencode/command/spec_kit/handover.md:195-224]
-- The repo already contains the ingredients for a smoother path, including `/spec_kit:resume`, hooks, and progressive enhancement, but they are not yet assembled into one obvious "start work" experience. [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:741-804] [SOURCE: .opencode/skill/system-spec-kit/references/workflows/quick_reference.md:21-45]
+- `system-spec-kit`'s common feature flow can involve Gate 3, documentation-level decisions, planning prompts, implementation prompts, completion prompts, validation, memory save behavior, and optional handover/recovery tooling. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:342-443] [SOURCE: .opencode/commands/spec_kit/plan.md:31-145] [SOURCE: .opencode/commands/spec_kit/implement.md:35-120] [SOURCE: .opencode/commands/spec_kit/complete.md:1-4] [SOURCE: .opencode/commands/spec_kit/handover.md:195-224]
+- The repo already contains the ingredients for a smoother path, including `/spec_kit:resume`, hooks, and progressive enhancement, but they are not yet assembled into one obvious "start work" experience. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:741-804] [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:21-45]
 
 ## Analysis
 This comparison makes the UX verdict hard to ignore. Ralph asks the user to understand a small task loop. `system-spec-kit` asks the user to understand an operating system. The deeper machinery is not worthless; it is often justified. But the default feature path still needs a stronger frontend. The best response is not deleting the governed stack. It is designing a guided start experience that chooses the right lane, creates only the minimum necessary artifacts, and keeps advanced surfaces in reserve.
@@ -23,7 +23,7 @@ confidence: high
 finding: `system-spec-kit` should redesign the front door around a guided "start work" flow that chooses the right lane, provisions only the needed artifacts, and then drives the lifecycle on the operator's behalf.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
 - **Change type:** modified existing
 - **Blast radius:** architectural
 - **Prerequisites:** define lane-selection criteria and how the guided start hands off to expert subflows when needed
@@ -39,7 +39,7 @@ finding: `system-spec-kit` should redesign the front door around a guided "start
 - **Net recommendation:** REDESIGN
 
 ## Counter-evidence sought
-I looked for proof that the current end-to-end experience is already fronted by a single guided command and found only partial ingredients, not a unified operator journey. [SOURCE: .opencode/skill/system-spec-kit/references/workflows/quick_reference.md:110-187] [SOURCE: .opencode/command/spec_kit/resume.md:200-223]
+I looked for proof that the current end-to-end experience is already fronted by a single guided command and found only partial ingredients, not a unified operator journey. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:110-187] [SOURCE: .opencode/commands/spec_kit/resume.md:200-223]
 
 ## Follow-up questions for next iteration
 - None. This iteration closes Phase 3 and feeds directly into combined synthesis.

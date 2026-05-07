@@ -63,7 +63,7 @@ Wave 3 synthesis is complete. All 197 unique findings have been verified, sprint
 
 ### Technical Context
 
-This plan synthesizes findings across the `009-perfect-session-capturing` subsystem rather than implementing code changes directly. The main technical inputs are the Wave 1 and Wave 3 scratch artifacts, the current parent phase tree, and the live TypeScript/runtime surfaces under `.opencode/skill/system-spec-kit/scripts/`.
+This plan synthesizes findings across the `009-perfect-session-capturing` subsystem rather than implementing code changes directly. The main technical inputs are the Wave 1 and Wave 3 scratch artifacts, the current parent phase tree, and the live TypeScript/runtime surfaces under `.opencode/skills/system-spec-kit/scripts/`.
 
 Key constraints:
 - Sprint sequencing must preserve current runtime stability while addressing the highest-risk architecture and data-integrity issues first.

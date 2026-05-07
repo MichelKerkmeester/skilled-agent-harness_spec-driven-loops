@@ -64,11 +64,11 @@ _memory:
 - [x] T-000d Author `checklist.md`
 - [x] T-000e Author `resource-map.md`
 - [x] T-000f Generate `description.json` + `graph-metadata.json` via `generate-context.js`
-- [ ] T-000g `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/079-sk-deep-agent-improvement --strict` → exit 0
+- [ ] T-000g `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/079-sk-deep-agent-improvement --strict` → exit 0
 
 ### Folder rename (cli-copilot)
 
-- [ ] T-001 [CRITICAL] `git mv .opencode/skill/sk-improve-agent .opencode/skill/deep-agent-improvement` → `ls .opencode/skill/deep-agent-improvement/SKILL.md` succeeds
+- [ ] T-001 [CRITICAL] `git mv .opencode/skills/sk-improve-agent .opencode/skills/deep-agent-improvement` → `ls .opencode/skills/deep-agent-improvement/SKILL.md` succeeds
 - [ ] T-002 Symlink rename + retarget — `rm .opencode/changelog/sk-improve-agent && ln -s ../skill/deep-agent-improvement/changelog .opencode/changelog/deep-agent-improvement` → `readlink` resolves
 <!-- /ANCHOR:phase-1 -->
 
@@ -81,7 +81,7 @@ _memory:
 
 ### Wave 2A: In-skill updates (parallel ≤3)
 
-- [ ] T-003 [P][CRITICAL] Update `.opencode/skill/deep-agent-improvement/SKILL.md` — frontmatter `name`, first `triggers[]` entry, HTML keyword comment line 15, body path refs lines 221, 298, 312, 351 → `grep -c 'sk-improve-agent' SKILL.md` returns 0
+- [ ] T-003 [P][CRITICAL] Update `.opencode/skills/deep-agent-improvement/SKILL.md` — frontmatter `name`, first `triggers[]` entry, HTML keyword comment line 15, body path refs lines 221, 298, 312, 351 → `grep -c 'sk-improve-agent' SKILL.md` returns 0
 - [ ] T-004 [P] Update `README.md` — frontmatter title, category tag line 5, heading line 13, description line 36, table line 50, script paths lines 101/104/107, refs lines 209/306/314 → 11 refs cleared
 - [ ] T-005 [P][CRITICAL] Update `graph-metadata.json` — `skill_id`, `siblings[].target`, all `derived.trigger_phrases[]`, all `derived.key_files[]`, all `derived.entities[].path` → `jq '.skill_id'` returns `"deep-agent-improvement"`
 - [ ] T-006 [P][CRITICAL] Update `scripts/run-benchmark.cjs:258` (hardcoded profilesDir) and `scripts/scan-integration.cjs:2` (header comment) → `grep -c 'sk-improve-agent' scripts/*.cjs` returns 0
@@ -91,28 +91,28 @@ _memory:
 
 ### Wave 2B: Skill advisor (cli-copilot — CRITICAL, sequential)
 
-- [ ] T-010 [CRITICAL] Update `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` — replace ALL 156 `sk-improve-agent` refs in TOKEN_BOOSTS / PHRASE_BOOSTS scoring tables (lines ~1548-1703). Use Sequential Thinking to ensure no phrase silently dropped → `grep -c 'sk-improve-agent' skill_advisor.py` returns 0
+- [ ] T-010 [CRITICAL] Update `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` — replace ALL 156 `sk-improve-agent` refs in TOKEN_BOOSTS / PHRASE_BOOSTS scoring tables (lines ~1548-1703). Use Sequential Thinking to ensure no phrase silently dropped → `grep -c 'sk-improve-agent' skill_advisor.py` returns 0
 - [ ] T-011 [CRITICAL] Update `skill_advisor/scripts/skill-graph.json` — registry key (line 148), skill list entry (line 29), dependency weights (lines 161, 182), trigger phrases (line 349), graph-metadata sibling (`graph-metadata.json:24`) → JSON parses; registry key is `deep-agent-improvement`
 - [ ] T-012 [CRITICAL] Update `skill_advisor/lib/scorer/fusion.ts:270` penalty list literal → typecheck passes
 - [ ] T-013 Update `skill_advisor/tests/scorer/native-scorer.vitest.ts:315,343` test fixture skill IDs
 - [ ] T-014 Update `mcp_server/tests/remediation-008-docs.vitest.ts:22` assertion path string
-- [ ] T-015 [CRITICAL] `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` → regenerates `dist/skill_advisor/`; `grep 'sk-improve-agent' dist/skill_advisor/lib/scorer/fusion.js` returns 0
+- [ ] T-015 [CRITICAL] `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` → regenerates `dist/skill_advisor/`; `grep 'sk-improve-agent' dist/skill_advisor/lib/scorer/fusion.js` returns 0
 - [ ] T-016 [CRITICAL] Invoke `mcp__spec_kit_memory__advisor_rebuild` → SQLite cache `database/skill-graph.sqlite` rebuilt; `advisor_status` reports current build timestamp
 
 ### Wave 2C: Cross-skill metadata (parallel ≤3)
 
-- [ ] T-017 [P] Update `.opencode/skill/sk-improve-prompt/graph-metadata.json:32` `siblings[].target` → JSON parses
-- [ ] T-018 [P] Update `.opencode/skill/README.md` lines 60, 173, 210 → 3 refs cleared
+- [ ] T-017 [P] Update `.opencode/skills/sk-improve-prompt/graph-metadata.json:32` `siblings[].target` → JSON parses
+- [ ] T-018 [P] Update `.opencode/skills/README.md` lines 60, 173, 210 → 3 refs cleared
 - [ ] T-019 [P] Update `system-spec-kit/changelog/v3.3.0.0.md` (path strings only; lines 99, 147-151, 163) and `v3.4.0.0.md` (line 171). Historical narrative untouched
 
 ### Wave 2D: Command surfaces in 4 runtimes (parallel waves ≤3)
 
 #### Sub-wave .opencode/ (canonical, sequential within sub-wave)
 
-- [ ] T-020 Update `.opencode/command/improve/agent.md` — line 238 (Skill matrix), line 293 (inline node template), 7+ body refs → `grep -c 'sk-improve-agent' agent.md` returns 0
-- [ ] T-021 Update `.opencode/command/improve/README.txt` (2 refs lines 1, 3) → 0 hits
-- [ ] T-022 [CRITICAL] Update `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` — 32 refs: `skill:` field, all asset paths, all inline `node` templates → 0 hits; YAML parses
-- [ ] T-023 [CRITICAL] Update `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` — 33 refs → 0 hits
+- [ ] T-020 Update `.opencode/commands/improve/agent.md` — line 238 (Skill matrix), line 293 (inline node template), 7+ body refs → `grep -c 'sk-improve-agent' agent.md` returns 0
+- [ ] T-021 Update `.opencode/commands/improve/README.txt` (2 refs lines 1, 3) → 0 hits
+- [ ] T-022 [CRITICAL] Update `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` — 32 refs: `skill:` field, all asset paths, all inline `node` templates → 0 hits; YAML parses
+- [ ] T-023 [CRITICAL] Update `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` — 33 refs → 0 hits
 
 #### Sub-wave runtime mirrors (parallel ≤3)
 
@@ -122,7 +122,7 @@ _memory:
 
 ### Wave 2E: Agent definitions in 4 runtimes (parallel ≤3)
 
-- [ ] T-027 [P] Update `.opencode/agent/improve-agent.md:5` Skill matrix. Agent name `improve-agent` itself NOT renamed
+- [ ] T-027 [P] Update `.opencode/agents/improve-agent.md:5` Skill matrix. Agent name `improve-agent` itself NOT renamed
 - [ ] T-028 [P] Update `.claude/agents/improve-agent.md:5`
 - [ ] T-029 [P] Update `.gemini/agents/improve-agent.md:5`
 - [ ] T-030 [P] Update `.codex/agents/improve-agent.toml:2`
@@ -142,11 +142,11 @@ _memory:
 
 > Post-implementation verification suite. Claude orchestrates; cli-copilot may assist on T-040 summary authoring.
 
-- [ ] T-035 [CRITICAL] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/079-sk-deep-agent-improvement --strict` → exit 0
+- [ ] T-035 [CRITICAL] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/079-sk-deep-agent-improvement --strict` → exit 0
 - [ ] T-036 [CRITICAL] Residual grep — `grep -rn 'sk-improve-agent' --include='*.md' --include='*.json' --include='*.toml' --include='*.ts' --include='*.js' --include='*.py' --include='*.yaml' --include='*.yml' --include='*.sh' .opencode/ .claude/ .gemini/ .codex/ README.md AGENTS.md CLAUDE.md | grep -v 'specs/' | grep -v 'changelog/v1\.[0-2]\.' | grep -v 'system-spec-kit/changelog/v3\.[34]\.'` → 0 lines
 - [ ] T-037 [CRITICAL] Skill advisor smoke — `mcp__spec_kit_memory__advisor_recommend({prompt: "improve agent loop"})` returns `deep-agent-improvement` as top hit; confidence ≥ 0.85
-- [ ] T-038 [CRITICAL] Smoke `/improve:agent` dispatch on sandbox agent at `.opencode/skill/deep-agent-improvement/test-fixtures/060-stress-test/.opencode/agent/cp-improve-target.md` → one auto-mode iteration completes (integration scan + profile + scoring + journal write); zero broken-path errors
-- [ ] T-039 [CRITICAL] `cd .opencode/skill/system-spec-kit/mcp_server && npm test` → all tests pass; particularly `native-scorer.vitest.ts` and `remediation-008-docs.vitest.ts`
+- [ ] T-038 [CRITICAL] Smoke `/improve:agent` dispatch on sandbox agent at `.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/.opencode/agents/cp-improve-target.md` → one auto-mode iteration completes (integration scan + profile + scoring + journal write); zero broken-path errors
+- [ ] T-039 [CRITICAL] `cd .opencode/skills/system-spec-kit/mcp_server && npm test` → all tests pass; particularly `native-scorer.vitest.ts` and `remediation-008-docs.vitest.ts`
 - [ ] T-040 Author `implementation-summary.md` with: rollup of REQ-001..REQ-016 (with evidence outputs), changed-files count, residual-grep proof, advisor smoke output, vitest summary, dispatch smoke output, link to new `v1.3.0.0.md` changelog entry
 - [ ] T-041 `/memory:save` — invoke memory save flow; `_memory.continuity.completion_pct` = 100; description.json + graph-metadata.json regenerated
 <!-- /ANCHOR:phase-3 -->

@@ -52,7 +52,7 @@ _memory:
 - [ ] T005 [P2] Hash content on mtime drift before declaring stale (F-014-C4-01) (`mcp_server/code_graph/lib/code-graph-db.ts`)
 - [ ] T006 [P2] Filter HEAD diffs through index scope before declaring full-scan (F-014-C4-02) (`mcp_server/code_graph/lib/ensure-ready.ts`)
 - [ ] T007 [P1] Persist + compare candidate manifest for untracked indexable files (F-014-C4-03) (`mcp_server/code_graph/lib/ensure-ready.ts`)
-- [ ] T008 [P1] Redefine doctor Phase 1 Analysis around existing handler outputs (F-014-C4-04) (`.opencode/command/doctor/assets/doctor_code-graph_auto.yaml`)
+- [ ] T008 [P1] Redefine doctor Phase 1 Analysis around existing handler outputs (F-014-C4-04) (`.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml`)
 - [ ] T009 [P2] Wrap multi-SELECT query operations in a short read transaction (F-002-A2-03) (`mcp_server/code_graph/handlers/query.ts`)
 - [ ] T010 [P2] Return typed `resolved | unavailable | unresolved` from `resolveSubjectToRef` (F-004-A4-02) (`mcp_server/code_graph/lib/code-graph-context.ts`)
 - [ ] T011 [P2] Distinguish absent / corrupt / invalid-shape metadata reads (F-004-A4-03) (`mcp_server/code_graph/lib/code-graph-db.ts`)

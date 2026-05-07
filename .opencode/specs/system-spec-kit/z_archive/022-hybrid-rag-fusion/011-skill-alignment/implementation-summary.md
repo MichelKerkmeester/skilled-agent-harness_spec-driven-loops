@@ -63,15 +63,15 @@ _memory:
 | `tasks.md` | Removed obsolete command-surface framing and kept only genuine remaining backlog items |
 | `checklist.md` | Replaced old verification evidence with pack-reconciliation checks |
 | `implementation-summary.md` | Replaced the superseded implementation story with this reconciliation summary |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Memory-surface wording (33 tools, 4 commands), save-workflow/shared-memory governance framing |
-| `.opencode/skill/system-spec-kit/references/memory/save_workflow.md` | Shared-memory governance and save-routing framing |
-| `.opencode/skill/system-spec-kit/references/memory/embedding_resilience.md` | Shared-space and governance framing |
-| `.opencode/skill/system-spec-kit/references/memory/memory_system.md` | Added `memory_quick_search()` row (32 to 33 rows) |
-| `.opencode/skill/system-spec-kit/references/config/environment_variables.md` | Graduated spec-011 flag documentation (9 flags) |
-| `.opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md` | Campaign/shared-space/cross-phase dispatch guidance |
-| `.opencode/skill/system-spec-kit/assets/complexity_decision_matrix.md` | Campaign/shared-space scoring guidance |
-| `.opencode/skill/system-spec-kit/assets/level_decision_matrix.md` | Campaign/shared-space level-selection guidance |
-| `.opencode/skill/system-spec-kit/assets/template_mapping.md` | Campaign/shared-space/cross-phase template-routing guidance |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Memory-surface wording (33 tools, 4 commands), save-workflow/shared-memory governance framing |
+| `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | Shared-memory governance and save-routing framing |
+| `.opencode/skills/system-spec-kit/references/memory/embedding_resilience.md` | Shared-space and governance framing |
+| `.opencode/skills/system-spec-kit/references/memory/memory_system.md` | Added `memory_quick_search()` row (32 to 33 rows) |
+| `.opencode/skills/system-spec-kit/references/config/environment_variables.md` | Graduated spec-011 flag documentation (9 flags) |
+| `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md` | Campaign/shared-space/cross-phase dispatch guidance |
+| `.opencode/skills/system-spec-kit/assets/complexity_decision_matrix.md` | Campaign/shared-space scoring guidance |
+| `.opencode/skills/system-spec-kit/assets/level_decision_matrix.md` | Campaign/shared-space level-selection guidance |
+| `.opencode/skills/system-spec-kit/assets/template_mapping.md` | Campaign/shared-space/cross-phase template-routing guidance |
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -93,7 +93,7 @@ _memory:
 
 - Strict Spec Kit validation was run for `011-skill-alignment`.
 - Targeted stale-string checks were re-run against the five canonical docs.
-- Live count checks were re-run against `.opencode/command/memory/` and `mcp_server/tool-schemas.ts`.
+- Live count checks were re-run against `.opencode/commands/memory/` and `mcp_server/tool-schemas.ts`.
 <!-- /ANCHOR:verification -->
 
 ---

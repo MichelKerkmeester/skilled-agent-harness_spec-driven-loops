@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Restart Claude Code session to verify SAD-002 production-side"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/03-ambiguity.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/03-ambiguity.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-084"

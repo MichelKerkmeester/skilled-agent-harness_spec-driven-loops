@@ -14,15 +14,15 @@ _memory:
     last_updated_at: "2026-05-02T06:53:47Z"
     last_updated_by: "codex"
     recent_action: "Initialized Level 3 packet docs for command Markdown and YAML alignment audit"
-    next_safe_action: "Run inventory grep across .opencode/command/spec_kit and patch stale command/YAML prose"
+    next_safe_action: "Run inventory grep across .opencode/commands/spec_kit and patch stale command/YAML prose"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/complete.md"
-      - ".opencode/command/spec_kit/deep-research.md"
-      - ".opencode/command/spec_kit/deep-review.md"
-      - ".opencode/command/spec_kit/implement.md"
-      - ".opencode/command/spec_kit/plan.md"
-      - ".opencode/command/spec_kit/resume.md"
+      - ".opencode/commands/spec_kit/complete.md"
+      - ".opencode/commands/spec_kit/deep-research.md"
+      - ".opencode/commands/spec_kit/deep-review.md"
+      - ".opencode/commands/spec_kit/implement.md"
+      - ".opencode/commands/spec_kit/plan.md"
+      - ".opencode/commands/spec_kit/resume.md"
     session_dedup:
       fingerprint: "sha256:0060060060060060060060060060060060060060060060060060060060060060"
       session_id: "2026-05-02-006-command-md-yaml-alignment"
@@ -45,7 +45,7 @@ This packet audits the AI-facing command surfaces for `/spec_kit` after the temp
 
 **Key Decisions**: keep the audit boundary identical to packet 005 for stale public vocabulary, and validate every YAML edit before treating the command pipeline as safe.
 
-**Critical Dependencies**: the command files under `.opencode/command/spec_kit/`, the YAML workflow assets under `.opencode/command/spec_kit/assets/`, the workflow-invariance vitest, and strict spec validation.
+**Critical Dependencies**: the command files under `.opencode/commands/spec_kit/`, the YAML workflow assets under `.opencode/commands/spec_kit/assets/`, the workflow-invariance vitest, and strict spec validation.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -80,8 +80,8 @@ Align the 18 in-scope command assets with the current system so users and AI run
 ## 3. SCOPE
 
 ### In Scope
-- Audit and patch 6 command Markdown files under `.opencode/command/spec_kit/`.
-- Audit and patch 12 command YAML workflow assets under `.opencode/command/spec_kit/assets/`.
+- Audit and patch 6 command Markdown files under `.opencode/commands/spec_kit/`.
+- Audit and patch 12 command YAML workflow assets under `.opencode/commands/spec_kit/assets/`.
 - Remove or rewrite stale references to deleted scripts, deleted folders, and the old architecture label.
 - Add current feature notes only where they affect command behavior.
 - Validate workflow invariance, YAML parseability, and packet documentation.
@@ -97,13 +97,13 @@ Align the 18 in-scope command assets with the current system so users and AI run
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/complete.md` | Audit/Modify | Remove stale references and add current completion validation behavior where relevant. |
-| `.opencode/command/spec_kit/deep-research.md` | Audit/Modify | Remove stale references and align validation/performance notes where natural. |
-| `.opencode/command/spec_kit/deep-review.md` | Audit/Modify | Remove stale references and align workflow wording. |
-| `.opencode/command/spec_kit/implement.md` | Audit/Modify | Remove stale references and align validation exit semantics where relevant. |
-| `.opencode/command/spec_kit/plan.md` | Audit/Modify | Remove stale references and align phase syntax/path-hardening notes where relevant. |
-| `.opencode/command/spec_kit/resume.md` | Audit/Modify | Remove stale references and align continuity-save locking notes where relevant. |
-| `.opencode/command/spec_kit/assets/spec_kit_*_{auto,confirm}.yaml` | Audit/Modify | Preserve IDs and ordering while correcting stale workflow prose or command strings. |
+| `.opencode/commands/spec_kit/complete.md` | Audit/Modify | Remove stale references and add current completion validation behavior where relevant. |
+| `.opencode/commands/spec_kit/deep-research.md` | Audit/Modify | Remove stale references and align validation/performance notes where natural. |
+| `.opencode/commands/spec_kit/deep-review.md` | Audit/Modify | Remove stale references and align workflow wording. |
+| `.opencode/commands/spec_kit/implement.md` | Audit/Modify | Remove stale references and align validation exit semantics where relevant. |
+| `.opencode/commands/spec_kit/plan.md` | Audit/Modify | Remove stale references and align phase syntax/path-hardening notes where relevant. |
+| `.opencode/commands/spec_kit/resume.md` | Audit/Modify | Remove stale references and align continuity-save locking notes where relevant. |
+| `.opencode/commands/spec_kit/assets/spec_kit_*_{auto,confirm}.yaml` | Audit/Modify | Preserve IDs and ordering while correcting stale workflow prose or command strings. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/graph-metadata.json` | Modify | Add this child packet and set it as the last active child. |
 <!-- /ANCHOR:scope -->
 
@@ -116,7 +116,7 @@ Align the 18 in-scope command assets with the current system so users and AI run
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Remove stale deleted-artifact references from in-scope command assets. | Gate A grep returns zero hits for the stale-pattern expression across `.opencode/command/spec_kit/`. |
+| REQ-001 | Remove stale deleted-artifact references from in-scope command assets. | Gate A grep returns zero hits for the stale-pattern expression across `.opencode/commands/spec_kit/`. |
 | REQ-002 | Preserve YAML workflow structure while editing. | Every edited YAML file parses with `python3 -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" <file>`. |
 | REQ-003 | Keep runtime workflow semantics stable. | `workflow-invariance.vitest.ts` passes after edits. |
 | REQ-004 | Keep the 006 packet valid. | `validate.sh "$PACKET" --strict` exits successfully. |
@@ -138,7 +138,7 @@ Align the 18 in-scope command assets with the current system so users and AI run
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Zero stale-pattern hits remain in `.opencode/command/spec_kit/`.
+- **SC-001**: Zero stale-pattern hits remain in `.opencode/commands/spec_kit/`.
 - **SC-002**: Zero banned public vocabulary leaks remain in user-facing command prose, except allowed literal `templates/manifest/` directory usage and non-template runtime terms.
 - **SC-003**: YAML workflow steps reference current commands and paths without changing step IDs or ordering.
 - **SC-004**: Newly relevant behavior is mentioned in the command surfaces that naturally need it.
@@ -181,7 +181,7 @@ Align the 18 in-scope command assets with the current system so users and AI run
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty grep output: Treat as a pass only after running the command over the full `.opencode/command/spec_kit/` scope.
+- Empty grep output: Treat as a pass only after running the command over the full `.opencode/commands/spec_kit/` scope.
 - Runtime workflow terminology: Classify as legitimate when it refers to YAML command execution metadata rather than spec-kit template internals.
 
 ### Error Scenarios

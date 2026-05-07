@@ -21,25 +21,25 @@ I read all three prior iteration files, then avoided rereading the full triad. I
 
 ### RQ-7: Are the 5 legal-stop gates grep-checkable from journal output, or LLM-judge-based?
 
-The intended RT-028 contract is grep-checkable, but the executable test layer does not currently lock it down. RT-028 requires a `legal_stop_evaluated` event with `details.gateResults` containing all five gate bundles, and a `blocked_stop` event with `details.failedGates[]` when any gate fails (`.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:20-29`, `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:43-45`). That is stronger than an LLM judge: the verification code literally filters journal JSON events and checks gate-key presence (`028-legal-stop-gates.md:45`).
+The intended RT-028 contract is grep-checkable, but the executable test layer does not currently lock it down. RT-028 requires a `legal_stop_evaluated` event with `details.gateResults` containing all five gate bundles, and a `blocked_stop` event with `details.failedGates[]` when any gate fails (`.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:20-29`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:43-45`). That is stronger than an LLM judge: the verification code literally filters journal JSON events and checks gate-key presence (`028-legal-stop-gates.md:45`).
 
-The new gap is that the automated regression cross-reference omits RT-028. The root playbook maps `improvement-journal.vitest.ts` to RT-025, RT-026, and RT-032, but not RT-028 (`.opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:592-603`). The journal unit test validates frozen stop reasons/outcomes and generic event acceptance, but its explicit event-type assertions only check a sample including `session_start`, `candidate_generated`, `candidate_scored`, `session_ended`, and `trade_off_detected` (`.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:61-68`), then validates `session_ended/session_end` stop reason and outcome fields (`improvement-journal.vitest.ts:90-118`). It does not assert that `legal_stop_evaluated` must contain all five gate keys, nor that `blocked_stop` must contain failed-gate details.
+The new gap is that the automated regression cross-reference omits RT-028. The root playbook maps `improvement-journal.vitest.ts` to RT-025, RT-026, and RT-032, but not RT-028 (`.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:592-603`). The journal unit test validates frozen stop reasons/outcomes and generic event acceptance, but its explicit event-type assertions only check a sample including `session_start`, `candidate_generated`, `candidate_scored`, `session_ended`, and `trade_off_detected` (`.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:61-68`), then validates `session_ended/session_end` stop reason and outcome fields (`improvement-journal.vitest.ts:90-118`). It does not assert that `legal_stop_evaluated` must contain all five gate keys, nor that `blocked_stop` must contain failed-gate details.
 
-The helper itself explains why the current tests pass despite the stronger policy gap: `VALID_EVENT_TYPES` includes `legal_stop_evaluated` and `blocked_stop` (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:49-69`), but `validateEvent()` only applies schema validation to `session_ended` and `session_end` details (`improvement-journal.cjs:80-107`). Therefore `legal_stop_evaluated` is a valid event name, not a validated legal-stop bundle.
+The helper itself explains why the current tests pass despite the stronger policy gap: `VALID_EVENT_TYPES` includes `legal_stop_evaluated` and `blocked_stop` (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:49-69`), but `validateEvent()` only applies schema validation to `session_ended` and `session_end` details (`improvement-journal.cjs:80-107`). Therefore `legal_stop_evaluated` is a valid event name, not a validated legal-stop bundle.
 
 ### RQ-3: Do sk-improve-agent's scripts actually fire when the skill is loaded, or does the agent read SKILL.md and improvise?
 
 Iterations 1-3 already answered that skill load does not fire scripts. This pass adds a boundary-specific variant: even within the command-owned YAML, some advertised journal and benchmark boundaries are actions or weaker events rather than helper invocations.
 
-The agent contract says the orchestrator emits `benchmark_completed` after benchmark, then emits `legal_stop_evaluated` or `blocked_stop` after legal-stop evaluation (`.opencode/agent/improve-agent.md:153-163`). The auto YAML does score and candidate journal events, but benchmark execution is an `action` placeholder, not a `run-benchmark.cjs` command, and repeatability is measured from a single score JSON via an inline `benchmark-stability.cjs` call (`.opencode/command/improve/assets/improve_improve-agent_auto.yaml:171-176`). The same pattern appears in confirm mode (`.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:202-207`).
+The agent contract says the orchestrator emits `benchmark_completed` after benchmark, then emits `legal_stop_evaluated` or `blocked_stop` after legal-stop evaluation (`.opencode/agents/improve-agent.md:153-163`). The auto YAML does score and candidate journal events, but benchmark execution is an `action` placeholder, not a `run-benchmark.cjs` command, and repeatability is measured from a single score JSON via an inline `benchmark-stability.cjs` call (`.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:171-176`). The same pattern appears in confirm mode (`.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:202-207`).
 
-The benchmark runner itself can append a `benchmark_run` record to a state log if `--state-log` is provided (`.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:257-269`), but that is not the improvement journal's `benchmark_completed` event. The journal helper recognizes `benchmark_completed` as a valid event type (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:49-58`), yet the inspected YAML sections do not emit it before the stop gate (`improve_improve-agent_auto.yaml:171-191`, `improve_improve-agent_confirm.yaml:202-228`). This makes a grep-only stress test possible: require `benchmark_completed` in `improvement-journal.jsonl`, not just `benchmark-runs/.../repeatability.json`.
+The benchmark runner itself can append a `benchmark_run` record to a state log if `--state-log` is provided (`.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:257-269`), but that is not the improvement journal's `benchmark_completed` event. The journal helper recognizes `benchmark_completed` as a valid event type (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:49-58`), yet the inspected YAML sections do not emit it before the stop gate (`improve_improve-agent_auto.yaml:171-191`, `improve_improve-agent_confirm.yaml:202-228`). This makes a grep-only stress test possible: require `benchmark_completed` in `improvement-journal.jsonl`, not just `benchmark-runs/.../repeatability.json`.
 
 ### RQ-1: Does sk-improve-agent have an analog of "stress-test the failure paths"?
 
-The manual playbook is closer to a failure-path campaign than earlier iterations emphasized, but it is still not the 059 analog because release readiness is manual and scenario-level rather than same-task A/B enforced. The root playbook says every scenario must be executed for real, not mocked or called "unautomatable" (`.opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:6-9`), and release is only READY when RT-025..RT-034 have been executed or skipped with a sandbox blocker and all 31 features are covered (`manual_testing_playbook.md:117-125`). That is a serious operator contract.
+The manual playbook is closer to a failure-path campaign than earlier iterations emphasized, but it is still not the 059 analog because release readiness is manual and scenario-level rather than same-task A/B enforced. The root playbook says every scenario must be executed for real, not mocked or called "unautomatable" (`.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:6-9`), and release is only READY when RT-025..RT-034 have been executed or skipped with a sandbox blocker and all 31 features are covered (`manual_testing_playbook.md:117-125`). That is a serious operator contract.
 
-However, RT-032 currently codifies the weaker journal boundary that previous iterations flagged: it expects `gate_evaluation` inside each iteration and `session_end` after synthesis, not `legal_stop_evaluated`/`blocked_stop` as the legal-stop proof (`.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:20-29`, `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:43-45`). This creates a cross-playbook contradiction: RT-028 needs the five-gate legal-stop event, while RT-032's "boundary coverage" pass can succeed with only generic `gate_evaluation`.
+However, RT-032 currently codifies the weaker journal boundary that previous iterations flagged: it expects `gate_evaluation` inside each iteration and `session_end` after synthesis, not `legal_stop_evaluated`/`blocked_stop` as the legal-stop proof (`.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:20-29`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:43-45`). This creates a cross-playbook contradiction: RT-028 needs the five-gate legal-stop event, while RT-032's "boundary coverage" pass can succeed with only generic `gate_evaluation`.
 
 The improvement recommendation is not merely "add stress tests"; it is "promote RT-028 from manual prose to automated boundary validation, and make RT-032 depend on the stronger RT-028 event." That would turn the current manual runtime-truth checklist into a 059-style grep-checkable failure-path gate.
 
@@ -51,13 +51,13 @@ The improvement recommendation is not merely "add stress tests"; it is "promote 
 
 ## Ruled Out
 
-- I ruled out "RT-028 is LLM-judge-based": its verification reads `improvement-journal.jsonl` and checks event fields directly (`.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:43-45`).
-- I ruled out "the journal helper already validates the five legal-stop gates": `validateEvent()` only special-cases `session_ended/session_end`, not `legal_stop_evaluated` or `blocked_stop` (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:80-107`).
-- I ruled out "benchmark boundary evidence is already a journal event": `run-benchmark.cjs` appends `type: "benchmark_run"` to an optional state log (`.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:257-269`), while the command YAML uses an action placeholder and a repeatability file rather than a `benchmark_completed` journal emission (`.opencode/command/improve/assets/improve_improve-agent_auto.yaml:171-176`).
+- I ruled out "RT-028 is LLM-judge-based": its verification reads `improvement-journal.jsonl` and checks event fields directly (`.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:43-45`).
+- I ruled out "the journal helper already validates the five legal-stop gates": `validateEvent()` only special-cases `session_ended/session_end`, not `legal_stop_evaluated` or `blocked_stop` (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:80-107`).
+- I ruled out "benchmark boundary evidence is already a journal event": `run-benchmark.cjs` appends `type: "benchmark_run"` to an optional state log (`.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:257-269`), while the command YAML uses an action placeholder and a repeatability file rather than a `benchmark_completed` journal emission (`.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:171-176`).
 
 ## Sketched Diff (if any)
 
-For `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` at `validateEvent(event)`, current text:
+For `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` at `validateEvent(event)`, current text:
 
 ```js
   if (event.eventType === 'session_ended' || event.eventType === 'session_end') {
@@ -97,7 +97,7 @@ Proposed addition immediately after that block:
   }
 ```
 
-For `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` at `step_run_benchmark`, current text:
+For `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` at `step_run_benchmark`, current text:
 
 ```yaml
 step_run_benchmark:
@@ -110,13 +110,13 @@ Proposed text:
 ```yaml
 step_run_benchmark:
   description: "Run fixture tests against packet-local outputs"
-  command: "node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs --profile={target_profile} --outputs-dir={spec_folder}/improvement/benchmark-runs/{target_profile}/outputs --output={benchmark_output_path} --state-log={spec_folder}/improvement/agent-improvement-state.jsonl --integration-report={spec_folder}/improvement/integration-report.json"
+  command: "node .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs --profile={target_profile} --outputs-dir={spec_folder}/improvement/benchmark-runs/{target_profile}/outputs --output={benchmark_output_path} --state-log={spec_folder}/improvement/agent-improvement-state.jsonl --integration-report={spec_folder}/improvement/integration-report.json"
 step_emit_journal_event_benchmark_completed:
   description: "Emit benchmark_completed journal event after benchmark runner completes"
-  command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"benchmarkOutputPath\":\"{benchmark_output_path}\"}'"
+  command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"benchmarkOutputPath\":\"{benchmark_output_path}\"}'"
 ```
 
-For `.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`, add one test block:
+For `.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`, add one test block:
 
 ```ts
 it('rejects incomplete legal-stop events', () => {

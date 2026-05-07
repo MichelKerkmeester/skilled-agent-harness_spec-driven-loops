@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/global/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -55,7 +55,7 @@ The create-command YAML suite now reads much more like one coherent workflow fam
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The refinement was delivered as one bounded documentation-asset pass. I compared the create asset suite against the richer `spec_kit` YAMLs, identified the shared top-level sections that were missing, rewrote the thinner feature/testing pairs, then added the same structural contract to the broader create asset set. After the edits, I ran a full YAML parse pass across `.opencode/command/create/assets/` and re-validated the two command README surfaces touched by the suite context.
+The refinement was delivered as one bounded documentation-asset pass. I compared the create asset suite against the richer `spec_kit` YAMLs, identified the shared top-level sections that were missing, rewrote the thinner feature/testing pairs, then added the same structural contract to the broader create asset set. After the edits, I ran a full YAML parse pass across `.opencode/commands/create/assets/` and re-validated the two command README surfaces touched by the suite context.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,9 +77,9 @@ The refinement was delivered as one bounded documentation-asset pass. I compared
 
 | Check | Result |
 |-------|--------|
-| Full YAML parse across `.opencode/command/create/assets/` | PASS |
-| `validate_document.py .opencode/command/create/README.txt` | PASS |
-| `validate_document.py .opencode/command/README.txt` | PASS |
+| Full YAML parse across `.opencode/commands/create/assets/` | PASS |
+| `validate_document.py .opencode/commands/create/README.txt` | PASS |
+| `validate_document.py .opencode/commands/README.txt` | PASS |
 | Missing-key sweep for the shared standard section set | PASS |
 | `.gemini/commands/create/*.toml` exact-match check against `.agents/commands/create/*.toml` | PASS |
 | Spec validator for `027-cmd-create-yaml-refinement` | PASS WITH WARNINGS (non-blocking AI protocol and custom-anchor warnings only) |

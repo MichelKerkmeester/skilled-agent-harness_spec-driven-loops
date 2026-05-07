@@ -20,11 +20,11 @@ Dimension: testing
 
 Evidence:
 
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:27` treats both `z_archive` and `z_future` as archive-like path segments.
-- `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:60` creates the only archive-like fixture.
-- `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:61` makes that fixture a `z_archive` packet.
-- `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:78` says the default traversal includes archived and future folders.
-- `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:117` says active-only skips archived packets.
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:27` treats both `z_archive` and `z_future` as archive-like path segments.
+- `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:60` creates the only archive-like fixture.
+- `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:61` makes that fixture a `z_archive` packet.
+- `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:78` says the default traversal includes archived and future folders.
+- `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:117` says active-only skips archived packets.
 
 The production regex covers both `z_archive` and `z_future`, and the test name claims future coverage, but the fixture tree never creates a `z_future` packet. A regression that accidentally drops or mishandles `z_future` could still pass all packet-owned backfill tests.
 

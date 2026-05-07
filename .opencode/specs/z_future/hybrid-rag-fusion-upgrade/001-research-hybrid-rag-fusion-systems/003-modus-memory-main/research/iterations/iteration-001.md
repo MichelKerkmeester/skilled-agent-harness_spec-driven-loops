@@ -37,12 +37,12 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 6. Read `external/modus-memory-main/internal/markdown/parser.go` and `external/modus-memory-main/internal/markdown/writer.go` after the retrieval core. Study frontmatter parsing, body parsing, wiki-link extraction, markdown write conventions, and how plain-file storage shapes operability and portability.
 7. Read MCP tool handlers next: `external/modus-memory-main/internal/mcp/vault.go` and `external/modus-memory-main/internal/mcp/memory.go`. Trace which tools are free vs. Pro, where librarian expansion is invoked, where cross-reference hints are appended, and where reinforcement happens automatically on search recall.
 8. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/modus-memory-main/README.md` only after the source files above. Use it to validate claims about cached search speed, markdown-native persistence, binary size, MCP surface area, and the intended value proposition. Do not let README marketing copy override code evidence.
-9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
+9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
 10. Separate overlap cleanly across phases: avoid redoing `001` as a generic MCP memory-server study, avoid drifting into `002` markdown-scaffold and drift-detection patterns, and avoid reframing `003` as vector or plugin work owned by `004`. This phase owns BM25, lightweight caching, librarian expansion, FSRS reinforcement loops, and adjacency-map cross-references.
 11. Before any deep-research run, ensure this phase folder contains the required Spec Kit docs for the research effort. If they are missing, note the gap and create or request them through the established spec workflow before claiming the phase is complete.
 12. Validate the phase folder before deep research with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
     ```
 13. After validation passes, run deep research against this same phase folder using this exact topic:
     ```text
@@ -51,7 +51,7 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 14. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, explain what Modus does, why it matters here, whether to `adopt now`, `prototype later`, or `reject`, what Public subsystem it affects, and what migration, compatibility, or validation risk comes with it.
 15. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
     ```
 
 ## 6. Research Questions
@@ -244,7 +244,7 @@ drwxr-xr-x   3 michelkerkmeester  staff     96 Apr 10 21:06 memory
 drwxr-xr-x   4 michelkerkmeester  staff    128 Apr 10 21:17 research
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1588ms:
 
 ───────────────────────────────────────────────────────────────
@@ -259,7 +259,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -272,7 +272,7 @@ exec
 codex
 The phase folder exists and already has `phase-research-prompt.md`, `research/`, `memory/`, and `external/`. I’m waiting on strict validation now, then I’m moving through the Modus source in the required order so the report is based on implementation details rather than README claims.
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -290,7 +290,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -568,7 +568,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/vault.go
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
@@ -586,7 +586,7 @@ user cancelled MCP tool call
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -613,9 +613,9 @@ exec
   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/writer.go \\
   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go \\
   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go \\
-  .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts \\
-  .opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts \\
-  .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+  .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts \\
+  .opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts \\
+  .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      147 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/main.go
      198 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/server.go
@@ -630,9 +630,9 @@ exec
       62 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/writer.go
      952 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go
       39 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go
-    1378 .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
-      82 .opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts
-     503 .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts
+    1378 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
+      82 .opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts
+     503 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts
     5664 total
 
 exec
@@ -3689,172 +3689,172 @@ Most memory systems let any LLM read and write freely. modus-memory is designed 
 codex
 The README mostly matches the code on the big-picture shape: local binary, markdown vault, BM25 search, FSRS decay, cross-reference index, and 11 exposed memory tools. The numbers are still README claims rather than code-proven benchmarks, so I’m separating those from the verified mechanics while I compare them to our own `memory_search` and FSRS paths.
 exec
-/bin/zsh -lc 'rg -n "export async function|memory_search|FSRS|scheduler|decay|reinforce|trackAccess|track_access|working memory|causal|semantic|hybrid|rerank|includeConstitutional|session" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "export async function|memory_search|FSRS|scheduler|decay|reinforce|trackAccess|track_access|working memory|causal|semantic|hybrid|rerank|includeConstitutional|session" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:4:// Feature catalog: Classification-based decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:5:// CANONICAL FSRS CONSTANTS & ALGORITHM
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:10:// FSRS v4 power-law: R(t) = (1 + FSRS_FACTOR * t/S)^FSRS_DECAY
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:11:// Timescale: days/weeks. Constants: FSRS_FACTOR=19/81, FSRS_DECAY=-0.5
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:12:// All long-term decay consumers MUST import constants from this file.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:16:// Timescale: minutes. Operates on session-scoped attention scores only.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:18:// DECAY STRATEGY (ADR-004): This is the CANONICAL long-term decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:19:// Algorithm. All temporal decay for persistent memories should route
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:23:// Consumers: attention-decay.ts (facade), composite-scoring.ts (temporal
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:31:/** FSRS v4 algorithm constants */
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:32:const FSRS_FACTOR = 19 / 81;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:33:const FSRS_DECAY = -0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:36:// From R(h) = 0.5: S = (FSRS_FACTOR / 3) * h = (19/243) * h
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:37:const FSRS_HALF_LIFE_FACTOR = FSRS_FACTOR / 3; // 19/243 ≈ 0.07819
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:77: * Calculate retrievability (probability of recall) using FSRS v4 formula.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:86:    1 + FSRS_FACTOR * (elapsedDays / stability),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:87:    FSRS_DECAY
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:95: * Uses simplified FSRS v4 update rules.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:132:  const interval = (safeStability / FSRS_FACTOR) * (Math.pow(desiredRetention, 1 / FSRS_DECAY) - 1);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:186: * Create initial FSRS parameters for a new memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:222:const FSRS_CONSTANTS = {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:223:  FSRS_FACTOR,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:224:  FSRS_DECAY,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:225:  FSRS_HALF_LIFE_FACTOR, // T301: derived constant (19/243)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:238: * C138: Tier-based decay multipliers for long-term memory stability.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:239: * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:240: * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:243: * (lower value = slower perceived time = slower decay). It is a SEPARATE system from
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:244: * IMPORTANCE_TIER_STABILITY_MULTIPLIER below, which operates on the FSRS stability
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:261:   Multiplies FSRS stability so that:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:262:     - Infinity stability → R(t) = 1.0 always (no decay)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:263:     - >1.0 stability multiplier → slower decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:264:     - <1.0 stability multiplier → faster decay */
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:268: * Applied to the FSRS stability parameter before computing retrievability.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:269: * Infinity = no decay (retrievability always 1.0).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:270: * 2.0 = stability doubled → slower decay.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:271: * 1.0 = standard FSRS schedule.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:274:  planning: Infinity,    // no decay — planning/decisions are permanent
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:275:  research: 2.0,         // 2x stability — research context decays slower
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:276:  implementation: 1.0,   // standard decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:277:  general: 1.0,          // standard decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:291: * constitutional/critical: Infinity = never decays.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:292: * important: 1.5x stability → slower decay.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:294: * temporary: 0.5x → faster decay (2x relative speed).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:295: * deprecated: 0.25x → fastest decay (4x relative speed).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:298:  constitutional: Infinity, // never decays
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:299:  critical: Infinity,       // never decays
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:300:  important: 1.5,           // slower decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:302:  temporary: 0.5,           // faster decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:303:  deprecated: 0.25,         // fastest decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:311: *     (no-decay wins unconditionally).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:316: * which makes R(t) = (1 + factor * t / Infinity)^decay = 1.0 for all t.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:326:  // Infinity * anything = Infinity (no-decay wins)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:335: * TM-03: Apply classification-based decay to a stability value.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:339: * Returns Infinity when the combined multiplier is Infinity (no-decay).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:341: * @param stability      Base FSRS stability value
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:377:   2. ENGAGEMENT-SENSITIVE documents — all other context_types (session, scratch,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:379:      Normal FSRS schedule applies without modification.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:387: * Context types that should never decay under the hybrid decay policy.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:396:const HYBRID_FSRS_CONTEXT_TYPES: ReadonlySet<string> = new Set([
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:397:  'session',
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:408: * REQ-D4-002: Check whether the hybrid decay policy feature flag is enabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:417: * REQ-D4-002: Classify a memory's decay behaviour under the hybrid policy.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:420: *   - 'no_decay'       for decision / constitutional / critical context types
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:421: *   - 'fsrs_schedule'  for all engagement-sensitive types (session, scratch, etc.)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:423:type HybridDecayClass = 'no_decay' | 'fsrs_schedule';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:427:    return 'no_decay';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:440: * REQ-D4-002: Apply the hybrid decay policy to a stability value.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:444: *   - decision / constitutional / critical → returns Infinity (no decay)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:445: *   - all others → returns stability unchanged (normal FSRS schedule)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:447: * @param stability    Base FSRS stability value
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:449: * @returns Adjusted stability: Infinity for no-decay types, original otherwise
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:458:  FSRS_FACTOR,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:459:  FSRS_DECAY,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:460:  FSRS_HALF_LIFE_FACTOR, // T301: derived constant for half-life ↔ stability
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:470:  FSRS_CONSTANTS,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:473:  // TM-03: Classification-based decay constants and functions
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:479:  // REQ-D4-002: Hybrid decay policy
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:481:  HYBRID_FSRS_CONTEXT_TYPES,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:9:import * as sessionManager from '../lib/session/session-manager.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:69:} from '../lib/search/session-transition.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:93:} from '../lib/search/session-state.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:190:  includeConstitutional?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:194:  sessionId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:200:  rerank?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:210:  sessionTransition?: SessionTransitionTrace;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:324:function buildSessionStatePayload(sessionId: string): Record<string, unknown> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:325:  const session = retrievalSessionStateManager.getOrCreate(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:327:    activeGoal: session.activeGoal,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:328:    seenResultIds: Array.from(session.seenResultIds),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:329:    openQuestions: [...session.openQuestions],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:330:    preferredAnchors: [...session.preferredAnchors],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:450:function applySessionDedup(results: MemorySearchRow[], sessionId: string, enableDedup: boolean): DedupResult {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:451:  if (!enableDedup || !sessionId || !sessionManager.isEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:454:      dedupStats: { enabled: false, sessionId: null }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:458:  const { filtered, dedupStats } = sessionManager.filterSearchResults(sessionId, results as Parameters<typeof sessionManager.filterSearchResults>[1]);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:461:    sessionManager.markResultsSent(sessionId, filtered as Parameters<typeof sessionManager.markResultsSent>[1]);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:468:      sessionId
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:507:    includeConstitutional: includeConstitutional = true,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:511:    sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:517:    rerank = true, // Enable reranking by default for better result quality
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:527:    sessionTransition,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:533:  const normalizedScope = normalizeScopeContext({ tenantId, userId, agentId, sessionId, sharedSpaceId });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:538:    sessionId: normalizedScope.sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:714:    sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:737:    includeConstitutional,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:742:    rerank,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:744:    sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:777:        : 'hybrid',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:788:      includeConstitutional,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:795:      rerank,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:797:      sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:886:    if (sessionId && isSessionRetrievalStateEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:889:        retrievalSessionStateManager.updateGoal(sessionId, activeGoal);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:892:        retrievalSessionStateManager.setAnchors(sessionId, anchors);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:895:      const goalRefinement = refineForGoal(resultsForFormatting, sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:952:    if (pipelineResult.metadata.stage3.rerankApplied) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:953:      extraData.rerankMetadata = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:954:        reranking_enabled: true,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:955:        reranking_requested: true,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:956:        reranking_applied: true,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:985:      session: { applied: pipelineResult.metadata.stage2.sessionBoostApplied },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1054:  if (sessionId && isSessionRetrievalStateEnabled() && !sessionManager.isEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1062:      const deduped = deduplicateWithSessionState(existingResults, sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1065:      data.sessionDedup = deduped.metadata;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1071:  // Apply session deduplication AFTER cache
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1072:  if (sessionId && enableDedup && sessionManager.isEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1103:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1121:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1146:  if (sessionId && isSessionRetrievalStateEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1159:        retrievalSessionStateManager.markSeen(sessionId, returnedIds);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1162:      data.sessionState = buildSessionStatePayload(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1172:  if (includeTrace && sessionTransition) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1173:    responseToReturn = attachSessionTransitionTrace(responseToReturn, sessionTransition);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1178:    retrievalTelemetry.recordTransitionDiagnostics(telemetry, sessionTransition);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1208:        session_id: sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1275:            sessionId: sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1314:          trackQueryAndDetect(db, sessionId ?? null, normalizedQuery, queryId, shownIds);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1319:          logResultCited(db, sessionId ?? null, queryId, shownIds);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:4:// Feature catalog: Classification-based decay
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:5:// Augments FSRS stability scores with graph centrality so that
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:6:// Central nodes decay slower and peripheral nodes decay faster.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:26: * Compute structural freshness by augmenting an FSRS stability score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:33: * nodes (low centrality) decay faster — reflecting the intuition that
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:36: * @param stability  - FSRS stability value, clamped to [0, 1].
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:4:// Feature catalog: Classification-based decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:5:// CANONICAL FSRS CONSTANTS & ALGORITHM
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:10:// FSRS v4 power-law: R(t) = (1 + FSRS_FACTOR * t/S)^FSRS_DECAY
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:11:// Timescale: days/weeks. Constants: FSRS_FACTOR=19/81, FSRS_DECAY=-0.5
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:12:// All long-term decay consumers MUST import constants from this file.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:16:// Timescale: minutes. Operates on session-scoped attention scores only.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:18:// DECAY STRATEGY (ADR-004): This is the CANONICAL long-term decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:19:// Algorithm. All temporal decay for persistent memories should route
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:23:// Consumers: attention-decay.ts (facade), composite-scoring.ts (temporal
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:31:/** FSRS v4 algorithm constants */
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:32:const FSRS_FACTOR = 19 / 81;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:33:const FSRS_DECAY = -0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:36:// From R(h) = 0.5: S = (FSRS_FACTOR / 3) * h = (19/243) * h
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:37:const FSRS_HALF_LIFE_FACTOR = FSRS_FACTOR / 3; // 19/243 ≈ 0.07819
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:77: * Calculate retrievability (probability of recall) using FSRS v4 formula.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:86:    1 + FSRS_FACTOR * (elapsedDays / stability),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:87:    FSRS_DECAY
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:95: * Uses simplified FSRS v4 update rules.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:132:  const interval = (safeStability / FSRS_FACTOR) * (Math.pow(desiredRetention, 1 / FSRS_DECAY) - 1);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:186: * Create initial FSRS parameters for a new memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:222:const FSRS_CONSTANTS = {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:223:  FSRS_FACTOR,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:224:  FSRS_DECAY,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:225:  FSRS_HALF_LIFE_FACTOR, // T301: derived constant (19/243)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:238: * C138: Tier-based decay multipliers for long-term memory stability.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:239: * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:240: * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:243: * (lower value = slower perceived time = slower decay). It is a SEPARATE system from
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:244: * IMPORTANCE_TIER_STABILITY_MULTIPLIER below, which operates on the FSRS stability
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:261:   Multiplies FSRS stability so that:
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:262:     - Infinity stability → R(t) = 1.0 always (no decay)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:263:     - >1.0 stability multiplier → slower decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:264:     - <1.0 stability multiplier → faster decay */
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:268: * Applied to the FSRS stability parameter before computing retrievability.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:269: * Infinity = no decay (retrievability always 1.0).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:270: * 2.0 = stability doubled → slower decay.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:271: * 1.0 = standard FSRS schedule.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:274:  planning: Infinity,    // no decay — planning/decisions are permanent
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:275:  research: 2.0,         // 2x stability — research context decays slower
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:276:  implementation: 1.0,   // standard decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:277:  general: 1.0,          // standard decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:291: * constitutional/critical: Infinity = never decays.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:292: * important: 1.5x stability → slower decay.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:294: * temporary: 0.5x → faster decay (2x relative speed).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:295: * deprecated: 0.25x → fastest decay (4x relative speed).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:298:  constitutional: Infinity, // never decays
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:299:  critical: Infinity,       // never decays
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:300:  important: 1.5,           // slower decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:302:  temporary: 0.5,           // faster decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:303:  deprecated: 0.25,         // fastest decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:311: *     (no-decay wins unconditionally).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:316: * which makes R(t) = (1 + factor * t / Infinity)^decay = 1.0 for all t.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:326:  // Infinity * anything = Infinity (no-decay wins)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:335: * TM-03: Apply classification-based decay to a stability value.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:339: * Returns Infinity when the combined multiplier is Infinity (no-decay).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:341: * @param stability      Base FSRS stability value
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:377:   2. ENGAGEMENT-SENSITIVE documents — all other context_types (session, scratch,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:379:      Normal FSRS schedule applies without modification.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:387: * Context types that should never decay under the hybrid decay policy.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:396:const HYBRID_FSRS_CONTEXT_TYPES: ReadonlySet<string> = new Set([
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:397:  'session',
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:408: * REQ-D4-002: Check whether the hybrid decay policy feature flag is enabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:417: * REQ-D4-002: Classify a memory's decay behaviour under the hybrid policy.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:420: *   - 'no_decay'       for decision / constitutional / critical context types
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:421: *   - 'fsrs_schedule'  for all engagement-sensitive types (session, scratch, etc.)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:423:type HybridDecayClass = 'no_decay' | 'fsrs_schedule';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:427:    return 'no_decay';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:440: * REQ-D4-002: Apply the hybrid decay policy to a stability value.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:444: *   - decision / constitutional / critical → returns Infinity (no decay)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:445: *   - all others → returns stability unchanged (normal FSRS schedule)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:447: * @param stability    Base FSRS stability value
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:449: * @returns Adjusted stability: Infinity for no-decay types, original otherwise
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:458:  FSRS_FACTOR,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:459:  FSRS_DECAY,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:460:  FSRS_HALF_LIFE_FACTOR, // T301: derived constant for half-life ↔ stability
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:470:  FSRS_CONSTANTS,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:473:  // TM-03: Classification-based decay constants and functions
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:479:  // REQ-D4-002: Hybrid decay policy
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:481:  HYBRID_FSRS_CONTEXT_TYPES,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:9:import * as sessionManager from '../lib/session/session-manager.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:69:} from '../lib/search/session-transition.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:93:} from '../lib/search/session-state.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:190:  includeConstitutional?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:194:  sessionId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:200:  rerank?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:210:  sessionTransition?: SessionTransitionTrace;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:324:function buildSessionStatePayload(sessionId: string): Record<string, unknown> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:325:  const session = retrievalSessionStateManager.getOrCreate(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:327:    activeGoal: session.activeGoal,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:328:    seenResultIds: Array.from(session.seenResultIds),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:329:    openQuestions: [...session.openQuestions],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:330:    preferredAnchors: [...session.preferredAnchors],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:450:function applySessionDedup(results: MemorySearchRow[], sessionId: string, enableDedup: boolean): DedupResult {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:451:  if (!enableDedup || !sessionId || !sessionManager.isEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:454:      dedupStats: { enabled: false, sessionId: null }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:458:  const { filtered, dedupStats } = sessionManager.filterSearchResults(sessionId, results as Parameters<typeof sessionManager.filterSearchResults>[1]);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:461:    sessionManager.markResultsSent(sessionId, filtered as Parameters<typeof sessionManager.markResultsSent>[1]);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:468:      sessionId
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:507:    includeConstitutional: includeConstitutional = true,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:511:    sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:517:    rerank = true, // Enable reranking by default for better result quality
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:527:    sessionTransition,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:533:  const normalizedScope = normalizeScopeContext({ tenantId, userId, agentId, sessionId, sharedSpaceId });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:538:    sessionId: normalizedScope.sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:714:    sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:737:    includeConstitutional,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:742:    rerank,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:744:    sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:777:        : 'hybrid',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:788:      includeConstitutional,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:795:      rerank,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:797:      sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:886:    if (sessionId && isSessionRetrievalStateEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:889:        retrievalSessionStateManager.updateGoal(sessionId, activeGoal);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:892:        retrievalSessionStateManager.setAnchors(sessionId, anchors);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:895:      const goalRefinement = refineForGoal(resultsForFormatting, sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:952:    if (pipelineResult.metadata.stage3.rerankApplied) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:953:      extraData.rerankMetadata = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:954:        reranking_enabled: true,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:955:        reranking_requested: true,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:956:        reranking_applied: true,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:985:      session: { applied: pipelineResult.metadata.stage2.sessionBoostApplied },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1054:  if (sessionId && isSessionRetrievalStateEnabled() && !sessionManager.isEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1062:      const deduped = deduplicateWithSessionState(existingResults, sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1065:      data.sessionDedup = deduped.metadata;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1071:  // Apply session deduplication AFTER cache
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1072:  if (sessionId && enableDedup && sessionManager.isEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1103:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1121:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1146:  if (sessionId && isSessionRetrievalStateEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1159:        retrievalSessionStateManager.markSeen(sessionId, returnedIds);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1162:      data.sessionState = buildSessionStatePayload(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1172:  if (includeTrace && sessionTransition) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1173:    responseToReturn = attachSessionTransitionTrace(responseToReturn, sessionTransition);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1178:    retrievalTelemetry.recordTransitionDiagnostics(telemetry, sessionTransition);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1208:        session_id: sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1275:            sessionId: sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1314:          trackQueryAndDetect(db, sessionId ?? null, normalizedQuery, queryId, shownIds);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1319:          logResultCited(db, sessionId ?? null, queryId, shownIds);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:4:// Feature catalog: Classification-based decay
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:5:// Augments FSRS stability scores with graph centrality so that
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:6:// Central nodes decay slower and peripheral nodes decay faster.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:26: * Compute structural freshness by augmenting an FSRS stability score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:33: * nodes (low centrality) decay faster — reflecting the intuition that
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:36: * @param stability  - FSRS stability value, clamped to [0, 1].
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Fsrs
@@ -3940,7 +3940,7 @@ exec
     82	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Fsrs Scheduler
@@ -4204,7 +4204,7 @@ exec
    260	   Gated by SPECKIT_CLASSIFICATION_DECAY env var.
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '260,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '260,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	   Gated by SPECKIT_CLASSIFICATION_DECAY env var.
    261	   Multiplies FSRS stability so that:
@@ -4452,7 +4452,7 @@ exec
    503	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '482,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '482,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    482	/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
    483	 * @param args - Search arguments (query, concepts, mode, specFolder, etc.)
@@ -4835,7 +4835,7 @@ exec
    860	      }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '860,1210p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '860,1210p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    860	      }
    861	    }
@@ -6387,9 +6387,9 @@ exec
    119	}
 
 exec
-/bin/zsh -lc 'rg -n "graphContribution|sessionBoostApplied|causalBoostApplied|feedbackSignalsApplied|executePipeline|lexicalPath|fallbackState" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/**/*.ts .opencode/skill/system-spec-kit/mcp_server/lib/pipeline/**/*.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "graphContribution|sessionBoostApplied|causalBoostApplied|feedbackSignalsApplied|executePipeline|lexicalPath|fallbackState" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/**/*.ts .opencode/skills/system-spec-kit/mcp_server/lib/pipeline/**/*.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
-zsh:1: no matches found: .opencode/skill/system-spec-kit/mcp_server/lib/pipeline/**/*.ts
+zsh:1: no matches found: .opencode/skills/system-spec-kit/mcp_server/lib/pipeline/**/*.ts
 
 exec
 /bin/zsh -lc "rg -n \"Available\\(|Call\\(|ParseJSON\\(|gemma|ollama|local model|search path\" .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/*.go .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/docs/librarian.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -6419,7 +6419,7 @@ exec
 codex
 There’s a meaningful README-to-code drift here: the docs say search doesn’t use LLM calls and that librarian expansion is a local synonym map, but the actual `librarian` package does live HTTP calls to a local model endpoint and uses it for query expansion, ranking, summarization, extraction, and classification. I’m folding that into the architecture findings because it changes how we should think about Modus’s retrieval path and operational simplicity.
 exec
-/bin/zsh -lc 'rg -n "function executePipeline|const executePipeline|export async function executePipeline|export { executePipeline }" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "function executePipeline|const executePipeline|export async function executePipeline|export { executePipeline }" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 2 in 0ms:
 rg: regex parse error:
     (?:function executePipeline|const executePipeline|export async function executePipeline|export { executePipeline })
@@ -6427,573 +6427,573 @@ rg: regex parse error:
 error: repetition quantifier expects a valid decimal
 
 exec
-/bin/zsh -lc 'rg -n "executePipeline|graphContribution|sessionBoostApplied|causalBoostApplied|feedbackSignalsApplied|lexicalPath|fallbackState" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "executePipeline|graphContribution|sessionBoostApplied|causalBoostApplied|feedbackSignalsApplied|lexicalPath|fallbackState" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:15:import { executePipeline } from '../lib/search/pipeline/index.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:362:  if (typeof data.lexicalPath !== 'string' && snapshot) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:363:    data.lexicalPath = snapshot.lexicalPath;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:365:  if (typeof data.fallbackState !== 'string' && snapshot) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:366:    data.fallbackState = snapshot.fallbackState;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:809:    const pipelineResult: PipelineResult = await executePipeline(pipelineConfig);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:908:        `[memory-search] Lexical capability path '${lexicalCapability.lexicalPath}' (fallbackState: ${lexicalCapability.fallbackState})`
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:920:      extraData.lexicalPath = lexicalCapability.lexicalPath;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:921:      extraData.fallbackState = lexicalCapability.fallbackState;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:942:    if (pipelineResult.metadata.stage2.feedbackSignalsApplied === 'applied') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:947:    if (pipelineResult.metadata.stage2.graphContribution) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:948:      extraData.graphContribution = pipelineResult.metadata.stage2.graphContribution;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:949:      extraData.graph_contribution = pipelineResult.metadata.stage2.graphContribution;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:985:      session: { applied: pipelineResult.metadata.stage2.sessionBoostApplied },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:136:  graphContribution?: {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:287:  let graphContribution: MemoryResultTrace['graphContribution'];
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:348:  if (rawResult.graphContribution && typeof rawResult.graphContribution === 'object') {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:349:    const contribution = rawResult.graphContribution as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:350:    graphContribution = {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:374:    graphContribution,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:26:import { executePipeline } from '../lib/search/pipeline/index.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:43:  executePipeline: vi.fn(),
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:114:    vi.mocked(executePipeline).mockReset();
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:313:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:315:    } as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:326:    expect(vi.mocked(executePipeline)).toHaveBeenCalledTimes(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:28:  graphContribution?: unknown;
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:278:      graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:298:        graphContribution: { rolloutState: 'bounded_runtime', totalGraphInjected: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:304:    expect((envelope.data.graphContribution as Record<string, unknown>).rolloutState).toBe('bounded_runtime');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:305:    expect(envelope.data.results[0].trace?.graphContribution).toEqual({
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:317:  it('C10d: includeTrace=false omits per-result graph trace even when raw results carry graphContribution', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:323:      graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:339:  it('C10e: malformed graphContribution degrades safely instead of throwing', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:345:      graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:358:    expect(envelope.data.results[0].trace?.graphContribution).toEqual({
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:281:        graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:337:        graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:356:        graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:142:  it('P010-T1: handleMemorySearch returns lexicalPath and fallbackState on cached degraded responses', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:154:        lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:155:        fallbackState: 'compile_probe_miss',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:164:    expect(data?.lexicalPath).toBe('unavailable');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:165:    expect(data?.fallbackState).toBe('compile_probe_miss');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:170:  it('P010-T2: handleMemorySearch returns lexicalPath and fallbackState on cached healthy responses', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:182:        lexicalPath: 'fts5',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:183:        fallbackState: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:192:    expect(data?.lexicalPath).toBe('fts5');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:193:    expect(data?.fallbackState).toBe('ok');
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:20:import { executePipeline } from '../lib/search/pipeline/index.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:34:  executePipeline: vi.fn(),
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:118:    vi.mocked(executePipeline).mockReset();
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:144:    vi.mocked(executePipeline).mockImplementation(async (config) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:149:      return result as unknown as Awaited<ReturnType<typeof executePipeline>>;
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:193:    expect(vi.mocked(executePipeline)).toHaveBeenCalledTimes(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:218:    expect(vi.mocked(executePipeline)).not.toHaveBeenCalled();
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:227:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:229:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:255:    const initialCallCount = vi.mocked(executePipeline).mock.calls.length;
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:259:    expect(vi.mocked(executePipeline)).toHaveBeenCalledTimes(initialCallCount + 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:283:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:285:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:318:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:320:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:355:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:357:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:404:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:406:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:452:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:454:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:487:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:489:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:521:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:523:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:565:    vi.mocked(executePipeline).mockResolvedValue({
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:567:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:171:    expect(result.metadata.graphContribution?.rolloutState).toBe('off');
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:180:        graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:196:    expect(result.metadata.graphContribution?.rolloutState).toBe('trace_only');
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:203:      expect((row.graphContribution as Record<string, unknown>).rolloutState).toBe('trace_only');
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:204:      expect((row.graphContribution as Record<string, unknown>).appliedBonus).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:215:            graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:225:            graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:245:    expect(first.metadata.graphContribution?.rolloutState).toBe('bounded_runtime');
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:256:    expect((boosted.graphContribution as Record<string, unknown>).appliedBonus).toBe(0.03);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:257:    expect((boosted.graphContribution as Record<string, unknown>).capApplied).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:258:    expect((boosted.graphContribution as Record<string, unknown>).rolloutState).toBe('bounded_runtime');
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:309:    expect((injected?.graphContribution as Record<string, unknown>)?.injected).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:362:  it('reports sessionBoostApplied as "enabled" when boost runs but finds no data', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:379:    expect(result.metadata.sessionBoostApplied).toBe('enabled');
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:382:  it('reports causalBoostApplied as "enabled" when boost runs but finds no edges', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:398:    expect(result.metadata.causalBoostApplied).toBe('enabled');
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:401:  it('reports sessionBoostApplied as "off" when feature is disabled', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:411:    expect(result.metadata.sessionBoostApplied).toBe('off');
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:599:      const existingContribution = (row.graphContribution && typeof row.graphContribution === 'object')
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:600:        ? row.graphContribution as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:606:        graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:28:  executePipeline: vi.fn(async () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:36:        sessionBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:37:        causalBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:40:        feedbackSignalsApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:154:  it('T11: successful FTS search records lexicalPath=fts5 and fallbackState=ok', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:157:      lexicalPath: 'fts5',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:158:      fallbackState: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:179:      lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:180:      fallbackState: 'compile_probe_miss',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:200:      lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:201:      fallbackState: 'missing_table',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:205:      lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:206:      fallbackState: 'missing_table',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:239:      lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:240:      fallbackState: 'no_such_module_fts5',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:271:      lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:272:      fallbackState: 'bm25_runtime_failure',
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:327:        sessionBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:328:        causalBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:331:        feedbackSignalsApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:380:  it('R6-T27: executePipeline is exported from pipeline index', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:381:    const { executePipeline } = await import('../lib/search/pipeline');
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:382:    expect(typeof executePipeline).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:4:// Verifies B1 error handling in executePipeline:
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:62:import { executePipeline } from '../lib/search/pipeline/orchestrator';
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:106:    sessionBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:107:    causalBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:110:    feedbackSignalsApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:148:describe('executePipeline error cascading (B1)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:158:    const result = await executePipeline(config);
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:174:    await expect(executePipeline(config)).rejects.toThrow('embedding service unavailable');
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:184:    const result = await executePipeline(config);
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:190:    expect(result.metadata.stage2.sessionBoostApplied).toBe('failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:201:    const result = await executePipeline(config);
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:216:    const result = await executePipeline(config);
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:227:    const result = await executePipeline(config);
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:242:    const result = await executePipeline(config);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:119:        graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:162:        graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:325:        graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:133: * Inspects `trace.graphContribution` on each row.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:150:    const graphContribution = trace?.graphContribution && typeof trace.graphContribution === 'object'
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:151:      ? trace.graphContribution as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:153:    if (!graphContribution) {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:158:    if (graphContribution.rolloutState === 'trace_only' || graphContribution.rolloutState === 'bounded_runtime') {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:159:      rolloutState = graphContribution.rolloutState;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:161:    if (typeof graphContribution.appliedBonus === 'number' && graphContribution.appliedBonus > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:163:      maxAppliedBonus = Math.max(maxAppliedBonus, graphContribution.appliedBonus);
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:165:    if (graphContribution.capApplied === true) {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:168:    if (typeof graphContribution.raw === 'number' && Number.isFinite(graphContribution.raw)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:169:      maxRaw = Math.max(maxRaw, graphContribution.raw);
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:171:    if (typeof graphContribution.normalized === 'number' && Number.isFinite(graphContribution.normalized)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:172:      maxNormalized = Math.max(maxNormalized, graphContribution.normalized);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:26:  executePipeline: vi.fn(async () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:31:        sessionBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:32:        causalBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:35:        feedbackSignalsApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:382:    expect((traceOnly[1].graphContribution as Record<string, unknown>).raw)
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:383:      .toBe((bounded[1].graphContribution as Record<string, unknown>).raw);
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:384:    expect((traceOnly[1].graphContribution as Record<string, unknown>).normalized)
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:385:      .toBe((bounded[1].graphContribution as Record<string, unknown>).normalized);
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:386:    expect((traceOnly[1].graphContribution as Record<string, unknown>).appliedBonus).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:387:    expect((bounded[1].graphContribution as Record<string, unknown>).appliedBonus).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:388:    expect((bounded[1].graphContribution as Record<string, unknown>).appliedBonus).toBeLessThanOrEqual(0.03);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:570:      const graphContribution = result[1].graphContribution as {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:578:      expect(graphContribution.raw).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:579:      expect(graphContribution.normalized).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:580:      expect(graphContribution.appliedBonus).toBeCloseTo(0.03, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:581:      expect(graphContribution.capApplied).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:582:      expect(graphContribution.rolloutState).toBe('bounded_runtime');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:595:      const graphContribution = result[1].graphContribution as {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:604:      expect(graphContribution.raw).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:605:      expect(graphContribution.normalized).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:606:      expect(graphContribution.appliedBonus).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:607:      expect(graphContribution.capApplied).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:608:      expect(graphContribution.rolloutState).toBe('trace_only');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:621:      const graphContribution = result[1].graphContribution as {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:630:      expect(graphContribution.raw).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:631:      expect(graphContribution.normalized).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:632:      expect(graphContribution.appliedBonus).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:633:      expect(graphContribution.capApplied).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:634:      expect(graphContribution.rolloutState).toBe('off');
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:17:import { executePipeline, type PipelineConfig } from '../search/pipeline/index.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:325:  const pipelineResult = await executePipeline(buildReplayPipelineConfig(queryText, searchLimit));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts:12:export { executePipeline } from './orchestrator.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:36:The public API is a single function: `executePipeline(config)` exported from `index.ts`.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:44:| `index.ts` | Public barrel export. Re-exports `executePipeline` from the orchestrator and all pipeline type definitions from `types.ts`. |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:108:  const graphContrib = (row.graphContribution && typeof row.graphContribution === 'object')
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:109:    ? row.graphContribution as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:231: * Uses channelAttribution array and graphContribution.totalDelta to
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:247:  const graphContrib = (row.graphContribution && typeof row.graphContribution === 'object')
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:248:    ? row.graphContribution as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:256:    const graphContribution = Math.min(graphTotal, effectiveScore);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:260:      graph: Math.round(graphContribution * 100) / 100,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:37:  lexicalPath: LexicalPath;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:38:  fallbackState: FallbackState;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:101:        lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:102:        fallbackState: 'compile_probe_miss',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:107:      lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:108:      fallbackState: 'compile_probe_miss',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:119:        lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:120:        fallbackState: 'missing_table',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:126:        lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:127:        fallbackState: 'no_such_module_fts5',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:131:      lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:132:      fallbackState: 'missing_table',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:137:    lexicalPath: 'fts5',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:138:    fallbackState: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:210:  if (capability.fallbackState !== 'ok') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:211:    console.warn(`[sqlite-fts] FTS5 unavailable (${capability.fallbackState}); returning empty lexical lane results`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:226:      lexicalPath: 'fts5',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:227:      fallbackState: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:234:          lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:235:          fallbackState: 'no_such_module_fts5',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:239:            lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:240:            fallbackState: 'bm25_runtime_failure',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:244:              lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:245:              fallbackState: 'missing_table',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:248:              lexicalPath: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:249:              fallbackState: 'bm25_runtime_failure',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:273:  return probeFts5Capability(db).fallbackState === 'ok';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:57:export async function executePipeline(config: PipelineConfig): Promise<PipelineResult> {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:101:        sessionBoostApplied: 'failed' as SignalStatus,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:102:        causalBoostApplied: 'failed' as SignalStatus,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:105:        feedbackSignalsApplied: 'failed' as SignalStatus,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:240:    sessionBoostApplied: SignalStatus;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:241:    causalBoostApplied: SignalStatus;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:244:    feedbackSignalsApplied: SignalStatus;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:245:    graphContribution?: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:177:- `lexicalPath`: the lane that actually ran for lexical retrieval. Current packet-owned values are `fts5` and `unavailable`. The wider response schema also allows `like`, but packet `010` does not claim that lane for this runtime seam.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:178:- `fallbackState`: the truthful FTS capability outcome for the request.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:182:| `fallbackState` | Meaning | `lexicalPath` |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:304:  const current = (row.graphContribution && typeof row.graphContribution === 'object')
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:305:    ? row.graphContribution as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:319:    graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:331:    const graphContribution = row.graphContribution as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:332:    return typeof graphContribution?.[key] === 'number' && Math.abs(graphContribution[key] as number) > 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:338:    const graphContribution = row.graphContribution as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:339:    return graphContribution?.injected === true;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:344:  graphContribution: Record<string, unknown> | undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:347:  const value = graphContribution?.[key];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:353:    const graphContribution = row.graphContribution as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:354:    const originalGraphSignalDelta = Math.max(0, resolveGraphContributionValue(graphContribution, 'graphSignalDelta'));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:355:    const originalCommunityDelta = Math.max(0, resolveGraphContributionValue(graphContribution, 'communityDelta'));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:365:      // attribution is exposed on PipelineRow graphContribution.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:378:    const causalDelta = resolveGraphContributionValue(graphContribution, 'causalDelta');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:379:    const coActivationDelta = resolveGraphContributionValue(graphContribution, 'coActivationDelta');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:383:      graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:384:        ...(graphContribution ?? {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:417:    const gc = row.graphContribution as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:498:    const gc = row.graphContribution as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:952:    sessionBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:953:    causalBoostApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:956:    feedbackSignalsApplied: 'off',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:957:    graphContribution: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:990:      metadata.sessionBoostApplied = sbMeta.applied ? 'applied' : 'enabled';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:994:      metadata.sessionBoostApplied = 'failed';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1046:      metadata.causalBoostApplied = cbMeta.applied ? 'applied' : 'enabled';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1050:      metadata.causalBoostApplied = 'failed';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1249:      metadata.feedbackSignalsApplied = 'applied';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1254:    metadata.feedbackSignalsApplied = 'failed';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1269:            const gc = row.graphContribution as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1326:  if (metadata.graphContribution) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1327:    metadata.graphContribution.causalBoosted = countGraphContribution(results, 'causalDelta');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1328:    metadata.graphContribution.coActivationBoosted = countGraphContribution(results, 'coActivationDelta');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1329:    metadata.graphContribution.communityInjected = countGraphContribution(results, 'communityDelta');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1330:    metadata.graphContribution.graphSignalsBoosted = countGraphContribution(results, 'graphSignalDelta');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1331:    metadata.graphContribution.totalGraphInjected = countGraphInjected(results);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1335:      !metadata.graphContribution.killSwitchActive &&
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1336:      metadata.graphContribution.rolloutState === 'bounded_runtime' &&
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1337:      metadata.graphContribution.causalBoosted === 0 &&
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1338:      metadata.graphContribution.coActivationBoosted === 0 &&
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1339:      metadata.graphContribution.communityInjected === 0 &&
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1340:      metadata.graphContribution.graphSignalsBoosted === 0 &&
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1358:        sessionBoostApplied: metadata.sessionBoostApplied,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1359:        causalBoostApplied: metadata.causalBoostApplied,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1362:        feedbackSignalsApplied: metadata.feedbackSignalsApplied,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1363:        graphContribution: metadata.graphContribution,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:15:import { executePipeline } from '../lib/search/pipeline/index.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:362:  if (typeof data.lexicalPath !== 'string' && snapshot) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:363:    data.lexicalPath = snapshot.lexicalPath;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:365:  if (typeof data.fallbackState !== 'string' && snapshot) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:366:    data.fallbackState = snapshot.fallbackState;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:809:    const pipelineResult: PipelineResult = await executePipeline(pipelineConfig);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:908:        `[memory-search] Lexical capability path '${lexicalCapability.lexicalPath}' (fallbackState: ${lexicalCapability.fallbackState})`
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:920:      extraData.lexicalPath = lexicalCapability.lexicalPath;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:921:      extraData.fallbackState = lexicalCapability.fallbackState;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:942:    if (pipelineResult.metadata.stage2.feedbackSignalsApplied === 'applied') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:947:    if (pipelineResult.metadata.stage2.graphContribution) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:948:      extraData.graphContribution = pipelineResult.metadata.stage2.graphContribution;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:949:      extraData.graph_contribution = pipelineResult.metadata.stage2.graphContribution;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:985:      session: { applied: pipelineResult.metadata.stage2.sessionBoostApplied },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:136:  graphContribution?: {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:287:  let graphContribution: MemoryResultTrace['graphContribution'];
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:348:  if (rawResult.graphContribution && typeof rawResult.graphContribution === 'object') {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:349:    const contribution = rawResult.graphContribution as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:350:    graphContribution = {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:374:    graphContribution,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:26:import { executePipeline } from '../lib/search/pipeline/index.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:43:  executePipeline: vi.fn(),
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:114:    vi.mocked(executePipeline).mockReset();
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:313:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:315:    } as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts:326:    expect(vi.mocked(executePipeline)).toHaveBeenCalledTimes(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:28:  graphContribution?: unknown;
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:278:      graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:298:        graphContribution: { rolloutState: 'bounded_runtime', totalGraphInjected: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:304:    expect((envelope.data.graphContribution as Record<string, unknown>).rolloutState).toBe('bounded_runtime');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:305:    expect(envelope.data.results[0].trace?.graphContribution).toEqual({
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:317:  it('C10d: includeTrace=false omits per-result graph trace even when raw results carry graphContribution', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:323:      graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:339:  it('C10e: malformed graphContribution degrades safely instead of throwing', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:345:      graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:358:    expect(envelope.data.results[0].trace?.graphContribution).toEqual({
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:281:        graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:337:        graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:356:        graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:142:  it('P010-T1: handleMemorySearch returns lexicalPath and fallbackState on cached degraded responses', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:154:        lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:155:        fallbackState: 'compile_probe_miss',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:164:    expect(data?.lexicalPath).toBe('unavailable');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:165:    expect(data?.fallbackState).toBe('compile_probe_miss');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:170:  it('P010-T2: handleMemorySearch returns lexicalPath and fallbackState on cached healthy responses', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:182:        lexicalPath: 'fts5',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:183:        fallbackState: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:192:    expect(data?.lexicalPath).toBe('fts5');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:193:    expect(data?.fallbackState).toBe('ok');
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:20:import { executePipeline } from '../lib/search/pipeline/index.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:34:  executePipeline: vi.fn(),
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:118:    vi.mocked(executePipeline).mockReset();
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:144:    vi.mocked(executePipeline).mockImplementation(async (config) => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:149:      return result as unknown as Awaited<ReturnType<typeof executePipeline>>;
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:193:    expect(vi.mocked(executePipeline)).toHaveBeenCalledTimes(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:218:    expect(vi.mocked(executePipeline)).not.toHaveBeenCalled();
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:227:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:229:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:255:    const initialCallCount = vi.mocked(executePipeline).mock.calls.length;
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:259:    expect(vi.mocked(executePipeline)).toHaveBeenCalledTimes(initialCallCount + 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:283:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:285:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:318:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:320:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:355:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:357:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:404:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:406:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:452:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:454:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:487:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:489:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:521:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:523:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:565:    vi.mocked(executePipeline).mockResolvedValue({
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:567:    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:171:    expect(result.metadata.graphContribution?.rolloutState).toBe('off');
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:180:        graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:196:    expect(result.metadata.graphContribution?.rolloutState).toBe('trace_only');
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:203:      expect((row.graphContribution as Record<string, unknown>).rolloutState).toBe('trace_only');
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:204:      expect((row.graphContribution as Record<string, unknown>).appliedBonus).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:215:            graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:225:            graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:245:    expect(first.metadata.graphContribution?.rolloutState).toBe('bounded_runtime');
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:256:    expect((boosted.graphContribution as Record<string, unknown>).appliedBonus).toBe(0.03);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:257:    expect((boosted.graphContribution as Record<string, unknown>).capApplied).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:258:    expect((boosted.graphContribution as Record<string, unknown>).rolloutState).toBe('bounded_runtime');
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:309:    expect((injected?.graphContribution as Record<string, unknown>)?.injected).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:362:  it('reports sessionBoostApplied as "enabled" when boost runs but finds no data', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:379:    expect(result.metadata.sessionBoostApplied).toBe('enabled');
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:382:  it('reports causalBoostApplied as "enabled" when boost runs but finds no edges', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:398:    expect(result.metadata.causalBoostApplied).toBe('enabled');
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:401:  it('reports sessionBoostApplied as "off" when feature is disabled', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:411:    expect(result.metadata.sessionBoostApplied).toBe('off');
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:599:      const existingContribution = (row.graphContribution && typeof row.graphContribution === 'object')
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:600:        ? row.graphContribution as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:606:        graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:28:  executePipeline: vi.fn(async () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:36:        sessionBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:37:        causalBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:40:        feedbackSignalsApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:154:  it('T11: successful FTS search records lexicalPath=fts5 and fallbackState=ok', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:157:      lexicalPath: 'fts5',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:158:      fallbackState: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:179:      lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:180:      fallbackState: 'compile_probe_miss',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:200:      lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:201:      fallbackState: 'missing_table',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:205:      lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:206:      fallbackState: 'missing_table',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:239:      lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:240:      fallbackState: 'no_such_module_fts5',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:271:      lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:272:      fallbackState: 'bm25_runtime_failure',
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:327:        sessionBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:328:        causalBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:331:        feedbackSignalsApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:380:  it('R6-T27: executePipeline is exported from pipeline index', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:381:    const { executePipeline } = await import('../lib/search/pipeline');
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:382:    expect(typeof executePipeline).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:4:// Verifies B1 error handling in executePipeline:
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:62:import { executePipeline } from '../lib/search/pipeline/orchestrator';
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:106:    sessionBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:107:    causalBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:110:    feedbackSignalsApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:148:describe('executePipeline error cascading (B1)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:158:    const result = await executePipeline(config);
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:174:    await expect(executePipeline(config)).rejects.toThrow('embedding service unavailable');
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:184:    const result = await executePipeline(config);
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:190:    expect(result.metadata.stage2.sessionBoostApplied).toBe('failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:201:    const result = await executePipeline(config);
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:216:    const result = await executePipeline(config);
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:227:    const result = await executePipeline(config);
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:242:    const result = await executePipeline(config);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:119:        graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:162:        graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:325:        graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:133: * Inspects `trace.graphContribution` on each row.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:150:    const graphContribution = trace?.graphContribution && typeof trace.graphContribution === 'object'
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:151:      ? trace.graphContribution as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:153:    if (!graphContribution) {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:158:    if (graphContribution.rolloutState === 'trace_only' || graphContribution.rolloutState === 'bounded_runtime') {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:159:      rolloutState = graphContribution.rolloutState;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:161:    if (typeof graphContribution.appliedBonus === 'number' && graphContribution.appliedBonus > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:163:      maxAppliedBonus = Math.max(maxAppliedBonus, graphContribution.appliedBonus);
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:165:    if (graphContribution.capApplied === true) {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:168:    if (typeof graphContribution.raw === 'number' && Number.isFinite(graphContribution.raw)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:169:      maxRaw = Math.max(maxRaw, graphContribution.raw);
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:171:    if (typeof graphContribution.normalized === 'number' && Number.isFinite(graphContribution.normalized)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/eval-channel-tracking.ts:172:      maxNormalized = Math.max(maxNormalized, graphContribution.normalized);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:26:  executePipeline: vi.fn(async () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:31:        sessionBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:32:        causalBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:35:        feedbackSignalsApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:382:    expect((traceOnly[1].graphContribution as Record<string, unknown>).raw)
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:383:      .toBe((bounded[1].graphContribution as Record<string, unknown>).raw);
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:384:    expect((traceOnly[1].graphContribution as Record<string, unknown>).normalized)
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:385:      .toBe((bounded[1].graphContribution as Record<string, unknown>).normalized);
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:386:    expect((traceOnly[1].graphContribution as Record<string, unknown>).appliedBonus).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:387:    expect((bounded[1].graphContribution as Record<string, unknown>).appliedBonus).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:388:    expect((bounded[1].graphContribution as Record<string, unknown>).appliedBonus).toBeLessThanOrEqual(0.03);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:570:      const graphContribution = result[1].graphContribution as {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:578:      expect(graphContribution.raw).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:579:      expect(graphContribution.normalized).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:580:      expect(graphContribution.appliedBonus).toBeCloseTo(0.03, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:581:      expect(graphContribution.capApplied).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:582:      expect(graphContribution.rolloutState).toBe('bounded_runtime');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:595:      const graphContribution = result[1].graphContribution as {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:604:      expect(graphContribution.raw).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:605:      expect(graphContribution.normalized).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:606:      expect(graphContribution.appliedBonus).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:607:      expect(graphContribution.capApplied).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:608:      expect(graphContribution.rolloutState).toBe('trace_only');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:621:      const graphContribution = result[1].graphContribution as {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:630:      expect(graphContribution.raw).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:631:      expect(graphContribution.normalized).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:632:      expect(graphContribution.appliedBonus).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:633:      expect(graphContribution.capApplied).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:634:      expect(graphContribution.rolloutState).toBe('off');
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:17:import { executePipeline, type PipelineConfig } from '../search/pipeline/index.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:325:  const pipelineResult = await executePipeline(buildReplayPipelineConfig(queryText, searchLimit));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts:12:export { executePipeline } from './orchestrator.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:36:The public API is a single function: `executePipeline(config)` exported from `index.ts`.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:44:| `index.ts` | Public barrel export. Re-exports `executePipeline` from the orchestrator and all pipeline type definitions from `types.ts`. |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:108:  const graphContrib = (row.graphContribution && typeof row.graphContribution === 'object')
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:109:    ? row.graphContribution as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:231: * Uses channelAttribution array and graphContribution.totalDelta to
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:247:  const graphContrib = (row.graphContribution && typeof row.graphContribution === 'object')
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:248:    ? row.graphContribution as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:256:    const graphContribution = Math.min(graphTotal, effectiveScore);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:260:      graph: Math.round(graphContribution * 100) / 100,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:37:  lexicalPath: LexicalPath;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:38:  fallbackState: FallbackState;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:101:        lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:102:        fallbackState: 'compile_probe_miss',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:107:      lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:108:      fallbackState: 'compile_probe_miss',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:119:        lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:120:        fallbackState: 'missing_table',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:126:        lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:127:        fallbackState: 'no_such_module_fts5',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:131:      lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:132:      fallbackState: 'missing_table',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:137:    lexicalPath: 'fts5',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:138:    fallbackState: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:210:  if (capability.fallbackState !== 'ok') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:211:    console.warn(`[sqlite-fts] FTS5 unavailable (${capability.fallbackState}); returning empty lexical lane results`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:226:      lexicalPath: 'fts5',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:227:      fallbackState: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:234:          lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:235:          fallbackState: 'no_such_module_fts5',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:239:            lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:240:            fallbackState: 'bm25_runtime_failure',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:244:              lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:245:              fallbackState: 'missing_table',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:248:              lexicalPath: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:249:              fallbackState: 'bm25_runtime_failure',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:273:  return probeFts5Capability(db).fallbackState === 'ok';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:57:export async function executePipeline(config: PipelineConfig): Promise<PipelineResult> {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:101:        sessionBoostApplied: 'failed' as SignalStatus,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:102:        causalBoostApplied: 'failed' as SignalStatus,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:105:        feedbackSignalsApplied: 'failed' as SignalStatus,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:240:    sessionBoostApplied: SignalStatus;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:241:    causalBoostApplied: SignalStatus;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:244:    feedbackSignalsApplied: SignalStatus;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:245:    graphContribution?: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:177:- `lexicalPath`: the lane that actually ran for lexical retrieval. Current packet-owned values are `fts5` and `unavailable`. The wider response schema also allows `like`, but packet `010` does not claim that lane for this runtime seam.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:178:- `fallbackState`: the truthful FTS capability outcome for the request.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:182:| `fallbackState` | Meaning | `lexicalPath` |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:304:  const current = (row.graphContribution && typeof row.graphContribution === 'object')
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:305:    ? row.graphContribution as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:319:    graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:331:    const graphContribution = row.graphContribution as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:332:    return typeof graphContribution?.[key] === 'number' && Math.abs(graphContribution[key] as number) > 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:338:    const graphContribution = row.graphContribution as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:339:    return graphContribution?.injected === true;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:344:  graphContribution: Record<string, unknown> | undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:347:  const value = graphContribution?.[key];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:353:    const graphContribution = row.graphContribution as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:354:    const originalGraphSignalDelta = Math.max(0, resolveGraphContributionValue(graphContribution, 'graphSignalDelta'));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:355:    const originalCommunityDelta = Math.max(0, resolveGraphContributionValue(graphContribution, 'communityDelta'));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:365:      // attribution is exposed on PipelineRow graphContribution.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:378:    const causalDelta = resolveGraphContributionValue(graphContribution, 'causalDelta');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:379:    const coActivationDelta = resolveGraphContributionValue(graphContribution, 'coActivationDelta');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:383:      graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:384:        ...(graphContribution ?? {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:417:    const gc = row.graphContribution as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:498:    const gc = row.graphContribution as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:952:    sessionBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:953:    causalBoostApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:956:    feedbackSignalsApplied: 'off',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:957:    graphContribution: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:990:      metadata.sessionBoostApplied = sbMeta.applied ? 'applied' : 'enabled';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:994:      metadata.sessionBoostApplied = 'failed';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1046:      metadata.causalBoostApplied = cbMeta.applied ? 'applied' : 'enabled';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1050:      metadata.causalBoostApplied = 'failed';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1249:      metadata.feedbackSignalsApplied = 'applied';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1254:    metadata.feedbackSignalsApplied = 'failed';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1269:            const gc = row.graphContribution as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1326:  if (metadata.graphContribution) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1327:    metadata.graphContribution.causalBoosted = countGraphContribution(results, 'causalDelta');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1328:    metadata.graphContribution.coActivationBoosted = countGraphContribution(results, 'coActivationDelta');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1329:    metadata.graphContribution.communityInjected = countGraphContribution(results, 'communityDelta');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1330:    metadata.graphContribution.graphSignalsBoosted = countGraphContribution(results, 'graphSignalDelta');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1331:    metadata.graphContribution.totalGraphInjected = countGraphInjected(results);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1335:      !metadata.graphContribution.killSwitchActive &&
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1336:      metadata.graphContribution.rolloutState === 'bounded_runtime' &&
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1337:      metadata.graphContribution.causalBoosted === 0 &&
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1338:      metadata.graphContribution.coActivationBoosted === 0 &&
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1339:      metadata.graphContribution.communityInjected === 0 &&
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1340:      metadata.graphContribution.graphSignalsBoosted === 0 &&
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1358:        sessionBoostApplied: metadata.sessionBoostApplied,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1359:        causalBoostApplied: metadata.causalBoostApplied,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1362:        feedbackSignalsApplied: metadata.feedbackSignalsApplied,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1363:        graphContribution: metadata.graphContribution,
 
 exec
-/bin/zsh -lc 'rg -n "TrackAccess|trackAccess|calculateRetrievability|applyClassificationDecay|applyHybridDecayPolicy|reviewCount|nextReviewDate" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "TrackAccess|trackAccess|calculateRetrievability|applyClassificationDecay|applyHybridDecayPolicy|reviewCount|nextReviewDate" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:160:    const retrievability = fsrsScheduler.calculateRetrievability(currentStability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:165:      trackAccess: {
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:148:  trackAccess: z.boolean().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:74:  trackAccess?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:112:import { calculateRetrievabilityDecay } from './cognitive/attention-decay';
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:113:console.log(typeof SQLiteVectorStore, typeof calculateRetrievabilityDecay);
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:380:import { calculateRetrievabilityDecay } from './cognitive/attention-decay';
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:384:const retrievability = calculateRetrievabilityDecay(
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:552:import { calculateRetrievabilityDecay } from './cognitive/attention-decay';
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:560:const retrievability = calculateRetrievabilityDecay(stability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:687:import { calculateRetrievabilityDecay } from './cognitive/attention-decay';
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:688:console.log('Available exports:', SQLiteVectorStore.name, typeof calculateRetrievabilityDecay);
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:223:      trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:6:  applyHybridDecayPolicy,
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:8:  calculateRetrievability,
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:110:describe('Hybrid Decay Policy — applyHybridDecayPolicy', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:120:    expect(applyHybridDecayPolicy(stability, 'decision')).toBe(stability);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:126:    expect(applyHybridDecayPolicy(stability, 'session')).toBe(stability);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:133:    expect(applyHybridDecayPolicy(1.0, 'decision')).toBe(Infinity);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:134:    expect(applyHybridDecayPolicy(5.5, 'decision')).toBe(Infinity);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:139:    expect(applyHybridDecayPolicy(2.0, 'constitutional')).toBe(Infinity);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:144:    expect(applyHybridDecayPolicy(3.0, 'critical')).toBe(Infinity);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:150:    expect(applyHybridDecayPolicy(stability, 'session')).toBe(stability);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:151:    expect(applyHybridDecayPolicy(stability, 'scratch')).toBe(stability);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:152:    expect(applyHybridDecayPolicy(stability, 'research')).toBe(stability);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:153:    expect(applyHybridDecayPolicy(stability, 'implementation')).toBe(stability);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:154:    expect(applyHybridDecayPolicy(stability, 'general')).toBe(stability);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:159:    const stability = applyHybridDecayPolicy(1.0, 'decision');
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:163:    const r0 = calculateRetrievability(stability, 0);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:164:    const r30 = calculateRetrievability(stability, 30);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:165:    const r365 = calculateRetrievability(stability, 365);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:173:    const stability = applyHybridDecayPolicy(1.0, 'session');
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:176:    const r30 = calculateRetrievability(stability, 30);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:184:    expect(applyHybridDecayPolicy(2.5, 'decision')).toBe(Infinity);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:185:    expect(applyHybridDecayPolicy(2.5, 'critical')).toBe(Infinity);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:195:    // When hybrid decay is OFF but classification decay is ON, applyHybridDecayPolicy
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:201:    // applyHybridDecayPolicy should return stability unchanged (its own flag is OFF)
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:202:    expect(applyHybridDecayPolicy(stability, 'decision')).toBe(stability);
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:72:    const calcR = compositeScoring.calculateRetrievabilityScore
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:575:        const score = compositeScoring.calculateRetrievabilityScore(row)
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:1043:      'calculateRetrievabilityScore',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:4:import { halfLifeToStability, calculateRetrievability } from '../lib/cognitive/tier-classifier';
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:32:    const r = calculateRetrievability(stability, 0);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:39:    const r = calculateRetrievability(stability, halfLife);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:49:    const rValues = timePoints.map(t => calculateRetrievability(stability, t));
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:59:    const r365 = calculateRetrievability(stability, 365);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:60:    const r730 = calculateRetrievability(stability, 730);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:73:    const r = calculateRetrievability(0, 30);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:31:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:32:    const result = fsrsScheduler.calculateRetrievability(1.0, 0);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:37:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:38:    const result = fsrsScheduler.calculateRetrievability(1.0, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:44:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:45:    const rLowStability = fsrsScheduler.calculateRetrievability(1.0, 10);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:46:    const rHighStability = fsrsScheduler.calculateRetrievability(10.0, 10);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:77:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:78:    const calc = fsrsScheduler.calculateRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:89:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:90:    const calc = fsrsScheduler.calculateRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:100:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:101:    const rVeryLong = fsrsScheduler.calculateRetrievability(1.0, 10000);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:109:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:110:    const calc = fsrsScheduler.calculateRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:120:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:121:    const calc = fsrsScheduler.calculateRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:128:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:129:    const calc = fsrsScheduler.calculateRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:228:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:229:    const rHigh = fsrsScheduler.calculateRetrievability(10.0, 1);  // High stability, recent
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:230:    const rLow = fsrsScheduler.calculateRetrievability(1.0, 10);   // Low stability, old
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:297:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:298:    const rZero = fsrsScheduler.calculateRetrievability(1.0, 0);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:308:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:309:    const calc = fsrsScheduler.calculateRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:328:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:329:    const calc = fsrsScheduler.calculateRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:340:    if (!fsrsScheduler?.calculateRetrievability) return;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:341:    const calc = fsrsScheduler.calculateRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:389:      const r = fsrsScheduler.calculateRetrievability
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:390:        ? fsrsScheduler.calculateRetrievability(stability, 1)
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:416:      const r = fsrsScheduler.calculateRetrievability
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:417:        ? fsrsScheduler.calculateRetrievability(stability, 1)
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:555:    'calculateRetrievability',
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:626:    // If calculateRetrievability is available, test it
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:627:    if (typeof fsrsScheduler.calculateRetrievability === 'function') {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:628:      const r = fsrsScheduler.calculateRetrievability(30, 10);
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:96:     Production: calculateRetrievability(stability: number, elapsedDays: number): number
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:102:      const r = tierClassifier.calculateRetrievability(10, 0);
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:108:      const r = tierClassifier.calculateRetrievability(1.0, 1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:114:      const r = tierClassifier.calculateRetrievability(100, 10);
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:119:      const r = tierClassifier.calculateRetrievability(1, 10);
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:125:      expect(tierClassifier.calculateRetrievability(0, 5)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:481:      'classifyState', 'calculateRetrievability', 'classifyTier',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:82:    reviewCount: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:217:    expect(memory.reviewCount).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:85:      trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:348:    input.config.trackAccess = true;
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:205:    trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:109:     calculateRetrievabilityDecay()
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:110:     Production: calculateRetrievabilityDecay(stability: number, elapsedDays: number): number
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:114:  describe('calculateRetrievabilityDecay()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:116:      expect(attentionDecay.calculateRetrievabilityDecay(1.0, 0)).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:120:      const r1 = attentionDecay.calculateRetrievabilityDecay(1.0, 1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:126:      const rS1 = attentionDecay.calculateRetrievabilityDecay(1.0, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:127:      const rS5 = attentionDecay.calculateRetrievabilityDecay(5.0, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:132:      expect(attentionDecay.calculateRetrievabilityDecay(0, 5)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:136:      expect(attentionDecay.calculateRetrievabilityDecay(1.0, -5)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:341:     calculateRetrievability(stability, elapsedDays): number
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:346:      expect(fsrsScheduler.calculateRetrievability(1.0, 0)).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:351:        fsrsScheduler.calculateRetrievability(1.0, t)
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:359:      const rFar = fsrsScheduler.calculateRetrievability(1.0, 10000);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:364:      const rS1 = fsrsScheduler.calculateRetrievability(1.0, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:365:      const rS10 = fsrsScheduler.calculateRetrievability(10.0, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:370:      const rNeg = fsrsScheduler.calculateRetrievability(1.0, -5);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:371:      const rHuge = fsrsScheduler.calculateRetrievability(0.001, 1000000);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:379:      expect(fsrsScheduler.calculateRetrievability(0, 1)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:380:      expect(fsrsScheduler.calculateRetrievability(-5, 1)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:397:    const fsrsExports = ['applyFsrsDecay', 'calculateRetrievabilityDecay', 'activateMemoryWithFsrs'];
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:419:      const constRetrievability = attentionDecay.calculateRetrievabilityDecay(1000.0, 1000);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:448:      'getDecayRate', 'calculateRetrievabilityDecay',
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:18:  calculateRetrievabilityScore,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:72:describe('T505-02: Retrievability Decay (calculateRetrievabilityScore)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:77:    const recentScore = calculateRetrievabilityScore(recentRow);
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:78:    const olderScore = calculateRetrievabilityScore(olderRow);
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:156:    const score = calculateRetrievabilityScore({ lastReview: 'not-a-date' });
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:111:      trackAccess: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:225:  it('records adaptive access signals when trackAccess is true and adaptive ranking enabled', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:137:    trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:186:        mod.trackAccess(i);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:189:      // The next trackAccess should trigger the overflow guard
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:191:      const result = mod.trackAccess(overflowId);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:206:        mod.trackAccess(i);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:208:      mod.trackAccess(MAX + 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:231:        mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:249:        mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:271:        mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:301:          mod.trackAccess(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:318:          mod.trackAccess(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:383:      expect(typeof mod.trackAccess).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:13:  applyClassificationDecay,
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:14:  calculateRetrievability,
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:56:  it('applyClassificationDecay returns Infinity for constitutional tier (flag=true)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:58:      const result = applyClassificationDecay(10, 'implementation', 'constitutional');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:63:  it('calculateRetrievability with Infinity stability returns 1.0 regardless of elapsed days', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:64:    // When applyClassificationDecay returns Infinity, plug into calculateRetrievability
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:67:      const r = calculateRetrievability(Infinity, elapsed);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:84:  it('applyClassificationDecay returns Infinity for decision context (flag=true)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:86:      const result = applyClassificationDecay(5, 'decision', 'normal');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:102:  it('applyClassificationDecay halves stability for temporary (flag=true)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:105:      const result = applyClassificationDecay(baseStability, 'general', 'temporary');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:115:      const normalStability = applyClassificationDecay(baseStability, 'general', 'normal');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:116:      const temporaryStability = applyClassificationDecay(baseStability, 'general', 'temporary');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:118:      const rNormal = calculateRetrievability(normalStability, elapsed);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:119:      const rTemporary = calculateRetrievability(temporaryStability, elapsed);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:142:      const researchStability = applyClassificationDecay(baseStability, 'research', 'normal');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:143:      const normalStability = applyClassificationDecay(baseStability, 'general', 'normal');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:150:      expect(calculateRetrievability(researchStability, elapsed))
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:151:        .toBeGreaterThan(calculateRetrievability(normalStability, elapsed));
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:178:  it('applyClassificationDecay with unknown types returns unchanged stability', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:180:      const result = applyClassificationDecay(7, 'unknown_ctx', 'unknown_tier');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:188:  it('flag unset → applyClassificationDecay applies multiplier (graduated: default ON)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:190:      const result = applyClassificationDecay(10, 'decision', 'constitutional');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:196:  it('flag="false" → applyClassificationDecay returns stability unchanged', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:201:        const result = applyClassificationDecay(10, 'decision', 'constitutional');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:213:  it('flag="0" → applyClassificationDecay returns stability unchanged', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:215:      const result = applyClassificationDecay(10, 'temporary', 'normal');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:220:  it('flag="true" → applyClassificationDecay applies multiplier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:222:      const result = applyClassificationDecay(10, 'general', 'temporary');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:227:  it('flag="1" → applyClassificationDecay applies multiplier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:229:      const result = applyClassificationDecay(10, 'research', 'normal');
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:84:    trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:108:5. Testing effect — FSRS strengthening write-back (opt-in via `trackAccess`)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:10:  calculateRetrievability as calculateFsrsRetrievability
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:224:function calculateRetrievability(stability: number, elapsedDays: number): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:325:  const retrievability = calculateRetrievability(finalStability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:526:  calculateRetrievability,
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:40:  applyClassificationDecay,
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:223:  // T041-16: applyClassificationDecay with flag enabled adjusts stability
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:229:    const adjusted = applyClassificationDecay(baseStability, 'research', 'important');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:238:    const result = applyClassificationDecay(baseStability, 'research', 'temporary');
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:65:    it('T507-01: trackAccess returns true on accumulate', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:66:      const result1 = mod.trackAccess(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:70:    it('T507-01b: Accumulator state updated after trackAccess', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:85:        mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:89:      mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:169:      mod.trackAccess(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:163:        trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:8:  calculateRetrievabilityScore,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:18:  // 4.1 calculateRetrievabilityScore with partial objects (ScoringInput)
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:21:      const r = calculateRetrievabilityScore({ stability: 5.0 });
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:29:      const r = calculateRetrievabilityScore({ lastReview: new Date().toISOString() });
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:37:      const r = calculateRetrievabilityScore({});
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:45:      const r = calculateRetrievabilityScore({
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:264:| `fsrs-scheduler.ts`        | FSRS v4 + TM-03 classification decay | `calculateRetrievability`, `updateStability`, `processReview`, `applyClassificationDecay` |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:289:  calculateRetrievability,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:300:const R = calculateRetrievability(stability, elapsed);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:313:// params = { stability: 1.0, difficulty: 5.0, lastReview: null, reviewCount: 0 }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:316:// result = { stability, difficulty, lastReview, reviewCount, nextReviewDate, retrievability }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:96:// calculateDecayedScore was removed; use calculateRetrievabilityDecay or applyFsrsDecay.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:101:function calculateRetrievabilityDecay(stability: number, elapsedDays: number): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:102:  if (typeof fsrsScheduler.calculateRetrievability === 'function') {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:103:    return fsrsScheduler.calculateRetrievability(stability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:130:  const retrievability = calculateRetrievabilityDecay(stability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:173:      reviewCount: (memory.review_count as number) || 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:185:        reviewCount: params.reviewCount + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:186:        nextReviewDate: new Date().toISOString(),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:204:      result.reviewCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:340:  calculateRetrievabilityDecay,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:20:// Through calculateRetrievability(). Formula: R(t) = (1 + 19/81 * t/S)^(-0.5)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:62:  reviewCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:69:  reviewCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:80:function calculateRetrievability(stability: number, elapsedDays: number): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:193:    reviewCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:202:  const retrievability = calculateRetrievability(params.stability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:213:    reviewCount: params.reviewCount + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:346:function applyClassificationDecay(
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:381:   This is intentionally SEPARATE from TM-03 (applyClassificationDecay) which
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:451:function applyHybridDecayPolicy(stability: number, contextType: string, importanceTier?: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:477:  applyClassificationDecay,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:486:  applyHybridDecayPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:489:  calculateRetrievability,
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:7:  applyClassificationDecay,
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:8:  applyHybridDecayPolicy,
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:27:    expect(applyHybridDecayPolicy(4, 'decision', 'normal')).toBe(NO_DECAY);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:37:    expect(applyHybridDecayPolicy(6, 'transient', 'critical')).toBe(6);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:40:  it('makes applyClassificationDecay honor the hybrid no-decay override when enabled', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:44:    expect(applyClassificationDecay(2.5, 'critical', 'temporary')).toBe(NO_DECAY);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:45:    expect(applyClassificationDecay(2.5, 'session', 'constitutional')).toBe(2.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:52:    expect(applyHybridDecayPolicy(3, 'decision', 'normal')).toBe(NO_DECAY);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:86:      expect(fsrsScheduler.calculateRetrievability(-1, 5)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:142:        reviewCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:145:      expect(fsrsScheduler.calculateRetrievability(365, 30)).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:292:      const nextReviewDate = fsrsScheduler.getNextReviewDate(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:293:      expect(Number.isNaN(new Date(nextReviewDate).getTime())).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:48:  calculateRetrievabilityScore,
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:544:      const retrievability = calculateRetrievabilityScore({
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:239:    trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:158:    expect(params).toHaveProperty('reviewCount');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:176:  it('C-05: reviewCount is 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:178:    expect(params.reviewCount).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:206:    expect(result).toHaveProperty('reviewCount');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:207:    expect(result).toHaveProperty('nextReviewDate');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:211:  it('D-02: reviewCount increments by 1', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:213:    expect(result.reviewCount).toBe(initial.reviewCount + 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:225:    const params = { ...initial, stability: 5.0, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:231:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:237:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:243:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:249:  it('D-08: nextReviewDate is valid future date', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:251:    const nextDate = new Date(result.nextReviewDate);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:266:    expect(result2.reviewCount).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:86:function trackAccess(memoryId: number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:328:  trackAccess,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:87:- FSRS testing effect fires only when `trackAccess` is explicitly true.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:14://     - FSRS write-back to memory_index (when trackAccess=true) — DB write
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:28:// 3.  Testing effect          — FSRS strengthening write-back (trackAccess)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:843: * Called only when `trackAccess` is true (P3-09 FIX: explicit opt-in to avoid
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:872:      const currentR = fsrsScheduler.calculateRetrievability(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:936: *   3.  Testing effect     (all types, when trackAccess = true)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1195:  // P3-09 FIX: Only when explicitly opted in via trackAccess.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1198:  if (config.trackAccess) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:152:  trackAccess: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:30:  calculateRetrievability: (stability: number, elapsedDays: number) => number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:31:  applyClassificationDecay?: (stability: number, contextType: string, importanceTier: string) => number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:214:function applyClassificationDecayFallback(stability: number, contextType: string, importanceTier: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:299:export function calculateRetrievabilityScore(row: ScoringInput): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:331:    if (scheduler?.applyClassificationDecay) {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:332:      adjustedStability = scheduler.applyClassificationDecay(stability, contextType, tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:334:      adjustedStability = applyClassificationDecayFallback(stability, contextType, tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:351:  if (scheduler && typeof scheduler.calculateRetrievability === 'function') {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:352:    const score = scheduler.calculateRetrievability(adjustedStability, adjustedElapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:362:export const calculateTemporalScore = calculateRetrievabilityScore;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:670:  const retrievabilityScore = calculateRetrievabilityScore(row);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:754:        retrievability: calculateRetrievabilityScore(row),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:834:  const retrievability = calculateRetrievabilityScore(row);
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:160:    const retrievability = fsrsScheduler.calculateRetrievability(currentStability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:165:      trackAccess: {
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:148:  trackAccess: z.boolean().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:74:  trackAccess?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:112:import { calculateRetrievabilityDecay } from './cognitive/attention-decay';
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:113:console.log(typeof SQLiteVectorStore, typeof calculateRetrievabilityDecay);
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:380:import { calculateRetrievabilityDecay } from './cognitive/attention-decay';
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:384:const retrievability = calculateRetrievabilityDecay(
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:552:import { calculateRetrievabilityDecay } from './cognitive/attention-decay';
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:560:const retrievability = calculateRetrievabilityDecay(stability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:687:import { calculateRetrievabilityDecay } from './cognitive/attention-decay';
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:688:console.log('Available exports:', SQLiteVectorStore.name, typeof calculateRetrievabilityDecay);
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:223:      trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:6:  applyHybridDecayPolicy,
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:8:  calculateRetrievability,
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:110:describe('Hybrid Decay Policy — applyHybridDecayPolicy', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:120:    expect(applyHybridDecayPolicy(stability, 'decision')).toBe(stability);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:126:    expect(applyHybridDecayPolicy(stability, 'session')).toBe(stability);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:133:    expect(applyHybridDecayPolicy(1.0, 'decision')).toBe(Infinity);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:134:    expect(applyHybridDecayPolicy(5.5, 'decision')).toBe(Infinity);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:139:    expect(applyHybridDecayPolicy(2.0, 'constitutional')).toBe(Infinity);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:144:    expect(applyHybridDecayPolicy(3.0, 'critical')).toBe(Infinity);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:150:    expect(applyHybridDecayPolicy(stability, 'session')).toBe(stability);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:151:    expect(applyHybridDecayPolicy(stability, 'scratch')).toBe(stability);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:152:    expect(applyHybridDecayPolicy(stability, 'research')).toBe(stability);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:153:    expect(applyHybridDecayPolicy(stability, 'implementation')).toBe(stability);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:154:    expect(applyHybridDecayPolicy(stability, 'general')).toBe(stability);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:159:    const stability = applyHybridDecayPolicy(1.0, 'decision');
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:163:    const r0 = calculateRetrievability(stability, 0);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:164:    const r30 = calculateRetrievability(stability, 30);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:165:    const r365 = calculateRetrievability(stability, 365);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:173:    const stability = applyHybridDecayPolicy(1.0, 'session');
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:176:    const r30 = calculateRetrievability(stability, 30);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:184:    expect(applyHybridDecayPolicy(2.5, 'decision')).toBe(Infinity);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:185:    expect(applyHybridDecayPolicy(2.5, 'critical')).toBe(Infinity);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:195:    // When hybrid decay is OFF but classification decay is ON, applyHybridDecayPolicy
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:201:    // applyHybridDecayPolicy should return stability unchanged (its own flag is OFF)
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:202:    expect(applyHybridDecayPolicy(stability, 'decision')).toBe(stability);
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:72:    const calcR = compositeScoring.calculateRetrievabilityScore
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:575:        const score = compositeScoring.calculateRetrievabilityScore(row)
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:1043:      'calculateRetrievabilityScore',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:4:import { halfLifeToStability, calculateRetrievability } from '../lib/cognitive/tier-classifier';
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:32:    const r = calculateRetrievability(stability, 0);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:39:    const r = calculateRetrievability(stability, halfLife);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:49:    const rValues = timePoints.map(t => calculateRetrievability(stability, t));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:59:    const r365 = calculateRetrievability(stability, 365);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:60:    const r730 = calculateRetrievability(stability, 730);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-fsrs-formula.vitest.ts:73:    const r = calculateRetrievability(0, 30);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:31:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:32:    const result = fsrsScheduler.calculateRetrievability(1.0, 0);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:37:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:38:    const result = fsrsScheduler.calculateRetrievability(1.0, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:44:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:45:    const rLowStability = fsrsScheduler.calculateRetrievability(1.0, 10);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:46:    const rHighStability = fsrsScheduler.calculateRetrievability(10.0, 10);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:77:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:78:    const calc = fsrsScheduler.calculateRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:89:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:90:    const calc = fsrsScheduler.calculateRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:100:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:101:    const rVeryLong = fsrsScheduler.calculateRetrievability(1.0, 10000);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:109:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:110:    const calc = fsrsScheduler.calculateRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:120:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:121:    const calc = fsrsScheduler.calculateRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:128:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:129:    const calc = fsrsScheduler.calculateRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:228:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:229:    const rHigh = fsrsScheduler.calculateRetrievability(10.0, 1);  // High stability, recent
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:230:    const rLow = fsrsScheduler.calculateRetrievability(1.0, 10);   // Low stability, old
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:297:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:298:    const rZero = fsrsScheduler.calculateRetrievability(1.0, 0);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:308:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:309:    const calc = fsrsScheduler.calculateRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:328:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:329:    const calc = fsrsScheduler.calculateRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:340:    if (!fsrsScheduler?.calculateRetrievability) return;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:341:    const calc = fsrsScheduler.calculateRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:389:      const r = fsrsScheduler.calculateRetrievability
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:390:        ? fsrsScheduler.calculateRetrievability(stability, 1)
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:416:      const r = fsrsScheduler.calculateRetrievability
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:417:        ? fsrsScheduler.calculateRetrievability(stability, 1)
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:555:    'calculateRetrievability',
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:626:    // If calculateRetrievability is available, test it
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:627:    if (typeof fsrsScheduler.calculateRetrievability === 'function') {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:628:      const r = fsrsScheduler.calculateRetrievability(30, 10);
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:96:     Production: calculateRetrievability(stability: number, elapsedDays: number): number
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:102:      const r = tierClassifier.calculateRetrievability(10, 0);
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:108:      const r = tierClassifier.calculateRetrievability(1.0, 1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:114:      const r = tierClassifier.calculateRetrievability(100, 10);
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:119:      const r = tierClassifier.calculateRetrievability(1, 10);
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:125:      expect(tierClassifier.calculateRetrievability(0, 5)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:481:      'classifyState', 'calculateRetrievability', 'classifyTier',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:82:    reviewCount: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:217:    expect(memory.reviewCount).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:85:      trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:348:    input.config.trackAccess = true;
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:205:    trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:109:     calculateRetrievabilityDecay()
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:110:     Production: calculateRetrievabilityDecay(stability: number, elapsedDays: number): number
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:114:  describe('calculateRetrievabilityDecay()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:116:      expect(attentionDecay.calculateRetrievabilityDecay(1.0, 0)).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:120:      const r1 = attentionDecay.calculateRetrievabilityDecay(1.0, 1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:126:      const rS1 = attentionDecay.calculateRetrievabilityDecay(1.0, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:127:      const rS5 = attentionDecay.calculateRetrievabilityDecay(5.0, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:132:      expect(attentionDecay.calculateRetrievabilityDecay(0, 5)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:136:      expect(attentionDecay.calculateRetrievabilityDecay(1.0, -5)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:341:     calculateRetrievability(stability, elapsedDays): number
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:346:      expect(fsrsScheduler.calculateRetrievability(1.0, 0)).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:351:        fsrsScheduler.calculateRetrievability(1.0, t)
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:359:      const rFar = fsrsScheduler.calculateRetrievability(1.0, 10000);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:364:      const rS1 = fsrsScheduler.calculateRetrievability(1.0, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:365:      const rS10 = fsrsScheduler.calculateRetrievability(10.0, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:370:      const rNeg = fsrsScheduler.calculateRetrievability(1.0, -5);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:371:      const rHuge = fsrsScheduler.calculateRetrievability(0.001, 1000000);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:379:      expect(fsrsScheduler.calculateRetrievability(0, 1)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:380:      expect(fsrsScheduler.calculateRetrievability(-5, 1)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:397:    const fsrsExports = ['applyFsrsDecay', 'calculateRetrievabilityDecay', 'activateMemoryWithFsrs'];
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:419:      const constRetrievability = attentionDecay.calculateRetrievabilityDecay(1000.0, 1000);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:448:      'getDecayRate', 'calculateRetrievabilityDecay',
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:18:  calculateRetrievabilityScore,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:72:describe('T505-02: Retrievability Decay (calculateRetrievabilityScore)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:77:    const recentScore = calculateRetrievabilityScore(recentRow);
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:78:    const olderScore = calculateRetrievabilityScore(olderRow);
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:156:    const score = calculateRetrievabilityScore({ lastReview: 'not-a-date' });
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:111:      trackAccess: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:225:  it('records adaptive access signals when trackAccess is true and adaptive ranking enabled', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:137:    trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:186:        mod.trackAccess(i);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:189:      // The next trackAccess should trigger the overflow guard
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:191:      const result = mod.trackAccess(overflowId);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:206:        mod.trackAccess(i);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:208:      mod.trackAccess(MAX + 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:231:        mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:249:        mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:271:        mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:301:          mod.trackAccess(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:318:          mod.trackAccess(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:383:      expect(typeof mod.trackAccess).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:13:  applyClassificationDecay,
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:14:  calculateRetrievability,
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:56:  it('applyClassificationDecay returns Infinity for constitutional tier (flag=true)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:58:      const result = applyClassificationDecay(10, 'implementation', 'constitutional');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:63:  it('calculateRetrievability with Infinity stability returns 1.0 regardless of elapsed days', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:64:    // When applyClassificationDecay returns Infinity, plug into calculateRetrievability
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:67:      const r = calculateRetrievability(Infinity, elapsed);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:84:  it('applyClassificationDecay returns Infinity for decision context (flag=true)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:86:      const result = applyClassificationDecay(5, 'decision', 'normal');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:102:  it('applyClassificationDecay halves stability for temporary (flag=true)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:105:      const result = applyClassificationDecay(baseStability, 'general', 'temporary');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:115:      const normalStability = applyClassificationDecay(baseStability, 'general', 'normal');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:116:      const temporaryStability = applyClassificationDecay(baseStability, 'general', 'temporary');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:118:      const rNormal = calculateRetrievability(normalStability, elapsed);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:119:      const rTemporary = calculateRetrievability(temporaryStability, elapsed);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:142:      const researchStability = applyClassificationDecay(baseStability, 'research', 'normal');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:143:      const normalStability = applyClassificationDecay(baseStability, 'general', 'normal');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:150:      expect(calculateRetrievability(researchStability, elapsed))
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:151:        .toBeGreaterThan(calculateRetrievability(normalStability, elapsed));
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:178:  it('applyClassificationDecay with unknown types returns unchanged stability', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:180:      const result = applyClassificationDecay(7, 'unknown_ctx', 'unknown_tier');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:188:  it('flag unset → applyClassificationDecay applies multiplier (graduated: default ON)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:190:      const result = applyClassificationDecay(10, 'decision', 'constitutional');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:196:  it('flag="false" → applyClassificationDecay returns stability unchanged', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:201:        const result = applyClassificationDecay(10, 'decision', 'constitutional');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:213:  it('flag="0" → applyClassificationDecay returns stability unchanged', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:215:      const result = applyClassificationDecay(10, 'temporary', 'normal');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:220:  it('flag="true" → applyClassificationDecay applies multiplier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:222:      const result = applyClassificationDecay(10, 'general', 'temporary');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:227:  it('flag="1" → applyClassificationDecay applies multiplier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:229:      const result = applyClassificationDecay(10, 'research', 'normal');
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:84:    trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:108:5. Testing effect — FSRS strengthening write-back (opt-in via `trackAccess`)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:10:  calculateRetrievability as calculateFsrsRetrievability
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:224:function calculateRetrievability(stability: number, elapsedDays: number): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:325:  const retrievability = calculateRetrievability(finalStability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:526:  calculateRetrievability,
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:40:  applyClassificationDecay,
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:223:  // T041-16: applyClassificationDecay with flag enabled adjusts stability
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:229:    const adjusted = applyClassificationDecay(baseStability, 'research', 'important');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:238:    const result = applyClassificationDecay(baseStability, 'research', 'temporary');
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:65:    it('T507-01: trackAccess returns true on accumulate', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:66:      const result1 = mod.trackAccess(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:70:    it('T507-01b: Accumulator state updated after trackAccess', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:85:        mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:89:      mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:169:      mod.trackAccess(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:163:        trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:8:  calculateRetrievabilityScore,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:18:  // 4.1 calculateRetrievabilityScore with partial objects (ScoringInput)
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:21:      const r = calculateRetrievabilityScore({ stability: 5.0 });
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:29:      const r = calculateRetrievabilityScore({ lastReview: new Date().toISOString() });
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:37:      const r = calculateRetrievabilityScore({});
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:45:      const r = calculateRetrievabilityScore({
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:264:| `fsrs-scheduler.ts`        | FSRS v4 + TM-03 classification decay | `calculateRetrievability`, `updateStability`, `processReview`, `applyClassificationDecay` |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:289:  calculateRetrievability,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:300:const R = calculateRetrievability(stability, elapsed);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:313:// params = { stability: 1.0, difficulty: 5.0, lastReview: null, reviewCount: 0 }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:316:// result = { stability, difficulty, lastReview, reviewCount, nextReviewDate, retrievability }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:96:// calculateDecayedScore was removed; use calculateRetrievabilityDecay or applyFsrsDecay.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:101:function calculateRetrievabilityDecay(stability: number, elapsedDays: number): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:102:  if (typeof fsrsScheduler.calculateRetrievability === 'function') {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:103:    return fsrsScheduler.calculateRetrievability(stability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:130:  const retrievability = calculateRetrievabilityDecay(stability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:173:      reviewCount: (memory.review_count as number) || 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:185:        reviewCount: params.reviewCount + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:186:        nextReviewDate: new Date().toISOString(),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:204:      result.reviewCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:340:  calculateRetrievabilityDecay,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:20:// Through calculateRetrievability(). Formula: R(t) = (1 + 19/81 * t/S)^(-0.5)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:62:  reviewCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:69:  reviewCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:80:function calculateRetrievability(stability: number, elapsedDays: number): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:193:    reviewCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:202:  const retrievability = calculateRetrievability(params.stability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:213:    reviewCount: params.reviewCount + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:346:function applyClassificationDecay(
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:381:   This is intentionally SEPARATE from TM-03 (applyClassificationDecay) which
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:451:function applyHybridDecayPolicy(stability: number, contextType: string, importanceTier?: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:477:  applyClassificationDecay,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:486:  applyHybridDecayPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:489:  calculateRetrievability,
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:7:  applyClassificationDecay,
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:8:  applyHybridDecayPolicy,
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:27:    expect(applyHybridDecayPolicy(4, 'decision', 'normal')).toBe(NO_DECAY);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:37:    expect(applyHybridDecayPolicy(6, 'transient', 'critical')).toBe(6);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:40:  it('makes applyClassificationDecay honor the hybrid no-decay override when enabled', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:44:    expect(applyClassificationDecay(2.5, 'critical', 'temporary')).toBe(NO_DECAY);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:45:    expect(applyClassificationDecay(2.5, 'session', 'constitutional')).toBe(2.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:52:    expect(applyHybridDecayPolicy(3, 'decision', 'normal')).toBe(NO_DECAY);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:86:      expect(fsrsScheduler.calculateRetrievability(-1, 5)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:142:        reviewCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:145:      expect(fsrsScheduler.calculateRetrievability(365, 30)).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:292:      const nextReviewDate = fsrsScheduler.getNextReviewDate(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:293:      expect(Number.isNaN(new Date(nextReviewDate).getTime())).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:48:  calculateRetrievabilityScore,
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:544:      const retrievability = calculateRetrievabilityScore({
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:239:    trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:158:    expect(params).toHaveProperty('reviewCount');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:176:  it('C-05: reviewCount is 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:178:    expect(params.reviewCount).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:206:    expect(result).toHaveProperty('reviewCount');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:207:    expect(result).toHaveProperty('nextReviewDate');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:211:  it('D-02: reviewCount increments by 1', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:213:    expect(result.reviewCount).toBe(initial.reviewCount + 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:225:    const params = { ...initial, stability: 5.0, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:231:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:237:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:243:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:249:  it('D-08: nextReviewDate is valid future date', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:251:    const nextDate = new Date(result.nextReviewDate);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:266:    expect(result2.reviewCount).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:86:function trackAccess(memoryId: number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:328:  trackAccess,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:87:- FSRS testing effect fires only when `trackAccess` is explicitly true.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:14://     - FSRS write-back to memory_index (when trackAccess=true) — DB write
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:28:// 3.  Testing effect          — FSRS strengthening write-back (trackAccess)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:843: * Called only when `trackAccess` is true (P3-09 FIX: explicit opt-in to avoid
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:872:      const currentR = fsrsScheduler.calculateRetrievability(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:936: *   3.  Testing effect     (all types, when trackAccess = true)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1195:  // P3-09 FIX: Only when explicitly opted in via trackAccess.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1198:  if (config.trackAccess) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:152:  trackAccess: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:30:  calculateRetrievability: (stability: number, elapsedDays: number) => number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:31:  applyClassificationDecay?: (stability: number, contextType: string, importanceTier: string) => number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:214:function applyClassificationDecayFallback(stability: number, contextType: string, importanceTier: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:299:export function calculateRetrievabilityScore(row: ScoringInput): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:331:    if (scheduler?.applyClassificationDecay) {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:332:      adjustedStability = scheduler.applyClassificationDecay(stability, contextType, tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:334:      adjustedStability = applyClassificationDecayFallback(stability, contextType, tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:351:  if (scheduler && typeof scheduler.calculateRetrievability === 'function') {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:352:    const score = scheduler.calculateRetrievability(adjustedStability, adjustedElapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:362:export const calculateTemporalScore = calculateRetrievabilityScore;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:670:  const retrievabilityScore = calculateRetrievabilityScore(row);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:754:        retrievability: calculateRetrievabilityScore(row),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:834:  const retrievability = calculateRetrievabilityScore(row);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '820,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '820,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    820	      const usageBoost = computeUsageBoost(accessCount, maxAccess);
    821	
@@ -7158,7 +7158,7 @@ exec
    980	  if (isHybrid && config.enableSessionBoost && config.sessionId) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '1180,1235p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '1180,1235p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1180	      console.warn(`[stage2-fusion] usage ranking skipped (db unavailable): ${message}`);
   1181	    }
@@ -7218,7 +7218,7 @@ exec
   1235	    } catch (err: unknown) {
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Search Pipeline - 4-Stage Retrieval"
@@ -7339,7 +7339,7 @@ Query + Config
 - `@spec-kit/shared/algorithms/mmr-reranker.ts` - MMR algorithm used by Stage 3.
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Sqlite Fts
@@ -7523,7 +7523,7 @@ exec
    180	  const folderFilter = specFolder
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Orchestrator
@@ -7722,7 +7722,7 @@ exec
    195	}
 
 exec
-/bin/zsh -lc "sed -n '1,180p' .opencode/skill/system-spec-kit/mcp_server/lib/search/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,180p' .opencode/skills/system-spec-kit/mcp_server/lib/search/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Search Subsystem"
@@ -7928,7 +7928,7 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 - **Impact**: high
 
 ### Finding 3: Modus splits “all documents” from “memory facts” and gives facts their own recall-and-decay loop
-- **Source**: [vault/facts.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L12), [index/facts.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/facts.go#L23), [mcp/vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L271), [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L840)
+- **Source**: [vault/facts.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L12), [index/facts.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/facts.go#L23), [mcp/vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L271), [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L840)
 - **What it does**: Persisted markdown fact files are decayed and reinforced through `vault/facts.go`, while `index/facts.go` keeps a separate in-memory searchable fact slice with recency and confidence boosts; `memory_search` auto-reinforces each returned fact asynchronously, unlike our Stage 2 FSRS testing effect which only writes back when `trackAccess=true`.
 - **Why it matters for us**: Modus has a cleaner “returned result == recall event” model for fact memories, while our current system is more conservative and avoids write-on-read side effects by default.
 - **Recommendation**: prototype later
@@ -7956,7 +7956,7 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 - **Impact**: high
 
 ### Finding 7: Public already has the broader retrieval architecture; Modus is a simplification reference, not a replacement candidate
-- **Source**: [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md#L1), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L1), [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L31), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L31), [go.mod](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/go.mod#L1)
+- **Source**: [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md#L1), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L1), [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L31), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L31), [go.mod](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/go.mod#L1)
 - **What it does**: Public already runs a 4-stage hybrid pipeline with vector + BM25/FTS5 + graph channels, session and causal boosts, reranking, fallback-state reporting, and opt-in FSRS write-back. Modus is simpler, but the README also overstates some properties: `go.mod` is not zero-dependency, and the search path can invoke a local model when Librarian is available.
 - **Why it matters for us**: The real comparison is selective borrowing, not replacement. The highest-value overlaps are adjacency hints and a cleaner recall-event policy; the rest would mostly duplicate or downgrade existing Public capabilities.
 - **Recommendation**: reject
@@ -7978,11 +7978,11 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 - [mcp/vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go)
 - [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md)
 - [docs/librarian.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/docs/librarian.md)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md)
-- [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts)
-- [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts)
-- [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md)
+- [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts)
+- [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts)
+- [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts)
 
 ## Assessment
 - New information ratio: 0.82
@@ -8023,7 +8023,7 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 - **Impact**: high
 
 ### Finding 3: Modus splits “all documents” from “memory facts” and gives facts their own recall-and-decay loop
-- **Source**: [vault/facts.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L12), [index/facts.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/facts.go#L23), [mcp/vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L271), [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L840)
+- **Source**: [vault/facts.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L12), [index/facts.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/facts.go#L23), [mcp/vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L271), [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L840)
 - **What it does**: Persisted markdown fact files are decayed and reinforced through `vault/facts.go`, while `index/facts.go` keeps a separate in-memory searchable fact slice with recency and confidence boosts; `memory_search` auto-reinforces each returned fact asynchronously, unlike our Stage 2 FSRS testing effect which only writes back when `trackAccess=true`.
 - **Why it matters for us**: Modus has a cleaner “returned result == recall event” model for fact memories, while our current system is more conservative and avoids write-on-read side effects by default.
 - **Recommendation**: prototype later
@@ -8051,7 +8051,7 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 - **Impact**: high
 
 ### Finding 7: Public already has the broader retrieval architecture; Modus is a simplification reference, not a replacement candidate
-- **Source**: [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md#L1), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L1), [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L31), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L31), [go.mod](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/go.mod#L1)
+- **Source**: [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md#L1), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L1), [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L31), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L31), [go.mod](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/go.mod#L1)
 - **What it does**: Public already runs a 4-stage hybrid pipeline with vector + BM25/FTS5 + graph channels, session and causal boosts, reranking, fallback-state reporting, and opt-in FSRS write-back. Modus is simpler, but the README also overstates some properties: `go.mod` is not zero-dependency, and the search path can invoke a local model when Librarian is available.
 - **Why it matters for us**: The real comparison is selective borrowing, not replacement. The highest-value overlaps are adjacency hints and a cleaner recall-event policy; the rest would mostly duplicate or downgrade existing Public capabilities.
 - **Recommendation**: reject
@@ -8073,11 +8073,11 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 - [mcp/vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go)
 - [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md)
 - [docs/librarian.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/docs/librarian.md)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md)
-- [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts)
-- [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts)
-- [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md)
+- [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts)
+- [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts)
+- [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts)
 
 ## Assessment
 - New information ratio: 0.82

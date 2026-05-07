@@ -117,10 +117,10 @@ The system had two separate skills with overlapping responsibilities:
 | Component | Location |
 |-----------|----------|
 | **Skills** | `system-memory` (context preservation) + `system-spec-kit` (spec folder management) |
-| **MCP Server** | `.opencode/skill/system-memory/mcp_server/semantic-memory.js` |
-| **Database** | `.opencode/skill/system-memory/database/memory-index.sqlite` |
-| **Constitutional** | `.opencode/skill/system-memory/constitutional/gate-enforcement.md` |
-| **Scripts** | `.opencode/skill/system-memory/scripts/generate-context.js` |
+| **MCP Server** | `.opencode/skills/system-memory/mcp_server/semantic-memory.js` |
+| **Database** | `.opencode/skills/system-memory/database/memory-index.sqlite` |
+| **Constitutional** | `.opencode/skills/system-memory/constitutional/gate-enforcement.md` |
+| **Scripts** | `.opencode/skills/system-memory/scripts/generate-context.js` |
 | **MCP Modules** | 23 library modules in `mcp_server/lib/` |
 
 **Problems:**
@@ -136,10 +136,10 @@ Single unified skill with all capabilities merged:
 | Component | Location |
 |-----------|----------|
 | **Skills** | `system-spec-kit` (unified: spec management + context preservation) |
-| **MCP Server** | `.opencode/skill/system-spec-kit/mcp_server/context-server.js` |
-| **Database** | `.opencode/skill/system-spec-kit/database/context-index.sqlite` |
-| **Constitutional** | `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md` |
-| **Scripts** | `.opencode/skill/system-spec-kit/scripts/generate-context.js` |
+| **MCP Server** | `.opencode/skills/system-spec-kit/mcp_server/context-server.js` |
+| **Database** | `.opencode/skills/system-spec-kit/database/context-index.sqlite` |
+| **Constitutional** | `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md` |
+| **Scripts** | `.opencode/skills/system-spec-kit/scripts/generate-context.js` |
 | **MCP Modules** | 23 library modules in `mcp_server/lib/` |
 | **Skill Version** | v16.0.0 |
 
@@ -167,10 +167,10 @@ Single unified skill with all capabilities merged:
 
 2. **Merged Database**
    - Moved `memory-index.sqlite` to `context-index.sqlite`
-   - Location: `.opencode/skill/system-spec-kit/database/`
+   - Location: `.opencode/skills/system-spec-kit/database/`
 
 3. **Kept Constitutional in Skill Folder**
-   - Constitutional files remain in `.opencode/skill/system-spec-kit/constitutional/`
+   - Constitutional files remain in `.opencode/skills/system-spec-kit/constitutional/`
    - These are PROJECT-GLOBAL rules, not per-spec
 
 4. **Updated All Path References**
@@ -204,7 +204,7 @@ Single unified skill with all capabilities merged:
 **Options Considered**:
 1. Store in each spec folder's `memory/` subfolder
 2. Create a shared constitutional folder in `specs/`
-3. Keep in `.opencode/skill/system-spec-kit/constitutional/`
+3. Keep in `.opencode/skills/system-spec-kit/constitutional/`
 
 **Chosen**: Option 3 - Keep in skill folder
 
@@ -294,34 +294,34 @@ Single unified skill with all capabilities merged:
 ### Memory Commands
 | File | Change |
 |------|--------|
-| `.opencode/command/memory/index.md` | Updated paths |
-| `.opencode/command/memory/save.md` | Updated paths |
-| `.opencode/command/memory/search.md` | Updated paths |
-| `.opencode/command/memory/checkpoint.md` | Updated paths |
+| `.opencode/commands/memory/index.md` | Updated paths |
+| `.opencode/commands/memory/save.md` | Updated paths |
+| `.opencode/commands/memory/search.md` | Updated paths |
+| `.opencode/commands/memory/checkpoint.md` | Updated paths |
 
 ### Spec Kit Commands
 | File | Change |
 |------|--------|
-| `.opencode/command/spec_kit/resume.md` | Updated paths |
-| `.opencode/command/spec_kit/handover.md` | Updated paths |
+| `.opencode/commands/spec_kit/resume.md` | Updated paths |
+| `.opencode/commands/spec_kit/handover.md` | Updated paths |
 
 ### Skill Files
 | File | Change |
 |------|--------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | Updated to v16.0.0 with merged architecture |
-| `.opencode/skill/system-spec-kit/README.md` | Updated component locations |
-| `.opencode/skill/system-spec-kit/references/validation_rules.md` | Aligned with sk-doc standards |
-| `.opencode/skill/system-spec-kit/references/worked_examples.md` | Aligned with sk-doc standards |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Updated to v16.0.0 with merged architecture |
+| `.opencode/skills/system-spec-kit/README.md` | Updated component locations |
+| `.opencode/skills/system-spec-kit/references/validation_rules.md` | Aligned with sk-doc standards |
+| `.opencode/skills/system-spec-kit/references/worked_examples.md` | Aligned with sk-doc standards |
 
 ### MCP Server
 | File | Change |
 |------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Renamed from semantic-memory.js |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Renamed from semantic-memory.js |
 
 ### Database
 | File | Change |
 |------|--------|
-| `.opencode/skill/system-spec-kit/database/context-index.sqlite` | Renamed from memory-index.sqlite |
+| `.opencode/skills/system-spec-kit/database/context-index.sqlite` | Renamed from memory-index.sqlite |
 
 ### Install Guides
 | File | Change |
@@ -360,7 +360,7 @@ Single unified skill with all capabilities merged:
 - Aligned `worked_examples.md` with sk-doc standards
 
 ### Final: Cleanup
-- Deleted old `.opencode/skill/system-memory/` folder
+- Deleted old `.opencode/skills/system-memory/` folder
 - Verified all references point to new locations
 
 <!-- /ANCHOR:migration-phases-035-memory-speckit-merger -->
@@ -484,10 +484,10 @@ trigger_phrases:
   - "context-index.sqlite"
 
 key_files:
-  - ".opencode/skill/system-spec-kit/mcp_server/context-server.js"
-  - ".opencode/skill/system-spec-kit/database/context-index.sqlite"
-  - ".opencode/skill/system-spec-kit/constitutional/gate-enforcement.md"
-  - ".opencode/skill/system-spec-kit/scripts/generate-context.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/context-server.js"
+  - ".opencode/skills/system-spec-kit/database/context-index.sqlite"
+  - ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md"
+  - ".opencode/skills/system-spec-kit/scripts/generate-context.js"
   - "opencode.json"
   - "AGENTS.md"
 ```

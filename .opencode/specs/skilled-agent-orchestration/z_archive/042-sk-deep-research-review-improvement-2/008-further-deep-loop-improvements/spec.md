@@ -89,11 +89,11 @@ Capture the completed remediation as a clean Level 3 child packet that shows wha
 
 ### In Scope
 
-- `.opencode/skill/sk-deep-research/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
-- `.opencode/skill/sk-deep-review/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
-- `.opencode/skill/sk-improve-agent/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
-- `.opencode/skill/system-spec-kit/` shared coverage-graph helpers, handlers, and tests touched by graph convergence and session isolation work.
-- `.opencode/command/spec_kit/` and `.opencode/command/improve/` workflow docs and YAMLs touched by visible-path wiring.
+- `.opencode/skills/sk-deep-research/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
+- `.opencode/skills/sk-deep-review/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
+- `.opencode/skills/sk-improve-agent/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
+- `.opencode/skills/system-spec-kit/` shared coverage-graph helpers, handlers, and tests touched by graph convergence and session isolation work.
+- `.opencode/commands/spec_kit/` and `.opencode/commands/improve/` workflow docs and YAMLs touched by visible-path wiring.
 - Phase-local closeout artifacts in `scratch/closing-review.md` and the phase packet documentation itself.
 
 ### Out of Scope
@@ -261,12 +261,12 @@ Capture the completed remediation as a clean Level 3 child packet that shows wha
 - `.opencode/changelog/13--sk-deep-review/v1.3.0.0.md`
 - `.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md`
 - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md`
-- `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md`
-- `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/033-graph-aware-stop-gate.md`
-- `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md`
-- `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/023-fail-closed-reducer.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md`
-- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md`
-- `.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`
+- `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md`
+- `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/033-graph-aware-stop-gate.md`
+- `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md`
+- `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/023-fail-closed-reducer.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md`
+- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md`
+- `.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`

@@ -52,7 +52,7 @@ Open `checklist.md`. Enumerate every `[x]` CHK-* item. For each, evaluate eviden
 For CHK-T15 specifically (the live MCP rescan P0 blocker): does the rationale accurately describe what's needed, or is it understating the gap?
 
 ### OVERLAY: feature_catalog_code
-Find the global feature catalog (likely under `.opencode/skill/sk-doc/` or similar). Search for entries that reference memory-indexer / index-scope / constitutional-tier capabilities. Are catalog claims consistent with the post-Wave-2 implementation? Are NEW capabilities (cleanup CLI, walker DoS caps, governance audit helpers) mentioned?
+Find the global feature catalog (likely under `.opencode/skills/sk-doc/` or similar). Search for entries that reference memory-indexer / index-scope / constitutional-tier capabilities. Are catalog claims consistent with the post-Wave-2 implementation? Are NEW capabilities (cleanup CLI, walker DoS caps, governance audit helpers) mentioned?
 
 ### OVERLAY: playbook_capability
 Find the global testing playbook. Are scenarios for cleanup CLI execution, checkpoint restore validation, walker DoS adversarial inputs, or constitutional-tier promotion bypasses present? If missing, this is a P2.

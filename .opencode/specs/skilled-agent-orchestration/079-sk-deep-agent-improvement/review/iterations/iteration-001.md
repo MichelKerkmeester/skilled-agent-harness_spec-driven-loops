@@ -17,11 +17,11 @@
 - `.claude/commands/improve/` directory inventory
 - `.gemini/commands/improve/` directory inventory
 - `.codex/commands/improve/` directory existence check
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts`
 
 ## Findings - New
 

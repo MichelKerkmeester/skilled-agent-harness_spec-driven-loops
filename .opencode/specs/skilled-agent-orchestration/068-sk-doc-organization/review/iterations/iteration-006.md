@@ -17,17 +17,17 @@ Iter 3 surfaced exactly one P1 (broken `../agents/command_template.md` link in `
 
 ### Scan 1 — Relative `../agents/` and `../documentation/` cross-refs from inside other asset subdirs
 ```
-rg -n "\.\./agents/(agent|command)_template" .opencode/skill/sk-doc/assets/
-rg -n "\.\./documentation/(feature_catalog|testing_playbook)" .opencode/skill/sk-doc/assets/
+rg -n "\.\./agents/(agent|command)_template" .opencode/skills/sk-doc/assets/
+rg -n "\.\./documentation/(feature_catalog|testing_playbook)" .opencode/skills/sk-doc/assets/
 ```
 - Hits: **1** — `assets/documentation/frontmatter_templates.md:770` (already filed as **P1-003-A**, no new finding).
 - `../documentation/...` pattern: **0 hits.**
 
-### Scan 2 — Absolute `/.opencode/skill/sk-doc/assets/agents/...` paths anywhere
+### Scan 2 — Absolute `/.opencode/skills/sk-doc/assets/agents/...` paths anywhere
 ```
 rg -n --no-ignore-vcs -g '!**/{specs,z_archive,dist,.tmp,barter,node_modules}/**' \
    -g '!**/changelog/v[0-9]*.md' \
-   '\.opencode/skill/sk-doc/assets/(agents/(agent|command)_template|documentation/(feature_catalog|testing_playbook))' .
+   '\.opencode/skills/sk-doc/assets/(agents/(agent|command)_template|documentation/(feature_catalog|testing_playbook))' .
 ```
 - **0 hits.** ✓
 
@@ -39,7 +39,7 @@ rg -n --no-ignore-vcs -g '!**/{specs,z_archive,dist,.tmp,barter,node_modules,obs
    .opencode .claude .codex .gemini
 ```
 - Active scope: only the already-known frontmatter_templates.md:770 hit. ✓
-- Out-of-scope hit (informational only, locked OOS by strategy): 2 entries in `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` (lines 57, 182) reference old paths `assets/documentation/testing_playbook/...` and `assets/documentation/frontmatter_templates.md` inside captured router-measurement payloads. These are historical experimental records (build artifacts), explicitly in OOS per strategy. Not a finding.
+- Out-of-scope hit (informational only, locked OOS by strategy): 2 entries in `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` (lines 57, 182) reference old paths `assets/documentation/testing_playbook/...` and `assets/documentation/frontmatter_templates.md` inside captured router-measurement payloads. These are historical experimental records (build artifacts), explicitly in OOS per strategy. Not a finding.
 
 ### Scan 4 — JSON/YAML quoted keys
 ```
@@ -52,37 +52,37 @@ rg -n '"agents/(agent|command)_template"|"documentation/(feature_catalog|testing
 ```
 rg -n -g '*.ts' -g '*.js' -g '*.py' \
    'agents/agent_template|agents/command_template|documentation/feature_catalog|documentation/testing_playbook' \
-   .opencode/skill/sk-doc/
+   .opencode/skills/sk-doc/
 ```
 - **0 hits.** No script constructs old paths at runtime. ✓
 
 ### Scan 6 — Flowcharts + skill-creation asset subdirs
 ```
-rg -n '\.\./agents/' .opencode/skill/sk-doc/assets/skill/ .opencode/skill/sk-doc/assets/flowcharts/
+rg -n '\.\./agents/' .opencode/skills/sk-doc/assets/skill/ .opencode/skills/sk-doc/assets/flowcharts/
 ```
 - **0 hits.** ✓
 
 ### Scan 7 — All `(agent|command)_template` tokens in active scope
 ```
 rg -n -g '!**/{specs,z_archive,dist,.tmp,barter,node_modules,observability}/**' \
-   -g '!**/changelog/v[0-9]*.md' '(agent|command)_template' .opencode/skill/sk-doc/
+   -g '!**/changelog/v[0-9]*.md' '(agent|command)_template' .opencode/skills/sk-doc/
 ```
 - 24 hits across SKILL.md, README.md, references/global/{core_standards,quick_reference,workflows,validation,optimization}.md, references/specific/agent_creation.md.
 - **All 24 use the new canonical paths** (`assets/command_template.md`, `../../assets/command_template.md`, etc.). Only the 1 already-known P1 link uses the dead `../agents/` form.
 
 ### Scan 8 — Cross-runtime mirror byte-identity (defense-in-depth re-check)
 ```
-diff -rq .opencode/command/create/ .claude/commands/create/   → empty (exit 0)
-diff -rq .opencode/command/create/ .codex/prompts/create/     → empty (exit 0)
+diff -rq .opencode/commands/create/ .claude/commands/create/   → empty (exit 0)
+diff -rq .opencode/commands/create/ .codex/prompts/create/     → empty (exit 0)
 ```
 - Mirrors are inode-identical via the parent symlink (per Iter 2). Re-confirmed.
 
 ### Scan 9 — Agent files referencing sk-doc asset paths across all 4 runtimes
 ```
-rg -n 'sk-doc' .opencode/agent/ .claude/agents/ .codex/agents/ .gemini/agents/ \
+rg -n 'sk-doc' .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/ \
    | grep -E 'agent_template|command_template|feature_catalog|testing_playbook'
 ```
-- 18 matches across `.opencode/agent/create.md`, `.claude/agents/create.md`, `.codex/agents/create.toml`, `.gemini/agents/create.md`.
+- 18 matches across `.opencode/agents/create.md`, `.claude/agents/create.md`, `.codex/agents/create.toml`, `.gemini/agents/create.md`.
 - **All 18 use the new canonical paths.** ✓
 
 ### Scan 10 — JSON config under sk-doc
@@ -99,7 +99,7 @@ The hunter pass found **zero new P1s** beyond the already-known `P1-003-A` (`fro
 ### P2 — 1 advisory (NEW)
 
 **P2-006-A: Stale path strings inside out-of-scope router-measurement JSONL**
-- File: `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` lines 57, 182
+- File: `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` lines 57, 182
 - Content: captured `predictedRoute` payloads still reference `assets/documentation/testing_playbook/...` and `assets/documentation/frontmatter_templates.md` (the latter is a real, currently-existing file under `documentation/`, but the testing_playbook reference points to the pre-relocation path).
 - Status: **explicitly out of scope** per strategy ("Build artifacts (.tmp/, dist/, observability/*.jsonl)") — these are historical experimental records, not a runtime regression and not a broken reference (no consumer reads filesystem paths from these JSONL records).
 - Recommendation: **do nothing for this packet.** Optional: when smart-router measurement is re-run (separate concern), the new measurements will naturally reflect post-reorg paths.

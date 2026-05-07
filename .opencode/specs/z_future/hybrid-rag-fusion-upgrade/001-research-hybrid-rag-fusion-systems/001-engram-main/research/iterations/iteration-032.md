@@ -5,7 +5,7 @@ MIGRATION RISK MATRIX: For each adopt-now pattern, detail what could break durin
 
 ## Findings
 ### Finding 1: A deterministic recent-session digest is safe only if it stays additive to `session_resume` and `session_bootstrap`
-- **Source**: `001-engram-main/external/internal/store/store.go:1613-1667`; `001-engram-main/external/internal/mcp/mcp.go:375-395,460-562`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409-597`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-240`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`; `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:226-244,283-288`
+- **Source**: `001-engram-main/external/internal/store/store.go:1613-1667`; `001-engram-main/external/internal/mcp/mcp.go:375-395,460-562`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:409-597`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-240`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:739-776`; `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:226-244,283-288`
 - **What it does**: Engram’s `FormatContext()` builds a bounded digest over recent sessions, prompts, and observations. Public already has the stronger authority surface in `session_resume` and `session_bootstrap`, so the transferable pattern is an additive digest block inside those existing payloads, not a second lifecycle API.
 - **Why it matters**: Highest-leverage continuity win, but it touches Public’s most trust-sensitive startup path.
 - **Recommendation**: adopt now
@@ -25,7 +25,7 @@ MIGRATION RISK MATRIX: For each adopt-now pattern, detail what could break durin
   - Keep `session_resume`, `session_bootstrap`, cached-summary gating, and structural trust unchanged.
 
 ### Finding 2: A thin action card plus one-command runtime setup can easily duplicate or override Public’s existing recovery hooks
-- **Source**: `001-engram-main/external/README.md:45-58`; `001-engram-main/external/docs/AGENT-SETUP.md:27-43,69-84,111-122,147-158`; `001-engram-main/external/docs/PLUGINS.md:13-37,48-57,76-120`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-809`; `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`; `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:226-244`
+- **Source**: `001-engram-main/external/README.md:45-58`; `001-engram-main/external/docs/AGENT-SETUP.md:27-43,69-84,111-122,147-158`; `001-engram-main/external/docs/PLUGINS.md:13-37,48-57,76-120`; `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:741-809`; `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`; `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:226-244`
 - **What it does**: Engram productizes runtime setup with one-command installers and thin plugins. Public already emits startup instructions and injects compaction context, so the reusable piece is packaging/export ergonomics, not a new transport model.
 - **Why it matters**: Fast DX win after digest work, but it crosses every runtime adapter boundary.
 - **Recommendation**: adopt now
@@ -45,7 +45,7 @@ MIGRATION RISK MATRIX: For each adopt-now pattern, detail what could break durin
   - Keep recovery truth in core surfaces, not generated runtime files.
 
 ### Finding 3: An exact-handle lexical lane can regress search quality if it escapes its narrow artifact-only scope
-- **Source**: `001-engram-main/external/internal/store/store.go:1474-1583`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-45,69-83,154-184`; `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:231-244,283-288`
+- **Source**: `001-engram-main/external/internal/store/store.go:1474-1583`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-45,69-83,154-184`; `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:231-244,283-288`
 - **What it does**: Engram prepends exact `topic_key` hits before FTS results for handle-shaped queries. Public already keeps semantic-first routing and BM25 preservation for artifact-like searches; the migration target is a tiny exact-handle lane, not a lexical-first rewrite.
 - **Why it matters**: Search regressions would be immediate and user-visible.
 - **Recommendation**: adopt now
@@ -65,7 +65,7 @@ MIGRATION RISK MATRIX: For each adopt-now pattern, detail what could break durin
   - Keep any new key metadata additive and unused on rollback.
 
 ### Finding 4: A read-only doctor/scorecard should compose current diagnostics, not become a new source of truth or a hidden repair surface
-- **Source**: `001-engram-main/external/internal/mcp/mcp.go:399-411`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:30-57`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223-360`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:33-195`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:9-55`; `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:388-410`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:230-239,656-700,731-776`
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:399-411`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:30-57`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223-360`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:33-195`; `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`; `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:9-55`; `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:388-410`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:230-239,656-700,731-776`
 - **What it does**: Engram’s `mem_stats` shows the value of a lightweight operational surface. Public already has `memory_stats`, `memory_health`, `session_health`, `code_graph_status`, `ccc_status`, and `eval_reporting_dashboard`; the adopt-now move is a read-only composite wrapper over those tools.
 - **Why it matters**: Improves operability without touching ranking semantics or governance.
 - **Recommendation**: adopt now
@@ -94,18 +94,18 @@ MIGRATION RISK MATRIX: For each adopt-now pattern, detail what could break durin
 - `001-engram-main/external/docs/AGENT-SETUP.md:27-43,69-84,111-122,147-158`
 - `001-engram-main/external/docs/PLUGINS.md:13-37,48-57,76-120`
 - `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-809`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409-597`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-240`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:30-57`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223-360`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:33-195`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:9-55`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:388-410`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-45,69-83,154-184,230-239,656-700,731-776`
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:226-244,283-288`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:741-809`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:409-597`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-240`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:30-57`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223-360`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:33-195`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:9-55`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:388-410`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-45,69-83,154-184,230-239,656-700,731-776`
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:226-244,283-288`
 - `research/iterations/iteration-030.md:1-100`
 
 ## Assessment

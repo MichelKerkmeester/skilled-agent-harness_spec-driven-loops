@@ -50,7 +50,7 @@ Per-file path at `tree-sitter-parser.ts:713-714`:
 parserInstance.setLanguage(lang);     // grammar swap on the SAME instance
 const tree = parserInstance.parse(content);
 ```
-**No `parser.delete()` between files. No reset call. No new instance per file.** The same WebAssembly linear memory (heap, scanner state, lexer tape) is recycled across every parse in a scan, regardless of grammar transitions. — `[SOURCE: .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:42, :78-94, :676, :713-714]`
+**No `parser.delete()` between files. No reset call. No new instance per file.** The same WebAssembly linear memory (heap, scanner state, lexer tape) is recycled across every parse in a scan, regardless of grammar transitions. — `[SOURCE: .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:42, :78-94, :676, :713-714]`
 
 ### P0 — Caller loop is strictly sequential against the shared singleton
 
@@ -73,7 +73,7 @@ async run(deps) {
   return { candidateFiles, results, ... };
 }
 ```
-`parseFile()` at `structural-indexer.ts:1244-1245` calls `getParser()` (which awaits `ensureInit()`), then `parser.parse(...)`. The for-of + `await` is a **strictly sequential** drain over `candidateFiles`, no `Promise.all`, no concurrency. Every file in a single `code_graph_scan` traverses the SAME `parserInstance`. — `[SOURCE: .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1219-1257, :2123-2152]`
+`parseFile()` at `structural-indexer.ts:1244-1245` calls `getParser()` (which awaits `ensureInit()`), then `parser.parse(...)`. The for-of + `await` is a **strictly sequential** drain over `candidateFiles`, no `Promise.all`, no concurrency. Every file in a single `code_graph_scan` traverses the SAME `parserInstance`. — `[SOURCE: .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1219-1257, :2123-2152]`
 
 ### P1 — Isolation probes REJECT the simplest "bash-B1 throw poisons next parse" theory
 
@@ -91,7 +91,7 @@ Test harness: `scratch/fixtures/iter-003-isolation-test.mjs` (5 probes, each a f
 
 ### P1 — `vitest.phase-k.config.ts` is not a standalone B2 trigger; production crashes are sequence-dependent
 
-The 20-line / 634-byte `vitest.phase-k.config.ts` was the iter-2 counterexample that killed the size-driven B2 sub-hypothesis. Iter-3 P1 proves it ALSO fails to crash standalone. Combined with P4/P5 also passing, this means: **no single file in our sampled cohort crashes deterministically in a fresh process**. Production B2 reproduction requires replaying the SAME ordered sequence of files from `parse_diagnostics` against a single shared `parserInstance`. This is a stronger constraint than iter-2 surfaced — it disqualifies any "find the toxic file" approach. — `[SOURCE: scratch/fixtures/iter-003-isolation-output.txt, .opencode/skill/system-spec-kit/mcp_server/database/code-graph.sqlite parse_diagnostics]`
+The 20-line / 634-byte `vitest.phase-k.config.ts` was the iter-2 counterexample that killed the size-driven B2 sub-hypothesis. Iter-3 P1 proves it ALSO fails to crash standalone. Combined with P4/P5 also passing, this means: **no single file in our sampled cohort crashes deterministically in a fresh process**. Production B2 reproduction requires replaying the SAME ordered sequence of files from `parse_diagnostics` against a single shared `parserInstance`. This is a stronger constraint than iter-2 surfaced — it disqualifies any "find the toxic file" approach. — `[SOURCE: scratch/fixtures/iter-003-isolation-output.txt, .opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite parse_diagnostics]`
 
 ### P1 — Upstream `web-tree-sitter` is on `0.26.8` while we vendor `0.24.7`; tree-sitter-wasms is current
 
@@ -221,9 +221,9 @@ GitHub issue search (no exact match):
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:42, :78-94, :676, :713-714, :760-781`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1219-1257, :2123-2152`
-- `.opencode/skill/system-spec-kit/mcp_server/database/code-graph.sqlite` — `parse_diagnostics` cohort (51 OOB rows; 5 sampled)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:42, :78-94, :676, :713-714, :760-781`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1219-1257, :2123-2152`
+- `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` — `parse_diagnostics` cohort (51 OOB rows; 5 sampled)
 - `scratch/fixtures/iter-003-isolation-test.mjs` (created this iter)
 - `scratch/fixtures/iter-003-isolation-output.txt` (created this iter)
 - `https://registry.npmjs.org/web-tree-sitter` (latest 0.26.8 vs vendored 0.24.7)

@@ -119,8 +119,8 @@ Create command files exhibit the same Codex compatibility issues as spec_kit com
 ### Implementation
 
 **Affected Systems**:
-- `.opencode/command/create/*.md` (6 files) -- Changes A and B
-- `.opencode/command/create/assets/*.yaml` (14 files) -- Change C
+- `.opencode/commands/create/*.md` (6 files) -- Changes A and B
+- `.opencode/commands/create/assets/*.yaml` (14 files) -- Change C
 
 **Rollback**: Git revert commits that modified create command files; verify with 7 grep checks
 <!-- /ANCHOR:adr-001-impl -->
@@ -220,8 +220,8 @@ Spec 011 established that emoji enforcement should be removed from the `/create`
 ### Implementation
 
 **Affected Systems**:
-- `.opencode/command/create/*.md` (6 files) -- emoji optionality language removal
-- `.opencode/command/create/assets/*.yaml` (14 files) -- emoji language removal + `emoji_conventions:` rename in folder_readme variants
+- `.opencode/commands/create/*.md` (6 files) -- emoji optionality language removal
+- `.opencode/commands/create/assets/*.yaml` (14 files) -- emoji language removal + `emoji_conventions:` rename in folder_readme variants
 
 **Rollback**: Git revert; emoji language can be restored from git history if needed
 

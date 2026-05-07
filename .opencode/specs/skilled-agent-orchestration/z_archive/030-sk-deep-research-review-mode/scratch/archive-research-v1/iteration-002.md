@@ -25,7 +25,7 @@ Where:
 
 If `total_findings_this_iteration == 0`, then `newFindingsRatio = 0.0` (clean pass).
 
-[SOURCE: .opencode/skill/sk-deep-research/references/convergence.md:190-207 — original newInfoRatio definition]
+[SOURCE: .opencode/skills/sk-deep-research/references/convergence.md:190-207 — original newInfoRatio definition]
 
 **Finding 2: Severity-weighted variant (RECOMMENDED)**
 
@@ -622,10 +622,10 @@ function allDimensionsCovered(state, strategy):
 
 ## Sources Consulted
 
-- `.opencode/skill/sk-deep-research/references/convergence.md` — Full convergence algorithm (618 lines)
-- `.opencode/skill/sk-code-review/SKILL.md` — Review skill: severity model, phase flow, overlay contract
+- `.opencode/skills/sk-deep-research/references/convergence.md` — Full convergence algorithm (618 lines)
+- `.opencode/skills/sk-code-review/SKILL.md` — Review skill: severity model, phase flow, overlay contract
 - `.claude/agents/review.md` — Review agent: quality rubric (5 dimensions, 100pts), P0/P1/P2 classification, adversarial self-check
-- `.opencode/skill/sk-code-review/references/quick_reference.md` — Severity model (P0-P3), review flow, output checklist
+- `.opencode/skills/sk-code-review/references/quick_reference.md` — Severity model (P0-P3), review flow, output checklist
 
 ## Assessment
 

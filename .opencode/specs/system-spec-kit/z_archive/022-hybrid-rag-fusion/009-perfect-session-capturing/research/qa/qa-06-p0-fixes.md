@@ -12,65 +12,65 @@
 ● Read .agents/skills/sk-code-review/references/code_quality_checklist.md
   └ 162 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
   └ 473 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
+● Read .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
   └ 93 lines read
 
 ● Todo started: review-session-id-fix
 
 ● Grep "generateSessionId|session-[A-Za-z0-9_\-]+|split\(['\"]-['\"]\)|sessionId|SESSION_ID" in
 **/*.{ts,js} (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 97 lines found
 
 ● Grep "writeFilesAtomically\(|\.tmp\.|rolled back|overwriting existing
 file|fs\.rename\(|randomBytes\(4\)" in **/*.{ts,js}
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 11 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts lines 130-150
+● Read .opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts lines 130-150
   └ 21 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js lines 380-390
+● Read .opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js lines 380-390
   └ 11 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js lines 1404-1415
+● Read .opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js lines 1404-1415
   └ 11 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js lines 1550-1605
+● Read .opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js lines 1550-1605
   └ 56 lines read
 
 ● Sample session ID output
   $ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  Env/Public/.opencode/skill/system-spec-kit/scripts' && node -e "const
+  Env/Public/.opencode/skills/system-spec-kit/scripts' && node -e "const
   {generateSessionId}=require('./dist/extractors/session-extractor.js'); for(let i=0;i<20;i++){const
    id=generateSessionId(); console.log(id, /^session-\\d+-[a-z0-9]+$/.test(id));}"
   └ 21 lines...
 
-● Read .opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts lines 1-70
+● Read .opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts lines 1-70
   └ 70 lines read
 
 ● Grep "secureRandomString\(|^[^\n]*randomBytes\(|session-\\d\+-\[a-z0-9\]\+|^session-\{timestamp\}-
 \{9-char-random\}$" in **/*.{ts,js} (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 8 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 870-910
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 870-910
   └ 41 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts lines 80-95
+● Read .opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts lines 80-95
   └ 16 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/file-writer.ts lines 55-90
+● Read .opencode/skills/system-spec-kit/scripts/core/file-writer.ts lines 55-90
   └ 36 lines read
 
 ● Todo completed: review-file-writer-fixes
 
 ### FINDING-01: Crypto Session ID format regressed — Verdict: INCOMPLETE
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:7,123-128`; `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:382-385`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:7,123-128`; `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:382-385`
 - **Severity:** HIGH
 - **Category:** ALIGNMENT
 - **Current Behavior:** The fix correctly imports `crypto` and uses `crypto.randomBytes(7)`, but it encodes the random segment with `base64url` and truncates it: `crypto.randomBytes(7).toString('base64url').substring(0, 9)`. That produces uppercase letters, `_`, and even `-` inside the random segment; sampled outputs included `session-1772998095969-j-gz1DM76` and `session-1772998095969-YTTXkfx8_`, both failing the repo’s existing format contract regex `^session-\d+-[a-z0-9]+$`.
@@ -80,7 +80,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts)
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-02: Random temp file suffix implementation matches the stated fix — Verdict: CORRECT
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:73-79,83`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:73-79,83`
 - **Severity:** LOW
 - **Category:** SECURITY
 - **Current Behavior:** Temp files now use `crypto.randomBytes(4).toString('hex')`, producing an 8-hex-character suffix, and write to `${filePath}.tmp.${tempSuffix}` before atomic rename. On failure, the temp file is cleaned up with `fs.unlink(tempPath)`; on success, `fs.rename()` consumes the temp file so no cleanup is left behind.
@@ -90,7 +90,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts)
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-03: Batch rollback is incomplete and can still cause data loss on overwrite — Verdict: INCOMPLETE
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:68-89`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:68-89`
 - **Severity:** CRITICAL
 - **Category:** BUG
 - **Current Behavior:** If a later file in the batch fails, the code rolls back prior writes by deleting `written` targets: `await fs.unlink(path.join(contextDir, prev))`. That works only for newly created files; if an earlier batch entry overwrote an existing file (which the code explicitly allows and warns about at lines 68-72), rollback deletes the new file but cannot restore the original content, so the pre-existing file is lost. Rollback failures are also swallowed, yet the thrown error still reports files were “rolled back,” even if one or more deletes/restores failed.

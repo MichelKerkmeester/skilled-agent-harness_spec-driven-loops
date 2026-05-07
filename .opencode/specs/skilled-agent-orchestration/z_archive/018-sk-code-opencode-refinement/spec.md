@@ -24,7 +24,7 @@ This specification defines a governance-first refinement of `sk-code-opencode` t
 
 **Key Decisions**: preserve the current header taxonomy (`## 1. OVERVIEW` style), reduce narrative inline comments, and codify parse-friendly trace comments with strict quality gates.
 
-**Critical Dependencies**: existing skill corpus under `.opencode/skill/sk-code-opencode/`, review baseline in `.opencode/skill/sk-code-review/`, and prior governance patterns in `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/`.
+**Critical Dependencies**: existing skill corpus under `.opencode/skills/sk-code-opencode/`, review baseline in `.opencode/skills/sk-code-review/`, and prior governance patterns in `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/`.
 
 ---
 
@@ -85,23 +85,23 @@ Produce a precise, AI-optimized standards refinement for `sk-code-opencode` that
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-code-opencode/SKILL.md` | Modify | Refine core rules, routing text, and standards contract language for reduced inline comments and preserved numbered ALL-CAPS headings. |
-| `.opencode/skill/sk-code-opencode/references/shared/universal_patterns.md` | Modify | Replace broad prose-oriented comment advice with AI-parsing-oriented inline comment policy and examples. |
-| `.opencode/skill/sk-code-opencode/references/shared/code_organization.md` | Modify | Keep numbered section conventions explicit and stable as non-regression constraint. |
-| `.opencode/skill/sk-code-opencode/references/javascript/style_guide.md` | Modify | Align JS commenting rules with reduced inline-comment policy while retaining section-divider conventions. |
-| `.opencode/skill/sk-code-opencode/references/typescript/style_guide.md` | Modify | Align TS commenting rules and TSDoc boundaries with AI-parse-first guidance. |
-| `.opencode/skill/sk-code-opencode/references/python/style_guide.md` | Modify | Align Python guidance for concise, intent-only comments and consistent structure markers. |
-| `.opencode/skill/sk-code-opencode/references/shell/style_guide.md` | Modify | Align shell comment guidance with parse-oriented rationale and minimal narration. |
-| `.opencode/skill/sk-code-opencode/references/config/style_guide.md` | Modify | Clarify JSONC-only comment boundaries and reduced inline-comment policy for configuration files. |
-| `.opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md` | Modify | Add explicit KISS/DRY + SOLID checkpoints and non-regression checks for header conventions. |
-| `.opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md` | Modify | Add language-specific acceptance checks for reduced inline comments and structural consistency. |
-| `.opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md` | Modify | Add TS-specific quality checks and SOLID checkpoints in review-ready wording. |
-| `.opencode/skill/sk-code-opencode/assets/checklists/python_checklist.md` | Modify | Add Python-specific checks for concise comments and design discipline. |
-| `.opencode/skill/sk-code-opencode/assets/checklists/shell_checklist.md` | Modify | Add shell-specific checks for intent-focused comments and script maintainability. |
-| `.opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md` | Modify | Add JSON/JSONC policy checks to prevent non-parseable or excessive commentary. |
-| `.opencode/skill/sk-code-review/SKILL.md` | Modify (Optional) | Tighten baseline/overlay mapping language to reference strengthened KISS/DRY + SOLID policy. |
-| `.opencode/skill/sk-code-review/references/solid_checklist.md` | Modify (Optional) | Add concise prompts that better align with the refined opencode standard when useful. |
-| `.opencode/skill/sk-code-review/references/code_quality_checklist.md` | Modify (Optional) | Add minimal cross-reference for KISS/DRY signals if required for alignment. |
+| `.opencode/skills/sk-code-opencode/SKILL.md` | Modify | Refine core rules, routing text, and standards contract language for reduced inline comments and preserved numbered ALL-CAPS headings. |
+| `.opencode/skills/sk-code-opencode/references/shared/universal_patterns.md` | Modify | Replace broad prose-oriented comment advice with AI-parsing-oriented inline comment policy and examples. |
+| `.opencode/skills/sk-code-opencode/references/shared/code_organization.md` | Modify | Keep numbered section conventions explicit and stable as non-regression constraint. |
+| `.opencode/skills/sk-code-opencode/references/javascript/style_guide.md` | Modify | Align JS commenting rules with reduced inline-comment policy while retaining section-divider conventions. |
+| `.opencode/skills/sk-code-opencode/references/typescript/style_guide.md` | Modify | Align TS commenting rules and TSDoc boundaries with AI-parse-first guidance. |
+| `.opencode/skills/sk-code-opencode/references/python/style_guide.md` | Modify | Align Python guidance for concise, intent-only comments and consistent structure markers. |
+| `.opencode/skills/sk-code-opencode/references/shell/style_guide.md` | Modify | Align shell comment guidance with parse-oriented rationale and minimal narration. |
+| `.opencode/skills/sk-code-opencode/references/config/style_guide.md` | Modify | Clarify JSONC-only comment boundaries and reduced inline-comment policy for configuration files. |
+| `.opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md` | Modify | Add explicit KISS/DRY + SOLID checkpoints and non-regression checks for header conventions. |
+| `.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md` | Modify | Add language-specific acceptance checks for reduced inline comments and structural consistency. |
+| `.opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md` | Modify | Add TS-specific quality checks and SOLID checkpoints in review-ready wording. |
+| `.opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md` | Modify | Add Python-specific checks for concise comments and design discipline. |
+| `.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md` | Modify | Add shell-specific checks for intent-focused comments and script maintainability. |
+| `.opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md` | Modify | Add JSON/JSONC policy checks to prevent non-parseable or excessive commentary. |
+| `.opencode/skills/sk-code-review/SKILL.md` | Modify (Optional) | Tighten baseline/overlay mapping language to reference strengthened KISS/DRY + SOLID policy. |
+| `.opencode/skills/sk-code-review/references/solid_checklist.md` | Modify (Optional) | Add concise prompts that better align with the refined opencode standard when useful. |
+| `.opencode/skills/sk-code-review/references/code_quality_checklist.md` | Modify (Optional) | Add minimal cross-reference for KISS/DRY signals if required for alignment. |
 
 ---
 <!-- /ANCHOR:scope -->
@@ -280,8 +280,8 @@ Produce a precise, AI-optimized standards refinement for `sk-code-opencode` that
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/spec.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/implementation-summary.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-spec-kit-templates/spec.md
-- `.opencode/skill/sk-code-review/SKILL.md`
-- `.opencode/skill/sk-code-review/references/solid_checklist.md`
+- `.opencode/skills/sk-code-review/SKILL.md`
+- `.opencode/skills/sk-code-review/references/solid_checklist.md`
 
 ### Carry-Forward Pattern Targets
 

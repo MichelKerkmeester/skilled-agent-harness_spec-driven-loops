@@ -123,7 +123,7 @@ Iteration markdown, state log, strategy, and spec context feed the final researc
 |-----------|-------|-------|
 | Structure | 17 canonical research sections | `rg '^## [0-9]+\\.' research/research.md` |
 | State | JSONL parse and final event | `node -e ... JSON.parse(...)` and `tail -n 1` |
-| Packet | Spec-folder compliance | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade --strict` |
+| Packet | Spec-folder compliance | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade --strict` |
 | Manual | Finding coverage and citations | Review research sections 5-7 and 17 |
 <!-- /ANCHOR:testing -->
 

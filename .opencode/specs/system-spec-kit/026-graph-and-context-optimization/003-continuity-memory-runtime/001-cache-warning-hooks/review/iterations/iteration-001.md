@@ -17,8 +17,8 @@ Compare the packet's narrower Stop-boundary claims against the live `session-sto
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/tasks.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/checklist.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/implementation-summary.md`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 
 ## Findings
 
@@ -26,7 +26,7 @@ Compare the packet's narrower Stop-boundary claims against the live `session-sto
 None this iteration
 
 ### P1 - Required
-- Packet `002` still described `session-stop.ts` as a narrower writer-only boundary, but the live Stop path invokes `runContextAutosave()` by default and shells into `generate-context.js` whenever a spec folder and session summary are present. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/spec.md:124] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/tasks.md:69] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/checklist.md:61] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/implementation-summary.md:63] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:85] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:308]
+- Packet `002` still described `session-stop.ts` as a narrower writer-only boundary, but the live Stop path invokes `runContextAutosave()` by default and shells into `generate-context.js` whenever a spec folder and session summary are present. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/spec.md:124] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/tasks.md:69] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/checklist.md:61] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/implementation-summary.md:63] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:85] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:308]
 
 ### P2 - Suggestions
 None this iteration

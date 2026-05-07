@@ -14,13 +14,13 @@ I compared the external repo's narrow cross-iteration bridge with `system-spec-k
 ## Evidence
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/thread-architecture.md:11-28] Get It Right lets only review feedback survive between attempts and keeps the rest of the work ephemeral.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/thread-architecture.md:148-170] The external design treats feedback as compression for the next attempt, not as durable archival.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-93] `generate-context.js` expects structured JSON, authoritative spec-folder routing, and a durable `memory/` output contract.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:591-611] Post-save review is only defined for JSON-mode saves and turns the save into a reviewer contract rather than a dumb file write.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:653-717] The post-save reviewer checks title fidelity, trigger phrases, tiers, decisions, and context propagation against the payload.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:797-827] The same reviewer also checks metadata/frontmatter drift and anchor scaffolding consistency.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1080-1133] High-severity post-save issues can force manual patching or rejection.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/quality-gates.ts:17-67] Indexing decisions are further gated by template validity, sufficiency, quality score, and validation disposition.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:76-176] The memory pipeline also infers classification, half-life, decay, and importance metadata.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-93] `generate-context.js` expects structured JSON, authoritative spec-folder routing, and a durable `memory/` output contract.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:591-611] Post-save review is only defined for JSON-mode saves and turns the save into a reviewer contract rather than a dumb file write.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:653-717] The post-save reviewer checks title fidelity, trigger phrases, tiers, decisions, and context propagation against the payload.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:797-827] The same reviewer also checks metadata/frontmatter drift and anchor scaffolding consistency.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1080-1133] High-severity post-save issues can force manual patching or rejection.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/quality-gates.ts:17-67] Indexing decisions are further gated by template validity, sufficiency, quality score, and validation disposition.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:76-176] The memory pipeline also infers classification, half-life, decay, and importance metadata.
 
 ## Analysis
 This is not a bad pipeline. It is a pipeline solving a different problem. `system-spec-kit` memory artifacts are durable, indexed, scored, and designed for future retrieval. Get It Right's inter-attempt bridge is intentionally not that. It is a small working-state artifact meant to help only the next attempt. If retry-mode state is forced through the durable memory stack, the controller inherits payload curation, metadata drift checks, semantic sufficiency scoring, and post-save reviewer behavior that are unrelated to short-lived attempt steering. The external repo suggests a clearer split: durable memory at synthesis/handover boundaries, working-state artifacts inside the loop.

@@ -27,7 +27,7 @@ status: complete
 
 ## Phase 1: Shared Path Resolver
 
-Create `review-research-paths.cjs` in `.opencode/skill/system-spec-kit/shared/`:
+Create `review-research-paths.cjs` in `.opencode/skills/system-spec-kit/shared/`:
 
 ```javascript
 function resolveArtifactRoot(specFolder, mode) {
@@ -70,6 +70,6 @@ Fallback: if no parent spec.md found, treat specFolder as root (standalone spec)
 ## Verification
 
 1. Unit test the resolver with standalone, child, grandchild paths
-2. Verify `grep -r '{spec_folder}/review/' .opencode/command/spec_kit/assets/` returns 0
+2. Verify `grep -r '{spec_folder}/review/' .opencode/commands/spec_kit/assets/` returns 0
 3. Verify all 8 agent files reference root-level convention
 4. `npx tsc --noEmit` passes

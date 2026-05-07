@@ -21,8 +21,8 @@ _memory:
     key_files:
       - "specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex/"
       - "specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests/"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
-      - ".opencode/command/doctor/skill-advisor.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/commands/doctor/skill-advisor.md"
     completion_pct: 50
     open_questions: []
     answered_questions:
@@ -53,7 +53,7 @@ This battle plan instructs an executing CLI to produce these concrete artifacts 
 - `specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests/test-report.md` — aggregate findings + lessons + recommendations
 - `specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/implementation-summary.md` — baseline roll-up
 
-Underlying tools used: `mcp__spec_kit_memory__advisor_recommend`, `mcp__spec_kit_memory__skill_graph_status`, `mcp__spec_kit_memory__advisor_status`, `mcp__spec_kit_memory__skill_graph_scan`, `mcp__spec_kit_memory__advisor_rebuild`, `mcp__spec_kit_memory__memory_index_scan`, the `/doctor:skill-advisor` slash command, and the CLI fallback at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`.
+Underlying tools used: `mcp__spec_kit_memory__advisor_recommend`, `mcp__spec_kit_memory__skill_graph_status`, `mcp__spec_kit_memory__advisor_status`, `mcp__spec_kit_memory__skill_graph_scan`, `mcp__spec_kit_memory__advisor_rebuild`, `mcp__spec_kit_memory__memory_index_scan`, the `/doctor:skill-advisor` slash command, and the CLI fallback at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`.
 <!-- /ANCHOR:expected-artifacts -->
 
 <!-- ANCHOR:when-to-use -->
@@ -80,16 +80,16 @@ Current state at handover:
 
 Files changed in this session:
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handlers/skill-graph-scan-auth.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handlers/skill-graph-scan-auth.vitest.ts`
 - `065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex/{pre-snapshot.json,post-snapshot.json,reindex.log,reindex-diff.md,implementation-summary.md,tasks.md,graph-metadata.json}`
 - `065-skill-advisor-reindex-and-stress-test/{handover.md,graph-metadata.json}`
 
@@ -134,7 +134,7 @@ If all live MCP gates pass:
 - Change `001-skill-reindex/implementation-summary.md` GO signal from `NO_GO` to `GO` with evidence.
 - Change `001-skill-reindex/graph-metadata.json` `derived.session_outcome` to `GO`.
 - Change parent `graph-metadata.json` `derived.last_active_child_id` to `skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests` and `derived.session_outcome` to `ready_for_002`.
-- Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test --strict`.
+- Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test --strict`.
 - Only then proceed to §3.4 Phase 2.
 
 If any live MCP gate still fails:
@@ -146,10 +146,10 @@ If any live MCP gate still fails:
 Verification already run before this handover:
 
 - `npx vitest run tests/handlers/skill-graph-scan-auth.vitest.ts tests/advisor-rebuild.vitest.ts skill_advisor/tests/handlers/advisor-status.vitest.ts skill_advisor/tests/scorer/native-scorer.vitest.ts` -> 28 passed.
-- `npm run typecheck` in `.opencode/skill/system-spec-kit/mcp_server` -> passed.
-- `npm run build` in `.opencode/skill/system-spec-kit/mcp_server` -> passed.
-- `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server` -> PASS with 6 warnings, 0 errors.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test --strict` -> passed.
+- `npm run typecheck` in `.opencode/skills/system-spec-kit/mcp_server` -> passed.
+- `npm run build` in `.opencode/skills/system-spec-kit/mcp_server` -> passed.
+- `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` -> PASS with 6 warnings, 0 errors.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test --strict` -> passed.
 
 Do not revert unrelated dirty files. `git status` before handover also showed unrelated changes outside this packet.
 
@@ -274,7 +274,7 @@ PROMPTS=("save context" "create new agent" "deep research" "git commit" "review 
 mkdir -p specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex/.snapshot-pre
 for p in "${PROMPTS[@]}"; do
   slug=$(echo "$p" | tr ' ' '_')
-  python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "$p" --threshold 0.0 \
+  python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "$p" --threshold 0.0 \
     > "specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex/.snapshot-pre/${slug}.json"
 done
 ```
@@ -375,7 +375,7 @@ Replace the placeholder content. Required updates:
 #### T-009: Strict validator
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex --strict
 ```
 
@@ -489,7 +489,7 @@ The executor calls `mcp__spec_kit_memory__advisor_recommend` directly.
 **Mode 2 (fallback — executor uses Bash):**
 The executor runs the CLI script:
 ```bash
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "<PROMPT>" --threshold 0.0
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "<PROMPT>" --threshold 0.0
 ```
 
 Either way, the captured result file `results/CP-NNN-<executor>.json` should have this shape:
@@ -666,7 +666,7 @@ Replace placeholders. Required updates:
 #### T-016: Strict validator
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests --strict
 ```
 
@@ -699,7 +699,7 @@ The template covers all 7 required anchors: metadata, what-built, how-delivered,
 
 #### Final validation
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test --strict
 # Should auto-recurse and validate all 3 folders
 ```

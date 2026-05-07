@@ -41,8 +41,8 @@ contextType: "implementation"
 | ID | Owner | Action | Status | Dependencies | Artifacts |
 |----|-------|--------|--------|--------------|-----------|
 | T001 | @general | Capture baseline routing and latency metrics for current advisor. | Completed | None | [Report: `benchmark-report.json` includes subprocess and warm p95] |
-| T002 | @general | Create and lock regression fixture dataset covering all 9 improvement areas plus protected legacy cases. | Completed | T001 | [File: `.opencode/skill/scripts/fixtures/skill_advisor_regression_cases.jsonl`] |
-| T003 [P] | @general | Define CLI contract for default dual-threshold vs explicit `--confidence-only`, plus structural mode flags. | Completed | T001 | [File: `.opencode/skill/scripts/README.md` and `.opencode/skill/scripts/SET-UP_GUIDE.md` new flags] |
+| T002 | @general | Create and lock regression fixture dataset covering all 9 improvement areas plus protected legacy cases. | Completed | T001 | [File: `.opencode/skills/scripts/fixtures/skill_advisor_regression_cases.jsonl`] |
+| T003 [P] | @general | Define CLI contract for default dual-threshold vs explicit `--confidence-only`, plus structural mode flags. | Completed | T001 | [File: `.opencode/skills/scripts/README.md` and `.opencode/skills/scripts/SET-UP_GUIDE.md` new flags] |
 
 ---
 
@@ -83,7 +83,7 @@ contextType: "implementation"
 | T011 | @general | Implement permanent regression harness with pass/fail gates for routing quality and safety behavior. | Completed | T004-T010 | [Test: `skill_advisor_regression.py`; `total_cases=34`] |
 | T012 [P] | @general | Implement benchmark harness for before/after latency and throughput reporting. | Completed | T007, T010 | [Test: `skill_advisor_bench.py`; runs=7 output] |
 | T013 | @general | Run validation command pack and archive outputs for checklist evidence. | Completed | T011, T012 | [Report: `regression-report.json` overall_pass=true; `benchmark-report.json` overall_pass=true] |
-| T014 | @general | Update `.opencode/skill/scripts/README.md` and `.opencode/skill/scripts/SET-UP_GUIDE.md` with new flags and benchmark/regression commands. | Completed | T010-T013 | [File: both docs updated with `--confidence-only`, batch flags, harness commands] |
+| T014 | @general | Update `.opencode/skills/scripts/README.md` and `.opencode/skills/scripts/SET-UP_GUIDE.md` with new flags and benchmark/regression commands. | Completed | T010-T013 | [File: both docs updated with `--confidence-only`, batch flags, harness commands] |
 | T015 | @general | Final docs sync and checklist evidence completion for spec folder artifacts only. | Completed | T013, T014 | [File: spec folder docs transitioned to implementation-complete state] |
 
 ---
@@ -106,7 +106,7 @@ contextType: "implementation"
   - Warm-call p95 <= 20 ms
   - Cold-call p95 <= 55 ms
   - Structural mode throughput >= 2.0x baseline
-- [x] Script documentation aligned to implementation reality in both README and setup guide [File: `.opencode/skill/scripts/README.md`, `.opencode/skill/scripts/SET-UP_GUIDE.md`]
+- [x] Script documentation aligned to implementation reality in both README and setup guide [File: `.opencode/skills/scripts/README.md`, `.opencode/skills/scripts/SET-UP_GUIDE.md`]
 
 ---
 

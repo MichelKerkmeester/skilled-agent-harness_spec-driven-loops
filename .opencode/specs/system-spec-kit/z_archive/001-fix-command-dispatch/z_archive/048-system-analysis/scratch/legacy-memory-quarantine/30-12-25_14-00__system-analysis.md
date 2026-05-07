@@ -189,11 +189,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `.opencode/.../utils/format-helpers.js` - Core format helpers
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.js` - Core context server
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.js` - Core context server
 
 - `.opencode/.../configs/search-weights.json` - Core search weights
 
-- `.opencode/skill/system-spec-kit/scripts/generate-context.js` - React context provider
+- `.opencode/skills/system-spec-kit/scripts/generate-context.js` - React context provider
 
 **How to Extend**:
 
@@ -247,9 +247,9 @@ Comprehensive analysis and remediation of SpecKit and Memory systems. Deployed 2
 | `.opencode/.../lib/vector-index.js` | Modified during session |
 | `.opencode/.../lib/checkpoints.js` | Modified during session |
 | `.opencode/.../utils/format-helpers.js` | Modified during session |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Modified during session |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Modified during session |
 | `.opencode/.../configs/search-weights.json` | Modified during session |
-| `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Validation improvements |
+| `.opencode/skills/system-spec-kit/scripts/generate-context.js` | Validation improvements |
 | `.opencode/.../scripts/validate-spec-folder.js` | Modified during session |
 | `.opencode/.../scripts/cleanup-orphaned-vectors.js` | Modified during session |
 
@@ -692,9 +692,9 @@ key_files:
   - ".opencode/.../lib/vector-index.js"
   - ".opencode/.../lib/checkpoints.js"
   - ".opencode/.../utils/format-helpers.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/context-server.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/context-server.js"
   - ".opencode/.../configs/search-weights.json"
-  - ".opencode/skill/system-spec-kit/scripts/generate-context.js"
+  - ".opencode/skills/system-spec-kit/scripts/generate-context.js"
   - ".opencode/.../scripts/validate-spec-folder.js"
   - ".opencode/.../scripts/cleanup-orphaned-vectors.js"
 

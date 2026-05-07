@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Keep implementation aligned with ADR-001"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
     session_dedup:
       fingerprint: "sha256:5555555555555555555555555555555555555555555555555555555555555555"
       session_id: "026-007-012-005-scope-guard"

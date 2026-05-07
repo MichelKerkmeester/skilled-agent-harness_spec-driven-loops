@@ -17,11 +17,11 @@ contextType: "implementation"
 
 ## Phase 1: Canonical-rule inserts (5 SKILL.md files)
 
-- [x] T-001 Insert canonical rule as ALWAYS item 9 in `.opencode/skill/cli-claude-code/SKILL.md`
-- [x] T-002 Insert canonical rule as ALWAYS item 11 in `.opencode/skill/cli-codex/SKILL.md`
-- [x] T-003 Insert canonical rule as ALWAYS item 9 in `.opencode/skill/cli-gemini/SKILL.md`
-- [x] T-004 Insert canonical rule as ALWAYS item 8 in `.opencode/skill/cli-copilot/SKILL.md`
-- [x] T-005 Insert canonical rule as ALWAYS item 12 in `.opencode/skill/cli-opencode/SKILL.md`
+- [x] T-001 Insert canonical rule as ALWAYS item 9 in `.opencode/skills/cli-claude-code/SKILL.md`
+- [x] T-002 Insert canonical rule as ALWAYS item 11 in `.opencode/skills/cli-codex/SKILL.md`
+- [x] T-003 Insert canonical rule as ALWAYS item 9 in `.opencode/skills/cli-gemini/SKILL.md`
+- [x] T-004 Insert canonical rule as ALWAYS item 8 in `.opencode/skills/cli-copilot/SKILL.md`
+- [x] T-005 Insert canonical rule as ALWAYS item 12 in `.opencode/skills/cli-opencode/SKILL.md`
 
 ## Phase 2: Direct-mention replacements
 

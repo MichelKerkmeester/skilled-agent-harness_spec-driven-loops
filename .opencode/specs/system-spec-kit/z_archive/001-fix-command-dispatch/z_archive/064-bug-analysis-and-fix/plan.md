@@ -45,14 +45,14 @@ Fix **~231 bugs** across the SpecKit system in **4 phases**:
 ### Files Most Frequently Modified
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── mcp_server/context-server.js     # T101, T012, T013 (await, race, params)
 ├── mcp_server/lib/errors.js         # T103 (E429)
 ├── mcp_server/lib/config-loader.js  # T001 (DELETE)
 ├── SKILL.md                         # T002, T005, T030, T031 (docs)
 └── shared/embeddings.js             # T104 (rate limiting)
 
-.opencode/command/spec_kit/
+.opencode/commands/spec_kit/
 ├── debug.md                         # T003 (threshold)
 └── memory_save.md                   # T004 (CREATE)
 ```
@@ -256,7 +256,7 @@ No complexity violations anticipated - fixes are within existing architecture.
 The system-spec-kit is an MCP server providing memory management capabilities. Key components:
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
   mcp_server/
     context-server.js       # Main MCP server
     lib/
@@ -379,7 +379,7 @@ The system-spec-kit is an MCP server providing memory management capabilities. K
 
 #### 1.4 Memory Save Command (REQ-FUNC-004)
 
-**Location**: SKILL.md lines 109, 421-426, 787-788; missing `.opencode/command/spec_kit/memory_save.md`
+**Location**: SKILL.md lines 109, 421-426, 787-788; missing `.opencode/commands/spec_kit/memory_save.md`
 
 **Problem**: SKILL.md references `/memory:save` but command file doesn't exist
 
@@ -390,7 +390,7 @@ The system-spec-kit is an MCP server providing memory management capabilities. K
 **Recommended**: Option A - create command for consistency with other commands
 
 **Tasks**:
-1. Create `.opencode/command/spec_kit/memory_save.md`
+1. Create `.opencode/commands/spec_kit/memory_save.md`
 2. Model on existing command structure
 3. Reference `generate-context.js` as implementation
 4. Verify command is discoverable
@@ -433,7 +433,7 @@ return await formatSearchResults(results, 'vector', includeContent);
 
 **Verification Command**:
 ```bash
-grep -n "return.*formatSearchResults" .opencode/skill/system-spec-kit/mcp_server/context-server.js | grep -v "await"
+grep -n "return.*formatSearchResults" .opencode/skills/system-spec-kit/mcp_server/context-server.js | grep -v "await"
 # Expected: No output (all calls now have await)
 ```
 
@@ -729,7 +729,7 @@ None - all fixes are internal to system-spec-kit.
 | `mcp_server/lib/config-loader.js`           | Delete or Modify | Config cleanup                |
 | `SKILL.md`                                  | Modify           | ANCHOR docs, memory:save refs |
 | `references/debugging/debug.md`             | Modify           | Debug threshold               |
-| `.opencode/command/spec_kit/memory_save.md` | Create           | Missing command               |
+| `.opencode/commands/spec_kit/memory_save.md` | Create           | Missing command               |
 
 ### Phase 2 Files
 
@@ -739,7 +739,7 @@ None - all fixes are internal to system-spec-kit.
 | `references/debugging/troubleshooting.md` | Modify      | Decay formula                  |
 | `mcp_server/lib/vector-index.js`          | Modify      | Embedding model                |
 | `mcp_server/lib/attention-decay.js`       | Modify      | Return type                    |
-| `.opencode/command/spec_kit/implement.md` | Modify      | Pattern #19                    |
+| `.opencode/commands/spec_kit/implement.md` | Modify      | Pattern #19                    |
 | `references/memory/memory_system.md`      | Modify      | Re-embedding doc               |
 | `mcp_server/context-server.js`            | Modify      | Warmup race, params            |
 | `mcp_server/lib/retry-manager.js`         | Modify      | Null check                     |
@@ -753,11 +753,11 @@ None - all fixes are internal to system-spec-kit.
 
 | File                                     | Change Type | Issue             |
 | ---------------------------------------- | ----------- | ----------------- |
-| `.opencode/command/spec_kit/complete.md` | Modify      | Format notation   |
+| `.opencode/commands/spec_kit/complete.md` | Modify      | Format notation   |
 | `templates/plan.md`                      | Modify      | Step numbering    |
-| `.opencode/command/spec_kit/resume.md`   | Modify      | Tool table        |
-| `.opencode/command/spec_kit/research/research/research.md` | Modify      | Phase 3 doc       |
-| `.opencode/command/spec_kit/handover.md` | Modify      | YAML refs         |
+| `.opencode/commands/spec_kit/resume.md`   | Modify      | Tool table        |
+| `.opencode/commands/spec_kit/research/research/research.md` | Modify      | Phase 3 doc       |
+| `.opencode/commands/spec_kit/handover.md` | Modify      | YAML refs         |
 | `scripts/generate-context.js`            | Modify      | Regex validation  |
 | `scripts/semantic-summarizer.js`         | Modify      | Hardcoded path    |
 | `mcp_server/lib/checkpoints.js`          | Modify      | TTL cleanup       |
@@ -776,7 +776,7 @@ None - all fixes are internal to system-spec-kit.
 | `mcp_server/lib/checkpoints.js`          | Modify      | BigInt, timeout        |
 | Multiple files                           | Modify      | Logging consistency    |
 | 3 template files                         | Modify      | Missing footers        |
-| `.opencode/command/spec_kit/complete.md` | Modify      | Phase 2.5              |
+| `.opencode/commands/spec_kit/complete.md` | Modify      | Phase 2.5              |
 
 ---
 

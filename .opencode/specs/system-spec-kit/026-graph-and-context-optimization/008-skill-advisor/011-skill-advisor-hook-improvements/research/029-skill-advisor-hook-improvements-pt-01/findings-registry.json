@@ -15,8 +15,8 @@
       "target_files": [
         ".opencode/plugins/spec-kit-skill-advisor.js",
         ".opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/subprocess.ts",
-        ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/subprocess.ts",
+        ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md"
       ]
     },
     {
@@ -28,13 +28,13 @@
         "iteration-03.md#Findings",
         ".opencode/plugins/spec-kit-skill-advisor.js:72",
         ".opencode/plugins/spec-kit-skill-advisor.js:491",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:384"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:384"
       ],
       "recommended_fix": "Re-key the plugin cache on shared advisor freshness/sourceSignature or generation and expose last-brief freshness in plugin status.",
       "target_files": [
         ".opencode/plugins/spec-kit-skill-advisor.js",
         ".opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts"
       ]
     },
     {
@@ -44,14 +44,14 @@
       "summary": "Codex native-hook mode bypasses the shared brief pipeline, so prompt policy, cache semantics, and payload behavior depend on hook availability instead of only transport.",
       "evidence": [
         "iteration-04.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:180",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:339"
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:180",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:339"
       ],
       "recommended_fix": "Route Codex native mode through buildSkillAdvisorBrief() or explicitly port the shared invariants into the fast path.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts"
       ]
     },
     {
@@ -61,15 +61,15 @@
       "summary": "advisor_status.laneWeights still reports immutable defaults even though promotion code/models describe richer live and candidate weight state.",
       "evidence": [
         "iteration-05.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:127",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:30",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/04--scorer-fusion/06-weights-config.md:31"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:127",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:30",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/04--scorer-fusion/06-weights-config.md:31"
       ],
       "recommended_fix": "Make advisor_status read and report effective live weights, or narrow the documented claim until live weight mutation exists.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts"
       ]
     },
     {
@@ -80,18 +80,18 @@
       "evidence": [
         "iteration-06.md#Findings",
         "iteration-07.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:41",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:88",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:282"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:41",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:88",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:282"
       ],
       "recommended_fix": "Persist prompt-safe hook diagnostics, expose health rollups through a production surface, and add a minimal recommendation-outcome event schema.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts"
       ]
     },
     {
@@ -101,15 +101,15 @@
       "summary": "advisor_validate cannot measure runtime-hook parity directly and is tied to a hard-coded Phase 019 corpus path, which limits packet-local validation and parity follow-up work.",
       "evidence": [
         "iteration-08.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:89",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:54",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:321"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:89",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:54",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:321"
       ],
       "recommended_fix": "Add runtime-parity slices and a corpus-path override to advisor_validate or create a dedicated parity-validation tool.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md"
       ]
     },
     {
@@ -119,15 +119,15 @@
       "summary": "Promotion docs promise restart-persistent telemetry-backed two-cycle state, but the core implementation is still an in-memory helper plus callback-shaped telemetry contracts.",
       "evidence": [
         "iteration-09.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md:31",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts:30",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts:37"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md:31",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts:30",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts:37"
       ],
       "recommended_fix": "Either implement durable promotion telemetry/state or narrow the docs until persistence is real.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md"
       ]
     },
     {
@@ -137,15 +137,15 @@
       "summary": "OpenCode bridge smoke-test docs still point to the old .opencode/plugins bridge path even though the runtime and tests use .opencode/plugin-helpers.",
       "evidence": [
         "iteration-10.md#Findings",
-        ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:136",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md:31",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:13"
+        ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:136",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md:31",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:13"
       ],
       "recommended_fix": "Update the docs and playbooks to the plugin-helpers path and add a small regression check for bridge-path drift.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md"
+        ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md"
       ]
     }
   ]

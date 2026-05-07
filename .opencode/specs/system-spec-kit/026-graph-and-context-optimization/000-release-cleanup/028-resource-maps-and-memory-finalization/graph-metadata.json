@@ -49,8 +49,8 @@
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/tasks.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/checklist.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/028-resource-maps-and-memory-finalization/implementation-summary.md",
-      ".opencode/skill/system-spec-kit/templates/resource-map.md",
-      ".opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md",
+      ".opencode/skills/system-spec-kit/templates/resource-map.md",
+      ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/resource-map.md",
       "spec.md"
     ],
@@ -94,7 +94,7 @@
       {
         "name": "evergreen_packet_id_rule.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md",
+        "path": ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
         "source": "derived"
       },
       {

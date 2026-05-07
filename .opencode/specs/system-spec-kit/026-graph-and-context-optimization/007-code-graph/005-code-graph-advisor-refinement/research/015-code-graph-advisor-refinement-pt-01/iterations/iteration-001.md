@@ -55,7 +55,7 @@ inventory.
 
 - **Declaration (10 types):** `CONTAINS | CALLS | IMPORTS | EXPORTS | EXTENDS |
   IMPLEMENTS | TESTED_BY | DECORATES | OVERRIDES | TYPE_OF`.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts:13-17`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts:13-17`]
 - **Emission sites in structural-indexer.ts** (grep `edgeType: '...'`):
   - `CONTAINS` weight 1.0 → line 886
   - `IMPORTS` weight 1.0 → line 899
@@ -67,7 +67,7 @@ inventory.
   - `OVERRIDES` weight 0.9 → line 1019
   - `TYPE_OF` weight 0.85 → line 1046
   - `TESTED_BY` weight 0.6 → line 1357
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` (10 `edgeType:` occurrences, verified via grep)]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` (10 `edgeType:` occurrences, verified via grep)]
 
 ### F2 — RQ-01 concrete gap: CALLS edges are regex-inferred, not AST-derived
 
@@ -83,7 +83,7 @@ This is the single biggest correctness exposure in the current detector.
   the active parser backend for the file. All other edge types (IMPORTS,
   EXPORTS, EXTENDS, IMPLEMENTS, DECORATES, TYPE_OF) use `baseDetectorProvenance`
   (usually `'ast'`) and `evidenceClass: 'EXTRACTED'`.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:950-981`, `indexer-types.ts:19,22`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:950-981`, `indexer-types.ts:19,22`]
 - **Concrete failure modes of the regex approach:**
   1. **Type-assertion calls:** `(foo as Bar)(arg)` — the capture group only
      grabs `Bar`, not `foo`.
@@ -105,11 +105,11 @@ This explains the known-context "direct_call (1.00 coverage)" puzzle.
 - The stored `GraphEdgeEnrichmentSummary` (persisted under metadata key
   `last_graph_edge_enrichment_summary`) records one `edgeEvidenceClass` + a
   single `numericConfidence` per scan — NOT per-edge-type coverage.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:38-48,249-268`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:38-48,249-268`]
 - The startup brief at `lib/startup-brief.ts:158-161` surfaces this as
   `edge-enrichment=<class> (<confidence>)`, which is what the research-pack
   known-context captured as "direct_call (1.00 coverage)".
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:158-161`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:158-161`]
 - **Implication for RQ-09 (benchmark gaps):** there is no per-edge-type
   coverage metric in the persisted schema; you cannot answer "what fraction of
   CALLS edges were AST-derived vs regex-inferred" without joining against
@@ -125,12 +125,12 @@ This is a direct RQ-03 / RQ-07 finding.
   functions in `freshness.ts` produce FIVE distinct states:
   `'live' | 'stale' | 'absent' | 'unavailable'` + a "degraded-from-recovered"
   path that rewrites `'live' → 'stale'`.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts:242-297,299-325`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts:242-297,299-325`]
 - The research-topic context said "four states (live/stale/absent/fallback)"
   but the code has `live | stale | absent | unavailable` plus `fallbackMode`
   is an ORTHOGONAL field (`'sqlite' | 'json' | 'none'`) — NOT a freshness
   state. This is a documentation/vocabulary drift ripe for RQ-07.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts:33-35,55-63`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts:33-35,55-63`]
 
 ### F5 — Freshness invariants (RQ-03 at breadth)
 
@@ -168,7 +168,7 @@ Critical input for RQ-02 (scorer lane bias).
   `derived_generated=0.10`, `semantic_shadow=0.00`.
   Weights are compile-time literals guarded by a Zod `z.literal(...)` schema,
   so tuning requires a code change + a new promotion cycle.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:8-20,30-36`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:8-20,30-36`]
 - **`graph_causal` lane is derivative, not primary:** it's computed from the
   union of explicit/lexical/derived matches (`fusion.ts:120-126`), so its
   contribution is correlated with the other live lanes. "Lane diversity" in
@@ -181,7 +181,7 @@ Critical input for RQ-02 (scorer lane bias).
   `hasTaskIntent + (directScore>=0.18 || liveNormalized>=0.2)`,
   `directScore>=0.65`, `directScore>=0.85`). This is an audit target for
   RQ-02 calibration.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:72-97`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:72-97`]
 - **Primary-intent bonuses are hardcoded per-skill** (`primaryIntentBonus`,
   lines 172-205): 12+ explicit regex patterns map to specific skill IDs
   (`mcp-coco-index`, `sk-deep-research`, `sk-deep-review`, `sk-code-review`,
@@ -189,7 +189,7 @@ Critical input for RQ-02 (scorer lane bias).
   `+0.35..+0.5` / `-0.18..-0.25` based on these string patterns — a second
   scoring pass running AFTER weight fusion. This creates a tight coupling
   between the corpus vocabulary and specific skill IDs.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:172-205,272-280`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:172-205,272-280`]
 
 ### F7 — Promotion bundle is 12 gates, not 7 as claimed
 
@@ -211,7 +211,7 @@ produces 12 gates:
 11. `exact-parity-preservation` (0 regressions on Python-correct prompts)
 12. `regression-suite` (P0=1.0, failed=0, command-bridge FP ≤0.05)
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts:81-168`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts:81-168`]
 
 - Two-consecutive-shadow-cycle rule is NOT in this bundle — it's layered
   *above* the bundle in `promotion/two-cycle-requirement.ts` (1846 B — small;

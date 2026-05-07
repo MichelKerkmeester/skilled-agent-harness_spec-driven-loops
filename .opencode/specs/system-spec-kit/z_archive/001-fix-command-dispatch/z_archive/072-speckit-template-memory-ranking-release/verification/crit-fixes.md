@@ -8,7 +8,7 @@
 
 ## CRIT-002: Barrel Export Collision Fix
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/index.js`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/index.js`
 
 ### Verification Status: [x] PASSED
 

@@ -72,7 +72,7 @@
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/spec.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/plan.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/tasks.md",
-      ".opencode/skill/system-spec-kit/templates/level_2/checklist.md",
+      ".opencode/skills/system-spec-kit/templates/level_2/checklist.md",
       "scripts/spec/validate.sh"
     ],
     "entities": [

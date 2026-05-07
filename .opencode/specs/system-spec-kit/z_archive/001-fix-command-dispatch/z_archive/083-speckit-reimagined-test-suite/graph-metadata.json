@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -53,7 +53,7 @@
       {
         "name": "package.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/package.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
         "source": "derived"
       },
       {

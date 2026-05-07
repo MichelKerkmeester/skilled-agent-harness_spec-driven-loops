@@ -20,7 +20,7 @@ Execute these steps:
    ls -d /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/*/
 
 3. Run generate-context.js on 3 different spec folders:
-   node /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]
+   node /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]
 
 4. For EACH run, capture:
    - Exit code

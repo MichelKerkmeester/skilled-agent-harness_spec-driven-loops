@@ -17,9 +17,9 @@ _memory:
     next_safe_action: "Run validate.sh --strict and report"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md"
-      - ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md"
-      - ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md"
       - "spec.md"
     completion_pct: 95
     open_questions: []
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -65,9 +65,9 @@ The CocoIndex routing playbook page now describes `rankingSignals` as `(array of
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` | Modified | Per-handler bullets + footnote citing 016's implementation-summary by absolute path |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` | Modified | Shared-vocabulary rule + concrete per-handler shape paragraphs |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | Modified | `rankingSignals (array of strings)` + Zod schema cite + Pass/Fail update |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` | Modified | Per-handler bullets + footnote citing 016's implementation-summary by absolute path |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` | Modified | Shared-vocabulary rule + concrete per-handler shape paragraphs |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | Modified | `rankingSignals (array of strings)` + Zod schema cite + Pass/Fail update |
 | `spec.md` | Created | Packet spec |
 | `plan.md` | Created | Packet plan |
 | `tasks.md` | Created | Packet tasks |
@@ -113,7 +113,7 @@ Implemented directly against `spec.md` REQ-001..006 and `tasks.md` T101-T104. St
 | CocoIndex routing playbook page re-read | PASS — wording is `rankingSignals (array of strings)`; Expected paragraph cites `mcp_server/schemas/tool-input-schemas.ts:482-492`; Pass/Fail asserts `Array<string>` shape |
 | Cross-doc consistency check | PASS — "shared vocabulary, handler-local payload fields" appears verbatim in both feature catalog pages |
 | `git diff --name-only` (post-edit) | PENDING — to be confirmed by operator |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment --strict` | PENDING — to be run as final step |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment --strict` | PENDING — to be run as final step |
 | Live operator probe (constructing a CocoIndex telemetry response per the playbook) | DEFERRED — requires live MCP and is not a Level-1 packet acceptance criterion |
 <!-- /ANCHOR:verification -->
 
@@ -123,7 +123,7 @@ Implemented directly against `spec.md` REQ-001..006 and `tasks.md` T101-T104. St
 ## Known Limitations
 
 1. **Forward-reference to packet 016**. The catalog wording does NOT state the canonical field name for the `code_graph_context` readiness-crash recovery signal. It points readers at 016's implementation-summary by absolute spec-folder path. Until 016 lands, operators rely on the binding-expectation fallback at the review-report §3 / §7 Packet A from `../011-post-stress-followup-research/review/review-report.md`. If 016's shipped contract differs from that expectation, a follow-up patch (informally "Packet C-prime") refreshes the wording — single-edit, same surface. The footnote `[^c016]` already points at 016, so the body text needs minimal adjustment under any 016 outcome.
-2. **Hardlink topology assumption**. This packet operates on the assumption (verified at write-time via `stat -f %l`) that only `.opencode/skill/system-spec-kit/` hosts the feature_catalog and manual_testing_playbook trees. If a future packet introduces hardlinks or copies under `.gemini`, `.claude`, or `.codex`, the sync between those copies belongs to that future packet — not retroactively this packet's responsibility.
+2. **Hardlink topology assumption**. This packet operates on the assumption (verified at write-time via `stat -f %l`) that only `.opencode/skills/system-spec-kit/` hosts the feature_catalog and manual_testing_playbook trees. If a future packet introduces hardlinks or copies under `.gemini`, `.claude`, or `.codex`, the sync between those copies belongs to that future packet — not retroactively this packet's responsibility.
 3. **No runtime probe**. This is a documentation packet. The wording is verified against the Zod schema source (the binding contract for `rankingSignals`) and against the review-report §3 / §7 Packet A (the binding expectation for context readiness-crash). A live MCP probe constructing a degraded-state response is not part of the Level-1 acceptance criteria.
 4. **016-coordination context**. At the time this packet's authoring STARTED (2026-04-27), packet 016 was an empty folder. During this packet's authoring, 016 landed in the working tree with the contract `fallbackDecision: { nextTool: 'rg', reason: 'readiness_check_crashed' }` for `code_graph_context` readiness-crash and `fallbackDecision: { nextTool: 'rg', reason: 'stats_unavailable' }` for `code_graph_status` DB-unavailable. This matches the expected contract from review-report §3 / §7 Packet A, so this packet's catalog wording (which uses `fallbackDecision` as the named field) is accurate. The footnote `[^c016]` still correctly points readers at 016's implementation-summary as the binding source. NO Packet C-prime follow-up is needed at this time — 016 is consistent with the body text.
 <!-- /ANCHOR:limitations -->

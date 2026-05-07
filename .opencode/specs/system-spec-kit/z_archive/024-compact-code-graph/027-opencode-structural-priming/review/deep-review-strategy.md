@@ -69,7 +69,7 @@ Build status: PASS. Spec validation: PASS (0 errors, 0 warnings).
 | handlers/session-resume.ts | — | — | — | pending |
 | handlers/session-health.ts | — | — | — | pending |
 | context-server.ts | — | — | — | pending |
-| .opencode/agent/context-prime.md | — | — | — | pending |
+| .opencode/agents/context-prime.md | — | — | — | pending |
 | spec.md | — | — | — | pending |
 | plan.md | — | — | — | pending |
 | tasks.md | — | — | — | pending |

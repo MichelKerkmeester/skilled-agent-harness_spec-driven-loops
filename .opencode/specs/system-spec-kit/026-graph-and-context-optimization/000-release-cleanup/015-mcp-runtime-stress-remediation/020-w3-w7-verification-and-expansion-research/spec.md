@@ -56,7 +56,7 @@ Phases C–E delivered W3 (composed RAG trust tree), W4 (conditional rerank, now
 1. Are W3-W7 actually **wired into the runtime call paths** that operators will invoke in production? Or are they isolated modules that current callers never reach?
 2. What **adjacent or connecting work** is needed for best utilization (e.g., does W3 trust tree feed W4 rerank decisions; does W5 shadow data feed any downstream learner)?
 3. What **expansion candidates** would extend the W3-W7 family for **enterprise readiness** — multi-tenancy, SLA enforcement, audit trail, compliance, RBAC, observability dashboards, alerting, capacity planning?
-4. Are there **empty / dead code folders** under `.opencode/skill/system-spec-kit/` and `.opencode/skill/system-spec-kit/mcp_server/` that should be deleted?
+4. Are there **empty / dead code folders** under `.opencode/skills/system-spec-kit/` and `.opencode/skills/system-spec-kit/mcp_server/` that should be deleted?
 
 ### Purpose
 
@@ -73,7 +73,7 @@ Run a 10-iteration deep research loop covering these four threads, externalize s
 - **W3-W7 wiring audit**: read `lib/rag/trust-tree.ts`, `lib/search/rerank-gate.ts`, `lib/search/pipeline/stage3-rerank.ts`, `skill_advisor/lib/scorer/lane-registry.ts`, `lib/search/cocoindex-calibration.ts`, `mcp_server/stress_test/search-quality/w*.vitest.ts`. Trace upstream callers and downstream consumers. Identify call-path gaps.
 - **Adjacent/connecting opportunity surfacing**: cross-feature integration (W3+W4, W5+W4, W6+W7), connection to memory pipeline, advisor pipeline, code-graph pipeline.
 - **Expansion candidate brainstorming**: new feature ideas in the W3-W7 family that target enterprise readiness gaps.
-- **Empty-folder audit**: scan `.opencode/skill/system-spec-kit/` and `.opencode/skill/system-spec-kit/mcp_server/` recursively; identify directories with no code/docs (excluding canonical empty placeholders like `dist/`, `node_modules/`).
+- **Empty-folder audit**: scan `.opencode/skills/system-spec-kit/` and `.opencode/skills/system-spec-kit/mcp_server/` recursively; identify directories with no code/docs (excluding canonical empty placeholders like `dist/`, `node_modules/`).
 - **Synthesis**: research-report.md with 9-section structure + Planning Packet for any downstream remediation.
 
 ### Out of Scope
@@ -94,7 +94,7 @@ Run a 10-iteration deep research loop covering these four threads, externalize s
 - `mcp_server/stress_test/search-quality/w*.vitest.ts`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/{006-search-query-rag-optimization,007-search-rag-measurement-driven-implementation}/{spec,plan,tasks,checklist,implementation-summary}.md`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/019-search-query-rag-optimization-research/research/research-report.md`
-- Whole `.opencode/skill/system-spec-kit/` tree for empty-folder audit
+- Whole `.opencode/skills/system-spec-kit/` tree for empty-folder audit
 <!-- /ANCHOR:scope -->
 
 ---

@@ -136,7 +136,7 @@ AFTER (Separated):
 ### Source Code (Repository Root)
 
 ```
-.opencode/command/memory/
+.opencode/commands/memory/
   search.md            # MODIFY: Remove management operations
   database.md                # CREATE: New database management command
   save.md              # UNCHANGED: Already handles context saving
@@ -260,8 +260,8 @@ Since these are command definition files (not code), testing is manual:
 
 - **Rollback Trigger**: Critical operation missing or broken
 - **Rollback Procedure**:
-  1. `git checkout HEAD~1 -- .opencode/command/memory/search.md`
-  2. Delete `.opencode/command/memory/database.md`
+  1. `git checkout HEAD~1 -- .opencode/commands/memory/search.md`
+  2. Delete `.opencode/commands/memory/database.md`
   3. Verify original command works
 - **Verification**: Run original command test cases
 

@@ -10,9 +10,9 @@ The local repo will still benefit from skill routing internally, but the explici
 Compared Gate 2 enforcement and `skill_advisor.py` behavior to the external repo's flatter command and instruction model.
 
 ## Evidence
-- The root behavioral spec makes Gate 2 a required routing step for non-trivial work and treats a high-confidence recommendation as mandatory. [SOURCE: CLAUDE.md:47-70] [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md:31-47]
-- `skill_advisor.py` maps user requests to a broad skill catalog with embeddings and confidence thresholds, which is useful for internal routing but adds a visible extra step. [SOURCE: .opencode/skill/scripts/skill_advisor.py:67-83] [SOURCE: .opencode/skill/scripts/skill_advisor.py:83-209] [SOURCE: .opencode/skill/scripts/skill_advisor.py:211-260]
-- The local system already has many other gates and rule checks around understanding, spec binding, and memory handling. [SOURCE: CLAUDE.md:107-165] [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:74-102]
+- The root behavioral spec makes Gate 2 a required routing step for non-trivial work and treats a high-confidence recommendation as mandatory. [SOURCE: CLAUDE.md:47-70] [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md:31-47]
+- `skill_advisor.py` maps user requests to a broad skill catalog with embeddings and confidence thresholds, which is useful for internal routing but adds a visible extra step. [SOURCE: .opencode/skills/scripts/skill_advisor.py:67-83] [SOURCE: .opencode/skills/scripts/skill_advisor.py:83-209] [SOURCE: .opencode/skills/scripts/skill_advisor.py:211-260]
+- The local system already has many other gates and rule checks around understanding, spec binding, and memory handling. [SOURCE: CLAUDE.md:107-165] [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:74-102]
 - The external repo relies more on command design, layered instructions, and hooks than on an explicit "run the skill router first" operator ceremony. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/CLAUDE.md:76-108] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/settings.json:1-49]
 
 ## Analysis
@@ -51,7 +51,7 @@ finding: `system-spec-kit` should keep skill routing as infrastructure, but stop
 - **Priority:** must-have
 
 ## Counter-evidence sought
-I looked for strong evidence that explicit routing itself is a user benefit rather than mostly a maintainer benefit, but the current rules emphasize compliance and traceability more than operator ergonomics. [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:51-69]
+I looked for strong evidence that explicit routing itself is a user benefit rather than mostly a maintainer benefit, but the current rules emphasize compliance and traceability more than operator ergonomics. [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:51-69]
 
 ## Follow-up questions for next iteration
 If Gate 2 becomes quieter, does the larger Gate 1 to Gate 3 ceremony also need a deeper redesign rather than another round of simplification?

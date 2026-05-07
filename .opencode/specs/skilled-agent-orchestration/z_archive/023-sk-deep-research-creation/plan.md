@@ -31,7 +31,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown specs, YAML workflows, and skill references |
-| **Primary Runtime Surface** | `.claude/agents/deep-research.md`, `.opencode/command/spec_kit/deep-research.md`, `.opencode/skill/sk-deep-research/` |
+| **Primary Runtime Surface** | `.claude/agents/deep-research.md`, `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/` |
 | **State Model** | `deep-research-state.jsonl` plus `research/deep-research-strategy.md` |
 | **Verification Basis** | Spec docs, ADRs, research synthesis, and legacy-reference cleanup evidence |
 
@@ -98,7 +98,7 @@ LEAF agent for single-iteration execution.
 ### Phase 4: Command (/spec_kit:deep-research)
 YAML workflows managing the loop.
 - 4.1: TOML registration (`.agents/commands/spec_kit/deep-research.toml`)
-- 4.2: Command spec (`.opencode/command/spec_kit/deep-research.md`)
+- 4.2: Command spec (`.opencode/commands/spec_kit/deep-research.md`)
 - 4.3: YAML workflows (auto + confirm modes)
 - Pattern: `/spec_kit:research` command structure
 
@@ -243,8 +243,8 @@ Phase 9 (P4 Track) -- future, no immediate dependencies
 | File | Purpose |
 |------|---------|
 | `.claude/agents/deep-research.md` | Active agent definition and pattern reference for the iterative research loop |
-| `.opencode/command/spec_kit/deep-research.md` | Command workflow reference for the iterative research loop |
-| `.opencode/skill/sk-git/SKILL.md` | 8-section SKILL.md pattern (478 LOC) |
+| `.opencode/commands/spec_kit/deep-research.md` | Command workflow reference for the iterative research loop |
+| `.opencode/skills/sk-git/SKILL.md` | 8-section SKILL.md pattern (478 LOC) |
 | `research/research.md` | Source design and synthesis reference for the shipped state model |
 | `.claude/agents/orchestrate.md` | NDP/CWB/TCB constraints |
 

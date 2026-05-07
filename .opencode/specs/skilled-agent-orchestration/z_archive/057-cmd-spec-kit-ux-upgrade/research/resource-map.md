@@ -88,46 +88,46 @@ contextType: "research"
 
 | Path | Action | Status | Note |
 | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Cited | OK | Spec-folder and validation contract |
-| `.opencode/skill/system-spec-kit/ARCHITECTURE.md` | Cited | OK | Internal architecture context |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` | Cited | OK | Prompt-time routing contract |
-| `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md` | Cited | OK | Template validation contract |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Cited | OK | Native MCP schema truth |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Cited | OK | Deep-research workflow contract |
-| `.opencode/skill/mcp-code-mode/SKILL.md` | Cited | OK | External MCP discovery model |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Cited | OK | Spec-folder and validation contract |
+| `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Cited | OK | Internal architecture context |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Cited | OK | Prompt-time routing contract |
+| `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md` | Cited | OK | Template validation contract |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Cited | OK | Native MCP schema truth |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Cited | OK | Deep-research workflow contract |
+| `.opencode/skills/mcp-code-mode/SKILL.md` | Cited | OK | External MCP discovery model |
 
 ### Templates and Scripts
 
 | Path | Action | Status | Note |
 | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/templates/` | Cited | OK | Internal template tree |
-| `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` | Cited | OK | Template composer |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Cited | OK | Strict validation gate |
-| `.opencode/skill/system-spec-kit/scripts/lib/shell-common.sh` | Cited | OK | Phase-parent and validator helpers |
+| `.opencode/skills/system-spec-kit/templates/` | Cited | OK | Internal template tree |
+| `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` | Cited | OK | Template composer |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Cited | OK | Strict validation gate |
+| `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh` | Cited | OK | Phase-parent and validator helpers |
 
 ### Commands
 
 | Path | Action | Status | Note |
 | --- | --- | --- | --- |
-| `.opencode/command/spec_kit/README.txt` | Cited | OK | Command catalog |
-| `.opencode/command/spec_kit/plan.md` | Cited | OK | Plan/intake surface |
-| `.opencode/command/spec_kit/implement.md` | Cited | OK | Implement surface |
-| `.opencode/command/spec_kit/complete.md` | Cited | OK | Complete surface |
-| `.opencode/command/spec_kit/resume.md` | Cited | OK | Resume surface |
-| `.opencode/command/spec_kit/deep-research.md` | Cited | OK | Deep-research command |
-| `.opencode/command/spec_kit/deep-review.md` | Cited | OK | Deep-review command |
-| `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` | Cited | OK | Clarification cap evidence |
-| `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` | Cited | OK | Implementation YAML evidence |
-| `.opencode/command/memory/README.txt` | Cited | OK | Memory command catalog |
-| `.opencode/command/create/agent.md` | Cited | OK | Create command surface |
-| `.opencode/command/create/assets/create_feature_catalog_confirm.yaml` | Cited | OK | Create YAML evidence |
-| `.opencode/command/doctor/skill-advisor.md` | Cited | OK | Advisor diagnostic command |
+| `.opencode/commands/spec_kit/README.txt` | Cited | OK | Command catalog |
+| `.opencode/commands/spec_kit/plan.md` | Cited | OK | Plan/intake surface |
+| `.opencode/commands/spec_kit/implement.md` | Cited | OK | Implement surface |
+| `.opencode/commands/spec_kit/complete.md` | Cited | OK | Complete surface |
+| `.opencode/commands/spec_kit/resume.md` | Cited | OK | Resume surface |
+| `.opencode/commands/spec_kit/deep-research.md` | Cited | OK | Deep-research command |
+| `.opencode/commands/spec_kit/deep-review.md` | Cited | OK | Deep-review command |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Cited | OK | Clarification cap evidence |
+| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Cited | OK | Implementation YAML evidence |
+| `.opencode/commands/memory/README.txt` | Cited | OK | Memory command catalog |
+| `.opencode/commands/create/agent.md` | Cited | OK | Create command surface |
+| `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml` | Cited | OK | Create YAML evidence |
+| `.opencode/commands/doctor/skill-advisor.md` | Cited | OK | Advisor diagnostic command |
 
 ### Agents
 
 | Path | Action | Status | Note |
 | --- | --- | --- | --- |
-| `.opencode/agent/README.txt` | Cited | OK | Agent catalog |
-| `.opencode/agent/orchestrate.md` | Cited | OK | Orchestration role contract |
-| `.opencode/agent/improve-prompt.md` | Cited | OK | Prompt-improvement role contract |
-| `.opencode/agent/ultra-think.md` | Cited | OK | Reasoning-lens distinction |
+| `.opencode/agents/README.txt` | Cited | OK | Agent catalog |
+| `.opencode/agents/orchestrate.md` | Cited | OK | Orchestration role contract |
+| `.opencode/agents/improve-prompt.md` | Cited | OK | Prompt-improvement role contract |
+| `.opencode/agents/ultra-think.md` | Cited | OK | Reasoning-lens distinction |

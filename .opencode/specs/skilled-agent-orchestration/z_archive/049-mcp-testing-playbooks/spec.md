@@ -48,7 +48,7 @@ Three of the four MCP skills (`mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mo
 
 **Key Decisions**: CM-first sequencing because it defines the cross-skill vocabulary (`manual.tool` namespace, `call_tool_chain` semantics, env-prefixing) that BDG and CU scenarios reference; flat Level-3 spec packet (no phase folders) because the workflow is uniform across the four skills.
 
-**Critical Dependencies**: `/create:testing-playbook` command (already implemented at `.opencode/command/create/testing-playbook.md`); sk-doc playbook templates at `.opencode/skill/sk-doc/assets/documentation/testing_playbook/`; the existing `mcp-coco-index` playbook as the closest in-tree precedent for an mcp-* skill.
+**Critical Dependencies**: `/create:testing-playbook` command (already implemented at `.opencode/commands/create/testing-playbook.md`); sk-doc playbook templates at `.opencode/skills/sk-doc/assets/documentation/testing_playbook/`; the existing `mcp-coco-index` playbook as the closest in-tree precedent for an mcp-* skill.
 
 ---
 
@@ -75,7 +75,7 @@ Three of the four MCP-* skills (`mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-
 
 ### Purpose
 
-Ship a uniform, validator-clean playbook for each of `mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mode` (≈73 per-feature files total) and confirm `mcp-coco-index` coverage is current. Each playbook lives at `.opencode/skill/<skill>/manual_testing_playbook/` and follows the sk-doc 9-column scenario contract with deterministic prompts, exact command sequences, expected signals per step, and ≥2 failure-triage steps per scenario.
+Ship a uniform, validator-clean playbook for each of `mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mode` (≈73 per-feature files total) and confirm `mcp-coco-index` coverage is current. Each playbook lives at `.opencode/skills/<skill>/manual_testing_playbook/` and follows the sk-doc 9-column scenario contract with deterministic prompts, exact command sequences, expected signals per step, and ≥2 failure-triage steps per scenario.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -98,25 +98,25 @@ Ship a uniform, validator-clean playbook for each of `mcp-chrome-devtools`, `mcp
 - Automating playbook execution (the playbook is a manual reference; automation is a separate spec)
 - Authoring playbooks for any other skill (cli-*, sk-*, doctor:*) — those are separate specs (047/048 cover cli-*; sk-* skills already have playbooks where needed)
 - Refactoring the `mcp-coco-index` playbook root structure — audit-only; no rewrite (ADR-002)
-- Updating the standards reference at `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` to reconcile uppercase/lowercase guidance — deferred to a follow-on cleanup (ADR-001 records the divergence)
+- Updating the standards reference at `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` to reconcile uppercase/lowercase guidance — deferred to a follow-on cleanup (ADR-001 records the divergence)
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook (sections 1-6 global, 7-13 per-category, 14-15 indexes) |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/01--core-tools/{001..004}-*.md` | Create | 4 per-feature files |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/{001..003}-*.md` | Create | 3 per-feature files |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/{001..003}-*.md` | Create | 3 per-feature files |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/{001..003}-*.md` | Create | 3 per-feature files |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/{001..003}-*.md` | Create | 3 per-feature files |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/{001..004}-*.md` | Create | 4 per-feature files |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/{001..006}-*.md` | Create | 6 per-feature files |
-| `.opencode/skill/mcp-chrome-devtools/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook |
-| `.opencode/skill/mcp-chrome-devtools/manual_testing_playbook/{01..06}--*/{001..NNN}-*.md` | Create | 22 per-feature files across 6 categories |
-| `.opencode/skill/mcp-clickup/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook |
-| `.opencode/skill/mcp-clickup/manual_testing_playbook/{01..06}--*/{001..NNN}-*.md` | Create | 25 per-feature files across 6 categories |
-| `.opencode/skill/mcp-coco-index/manual_testing_playbook/{01..07}--*/{NNN+1}-*.md` | Create (conditional) | 0-3 appended files only if audit identifies confirmed gaps |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook (sections 1-6 global, 7-13 per-category, 14-15 indexes) |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/{001..004}-*.md` | Create | 4 per-feature files |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/{001..003}-*.md` | Create | 3 per-feature files |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/{001..003}-*.md` | Create | 3 per-feature files |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/{001..003}-*.md` | Create | 3 per-feature files |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/{001..003}-*.md` | Create | 3 per-feature files |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/{001..004}-*.md` | Create | 4 per-feature files |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/{001..006}-*.md` | Create | 6 per-feature files |
+| `.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook |
+| `.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/{01..06}--*/{001..NNN}-*.md` | Create | 22 per-feature files across 6 categories |
+| `.opencode/skills/mcp-clickup/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook |
+| `.opencode/skills/mcp-clickup/manual_testing_playbook/{01..06}--*/{001..NNN}-*.md` | Create | 25 per-feature files across 6 categories |
+| `.opencode/skills/mcp-coco-index/manual_testing_playbook/{01..07}--*/{NNN+1}-*.md` | Create (conditional) | 0-3 appended files only if audit identifies confirmed gaps |
 | `.opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks/*` | Create | spec.md, plan.md, tasks.md, checklist.md, decision-record.md, research.md, implementation-summary.md, description.json, graph-metadata.json |
 <!-- /ANCHOR:scope -->
 
@@ -129,7 +129,7 @@ Ship a uniform, validator-clean playbook for each of `mcp-chrome-devtools`, `mcp
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Each new playbook has a root `manual_testing_playbook.md` with the 6 global sections (OVERVIEW, GLOBAL PRECONDITIONS, GLOBAL EVIDENCE REQUIREMENTS, DETERMINISTIC COMMAND NOTATION, REVIEW PROTOCOL AND RELEASE READINESS, SUB-AGENT ORCHESTRATION AND WAVE PLANNING) plus per-category summary sections plus AUTOMATED TEST CROSS-REFERENCE plus FEATURE FILE INDEX | `python3 .opencode/skill/sk-doc/scripts/validate_document.py <root>` exits 0 |
+| REQ-001 | Each new playbook has a root `manual_testing_playbook.md` with the 6 global sections (OVERVIEW, GLOBAL PRECONDITIONS, GLOBAL EVIDENCE REQUIREMENTS, DETERMINISTIC COMMAND NOTATION, REVIEW PROTOCOL AND RELEASE READINESS, SUB-AGENT ORCHESTRATION AND WAVE PLANNING) plus per-category summary sections plus AUTOMATED TEST CROSS-REFERENCE plus FEATURE FILE INDEX | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <root>` exits 0 |
 | REQ-002 | Each per-feature file has frontmatter `title` + `description`, all 5 H2 sections (OVERVIEW, CURRENT REALITY, TEST EXECUTION, SOURCE FILES, SOURCE METADATA), and a deterministic prompt formatted "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED}. Return {OUTPUT}." | Visual review + grep checks pass per skill |
 | REQ-003 | Every scenario has ≥2 ordered failure-triage steps with specific file paths, command names, or signal references — no vague "check the logs" entries | `grep -A4 "Failure Triage" <files>` audit shows ≥2 enumerated steps per file |
 | REQ-004 | Every Feature ID is unique within its skill's playbook (`PREFIX-NNN` format) | Awk dedup check returns 0 duplicates per playbook |
@@ -141,7 +141,7 @@ Ship a uniform, validator-clean playbook for each of `mcp-chrome-devtools`, `mcp
 |----|-------------|---------------------|
 | REQ-006 | mcp-coco-index audit recorded in `research.md` with explicit gap inventory (`[]` if no gaps) | research.md `## CCC Audit` section present with dated audit notes |
 | REQ-007 | V7 smoke runs executed for one scenario per playbook against real environment | Evidence captured in `implementation-summary.md` with PASS/FAIL/SKIP verdict per smoke run |
-| REQ-008 | Spec 049 strict validate passes | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks --strict` exits 0 |
+| REQ-008 | Spec 049 strict validate passes | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks --strict` exits 0 |
 | REQ-009 | Memory save runs after implementation completes | `description.json` and `graph-metadata.json` refreshed by `generate-context.js`; spec discoverable via `memory_search` |
 <!-- /ANCHOR:requirements -->
 

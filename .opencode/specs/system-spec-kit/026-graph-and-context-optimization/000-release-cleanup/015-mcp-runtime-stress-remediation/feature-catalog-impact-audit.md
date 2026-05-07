@@ -4,7 +4,7 @@ description: "Read-only audit of which feature_catalog entries are stale, missin
 audit_date: "2026-04-27"
 auditor: "claude-opus-4-7 [1m]"
 scope: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/{001..015}"
-catalog_root: ".opencode/skill/system-spec-kit/feature_catalog"
+catalog_root: ".opencode/skills/system-spec-kit/feature_catalog"
 mirror_status: "All four runtime mirrors (.opencode, .gemini, .claude, .codex) are hardlinked to the same inode (26087506) for feature_catalog.md and per-feature .md files; auditing the .opencode source-of-truth covers all four."
 ---
 
@@ -14,7 +14,7 @@ mirror_status: "All four runtime mirrors (.opencode, .gemini, .claude, .codex) a
 
 This audit began as a 2026-04-27 snapshot and is preserved below as historical evidence. Current-state reconciliation on 2026-04-28 shows the live feature catalog has since absorbed the high-impact phase-011 fields and helpers: `fallbackDecision`, `getGraphReadinessSnapshot`, `readiness.action`, `rawScore`, `pathClass`, `rankingSignals`, `buildCopilotPromptArg`, `CopilotTargetAuthority`, `responsePolicy`, `citationPolicy`, `preEnforcementTokens`, `returnedTokens`, `deltaByRelation`, `balanceStatus`, `classificationKind`, `paraphraseGroup`, and `backendRouting` now appear in the relevant live catalog/playbook surfaces. The old "catalog has not been updated for any of them" statement is therefore historical only, not current guidance.
 
-The source-of-truth roots are `.opencode/skill/system-spec-kit/feature_catalog/` and `.opencode/skill/system-spec-kit/manual_testing_playbook/`. The originally cited `.opencode/skill/sk-doc/...` root does not exist in this checkout.
+The source-of-truth roots are `.opencode/skills/system-spec-kit/feature_catalog/` and `.opencode/skills/system-spec-kit/manual_testing_playbook/`. The originally cited `.opencode/skills/sk-doc/...` root does not exist in this checkout.
 
 ## 1A. CURRENT-STATE RECONCILIATION (2026-04-28)
 
@@ -36,7 +36,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 | **001** stress test v1.0.1 | None — evidence package + rubric documentation | (n/a) | UP-TO-DATE | None. Optional: catalog the rubric under `09--evaluation-and-measurement/` if it becomes reusable across phases. |
 | **002** Q1–Q8 deep research | None — research package only | (n/a) | UP-TO-DATE | None. |
 | **003** memory_context truncation contract: `preEnforcementTokens`, `returnedTokens`, `actualTokens` alias, `droppedAllResultsReason` | 01--retrieval/01-unified-context-retrieval-memorycontext.md | NEEDS-UPDATE | Add §2 paragraph documenting the four new envelope fields and the under-budget invariant `preEnforcementTokens === returnedTokens === actualTokens`. |
-| **004** vendored cocoindex_code fork v0.2.3+spec-kit-fork.0.2.0 emits `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` | 22--context-preservation-and-code-graph/09-cocoindex-bridge-context.md; possibly a new `04--maintenance/` or `16--tooling-and-scripts/` entry for the vendored fork | NEEDS-UPDATE + MISSING | (a) Update 09-cocoindex-bridge-context.md §2 to mention the 7 fork telemetry fields the bridge now sees from the seed side. (b) Consider a new entry under `16--tooling-and-scripts/` titled "Vendored cocoindex_code fork (spec-kit-fork)" pointing at `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code` and listing the fork-emitted fields. |
+| **004** vendored cocoindex_code fork v0.2.3+spec-kit-fork.0.2.0 emits `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` | 22--context-preservation-and-code-graph/09-cocoindex-bridge-context.md; possibly a new `04--maintenance/` or `16--tooling-and-scripts/` entry for the vendored fork | NEEDS-UPDATE + MISSING | (a) Update 09-cocoindex-bridge-context.md §2 to mention the 7 fork telemetry fields the bridge now sees from the seed side. (b) Consider a new entry under `16--tooling-and-scripts/` titled "Vendored cocoindex_code fork (spec-kit-fork)" pointing at `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code` and listing the fork-emitted fields. |
 | **005** code_graph_query `fallbackDecision.{nextTool, reason, retryAfter}` on blocked/degraded reads | 22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md; 22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md; 22--context-preservation-and-code-graph/08-code-graph-storage-query.md | NEEDS-UPDATE | Add bullet to §1/§2 in all three files describing `fallbackDecision` field with its 3 sub-fields and the empty/stale/unavailable -> nextTool routing matrix (`code_graph_scan`, `code_graph_scan`, `rg`). |
 | **006** memory_causal_stats `deltaByRelation`, `dominantRelation`, `dominantRelationShare`, `balanceStatus`, `remediationHint`, `windowStartedAt` + per-relation per-window auto-edge cap | 06--analysis/02-causal-graph-statistics-memorycausalstats.md; 02--mutation/01-memory-indexing-memorysave.md (auto-edge cap on supersedes path); `10--graph-signal-activation/*` (per-relation cap as an across-the-board behavior) | NEEDS-UPDATE | (a) Rewrite §2 of 02-causal-graph-statistics-memorycausalstats.md to describe the 6 new fields, the rolling window, balanceStatus values (`balanced` / `relation_skewed` / `insufficient_data`), and reconciliation between `health` and `meetsTarget`. (b) Add one paragraph to memory_save §2 documenting the new auto-edge cap that PE/reconsolidation supersession now respects. |
 | **007** IntentTelemetry contract: `taskIntent.classificationKind`, `paraphraseGroup`, `backendRouting.classificationKind` | 22--context-preservation-and-code-graph/14-query-intent-classifier.md; 01--retrieval/01-unified-context-retrieval-memorycontext.md (consumer) | NEEDS-UPDATE | (a) Expand 14-query-intent-classifier.md §2 (currently a one-line stub) to describe the IntentTelemetry envelope, the three classificationKind sites, and `paraphraseGroup` stability. (b) Add a sentence in memory_context §2 noting that intent telemetry now carries `classificationKind` for `taskIntent` and `backendRouting` and a stable `paraphraseGroup` token for paraphrase deduplication. |
@@ -57,7 +57,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 ### 3.1 Packet 003 — memory_context truncation contract
 
-- **File:** `.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md`
+- **File:** `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md`
 - **Stale lines:** §2 paragraph at lines 22–23 currently says "After retrieval, the orchestrator estimates token count (1 token per 4 characters) and enforces the budget by stripping lowest-scored results from the tail until the response fits. A dedicated `enforceTokenBudget()` function handles the truncation with detailed tracking of original and returned result counts."
 - **Missing fields:** `preEnforcementTokens`, `returnedTokens`, `actualTokens` (now an alias of `returnedTokens`), `droppedAllResultsReason: "impossible_budget"`.
 - **Recommended diff:** After the existing `enforceTokenBudget()` sentence, append:
@@ -66,9 +66,9 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 ### 3.2 Packet 004 — vendored cocoindex_code fork telemetry
 
-- **File:** `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/09-cocoindex-bridge-context.md`
+- **File:** `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/09-cocoindex-bridge-context.md`
 - **Stale wording:** §1 line 13 lists provider metadata as "`source`, `score`, `snippet`, and `range`" only. The fork now also emits 7 additional fields: `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score`.
-- **Missing entry candidate:** The vendored soft-fork `cocoindex_code v0.2.3+spec-kit-fork.0.2.0` lives under `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code` (per 004's answered question). No catalog entry currently advertises that the project ships a forked cocoindex.
+- **Missing entry candidate:** The vendored soft-fork `cocoindex_code v0.2.3+spec-kit-fork.0.2.0` lives under `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code` (per 004's answered question). No catalog entry currently advertises that the project ships a forked cocoindex.
 - **Recommended action:**
   1. Patch 09-cocoindex-bridge-context.md §1 to enumerate the 7 fork fields with a short note on which are seed-side (path_class, raw_score, rankingSignals — see 015) versus result-set-side (dedupedAliases, uniqueResultCount).
   2. Open a new file at 16--tooling-and-scripts/36-vendored-cocoindex-fork.md documenting the fork's location, version pin, and the 7 emitted telemetry fields. Cross-link from 09-cocoindex-bridge-context.md and from 015's anchor passthrough.
@@ -76,9 +76,9 @@ Historical sections below are retained for provenance; use this reconciliation b
 ### 3.3 Packet 005 — code_graph_query fallbackDecision
 
 - **Files:**
-  - `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` (primary — it owns the blocked-payload contract)
-  - `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` (downstream reference)
-  - `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/08-code-graph-storage-query.md` (overview row for `code_graph_query`)
+  - `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` (primary — it owns the blocked-payload contract)
+  - `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` (downstream reference)
+  - `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/08-code-graph-storage-query.md` (overview row for `code_graph_query`)
 - **Missing fields:** `fallbackDecision` envelope sub-field with three sub-fields: `nextTool: "code_graph_scan" | "rg"`, `reason: "full_scan_required" | "selective_reindex" | "scan_failed" | "scan_declined"`, `retryAfter?: "scan_complete"`.
 - **Recommended diff (15-code-graph-auto-trigger.md, after line 21):** Insert bullet:
   > - `fallbackDecision: { nextTool, reason, retryAfter? }` for caller routing. Empty/stale full-scan states return `nextTool:"code_graph_scan"`, `reason:"full_scan_required"`, `retryAfter:"scan_complete"`. Selective-reindex and fresh paths emit no `fallbackDecision`. Readiness-crash states return `nextTool:"rg"`, `reason:"scan_failed"`.
@@ -86,7 +86,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 ### 3.4 Packet 006 — causal stats relation-window metrics
 
-- **File:** `.opencode/skill/system-spec-kit/feature_catalog/06--analysis/02-causal-graph-statistics-memorycausalstats.md`
+- **File:** `.opencode/skills/system-spec-kit/feature_catalog/06--analysis/02-causal-graph-statistics-memorycausalstats.md`
 - **Stale wording:** §2 (lines 19–25) describes only edge counts, breakdown by relationship type, average strength, source/target counts, link coverage, and orphan detection.
 - **Missing fields:** `deltaByRelation`, `dominantRelation`, `dominantRelationShare`, `balanceStatus` (`balanced` / `relation_skewed` / `insufficient_data`), `remediationHint`, `windowStartedAt`, plus zero-fill for all 6 relation types in `by_relation`.
 - **Recommended diff:** Append a new paragraph to §2:
@@ -97,8 +97,8 @@ Historical sections below are retained for provenance; use this reconciliation b
 ### 3.5 Packet 007 — IntentTelemetry contract
 
 - **Files:**
-  - `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/14-query-intent-classifier.md` (primary — currently a 12-line stub with §2 reading only "mcp_server/code_graph/lib/query-intent-classifier.ts")
-  - `.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md` (consumer surface)
+  - `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/14-query-intent-classifier.md` (primary — currently a 12-line stub with §2 reading only "mcp_server/code_graph/lib/query-intent-classifier.ts")
+  - `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md` (consumer surface)
 - **Missing fields:** `taskIntent.classificationKind`, `paraphraseGroup`, `backendRouting.classificationKind` (a normalized envelope across the two classification sites).
 - **Recommended diff (14-query-intent-classifier.md):** Replace the §2 one-liner with a real description that mentions the IntentTelemetry envelope, the three `classificationKind` markers, and `paraphraseGroup` as the stability token used so paraphrased queries map to the same group.
 - **Source:** `007-intent-classifier-stability/implementation-summary.md` (recent_action: "Implemented source/test/dist IntentTelemetry contract").
@@ -106,8 +106,8 @@ Historical sections below are retained for provenance; use this reconciliation b
 ### 3.6 Packet 008 — canonical MCP rebuild + restart + live-probe protocol
 
 - **Files:**
-  - `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/20-ops-self-healing-runbooks.md`
-  - `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/29-setup-native-module-health-and-mcp-installation.md`
+  - `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/20-ops-self-healing-runbooks.md`
+  - `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/29-setup-native-module-health-and-mcp-installation.md`
 - **Missing references:** The 4 new reference docs at `008-mcp-daemon-rebuild-protocol/references/`:
   - mcp-rebuild-restart-protocol.md
   - live-probe-template.md
@@ -118,7 +118,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 ### 3.7 Packet 009 — memory_search response policy
 
-- **File:** `.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md`
+- **File:** `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md`
 - **Stale wording:** Existing §2 (lines 22–30) is silent on response policy and citation policy. Recovery vocabulary discussion is buried in 15--retrieval-enhancements/08-provenance-rich-response-envelopes.md which also predates this packet.
 - **Missing fields:** `responsePolicy.requiredAction` (`ask_disambiguation` / `broaden_or_ask` / `refuse_without_evidence`), `responsePolicy.noCanonicalPathClaims`, `responsePolicy.citationRequiredForPaths`, `responsePolicy.safeResponse`, top-level `citationPolicy` (`cite_results` / `do_not_cite_results`).
 - **Recommended diff:** Add a new paragraph to §2:
@@ -128,15 +128,15 @@ Historical sections below are retained for provenance; use this reconciliation b
 ### 3.8 Packet 012 — Copilot target authority helper
 
 - **Status:** MISSING entry. No catalog file currently references the deep-loop dispatch helper, `executor-config.ts`, or the cli-copilot dispatch pathway in detail. The closest existing entry is 18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md, which covers a different (hook-side) Copilot integration.
-- **Recommended new file:** `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/36-copilot-target-authority-helper.md` (or a similar slot under `17--governance/` since this is essentially a write-authority gate). Sections:
+- **Recommended new file:** `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/36-copilot-target-authority-helper.md` (or a similar slot under `17--governance/` since this is essentially a write-authority gate). Sections:
   - §1 Overview — wraps every cli-copilot deep-loop dispatch with a typed `targetAuthority` token; closes the v1.0.2 I1 catastrophic-mutation pathology.
   - §2 Current reality — the three-branch behavior matrix (`approved` -> preamble; `missing` + writeIntent -> Gate-3 prompt and strip `--allow-all-tools`; `missing` + !writeIntent -> pass-through), large-prompt override resistance, the new `CopilotTargetAuthority` discriminated union, and `validateSpecFolder`.
-  - §3 Source files — `mcp_server/lib/deep-loop/executor-config.ts`, `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`, plus the new vitest.
+  - §3 Source files — `mcp_server/lib/deep-loop/executor-config.ts`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, plus the new vitest.
 - **Source:** `012-copilot-target-authority-helper/spec.md` lines 79–167.
 
 ### 3.9 Packet 013 — graph degraded stress cell + SELECTIVE_REINDEX_THRESHOLD export
 
-- **File:** `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md`
+- **File:** `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md`
 - **Recommended diff:**
   1. In §3 Tests, add row: `mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts | Five-cell sweep: empty, broad-stale, bounded-stale, fresh, readiness-crash. Asserts fallbackDecision routing alongside readiness state.`
   2. Disambiguate the existing wording at line 15 — "Packet 013 made this visible" — to read "Spec 024-compact-code-graph packet 013 made this visible" so it is not confused with phase 011's own packet 013 (graph-degraded-stress-cell).
@@ -156,7 +156,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 ### 3.11 Packet 015 — cocoindex seed telemetry passthrough
 
-- **File:** `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/09-cocoindex-bridge-context.md`
+- **File:** `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/09-cocoindex-bridge-context.md`
 - **Stale wording (line 13):** "preserves CocoIndex seed fidelity across both `file` and `filePath` inputs so provider metadata such as `source`, `score`, `snippet`, and `range` survive into resolved anchors".
 - **Missing fields:** `rawScore`, `pathClass`, `rankingSignals` on returned anchors (purely additive when seeds carry them; absent when seeds don't).
 - **Recommended diff:** Replace the cited sentence with:
@@ -201,4 +201,4 @@ No entries make claims that the new behavior breaks.
 - **Audit timestamp:** 2026-04-27
 - **Catalog version audited:** feature_catalog.md last-modified 2026-04-26 16:12 (size 404606 bytes, inode 26087506)
 - **Original search strategy:** ripgrep against catalog for the 9 ratified field/helper token families. That 2026-04-27 result is superseded by the 2026-04-28 reconciliation in §1A, which found the live catalog/playbook surfaces now contain the high-impact tokens.
-- **Out of scope:** Per-CLI feature_catalog folders do not exist (`.opencode/skill/cli-{copilot,codex,claude-code,gemini,opencode}/feature_catalog/`); these CLI skills carry only `references/` and `manual_testing_playbook/` — so no per-CLI catalog edits are needed. Runtime-mirror equivalents (`.gemini/`, `.claude/`, `.codex/`) are hardlinks to the .opencode source.
+- **Out of scope:** Per-CLI feature_catalog folders do not exist (`.opencode/skills/cli-{copilot,codex,claude-code,gemini,opencode}/feature_catalog/`); these CLI skills carry only `references/` and `manual_testing_playbook/` — so no per-CLI catalog edits are needed. Runtime-mirror equivalents (`.gemini/`, `.claude/`, `.codex/`) are hardlinks to the .opencode source.

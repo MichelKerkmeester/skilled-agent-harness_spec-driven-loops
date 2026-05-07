@@ -18,7 +18,7 @@ const path = require('path');
 const fs = require('fs');
 
 // Load the memory-parser module
-const PARSER_PATH = path.join(__dirname, '../../../../.opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js');
+const PARSER_PATH = path.join(__dirname, '../../../../.opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js');
 const parser = require(PARSER_PATH);
 
 // Test configuration

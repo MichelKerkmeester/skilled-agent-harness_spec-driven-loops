@@ -44,7 +44,7 @@ contextType: "decision"
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -117,7 +117,7 @@ We need deterministic indexing even when `specs/` and `.opencode/specs/` referen
 | Over-dedup of distinct files | H | Dedup by canonical absolute file path only |
 
 **Implementation alignment (2026-02-22)**:
-- Implemented in `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` and `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts`.
+- Implemented in `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` and `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`.
 - Verified by targeted + extended test runs (52 + 186 tests passing) and scoped ESLint pass.
 <!-- /ANCHOR:adr-001-consequences -->
 
@@ -179,7 +179,7 @@ Use one precedence chain: explicit YAML tier metadata first, inline tier markers
 
 ### Implementation Alignment
 
-- Implemented in `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts` with parser integration updates in `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`.
+- Implemented in `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts` with parser integration updates in `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`.
 - Verified by targeted test suite `tests/memory-parser.vitest.ts`, `tests/importance-tiers.vitest.ts`, plus extended parser/spec suite (`186` tests passing).
 
 ### Alternatives Rejected
@@ -207,7 +207,7 @@ contextType: "decision"
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 

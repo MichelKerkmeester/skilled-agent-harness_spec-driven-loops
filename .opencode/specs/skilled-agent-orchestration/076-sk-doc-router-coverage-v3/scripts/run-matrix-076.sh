@@ -6,7 +6,7 @@
 set -u
 
 REPO_ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
-PB="$REPO_ROOT/.opencode/skill/sk-doc/manual_testing_playbook"
+PB="$REPO_ROOT/.opencode/skills/sk-doc/manual_testing_playbook"
 PHASE2="$REPO_ROOT/.opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3"
 LOGS="$PHASE2/logs"
 DELTAS="$PHASE2/deltas"

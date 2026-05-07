@@ -14,9 +14,9 @@ _memory:
     next_safe_action: "Commit packet 080 to main"
     blockers: []
     key_files:
-      - ".opencode/agent/multi-ai-council.md"
-      - ".opencode/skill/system-spec-kit/references/multi-ai-council/"
-      - ".opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts"
+      - ".opencode/agents/multi-ai-council.md"
+      - ".opencode/skills/system-spec-kit/references/multi-ai-council/"
+      - ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts"
     session_dedup:
       fingerprint: "sha256:64801e987501ad4d2afbcf6c07ab0768724433cdf1be58fba15d351cea3de8c9"
       session_id: "implsumm-080-author"
@@ -64,16 +64,16 @@ _memory:
 
 ### Phase 2 — Agent body + references + mirrors
 
-- `.opencode/agent/multi-ai-council.md` — added §12 Output Protocol, §13 Invocation Contract, §14 State Schema, §15 Convergence Signal (placed BEFORE §16 SUMMARY so the SUMMARY ASCII box stays as the closing section). Final LOC: 683 (under 750 cap per CHK-011).
+- `.opencode/agents/multi-ai-council.md` — added §12 Output Protocol, §13 Invocation Contract, §14 State Schema, §15 Convergence Signal (placed BEFORE §16 SUMMARY so the SUMMARY ASCII box stays as the closing section). Final LOC: 683 (under 750 cap per CHK-011).
 - `.claude/agents/multi-ai-council.md`, `.gemini/agents/multi-ai-council.md`, `.codex/agents/multi-ai-council.toml` — all 3 runtime mirrors carry the same 4 new sections in the same order.
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/folder-layout.md` (38 LOC) — directory tree reference
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md` (35 LOC) — lens combination guidance
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/convergence-signals.md` (27 LOC) — 2/3 rule + escape hatches
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md` (68 LOC) — JSONL schema + worked example + resume semantics
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/folder-layout.md` (38 LOC) — directory tree reference
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md` (35 LOC) — lens combination guidance
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/convergence-signals.md` (27 LOC) — 2/3 rule + escape hatches
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md` (68 LOC) — JSONL schema + worked example + resume semantics
 
 ### Phase 3 — Validator regression + smoke test
 
-- `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` — 2 test cases:
+- `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` — 2 test cases:
   1. `validate.sh` does not flag `ai-council/` as unknown (uses packet 080 itself)
   2. Validator treats `ai-council/` as free-form (synthetic packet with arbitrary internal layout)
 - Validator code itself was NOT modified — `validate.sh` already accepts unknown subfolders by design (ADR-004); the regression test prevents future regressions.
@@ -129,12 +129,12 @@ See `decision-record.md` for the full ADRs:
 | Surface | Status | Evidence |
 |---------|--------|----------|
 | Spec docs (Phase 1) | PASS | `validate.sh --strict` exit 0; errors=0, warnings=0 |
-| Agent body — primary | PASS | `.opencode/agent/multi-ai-council.md` 683 LOC; §12-§16 present in correct order |
+| Agent body — primary | PASS | `.opencode/agents/multi-ai-council.md` 683 LOC; §12-§16 present in correct order |
 | Agent body — 4 mirrors | PASS | All 4 runtimes (.opencode/.claude/.codex/.gemini) carry §12-§15 + §16 SUMMARY in identical order |
 | Reference files (Phase 2) | PASS | 4 files under `system-spec-kit/references/multi-ai-council/`, each <300 LOC |
 | Vitest regression test (Phase 3) | PASS | Codex-dispatch confirmed targeted run: 1 file, 2 tests passed |
 | `ai-council/` smoke test (Phase 3) | DEFERRED | Agent has `write: deny`; orchestrator-level writes scoped to follow-on packet |
-| No new skill folder | PASS | `.opencode/skill/multi-ai-council/` does not exist |
+| No new skill folder | PASS | `.opencode/skills/multi-ai-council/` does not exist |
 | Permission invariant | PASS | All 4 runtimes retain `write: deny`/`edit: deny`/`bash: deny`/`patch: deny` |
 
 ### Success criteria status (spec.md §5)
@@ -171,6 +171,6 @@ See `decision-record.md` for the full ADRs:
 - `decision-record.md` — 4 ADRs
 - `checklist.md` — 29 verification items in CHK-XXX format
 - `tasks.md` — task ledger
-- `.opencode/agent/multi-ai-council.md` §12-§15 — Output Protocol, Invocation Contract, State Schema, Convergence Signal
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/` — 4 shared reference files
-- `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` — validator regression test
+- `.opencode/agents/multi-ai-council.md` §12-§15 — Output Protocol, Invocation Contract, State Schema, Convergence Signal
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/` — 4 shared reference files
+- `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` — validator regression test

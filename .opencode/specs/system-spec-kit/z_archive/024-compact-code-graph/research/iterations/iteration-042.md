@@ -100,10 +100,10 @@ External sources:
 
 Internal repo evidence:
 
-- Current channel exposure includes `vector`, `fts5`, `bm25`, `graph`, and `degree`: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:245-248`
-- Hybrid search initialization wires vector search plus graph search: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:955-967`
-- Current hybrid pipeline explicitly combines BM25, FTS, vector, graph, RRF fusion, MMR, local reranking, routing, and confidence/token-budget logic: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:9-27`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:75-110`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:840-920`
-- Current graph channel is a causal/hierarchy retrieval layer backed by `causal_edges`, FTS5 matching, and typed degree weighting rather than a repository-native code graph: `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:35-55`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:88-153`
+- Current channel exposure includes `vector`, `fts5`, `bm25`, `graph`, and `degree`: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:245-248`
+- Hybrid search initialization wires vector search plus graph search: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:955-967`
+- Current hybrid pipeline explicitly combines BM25, FTS, vector, graph, RRF fusion, MMR, local reranking, routing, and confidence/token-budget logic: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:9-27`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:75-110`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:840-920`
+- Current graph channel is a causal/hierarchy retrieval layer backed by `causal_edges`, FTS5 matching, and typed degree weighting rather than a repository-native code graph: `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:35-55`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:88-153`
 
 ## New Information Ratio (0.0-1.0)
 

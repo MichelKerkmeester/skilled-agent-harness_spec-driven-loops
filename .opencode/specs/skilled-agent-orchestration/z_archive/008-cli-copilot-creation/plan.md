@@ -94,7 +94,7 @@ AI assistant request → skill_advisor.py routing → SKILL.md smart router
 ### Phase 4: Verification
 - [ ] Register in skill_advisor.py (INTENT_BOOSTERS, MULTI_SKILL_BOOSTERS, PHRASE_INTENT_BOOSTERS)
 - [ ] Create .claude/skills/cli-copilot symlink
-- [ ] Update 3 READMEs (.opencode/skill/, .opencode/, root)
+- [ ] Update 3 READMEs (.opencode/skills/, .opencode/, root)
 - [ ] Run skill_advisor.py confidence test
 - [ ] Verify symlink resolves
 - [ ] Create implementation-summary.md
@@ -182,7 +182,7 @@ Phase 1 (Setup) ──► Phase 2 (Gemini Implementation) ──► Phase 3 (Rev
 
 ### Rollback Procedure
 1. Remove entries from skill_advisor.py (INTENT_BOOSTERS, MULTI_SKILL_BOOSTERS, PHRASE_INTENT_BOOSTERS)
-2. Delete files in `.opencode/skill/cli-copilot/`
+2. Delete files in `.opencode/skills/cli-copilot/`
 3. Remove `.claude/skills/cli-copilot` symlink
 4. Revert README changes in 3 files
 5. Verify skill_advisor.py no longer returns cli-copilot

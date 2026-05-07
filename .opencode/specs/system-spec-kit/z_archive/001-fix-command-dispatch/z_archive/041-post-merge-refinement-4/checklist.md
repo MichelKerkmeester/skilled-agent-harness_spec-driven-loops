@@ -120,7 +120,7 @@ contextType: "implementation"
   - Evidence: `grep -r "skills_system_memory" AGENTS.md` returns nothing
   - Verified by: _______________
 - [ ] **P1-DOC-006**: memory_load references removed
-  - Evidence: `grep -r "memory_load" .opencode/command/` returns nothing
+  - Evidence: `grep -r "memory_load" .opencode/commands/` returns nothing
   - Verified by: _______________
 
 ### Code Fixes

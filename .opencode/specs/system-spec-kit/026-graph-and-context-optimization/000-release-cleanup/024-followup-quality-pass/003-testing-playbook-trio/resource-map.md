@@ -45,18 +45,18 @@ _memory:
 <!-- ANCHOR:skills -->
 ## 5. Skills
 
-> `.opencode/skill/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
+> `.opencode/skills/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/04--maintenance/278-memory-retention-sweep-basic-flow.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-advisor-status-rebuild-separation.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/281-code-graph-read-path-selective-self-heal.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/282-code-graph-cell-coverage-evidence.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/278-memory-retention-sweep-basic-flow.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-advisor-status-rebuild-separation.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/281-code-graph-read-path-selective-self-heal.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/282-code-graph-cell-coverage-evidence.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Manual testing playbook surface touched by the packet. |
 <!-- /ANCHOR:skills -->
 
 ---
@@ -86,7 +86,7 @@ _memory:
 
 - Paths are repo-root relative and use the real `.opencode/specs` tree rather than the `specs` symlink.
 - This map was derived from packet commit history with shared commits split by packet-owned paths and commit-body scope.
-- Keep action/status vocabulary aligned with `.opencode/skill/system-spec-kit/templates/resource-map.md`.
+- Keep action/status vocabulary aligned with `.opencode/skills/system-spec-kit/templates/resource-map.md`.
 - Preserve category precedence: Specs over Config, Meta over root READMEs, Skills over Documents, Tests over Scripts.
 - Refresh this map whenever the packet receives additional touched paths or a canonical save changes packet-local metadata.
 <!-- /ANCHOR:author-instructions -->

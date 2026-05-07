@@ -173,8 +173,8 @@ Enhance memory search results with multi-factor scoring:
 | System | Location | Changes |
 |--------|----------|---------|
 | Memory MCP Server | External package | API parameters, schema |
-| Dashboard Command | `.opencode/command/memory-search.md` | Display logic |
-| Memory Search | `.opencode/command/memory-search.md` | Ranking integration |
+| Dashboard Command | `.opencode/commands/memory-search.md` | Display logic |
+| Memory Search | `.opencode/commands/memory-search.md` | Ranking integration |
 
 ### Dependencies
 

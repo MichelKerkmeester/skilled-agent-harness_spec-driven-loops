@@ -58,12 +58,12 @@ Made 20 create command files Codex-compatible using the same three-pronged appro
 
 | File | Changes Applied |
 |------|-----------------|
-| .opencode/command/create/skill.md | Stripped 3-agent `## Agent Routing` table, removed guards, added `## CONSTRAINTS` |
-| `.opencode/command/create/agent.md` | Stripped 3-agent `## Agent Routing` table, removed guards, added `## CONSTRAINTS` |
-| `.opencode/command/create/folder_readme.md` | Stripped 1-agent routing, removed guards, added `## CONSTRAINTS`, removed emoji line |
-| .opencode/command/create/install_guide.md | Stripped 1-agent routing, removed guards, added `## CONSTRAINTS` |
-| .opencode/command/create/skill_asset.md | Stripped 1-agent routing, removed guards, added `## CONSTRAINTS` |
-| .opencode/command/create/skill_reference.md | Stripped 1-agent routing, removed guards, added `## CONSTRAINTS` |
+| .opencode/commands/create/skill.md | Stripped 3-agent `## Agent Routing` table, removed guards, added `## CONSTRAINTS` |
+| `.opencode/commands/create/agent.md` | Stripped 3-agent `## Agent Routing` table, removed guards, added `## CONSTRAINTS` |
+| `.opencode/commands/create/folder_readme.md` | Stripped 1-agent routing, removed guards, added `## CONSTRAINTS`, removed emoji line |
+| .opencode/commands/create/install_guide.md | Stripped 1-agent routing, removed guards, added `## CONSTRAINTS` |
+| .opencode/commands/create/skill_asset.md | Stripped 1-agent routing, removed guards, added `## CONSTRAINTS` |
+| .opencode/commands/create/skill_reference.md | Stripped 1-agent routing, removed guards, added `## CONSTRAINTS` |
 
 #### YAML Workflow Files (14)
 

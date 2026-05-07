@@ -37,7 +37,7 @@ I’ve set up the audit. Next I’m pulling the exact files so I can compare res
   │ server/utils/validators.ts,mcp_server/lib/validation/*.ts}"
   └ 18 files found
 
-I found all requested files under `.opencode/skill/system-spec-kit`. I’m now splitting the audit into focused comparisons so each subsystem gets a careful read instead of a superficial similarity check.
+I found all requested files under `.opencode/skills/system-spec-kit`. I’m now splitting the audit into focused comparisons so each subsystem gets a careful read instead of a superficial similarity check.
 
 ● Explore Compare embedding/chunking code
   └ Agent started in background with agent_id: dup-embeddings-chunking. You can u...
@@ -53,184 +53,184 @@ I found all requested files under `.opencode/skill/system-spec-kit`. I’m now s
 I’ve got the first-pass analyses running in parallel. While those come back, I’m spot-checking the highest-risk areas directly so the final audit is grounded in code, not just filenames.
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ 1 line read
 
 ● Read trigger-extractor.ts
-  │ .opencode/skill/system-spec-kit/shared/trigger-extractor.ts
+  │ .opencode/skills/system-spec-kit/shared/trigger-extractor.ts
   └ 1 line read
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/scripts/lib/embeddings.ts
+  │ .opencode/skills/system-spec-kit/scripts/lib/embeddings.ts
   └ 9 lines read
 
 ● Read trigger-matcher.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts
   └ 547 lines read
 
 ● Read trigger-extractor.ts
-  │ .opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.ts
+  │ .opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.ts
   └ 23 lines read
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts
   └ 48 lines read
 
 ● Read factory.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings/factory.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings/factory.ts
   └ 461 lines read
 
 The trigger side already looks like intentional separation: the script file is a thin wrapper, while the MCP file is a runtime matcher with cache/database logic. I’m drilling into the ambiguous areas now.
 
 ● Search (grep)
   │ "^(export\s+(async\s+)?function|export\s+const|function\s+[A-Za-z0-9_]+)"
-  │ (.opencode/skill/system-spec-kit/scripts/lib/embeddings.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/lib/embeddings.ts)
   └ No matches found
 
 ● Search (grep)
   │ "^(export\s+(async\s+)?function|export\s+const|function\s+[A-Za-z0-9_]+)"
-  │ (.opencode/skill/system-spec-kit/shared/lib/structure-aware-chunker.ts)
+  │ (.opencode/skills/system-spec-kit/shared/lib/structure-aware-chunker.ts)
   └ 4 lines found
 
 ● Search (grep)
   │ "^(export\s+(async\s+)?function|export\s+const|function\s+[A-Za-z0-9_]+)"
-  │ (.opencode/skill/system-spec-kit/shared/embeddings.ts)
+  │ (.opencode/skills/system-spec-kit/shared/embeddings.ts)
   └ 32 lines found
 
 ● Search (grep)
   │ "^(export\s+(async\s+)?function|export\s+const|function\s+[A-Za-z0-9_]+)"
-  │ (.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts)
   └ 8 lines found
 
 ● Search (grep)
   │ "^(export\s+(async\s+)?function|export\s+const|function\s+[A-Za-z0-9_]+)"
-  │ (.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts)
   └ 3 lines found
 
 ● Search (grep)
   │ "^(export\s+(async\s+)?function|export\s+const|function\s+[A-Za-z0-9_]+)"
-  │ (.opencode/skill/system-spec-kit/scripts/lib/structure-aware-chunker.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/lib/structure-aware-chunker.ts)
   └ 4 lines found
 
 ● Search (grep)
   │ "^(export\s+(async\s+)?function|export\s+const|function\s+[A-Za-z0-9_]+)"
-  │ (.opencode/skill/system-spec-kit/shared/chunking.ts)
+  │ (.opencode/skills/system-spec-kit/shared/chunking.ts)
   └ 5 lines found
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/scripts/lib/embeddings.ts
+  │ .opencode/skills/system-spec-kit/scripts/lib/embeddings.ts
   └ L1:120 (9 lines read)
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ L1:220 (219 lines read)
 
 ● Read chunking.ts
-  │ .opencode/skill/system-spec-kit/shared/chunking.ts
+  │ .opencode/skills/system-spec-kit/shared/chunking.ts
   └ L1:220 (110 lines read)
 
 ● Read structure-aware-chunker.ts
-  │ .opencode/skill/system-spec-kit/scripts/lib/structure-aware-chunker.ts
+  │ .opencode/skills/system-spec-kit/scripts/lib/structure-aware-chunker.ts
   └ L1:260 (222 lines read)
 
 ● Read quality-scorer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
   └ L1:260 (260 lines read)
 
 ● Read quality-scorer.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts
   └ L1:220 (220 lines read)
 
 ● Read structure-aware-chunker.ts
-  │ .opencode/skill/system-spec-kit/shared/lib/structure-aware-chunker.ts
+  │ .opencode/skills/system-spec-kit/shared/lib/structure-aware-chunker.ts
   └ L1:260 (221 lines read)
 
 One clear duplication is already emerging: the script and shared structure-aware chunkers are effectively the same implementation with formatting-only differences. I’m confirming whether the same pattern exists elsewhere or if the rest is just layered architecture.
 
 ● Read anchor-chunker.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts
   └ L1:260 (260 lines read)
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts
   └ L1:260 (48 lines read)
 
 ● Read chunk-thinning.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts
   └ L1:260 (156 lines read)
 
 ● Read paths.ts
-  │ .opencode/skill/system-spec-kit/shared/paths.ts
+  │ .opencode/skills/system-spec-kit/shared/paths.ts
   └ L1:260 (15 lines read)
 
 ● Read path-utils.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/path-utils.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/path-utils.ts
   └ L1:260 (109 lines read)
 
 ● Read slug-utils.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "slug|normalizeMemoryNameCandidate|pickBestContentName|sanitizeSlug|kebab|toSlug"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 16 lines found
 
 The path/slug story looks mixed so far: there’s separate domain logic, but I’ve found one MCP slugifier that may overlap with the script slug normalization pattern. I’m checking the exact implementation before calling it real duplication.
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L1:260 (259 lines read)
 
 ● Read preflight.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts
   └ L1:320 (319 lines read)
 
 ● Read folder-discovery.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts
   └ L600:690 (90 lines read)
 
 ● Read path-security.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/utils/path-security.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/utils/path-security.ts
   └ L1:320 (11 lines read)
 
 ● Read validation-utils.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts
   └ L1:260 (92 lines read)
 
 ● Read canonical-path.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/utils/canonical-path.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/utils/canonical-path.ts
   └ L1:260 (64 lines read)
 
 ● Read validators.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/utils/validators.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/utils/validators.ts
   └ L1:260 (151 lines read)
 
 I’ve confirmed two strong candidates already: a near-identical structure chunker copy, and overlapping anchor validation between script pre-render checks and MCP preflight. I’m now validating the scoring layer, where names overlap but formulas may not.
 
 ● Read importance-tiers.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts
   └ L1:260 (229 lines read)
 
 ● Read confidence-tracker.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts
   └ L1:220 (219 lines read)
 
 ● Read composite-scoring.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts
   └ L1:260 (260 lines read)
 
 ● Read folder-scoring.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts
   └ L1:260 (21 lines read)
 
 ● Read negative-feedback.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts
   └ L1:220 (177 lines read)
 
 ● Search (grep)
   │ "^(export\s+(async\s+)?function|export\s+const|function\s+[A-Za-z0-9_]+)" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/scoring)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/scoring)
   └ 87 lines found
 
 One of the deep reads finished, so I’m folding that into the manual spot-checks before I draft the final matrix.
@@ -247,54 +247,54 @@ One of the deep reads finished, so I’m folding that into the manual spot-check
 The first agent confirms the chunker copy is real, not superficial. I’m tightening the rest of the audit by checking whether similar-looking validation and scoring code actually reuses the same formulas or just shares vocabulary.
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L260:520 (261 lines read)
 
 ● Read trigger-extractor.ts
-  │ .opencode/skill/system-spec-kit/shared/trigger-extractor.ts
+  │ .opencode/skills/system-spec-kit/shared/trigger-extractor.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "titleQuality|triggerQuality|lengthQuality|anchorQuality|metadataQuality|signalDensity|function\
   │ s+score|export function"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
   └ 43 lines found
 
 ● Search (grep)
   │ "^(export\s+(async\s+)?function|function\s+[A-Za-z0-9_]+|const\s+[A-Za-z0-9_]+\s*=\s*\()"
-  │ (.opencode/skill/system-spec-kit/shared/trigger-extractor.ts)
+  │ (.opencode/skills/system-spec-kit/shared/trigger-extractor.ts)
   └ 15 lines found
 
 ● Search (grep)
   │ "anchor|placeholder|validateNoLeakedPlaceholders|validateAnchors|validateAnchorFormat|leaked|fun
-  │ ction" (.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts)
+  │ ction" (.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts)
   └ 53 lines found
 
 I’ve narrowed the likely true-duplication set down quite a bit. The remaining question is less “same file twice?” and more “do these separate validators encode the same rules differently enough to cause drift?”
 
 ● Read quality-scorer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
   └ L260:420 (97 lines read)
 
 ● Read quality-scorer.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts
   └ L220:320 (16 lines read)
 
 ● Read interference-scoring.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts
   └ L1:220 (219 lines read)
 
 ● Read mpab-aggregation.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts
   └ L1:220 (185 lines read)
 
 ● Search (grep)
   │ "clamp01|triggerPhrases|contentLength|generic_title|title|qualityFlags|scoreMemoryQuality" in
-  │ *.ts (.opencode/skill/system-spec-kit/mcp_server/lib/scoring)
+  │ *.ts (.opencode/skills/system-spec-kit/mcp_server/lib/scoring)
   └ 17 lines found
 
 ● Search (glob)
-  │ "**/shared/utils/path-security.ts" in .opencode/skill/system-spec-kit
+  │ "**/shared/utils/path-security.ts" in .opencode/skills/system-spec-kit
   └ 1 file found
 
 The scoring review just finished too. I’m merging that with the direct reads so the final report can distinguish real duplication from deliberate wrappers and barrels.
@@ -306,7 +306,7 @@ The scoring review just finished too. I’m merging that with the direct reads s
   └ Running
 
 ● Read path-security.ts
-  │ .opencode/skill/system-spec-kit/shared/utils/path-security.ts
+  │ .opencode/skills/system-spec-kit/shared/utils/path-security.ts
   └ L1:260 (107 lines read)
 
 I’ve got enough confirmed overlap to draft, but I’m waiting on the last path/validation pass so I don’t miss any security-sensitive duplication.

@@ -74,7 +74,7 @@ exec
 276:- packet 002 status/traceability must reflect real downstream readiness; once the 010 validator exists, document 002 as “Implemented — predecessor verified” instead of blocked to avoid traceability P1 findings [Task 1]
 280:- packet 013 benchmark evidence should cite `38/40` combined benchmark in checklist/report surfaces; stale `pass 28` wording is a known traceability finding trigger [Task 1]
 558:- 003-contextador, spec_kit:deep-research, maxIterations 20, deep-research-config.json, reduce-state.cjs, research-v2.md, recommendations-v2.md, findings-registry-v2.json, F-CROSS-089..F-CROSS-093
-636:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
+636:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
 896:## Task 1: Extend deep-research wave to 90 iterations and author recommendation docs for sk-deep-research/sk-deep-review, outcome success
 904:- 90 iterations, recommendations-sk-deep-research.md, recommendations-sk-deep-review.md, deep-research-state.jsonl, synthesis_complete, external wave
 906:## Task 2: Complete phase `001-sk-deep-research-improvements` contract hardening and packet-local changelog, outcome success
@@ -84,7 +84,7 @@ exec
 1930:## Task 2: Build sk-deep-research manual testing playbook (index + per-feature snippets)
 
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep review iteration 3 for spec folder 042-sk-deep-research-review-improvement-2 traceability focus on 001-runtime-truth-foundation spec.md vs reduce-state.cjs runtime-capabilities.cjs and referenced docs state_format.md loop_protocol.md convergence.md for sk-deep-research and sk-deep-review" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "Deep review iteration 3 for spec folder 042-sk-deep-research-review-improvement-2 traceability focus on 001-runtime-truth-foundation spec.md vs reduce-state.cjs runtime-capabilities.cjs and referenced docs state_format.md loop_protocol.md convergence.md for sk-deep-research and sk-deep-review" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 421ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-2VwJ4svQ' (errno=Operation not permitted)
 [
@@ -125,7 +125,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-2VwJ4svQ' (errno=Opera
 codex
 I’ve got the routing signal: `sk-deep-review` is the right review workflow here, with the earlier memory index pointing at prior remediation work around `reduce-state.cjs` and `runtime-capabilities.cjs`. Next I’m locating the exact spec and doc surfaces, then I’ll compare their claims against the live runtime code line by line.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "sed -n '900,920p' /Users/michelkerkmeester/.codex/memories/MEMORY.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -169,7 +169,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -374,22 +374,22 @@ Each agent dispatch gets a fresh context window. State continuity comes from fil
 ### Data Flow
 
 exec
-/bin/zsh -lc "rg --files .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 .opencode/skill/sk-deep-research .opencode/skill/sk-deep-review | rg '001-runtime-truth-foundation/spec\\.md|reduce-state\\.cjs|runtime-capabilities\\.cjs|state_format\\.md|loop_protocol\\.md|convergence\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg --files .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 .opencode/skills/sk-deep-research .opencode/skills/sk-deep-review | rg '001-runtime-truth-foundation/spec\\.md|reduce-state\\.cjs|runtime-capabilities\\.cjs|state_format\\.md|loop_protocol\\.md|convergence\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs
-.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs
-.opencode/skill/sk-deep-review/scripts/runtime-capabilities.cjs
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs
+.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs
+.opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md
-.opencode/skill/sk-deep-research/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md
-.opencode/skill/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md
-.opencode/skill/sk-deep-review/references/convergence.md
-.opencode/skill/sk-deep-review/references/state_format.md
-.opencode/skill/sk-deep-review/references/loop_protocol.md
-.opencode/skill/sk-deep-research/references/convergence.md
-.opencode/skill/sk-deep-research/references/state_format.md
-.opencode/skill/sk-deep-research/references/loop_protocol.md
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md
+.opencode/skills/sk-deep-research/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md
+.opencode/skills/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md
+.opencode/skills/sk-deep-review/references/convergence.md
+.opencode/skills/sk-deep-review/references/state_format.md
+.opencode/skills/sk-deep-review/references/loop_protocol.md
+.opencode/skills/sk-deep-research/references/convergence.md
+.opencode/skills/sk-deep-research/references/state_format.md
+.opencode/skills/sk-deep-research/references/loop_protocol.md
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md
 
 mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
@@ -397,19 +397,19 @@ user cancelled MCP tool call
 codex
 I’ve confirmed the target surfaces. I’m switching into close reading now: first the Phase 001 spec, then both `runtime-capabilities.cjs` and `reduce-state.cjs` implementations, then the six reference docs to check whether the documented contracts still match the shipped behavior.
 exec
-/bin/zsh -lc 'wc -l .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md .opencode/skill/sk-deep-research/scripts/reduce-state.cjs .opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs .opencode/skill/sk-deep-review/scripts/reduce-state.cjs .opencode/skill/sk-deep-review/scripts/runtime-capabilities.cjs .opencode/skill/sk-deep-research/references/state_format.md .opencode/skill/sk-deep-research/references/loop_protocol.md .opencode/skill/sk-deep-research/references/convergence.md .opencode/skill/sk-deep-review/references/state_format.md .opencode/skill/sk-deep-review/references/loop_protocol.md .opencode/skill/sk-deep-review/references/convergence.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'wc -l .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md .opencode/skills/sk-deep-research/scripts/reduce-state.cjs .opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs .opencode/skills/sk-deep-review/scripts/reduce-state.cjs .opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs .opencode/skills/sk-deep-research/references/state_format.md .opencode/skills/sk-deep-research/references/loop_protocol.md .opencode/skills/sk-deep-research/references/convergence.md .opencode/skills/sk-deep-review/references/state_format.md .opencode/skills/sk-deep-review/references/loop_protocol.md .opencode/skills/sk-deep-review/references/convergence.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      372 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md
-     771 .opencode/skill/sk-deep-research/scripts/reduce-state.cjs
-     114 .opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs
-    1009 .opencode/skill/sk-deep-review/scripts/reduce-state.cjs
-     114 .opencode/skill/sk-deep-review/scripts/runtime-capabilities.cjs
-     989 .opencode/skill/sk-deep-research/references/state_format.md
-     783 .opencode/skill/sk-deep-research/references/loop_protocol.md
-    1264 .opencode/skill/sk-deep-research/references/convergence.md
-     812 .opencode/skill/sk-deep-review/references/state_format.md
-     802 .opencode/skill/sk-deep-review/references/loop_protocol.md
-     746 .opencode/skill/sk-deep-review/references/convergence.md
+     771 .opencode/skills/sk-deep-research/scripts/reduce-state.cjs
+     114 .opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs
+    1009 .opencode/skills/sk-deep-review/scripts/reduce-state.cjs
+     114 .opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs
+     989 .opencode/skills/sk-deep-research/references/state_format.md
+     783 .opencode/skills/sk-deep-research/references/loop_protocol.md
+    1264 .opencode/skills/sk-deep-research/references/convergence.md
+     812 .opencode/skills/sk-deep-review/references/state_format.md
+     802 .opencode/skills/sk-deep-review/references/loop_protocol.md
+     746 .opencode/skills/sk-deep-review/references/convergence.md
     7776 total
 
 exec
@@ -512,42 +512,42 @@ exec
     95	
     96	| File Path | Change Type | Description |
     97	|-----------|-------------|-------------|
-    98	| `.opencode/skill/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
-    99	| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
-   100	| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
-   101	| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
-   102	| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Modify | Keep operator-facing guidance aligned with the new defaults and opt-in modes. |
-   103	| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
-   104	| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add coverage/depth, domain clustering, promotion checkpoints, semantic convergence, and council/coordination planning sections. |
-   105	| `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling convergence, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
-   106	| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
-   107	| `.opencode/skill/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
-   108	| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
-   109	| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
-   110	| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
-   111	| `.opencode/skill/sk-deep-review/references/quick_reference.md` | Modify | Keep operator-facing review guidance aligned with the new defaults and optional modes. |
-   112	| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
-   113	| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
-   114	| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
-   115	| `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling severity trends, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
+    98	| `.opencode/skills/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
+    99	| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
+   100	| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
+   101	| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
+   102	| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Modify | Keep operator-facing guidance aligned with the new defaults and opt-in modes. |
+   103	| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
+   104	| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add coverage/depth, domain clustering, promotion checkpoints, semantic convergence, and council/coordination planning sections. |
+   105	| `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling convergence, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
+   106	| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
+   107	| `.opencode/skills/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
+   108	| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
+   109	| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
+   110	| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
+   111	| `.opencode/skills/sk-deep-review/references/quick_reference.md` | Modify | Keep operator-facing review guidance aligned with the new defaults and optional modes. |
+   112	| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
+   113	| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
+   114	| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
+   115	| `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling severity trends, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
    116	
    117	#### Commands and Workflow Assets
    118	
    119	| File Path | Change Type | Description |
    120	|-----------|-------------|-------------|
-   121	| `.opencode/command/spec_kit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-   122	| `.opencode/command/spec_kit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-   123	| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
-   124	| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
-   125	| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
-   126	| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+   121	| `.opencode/commands/spec_kit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+   122	| `.opencode/commands/spec_kit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+   123	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
+   124	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+   125	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
+   126	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
    127	
    128	#### Agents and Runtime Mirrors
    129	
    130	| File Path | Change Type | Description |
    131	|-----------|-------------|-------------|
-   132	| `.opencode/agent/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
-   133	| `.opencode/agent/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
+   132	| `.opencode/agents/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
+   133	| `.opencode/agents/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
    134	| `.claude/agents/deep-research.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
    135	| `.gemini/agents/deep-research.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
    136	| `.codex/agents/deep-research.toml` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
@@ -560,13 +560,13 @@ exec
    143	
    144	| File Path | Change Type | Description |
    145	|-----------|-------------|-------------|
-   146	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
-   147	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
-   148	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
-   149	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
-   150	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
-   151	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
-   152	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
+   146	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
+   147	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
+   148	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
+   149	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
+   150	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
+   151	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
+   152	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
    153	
    154	<!-- /ANCHOR:scope -->
    155	---
@@ -685,42 +685,42 @@ exec
     95	
     96	| File Path | Change Type | Description |
     97	|-----------|-------------|-------------|
-    98	| `.opencode/skill/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
-    99	| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
-   100	| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
-   101	| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
-   102	| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Modify | Keep operator-facing guidance aligned with the new defaults and opt-in modes. |
-   103	| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
-   104	| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add coverage/depth, domain clustering, promotion checkpoints, semantic convergence, and council/coordination planning sections. |
-   105	| `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling convergence, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
-   106	| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
-   107	| `.opencode/skill/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
-   108	| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
-   109	| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
-   110	| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
-   111	| `.opencode/skill/sk-deep-review/references/quick_reference.md` | Modify | Keep operator-facing review guidance aligned with the new defaults and optional modes. |
-   112	| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
-   113	| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
-   114	| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
-   115	| `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling severity trends, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
+    98	| `.opencode/skills/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
+    99	| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
+   100	| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
+   101	| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
+   102	| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Modify | Keep operator-facing guidance aligned with the new defaults and opt-in modes. |
+   103	| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
+   104	| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add coverage/depth, domain clustering, promotion checkpoints, semantic convergence, and council/coordination planning sections. |
+   105	| `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling convergence, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
+   106	| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
+   107	| `.opencode/skills/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
+   108	| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
+   109	| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
+   110	| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
+   111	| `.opencode/skills/sk-deep-review/references/quick_reference.md` | Modify | Keep operator-facing review guidance aligned with the new defaults and optional modes. |
+   112	| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
+   113	| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
+   114	| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
+   115	| `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling severity trends, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
    116	
    117	#### Commands and Workflow Assets
    118	
    119	| File Path | Change Type | Description |
    120	|-----------|-------------|-------------|
-   121	| `.opencode/command/spec_kit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-   122	| `.opencode/command/spec_kit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-   123	| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
-   124	| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
-   125	| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
-   126	| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+   121	| `.opencode/commands/spec_kit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+   122	| `.opencode/commands/spec_kit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+   123	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
+   124	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+   125	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
+   126	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
    127	
    128	#### Agents and Runtime Mirrors
    129	
    130	| File Path | Change Type | Description |
    131	|-----------|-------------|-------------|
-   132	| `.opencode/agent/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
-   133	| `.opencode/agent/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
+   132	| `.opencode/agents/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
+   133	| `.opencode/agents/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
    134	| `.claude/agents/deep-research.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
    135	| `.gemini/agents/deep-research.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
    136	| `.codex/agents/deep-research.toml` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
@@ -733,13 +733,13 @@ exec
    143	
    144	| File Path | Change Type | Description |
    145	|-----------|-------------|-------------|
-   146	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
-   147	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
-   148	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
-   149	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
-   150	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
-   151	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
-   152	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
+   146	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
+   147	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
+   148	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
+   149	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
+   150	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
+   151	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
+   152	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
    153	
    154	<!-- /ANCHOR:scope -->
    155	---
@@ -916,56 +916,56 @@ exec
    176	| REQ-007 | Both loop dashboards MUST expose richer runtime truth: liveness, rolling convergence visualization, wall-clock and token cost per iteration, coverage depth, severity trends, and final stop reason. | Research and review dashboard assets, reducers, and workflow outputs define these sections explicitly; dashboard content is generated, not manually maintained; trend and liveness rules are consistent with state schema. | `CF-010` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:168-177`] |
 
 exec
-/bin/zsh -lc 'rg -n "stopReason|legalStop|blockedStop|continuedFromRun|journal|ledger|snapshot|compaction|observability|novelty|contradiction|citation|coverage|durationMs|toolsUsed|sourcesQueried|dashboard|anomaly|histogram|replay|resume|user_stopped|promotion|inventory|coordination|council" .opencode/skill/sk-deep-research/scripts/reduce-state.cjs .opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs .opencode/skill/sk-deep-review/scripts/reduce-state.cjs .opencode/skill/sk-deep-review/scripts/runtime-capabilities.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "stopReason|legalStop|blockedStop|continuedFromRun|journal|ledger|snapshot|compaction|observability|novelty|contradiction|citation|coverage|durationMs|toolsUsed|sourcesQueried|dashboard|anomaly|histogram|replay|resume|user_stopped|promotion|inventory|coordination|council" .opencode/skills/sk-deep-research/scripts/reduce-state.cjs .opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs .opencode/skills/sk-deep-review/scripts/reduce-state.cjs .opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:438: * the review dashboard cannot render `[object Object]` even if an older YAML
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:468:      const legacyLegalStop = record.legalStop && typeof record.legalStop === 'object'
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:469:        ? record.legalStop
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:499:  const blockedStopHistory = buildBlockedStopHistory(iterationRecords);
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:527:    blockedStopHistory,
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:643:  const latestBlockedStop = registry.blockedStopHistory?.at(-1);
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:731:    'Reducer-generated observability surface for the active review packet.',
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:766:    '<!-- ANCHOR:dimension-coverage -->',
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:773:    '<!-- /ANCHOR:dimension-coverage -->',
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:776:    ...(registry.blockedStopHistory && registry.blockedStopHistory.length > 0
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:777:      ? registry.blockedStopHistory.flatMap((entry) => {
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:834:      // debt alongside P0s so the dashboard cannot hide P1 debt behind a
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:861:        lines.push(`- Latest blocked_stop at run ${latestBlockedStop.run ?? '?'}: ${latestBlockedStop.blockedBy.join(', ')}. Recovery: ${latestBlockedStop.recoveryStrategy || 'see dashboard §BLOCKED STOPS'}.`);
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:879: * strategy, and dashboard outputs. Idempotent: repeated calls produce identical results.
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:884: * @returns {Object} Paths and content for registry, strategy, and dashboard
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:896:  const dashboardPath = path.join(reviewDir, 'deep-review-dashboard.md');
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:912:  const dashboard = renderDashboard(config, registry, records, iterationFiles);
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:919:    writeUtf8(dashboardPath, dashboard);
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:939:    dashboardPath,
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:942:    dashboard,
-.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:972:          dashboardPath: result.dashboardPath,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:175:    iterationRecords.flatMap((record) => (Array.isArray(record.sourcesQueried) ? record.sourcesQueried : [])),
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:316:  const latestBlockedStop = Array.isArray(registry.blockedStopHistory)
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:317:    ? registry.blockedStopHistory.at(-1)
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:390:  const coverageBySources = buildCoverageBySources(iterationFiles, iterationRecords);
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:396:  const blockedStopHistory = eventRecords
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:422:    blockedStopHistory,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:432:      coverageBySources,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:558:    'Reducer-generated observability surface for the active research packet.',
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:599:    `- coverageBySources: ${JSON.stringify(registry.metrics.coverageBySources)}`,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:623:    ...(registry.blockedStopHistory.length
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:624:      ? registry.blockedStopHistory.flatMap((entry) => ([
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:648: * strategy, and dashboard outputs. Idempotent: repeated calls produce identical results.
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:653: * @returns {Object} Paths and content for registry, strategy, and dashboard
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:664:  const dashboardPath = path.join(researchDir, 'deep-research-dashboard.md');
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:685:  const dashboard = renderDashboard(config, registry, records, iterationFiles);
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:690:    writeUtf8(dashboardPath, dashboard);
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:710:    dashboardPath,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:713:    dashboard,
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:742:          dashboardPath: result.dashboardPath,
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:438: * the review dashboard cannot render `[object Object]` even if an older YAML
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:468:      const legacyLegalStop = record.legalStop && typeof record.legalStop === 'object'
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:469:        ? record.legalStop
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:499:  const blockedStopHistory = buildBlockedStopHistory(iterationRecords);
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:527:    blockedStopHistory,
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:643:  const latestBlockedStop = registry.blockedStopHistory?.at(-1);
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:731:    'Reducer-generated observability surface for the active review packet.',
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:766:    '<!-- ANCHOR:dimension-coverage -->',
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:773:    '<!-- /ANCHOR:dimension-coverage -->',
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:776:    ...(registry.blockedStopHistory && registry.blockedStopHistory.length > 0
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:777:      ? registry.blockedStopHistory.flatMap((entry) => {
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:834:      // debt alongside P0s so the dashboard cannot hide P1 debt behind a
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:861:        lines.push(`- Latest blocked_stop at run ${latestBlockedStop.run ?? '?'}: ${latestBlockedStop.blockedBy.join(', ')}. Recovery: ${latestBlockedStop.recoveryStrategy || 'see dashboard §BLOCKED STOPS'}.`);
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:879: * strategy, and dashboard outputs. Idempotent: repeated calls produce identical results.
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:884: * @returns {Object} Paths and content for registry, strategy, and dashboard
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:896:  const dashboardPath = path.join(reviewDir, 'deep-review-dashboard.md');
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:912:  const dashboard = renderDashboard(config, registry, records, iterationFiles);
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:919:    writeUtf8(dashboardPath, dashboard);
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:939:    dashboardPath,
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:942:    dashboard,
+.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:972:          dashboardPath: result.dashboardPath,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:175:    iterationRecords.flatMap((record) => (Array.isArray(record.sourcesQueried) ? record.sourcesQueried : [])),
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:316:  const latestBlockedStop = Array.isArray(registry.blockedStopHistory)
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:317:    ? registry.blockedStopHistory.at(-1)
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:390:  const coverageBySources = buildCoverageBySources(iterationFiles, iterationRecords);
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:396:  const blockedStopHistory = eventRecords
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:422:    blockedStopHistory,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:432:      coverageBySources,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:558:    'Reducer-generated observability surface for the active research packet.',
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:599:    `- coverageBySources: ${JSON.stringify(registry.metrics.coverageBySources)}`,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:623:    ...(registry.blockedStopHistory.length
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:624:      ? registry.blockedStopHistory.flatMap((entry) => ([
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:648: * strategy, and dashboard outputs. Idempotent: repeated calls produce identical results.
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:653: * @returns {Object} Paths and content for registry, strategy, and dashboard
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:664:  const dashboardPath = path.join(researchDir, 'deep-research-dashboard.md');
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:685:  const dashboard = renderDashboard(config, registry, records, iterationFiles);
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:690:    writeUtf8(dashboardPath, dashboard);
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:710:    dashboardPath,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:713:    dashboard,
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:742:          dashboardPath: result.dashboardPath,
 
 mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/scripts/runtime-capabilities.cjs | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Deep Review Runtime Capabilities Resolver                                ║
@@ -1199,7 +1199,7 @@ exec
    114	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/scripts/reduce-state.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/scripts/reduce-state.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Deep Research State Reducer                                              ║
@@ -1463,7 +1463,7 @@ exec
    260	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/scripts/reduce-state.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/scripts/reduce-state.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Deep Review State Reducer                                                ║
@@ -1729,9 +1729,9 @@ exec
 codex
 The reducers are where the real contract lives, and I’m already seeing which pieces are present versus merely planned. I’m drilling into the sections that build stop decisions, blocked-stop history, observability, and continuation metadata, because those are the highest-value traceability claims in this phase.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/scripts/reduce-state.cjs | sed -n '520,771p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/scripts/reduce-state.cjs | sed -n '520,771p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/scripts/reduce-state.cjs | sed -n '260,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/scripts/reduce-state.cjs | sed -n '260,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    520	    '10. RULED OUT DIRECTIONS',
    521	    blockFromBulletList(registry.ruledOutDirections.map((entry) => `${entry.text} (iteration ${entry.addedAtIteration})`)),
@@ -1944,7 +1944,7 @@ exec
    728	
    729	  if (!specFolder) {
    730	    process.stderr.write(
-   731	      'Usage: node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs <spec-folder> [--lenient]\n',
+   731	      'Usage: node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs <spec-folder> [--lenient]\n',
    732	    );
    733	    process.exit(1);
    734	  }
@@ -2250,7 +2250,7 @@ exec
    520	    '10. RULED OUT DIRECTIONS',
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/scripts/reduce-state.cjs | sed -n '620,1009p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/scripts/reduce-state.cjs | sed -n '620,1009p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    620	
    621	  const completedDimensions = REQUIRED_DIMENSIONS
@@ -2593,7 +2593,7 @@ exec
    958	
    959	  if (!specFolder) {
    960	    process.stderr.write(
-   961	      'Usage: node .opencode/skill/sk-deep-review/scripts/reduce-state.cjs <spec-folder> [--lenient] [--create-missing-anchors]\n',
+   961	      'Usage: node .opencode/skills/sk-deep-review/scripts/reduce-state.cjs <spec-folder> [--lenient] [--create-missing-anchors]\n',
    962	    );
    963	    process.exit(1);
    964	  }
@@ -2644,7 +2644,7 @@ exec
   1009	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/scripts/reduce-state.cjs | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/scripts/reduce-state.cjs | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	  for (const iteration of iterationFiles) {
    261	    for (const finding of iteration.findings) {
@@ -3009,422 +3009,422 @@ exec
    620	
 
 exec
-/bin/zsh -lc 'rg -n "runtime_capabilities|capability|runtime capabilities|runtime matrix|runtimeIds|resolveRuntimeCapability|listRuntimeCapabilityIds" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md .opencode/skill/sk-deep-research/references/*.md .opencode/skill/sk-deep-review/references/*.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "runtime_capabilities|capability|runtime capabilities|runtime matrix|runtimeIds|resolveRuntimeCapability|listRuntimeCapabilityIds" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md .opencode/skills/sk-deep-research/references/*.md .opencode/skills/sk-deep-review/references/*.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-review/references/state_format.md:70:    "overlay": ["feature_catalog_code", "playbook_capability"]
-.opencode/skill/sk-deep-review/references/state_format.md:798:| playbook_capability | overlay | skill, agent, spec-folder | advisory |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:101:   | Overlay | `feature_catalog_code` | skill, spec-folder, track, files | advisory | Verify catalog claims match capability |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:102:   | Overlay | `playbook_capability` | skill, agent, spec-folder | advisory | Verify playbook scenarios match executable reality |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:270:| `skill_agent` | Compare SKILL.md contracts against runtime agent definitions | Agreement/drift/disagreement per capability |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:273:| `playbook_capability` | Validate playbook scenarios against executable reality | Executable/needs-update/impossible per scenario |
-.opencode/skill/sk-deep-research/references/loop_protocol.md:17:Runtime capability matrix references for parity-sensitive loop behavior:
-.opencode/skill/sk-deep-research/references/loop_protocol.md:18:- Human-readable matrix: `.opencode/skill/sk-deep-research/references/capability_matrix.md`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:19:- Machine-readable matrix: `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:614:   - **Overlay**: `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, `playbook_capability`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:702:| Overlay | `feature_catalog_code` | skill, spec-folder, track, files | advisory | Verify catalog claims match capability |
-.opencode/skill/sk-deep-research/references/loop_protocol.md:703:| Overlay | `playbook_capability` | skill, agent, spec-folder | advisory | Verify playbook scenarios match executable reality |
-.opencode/skill/sk-deep-research/references/capability_matrix.md:14:- Data: `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`
-.opencode/skill/sk-deep-research/references/state_format.md:31:Runtime capability matrix references for parity-sensitive surfaces:
-.opencode/skill/sk-deep-research/references/state_format.md:32:- Human-readable matrix: `.opencode/skill/sk-deep-research/references/capability_matrix.md`
-.opencode/skill/sk-deep-research/references/state_format.md:33:- Machine-readable matrix: `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`
-.opencode/skill/sk-deep-research/references/state_format.md:906:    "overlay": ["feature_catalog_code", "playbook_capability"]
-.opencode/skill/sk-deep-research/references/quick_reference.md:87:> **Runtime capability matrix:** `.opencode/skill/sk-deep-research/references/capability_matrix.md` and `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`
+.opencode/skills/sk-deep-review/references/state_format.md:70:    "overlay": ["feature_catalog_code", "playbook_capability"]
+.opencode/skills/sk-deep-review/references/state_format.md:798:| playbook_capability | overlay | skill, agent, spec-folder | advisory |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:101:   | Overlay | `feature_catalog_code` | skill, spec-folder, track, files | advisory | Verify catalog claims match capability |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:102:   | Overlay | `playbook_capability` | skill, agent, spec-folder | advisory | Verify playbook scenarios match executable reality |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:270:| `skill_agent` | Compare SKILL.md contracts against runtime agent definitions | Agreement/drift/disagreement per capability |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:273:| `playbook_capability` | Validate playbook scenarios against executable reality | Executable/needs-update/impossible per scenario |
+.opencode/skills/sk-deep-research/references/loop_protocol.md:17:Runtime capability matrix references for parity-sensitive loop behavior:
+.opencode/skills/sk-deep-research/references/loop_protocol.md:18:- Human-readable matrix: `.opencode/skills/sk-deep-research/references/capability_matrix.md`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:19:- Machine-readable matrix: `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:614:   - **Overlay**: `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, `playbook_capability`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:702:| Overlay | `feature_catalog_code` | skill, spec-folder, track, files | advisory | Verify catalog claims match capability |
+.opencode/skills/sk-deep-research/references/loop_protocol.md:703:| Overlay | `playbook_capability` | skill, agent, spec-folder | advisory | Verify playbook scenarios match executable reality |
+.opencode/skills/sk-deep-research/references/capability_matrix.md:14:- Data: `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`
+.opencode/skills/sk-deep-research/references/state_format.md:31:Runtime capability matrix references for parity-sensitive surfaces:
+.opencode/skills/sk-deep-research/references/state_format.md:32:- Human-readable matrix: `.opencode/skills/sk-deep-research/references/capability_matrix.md`
+.opencode/skills/sk-deep-research/references/state_format.md:33:- Machine-readable matrix: `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`
+.opencode/skills/sk-deep-research/references/state_format.md:906:    "overlay": ["feature_catalog_code", "playbook_capability"]
+.opencode/skills/sk-deep-research/references/quick_reference.md:87:> **Runtime capability matrix:** `.opencode/skills/sk-deep-research/references/capability_matrix.md` and `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`
 
 exec
-/bin/zsh -lc 'rg -n "stopReason|legalStop|blocked_stop|continuedFromRun|journal|ledger|snapshot|compaction|observability|novelty|contradiction|citation|coverage depth|coverageDepth|durationMs|toolsUsed|sourcesQueried|inventory|promotion|coordination|council|graph convergence|liveness|token|wall-clock|resume|start-from-run|replay" .opencode/skill/sk-deep-research/references/state_format.md .opencode/skill/sk-deep-research/references/loop_protocol.md .opencode/skill/sk-deep-research/references/convergence.md .opencode/skill/sk-deep-review/references/state_format.md .opencode/skill/sk-deep-review/references/loop_protocol.md .opencode/skill/sk-deep-review/references/convergence.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "stopReason|legalStop|blocked_stop|continuedFromRun|journal|ledger|snapshot|compaction|observability|novelty|contradiction|citation|coverage depth|coverageDepth|durationMs|toolsUsed|sourcesQueried|inventory|promotion|coordination|council|graph convergence|liveness|token|wall-clock|resume|start-from-run|replay" .opencode/skills/sk-deep-research/references/state_format.md .opencode/skills/sk-deep-research/references/loop_protocol.md .opencode/skills/sk-deep-research/references/convergence.md .opencode/skills/sk-deep-review/references/state_format.md .opencode/skills/sk-deep-review/references/loop_protocol.md .opencode/skills/sk-deep-review/references/convergence.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-review/references/state_format.md:63:  "continuedFromRun": null,
-.opencode/skill/sk-deep-review/references/state_format.md:114:| lineageMode | string | `"new"` | `new`, `resume`, `restart`. `fork` and `completed-continue` are deferred and not emitted by the current runtime |
-.opencode/skill/sk-deep-review/references/state_format.md:115:| generation | number | 1 | Lineage generation number — incremented on `restart`, unchanged on `resume` |
-.opencode/skill/sk-deep-review/references/state_format.md:116:| continuedFromRun | number \| null | `null` | Count of completed iteration records at the lifecycle boundary (set on `resume` and `restart`) |
-.opencode/skill/sk-deep-review/references/state_format.md:168:{"type":"config","mode":"review","topic":"...","reviewTarget":"...","sessionId":"rvw-...","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"createdAt":"2026-03-24T14:00:00Z","specFolder":"..."}
-.opencode/skill/sk-deep-review/references/state_format.md:181:  "lineageMode": "resume",
-.opencode/skill/sk-deep-review/references/state_format.md:183:  "continuedFromRun": null,
-.opencode/skill/sk-deep-review/references/state_format.md:188:  "timestamp": "2026-03-24T14:30:00Z", "durationMs": 52000
-.opencode/skill/sk-deep-review/references/state_format.md:192:**Required fields:** `type`, `mode`, `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`
-.opencode/skill/sk-deep-review/references/state_format.md:194:**Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`
-.opencode/skill/sk-deep-review/references/state_format.md:238:    { "type": "finding", "id": "f-001", "label": "Missing CSRF token check on session POST" },
-.opencode/skill/sk-deep-review/references/state_format.md:245:  "durationMs": 51000
-.opencode/skill/sk-deep-review/references/state_format.md:281:  "dimensionCoverage": 1.0, "stopReason": "composite_converged",
-.opencode/skill/sk-deep-review/references/state_format.md:286:**Required:** `type`, `event`, `mode`, `totalIterations`, `verdict`, `activeP0`, `activeP1`, `activeP2`, `dimensionCoverage`, `stopReason`, `timestamp`
-.opencode/skill/sk-deep-review/references/state_format.md:290:When the review legal-stop decision tree returns `blocked`, append a first-class `blocked_stop` event instead of silently overriding STOP to CONTINUE.
-.opencode/skill/sk-deep-review/references/state_format.md:295:  "event": "blocked_stop",
-.opencode/skill/sk-deep-review/references/state_format.md:348:**Combined-stop rule:** Final STOP is legal only when the inline review convergence decision says STOP and the latest `graph_convergence.decision == "STOP_ALLOWED"`. If the latest graph decision is `STOP_BLOCKED`, set `stop_blocked=true`, emit `blocked_stop`, and continue recovery instead of stopping. If the latest graph decision is `CONTINUE`, downgrade the inline STOP candidate to CONTINUE.
-.opencode/skill/sk-deep-review/references/state_format.md:363:  "stopReason": "userPaused",
-.opencode/skill/sk-deep-review/references/state_format.md:376:  "stopReason": "stuckRecovery",
-.opencode/skill/sk-deep-review/references/state_format.md:378:  "strategy": "Traceability protocol replay: re-run unresolved core or overlay checks",
-.opencode/skill/sk-deep-review/references/state_format.md:499:  "lineageMode": "resume",
-.opencode/skill/sk-deep-review/references/state_format.md:533:| `blockedStopHistory` | array | One entry per `blocked_stop` JSONL event: `{run, blockedBy, gateResults, recoveryStrategy, timestamp}`. Rendered in the dashboard `BLOCKED STOPS` section and can drive the strategy `next-focus` anchor when blocked-stop is the most recent loop event. |
-.opencode/skill/sk-deep-review/references/state_format.md:542:When no `blocked_stop` event has been recorded yet, `blockedStopHistory: []`.
-.opencode/skill/sk-deep-review/references/state_format.md:550:- **Strategy next-focus override**: When the latest `blocked_stop` event timestamp is newer than the latest iteration timestamp, the reducer rewrites the strategy `next-focus` anchor to surface the blocking gates and recovery hint so operators see the blocker before choosing the next iteration direction.
-.opencode/skill/sk-deep-review/references/state_format.md:626:| 9 | Audit Appendix | Coverage, convergence replay, audit detail |
-.opencode/skill/sk-deep-review/references/state_format.md:642:**Audit Appendix** contains iteration table, convergence signal replay, file coverage matrix, and dimension breakdown.
-.opencode/skill/sk-deep-review/references/state_format.md:705:| `evidenceRefs` | string[] | `file:line` or `file:range` citations that substantiate the claim (at least one entry) |
-.opencode/skill/sk-deep-review/references/convergence.md:23:Convergence is checked **after** each iteration completes and **before** the next iteration is dispatched. The check consumes the full JSONL state history and the current dimension coverage snapshot.
-.opencode/skill/sk-deep-review/references/convergence.md:44:Every terminal stop and every blocked-stop vote MUST emit the shared stop contract from REQ-001: a named `stopReason` enum plus — when STOP is vetoed — a `blocked_stop` event written to `deep-review-state.jsonl`. There is no nested `legalStop` wrapper on the persisted path; earlier drafts of this document implied one, and that drift was the source of F009 in the 042 closing audit.
-.opencode/skill/sk-deep-review/references/convergence.md:46:#### stopReason Enum
-.opencode/skill/sk-deep-review/references/convergence.md:48:| `stopReason` | Meaning |
-.opencode/skill/sk-deep-review/references/convergence.md:58:#### blocked_stop Event (canonical, persisted)
-.opencode/skill/sk-deep-review/references/convergence.md:60:`step_emit_blocked_stop` in both `spec_kit_deep-review_{auto,confirm}.yaml` appends the following record to `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. The gate names and their shapes are load-bearing — the reducer reads them verbatim:
-.opencode/skill/sk-deep-review/references/convergence.md:65:  "event": "blocked_stop",
-.opencode/skill/sk-deep-review/references/convergence.md:88:- `blockedBy`: array of gate names that failed (string[] — never structured objects). Empty when STOP is legal, in which case no `blocked_stop` event is emitted.
-.opencode/skill/sk-deep-review/references/convergence.md:91:- When the graph convergence verdict is `STOP_BLOCKED`, the same event is emitted with `blocked_gate == "graph_blockers"` folded into `blockedBy` and the structured blocker objects preserved under `graph_blocker_detail_json` (see phase 008 P1-02 closure in the auto YAML).
-.opencode/skill/sk-deep-review/references/convergence.md:101:5. **Legal-stop gate bundle** -- review-specific stop gates; if a stop vote fails any gate, persist `stopReason=blockedStop` and continue.
-.opencode/skill/sk-deep-review/references/convergence.md:116:  return { action: "STOP", stopReason: "maxIterationsReached" }
-.opencode/skill/sk-deep-review/references/convergence.md:127:      return { action: "STOP", stopReason: "converged" }
-.opencode/skill/sk-deep-review/references/convergence.md:130:Triggers when all 4 dimensions (correctness, security, traceability, maintainability) are covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 5-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
-.opencode/skill/sk-deep-review/references/convergence.md:161:The recovery entry uses `stopReason=stuckRecovery` while the loop is in recovery. If recovery later terminates the run, the terminal record keeps the same shared enum value instead of minting a review-only label.
-.opencode/skill/sk-deep-review/references/convergence.md:169:Three independent signals each cast a stop/continue vote. Stop when the weighted stop-score meets or exceeds the consensus threshold. The signal set below matches the authoritative 3-signal vote in `spec_kit_deep-review_{auto,confirm}.yaml` `step_check_convergence` and the quick-reference convergence table — the 3rd signal is **dimension coverage**, not a standalone novelty ratio.
-.opencode/skill/sk-deep-review/references/convergence.md:229:Measures how much genuinely new review insight each iteration contributes beyond surface-level overlap with prior findings. Unlike `newFindingsRatio` (which is severity-weighted), `semanticNovelty` evaluates the conceptual novelty of findings independent of severity weighting.
-.opencode/skill/sk-deep-review/references/convergence.md:280:1. **findingStability gate** (existing): The existing `findingStability` gate already evaluates rolling average, MAD noise floor, and novelty ratio. The new `semanticNovelty` signal adds a sub-check:
-.opencode/skill/sk-deep-review/references/convergence.md:286:The gate passes only when both the existing churn-based checks AND the semantic stability checks agree. When a semantic check fails, the `legalStop.gateResults.findingStability` detail string includes the semantic signal values.
-.opencode/skill/sk-deep-review/references/convergence.md:317:| 2 | Rolling avg + novelty ratio | Two-signal vote, reweighted |
-.opencode/skill/sk-deep-review/references/convergence.md:334:| **P0** (Blocker) | 10.0 | Correctness failures, security vulnerabilities, spec contradictions |
-.opencode/skill/sk-deep-review/references/convergence.md:377:| **findingStability** | Rolling average, MAD noise floor, and novelty ratio must all indicate low-yield review churn | Block STOP, persist `blockedStop` |
-.opencode/skill/sk-deep-review/references/convergence.md:390:      detail: "Rolling average, MAD noise floor, and novelty ratio are all below stop thresholds."
-.opencode/skill/sk-deep-review/references/convergence.md:420:When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it returns `pass: false`, persist a first-class blocked-stop decision with `stopReason=blockedStop`, populate `legalStop.blockedBy` from the failing gates, copy the full `gateResults`, snapshot the replay inputs, and attach a `recoveryStrategy` describing the next review action before overriding the decision to CONTINUE.
-.opencode/skill/sk-deep-review/references/convergence.md:426:| `findingStability` | Revisit the noisiest recent dimension and reduce novelty by closing obvious follow-up loops before re-checking STOP. |
-.opencode/skill/sk-deep-review/references/convergence.md:429:| `evidenceDensity` | Re-read weakly supported findings and add concrete `file:line` citations before they count toward a stop decision. |
-.opencode/skill/sk-deep-review/references/convergence.md:434:Use this table when replaying old packets or translating older prose/docs into the shared stop contract.
-.opencode/skill/sk-deep-review/references/convergence.md:436:| Legacy label | New `stopReason` | Mapping note |
-.opencode/skill/sk-deep-review/references/convergence.md:503:| Traceability plateau | Required protocols remain partial while ratios stay `< 0.05` | **Protocol-first replay:** re-run the unresolved traceability protocol directly against the conflicting artifacts |
-.opencode/skill/sk-deep-review/references/convergence.md:530:    return { strategy: "protocol_first_replay", dimension: leastCovered }
-.opencode/skill/sk-deep-review/references/convergence.md:544:- protocol_first_replay: Re-run the incomplete traceability protocol against conflicting artifacts.
-.opencode/skill/sk-deep-review/references/convergence.md:608:legalStop:
-.opencode/skill/sk-deep-review/references/convergence.md:611:  replayInputs: [snapshot of ratios, coverage, and gate inputs]
-.opencode/skill/sk-deep-review/references/convergence.md:624:  "stopReason": "converged",
-.opencode/skill/sk-deep-review/references/convergence.md:625:  "legalStop": {
-.opencode/skill/sk-deep-review/references/convergence.md:628:      "findingStability": { "pass": true, "detail": "Rolling average, MAD noise floor, and novelty ratio all voted STOP." },
-.opencode/skill/sk-deep-review/references/convergence.md:634:    "replayInputs": {
-.opencode/skill/sk-deep-review/references/convergence.md:637:      "noveltyRatio": 0.03,
-.opencode/skill/sk-deep-review/references/convergence.md:656:    { "name": "noveltyRatio", "value": 0.03, "stop": true, "weight": 0.45 }
-.opencode/skill/sk-deep-review/references/convergence.md:721:The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
-.opencode/skill/sk-deep-review/references/convergence.md:736:- `stopReason` enum values and semantics
-.opencode/skill/sk-deep-review/references/convergence.md:737:- `legalStop` record structure and gate names
-.opencode/skill/sk-deep-review/references/loop_protocol.md:64:   - `resume`: config + state + strategy all exist and agree
-.opencode/skill/sk-deep-review/references/loop_protocol.md:106:6. **Write config**: `{spec_folder}/review/deep-review-config.json` with `mode: "review"`, lineage metadata (`sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`), and review-specific fields including target, target type, dimensions, protocol plan, and release-readiness state.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:154:| Inputs | `latestJSONLDelta`, `newIterationFile`, `priorReducedState` | The reducer replays only the newest JSONL delta plus the latest iteration artifact against the prior reduced state. |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:172:If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records five review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
-.opencode/skill/sk-deep-review/references/loop_protocol.md:196:   - Log event to JSONL: `{"type":"event","event":"userPaused","mode":"review","stopReason":"userPaused","reason":"sentinel file detected"}`
-.opencode/skill/sk-deep-review/references/loop_protocol.md:199:     Review paused. Delete review/.deep-review-pause to resume.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:203:3. On resume (file deleted and loop restarted):
-.opencode/skill/sk-deep-review/references/loop_protocol.md:204:   - Log event: `{"type":"event","event":"resumed","fromIteration":N}`
-.opencode/skill/sk-deep-review/references/loop_protocol.md:213:Generate a compact state summary (~200 tokens) for injection into the dispatch prompt:
-.opencode/skill/sk-deep-review/references/loop_protocol.md:281:- `evidence`: Array of file:line citations
-.opencode/skill/sk-deep-review/references/loop_protocol.md:314:| `evidenceRefs` | string[] | `file:line` or `file:range` citations (≥ 1) |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:365:| Traceability plateau | Required protocols remain partial while ratios stay `< 0.05` | **Protocol-first replay**: re-run the unresolved traceability protocol directly against the conflicting artifacts |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:380:    return { strategy: "protocol_first_replay" }
-.opencode/skill/sk-deep-review/references/loop_protocol.md:424:5. Compare the replayed decision and stop reason to the recorded synthesis event
-.opencode/skill/sk-deep-review/references/loop_protocol.md:426:Replay passes only when the recomputed decision, thresholds, and gate outcomes agree with the persisted result. If replay fails, log a warning in the audit appendix but proceed with synthesis.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:442:| 9 | Audit Appendix | Coverage, replay validation, convergence evidence |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:471:     "stopReason": "...",
-.opencode/skill/sk-deep-review/references/loop_protocol.md:507:<!-- ANCHOR:auto-resume-protocol -->
-.opencode/skill/sk-deep-review/references/loop_protocol.md:512:Enable review sessions to resume seamlessly from prior state when interrupted by context compaction, process termination, or intentional pause.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:522:5. **Log resume**: Append the canonical resume event to `deep-review-state.jsonl`. The reducer requires every field below:
-.opencode/skill/sk-deep-review/references/loop_protocol.md:524:   {"type":"event","event":"resumed","mode":"review","sessionId":"rvw-2026-03-24T10-00-00Z","parentSessionId":"rvw-2026-03-24T10-00-00Z","lineageMode":"resume","continuedFromRun":4,"generation":1,"archivedPath":null,"timestamp":"2026-03-24T14:05:00Z"}
-.opencode/skill/sk-deep-review/references/loop_protocol.md:530:The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:535:| `resume` | same | same | none | `resumed` (see example above) | operator wants to continue the current lineage boundary |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:536:| `restart` | fresh | `prior + 1` | prior `review/` tree moved under `review_archive/{timestamp}/` | `restarted` (same field set plus non-null `archivedPath`) | operator wants to clear the workspace and replay with a new angle |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:543:  "event": "resumed | restarted",
-.opencode/skill/sk-deep-review/references/loop_protocol.md:546:  "parentSessionId": "<session id of the prior lineage (equals sessionId on resume)>",
-.opencode/skill/sk-deep-review/references/loop_protocol.md:547:  "lineageMode": "resume | restart",
-.opencode/skill/sk-deep-review/references/loop_protocol.md:549:  "continuedFromRun": <number or null>,
-.opencode/skill/sk-deep-review/references/loop_protocol.md:555:Every field in the contract MUST be present on every persisted lifecycle event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:561:| Config + JSONL + strategy all exist and agree | `resume` | Continue from last iteration + 1 |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:563:| Partial files or contradictions | `invalid-state` | Halt for repair; do not guess |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:582:<!-- /ANCHOR:auto-resume-protocol -->
-.opencode/skill/sk-deep-review/references/loop_protocol.md:583:<!-- ANCHOR:pause-resume -->
-.opencode/skill/sk-deep-review/references/loop_protocol.md:613:- The auto-resume protocol (Section 6) detects the existing state
-.opencode/skill/sk-deep-review/references/loop_protocol.md:614:- A resumed event is logged to JSONL
-.opencode/skill/sk-deep-review/references/loop_protocol.md:630:<!-- /ANCHOR:pause-resume -->
-.opencode/skill/sk-deep-review/references/loop_protocol.md:646:[STUCK_RECOVERY] --> change granularity / protocol replay / escalate severity
-.opencode/skill/sk-deep-review/references/loop_protocol.md:654:    |-- sentinel removed --> [ITERATING] (resume)
-.opencode/skill/sk-deep-review/references/loop_protocol.md:656:[SYNTHESIZING] --> finding dedup, severity reconcile, replay validate, compile report
-.opencode/skill/sk-deep-research/references/loop_protocol.md:48:   - `resume`: config + state + strategy all exist and agree
-.opencode/skill/sk-deep-research/references/loop_protocol.md:83:5. Append the canonical resume event to `deep-research-state.jsonl` (all fields below are required by the reducer):
-.opencode/skill/sk-deep-research/references/loop_protocol.md:86:{"type":"event","event":"resumed","mode":"research","sessionId":"rsr-2026-03-18T10-00-00Z","parentSessionId":"rsr-2026-03-18T10-00-00Z","lineageMode":"resume","continuedFromRun":4,"generation":1,"timestamp":"2026-03-18T14:05:00Z"}
-.opencode/skill/sk-deep-research/references/loop_protocol.md:93:The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:98:| `resume` | same | same | none | `resumed` (see example above) | operator wants to continue the current lineage boundary |
-.opencode/skill/sk-deep-research/references/loop_protocol.md:99:| `restart` | fresh | `prior + 1` | prior `research/` tree moved under `research_archive/{timestamp}/` | `restarted` (same field set plus `archivedPath`) | operator wants to clear the workspace and replay with a new angle |
-.opencode/skill/sk-deep-research/references/loop_protocol.md:106:  "event": "resumed | restarted",
-.opencode/skill/sk-deep-research/references/loop_protocol.md:109:  "parentSessionId": "<session id of the prior lineage (equals sessionId on resume)>",
-.opencode/skill/sk-deep-research/references/loop_protocol.md:110:  "lineageMode": "resume | restart",
-.opencode/skill/sk-deep-research/references/loop_protocol.md:112:  "continuedFromRun": <number or null>,
-.opencode/skill/sk-deep-research/references/loop_protocol.md:118:Every field in the contract MUST be present on every persisted lifecycle event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:148:   - Persist the blocked legal-stop outcome: `{"type":"event","event":"blocked_stop","mode":"research","run":N,"blockedBy":["<gate>"],"gateResults":{"convergence":{"pass":true,"score":0.0},"keyQuestionCoverage":{"pass":false,"answered":X,"total":Y},"evidenceDensity":{"pass":false,"sources":N},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"<one-line hint>","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:153:If the legal-stop decision tree returns `blocked`, the workflow MUST append the `blocked_stop` JSONL event before continuing. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:161:   - Log event to JSONL: `{"type":"event","event":"userPaused","mode":"research","run":N,"stopReason":"userPaused","sentinelPath":"{spec_folder}/research/.deep-research-pause","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:164:     Research paused. Delete research/.deep-research-pause to resume.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:168:3. On resume (file deleted and loop restarted):
-.opencode/skill/sk-deep-research/references/loop_protocol.md:169:   - Log event: `{"type":"event","event":"resumed","fromIteration":N}`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:178:Generate a compact state summary (~200 tokens) for injection into the dispatch prompt:
-.opencode/skill/sk-deep-research/references/loop_protocol.md:287:3. **Resume**: On auto-resume, read the ideas file alongside JSONL and strategy.md to restore full context
-.opencode/skill/sk-deep-research/references/loop_protocol.md:424:The standard dispatch (Task tool) shares the parent session's token budget. In long research sessions (10+ iterations), this may cause context compression that degrades reasoning quality. Process-level isolation eliminates this risk.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:476:   - Add citations from iteration files
-.opencode/skill/sk-deep-research/references/loop_protocol.md:485:4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
-.opencode/skill/sk-deep-research/references/loop_protocol.md:487:6. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","totalIterations":N,"answeredCount":A,"totalQuestions":Q,"stopReason":"converged"}`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:600:1. **Classify session state**: Same as research mode (fresh, resume, completed-session, invalid-state)
-.opencode/skill/sk-deep-research/references/loop_protocol.md:774:9. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":N,"verdict":"PASS|CONDITIONAL|FAIL","activeP0":N,"activeP1":N,"activeP2":N,"dimensionCoverage":X,"stopReason":"..." }`
-.opencode/skill/sk-deep-research/references/convergence.md:21:#### `stopReason` enum
-.opencode/skill/sk-deep-research/references/convergence.md:33:#### `legalStop` record
-.opencode/skill/sk-deep-research/references/convergence.md:50:  replayInputs: {
-.opencode/skill/sk-deep-research/references/convergence.md:70:- `gateResults` is the replayable legal-stop bundle. Canonical research gates are `convergenceGate`, `coverageGate`, and `qualityGate`; the `qualityGate.checks` map carries the subordinate `sourceDiversity`, `focusAlignment`, and `singleWeakSourceDominance` results.
-.opencode/skill/sk-deep-research/references/convergence.md:71:- `replayInputs` snapshots the exact stop-decision inputs so the reducer and dashboards can replay the outcome from packet-local artifacts only.
-.opencode/skill/sk-deep-research/references/convergence.md:77:| Legacy label or phrase | New `stopReason` | Normalization note |
-.opencode/skill/sk-deep-research/references/convergence.md:80:| `novelty below threshold` | `converged` | Legacy prose alias for the rolling-average or composite stop path |
-.opencode/skill/sk-deep-research/references/convergence.md:93:Deep review uses the same `stopReason` enum and `legalStop` record, even though its convergence signals differ.
-.opencode/skill/sk-deep-research/references/convergence.md:113:      stopReason: "maxIterationsReached",
-.opencode/skill/sk-deep-research/references/convergence.md:122:      stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:135:      stopReason: "stuckRecovery",
-.opencode/skill/sk-deep-research/references/convergence.md:202:        stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:214:After composite convergence or full-question coverage nominates STOP, the loop MUST evaluate the full legal-stop bundle before STOP becomes final. STOP is never legal on novelty math alone. The replayable `legalStop.gateResults` bundle for deep research is:
-.opencode/skill/sk-deep-research/references/convergence.md:218:| Convergence Gate | The novelty score stays below `convergenceThreshold` for N consecutive evidence iterations | Block STOP, persist `blocked_stop`, continue |
-.opencode/skill/sk-deep-research/references/convergence.md:219:| Coverage Gate | Every key question has at least one evidence-backed answer | Block STOP, persist `blocked_stop`, continue |
-.opencode/skill/sk-deep-research/references/convergence.md:220:| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance all pass | Block STOP, persist `blocked_stop`, continue |
-.opencode/skill/sk-deep-research/references/convergence.md:235:    recoveryHint: "Run another evidence iteration if novelty has not stayed low long enough"
-.opencode/skill/sk-deep-research/references/convergence.md:272:  legalStop = {
-.opencode/skill/sk-deep-research/references/convergence.md:275:    replayInputs: buildReplayInputs(state, stopCandidate)
-.opencode/skill/sk-deep-research/references/convergence.md:281:      stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:282:      candidateStopReason: stopCandidate.stopReason,
-.opencode/skill/sk-deep-research/references/convergence.md:283:      legalStop
-.opencode/skill/sk-deep-research/references/convergence.md:288:    stopReason: "blockedStop",
-.opencode/skill/sk-deep-research/references/convergence.md:289:    candidateStopReason: stopCandidate.stopReason,
-.opencode/skill/sk-deep-research/references/convergence.md:290:    legalStop,
-.opencode/skill/sk-deep-research/references/convergence.md:291:    recoveryStrategy: chooseBlockedStopRecovery(legalStop, strategy)
-.opencode/skill/sk-deep-research/references/convergence.md:297:- **Convergence Gate**: Re-read the most recent N evidence iterations only. Every one of them must remain below the configured novelty threshold.
-.opencode/skill/sk-deep-research/references/convergence.md:300:- **Focus Alignment**: Compare current key questions against `config.originalKeyQuestions` (the snapshot of initial key questions populated at session init). Flag any answer outside the declared scope, or any significant drift where the current question set no longer resembles the original set. When `originalKeyQuestions` is absent (legacy packets), fall back to comparing against strategy.md's initialized question list.
-.opencode/skill/sk-deep-research/references/convergence.md:303:`qualityGate.checks` is the replayable quality bundle. Reducers and dashboards must be able to explain a quality pass or failure from packet-local artifacts only.
-.opencode/skill/sk-deep-research/references/convergence.md:307:1. Append a `stop_decision` snapshot with the attempted stop bundle.
-.opencode/skill/sk-deep-research/references/convergence.md:308:2. Append a first-class `blocked_stop` event with `stopReason: "blockedStop"`, `legalStop.blockedBy`, the full `legalStop.gateResults`, and a concrete `recoveryStrategy`.
-.opencode/skill/sk-deep-research/references/convergence.md:363:#### contradictionDensity (0.0-1.0)
-.opencode/skill/sk-deep-research/references/convergence.md:369:| 0.0 | No contradictions in the finding set |
-.opencode/skill/sk-deep-research/references/convergence.md:370:| 0.01-0.10 | Normal level of resolved contradictions |
-.opencode/skill/sk-deep-research/references/convergence.md:371:| 0.11-0.25 | Elevated contradictions; may need targeted reconciliation |
-.opencode/skill/sk-deep-research/references/convergence.md:372:| 0.26+ | High contradiction density; research may be stuck on conflicting sources |
-.opencode/skill/sk-deep-research/references/convergence.md:384:- `contradictionDensity <= 0.10` supports STOP: the finding set is internally consistent.
-.opencode/skill/sk-deep-research/references/convergence.md:385:- `contradictionDensity > 0.25` blocks STOP: unresolved contradictions suggest the research space is not yet stable. The legal-stop gate records this as a `qualityGate` sub-check failure.
-.opencode/skill/sk-deep-research/references/convergence.md:386:- The stuck recovery protocol (Section 4, Step 1.5) should use "Contradictory evidence" failure mode when `contradictionDensity > 0.25`.
-.opencode/skill/sk-deep-research/references/convergence.md:388:#### citationOverlap (0.0-1.0)
-.opencode/skill/sk-deep-research/references/convergence.md:390:Measures how much the current iteration's citations overlap with the existing citation graph. A high overlap means the iteration consulted mostly the same sources; a low overlap means new sources were discovered.
-.opencode/skill/sk-deep-research/references/convergence.md:408:- `citationOverlap >= 0.85` for 2+ consecutive iterations supports STOP: the source space is exhausted.
-.opencode/skill/sk-deep-research/references/convergence.md:409:- `citationOverlap < 0.30` prevents STOP: the iteration discovered substantially new sources that may yield fresh findings.
-.opencode/skill/sk-deep-research/references/convergence.md:419:   - `contradictionResolution`: `contradictionDensity <= 0.10`
-.opencode/skill/sk-deep-research/references/convergence.md:420:   - `sourceExhaustion`: `citationOverlap >= 0.85` for 2+ consecutive iterations OR `citationOverlap < 0.30` does not block
-.opencode/skill/sk-deep-research/references/convergence.md:422:The quality gate passes only when ALL sub-checks pass (existing + semantic). When a semantic sub-check fails, the `legalStop.gateResults.qualityGate.checks` map includes the failing semantic sub-check with its detail and recovery hint.
-.opencode/skill/sk-deep-research/references/convergence.md:426:The stop-decision event (`stop_decision` and `blocked_stop` JSONL records) includes which semantic signals supported or prevented STOP:
-.opencode/skill/sk-deep-research/references/convergence.md:434:    "contradictionDensity": { "value": 0.04, "supportsStop": true },
-.opencode/skill/sk-deep-research/references/convergence.md:435:    "citationOverlap": { "value": 0.91, "consecutiveHigh": 2, "supportsStop": true }
-.opencode/skill/sk-deep-research/references/convergence.md:457:Semantic convergence signals (`semanticNovelty`, `contradictionDensity`, `citationOverlap`) require at least 2 evidence iterations to produce meaningful values. They are omitted from legal-stop evaluation when insufficient data exists.
-.opencode/skill/sk-deep-research/references/convergence.md:468:4.6. **Blocked-stop persistence** (if any legal-stop gate fails, persist `blocked_stop` with recovery strategy and continue)
-.opencode/skill/sk-deep-research/references/convergence.md:631:| Contradictory evidence | Strategy shows conflicting findings on same question | "Isolate the contradiction. Find a tiebreaker source or document both positions with evidence quality" |
-.opencode/skill/sk-deep-research/references/convergence.md:891:Legacy label: [optional replay-only alias such as composite_converged]
-.opencode/skill/sk-deep-research/references/convergence.md:906:  contradictionDensity:   0.XX [SUPPORTS_STOP|PREVENTS_STOP]
-.opencode/skill/sk-deep-research/references/convergence.md:907:  citationOverlap:        0.XX (consecutive high: N) [SUPPORTS_STOP|PREVENTS_STOP|INSUFFICIENT_DATA]
-.opencode/skill/sk-deep-research/references/convergence.md:978:      stopReason: "maxIterationsReached",
-.opencode/skill/sk-deep-research/references/convergence.md:993:          stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:1003:      stopReason: "stuckRecovery",
-.opencode/skill/sk-deep-research/references/convergence.md:1052:          stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:1061:        stopReason: "blockedStop",
-.opencode/skill/sk-deep-research/references/convergence.md:1113:5. Compare the replayed decision and stop reason to the recorded synthesis event.
-.opencode/skill/sk-deep-research/references/convergence.md:1126:| Traceability plateau | Required protocols remain partial while ratios stay `< 0.05` | **Protocol-first replay:** re-run the unresolved traceability protocol directly against the conflicting artifacts |
-.opencode/skill/sk-deep-research/references/convergence.md:1140:    return { strategy: "protocol_first_replay" }
-.opencode/skill/sk-deep-research/references/convergence.md:1214:| CONTRADICTS | 0.8 | Consider lowering to 0.6 if contradiction edges produce false convergence signals |
-.opencode/skill/sk-deep-research/references/convergence.md:1215:| CITES | 1.0 | Neutral weight is correct for citation links |
-.opencode/skill/sk-deep-research/references/convergence.md:1241:The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
-.opencode/skill/sk-deep-research/references/convergence.md:1255:- `stopReason` enum values and semantics
-.opencode/skill/sk-deep-research/references/convergence.md:1256:- `legalStop` record structure
-.opencode/skill/sk-deep-research/references/state_format.md:60:    "continuedFromRun": null
-.opencode/skill/sk-deep-research/references/state_format.md:79:| lineage.lineageMode | string | Yes | "new" | `new`, `resume`, `restart`, `fork`, or `completed-continue` |
-.opencode/skill/sk-deep-research/references/state_format.md:81:| lineage.continuedFromRun | number or null | No | null | Run number where a resumed or reopened segment continues |
-.opencode/skill/sk-deep-research/references/state_format.md:130:{"type":"iteration","run":1,"status":"complete","focus":"Initial broad survey","findingsCount":5,"newInfoRatio":1.0,"keyQuestions":["What causes latency?","Where are bottlenecks?"],"answeredQuestions":["What causes latency?"],"timestamp":"2026-03-18T10:05:00Z","durationMs":45000}
-.opencode/skill/sk-deep-research/references/state_format.md:144:| durationMs | number | iteration only | Iteration execution time in milliseconds |
-.opencode/skill/sk-deep-research/references/state_format.md:145:| toolsUsed | string[] | No | iteration only | High-level tool names used during the iteration |
-.opencode/skill/sk-deep-research/references/state_format.md:146:| sourcesQueried | string[] | No | iteration only | URLs, file paths, or memory anchors consulted during the iteration |
-.opencode/skill/sk-deep-research/references/state_format.md:150:| noveltyJustification | string | No | Human-readable explanation of what newInfoRatio represents (see below) |
-.opencode/skill/sk-deep-research/references/state_format.md:177:{"type":"iteration","run":3,"status":"complete","focus":"Connection pooling","findingsCount":3,"newInfoRatio":0.4,"ruledOut":[{"approach":"HTTP/3 multiplexing","reason":"No server-side support in target environment","evidence":"docs.example.com/protocols#supported"}],"keyQuestions":["What causes latency?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":52000}
-.opencode/skill/sk-deep-research/references/state_format.md:190:The optional `noveltyJustification` field provides a human-readable breakdown of what the `newInfoRatio` represents:
-.opencode/skill/sk-deep-research/references/state_format.md:193:{"type":"iteration","run":3,"status":"complete","focus":"Reconnection strategies","findingsCount":4,"newInfoRatio":0.7,"noveltyJustification":"2 new findings on reconnection backoff, 1 refinement of prior keepalive finding","keyQuestions":["How to handle reconnection?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
-.opencode/skill/sk-deep-research/references/state_format.md:225:{"type":"iteration","run":4,"status":"complete","focus":"Reconnection strategies","findingsCount":3,"newInfoRatio":0.55,"graphEvents":[{"type":"question","id":"q-reconnect","label":"How should the client retry after a disconnect?"},{"type":"finding","id":"f-backoff","label":"Exponential backoff converges under jitter"},{"type":"edge","id":"e-answers-reconnect","relation":"ANSWERS","source":"f-backoff","target":"q-reconnect"}],"keyQuestions":["How should the client retry after a disconnect?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
-.opencode/skill/sk-deep-research/references/state_format.md:274:| resumed | workflow | active | Resume after a prior active session (same sessionId, no archive) | mode, sessionId, parentSessionId, lineageMode, continuedFromRun, generation, archivedPath (null), timestamp |
-.opencode/skill/sk-deep-research/references/state_format.md:275:| restarted | workflow | active | Archive the prior packet and start a new generation with a fresh sessionId | mode, sessionId, parentSessionId, lineageMode, continuedFromRun, generation, archivedPath, timestamp |
-.opencode/skill/sk-deep-research/references/state_format.md:279:| blocked_stop | workflow | active | Legal-stop candidate was blocked and the loop must continue | mode, run, blockedBy, gateResults, recoveryStrategy, timestamp, sessionId, generation |
-.opencode/skill/sk-deep-research/references/state_format.md:280:| userPaused | workflow | active | Pause sentinel detected and normalized to the frozen stop-reason enum | mode, run, stopReason, sentinelPath, timestamp, sessionId, generation |
-.opencode/skill/sk-deep-research/references/state_format.md:287:| stuckRecovery | workflow | active | Stuck recovery outcome normalized to the frozen stop-reason enum | mode, run, stopReason, fromIteration, outcome, timestamp, sessionId, generation |
-.opencode/skill/sk-deep-research/references/state_format.md:291:| synthesis_complete | workflow | active | Final synthesis finished | totalIterations, answeredCount, totalQuestions, stopReason, timestamp |
-.opencode/skill/sk-deep-research/references/state_format.md:307:{"type":"event","event":"graph_convergence","mode":"research","run":7,"decision":"STOP_BLOCKED","signals":{"questionCoverage":0.86,"claimVerificationRate":0.78,"contradictionDensity":0.04,"blendedScore":0.68},"blockers":[{"name":"sourceDiversity","severity":"high","detail":"Only 2 distinct corroborating sources cover the active claim cluster."}],"timestamp":"2026-04-11T11:55:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
-.opencode/skill/sk-deep-research/references/state_format.md:315:| run | number | Yes | 1-indexed loop iteration whose graph convergence vote was evaluated |
-.opencode/skill/sk-deep-research/references/state_format.md:318:| blockers | array | Yes | Blocking guards returned by the graph convergence tool; empty array when STOP is not blocked |
-.opencode/skill/sk-deep-research/references/state_format.md:330:4. If the inline vote says STOP but the latest graph decision is `STOP_BLOCKED`, the workflow must emit `blocked_stop` and continue with the recovery strategy instead of stopping.
-.opencode/skill/sk-deep-research/references/state_format.md:335:{"type":"event","event":"blocked_stop","mode":"research","run":7,"blockedBy":["keyQuestionCoverage","evidenceDensity"],"gateResults":{"convergence":{"pass":true,"score":0.72},"keyQuestionCoverage":{"pass":false,"answered":5,"total":7},"evidenceDensity":{"pass":false,"sources":2},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"Collect evidence for the remaining uncovered question cluster.","timestamp":"2026-04-11T12:00:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
-.opencode/skill/sk-deep-research/references/state_format.md:341:| event | string | Yes | Always `blocked_stop` |
-.opencode/skill/sk-deep-research/references/state_format.md:354:{"type":"event","event":"userPaused","mode":"research","run":7,"stopReason":"userPaused","sentinelPath":"specs/042/research/.deep-research-pause","timestamp":"2026-04-11T12:05:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
-.opencode/skill/sk-deep-research/references/state_format.md:363:| stopReason | string | Yes | Always `userPaused` |
-.opencode/skill/sk-deep-research/references/state_format.md:372:{"type":"event","event":"stuckRecovery","mode":"research","run":7,"stopReason":"stuckRecovery","fromIteration":7,"outcome":"recovered","timestamp":"2026-04-11T12:10:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
-.opencode/skill/sk-deep-research/references/state_format.md:381:| stopReason | string | Yes | Always `stuckRecovery` |
-.opencode/skill/sk-deep-research/references/state_format.md:390:Raw `paused` and `stuck_recovery` labels are legacy-only aliases. The live workflow MUST rewrite them at emission time to `userPaused` and `stuckRecovery` respectively, and MUST persist the normalized `stopReason` enum value on the JSONL line.
-.opencode/skill/sk-deep-research/references/state_format.md:402:| `continuedFromRun` | Last completed run reused as the continuation boundary |
-.opencode/skill/sk-deep-research/references/state_format.md:472:| blockedStopHistory | array | One entry per `blocked_stop` event promoted under REQ-014. Reducer preserves append order from the JSONL and exposes `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp` for operator replay. |
-.opencode/skill/sk-deep-research/references/state_format.md:473:| graphConvergenceScore | number | Latest graph convergence blended score surfaced under REQ-013. Derived from the most recent `graph_convergence` event. |
-.opencode/skill/sk-deep-research/references/state_format.md:474:| graphDecision | string or null | Latest graph convergence verdict: `CONTINUE`, `STOP_ALLOWED`, `STOP_BLOCKED`, or null when unavailable. |
-.opencode/skill/sk-deep-research/references/state_format.md:475:| graphBlockers | array | Latest blocking guard bundle returned by the graph convergence tool. Empty array when no blockers were reported. |
-.opencode/skill/sk-deep-research/references/state_format.md:532:**Limitations**: Reconstructed state lacks `durationMs`, exact `timestamp`, and `findingsCount`. The `status: "reconstructed"` flag distinguishes recovered records from originals. The convergence algorithm treats reconstructed records identically to complete records for signal computation.
-.opencode/skill/sk-deep-research/references/state_format.md:587:When the most recent loop event is a `blocked_stop` (its timestamp is newer than the latest iteration record), the reducer may drive the `next-focus` anchor directly from that event instead of the last iteration file. In that case the anchor must surface:
-.opencode/skill/sk-deep-research/references/state_format.md:624:1. [Finding with source citation]
-.opencode/skill/sk-deep-research/references/state_format.md:625:2. [Finding with source citation]
-.opencode/skill/sk-deep-research/references/state_format.md:658:- Mark machine-owned sections explicitly so `completed-continue` can snapshot prior synthesis before reopening
-.opencode/skill/sk-deep-research/references/state_format.md:688:### Blocked-stop and graph convergence surfaces
-.opencode/skill/sk-deep-research/references/state_format.md:692:- **Blocked Stops**: Renders `blockedStopHistory` as an ordered replay log. Each entry shows the blocked iteration, the vetoing gates, the recovery strategy, a brief gate-result summary, and the ISO-8601 event timestamp so operators can trace why STOP was denied under REQ-014.
-.opencode/skill/sk-deep-research/references/state_format.md:792:  "durationMs": 52000,
-.opencode/skill/sk-deep-research/references/state_format.md:793:  "noveltyJustification": "1 new P1 contract drift, 1 new P2 template inconsistency, 2 advisory refinements"
-.opencode/skill/sk-deep-research/references/state_format.md:807:| noveltyJustification | string | No | Human-readable breakdown of what was found |
-.opencode/skill/sk-deep-research/references/state_format.md:824:  "stopReason": "composite_converged",
-.opencode/skill/sk-deep-research/references/state_format.md:950:| 9 | Audit Appendix | Coverage, convergence replay, and supporting audit detail |
+.opencode/skills/sk-deep-review/references/state_format.md:63:  "continuedFromRun": null,
+.opencode/skills/sk-deep-review/references/state_format.md:114:| lineageMode | string | `"new"` | `new`, `resume`, `restart`. `fork` and `completed-continue` are deferred and not emitted by the current runtime |
+.opencode/skills/sk-deep-review/references/state_format.md:115:| generation | number | 1 | Lineage generation number — incremented on `restart`, unchanged on `resume` |
+.opencode/skills/sk-deep-review/references/state_format.md:116:| continuedFromRun | number \| null | `null` | Count of completed iteration records at the lifecycle boundary (set on `resume` and `restart`) |
+.opencode/skills/sk-deep-review/references/state_format.md:168:{"type":"config","mode":"review","topic":"...","reviewTarget":"...","sessionId":"rvw-...","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"createdAt":"2026-03-24T14:00:00Z","specFolder":"..."}
+.opencode/skills/sk-deep-review/references/state_format.md:181:  "lineageMode": "resume",
+.opencode/skills/sk-deep-review/references/state_format.md:183:  "continuedFromRun": null,
+.opencode/skills/sk-deep-review/references/state_format.md:188:  "timestamp": "2026-03-24T14:30:00Z", "durationMs": 52000
+.opencode/skills/sk-deep-review/references/state_format.md:192:**Required fields:** `type`, `mode`, `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`
+.opencode/skills/sk-deep-review/references/state_format.md:194:**Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`
+.opencode/skills/sk-deep-review/references/state_format.md:238:    { "type": "finding", "id": "f-001", "label": "Missing CSRF token check on session POST" },
+.opencode/skills/sk-deep-review/references/state_format.md:245:  "durationMs": 51000
+.opencode/skills/sk-deep-review/references/state_format.md:281:  "dimensionCoverage": 1.0, "stopReason": "composite_converged",
+.opencode/skills/sk-deep-review/references/state_format.md:286:**Required:** `type`, `event`, `mode`, `totalIterations`, `verdict`, `activeP0`, `activeP1`, `activeP2`, `dimensionCoverage`, `stopReason`, `timestamp`
+.opencode/skills/sk-deep-review/references/state_format.md:290:When the review legal-stop decision tree returns `blocked`, append a first-class `blocked_stop` event instead of silently overriding STOP to CONTINUE.
+.opencode/skills/sk-deep-review/references/state_format.md:295:  "event": "blocked_stop",
+.opencode/skills/sk-deep-review/references/state_format.md:348:**Combined-stop rule:** Final STOP is legal only when the inline review convergence decision says STOP and the latest `graph_convergence.decision == "STOP_ALLOWED"`. If the latest graph decision is `STOP_BLOCKED`, set `stop_blocked=true`, emit `blocked_stop`, and continue recovery instead of stopping. If the latest graph decision is `CONTINUE`, downgrade the inline STOP candidate to CONTINUE.
+.opencode/skills/sk-deep-review/references/state_format.md:363:  "stopReason": "userPaused",
+.opencode/skills/sk-deep-review/references/state_format.md:376:  "stopReason": "stuckRecovery",
+.opencode/skills/sk-deep-review/references/state_format.md:378:  "strategy": "Traceability protocol replay: re-run unresolved core or overlay checks",
+.opencode/skills/sk-deep-review/references/state_format.md:499:  "lineageMode": "resume",
+.opencode/skills/sk-deep-review/references/state_format.md:533:| `blockedStopHistory` | array | One entry per `blocked_stop` JSONL event: `{run, blockedBy, gateResults, recoveryStrategy, timestamp}`. Rendered in the dashboard `BLOCKED STOPS` section and can drive the strategy `next-focus` anchor when blocked-stop is the most recent loop event. |
+.opencode/skills/sk-deep-review/references/state_format.md:542:When no `blocked_stop` event has been recorded yet, `blockedStopHistory: []`.
+.opencode/skills/sk-deep-review/references/state_format.md:550:- **Strategy next-focus override**: When the latest `blocked_stop` event timestamp is newer than the latest iteration timestamp, the reducer rewrites the strategy `next-focus` anchor to surface the blocking gates and recovery hint so operators see the blocker before choosing the next iteration direction.
+.opencode/skills/sk-deep-review/references/state_format.md:626:| 9 | Audit Appendix | Coverage, convergence replay, audit detail |
+.opencode/skills/sk-deep-review/references/state_format.md:642:**Audit Appendix** contains iteration table, convergence signal replay, file coverage matrix, and dimension breakdown.
+.opencode/skills/sk-deep-review/references/state_format.md:705:| `evidenceRefs` | string[] | `file:line` or `file:range` citations that substantiate the claim (at least one entry) |
+.opencode/skills/sk-deep-review/references/convergence.md:23:Convergence is checked **after** each iteration completes and **before** the next iteration is dispatched. The check consumes the full JSONL state history and the current dimension coverage snapshot.
+.opencode/skills/sk-deep-review/references/convergence.md:44:Every terminal stop and every blocked-stop vote MUST emit the shared stop contract from REQ-001: a named `stopReason` enum plus — when STOP is vetoed — a `blocked_stop` event written to `deep-review-state.jsonl`. There is no nested `legalStop` wrapper on the persisted path; earlier drafts of this document implied one, and that drift was the source of F009 in the 042 closing audit.
+.opencode/skills/sk-deep-review/references/convergence.md:46:#### stopReason Enum
+.opencode/skills/sk-deep-review/references/convergence.md:48:| `stopReason` | Meaning |
+.opencode/skills/sk-deep-review/references/convergence.md:58:#### blocked_stop Event (canonical, persisted)
+.opencode/skills/sk-deep-review/references/convergence.md:60:`step_emit_blocked_stop` in both `spec_kit_deep-review_{auto,confirm}.yaml` appends the following record to `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. The gate names and their shapes are load-bearing — the reducer reads them verbatim:
+.opencode/skills/sk-deep-review/references/convergence.md:65:  "event": "blocked_stop",
+.opencode/skills/sk-deep-review/references/convergence.md:88:- `blockedBy`: array of gate names that failed (string[] — never structured objects). Empty when STOP is legal, in which case no `blocked_stop` event is emitted.
+.opencode/skills/sk-deep-review/references/convergence.md:91:- When the graph convergence verdict is `STOP_BLOCKED`, the same event is emitted with `blocked_gate == "graph_blockers"` folded into `blockedBy` and the structured blocker objects preserved under `graph_blocker_detail_json` (see phase 008 P1-02 closure in the auto YAML).
+.opencode/skills/sk-deep-review/references/convergence.md:101:5. **Legal-stop gate bundle** -- review-specific stop gates; if a stop vote fails any gate, persist `stopReason=blockedStop` and continue.
+.opencode/skills/sk-deep-review/references/convergence.md:116:  return { action: "STOP", stopReason: "maxIterationsReached" }
+.opencode/skills/sk-deep-review/references/convergence.md:127:      return { action: "STOP", stopReason: "converged" }
+.opencode/skills/sk-deep-review/references/convergence.md:130:Triggers when all 4 dimensions (correctness, security, traceability, maintainability) are covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 5-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
+.opencode/skills/sk-deep-review/references/convergence.md:161:The recovery entry uses `stopReason=stuckRecovery` while the loop is in recovery. If recovery later terminates the run, the terminal record keeps the same shared enum value instead of minting a review-only label.
+.opencode/skills/sk-deep-review/references/convergence.md:169:Three independent signals each cast a stop/continue vote. Stop when the weighted stop-score meets or exceeds the consensus threshold. The signal set below matches the authoritative 3-signal vote in `spec_kit_deep-review_{auto,confirm}.yaml` `step_check_convergence` and the quick-reference convergence table — the 3rd signal is **dimension coverage**, not a standalone novelty ratio.
+.opencode/skills/sk-deep-review/references/convergence.md:229:Measures how much genuinely new review insight each iteration contributes beyond surface-level overlap with prior findings. Unlike `newFindingsRatio` (which is severity-weighted), `semanticNovelty` evaluates the conceptual novelty of findings independent of severity weighting.
+.opencode/skills/sk-deep-review/references/convergence.md:280:1. **findingStability gate** (existing): The existing `findingStability` gate already evaluates rolling average, MAD noise floor, and novelty ratio. The new `semanticNovelty` signal adds a sub-check:
+.opencode/skills/sk-deep-review/references/convergence.md:286:The gate passes only when both the existing churn-based checks AND the semantic stability checks agree. When a semantic check fails, the `legalStop.gateResults.findingStability` detail string includes the semantic signal values.
+.opencode/skills/sk-deep-review/references/convergence.md:317:| 2 | Rolling avg + novelty ratio | Two-signal vote, reweighted |
+.opencode/skills/sk-deep-review/references/convergence.md:334:| **P0** (Blocker) | 10.0 | Correctness failures, security vulnerabilities, spec contradictions |
+.opencode/skills/sk-deep-review/references/convergence.md:377:| **findingStability** | Rolling average, MAD noise floor, and novelty ratio must all indicate low-yield review churn | Block STOP, persist `blockedStop` |
+.opencode/skills/sk-deep-review/references/convergence.md:390:      detail: "Rolling average, MAD noise floor, and novelty ratio are all below stop thresholds."
+.opencode/skills/sk-deep-review/references/convergence.md:420:When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it returns `pass: false`, persist a first-class blocked-stop decision with `stopReason=blockedStop`, populate `legalStop.blockedBy` from the failing gates, copy the full `gateResults`, snapshot the replay inputs, and attach a `recoveryStrategy` describing the next review action before overriding the decision to CONTINUE.
+.opencode/skills/sk-deep-review/references/convergence.md:426:| `findingStability` | Revisit the noisiest recent dimension and reduce novelty by closing obvious follow-up loops before re-checking STOP. |
+.opencode/skills/sk-deep-review/references/convergence.md:429:| `evidenceDensity` | Re-read weakly supported findings and add concrete `file:line` citations before they count toward a stop decision. |
+.opencode/skills/sk-deep-review/references/convergence.md:434:Use this table when replaying old packets or translating older prose/docs into the shared stop contract.
+.opencode/skills/sk-deep-review/references/convergence.md:436:| Legacy label | New `stopReason` | Mapping note |
+.opencode/skills/sk-deep-review/references/convergence.md:503:| Traceability plateau | Required protocols remain partial while ratios stay `< 0.05` | **Protocol-first replay:** re-run the unresolved traceability protocol directly against the conflicting artifacts |
+.opencode/skills/sk-deep-review/references/convergence.md:530:    return { strategy: "protocol_first_replay", dimension: leastCovered }
+.opencode/skills/sk-deep-review/references/convergence.md:544:- protocol_first_replay: Re-run the incomplete traceability protocol against conflicting artifacts.
+.opencode/skills/sk-deep-review/references/convergence.md:608:legalStop:
+.opencode/skills/sk-deep-review/references/convergence.md:611:  replayInputs: [snapshot of ratios, coverage, and gate inputs]
+.opencode/skills/sk-deep-review/references/convergence.md:624:  "stopReason": "converged",
+.opencode/skills/sk-deep-review/references/convergence.md:625:  "legalStop": {
+.opencode/skills/sk-deep-review/references/convergence.md:628:      "findingStability": { "pass": true, "detail": "Rolling average, MAD noise floor, and novelty ratio all voted STOP." },
+.opencode/skills/sk-deep-review/references/convergence.md:634:    "replayInputs": {
+.opencode/skills/sk-deep-review/references/convergence.md:637:      "noveltyRatio": 0.03,
+.opencode/skills/sk-deep-review/references/convergence.md:656:    { "name": "noveltyRatio", "value": 0.03, "stop": true, "weight": 0.45 }
+.opencode/skills/sk-deep-review/references/convergence.md:721:The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
+.opencode/skills/sk-deep-review/references/convergence.md:736:- `stopReason` enum values and semantics
+.opencode/skills/sk-deep-review/references/convergence.md:737:- `legalStop` record structure and gate names
+.opencode/skills/sk-deep-review/references/loop_protocol.md:64:   - `resume`: config + state + strategy all exist and agree
+.opencode/skills/sk-deep-review/references/loop_protocol.md:106:6. **Write config**: `{spec_folder}/review/deep-review-config.json` with `mode: "review"`, lineage metadata (`sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`), and review-specific fields including target, target type, dimensions, protocol plan, and release-readiness state.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:154:| Inputs | `latestJSONLDelta`, `newIterationFile`, `priorReducedState` | The reducer replays only the newest JSONL delta plus the latest iteration artifact against the prior reduced state. |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:172:If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records five review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
+.opencode/skills/sk-deep-review/references/loop_protocol.md:196:   - Log event to JSONL: `{"type":"event","event":"userPaused","mode":"review","stopReason":"userPaused","reason":"sentinel file detected"}`
+.opencode/skills/sk-deep-review/references/loop_protocol.md:199:     Review paused. Delete review/.deep-review-pause to resume.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:203:3. On resume (file deleted and loop restarted):
+.opencode/skills/sk-deep-review/references/loop_protocol.md:204:   - Log event: `{"type":"event","event":"resumed","fromIteration":N}`
+.opencode/skills/sk-deep-review/references/loop_protocol.md:213:Generate a compact state summary (~200 tokens) for injection into the dispatch prompt:
+.opencode/skills/sk-deep-review/references/loop_protocol.md:281:- `evidence`: Array of file:line citations
+.opencode/skills/sk-deep-review/references/loop_protocol.md:314:| `evidenceRefs` | string[] | `file:line` or `file:range` citations (≥ 1) |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:365:| Traceability plateau | Required protocols remain partial while ratios stay `< 0.05` | **Protocol-first replay**: re-run the unresolved traceability protocol directly against the conflicting artifacts |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:380:    return { strategy: "protocol_first_replay" }
+.opencode/skills/sk-deep-review/references/loop_protocol.md:424:5. Compare the replayed decision and stop reason to the recorded synthesis event
+.opencode/skills/sk-deep-review/references/loop_protocol.md:426:Replay passes only when the recomputed decision, thresholds, and gate outcomes agree with the persisted result. If replay fails, log a warning in the audit appendix but proceed with synthesis.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:442:| 9 | Audit Appendix | Coverage, replay validation, convergence evidence |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:471:     "stopReason": "...",
+.opencode/skills/sk-deep-review/references/loop_protocol.md:507:<!-- ANCHOR:auto-resume-protocol -->
+.opencode/skills/sk-deep-review/references/loop_protocol.md:512:Enable review sessions to resume seamlessly from prior state when interrupted by context compaction, process termination, or intentional pause.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:522:5. **Log resume**: Append the canonical resume event to `deep-review-state.jsonl`. The reducer requires every field below:
+.opencode/skills/sk-deep-review/references/loop_protocol.md:524:   {"type":"event","event":"resumed","mode":"review","sessionId":"rvw-2026-03-24T10-00-00Z","parentSessionId":"rvw-2026-03-24T10-00-00Z","lineageMode":"resume","continuedFromRun":4,"generation":1,"archivedPath":null,"timestamp":"2026-03-24T14:05:00Z"}
+.opencode/skills/sk-deep-review/references/loop_protocol.md:530:The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:535:| `resume` | same | same | none | `resumed` (see example above) | operator wants to continue the current lineage boundary |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:536:| `restart` | fresh | `prior + 1` | prior `review/` tree moved under `review_archive/{timestamp}/` | `restarted` (same field set plus non-null `archivedPath`) | operator wants to clear the workspace and replay with a new angle |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:543:  "event": "resumed | restarted",
+.opencode/skills/sk-deep-review/references/loop_protocol.md:546:  "parentSessionId": "<session id of the prior lineage (equals sessionId on resume)>",
+.opencode/skills/sk-deep-review/references/loop_protocol.md:547:  "lineageMode": "resume | restart",
+.opencode/skills/sk-deep-review/references/loop_protocol.md:549:  "continuedFromRun": <number or null>,
+.opencode/skills/sk-deep-review/references/loop_protocol.md:555:Every field in the contract MUST be present on every persisted lifecycle event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:561:| Config + JSONL + strategy all exist and agree | `resume` | Continue from last iteration + 1 |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:563:| Partial files or contradictions | `invalid-state` | Halt for repair; do not guess |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:582:<!-- /ANCHOR:auto-resume-protocol -->
+.opencode/skills/sk-deep-review/references/loop_protocol.md:583:<!-- ANCHOR:pause-resume -->
+.opencode/skills/sk-deep-review/references/loop_protocol.md:613:- The auto-resume protocol (Section 6) detects the existing state
+.opencode/skills/sk-deep-review/references/loop_protocol.md:614:- A resumed event is logged to JSONL
+.opencode/skills/sk-deep-review/references/loop_protocol.md:630:<!-- /ANCHOR:pause-resume -->
+.opencode/skills/sk-deep-review/references/loop_protocol.md:646:[STUCK_RECOVERY] --> change granularity / protocol replay / escalate severity
+.opencode/skills/sk-deep-review/references/loop_protocol.md:654:    |-- sentinel removed --> [ITERATING] (resume)
+.opencode/skills/sk-deep-review/references/loop_protocol.md:656:[SYNTHESIZING] --> finding dedup, severity reconcile, replay validate, compile report
+.opencode/skills/sk-deep-research/references/loop_protocol.md:48:   - `resume`: config + state + strategy all exist and agree
+.opencode/skills/sk-deep-research/references/loop_protocol.md:83:5. Append the canonical resume event to `deep-research-state.jsonl` (all fields below are required by the reducer):
+.opencode/skills/sk-deep-research/references/loop_protocol.md:86:{"type":"event","event":"resumed","mode":"research","sessionId":"rsr-2026-03-18T10-00-00Z","parentSessionId":"rsr-2026-03-18T10-00-00Z","lineageMode":"resume","continuedFromRun":4,"generation":1,"timestamp":"2026-03-18T14:05:00Z"}
+.opencode/skills/sk-deep-research/references/loop_protocol.md:93:The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:98:| `resume` | same | same | none | `resumed` (see example above) | operator wants to continue the current lineage boundary |
+.opencode/skills/sk-deep-research/references/loop_protocol.md:99:| `restart` | fresh | `prior + 1` | prior `research/` tree moved under `research_archive/{timestamp}/` | `restarted` (same field set plus `archivedPath`) | operator wants to clear the workspace and replay with a new angle |
+.opencode/skills/sk-deep-research/references/loop_protocol.md:106:  "event": "resumed | restarted",
+.opencode/skills/sk-deep-research/references/loop_protocol.md:109:  "parentSessionId": "<session id of the prior lineage (equals sessionId on resume)>",
+.opencode/skills/sk-deep-research/references/loop_protocol.md:110:  "lineageMode": "resume | restart",
+.opencode/skills/sk-deep-research/references/loop_protocol.md:112:  "continuedFromRun": <number or null>,
+.opencode/skills/sk-deep-research/references/loop_protocol.md:118:Every field in the contract MUST be present on every persisted lifecycle event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:148:   - Persist the blocked legal-stop outcome: `{"type":"event","event":"blocked_stop","mode":"research","run":N,"blockedBy":["<gate>"],"gateResults":{"convergence":{"pass":true,"score":0.0},"keyQuestionCoverage":{"pass":false,"answered":X,"total":Y},"evidenceDensity":{"pass":false,"sources":N},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"<one-line hint>","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:153:If the legal-stop decision tree returns `blocked`, the workflow MUST append the `blocked_stop` JSONL event before continuing. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:161:   - Log event to JSONL: `{"type":"event","event":"userPaused","mode":"research","run":N,"stopReason":"userPaused","sentinelPath":"{spec_folder}/research/.deep-research-pause","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:164:     Research paused. Delete research/.deep-research-pause to resume.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:168:3. On resume (file deleted and loop restarted):
+.opencode/skills/sk-deep-research/references/loop_protocol.md:169:   - Log event: `{"type":"event","event":"resumed","fromIteration":N}`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:178:Generate a compact state summary (~200 tokens) for injection into the dispatch prompt:
+.opencode/skills/sk-deep-research/references/loop_protocol.md:287:3. **Resume**: On auto-resume, read the ideas file alongside JSONL and strategy.md to restore full context
+.opencode/skills/sk-deep-research/references/loop_protocol.md:424:The standard dispatch (Task tool) shares the parent session's token budget. In long research sessions (10+ iterations), this may cause context compression that degrades reasoning quality. Process-level isolation eliminates this risk.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:476:   - Add citations from iteration files
+.opencode/skills/sk-deep-research/references/loop_protocol.md:485:4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
+.opencode/skills/sk-deep-research/references/loop_protocol.md:487:6. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","totalIterations":N,"answeredCount":A,"totalQuestions":Q,"stopReason":"converged"}`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:600:1. **Classify session state**: Same as research mode (fresh, resume, completed-session, invalid-state)
+.opencode/skills/sk-deep-research/references/loop_protocol.md:774:9. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":N,"verdict":"PASS|CONDITIONAL|FAIL","activeP0":N,"activeP1":N,"activeP2":N,"dimensionCoverage":X,"stopReason":"..." }`
+.opencode/skills/sk-deep-research/references/convergence.md:21:#### `stopReason` enum
+.opencode/skills/sk-deep-research/references/convergence.md:33:#### `legalStop` record
+.opencode/skills/sk-deep-research/references/convergence.md:50:  replayInputs: {
+.opencode/skills/sk-deep-research/references/convergence.md:70:- `gateResults` is the replayable legal-stop bundle. Canonical research gates are `convergenceGate`, `coverageGate`, and `qualityGate`; the `qualityGate.checks` map carries the subordinate `sourceDiversity`, `focusAlignment`, and `singleWeakSourceDominance` results.
+.opencode/skills/sk-deep-research/references/convergence.md:71:- `replayInputs` snapshots the exact stop-decision inputs so the reducer and dashboards can replay the outcome from packet-local artifacts only.
+.opencode/skills/sk-deep-research/references/convergence.md:77:| Legacy label or phrase | New `stopReason` | Normalization note |
+.opencode/skills/sk-deep-research/references/convergence.md:80:| `novelty below threshold` | `converged` | Legacy prose alias for the rolling-average or composite stop path |
+.opencode/skills/sk-deep-research/references/convergence.md:93:Deep review uses the same `stopReason` enum and `legalStop` record, even though its convergence signals differ.
+.opencode/skills/sk-deep-research/references/convergence.md:113:      stopReason: "maxIterationsReached",
+.opencode/skills/sk-deep-research/references/convergence.md:122:      stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:135:      stopReason: "stuckRecovery",
+.opencode/skills/sk-deep-research/references/convergence.md:202:        stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:214:After composite convergence or full-question coverage nominates STOP, the loop MUST evaluate the full legal-stop bundle before STOP becomes final. STOP is never legal on novelty math alone. The replayable `legalStop.gateResults` bundle for deep research is:
+.opencode/skills/sk-deep-research/references/convergence.md:218:| Convergence Gate | The novelty score stays below `convergenceThreshold` for N consecutive evidence iterations | Block STOP, persist `blocked_stop`, continue |
+.opencode/skills/sk-deep-research/references/convergence.md:219:| Coverage Gate | Every key question has at least one evidence-backed answer | Block STOP, persist `blocked_stop`, continue |
+.opencode/skills/sk-deep-research/references/convergence.md:220:| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance all pass | Block STOP, persist `blocked_stop`, continue |
+.opencode/skills/sk-deep-research/references/convergence.md:235:    recoveryHint: "Run another evidence iteration if novelty has not stayed low long enough"
+.opencode/skills/sk-deep-research/references/convergence.md:272:  legalStop = {
+.opencode/skills/sk-deep-research/references/convergence.md:275:    replayInputs: buildReplayInputs(state, stopCandidate)
+.opencode/skills/sk-deep-research/references/convergence.md:281:      stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:282:      candidateStopReason: stopCandidate.stopReason,
+.opencode/skills/sk-deep-research/references/convergence.md:283:      legalStop
+.opencode/skills/sk-deep-research/references/convergence.md:288:    stopReason: "blockedStop",
+.opencode/skills/sk-deep-research/references/convergence.md:289:    candidateStopReason: stopCandidate.stopReason,
+.opencode/skills/sk-deep-research/references/convergence.md:290:    legalStop,
+.opencode/skills/sk-deep-research/references/convergence.md:291:    recoveryStrategy: chooseBlockedStopRecovery(legalStop, strategy)
+.opencode/skills/sk-deep-research/references/convergence.md:297:- **Convergence Gate**: Re-read the most recent N evidence iterations only. Every one of them must remain below the configured novelty threshold.
+.opencode/skills/sk-deep-research/references/convergence.md:300:- **Focus Alignment**: Compare current key questions against `config.originalKeyQuestions` (the snapshot of initial key questions populated at session init). Flag any answer outside the declared scope, or any significant drift where the current question set no longer resembles the original set. When `originalKeyQuestions` is absent (legacy packets), fall back to comparing against strategy.md's initialized question list.
+.opencode/skills/sk-deep-research/references/convergence.md:303:`qualityGate.checks` is the replayable quality bundle. Reducers and dashboards must be able to explain a quality pass or failure from packet-local artifacts only.
+.opencode/skills/sk-deep-research/references/convergence.md:307:1. Append a `stop_decision` snapshot with the attempted stop bundle.
+.opencode/skills/sk-deep-research/references/convergence.md:308:2. Append a first-class `blocked_stop` event with `stopReason: "blockedStop"`, `legalStop.blockedBy`, the full `legalStop.gateResults`, and a concrete `recoveryStrategy`.
+.opencode/skills/sk-deep-research/references/convergence.md:363:#### contradictionDensity (0.0-1.0)
+.opencode/skills/sk-deep-research/references/convergence.md:369:| 0.0 | No contradictions in the finding set |
+.opencode/skills/sk-deep-research/references/convergence.md:370:| 0.01-0.10 | Normal level of resolved contradictions |
+.opencode/skills/sk-deep-research/references/convergence.md:371:| 0.11-0.25 | Elevated contradictions; may need targeted reconciliation |
+.opencode/skills/sk-deep-research/references/convergence.md:372:| 0.26+ | High contradiction density; research may be stuck on conflicting sources |
+.opencode/skills/sk-deep-research/references/convergence.md:384:- `contradictionDensity <= 0.10` supports STOP: the finding set is internally consistent.
+.opencode/skills/sk-deep-research/references/convergence.md:385:- `contradictionDensity > 0.25` blocks STOP: unresolved contradictions suggest the research space is not yet stable. The legal-stop gate records this as a `qualityGate` sub-check failure.
+.opencode/skills/sk-deep-research/references/convergence.md:386:- The stuck recovery protocol (Section 4, Step 1.5) should use "Contradictory evidence" failure mode when `contradictionDensity > 0.25`.
+.opencode/skills/sk-deep-research/references/convergence.md:388:#### citationOverlap (0.0-1.0)
+.opencode/skills/sk-deep-research/references/convergence.md:390:Measures how much the current iteration's citations overlap with the existing citation graph. A high overlap means the iteration consulted mostly the same sources; a low overlap means new sources were discovered.
+.opencode/skills/sk-deep-research/references/convergence.md:408:- `citationOverlap >= 0.85` for 2+ consecutive iterations supports STOP: the source space is exhausted.
+.opencode/skills/sk-deep-research/references/convergence.md:409:- `citationOverlap < 0.30` prevents STOP: the iteration discovered substantially new sources that may yield fresh findings.
+.opencode/skills/sk-deep-research/references/convergence.md:419:   - `contradictionResolution`: `contradictionDensity <= 0.10`
+.opencode/skills/sk-deep-research/references/convergence.md:420:   - `sourceExhaustion`: `citationOverlap >= 0.85` for 2+ consecutive iterations OR `citationOverlap < 0.30` does not block
+.opencode/skills/sk-deep-research/references/convergence.md:422:The quality gate passes only when ALL sub-checks pass (existing + semantic). When a semantic sub-check fails, the `legalStop.gateResults.qualityGate.checks` map includes the failing semantic sub-check with its detail and recovery hint.
+.opencode/skills/sk-deep-research/references/convergence.md:426:The stop-decision event (`stop_decision` and `blocked_stop` JSONL records) includes which semantic signals supported or prevented STOP:
+.opencode/skills/sk-deep-research/references/convergence.md:434:    "contradictionDensity": { "value": 0.04, "supportsStop": true },
+.opencode/skills/sk-deep-research/references/convergence.md:435:    "citationOverlap": { "value": 0.91, "consecutiveHigh": 2, "supportsStop": true }
+.opencode/skills/sk-deep-research/references/convergence.md:457:Semantic convergence signals (`semanticNovelty`, `contradictionDensity`, `citationOverlap`) require at least 2 evidence iterations to produce meaningful values. They are omitted from legal-stop evaluation when insufficient data exists.
+.opencode/skills/sk-deep-research/references/convergence.md:468:4.6. **Blocked-stop persistence** (if any legal-stop gate fails, persist `blocked_stop` with recovery strategy and continue)
+.opencode/skills/sk-deep-research/references/convergence.md:631:| Contradictory evidence | Strategy shows conflicting findings on same question | "Isolate the contradiction. Find a tiebreaker source or document both positions with evidence quality" |
+.opencode/skills/sk-deep-research/references/convergence.md:891:Legacy label: [optional replay-only alias such as composite_converged]
+.opencode/skills/sk-deep-research/references/convergence.md:906:  contradictionDensity:   0.XX [SUPPORTS_STOP|PREVENTS_STOP]
+.opencode/skills/sk-deep-research/references/convergence.md:907:  citationOverlap:        0.XX (consecutive high: N) [SUPPORTS_STOP|PREVENTS_STOP|INSUFFICIENT_DATA]
+.opencode/skills/sk-deep-research/references/convergence.md:978:      stopReason: "maxIterationsReached",
+.opencode/skills/sk-deep-research/references/convergence.md:993:          stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:1003:      stopReason: "stuckRecovery",
+.opencode/skills/sk-deep-research/references/convergence.md:1052:          stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:1061:        stopReason: "blockedStop",
+.opencode/skills/sk-deep-research/references/convergence.md:1113:5. Compare the replayed decision and stop reason to the recorded synthesis event.
+.opencode/skills/sk-deep-research/references/convergence.md:1126:| Traceability plateau | Required protocols remain partial while ratios stay `< 0.05` | **Protocol-first replay:** re-run the unresolved traceability protocol directly against the conflicting artifacts |
+.opencode/skills/sk-deep-research/references/convergence.md:1140:    return { strategy: "protocol_first_replay" }
+.opencode/skills/sk-deep-research/references/convergence.md:1214:| CONTRADICTS | 0.8 | Consider lowering to 0.6 if contradiction edges produce false convergence signals |
+.opencode/skills/sk-deep-research/references/convergence.md:1215:| CITES | 1.0 | Neutral weight is correct for citation links |
+.opencode/skills/sk-deep-research/references/convergence.md:1241:The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
+.opencode/skills/sk-deep-research/references/convergence.md:1255:- `stopReason` enum values and semantics
+.opencode/skills/sk-deep-research/references/convergence.md:1256:- `legalStop` record structure
+.opencode/skills/sk-deep-research/references/state_format.md:60:    "continuedFromRun": null
+.opencode/skills/sk-deep-research/references/state_format.md:79:| lineage.lineageMode | string | Yes | "new" | `new`, `resume`, `restart`, `fork`, or `completed-continue` |
+.opencode/skills/sk-deep-research/references/state_format.md:81:| lineage.continuedFromRun | number or null | No | null | Run number where a resumed or reopened segment continues |
+.opencode/skills/sk-deep-research/references/state_format.md:130:{"type":"iteration","run":1,"status":"complete","focus":"Initial broad survey","findingsCount":5,"newInfoRatio":1.0,"keyQuestions":["What causes latency?","Where are bottlenecks?"],"answeredQuestions":["What causes latency?"],"timestamp":"2026-03-18T10:05:00Z","durationMs":45000}
+.opencode/skills/sk-deep-research/references/state_format.md:144:| durationMs | number | iteration only | Iteration execution time in milliseconds |
+.opencode/skills/sk-deep-research/references/state_format.md:145:| toolsUsed | string[] | No | iteration only | High-level tool names used during the iteration |
+.opencode/skills/sk-deep-research/references/state_format.md:146:| sourcesQueried | string[] | No | iteration only | URLs, file paths, or memory anchors consulted during the iteration |
+.opencode/skills/sk-deep-research/references/state_format.md:150:| noveltyJustification | string | No | Human-readable explanation of what newInfoRatio represents (see below) |
+.opencode/skills/sk-deep-research/references/state_format.md:177:{"type":"iteration","run":3,"status":"complete","focus":"Connection pooling","findingsCount":3,"newInfoRatio":0.4,"ruledOut":[{"approach":"HTTP/3 multiplexing","reason":"No server-side support in target environment","evidence":"docs.example.com/protocols#supported"}],"keyQuestions":["What causes latency?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":52000}
+.opencode/skills/sk-deep-research/references/state_format.md:190:The optional `noveltyJustification` field provides a human-readable breakdown of what the `newInfoRatio` represents:
+.opencode/skills/sk-deep-research/references/state_format.md:193:{"type":"iteration","run":3,"status":"complete","focus":"Reconnection strategies","findingsCount":4,"newInfoRatio":0.7,"noveltyJustification":"2 new findings on reconnection backoff, 1 refinement of prior keepalive finding","keyQuestions":["How to handle reconnection?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
+.opencode/skills/sk-deep-research/references/state_format.md:225:{"type":"iteration","run":4,"status":"complete","focus":"Reconnection strategies","findingsCount":3,"newInfoRatio":0.55,"graphEvents":[{"type":"question","id":"q-reconnect","label":"How should the client retry after a disconnect?"},{"type":"finding","id":"f-backoff","label":"Exponential backoff converges under jitter"},{"type":"edge","id":"e-answers-reconnect","relation":"ANSWERS","source":"f-backoff","target":"q-reconnect"}],"keyQuestions":["How should the client retry after a disconnect?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
+.opencode/skills/sk-deep-research/references/state_format.md:274:| resumed | workflow | active | Resume after a prior active session (same sessionId, no archive) | mode, sessionId, parentSessionId, lineageMode, continuedFromRun, generation, archivedPath (null), timestamp |
+.opencode/skills/sk-deep-research/references/state_format.md:275:| restarted | workflow | active | Archive the prior packet and start a new generation with a fresh sessionId | mode, sessionId, parentSessionId, lineageMode, continuedFromRun, generation, archivedPath, timestamp |
+.opencode/skills/sk-deep-research/references/state_format.md:279:| blocked_stop | workflow | active | Legal-stop candidate was blocked and the loop must continue | mode, run, blockedBy, gateResults, recoveryStrategy, timestamp, sessionId, generation |
+.opencode/skills/sk-deep-research/references/state_format.md:280:| userPaused | workflow | active | Pause sentinel detected and normalized to the frozen stop-reason enum | mode, run, stopReason, sentinelPath, timestamp, sessionId, generation |
+.opencode/skills/sk-deep-research/references/state_format.md:287:| stuckRecovery | workflow | active | Stuck recovery outcome normalized to the frozen stop-reason enum | mode, run, stopReason, fromIteration, outcome, timestamp, sessionId, generation |
+.opencode/skills/sk-deep-research/references/state_format.md:291:| synthesis_complete | workflow | active | Final synthesis finished | totalIterations, answeredCount, totalQuestions, stopReason, timestamp |
+.opencode/skills/sk-deep-research/references/state_format.md:307:{"type":"event","event":"graph_convergence","mode":"research","run":7,"decision":"STOP_BLOCKED","signals":{"questionCoverage":0.86,"claimVerificationRate":0.78,"contradictionDensity":0.04,"blendedScore":0.68},"blockers":[{"name":"sourceDiversity","severity":"high","detail":"Only 2 distinct corroborating sources cover the active claim cluster."}],"timestamp":"2026-04-11T11:55:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
+.opencode/skills/sk-deep-research/references/state_format.md:315:| run | number | Yes | 1-indexed loop iteration whose graph convergence vote was evaluated |
+.opencode/skills/sk-deep-research/references/state_format.md:318:| blockers | array | Yes | Blocking guards returned by the graph convergence tool; empty array when STOP is not blocked |
+.opencode/skills/sk-deep-research/references/state_format.md:330:4. If the inline vote says STOP but the latest graph decision is `STOP_BLOCKED`, the workflow must emit `blocked_stop` and continue with the recovery strategy instead of stopping.
+.opencode/skills/sk-deep-research/references/state_format.md:335:{"type":"event","event":"blocked_stop","mode":"research","run":7,"blockedBy":["keyQuestionCoverage","evidenceDensity"],"gateResults":{"convergence":{"pass":true,"score":0.72},"keyQuestionCoverage":{"pass":false,"answered":5,"total":7},"evidenceDensity":{"pass":false,"sources":2},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"Collect evidence for the remaining uncovered question cluster.","timestamp":"2026-04-11T12:00:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
+.opencode/skills/sk-deep-research/references/state_format.md:341:| event | string | Yes | Always `blocked_stop` |
+.opencode/skills/sk-deep-research/references/state_format.md:354:{"type":"event","event":"userPaused","mode":"research","run":7,"stopReason":"userPaused","sentinelPath":"specs/042/research/.deep-research-pause","timestamp":"2026-04-11T12:05:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
+.opencode/skills/sk-deep-research/references/state_format.md:363:| stopReason | string | Yes | Always `userPaused` |
+.opencode/skills/sk-deep-research/references/state_format.md:372:{"type":"event","event":"stuckRecovery","mode":"research","run":7,"stopReason":"stuckRecovery","fromIteration":7,"outcome":"recovered","timestamp":"2026-04-11T12:10:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
+.opencode/skills/sk-deep-research/references/state_format.md:381:| stopReason | string | Yes | Always `stuckRecovery` |
+.opencode/skills/sk-deep-research/references/state_format.md:390:Raw `paused` and `stuck_recovery` labels are legacy-only aliases. The live workflow MUST rewrite them at emission time to `userPaused` and `stuckRecovery` respectively, and MUST persist the normalized `stopReason` enum value on the JSONL line.
+.opencode/skills/sk-deep-research/references/state_format.md:402:| `continuedFromRun` | Last completed run reused as the continuation boundary |
+.opencode/skills/sk-deep-research/references/state_format.md:472:| blockedStopHistory | array | One entry per `blocked_stop` event promoted under REQ-014. Reducer preserves append order from the JSONL and exposes `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp` for operator replay. |
+.opencode/skills/sk-deep-research/references/state_format.md:473:| graphConvergenceScore | number | Latest graph convergence blended score surfaced under REQ-013. Derived from the most recent `graph_convergence` event. |
+.opencode/skills/sk-deep-research/references/state_format.md:474:| graphDecision | string or null | Latest graph convergence verdict: `CONTINUE`, `STOP_ALLOWED`, `STOP_BLOCKED`, or null when unavailable. |
+.opencode/skills/sk-deep-research/references/state_format.md:475:| graphBlockers | array | Latest blocking guard bundle returned by the graph convergence tool. Empty array when no blockers were reported. |
+.opencode/skills/sk-deep-research/references/state_format.md:532:**Limitations**: Reconstructed state lacks `durationMs`, exact `timestamp`, and `findingsCount`. The `status: "reconstructed"` flag distinguishes recovered records from originals. The convergence algorithm treats reconstructed records identically to complete records for signal computation.
+.opencode/skills/sk-deep-research/references/state_format.md:587:When the most recent loop event is a `blocked_stop` (its timestamp is newer than the latest iteration record), the reducer may drive the `next-focus` anchor directly from that event instead of the last iteration file. In that case the anchor must surface:
+.opencode/skills/sk-deep-research/references/state_format.md:624:1. [Finding with source citation]
+.opencode/skills/sk-deep-research/references/state_format.md:625:2. [Finding with source citation]
+.opencode/skills/sk-deep-research/references/state_format.md:658:- Mark machine-owned sections explicitly so `completed-continue` can snapshot prior synthesis before reopening
+.opencode/skills/sk-deep-research/references/state_format.md:688:### Blocked-stop and graph convergence surfaces
+.opencode/skills/sk-deep-research/references/state_format.md:692:- **Blocked Stops**: Renders `blockedStopHistory` as an ordered replay log. Each entry shows the blocked iteration, the vetoing gates, the recovery strategy, a brief gate-result summary, and the ISO-8601 event timestamp so operators can trace why STOP was denied under REQ-014.
+.opencode/skills/sk-deep-research/references/state_format.md:792:  "durationMs": 52000,
+.opencode/skills/sk-deep-research/references/state_format.md:793:  "noveltyJustification": "1 new P1 contract drift, 1 new P2 template inconsistency, 2 advisory refinements"
+.opencode/skills/sk-deep-research/references/state_format.md:807:| noveltyJustification | string | No | Human-readable breakdown of what was found |
+.opencode/skills/sk-deep-research/references/state_format.md:824:  "stopReason": "composite_converged",
+.opencode/skills/sk-deep-research/references/state_format.md:950:| 9 | Audit Appendix | Coverage, convergence replay, and supporting audit detail |
 
 codex
 I’ve moved from inventory into mismatch hunting. The main questions now are whether the reducers actually surface the runtime-truth artifacts the Phase 001 spec says are implemented, and whether the reference docs describe the reducer’s real behavior or a broader intended design that never landed.
 exec
-/bin/zsh -lc 'rg -n "claim[- ]verification|ledger|journal|promotion checkpoint|coordination board|council|completed-continue|fork" .opencode/skill/sk-deep-research/scripts/reduce-state.cjs .opencode/skill/sk-deep-review/scripts/reduce-state.cjs .opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs .opencode/skill/sk-deep-review/scripts/runtime-capabilities.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "claim[- ]verification|ledger|journal|promotion checkpoint|coordination board|council|completed-continue|fork" .opencode/skills/sk-deep-research/scripts/reduce-state.cjs .opencode/skills/sk-deep-review/scripts/reduce-state.cjs .opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs .opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc "rg -n \"claim[- ]verification|ledger|journal|legalStop|stopReason|continuedFromRun|completed-continue|fork|snapshot|compaction|observability|token|durationMs|toolsUsed|sourcesQueried|coverage depth|hotspot|inventory|promotion checkpoint|coordination board|council\" .opencode/skill/sk-deep-research/references/state_format.md .opencode/skill/sk-deep-research/references/loop_protocol.md .opencode/skill/sk-deep-research/references/convergence.md .opencode/skill/sk-deep-review/references/state_format.md .opencode/skill/sk-deep-review/references/loop_protocol.md .opencode/skill/sk-deep-review/references/convergence.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"claim[- ]verification|ledger|journal|legalStop|stopReason|continuedFromRun|completed-continue|fork|snapshot|compaction|observability|token|durationMs|toolsUsed|sourcesQueried|coverage depth|hotspot|inventory|promotion checkpoint|coordination board|council\" .opencode/skills/sk-deep-research/references/state_format.md .opencode/skills/sk-deep-research/references/loop_protocol.md .opencode/skills/sk-deep-research/references/convergence.md .opencode/skills/sk-deep-review/references/state_format.md .opencode/skills/sk-deep-review/references/loop_protocol.md .opencode/skills/sk-deep-review/references/convergence.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-review/references/state_format.md:63:  "continuedFromRun": null,
-.opencode/skill/sk-deep-review/references/state_format.md:114:| lineageMode | string | `"new"` | `new`, `resume`, `restart`. `fork` and `completed-continue` are deferred and not emitted by the current runtime |
-.opencode/skill/sk-deep-review/references/state_format.md:116:| continuedFromRun | number \| null | `null` | Count of completed iteration records at the lifecycle boundary (set on `resume` and `restart`) |
-.opencode/skill/sk-deep-review/references/state_format.md:168:{"type":"config","mode":"review","topic":"...","reviewTarget":"...","sessionId":"rvw-...","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"createdAt":"2026-03-24T14:00:00Z","specFolder":"..."}
-.opencode/skill/sk-deep-review/references/state_format.md:183:  "continuedFromRun": null,
-.opencode/skill/sk-deep-review/references/state_format.md:188:  "timestamp": "2026-03-24T14:30:00Z", "durationMs": 52000
-.opencode/skill/sk-deep-review/references/state_format.md:192:**Required fields:** `type`, `mode`, `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`
-.opencode/skill/sk-deep-review/references/state_format.md:194:**Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`
-.opencode/skill/sk-deep-review/references/state_format.md:221:The optional `graphEvents` array records coverage graph mutations emitted by a review iteration. The MCP coverage graph handlers (`mcp_server/handlers/coverage-graph/upsert.ts`) consume these events and persist them into `deep-loop-graph.sqlite`, where they become the source of truth for graph-assisted convergence, hotspot saturation, and blocked-stop evidence.
-.opencode/skill/sk-deep-review/references/state_format.md:238:    { "type": "finding", "id": "f-001", "label": "Missing CSRF token check on session POST" },
-.opencode/skill/sk-deep-review/references/state_format.md:245:  "durationMs": 51000
-.opencode/skill/sk-deep-review/references/state_format.md:259:| metadata | object | No | Optional free-form metadata persisted alongside the row (e.g. `{ "hotspot_score": 2 }`) |
-.opencode/skill/sk-deep-review/references/state_format.md:281:  "dimensionCoverage": 1.0, "stopReason": "composite_converged",
-.opencode/skill/sk-deep-review/references/state_format.md:286:**Required:** `type`, `event`, `mode`, `totalIterations`, `verdict`, `activeP0`, `activeP1`, `activeP2`, `dimensionCoverage`, `stopReason`, `timestamp`
-.opencode/skill/sk-deep-review/references/state_format.md:308:    "hotspotSaturationGate": { "pass": true }
-.opencode/skill/sk-deep-review/references/state_format.md:335:    "hotspotSaturation": 0.75
-.opencode/skill/sk-deep-review/references/state_format.md:363:  "stopReason": "userPaused",
-.opencode/skill/sk-deep-review/references/state_format.md:376:  "stopReason": "stuckRecovery",
-.opencode/skill/sk-deep-review/references/convergence.md:23:Convergence is checked **after** each iteration completes and **before** the next iteration is dispatched. The check consumes the full JSONL state history and the current dimension coverage snapshot.
-.opencode/skill/sk-deep-review/references/convergence.md:44:Every terminal stop and every blocked-stop vote MUST emit the shared stop contract from REQ-001: a named `stopReason` enum plus — when STOP is vetoed — a `blocked_stop` event written to `deep-review-state.jsonl`. There is no nested `legalStop` wrapper on the persisted path; earlier drafts of this document implied one, and that drift was the source of F009 in the 042 closing audit.
-.opencode/skill/sk-deep-review/references/convergence.md:46:#### stopReason Enum
-.opencode/skill/sk-deep-review/references/convergence.md:48:| `stopReason` | Meaning |
-.opencode/skill/sk-deep-review/references/convergence.md:78:    "hotspotSaturationGate": { "pass": true },
-.opencode/skill/sk-deep-review/references/convergence.md:89:- `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, and `claimAdjudicationGate`. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, activeP0, avgEvidencePerFinding, activeP0P1). The reducer reads these verbatim and does not coerce shapes.
-.opencode/skill/sk-deep-review/references/convergence.md:101:5. **Legal-stop gate bundle** -- review-specific stop gates; if a stop vote fails any gate, persist `stopReason=blockedStop` and continue.
-.opencode/skill/sk-deep-review/references/convergence.md:116:  return { action: "STOP", stopReason: "maxIterationsReached" }
-.opencode/skill/sk-deep-review/references/convergence.md:127:      return { action: "STOP", stopReason: "converged" }
-.opencode/skill/sk-deep-review/references/convergence.md:130:Triggers when all 4 dimensions (correctness, security, traceability, maintainability) are covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 5-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
-.opencode/skill/sk-deep-review/references/convergence.md:161:The recovery entry uses `stopReason=stuckRecovery` while the loop is in recovery. If recovery later terminates the run, the terminal record keeps the same shared enum value instead of minting a review-only label.
-.opencode/skill/sk-deep-review/references/convergence.md:286:The gate passes only when both the existing churn-based checks AND the semantic stability checks agree. When a semantic check fails, the `legalStop.gateResults.findingStability` detail string includes the semantic signal values.
-.opencode/skill/sk-deep-review/references/convergence.md:381:| **hotspotSaturation** | Review hotspots must be revisited enough times to satisfy the saturation heuristic | Block STOP, persist `blockedStop` |
-.opencode/skill/sk-deep-review/references/convergence.md:406:    hotspotSaturation: {
-.opencode/skill/sk-deep-review/references/convergence.md:407:      pass: computeHotspotSaturation(state.hotspots) >= config.hotspotSaturationThreshold,
-.opencode/skill/sk-deep-review/references/convergence.md:408:      detail: "Priority hotspots received enough revisits to satisfy saturation."
-.opencode/skill/sk-deep-review/references/convergence.md:420:When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it returns `pass: false`, persist a first-class blocked-stop decision with `stopReason=blockedStop`, populate `legalStop.blockedBy` from the failing gates, copy the full `gateResults`, snapshot the replay inputs, and attach a `recoveryStrategy` describing the next review action before overriding the decision to CONTINUE.
-.opencode/skill/sk-deep-review/references/convergence.md:430:| `hotspotSaturation` | Revisit undersampled hotspots or adjacent call sites until the saturation heuristic passes. |
-.opencode/skill/sk-deep-review/references/convergence.md:436:| Legacy label | New `stopReason` | Mapping note |
-.opencode/skill/sk-deep-review/references/convergence.md:601:  hotspotSaturation: [PASS | FAIL]
-.opencode/skill/sk-deep-review/references/convergence.md:608:legalStop:
-.opencode/skill/sk-deep-review/references/convergence.md:611:  replayInputs: [snapshot of ratios, coverage, and gate inputs]
-.opencode/skill/sk-deep-review/references/convergence.md:624:  "stopReason": "converged",
-.opencode/skill/sk-deep-review/references/convergence.md:625:  "legalStop": {
-.opencode/skill/sk-deep-review/references/convergence.md:632:      "hotspotSaturation": { "pass": true, "detail": "Priority hotspots were revisited enough times to satisfy saturation." }
-.opencode/skill/sk-deep-review/references/convergence.md:639:      "hotspotCoverage": { "saturated": 3, "required": 3 },
-.opencode/skill/sk-deep-review/references/convergence.md:736:- `stopReason` enum values and semantics
-.opencode/skill/sk-deep-review/references/convergence.md:737:- `legalStop` record structure and gate names
-.opencode/skill/sk-deep-review/references/loop_protocol.md:106:6. **Write config**: `{spec_folder}/review/deep-review-config.json` with `mode: "review"`, lineage metadata (`sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`), and review-specific fields including target, target type, dimensions, protocol plan, and release-readiness state.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:172:If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records five review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
-.opencode/skill/sk-deep-review/references/loop_protocol.md:196:   - Log event to JSONL: `{"type":"event","event":"userPaused","mode":"review","stopReason":"userPaused","reason":"sentinel file detected"}`
-.opencode/skill/sk-deep-review/references/loop_protocol.md:213:Generate a compact state summary (~200 tokens) for injection into the dispatch prompt:
-.opencode/skill/sk-deep-review/references/loop_protocol.md:471:     "stopReason": "...",
-.opencode/skill/sk-deep-review/references/loop_protocol.md:512:Enable review sessions to resume seamlessly from prior state when interrupted by context compaction, process termination, or intentional pause.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:524:   {"type":"event","event":"resumed","mode":"review","sessionId":"rvw-2026-03-24T10-00-00Z","parentSessionId":"rvw-2026-03-24T10-00-00Z","lineageMode":"resume","continuedFromRun":4,"generation":1,"archivedPath":null,"timestamp":"2026-03-24T14:05:00Z"}
-.opencode/skill/sk-deep-review/references/loop_protocol.md:530:The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:549:  "continuedFromRun": <number or null>,
-.opencode/skill/sk-deep-review/references/loop_protocol.md:555:Every field in the contract MUST be present on every persisted lifecycle event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:86:{"type":"event","event":"resumed","mode":"research","sessionId":"rsr-2026-03-18T10-00-00Z","parentSessionId":"rsr-2026-03-18T10-00-00Z","lineageMode":"resume","continuedFromRun":4,"generation":1,"timestamp":"2026-03-18T14:05:00Z"}
-.opencode/skill/sk-deep-research/references/loop_protocol.md:93:The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:112:  "continuedFromRun": <number or null>,
-.opencode/skill/sk-deep-research/references/loop_protocol.md:118:Every field in the contract MUST be present on every persisted lifecycle event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:148:   - Persist the blocked legal-stop outcome: `{"type":"event","event":"blocked_stop","mode":"research","run":N,"blockedBy":["<gate>"],"gateResults":{"convergence":{"pass":true,"score":0.0},"keyQuestionCoverage":{"pass":false,"answered":X,"total":Y},"evidenceDensity":{"pass":false,"sources":N},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"<one-line hint>","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:161:   - Log event to JSONL: `{"type":"event","event":"userPaused","mode":"research","run":N,"stopReason":"userPaused","sentinelPath":"{spec_folder}/research/.deep-research-pause","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:178:Generate a compact state summary (~200 tokens) for injection into the dispatch prompt:
-.opencode/skill/sk-deep-research/references/loop_protocol.md:424:The standard dispatch (Task tool) shares the parent session's token budget. In long research sessions (10+ iterations), this may cause context compression that degrades reasoning quality. Process-level isolation eliminates this risk.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:485:4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
-.opencode/skill/sk-deep-research/references/loop_protocol.md:487:6. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","totalIterations":N,"answeredCount":A,"totalQuestions":Q,"stopReason":"converged"}`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:774:9. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":N,"verdict":"PASS|CONDITIONAL|FAIL","activeP0":N,"activeP1":N,"activeP2":N,"dimensionCoverage":X,"stopReason":"..." }`
-.opencode/skill/sk-deep-research/references/state_format.md:60:    "continuedFromRun": null
-.opencode/skill/sk-deep-research/references/state_format.md:78:| lineage.parentSessionId | string or null | Yes | null | Parent lineage when restarting, forking, or reopening |
-.opencode/skill/sk-deep-research/references/state_format.md:79:| lineage.lineageMode | string | Yes | "new" | `new`, `resume`, `restart`, `fork`, or `completed-continue` |
-.opencode/skill/sk-deep-research/references/state_format.md:81:| lineage.continuedFromRun | number or null | No | null | Run number where a resumed or reopened segment continues |
-.opencode/skill/sk-deep-research/references/state_format.md:130:{"type":"iteration","run":1,"status":"complete","focus":"Initial broad survey","findingsCount":5,"newInfoRatio":1.0,"keyQuestions":["What causes latency?","Where are bottlenecks?"],"answeredQuestions":["What causes latency?"],"timestamp":"2026-03-18T10:05:00Z","durationMs":45000}
-.opencode/skill/sk-deep-research/references/state_format.md:144:| durationMs | number | iteration only | Iteration execution time in milliseconds |
-.opencode/skill/sk-deep-research/references/state_format.md:145:| toolsUsed | string[] | No | iteration only | High-level tool names used during the iteration |
-.opencode/skill/sk-deep-research/references/state_format.md:146:| sourcesQueried | string[] | No | iteration only | URLs, file paths, or memory anchors consulted during the iteration |
-.opencode/skill/sk-deep-research/references/state_format.md:177:{"type":"iteration","run":3,"status":"complete","focus":"Connection pooling","findingsCount":3,"newInfoRatio":0.4,"ruledOut":[{"approach":"HTTP/3 multiplexing","reason":"No server-side support in target environment","evidence":"docs.example.com/protocols#supported"}],"keyQuestions":["What causes latency?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":52000}
-.opencode/skill/sk-deep-research/references/state_format.md:193:{"type":"iteration","run":3,"status":"complete","focus":"Reconnection strategies","findingsCount":4,"newInfoRatio":0.7,"noveltyJustification":"2 new findings on reconnection backoff, 1 refinement of prior keepalive finding","keyQuestions":["How to handle reconnection?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
-.opencode/skill/sk-deep-research/references/state_format.md:225:{"type":"iteration","run":4,"status":"complete","focus":"Reconnection strategies","findingsCount":3,"newInfoRatio":0.55,"graphEvents":[{"type":"question","id":"q-reconnect","label":"How should the client retry after a disconnect?"},{"type":"finding","id":"f-backoff","label":"Exponential backoff converges under jitter"},{"type":"edge","id":"e-answers-reconnect","relation":"ANSWERS","source":"f-backoff","target":"q-reconnect"}],"keyQuestions":["How should the client retry after a disconnect?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
-.opencode/skill/sk-deep-research/references/state_format.md:274:| resumed | workflow | active | Resume after a prior active session (same sessionId, no archive) | mode, sessionId, parentSessionId, lineageMode, continuedFromRun, generation, archivedPath (null), timestamp |
-.opencode/skill/sk-deep-research/references/state_format.md:275:| restarted | workflow | active | Archive the prior packet and start a new generation with a fresh sessionId | mode, sessionId, parentSessionId, lineageMode, continuedFromRun, generation, archivedPath, timestamp |
-.opencode/skill/sk-deep-research/references/state_format.md:276:| forked | workflow | deferred | Reserved for a future lineage feature; not emitted by the current runtime | — |
-.opencode/skill/sk-deep-research/references/state_format.md:280:| userPaused | workflow | active | Pause sentinel detected and normalized to the frozen stop-reason enum | mode, run, stopReason, sentinelPath, timestamp, sessionId, generation |
-.opencode/skill/sk-deep-research/references/state_format.md:287:| stuckRecovery | workflow | active | Stuck recovery outcome normalized to the frozen stop-reason enum | mode, run, stopReason, fromIteration, outcome, timestamp, sessionId, generation |
-.opencode/skill/sk-deep-research/references/state_format.md:291:| synthesis_complete | workflow | active | Final synthesis finished | totalIterations, answeredCount, totalQuestions, stopReason, timestamp |
-.opencode/skill/sk-deep-research/references/state_format.md:335:{"type":"event","event":"blocked_stop","mode":"research","run":7,"blockedBy":["keyQuestionCoverage","evidenceDensity"],"gateResults":{"convergence":{"pass":true,"score":0.72},"keyQuestionCoverage":{"pass":false,"answered":5,"total":7},"evidenceDensity":{"pass":false,"sources":2},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"Collect evidence for the remaining uncovered question cluster.","timestamp":"2026-04-11T12:00:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
-.opencode/skill/sk-deep-research/references/state_format.md:345:| gateResults | object | Yes | Replayable gate bundle with `convergence`, `keyQuestionCoverage`, `evidenceDensity`, and `hotspotSaturation` results |
-.opencode/skill/sk-deep-research/references/state_format.md:354:{"type":"event","event":"userPaused","mode":"research","run":7,"stopReason":"userPaused","sentinelPath":"specs/042/research/.deep-research-pause","timestamp":"2026-04-11T12:05:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
-.opencode/skill/sk-deep-research/references/state_format.md:363:| stopReason | string | Yes | Always `userPaused` |
-.opencode/skill/sk-deep-research/references/state_format.md:372:{"type":"event","event":"stuckRecovery","mode":"research","run":7,"stopReason":"stuckRecovery","fromIteration":7,"outcome":"recovered","timestamp":"2026-04-11T12:10:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
-.opencode/skill/sk-deep-research/references/state_format.md:381:| stopReason | string | Yes | Always `stuckRecovery` |
-.opencode/skill/sk-deep-research/references/state_format.md:390:Raw `paused` and `stuck_recovery` labels are legacy-only aliases. The live workflow MUST rewrite them at emission time to `userPaused` and `stuckRecovery` respectively, and MUST persist the normalized `stopReason` enum value on the JSONL line.
-.opencode/skill/sk-deep-research/references/state_format.md:402:| `continuedFromRun` | Last completed run reused as the continuation boundary |
-.opencode/skill/sk-deep-research/references/state_format.md:438:        "hotspotSaturation": { "pass": true }
-.opencode/skill/sk-deep-research/references/state_format.md:532:**Limitations**: Reconstructed state lacks `durationMs`, exact `timestamp`, and `findingsCount`. The `status: "reconstructed"` flag distinguishes recovered records from originals. The convergence algorithm treats reconstructed records identically to complete records for signal computation.
-.opencode/skill/sk-deep-research/references/state_format.md:658:- Mark machine-owned sections explicitly so `completed-continue` can snapshot prior synthesis before reopening
-.opencode/skill/sk-deep-research/references/state_format.md:792:  "durationMs": 52000,
-.opencode/skill/sk-deep-research/references/state_format.md:824:  "stopReason": "composite_converged",
-.opencode/skill/sk-deep-research/references/convergence.md:21:#### `stopReason` enum
-.opencode/skill/sk-deep-research/references/convergence.md:33:#### `legalStop` record
-.opencode/skill/sk-deep-research/references/convergence.md:71:- `replayInputs` snapshots the exact stop-decision inputs so the reducer and dashboards can replay the outcome from packet-local artifacts only.
-.opencode/skill/sk-deep-research/references/convergence.md:77:| Legacy label or phrase | New `stopReason` | Normalization note |
-.opencode/skill/sk-deep-research/references/convergence.md:93:Deep review uses the same `stopReason` enum and `legalStop` record, even though its convergence signals differ.
-.opencode/skill/sk-deep-research/references/convergence.md:113:      stopReason: "maxIterationsReached",
-.opencode/skill/sk-deep-research/references/convergence.md:122:      stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:135:      stopReason: "stuckRecovery",
-.opencode/skill/sk-deep-research/references/convergence.md:202:        stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:214:After composite convergence or full-question coverage nominates STOP, the loop MUST evaluate the full legal-stop bundle before STOP becomes final. STOP is never legal on novelty math alone. The replayable `legalStop.gateResults` bundle for deep research is:
-.opencode/skill/sk-deep-research/references/convergence.md:272:  legalStop = {
-.opencode/skill/sk-deep-research/references/convergence.md:281:      stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:282:      candidateStopReason: stopCandidate.stopReason,
-.opencode/skill/sk-deep-research/references/convergence.md:283:      legalStop
-.opencode/skill/sk-deep-research/references/convergence.md:288:    stopReason: "blockedStop",
-.opencode/skill/sk-deep-research/references/convergence.md:289:    candidateStopReason: stopCandidate.stopReason,
-.opencode/skill/sk-deep-research/references/convergence.md:290:    legalStop,
-.opencode/skill/sk-deep-research/references/convergence.md:291:    recoveryStrategy: chooseBlockedStopRecovery(legalStop, strategy)
-.opencode/skill/sk-deep-research/references/convergence.md:300:- **Focus Alignment**: Compare current key questions against `config.originalKeyQuestions` (the snapshot of initial key questions populated at session init). Flag any answer outside the declared scope, or any significant drift where the current question set no longer resembles the original set. When `originalKeyQuestions` is absent (legacy packets), fall back to comparing against strategy.md's initialized question list.
-.opencode/skill/sk-deep-research/references/convergence.md:307:1. Append a `stop_decision` snapshot with the attempted stop bundle.
-.opencode/skill/sk-deep-research/references/convergence.md:308:2. Append a first-class `blocked_stop` event with `stopReason: "blockedStop"`, `legalStop.blockedBy`, the full `legalStop.gateResults`, and a concrete `recoveryStrategy`.
-.opencode/skill/sk-deep-research/references/convergence.md:422:The quality gate passes only when ALL sub-checks pass (existing + semantic). When a semantic sub-check fails, the `legalStop.gateResults.qualityGate.checks` map includes the failing semantic sub-check with its detail and recovery hint.
-.opencode/skill/sk-deep-research/references/convergence.md:978:      stopReason: "maxIterationsReached",
-.opencode/skill/sk-deep-research/references/convergence.md:993:          stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:1003:      stopReason: "stuckRecovery",
-.opencode/skill/sk-deep-research/references/convergence.md:1052:          stopReason: "converged",
-.opencode/skill/sk-deep-research/references/convergence.md:1061:        stopReason: "blockedStop",
-.opencode/skill/sk-deep-research/references/convergence.md:1255:- `stopReason` enum values and semantics
-.opencode/skill/sk-deep-research/references/convergence.md:1256:- `legalStop` record structure
+.opencode/skills/sk-deep-review/references/state_format.md:63:  "continuedFromRun": null,
+.opencode/skills/sk-deep-review/references/state_format.md:114:| lineageMode | string | `"new"` | `new`, `resume`, `restart`. `fork` and `completed-continue` are deferred and not emitted by the current runtime |
+.opencode/skills/sk-deep-review/references/state_format.md:116:| continuedFromRun | number \| null | `null` | Count of completed iteration records at the lifecycle boundary (set on `resume` and `restart`) |
+.opencode/skills/sk-deep-review/references/state_format.md:168:{"type":"config","mode":"review","topic":"...","reviewTarget":"...","sessionId":"rvw-...","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"createdAt":"2026-03-24T14:00:00Z","specFolder":"..."}
+.opencode/skills/sk-deep-review/references/state_format.md:183:  "continuedFromRun": null,
+.opencode/skills/sk-deep-review/references/state_format.md:188:  "timestamp": "2026-03-24T14:30:00Z", "durationMs": 52000
+.opencode/skills/sk-deep-review/references/state_format.md:192:**Required fields:** `type`, `mode`, `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`
+.opencode/skills/sk-deep-review/references/state_format.md:194:**Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`
+.opencode/skills/sk-deep-review/references/state_format.md:221:The optional `graphEvents` array records coverage graph mutations emitted by a review iteration. The MCP coverage graph handlers (`mcp_server/handlers/coverage-graph/upsert.ts`) consume these events and persist them into `deep-loop-graph.sqlite`, where they become the source of truth for graph-assisted convergence, hotspot saturation, and blocked-stop evidence.
+.opencode/skills/sk-deep-review/references/state_format.md:238:    { "type": "finding", "id": "f-001", "label": "Missing CSRF token check on session POST" },
+.opencode/skills/sk-deep-review/references/state_format.md:245:  "durationMs": 51000
+.opencode/skills/sk-deep-review/references/state_format.md:259:| metadata | object | No | Optional free-form metadata persisted alongside the row (e.g. `{ "hotspot_score": 2 }`) |
+.opencode/skills/sk-deep-review/references/state_format.md:281:  "dimensionCoverage": 1.0, "stopReason": "composite_converged",
+.opencode/skills/sk-deep-review/references/state_format.md:286:**Required:** `type`, `event`, `mode`, `totalIterations`, `verdict`, `activeP0`, `activeP1`, `activeP2`, `dimensionCoverage`, `stopReason`, `timestamp`
+.opencode/skills/sk-deep-review/references/state_format.md:308:    "hotspotSaturationGate": { "pass": true }
+.opencode/skills/sk-deep-review/references/state_format.md:335:    "hotspotSaturation": 0.75
+.opencode/skills/sk-deep-review/references/state_format.md:363:  "stopReason": "userPaused",
+.opencode/skills/sk-deep-review/references/state_format.md:376:  "stopReason": "stuckRecovery",
+.opencode/skills/sk-deep-review/references/convergence.md:23:Convergence is checked **after** each iteration completes and **before** the next iteration is dispatched. The check consumes the full JSONL state history and the current dimension coverage snapshot.
+.opencode/skills/sk-deep-review/references/convergence.md:44:Every terminal stop and every blocked-stop vote MUST emit the shared stop contract from REQ-001: a named `stopReason` enum plus — when STOP is vetoed — a `blocked_stop` event written to `deep-review-state.jsonl`. There is no nested `legalStop` wrapper on the persisted path; earlier drafts of this document implied one, and that drift was the source of F009 in the 042 closing audit.
+.opencode/skills/sk-deep-review/references/convergence.md:46:#### stopReason Enum
+.opencode/skills/sk-deep-review/references/convergence.md:48:| `stopReason` | Meaning |
+.opencode/skills/sk-deep-review/references/convergence.md:78:    "hotspotSaturationGate": { "pass": true },
+.opencode/skills/sk-deep-review/references/convergence.md:89:- `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, and `claimAdjudicationGate`. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, activeP0, avgEvidencePerFinding, activeP0P1). The reducer reads these verbatim and does not coerce shapes.
+.opencode/skills/sk-deep-review/references/convergence.md:101:5. **Legal-stop gate bundle** -- review-specific stop gates; if a stop vote fails any gate, persist `stopReason=blockedStop` and continue.
+.opencode/skills/sk-deep-review/references/convergence.md:116:  return { action: "STOP", stopReason: "maxIterationsReached" }
+.opencode/skills/sk-deep-review/references/convergence.md:127:      return { action: "STOP", stopReason: "converged" }
+.opencode/skills/sk-deep-review/references/convergence.md:130:Triggers when all 4 dimensions (correctness, security, traceability, maintainability) are covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 5-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
+.opencode/skills/sk-deep-review/references/convergence.md:161:The recovery entry uses `stopReason=stuckRecovery` while the loop is in recovery. If recovery later terminates the run, the terminal record keeps the same shared enum value instead of minting a review-only label.
+.opencode/skills/sk-deep-review/references/convergence.md:286:The gate passes only when both the existing churn-based checks AND the semantic stability checks agree. When a semantic check fails, the `legalStop.gateResults.findingStability` detail string includes the semantic signal values.
+.opencode/skills/sk-deep-review/references/convergence.md:381:| **hotspotSaturation** | Review hotspots must be revisited enough times to satisfy the saturation heuristic | Block STOP, persist `blockedStop` |
+.opencode/skills/sk-deep-review/references/convergence.md:406:    hotspotSaturation: {
+.opencode/skills/sk-deep-review/references/convergence.md:407:      pass: computeHotspotSaturation(state.hotspots) >= config.hotspotSaturationThreshold,
+.opencode/skills/sk-deep-review/references/convergence.md:408:      detail: "Priority hotspots received enough revisits to satisfy saturation."
+.opencode/skills/sk-deep-review/references/convergence.md:420:When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it returns `pass: false`, persist a first-class blocked-stop decision with `stopReason=blockedStop`, populate `legalStop.blockedBy` from the failing gates, copy the full `gateResults`, snapshot the replay inputs, and attach a `recoveryStrategy` describing the next review action before overriding the decision to CONTINUE.
+.opencode/skills/sk-deep-review/references/convergence.md:430:| `hotspotSaturation` | Revisit undersampled hotspots or adjacent call sites until the saturation heuristic passes. |
+.opencode/skills/sk-deep-review/references/convergence.md:436:| Legacy label | New `stopReason` | Mapping note |
+.opencode/skills/sk-deep-review/references/convergence.md:601:  hotspotSaturation: [PASS | FAIL]
+.opencode/skills/sk-deep-review/references/convergence.md:608:legalStop:
+.opencode/skills/sk-deep-review/references/convergence.md:611:  replayInputs: [snapshot of ratios, coverage, and gate inputs]
+.opencode/skills/sk-deep-review/references/convergence.md:624:  "stopReason": "converged",
+.opencode/skills/sk-deep-review/references/convergence.md:625:  "legalStop": {
+.opencode/skills/sk-deep-review/references/convergence.md:632:      "hotspotSaturation": { "pass": true, "detail": "Priority hotspots were revisited enough times to satisfy saturation." }
+.opencode/skills/sk-deep-review/references/convergence.md:639:      "hotspotCoverage": { "saturated": 3, "required": 3 },
+.opencode/skills/sk-deep-review/references/convergence.md:736:- `stopReason` enum values and semantics
+.opencode/skills/sk-deep-review/references/convergence.md:737:- `legalStop` record structure and gate names
+.opencode/skills/sk-deep-review/references/loop_protocol.md:106:6. **Write config**: `{spec_folder}/review/deep-review-config.json` with `mode: "review"`, lineage metadata (`sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`), and review-specific fields including target, target type, dimensions, protocol plan, and release-readiness state.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:172:If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records five review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
+.opencode/skills/sk-deep-review/references/loop_protocol.md:196:   - Log event to JSONL: `{"type":"event","event":"userPaused","mode":"review","stopReason":"userPaused","reason":"sentinel file detected"}`
+.opencode/skills/sk-deep-review/references/loop_protocol.md:213:Generate a compact state summary (~200 tokens) for injection into the dispatch prompt:
+.opencode/skills/sk-deep-review/references/loop_protocol.md:471:     "stopReason": "...",
+.opencode/skills/sk-deep-review/references/loop_protocol.md:512:Enable review sessions to resume seamlessly from prior state when interrupted by context compaction, process termination, or intentional pause.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:524:   {"type":"event","event":"resumed","mode":"review","sessionId":"rvw-2026-03-24T10-00-00Z","parentSessionId":"rvw-2026-03-24T10-00-00Z","lineageMode":"resume","continuedFromRun":4,"generation":1,"archivedPath":null,"timestamp":"2026-03-24T14:05:00Z"}
+.opencode/skills/sk-deep-review/references/loop_protocol.md:530:The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:549:  "continuedFromRun": <number or null>,
+.opencode/skills/sk-deep-review/references/loop_protocol.md:555:Every field in the contract MUST be present on every persisted lifecycle event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:86:{"type":"event","event":"resumed","mode":"research","sessionId":"rsr-2026-03-18T10-00-00Z","parentSessionId":"rsr-2026-03-18T10-00-00Z","lineageMode":"resume","continuedFromRun":4,"generation":1,"timestamp":"2026-03-18T14:05:00Z"}
+.opencode/skills/sk-deep-research/references/loop_protocol.md:93:The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:112:  "continuedFromRun": <number or null>,
+.opencode/skills/sk-deep-research/references/loop_protocol.md:118:Every field in the contract MUST be present on every persisted lifecycle event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:148:   - Persist the blocked legal-stop outcome: `{"type":"event","event":"blocked_stop","mode":"research","run":N,"blockedBy":["<gate>"],"gateResults":{"convergence":{"pass":true,"score":0.0},"keyQuestionCoverage":{"pass":false,"answered":X,"total":Y},"evidenceDensity":{"pass":false,"sources":N},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"<one-line hint>","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:161:   - Log event to JSONL: `{"type":"event","event":"userPaused","mode":"research","run":N,"stopReason":"userPaused","sentinelPath":"{spec_folder}/research/.deep-research-pause","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:178:Generate a compact state summary (~200 tokens) for injection into the dispatch prompt:
+.opencode/skills/sk-deep-research/references/loop_protocol.md:424:The standard dispatch (Task tool) shares the parent session's token budget. In long research sessions (10+ iterations), this may cause context compression that degrades reasoning quality. Process-level isolation eliminates this risk.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:485:4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
+.opencode/skills/sk-deep-research/references/loop_protocol.md:487:6. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","totalIterations":N,"answeredCount":A,"totalQuestions":Q,"stopReason":"converged"}`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:774:9. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":N,"verdict":"PASS|CONDITIONAL|FAIL","activeP0":N,"activeP1":N,"activeP2":N,"dimensionCoverage":X,"stopReason":"..." }`
+.opencode/skills/sk-deep-research/references/state_format.md:60:    "continuedFromRun": null
+.opencode/skills/sk-deep-research/references/state_format.md:78:| lineage.parentSessionId | string or null | Yes | null | Parent lineage when restarting, forking, or reopening |
+.opencode/skills/sk-deep-research/references/state_format.md:79:| lineage.lineageMode | string | Yes | "new" | `new`, `resume`, `restart`, `fork`, or `completed-continue` |
+.opencode/skills/sk-deep-research/references/state_format.md:81:| lineage.continuedFromRun | number or null | No | null | Run number where a resumed or reopened segment continues |
+.opencode/skills/sk-deep-research/references/state_format.md:130:{"type":"iteration","run":1,"status":"complete","focus":"Initial broad survey","findingsCount":5,"newInfoRatio":1.0,"keyQuestions":["What causes latency?","Where are bottlenecks?"],"answeredQuestions":["What causes latency?"],"timestamp":"2026-03-18T10:05:00Z","durationMs":45000}
+.opencode/skills/sk-deep-research/references/state_format.md:144:| durationMs | number | iteration only | Iteration execution time in milliseconds |
+.opencode/skills/sk-deep-research/references/state_format.md:145:| toolsUsed | string[] | No | iteration only | High-level tool names used during the iteration |
+.opencode/skills/sk-deep-research/references/state_format.md:146:| sourcesQueried | string[] | No | iteration only | URLs, file paths, or memory anchors consulted during the iteration |
+.opencode/skills/sk-deep-research/references/state_format.md:177:{"type":"iteration","run":3,"status":"complete","focus":"Connection pooling","findingsCount":3,"newInfoRatio":0.4,"ruledOut":[{"approach":"HTTP/3 multiplexing","reason":"No server-side support in target environment","evidence":"docs.example.com/protocols#supported"}],"keyQuestions":["What causes latency?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":52000}
+.opencode/skills/sk-deep-research/references/state_format.md:193:{"type":"iteration","run":3,"status":"complete","focus":"Reconnection strategies","findingsCount":4,"newInfoRatio":0.7,"noveltyJustification":"2 new findings on reconnection backoff, 1 refinement of prior keepalive finding","keyQuestions":["How to handle reconnection?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
+.opencode/skills/sk-deep-research/references/state_format.md:225:{"type":"iteration","run":4,"status":"complete","focus":"Reconnection strategies","findingsCount":3,"newInfoRatio":0.55,"graphEvents":[{"type":"question","id":"q-reconnect","label":"How should the client retry after a disconnect?"},{"type":"finding","id":"f-backoff","label":"Exponential backoff converges under jitter"},{"type":"edge","id":"e-answers-reconnect","relation":"ANSWERS","source":"f-backoff","target":"q-reconnect"}],"keyQuestions":["How should the client retry after a disconnect?"],"answeredQuestions":[],"timestamp":"2026-03-18T10:15:00Z","durationMs":48000}
+.opencode/skills/sk-deep-research/references/state_format.md:274:| resumed | workflow | active | Resume after a prior active session (same sessionId, no archive) | mode, sessionId, parentSessionId, lineageMode, continuedFromRun, generation, archivedPath (null), timestamp |
+.opencode/skills/sk-deep-research/references/state_format.md:275:| restarted | workflow | active | Archive the prior packet and start a new generation with a fresh sessionId | mode, sessionId, parentSessionId, lineageMode, continuedFromRun, generation, archivedPath, timestamp |
+.opencode/skills/sk-deep-research/references/state_format.md:276:| forked | workflow | deferred | Reserved for a future lineage feature; not emitted by the current runtime | — |
+.opencode/skills/sk-deep-research/references/state_format.md:280:| userPaused | workflow | active | Pause sentinel detected and normalized to the frozen stop-reason enum | mode, run, stopReason, sentinelPath, timestamp, sessionId, generation |
+.opencode/skills/sk-deep-research/references/state_format.md:287:| stuckRecovery | workflow | active | Stuck recovery outcome normalized to the frozen stop-reason enum | mode, run, stopReason, fromIteration, outcome, timestamp, sessionId, generation |
+.opencode/skills/sk-deep-research/references/state_format.md:291:| synthesis_complete | workflow | active | Final synthesis finished | totalIterations, answeredCount, totalQuestions, stopReason, timestamp |
+.opencode/skills/sk-deep-research/references/state_format.md:335:{"type":"event","event":"blocked_stop","mode":"research","run":7,"blockedBy":["keyQuestionCoverage","evidenceDensity"],"gateResults":{"convergence":{"pass":true,"score":0.72},"keyQuestionCoverage":{"pass":false,"answered":5,"total":7},"evidenceDensity":{"pass":false,"sources":2},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"Collect evidence for the remaining uncovered question cluster.","timestamp":"2026-04-11T12:00:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
+.opencode/skills/sk-deep-research/references/state_format.md:345:| gateResults | object | Yes | Replayable gate bundle with `convergence`, `keyQuestionCoverage`, `evidenceDensity`, and `hotspotSaturation` results |
+.opencode/skills/sk-deep-research/references/state_format.md:354:{"type":"event","event":"userPaused","mode":"research","run":7,"stopReason":"userPaused","sentinelPath":"specs/042/research/.deep-research-pause","timestamp":"2026-04-11T12:05:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
+.opencode/skills/sk-deep-research/references/state_format.md:363:| stopReason | string | Yes | Always `userPaused` |
+.opencode/skills/sk-deep-research/references/state_format.md:372:{"type":"event","event":"stuckRecovery","mode":"research","run":7,"stopReason":"stuckRecovery","fromIteration":7,"outcome":"recovered","timestamp":"2026-04-11T12:10:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
+.opencode/skills/sk-deep-research/references/state_format.md:381:| stopReason | string | Yes | Always `stuckRecovery` |
+.opencode/skills/sk-deep-research/references/state_format.md:390:Raw `paused` and `stuck_recovery` labels are legacy-only aliases. The live workflow MUST rewrite them at emission time to `userPaused` and `stuckRecovery` respectively, and MUST persist the normalized `stopReason` enum value on the JSONL line.
+.opencode/skills/sk-deep-research/references/state_format.md:402:| `continuedFromRun` | Last completed run reused as the continuation boundary |
+.opencode/skills/sk-deep-research/references/state_format.md:438:        "hotspotSaturation": { "pass": true }
+.opencode/skills/sk-deep-research/references/state_format.md:532:**Limitations**: Reconstructed state lacks `durationMs`, exact `timestamp`, and `findingsCount`. The `status: "reconstructed"` flag distinguishes recovered records from originals. The convergence algorithm treats reconstructed records identically to complete records for signal computation.
+.opencode/skills/sk-deep-research/references/state_format.md:658:- Mark machine-owned sections explicitly so `completed-continue` can snapshot prior synthesis before reopening
+.opencode/skills/sk-deep-research/references/state_format.md:792:  "durationMs": 52000,
+.opencode/skills/sk-deep-research/references/state_format.md:824:  "stopReason": "composite_converged",
+.opencode/skills/sk-deep-research/references/convergence.md:21:#### `stopReason` enum
+.opencode/skills/sk-deep-research/references/convergence.md:33:#### `legalStop` record
+.opencode/skills/sk-deep-research/references/convergence.md:71:- `replayInputs` snapshots the exact stop-decision inputs so the reducer and dashboards can replay the outcome from packet-local artifacts only.
+.opencode/skills/sk-deep-research/references/convergence.md:77:| Legacy label or phrase | New `stopReason` | Normalization note |
+.opencode/skills/sk-deep-research/references/convergence.md:93:Deep review uses the same `stopReason` enum and `legalStop` record, even though its convergence signals differ.
+.opencode/skills/sk-deep-research/references/convergence.md:113:      stopReason: "maxIterationsReached",
+.opencode/skills/sk-deep-research/references/convergence.md:122:      stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:135:      stopReason: "stuckRecovery",
+.opencode/skills/sk-deep-research/references/convergence.md:202:        stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:214:After composite convergence or full-question coverage nominates STOP, the loop MUST evaluate the full legal-stop bundle before STOP becomes final. STOP is never legal on novelty math alone. The replayable `legalStop.gateResults` bundle for deep research is:
+.opencode/skills/sk-deep-research/references/convergence.md:272:  legalStop = {
+.opencode/skills/sk-deep-research/references/convergence.md:281:      stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:282:      candidateStopReason: stopCandidate.stopReason,
+.opencode/skills/sk-deep-research/references/convergence.md:283:      legalStop
+.opencode/skills/sk-deep-research/references/convergence.md:288:    stopReason: "blockedStop",
+.opencode/skills/sk-deep-research/references/convergence.md:289:    candidateStopReason: stopCandidate.stopReason,
+.opencode/skills/sk-deep-research/references/convergence.md:290:    legalStop,
+.opencode/skills/sk-deep-research/references/convergence.md:291:    recoveryStrategy: chooseBlockedStopRecovery(legalStop, strategy)
+.opencode/skills/sk-deep-research/references/convergence.md:300:- **Focus Alignment**: Compare current key questions against `config.originalKeyQuestions` (the snapshot of initial key questions populated at session init). Flag any answer outside the declared scope, or any significant drift where the current question set no longer resembles the original set. When `originalKeyQuestions` is absent (legacy packets), fall back to comparing against strategy.md's initialized question list.
+.opencode/skills/sk-deep-research/references/convergence.md:307:1. Append a `stop_decision` snapshot with the attempted stop bundle.
+.opencode/skills/sk-deep-research/references/convergence.md:308:2. Append a first-class `blocked_stop` event with `stopReason: "blockedStop"`, `legalStop.blockedBy`, the full `legalStop.gateResults`, and a concrete `recoveryStrategy`.
+.opencode/skills/sk-deep-research/references/convergence.md:422:The quality gate passes only when ALL sub-checks pass (existing + semantic). When a semantic sub-check fails, the `legalStop.gateResults.qualityGate.checks` map includes the failing semantic sub-check with its detail and recovery hint.
+.opencode/skills/sk-deep-research/references/convergence.md:978:      stopReason: "maxIterationsReached",
+.opencode/skills/sk-deep-research/references/convergence.md:993:          stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:1003:      stopReason: "stuckRecovery",
+.opencode/skills/sk-deep-research/references/convergence.md:1052:          stopReason: "converged",
+.opencode/skills/sk-deep-research/references/convergence.md:1061:        stopReason: "blockedStop",
+.opencode/skills/sk-deep-research/references/convergence.md:1255:- `stopReason` enum values and semantics
+.opencode/skills/sk-deep-research/references/convergence.md:1256:- `legalStop` record structure
 
 exec
-/bin/zsh -lc 'ls .opencode/skill/sk-deep-research/assets .opencode/skill/sk-deep-review/assets' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'ls .opencode/skills/sk-deep-research/assets .opencode/skills/sk-deep-review/assets' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-research/assets:
+.opencode/skills/sk-deep-research/assets:
 deep_research_config.json
 deep_research_dashboard.md
 deep_research_strategy.md
 runtime_capabilities.json
 
-.opencode/skill/sk-deep-review/assets:
+.opencode/skills/sk-deep-review/assets:
 deep_review_config.json
 deep_review_dashboard.md
 deep_review_strategy.md
@@ -3435,25 +3435,25 @@ exec
 /bin/zsh -lc 'rg -n "runtime-capabilities|runtime capabilities|runtime_capabilities|capability matrix|capability resolver" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/tasks.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/checklist.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc 'rg -n "latestJSONLDelta|priorReducedState|newIterationFile|delta replay|snapshot|compaction|prior reduced state|replay only the newest JSONL delta" .opencode/skill/sk-deep-research/references/loop_protocol.md .opencode/skill/sk-deep-review/references/loop_protocol.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "latestJSONLDelta|priorReducedState|newIterationFile|delta replay|snapshot|compaction|prior reduced state|replay only the newest JSONL delta" .opencode/skills/sk-deep-research/references/loop_protocol.md .opencode/skills/sk-deep-review/references/loop_protocol.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-research/references/loop_protocol.md:226:3. Run reducer with `{ latestJSONLDelta, newIterationFile, priorReducedState }`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:485:4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
-.opencode/skill/sk-deep-review/references/loop_protocol.md:154:| Inputs | `latestJSONLDelta`, `newIterationFile`, `priorReducedState` | The reducer replays only the newest JSONL delta plus the latest iteration artifact against the prior reduced state. |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:512:Enable review sessions to resume seamlessly from prior state when interrupted by context compaction, process termination, or intentional pause.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:226:3. Run reducer with `{ latestJSONLDelta, newIterationFile, priorReducedState }`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:485:4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
+.opencode/skills/sk-deep-review/references/loop_protocol.md:154:| Inputs | `latestJSONLDelta`, `newIterationFile`, `priorReducedState` | The reducer replays only the newest JSONL delta plus the latest iteration artifact against the prior reduced state. |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:512:Enable review sessions to resume seamlessly from prior state when interrupted by context compaction, process termination, or intentional pause.
 
 exec
-/bin/zsh -lc 'rg -n "durationMs|toolsUsed|sourcesQueried|wall-clock|token|state diff|anomaly|histogram|coverage depth|coverageDepth|hotspot ranking|inventory pass|stratified coverage" .opencode/skill/sk-deep-research/scripts/reduce-state.cjs .opencode/skill/sk-deep-review/scripts/reduce-state.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "durationMs|toolsUsed|sourcesQueried|wall-clock|token|state diff|anomaly|histogram|coverage depth|coverageDepth|hotspot ranking|inventory pass|stratified coverage" .opencode/skills/sk-deep-research/scripts/reduce-state.cjs .opencode/skills/sk-deep-review/scripts/reduce-state.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "claim[- ]verification|verification ledger|promotion checkpoint|runtime inventory|audit journal|journal" .opencode/skill/sk-deep-research/references/state_format.md .opencode/skill/sk-deep-research/references/loop_protocol.md .opencode/skill/sk-deep-research/references/convergence.md .opencode/skill/sk-deep-review/references/state_format.md .opencode/skill/sk-deep-review/references/loop_protocol.md .opencode/skill/sk-deep-review/references/convergence.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "claim[- ]verification|verification ledger|promotion checkpoint|runtime inventory|audit journal|journal" .opencode/skills/sk-deep-research/references/state_format.md .opencode/skills/sk-deep-research/references/loop_protocol.md .opencode/skills/sk-deep-research/references/convergence.md .opencode/skills/sk-deep-review/references/state_format.md .opencode/skills/sk-deep-review/references/loop_protocol.md .opencode/skills/sk-deep-review/references/convergence.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:175:    iterationRecords.flatMap((record) => (Array.isArray(record.sourcesQueried) ? record.sourcesQueried : [])),
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:175:    iterationRecords.flatMap((record) => (Array.isArray(record.sourcesQueried) ? record.sourcesQueried : [])),
 
  exited 1 in 0ms:
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/references/loop_protocol.md | sed -n '220,232p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/references/loop_protocol.md | sed -n '220,232p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/references/loop_protocol.md | sed -n '80,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/references/loop_protocol.md | sed -n '80,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    220	- Budget limits are soft caps — if the agent is actively writing its iteration file when the limit is reached, allow completion
    221	
@@ -3513,9 +3513,9 @@ exec
    120	---
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/references/loop_protocol.md | sed -n '522,556p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/loop_protocol.md | sed -n '522,556p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/references/loop_protocol.md | sed -n '150,176p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/loop_protocol.md | sed -n '150,176p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    522	5. **Log resume**: Append the canonical resume event to `deep-review-state.jsonl`. The reducer requires every field below:
    523	   ```json
@@ -3583,9 +3583,9 @@ exec
    176	- `recoveryStrategy`: one-line hint describing the next review action
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/references/state_format.md | sed -n '108,118p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/state_format.md | sed -n '108,118p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/references/state_format.md | sed -n '70,86p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/references/state_format.md | sed -n '70,86p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    108	| mode | `"review"` | -- | Session mode discriminator (required) |
    109	| reviewTarget | string | -- | Path or identifier of the review target |
@@ -3619,9 +3619,9 @@ exec
     86	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/references/state_format.md | sed -n '530,550p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/state_format.md | sed -n '530,550p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/references/state_format.md | sed -n '468,476p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/references/state_format.md | sed -n '468,476p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    468	Research-specific registry fields:
    469	
@@ -3657,7 +3657,7 @@ exec
    550	- **Strategy next-focus override**: When the latest `blocked_stop` event timestamp is newer than the latest iteration timestamp, the reducer rewrites the strategy `next-focus` anchor to surface the blocking gates and recovery hint so operators see the blocker before choosing the next iteration direction.
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/references/convergence.md | sed -n '40,92p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/convergence.md | sed -n '40,92p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     40	| `compositeStopScore` | 0.60 | Weighted stop-score needed before guard evaluation |
     41	
@@ -3714,7 +3714,7 @@ exec
     92	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/references/convergence.md | sed -n '420,440p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/convergence.md | sed -n '420,440p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    420	When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it returns `pass: false`, persist a first-class blocked-stop decision with `stopReason=blockedStop`, populate `legalStop.blockedBy` from the failing gates, copy the full `gateResults`, snapshot the replay inputs, and attach a `recoveryStrategy` describing the next review action before overriding the decision to CONTINUE.
    421	
@@ -3739,7 +3739,7 @@ exec
    440	| `all dimensions clean` | `converged` | Old operator-facing prose for the same successful stop. |
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/references/convergence.md | sed -n '608,640p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/convergence.md | sed -n '608,640p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    608	legalStop:
    609	  blockedBy: [gate names]
@@ -3776,7 +3776,7 @@ exec
    640	      "stopScore": 0.70
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/references/convergence.md | sed -n '20,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/references/convergence.md | sed -n '20,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     20	
     21	#### `stopReason` enum
@@ -3841,7 +3841,7 @@ exec
     80	| `novelty below threshold` | `converged` | Legacy prose alias for the rolling-average or composite stop path |
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-research/references/state_format.md | sed -n '680,708p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/references/state_format.md | sed -n '680,708p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    680	|---------|--------|-------------|
    681	| Iteration Table | JSONL iteration records | Run, status, focus, newInfoRatio, findings count, duration |
@@ -3874,7 +3874,7 @@ exec
    708	{
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-deep-review/references/state_format.md | sed -n '620,646p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/state_format.md | sed -n '620,646p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    620	| 3 | Active Finding Registry | Deduped active findings with evidence, severity, dimension |
    621	| 4 | Remediation Workstreams | Ordered lanes grouped by dependency or area |
@@ -3940,15 +3940,15 @@ File: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-i
 Line: `167-168, 218`  
 Title: Phase 001 still claims `completed-continue` lineage semantics that the shipped runtime explicitly disables  
 Description: REQ-003 and Acceptance Scenario 3 say both loops preserve the same `continuedFromRun` semantics across active resume and completed-continue flows. The reviewed runtime/docs do not support that claim: both loop protocols say `fork` and `completed-continue` have no workflow wiring in the current release, and the reducers only echo whatever lineage metadata is already in config instead of implementing reopen/restart semantics. This leaves the spec marked “Implemented” while the runtime contract remains “resume/restart only.”  
-Evidence: `spec.md:167-168,218`; `.opencode/skill/sk-deep-research/references/loop_protocol.md:93-99`; `.opencode/skill/sk-deep-review/references/loop_protocol.md:530-536`; `.opencode/skill/sk-deep-research/references/state_format.md:79-81`; `.opencode/skill/sk-deep-review/references/state_format.md:114-116`; reducers read existing config only at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:667-685` and `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:899-912`.  
+Evidence: `spec.md:167-168,218`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:93-99`; `.opencode/skills/sk-deep-review/references/loop_protocol.md:530-536`; `.opencode/skills/sk-deep-research/references/state_format.md:79-81`; `.opencode/skills/sk-deep-review/references/state_format.md:114-116`; reducers read existing config only at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-685` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`.  
 Recommendation: Either downgrade completed-continue/fork to deferred in the Phase 001 spec, or implement and document the missing lineage flow end-to-end, including reducer-visible ancestry fields and replay fixtures.
 
 `F-003-002` | Severity `P1` | Dimension `traceability`  
-File: `.opencode/skill/sk-deep-review/references/loop_protocol.md`  
+File: `.opencode/skills/sk-deep-review/references/loop_protocol.md`  
 Line: `150-155`  
 Title: The reducer contract documents delta replay, but both reducers still rebuild from full packet state  
 Description: The reference contract says reducer refreshes consume `latestJSONLDelta`, `newIterationFile`, and `priorReducedState`, implying incremental replay/snapshot behavior. Both shipped reducers instead reread the full JSONL log, full strategy file, and all iteration markdown files on every run. That directly breaks the Phase 001 durability story around delta replay and snapshot/compaction and makes the docs non-traceable to the implementation.  
-Evidence: `.opencode/skill/sk-deep-review/references/loop_protocol.md:154-155`; `.opencode/skill/sk-deep-research/references/loop_protocol.md:226-227`; full replay in `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:667-680` and `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:899-912`; Phase 001 requirement at `spec.md:76,184-185`.  
+Evidence: `.opencode/skills/sk-deep-review/references/loop_protocol.md:154-155`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:226-227`; full replay in `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-680` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`; Phase 001 requirement at `spec.md:76,184-185`.  
 Recommendation: Update the docs/spec to describe full replay truthfully, or land the incremental reducer contract before keeping REQ-015 in implemented state.
 
 `F-003-003` | Severity `P1` | Dimension `traceability`  
@@ -3956,23 +3956,23 @@ File: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-i
 Line: `74-77, 176-185, 197`  
 Title: Runtime-truth dashboards still do not expose the stop and observability surfaces the phase says are implemented  
 Description: Phase 001 requires final stop reason, typed stop visibility, timing/token visibility, coverage depth, state diffs, anomaly flags, and stop-decision drill-down. The reducer dashboards do not emit those surfaces. Deep research renders status/progress/questions/trend/dead ends/blocked stops/graph convergence only; deep review renders verdict/progress/dimension coverage/blocked stops/graph convergence/trend/active risks, but still no final `stopReason`, no token or timing histograms, no state diffs, and no anomaly view.  
-Evidence: `spec.md:74-77,176-185,197`; deep-research dashboard renderer `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:545-643`; deep-review dashboard renderer `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:718-874`; research docs still describe a duration-bearing iteration table at `.opencode/skill/sk-deep-research/references/state_format.md:681-686`, but the actual table headers at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:576-579` and `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:761-764` omit duration/token fields entirely.  
+Evidence: `spec.md:74-77,176-185,197`; deep-research dashboard renderer `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`; deep-review dashboard renderer `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:718-874`; research docs still describe a duration-bearing iteration table at `.opencode/skills/sk-deep-research/references/state_format.md:681-686`, but the actual table headers at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:576-579` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:761-764` omit duration/token fields entirely.  
 Recommendation: Either add the missing dashboard sections from the Phase 001 contract, or mark REQ-007/REQ-016 partial and narrow the docs to the reducer’s real output.
 
 `F-003-004` | Severity `P1` | Dimension `traceability`  
-File: `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`  
+File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`  
 Line: `343-434, 527-643`  
 Title: The research reducer still has no trace of the claim-verification ledger or audit-journal rollups promised by Phase 001  
 Description: The spec makes claim-verification, journaling, and packet-local auditability core runtime-truth artifacts, and it explicitly says `reduce-state.cjs` should emit ledger and journal rollups. The actual reducer only builds question/finding/ruled-out/blocked-stop/graph-convergence state and dashboard sections; there is no ledger ingestion, no journal summary, and no way to trace REQ-004/REQ-005 from reducer output.  
-Evidence: `spec.md:73-75,106,168-169`; reducer registry fields at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:407-433`; dashboard output at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:545-643`.  
+Evidence: `spec.md:73-75,106,168-169`; reducer registry fields at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:407-433`; dashboard output at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`.  
 Recommendation: Add reducer-owned ledger/journal surfaces, or explicitly defer those artifacts in the Phase 001 packet instead of leaving the implementation status and file-level description overstated.
 
 `F-003-005` | Severity `P2` | Dimension `traceability`  
-File: `.opencode/skill/sk-deep-review/references/convergence.md`  
+File: `.opencode/skills/sk-deep-review/references/convergence.md`  
 Line: `44-45, 89, 420, 608-625`  
 Title: The deep-review convergence reference still contradicts the persisted stop-contract shape and the reducer’s compatibility behavior  
 Description: Early in the file, the doc says there is no nested `legalStop` wrapper on the persisted path and that the reducer reads blocked-stop shapes verbatim. Later sections still instruct authors to populate `legalStop.blockedBy`, show YAML-style `legalStop:` blocks, and include a synthesis JSON example with nested `legalStop`. The reducer itself is more permissive than the doc says: it normalizes structured `blockedBy` entries and falls back to `record.legalStop.gateResults` for legacy payloads. This leaves three different “canonical” shapes in one contract surface.  
-Evidence: `.opencode/skill/sk-deep-review/references/convergence.md:44-45,89,420,608-625`; reducer compatibility logic at `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:446-489`.  
+Evidence: `.opencode/skills/sk-deep-review/references/convergence.md:44-45,89,420,608-625`; reducer compatibility logic at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:446-489`.  
 Recommendation: Pick one persisted shape as canonical, rewrite the conflicting examples, and document the legacy fallback strictly as compatibility behavior rather than normative contract.
 
 **Iteration Summary**
@@ -4001,15 +4001,15 @@ File: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-i
 Line: `167-168, 218`  
 Title: Phase 001 still claims `completed-continue` lineage semantics that the shipped runtime explicitly disables  
 Description: REQ-003 and Acceptance Scenario 3 say both loops preserve the same `continuedFromRun` semantics across active resume and completed-continue flows. The reviewed runtime/docs do not support that claim: both loop protocols say `fork` and `completed-continue` have no workflow wiring in the current release, and the reducers only echo whatever lineage metadata is already in config instead of implementing reopen/restart semantics. This leaves the spec marked “Implemented” while the runtime contract remains “resume/restart only.”  
-Evidence: `spec.md:167-168,218`; `.opencode/skill/sk-deep-research/references/loop_protocol.md:93-99`; `.opencode/skill/sk-deep-review/references/loop_protocol.md:530-536`; `.opencode/skill/sk-deep-research/references/state_format.md:79-81`; `.opencode/skill/sk-deep-review/references/state_format.md:114-116`; reducers read existing config only at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:667-685` and `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:899-912`.  
+Evidence: `spec.md:167-168,218`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:93-99`; `.opencode/skills/sk-deep-review/references/loop_protocol.md:530-536`; `.opencode/skills/sk-deep-research/references/state_format.md:79-81`; `.opencode/skills/sk-deep-review/references/state_format.md:114-116`; reducers read existing config only at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-685` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`.  
 Recommendation: Either downgrade completed-continue/fork to deferred in the Phase 001 spec, or implement and document the missing lineage flow end-to-end, including reducer-visible ancestry fields and replay fixtures.
 
 `F-003-002` | Severity `P1` | Dimension `traceability`  
-File: `.opencode/skill/sk-deep-review/references/loop_protocol.md`  
+File: `.opencode/skills/sk-deep-review/references/loop_protocol.md`  
 Line: `150-155`  
 Title: The reducer contract documents delta replay, but both reducers still rebuild from full packet state  
 Description: The reference contract says reducer refreshes consume `latestJSONLDelta`, `newIterationFile`, and `priorReducedState`, implying incremental replay/snapshot behavior. Both shipped reducers instead reread the full JSONL log, full strategy file, and all iteration markdown files on every run. That directly breaks the Phase 001 durability story around delta replay and snapshot/compaction and makes the docs non-traceable to the implementation.  
-Evidence: `.opencode/skill/sk-deep-review/references/loop_protocol.md:154-155`; `.opencode/skill/sk-deep-research/references/loop_protocol.md:226-227`; full replay in `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:667-680` and `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:899-912`; Phase 001 requirement at `spec.md:76,184-185`.  
+Evidence: `.opencode/skills/sk-deep-review/references/loop_protocol.md:154-155`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:226-227`; full replay in `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-680` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`; Phase 001 requirement at `spec.md:76,184-185`.  
 Recommendation: Update the docs/spec to describe full replay truthfully, or land the incremental reducer contract before keeping REQ-015 in implemented state.
 
 `F-003-003` | Severity `P1` | Dimension `traceability`  
@@ -4017,23 +4017,23 @@ File: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-i
 Line: `74-77, 176-185, 197`  
 Title: Runtime-truth dashboards still do not expose the stop and observability surfaces the phase says are implemented  
 Description: Phase 001 requires final stop reason, typed stop visibility, timing/token visibility, coverage depth, state diffs, anomaly flags, and stop-decision drill-down. The reducer dashboards do not emit those surfaces. Deep research renders status/progress/questions/trend/dead ends/blocked stops/graph convergence only; deep review renders verdict/progress/dimension coverage/blocked stops/graph convergence/trend/active risks, but still no final `stopReason`, no token or timing histograms, no state diffs, and no anomaly view.  
-Evidence: `spec.md:74-77,176-185,197`; deep-research dashboard renderer `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:545-643`; deep-review dashboard renderer `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:718-874`; research docs still describe a duration-bearing iteration table at `.opencode/skill/sk-deep-research/references/state_format.md:681-686`, but the actual table headers at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:576-579` and `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:761-764` omit duration/token fields entirely.  
+Evidence: `spec.md:74-77,176-185,197`; deep-research dashboard renderer `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`; deep-review dashboard renderer `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:718-874`; research docs still describe a duration-bearing iteration table at `.opencode/skills/sk-deep-research/references/state_format.md:681-686`, but the actual table headers at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:576-579` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:761-764` omit duration/token fields entirely.  
 Recommendation: Either add the missing dashboard sections from the Phase 001 contract, or mark REQ-007/REQ-016 partial and narrow the docs to the reducer’s real output.
 
 `F-003-004` | Severity `P1` | Dimension `traceability`  
-File: `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`  
+File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`  
 Line: `343-434, 527-643`  
 Title: The research reducer still has no trace of the claim-verification ledger or audit-journal rollups promised by Phase 001  
 Description: The spec makes claim-verification, journaling, and packet-local auditability core runtime-truth artifacts, and it explicitly says `reduce-state.cjs` should emit ledger and journal rollups. The actual reducer only builds question/finding/ruled-out/blocked-stop/graph-convergence state and dashboard sections; there is no ledger ingestion, no journal summary, and no way to trace REQ-004/REQ-005 from reducer output.  
-Evidence: `spec.md:73-75,106,168-169`; reducer registry fields at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:407-433`; dashboard output at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:545-643`.  
+Evidence: `spec.md:73-75,106,168-169`; reducer registry fields at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:407-433`; dashboard output at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`.  
 Recommendation: Add reducer-owned ledger/journal surfaces, or explicitly defer those artifacts in the Phase 001 packet instead of leaving the implementation status and file-level description overstated.
 
 `F-003-005` | Severity `P2` | Dimension `traceability`  
-File: `.opencode/skill/sk-deep-review/references/convergence.md`  
+File: `.opencode/skills/sk-deep-review/references/convergence.md`  
 Line: `44-45, 89, 420, 608-625`  
 Title: The deep-review convergence reference still contradicts the persisted stop-contract shape and the reducer’s compatibility behavior  
 Description: Early in the file, the doc says there is no nested `legalStop` wrapper on the persisted path and that the reducer reads blocked-stop shapes verbatim. Later sections still instruct authors to populate `legalStop.blockedBy`, show YAML-style `legalStop:` blocks, and include a synthesis JSON example with nested `legalStop`. The reducer itself is more permissive than the doc says: it normalizes structured `blockedBy` entries and falls back to `record.legalStop.gateResults` for legacy payloads. This leaves three different “canonical” shapes in one contract surface.  
-Evidence: `.opencode/skill/sk-deep-review/references/convergence.md:44-45,89,420,608-625`; reducer compatibility logic at `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:446-489`.  
+Evidence: `.opencode/skills/sk-deep-review/references/convergence.md:44-45,89,420,608-625`; reducer compatibility logic at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:446-489`.  
 Recommendation: Pick one persisted shape as canonical, rewrite the conflicting examples, and document the legacy fallback strictly as compatibility behavior rather than normative contract.
 
 **Iteration Summary**

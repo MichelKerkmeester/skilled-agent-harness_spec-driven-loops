@@ -7,27 +7,27 @@ Live handler embed-readiness gate trace + deterministic test seam recommendation
 ## Sources Read
 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/022-stress-test-results-deep-research/research/deep-research-strategy.md:11`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:61`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:621`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:927`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:930`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:969`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1169`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1191`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1410`
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:559`
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:564`
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:569`
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:574`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:22`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:29`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:29`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:46`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:84`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:143`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts:4`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts:70`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts:47`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:61`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:621`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:927`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:930`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:969`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1169`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1191`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1410`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:559`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:564`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:569`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:574`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:22`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:29`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:29`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:46`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:84`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:143`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts:4`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts:70`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts:47`
 
 ## Findings
 

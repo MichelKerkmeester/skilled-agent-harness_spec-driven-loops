@@ -11,12 +11,12 @@ contextType: "planning"
 # Plan: 014-bm25-field-weight-evaluation
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts`
 
 ## Investigation Order
 1. Map Modus's weighted fields to actual Public lexical fields.

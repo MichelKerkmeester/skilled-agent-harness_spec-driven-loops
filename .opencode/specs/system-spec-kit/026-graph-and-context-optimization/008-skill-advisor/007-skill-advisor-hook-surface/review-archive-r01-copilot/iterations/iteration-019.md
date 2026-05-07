@@ -4,8 +4,8 @@
 Reviewed token-cap enforcement and render-time truncation to confirm the observability layer cannot silently grow beyond the advertised 80/120-token contract.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:87-109` -> producer clamps requested token caps to `1..120` and truncates oversized text by token estimate.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:111-137` -> renderer independently clamps token caps and caps emitted text before returning a visible brief.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:87-109` -> producer clamps requested token caps to `1..120` and truncates oversized text by token estimate.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:111-137` -> renderer independently clamps token caps and caps emitted text before returning a visible brief.
 - `advisor-brief-producer.vitest.ts:198-222` -> `AS10` asserts the hard 120-token cap even when the caller requests `999`.
 
 ## Findings

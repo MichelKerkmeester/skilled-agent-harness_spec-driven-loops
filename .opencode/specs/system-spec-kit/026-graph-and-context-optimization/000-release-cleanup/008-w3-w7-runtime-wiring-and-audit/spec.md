@@ -91,19 +91,19 @@ Add telemetry-first runtime wiring so W3-W7 decisions are observable, durable, a
 |-----------|-------------|-------------|
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Create/Modify | Phase G packet docs and continuity. |
 | `description.json`, `graph-metadata.json` | Create/Modify | Discovery and graph metadata. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Create | W8 request-scoped decision envelope. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts` | Create | W13 audit sink and SLA metrics. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts` | Modify | Add QueryPlan and decision-envelope telemetry slots to pipeline contracts. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts` | Modify | Pass real QueryPlan into W4 rerank gate and expose decision metadata. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Modify | Build and audit SearchDecisionEnvelope for memory search requests. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modify | Build and audit SearchDecisionEnvelope for memory context requests. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts` | Create | W9 append-only shadow delta sink with rotation. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | Modify | Persist emitted `_shadow` deltas. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify | Preserve `_shadow` in the compatibility output. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/` | Create/Modify | W8/W10/W11/W13 tests plus W4 update. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/` | Create/Modify | W9 sink and Python passthrough tests. |
-| `.opencode/skill/system-spec-kit/mcp_server/tmp-test-fixtures/specs/` | Delete | Empty-folder cleanup if still empty. |
-| `.opencode/skill/system-spec-kit/specs/.../007-search-rag-measurement-driven-implementation/measurements/` | Delete | Duplicate empty stub cleanup if still empty. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Create | W8 request-scoped decision envelope. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts` | Create | W13 audit sink and SLA metrics. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts` | Modify | Add QueryPlan and decision-envelope telemetry slots to pipeline contracts. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts` | Modify | Pass real QueryPlan into W4 rerank gate and expose decision metadata. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Modify | Build and audit SearchDecisionEnvelope for memory search requests. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modify | Build and audit SearchDecisionEnvelope for memory context requests. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts` | Create | W9 append-only shadow delta sink with rotation. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | Modify | Persist emitted `_shadow` deltas. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify | Preserve `_shadow` in the compatibility output. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/` | Create/Modify | W8/W10/W11/W13 tests plus W4 update. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/` | Create/Modify | W9 sink and Python passthrough tests. |
+| `.opencode/skills/system-spec-kit/mcp_server/tmp-test-fixtures/specs/` | Delete | Empty-folder cleanup if still empty. |
+| `.opencode/skills/system-spec-kit/specs/.../007-search-rag-measurement-driven-implementation/measurements/` | Delete | Duplicate empty stub cleanup if still empty. |
 <!-- /ANCHOR:scope -->
 
 ---

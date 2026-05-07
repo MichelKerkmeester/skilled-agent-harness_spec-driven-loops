@@ -52,15 +52,15 @@
       "mcp_server/lib/spec/is-phase-parent.ts",
       "scripts/dist/spec/is-phase-parent.js",
       "templates/phase_parent/spec.md",
-      ".opencode/skill/system-spec-kit/scripts/lib/shell-common.sh",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
-      ".opencode/skill/system-spec-kit/scripts/dist/spec/is-phase-parent.js",
-      ".opencode/skill/system-spec-kit/scripts/dist/spec/is-phase-parent.d.ts",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-files.sh",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-level-match.sh",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-graph-metadata.sh",
-      ".opencode/skill/system-spec-kit/templates/phase_parent/spec.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js",
+      ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.d.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
+      ".opencode/skills/system-spec-kit/templates/phase_parent/spec.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "scripts/package.json",
       "templates/resource-map.md"
     ],
@@ -116,31 +116,31 @@
       {
         "name": "is-phase-parent.d.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/dist/spec/is-phase-parent.d.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.d.ts",
         "source": "derived"
       },
       {
         "name": "check-files.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/rules/check-files.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
         "source": "derived"
       },
       {
         "name": "check-level-match.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/rules/check-level-match.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
         "source": "derived"
       },
       {
         "name": "check-graph-metadata.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/rules/check-graph-metadata.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

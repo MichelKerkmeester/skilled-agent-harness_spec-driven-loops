@@ -4,9 +4,9 @@
 Verify the compiled save helpers and canonical handler seams around `metadata_only` so we can separate write-target correctness from router classification behavior.
 
 ## Findings
-1. The routed identity helper now maps `metadata_only` saves to the continuity anchor on the canonical implementation summary host: `targetDocPath = implementation-summary.md` and `targetAnchorId = _memory.continuity`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:111] [INFERENCE: direct node probe against dist/handlers/save/create-record.js]
-2. The canonical save handler resolves `spec-frontmatter` to `implementation-summary.md` when that file exists and falls back to `spec.md` only when the implementation summary is missing. That matches the new regression tests covering both paths. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1055] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1157] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1200]
-3. Because the preserved replay stayed flat and the current tree shows no further diff in `content-router.ts` or `routing-prototypes.json`, the F7 change is a write-target correctness fix, not a classifier-tuning change. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:918] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1064] [INFERENCE: comparison against iteration 36 replay]
+1. The routed identity helper now maps `metadata_only` saves to the continuity anchor on the canonical implementation summary host: `targetDocPath = implementation-summary.md` and `targetAnchorId = _memory.continuity`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:111] [INFERENCE: direct node probe against dist/handlers/save/create-record.js]
+2. The canonical save handler resolves `spec-frontmatter` to `implementation-summary.md` when that file exists and falls back to `spec.md` only when the implementation summary is missing. That matches the new regression tests covering both paths. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1055] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1157] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1200]
+3. Because the preserved replay stayed flat and the current tree shows no further diff in `content-router.ts` or `routing-prototypes.json`, the F7 change is a write-target correctness fix, not a classifier-tuning change. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:918] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1064] [INFERENCE: comparison against iteration 36 replay]
 
 ## Ruled Out
 - Treating F7 as a hidden fix for the `research_finding` versus `metadata_only` classification seam.
@@ -15,10 +15,10 @@ Verify the compiled save helpers and canonical handler seams around `metadata_on
 - Looking for a new same-path identity collision after the fix; the helper now resolves continuity identity onto the canonical host doc and anchor explicitly.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:111`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1055`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1157`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1200`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:111`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1055`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1157`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1200`
 
 ## Assessment
 - New information ratio: 0.04

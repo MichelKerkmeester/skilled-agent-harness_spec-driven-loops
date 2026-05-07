@@ -54,7 +54,7 @@ Follow these steps in order and keep the research evidence-first.
 8. Use `@speckit` for markdown authoring and keep research outputs under `research/`. The canonical final analysis belongs in `research/research.md`.
 9. Validate the phase folder with this exact command before treating the packet as complete:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings" --strict
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings" --strict
    ```
 10. Run `spec_kit:deep-research` using this exact topic:
    ```text
@@ -65,7 +65,7 @@ Follow these steps in order and keep the research evidence-first.
 13. Update `checklist.md` with evidence, create `implementation-summary.md`, and record which recommendations are `adopt now`, `prototype later`, or `reject`.
 14. Save packet memory with this exact command when the phase is complete:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings"
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings"
    ```
 
 ## 6. Research Questions

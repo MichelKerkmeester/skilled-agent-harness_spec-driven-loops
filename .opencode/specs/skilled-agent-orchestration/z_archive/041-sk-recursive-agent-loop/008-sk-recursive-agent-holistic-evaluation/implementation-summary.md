@@ -71,11 +71,11 @@ All 8 `.cjs` scripts aligned with sk-code-opencode JavaScript standard: box comm
 - `integration_scanning.md` created (new reference)
 
 **Agent files:**
-- Canonical `.opencode/agent/agent-improver.md`: Title changed to "The Agent Improver: Proposal-Only Mutator", CRITICAL/IMPORTANT callouts, `---` dividers, ASCII summary box, integration-aware workflow step
+- Canonical `.opencode/agents/agent-improver.md`: Title changed to "The Agent Improver: Proposal-Only Mutator", CRITICAL/IMPORTANT callouts, `---` dividers, ASCII summary box, integration-aware workflow step
 - All 4 runtime mirrors synced (Claude, Codex, .agents, Gemini)
 
 **Command:**
-- `.opencode/command/improve/agent.md`: Full rewrite to 430+ lines matching `prompt.md` quality — Phase 0 verification, unified setup phase with consolidated prompt, Phase Status Verification, 5-dimension reference, workflow steps, violation self-detection
+- `.opencode/commands/improve/agent.md`: Full rewrite to 430+ lines matching `prompt.md` quality — Phase 0 verification, unified setup phase with consolidated prompt, Phase Status Verification, 5-dimension reference, workflow steps, violation self-detection
 - YAML workflows: Both `improve_agent-improver_auto.yaml` and `_confirm.yaml` rewritten to spec_kit gold standard with user_inputs, field_handling, context_loading, evaluation_philosophy, phase descriptions, approval gates (confirm mode)
 - `README.txt` created for improve/ command group in all 4 runtimes
 
@@ -103,7 +103,7 @@ All 12 create command YAMLs aligned with spec_kit gold standard: `description:` 
 
 1. **Backward compatible**: Existing `--profile handover` and `--profile context-prime` work unchanged. Dynamic mode is opt-in via `--dynamic`.
 2. **Deterministic only**: No LLM-as-judge scoring. All checks are regex/string/file-existence based for promotion gate reliability.
-3. **Any agent as target**: Dynamic profile generation means any `.opencode/agent/*.md` file is a valid evaluation target.
+3. **Any agent as target**: Dynamic profile generation means any `.opencode/agents/*.md` file is a valid evaluation target.
 4. **Integration-first**: The scanner is the foundational capability — everything else builds on knowing what surfaces an agent touches.
 5. **Rename to sk-improve-agent**: Clearer name reflecting the skill's purpose. Command moved from `spec_kit` namespace to `improve` namespace.
 

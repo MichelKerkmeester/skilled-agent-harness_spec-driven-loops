@@ -21,15 +21,15 @@ None
 
 ### 1. validate_document.py on root playbook
 ```
-$ python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
-✅ VALID: .opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
+$ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
+✅ VALID: .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
 Document type: readme
 Total issues: 0
 ```
 
 ### 2. Strict validate on packet 085
 ```
-$ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../085-sk-prompt-testing-playbook-and-agent-rename --strict
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../085-sk-prompt-testing-playbook-and-agent-rename --strict
 Auto-enabled recursive validation: phase child folders detected.
 ...
 Summary: Errors: 0  Warnings: 0
@@ -44,7 +44,7 @@ EMPTY
 
 ### 4. Scenario file count
 ```
-$ find .opencode/skill/sk-prompt/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l
+$ find .opencode/skills/sk-prompt/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l
 28
 ```
 
@@ -101,8 +101,8 @@ $ grep -l '@prompt-improver' .../03--depth-clear-loop/*.md .../04--clear-scoring
 
 ### 10. SKILL.md has exactly 1 RELATED PLAYBOOK link
 ```
-$ grep -rn 'RELATED PLAYBOOK' .opencode/skill/sk-prompt/SKILL.md
-.opencode/skill/sk-prompt/SKILL.md:453:## RELATED PLAYBOOK
+$ grep -rn 'RELATED PLAYBOOK' .opencode/skills/sk-prompt/SKILL.md
+.opencode/skills/sk-prompt/SKILL.md:453:## RELATED PLAYBOOK
 ```
 
 ### 11. Forbidden sidecar check — clean
@@ -113,13 +113,13 @@ $ find manual_testing_playbook \( -name 'review_protocol.md' -o -name 'subagent_
 
 ### 12. Advisor probe
 ```
-$ python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
+$ python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
 sk-prompt @ 0.9262 confidence — still resolves correctly.
 ```
 
 ### 13. Agent files renamed
 ```
-$ ls .opencode/agent/prompt-improver.md .claude/agents/prompt-improver.md .codex/agents/prompt-improver.toml .gemini/agents/prompt-improver.md
+$ ls .opencode/agents/prompt-improver.md .claude/agents/prompt-improver.md .codex/agents/prompt-improver.toml .gemini/agents/prompt-improver.md
 All 4 paths exist.
 ```
 

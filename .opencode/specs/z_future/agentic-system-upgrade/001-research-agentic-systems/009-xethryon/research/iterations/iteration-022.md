@@ -12,8 +12,8 @@ The separation is mostly justified. The real problem is discoverability and cros
 I compared the local memory command family, especially how it frames session recovery and management, against Xethryon's memory interaction model where most memory behavior is ambient and only a small explicit memory surface remains visible.
 
 ## Evidence
-- The local memory README positions `/memory:save`, `/memory:search`, `/memory:manage`, and `/memory:learn` as a separate command group, while explicitly telling users to use `/spec_kit:resume` for recovery. [SOURCE: .opencode/command/memory/README.txt:38-52] [SOURCE: .opencode/command/memory/README.txt:61-131]
-- `/memory:search` itself is framed as an analysis and retrieval tool, not a lifecycle command. [SOURCE: .opencode/command/memory/search.md:55-102] [SOURCE: .opencode/command/memory/search.md:113-162]
+- The local memory README positions `/memory:save`, `/memory:search`, `/memory:manage`, and `/memory:learn` as a separate command group, while explicitly telling users to use `/spec_kit:resume` for recovery. [SOURCE: .opencode/commands/memory/README.txt:38-52] [SOURCE: .opencode/commands/memory/README.txt:61-131]
+- `/memory:search` itself is framed as an analysis and retrieval tool, not a lifecycle command. [SOURCE: .opencode/commands/memory/search.md:55-102] [SOURCE: .opencode/commands/memory/search.md:113-162]
 - Xethryon's visible memory surface is much smaller. Its operator-facing command layer leans on `/remember` while most memory behavior is injected through the session system and post-turn hooks. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_CONTEXT.md:192-225]
 - In Xethryon's runtime, memory prompt loading and relevant-memory retrieval are part of the system prompt assembly instead of a separate user-visible lifecycle. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/system.ts:80-115]
 
@@ -48,7 +48,7 @@ finding: do not merge `/memory:*` into `/spec_kit:*`. Keep memory as a distinct 
 - **Migration path:** documentation-only first; revisit structure only if usage data shows persistent confusion.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/memory/README.txt`
+- **Target file or module:** `.opencode/commands/memory/README.txt`
 - **Change type:** modified existing
 - **Blast radius:** low
 - **Prerequisites:** none

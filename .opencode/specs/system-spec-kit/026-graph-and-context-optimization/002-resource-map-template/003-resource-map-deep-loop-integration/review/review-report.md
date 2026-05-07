@@ -42,10 +42,10 @@ Non-goals: no code changes, no commits, no memory-save pass, and no fixes outsid
 ### P1
 
 #### F001 — correctness
-- **File:** `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:397`
+- **File:** `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:397`
 - **Title:** Review extractor does not normalize canonical `file:line` evidence before classification and status checks
 - **Rationale:** the review prompt-pack contract documents per-finding delta records as `file:"path:line"`, but the shared extractor preserves the line suffix and then feeds the full string into `determineStatus()`.
-- **Evidence:** `normalizePathCandidate()` returns the path with `:line` intact at `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:397-418`, while `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:456-460` checks filesystem existence on that unchanged string. The documented review delta example remains `{"type":"finding",...,"file":"path:line",...}` at `.opencode/skill/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:77-82`.
+- **Evidence:** `normalizePathCandidate()` returns the path with `:line` intact at `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:397-418`, while `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:456-460` checks filesystem existence on that unchanged string. The documented review delta example remains `{"type":"finding",...,"file":"path:line",...}` at `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:77-82`.
 - **Recommendation:** normalize review evidence to strip `:line`/`:line-range` suffixes before classification and status checks, and add a regression test that uses the documented review delta shape.
 
 #### F002 — traceability
@@ -58,17 +58,17 @@ Non-goals: no code changes, no commits, no memory-save pass, and no fixes outsid
 ### P2
 
 #### F003 — maintainability
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:44`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:44`
 - **Title:** Focused Vitest coverage never exercises the canonical review `file:line` finding shape
 - **Rationale:** the review-shape fixture only uses bare file paths, so the extractor regression in F001 can ship without a red test.
-- **Evidence:** the review fixture records only path-only `file` values at `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:44-55`, while the prompt-pack contract still shows `file:"path:line"` at `.opencode/skill/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:77-82`.
+- **Evidence:** the review fixture records only path-only `file` values at `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:44-55`, while the prompt-pack contract still shows `file:"path:line"` at `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:77-82`.
 - **Recommendation:** add a review fixture that uses `file:path:line` and one that uses split `file` + `line` fields.
 
 #### F004 — traceability
-- **File:** `.opencode/command/spec_kit/deep-review.md:188`
+- **File:** `.opencode/commands/spec_kit/deep-review.md:188`
 - **Title:** Command docs still describe root-level `review/` and `research/` outputs instead of the resolved `{artifact_dir}` packet path for nested specs
 - **Rationale:** child-phase packets emit review artifacts under `review/{packet}/`, but the top-level command docs still promise root-level locations.
-- **Evidence:** `.opencode/command/spec_kit/deep-review.md:188-195` advertises `{spec_folder}/review/resource-map.md`, and `.opencode/command/spec_kit/deep-research.md:177-184` does the same for `research/resource-map.md`. The workflow contract uses `{artifact_dir}/resource-map.md` at `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:92-107`.
+- **Evidence:** `.opencode/commands/spec_kit/deep-review.md:188-195` advertises `{spec_folder}/review/resource-map.md`, and `.opencode/commands/spec_kit/deep-research.md:177-184` does the same for `research/resource-map.md`. The workflow contract uses `{artifact_dir}/resource-map.md` at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:92-107`.
 - **Recommendation:** update both command docs to describe root-spec and nested-packet output locations in terms of `{artifact_dir}` / resolved packet ownership.
 
 ## 5. Recommendations

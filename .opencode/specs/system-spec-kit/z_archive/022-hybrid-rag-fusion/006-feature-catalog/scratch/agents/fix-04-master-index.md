@@ -3,59 +3,59 @@
 I’m reading the master index and the source entries side by side, then I’ll patch only the broken/missing index rows and verify the updated links/text.
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L1:260 (190 lines read)
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L3860:3965 (106 lines read)
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L4500:4615 (116 lines read)
 
 ● Read 10-fast-delegated-search-memory-quick-search.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/10-fast-delegated-search-memory-qu
+  │ .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/10-fast-delegated-search-memory-qu
   │ ick-search.md
   └ L1:120 (57 lines read)
 
 ● Read 18-template-compliance-contract-enforcement.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-c
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-c
   │ ontract-enforcement.md
   └ L1:120 (68 lines read)
 
 ● Read 08-audit-phase-020-mapping-note.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-ma
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-ma
   │ pping-note.md
   └ L1:120 (10 lines read)
 
 ● Read 01-category-stub.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md
   └ L1:120 (14 lines read)
 
 ● Read 01-category-stub.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-
+  │ .opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-
   │ category-stub.md
   └ L1:120 (13 lines read)
 
 I found the exact remediation areas. Next I’m checking the section structure and the source flag docs so the master index matches the shipped per-file content, then I’ll patch and show the diff.
 
 ● Search (grep)
-  │ "^## |^### " (.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
+  │ "^## |^### " (.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
   └ 5 lines found
 
 ● Search (grep)
   │ "comprehensive remediation sprint 8"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
   └ No matches found
 
 ● Read 03-3-mcp-configuration.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/03-3-mcp-configuratio
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/03-3-mcp-configuratio
   │ n.md
   └ L1:140 (40 lines read)
 
 ● Read 05-5-embedding-and-api.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-ap
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-ap
   │ i.md
   └ L1:180 (39 lines read)
 
@@ -71,20 +71,20 @@ I’ve narrowed the issue pattern: one retrieval entry and one tooling entry are
 ● Search (grep)
   │ "Fast delegated search|Template Compliance Contract Enforcement|Audit Phase Coverage Notes|##
   │ 21\. FEATURE FLAG REFERENCE|## 20\."
-  │ (.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
   └ 4 lines found
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L3700:3815 (116 lines read)
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L4380:4665 (68 lines read)
 
 ● Run skill advisor (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Fix documentation issues in
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md by adding missing catalog
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Fix documentation issues in
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md by adding missing catalog
   │ links, removing a broken internal anchor link, and aligning feature-flag reference descriptions
   │ with source docs" --threshold 0.8
   └ 43 lines...
@@ -94,7 +94,7 @@ I’ve narrowed the issue pattern: one retrieval entry and one tooling entry are
 I’ve got the source-of-truth text for the three drifted flags. I’m doing one last pass over the tooling section order so the new entry lands in the least surprising place, then I’ll patch the file in one shot.
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L3280:3890 (235 lines read)
 
 ● Read feature_catalog_creation.md
@@ -102,7 +102,7 @@ I’ve got the source-of-truth text for the three drifted flags. I’m doing one
   └ L1:180 (179 lines read)
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L3810:3888 (78 lines read)
 
 ● Read plan.md
@@ -112,34 +112,34 @@ I’ve got the source-of-truth text for the three drifted flags. I’m doing one
 I’ve got a clean patch plan now: three small text corrections, one broken-link flattening, two direct feature-file links, and two audit-mapping stub links plus the missing tooling subsection. Applying that as a single surgical edit.
 
 ● Edit
-  └ Edit .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  └ Edit .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
 
 Patch is in. I’m doing a quick verification pass on the edited ranges plus a doc validation run so I can hand back the exact diff confidently.
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L42:140 (98 lines read)
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L3870:3960 (91 lines read)
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L4532:4594 (63 lines read)
 
 ● Search (grep)
   │ "10-fast-delegated-search-memory-quick-search|18-template-compliance-contract-enforcement|08-aud
   │ it-phase-020-mapping-note|20--remediation-revalidation/01-category-stub|21--implement-and-remove
   │ -deprecated-features/01-category-stub|#comprehensive-remediation-sprint-8"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
   └ 5 lines found
 
 ● Validate doc and show diff (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && python3
   │ '.agents/skills/sk-doc/scripts/validate_document.py'
-  │ '.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md' && git --no-pager diff --
-  │ '.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md'
+  │ '.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md' && git --no-pager diff --
+  │ '.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md'
   └ 89 lines...
 
 I’ve verified the edits and the document validator passes cleanly. I’m surfacing the focused diffs now so you can see exactly what changed without paging through the whole 4.6k-line file.
@@ -159,7 +159,7 @@ I’ve verified the edits and the document validator passes cleanly. I’m surfa
   │ 132
   │ 133     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  └ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
 
 ● Show diff FEATURE_CATALOG.md
   │
@@ -198,7 +198,7 @@ I’ve verified the edits and the document validator passes cleanly. I’m surfa
   │ 49
   │ 50     ### Command-Surface Contract
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  └ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
 
 ● Show diff FEATURE_CATALOG.md
   │
@@ -267,7 +267,7 @@ I’ve verified the edits and the document validator passes cleanly. I’m surfa
   │ 3941
   │ 3942     #### Source Files
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  └ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
 
 ● Show diff FEATURE_CATALOG.md
   │
@@ -297,7 +297,7 @@ I’ve verified the edits and the document validator passes cleanly. I’m surfa
   │         Fraction of `MCP_MAX_MEMORY_TOKENS` at which a token budget warning is emitted. At 0.8,
   │         a warning fires when estimated tokens exceed 80% of the max. |
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  └ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
 
 Fixed `FEATURE_CATALOG.md` and showed the focused diff hunks.
 
@@ -306,5 +306,5 @@ I added links for all 5 missing catalog files:
 
 I also removed the broken `#comprehensive-remediation-sprint-8` anchor by flattening it to plain text, and corrected the drifted flag rows for `MCP_MAX_MEMORY_TOKENS`, `EMBEDDING_DIM`, and `RERANKER_LOCAL` to match the per-flag docs.
 
-Validation passed with `python3 .agents/skills/sk-doc/scripts/validate_document.py .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`.
+Validation passed with `python3 .agents/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`.
 

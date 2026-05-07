@@ -5,8 +5,8 @@ contextType: general
 description: 'This session captures research work for command adherence on 2026-02-17.
   Diagnosed and fixed a plan-to-implementation gate bypass defect where the AI agent
   skipped all 3 mandatory gates (Gate 1-3) when transitioning from /spec_kit:plan
-  to implementation via free-text reque... It references AGENTS.md, .opencode/command/spec_kit/plan.md,
-  .opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml and records the current
+  to implementation via free-text reque... It references AGENTS.md, .opencode/commands/spec_kit/plan.md,
+  .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml and records the current
   blocker: Decision: Added enforcement block to both plan YAML termination sections
   rather than modifying next_.'
 trigger_phrases:
@@ -154,7 +154,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: AGENTS.md, .opencode/command/spec_kit/plan.md, .opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml
+- Files modified: AGENTS.md, .opencode/commands/spec_kit/plan.md, .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml
 
 - Check: plan.md, tasks.md, checklist.md
 
@@ -212,11 +212,11 @@ Next: Continue implementation
 
 - `AGENTS.md` - Documentation
 
-- `.opencode/command/spec_kit/plan.md` - Documentation
+- `.opencode/commands/spec_kit/plan.md` - Documentation
 
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` - File modified (description pending)
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` - File modified (description pending)
 
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml` - File modified (description pending)
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` - File modified (description pending)
 
 - `.opencode/changelog/04--commands/v2.0.4.0.md` - Documentation
 
@@ -259,9 +259,9 @@ Diagnosed and fixed a plan-to-implementation gate bypass defect where the AI age
 | **File** | **Description** |
 |:---------|:----------------|
 | `AGENTS.md` | Updated agents |
-| `.opencode/command/spec_kit/plan.md` | Updated plan |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` | File modified (description pending) |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml` | File modified (description pending) |
+| `.opencode/commands/spec_kit/plan.md` | Updated plan |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` | File modified (description pending) |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` | File modified (description pending) |
 | `.opencode/changelog/04--commands/v2.0.4.0.md` | File modified (description pending) |
 | `.opencode/changelog/00--opencode-environment/v2.1.2.0.md` | File modified (description pending) |
 | `.opencode/.../134-command-adherence/spec.md` | File modified (description pending) |
@@ -512,7 +512,7 @@ Diagnosed and fixed a plan-to-implementation gate bypass defect where the AI age
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/z_archive/017-command-adherence", limit: 10 })
@@ -524,7 +524,7 @@ ls -la system-spec-kit/z_archive/017-command-adherence/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/z_archive/017-command-adherence --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/z_archive/017-command-adherence --force
 ```
 
 ### Recovery Priority
@@ -714,9 +714,9 @@ trigger_phrases:
 
 key_files:
   - "AGENTS.md"
-  - ".opencode/command/spec_kit/plan.md"
-  - ".opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml"
-  - ".opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml"
+  - ".opencode/commands/spec_kit/plan.md"
+  - ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml"
+  - ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml"
   - ".opencode/changelog/04--commands/v2.0.4.0.md"
   - ".opencode/changelog/00--opencode-environment/v2.1.2.0.md"
   - ".opencode/.../134-command-adherence/spec.md"

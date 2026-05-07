@@ -1,12 +1,12 @@
 ### Finding 4: Command And Dependency Parity Checks Need A Broader Inventory Model Than Mex Has
-- **Source**: [command.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts), [dependency.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts), [script-coverage.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts), [manifest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/manifest.ts), [validate.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh)
+- **Source**: [command.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts), [dependency.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts), [script-coverage.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts), [manifest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/manifest.ts), [validate.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh)
 - **What it does**: Mex validates `npm run`, `yarn`, `pnpm`, `bun run`, and `make` claims against `package.json` or `Makefile`; checks dependency claims only against `package.json` deps/devDeps; and flags undocumented scripts by substring-searching scaffold text. Its non-Node manifest handling is scanner-only stub logic, not real parity validation.
 - **Why it matters for us**: This addresses a real Public pain point because command-surface drift keeps recurring across docs and wrappers. But integration difficulty is **high**: Spec Kit spans TypeScript, Python, shell, MCP commands, wrapper commands, and spec docs, so we would need a shared command/dependency inventory layer and better text matching than Mex’s substring heuristics to avoid noisy false positives.
 - **Recommendation**: prototype later
 - **Impact**: high
 
 ### Finding 5: Drift-To-Repair Briefing Is Promising, But It Should Become A Spec Kit Repair Surface, Not A Mex-Style CLI Loop
-- **Source**: [sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts), [brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- **Source**: [sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts), [brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
 - **What it does**: Mex groups drift issues by file, embeds current file content, nearby filesystem listings, and `HEAD~5..HEAD` diffs into a repair prompt, then reruns drift checks after an interactive Claude session. The briefing logic is good, but failure/degraded-state handling is shallow compared with Spec Kit’s explicit MCP error envelopes, certainty fields, and post-save review gates.
 - **Why it matters for us**: The transferable part is the prompt builder, not the interactive loop. Integration difficulty is **medium-high** because Spec Kit should emit packet-local, auditable repair briefs and route them through existing spec workflows, health surfaces, and certainty contracts rather than shelling out to a provider-specific CLI and treating `status === null` as success.
 - **Recommendation**: NEW FEATURE
@@ -32,10 +32,10 @@
 - [scanner/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/index.ts)
 - [brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts)
 - [checkers.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/test/checkers.test.ts)
-- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts)
-- [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts)
+- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts)
+- [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts)
 
 ## Assessment
 - New information ratio: 0.79
@@ -95,7 +95,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
 12. Compare Mex directly against current `Code_Environment/Public` capabilities: Spec Kit validation, memory frontmatter, documented memory/index structure, and other repo guidance files. Be precise about where Mex adds new capability versus where it overlaps with systems already covered by phases `001`, `003`, or `004`.
 13. Before any deep-research run, ensure this phase folder contains the expected spec-kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -103,7 +103,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every finding must cite exact file paths, describe what Mex actually does, why it matters for `Code_Environment/Public`, whether it should be `adopt now`, `prototype later`, or `reject`, what subsystem it would affect, and what migration or validation risk comes with it. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
     ```
 
 ## 6. Research Questions
@@ -271,7 +271,7 @@ Deep research iteration focused on adoption risks for previously recommended Mex
   • Assess adoption risks for each candidate pattern and map likely failure modes
   • Deliver iteration report in the requested format with exact file references
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -289,7 +289,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -738,7 +738,7 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/visualize.sh
 
 exec
-/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1399ms:
 
 ───────────────────────────────────────────────────────────────
@@ -753,7 +753,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -2147,7 +2147,7 @@ describe("checkIndexSync", () => {
 exec
 /bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && for f in git scanner/index.ts scanner/manifest.ts sync/brief-builder.ts sync/index.ts pattern/index.ts; do echo "===== $f ====="; sed -n '"'1,260p' \".opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/"'$f"; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && for f in .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts; do echo "===== $f ====="; sed -n '"'1,260p' \""'$f"; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && for f in .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts; do echo "===== $f ====="; sed -n '"'1,260p' \""'$f"; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ===== git =====
 sed: .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git: No such file or directory
@@ -2755,7 +2755,7 @@ last_updated: ${today}
 
 
  succeeded in 0ms:
-===== .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts =====
+===== .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts =====
 // ────────────────────────────────────────────────────────────────
 // MODULE: Memory Crud Health
 // ────────────────────────────────────────────────────────────────
@@ -3017,7 +3017,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     return createMCPErrorResponse({
       tool: 'memory_health',
 
-===== .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts =====
+===== .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts =====
 // ───────────────────────────────────────────────────────────────
 // MODULE: Session Bootstrap Handler
 // ───────────────────────────────────────────────────────────────
@@ -3279,7 +3279,7 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
       content: [
         cachedSummary.cachedSummary.continuityText,
 
-===== .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts =====
+===== .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts =====
 // ---------------------------------------------------------------
 // MODULE: Post-Save Quality Review
 // ---------------------------------------------------------------
@@ -3541,7 +3541,7 @@ function parseFrontmatterArray(content: string, fieldName: string): string[] {
 }
 
 
-===== .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts =====
+===== .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts =====
 // ---------------------------------------------------------------
 // MODULE: Validate Memory Quality
 // ---------------------------------------------------------------
@@ -5037,53 +5037,53 @@ exec
    158	}
 
 exec
-/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n \"reportMode|divergent_aliases|memory_health|code_graph_scan|status === 'stale'|status === 'missing'|Structural context is|certainty|payloadContract|No errors found\\. Only warnings remain|Drift score\" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n \"reportMode|divergent_aliases|memory_health|code_graph_scan|status === 'stale'|status === 'missing'|Structural context is|certainty|payloadContract|No errors found\\. Only warnings remain|Drift score\" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:197:  { pattern: /\|\s*(Knowledge|Uncertainty|Context) Score\s*\|\s*\/100\s*\|/i, label: 'empty preflight score' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:57:  payloadContract?: SharedPayloadEnvelope;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:224:  const resumePayload = coerceSharedPayloadEnvelope(resumeData.payloadContract);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:225:  const healthPayload = coerceSharedPayloadEnvelope(healthData.payloadContract);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:252:      certainty: resumeCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:265:      certainty: cachedCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:274:      certainty: healthCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:283:      certainty: structuralCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:291:      certainty: nextActionsCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:295:  const payloadContract = createSharedPayloadEnvelope({
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:299:      { label: 'resume', certainty: resumeCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:300:      { label: 'health', certainty: healthCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:301:      ...(cachedSummary?.status === 'accepted' ? [{ label: 'cached', certainty: cachedCertainty }] : []),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:302:      { label: 'structural', certainty: structuralCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:303:      { label: 'nextActions', certainty: nextActionsCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:329:    payloadContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:331:      bootstrapPayload: payloadContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:86:const DIVERGENT_ALIAS_REPORT_MODE = 'divergent_aliases';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:242:    reportMode = 'full',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:249:  if (reportMode !== 'full' && reportMode !== DIVERGENT_ALIAS_REPORT_MODE) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:252:      error: `Invalid reportMode: ${String(reportMode)}. Expected "full" or "${DIVERGENT_ALIAS_REPORT_MODE}"`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:343:  if (reportMode === DIVERGENT_ALIAS_REPORT_MODE) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:349:      hints.push('autoRepair is only applied in reportMode="full"');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:362:        reportMode,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:432:        reportMode,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:580:      reportMode: 'full',
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:197:  { pattern: /\|\s*(Knowledge|Uncertainty|Context) Score\s*\|\s*\/100\s*\|/i, label: 'empty preflight score' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:57:  payloadContract?: SharedPayloadEnvelope;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:224:  const resumePayload = coerceSharedPayloadEnvelope(resumeData.payloadContract);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:225:  const healthPayload = coerceSharedPayloadEnvelope(healthData.payloadContract);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:252:      certainty: resumeCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:265:      certainty: cachedCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:274:      certainty: healthCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:283:      certainty: structuralCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:291:      certainty: nextActionsCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:295:  const payloadContract = createSharedPayloadEnvelope({
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:299:      { label: 'resume', certainty: resumeCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:300:      { label: 'health', certainty: healthCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:301:      ...(cachedSummary?.status === 'accepted' ? [{ label: 'cached', certainty: cachedCertainty }] : []),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:302:      { label: 'structural', certainty: structuralCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:303:      { label: 'nextActions', certainty: nextActionsCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:329:    payloadContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:331:      bootstrapPayload: payloadContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:86:const DIVERGENT_ALIAS_REPORT_MODE = 'divergent_aliases';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:242:    reportMode = 'full',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:249:  if (reportMode !== 'full' && reportMode !== DIVERGENT_ALIAS_REPORT_MODE) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:252:      error: `Invalid reportMode: ${String(reportMode)}. Expected "full" or "${DIVERGENT_ALIAS_REPORT_MODE}"`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:343:  if (reportMode === DIVERGENT_ALIAS_REPORT_MODE) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:349:      hints.push('autoRepair is only applied in reportMode="full"');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:362:        reportMode,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:432:        reportMode,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:580:      reportMode: 'full',
 
 exec
 /bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && for f in staleness command dependency script-coverage path edges index-sync cross-file; do echo "===== $f ====="; nl -ba ".opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/$f.ts" | sed -n '"'1,220p'; echo; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -5765,7 +5765,7 @@ exec
     52	}
 
 exec
-/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts | sed -n '222,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts | sed -n '222,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    222	/** Handle memory_health tool -- returns system health status and diagnostics. */
    223	async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
@@ -6008,7 +6008,7 @@ exec
    460	        hints.push(
 
 exec
-/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts | sed -n '90,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts | sed -n '90,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     90	  }
     91	  return null;
@@ -6263,108 +6263,108 @@ exec
    340	    nextActions: buildNextActions(resumeData, healthData, structuralContext),
 
 exec
-/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "V13|malformed-frontmatter|blockOnWrite|blockOnIndex|ISSUES_FOUND|HIGH|MEDIUM|LOW|PSR-2|blocking" .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "V13|malformed-frontmatter|blockOnWrite|blockOnIndex|ISSUES_FOUND|HIGH|MEDIUM|LOW|PSR-2|blocking" .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:23:type QualityRuleId = 'V1' | 'V2' | 'V3' | 'V4' | 'V5' | 'V6' | 'V7' | 'V8' | 'V9' | 'V10' | 'V11' | 'V12' | 'V13' | 'V14';
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:32:  blockOnWrite: boolean;
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:33:  blockOnIndex: boolean;
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:40:  blockingRuleIds: QualityRuleId[];
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:50:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:51:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:59:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:60:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:68:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:69:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:77:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:78:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:86:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:87:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:95:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:96:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:104:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:105:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:113:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:114:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:122:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:123:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:131:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:132:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:140:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:141:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:149:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:150:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:154:  V13: {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:155:    ruleId: 'V13',
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:156:    name: 'malformed-frontmatter',
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:158:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:159:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:167:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:168:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:175:  .filter((metadata) => metadata.blockOnWrite)
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:281: * is detected. The parse error is meant to be surfaced as a V13 rule failure,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:665:  return metadata.blockOnWrite && ruleAppliesToSource(metadata, source);
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:670:  return metadata.blockOnIndex && ruleAppliesToSource(metadata, source);
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:677:  const blockingRuleIds = failedRules.filter((ruleId) => shouldBlockWrite(ruleId, source));
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:678:  if (blockingRuleIds.length > 0) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:681:      blockingRuleIds,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:682:      indexBlockingRuleIds: blockingRuleIds,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:683:      softRuleIds: failedRules.filter((ruleId) => !blockingRuleIds.includes(ruleId)),
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:691:      blockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:699:    blockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:962:  // V13: Frontmatter YAML integrity and content density
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:980:    ruleId: 'V13',
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:986:  // Emitted as a soft warning (blockOnWrite: false, blockOnIndex: false)
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:33:export type IssueSeverity = 'HIGH' | 'MEDIUM' | 'LOW';
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:34:export type ReviewStatus = 'PASSED' | 'ISSUES_FOUND' | 'SKIPPED' | 'REJECTED' | 'REVIEWER_ERROR';
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:37:  | 'PSR-2'
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:71:  blocking?: boolean;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:139:const HIGH_GUARDRAIL_CHECKS = new Set<ReviewCheckId>(['D1', 'D2', 'D4', 'D7']);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:480:    if (issue.severity === 'HIGH') {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:485:    } else if (issue.severity === 'MEDIUM') {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:657:        severity: 'HIGH',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:671:          checkId: 'PSR-2',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:672:          severity: 'HIGH',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:685:          checkId: 'PSR-2',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:686:          severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:697:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:712:          severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:724:          severity: 'LOW',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:736:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:766:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:779:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:790:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:800:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:812:        severity: 'HIGH',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:823:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:837:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:854:          severity: 'LOW',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:882:          severity: 'HIGH',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:894:        severity: 'HIGH',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:911:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:922:        severity: 'HIGH',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:933:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:957:          severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:979:          severity: 'HIGH',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1002:        severity: 'MEDIUM',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1019:    const highCount = issues.filter((issue) => issue.severity === 'HIGH').length;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1020:    const mediumCount = issues.filter((issue) => issue.severity === 'MEDIUM').length;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1021:    const lowCount = issues.filter((issue) => issue.severity === 'LOW').length;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1032:    const blocking = guardrailCounts.high >= 2 || (guardrailCounts.high >= 1 && guardrailCounts.medium >= 2);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1033:    const blockerReason = blocking
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1034:      ? `Composite blocker fired (${guardrailCounts.high} HIGH, ${guardrailCounts.medium} MEDIUM guardrail findings; DUP=${guardrailCounts.dupHigh} HIGH/${guardrailCounts.dupMedium} MEDIUM)`
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1038:      status: blocking ? 'REJECTED' : 'ISSUES_FOUND',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1040:      blocking,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1063:  HIGH: -0.10,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1064:  MEDIUM: -0.05,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1065:  LOW: -0.02,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1091:    blocking: result.blocking ?? false,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1113:  const highCount = result.highCount ?? result.issues.filter((issue) => issue.severity === 'HIGH').length;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1114:  const mediumCount = result.mediumCount ?? result.issues.filter((issue) => issue.severity === 'MEDIUM').length;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1131:    console.log('The AI MUST manually patch HIGH severity fields before continuing.\n');
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1133:    console.log('MEDIUM issues should be patched when practical.\n');
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:23:type QualityRuleId = 'V1' | 'V2' | 'V3' | 'V4' | 'V5' | 'V6' | 'V7' | 'V8' | 'V9' | 'V10' | 'V11' | 'V12' | 'V13' | 'V14';
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:32:  blockOnWrite: boolean;
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:33:  blockOnIndex: boolean;
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:40:  blockingRuleIds: QualityRuleId[];
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:50:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:51:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:59:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:60:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:68:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:69:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:77:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:78:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:86:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:87:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:95:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:96:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:104:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:105:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:113:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:114:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:122:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:123:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:131:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:132:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:140:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:141:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:149:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:150:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:154:  V13: {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:155:    ruleId: 'V13',
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:156:    name: 'malformed-frontmatter',
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:158:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:159:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:167:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:168:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:175:  .filter((metadata) => metadata.blockOnWrite)
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:281: * is detected. The parse error is meant to be surfaced as a V13 rule failure,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:665:  return metadata.blockOnWrite && ruleAppliesToSource(metadata, source);
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:670:  return metadata.blockOnIndex && ruleAppliesToSource(metadata, source);
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:677:  const blockingRuleIds = failedRules.filter((ruleId) => shouldBlockWrite(ruleId, source));
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:678:  if (blockingRuleIds.length > 0) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:681:      blockingRuleIds,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:682:      indexBlockingRuleIds: blockingRuleIds,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:683:      softRuleIds: failedRules.filter((ruleId) => !blockingRuleIds.includes(ruleId)),
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:691:      blockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:699:    blockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:962:  // V13: Frontmatter YAML integrity and content density
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:980:    ruleId: 'V13',
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:986:  // Emitted as a soft warning (blockOnWrite: false, blockOnIndex: false)
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:33:export type IssueSeverity = 'HIGH' | 'MEDIUM' | 'LOW';
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:34:export type ReviewStatus = 'PASSED' | 'ISSUES_FOUND' | 'SKIPPED' | 'REJECTED' | 'REVIEWER_ERROR';
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:37:  | 'PSR-2'
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:71:  blocking?: boolean;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:139:const HIGH_GUARDRAIL_CHECKS = new Set<ReviewCheckId>(['D1', 'D2', 'D4', 'D7']);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:480:    if (issue.severity === 'HIGH') {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:485:    } else if (issue.severity === 'MEDIUM') {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:657:        severity: 'HIGH',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:671:          checkId: 'PSR-2',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:672:          severity: 'HIGH',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:685:          checkId: 'PSR-2',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:686:          severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:697:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:712:          severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:724:          severity: 'LOW',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:736:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:766:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:779:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:790:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:800:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:812:        severity: 'HIGH',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:823:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:837:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:854:          severity: 'LOW',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:882:          severity: 'HIGH',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:894:        severity: 'HIGH',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:911:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:922:        severity: 'HIGH',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:933:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:957:          severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:979:          severity: 'HIGH',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1002:        severity: 'MEDIUM',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1019:    const highCount = issues.filter((issue) => issue.severity === 'HIGH').length;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1020:    const mediumCount = issues.filter((issue) => issue.severity === 'MEDIUM').length;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1021:    const lowCount = issues.filter((issue) => issue.severity === 'LOW').length;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1032:    const blocking = guardrailCounts.high >= 2 || (guardrailCounts.high >= 1 && guardrailCounts.medium >= 2);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1033:    const blockerReason = blocking
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1034:      ? `Composite blocker fired (${guardrailCounts.high} HIGH, ${guardrailCounts.medium} MEDIUM guardrail findings; DUP=${guardrailCounts.dupHigh} HIGH/${guardrailCounts.dupMedium} MEDIUM)`
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1038:      status: blocking ? 'REJECTED' : 'ISSUES_FOUND',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1040:      blocking,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1063:  HIGH: -0.10,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1064:  MEDIUM: -0.05,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1065:  LOW: -0.02,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1091:    blocking: result.blocking ?? false,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1113:  const highCount = result.highCount ?? result.issues.filter((issue) => issue.severity === 'HIGH').length;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1114:  const mediumCount = result.mediumCount ?? result.issues.filter((issue) => issue.severity === 'MEDIUM').length;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1131:    console.log('The AI MUST manually patch HIGH severity fields before continuing.\n');
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1133:    console.log('MEDIUM issues should be patched when practical.\n');
 
 exec
-/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && nl -ba .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts | sed -n '1016,1140p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && nl -ba .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts | sed -n '1016,1140p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1016	      anchorViolationCount: issues.some((issue) => issue.checkId === 'D8') ? 1 : 0,
   1017	    }, anchorState);
@@ -6490,7 +6490,7 @@ exec
   1137	}
 
 exec
-/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && nl -ba .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts | sed -n '148,170p;962,990p;672,704p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && nl -ba .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts | sed -n '148,170p;962,990p;672,704p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    148	    severity: 'medium',
    149	    blockOnWrite: false,
@@ -7220,7 +7220,7 @@ RISK ASSESSMENT: What are the risks of adopting each recommended pattern? What c
 - **Impact**: high
 
 ### Finding 2: Git-Based Freshness Helps, But Silent Nulls And Dual Thresholds Could Distort The Signal
-- **Source**: [staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L12), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194)
+- **Source**: [staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L12), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194)
 - **What it does**: Mex emits separate staleness issues for elapsed days and commits since last touch, with `30/90` day and `50/200` commit thresholds. Its git helpers catch failures and return `null`, which suppresses the signal entirely. Commit-based freshness also walks the repo log and derives staleness from commit position.
 - **Why it matters for us**: The main risk is not just noise, it is mixed noise plus silence. Spec files that are intentionally append-only or low-churn will over-flag, while missing git history or shallow clones will under-flag with no degraded-state notice. If we adopt this without explicit `unknown/degraded` reporting, operators could read “no freshness issue” as “fresh”, which is not true.
 - **Recommendation**: adopt now
@@ -7234,7 +7234,7 @@ RISK ASSESSMENT: What are the risks of adopting each recommended pattern? What c
 - **Impact**: high
 
 ### Finding 4: Drift-To-Repair Briefing Is Reusable, But Mex’s Sync Loop Is Too Optimistic For Spec Kit
-- **Source**: [brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L7), [sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts#L18), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L52), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L1031), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L154)
+- **Source**: [brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L7), [sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts#L18), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L52), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L1031), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L154)
 - **What it does**: Mex builds a repair prompt that embeds current file content, issue lists, nearby directory contents, all files with the same extension when the list is short, and `HEAD~5..HEAD` diffs. Its interactive execution is hard-wired to `claude`, and `runClaudeInteractive()` treats exit code `0` or `null` as success before relying on a post-check rerun.
 - **Why it matters for us**: The prompt-builder is the good part. The risk is the surrounding contract. In Spec Kit, a repair surface that includes broad file inventories and optimistic process-success semantics would clash with packet-local auditability, provider neutrality, and existing hard blockers for malformed or low-quality outputs. If we copy Mex too literally, we get a handy brief generator wrapped in a trust model that is too permissive.
 - **Recommendation**: NEW FEATURE
@@ -7248,7 +7248,7 @@ RISK ASSESSMENT: What are the risks of adopting each recommended pattern? What c
 - **Impact**: medium
 
 ### Finding 6: Mex’s Single Drift Score Would Be Misleading If We Treated It As A Primary Health Signal
-- **Source**: [drift/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L17), [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L1023)
+- **Source**: [drift/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L17), [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L1023)
 - **What it does**: Mex pools all issues into one score starting at `100`, subtracting `10` per error, `3` per warning, and `1` per info. Spec Kit instead exposes explicit blocking states, degraded/healthy modes, and certainty labels.
 - **Why it matters for us**: The risk is overcompression. A repo can still look “healthy” numerically while one critical surface is untrustworthy, or look “bad” because of a cluster of low-value warnings. That is fine for a lightweight CLI summary, but it is the wrong abstraction for a system that already models `unknown`, `estimated`, `exact`, `REJECTED`, and `degraded`.
 - **Recommendation**: reject
@@ -7261,7 +7261,7 @@ RISK ASSESSMENT: What are the risks of adopting each recommended pattern? What c
 - [command.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts), [dependency.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts), [cross-file.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/cross-file.ts), [script-coverage.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts)
 - [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts), [scanner/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/index.ts), [scanner/manifest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/manifest.ts)
 - [brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts), [sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts), [pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts), [checkers.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/test/checkers.test.ts)
-- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts)
+- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts)
 
 ## Assessment
 - New information ratio: 0.76
@@ -7295,7 +7295,7 @@ RISK ASSESSMENT: What are the risks of adopting each recommended pattern? What c
 - **Impact**: high
 
 ### Finding 2: Git-Based Freshness Helps, But Silent Nulls And Dual Thresholds Could Distort The Signal
-- **Source**: [staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L12), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194)
+- **Source**: [staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L12), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194)
 - **What it does**: Mex emits separate staleness issues for elapsed days and commits since last touch, with `30/90` day and `50/200` commit thresholds. Its git helpers catch failures and return `null`, which suppresses the signal entirely. Commit-based freshness also walks the repo log and derives staleness from commit position.
 - **Why it matters for us**: The main risk is not just noise, it is mixed noise plus silence. Spec files that are intentionally append-only or low-churn will over-flag, while missing git history or shallow clones will under-flag with no degraded-state notice. If we adopt this without explicit `unknown/degraded` reporting, operators could read “no freshness issue” as “fresh”, which is not true.
 - **Recommendation**: adopt now
@@ -7309,7 +7309,7 @@ RISK ASSESSMENT: What are the risks of adopting each recommended pattern? What c
 - **Impact**: high
 
 ### Finding 4: Drift-To-Repair Briefing Is Reusable, But Mex’s Sync Loop Is Too Optimistic For Spec Kit
-- **Source**: [brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L7), [sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts#L18), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L52), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L1031), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L154)
+- **Source**: [brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L7), [sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts#L18), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L52), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L1031), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L154)
 - **What it does**: Mex builds a repair prompt that embeds current file content, issue lists, nearby directory contents, all files with the same extension when the list is short, and `HEAD~5..HEAD` diffs. Its interactive execution is hard-wired to `claude`, and `runClaudeInteractive()` treats exit code `0` or `null` as success before relying on a post-check rerun.
 - **Why it matters for us**: The prompt-builder is the good part. The risk is the surrounding contract. In Spec Kit, a repair surface that includes broad file inventories and optimistic process-success semantics would clash with packet-local auditability, provider neutrality, and existing hard blockers for malformed or low-quality outputs. If we copy Mex too literally, we get a handy brief generator wrapped in a trust model that is too permissive.
 - **Recommendation**: NEW FEATURE
@@ -7323,7 +7323,7 @@ RISK ASSESSMENT: What are the risks of adopting each recommended pattern? What c
 - **Impact**: medium
 
 ### Finding 6: Mex’s Single Drift Score Would Be Misleading If We Treated It As A Primary Health Signal
-- **Source**: [drift/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L17), [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L1023)
+- **Source**: [drift/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L17), [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L1023)
 - **What it does**: Mex pools all issues into one score starting at `100`, subtracting `10` per error, `3` per warning, and `1` per info. Spec Kit instead exposes explicit blocking states, degraded/healthy modes, and certainty labels.
 - **Why it matters for us**: The risk is overcompression. A repo can still look “healthy” numerically while one critical surface is untrustworthy, or look “bad” because of a cluster of low-value warnings. That is fine for a lightweight CLI summary, but it is the wrong abstraction for a system that already models `unknown`, `estimated`, `exact`, `REJECTED`, and `degraded`.
 - **Recommendation**: reject
@@ -7336,7 +7336,7 @@ RISK ASSESSMENT: What are the risks of adopting each recommended pattern? What c
 - [command.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts), [dependency.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts), [cross-file.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/cross-file.ts), [script-coverage.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts)
 - [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts), [scanner/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/index.ts), [scanner/manifest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/manifest.ts)
 - [brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts), [sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts), [pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts), [checkers.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/test/checkers.test.ts)
-- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts)
+- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts)
 
 ## Assessment
 - New information ratio: 0.76

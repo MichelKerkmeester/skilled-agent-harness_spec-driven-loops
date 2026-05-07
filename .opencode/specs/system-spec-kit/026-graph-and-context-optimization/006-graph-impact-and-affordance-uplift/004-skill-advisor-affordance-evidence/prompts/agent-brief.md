@@ -19,10 +19,10 @@ You wire tool/resource/MCP-resource affordances into the existing `derived` and 
 5. **Research basis:**
    `.../research/007-external-project-pt-02/research.md` §6 (Skill Advisor findings), §11 Packet 3, §12 RISK-05 (prompt-stuffing risk)
 6. **Existing Public code (READ before EDIT):**
-   - `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` (line 43: `ALLOWED_ENTITY_KINDS = {"skill", "agent", "script", "config", "reference"}` — must stay unchanged)
-   - `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts` (lines 9-43)
-   - `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts` (lines 12-18 `EDGE_MULTIPLIER`; lines 20-81 lane logic)
-   - `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/` (existing fixture patterns)
+   - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` (line 43: `ALLOWED_ENTITY_KINDS = {"skill", "agent", "script", "config", "reference"}` — must stay unchanged)
+   - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts` (lines 9-43)
+   - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts` (lines 12-18 `EDGE_MULTIPLIER`; lines 20-81 lane logic)
+   - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/` (existing fixture patterns)
 
 ## Worktree + branch
 
@@ -41,8 +41,8 @@ You wire tool/resource/MCP-resource affordances into the existing `derived` and 
 | `mcp_server/skill_advisor/tests/affordance-normalizer.test.ts` | **CREATE** — allowlist + privacy + sanitization tests |
 | `mcp_server/skill_advisor/tests/lane-attribution.test.ts` (or extend existing) | **MODIFY** — verify affordance evidence routes to derived/graph-causal (not a new lane) |
 | `mcp_server/skill_advisor/tests/routing-fixtures.*` | **EXTEND** — fixtures showing affordance evidence improves recall without precision regression |
-| `.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
 | `012/004/implementation-summary.md` | **MODIFY** — populate Affordance Allowlist Decided, What Was Built, Static Check Results |
 
 ## Files you may NOT touch
@@ -69,7 +69,7 @@ You wire tool/resource/MCP-resource affordances into the existing `derived` and 
 
 - [ ] All 17 tasks in `012/004/tasks.md` complete (T-004-A1 through T-004-E5)
 - [ ] All checklist items in `012/004/checklist.md` ticked with evidence
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../012/004 --strict` passes
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../012/004 --strict` passes
 - [ ] `vitest run skill_advisor/tests/` green
 - [ ] `pytest skill_advisor/scripts/` green if compiler tests exist
 - [ ] Existing skill_advisor test suite still green (no regression)

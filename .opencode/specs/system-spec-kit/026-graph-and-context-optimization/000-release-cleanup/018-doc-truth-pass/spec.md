@@ -49,7 +49,7 @@ _memory:
 
 The 013 supplemental research found that several operator-facing docs describe automation more broadly than the implementation supports. The highest-leverage Tier A fixes are documentation-only:
 
-1. Copilot hook docs conflict: shared hook docs still mention a stale Claude-style wrapper, while the Copilot-local README says Copilot does not use `.claude/settings.local.json`. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md:41`; `../../../../.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:27-34`]
+1. Copilot hook docs conflict: shared hook docs still mention a stale Claude-style wrapper, while the Copilot-local README says Copilot does not use `.claude/settings.local.json`. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md:41`; `../../../../.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:27-34`]
 2. Codex hook docs blur repo examples with live registration: the current user runtime has `~/.codex/hooks.json` plus `[features].codex_hooks = true`, while repo `.codex/settings.json` is only an example template. [EVIDENCE: `../017-automation-reality-supplemental-research/research/iterations/iteration-004.md:85-89`]
 3. CCC command docs and architecture docs point to stale homes or stale paths. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md:93-94`]
 4. Validation docs use "automatic" wording where the real contract is a workflow-required gate backed by `validate.sh`. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md:95-96`]
@@ -67,13 +67,13 @@ Patch the docs so automation claims name their real trigger: runtime hook, slash
 
 ### In Scope
 
-- Shared hook-system reference under `.opencode/skill/system-spec-kit/references/config/`
-- `.opencode/command/memory/README.txt` or `.opencode/command/memory/manage.md`
+- Shared hook-system reference under `.opencode/skills/system-spec-kit/references/config/`
+- `.opencode/commands/memory/README.txt` or `.opencode/commands/memory/manage.md`
 - System-spec-kit architecture guide
 - `AGENTS.md`
 - `CLAUDE.md`
 - System-spec-kit skill guide
-- `.opencode/skill/system-spec-kit/mcp_server/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md`
 - Packet-local docs under this `018-doc-truth-pass/` folder
 
 ### Out of Scope
@@ -98,7 +98,7 @@ Patch the docs so automation claims name their real trigger: runtime hook, slash
 | REQ-003 | Document Codex legacy/current contracts. | The shared hook-system reference lists current native hooks and legacy/fallback behavior with dated/version notes. |
 | REQ-004 | Fix CCC command-home mismatch. | Either `/memory:manage` routes CCC tools, or README says CCC tools are MCP-only. |
 | REQ-005 | Fix stale CCC architecture paths. | The architecture guide points at `mcp_server/code_graph/handlers/*.ts` and the `index.ts` exports. |
-| REQ-006 | Reword validation auto-fire claims. | AGENTS and SKILL docs say validation is workflow-required and show `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict`. |
+| REQ-006 | Reword validation auto-fire claims. | AGENTS and SKILL docs say validation is workflow-required and show `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict`. |
 | REQ-007 | Add trigger columns to broad automation claims. | CLAUDE, SKILL, MCP server README, and hook-system docs include trigger/default/manual-fallback columns where automation claims are summarized. |
 
 ### Acceptance Scenarios
@@ -137,7 +137,7 @@ Patch the docs so automation claims name their real trigger: runtime hook, slash
 | Risk | Multiple docs contain duplicate hook matrices | Patch the shared reference and the broad summaries that repeat it |
 | Risk | User-level Codex config can expose local-only state | Cite paths and contract shape only; do not copy secrets or unrelated config |
 | Dependency | 013 research report | Use sections 2 and 5 as source-of-truth for triggers and findings |
-| Dependency | Strict validator | Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass --strict` |
+| Dependency | Strict validator | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass --strict` |
 <!-- /ANCHOR:risks -->
 
 ---

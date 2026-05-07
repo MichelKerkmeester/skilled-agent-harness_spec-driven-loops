@@ -41,8 +41,8 @@ contextType: "implementation"
 | File | Action | Purpose |
 |------|--------|---------|
 | [Implementer: List all READMEs requiring changes from changes.md] | Modified | [Specific update] |
-| Example: `.opencode/skill/system-spec-kit/README.md` | Modified | Updated to 5 sources, 7 intents, schema v13 |
-| Example: `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modified | Same + added includeSpecDocs parameter |
+| Example: `.opencode/skills/system-spec-kit/README.md` | Modified | Updated to 5 sources, 7 intents, schema v13 |
+| Example: `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | Same + added includeSpecDocs parameter |
 | Example: `.opencode/README.md` | Modified | Updated statistics table counts |
 | [Continue for all modified READMEs...] | | |
 <!-- /ANCHOR:what-built -->

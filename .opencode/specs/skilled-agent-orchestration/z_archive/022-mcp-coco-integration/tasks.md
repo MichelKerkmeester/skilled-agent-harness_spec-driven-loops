@@ -44,8 +44,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Install cocoindex-code v0.2.3 via `bash .opencode/skill/mcp-coco-index/scripts/install.sh` (`.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc`) [10m]
-- [x] T002 Verify the installed package version prints `0.2.3` via `.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/python -c "import importlib.metadata as m; print(m.version('cocoindex-code'))"` and confirm the binary exists at `.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc` [2m]
+- [x] T001 Install cocoindex-code v0.2.3 via `bash .opencode/skills/mcp-coco-index/scripts/install.sh` (`.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc`) [10m]
+- [x] T002 Verify the installed package version prints `0.2.3` via `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python -c "import importlib.metadata as m; print(m.version('cocoindex-code'))"` and confirm the binary exists at `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc` [2m]
 - [x] T003 Run `ccc init` in project root to initialize `.cocoindex_code/` directory [3m]
 - [x] T004 Add `.cocoindex_code/` entry to `.gitignore` [2m]
 
@@ -156,7 +156,7 @@ _memory:
 
 ### Advisor Utilization
 
-- [x] T055 Update `.opencode/skill/skill-advisor/scripts/skill_advisor.py` to prefer the repo-local `ccc` binary [10m]
+- [x] T055 Update `.opencode/skills/skill-advisor/scripts/skill_advisor.py` to prefer the repo-local `ccc` binary [10m]
 - [x] T056 Add semantic exploration auto-routing without overriding exact-text prompts [10m]
 
 ### Verification
@@ -249,7 +249,7 @@ _memory:
 - [x] Strict readiness issue codes, exit behavior, and downstream adoption packaging validated for Phase 3
 - [x] Skill advisor routing boosters, phrase matching, and semantic-search weighting updated for Phase 7
 - [x] `AGENTS.md`, `GEMINI.md`, `@context`, `../../../skill/mcp-coco-index/references/cross_cli_playbook.md`, and `../../../skill/mcp-coco-index/SKILL.md` updated for cross-CLI CocoIndex adoption boosting
-- [x] All 5 @context agent runtimes updated (`.opencode/agent/`, `.opencode/agent/chatgpt/`, `.agents/agents/`, `.claude/agents/`, `.codex/agents/`)
+- [x] All 5 @context agent runtimes updated (`.opencode/agents/`, `.opencode/agents/chatgpt/`, `.agents/agents/`, `.claude/agents/`, `.codex/agents/`)
 - [x] Barter codebase and `AGENTS_example_fs_enterprises.md` updated with Code Search Protocol and skill_advisor changes
 - [x] Changelog `v1.2.0.0` created
 

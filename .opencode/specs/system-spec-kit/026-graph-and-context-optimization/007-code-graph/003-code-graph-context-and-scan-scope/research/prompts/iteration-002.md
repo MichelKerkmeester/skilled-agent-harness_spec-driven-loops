@@ -41,7 +41,7 @@ All paths relative to repo root: `/Users/michelkerkmeester/MEGA/Development/Code
 
 ### G1 (P0): Design the indexer stale-gate fix
 
-Inspect `indexFiles()` in `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` and `handlers/code-graph/scan.ts`. Determine:
+Inspect `indexFiles()` in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` and `handlers/code-graph/scan.ts`. Determine:
 
 1. The minimal API change to thread `effectiveIncremental` into `indexFiles()` without breaking other callers (selective inline refresh paths).
 2. Where to add the conditional bypass for `isFileStale()` — at the call site or as an `IndexFilesOptions` flag?
@@ -63,8 +63,8 @@ Evaluate trade-offs. Recommend ONE option with rationale. Propose the patch (fil
 ### G3 (P1): Test plan
 
 For each fix, list the test cases that should be added to:
-- `.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts`
 
 Tests must cover: (a) `incremental:false` returns ALL post-exclude files (≥1000), not just stale; (b) repeat scan with no file changes returns same count (idempotency); (c) duplicate-symbol-by-design files don't crash and preserve at least one node per logical symbol.
 

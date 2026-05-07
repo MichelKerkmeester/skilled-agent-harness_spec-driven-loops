@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -73,7 +73,7 @@ Phase 007 closed the active Packet 070 deep review remediation scope. It restore
 | `.opencode/changelog/deep-research` | Created symlink | Points to renamed research skill changelog |
 | `.opencode/changelog/sk-deep-review` | Removed symlink | Removed broken old alias |
 | `.opencode/changelog/sk-deep-research` | Removed symlink | Removed broken old alias |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Updated | Added review-loop positive and anti-signals |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Updated | Added review-loop positive and anti-signals |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -95,7 +95,7 @@ One wording adjustment was necessary for the P0 verification command: source-tar
 |----------|-----|
 | Use arrow form for source-target trigger strings | The provided grep pattern would still match `sk-deep-review to deep-review` as a substring; arrow form preserves meaning and makes the verification real. |
 | Leave `families.sk-deep` unchanged | P1-003 is approved deferred internal taxonomy work. |
-| Leave `.opencode/skill/sk-code/graph-metadata.json` unchanged | P1-004 is approved deferred and pre-existing outside Packet 070 scope. |
+| Leave `.opencode/skills/sk-code/graph-metadata.json` unchanged | P1-004 is approved deferred and pre-existing outside Packet 070 scope. |
 | Leave advisor rebuild to orchestrator | User explicitly said orchestrator will run advisor rebuild via MCP after JSON edit. |
 <!-- /ANCHOR:decisions -->
 

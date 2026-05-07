@@ -58,7 +58,7 @@ SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 ## Code Quality
 
 - [x] CHK-010 [P0] Rename operations used ordered map execution with parity validation. [Evidence: `scratch/path-rename-map.tsv:1`, `scratch/path-rename-log.txt:1`, `wc -l .../path-rename-map.tsv .../path-rename-log.txt => 17 + 17`]
-- [x] CHK-011 [P0] No syntax breakage persisted in scoped markdown docs; validation passed. [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/010-doc-rename => RESULT: PASSED`]
+- [x] CHK-011 [P0] No syntax breakage persisted in scoped markdown docs; validation passed. [Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/010-doc-rename => RESULT: PASSED`]
 - [x] CHK-012 [P1] Error-handling path documented for rollback/recovery. [Evidence: `.opencode/specs/03--commands-and-skills/010-doc-rename/plan.md:145`]
 - [x] CHK-013 [P1] Naming conventions align with supported aliases and symlink targets. [Evidence: `scratch/post-path-symlinks.txt:1`, `scratch/post-path-symlinks.txt:4`]
 
@@ -79,7 +79,7 @@ SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 ## Testing
 
 - [x] CHK-020 [P0] Remnant policy passed with all tracked legacy token families at zero. [Evidence: `scratch/final-remnant-counts.txt:1`, `scratch/final-remnant-counts.txt:10`]
-- [x] CHK-021 [P0] Path/symlink migration integrity checks passed. [Evidence: `test -d .../.opencode/skill/sk-doc`, `scratch/post-path-symlinks.txt:1`, live docs no longer assert a removed visual target]
+- [x] CHK-021 [P0] Path/symlink migration integrity checks passed. [Evidence: `test -d .../.opencode/skills/sk-doc`, `scratch/post-path-symlinks.txt:1`, live docs no longer assert a removed visual target]
 - [x] CHK-022 [P1] External AGENTS check completed with zero matches and no update required. [Evidence: `rg -n "<legacy-doc-identifier>|<legacy-visual-skill-identifier>" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/AGENTS.md" || true => no output`]
 - [x] CHK-023 [P1] Spec validation and strict completion checks passed. [Evidence: `validate.sh => RESULT: PASSED`, `check-completion.sh --strict => RESULT: READY FOR COMPLETION`]
 

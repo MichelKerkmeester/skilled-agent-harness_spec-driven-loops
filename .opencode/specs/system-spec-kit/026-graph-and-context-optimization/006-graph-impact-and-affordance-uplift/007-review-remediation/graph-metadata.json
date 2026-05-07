@@ -42,12 +42,12 @@
       "mcp_server/tool-schemas.ts",
       "mcp_server/schemas/tool-input-schemas.ts",
       "mcp_server/code_graph/handlers/index.ts",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
       "implementation-summary.md",
       "checklist.md",
       "mcp_server/tests/tool-input-schema.vitest.ts",
@@ -102,31 +102,31 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
         "name": "INSTALL_GUIDE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
         "source": "derived"
       },
       {
         "name": "04-detect-changes-preflight.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md",
         "source": "derived"
       },
       {
         "name": "014-detect-changes-preflight.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
         "source": "derived"
       },
       {

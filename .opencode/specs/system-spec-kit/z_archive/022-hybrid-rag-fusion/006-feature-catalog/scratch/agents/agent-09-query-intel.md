@@ -23,61 +23,61 @@ I’m mapping the feature catalog against the actual `mcp_server` and `scripts` 
   └ 162 lines read
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/*.md"
   └ 11 files found
 
 I’ve got the exact 11 catalog files. Next I’m extracting each file’s claimed feature/phase/status, then I’ll verify whether matching code exists in both `mcp_server` and `scripts` before grading alignment.
 
 ● Read 01-query-complexity-router.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/01-query-complexity-route
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/01-query-complexity-route
   │ r.md
   └ 65 lines read
 
 ● Read 02-relative-score-fusion-in-shadow-mode.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-
   │ in-shadow-mode.md
   └ 48 lines read
 
 ● Read 03-channel-min-representation.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/03-channel-min-representa
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/03-channel-min-representa
   │ tion.md
   └ 48 lines read
 
 ● Read 04-confidence-based-result-truncation.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/04-confidence-based-resul
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/04-confidence-based-resul
   │ t-truncation.md
   └ 46 lines read
 
 ● Read 05-dynamic-token-budget-allocation.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/05-dynamic-token-budget-a
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/05-dynamic-token-budget-a
   │ llocation.md
   └ 50 lines read
 
 ● Read 06-query-expansion.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
   └ 108 lines read
 
 ● Read 07-llm-query-reformulation.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/07-llm-query-reformulatio
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/07-llm-query-reformulatio
   │ n.md
   └ 52 lines read
 
 ● Read 08-hyde-hypothetical-document-embeddings.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/08-hyde-hypothetical-docu
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/08-hyde-hypothetical-docu
   │ ment-embeddings.md
   └ 56 lines read
 
 ● Read 09-index-time-query-surrogates.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/09-index-time-query-surro
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/09-index-time-query-surro
   │ gates.md
   └ 53 lines read
 
 ● Read 10-query-decomposition.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/10-query-decomposition.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/10-query-decomposition.md
   └ 53 lines read
 
 ● Read 11-graph-concept-routing.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/11-graph-concept-routing.
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/11-graph-concept-routing.
   │ md
   └ 47 lines read
 
@@ -85,57 +85,57 @@ I’ve read the catalog entries. Now I’m verifying whether each claimed implem
 
 ● Search (grep)
   │ "dynamic-token-budget|adjustedBudget|SPECKIT_CONTEXT_HEADERS|token budget"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "query-classifier|query-router|complexity router|SPECKIT_COMPLEXITY_ROUTER|queryComplexity"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "rrf-fusion|relative score fusion|rsfShadow|SPECKIT_RSF_FUSION|RSF"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 58 lines found
 
 ● Search (grep)
   │ "channel-representation|channel-enforcement|SPECKIT_CHANNEL_MIN_REP|min-representation"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 56 lines found
 
 ● Search (grep)
   │ "confidence-truncation|SPECKIT_CONFIDENCE_TRUNCATION|median gap|relevance cliff"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 34 lines found
 
 ● Search (grep)
   │ "embedding-expansion|query-expander|SPECKIT_EMBEDDING_EXPANSION|expanded-query|stage1-expansion"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 68 lines found
 
 ● Search (grep)
   │ "llm-reformulation|SPECKIT_LLM_REFORMULATION|llm-cache|SEED_LIMIT|MAX_VARIANTS"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 41 lines found
 
 ● Search (grep)
   │ "hyde|SPECKIT_HYDE|SPECKIT_HYDE_ACTIVE|LOW_CONFIDENCE_THRESHOLD|MAX_HYDE_TOKENS"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 59 lines found
 
 ● Search (grep)
   │ "query-surrogates|surrogate-storage|SPECKIT_QUERY_SURROGATES|matchSurrogates|SurrogateMetadata"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 60 lines found
 
 ● Search (grep)
   │ "query-decomposer|SPECKIT_QUERY_DECOMPOSITION|MAX_FACETS|decomposition"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 47 lines found
 
 ● Search (grep)
   │ "entity-linker|SPECKIT_GRAPH_CONCEPT_ROUTING|matchedConcepts|graphActivated|concept-routing"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 46 lines found
 
 ● Search (grep)
@@ -144,32 +144,32 @@ I’ve read the catalog entries. Now I’m verifying whether each claimed implem
   │ TION|dynamic-token-budget|embedding-expansion|query-expander|SPECKIT_EMBEDDING_EXPANSION|llm-ref
   │ ormulation|SPECKIT_LLM_REFORMULATION|hyde|SPECKIT_HYDE|query-surrogates|SPECKIT_QUERY_SURROGATES
   │ |query-decomposer|SPECKIT_QUERY_DECOMPOSITION|entity-linker|SPECKIT_GRAPH_CONCEPT_ROUTING"
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ No matches found
 
 I’ve confirmed a big pattern already: the `scripts` workspace appears to have no direct implementations for these query-intelligence features. I’m now spot-checking the underlying `mcp_server` code and a few ambiguous claims so I can distinguish “catalog scoped to server only” from actual documentation drift.
 
 ● Read query-classifier.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts
   └ L1:260 (223 lines read)
 
 ● Read query-router.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts
   └ L1:260 (166 lines read)
 
 ● search dynamic token budget allocation based on query complexity tier reduce effective budget by …
   └ {"success":false,"results":[],"total_returned":0,"offset":0,"message":"Query ...
 
 ● Read dynamic-token-budget.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts
   └ L1:220 (106 lines read)
 
 ● Read search-flags.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts
   └ L110:400 (291 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L300:1125 (520 lines read)
 
 ● search query complexity classifier router select search channels by term count and trigger match
@@ -184,105 +184,105 @@ I’ve confirmed a big pattern already: the `scripts` workspace appears to have 
 ● Search (grep)
   │ "queryComplexity|routeResult|traceMetadata|adjustedBudget|CONTEXT_HEADER_TOKEN_OVERHEAD|SPECKIT_
   │ DYNAMIC_TOKEN_BUDGET|tokenBudget"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
   └ 27 lines found
 
 ● Search (grep)
   │ "SEED_LIMIT|MAX_VARIANTS|MIN_OUTPUT_LENGTH|REFORMULATION_TIMEOUT_MS|cheapSeedRetrieve|fanout|nor
-  │ malizeQuery" (.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts)
+  │ malizeQuery" (.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts)
   └ 26 lines found
 
 ● Search (grep)
   │ "MIN_MATCH_THRESHOLD|MAX_SUMMARY_LENGTH|MIN_SURROGATE_QUESTIONS|MAX_SURROGATE_QUESTIONS|Surrogat
   │ eMatchResult|memoryId"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts)
   └ 30 lines found
 
 ● Search (grep)
   │ "graphActivated|routeQueryConcepts|concepts.length > 0|matchedConcepts"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts)
   └ 7 lines found
 
 ● Search (grep)
   │ "rsf-fusion\.vitest|rsf-multi|rsf-vs-rrf|SPECKIT_RSF_FUSION|rsfShadow|Relative score fusion"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 8 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/tests/*rsf*.vitest.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/tests/*rsf*.vitest.ts"
   └ No matches found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/shared/algorithms/*rsf*"
+  │ ".opencode/skills/system-spec-kit/mcp_server/shared/algorithms/*rsf*"
   └ No matches found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/scripts/**/*.ts"
   └ 146 files found
 
 I’ve narrowed the likely drift to a small subset. Most entries map cleanly to `mcp_server` and nowhere in `scripts`, but the RSF-removal doc looks overstated, and I’m checking a few runtime details around HyDE/reformulation/filtering before I finalize severities.
 
 ● Read hyde.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts
   └ L1:220 (220 lines read)
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L790:850 (61 lines read)
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L1288:1346 (59 lines read)
 
 ● Read llm-reformulation.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts
   └ L1:220 (220 lines read)
 
 ● Read query-surrogates.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts
   └ L40:95 (56 lines read)
 
 ● Read entity-linker.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts
   └ L300:350 (51 lines read)
 
 ● Read README.md
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/README.md
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/README.md
   └ L312:331 (20 lines read)
 
 ● Read stage2-fusion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
   └ L30:50 (20 lines read)
 
 ● Read stage2-fusion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
   └ L432:446 (15 lines read)
 
 ● Read embedding-expansion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts
   └ L1:360 (304 lines read)
 
 ● Search (grep)
   │ "buildDeepQueryVariants|expandQuery\(|stop|shorter than 3|length < 3|combinedQuery|expanded"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
   └ 18 lines found
 
 ● Read query-expander.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-expander.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/query-expander.ts
   └ L1:220 (101 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L840:980 (141 lines read)
 
 ● Search (grep)
   │ "qualityThreshold|contextType|scope filtering|tier
   │ filtering|shouldApplyScopeFiltering|newReformulationCandidates|newHydeCandidates"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
   └ 39 lines found
 
 ● Read confidence-truncation.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts
   └ L1:220 (220 lines read)
 
 I’ve got enough evidence for a near-final pass, but I’m doing one independent cross-check to make sure I’m not missing a subtle mismatch hiding behind comments or stale tests.
@@ -292,13 +292,13 @@ I’ve got enough evidence for a near-final pass, but I’m doing one independen
   │   │ grep -n
   │   "MAX_SUMMARY_LENGTH\|MIN_SURROGATE_QUESTIONS\|MAX_SURROGATE_QUESTIONS\|MIN_MATCH_THRESHO
   │   │ LD\|stale\|memoryId" "/Users/michelkerkmeester/MEGA/Development/Opencode
-  │   │ Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts"
+  │   │ Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts"
   │   │ 2>/dev/null | head -30
   │   └ 30 lines...
   └ Check search-flags for decomposition and graph routing (shell)
       │ grep -n "SPECKIT_QUERY_DECOMPOSITION\|isQueryDecompositionEnabled"
       │ "/Users/michelkerkmeester/MEGA/Development/Opencode
-      │ Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts"
+      │ Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
       2>/dev/null
       └ 4 lines...
 

@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/implementation-summary.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts"
-      - ".opencode/skill/system-spec-kit/scripts/tests/progressive-validation.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts"
+      - ".opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts"
     session_dedup:
       fingerprint: "sha256:012-broad-suite-vitest-honesty-implementation-summary"
       session_id: "012-broad-suite-vitest-honesty"
@@ -33,7 +33,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 

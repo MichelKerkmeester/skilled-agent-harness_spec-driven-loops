@@ -41,18 +41,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/create/folder_readme.md",
-      ".opencode/command/create/README.txt",
+      ".opencode/commands/create/folder_readme.md",
+      ".opencode/commands/create/README.txt",
       ".opencode/README.md",
       ".opencode/install_guides/README.md",
       ".opencode/install_guides/SET-UP - AGENTS.md",
-      ".opencode/agent/write.md",
+      ".opencode/agents/write.md",
       ".claude/agents/write.md",
       ".codex/agents/write.toml",
       "plan.md",
       "spec.md",
-      ".opencode/command/create/assets/create_folder_readme_auto.yaml",
-      ".opencode/command/create/assets/create_folder_readme_confirm.yaml",
+      ".opencode/commands/create/assets/create_folder_readme_auto.yaml",
+      ".opencode/commands/create/assets/create_folder_readme_confirm.yaml",
       "implementation-summary.md",
       "checklist.md",
       "tasks.md"
@@ -61,13 +61,13 @@
       {
         "name": "folder_readme.md",
         "kind": "doc",
-        "path": ".opencode/command/create/folder_readme.md",
+        "path": ".opencode/commands/create/folder_readme.md",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/create/README.txt",
+        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {
@@ -85,7 +85,7 @@
       {
         "name": "write.md",
         "kind": "doc",
-        "path": ".opencode/agent/write.md",
+        "path": ".opencode/agents/write.md",
         "source": "derived"
       },
       {
@@ -109,13 +109,13 @@
       {
         "name": "create_folder_readme_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_folder_readme_auto.yaml",
+        "path": ".opencode/commands/create/assets/create_folder_readme_auto.yaml",
         "source": "derived"
       },
       {
         "name": "create_folder_readme_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_folder_readme_confirm.yaml",
+        "path": ".opencode/commands/create/assets/create_folder_readme_confirm.yaml",
         "source": "derived"
       },
       {

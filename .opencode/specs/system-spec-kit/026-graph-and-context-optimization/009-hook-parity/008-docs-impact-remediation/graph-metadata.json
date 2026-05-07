@@ -44,10 +44,10 @@
     "key_files": [
       "references/config/hook_system.md",
       ".claude/settings.local.json",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       ".opencode/README.md",
-      ".opencode/skill/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/README.md",
       "mcp_server/hooks/copilot/README.md",
       "mcp_server/INSTALL_GUIDE.md",
       "feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md",
@@ -55,11 +55,11 @@
       "mcp_server/ENV_REFERENCE.md",
       "mcp_server/README.md",
       ".opencode/install_guides/SET-UP - AGENTS.md",
-      ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/skill/system-spec-kit/references/config/hook_system.md",
-      ".opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md",
       "implementation-summary.md",
       "spec.md"
     ],
@@ -79,13 +79,13 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "ARCHITECTURE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
         "source": "derived"
       },
       {

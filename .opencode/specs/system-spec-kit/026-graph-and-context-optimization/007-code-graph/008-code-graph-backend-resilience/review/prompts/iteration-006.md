@@ -14,10 +14,10 @@ You are running iteration 6 of 10 in a deep-review loop on the 008-code-graph-ba
 
 Audit T13 self-heal observability + detect_changes contract preservation:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:30-36` (ReadyResult fields)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:302-367` (selective-reindex branches)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264` (hard block)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts` (hard-block coverage)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:30-36` (ReadyResult fields)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:302-367` (selective-reindex branches)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264` (hard block)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts` (hard-block coverage)
 
 ## Look For
 

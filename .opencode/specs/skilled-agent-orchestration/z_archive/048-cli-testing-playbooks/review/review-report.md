@@ -49,7 +49,7 @@ Any single confirmed P0 blocks PASS. This review has multiple independent P0s ac
 ## 4. P1 PUNCH LIST (PRIORITIZED)
 
 1. **Stop advertising the packet as complete.** Update `implementation-summary.md` continuity (`completion_pct: 100`, `blockers: []`, `recent_action: "Closed out"`) and `graph-metadata.json` `status: complete` to in-progress while P0/P1 remain open.
-2. **Update the 2 missed source-of-truth files.** `.opencode/command/create/assets/create_testing_playbook_auto.yaml:167-172` and `create_testing_playbook_confirm.yaml:181-186` still require feature files to contain `## 2. CURRENT REALITY`. The section rename pass missed these YAML workflows.
+2. **Update the 2 missed source-of-truth files.** `.opencode/commands/create/assets/create_testing_playbook_auto.yaml:167-172` and `create_testing_playbook_confirm.yaml:181-186` still require feature files to contain `## 2. CURRENT REALITY`. The section rename pass missed these YAML workflows.
 3. **Add explicit recovery + cleanup evidence for non-`--share` destructive scenarios.** CP-020, CP-021, CP-008, CP-013, CX-007 lack cloud/sandbox/state cleanup branches.
 4. **Remove or quarantine the runnable Codex negative control.** CX-004 normalizes a command without `service_tier="fast"` while claiming to enforce that auto-memory rule.
 5. **Close or explicitly defer documented CLI surface coverage gaps.** cli-claude-code (5 missing agents + cost/background); cli-codex (research/write profiles + `codex cloud`); cli-gemini (`@debug`); cli-opencode (deep-research, deep-review, orchestrate).

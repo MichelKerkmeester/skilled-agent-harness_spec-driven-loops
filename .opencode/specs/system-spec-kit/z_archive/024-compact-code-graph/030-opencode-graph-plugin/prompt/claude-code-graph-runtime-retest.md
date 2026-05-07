@@ -10,11 +10,11 @@ Do not make code changes. You may read files, call MCP tools, and run safe shell
 
 Read these files first:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 
 ## What To Verify
 
@@ -39,7 +39,7 @@ Read these files first:
 5. Capture the exact `readiness` object from the structural read.
 6. If the first structural read reports `full_scan` because the graph is empty or broadly stale, run `code_graph_scan` once to establish a clean baseline before the small-delta retest.
 7. Touch one already-tracked test file under:
-   `.opencode/skill/system-spec-kit/mcp_server/tests/`
+   `.opencode/skills/system-spec-kit/mcp_server/tests/`
 8. Wait for the debounce window to expire, then rerun `code_graph_query`.
 9. Confirm whether the second read now shows:
    - `freshness=stale`

@@ -11,8 +11,8 @@ Compared Ralph's PRD and story structure with `system-spec-kit`'s CORE + ADDENDU
 
 ## Evidence
 - Ralph uses a minimal state model: project metadata plus user stories with priority, acceptance criteria, and a pass flag. [SOURCE: external/prd.json.example:2-17] [SOURCE: external/skills/prd/SKILL.md:59-119]
-- `system-spec-kit` intentionally uses progressive enhancement: Level 1 through Level 3+ add artifacts based on complexity and governance needs rather than one fixed template. [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:15-35] [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:48-73] [SOURCE: .opencode/skill/system-spec-kit/references/workflows/quick_reference.md:21-45]
-- The operator-facing friction comes from setup and validation ceremony: template copy steps, level-choice explanation, and strict gate language make the system feel heavier than its value model actually is. [SOURCE: .opencode/skill/system-spec-kit/references/workflows/quick_reference.md:56-104] [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:80-120]
+- `system-spec-kit` intentionally uses progressive enhancement: Level 1 through Level 3+ add artifacts based on complexity and governance needs rather than one fixed template. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:15-35] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:48-73] [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:21-45]
+- The operator-facing friction comes from setup and validation ceremony: template copy steps, level-choice explanation, and strict gate language make the system feel heavier than its value model actually is. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:56-104] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-120]
 
 ## Analysis
 Ralph proves that lightweight planning artifacts are enough for narrow loops, but it does not prove that `system-spec-kit`'s documentation depth is wrong for governed, multi-phase work. The real mismatch is in onboarding and tone: users encounter the full template stack and strict validator framing before they have experienced the value. That encourages a false binary between "keep the whole spec-folder system" and "delete it all." The evidence supports keeping the model while softening the path into it.
@@ -23,7 +23,7 @@ confidence: medium
 finding: `system-spec-kit` should NOT replace spec folders or the Level 1/2/3+ model with Ralph's minimal PRD artifact set.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/references/templates/level_specifications.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
 - **Change type:** no change recommended
 - **Blast radius:** architectural
 - **Prerequisites:** none

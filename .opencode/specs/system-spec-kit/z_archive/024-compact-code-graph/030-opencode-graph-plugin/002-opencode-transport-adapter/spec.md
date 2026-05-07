@@ -93,11 +93,11 @@ Implement the OpenCode-native plugin layer that delivers compact packet-024 cont
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts` | Create | Implement the shared OpenCode transport contract |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts` | Create | Implement the shared OpenCode transport contract |
 | `.opencode/plugins/spec-kit-compact-code-graph.js` | Create | Register the real `@opencode-ai/plugin` hook layer |
 | `opencode.json` | Modify | Register the plugin config entry |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modify | Emit transport contract output for resume surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modify | Emit transport contract output for bootstrap surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modify | Emit transport contract output for resume surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modify | Emit transport contract output for bootstrap surfaces |
 <!-- /ANCHOR:scope -->
 
 ---

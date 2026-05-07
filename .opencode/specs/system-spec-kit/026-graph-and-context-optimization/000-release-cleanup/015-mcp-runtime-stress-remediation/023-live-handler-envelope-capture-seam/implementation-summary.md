@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Phase K stress"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam/plan.md"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam/tasks.md"
     session_dedup:
@@ -34,7 +34,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -65,7 +65,7 @@ TC-3 now passes as a normal live handler assertion. Follow-up packet 025 wired `
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Created | Behavioral seam for live handler envelope attachment and decision-audit JSONL emission |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Created | Behavioral seam for live handler envelope attachment and decision-audit JSONL emission |
 | `plan.md` | Created | Level 1 implementation plan for the packet |
 | `tasks.md` | Created | Level 1 task ledger for the packet |
 | `spec.md` | Modified | Continuity and status update for current implementation state |
@@ -100,7 +100,7 @@ The delivery stayed test-only. Runtime code, decision-audit code, envelope build
 |-------|--------|
 | `npx vitest run tests/handler-memory-search-live-envelope.vitest.ts` | PASS after packet 025: TC-3 is a normal passing assertion |
 | `npx tsc --noEmit` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,5 +117,5 @@ The delivery stayed test-only. Runtime code, decision-audit code, envelope build
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

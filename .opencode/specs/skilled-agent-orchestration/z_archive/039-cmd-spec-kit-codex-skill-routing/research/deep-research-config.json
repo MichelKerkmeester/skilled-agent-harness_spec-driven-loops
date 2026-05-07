@@ -31,7 +31,7 @@
       "next-focus"
     ]
   },
-  "capabilityMatrixPath": ".opencode/skill/sk-deep-research/references/capability_matrix.md",
+  "capabilityMatrixPath": ".opencode/skills/sk-deep-research/references/capability_matrix.md",
   "archiveRoot": "research/archive",
   "migrationWindowDays": 28,
   "fileProtection": {

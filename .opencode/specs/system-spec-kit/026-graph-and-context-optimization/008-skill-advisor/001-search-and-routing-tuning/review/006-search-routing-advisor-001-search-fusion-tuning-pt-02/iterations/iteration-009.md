@@ -2,15 +2,15 @@
 
 ## Scope Read
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/search-extended.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/search-extended.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts`
 
 ## Checks
 
-- Rechecked threshold boundary behavior at `.opencode/skill/system-spec-kit/mcp_server/tests/search-extended.vitest.ts:263`.
-- Rechecked direct scoring effect test at `.opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:193`.
-- Rechecked fallback score generation in no-provider and circuit-open paths at `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:408` and `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:421`.
+- Rechecked threshold boundary behavior at `.opencode/skills/system-spec-kit/mcp_server/tests/search-extended.vitest.ts:263`.
+- Rechecked direct scoring effect test at `.opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:193`.
+- Rechecked fallback score generation in no-provider and circuit-open paths at `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:408` and `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:421`.
 
 ## Findings
 

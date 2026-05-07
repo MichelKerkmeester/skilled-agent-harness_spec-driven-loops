@@ -13,15 +13,15 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts`
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/graph-metadata.json`
-- `.opencode/skill/system-spec-kit/references/workflows/execution_methods.md`
-- `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
-- `.opencode/skill/system-spec-kit/references/templates/template_guide.md`
-- `.opencode/skill/system-spec-kit/assets/template_mapping.md`
+- `.opencode/skills/system-spec-kit/references/workflows/execution_methods.md`
+- `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
+- `.opencode/skills/system-spec-kit/references/templates/template_guide.md`
+- `.opencode/skills/system-spec-kit/assets/template_mapping.md`
 
 ## Findings - New
 
@@ -46,12 +46,12 @@ None.
 
 ## Integration Evidence
 
-- `create.sh` parses `--level` and `--path` in the primary CLI option loop [SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:62`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:83`].
-- `create.sh` parses phase workflow flags `--phase`, `--phases`, `--phase-names`, `--parent`, and `--phase-parent`, matching the phase-mode guidance reviewed in the phase docs [SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:143`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:146`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:164`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:177`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:190`].
-- `create.sh --path` rejects traversal and enforces repo containment after allowing `/tmp`/`${TMPDIR}` test fixtures, so the implementation behavior is internally consistent even though iteration 001 recorded a P2 doc precision gap [SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:723`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:729`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:751`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:759`].
-- `validate.sh` exposes strict/recursive flags and the 0/1/2/3 exit-code taxonomy cited by the docs [SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:96`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:105`].
-- `inline-gate-renderer.ts` parses `--level` and `--out-dir`, emits the documented usage string, and strips `.tmpl` from rendered output file names [SOURCE: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts:245`; SOURCE: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts:275`; SOURCE: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts:287`].
-- `level-contract-resolver.ts` resolves the manifest from the live `templates/manifest/spec-kit-docs.json` location, validates accepted levels, loads/caches the manifest, validates row lists and section gates, and resolves a complete contract [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:58`; SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:60`; SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:88`; SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:176`; SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:192`].
+- `create.sh` parses `--level` and `--path` in the primary CLI option loop [SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:62`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:83`].
+- `create.sh` parses phase workflow flags `--phase`, `--phases`, `--phase-names`, `--parent`, and `--phase-parent`, matching the phase-mode guidance reviewed in the phase docs [SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:143`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:146`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:164`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:177`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:190`].
+- `create.sh --path` rejects traversal and enforces repo containment after allowing `/tmp`/`${TMPDIR}` test fixtures, so the implementation behavior is internally consistent even though iteration 001 recorded a P2 doc precision gap [SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:723`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:729`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:751`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:759`].
+- `validate.sh` exposes strict/recursive flags and the 0/1/2/3 exit-code taxonomy cited by the docs [SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:96`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:105`].
+- `inline-gate-renderer.ts` parses `--level` and `--out-dir`, emits the documented usage string, and strips `.tmpl` from rendered output file names [SOURCE: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts:245`; SOURCE: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts:275`; SOURCE: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts:287`].
+- `level-contract-resolver.ts` resolves the manifest from the live `templates/manifest/spec-kit-docs.json` location, validates accepted levels, loads/caches the manifest, validates row lists and section gates, and resolves a complete contract [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:58`; SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:60`; SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:88`; SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:176`; SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:192`].
 - Parent metadata still registers child `005` and now correctly reflects later active child `006`, so no 005 correctness defect was opened [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/graph-metadata.json:6`; SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/graph-metadata.json:35`].
 
 ## Edge Cases

@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 011 of 20. The packet root is
 
 **Angle C1 — Search-quality W3-W13 latency and accuracy**
 
-Audit `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/` (corpus, harness, baseline metrics). Are there channel weights, cross-encoder thresholds, or fusion strategies that could measurably improve precision@K or NDCG without regressing recall? Identify 3-5 concrete tuning opportunities with expected impact. Cite specific weights/thresholds with file:line.
+Audit `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/` (corpus, harness, baseline metrics). Are there channel weights, cross-encoder thresholds, or fusion strategies that could measurably improve precision@K or NDCG without regressing recall? Identify 3-5 concrete tuning opportunities with expected impact. Cite specific weights/thresholds with file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

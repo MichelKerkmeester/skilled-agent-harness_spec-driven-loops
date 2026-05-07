@@ -52,7 +52,7 @@ Five stages, executed sequentially. Test-first ordering per ADR-2: scenarios + f
 2. Bootstrap `description.json` + `graph-metadata.json` via `generate-context.js`
 3. Strict-validate the spec folder
 4. Read `001/research/research.md` §6 fully — extract fixture-target requirements
-5. Decide fixture path (likely `.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/`)
+5. Decide fixture path (likely `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/`)
 6. Author fixture spec doc inside the fixture folder (what flaws, what scoring rubric expectations)
 
 **Stage 1 acceptance:** strict-validate exits 0 (or fails only on known template-shape errors); fixture-target design doc exists.

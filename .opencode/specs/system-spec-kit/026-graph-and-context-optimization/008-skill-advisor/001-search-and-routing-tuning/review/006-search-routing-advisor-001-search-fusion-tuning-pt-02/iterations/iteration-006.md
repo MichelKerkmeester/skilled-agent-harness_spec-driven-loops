@@ -2,14 +2,14 @@
 
 ## Scope Read
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts`
 
 ## Checks
 
-- Rechecked outbound authorization header construction at `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:286`.
-- Rechecked local reranker request shape at `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:366`.
+- Rechecked outbound authorization header construction at `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:286`.
+- Rechecked local reranker request shape at `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:366`.
 - Rechecked no-op length penalty does not add logging or expose document content.
 
 ## Findings

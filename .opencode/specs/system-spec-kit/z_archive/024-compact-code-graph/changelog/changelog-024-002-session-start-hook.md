@@ -47,7 +47,7 @@ This phase turned SessionStart into a source-aware recovery surface instead of a
 | `mcp_server/hooks/claude/session-prime.ts` | Added source-specific startup, resume, clear, and compact handling. |
 | `mcp_server/hooks/claude/shared.ts` | Added pressure-budget helpers used by startup injection. |
 | `mcp_server/hooks/claude/hook-state.ts` | Persisted `lastSpecFolder` for cross-session continuity. |
-| `.opencode/command/spec_kit/resume.md` | Updated resume guidance to use `profile: "resume"`. |
+| `.opencode/commands/spec_kit/resume.md` | Updated resume guidance to use `profile: "resume"`. |
 
 ---
 

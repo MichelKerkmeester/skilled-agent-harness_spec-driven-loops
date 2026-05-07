@@ -14,11 +14,11 @@ Rank W8/W9/W10+ feature candidates by leverage and feasibility, then prepare the
 ## Evidence Reused
 
 - Phase E shipped W3-W7 with measured fixture deltas but called out synthetic benchmark limits at `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/implementation-summary.md:132`.
-- W3 has no production consumer despite a complete helper at `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65`.
-- W4 is production-wired but underfed at `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:327`.
-- W5 emits `_shadow` at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270` without a durable advisor-learning sink.
-- W6 computes duplicate density at `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:36` but has no production consumer.
-- W7 static runners sit at `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155`.
+- W3 has no production consumer despite a complete helper at `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65`.
+- W4 is production-wired but underfed at `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:327`.
+- W5 emits `_shadow` at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270` without a durable advisor-learning sink.
+- W6 computes duplicate density at `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:36` but has no production consumer.
+- W7 static runners sit at `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155`.
 
 ## Ranked Expansion Candidates
 

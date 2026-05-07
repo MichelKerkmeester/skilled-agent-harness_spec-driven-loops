@@ -122,9 +122,9 @@ Read-only routing analysis harness with one shared prompt template and thin per-
 
 | Test Type | Scope | Command |
 |-----------|-------|---------|
-| Spec validation | Phase 005 docs | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution --strict` |
-| Parent validation | Packet 069 phase parent | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` |
-| File existence | New CS scenarios | `ls .opencode/skill/sk-code/manual_testing_playbook/07--cross-stack-routing/` |
+| Spec validation | Phase 005 docs | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution --strict` |
+| Parent validation | Packet 069 phase parent | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` |
+| File existence | New CS scenarios | `ls .opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/` |
 | Executable bits | Runner scripts | `ls -la specs/.../005-playbook-cross-cli-execution/scripts/` |
 | Smoke test | Codex runner | `bash .../scripts/run_codex.sh SD-001 "<prompt>"` |
 <!-- /ANCHOR:testing -->

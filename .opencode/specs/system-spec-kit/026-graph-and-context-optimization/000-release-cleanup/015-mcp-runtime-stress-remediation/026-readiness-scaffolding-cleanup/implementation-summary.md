@@ -19,16 +19,16 @@ _memory:
     blockers:
       - "Full vitest suite reported unrelated failures and then did not terminate within the observed window"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/core/db-state.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/context-server.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
     completion_pct: 100
 ---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -65,33 +65,33 @@ The dead embedding-readiness scaffold is gone from non-dist TypeScript. The embe
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/api/indexing.ts` | Modified | Remove warmup readiness marker |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Modified | Remove startup readiness wait, timeout constant, import, and bootstrap marker |
-| `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts` | Modified | Remove readiness flag and helper definitions |
-| `.opencode/skill/system-spec-kit/mcp_server/core/index.ts` | Modified | Remove core readiness re-exports |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts` | Modified | Remove lazy handler readiness exports |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modified | Remove health dependency on deleted readiness flag |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts` | Modified | Remove handler readiness exports and snake_case aliases |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts` | Modified | Remove scheduler readiness wait |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts` | Modified | Remove readiness mocks and source assertion |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-4-stage-search-pipeline.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-constitutional-memory.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-embedding-semantic-search.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts` | Modified | Remove readiness mocks from all mock blocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts` | Modified | Remove readiness mocks and stale comment |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts` | Modified | Remove readiness export checks and T519-H2/H2b tests |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Modified | Remove readiness mocks while preserving existing graph-readiness changes |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts` | Modified | Remove readiness setup calls, field expectation, and readiness suite |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts` | Modified | Remove readiness mocks |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts` | Modified | Remove core export expectations for readiness |
+| `.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts` | Modified | Remove warmup readiness marker |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Modified | Remove startup readiness wait, timeout constant, import, and bootstrap marker |
+| `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts` | Modified | Remove readiness flag and helper definitions |
+| `.opencode/skills/system-spec-kit/mcp_server/core/index.ts` | Modified | Remove core readiness re-exports |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts` | Modified | Remove lazy handler readiness exports |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modified | Remove health dependency on deleted readiness flag |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts` | Modified | Remove handler readiness exports and snake_case aliases |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts` | Modified | Remove scheduler readiness wait |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts` | Modified | Remove readiness mocks and source assertion |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-4-stage-search-pipeline.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-constitutional-memory.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-embedding-semantic-search.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts` | Modified | Remove readiness mocks from all mock blocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts` | Modified | Remove readiness mocks and stale comment |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts` | Modified | Remove readiness export checks and T519-H2/H2b tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Modified | Remove readiness mocks while preserving existing graph-readiness changes |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts` | Modified | Remove readiness setup calls, field expectation, and readiness suite |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts` | Modified | Remove readiness mocks |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts` | Modified | Remove core export expectations for readiness |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/spec.md` | Modified | Add pre-flight extra references to scope and fix validation reference |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/plan.md` | Created | Level 1 implementation plan |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/tasks.md` | Created | Level 1 task checklist |

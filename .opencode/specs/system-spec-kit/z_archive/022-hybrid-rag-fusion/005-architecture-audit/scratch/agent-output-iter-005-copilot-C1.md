@@ -9,211 +9,211 @@ I’m auditing the user-facing surface area first, then I’ll synthesize concre
 
 ● Explore Audit UX surfaces
   │ Read recovery-hints.ts
-  │   │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
+  │   │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
   │   └ L400:550 (151 lines read)
   └ Get complete recovery hints for session and token budget errors (shell)
       │ grep -C 5 "SESSION_EXPIRED\|TOKEN_BUDGET_EXCEEDED"
       │ /Users/michelkerkmeester/MEGA/Development/Opencode\
-      │ Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts | tail
+      │ Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts | tail
       -40
       └ 41 lines...
 
 I’ve got a first-pass audit; now I’m spot-checking the highest-risk claims directly in code so the findings are precise and evidence-backed.
 
 ● Read context-server.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/context-server.ts
   └ L480:900 (421 lines read)
 
 ● Read cli.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/cli.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/cli.ts
   └ L1:260 (260 lines read)
 
 ● Read startup-checks.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/startup-checks.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/startup-checks.ts
   └ L1:260 (161 lines read)
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L1:380 (265 lines read)
 
 ● Read core.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts
   └ L1:280 (280 lines read)
 
 ● Read envelope.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts
   └ L1:320 (286 lines read)
 
 ● Read recovery-hints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
   └ L1:420 (420 lines read)
 
 ● Search (grep)
   │ "session_id|minQualityScore|olderThanDays|turnNumber|console\.error|warmupCompleted|TOKEN_BUDGET
   │ _EXCEEDED|SESSION_EXPIRED|CAUSAL_|toolTip|createErrorResponse|createSuccessResponse|hints\b|ERRO
-  │ R:|schema-downgrade|bulk-delete" (.opencode/skill/system-spec-kit/mcp_server)
+  │ R:|schema-downgrade|bulk-delete" (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/{tools,formatters}/*.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/{tools,formatters}/*.ts"
   └ 10 files found
 
 I’ve confirmed several of the earlier concerns and am now checking the tool layer itself for consistency in schemas, envelopes, and error handling.
 
 ● Read errors.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors.ts
   └ L1:280 (35 lines read)
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L260:577 (269 lines read)
 
 ● Read tool-input-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
   └ L1:360 (360 lines read)
 
 ● Read checkpoint-tools.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/checkpoint-tools.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/checkpoint-tools.ts
   └ L1:360 (37 lines read)
 
 ● Read context-tools.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts
   └ L1:360 (18 lines read)
 
 ● Read memory-tools.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts
   └ L1:360 (57 lines read)
 
 ● Read lifecycle-tools.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts
   └ L1:360 (66 lines read)
 
 ● Read causal-tools.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts
   └ L1:360 (36 lines read)
 
 ● Read recovery-hints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts
   └ L420:760 (341 lines read)
 
 ● Read search-results.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts
   └ L1:320 (320 lines read)
 
 ● Search (grep)
   │ "createMCP|createResponse|wrapForMCP|return \{|summary:|hints:|meta:|throw new
   │ MemoryError|ERROR_CODES|userFriendlyError" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/tools)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tools)
   └ 1 line found
 
 I’m extending the audit one layer deeper into validation and handler responses, since that’s where callers actually experience schema and envelope behavior.
 
 ● Read tool-input-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
   └ L360:520 (161 lines read)
 
 ● Read types.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/types.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/types.ts
   └ L1:220 (220 lines read)
 
 ● Read context-server.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/context-server.ts
   └ L1:220 (220 lines read)
 
 ● Read context-server.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/context-server.ts
   └ L220:480 (261 lines read)
 
 ● Search (grep)
   │ "createMCP|createResponse|createErrorResponse|wrapForMCP|buildErrorResponse|formatZodError|ToolS
   │ chemaValidationError|summary:|hints:|meta:" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 5 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/handlers/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/handlers/**/*.ts"
   └ 40 files found
 
 I’ve confirmed the schema validation is relatively strong; I’m now checking startup termination paths and which handlers bypass the standard envelope helpers.
 
 ● Read context-server.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/context-server.ts
   └ L900:1120 (174 lines read)
 
 ● Search (grep)
   │ "return \{\s*content:|createMCPErrorResponse|createMCPSuccessResponse|createMCPEmptyResponse|bui
-  │ ldErrorResponse|wrapForMCP" in *.ts (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ ldErrorResponse|wrapForMCP" in *.ts (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 5 lines found
 
 ● Search (grep)
   │ "Unknown tool|Invalid arguments for|Action: remove unknown
   │ keys|session_id|turnNumber|include_cognitive|minQualityScore|min_quality_score|olderThanDays|con
   │ firmName|clearExisting|reportMode|autoRepair" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 I’ve verified the startup completion/failure path. One last pass is checking representative handlers so I can judge whether response formatting is consistently enforced in practice, not just by helper availability.
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L1:260 (260 lines read)
 
 ● Read memory-crud-health.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts
   └ L1:260 (260 lines read)
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
   └ L1:280 (279 lines read)
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L1:260 (260 lines read)
 
 ● Read response-builder.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts
   └ L1:300 (300 lines read)
 
 ● Search (grep)
   │ "createMCP(?:Success|Empty|Error)?Response|createResponse|wrapForMCP|return \{\s*content:" in
-  │ *.ts (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ *.ts (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 5 lines found
 
 I found a stronger response-consistency issue than I expected: some handlers emit symbolic error codes instead of the canonical `E###` codes. I’m confirming where that happens before I wrap up.
 
 ● Search (grep)
   │ "toolTip\?|createMCPErrorResponse\(|createMCPSuccessResponse\(|createMCPResponse\(" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 96 lines found
 
 ● Search (grep)
-  │ "code:\s*'[^']+'" in *.ts (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ "code:\s*'[^']+'" in *.ts (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 53 lines found
 
 The response-shape issue is real: the envelope is standardized, but the error-code vocabulary inside it is not. I’m doing one last CLI pass for help/flag handling, then I’ll deliver the audit.
 
 ● Read cli.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/cli.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/cli.ts
   └ L260:620 (252 lines read)
 
 ✗ Search (grep)
   │ "--help|Unknown command|schema-downgrade|process\.exit\(|printUsage\(|ERROR:"
-  │ (.opencode/skill/system-spec-kit/mcp_server/cli.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/cli.ts)
   └ rg: unrecognized flag --help|Unknown
     command|schema-downgrade|process\.exit\(|printUsage\(|ERROR:
 
 I found the most important architectural friction: the MCP tool catalog and the runtime validator disagree on some accepted parameters. I’m grabbing one representative handler example so I can show how that leaks into real error responses.
 
 ● Read memory-ingest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts
   └ L180:320 (140 lines read)
 
 ● Read memory-crud-update.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts
   └ L220:255 (36 lines read)
 
 ● Read memory-crud-list.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts
   └ L1:120 (120 lines read)
 
 # UX Friction Audit: system-spec-kit MCP Server

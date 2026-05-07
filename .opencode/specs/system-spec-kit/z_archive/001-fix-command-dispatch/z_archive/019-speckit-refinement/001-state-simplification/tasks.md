@@ -16,7 +16,7 @@ contextType: "implementation"
 ## Tasks
 
 ### T1: Modify generate-context.js
-- **File:** `.opencode/skill/system-memory/scripts/generate-context.js`
+- **File:** `.opencode/skills/system-memory/scripts/generate-context.js`
 - **Changes:**
   1. Find the memory file template section
   2. Add "Project State Snapshot" section at TOP (after frontmatter)
@@ -27,9 +27,9 @@ contextType: "implementation"
 
 ### T2: Update resume priority chain
 - **Files:** 
-  - `.opencode/skill/system-spec-kit/references/resume.md`
-  - `.opencode/skill/system-spec-kit/commands/spec_kit_resume_auto.yaml`
-  - `.opencode/skill/system-spec-kit/commands/spec_kit_resume_confirm.yaml`
+  - `.opencode/skills/system-spec-kit/references/resume.md`
+  - `.opencode/skills/system-spec-kit/commands/spec_kit_resume_auto.yaml`
+  - `.opencode/skills/system-spec-kit/commands/spec_kit_resume_confirm.yaml`
 - **Changes:**
   1. Remove STATE.md from priority order
   2. Change to 3-level: quick-continue → handover → memory
@@ -46,7 +46,7 @@ contextType: "implementation"
 - **Priority:** P1
 
 ### T4: Update SKILL.md
-- **File:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **File:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Changes:**
   1. Remove state.md from templates list
   2. Add note about memory files containing state
@@ -55,7 +55,7 @@ contextType: "implementation"
 
 ### T5: Cleanup and documentation
 - **Changes:**
-  1. Archive or delete state.md template from `.opencode/skill/system-spec-kit/templates/`
+  1. Archive or delete state.md template from `.opencode/skills/system-spec-kit/templates/`
   2. Update implementation-summary.md in parent spec folder
 - **Priority:** P2
 

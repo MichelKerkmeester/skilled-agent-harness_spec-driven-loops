@@ -66,7 +66,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] TypeScript build passes. [EVIDENCE: `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` exit 0]
+- [x] CHK-020 [P0] TypeScript build passes. [EVIDENCE: `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` exit 0]
 - [x] CHK-021 [P0] Adapter smoke tests pass. [EVIDENCE: `npx vitest run matrix-adapter` -> 5 files, 10 tests passed]
 - [x] CHK-022 [P0] Tests do not invoke real CLIs. [EVIDENCE: each test file mocks `node:child_process`; see `matrix-adapter-codex.vitest.ts:3`]
 - [x] CHK-023 [P1] Timeout path tested per adapter. [EVIDENCE: `matrix-adapter-codex.vitest.ts:37`; `matrix-adapter-opencode.vitest.ts:37`]
@@ -80,7 +80,7 @@ _memory:
 
 - [x] CHK-030 [P0] No provider secrets logged. [EVIDENCE: tests use mocks; real matrix not executed]
 - [x] CHK-031 [P0] No real external CLIs invoked during verification. [EVIDENCE: targeted Vitest mock suite only]
-- [x] CHK-032 [P1] Real matrix execution remains explicit CLI command. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/README.md:14`]
+- [x] CHK-032 [P1] Real matrix execution remains explicit CLI command. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md:14`]
 <!-- /ANCHOR:security -->
 
 ---
@@ -88,8 +88,8 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Runner README created. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/README.md`]
-- [x] CHK-041 [P1] MCP README references new runner directory. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:1301`, `:1322`]
+- [x] CHK-040 [P1] Runner README created. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md`]
+- [x] CHK-041 [P1] MCP README references new runner directory. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:1301`, `:1322`]
 - [x] CHK-042 [P1] Packet docs cite design, findings, and implementation evidence. [EVIDENCE: `spec.md`, `plan.md`, `implementation-summary.md`]
 <!-- /ANCHOR:docs -->
 

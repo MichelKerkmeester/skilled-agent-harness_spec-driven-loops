@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Author tasks.md"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
-      - ".opencode/agent/multi-ai-council.md"
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
+      - ".opencode/agents/multi-ai-council.md"
     session_dedup:
       fingerprint: "sha256:3987a10453e45b0fbe2cfb0d9c283080d3cc1d8e730bec8452a0150856dbb60c"
       session_id: "plan-089-author"
@@ -41,7 +41,7 @@ Three implementation sub-phases in a single Level 3 packet:
 1. **Phase 2A — Helper + schema + fixtures** (the standalone-usable foundation)
    Author `persist-artifacts.cjs`, 3 fixtures, helper vitest, output-schema.md.
 2. **Phase 2B — Agent body §17 + 4-runtime mirror sync**
-   Update `.opencode/agent/multi-ai-council.md` §8 cross-link + add §17. Mirror to `.claude`, `.gemini`, `.codex`.
+   Update `.opencode/agents/multi-ai-council.md` §8 cross-link + add §17. Mirror to `.claude`, `.gemini`, `.codex`.
 3. **Phase 2C — Validator hardening + mirror parity test**
    Replace existing `multi-ai-council-validator.vitest.ts` partial-layout coverage with synthetic full validation. Add `multi-ai-council-mirror-parity.vitest.ts`.
 
@@ -128,8 +128,8 @@ Tasks T201-T210. Build the standalone-usable foundation:
 
 Tasks T211-T220. Land normative caller protocol:
 
-- T211 Update `.opencode/agent/multi-ai-council.md` §8 to cross-link `output-schema.md`.
-- T212 Add §17 Caller Persistence Protocol to `.opencode/agent/multi-ai-council.md`.
+- T211 Update `.opencode/agents/multi-ai-council.md` §8 to cross-link `output-schema.md`.
+- T212 Add §17 Caller Persistence Protocol to `.opencode/agents/multi-ai-council.md`.
 - T213 Mirror §8 + §17 to `.claude/agents/multi-ai-council.md`.
 - T214 Mirror to `.gemini/agents/multi-ai-council.md`.
 - T215 Mirror to `.codex/agents/multi-ai-council.toml`.
@@ -178,7 +178,7 @@ Tasks T221-T230. Tighten regression coverage:
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Predecessor packet 080 (shipped): provides `.opencode/agent/multi-ai-council.md` §12-§16 + references/multi-ai-council/ + ai-council/ smoke-test artifacts.
+- Predecessor packet 080 (shipped): provides `.opencode/agents/multi-ai-council.md` §12-§16 + references/multi-ai-council/ + ai-council/ smoke-test artifacts.
 - Existing scripts/ folder convention (matches deep-research/deep-review reducer locations).
 - Existing vitest config (system-spec-kit/scripts).
 - 4-runtime mirror convention (per memory `feedback_new_agent_mirror_all_runtimes`).
@@ -230,10 +230,10 @@ Each phase commits separately so rollback granularity is preserved.
 
 Per-file granularity:
 
-- **Helper alone**: `rm -f .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`. Removes it without affecting tests (vitest will fail importing it; revert vitest if needed).
-- **Schema alone**: `rm -f .opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`. Agent §8 cross-link will dangle; revert §8 edit too.
+- **Helper alone**: `rm -f .opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`. Removes it without affecting tests (vitest will fail importing it; revert vitest if needed).
+- **Schema alone**: `rm -f .opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md`. Agent §8 cross-link will dangle; revert §8 edit too.
 - **Single-runtime mirror alone**: revert that runtime's agent file. Parity test will fail until restored.
-- **Parity test alone**: `rm -f .opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts`. No other component depends on it.
+- **Parity test alone**: `rm -f .opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts`. No other component depends on it.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---

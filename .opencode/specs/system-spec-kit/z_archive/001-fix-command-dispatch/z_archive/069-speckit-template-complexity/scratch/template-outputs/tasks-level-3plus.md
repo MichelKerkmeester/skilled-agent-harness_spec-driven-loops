@@ -356,7 +356,7 @@ Choose based on project complexity and traceability requirements.
 ### Cross-References
 - **Specification**: See `spec.md` for requirements
 - **Plan**: See `plan.md` for technical approach
-- **Checklist**: See `.opencode/skill/system-spec-kit/templates/checklist.md` for validation
+- **Checklist**: See `.opencode/skills/system-spec-kit/templates/checklist.md` for validation
 
 ---
 

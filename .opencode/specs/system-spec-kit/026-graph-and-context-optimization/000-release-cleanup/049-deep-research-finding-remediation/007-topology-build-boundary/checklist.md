@@ -95,7 +95,7 @@ This packet ships product-code, shell-rule, plugin, YAML, and dist deletions plu
 
 | ID | File | Evidence |
 |----|------|----------|
-| F-019-D4-02 (P2) | `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` | `# F-019-D4-02:` marker plus `phase_path_grammar` block under `phase_folder_awareness`. Documentation-only; runtime parser unchanged. |
+| F-019-D4-02 (P2) | `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | `# F-019-D4-02:` marker plus `phase_path_grammar` block under `phase_folder_awareness`. Documentation-only; runtime parser unchanged. |
 | F-019-D4-03 (P2) | `mcp_server/lib/spec/is-phase-parent.ts` + `scripts/spec/is-phase-parent.ts` + `scripts/rules/check-phase-parent-content.sh` | `// F-019-D4-03:` markers in both TS mirrors plus `# F-019-D4-03:` in the shell rule. 9 new vitest cases pass. Health helper soft-fails when node/dist unavailable. |
 | F-020-D5-01 (P2) | `.opencode/plugins/spec-kit-skill-advisor.js` | `// F-020-D5-01:` marker on `ADVISOR_SOURCE_PATHS` and the snake-case path now matches the bridge's runtime import target. |
 | F-020-D5-02 (P2) | `scripts/evals/check-source-dist-alignment.ts` | 9 `F-020-D5-02:` markers covering broadened DIST_TARGETS (17 entries), allowlist (3 entries), missing-root soften, and segment derivation fix. Checker exits 0 with 3 allowlisted, 0 violations. |

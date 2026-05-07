@@ -4,9 +4,9 @@
 Finished the D4 deep drill by checking whether the key public hook/renderer contracts remain documented at the code boundary instead of depending on packet memory.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:93-99` -> renderer carries a focused JSDoc block that states its prompt-boundary security role and ignored predecessor fields.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:200-208` -> advisor envelope metadata contract is documented inline with its prompt-safety boundary.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts:3-5` -> hook-policy module comment states its runtime purpose and constrained scope.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:93-99` -> renderer carries a focused JSDoc block that states its prompt-boundary security role and ignored predecessor fields.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:200-208` -> advisor envelope metadata contract is documented inline with its prompt-safety boundary.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts:3-5` -> hook-policy module comment states its runtime purpose and constrained scope.
 
 ## Findings
 

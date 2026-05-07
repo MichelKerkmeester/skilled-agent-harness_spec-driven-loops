@@ -51,12 +51,12 @@
       "scripts/resource-map/extract-from-evidence.cjs",
       "mcp_server/vitest.config.ts",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skill/sk-deep-review/scripts/reduce-state.cjs",
-      ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/skill/system-spec-kit/templates/resource-map.md",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
-      ".opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
+      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/system-spec-kit/templates/resource-map.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+      ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -96,19 +96,19 @@
       {
         "name": "review-research-paths.cjs",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/shared/review-research-paths.cjs",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
         "source": "derived"
       },
       {
         "name": "reduce-state.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-deep-review/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
         "name": "spec-doc-paths.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
         "source": "derived"
       },
       {

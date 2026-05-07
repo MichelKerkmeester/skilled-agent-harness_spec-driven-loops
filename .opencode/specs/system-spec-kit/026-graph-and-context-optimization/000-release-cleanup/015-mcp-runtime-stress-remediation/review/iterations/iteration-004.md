@@ -5,12 +5,12 @@
 
 ## Sources Read
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/review/deep-review-strategy.md:32`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts:33`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts:43`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:1`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:207`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:229`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts:91`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts:33`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts:43`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:1`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:207`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:229`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts:91`
 
 ## Findings
 No new security finding.

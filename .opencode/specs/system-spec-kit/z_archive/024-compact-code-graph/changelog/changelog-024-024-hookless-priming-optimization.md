@@ -129,11 +129,11 @@ Three changes to how agent workflows handle priming.
 
 | File | Changes |
 |------|---------|
-| `.opencode/agent/context-prime.md` | 2-step workflow, urgency detection, updated tool table |
+| `.opencode/agents/context-prime.md` | 2-step workflow, urgency detection, updated tool table |
 | `.claude/agents/context-prime.md` | Runtime copy of above |
 | `.codex/agents/context-prime.md` | Runtime copy of above |
 | `.agents/agents/context-prime.md` | Runtime copy of above |
-| `.opencode/agent/orchestrate.md` | Best-effort delegation language |
+| `.opencode/agents/orchestrate.md` | Best-effort delegation language |
 
 ### Tests (6 files)
 

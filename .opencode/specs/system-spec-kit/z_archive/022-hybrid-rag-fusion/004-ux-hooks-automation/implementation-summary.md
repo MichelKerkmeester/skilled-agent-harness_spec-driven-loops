@@ -44,12 +44,12 @@ This phase implemented shared post-mutation automation for memory mutation flows
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`, `memory-crud-update.ts`, `memory-crud-delete.ts`, and `memory-bulk-delete.ts` - Unified post-mutation hook execution, duplicate-save no-op handling, atomic-save parity, and structured `postMutationHooks` output.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` and `checkpoints.ts` - Added optional `autoRepair` reporting, `confirmName` safety confirmation, sanitized hint output, and safer destructive-action responses.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts`, `mutation-hooks.ts`, and `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` - Expanded mutation result contracts, wrapped hook execution more defensively, appended auto-surface hints before final token-budget checks, and added auto-surface latency measurement.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts`, and `.opencode/skill/system-spec-kit/mcp_server/hooks/README.md` - Added dedicated UX-hook modules, restored export and README parity, and documented response-hint behavior.
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`, `tool-schemas.ts`, and `tools/types.ts` - Synchronized schema and tool-type contracts for the updated mutation and checkpoint flows.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts`, `context-server.vitest.ts`, `handler-checkpoints.vitest.ts`, `tool-input-schema.vitest.ts`, `mcp-input-validation.vitest.ts`, `memory-crud-extended.vitest.ts`, `memory-save-ux-regressions.vitest.ts`, `embeddings.vitest.ts`, and `stdio-logging-safety.vitest.ts` - Added or updated targeted regression coverage for UX hints, checkpoint safety, stdio-safe logging, embeddings cache identity, and save-path parity fixes.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`, `memory-crud-update.ts`, `memory-crud-delete.ts`, and `memory-bulk-delete.ts` - Unified post-mutation hook execution, duplicate-save no-op handling, atomic-save parity, and structured `postMutationHooks` output.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` and `checkpoints.ts` - Added optional `autoRepair` reporting, `confirmName` safety confirmation, sanitized hint output, and safer destructive-action responses.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts`, `mutation-hooks.ts`, and `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` - Expanded mutation result contracts, wrapped hook execution more defensively, appended auto-surface hints before final token-budget checks, and added auto-surface latency measurement.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts`, and `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md` - Added dedicated UX-hook modules, restored export and README parity, and documented response-hint behavior.
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`, `tool-schemas.ts`, and `tools/types.ts` - Synchronized schema and tool-type contracts for the updated mutation and checkpoint flows.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts`, `context-server.vitest.ts`, `handler-checkpoints.vitest.ts`, `tool-input-schema.vitest.ts`, `mcp-input-validation.vitest.ts`, `memory-crud-extended.vitest.ts`, `memory-save-ux-regressions.vitest.ts`, `embeddings.vitest.ts`, and `stdio-logging-safety.vitest.ts` - Added or updated targeted regression coverage for UX hints, checkpoint safety, stdio-safe logging, embeddings cache identity, and save-path parity fixes.
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/004-ux-hooks-automation/tasks.md` and `checklist.md` - Captured implementation progress, review-driven fixes, and current verification state.
 <!-- /ANCHOR:what-built -->
 
@@ -58,8 +58,8 @@ This phase implemented shared post-mutation automation for memory mutation flows
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-- PASS - `npx tsc -b` in `.opencode/skill/system-spec-kit` verified the main TypeScript build.
-- PASS - `npm run lint` in `.opencode/skill/system-spec-kit/mcp_server` verified the scoped lint target.
+- PASS - `npx tsc -b` in `.opencode/skills/system-spec-kit` verified the main TypeScript build.
+- PASS - `npm run lint` in `.opencode/skills/system-spec-kit/mcp_server` verified the scoped lint target.
 - PASS - Combined targeted rerun of 9 Vitest files completed with 525 tests passing.
 - PASS - Split playbook verification completed in two reruns: 7 files / 510 tests and 2 files / 15 tests.
 - PASS - Phase 4 follow-up verification completed with `npx tsc --noEmit` plus 416/416 tests across 4 affected suites.

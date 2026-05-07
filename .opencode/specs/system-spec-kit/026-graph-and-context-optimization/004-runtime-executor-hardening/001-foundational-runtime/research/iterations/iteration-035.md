@@ -6,7 +6,7 @@ I stayed on the Domain 3 seams from Iterations 031-034, but filtered out the alr
 ## Findings
 
 ### Finding R35-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`; `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`; `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
 - **Lines:** `reconsolidation-bridge.ts:270-295`; `reconsolidation.ts:467-508, 610-658, 952-993`
 - **Severity:** P1
 - **Description:** The reconsolidation conflict lane is not single-winner coordinated. Two overlapping conflict saves can both supersede the same predecessor because candidate selection happens before any writer transaction, `executeConflict()` only checks that the row still exists, and `insertSupersedesEdge()` deduplicates only identical `(source_id, target_id, relation)` triples. Different new memory IDs are therefore all allowed to point at the same old row.
@@ -14,7 +14,7 @@ I stayed on the Domain 3 seams from Iterations 031-034, but filtered out the alr
 - **Downstream Impact:** A single predecessor memory can end up with multiple active "replacement" memories, each claiming to supersede it. That makes lineage ambiguous for drift analysis, causal traversal, and any consumer that assumes a conflict resolution leaves one current successor.
 
 ### Finding R35-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `session-stop.ts:119-125, 313-317`; `hook-state.ts:170-180, 221-240`
 - **Severity:** P2
 - **Description:** `touchedPaths` is another success-shaped durability signal that outruns the actual write contract. `recordStateUpdate()` appends the state path to `touchedPaths` unconditionally, even though `updateState()` can fail to persist or lose the unlocked `.tmp` race and only emit a warning.
@@ -22,7 +22,7 @@ I stayed on the Domain 3 seams from Iterations 031-034, but filtered out the alr
 - **Downstream Impact:** Tooling or operators can treat `touchedPaths` as proof that the stop hook durably updated hook-state when the file on disk may still hold stale content. That masks local state-write races and makes later autosave/resume failures look like downstream bugs instead of an earlier failed write.
 
 ### Finding R35-003
-- **File:** `AGENTS.md`; `CLAUDE.md`; `CODEX.md`; `GEMINI.md`; `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`
+- **File:** `AGENTS.md`; `CLAUDE.md`; `CODEX.md`; `GEMINI.md`; `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
 - **Lines:** `AGENTS.md:205-207`; `CLAUDE.md:152-155`; `CODEX.md:205-207`; `GEMINI.md:205-207`; `generate-context.ts:61-83`
 - **Severity:** P2
 - **Description:** The shared save-context temp path is now prescribed across all runtime root instructions, not just command assets. Every runtime guide still tells the operator to write session JSON to `/tmp/save-context-data.json`, even though the actual CLI help marks `--stdin` and `--json` as the preferred structured-input paths.

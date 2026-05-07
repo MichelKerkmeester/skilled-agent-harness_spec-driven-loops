@@ -3,9 +3,9 @@
 ## Dimension: Observability & Resilience
 
 Scope reviewed:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/hybrid-search.js`
-- Comparison baseline: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/hybrid-search.js`
+- Comparison baseline: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts`
 
 ## Findings (P0/P1/P2 with file:line citations)
 

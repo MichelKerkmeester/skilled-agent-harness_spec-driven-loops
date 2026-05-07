@@ -42,13 +42,13 @@
     "status": "planned",
     "key_files": [
       ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4/analysis-report.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "spec.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/command/memory/search.md",
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/command/memory/save.md",
+      ".opencode/commands/memory/search.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/commands/memory/save.md",
       "templates/.hashes",
       "plan.md",
       "decision-record.md"
@@ -63,7 +63,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -87,19 +87,19 @@
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
         "name": "save.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/save.md",
+        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {

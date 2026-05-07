@@ -6,7 +6,7 @@ Define the minimum additional verification needed so packet-030 plugin work stop
 
 ## Findings
 
-1. Current tests prove the bridge is called, cache behavior works, and a synthetic object is pushed once. They do not prove the transformed output survives real OpenCode prompt validation. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:74-165`]
+1. Current tests prove the bridge is called, cache behavior works, and a synthetic object is pushed once. They do not prove the transformed output survives real OpenCode prompt validation. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:74-165`]
 
 2. The highest-value regression test is not "more metadata assertions." It is a contract test that rejects invalid message shapes before they ever reach a live OpenCode session. [INFERENCE: based on the gap identified in iteration 113]
 
@@ -15,7 +15,7 @@ Define the minimum additional verification needed so packet-030 plugin work stop
    - shape validation for transformed `messages`
    - one real OpenCode smoke test after restart
 
-4. Without that middle layer, packet 030 will keep being vulnerable to "passes Vitest, fails live host schema" regressions whenever `messages.transform` changes. [INFERENCE: synthesized from `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:101-119` and the live failure]
+4. Without that middle layer, packet 030 will keep being vulnerable to "passes Vitest, fails live host schema" regressions whenever `messages.transform` changes. [INFERENCE: synthesized from `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:101-119` and the live failure]
 
 ## Recommendation
 

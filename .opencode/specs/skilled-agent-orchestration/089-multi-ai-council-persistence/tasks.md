@@ -68,7 +68,7 @@ Spec authoring + design lock-in.
 
 ### Phase 2A — Helper + schema + fixtures
 
-- [x] T201 Create directory `.opencode/skill/system-spec-kit/scripts/multi-ai-council/`
+- [x] T201 Create directory `.opencode/skills/system-spec-kit/scripts/multi-ai-council/`
 - [x] T202 Author `persist-artifacts.cjs` (Node CJS, parser/renderer/builder/state-line exports + CLI)
 - [x] T203 Author `references/multi-ai-council/output-schema.md` (markdown contract)
 - [x] T204 [P] Author 3 fixtures under `scripts/tests/fixtures/multi-ai-council/` (full / minimal / missing-required)
@@ -81,8 +81,8 @@ Spec authoring + design lock-in.
 
 ### Phase 2B — Agent body §17 + 4-runtime mirror sync
 
-- [x] T211 Update `.opencode/agent/multi-ai-council.md` §8 to cross-link `output-schema.md`
-- [x] T212 Add §17 Caller Persistence Protocol to `.opencode/agent/multi-ai-council.md`
+- [x] T211 Update `.opencode/agents/multi-ai-council.md` §8 to cross-link `output-schema.md`
+- [x] T212 Add §17 Caller Persistence Protocol to `.opencode/agents/multi-ai-council.md`
 - [x] T213 [P] Mirror §8 + §17 to `.claude/agents/multi-ai-council.md`
 - [x] T214 [P] Mirror to `.gemini/agents/multi-ai-council.md`
 - [x] T215 [P] Mirror to `.codex/agents/multi-ai-council.toml`
@@ -113,7 +113,7 @@ Spec authoring + design lock-in.
 
 Final wrap.
 
-- [ ] T301 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet-089> --strict` (exit 0)
+- [ ] T301 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet-089> --strict` (exit 0)
 - [ ] T302 Generate nested changelog via `nested-changelog.js`
 - [ ] T303 Run `/memory:save` via generate-context.js
 - [ ] T304 Verify all P0 + P1 checklist items complete with evidence

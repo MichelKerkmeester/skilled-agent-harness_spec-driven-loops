@@ -73,7 +73,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 - [x] CHK-020 [P0] SC-001 validated: trigger extraction stays deterministic and baseline-compatible across the shared baseline, script adapter, and unified engine [Evidence: `semantic-signal-golden.vitest.ts` passes with frozen outputs for 3 inputs.]
 - [x] CHK-021 [P0] Golden tests pass after adapter migration [Evidence: `node mcp_server/node_modules/vitest/vitest.mjs run tests/semantic-signal-golden.vitest.ts tests/description-enrichment.vitest.ts tests/decision-confidence.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts` passed (3 files, 16 tests).]
 - [x] CHK-022 [P1] SC-002 validated: stopword divergence eliminated for script-side consumers [Evidence: `semantic-signal-golden.vitest.ts` verifies `balanced` vs `aggressive` filtering through one contract.]
-- [x] CHK-023 [P1] Existing extractor test suites pass through the adapter layer [Evidence: `cd .opencode/skill/system-spec-kit/scripts && node tests/test-extractors-loaders.js` passed (307 passed, 0 failed).]
+- [x] CHK-023 [P1] Existing extractor test suites pass through the adapter layer [Evidence: `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js` passed (307 passed, 0 failed).]
 - [x] CHK-024 [P1] Topic/session/summary call paths align on the same dominant concepts [Evidence: `semantic-signal-golden.vitest.ts` verifies shared concepts across workflow topics, session topics, and summary trigger phrases.]
 - [x] CHK-025 [P1] Stopword profile modes (`balanced` vs. `aggressive`) produce expected differences [Evidence: the golden suite asserts `session`/`tool` survive `balanced` filtering and are removed by `aggressive`.]
 - [x] CHK-026 [P2] N-gram extraction validated at depths 1-4 [Evidence: the golden suite verifies depth-1 unigram behavior and higher-depth phrase extraction.]
@@ -105,7 +105,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 
 - [x] CHK-050 [P1] Temp files in scratch/ only [Evidence: no phase temp artifacts were introduced outside the normal test/build outputs.]
 - [x] CHK-051 [P1] scratch/ cleaned before completion [Evidence: this phase did not require scratch artifacts.]
-- [x] CHK-052 [P2] Findings saved to memory/ [Evidence: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction` refreshed `memory/metadata.json` for this phase.]
+- [x] CHK-052 [P2] Findings saved to memory/ [Evidence: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction` refreshed `memory/metadata.json` for this phase.]
 <!-- /ANCHOR:file-org -->
 
 ---

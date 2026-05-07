@@ -4,8 +4,8 @@
 Reviewed the Copilot SDK activation path and version posture to make sure the integration docs still reflect the actual runtime/probe logic.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/package.json:43-55` -> `@github/copilot-sdk` remains installed as a direct dependency with range `^0.2.2`.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:29-33` and `:85-106` -> adapter probes a bounded candidate list and exposes the resolved SDK availability at module load.
+- `.opencode/skills/system-spec-kit/mcp_server/package.json:43-55` -> `@github/copilot-sdk` remains installed as a direct dependency with range `^0.2.2`.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:29-33` and `:85-106` -> adapter probes a bounded candidate list and exposes the resolved SDK availability at module load.
 - `copilot-user-prompt-submit-hook.vitest.ts:66-99` -> tests cover both the installed SDK path and the fallback path when the SDK cannot be resolved.
 
 ## Findings

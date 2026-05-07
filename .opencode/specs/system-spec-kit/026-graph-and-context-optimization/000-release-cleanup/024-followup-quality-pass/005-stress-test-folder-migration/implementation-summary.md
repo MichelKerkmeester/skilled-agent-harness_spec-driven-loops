@@ -18,9 +18,9 @@ _memory:
     next_safe_action: "Use packet for downstream work"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/README"
-      - ".opencode/skill/system-spec-kit/mcp_server/vitest.config.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/package.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/README"
+      - ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/package.json"
       - "migration-plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -66,14 +66,14 @@ Two confirmed stress suites moved out of `tests/`: `session-manager-stress.vites
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts` | Moved | Place session capacity stress coverage in the dedicated folder |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts` | Moved | Place packet-013 degraded stress cell in the dedicated folder |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/README` | Created | Document purpose, run commands, and boundary with default tests |
-| `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts` | Modified | Add opt-in stress include/exclude behavior |
-| `.opencode/skill/system-spec-kit/mcp_server/package.json` | Modified | Add `stress` script |
-| `.opencode/skill/system-spec-kit/mcp_server/tsconfig.json` | Modified | Exclude stress tests from production build |
-| `.opencode/skill/system-spec-kit/mcp_server/README` | Modified | Add `stress_test/` to MCP server structure |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/README` | Modified | Clarify default suite vs stress-suite boundary |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts` | Moved | Place session capacity stress coverage in the dedicated folder |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts` | Moved | Place packet-013 degraded stress cell in the dedicated folder |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/README` | Created | Document purpose, run commands, and boundary with default tests |
+| `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` | Modified | Add opt-in stress include/exclude behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modified | Add `stress` script |
+| `.opencode/skills/system-spec-kit/mcp_server/tsconfig.json` | Modified | Exclude stress tests from production build |
+| `.opencode/skills/system-spec-kit/mcp_server/README` | Modified | Add `stress_test/` to MCP server structure |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/README` | Modified | Clarify default suite vs stress-suite boundary |
 | `specs/.../015-mcp-runtime-stress-remediation/**/*.md` | Modified | Refresh direct references to the moved degraded stress suite |
 | `specs/.../005-stress-test-folder-migration/*` | Created | Add packet docs and migration plan |
 <!-- /ANCHOR:what-built -->
@@ -107,10 +107,10 @@ Discovery used filename search, TypeScript content search, and docs reference se
 
 | Command | Result |
 |---------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/005-stress-test-folder-migration --strict` | PASS - 0 errors, 0 warnings |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` | PASS - `tsc --build` exited 0 |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm test` | BLOCKED - broad suite reported unrelated failures and then stopped producing output; see checklist |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run stress` | PASS - 2 files, 7 tests passed |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/005-stress-test-folder-migration --strict` | PASS - 0 errors, 0 warnings |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | PASS - `tsc --build` exited 0 |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm test` | BLOCKED - broad suite reported unrelated failures and then stopped producing output; see checklist |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run stress` | PASS - 2 files, 7 tests passed |
 <!-- /ANCHOR:verification -->
 
 ---

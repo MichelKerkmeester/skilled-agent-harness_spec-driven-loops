@@ -88,7 +88,7 @@ Each iteration audits a distinct surface end-to-end. All iterations are read-onl
 
 ### Iteration 1 — Database, Schema, and Storage Migration Impact
 
-**Audits**: `.opencode/skill/system-spec-kit/mcp_server/database/` (including SQL files, TypeScript schema definitions, and any `.sql` migration files if present), `lib/storage/causal-edges.ts`, schema-defining code in `core/`, and schema consumers in handlers.
+**Audits**: `.opencode/skills/system-spec-kit/mcp_server/database/` (including SQL files, TypeScript schema definitions, and any `.sql` migration files if present), `lib/storage/causal-edges.ts`, schema-defining code in `core/`, and schema consumers in handlers.
 
 **Produces**:
 - **Schema delta table** — current columns → target columns, with NOT NULL / UNIQUE / index changes per table (`memory_index`, `memory_chunks`, `causal_edges`, `vec_memories`, `memory_fts`, `embedding_cache`, `memory_entities`, `memory_summaries`, `governance_audit_log`, `shared_spaces`, `shared_space_members`).
@@ -110,7 +110,7 @@ Each iteration audits a distinct surface end-to-end. All iterations are read-onl
 
 ### Iteration 2 — MCP Handler and Save Pipeline Impact
 
-**Audits**: `.opencode/skill/system-spec-kit/mcp_server/handlers/` end-to-end. Specifically:
+**Audits**: `.opencode/skills/system-spec-kit/mcp_server/handlers/` end-to-end. Specifically:
 - `memory-save.ts` (16-stage pipeline) and the `save/` subdirectory (`validation`, `dedup`, `embedding`, `reconsolidation`, `post-insert`, `causal-links-processor`, `response-builder`, `db-helpers`, `pe-orchestration`, `embedding-pipeline`)
 - `memory-context.ts` (retrieval router)
 - `memory-search.ts` (4-stage pipeline)
@@ -139,7 +139,7 @@ Each iteration audits a distinct surface end-to-end. All iterations are read-onl
 
 ### Iteration 3 — Generator, Scripts, and Core Indexing Impact
 
-**Audits**: `.opencode/skill/system-spec-kit/scripts/memory/` and `mcp_server/core/`. Specifically:
+**Audits**: `.opencode/skills/system-spec-kit/scripts/memory/` and `mcp_server/core/`. Specifically:
 - `scripts/memory/generate-context.ts` — the central refactor point
 - `scripts/memory/backfill-frontmatter.ts`, `reindex-embeddings.ts`, `rank-memories.ts`, `validate-memory-quality.ts`, `cleanup-orphaned-vectors.ts`, `rebuild-auto-entities.ts`, `migrate-trigger-phrase-residual.ts`, `fix-memory-h1.mjs`, `ast-parser.ts`
 - `mcp_server/core/memory-indexer.ts`, `core/memory-metadata.ts`, `core/find-predecessor-memory.ts`
@@ -165,9 +165,9 @@ Each iteration audits a distinct surface end-to-end. All iterations are read-onl
 ### Iteration 4 — Templates, Anchors, and Validator Impact
 
 **Audits**:
-- `.opencode/skill/system-spec-kit/templates/` — `level_1/`, `level_2/`, `level_3/`, `level_3+/`, plus `core/`, `addendum/`, `changelog/`, `sharded/`, `research.md`, `handover.md`, `context_template.md`, `debug-delegation.md`
+- `.opencode/skills/system-spec-kit/templates/` — `level_1/`, `level_2/`, `level_3/`, `level_3+/`, plus `core/`, `addendum/`, `changelog/`, `sharded/`, `research.md`, `handover.md`, `context_template.md`, `debug-delegation.md`
 - `scripts/spec/validate.sh` and any validator support files
-- `.opencode/skill/system-spec-kit/SKILL.md` sections that define the template-anchor contract
+- `.opencode/skills/system-spec-kit/SKILL.md` sections that define the template-anchor contract
 
 **Produces**:
 - **Anchor delta per template** — for each `implementation-summary.md`, `decision-record.md`, `handover.md`, `research/research.md`, `tasks.md`, `checklist.md` template (across all 4 levels), what new anchor IDs / section markers / frontmatter fields must be added to accept routed memory content.
@@ -189,11 +189,11 @@ Each iteration audits a distinct surface end-to-end. All iterations are read-onl
 **Wide and shallow**. Warning for the agent: do not go deep on every doc/test/config — the time budget is spent on the per-file row, not on reading the whole test suite.
 
 **Audits**:
-- **Commands**: `.opencode/command/memory/save.md`, `memory/search.md`, `memory/manage.md`, `memory/learn.md`, `spec_kit/resume.md`, `spec_kit/complete.md`, `spec_kit/plan.md`, `spec_kit/implement.md`, `spec_kit/deep-research.md`, `spec_kit/deep-review.md`, `spec_kit/handover.md`, `spec_kit/debug.md`
-- **Workflow YAMLs**: all `.opencode/command/spec_kit/assets/*_auto.yaml` and `*_confirm.yaml`
-- **Agents**: `.opencode/agent/context.md` (primary target — "memory first" protocol), `speckit.md`, `orchestrate.md`, `deep-research.md`, `deep-review.md`, `handover.md`, `ultra-think.md`, `debug.md`, `review.md`, `write.md`, `general.md`
-- **Skills**: `.opencode/skill/system-spec-kit/SKILL.md` + `references/memory/*.md` (memory_system.md, save_workflow.md, trigger_config.md, epistemic_vectors.md, embedding_resilience.md), `sk-deep-research/SKILL.md`, `sk-deep-review/SKILL.md`, `sk-doc/SKILL.md`
-- **Docs**: `/CLAUDE.md`, `/AGENTS.md`, `.opencode/skill/system-spec-kit/README.md`, `ARCHITECTURE.md`, `mcp_server/README.md`, `INSTALL_GUIDE.md`
+- **Commands**: `.opencode/commands/memory/save.md`, `memory/search.md`, `memory/manage.md`, `memory/learn.md`, `spec_kit/resume.md`, `spec_kit/complete.md`, `spec_kit/plan.md`, `spec_kit/implement.md`, `spec_kit/deep-research.md`, `spec_kit/deep-review.md`, `spec_kit/handover.md`, `spec_kit/debug.md`
+- **Workflow YAMLs**: all `.opencode/commands/spec_kit/assets/*_auto.yaml` and `*_confirm.yaml`
+- **Agents**: `.opencode/agents/context.md` (primary target — "memory first" protocol), `speckit.md`, `orchestrate.md`, `deep-research.md`, `deep-review.md`, `handover.md`, `ultra-think.md`, `debug.md`, `review.md`, `write.md`, `general.md`
+- **Skills**: `.opencode/skills/system-spec-kit/SKILL.md` + `references/memory/*.md` (memory_system.md, save_workflow.md, trigger_config.md, epistemic_vectors.md, embedding_resilience.md), `sk-deep-research/SKILL.md`, `sk-deep-review/SKILL.md`, `sk-doc/SKILL.md`
+- **Docs**: `/CLAUDE.md`, `/AGENTS.md`, `.opencode/skills/system-spec-kit/README.md`, `ARCHITECTURE.md`, `mcp_server/README.md`, `INSTALL_GUIDE.md`
 - **Tests**: `/scripts/tests/memory-quality-phase*.test.ts` (6+ files), `mcp_server/test/` directory
 - **Configs**: `.mcp.json`, `mcp_server/configs/`, any `package.json` scripts
 
@@ -266,32 +266,32 @@ The research loop halts when **all** of the following are true:
 
 ### 6.2 Integration surface (pre-vetted)
 
-**Commands** (`.opencode/command/`):
+**Commands** (`.opencode/commands/`):
 - **VERY HIGH**: `memory/save.md`, `spec_kit/resume.md`, `spec_kit/complete.md`, `spec_kit/plan.md`, `spec_kit/implement.md`, `spec_kit/deep-research.md`, `spec_kit/deep-review.md`
 - **MEDIUM**: `memory/search.md`, `memory/manage.md`, `memory/learn.md`, `spec_kit/handover.md`, `spec_kit/debug.md`, `spec_kit/assets/*_auto.yaml`, `spec_kit/assets/*_confirm.yaml`
 
-**Agents** (`.opencode/agent/`):
+**Agents** (`.opencode/agents/`):
 - **VERY HIGH**: `context.md` (primary memory consumer; "memory first" protocol)
 - **HIGH**: `speckit.md`, `orchestrate.md`
 - **MEDIUM**: `deep-research.md`, `deep-review.md`, `handover.md`, `ultra-think.md`
 - **LOW**: `debug.md`, `review.md`, `write.md`, `general.md`
 
-**Skills** (`.opencode/skill/`):
+**Skills** (`.opencode/skills/`):
 - **VERY HIGH**: `system-spec-kit/SKILL.md` + `references/memory/` (memory_system.md, save_workflow.md, trigger_config.md, epistemic_vectors.md, embedding_resilience.md)
 - **HIGH**: `sk-deep-research/SKILL.md`, `sk-deep-review/SKILL.md`
 - **MEDIUM**: `sk-doc/SKILL.md`
 
-**Scripts** (`.opencode/skill/system-spec-kit/scripts/`):
+**Scripts** (`.opencode/skills/system-spec-kit/scripts/`):
 - **VERY HIGH (central refactor point)**: `memory/generate-context.ts` (~610 LOC)
 - **HIGH**: `memory/backfill-frontmatter.ts`, `memory/reindex-embeddings.ts`, `memory/rank-memories.ts`, `memory/validate-memory-quality.ts`, `core/memory-indexer.ts`, `core/memory-metadata.ts`, `core/find-predecessor-memory.ts`
 - **MEDIUM**: `memory/migrate-*.ts`, `memory/cleanup-*.ts`, `memory/rebuild-*.ts`
 
-**MCP Server** (`.opencode/skill/system-spec-kit/mcp_server/`):
+**MCP Server** (`.opencode/skills/system-spec-kit/mcp_server/`):
 - **VERY HIGH**: `handlers/memory-save.ts` (~1799 LOC), `handlers/memory-context.ts` (~1610 LOC), `handlers/memory-search.ts` (~1378 LOC), `handlers/session-resume.ts`, `handlers/session-bootstrap.ts`, `database/` directory, `core/` directory, `tools/memory-tools.ts`, `tools/context-tools.ts`, `schemas/tool-input-schemas.ts`
 - **HIGH**: `handlers/save/` subdirectory (validation, dedup, embedding, reconsolidation, post-insert, causal-links-processor, response-builder, db-helpers, pe-orchestration, embedding-pipeline), `handlers/memory-triggers.ts`, `handlers/memory-ingest.ts`, `handlers/memory-crud*.ts`, `handlers/memory-index*.ts`, `handlers/causal-graph.ts`, `handlers/causal-links-processor.ts`, `lib/cognitive/fsrs-scheduler.ts`, `lib/search/intent-classifier.ts`, `lib/search/session-state.ts`, `lib/validation/save-quality-gate.ts`, `lib/storage/causal-edges.ts`
 - **MEDIUM**: `handlers/checkpoints.ts`, `handlers/shared-memory.ts`, `handlers/session-health.ts`, `handlers/session-learning.ts`, `handlers/mutation-hooks.ts`
 
-**Templates** (`.opencode/skill/system-spec-kit/templates/`):
+**Templates** (`.opencode/skills/system-spec-kit/templates/`):
 - **HIGH**: `level_1/`, `level_2/`, `level_3/`, `level_3+/` × (`implementation-summary.md`, `decision-record.md`, `handover.md`)
 - **MEDIUM**: `tasks.md`, `checklist.md`, `plan.md`, `spec.md` across all levels, `context_template.md`
 - **LOW**: `core/`, `addendum/`, `changelog/`, `sharded/`, `research.md`, `debug-delegation.md`
@@ -299,7 +299,7 @@ The research loop halts when **all** of the following are true:
 **Validator**: `scripts/spec/validate.sh`
 
 **Documentation**:
-- **HIGH**: `/CLAUDE.md`, `/AGENTS.md`, `.opencode/skill/system-spec-kit/README.md`, `ARCHITECTURE.md`, `mcp_server/README.md`, `mcp_server/INSTALL_GUIDE.md`
+- **HIGH**: `/CLAUDE.md`, `/AGENTS.md`, `.opencode/skills/system-spec-kit/README.md`, `ARCHITECTURE.md`, `mcp_server/README.md`, `mcp_server/INSTALL_GUIDE.md`
 
 **Tests**:
 - `/scripts/tests/memory-quality-phase*.test.ts` (6+ files)
@@ -326,7 +326,7 @@ The research loop halts when **all** of the following are true:
 
 ### 6.4 NOT retargetable without schema change
 
-- `UNIQUE(spec_folder, file_path, anchor_id)` blocks multiple memories per file (`.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:126`)
+- `UNIQUE(spec_folder, file_path, anchor_id)` blocks multiple memories per file (`.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:126`)
 - `atomicSaveMemory()` file I/O path (`.../handlers/memory-save.ts:1521`); new `atomicIndexMemory()` needed that skips file write
 - Template contract validator needs new rules for spec-doc structure
 - Memory parser needs spec-doc variant
@@ -334,14 +334,14 @@ The research loop halts when **all** of the following are true:
 
 ### 6.5 Key code paths (absolute)
 
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` (~610 LOC)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` (~1799 LOC, `atomicSaveMemory` at L1521)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` (~1378 LOC)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` (~1610 LOC)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts`
-- Templates root: `.opencode/skill/system-spec-kit/templates/`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` (~610 LOC)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` (~1799 LOC, `atomicSaveMemory` at L1521)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` (~1378 LOC)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` (~1610 LOC)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts`
+- Templates root: `.opencode/skills/system-spec-kit/templates/`
 
 ---
 
@@ -374,7 +374,7 @@ All written inside the phase 018 spec folder.
 
 Every row in every matrix must satisfy these rules:
 
-1. **Citation required**: `file_path:line_range` — e.g., `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1521-1545`. Line range refers to the specific memory-dependent code block, not the whole file.
+1. **Citation required**: `file_path:line_range` — e.g., `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1521-1545`. Line range refers to the specific memory-dependent code block, not the whole file.
 2. **Rationale is one sentence** — answers "why does this file need to change?" in plain language tied to the Option C retarget.
 3. **Action verb from a closed set**:
    - `rewrite` | `restructure` | `update-logic` | `update-imports` | `add-parameter` | `add-field` | `rename` | `deprecate` | `retire` | `no-change`

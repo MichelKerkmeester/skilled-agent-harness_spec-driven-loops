@@ -14,7 +14,7 @@ SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -43,18 +43,18 @@ The command family now has a canonical entrypoint and compatibility wrappers on 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/create/folder_readme.md` | Updated | Preferred unified user-facing merged command wrapper (README/install; defaults to README) |
+| `.opencode/commands/create/folder_readme.md` | Updated | Preferred unified user-facing merged command wrapper (README/install; defaults to README) |
 | compatibility/internal workflow kernel behavior | Updated | Legacy internal wrapper behavior folded into the canonical command flow |
 | install-guide compatibility alias behavior | Updated | Legacy install-guide wrapper behavior now routes through the canonical command |
 | `.agents/commands/create/folder_readme.toml` | Updated | Preferred unified `.agents` wrapper |
 | `.agents/commands/create/doc.toml` | Updated | Compatibility/internal `.agents` wrapper |
 | `.agents/commands/create/install_guide.toml` | Updated | Converted to compatibility alias wrapper |
-| `.opencode/command/create/README.txt` | Updated | Command catalog canonicalized |
+| `.opencode/commands/create/README.txt` | Updated | Command catalog canonicalized |
 | `.opencode/README.md` | Updated | Runtime references canonicalized |
 | `README.md` | Updated | Public references canonicalized |
 | `.opencode/install_guides/README.md` | Updated | Install guide references updated |
 | `.opencode/install_guides/SET-UP - AGENTS.md` | Updated | Agent setup references updated |
-| `.opencode/agent/write.md` | Updated | OpenCode write agent references updated |
+| `.opencode/agents/write.md` | Updated | OpenCode write agent references updated |
 | `.claude/agents/write.md` | Updated | Claude runtime write-agent references updated |
 | `.agents/agents/write.md` | Updated | `.agents` write agent references updated |
 | `.codex/agents/write.toml` | Updated | Codex write agent references updated |
@@ -92,7 +92,7 @@ Implementation followed the approved merge plan: create canonical wrappers first
 
 | Check | Result |
 |-------|--------|
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/command/create/folder_readme.md` | PASS - VALID |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/commands/create/folder_readme.md` | PASS - VALID |
 | Canonical merged command validation review | PASS - VALID |
 | Install-guide branch validation review | PASS - VALID |
 | TOML parse check for `.agents/commands/create/{doc,folder_readme,install_guide}.toml` via `python3.11` + `tomllib` | PASS - TOML_PARSE_VALID |

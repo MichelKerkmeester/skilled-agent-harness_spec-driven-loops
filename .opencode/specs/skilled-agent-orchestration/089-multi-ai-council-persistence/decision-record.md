@@ -55,7 +55,7 @@ The persistence helper needs to parse markdown council reports and write artifac
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**Node CJS** at `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`.
+**Node CJS** at `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`.
 <!-- /ANCHOR:adr-001-decision -->
 
 <!-- ANCHOR:adr-001-alternatives -->
@@ -102,7 +102,7 @@ See `plan.md` Phase 2A T202.
 
 ### Decision
 
-**Plain markdown contract** at `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`.
+**Plain markdown contract** at `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md`.
 
 ### Alternatives
 
@@ -131,7 +131,7 @@ The Caller Persistence Protocol must be discoverable by every dispatcher (Top-le
 
 ### Decision
 
-**Agent body §17** in `.opencode/agent/multi-ai-council.md` (and 3 mirrors). Reference-only placement REJECTED.
+**Agent body §17** in `.opencode/agents/multi-ai-council.md` (and 3 mirrors). Reference-only placement REJECTED.
 
 ### Alternatives
 

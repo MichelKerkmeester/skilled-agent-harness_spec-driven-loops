@@ -1,7 +1,7 @@
 {
   "id": "debug",
   "family": "derived",
-  "targetPath": ".opencode/agent/debug.md",
+  "targetPath": ".opencode/agents/debug.md",
   "outputKind": "markdown",
   "promotionEligible": false,
   "generated": true,

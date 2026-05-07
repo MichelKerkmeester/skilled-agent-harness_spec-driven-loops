@@ -19,9 +19,9 @@ _memory:
     next_safe_action: "Run Phase 2A implementation"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
-      - ".opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md"
-      - ".opencode/agent/multi-ai-council.md"
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
+      - ".opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md"
+      - ".opencode/agents/multi-ai-council.md"
     session_dedup:
       fingerprint: "sha256:788e5b44bacc6f32fa1aad7286826a36181e4203bfb231820be4b4fbae52d496"
       session_id: "spec-089-author"
@@ -44,7 +44,7 @@ Packet 080 introduced the `ai-council/` subfolder convention but the agent retai
 
 **Key Decisions**: Node CJS helper (matches deep-research/deep-review reducer pattern), markdown schema artifact (rejects JSON Schema as too rigid), agent body §17 (rejects reference-only placement), opt-in advisory check (rejects strict validator enforcement).
 
-**Critical Dependencies**: packet 080 shipped (`.opencode/agent/multi-ai-council.md` §12-§16, references/multi-ai-council/, ai-council/ smoke-test artifacts).
+**Critical Dependencies**: packet 080 shipped (`.opencode/agents/multi-ai-council.md` §12-§16, references/multi-ai-council/, ai-council/ smoke-test artifacts).
 
 ---
 
@@ -84,13 +84,13 @@ Land the persistence helper, schema contract, caller protocol documentation, and
 - Author 3 vitest fixtures (full / minimal / missing-required council outputs)
 - Author fixture-driven helper test (`multi-ai-council-persist-artifacts.vitest.ts`)
 - Author `output-schema.md` shared §8 contract
-- Update `.opencode/agent/multi-ai-council.md` §8 cross-link + add §17 Caller Persistence Protocol
+- Update `.opencode/agents/multi-ai-council.md` §8 cross-link + add §17 Caller Persistence Protocol
 - Mirror agent body changes to `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`
 - Harden the existing validator regression test (replace partial-layout coverage with synthetic full validation)
 - Add 4-runtime mirror parity test (normalized comparison of multi-ai-council across all 4 runtimes)
 
 ### Out of Scope
-- Building a `.opencode/skill/multi-ai-council/` dedicated skill folder — non-goal (ADR-001 bound; deep-research §13 verdict)
+- Building a `.opencode/skills/multi-ai-council/` dedicated skill folder — non-goal (ADR-001 bound; deep-research §13 verdict)
 - Granting `@multi-ai-council` `write: allow` — preserves planning-only invariant
 - Adding state.jsonl v1.1 schema versioning fields — deferred to packet 082+
 - Adding skill advisor scoring boosts for multi-ai-council — agent stays an agent, not a skill
@@ -102,18 +102,18 @@ Land the persistence helper, schema contract, caller protocol documentation, and
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` | Create | Helper script (parser + CLI + artifact writer) |
-| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md` | Create | Fixture: full council output |
-| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md` | Create | Fixture: minimal valid council output |
-| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md` | Create | Fixture: missing strict-required sections |
-| `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts` | Create | Helper test (4 cases) |
-| `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md` | Create | Shared §8 OUTPUT FORMAT contract |
-| `.opencode/agent/multi-ai-council.md` | Modify | §8 cross-link + add §17 Caller Persistence Protocol |
+| `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` | Create | Helper script (parser + CLI + artifact writer) |
+| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md` | Create | Fixture: full council output |
+| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md` | Create | Fixture: minimal valid council output |
+| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md` | Create | Fixture: missing strict-required sections |
+| `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts` | Create | Helper test (4 cases) |
+| `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md` | Create | Shared §8 OUTPUT FORMAT contract |
+| `.opencode/agents/multi-ai-council.md` | Modify | §8 cross-link + add §17 Caller Persistence Protocol |
 | `.claude/agents/multi-ai-council.md` | Modify | Mirror §8 + §17 |
 | `.gemini/agents/multi-ai-council.md` | Modify | Mirror §8 + §17 |
 | `.codex/agents/multi-ai-council.toml` | Modify | Mirror §8 + §17 |
-| `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` | Modify | Replace partial-layout coverage with synthetic full validation |
-| `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts` | Create | 4-runtime parity test (normalized) |
+| `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` | Modify | Replace partial-layout coverage with synthetic full validation |
+| `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts` | Create | 4-runtime parity test (normalized) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,9 +125,9 @@ Land the persistence helper, schema contract, caller protocol documentation, and
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Helper at `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` | Node CJS, exports parser/renderer/builder/state-line, CLI accepts `<packet> [--round NNN] [--input-file FILE] [--strict-output]`, exit codes 0/1/2 |
+| REQ-001 | Helper at `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` | Node CJS, exports parser/renderer/builder/state-line, CLI accepts `<packet> [--round NNN] [--input-file FILE] [--strict-output]`, exit codes 0/1/2 |
 | REQ-002 | Output-schema artifact at `references/multi-ai-council/output-schema.md` | Markdown contract with requiredness matrix, heading aliases, seat fallback, optional-section policy, schema-change lockstep rule |
-| REQ-003 | Agent body §17 added to `.opencode/agent/multi-ai-council.md` | Normative caller persistence protocol; enumerates 4 caller patterns; states Depth-1 rule (parent owns invocation); forward-only scope; cross-links §8 to output-schema.md |
+| REQ-003 | Agent body §17 added to `.opencode/agents/multi-ai-council.md` | Normative caller persistence protocol; enumerates 4 caller patterns; states Depth-1 rule (parent owns invocation); forward-only scope; cross-links §8 to output-schema.md |
 | REQ-004 | All 4 runtime mirrors carry §8 cross-link + §17 | `.opencode`, `.claude`, `.gemini`, `.codex` show identical normalized §-headers and content |
 | REQ-005 | Helper vitest test passes | All 4 test cases (full/minimal/missing-required/parser-export) green |
 
@@ -137,7 +137,7 @@ Land the persistence helper, schema contract, caller protocol documentation, and
 |----|-------------|---------------------|
 | REQ-006 | Validator regression test hardened | Replaces partial-layout coverage with synthetic spec folder + full `validate.sh --strict` invocation; confirms `ai-council/` arbitrary internals do not fail |
 | REQ-007 | 4-runtime mirror parity test added | Normalized comparison passes across all 4 runtimes; flags drift at commit time |
-| REQ-008 | ADR-001 lightweight bound preserved | No `.opencode/skill/multi-ai-council/` folder created; verified by post-packet inventory |
+| REQ-008 | ADR-001 lightweight bound preserved | No `.opencode/skills/multi-ai-council/` folder created; verified by post-packet inventory |
 | REQ-009 | Agent's planning-only invariant preserved | `write: deny` unchanged in all 4 runtimes; §0 invariant statement intact |
 <!-- /ANCHOR:requirements -->
 
@@ -151,7 +151,7 @@ Land the persistence helper, schema contract, caller protocol documentation, and
 - **SC-003**: Optional sections missing + `--strict-output` flag absent then helper writes artifacts with empty placeholders for missing optional content.
 - **SC-004**: All 4 runtime mirrors report identical normalized §-header sequence and body for `multi-ai-council` agent body.
 - **SC-005**: Validator regression test passes; arbitrary `ai-council/` internals do not break `validate.sh --strict`.
-- **SC-006**: No new skill folder at `.opencode/skill/multi-ai-council/`.
+- **SC-006**: No new skill folder at `.opencode/skills/multi-ai-council/`.
 - **SC-007**: Agent permission block unchanged across all 4 runtimes (planning-only invariant preserved).
 - **SC-008**: Strict validation passes on packet 089 (errors=0, warnings=0).
 <!-- /ANCHOR:success-criteria -->
@@ -247,11 +247,11 @@ Land the persistence helper, schema contract, caller protocol documentation, and
 
 ### US-002: Catch 4-runtime mirror drift at test time (Priority: P1)
 
-**As a** maintainer editing `.opencode/agent/multi-ai-council.md`, **I want** a parity test that flags when `.claude/`, `.gemini/`, or `.codex/` mirrors fall out of sync with the canonical, **so that** I never ship a packet with inconsistent runtime behavior.
+**As a** maintainer editing `.opencode/agents/multi-ai-council.md`, **I want** a parity test that flags when `.claude/`, `.gemini/`, or `.codex/` mirrors fall out of sync with the canonical, **so that** I never ship a packet with inconsistent runtime behavior.
 
 **Acceptance Criteria**:
 1. Given all 4 runtimes have identical normalized content, When I run the parity vitest, Then it passes.
-2. Given I edit `.opencode/agent/multi-ai-council.md` without mirroring, When I run the parity vitest, Then it fails with a clear diff showing which runtime drifted.
+2. Given I edit `.opencode/agents/multi-ai-council.md` without mirroring, When I run the parity vitest, Then it fails with a clear diff showing which runtime drifted.
 
 ---
 

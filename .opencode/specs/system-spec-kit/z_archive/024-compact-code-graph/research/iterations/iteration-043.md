@@ -205,8 +205,8 @@ Survey open-source code graph and code-intelligence tools that could inform a fu
 
 - Local repo / packet evidence
   - `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md`
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/README.md`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/README.md`
   - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-007.md`
 
 - tree-sitter

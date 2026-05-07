@@ -29,7 +29,7 @@ Purpose: ensure every verified issue from 036 analysis is remediated with eviden
 
 ### Documentation Accuracy
 - [ ] CHK-D1 [P1] `rg "memory_search\(\)"` returns zero unnamespaced tool references outside archives
-- [ ] CHK-D2 [P1] `README.md` + `.opencode/command/**` contain no actionable `memory_load` references
+- [ ] CHK-D2 [P1] `README.md` + `.opencode/commands/**` contain no actionable `memory_load` references
 - [ ] CHK-D3 [P1] `mcp_server/README.md` states 13 tools and removes `tier` parameter from `memory_list`
 - [ ] CHK-D4 [P1] `memory/checkpoint.md` restore section matches actual MCP behavior (clearExisting default, scoped deprecation)
 

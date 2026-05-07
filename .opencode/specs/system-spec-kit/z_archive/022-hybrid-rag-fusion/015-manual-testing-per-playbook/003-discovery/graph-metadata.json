@@ -44,17 +44,17 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/011-memory-browser-memory-list.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/012-system-statistics-memory-stats.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/013-health-diagnostics-memory-health.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/12--query-intelligence/036-confidence-based-result-truncation-r15-ext.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/12--query-intelligence/037-dynamic-token-budget-allocation-fut-7.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/12--query-intelligence/038-query-expansion-r12.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/039-verify-fix-verify-memory-quality-loop-pi-a5.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/040-signal-vocabulary-expansion-tm-08.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/011-memory-browser-memory-list.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/012-system-statistics-memory-stats.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/013-health-diagnostics-memory-health.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/036-confidence-based-result-truncation-r15-ext.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/037-dynamic-token-budget-allocation-fut-7.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/038-query-expansion-r12.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/039-verify-fix-verify-memory-quality-loop-pi-a5.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/040-signal-vocabulary-expansion-tm-08.md",
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md"
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md"
     ],
     "entities": [
       {
@@ -78,49 +78,49 @@
       {
         "name": "011-memory-browser-memory-list.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/011-memory-browser-memory-list.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/011-memory-browser-memory-list.md",
         "source": "derived"
       },
       {
         "name": "012-system-statistics-memory-stats.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/012-system-statistics-memory-stats.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/012-system-statistics-memory-stats.md",
         "source": "derived"
       },
       {
         "name": "013-health-diagnostics-memory-health.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/013-health-diagnostics-memory-health.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/013-health-diagnostics-memory-health.md",
         "source": "derived"
       },
       {
         "name": "036-confidence-based-result-truncation-r15-ext.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/12--query-intelligence/036-confidence-based-result-truncation-r15-ext.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/036-confidence-based-result-truncation-r15-ext.md",
         "source": "derived"
       },
       {
         "name": "037-dynamic-token-budget-allocation-fut-7.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/12--query-intelligence/037-dynamic-token-budget-allocation-fut-7.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/037-dynamic-token-budget-allocation-fut-7.md",
         "source": "derived"
       },
       {
         "name": "038-query-expansion-r12.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/12--query-intelligence/038-query-expansion-r12.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/038-query-expansion-r12.md",
         "source": "derived"
       },
       {
         "name": "039-verify-fix-verify-memory-quality-loop-pi-a5.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/039-verify-fix-verify-memory-quality-loop-pi-a5.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/039-verify-fix-verify-memory-quality-loop-pi-a5.md",
         "source": "derived"
       },
       {
         "name": "040-signal-vocabulary-expansion-tm-08.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/040-signal-vocabulary-expansion-tm-08.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/040-signal-vocabulary-expansion-tm-08.md",
         "source": "derived"
       },
       {
@@ -138,7 +138,7 @@
       {
         "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {

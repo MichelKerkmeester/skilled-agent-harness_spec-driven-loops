@@ -1,18 +1,18 @@
 ● Todo added: Review workflow.ts against sk-code-opencode rules
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 1-300
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 1-300
   └ 299 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 300-600
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 300-600
   └ 301 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 600-end
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 600-end
   └ 396 lines read
 
 ● Todo completed: review-workflow-file
 
 ### FINDING-01: Section headers do not follow required numbered `// ALL-CAPS` style
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:59-61,394-398,989-991`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:59-61,394-398,989-991`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** File uses block-style section banners (`/* ... */`) instead of `// 1. ...` numbered ALL-CAPS line headers.
@@ -22,7 +22,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Bare catch block violates `catch (error: unknown)` pattern
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:896-910`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:896-910`
 - **Severity:** HIGH
 - **Category:** QUALITY
 - **Current Behavior:** Uses `catch { ... }` without typed error variable or guard.
@@ -32,7 +32,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-03: Exported `runWorkflow` lacks TSDoc on public API
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:400-401,993-995`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:400-401,993-995`
 - **Severity:** MEDIUM
 - **Category:** ALIGNMENT
 - **Current Behavior:** `runWorkflow` is exported but has no `/** ... */` TSDoc block.
@@ -42,7 +42,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-04: Module header format is close but not exact to required style
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1-3`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1-3`
 - **Severity:** LOW
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header is `// MODULE: Workflow` (with colon).

@@ -17,7 +17,7 @@ Turn the Wave 4 findings into one heuristic health score and inspect the remaini
 - None. The scorecard stayed stable once the stale-complete and normalization anomalies were separated from the larger “planned” bucket.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:102-120`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:102-120`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-skill-advisor-graph/graph-metadata.json`
 - Wave 4 corpus tables from the 2026-04-13 bash + jq scan
 

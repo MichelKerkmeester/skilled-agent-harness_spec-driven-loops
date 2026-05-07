@@ -59,12 +59,12 @@ _memory:
 
 ### Phase A: sk-doc template + reference + command updates (orchestrator)
 
-- [ ] T010 Edit `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md` line 67 (SCENARIO CONTRACT placeholder)
+- [ ] T010 Edit `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md` line 67 (SCENARIO CONTRACT placeholder)
 - [ ] T011 Edit same file line 79 (TEST EXECUTION placeholder)
-- [ ] T012 Edit `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` lines 313, 333 (per-category scaffold placeholders)
+- [ ] T012 Edit `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` lines 313, 333 (per-category scaffold placeholders)
 - [ ] T013 Edit same file line 395 (per-feature scaffold inside root template)
-- [ ] T014 Add "When to use RCAF vs natural-human" subsection to `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` §5 (after the "Acceptable prompt" example, before "Prompt sync rule")
-- [ ] T015 Update `.opencode/command/create/testing-playbook.md` line 317 to clarify both prompt voices
+- [ ] T014 Add "When to use RCAF vs natural-human" subsection to `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` §5 (after the "Acceptable prompt" example, before "Prompt sync rule")
+- [ ] T015 Update `.opencode/commands/create/testing-playbook.md` line 317 to clarify both prompt voices
 - [ ] T016 Self-validate sk-doc package: `validate_document.py` on each of the 4 modified files
 
 ### Phase B.1: Easy-wins playbooks (6 cli-codex dispatches, sequential)

@@ -54,9 +54,9 @@ A `/create:changelog` command that dynamically detects what was worked on, resol
 
 ### In Scope
 
-- Command file: `.opencode/command/create/changelog.md` (mode-based, :auto/:confirm)
-- Auto YAML workflow: `.opencode/command/create/assets/create_changelog_auto.yaml`
-- Confirm YAML workflow: `.opencode/command/create/assets/create_changelog_confirm.yaml`
+- Command file: `.opencode/commands/create/changelog.md` (mode-based, :auto/:confirm)
+- Auto YAML workflow: `.opencode/commands/create/assets/create_changelog_auto.yaml`
+- Confirm YAML workflow: `.opencode/commands/create/assets/create_changelog_confirm.yaml`
 - Dynamic detection of recent work via spec folders and git history
 - Component resolution mapping (file paths to 18 changelog subfolders)
 - Automatic version number calculation (MAJOR.MINOR.PATCH.BUILD)
@@ -75,10 +75,10 @@ A `/create:changelog` command that dynamically detects what was worked on, resol
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/create/changelog.md` | Create | Mode-based command file with Phase 0, Setup Phase, and YAML routing |
-| `.opencode/command/create/assets/create_changelog_auto.yaml` | Create | 7-step autonomous workflow with component mapping and content generation |
-| `.opencode/command/create/assets/create_changelog_confirm.yaml` | Create | 7-step interactive workflow with checkpoint gates at each step |
-| `.opencode/command/create/README.txt` | Modify | Add changelog command entry to command index |
+| `.opencode/commands/create/changelog.md` | Create | Mode-based command file with Phase 0, Setup Phase, and YAML routing |
+| `.opencode/commands/create/assets/create_changelog_auto.yaml` | Create | 7-step autonomous workflow with component mapping and content generation |
+| `.opencode/commands/create/assets/create_changelog_confirm.yaml` | Create | 7-step interactive workflow with checkpoint gates at each step |
+| `.opencode/commands/create/README.txt` | Modify | Add changelog command entry to command index |
 
 ---
 <!-- /ANCHOR:scope -->

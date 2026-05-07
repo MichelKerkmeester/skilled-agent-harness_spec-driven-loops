@@ -9,7 +9,7 @@ completedAt: 2026-04-12T10:30:49Z
 
 # Deep Review Iteration 012 — maintainability
 
-**Focus:** Phase 005-006 test quality: review .opencode/skill/sk-improve-agent/scripts/tests/ (5 vitest files) and .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts for assertion quality, edge cases, and coverage of the documented contract.
+**Focus:** Phase 005-006 test quality: review .opencode/skills/sk-improve-agent/scripts/tests/ (5 vitest files) and .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts for assertion quality, edge cases, and coverage of the documented contract.
 
 ---
 
@@ -32,7 +32,7 @@ TARGET: Spec folder 042-sk-deep-research-review-improvement-2 and all implementa
 This bundle delivered runtime truth, semantic coverage graph, wave execution, and offline optimization across ~200 files and +19K lines for sk-deep-research, sk-deep-review, and sk-improve-agent.
 
 DIMENSION: maintainability
-FOCUS: Phase 005-006 test quality: review .opencode/skill/sk-improve-agent/scripts/tests/ (5 vitest files) and .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts for assertion quality, edge cases, and coverage of the documented contract.
+FOCUS: Phase 005-006 test quality: review .opencode/skills/sk-improve-agent/scripts/tests/ (5 vitest files) and .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts for assertion quality, edge cases, and coverage of the documented contract.
 
 INSTRUCTIONS:
 1. Read the files mentioned in the focus area carefully.
@@ -70,7 +70,7 @@ exec
 /bin/zsh -lc 'rg -n "042-sk-deep-research-review-improvement-2|rvw-2026-04-11T13-50-06Z|REQ-026|REQ-034|coverage-graph|sk-improve-agent" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep review maintainability of vitest assertion quality, edge cases, and documented contract coverage for .opencode/skill/sk-improve-agent/scripts/tests/ and .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "Deep review maintainability of vitest assertion quality, edge cases, and documented contract coverage for .opencode/skills/sk-improve-agent/scripts/tests/ and .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 513ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-UzrG25tx' (errno=Operation not permitted)
 [
@@ -143,9 +143,9 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-UzrG25tx' (errno=Opera
 codex
 Skill routing points strongly to `sk-code-review`, with `sk-code-opencode` as the repo-specific overlay. I’m loading just the relevant review guidance now, then I’ll walk the target test files line by line and map findings to the documented contract.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-review
@@ -591,120 +591,120 @@ def route_opencode_resources(task):
                 selected.append("assets/checklists/shell_checklist.md")
 
 exec
-/bin/zsh -lc "rg --files .opencode/skill/sk-improve-agent/scripts/tests .opencode/skill/system-spec-kit/scripts/tests | rg '(coverage-graph-(integration|stress)\\.vitest\\.ts|\\.vitest\\.ts"'$)'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg --files .opencode/skills/sk-improve-agent/scripts/tests .opencode/skills/system-spec-kit/scripts/tests | rg '(coverage-graph-(integration|stress)\\.vitest\\.ts|\\.vitest\\.ts"'$)'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/phase-classification.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/quality-scorer-disambiguation.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/collect-session-data.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/tool-sanitizer.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-no-prose-bigrams.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/post-save-review.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/parent-spec-resolver.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/title-builder-no-filename-suffix.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/utils-regressions.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/validate-memory-quality-v8-regex-narrow.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/workspace-identity.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/tree-thinning.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/contamination-filter.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/phase-status-from-payload.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/nested-changelog.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/distinguishing-evidence-dedup.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/spec-affinity.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/decision-confidence.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-save-title-description-override.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/validate-memory-quality-v12-normalization.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/validate-memory-quality.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/description-enrichment.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-sanitizer.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/progressive-validation.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/workflow-warning.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase3-pr6.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/post-save-render-round-trip.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-sanitizer-manual-preservation.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/canonical-sources-auto-discovery.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/template-structure.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/truncate-on-word-boundary.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/template-mustache-sections.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-refresh.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase3-pr5.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/test-integration.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/file-capture-structured-mode.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/ascii-boxes.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/causal-links-auto-populate.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/phase-classification.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/quality-scorer-disambiguation.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/collect-session-data.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/tool-sanitizer.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-no-prose-bigrams.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/post-save-review.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/parent-spec-resolver.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/title-builder-no-filename-suffix.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/utils-regressions.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-regex-narrow.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/workspace-identity.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/tree-thinning.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/contamination-filter.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/phase-status-from-payload.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/nested-changelog.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/distinguishing-evidence-dedup.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/spec-affinity.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/decision-confidence.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-save-title-description-override.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v12-normalization.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/description-enrichment.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-sanitizer.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/workflow-warning.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase3-pr6.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/post-save-render-round-trip.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-sanitizer-manual-preservation.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/canonical-sources-auto-discovery.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/template-structure.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/truncate-on-word-boundary.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/alignment-drift-fixture-preservation.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/template-mustache-sections.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-refresh.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase3-pr5.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/file-capture-structured-mode.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/ascii-boxes.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/causal-links-auto-populate.vitest.ts
 
 codex
 I have the review baseline loaded and the exact target set confirmed. Next I’m sizing the files and reading them in chunks so I can distinguish true contract gaps from harmless test style differences.
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/sk-improve-agent/scripts/tests/*.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'wc -l .opencode/skills/sk-improve-agent/scripts/tests/*.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/references/test_quality_checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/references/test_quality_checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-     268 .opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts
-     184 .opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts
-     202 .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
-     195 .opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts
-     225 .opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts
-     480 .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
-     412 .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
+     268 .opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts
+     184 .opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts
+     202 .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
+     195 .opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts
+     225 .opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts
+     480 .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
+     412 .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
     1966 total
 
  succeeded in 0ms:
@@ -856,11 +856,11 @@ Overlay portability: pair this baseline with stack-specific test guidance from `
 <!-- /ANCHOR:related-resources -->
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import fs from 'node:fs';
@@ -875,7 +875,7 @@ exec
     11	
     12	const lineage = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs',
+    14	  '.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs',
     15	)) as {
     16	  createLineageGraph: () => object;
     17	  recordCandidate: (lineagePath: string, candidate: object) => void;
@@ -1061,7 +1061,7 @@ exec
     11	
     12	const journal = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs',
+    14	  '.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs',
     15	)) as {
     16	  STOP_REASONS: Readonly<Record<string, string>>;
     17	  SESSION_OUTCOMES: Readonly<Record<string, string>>;
@@ -1263,7 +1263,7 @@ exec
      9	
     10	const stability = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs',
+    12	  '.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs',
     13	)) as {
     14	  MIN_REPLAY_COUNT_DEFAULT: number;
     15	  DEFAULT_REPLAY_COUNT: number;
@@ -1474,9 +1474,9 @@ exec
    220	      expect(result.recommendations).toBeNull();
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts | sed -n '221,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts | sed -n '221,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    221	      expect(result.report).toContain('Insufficient');
    222	    });
@@ -1541,7 +1541,7 @@ exec
     11	
     12	const coverage = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs',
+    14	  '.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs',
     15	)) as {
     16	  LOOP_TYPE: string;
     17	  MIN_TRAJECTORY_POINTS: number;
@@ -1725,7 +1725,7 @@ exec
    195	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import fs from 'node:fs';
@@ -1740,7 +1740,7 @@ exec
     11	
     12	const detector = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs',
+    14	  '.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs',
     15	)) as {
     16	  HARD_DIMENSIONS: readonly string[];
     17	  SOFT_DIMENSIONS: readonly string[];
@@ -1954,11 +1954,11 @@ exec
    225	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '241,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '241,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    241	    });
    242	
@@ -2225,7 +2225,7 @@ exec
     21	
     22	const coreModule = require(path.join(
     23	  WORKSPACE_ROOT,
-    24	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+    24	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
     25	)) as {
     26	  RESEARCH_RELATION_WEIGHTS: Readonly<Record<string, number>>;
     27	  createGraph: () => { nodes: Map<string, any>; edges: Map<string, any> };
@@ -2236,7 +2236,7 @@ exec
     32	
     33	const signalsModule = require(path.join(
     34	  WORKSPACE_ROOT,
-    35	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+    35	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
     36	)) as {
     37	  computeDegree: (graph: any, nodeId: string) => { inDegree: number; outDegree: number; total: number };
     38	  computeAllDepths: (graph: any) => Map<string, number>;
@@ -2245,7 +2245,7 @@ exec
     41	
     42	const convergenceModule = require(path.join(
     43	  WORKSPACE_ROOT,
-    44	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+    44	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
     45	)) as {
     46	  computeSourceDiversity: (graph: any) => number;
     47	  computeEvidenceDepth: (graph: any) => number;
@@ -2255,7 +2255,7 @@ exec
     51	
     52	const contradictionsModule = require(path.join(
     53	  WORKSPACE_ROOT,
-    54	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+    54	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
     55	)) as {
     56	  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
     57	  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
@@ -2470,7 +2470,7 @@ exec
     24	
     25	const coreModule = require(path.join(
     26	  WORKSPACE_ROOT,
-    27	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+    27	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
     28	)) as {
     29	  RESEARCH_RELATION_WEIGHTS: Readonly<Record<string, number>>;
     30	  REVIEW_RELATION_WEIGHTS: Readonly<Record<string, number>>;
@@ -2483,7 +2483,7 @@ exec
     37	
     38	const signalsModule = require(path.join(
     39	  WORKSPACE_ROOT,
-    40	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+    40	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
     41	)) as {
     42	  computeDegree: (graph: any, nodeId: string) => { inDegree: number; outDegree: number; total: number };
     43	  computeAllDepths: (graph: any) => Map<string, number>;
@@ -2492,7 +2492,7 @@ exec
     46	
     47	const convergenceModule = require(path.join(
     48	  WORKSPACE_ROOT,
-    49	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+    49	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
     50	)) as {
     51	  computeSourceDiversity: (graph: any) => number;
     52	  computeEvidenceDepth: (graph: any) => number;
@@ -2504,7 +2504,7 @@ exec
     58	
     59	const contradictionsModule = require(path.join(
     60	  WORKSPACE_ROOT,
-    61	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+    61	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
     62	)) as {
     63	  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
     64	  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
@@ -2686,7 +2686,7 @@ exec
    240	      expect(edge.weight).toBe(2.0); // clamped from 5.0
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '241,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '241,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    241	      const start = performance.now();
    242	      const contradictions = contradictionsModule.scanContradictions(graph);
@@ -2862,66 +2862,66 @@ exec
    412	});
 
 exec
-/bin/zsh -lc 'rg -n "MIN_REPLAY_COUNT_DEFAULT|DEFAULT_WARNING_THRESHOLD|generateWeightRecommendations|sessionCountThreshold|Trade-off detection requires|STOP_REASONS|VALID_EVENT_TYPES|markExhausted|checkConvergenceEligibility|parentCandidateId" .opencode/skill/sk-improve-agent/scripts/*.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "MIN_REPLAY_COUNT_DEFAULT|DEFAULT_WARNING_THRESHOLD|generateWeightRecommendations|sessionCountThreshold|Trade-off detection requires|STOP_REASONS|VALID_EVENT_TYPES|markExhausted|checkConvergenceEligibility|parentCandidateId" .opencode/skills/sk-improve-agent/scripts/*.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:20:const MIN_REPLAY_COUNT_DEFAULT = 3;
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:21:const DEFAULT_REPLAY_COUNT = MIN_REPLAY_COUNT_DEFAULT;
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:28:const DEFAULT_WARNING_THRESHOLD = 0.95;
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:62:  return MIN_REPLAY_COUNT_DEFAULT;
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:123:    warningThreshold: DEFAULT_WARNING_THRESHOLD,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:227: * @param {object} [config] - { sessionCountThreshold? }
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:232:    sessionCountThreshold: DEFAULT_SESSION_COUNT_THRESHOLD,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:236:  if (!sessionHistory || sessionHistory.length < opts.sessionCountThreshold) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:240:      report: `Insufficient session history: ${(sessionHistory || []).length} < ${opts.sessionCountThreshold}. Recommendations require at least ${opts.sessionCountThreshold} sessions.`,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:327:  MIN_REPLAY_COUNT_DEFAULT,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:329:  DEFAULT_WARNING_THRESHOLD,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:337:  generateWeightRecommendations,
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:116:function markExhausted(coveragePath, dimension, mutationType) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:229:function checkConvergenceEligibility(coveragePath, options) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:286:  markExhausted,
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:290:  checkConvergenceEligibility,
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:21:const STOP_REASONS = Object.freeze({
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:47:const VALID_EVENT_TYPES = Object.freeze([
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:87:  } else if (!VALID_EVENT_TYPES.includes(event.eventType)) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:88:    errors.push(`Invalid eventType: "${event.eventType}". Valid types: ${VALID_EVENT_TYPES.join(', ')}`);
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:94:    } else if (!Object.values(STOP_REASONS).includes(event.details.stopReason)) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:95:      errors.push(`Invalid stopReason: "${event.details.stopReason}". Valid reasons: ${Object.values(STOP_REASONS).join(', ')}`);
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:211:  STOP_REASONS,
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:213:  VALID_EVENT_TYPES,
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:94:      reason: `Trade-off detection requires at least ${minDataPoints} data points before analysis`,
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:51: * @param {object} candidate - { candidateId, sessionId, waveIndex, mutationType, parentCandidateId?, iteration?, scores? }
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:61:    parentCandidateId: candidate.parentCandidateId || null,
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:102:    if (!current.parentCandidateId) {
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:105:    current = nodeMap.get(current.parentCandidateId);
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:148:  return graph.nodes.filter((node) => !node.parentCandidateId);
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:155: * @param {string} parentCandidateId - Parent candidate ID
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:158:function getChildren(lineagePath, parentCandidateId) {
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:165:    (node) => node.parentCandidateId === parentCandidateId
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:20:const MIN_REPLAY_COUNT_DEFAULT = 3;
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:21:const DEFAULT_REPLAY_COUNT = MIN_REPLAY_COUNT_DEFAULT;
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:28:const DEFAULT_WARNING_THRESHOLD = 0.95;
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:62:  return MIN_REPLAY_COUNT_DEFAULT;
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:123:    warningThreshold: DEFAULT_WARNING_THRESHOLD,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:227: * @param {object} [config] - { sessionCountThreshold? }
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:232:    sessionCountThreshold: DEFAULT_SESSION_COUNT_THRESHOLD,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:236:  if (!sessionHistory || sessionHistory.length < opts.sessionCountThreshold) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:240:      report: `Insufficient session history: ${(sessionHistory || []).length} < ${opts.sessionCountThreshold}. Recommendations require at least ${opts.sessionCountThreshold} sessions.`,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:327:  MIN_REPLAY_COUNT_DEFAULT,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:329:  DEFAULT_WARNING_THRESHOLD,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:337:  generateWeightRecommendations,
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:116:function markExhausted(coveragePath, dimension, mutationType) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:229:function checkConvergenceEligibility(coveragePath, options) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:286:  markExhausted,
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:290:  checkConvergenceEligibility,
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21:const STOP_REASONS = Object.freeze({
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:47:const VALID_EVENT_TYPES = Object.freeze([
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:87:  } else if (!VALID_EVENT_TYPES.includes(event.eventType)) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:88:    errors.push(`Invalid eventType: "${event.eventType}". Valid types: ${VALID_EVENT_TYPES.join(', ')}`);
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:94:    } else if (!Object.values(STOP_REASONS).includes(event.details.stopReason)) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:95:      errors.push(`Invalid stopReason: "${event.details.stopReason}". Valid reasons: ${Object.values(STOP_REASONS).join(', ')}`);
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:211:  STOP_REASONS,
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:213:  VALID_EVENT_TYPES,
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:94:      reason: `Trade-off detection requires at least ${minDataPoints} data points before analysis`,
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:51: * @param {object} candidate - { candidateId, sessionId, waveIndex, mutationType, parentCandidateId?, iteration?, scores? }
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:61:    parentCandidateId: candidate.parentCandidateId || null,
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:102:    if (!current.parentCandidateId) {
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:105:    current = nodeMap.get(current.parentCandidateId);
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:148:  return graph.nodes.filter((node) => !node.parentCandidateId);
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:155: * @param {string} parentCandidateId - Parent candidate ID
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:158:function getChildren(lineagePath, parentCandidateId) {
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:165:    (node) => node.parentCandidateId === parentCandidateId
 
 exec
-/bin/zsh -lc "rg -n \"coverage-graph-db|VALID_RELATIONS|SCHEMA_SQL|EVIDENCE_FOR|EVIDENCES|CHECK\\(source_id "'!= target_id'"\\)|SOURCE_DIVERSITY_THRESHOLD|EVIDENCE_DEPTH_THRESHOLD\" .opencode/skill/system-spec-kit/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"coverage-graph-db|VALID_RELATIONS|SCHEMA_SQL|EVIDENCE_FOR|EVIDENCES|CHECK\\(source_id "'!= target_id'"\\)|SOURCE_DIVERSITY_THRESHOLD|EVIDENCE_DEPTH_THRESHOLD\" .opencode/skills/system-spec-kit/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:133:const SOURCE_DIVERSITY_THRESHOLD = 1.5;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:140:const EVIDENCE_DEPTH_THRESHOLD = 1.5;
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:372:      sourceDiversity: { pass: false, value: 0, threshold: SOURCE_DIVERSITY_THRESHOLD },
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:373:      evidenceDepth: { pass: false, value: 0, threshold: EVIDENCE_DEPTH_THRESHOLD },
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:381:    pass: diversity >= SOURCE_DIVERSITY_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:383:    threshold: SOURCE_DIVERSITY_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:387:    pass: depth >= EVIDENCE_DEPTH_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:389:    threshold: EVIDENCE_DEPTH_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:405:  SOURCE_DIVERSITY_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:406:  EVIDENCE_DEPTH_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs:40:  EVIDENCE_FOR: 1.0,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:133:const SOURCE_DIVERSITY_THRESHOLD = 1.5;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:140:const EVIDENCE_DEPTH_THRESHOLD = 1.5;
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:372:      sourceDiversity: { pass: false, value: 0, threshold: SOURCE_DIVERSITY_THRESHOLD },
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:373:      evidenceDepth: { pass: false, value: 0, threshold: EVIDENCE_DEPTH_THRESHOLD },
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:381:    pass: diversity >= SOURCE_DIVERSITY_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:383:    threshold: SOURCE_DIVERSITY_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:387:    pass: depth >= EVIDENCE_DEPTH_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:389:    threshold: EVIDENCE_DEPTH_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:405:  SOURCE_DIVERSITY_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:406:  EVIDENCE_DEPTH_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:40:  EVIDENCE_FOR: 1.0,
 
 codex
 I’ve finished the first pass over the seven target suites. Now I’m cross-checking the tests against the actual CJS/TS contracts they claim to guard, because a few assertions already look like “comment-backed” checks rather than executable guarantees.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -3709,11 +3709,11 @@ exec
    260	 *
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs | sed -n '1,380p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs | sed -n '1,380p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-nl: .opencode/skill/system-spec-kit/scripts/mcp_server/lib/coverage-graph/coverage-graph-db.ts: No such file or directory
+nl: .opencode/skills/system-spec-kit/scripts/mcp_server/lib/coverage-graph/coverage-graph-db.ts: No such file or directory
 
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
@@ -4056,7 +4056,7 @@ nl: .opencode/skill/system-spec-kit/scripts/mcp_server/lib/coverage-graph/covera
    338	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Mutation Coverage — Track Explored Mutations & Dimension Trajectories   ║
@@ -4351,9 +4351,9 @@ exec
    291	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Improvement Journal — Append-Only Audit Journal for Improvement Sessions║
@@ -4816,10 +4816,10 @@ exec
    180	};
 
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/scripts | rg 'coverage-graph-db\\.ts"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/scripts | rg 'coverage-graph-db\\.ts"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Trade-Off Detector — Cross-Dimension Regression Detection               ║
@@ -5075,17 +5075,17 @@ exec
    252	};
 
 exec
-/bin/zsh -lc "find .opencode/skill/system-spec-kit/scripts -name 'coverage-graph-db.ts' -o -path '*coverage-graph-db.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "find .opencode/skills/system-spec-kit/scripts -name 'coverage-graph-db.ts' -o -path '*coverage-graph-db.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 exec
-/bin/zsh -lc "find .opencode/skill/system-spec-kit -path '*coverage-graph-db.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "find .opencode/skills/system-spec-kit -path '*coverage-graph-db.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 201ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -5573,7 +5573,7 @@ exec
    280	    }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs | sed -n '260,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs | sed -n '260,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	  }
    261	
@@ -5707,7 +5707,7 @@ exec
    389	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '260,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '260,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	 * @returns {number} Count of edges involving this node within the window
    261	 */
@@ -5831,7 +5831,7 @@ exec
    379	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs | sed -n '260,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs | sed -n '260,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	 *
    261	 * @param {{ nodes: Map, edges: Map }} graph - In-memory coverage graph
@@ -5999,17 +5999,17 @@ codex
 1. Finding ID: `F-012-001`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:67)  
+File: [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:67)  
 Line: `67-101, 119-179`  
 Title: Cross-layer contract is shadow-copied instead of verified from the TS authority  
 Description: The suite claims to validate CJS ↔ TS alignment, but the TS side is represented by hard-coded fixtures inside the test file. That creates a second manual source of truth and allows false passes whenever `coverage-graph-db.ts` drifts independently from these fixtures.  
-Evidence: `TS_VALID_RELATIONS`, `TS_RESEARCH_WEIGHTS`, and `TS_REVIEW_WEIGHTS` are defined locally, and the assertions compare CJS exports only against those locals. The real authority lives in [.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:114) lines `114-146`.  
+Evidence: `TS_VALID_RELATIONS`, `TS_RESEARCH_WEIGHTS`, and `TS_REVIEW_WEIGHTS` are defined locally, and the assertions compare CJS exports only against those locals. The real authority lives in [.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:114) lines `114-146`.  
 Recommendation: Read or parse the real TS file during the test, or extract the shared relation/weight constants into a dependency-light module that both the TS layer and the tests import.
 
 2. Finding ID: `F-012-002`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:182)  
+File: [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:182)  
 Line: `182-185, 267-272`  
 Title: Two “contract” checks are tautologies and cannot catch regressions  
 Description: These tests read like TS-layer verification, but neither one inspects the TS layer. If the TS schema or relation naming changes, both tests still pass, so they provide documentation theater rather than executable protection.  
@@ -6019,7 +6019,7 @@ Recommendation: Replace both with executable assertions against the TS source or
 3. Finding ID: `F-012-003`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:119)  
+File: [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:119)  
 Line: `119-126, 131-150, 156-165, 174-180, 188-207, 241-268, 293-299, 323-327, 352-360, 404-409`  
 Title: Stress suite bakes fixed wall-clock budgets into unit tests  
 Description: The file repeatedly asserts strict elapsed-time ceilings with `performance.now()`. Those checks are highly sensitive to host load, CI hardware, and runtime differences, so they are likely to produce flaky failures without any functional regression.  
@@ -6029,7 +6029,7 @@ Recommendation: Move these checks into an opt-in benchmark/perf job, or loosen t
 4. Finding ID: `F-012-004`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:62)  
+File: [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:62)  
 Line: `62-66, 271-279`  
 Title: “No contradictions” test does not build a contradiction-free graph and only asserts array shape  
 Description: The helper used by the test rotates through `CONTRADICTS`, so the setup contradicts the test name. The assertion then only checks `Array.isArray`, which means a broken scanner can still pass. This leaves one named REQ-GT-008 scenario effectively uncovered.  
@@ -6039,7 +6039,7 @@ Recommendation: Build an explicit contradiction-free graph and assert `[]`, or r
 5. Finding ID: `F-012-005`  
 Severity: `P2`  
 Dimension: `maintainability`  
-File: [.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:224)  
+File: [.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:224)  
 Line: `224-252`  
 Title: Recommendation test validates report formatting more than optimizer behavior  
 Description: The fixture data is intentionally skewed, but the assertions only check that recommendations exist, the report contains expected strings, and weights sum roughly to 1.0. A regression that adjusts the wrong dimension, or returns unchanged weights, would still pass.  
@@ -6049,11 +6049,11 @@ Recommendation: Assert at least one heuristic outcome directly, such as `ruleCoh
 6. Finding ID: `F-012-006`  
 Severity: `P2`  
 Dimension: `maintainability`  
-File: [.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:89)  
+File: [.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:89)  
 Line: `89-101, 188-199`  
 Title: Supported `session_end` alias is implemented but unpinned by tests  
 Description: The journal module explicitly supports both `session_ended` and `session_end`, but the suite exercises only `session_ended`. That leaves a documented compatibility path unprotected against accidental removal or refactor drift.  
-Evidence: The implementation accepts both aliases in [.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:91) lines `91-101` and reads both at lines `193-203`; the tests only create `session_ended` events.  
+Evidence: The implementation accepts both aliases in [.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:91) lines `91-101` and reads both at lines `193-203`; the tests only create `session_ended` events.  
 Recommendation: Add validation, emit, and read-path tests for `session_end` so the backward-compat contract is explicit.
 
 **Iteration Summary**  
@@ -6076,17 +6076,17 @@ tokens used
 1. Finding ID: `F-012-001`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:67)  
+File: [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:67)  
 Line: `67-101, 119-179`  
 Title: Cross-layer contract is shadow-copied instead of verified from the TS authority  
 Description: The suite claims to validate CJS ↔ TS alignment, but the TS side is represented by hard-coded fixtures inside the test file. That creates a second manual source of truth and allows false passes whenever `coverage-graph-db.ts` drifts independently from these fixtures.  
-Evidence: `TS_VALID_RELATIONS`, `TS_RESEARCH_WEIGHTS`, and `TS_REVIEW_WEIGHTS` are defined locally, and the assertions compare CJS exports only against those locals. The real authority lives in [.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:114) lines `114-146`.  
+Evidence: `TS_VALID_RELATIONS`, `TS_RESEARCH_WEIGHTS`, and `TS_REVIEW_WEIGHTS` are defined locally, and the assertions compare CJS exports only against those locals. The real authority lives in [.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:114) lines `114-146`.  
 Recommendation: Read or parse the real TS file during the test, or extract the shared relation/weight constants into a dependency-light module that both the TS layer and the tests import.
 
 2. Finding ID: `F-012-002`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:182)  
+File: [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:182)  
 Line: `182-185, 267-272`  
 Title: Two “contract” checks are tautologies and cannot catch regressions  
 Description: These tests read like TS-layer verification, but neither one inspects the TS layer. If the TS schema or relation naming changes, both tests still pass, so they provide documentation theater rather than executable protection.  
@@ -6096,7 +6096,7 @@ Recommendation: Replace both with executable assertions against the TS source or
 3. Finding ID: `F-012-003`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:119)  
+File: [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:119)  
 Line: `119-126, 131-150, 156-165, 174-180, 188-207, 241-268, 293-299, 323-327, 352-360, 404-409`  
 Title: Stress suite bakes fixed wall-clock budgets into unit tests  
 Description: The file repeatedly asserts strict elapsed-time ceilings with `performance.now()`. Those checks are highly sensitive to host load, CI hardware, and runtime differences, so they are likely to produce flaky failures without any functional regression.  
@@ -6106,7 +6106,7 @@ Recommendation: Move these checks into an opt-in benchmark/perf job, or loosen t
 4. Finding ID: `F-012-004`  
 Severity: `P1`  
 Dimension: `maintainability`  
-File: [.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:62)  
+File: [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts:62)  
 Line: `62-66, 271-279`  
 Title: “No contradictions” test does not build a contradiction-free graph and only asserts array shape  
 Description: The helper used by the test rotates through `CONTRADICTS`, so the setup contradicts the test name. The assertion then only checks `Array.isArray`, which means a broken scanner can still pass. This leaves one named REQ-GT-008 scenario effectively uncovered.  
@@ -6116,7 +6116,7 @@ Recommendation: Build an explicit contradiction-free graph and assert `[]`, or r
 5. Finding ID: `F-012-005`  
 Severity: `P2`  
 Dimension: `maintainability`  
-File: [.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:224)  
+File: [.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:224)  
 Line: `224-252`  
 Title: Recommendation test validates report formatting more than optimizer behavior  
 Description: The fixture data is intentionally skewed, but the assertions only check that recommendations exist, the report contains expected strings, and weights sum roughly to 1.0. A regression that adjusts the wrong dimension, or returns unchanged weights, would still pass.  
@@ -6126,11 +6126,11 @@ Recommendation: Assert at least one heuristic outcome directly, such as `ruleCoh
 6. Finding ID: `F-012-006`  
 Severity: `P2`  
 Dimension: `maintainability`  
-File: [.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:89)  
+File: [.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:89)  
 Line: `89-101, 188-199`  
 Title: Supported `session_end` alias is implemented but unpinned by tests  
 Description: The journal module explicitly supports both `session_ended` and `session_end`, but the suite exercises only `session_ended`. That leaves a documented compatibility path unprotected against accidental removal or refactor drift.  
-Evidence: The implementation accepts both aliases in [.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:91) lines `91-101` and reads both at lines `193-203`; the tests only create `session_ended` events.  
+Evidence: The implementation accepts both aliases in [.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:91) lines `91-101` and reads both at lines `193-203`; the tests only create `session_ended` events.  
 Recommendation: Add validation, emit, and read-path tests for `session_end` so the backward-compat contract is explicit.
 
 **Iteration Summary**  

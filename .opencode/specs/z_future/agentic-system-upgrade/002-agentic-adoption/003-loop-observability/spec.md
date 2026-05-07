@@ -67,10 +67,10 @@ Turn the research synthesis for 003 loop observability into one follow-on implem
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/deep-research.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/deep-research.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
 
 ---

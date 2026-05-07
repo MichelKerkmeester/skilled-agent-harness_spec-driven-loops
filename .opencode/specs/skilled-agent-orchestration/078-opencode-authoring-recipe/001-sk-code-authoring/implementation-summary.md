@@ -13,9 +13,9 @@ _memory:
     next_safe_action: "Commit + push + start Phase 2"
     blockers: []
     key_files:
-      - .opencode/skill/sk-code/assets/opencode/checklists/skill_authoring.md
-      - .opencode/skill/sk-code/assets/opencode/recipes/spec_folder_write.md
-      - .opencode/skill/sk-code/changelog/v3.2.0.0.md
+      - .opencode/skills/sk-code/assets/opencode/checklists/skill_authoring.md
+      - .opencode/skills/sk-code/assets/opencode/recipes/spec_folder_write.md
+      - .opencode/skills/sk-code/changelog/v3.2.0.0.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "078-001-complete"
@@ -28,7 +28,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -62,7 +62,7 @@ A Python-style dict in SKILL.md §2 makes the surface contract machine-readable:
 ```python
 STACK_FOLDERS = {
     "WEBFLOW": ["src/2_javascript/", "*.webflow.js"],
-    "OPENCODE": [".opencode/skill/", ".opencode/agent/", ".opencode/command/", ".opencode/specs/"],
+    "OPENCODE": [".opencode/skills/", ".opencode/agents/", ".opencode/commands/", ".opencode/specs/"],
     "MOTION_DEV": ["references/motion_dev/", "assets/motion_dev/"],
 }
 ```

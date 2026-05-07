@@ -11,12 +11,12 @@ contextType: "planning"
 # Plan: 013-fsrs-memory-decay-study
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts`
 
 ## Investigation Order
 1. Baseline current scheduler constants, multiplier tables, and search-time decay behavior.

@@ -6,7 +6,7 @@ I followed Iteration 3's next step and audited the readiness primitive behind st
 ## Findings
 
 ### Finding R5-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts`
 - **Lines:** `283-317`
 - **Severity:** P1
 - **Description:** A successful inline refresh still reports the graph's *pre-refresh* freshness. Both the full-scan and selective-reindex success branches set `inlineIndexPerformed: true` but keep `freshness: state.freshness`, so a graph that was just repaired continues to be labeled `stale` or `empty` in the returned `ReadyResult`.
@@ -14,7 +14,7 @@ I followed Iteration 3's next step and audited the readiness primitive behind st
 - **Downstream Impact:** Structural queries can return freshly reindexed caller/import graphs while simultaneously branding them as stale/unknown, which makes agents and operators discount graph results that were actually repaired moments earlier. This also pollutes any bootstrap or routing flow that recommends `code_graph_query` as the structural authority but trusts the readiness metadata to judge freshness.
 
 ### Finding R5-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts`
 - **Lines:** `183-217`
 - **Severity:** P1
 - **Description:** Partial persistence failures are silently treated as a successful refresh path. `indexWithTimeout()` swallows per-file persistence exceptions, while `upsertFile()` has already stamped `file_mtime_ms` and `indexed_at` before `replaceNodes()` / `replaceEdges()` run. The outer success path can then advance Git head state and report `inlineIndexPerformed: true`, even though one or more files never finished indexing.

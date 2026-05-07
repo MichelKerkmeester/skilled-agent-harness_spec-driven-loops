@@ -4,9 +4,9 @@
 Performed a final D1 re-verification of the original subprocess argv leak after all other deeper privacy surfaces were exhausted.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts:208-245` -> the subprocess runner still accepts a raw `prompt` parameter and appends it unchanged into `commandArgs`.
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:27-34` and `:50-55` -> public contract still frames persistence/privacy safety around diagnostics, caches, and rendered output, not the launch vector itself.
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md:140-159` -> privacy audit steps still do not exercise the subprocess command-line transport.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts:208-245` -> the subprocess runner still accepts a raw `prompt` parameter and appends it unchanged into `commandArgs`.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:27-34` and `:50-55` -> public contract still frames persistence/privacy safety around diagnostics, caches, and rendered output, not the launch vector itself.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md:140-159` -> privacy audit steps still do not exercise the subprocess command-line transport.
 
 ## Findings
 
@@ -20,7 +20,7 @@ None.
 None.
 
 ### Re-verified (no new severity)
-- `P1-001-01`: status: re-verified via `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts:208-245` and `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md:140-159`.
+- `P1-001-01`: status: re-verified via `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts:208-245` and `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md:140-159`.
 
 ## Metrics
 - newInfoRatio: 0.02

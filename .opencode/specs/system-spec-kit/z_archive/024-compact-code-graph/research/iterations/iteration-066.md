@@ -292,7 +292,7 @@ Tree-sitter does not directly know about overrides (it is a semantic, not syntac
 - **Web fetching for tree-sitter documentation** is unreliable in this iteration. Multiple URLs returned 404s. This is not a dead end for the migration itself, only for web-based research about it.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (full file, 474 lines) [SOURCE: structural-indexer.ts:1-474]
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (full file, 474 lines) [SOURCE: structural-indexer.ts:1-474]
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-060.md` (prior tree-sitter findings) [SOURCE: iteration-060.md]
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/deep-research-strategy.md` (state context) [SOURCE: deep-research-strategy.md]
 - tree-sitter.github.io (attempted, limited results) [SOURCE: https://tree-sitter.github.io/tree-sitter/]

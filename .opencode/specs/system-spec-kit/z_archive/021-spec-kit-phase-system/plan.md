@@ -48,11 +48,11 @@ The system-spec-kit skill manages spec folder lifecycle through 6 interconnected
 
 1. **Smart Router** (SKILL.md §2): Data-driven intent detection with 7 signals (PLAN, RESEARCH, IMPLEMENT, DEBUG, COMPLETE, MEMORY, HANDOVER), command boosts (+6), and 3-tier resource loading (ALWAYS/CONDITIONAL/ON_DEMAND). All dicts — adding a new intent requires only dict entries.
 
-2. **Script System** (`.opencode/skill/system-spec-kit/scripts/spec/`): 9 lifecycle scripts. `create.sh` has `--subfolder` mode that auto-increments `[0-9][0-9][0-9]-*/` numbering, copies level templates, creates `scratch/`. No git branch for sub-folders. `recommend-level.sh` scores on 4 dimensions (LOC 35%, files 20%, risk 25%, complexity 20%) with thresholds 0-24=skip, 25-44=L1, 45-69=L2, 70+=L3. No phase scoring exists.
+2. **Script System** (`.opencode/skills/system-spec-kit/scripts/spec/`): 9 lifecycle scripts. `create.sh` has `--subfolder` mode that auto-increments `[0-9][0-9][0-9]-*/` numbering, copies level templates, creates `scratch/`. No git branch for sub-folders. `recommend-level.sh` scores on 4 dimensions (LOC 35%, files 20%, risk 25%, complexity 20%) with thresholds 0-24=skip, 25-44=L1, 45-69=L2, 70+=L3. No phase scoring exists.
 
-3. **Validation Pipeline** (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh` + `.opencode/skill/system-spec-kit/scripts/rules/`): Pure orchestrator sourcing 14 `check-*.sh` plugins. **No sub-folder handling** — validates single folder path only. No recursion into phase children.
+3. **Validation Pipeline** (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh` + `.opencode/skills/system-spec-kit/scripts/rules/`): Pure orchestrator sourcing 14 `check-*.sh` plugins. **No sub-folder handling** — validates single folder path only. No recursion into phase children.
 
-4. **Command System** (.opencode/command/spec_kit/): 7 commands (plan, implement, research, complete, resume, debug, handover) each following `md + 2 YAML assets` pattern. Path resolution assumes flat `specs/NNN-name/` structure.
+4. **Command System** (.opencode/commands/spec_kit/): 7 commands (plan, implement, research, complete, resume, debug, handover) each following `md + 2 YAML assets` pattern. Path resolution assumes flat `specs/NNN-name/` structure.
 
 5. **Template System**: CORE + ADDENDUM v2.2 composition via `compose.sh`. 4 levels (1/2/3/3+). Sharded alternative exists but is separate. No phase-specific templates.
 
@@ -568,7 +568,7 @@ Phases 1 and 2 can be partially parallelized (scoring is independent of template
 | Agent | Focus | Files |
 |-------|-------|-------|
 | @write | Template addendum creation (phase-parent-section.md, phase-child-header.md) | templates/addendum/phase/ |
-| @general | create.sh --phase flag implementation | .opencode/skill/system-spec-kit/scripts/spec/create.sh |
+| @general | create.sh --phase flag implementation | .opencode/skills/system-spec-kit/scripts/spec/create.sh |
 | @general | SKILL.md PHASE intent addition | SKILL.md |
 
 **Duration**: ~6-10 hours (parallel between @write and @general)
@@ -627,10 +627,10 @@ Phases 1 and 2 can be partially parallelized (scoring is independent of template
 
 | ID | Name | Owner | Files | Status |
 |----|------|-------|-------|--------|
-| W-A | Detection & Scoring | @general | .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh, test fixtures (5) | Mostly Complete (T005 fixture pending) |
-| W-B | Templates & Creation | @write + @general | .opencode/skill/system-spec-kit/scripts/spec/create.sh, templates/addendum/phase/* | Mostly Complete (T033 fixture pending) |
+| W-A | Detection & Scoring | @general | .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh, test fixtures (5) | Mostly Complete (T005 fixture pending) |
+| W-B | Templates & Creation | @write + @general | .opencode/skills/system-spec-kit/scripts/spec/create.sh, templates/addendum/phase/* | Mostly Complete (T033 fixture pending) |
 | W-C | Commands & Router | @general | `/spec_kit:phase` command definition, assets/spec_kit_phase_*.yaml, SKILL.md, plan.md, implement.md, complete.md, resume.md | In Progress (T013-T016, T020-T023 complete; T017-T019 open — dedicated command superseded by `:with-phases` + `--phase-folder` on existing commands) |
-| W-D | Validation, Docs & Nodes | @write + @general | .opencode/skill/system-spec-kit/scripts/spec/validate.sh, .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh, 6 reference docs, nodes/phase-system.md, index.md, CLAUDE.md | Mostly Complete (T028 fixture pending) |
+| W-D | Validation, Docs & Nodes | @write + @general | .opencode/skills/system-spec-kit/scripts/spec/validate.sh, .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh, 6 reference docs, nodes/phase-system.md, index.md, CLAUDE.md | Mostly Complete (T028 fixture pending) |
 
 ### Sync Points
 

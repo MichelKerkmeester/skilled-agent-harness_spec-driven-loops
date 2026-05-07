@@ -41,7 +41,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 > **Status: COMPLETE.** Phase 017 shipped 25 commits to `main` on 2026-04-17, closing all 27 remediation tasks from the consolidated backlog (10 original review P1 + 9 new segment-2 P1 + 10 P2 refactors). Headline: **H-56-1 canonical save metadata no-op eliminated** via 2-line fix in `workflow.ts` + 38-folder lastUpdated cascade. Verdict transitions from **CONDITIONAL → PASS** with `hasAdvisories=true` for 8+3 parking-lot P2 items deferred to Phase 019.
 

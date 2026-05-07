@@ -13,10 +13,10 @@ _memory:
     next_safe_action: "Dispatch cli-codex for YAML + SKILL.md updates"
     blockers: []
     key_files:
-      - .opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml
-      - .opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml
-      - .opencode/skill/system-spec-kit/SKILL.md
-      - .opencode/skill/sk-code/SKILL.md
+      - .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml
+      - .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml
+      - .opencode/skills/system-spec-kit/SKILL.md
+      - .opencode/skills/sk-code/SKILL.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "078-002-final"
@@ -54,7 +54,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-077 finding F-009-001: `/spec_kit:complete` workflow loads sk-code only at REVIEW TIME (Phase A "Pre-Commit code review", auto YAML lines 311-318), not at AUTHORING TIME (Step 10 development). When the implementation target is under `.opencode/skill/`, `.opencode/agent/`, `.opencode/command/`, or `.opencode/specs/`, the orchestrator writes code WITHOUT having loaded sk-code's authoring checklists or the spec_folder_write recipe (just shipped in 078/001 v3.2.0.0). The pattern means errors that the authoring checklists would have prevented have to be caught (and re-fixed) at review time, slowing iteration. F-009-002 + F-008-004 + F-006-004 are corollaries: sk-code has spec-folder invariants but no first-class SPEC_FOLDER load path; the integration is named in path-safety language only.
+077 finding F-009-001: `/spec_kit:complete` workflow loads sk-code only at REVIEW TIME (Phase A "Pre-Commit code review", auto YAML lines 311-318), not at AUTHORING TIME (Step 10 development). When the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, the orchestrator writes code WITHOUT having loaded sk-code's authoring checklists or the spec_folder_write recipe (just shipped in 078/001 v3.2.0.0). The pattern means errors that the authoring checklists would have prevented have to be caught (and re-fixed) at review time, slowing iteration. F-009-002 + F-008-004 + F-006-004 are corollaries: sk-code has spec-folder invariants but no first-class SPEC_FOLDER load path; the integration is named in path-safety language only.
 
 ### Purpose
 Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm` YAMLs. Add a paragraph to system-spec-kit/SKILL.md documenting the cross-skill load contract (pull-style: the workflow tells the orchestrator WHEN to consult sk-code). Add a complementary paragraph to sk-code/SKILL.md declaring the contract from its side (push-style: the resources sk-code will surface when called from `/spec_kit:complete` with an `.opencode/` target). Closes 4 P1 findings: F-009-001, F-009-002, F-008-004, F-006-004.
@@ -66,7 +66,7 @@ Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm`
 ## 3. SCOPE
 
 ### In Scope
-- Add an activity in `step_10_development.activities` of `spec_kit_complete_auto.yaml` instructing the orchestrator to load sk-code authoring resources BEFORE writes when the implementation target is under `.opencode/skill/`, `.opencode/agent/`, `.opencode/command/`, or `.opencode/specs/`
+- Add an activity in `step_10_development.activities` of `spec_kit_complete_auto.yaml` instructing the orchestrator to load sk-code authoring resources BEFORE writes when the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`
 - Mirror the same activity in `spec_kit_complete_confirm.yaml`
 - Add a `cross_skill_authoring_load` block (or similar named anchor) above the existing `sk-code-review` overlay block to make the authoring-time intent explicit
 - Update `system-spec-kit/SKILL.md` §16-18 area (cross-skill routing) to add a paragraph documenting the authoring-time vs review-time load split
@@ -87,12 +87,12 @@ Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm`
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` | Modify | Add authoring-time sk-code load activity in step_10_development; add cross_skill_authoring_load block near agent_dispatch.review |
-| `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modify | Mirror the same changes |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modify | Add cross-skill authoring-time load contract paragraph in §16-18 area |
-| `.opencode/skill/sk-code/SKILL.md` | Modify | Add Cross-Skill Consumption block; bump version 3.2.0.0 → 3.2.1.0 |
-| `.opencode/skill/sk-code/description.json` | Modify | Bump version 3.2.0.0 → 3.2.1.0 |
-| `.opencode/skill/sk-code/changelog/v3.2.1.0.md` | Create | Patch-release changelog |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Modify | Add authoring-time sk-code load activity in step_10_development; add cross_skill_authoring_load block near agent_dispatch.review |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modify | Mirror the same changes |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modify | Add cross-skill authoring-time load contract paragraph in §16-18 area |
+| `.opencode/skills/sk-code/SKILL.md` | Modify | Add Cross-Skill Consumption block; bump version 3.2.0.0 → 3.2.1.0 |
+| `.opencode/skills/sk-code/description.json` | Modify | Bump version 3.2.0.0 → 3.2.1.0 |
+| `.opencode/skills/sk-code/changelog/v3.2.1.0.md` | Create | Patch-release changelog |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -111,7 +111,7 @@ Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm`
 | REQ-005 | sk-code/SKILL.md adds a Cross-Skill Consumption block declaring resources surfaced for `.opencode/` targets | grep `Cross-Skill Consumption\|cross-skill consumption` ≥ 1 hit in sk-code SKILL.md | F-008-004 |
 | REQ-006 | sk-code SKILL.md frontmatter version 3.2.0.0 → 3.2.1.0 | grep `version: 3.2.1.0` SKILL.md | — |
 | REQ-007 | sk-code description.json version 3.2.0.0 → 3.2.1.0 | grep `"version": "3.2.1.0"` description.json | — |
-| REQ-008 | Changelog v3.2.1.0.md created using compact format | File present at `.opencode/skill/sk-code/changelog/v3.2.1.0.md` | — |
+| REQ-008 | Changelog v3.2.1.0.md created using compact format | File present at `.opencode/skills/sk-code/changelog/v3.2.1.0.md` | — |
 | REQ-009 | Both YAMLs remain parseable as YAML (no syntax break) | `python3 -c "import yaml; yaml.safe_load(open('auto.yaml'))"` exit 0 |  — |
 | REQ-010 | validate.sh --strict on 078/002 exits 0 | Validator returns 0/0 | — |
 | REQ-011 | One commit on main + pushed | `git push origin main` exit 0 | — |
@@ -134,7 +134,7 @@ Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm`
 
 ### Given/When/Then Verification Scenarios
 
-**Given** spec_kit_complete_auto.yaml has the new authoring-time load activity, **When** an orchestrator runs `/spec_kit:complete:auto` against a spec folder with `.opencode/skill/` writes, **Then** sk-code authoring resources are loaded before the first write.
+**Given** spec_kit_complete_auto.yaml has the new authoring-time load activity, **When** an orchestrator runs `/spec_kit:complete:auto` against a spec folder with `.opencode/skills/` writes, **Then** sk-code authoring resources are loaded before the first write.
 
 **Given** the cross_skill_authoring_load block is present, **When** a maintainer reads the YAML, **Then** they see authoring-time and review-time as distinct named blocks (not both labeled "review").
 

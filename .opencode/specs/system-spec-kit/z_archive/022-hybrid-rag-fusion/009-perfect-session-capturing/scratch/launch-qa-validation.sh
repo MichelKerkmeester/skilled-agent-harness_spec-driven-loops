@@ -16,9 +16,9 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../../../../.." && pwd)"
 SCRATCH_DIR="$SCRIPT_DIR"
-SCRIPTS_DIR="$PROJECT_ROOT/.opencode/skill/system-spec-kit/scripts"
+SCRIPTS_DIR="$PROJECT_ROOT/.opencode/skills/system-spec-kit/scripts"
 SPEC_DIR="$PROJECT_ROOT/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing"
-SK_CODE_DIR="$PROJECT_ROOT/.opencode/skill/sk-code-opencode"
+SK_CODE_DIR="$PROJECT_ROOT/.opencode/skills/sk-code-opencode"
 
 DRY_RUN=false
 WAVE_FILTER=0

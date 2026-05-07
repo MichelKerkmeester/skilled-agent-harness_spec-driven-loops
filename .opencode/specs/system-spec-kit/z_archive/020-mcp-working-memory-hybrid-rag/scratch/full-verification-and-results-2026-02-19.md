@@ -13,7 +13,7 @@
 Command:
 
 ```bash
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag
 ```
 
 Observed result:
@@ -32,7 +32,7 @@ npm test
 
 Run location:
 
-- `.opencode/skill/system-spec-kit/mcp_server`
+- `.opencode/skills/system-spec-kit/mcp_server`
 
 Observed result:
 
@@ -50,7 +50,7 @@ npx tsx scripts/evals/deleted-phase1-5-shadow-eval-script "/Users/michelkerkmees
 
 Run location:
 
-- `.opencode/skill/system-spec-kit`
+- `.opencode/skills/system-spec-kit`
 
 Observed result:
 
@@ -66,7 +66,7 @@ node scripts/evals/run-phase2-closure-metrics.mjs "/Users/michelkerkmeester/MEGA
 
 Run location:
 
-- `.opencode/skill/system-spec-kit`
+- `.opencode/skills/system-spec-kit`
 
 Observed result:
 
@@ -84,7 +84,7 @@ npx tsx scripts/evals/deleted-phase3-telemetry-dashboard-script "/Users/michelke
 
 Run location:
 
-- `.opencode/skill/system-spec-kit`
+- `.opencode/skills/system-spec-kit`
 
 Observed result:
 
@@ -100,14 +100,14 @@ Observed result:
    - Pass criteria: `Errors: 0`, `Warnings: 0`, `RESULT: PASSED`.
 
 2. **Core MCP handler + pipeline regressions**
-   - Run `npm test` in `.opencode/skill/system-spec-kit/mcp_server`.
+   - Run `npm test` in `.opencode/skills/system-spec-kit/mcp_server`.
    - Pass criteria: same or better than `133 passed / 4 skipped` files and no failing tests.
 
 3. **TOC casing enforcement in context template and generated memories**
    - Verify template contains uppercase heading/labels:
-     - `.opencode/skill/system-spec-kit/templates/context_template.md`
+     - `.opencode/skills/system-spec-kit/templates/context_template.md`
    - Verify comprehensive template test includes explicit uppercase TOC check:
-     - `.opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js`
+     - `.opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js`
    - Verify representative generated memory files use uppercase TOC labels:
      - `.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/memory/`
      - `.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/001-foundation-phases-0-1-1-5/memory/`

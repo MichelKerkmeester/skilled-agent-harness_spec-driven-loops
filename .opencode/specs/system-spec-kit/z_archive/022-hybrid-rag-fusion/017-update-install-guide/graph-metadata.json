@@ -41,10 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -52,7 +52,7 @@
       {
         "name": "INSTALL_GUIDE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
         "source": "derived"
       },
       {
@@ -70,7 +70,7 @@
       {
         "name": "package.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/package.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
         "source": "derived"
       },
       {

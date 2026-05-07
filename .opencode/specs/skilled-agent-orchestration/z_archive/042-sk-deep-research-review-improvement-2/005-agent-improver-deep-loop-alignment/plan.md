@@ -32,8 +32,8 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Node.js CJS helpers, TypeScript Vitest tests, Markdown skill and command docs |
-| **Primary Surface** | `.opencode/skill/sk-improve-agent/` |
-| **Runtime Mirrors** | `.opencode/agent/improve-agent.md` and improve command docs |
+| **Primary Surface** | `.opencode/skills/sk-improve-agent/` |
+| **Runtime Mirrors** | `.opencode/agents/improve-agent.md` and improve command docs |
 | **Evidence Sources** | Commit `080cf549e`, release `v1.1.0.0`, post-release note `v1.2.1.0`, playbook scenarios, strict packet validation |
 | **Delivery Shape** | Four delivered implementation phases followed by later rename and lifecycle cleanup in subsequent releases |
 
@@ -62,8 +62,8 @@ Those phases landed the five helper scripts, five dedicated tests, asset and ski
 
 ### Definition of Done
 
-- [x] Five runtime-truth helper scripts landed. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs; mutation-coverage.cjs; trade-off-detector.cjs; candidate-lineage.cjs; benchmark-stability.cjs]`
-- [x] Five dedicated Vitest suites landed alongside the helpers. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts; mutation-coverage.vitest.ts; trade-off-detector.vitest.ts; candidate-lineage.vitest.ts; benchmark-stability.vitest.ts]`
+- [x] Five runtime-truth helper scripts landed. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs; mutation-coverage.cjs; trade-off-detector.cjs; candidate-lineage.cjs; benchmark-stability.cjs]`
+- [x] Five dedicated Vitest suites landed alongside the helpers. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts; mutation-coverage.vitest.ts; trade-off-detector.vitest.ts; candidate-lineage.vitest.ts; benchmark-stability.vitest.ts]`
 - [x] Skill, asset, command, and runtime-mirror docs were updated to publish the runtime-truth contract. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
 - [x] Later closeout wording was narrowed so unsupported lifecycle promises were not left as live truth. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.2.1.0.md]`
 - [x] This packet now validates under the current Level 3 contract. `[EVIDENCE: validate.sh --strict on this phase]`
@@ -85,8 +85,8 @@ Orchestrator-owned runtime truth with additive helper modules. The proposal-gene
 - `trade-off-detector.cjs`: detects cross-dimension regression hidden by aggregate scoring.
 - `candidate-lineage.cjs`: records optional branch lineage when multiple candidate strategies run.
 - `benchmark-stability.cjs`: measures replay stability and provides optimizer-facing evidence.
-- `.opencode/skill/sk-improve-agent/SKILL.md` plus improve-agent assets: explain how the helper outputs shape the loop contract.
-- `.opencode/command/improve/agent.md` and runtime mirror docs: expose the contract on the visible operator path.
+- `.opencode/skills/sk-improve-agent/SKILL.md` plus improve-agent assets: explain how the helper outputs shape the loop contract.
+- `.opencode/commands/improve/agent.md` and runtime mirror docs: expose the contract on the visible operator path.
 
 ### Data Flow
 
@@ -102,31 +102,31 @@ Improve command launches session -> orchestrator records journal events -> candi
 
 The first delivery pass introduced the journal, stop-state contract publication, and orchestrator-owned runtime truth surfaces.
 
-- [x] Journal helper created and wired into the improve-agent workflow. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
-- [x] Runtime mirror and command docs were updated to publish the new contract. `[EVIDENCE: .opencode/agent/improve-agent.md; .opencode/command/improve/agent.md; commit 080cf549e]`
-- [x] Audit-trail and legal-stop obligations landed in skill assets. `[EVIDENCE: .opencode/skill/sk-improve-agent/assets/improvement_charter.md; .opencode/skill/sk-improve-agent/SKILL.md]`
+- [x] Journal helper created and wired into the improve-agent workflow. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
+- [x] Runtime mirror and command docs were updated to publish the new contract. `[EVIDENCE: .opencode/agents/improve-agent.md; .opencode/commands/improve/agent.md; commit 080cf549e]`
+- [x] Audit-trail and legal-stop obligations landed in skill assets. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_charter.md; .opencode/skills/sk-improve-agent/SKILL.md]`
 
 ### Phase 2: Improvement Intelligence
 
 The second delivery pass added the explainability helpers that make the improve loop observable instead of opaque.
 
-- [x] Mutation coverage graph landed for improvement sessions. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs]`
-- [x] Trade-off detector landed with dedicated test coverage. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs; .opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts]`
-- [x] Strategy and config assets were expanded to cover convergence, exhaustion, and thresholds. `[EVIDENCE: .opencode/skill/sk-improve-agent/assets/improvement_strategy.md; .opencode/skill/sk-improve-agent/assets/improvement_config.json]`
+- [x] Mutation coverage graph landed for improvement sessions. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs]`
+- [x] Trade-off detector landed with dedicated test coverage. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs; .opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts]`
+- [x] Strategy and config assets were expanded to cover convergence, exhaustion, and thresholds. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_strategy.md; .opencode/skills/sk-improve-agent/assets/improvement_config.json]`
 
 ### Phase 3: Parallel Candidate Support
 
 The third delivery pass added optional branch-tracking for multi-candidate experimentation.
 
-- [x] Candidate-lineage helper landed. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs]`
-- [x] Operator playbooks for coverage, trade-off, and lineage were added. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
+- [x] Candidate-lineage helper landed. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs]`
+- [x] Operator playbooks for coverage, trade-off, and lineage were added. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
 
 ### Phase 4: Stability and Advisory Optimization
 
 The fourth delivery pass added replay stability scoring and the advisory optimizer surface.
 
-- [x] Benchmark stability helper and tests landed. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs; .opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts]`
-- [x] Runtime-truth playbook scenarios were added for stop taxonomy, journal emission, resume wording, legal-stop gates, stability, trajectory, and optional parallel candidates. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`
+- [x] Benchmark stability helper and tests landed. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs; .opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts]`
+- [x] Runtime-truth playbook scenarios were added for stop taxonomy, journal emission, resume wording, legal-stop gates, stability, trajectory, and optional parallel candidates. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`
 - [x] Release evidence captured the delivered runtime-truth contract. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
 <!-- /ANCHOR:phases -->
 
@@ -137,9 +137,9 @@ The fourth delivery pass added replay stability scoring and the advisory optimiz
 
 | Test Type | Scope | Evidence |
 |-----------|-------|----------|
-| Unit | Helper validation for journal, coverage, trade-off, lineage, and stability modules | `.opencode/skill/sk-improve-agent/scripts/tests/*.vitest.ts` |
-| Manual | Runtime-truth scenarios for stop reasons, journal emission, legal-stop gates, stability, and parallel candidates | `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/*.md` |
-| Manual | End-to-end coverage, trade-off, and lineage workflows | `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-024` |
+| Unit | Helper validation for journal, coverage, trade-off, lineage, and stability modules | `.opencode/skills/sk-improve-agent/scripts/tests/*.vitest.ts` |
+| Manual | Runtime-truth scenarios for stop reasons, journal emission, legal-stop gates, stability, and parallel candidates | `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/*.md` |
+| Manual | End-to-end coverage, trade-off, and lineage workflows | `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-024` |
 | Release | Shipped verification summary | `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md` |
 | Post-release documentation correction | Lifecycle wording narrowed to current reality | `.opencode/changelog/15--sk-improve-agent/v1.2.1.0.md` |
 <!-- /ANCHOR:testing -->
@@ -220,7 +220,7 @@ Phase 4 Stability and Advisory Optimization
 ### Rollback Notes
 
 1. Remove the helper scripts and their dedicated tests.
-2. Restore skill assets, `.opencode/skill/sk-improve-agent/SKILL.md`, command docs, and runtime mirror docs to their pre-phase versions.
+2. Restore skill assets, `.opencode/skills/sk-improve-agent/SKILL.md`, command docs, and runtime mirror docs to their pre-phase versions.
 3. Re-run the improve-agent workflow against the pre-alignment contract.
 
 ### Data Reversal
@@ -245,7 +245,7 @@ improvement-journal.cjs
         |
         +--> benchmark-stability.cjs
                  |
-                 +--> .opencode/skill/sk-improve-agent/SKILL.md / improve command / playbooks
+                 +--> .opencode/skills/sk-improve-agent/SKILL.md / improve command / playbooks
 ```
 
 ### Dependency Matrix

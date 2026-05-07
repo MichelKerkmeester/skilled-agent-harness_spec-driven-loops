@@ -60,210 +60,210 @@ I found the implementation files; next I’m cross-checking what the spec bundle
   │ (.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2)
   └ 6 lines found
 
-● code_graph_query (MCP: spec_kit_memory) · operation: "outline", subject: ".opencode/skill/system-…
-  └ {"status":"ok","data":{"operation":"outline","filePath":".opencode/skill/syst...
+● code_graph_query (MCP: spec_kit_memory) · operation: "outline", subject: ".opencode/skills/system-…
+  └ {"status":"ok","data":{"operation":"outline","filePath":".opencode/skills/syst...
 
-● code_graph_query (MCP: spec_kit_memory) · operation: "outline", subject: ".opencode/skill/system-…
-  └ {"status":"ok","data":{"operation":"outline","filePath":".opencode/skill/syst...
+● code_graph_query (MCP: spec_kit_memory) · operation: "outline", subject: ".opencode/skills/system-…
+  └ {"status":"ok","data":{"operation":"outline","filePath":".opencode/skills/syst...
 
-● code_graph_query (MCP: spec_kit_memory) · operation: "outline", subject: ".opencode/skill/system-…
-  └ {"status":"ok","data":{"operation":"outline","filePath":".opencode/skill/syst...
+● code_graph_query (MCP: spec_kit_memory) · operation: "outline", subject: ".opencode/skills/system-…
+  └ {"status":"ok","data":{"operation":"outline","filePath":".opencode/skills/syst...
 
-● code_graph_query (MCP: spec_kit_memory) · operation: "outline", subject: ".opencode/skill/system-…
-  └ {"status":"ok","data":{"operation":"outline","filePath":".opencode/skill/syst...
+● code_graph_query (MCP: spec_kit_memory) · operation: "outline", subject: ".opencode/skills/system-…
+  └ {"status":"ok","data":{"operation":"outline","filePath":".opencode/skills/syst...
 
 The spec and fix-dispatch line up on the same four maintainability targets, so I’m reading the actual helper implementations now and tracing how callers depend on them.
 
 ● Read wave-segment-planner.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs
   └ L1:400 (400 lines read)
 
 ● Read wave-lifecycle.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs
   └ L1:320 (320 lines read)
 
 ● Read wave-coordination-board.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs
   └ L1:420 (420 lines read)
 
 ● Read coverage-graph-core.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs
   └ L1:320 (319 lines read)
 
 ● Search (grep)
   │ "computeHotspotSpread|assignCluster|allowed-transition|transition|merge|session
   │ normalization|normalizeSession|sessionId" in {wave-segment-planner.cjs,wave-lifecycle.cjs,wave-c
-  │ oordination-board.cjs,coverage-graph-core.cjs} (.opencode/skill/system-spec-kit/scripts/lib)
+  │ oordination-board.cjs,coverage-graph-core.cjs} (.opencode/skills/system-spec-kit/scripts/lib)
   └ 7 lines found
 
 ● Read wave-segment-planner.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs
   └ L400:760 (301 lines read)
 
 ● Read wave-lifecycle.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs
   └ L320:620 (127 lines read)
 
 ● Read wave-coordination-board.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs
   └ L420:760 (284 lines read)
 
 ● Read coverage-graph-core.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs
   └ L320:620 (53 lines read)
 
 ● Read coverage-graph-session.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-session.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-session.cjs
   └ L1:260 (129 lines read)
 
 ● Search (grep)
   │ "advanceBoardStatus\(|transitionBoardStatus\(|advancePhase\(|computeHotspotSpread\(|assignCluste
-  │ r\(|matchesSession\(" in **/*.{cjs,ts,yaml,yml,md} (.opencode/skill/system-spec-kit)
+  │ r\(|matchesSession\(" in **/*.{cjs,ts,yaml,yml,md} (.opencode/skills/system-spec-kit)
   └ 7 lines found
 
 ● Search (grep)
   │ "matchesSession\(|normalizeSessionId\(|getNodeSessionId\(|getEdgeSessionId\(" in **/*.{cjs,ts}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 7 lines found
 
 ● Search (grep)
   │ "advanceBoardStatus\(|transitionBoardStatus\(" in **/*.{cjs,ts}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 41 lines found
 
 ● Search (grep)
-  │ "advancePhase\(" in **/*.{cjs,ts} (.opencode/skill/system-spec-kit)
+  │ "advancePhase\(" in **/*.{cjs,ts} (.opencode/skills/system-spec-kit)
   └ 44 lines found
 
 ● Search (grep)
   │ "computeHotspotSpread\(|computeClusterDiversity\(|generateHotspotInventory\(|generateDomainLedge
-  │ r\(" in **/*.{cjs,ts} (.opencode/skill/system-spec-kit)
+  │ r\(" in **/*.{cjs,ts} (.opencode/skills/system-spec-kit)
   └ 7 lines found
 
 ● Read deep-loop-wave-executor.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts
   └ L1:340 (301 lines read)
 
 ● Read deep-loop-wave-merge.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts
   └ L1:260 (260 lines read)
 
 ● Read session-isolation.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "wave-coordination-board|wave-lifecycle|wave-segment-planner|coverage-graph-core"
-  │ (.opencode/skill/system-spec-kit/scripts/tests)
+  │ (.opencode/skills/system-spec-kit/scripts/tests)
   └ 10 files found
 
 ● Read deep-loop-wave-planner.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts
   └ L1:320 (293 lines read)
 
 ● Read coverage-graph-core.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
   └ L1:320 (257 lines read)
 
 ● Read coverage-graph-cross-layer.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts
   └ L1:260 (260 lines read)
 
 ● Read coverage-graph-signals.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts
   └ L1:260 (247 lines read)
 
 ● Search (grep)
   │ "createWaveContext\(|dispatchWave\(|joinWave\(" in **/*.{cjs,ts,md,yaml,yml}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 7 lines found
 
 ● Search (grep)
   │ "\.status\b|status: 'initialized'|phase: 'prepass'" in **/*.{cjs,ts,md,yaml,yml}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 7 lines found
 
 ● Read deep-loop-wave-resume.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts
   └ L200:340 (83 lines read)
 
 ● Search (grep)
-  │ "status" (.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs)
+  │ "status" (.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs)
   └ 23 lines found
 
 ● Search (grep)
   │ "createWaveContext\(|dispatchWave\(|joinWave\(" in deep-loop-wave-*.vitest.ts
-  │ (.opencode/skill/system-spec-kit/scripts/tests)
+  │ (.opencode/skills/system-spec-kit/scripts/tests)
   └ 114 lines found
 
 ● Search (grep)
   │ "getNodes\(|getEdges\(|getEdgesFrom\(|getEdgesTo\(" in coverage-graph-*.cjs
-  │ (.opencode/skill/system-spec-kit/scripts/lib)
+  │ (.opencode/skills/system-spec-kit/scripts/lib)
   └ 23 lines found
 
 ● Search (grep)
   │ "normalizeSessionId\(|getNodeSessionId\(|getEdgeSessionId\(" in coverage-graph-*.cjs
-  │ (.opencode/skill/system-spec-kit/scripts/lib)
+  │ (.opencode/skills/system-spec-kit/scripts/lib)
   └ 74 lines found
 
 ● Search (grep)
-  │ "traverseProvenance\(" in **/*.{cjs,ts,md} (.opencode/skill/system-spec-kit)
+  │ "traverseProvenance\(" in **/*.{cjs,ts,md} (.opencode/skills/system-spec-kit)
   └ 53 lines found
 
 I found one broader pattern worth checking: the new session helper was added, but I’m verifying whether the neighboring coverage-graph libraries actually converged on it or only the core did.
 
 ● Read coverage-graph-contradictions.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs
   └ L1:240 (202 lines read)
 
 ● Search (grep)
   │ "coverage-graph-session\.cjs|getEdgeSessionId\(|getNodeSessionId\(|matchesSession\(" in
-  │ coverage-graph-*.cjs (.opencode/skill/system-spec-kit/scripts/lib)
+  │ coverage-graph-*.cjs (.opencode/skills/system-spec-kit/scripts/lib)
   └ 7 lines found
 
 ● Search (grep)
   │ "deriveBoardStatus\(|status\s*===\s*'completed'|status\s*===\s*'merging'" in
-  │ **/*.{cjs,ts,md,yaml,yml} (.opencode/skill/system-spec-kit)
+  │ **/*.{cjs,ts,md,yaml,yml} (.opencode/skills/system-spec-kit)
   └ 29 lines found
 
 ● Search (grep)
   │ "wave-join|sessionId \|\| 'wave-join'|generation: typeof firstResult\.generation" in
-  │ **/*.{cjs,ts,md,yaml,yml} (.opencode/skill/system-spec-kit)
+  │ **/*.{cjs,ts,md,yaml,yml} (.opencode/skills/system-spec-kit)
   └ 9 lines found
 
 ● Search (grep)
-  │ "joinWave\(" in **/*.{cjs,ts,yaml,yml,md} (.opencode/skill/system-spec-kit)
+  │ "joinWave\(" in **/*.{cjs,ts,yaml,yml,md} (.opencode/skills/system-spec-kit)
   └ 40 lines found
 
 ● Search (grep)
-  │ "dispatchWave\(" in **/*.{cjs,ts,yaml,yml,md} (.opencode/skill/system-spec-kit)
+  │ "dispatchWave\(" in **/*.{cjs,ts,yaml,yml,md} (.opencode/skills/system-spec-kit)
   └ 27 lines found
 
 ● Search (grep)
   │ "createCanonicalMergeBoard|wave-join" in **/*.{cjs,ts,yaml,yml,md}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 30 lines found
 
 ● Read wave-segment-state.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs
   └ L330:390 (61 lines read)
 
 ● Search (grep)
   │ "FINDING_MERGE_KEYS|MERGE_KEYS|sessionId: firstState\.sessionId|wave-join"
-  │ (.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs)
+  │ (.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs)
   └ 38 lines found
 
 ● Read coverage-graph-convergence.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "require\('./coverage-graph-contradictions\.cjs'\)|scanContradictions\(|reportContradictions\(|c
-  │ ontradictionDensity\(" in coverage-graph-*.cjs (.opencode/skill/system-spec-kit/scripts/lib)
+  │ ontradictionDensity\(" in coverage-graph-*.cjs (.opencode/skills/system-spec-kit/scripts/lib)
   └ 21 lines found
 
 ● Read coverage-graph-signals.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs
   └ L1:220 (220 lines read)
 
 ● Read spec.md
@@ -280,43 +280,43 @@ I found one broader pattern worth checking: the new session helper was added, bu
 I’ve narrowed this to three concrete maintainability problems: one around merge provenance, one around the board lifecycle surface, and one around incomplete session-helper adoption. I’m pulling tight line-level citations now.
 
 ● Read wave-lifecycle.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs
   └ L400:408 (9 lines read)
 
 ● Read wave-lifecycle.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs
   └ L208:225 (18 lines read)
 
 ● Read wave-lifecycle.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs
   └ L261:283 (23 lines read)
 
 ● Read wave-coordination-board.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs
   └ L143:191 (48 lines read)
 
 ● Read wave-coordination-board.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs
   └ L215:237 (23 lines read)
 
 ● Read wave-coordination-board.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs
   └ L453:507 (55 lines read)
 
 ● Read coverage-graph-session.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-session.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-session.cjs
   └ L15:85 (71 lines read)
 
 ● Read coverage-graph-contradictions.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs
   └ L37:60 (24 lines read)
 
 ● Read coverage-graph-signals.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs
   └ L11:16 (5 lines read)
 
 ● Read deep-loop-wave-merge.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts
   └ L140:160 (21 lines read)
 
 ## Findings
@@ -324,7 +324,7 @@ I’ve narrowed this to three concrete maintainability problems: one around merg
 ### F-034-001
 - **Severity:** P1
 - **Dimension:** Maintainability
-- **File:** `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+- **File:** `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
 - **Line:** `wave-lifecycle.cjs:208-225, 261-273, 400-407`; `wave-coordination-board.cjs:215-221`
 - **Title:** `joinWave()` still makes the 5-key merge namespace implicit
 - **Description:** The wave lifecycle now depends on a 5-key composite merge contract, but `dispatchWave()` does not carry that namespace on each dispatch result, and `joinWave()` silently reconstructs it from the first result or hard-coded defaults. Because `buildFindingRecord()` stamps merge keys from the merge board rather than from each result, the API only stays correct when callers remember an undocumented precondition: every result passed into `joinWave()` must already be enriched with canonical session/generation metadata.
@@ -334,7 +334,7 @@ I’ve narrowed this to three concrete maintainability problems: one around merg
 ### F-034-002
 - **Severity:** P1
 - **Dimension:** Maintainability
-- **File:** `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+- **File:** `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
 - **Line:** `143-190, 347-444, 453-507`; supporting evidence in `scripts/tests/deep-loop-wave-merge.vitest.ts:146-157`
 - **Title:** The new board-transition API is not wired into the normal board lifecycle
 - **Description:** The module now exposes an authoritative transition API, but the normal `updateBoard()` path never reaches a terminal `completed` state on its own. That leaves `board.status` stuck at `merging` after all segments are terminal unless some external caller knows to perform a second status transition, which makes the "authoritative" API easy to forget and hard to use safely.
@@ -344,7 +344,7 @@ I’ve narrowed this to three concrete maintainability problems: one around merg
 ### F-034-003
 - **Severity:** P2
 - **Dimension:** Maintainability
-- **File:** `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs`
+- **File:** `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs`
 - **Line:** `37-60`; comparison points in `coverage-graph-session.cjs:19-85` and `coverage-graph-signals.cjs:11-15`
 - **Title:** Session normalization is centralized in name only
 - **Description:** The session-normalization fix landed as a shared helper, but `coverage-graph-contradictions.cjs` still carries its own private `getNodeSessionId()`, `getEdgeSessionId()`, and `matchesSession()` logic. That leaves the CJS graph stack split between shared and local implementations, so future session-rule changes have to be kept in sync manually and contradiction scans can drift from the rest of the stack.
@@ -366,10 +366,10 @@ Reviewed:
   `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/fix-dispatch.sh`  
   `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md`
 - Focus files:  
-  `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs`  
-  `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`  
-  `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`  
-  `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs`
+  `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`  
+  `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`  
+  `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`  
+  `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs`
 - Tightly coupled support files/tests:  
   `coverage-graph-session.cjs`, `coverage-graph-contradictions.cjs`, `coverage-graph-signals.cjs`  
   `deep-loop-wave-planner.vitest.ts`, `deep-loop-wave-executor.vitest.ts`, `deep-loop-wave-merge.vitest.ts`, `deep-loop-wave-resume.vitest.ts`, `coverage-graph-core.vitest.ts`, `coverage-graph-cross-layer.vitest.ts`, `coverage-graph-signals.vitest.ts`, `session-isolation.vitest.ts`

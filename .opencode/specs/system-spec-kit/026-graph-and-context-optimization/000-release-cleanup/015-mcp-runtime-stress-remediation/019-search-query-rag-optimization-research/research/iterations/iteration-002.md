@@ -6,15 +6,15 @@ Inspect the memory search and context-loading path for performance, ranking, cit
 
 ## Sources
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:217`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:560`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:999`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1248`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1446`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:463`
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:273`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:64`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:217`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:560`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:999`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1248`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1446`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:463`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:273`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:64`
 
 ## Findings
 

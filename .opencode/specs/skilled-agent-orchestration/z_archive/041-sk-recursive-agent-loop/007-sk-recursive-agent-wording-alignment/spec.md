@@ -57,7 +57,7 @@ Run a wording-only cleanup across the current agent-improver surfaces so the lan
 ## 3. SCOPE
 
 ### In Scope
-- wording cleanup in `.opencode/skill/sk-improve-agent/` markdown surfaces
+- wording cleanup in `.opencode/skills/sk-improve-agent/` markdown surfaces
 - wording cleanup in the canonical command and mirrored wrapper prompts
 - wording cleanup in runtime-specific `agent-improver` mirror files
 - wording cleanup in root packet `041` docs so phase `007` is recorded cleanly
@@ -69,14 +69,14 @@ Run a wording-only cleanup across the current agent-improver surfaces so the lan
 - rewriting historical `research/` or `memory/` artifacts under `041`
 
 ### Files to Change
-- `.opencode/skill/sk-improve-agent/SKILL.md`
-- `.opencode/skill/sk-improve-agent/README.md`
-- selected markdown files under `.opencode/skill/sk-improve-agent/references/`
-- selected markdown files under `.opencode/skill/sk-improve-agent/assets/`
-- `.opencode/command/spec_kit/agent-improver.md`
+- `.opencode/skills/sk-improve-agent/SKILL.md`
+- `.opencode/skills/sk-improve-agent/README.md`
+- selected markdown files under `.opencode/skills/sk-improve-agent/references/`
+- selected markdown files under `.opencode/skills/sk-improve-agent/assets/`
+- `.opencode/commands/spec_kit/agent-improver.md`
 - `.agents/commands/spec_kit/agent-improver.toml`
 - `.gemini/commands/spec_kit/agent-improver.toml`
-- `.opencode/agent/agent-improver.md`
+- `.opencode/agents/agent-improver.md`
 - `.claude/agents/agent-improver.md`
 - `.gemini/agents/agent-improver.md`
 - `.agents/agents/agent-improver.md`

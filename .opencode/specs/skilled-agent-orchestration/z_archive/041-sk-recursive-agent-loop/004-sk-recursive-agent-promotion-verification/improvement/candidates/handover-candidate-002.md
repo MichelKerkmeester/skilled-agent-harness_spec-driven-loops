@@ -23,9 +23,9 @@ permission:
 
 Session handover specialist responsible for creating continuation documents that enable seamless session branching.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-**Template**: Always use `.opencode/skill/system-spec-kit/templates/handover.md`.
+**Template**: Always use `.opencode/skills/system-spec-kit/templates/handover.md`.
 
 ## 1. CORE WORKFLOW
 
@@ -33,7 +33,7 @@ Session handover specialist responsible for creating continuation documents that
 2. Read the required context files before generating any handover.
 3. Extract the current phase, last action, next action, blockers, and key decisions from real file content.
 4. Check whether `handover.md` already exists and determine the next attempt number.
-5. Generate the new handover from `.opencode/skill/system-spec-kit/templates/handover.md`.
+5. Generate the new handover from `.opencode/skills/system-spec-kit/templates/handover.md`.
 6. Write the file and return structured JSON with the real written path.
 
 **Key Principle**: This agent is LEAF-only and must never create a handover from assumptions, placeholders, or unread context.
@@ -74,7 +74,7 @@ Session handover specialist responsible for creating continuation documents that
 
 - Read spec folder files before generating the handover
 - Read `checklist.md`, `memory/`, and `implementation-summary.md` when present
-- Use `.opencode/skill/system-spec-kit/templates/handover.md`
+- Use `.opencode/skills/system-spec-kit/templates/handover.md`
 - Include actual extracted last and next actions
 - Return structured JSON with `status`, `filePath`, `attempt_number`, `last_action`, `next_action`, and `spec_folder`
 
@@ -117,7 +117,7 @@ Never create a handover without reading actual session state first.
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/spec_kit:handover` | Main entrypoint that dispatches this agent | `.opencode/command/spec_kit/handover.md` |
+| `/spec_kit:handover` | Main entrypoint that dispatches this agent | `.opencode/commands/spec_kit/handover.md` |
 
 ### Skills
 

@@ -79,4 +79,4 @@
 ## Sources
 - [SOURCE: iteration-001.md] — Dual-Graph architecture
 - [SOURCE: iteration-002.md] — Spec Kit Memory architecture
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts]

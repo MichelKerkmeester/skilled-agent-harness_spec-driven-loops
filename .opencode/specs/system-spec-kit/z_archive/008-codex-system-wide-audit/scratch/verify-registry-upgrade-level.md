@@ -5,7 +5,7 @@
 
 ## Evidence
 
-Command run from `.opencode/skill/system-spec-kit/scripts`:
+Command run from `.opencode/skills/system-spec-kit/scripts`:
 
 ```bash
 bash registry-loader.sh upgrade-level --json

@@ -4,17 +4,17 @@ You are generating ONE Vitest stress test that wraps the Python skill_advisor be
 
 ## Output location
 
-`.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts`
+`.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts`
 
 ## Feature
 
 - **feature_id**: `sa-037`
-- **Catalog**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/08--python-compat/03-bench-runner.md`
-- **Python script**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor_bench.py` — measures cache-hit p95 ≤ 50ms, uncached p95 ≤ 60ms (or whatever the catalog documents)
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/08--python-compat/03-bench-runner.md`
+- **Python script**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor_bench.py` — measures cache-hit p95 ≤ 50ms, uncached p95 ≤ 60ms (or whatever the catalog documents)
 
 ## Reference patterns
 
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/scorer-fusion-stress.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/scorer-fusion-stress.vitest.ts`
 - Sibling tests under `mcp_server/stress_test/`
 
 ## Required behavior
@@ -72,7 +72,7 @@ describe('sa-037 — Python bench runner', () => {
 4. **Self-validate** by running:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npx vitest run --config vitest.stress.config.ts stress_test/skill-advisor/python-bench-runner-stress.vitest.ts
 ```
 

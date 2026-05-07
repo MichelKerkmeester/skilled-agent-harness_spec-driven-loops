@@ -18,10 +18,10 @@ _memory:
     next_safe_action: "Dispatch cli-codex high to build coverage matrix and audit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/"
-      - ".opencode/skill/system-spec-kit/mcp_server/package.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/"
+      - ".opencode/skills/system-spec-kit/mcp_server/package.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "042-spec-init"

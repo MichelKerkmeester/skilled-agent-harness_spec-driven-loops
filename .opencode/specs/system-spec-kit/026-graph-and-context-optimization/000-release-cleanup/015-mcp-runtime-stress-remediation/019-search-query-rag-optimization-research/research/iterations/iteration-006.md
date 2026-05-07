@@ -6,11 +6,11 @@ Identify whether causal graph signals can improve retrieval quality, trust trees
 
 ## Sources
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:18`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:33`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:45`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:159`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:203`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:18`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:33`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:45`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:159`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:203`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/research.md:74`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/research.md:84`
 - `specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review/research/research.md:92`

@@ -44,23 +44,23 @@
       ".opencode/changelog/15--sk-improve-agent/v1.1.0.0.md",
       ".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md",
       ".opencode/changelog/15--sk-improve-agent/v1.2.1.0.md",
-      ".opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs",
-      ".opencode/skill/sk-improve-agent/SKILL.md",
-      ".opencode/command/improve/agent.md",
-      ".opencode/agent/improve-agent.md",
-      ".opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs",
-      ".opencode/skill/sk-improve-agent/assets/improvement_config.json",
-      ".opencode/skill/sk-improve-agent/assets/improvement_charter.md",
-      ".opencode/skill/sk-improve-agent/assets/improvement_strategy.md",
+      ".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",
+      ".opencode/skills/sk-improve-agent/SKILL.md",
+      ".opencode/commands/improve/agent.md",
+      ".opencode/agents/improve-agent.md",
+      ".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",
+      ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
+      ".opencode/skills/sk-improve-agent/assets/improvement_charter.md",
+      ".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skill/sk-improve-agent/references/loop_protocol.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md"
+      ".opencode/skills/sk-improve-agent/references/loop_protocol.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md"
     ],
     "entities": [
       {
@@ -84,67 +84,67 @@
       {
         "name": "improvement-journal.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/SKILL.md",
+        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
         "source": "derived"
       },
       {
         "name": "agent.md",
         "kind": "doc",
-        "path": ".opencode/command/improve/agent.md",
+        "path": ".opencode/commands/improve/agent.md",
         "source": "derived"
       },
       {
         "name": "improve-agent.md",
         "kind": "doc",
-        "path": ".opencode/agent/improve-agent.md",
+        "path": ".opencode/agents/improve-agent.md",
         "source": "derived"
       },
       {
         "name": "mutation-coverage.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",
         "source": "derived"
       },
       {
         "name": "trade-off-detector.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",
         "source": "derived"
       },
       {
         "name": "candidate-lineage.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs",
         "source": "derived"
       },
       {
         "name": "benchmark-stability.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",
         "source": "derived"
       },
       {
         "name": "improvement_config.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_config.json",
+        "path": ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
         "source": "derived"
       },
       {
         "name": "improvement_charter.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_charter.md",
+        "path": ".opencode/skills/sk-improve-agent/assets/improvement_charter.md",
         "source": "derived"
       },
       {
         "name": "improvement_strategy.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_strategy.md",
+        "path": ".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",
         "source": "derived"
       },
       {
@@ -162,25 +162,25 @@
       {
         "name": "loop_protocol.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/references/loop_protocol.md",
+        "path": ".opencode/skills/sk-improve-agent/references/loop_protocol.md",
         "source": "derived"
       },
       {
         "name": "022-mutation-coverage-graph-tracking.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
+        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
         "source": "derived"
       },
       {
         "name": "023-trade-off-detection.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
+        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
         "source": "derived"
       },
       {
         "name": "024-candidate-lineage.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",
+        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",
         "source": "derived"
       },
       {

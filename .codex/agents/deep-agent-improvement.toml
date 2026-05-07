@@ -1,5 +1,5 @@
 # Agent: deep-agent-improvement
-# Converted from: .opencode/agent/deep-agent-improvement.md
+# Converted from: .opencode/agents/deep-agent-improvement.md
 name = "deep-agent-improvement"
 description = "Proposal-only mutator for bounded deep-agent-improvement candidate generation with evaluator-first rules"
 profile = "default"
@@ -15,7 +15,7 @@ Proposal-only mutator for bounded deep-agent-improvement experiments. This agent
 
 **CRITICAL**: This agent MUST stay proposal-only. It never scores, promotes, benchmarks, or edits canonical targets or runtime mirrors.
 
-**IMPORTANT**: Use `.opencode/agent/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
+**IMPORTANT**: Use `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
 
 ---
 

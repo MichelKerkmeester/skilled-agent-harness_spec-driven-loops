@@ -11,11 +11,11 @@ Last 5 ratios: 0.88 → 0.86 → 0.84 → 0.85 → 0.74 | Trend: productive but 
 
 1. **RQ-06 close:** Iter 5 found no query-result cache, no P50/P95/P99 telemetry. Verify + close definitively:
    - Grep the code-graph handlers + lib for any `performance.now`, `process.hrtime`, `console.time`, `Date.now` timing instrumentation
-   - Read `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/` for any latency assertions
-   - Check `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts` — this is the advisor cache (keyed on workspaceRoot + sourceSignature + generation per INV-F5); what is its hit/miss instrumentation? How does it report cache hit ratio?
+   - Read `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/` for any latency assertions
+   - Check `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts` — this is the advisor cache (keyed on workspaceRoot + sourceSignature + generation per INV-F5); what is its hit/miss instrumentation? How does it report cache hit ratio?
    Conclude RQ-06 with: what latency/cache telemetry EXISTS today vs what's missing, plus concrete recommendations for instrumentation (counters, timers, histograms).
 
-2. **RQ-02 groundwork:** Read `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts` and `lib/scorer/weights-config.ts` in full. Enumerate the 5 lanes + weights. Iter 1/3 noted semantic lane is shadow-only (weight 0.00) and graph_causal is derivative. Quantify effective lane diversity. Identify whether benchmark harness at `.../bench/` has lane-ablation tests.
+2. **RQ-02 groundwork:** Read `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts` and `lib/scorer/weights-config.ts` in full. Enumerate the 5 lanes + weights. Iter 1/3 noted semantic lane is shadow-only (weight 0.00) and graph_causal is derivative. Quantify effective lane diversity. Identify whether benchmark harness at `.../bench/` has lane-ablation tests.
 
 ## STATE FILES
 

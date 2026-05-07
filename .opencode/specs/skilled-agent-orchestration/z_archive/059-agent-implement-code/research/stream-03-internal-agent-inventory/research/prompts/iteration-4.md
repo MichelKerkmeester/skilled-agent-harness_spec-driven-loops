@@ -36,11 +36,11 @@ All paths are relative to repo root.
 
 Focus Q1 — Skill auto-loading:
 
-1. Read `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` end-to-end. Capture the exact mechanism: when does it fire, what does it produce (e.g. compact skill recommendation on prompt entry), where does the brief surface (Gate 2 in AGENTS.md), is it agent-scoped or global?
-2. Search `.opencode/agent/*.md` frontmatter for fields that name skills to auto-load. Probable keys to look for: `skills:`, `skill:`, `auto_skills:`, `loaded_skills:`, `requires:`, `uses:`, `dependencies:`, `routes:`. Capture every relevant frontmatter line per agent.
-3. Inspect `.opencode/agent/orchestrate.md` body for skill-routing prose: does it tell the orchestrator to "invoke skill-advisor first"? Look for the phrase "skill_advisor" / "skill-advisor" / "skill routing".
-4. Inspect `.opencode/agent/improve-agent.md` and `.opencode/agent/improve-prompt.md` — they reference `sk-improve-agent` and `sk-improve-prompt` respectively. How is the binding expressed?
-5. Inspect `.opencode/skill/sk-code/SKILL.md` — `sk-code` is a "smart-routing umbrella skill". When invoked, does it auto-load other sk-code-* sub-skills? Find the routing/detection logic.
+1. Read `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` end-to-end. Capture the exact mechanism: when does it fire, what does it produce (e.g. compact skill recommendation on prompt entry), where does the brief surface (Gate 2 in AGENTS.md), is it agent-scoped or global?
+2. Search `.opencode/agents/*.md` frontmatter for fields that name skills to auto-load. Probable keys to look for: `skills:`, `skill:`, `auto_skills:`, `loaded_skills:`, `requires:`, `uses:`, `dependencies:`, `routes:`. Capture every relevant frontmatter line per agent.
+3. Inspect `.opencode/agents/orchestrate.md` body for skill-routing prose: does it tell the orchestrator to "invoke skill-advisor first"? Look for the phrase "skill_advisor" / "skill-advisor" / "skill routing".
+4. Inspect `.opencode/agents/improve-agent.md` and `.opencode/agents/improve-prompt.md` — they reference `sk-improve-agent` and `sk-improve-prompt` respectively. How is the binding expressed?
+5. Inspect `.opencode/skills/sk-code/SKILL.md` — `sk-code` is a "smart-routing umbrella skill". When invoked, does it auto-load other sk-code-* sub-skills? Find the routing/detection logic.
 6. Search runtime code (mcp_server, plugin) for any "auto_load_skills" / "preload_skills" / agent-skill-binding patterns. Use grep + a CocoIndex semantic search if needed.
 7. Cross-reference with the AGENTS.md "GATE 2: SKILL ROUTING" rule — what's it actually look like at runtime?
 

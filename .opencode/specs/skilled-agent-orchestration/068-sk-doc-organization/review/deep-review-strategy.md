@@ -49,7 +49,7 @@ cli-codex (gpt-5.5, reasoning=high, service_tier=fast). Hard cap 7 iterations. C
 
 - barter/coder/ mirror tree
 - .opencode/specs/** historical records (iteration logs, research, review, audit, resource-map)
-- .opencode/skill/sk-doc/changelog/v[0-9]*.md (historical accuracy)
+- .opencode/skills/sk-doc/changelog/v[0-9]*.md (historical accuracy)
 - Build artifacts (.tmp/, dist/, observability/*.jsonl)
 
 ## Convergence Detection

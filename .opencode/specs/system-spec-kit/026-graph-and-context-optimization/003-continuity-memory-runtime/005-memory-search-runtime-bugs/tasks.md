@@ -61,7 +61,7 @@ This packet (Phase 1) authors the findings; downstream phases are executed by th
 - [x] T005 [P] Author implementation-summary.md placeholder (implementation-summary.md)
 - [x] T006 [P] Generate description.json (description.json)
 - [x] T007 [P] Generate graph-metadata.json (graph-metadata.json)
-- [ ] T008 Pass `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict`
+- [ ] T008 Pass `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -88,7 +88,7 @@ Deferred to the follow-up remediation packet.
 ### Cluster 3 — Output Rendering Vocabulary (P0; REQ-003)
 - [x] T301 Decided option (b): stronger spec enforcement with literal forbidden-phrase list (option (a) blocked — assistant emits the rendering, not the runtime)
 - [ ] T302 If (a): build canonical formatter — N/A, see T301
-- [x] T303 Added "Forbidden Phrase Enforcement (REQ-003 / Cluster 3)" subsection to `.opencode/command/memory/search.md` with full forbidden→required substitution table, mandatory pre-render gate steps, and a verification grep
+- [x] T303 Added "Forbidden Phrase Enforcement (REQ-003 / Cluster 3)" subsection to `.opencode/commands/memory/search.md` with full forbidden→required substitution table, mandatory pre-render gate steps, and a verification grep
 - [x] T304 [P] Verification grep specified in spec: `grep -Eci 'auto-triggered|triggered memories|triggered memory|constitutional memor(y|ies)'` MUST return 0 against the rendered block
 
 ### Cluster 4 — Causal-Stats Output Hygiene (P1; REQ-005, REQ-006, REQ-013)
@@ -157,7 +157,7 @@ The follow-up remediation packet completes when all Phase 2 + Phase 3 tasks are 
 - **Specification**: See `spec.md` (REQ-001..017 with acceptance criteria + probe evidence in §8)
 - **Plan**: See `plan.md` (7 root-cause clusters + phase sequencing)
 - **Implementation Summary**: See `implementation-summary.md`
-- **Canonical command spec**: `.opencode/command/memory/search.md`
+- **Canonical command spec**: `.opencode/commands/memory/search.md`
 - **Sibling packets**:
   - `../001-cache-warning-hooks/` — token-budget hook patterns
   - `../002-memory-quality-remediation/` — prior backend repair history

@@ -54,10 +54,10 @@ scenarios, and large-scale optimization patterns that may generalize to Code_Env
 
 ### What This Repo Already Has
 
-Code_Environment/Public already has agent orchestration in `.opencode/agent/orchestrate.md` with
+Code_Environment/Public already has agent orchestration in `.opencode/agents/orchestrate.md` with
 single-hop NDP rules, memory/context systems in Spec Kit Memory with semantic search, MCP tooling such as
 CocoIndex, Code Graph, and Sequential Thinking, validation gates through
-`.opencode/skill/system-spec-kit/scripts/spec/validate.sh`, and operational safety rules in `CLAUDE.md`
+`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, and operational safety rules in `CLAUDE.md`
 with mandatory gates. Research should look for complementary RL and tracing patterns that strengthen those
 systems rather than duplicating capabilities that are already mature.
 
@@ -74,7 +74,7 @@ systems rather than duplicating capabilities that are already mature.
    route to `@speckit`, follow existing Spec Kit templates manually and preserve Level 3 structure.
 5. Validate the phase folder before deep research with this exact command:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/001-agent-lightning-main" --strict
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/001-agent-lightning-main" --strict
    ```
 6. If validation fails, fix the docs in this same phase folder and rerun strict validation before
    continuing. If blocked, record the blocker explicitly in `tasks.md` and `checklist.md`.
@@ -92,7 +92,7 @@ systems rather than duplicating capabilities that are already mature.
 10. Trace at least three end-to-end flows: span creation, span-to-training-data transformation, and
     algorithm/runner/store coordination. Note where reward values attach, how attempts and rollouts are
     represented, and how multi-agent selection is expressed.
-11. Explicitly compare Agent Lightning patterns to existing Public systems: `.opencode/agent/`,
+11. Explicitly compare Agent Lightning patterns to existing Public systems: `.opencode/agents/`,
     Spec Kit Memory, validation scripts, CLAUDE.md gate enforcement, and current orchestration constraints.
 12. Save findings under `research/`, with `research/research.md` as the canonical output. If deep-research
     generates iterations, keep them under `research/iterations/` rather than scattering scratch notes.
@@ -100,7 +100,7 @@ systems rather than duplicating capabilities that are already mature.
     overlap risk with phases 002-009, and choose one action: `adopt now`, `prototype later`, or `reject`.
 14. Update `checklist.md`, create `implementation-summary.md`, and save memory with this exact command:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/001-agent-lightning-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/001-agent-lightning-main"
     ```
 15. Before closing, confirm that no edits escaped this phase folder and that cross-phase overlap with
     phase 005 has been explicitly addressed so RL-specific value is not confused with generic agent loops.
@@ -149,7 +149,7 @@ systems rather than duplicating capabilities that are already mature.
 - Why it matters: Code_Environment/Public could add a similar tracing seam around existing orchestration and
   memory flows, allowing agent quality to be observed and scored without modifying every agent implementation.
 - Recommended action: prototype later
-- Affected area: .opencode/agent/ orchestration, hook surfaces, and Spec Kit Memory integration points
+- Affected area: .opencode/agents/ orchestration, hook surfaces, and Spec Kit Memory integration points
 - Risk/cost: Medium integration effort; requires a shared span schema and clear boundaries between tracing,
   validation, and memory indexing
 ```

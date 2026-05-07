@@ -9,17 +9,17 @@ This round revisited weights, promotion, and observability together. The questio
 - `../deep-research-strategy.md`
 - `iteration-05.md`
 - `iteration-06.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts`
 
 ### Findings
 
-- `advisor_status` still publishes `laneWeights: DEFAULT_SCORER_WEIGHTS`, so the public status tool reports static defaults rather than any observable live or candidate weight state [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:120-129] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:143-151].
-- The weights schema itself is literal-locked to the default numbers, which means the public type surface is currently shaped for immutable defaults, not dynamic/adaptive weight reporting [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:14-20] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:30-42].
-- The promotion docs claim two-cycle counter state persists across daemon restarts through the telemetry surface, but the actual two-cycle helper is a pure history-array function and rollback telemetry is callback-shaped with no built-in durable state store [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md:29-32] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts:15-49] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts:31-72].
+- `advisor_status` still publishes `laneWeights: DEFAULT_SCORER_WEIGHTS`, so the public status tool reports static defaults rather than any observable live or candidate weight state [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:120-129] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:143-151].
+- The weights schema itself is literal-locked to the default numbers, which means the public type surface is currently shaped for immutable defaults, not dynamic/adaptive weight reporting [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:14-20] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:30-42].
+- The promotion docs claim two-cycle counter state persists across daemon restarts through the telemetry surface, but the actual two-cycle helper is a pure history-array function and rollback telemetry is callback-shaped with no built-in durable state store [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md:29-32] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts:15-49] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts:31-72].
 
 ### Evidence
 
@@ -28,7 +28,7 @@ This round revisited weights, promotion, and observability together. The questio
 >   generation: generation.generation,
 >   ...
 >   skillCount: sourceScan.count,
->   laneWeights: DEFAULT_SCORER_WEIGHTS, [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:120-128]
+>   laneWeights: DEFAULT_SCORER_WEIGHTS, [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:120-128]
 
 > export const ScorerWeightsSchema = z.object({
 >   explicit_author: z.literal(EXPLICIT_AUTHOR_WEIGHT),
@@ -36,11 +36,11 @@ This round revisited weights, promotion, and observability together. The questio
 >   graph_causal: z.literal(GRAPH_CAUSAL_WEIGHT),
 >   derived_generated: z.literal(DERIVED_GENERATED_WEIGHT),
 >   semantic_shadow: z.literal(SEMANTIC_SHADOW_WEIGHT),
-> }).strict(); [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:30-36]
+> }).strict(); [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts:30-36]
 
 > `lib/promotion/two-cycle-requirement.ts` tracks consecutive passing cycles for each candidate.
 > ...
-> The counter state is persisted across daemon restarts through the promotion telemetry surface. [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md:29-32]
+> The counter state is persisted across daemon restarts through the promotion telemetry surface. [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md:29-32]
 
 ### Negative Knowledge
 

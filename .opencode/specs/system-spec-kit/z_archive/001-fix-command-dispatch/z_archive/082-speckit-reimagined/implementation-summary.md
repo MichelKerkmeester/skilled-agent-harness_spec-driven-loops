@@ -248,11 +248,11 @@ CREATE INDEX idx_causal_strength ON causal_edges(strength DESC);
 
 | Command | Location | Purpose |
 |---------|----------|---------|
-| `/memory:continue` | `.opencode/command/memory/continue.md` | Session recovery from crash/compaction |
-| `/memory:context` | `.opencode/command/memory/context.md` | Unified entry with intent awareness |
-| `/memory:why` | `.opencode/command/memory/why.md` | Decision lineage tracing |
-| `/memory:correct` | `.opencode/command/memory/correct.md` | Learning from mistakes |
-| `/memory:learn` | `.opencode/command/memory/learn.md` | Explicit learning capture |
+| `/memory:continue` | `.opencode/commands/memory/continue.md` | Session recovery from crash/compaction |
+| `/memory:context` | `.opencode/commands/memory/context.md` | Unified entry with intent awareness |
+| `/memory:why` | `.opencode/commands/memory/why.md` | Decision lineage tracing |
+| `/memory:correct` | `.opencode/commands/memory/correct.md` | Learning from mistakes |
+| `/memory:learn` | `.opencode/commands/memory/learn.md` | Explicit learning capture |
 
 **Database Schema Changes:**
 - v8: `causal_edges` table (6 relation types)
@@ -316,8 +316,8 @@ Test planning documentation is now consolidated in `tests/` subdirectory:
 - **Test Documentation:** `tests/` subdirectory (consolidated from 083)
 - **Archived Test Spec:** `z_archive/083-speckit-reimagined-test-suite/`
 - **Competitor Research:** drift, seu-claude, dotmd systems
-- **Template Location:** `.opencode/skill/system-spec-kit/templates/context_template.md`
-- **Memory Commands:** `.opencode/command/memory/`
+- **Template Location:** `.opencode/skills/system-spec-kit/templates/context_template.md`
+- **Memory Commands:** `.opencode/commands/memory/`
 ---
 
 <!-- ANCHOR:limitations -->

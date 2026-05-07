@@ -14,9 +14,9 @@ I compared the external repo's published file set with `system-spec-kit`'s spec-
 ## Evidence
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:19-55] The external repo explains one focused loop and its runtime semantics.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:162-177] The repo structure is intentionally small: workflow, agent docs, loop docs, and license.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/create.sh:225-244] `system-spec-kit` explicitly creates different documentation depths with checklists, decision records, and AI-protocol content because it supports larger feature governance.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:80-99] Validation expects durable feature artifacts such as `checklist.md` and `decision-record.md`, not just a workflow README.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:270-282] Level detection is keyed off the presence of durable governance files, which means the system is deliberately built for more than one focused runtime loop.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:225-244] `system-spec-kit` explicitly creates different documentation depths with checklists, decision records, and AI-protocol content because it supports larger feature governance.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-99] Validation expects durable feature artifacts such as `checklist.md` and `decision-record.md`, not just a workflow README.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:270-282] Level detection is keyed off the presence of durable governance files, which means the system is deliberately built for more than one focused runtime loop.
 
 ## Analysis
 This is the second place where external minimalism is easy to overread. Get It Right is documenting one behaviorally tight product. `system-spec-kit` is coordinating multi-session planning, implementation, completion, validation, and memory preservation across many task types. The current spec lifecycle is heavy, but it is heavy in service of those broader responsibilities. Replacing it with README-style documentation would remove precisely the artifacts that make long-running packet work auditable and resumable. The better lesson is narrower: keep durable feature docs, but keep retry packets lighter.

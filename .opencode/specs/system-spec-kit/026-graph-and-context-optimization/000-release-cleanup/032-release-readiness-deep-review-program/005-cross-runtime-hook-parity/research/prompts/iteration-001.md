@@ -8,10 +8,10 @@ READ-ONLY deep-review audit. Output: `review-report.md` with severity-classified
 
 ### Target surface
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/{claude,codex,copilot,gemini}/` (per-runtime hook source)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/{claude,codex,copilot,gemini}/` (per-runtime hook source)
 - `.opencode/plugins/spec-kit-skill-advisor.js` (OpenCode plugin bridge)
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md` (the contract)
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md` (the contract)
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
 - `.claude/settings.local.json`, `.codex/settings.json`, `.gemini/settings.json` (per-runtime configs)
 - 035 findings.md + 043 findings.md + 044 amendment
 

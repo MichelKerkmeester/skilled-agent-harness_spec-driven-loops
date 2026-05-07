@@ -41,10 +41,10 @@ Evidence:
 - `implementation-summary.md:47` says each `UserPromptSubmit` event runs `buildSkillAdvisorBrief` and renders model context before response.
 - `implementation-summary.md:56` says the Copilot adapter has SDK preferred plus wrapper fallback behavior.
 - `implementation-summary.md:205` says Copilot wrapper fallback produces `promptWrapper` when a brief exists.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:197-215` builds from the current prompt and writes custom instructions.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:231-236` returns `{}` after the write.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:82-84` says Copilot reads custom instructions on the next submitted prompt.
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:57-64` documents Copilot as file-backed while other runtimes get prompt-visible context.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:197-215` builds from the current prompt and writes custom instructions.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:231-236` returns `{}` after the write.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:82-84` says Copilot reads custom instructions on the next submitted prompt.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:57-64` documents Copilot as file-backed while other runtimes get prompt-visible context.
 
 Counterevidence sought: I looked for an active SDK output path or `promptWrapper` return path in `hooks/copilot/user-prompt-submit.ts`; the exported `onUserPromptSubmitted` is the same `{}` handler at lines 231-239. The current docs also describe file-backed behavior, not current-turn mutation.
 
@@ -82,10 +82,10 @@ Hunter: A release-ready packet with an unchecked mandatory checklist cannot be t
 Claim: `buildCopilotPromptArg` is internally guarded, but its large-prompt branch depends on Copilot honoring a bare `@promptPath` reference. The repository tests simulate that behavior with Node rather than invoking Copilot.
 
 Evidence:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:304-328` switches large approved prompts to `@${promptPath}` and returns `promptFileBody`.
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:704-717` writes `promptFileBody` before spawning `copilot`.
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:723-729` explicitly notes the reliance on Copilot honoring `@path`.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts:381-452` uses a Node subprocess to emulate the receiver reading `@path`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:304-328` switches large approved prompts to `@${promptPath}` and returns `promptFileBody`.
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:704-717` writes `promptFileBody` before spawning `copilot`.
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:723-729` explicitly notes the reliance on Copilot honoring `@path`.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts:381-452` uses a Node subprocess to emulate the receiver reading `@path`.
 
 This is advisory because the helper's safety properties are well covered: approved authority preamble, missing-authority Gate 3 enforcement, and `--allow-all-tools` stripping all have direct tests.
 
@@ -147,7 +147,7 @@ Prior archive status:
 
 ## 8. Deferred Items
 
-- Full mcp_server test suite was not completed. I attempted `npm --prefix .opencode/skill/system-spec-kit/mcp_server test -- spec-kit-skill-advisor-plugin.vitest.ts copilot-user-prompt-submit-hook.vitest.ts`, but the script starts the full `test:core` suite first and surfaced many unrelated existing failures before targeted hook tests could run.
+- Full mcp_server test suite was not completed. I attempted `npm --prefix .opencode/skills/system-spec-kit/mcp_server test -- spec-kit-skill-advisor-plugin.vitest.ts copilot-user-prompt-submit-hook.vitest.ts`, but the script starts the full `test:core` suite first and surfaced many unrelated existing failures before targeted hook tests could run.
 - Real Copilot SDK behavior was not exercised; this review is static plus existing test inspection.
 - I did not re-audit every prior archive iteration; I sampled the final R01/R02 reports and high-signal Copilot references to avoid duplicating known findings.
 
@@ -157,17 +157,17 @@ Reviewed packet docs:
 - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `battle-plan.md`
 
 Reviewed code and tests:
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
 - `.opencode/plugins/spec-kit-skill-advisor.js`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
 - `copilot-user-prompt-submit-hook.vitest.ts`, `spec-kit-skill-advisor-plugin.vitest.ts`, `deep-loop/cli-matrix.vitest.ts`
 
 Targeted observations:
 - OpenCode plugin timeout path: `.opencode/plugins/spec-kit-skill-advisor.js:422-433` sends `SIGTERM` then `SIGKILL`; `.opencode/plugins/spec-kit-skill-advisor.js:460-483` resolves on `close`.
-- Core subprocess path: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts:165-170` writes prompt to stdin and kills on timeout; `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts:196-215` resolves on `close` with `TIMEOUT`/`SIGNAL_KILLED`.
+- Core subprocess path: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts:165-170` writes prompt to stdin and kills on timeout; `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts:196-215` resolves on `close` with `TIMEOUT`/`SIGNAL_KILLED`.
 - Plugin error translation: `.opencode/plugins/spec-kit-skill-advisor.js:226-255` maps empty stdout, parse failure, and status vocabulary to prompt-safe fail-open envelopes.

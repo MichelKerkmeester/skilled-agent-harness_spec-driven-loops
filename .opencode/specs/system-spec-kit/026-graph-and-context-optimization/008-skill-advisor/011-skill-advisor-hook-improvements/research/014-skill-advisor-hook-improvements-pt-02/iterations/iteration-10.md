@@ -8,16 +8,16 @@ This final iteration checked what the shipped tests actually guard and whether a
 
 - `../deep-research-strategy.md`
 - `iteration-09.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
 
 ### Findings
 
-- The runtime-parity suite asserts equal visible briefs across normalized runtime outputs, but it does so around the shared builder/renderer path; it does not validate the real OpenCode native helper's separate renderer or threshold-plumbing branch [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts:257-288] [.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs:189-241].
-- The real bridge compat tests cover native-route success, uncertainty rendering, Python fallback, and disabled behavior, but they do not assert ambiguous-brief parity or configured-threshold propagation inside the native branch [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:36-73].
-- The validator test suite locks schema shape and strict input parsing, but it does not assert the semantics of `confirmHeavyRun`, explicit workspace selection, or corpus-path configurability, so the packet-02 MCP-surface gaps remain effectively untested [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts:10-49].
+- The runtime-parity suite asserts equal visible briefs across normalized runtime outputs, but it does so around the shared builder/renderer path; it does not validate the real OpenCode native helper's separate renderer or threshold-plumbing branch [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts:257-288] [.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs:189-241].
+- The real bridge compat tests cover native-route success, uncertainty rendering, Python fallback, and disabled behavior, but they do not assert ambiguous-brief parity or configured-threshold propagation inside the native branch [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:36-73].
+- The validator test suite locks schema shape and strict input parsing, but it does not assert the semantics of `confirmHeavyRun`, explicit workspace selection, or corpus-path configurability, so the packet-02 MCP-surface gaps remain effectively untested [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts:10-49].
 
 ### Evidence
 
@@ -26,7 +26,7 @@ This final iteration checked what the shipped tests actually guard and whether a
 >   claude: { additionalContext: visibleBriefs[0] },
 >   gemini: { additionalContext: visibleBriefs[0] },
 >   ...
->   'opencode-plugin': { additionalContext: visibleBriefs[0] }, [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts:257-265]
+>   'opencode-plugin': { additionalContext: visibleBriefs[0] }, [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts:257-265]
 
 > it('delegates to native advisor_recommend when the daemon probe is available', () => {
 > ...
@@ -34,13 +34,13 @@ This final iteration checked what the shipped tests actually guard and whether a
 > ...
 > it('falls back to the Python-backed brief producer when native is forced local', () => {
 > ...
-> it('returns a prompt-safe disabled brief for the shared disabled flag', () => { [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:36-73]
+> it('returns a prompt-safe disabled brief for the shared disabled flag', () => { [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:36-73]
 
 > it('returns the required slice bundle schema for a skill subset', async () => {
 > ...
 > it('preserves privacy by excluding raw prompts and PII-shaped content', async () => {
 > ...
-> it('rejects invalid strict input clearly', () => { [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts:10-49]
+> it('rejects invalid strict input clearly', () => { [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts:10-49]
 
 ### Negative Knowledge
 

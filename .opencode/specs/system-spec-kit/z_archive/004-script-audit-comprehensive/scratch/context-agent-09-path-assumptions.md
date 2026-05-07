@@ -177,7 +177,7 @@ Template directory path resolved via REPO_ROOT + hardcoded relative path. No val
 
 **Pattern:**
 ```bash
-TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"
 ```
 
 **Risk Analysis:**

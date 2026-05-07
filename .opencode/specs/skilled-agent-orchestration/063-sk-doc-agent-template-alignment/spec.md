@@ -50,7 +50,7 @@ _memory:
 
 ### Problem
 1. The §RELATED RESOURCES section in every agent .md is dead weight — duplicated in orchestrate.md's agents table, never used as a runtime anchor. 40 files (10 agents × 4 runtimes).
-2. The sk-doc agent template at `.opencode/skill/sk-doc/assets/agents/agent_template.md` is ~15-18 months stale relative to current production agents (post-060/061/062 work added §0 HARD BLOCK, BINDING emission, REFUSE wording, mcpServers field, runtime budgets, Unicode SUMMARY box, 600-line cap).
+2. The sk-doc agent template at `.opencode/skills/sk-doc/assets/agents/agent_template.md` is ~15-18 months stale relative to current production agents (post-060/061/062 work added §0 HARD BLOCK, BINDING emission, REFUSE wording, mcpServers field, runtime budgets, Unicode SUMMARY box, 600-line cap).
 
 ### Purpose
 Clean up agent files (063a) AND align the template to current production reality (063b). Sets the stage for 064 (new @create-doc agent built from the updated template).

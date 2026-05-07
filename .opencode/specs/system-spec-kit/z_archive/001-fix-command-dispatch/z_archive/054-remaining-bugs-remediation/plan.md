@@ -66,7 +66,7 @@ Phase 4: Verification      → Integration testing, regression checks
 ```javascript
 // Option A: File-based notification (simpler)
 // After write in generate-context.js:
-fs.writeFileSync('.opencode/skill/system-spec-kit/database/.db-updated', Date.now().toString());
+fs.writeFileSync('.opencode/skills/system-spec-kit/database/.db-updated', Date.now().toString());
 
 // In context-server.js, check on each request:
 const dbUpdatedFile = path.join(dbDir, '.db-updated');

@@ -15,13 +15,13 @@ You are running the automated alignment drift verifier on the session-capturing 
 Execute:
 
 1. Check if the verifier exists and is executable:
-   ls -la /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py
+   ls -la /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
 
 2. Run on core/ directory:
-   python3 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/
+   python3 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/
 
 3. Run on extractors/ directory:
-   python3 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/
+   python3 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/
 
 4. For each run, capture:
    - Exit code (0=pass, 1=warnings, 2=errors)
@@ -44,10 +44,10 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m treating this as a verification-only pass: first I’ll confirm the verifier script is present, then I’ll run it against `core/` and `extractors/`, and finally I’ll trace any reported violations back to the nine modified files and compare them with the existing Wave 1 findings.
 exec
-/bin/zsh -lc "ls -la '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
--rw-r--r--@ 1 michelkerkmeester  staff  14292 Feb 22 06:45 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py
+/bin/zsh -lc "ls -la '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+-rw-r--r--@ 1 michelkerkmeester  staff  14292 Feb 22 06:45 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Run the automated alignment drift verifier on session-capturing pipeline files, capture exit codes and violations, and cross-reference with Wave 1 manual findings" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Run the automated alignment drift verifier on session-capturing pipeline files, capture exit codes and violations, and cross-reference with Wave 1 manual findings" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc 'git status --short' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "rg -n \"Wave 1|manual findings|alignment drift|session-capturing\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 123ms:
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/decision-record.md:137:1. **Wave 1 (P0):** 4 parallel agents — each assigned to an independent file with a P0 blocker
@@ -94,8 +94,8 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-bKFC5aSx' (errno=Opera
  succeeded in 1.17s:
 git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
 git: error: couldn't create cache file '/tmp/xcrun_db-sLE7K5hL' (errno=Operation not permitted)
- M .opencode/skill/system-spec-kit/scripts/core/workflow.ts
- M .opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts
+ M .opencode/skills/system-spec-kit/scripts/core/workflow.ts
+ M .opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts
  M .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-combined-bug-fixes/checklist.md
  M .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-combined-bug-fixes/scratch/arch-review-S01.md
  M .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-combined-bug-fixes/scratch/arch-review-S03.md
@@ -117,8 +117,8 @@ The verifier file is present, but its mode is currently `-rw-r--r--`, so it exis
 codex
 I’ve confirmed the relevant review context is in the `012-perfect-session-capturing` scratch notes, and I’m switching into a findings-first pass using the repo’s review/spec-kit guidance. Next I’m capturing the verifier output for `core/` and `extractors/` directly so we can separate actual drift from the earlier manual audit notes.
 exec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/sk-code-review/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/sk-code-review/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ---
 name: sk-code-review
 description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
@@ -161,17 +161,17 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 
 exec
-/bin/zsh -lc "python3 '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "python3 '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 2 in 663ms:
+/bin/zsh -lc "python3 '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "python3 '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 2 in 663ms:
 usage: verify_alignment_drift.py [-h] [--root ROOT] [--fail-on-warn]
-verify_alignment_drift.py: error: unrecognized arguments: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/
+verify_alignment_drift.py: error: unrecognized arguments: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/
  exited 2 in 663ms:
 usage: verify_alignment_drift.py [-h] [--root ROOT] [--fail-on-warn]
-verify_alignment_drift.py: error: unrecognized arguments: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/
+verify_alignment_drift.py: error: unrecognized arguments: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/
 codex
 The first verifier attempt surfaced a real usage mismatch: this script takes `--root`, not a positional path. I’m correcting that and reading the script’s output format now so I can extract the severity totals and file-specific violations instead of just the raw terminal output.
 exec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "rg -n \"9 modified files|modified files|Wave 1 manual findings|manual findings|alignment drift|violations|P0|P1|P2\" '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 #!/usr/bin/env python3
 # ───────────────────────────────────────────────────────────────
@@ -215,8 +215,8 @@ from __future__ import annotations
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/analysis-summary.md:124:1. **Quality gate is advisory-only** (P0-01): `QUALITY_GATE_FAIL` logs a warning but does not prevent file output. The entire quality scoring system has no enforcement mechanism.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/analysis-summary.md:126:2. **Silent security error fallback** (P0-04, P0-06): Path-validation and explicit-file errors in `data-loader.ts` are caught by a generic handler and execution falls through to simulation mode.
 exec
-/bin/zsh -lc "python3 '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py' --root '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "python3 '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py' --root '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 672ms:
+/bin/zsh -lc "python3 '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py' --root '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "python3 '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py' --root '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 672ms:
 [alignment-drift] PASS
 Scanned files: 9
 Findings: 0
@@ -279,17 +279,17 @@ $LEAF_CONSTRAINT" \
 Execute:
 
  succeeded in 51ms:
-● Read .opencode/skill/system-spec-kit/scripts/core/config.ts
+● Read .opencode/skills/system-spec-kit/scripts/core/config.ts
   └ 298 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
   └ 402 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
   └ 351 lines read
 
 ### FINDING-01: MODULE header format does not match required PascalCase pattern
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:1-3`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:1-3`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header is `// MODULE: Config` (with colon), not the required format example `// MODULE SessionExtractor`.
@@ -303,23 +303,23 @@ Execute:
 ● SQL: Create review todos
   └ 2 row(s) inserted. Last inserted row ID: 2.
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts lines 1-240
+● Read .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts lines 1-240
   └ 240 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts lines 241-478
+● Read .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts lines 241-478
   └ 233 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts lines 1-280
+● Read .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts lines 1-280
   └ 280 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts lines 281-539
+● Read .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts lines 281-539
   └ 243 lines read
 
 ● Grep "P0|P1|P2|rules|RULES" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/sk-code-opencode/SKILL.md)
+Env/Public/.opencode/skills/sk-code-opencode/SKILL.md)
   └ 26 lines found
 
-● Read .opencode/skill/sk-code-opencode/SKILL.md lines 336-455
+● Read .opencode/skills/sk-code-opencode/SKILL.md lines 336-455
 exec
 /bin/zsh -lc "sed -n '1,220p' '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-03-alignment-collect.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "sed -n '1,220p' '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-02-alignment-workflow.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
@@ -327,19 +327,19 @@ exec
 /bin/zsh -lc "rg -n \"contamination-filter|collect-session-data|workflow.ts|file-writer.ts|config.ts|session-extractor.ts|decision-extractor.ts|file-extractor.ts|opencode-capture.ts\" '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/analysis-summary.md' '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/remediation-manifest.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ● Todo added: Review collect-session-data.ts against sk-code-opencode rules
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 1-300
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 1-300
   └ 300 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 301-600
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 301-600
   └ 300 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 601-838
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 601-838
   └ 238 lines read
 
 ● Todo completed: review-collect-session-data
 
 ### FINDING-01: Module header is not PascalCase and does not match required style
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1-3`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1-3`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header is `// MODULE: Collect Session Data` with spaces/colon format, not PascalCase module token.
@@ -348,19 +348,19 @@ exec
  succeeded in 51ms:
 ● Todo added: Review workflow.ts against sk-code-opencode rules
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 1-300
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 1-300
   └ 299 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 300-600
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 300-600
   └ 301 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 600-end
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 600-end
   └ 396 lines read
 
 ● Todo completed: review-workflow-file
 
 ### FINDING-01: Section headers do not follow required numbered `// ALL-CAPS` style
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:59-61,394-398,989-991`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:59-61,394-398,989-991`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** File uses block-style section banners (`/* ... */`) instead of `// 1. ...` numbered ALL-CAPS line headers.
@@ -369,13 +369,13 @@ exec
  succeeded in 50ms:
 ● Todo added: Read target TypeScript files
 
-● Read .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
+● Read .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
   └ 93 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
   └ 90 lines read
 
-● Glob ".opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py" in
+● Glob ".opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py" in
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
   └ 1 file found
 
@@ -383,7 +383,7 @@ exec
 
 ● Run alignment drift verifier
   $ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && python3
-  .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py
+  .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
   └ 12 lines...
 
 ● Todo completed: read-files
@@ -411,9 +411,9 @@ exec
 codex
 I’ve isolated the exact nine-file Wave 1 set from the QA launcher. The remaining step is explaining the mismatch: the automated verifier returns zero findings, while the earlier manual pass documented dozens of style/alignment issues, so I’m checking the verifier’s actual rule coverage before I call that a true clean bill of health.
 exec
-/bin/zsh -lc "sed -n '220,420p' '.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '420,620p' '.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"MODULE:|// [0-9]+\\.|/\\*|catch \\{|catch \\(error: unknown\\)|/\\*\\*\" '.opencode/skill/system-spec-kit/scripts/core' '.opencode/skill/system-spec-kit/scripts/extractors'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '220,420p' '.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '420,620p' '.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"MODULE:|// [0-9]+\\.|/\\*|catch \\{|catch \\(error: unknown\\)|/\\*\\*\" '.opencode/skills/system-spec-kit/scripts/core' '.opencode/skills/system-spec-kit/scripts/extractors'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 
 
 def should_skip_ts_module_header(path: str) -> bool:
@@ -456,30 +456,30 @@ def main() -> int:
     scanned = 0
 
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:2:// MODULE: Quality Scorer
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:2:// MODULE: Quality Scorer
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:24:/** Represents quality score. */
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:44:/**
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:66:  // 1. Trigger phrases (0-20 points)
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:77:  // 2. Key topics (0-15 points)
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:88:  // 3. File descriptions populated (0-20 points)
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:101:  // 4. Content length (0-15 points)
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:113:  // 5. No leaked HTML tags (0-15 points)
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:130:  // 6. Observation deduplication quality (0-15 points)
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:2:// MODULE: Decision Extractor
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:17:/* -----------------------------------------------------------------
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:21:/** Decision-focused subset of collected session data. */
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:107:/* -----------------------------------------------------------------
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:394:/* -----------------------------------------------------------------
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:2:// MODULE: Subfolder Utils
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:11:/** Pattern for strict spec folder names: 3 digits + kebab-case suffix. */
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:14:/** Basic pattern for initial spec folder detection (less strict). */
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:17:/** Pattern for category/organizational folders: 2 digits + double-hyphen + kebab-case (e.g., "system-spec-kit"). */
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:20:/** Maximum recursive search depth for child folder resolution. */
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:2:// MODULE: Quality Scorer
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:2:// MODULE: Quality Scorer
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:24:/** Represents quality score. */
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:44:/**
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:66:  // 1. Trigger phrases (0-20 points)
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:77:  // 2. Key topics (0-15 points)
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:88:  // 3. File descriptions populated (0-20 points)
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:101:  // 4. Content length (0-15 points)
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:113:  // 5. No leaked HTML tags (0-15 points)
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:130:  // 6. Observation deduplication quality (0-15 points)
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:2:// MODULE: Decision Extractor
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:17:/* -----------------------------------------------------------------
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:21:/** Decision-focused subset of collected session data. */
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:107:/* -----------------------------------------------------------------
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:394:/* -----------------------------------------------------------------
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:2:// MODULE: Subfolder Utils
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:11:/** Pattern for strict spec folder names: 3 digits + kebab-case suffix. */
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:14:/** Basic pattern for initial spec folder detection (less strict). */
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:17:/** Pattern for category/organizational folders: 2 digits + double-hyphen + kebab-case (e.g., "system-spec-kit"). */
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:20:/** Maximum recursive search depth for child folder resolution. */
 codex
 I’ve confirmed the key point from the verifier source: for TypeScript it only enforces “does a `MODULE:` marker exist,” plus generic integrity checks like UTF-8/line endings. It does not implement the stricter manual rules that flagged section headers, bare catches, or missing TSDoc, which explains why the automated run comes back green while the Wave 1 human review did not.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py' | sed -n '232,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py' | sed -n '232,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "nl -ba '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/analysis-summary.md' | sed -n '52,64p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "nl -ba '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/analysis-summary.md' | sed -n '76,90p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "nl -ba '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/launch-qa-validation.sh' | sed -n '385,408p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
@@ -563,7 +563,7 @@ exec
     75	● Todo completed: audit-rules
     76	
     77	### FINDING-01: Module header is not PascalCase `// MODULE <Name>` (session-extractor)
-    78	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:1-4`
+    78	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:1-4`
     79	- **Severity:** CRITICAL
     80	- **Category:** ALIGNMENT
     81	- **Current Behavior:** Header uses `// MODULE: Session Extractor` (colon + spaced words), not PascalCase module token.
@@ -573,7 +573,7 @@ exec
     85	- **Effort:** TRIVIAL (<5 min)
     86	
     87	### FINDING-02: `catch` blocks do not use `catch (error: unknown)` + guard (session-extractor)
-    88	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:131-140,318-324`
+    88	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:131-140,318-324`
     89	- **Severity:** HIGH
     90	- **Category:** ALIGNMENT
     91	- **Current Behavior:** Uses bare `catch { ... }` in `getChannel` and local `fileExists`.
@@ -582,19 +582,19 @@ exec
  succeeded in 51ms:
      1	● Todo added: Review workflow.ts against sk-code-opencode rules
      2	
-     3	● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 1-300
+     3	● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 1-300
      4	  └ 299 lines read
      5	
-     6	● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 300-600
+     6	● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 300-600
      7	  └ 301 lines read
      8	
-     9	● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 600-end
+     9	● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 600-end
     10	  └ 396 lines read
     11	
     12	● Todo completed: review-workflow-file
     13	
     14	### FINDING-01: Section headers do not follow required numbered `// ALL-CAPS` style
-    15	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:59-61,394-398,989-991`
+    15	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:59-61,394-398,989-991`
     16	- **Severity:** CRITICAL
     17	- **Category:** ALIGNMENT
     18	- **Current Behavior:** File uses block-style section banners (`/* ... */`) instead of `// 1. ...` numbered ALL-CAPS line headers.
@@ -603,36 +603,36 @@ exec
  succeeded in 51ms:
      1	● Todo added: Review collect-session-data.ts against sk-code-opencode rules
      2	
-     3	● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 1-300
+     3	● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 1-300
      4	  └ 300 lines read
      5	
-     6	● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 301-600
+     6	● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 301-600
      7	  └ 300 lines read
      8	
-     9	● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 601-838
+     9	● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 601-838
     10	  └ 238 lines read
     11	
     12	● Todo completed: review-collect-session-data
     13	
     14	### FINDING-01: Module header is not PascalCase and does not match required style
-    15	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1-3`
+    15	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1-3`
     16	- **Severity:** CRITICAL
     17	- **Category:** ALIGNMENT
     18	- **Current Behavior:** Header is `// MODULE: Collect Session Data` with spaces/colon format, not PascalCase module token.
     19	- **Expected Behavior:** Use PascalCase module header comment format (e.g., `// MODULE SessionExtractor`).
     20	- **Root Cause:** File header convention diverges from sk-code-opencode P0 rule.
  succeeded in 50ms:
-     1	● Read .opencode/skill/system-spec-kit/scripts/core/config.ts
+     1	● Read .opencode/skills/system-spec-kit/scripts/core/config.ts
      2	  └ 298 lines read
      3	
-     4	● Read .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
+     4	● Read .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
      5	  └ 402 lines read
      6	
-     7	● Read .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
+     7	● Read .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
      8	  └ 351 lines read
      9	
     10	### FINDING-01: MODULE header format does not match required PascalCase pattern
-    11	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:1-3`
+    11	- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:1-3`
     12	- **Severity:** CRITICAL
     13	- **Category:** ALIGNMENT
     14	- **Current Behavior:** Header is `// MODULE: Config` (with colon), not the required format example `// MODULE SessionExtractor`.
@@ -712,8 +712,8 @@ exec
     56	| P1-17 | `HAS_POSTFLIGHT_DELTA` can be false while delta fields are populated | collect-session-data.ts | REMAINING | SMALL |
     57	
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py' | sed -n '64,92p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py' | sed -n '418,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py' | sed -n '64,92p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py' | sed -n '418,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     64	    "examples",
     65	    "fixtures",
     66	}
@@ -767,8 +767,8 @@ exec
    145	API time spent:         1m 31s
 codex
 **Execution**
-- The verifier exists at [verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py), but it is not executable: `-rw-r--r--`.
-- One important nuance: the literal commands in steps 2-3 now fail with exit code `2`, because the script only accepts `--root`, not a positional path ([verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L88), [verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L434)).
+- The verifier exists at [verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py), but it is not executable: `-rw-r--r--`.
+- One important nuance: the literal commands in steps 2-3 now fail with exit code `2`, because the script only accepts `--root`, not a positional path ([verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L88), [verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L434)).
 
 Using the corrected invocation form, the verifier results were:
 
@@ -793,15 +793,15 @@ Automated verifier violations in those nine files: none.
 
 **Cross-Reference**
 - The manual Wave 1 alignment review did not match the automated result. Summing the five QA summaries, I infer `34` manual findings across the same nine files: `8 + 4 + 4 + 10 + 8` from [qa-01-alignment-extractors-large.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-01-alignment-extractors-large.md#L157), [qa-02-alignment-workflow.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-02-alignment-workflow.md#L54), [qa-03-alignment-collect.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-03-alignment-collect.md#L54), [qa-04-alignment-medium.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-04-alignment-medium.md#L110), and [qa-05-alignment-small.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-05-alignment-small.md#L138).
-- The mismatch is explained by verifier scope. For TypeScript, it only checks for a `MODULE:` marker near the top of the file; it does not enforce the stricter manual rules around exact PascalCase module headers, numbered section headers, `catch (error: unknown)` patterns, or TSDoc ([verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L252)).
+- The mismatch is explained by verifier scope. For TypeScript, it only checks for a `MODULE:` marker near the top of the file; it does not enforce the stricter manual rules around exact PascalCase module headers, numbered section headers, `catch (error: unknown)` patterns, or TSDoc ([verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L252)).
 - That gap matters here because the Wave 1 notes explicitly say 12 redundant typed catches were simplified to bare `catch {}` blocks across all nine modified files, which the automated verifier does not flag ([analysis-summary.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/analysis-summary.md#L76)).
 
 ALIGNMENT DRIFT verdict: PASS with `0` automated violations.
 tokens used
 87,911
 **Execution**
-- The verifier exists at [verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py), but it is not executable: `-rw-r--r--`.
-- One important nuance: the literal commands in steps 2-3 now fail with exit code `2`, because the script only accepts `--root`, not a positional path ([verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L88), [verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L434)).
+- The verifier exists at [verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py), but it is not executable: `-rw-r--r--`.
+- One important nuance: the literal commands in steps 2-3 now fail with exit code `2`, because the script only accepts `--root`, not a positional path ([verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L88), [verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L434)).
 
 Using the corrected invocation form, the verifier results were:
 
@@ -826,7 +826,7 @@ Automated verifier violations in those nine files: none.
 
 **Cross-Reference**
 - The manual Wave 1 alignment review did not match the automated result. Summing the five QA summaries, I infer `34` manual findings across the same nine files: `8 + 4 + 4 + 10 + 8` from [qa-01-alignment-extractors-large.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-01-alignment-extractors-large.md#L157), [qa-02-alignment-workflow.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-02-alignment-workflow.md#L54), [qa-03-alignment-collect.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-03-alignment-collect.md#L54), [qa-04-alignment-medium.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-04-alignment-medium.md#L110), and [qa-05-alignment-small.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/qa-05-alignment-small.md#L138).
-- The mismatch is explained by verifier scope. For TypeScript, it only checks for a `MODULE:` marker near the top of the file; it does not enforce the stricter manual rules around exact PascalCase module headers, numbered section headers, `catch (error: unknown)` patterns, or TSDoc ([verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L252)).
+- The mismatch is explained by verifier scope. For TypeScript, it only checks for a `MODULE:` marker near the top of the file; it does not enforce the stricter manual rules around exact PascalCase module headers, numbered section headers, `catch (error: unknown)` patterns, or TSDoc ([verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L252)).
 - That gap matters here because the Wave 1 notes explicitly say 12 redundant typed catches were simplified to bare `catch {}` blocks across all nine modified files, which the automated verifier does not flag ([analysis-summary.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/analysis-summary.md#L76)).
 
 ALIGNMENT DRIFT verdict: PASS with `0` automated violations.

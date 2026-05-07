@@ -154,7 +154,7 @@ Created comprehensive test coverage in `tests/`:
 ### New Files Created (~2,500 LOC)
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── lib/
 │   ├── complexity/
 │   │   ├── index.js

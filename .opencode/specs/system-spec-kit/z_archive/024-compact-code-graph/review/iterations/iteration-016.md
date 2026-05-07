@@ -4,11 +4,11 @@
 
 - Dimension: `traceability`
 - Reviewed surfaces:
-  - `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/03-session-start-priming.md`
-  - `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/18-session-resume-tool.md`
-  - `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/249-session-start-compact.md`
-  - `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/263-session-resume.md`
-  - `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md`
+  - `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/03-session-start-priming.md`
+  - `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/18-session-resume-tool.md`
+  - `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/249-session-start-compact.md`
+  - `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/263-session-resume.md`
+  - `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md`
 
 ## Findings
 

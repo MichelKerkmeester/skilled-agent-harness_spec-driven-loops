@@ -66,7 +66,7 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
 
 ### In Scope
 
-- **A. Feature catalog entry** at `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle`:
+- **A. Feature catalog entry** at `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle`:
   - What a stress test cycle is (corpus + rubric + scoring + verdict)
   - When to use it (release readiness, post-remediation verification, regression hunting)
   - Expected artifacts (findings narrative, `findings-rubric.json`, `measurements/*`)
@@ -75,7 +75,7 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
   - Aggregate formula (sum / max-possible × 100, weighted by dimension if applicable)
   - Cross-references to v1.0.1 baseline + v1.0.2 rerun + v1.0.3 wiring run
 
-- **B. Manual testing playbook entry** at `.opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle`:
+- **B. Manual testing playbook entry** at `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle`:
   - Step 1: Freeze baseline corpus (link to template or fixture corpus pattern)
   - Step 2: Score each packet × dimension on 0–2 with explicit anchor descriptions per score
   - Step 3: Author findings narrative with verdict per packet + adversarial Hunter->Skeptic->Referee on any REGRESSION
@@ -85,7 +85,7 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
   - Step 7: Strict-validator the packet
   - Step 8: Update parent packet's spec file PHASE MAP
 
-- **C. JSON schema template** at `.opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.template.json`:
+- **C. JSON schema template** at `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json`:
   - Canonical schema for `findings-rubric.json`: `version`, `corpus`, `rubric.dimensions`, `rubric.scale`, `rubric.weights`, `cells[]`, `aggregate`, `verdict_summary`
   - Comments / docstrings inline where JSON allows (use a sibling schema document if needed)
   - Cite real example (v1.0.2 = 30 cells / 201 sum / 83.8% percent)
@@ -101,13 +101,13 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle` | Create | Concept reference (A) |
-| `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/README` | Create | Section index |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle` | Create | Step-by-step playbook (B) |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/README` | Create | Section index |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Create | JSON schema template (C) |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.schema` | Create | Schema field documentation |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings.template` | Create | Findings narrative skeleton |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle` | Create | Concept reference (A) |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/README` | Create | Section index |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle` | Create | Step-by-step playbook (B) |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README` | Create | Section index |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Create | JSON schema template (C) |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema` | Create | Schema field documentation |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings.template` | Create | Findings narrative skeleton |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -162,7 +162,7 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
 |------|------|------------|
 | Risk | Documentation drift if stress test cycle format evolves | Treat the JSON schema as versioned (`version: 1`); any change bumps version |
 | Risk | sk-doc DQI requirements may demand specific frontmatter not yet in template | sk-doc skill template handles this; cli-codex follows skill patterns |
-| Dependency | sk-doc skill at `.opencode/skill/sk-doc/` | Already shipping; entries follow established sk-doc DQI templates |
+| Dependency | sk-doc skill at `.opencode/skills/sk-doc/` | Already shipping; entries follow established sk-doc DQI templates |
 <!-- /ANCHOR:risks -->
 
 ---

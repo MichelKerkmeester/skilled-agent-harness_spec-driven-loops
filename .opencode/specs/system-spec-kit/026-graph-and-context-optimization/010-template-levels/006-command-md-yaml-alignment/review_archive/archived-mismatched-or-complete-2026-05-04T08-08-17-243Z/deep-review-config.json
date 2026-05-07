@@ -45,8 +45,8 @@
   "severityThreshold": "P2",
   "crossReference": { "core": ["spec_code", "checklist_evidence"], "overlay": ["feature_catalog_code", "playbook_capability"] },
   "qualityGateThreshold": true,
-  "runtimeCapabilityResolver": ".opencode/skill/sk-deep-review/scripts/runtime-capabilities.cjs",
-  "reducerScriptPath": ".opencode/skill/sk-deep-review/scripts/reduce-state.cjs",
+  "runtimeCapabilityResolver": ".opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
   "fileProtection": {
     "deep-review-config.json": "immutable",
     "deep-review-state.jsonl": "append-only",

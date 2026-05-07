@@ -1,6 +1,6 @@
 # Audit QA5-O10: decision-extractor.ts — Deep Code Quality Review
 
-**File:** `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts`
+**File:** `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts`
 **LOC:** 403
 **Reviewer:** Claude Opus 4.6 (@review agent)
 **Date:** 2026-03-09

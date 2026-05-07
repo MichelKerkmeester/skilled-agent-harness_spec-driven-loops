@@ -41,11 +41,11 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/cli-gemini/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-      ".opencode/skill/cli-claude-code/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-      ".opencode/skill/cli-codex/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-      ".opencode/skill/cli-copilot/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-      ".opencode/skill/cli-opencode/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/cli-gemini/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/cli-claude-code/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/cli-codex/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/cli-copilot/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/cli-opencode/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       ".opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/spec.md",
       ".opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/plan.md",
       ".opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/tasks.md",
@@ -56,7 +56,7 @@
       ".opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/graph-metadata.json",
       "review/review-report.md",
       "implementation-summary.md",
-      ".opencode/skill/sk-doc/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -66,7 +66,7 @@
       {
         "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-gemini/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": ".opencode/skills/cli-gemini/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {
@@ -126,7 +126,7 @@
       {
         "name": "validate_document.py",
         "kind": "file",
-        "path": ".opencode/skill/sk-doc/scripts/validate_document.py",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
         "source": "derived"
       },
       {

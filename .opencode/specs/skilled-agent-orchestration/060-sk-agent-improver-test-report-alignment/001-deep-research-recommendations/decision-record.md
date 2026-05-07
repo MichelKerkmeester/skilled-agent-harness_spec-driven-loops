@@ -40,7 +40,7 @@ Packet 059 ran a successful 8-scenario stress-test campaign using `cli-copilot -
 
 ### Decision
 
-Dispatch `/spec_kit:deep-research:auto` with `--executor=cli-copilot --model=gpt-5.5`. Reasoning effort `high` is set via `~/.copilot/settings.json:effortLevel` (already configured); the corresponding deep-research flag is omitted because `parseExecutorConfig` rejects `reasoningEffort` for `cli-copilot` per `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:35`.
+Dispatch `/spec_kit:deep-research:auto` with `--executor=cli-copilot --model=gpt-5.5`. Reasoning effort `high` is set via `~/.copilot/settings.json:effortLevel` (already configured); the corresponding deep-research flag is omitted because `parseExecutorConfig` rejects `reasoningEffort` for `cli-copilot` per `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:35`.
 
 ### Why
 
@@ -135,7 +135,7 @@ One could research "how does the 059 methodology apply to *any* agent-improver?"
 
 ### Decision
 
-Research the real triad (`.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/agent/improve-agent.md`, `.opencode/command/improve/agent.md`).
+Research the real triad (`.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/improve/agent.md`).
 
 ### Why
 

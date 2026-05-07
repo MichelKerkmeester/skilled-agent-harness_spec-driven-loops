@@ -11,11 +11,11 @@ contextType: "planning"
 # Plan: 012-drift-detection-evaluation
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- `.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts`
-- `.opencode/skill/system-spec-kit/references/validation/validation_rules.md`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts`
+- `.opencode/skills/system-spec-kit/references/validation/validation_rules.md`
 
 ## Investigation Order
 1. Baseline the already-approved advisory trio and their current issue-envelope needs.

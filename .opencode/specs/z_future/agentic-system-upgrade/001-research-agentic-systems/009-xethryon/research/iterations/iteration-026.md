@@ -12,9 +12,9 @@ Yes at the surface, no in the underlying capability graph. The issue is too many
 I compared the local skill catalog and its routing layers with Xethryon's bundled skill registration model and smaller public skill set.
 
 ## Evidence
-- `system-spec-kit` already acts like an umbrella skill with mandatory routing into spec folder, memory, validation, and command workflows. [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:10-13] [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:32-59] [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:88-128]
-- `sk-code-opencode` adds another routing layer over language families and intent categories. [SOURCE: .opencode/skill/sk-code-opencode/SKILL.md:10-15] [SOURCE: .opencode/skill/sk-code-opencode/SKILL.md:65-85] [SOURCE: .opencode/skill/sk-code-opencode/SKILL.md:87-175]
-- `sk-doc` is also broad and routes across documentation, component creation, and packaging tasks. [SOURCE: .opencode/skill/sk-doc/SKILL.md:10-16] [SOURCE: .opencode/skill/sk-doc/SKILL.md:148-209]
+- `system-spec-kit` already acts like an umbrella skill with mandatory routing into spec folder, memory, validation, and command workflows. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:10-13] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:32-59] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:88-128]
+- `sk-code-opencode` adds another routing layer over language families and intent categories. [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:10-15] [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:65-85] [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:87-175]
+- `sk-doc` is also broad and routes across documentation, component creation, and packaging tasks. [SOURCE: .opencode/skills/sk-doc/SKILL.md:10-16] [SOURCE: .opencode/skills/sk-doc/SKILL.md:148-209]
 - Xethryon exposes a smaller bundled skill set and registers those skills into the command surface instead of asking the user to reason about many overlapping skill families. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_CONTEXT.md:211-225] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/command/index.ts:165-237]
 
 ## Analysis
@@ -48,7 +48,7 @@ finding: consolidate the visible skill catalog into fewer umbrella surfaces whil
 - **Migration path:** begin with aliasing and documentation changes before any deeper skill-file restructuring.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define which skills stay user-facing versus implementation-only

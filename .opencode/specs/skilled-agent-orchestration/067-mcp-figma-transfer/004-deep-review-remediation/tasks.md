@@ -91,7 +91,7 @@ Phase 4 remediation contract section for tasks.md.
 - [ ] **T060 [P1]** R-006: Add tombstone/supersession to ADR-009 in Phase 2 decision-record.md; update Phase 2 spec.md scope to reflect internal-only; update Phase 2 implementation-summary description + outcome §1-3.
 - [ ] **T070 [P1]** R-007: Update Phase 2 decision-record.md Decision Index to include ADR-014.
 - [ ] **T080 [P1]** R-008: Insert Commit 5b row (`7307e056d`) in Phase 3 implementation-summary §7 ledger table.
-- [ ] **T090 [P1]** R-009: Reconcile `.opencode/skill/README.md` skill counts — line 44 (says 21) and line 54 (says 16) should both report actual count = 17.
+- [ ] **T090 [P1]** R-009: Reconcile `.opencode/skills/README.md` skill counts — line 44 (says 21) and line 54 (says 16) should both report actual count = 17.
 - [ ] **T100 [P1]** R-010: Reconcile install_guides counts in both `README.md` (lines 1453, 1464) and `SET-UP - AGENTS.md` (lines 523, 525-532, 975, 1000). Re-derive correct counts.
 - [ ] **T110 [P1]** R-011: Rewrite ADR-005 Decision/Consequences body in Phase 1 decision-record.md to match the gitignored-node_modules pattern (currently body still says "Full bundling — node_modules committed").
 - [ ] **T120 [P1]** R-012: Update Phase 3 implementation-summary.md (lines 3, 15, 103-111 + frontmatter) to reflect Hook F current state: 295/296 with 1 failure (sk-code drift), not 3 failures. Same in parent spec.md:104.

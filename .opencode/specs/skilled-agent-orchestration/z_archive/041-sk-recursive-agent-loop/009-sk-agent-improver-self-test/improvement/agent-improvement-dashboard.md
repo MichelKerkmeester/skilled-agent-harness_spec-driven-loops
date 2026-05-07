@@ -18,8 +18,8 @@
 
 ## Guardrails
 
-- Canonical promotion target remains ".opencode/agent/handover.md"
-- Candidate-only target remains ".opencode/agent/context-prime.md"
+- Canonical promotion target remains ".opencode/agents/handover.md"
+- Candidate-only target remains ".opencode/agents/context-prime.md"
 - Mirror sync stays downstream packaging and is not counted as benchmark truth
 
 ## Stop Status

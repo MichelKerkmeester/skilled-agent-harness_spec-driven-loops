@@ -17,9 +17,9 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/036-sk-deep-research-review-split/implementation-summary.md"
-      - ".opencode/skill/skill-advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/sk-deep-review/graph-metadata.json"
-      - ".opencode/skill/sk-deep-research/graph-metadata.json"
+      - ".opencode/skills/skill-advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/sk-deep-review/graph-metadata.json"
+      - ".opencode/skills/sk-deep-research/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:036-sk-deep-research-review-split"
       session_id: "036-sk-deep-research-review-split"
@@ -33,7 +33,7 @@ template_source_header: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -66,9 +66,9 @@ Repository changelog and handover artifacts show that the unified review-mode ha
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-deep-review/` | Created | Introduce the dedicated review skill package |
-| `.opencode/command/spec_kit/deep-review.md` | Created | Add the new review command |
-| `.opencode/skill/sk-deep-research/` | Modified | Remove review-mode content and keep research-focused guidance |
+| `.opencode/skills/sk-deep-review/` | Created | Introduce the dedicated review skill package |
+| `.opencode/commands/spec_kit/deep-review.md` | Created | Add the new review command |
+| `.opencode/skills/sk-deep-research/` | Modified | Remove review-mode content and keep research-focused guidance |
 | `.agents/commands/spec_kit/deep-review.toml` | Created | Add runtime wrapper support for the new command |
 | `AGENTS.md`, `CLAUDE.md`, `README.md` | Modified | Update top-level documentation for the split |
 <!-- /ANCHOR:what-built -->
@@ -119,5 +119,5 @@ The implementation was delivered as coordinated documentation, wrapper, and rout
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

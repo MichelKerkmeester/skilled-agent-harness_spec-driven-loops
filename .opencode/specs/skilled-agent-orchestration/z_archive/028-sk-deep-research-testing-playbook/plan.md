@@ -37,7 +37,7 @@ _memory:
 | **Testing** | `validate_document.py`, path and link sweeps, feature-count parity checks, manual prompt-sync review, spec validator |
 
 ### Overview
-Implementation will create a new `manual_testing_playbook/` package for `.opencode/skill/sk-deep-research/` with one root playbook and 19 per-feature files grouped into the 6 approved category folders. The package is greenfield create work, no feature catalog exists yet, and every scenario must be sourced from the live deep-research command, skill, README, references, assets, and `.codex/agents/deep-research.toml`.
+Implementation will create a new `manual_testing_playbook/` package for `.opencode/skills/sk-deep-research/` with one root playbook and 19 per-feature files grouped into the 6 approved category folders. The package is greenfield create work, no feature catalog exists yet, and every scenario must be sourced from the live deep-research command, skill, README, references, assets, and `.codex/agents/deep-research.toml`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -70,16 +70,16 @@ Reference-driven documentation package with integrated root guidance and one-fil
 
 ### Key Components
 - **Source truth set**:
-  - `.opencode/command/spec_kit/deep-research.md`
-  - `.opencode/skill/sk-deep-research/SKILL.md`
-  - `.opencode/skill/sk-deep-research/README.md`
-  - `.opencode/skill/sk-deep-research/references/*.md`
-  - `.opencode/skill/sk-deep-research/assets/*`
+  - `.opencode/commands/spec_kit/deep-research.md`
+  - `.opencode/skills/sk-deep-research/SKILL.md`
+  - `.opencode/skills/sk-deep-research/README.md`
+  - `.opencode/skills/sk-deep-research/references/*.md`
+  - `.opencode/skills/sk-deep-research/assets/*`
   - `.codex/agents/deep-research.toml`
 - **Contract inputs**:
-  - `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md`
-  - `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`
-  - `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md`
+  - `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md`
+  - `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`
+  - `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md`
 - **Output package**:
   - root playbook file under `manual_testing_playbook/`
   - `01--entry-points-and-modes/`
@@ -127,7 +127,7 @@ Live deep-research docs are audited for shipped behavior and guardrails -> stabl
 - [ ] Ensure every feature file includes the realistic user request, exact prompt, exact command sequence, expected signals, evidence, pass or fail rules, and failure triage
 
 ### Phase 5: Validation and closure
-- [ ] Validate the root playbook with `python3 .opencode/skill/sk-doc/scripts/validate_document.py`
+- [ ] Validate the root playbook with `python3 .opencode/skills/sk-doc/scripts/validate_document.py`
 - [ ] Run link, path, and feature-count parity sweeps across the package
 - [ ] Manually verify prompt sync between root summaries and per-feature files
 - [ ] Record the validator limitation honestly in the finished package and release notes
@@ -140,12 +140,12 @@ Live deep-research docs are audited for shipped behavior and guardrails -> stabl
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Root-doc validation | root playbook document | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` |
+| Root-doc validation | root playbook document | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` |
 | Link and path integrity | Root doc plus all category files | `rg`, local path sweeps, manual link review |
 | Feature-count parity | Root index vs per-feature files | `find`, `wc`, manual ID audit |
 | Prompt synchronization | Root summaries and per-feature execution tables | Manual spot check |
 | Source-anchor review | Scenario-to-source mapping | Manual review against live deep-research docs |
-| Spec packet validation | This Level 3 packet | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../028-sk-deep-research-testing-playbook` |
+| Spec packet validation | This Level 3 packet | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../028-sk-deep-research-testing-playbook` |
 
 ### Planned Scenario Checks
 
@@ -164,8 +164,8 @@ Live deep-research docs are audited for shipped behavior and guardrails -> stabl
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/command/spec_kit/deep-research.md` | Internal | Available | Missing command truth would block entry-point scenarios |
-| `.opencode/skill/sk-deep-research/` docs and assets | Internal | Available | Missing source anchors would block most scenarios |
+| `.opencode/commands/spec_kit/deep-research.md` | Internal | Available | Missing command truth would block entry-point scenarios |
+| `.opencode/skills/sk-deep-research/` docs and assets | Internal | Available | Missing source anchors would block most scenarios |
 | `.codex/agents/deep-research.toml` | Internal | Available | Canonical runtime-agent reference would be incomplete |
 | `sk-doc` playbook creation guide and template bundle | Internal | Available | Package could drift from the shipped contract |
 | Future `feature_catalog/` package | Internal | Not present by design | No block; implementation must document its absence explicitly instead |

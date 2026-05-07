@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/command/memory/search.md",
+      ".opencode/commands/memory/search.md",
       ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/spec.md",
       ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/plan.md",
       ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/decision-record.md",
@@ -58,7 +58,7 @@
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {

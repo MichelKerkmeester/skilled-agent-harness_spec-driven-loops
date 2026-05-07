@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read playbook context for 04--maintenance (`.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` §04--maintenance)
+- [x] T001 Read playbook context for 04--maintenance (`.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` §04--maintenance)
 - [x] T002 Read feature catalog context for 04--maintenance (`../scratch/context-feature-catalog.md` §04--maintenance)
 - [x] T003 Verify MCP server is running and accepting tool calls — `npx vitest run` executes successfully
 - [x] T004 Identify target spec folder with at least one markdown file (for EX-014) — `system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance/`
@@ -97,5 +97,5 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
-- **Playbook**: `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` §04--maintenance
+- **Playbook**: `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` §04--maintenance
 <!-- /ANCHOR:cross-refs -->

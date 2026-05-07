@@ -19,7 +19,7 @@ _memory:
 
 ### Purpose
 
-Identify root causes for 8 distinct defect classes observed across 7 memory files generated via JSON-mode (`--json` flag, `/tmp/save-context-data.json` file mode, `--stdin` mode) in `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`. Propose backend fixes that prevent recurrence.
+Identify root causes for 8 distinct defect classes observed across 7 memory files generated via JSON-mode (`--json` flag, `/tmp/save-context-data.json` file mode, `--stdin` mode) in `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`. Propose backend fixes that prevent recurrence.
 
 ### Usage
 
@@ -33,7 +33,7 @@ Identify root causes for 8 distinct defect classes observed across 7 memory file
 <!-- ANCHOR:topic -->
 ## 2. TOPIC
 
-Root cause analysis and remediation for memory quality issues encountered during JSON-mode generation in `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`.
+Root cause analysis and remediation for memory quality issues encountered during JSON-mode generation in `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`.
 
 **Observed defects (across 7 memory files in `026-graph-and-context-optimization/001-research-graph-context-systems/{001..005}/memory/`):**
 
@@ -140,7 +140,7 @@ Q1: Where in the generate-context.js pipeline is the OVERVIEW text truncated, an
 **Direct evidence from current session:**
 
 - 7 broken memory files at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/{001-claude-optimization-settings,002-codesight,003-contextador,004-graphify,005-claudest}/memory/`
-- All 7 generated via `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` in JSON mode
+- All 7 generated via `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` in JSON mode
 - All 7 have `_sourceTranscriptPath: ""`, `_sourceSessionId: ""`, `quality_score: 1.00` in frontmatter (suggesting stateless save path)
 - Two files (F1, F2) have IDENTICAL generic decision text patterns ("observation decision 1", "user decision 1") strongly indicating template-level fallback when actual decisions can't be extracted
 - One file (F6) has trigger phrases including literal path fragments ("kit/026", "graph", "and", "optimization/001", "research", "systems/004", "graphify") suggesting a path-tokenizer leak
@@ -149,12 +149,12 @@ Q1: Where in the generate-context.js pipeline is the OVERVIEW text truncated, an
 
 **Source code locations to investigate:**
 
-- `.opencode/skill/system-spec-kit/scripts/src/memory/generate-context.ts` (TS source)
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` (compiled, loaded at runtime)
-- `.opencode/skill/system-spec-kit/scripts/src/memory/extractors/*` (decision/topic/trigger extractors)
-- `.opencode/skill/system-spec-kit/scripts/src/memory/templates/*` (memory file template)
-- `.opencode/skill/system-spec-kit/scripts/src/core/workflow.js` (workflow orchestration, 1349 lines per error trace)
-- `.opencode/skill/system-spec-kit/scripts/src/memory/scoring/*` (quality scoring)
+- `.opencode/skills/system-spec-kit/scripts/src/memory/generate-context.ts` (TS source)
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` (compiled, loaded at runtime)
+- `.opencode/skills/system-spec-kit/scripts/src/memory/extractors/*` (decision/topic/trigger extractors)
+- `.opencode/skills/system-spec-kit/scripts/src/memory/templates/*` (memory file template)
+- `.opencode/skills/system-spec-kit/scripts/src/core/workflow.js` (workflow orchestration, 1349 lines per error trace)
+- `.opencode/skills/system-spec-kit/scripts/src/memory/scoring/*` (quality scoring)
 
 **Prior research:** None — this is a fresh investigation of a backend bug.
 

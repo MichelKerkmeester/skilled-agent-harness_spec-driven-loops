@@ -12,11 +12,11 @@ Public's memory capabilities are powerful but spread across too many commands an
 Compared Public's memory command taxonomy, tool coverage, and `resume` contract with Relay's plugin/MCP surface and its two-mode Python SDK packaging.
 
 ## Evidence
-- Public exposes 4 top-level memory commands: `search`, `learn`, `manage`, and `save`. [SOURCE: .opencode/command/memory/README.txt:58-66]
-- `/memory:manage` alone owns 11 subcommands, and the memory command set maps 33 MCP tools across layers L1-L7. [SOURCE: .opencode/command/memory/README.txt:225-299]
-- Public explicitly documents `/memory:search` and `/spec_kit:resume` as different surfaces: `search` is knowledge lookup, while `resume` reconstructs interrupted-session state. [SOURCE: .opencode/command/memory/README.txt:306-320]
-- The integrated `system-spec-kit` skill also describes 4 memory commands plus `/spec_kit:resume` as the session recovery owner. [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:560-566]
-- `resume` itself already mixes handover files, `session_bootstrap()`, `memory_context()`, `memory_search()`, and checklist/task fallbacks into one recovery chain. [SOURCE: .opencode/command/spec_kit/resume.md:250-294]
+- Public exposes 4 top-level memory commands: `search`, `learn`, `manage`, and `save`. [SOURCE: .opencode/commands/memory/README.txt:58-66]
+- `/memory:manage` alone owns 11 subcommands, and the memory command set maps 33 MCP tools across layers L1-L7. [SOURCE: .opencode/commands/memory/README.txt:225-299]
+- Public explicitly documents `/memory:search` and `/spec_kit:resume` as different surfaces: `search` is knowledge lookup, while `resume` reconstructs interrupted-session state. [SOURCE: .opencode/commands/memory/README.txt:306-320]
+- The integrated `system-spec-kit` skill also describes 4 memory commands plus `/spec_kit:resume` as the session recovery owner. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:560-566]
+- `resume` itself already mixes handover files, `session_bootstrap()`, `memory_context()`, `memory_search()`, and checklist/task fallbacks into one recovery chain. [SOURCE: .opencode/commands/spec_kit/resume.md:250-294]
 - Relay's plugin keeps the operator in one session surface where slash commands and plain English route to the same MCP-backed messaging tools. [SOURCE: external/docs/plugin-claude-code.md:55-87]
 - Relay's Python SDK packages the user choice as only two modes: `Orchestrate` or `Communicate`. [SOURCE: external/packages/sdk-py/README.md:3-6] [SOURCE: external/packages/sdk-py/README.md:28-83]
 
@@ -28,7 +28,7 @@ confidence: high
 finding: Public should add a unified context concierge surface that handles "find what matters, recover the right state, and save when useful" without forcing operators to choose between `/memory:*` and `/spec_kit:*` namespaces up front.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/resume.md`, `.opencode/command/memory/README.txt`, command help/onboarding surfaces
+- **Target file or module:** `.opencode/commands/spec_kit/resume.md`, `.opencode/commands/memory/README.txt`, command help/onboarding surfaces
 - **Change type:** new capability addition
 - **Blast radius:** medium
 - **Prerequisites:** define which operations stay advanced/admin-only and which become part of the unified front door

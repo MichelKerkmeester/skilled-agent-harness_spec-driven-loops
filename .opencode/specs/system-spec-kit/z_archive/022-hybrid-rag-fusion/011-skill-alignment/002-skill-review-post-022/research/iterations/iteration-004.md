@@ -34,7 +34,7 @@
 - **Severity**: P2
 - **Dimension**: traceability
 - **File**: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/spec.md:117
-- **Evidence**: REQ-009 requires the packet to document the canonical verification method via `mcp_server/tool-schemas.ts` and `.opencode/command/memory/`. The task list covers pack reconciliation, live-doc updates, and verification reruns (`tasks.md:33-77`), but it never includes a dedicated task to add or verify that documentation path.
+- **Evidence**: REQ-009 requires the packet to document the canonical verification method via `mcp_server/tool-schemas.ts` and `.opencode/commands/memory/`. The task list covers pack reconciliation, live-doc updates, and verification reruns (`tasks.md:33-77`), but it never includes a dedicated task to add or verify that documentation path.
 - **Impact**: Requirement-to-task coverage is incomplete, so this requirement looks satisfied only incidentally through broader rewrite work instead of through a deliberate, reviewable task.
 - **Fix**: Add a task or completion criterion that explicitly captures documentation of the canonical verification method and points to the authoritative files.
 

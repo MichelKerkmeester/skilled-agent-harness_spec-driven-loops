@@ -46,13 +46,13 @@ The failure appears to be a boundary mismatch between copilot's natural-language
 - [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/005-code-graph-fast-fail/spec.md:68]: Scope covers all readiness states, including empty and stale full-scan states.
 - [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/005-code-graph-fast-fail/spec.md:96]: REQ-001 expects `fallbackDecision.nextTool:"code_graph_scan"` for empty graph reads.
 - [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/005-code-graph-fast-fail/spec.md:97]: REQ-002 defines the routing matrix.
-- [.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787]: Read paths block when readiness action is `full_scan` and inline indexing did not occur.
-- [.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:791]: `buildFallbackDecision` maps error/full-scan readiness into next-tool decisions.
-- [.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:799]: Full-scan states return `nextTool:"code_graph_scan"` and `retryAfter:"scan_complete"`.
-- [.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089]: `code_graph_query` calls `ensureCodeGraphReady` with `allowInlineFullScan:false`.
-- [.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:76]: Unit test already covers empty graph routing to `code_graph_scan`.
-- [.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:92]: Unit test covers stale full-scan routing.
-- [.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:162]: Unit test preserves the read-path full-scan boundary.
+- [.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787]: Read paths block when readiness action is `full_scan` and inline indexing did not occur.
+- [.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:791]: `buildFallbackDecision` maps error/full-scan readiness into next-tool decisions.
+- [.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:799]: Full-scan states return `nextTool:"code_graph_scan"` and `retryAfter:"scan_complete"`.
+- [.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089]: `code_graph_query` calls `ensureCodeGraphReady` with `allowInlineFullScan:false`.
+- [.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:76]: Unit test already covers empty graph routing to `code_graph_scan`.
+- [.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:92]: Unit test covers stale full-scan routing.
+- [.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:162]: Unit test preserves the read-path full-scan boundary.
 
 ### Root cause hypothesis
 The implementation and mocked unit harness exist, so the gap is not pure testability. The stress harness failed to prove packet 005 because pre-flight recovered the graph before Q1 ran, leaving the weak readiness branch unreachable in live CLI execution. The missing artifact is an end-to-end degraded-state fixture or scenario switch that can force `ensureCodeGraphReady` into empty/stale-full-scan without letting pre-flight or selective self-heal repair it first.
@@ -73,15 +73,15 @@ The implementation and mocked unit harness exist, so the gap is not pure testabi
 - [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:20]: Pre-flight found code-graph file-watcher drift after rapid changes.
 - [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:97]: Drift followed carve-out, renumber, scaffold, and doc tidy changes; one `code_graph_scan` recovered.
 - [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:123]: Recommendation #3 says tighten debounce or add freshness self-check.
-- [.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:49]: Default watcher debounce is 2000ms.
-- [.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:214]: `startFileWatcher` uses configured debounce or the default.
-- [.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:251]: Chokidar uses `awaitWriteFinish` with 1000ms stability threshold.
-- [.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:278]: Existing per-file debounce timers are cleared on subsequent events.
-- [.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:283]: Reindex operation fires only after the debounce timeout.
-- [.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:299]: `scheduleReindex` can force reindex on selected events.
-- [.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:159]: `code_graph_status` is currently a freshness/reporting handler.
-- [.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:163]: Status calls `getGraphFreshness`, not `ensureCodeGraphReady`.
-- [.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:189]: Status builds a readiness block with `action:"none"`, so it reports but does not self-heal.
+- [.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:49]: Default watcher debounce is 2000ms.
+- [.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:214]: `startFileWatcher` uses configured debounce or the default.
+- [.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:251]: Chokidar uses `awaitWriteFinish` with 1000ms stability threshold.
+- [.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:278]: Existing per-file debounce timers are cleared on subsequent events.
+- [.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:283]: Reindex operation fires only after the debounce timeout.
+- [.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:299]: `scheduleReindex` can force reindex on selected events.
+- [.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:159]: `code_graph_status` is currently a freshness/reporting handler.
+- [.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:163]: Status calls `getGraphFreshness`, not `ensureCodeGraphReady`.
+- [.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:189]: Status builds a readiness block with `action:"none"`, so it reports but does not self-heal.
 
 ### Root cause hypothesis
 The watcher stacks chokidar's 1000ms write-stability delay with a 2000ms per-file debounce, then hashes and skips unchanged content. That should smooth ordinary writes, but the observed drift involved rapid multi-file structural changes and spec moves where missed events or delayed reindex can leave status stale for hours. Lowering the debounce may reduce lag, but the more durable fix is probably a status/read-path freshness self-check that detects persisted staleness and either self-heals selectively or tells the operator exactly what to run.
@@ -107,19 +107,19 @@ The watcher stacks chokidar's 1000ms write-stability delay with a 2000ms per-fil
 - [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/spec.md:71]: Query path must fetch `limit * 4`, dedup, prefer canonical display path, and rerank by `path_class`.
 - [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/spec.md:73]: Query telemetry should surface `dedupedAliases`, `uniqueResultCount`, and `rankingSignals`.
 - [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/spec.md:113]: Implementation-intent rerank uses +0.05 implementation boost and -0.05 docs/spec penalty.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:52]: CocoIndex fork defines `classify_path`.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:219]: Indexer stores `source_realpath`.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:241]: Indexer stores `content_hash`.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:242]: Indexer stores `path_class`.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:158]: Query dedups by `source_realpath` or content hash.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:192]: Query preserves `raw_score` separately from reranked `score`.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:196]: Query applies implementation-intent reranking based on `path_class`.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:246]: Query returns response-level `dedupedAliases` and `uniqueResultCount`.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:282]: Query over-fetches `limit + offset` times 4.
-- [.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/server.py:152]: Server maps fork fields into MCP search responses.
-- [.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1230]: Hybrid search proceeds to local fusion when lists exist.
-- [.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1250]: Hybrid search classifies intent for adaptive fusion, independently of CocoIndex fork telemetry.
-- [.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1261]: Hybrid search computes adaptive fusion weights but does not consume `path_class`.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:52]: CocoIndex fork defines `classify_path`.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:219]: Indexer stores `source_realpath`.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:241]: Indexer stores `content_hash`.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:242]: Indexer stores `path_class`.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:158]: Query dedups by `source_realpath` or content hash.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:192]: Query preserves `raw_score` separately from reranked `score`.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:196]: Query applies implementation-intent reranking based on `path_class`.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:246]: Query returns response-level `dedupedAliases` and `uniqueResultCount`.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:282]: Query over-fetches `limit + offset` times 4.
+- [.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:152]: Server maps fork fields into MCP search responses.
+- [.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1230]: Hybrid search proceeds to local fusion when lists exist.
+- [.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1250]: Hybrid search classifies intent for adaptive fusion, independently of CocoIndex fork telemetry.
+- [.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1261]: Hybrid search computes adaptive fusion weights but does not consume `path_class`.
 
 ### Explicit grep results for 7 fork fields in `mcp_server/lib/search/*.ts`
 - `path_class`: no hits.
@@ -127,7 +127,7 @@ The watcher stacks chokidar's 1000ms write-stability delay with a 2000ms per-fil
 - `uniqueResultCount`: no hits.
 - `rankingSignals`: no hits.
 - `source_realpath`: no hits.
-- `content_hash`: hits only in `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts` and `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`; these are memory vector-index fields, not CocoIndex response consumption.
+- `content_hash`: hits only in `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts` and `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`; these are memory vector-index fields, not CocoIndex response consumption.
 - `raw_score`: no hits.
 
 ### Root cause hypothesis
@@ -150,26 +150,26 @@ The CocoIndex fork already computes the right telemetry and exposes it through i
 - **Telemetry-contract seam between specialist indexes and general search**: Q-OPP shows fork-local intelligence exists but is not yet a typed downstream contract for hybrid search, scoring, or explainability.
 
 ## Sources read this iteration
-- `.opencode/skill/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/runs/I1/cli-copilot-1/score.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/runs/I1/cli-codex-1/score.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/runs/I1/cli-opencode-1/score.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/005-code-graph-fast-fail/spec.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup/spec.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/protocol.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/server.py`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py`
 - `.cocoindex_code/settings.yml`
 
 ## Suggested focus for iteration 002

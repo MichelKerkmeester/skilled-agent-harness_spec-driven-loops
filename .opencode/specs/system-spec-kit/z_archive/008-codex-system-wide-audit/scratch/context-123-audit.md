@@ -257,7 +257,7 @@ CHK-031 [P0] Absolute path inputs still work unchanged
 
 ### TypeScript Code Quality Assessment
 
-**Evaluated Against**: `.opencode/skill/workflows-code--opencode/references/languages/typescript.md` standards
+**Evaluated Against**: `.opencode/skills/workflows-code--opencode/references/languages/typescript.md` standards
 
 | Standard | Status | Evidence |
 |----------|--------|----------|
@@ -285,7 +285,7 @@ CHK-031 [P0] Absolute path inputs still work unchanged
 **Priority 1**: Verify P0 Checklist Items
 ```bash
 # Step 1: Rebuild (capture output)
-cd .opencode/skill/system-spec-kit/scripts
+cd .opencode/skills/system-spec-kit/scripts
 tsc --build 2>&1 | tee ../../../specs/system-spec-kit/z_archive/006-generate-context-subfolder/scratch/build-output.txt
 
 # Step 2: Run test suite (capture output)
@@ -441,8 +441,8 @@ This spec folder is **90% complete** - the remaining 10% is documentation hygien
 - `scripts/tests/test-subfolder-resolution.js` (27,937 bytes, 410+ LOC, 21 tests)
 
 **Documentation Modified**:
-- `.opencode/skill/system-spec-kit/SKILL.md` (~25 LOC added)
-- `.opencode/skill/system-spec-kit/references/sub_folder_versioning.md` (~35 LOC added)
+- `.opencode/skills/system-spec-kit/SKILL.md` (~25 LOC added)
+- `.opencode/skills/system-spec-kit/references/sub_folder_versioning.md` (~35 LOC added)
 - `AGENTS.md` (~8 LOC added)
 - `anobel.com/AGENTS.md` (~15 LOC added)
 - `Barter/coder/AGENTS.md` (~15 LOC added)

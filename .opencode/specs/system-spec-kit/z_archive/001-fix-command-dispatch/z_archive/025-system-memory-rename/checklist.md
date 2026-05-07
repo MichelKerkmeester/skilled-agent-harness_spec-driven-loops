@@ -113,7 +113,7 @@ These items must be addressed OR explicitly deferred with user approval.
   - Evidence: ✅ All 10 SKILL.md files verified
 
 - [x] **P1-9:** Orchestrator agent updated (4 refs)
-  - File: `.opencode/agent/orchestrator.md`
+  - File: `.opencode/agents/orchestrator.md`
   - Evidence: ✅ References updated
 
 ### Skill Invocation

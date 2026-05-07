@@ -1,14 +1,14 @@
-● Read .opencode/skill/system-spec-kit/scripts/core/config.ts
+● Read .opencode/skills/system-spec-kit/scripts/core/config.ts
   └ 298 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
   └ 402 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
   └ 351 lines read
 
 ### FINDING-01: MODULE header format does not match required PascalCase pattern
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:1-3`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:1-3`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header is `// MODULE: Config` (with colon), not the required format example `// MODULE SessionExtractor`.
@@ -18,7 +18,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-02: Section headers are not in required numbered ALL-CAPS line-comment format
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:12-14,58-60,65-67,136-138,210-212,243-245,289-291`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:12-14,58-60,65-67,136-138,210-212,243-245,289-291`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** Uses block-style separators (`/* ----------------------------------------------------------------- ... */`) and section names like `INTERFACES`, `PATH CONSTANTS`, etc.
@@ -28,7 +28,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Missing TSDoc on exported public API symbols
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:216-241,247-252,254-262,264-287`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:216-241,247-252,254-262,264-287`
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Exported symbols (`CONFIG`, `getSpecsDirectories`, `findActiveSpecsDir`, `getAllExistingSpecsDirs`) are exported without `/** ... */` TSDoc on each public export.
@@ -38,7 +38,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: MODULE header is not PascalCase tokenized module name
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:1-3`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:1-3`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header is `// MODULE: Decision Extractor` (contains colon and spaced words).
@@ -48,7 +48,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: Section headers do not follow required numbered ALL-CAPS format
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:17-19,107-109,394-396`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:17-19,107-109,394-396`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** Uses block comment section dividers and does not include required `// N. ...` style or `IMPORTS` header.
@@ -58,7 +58,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Exported function lacks TSDoc
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:111-113,398-402`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:111-113,398-402`
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `extractDecisions` (and its exported alias) are public exports without preceding TSDoc.
@@ -68,7 +68,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-07: MODULE header does not match required PascalCase format
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:1-3`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:1-3`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header is `// MODULE: File Extractor` with colon and spaced words.
@@ -78,7 +78,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-08: Section headers are block-style, not required numbered ALL-CAPS line comments
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:20-22,79-81,100-102,184-186,235-237,341-343`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:20-22,79-81,100-102,184-186,235-237,341-343`
 - **Severity:** CRITICAL
 - **Category:** ALIGNMENT
 - **Current Behavior:** Sections are labeled using block separators and custom names.
@@ -88,7 +88,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: Multiple exported functions are missing TSDoc comments
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:83-98,104-182,188-233,239-279`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:83-98,104-182,188-233,239-279`
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Exported functions (`detectObservationType`, `extractFilesFromData`, `enhanceFilesWithSemanticDescriptions`, `buildObservationsWithAnchors`) are public but undocumented with TSDoc.
@@ -98,7 +98,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Immutable map constant is not typed as readonly (P2)
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:67-73`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:67-73`
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** `ACTION_MAP` is mutable by type (`Record<string, string>`), despite being used as a fixed lookup table.

@@ -124,7 +124,7 @@ The two base bug fixes were verified with three representative queries against t
 
 ### Source (20 files)
 
-All paths relative to `.opencode/skill/system-spec-kit/mcp_server/`.
+All paths relative to `.opencode/skills/system-spec-kit/mcp_server/`.
 
 | File | Changes |
 | ---- | ------- |

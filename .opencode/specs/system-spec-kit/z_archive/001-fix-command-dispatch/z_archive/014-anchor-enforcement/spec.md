@@ -58,8 +58,8 @@ Format: `[context-type]-[keywords]-[spec-number]`
 
 | File | Changes |
 |------|---------|
-| `.opencode/command/memory/save.md` | Added Step 2.5: Anchor Generation (MANDATORY) |
-| `.opencode/command/memory/search.md` | Added anchorId to MCP signatures, anchor-aware detail view |
+| `.opencode/commands/memory/save.md` | Added Step 2.5: Anchor Generation (MANDATORY) |
+| `.opencode/commands/memory/search.md` | Added anchorId to MCP signatures, anchor-aware detail view |
 | `.opencode/skills/workflows-memory/SKILL.md` | Fixed anchor format documentation |
 | `.opencode/memory/templates/context_template.md` | Fixed 16 anchors to UPPERCASE format |
 

@@ -31,7 +31,7 @@ Phase 5 of `001-research-graph-context-systems` is a read-only audit of the Clau
 
 **Key Decisions**: Keep the original 12-iteration cli-codex lineage intact, then reopen the packet in `completed-continue` mode and extend it to 20 total iterations. Generation 1 (iters 1-12) answered the original charter and converted Q10 into a usable handoff package. Generation 2 (iters 13-20) translated those conclusions into implementation-facing contracts: FTS helper scope, forced-degrade tests, Stop-hook metadata patch, normalized analytics replay shape, SessionStart fast-path placement, verifier/discoverer split mapping, token-observability contracts, and a dependency-ordered packet roadmap.
 
-**Critical Dependencies**: cli-codex CLI installed (verified `codex-cli 0.118.0`); `external/` accessible at the spec folder root containing the Claudest checkout; reducer script at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`; memory script at `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`.
+**Critical Dependencies**: cli-codex CLI installed (verified `codex-cli 0.118.0`); `external/` accessible at the spec folder root containing the Claudest checkout; reducer script at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`; memory script at `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`.
 
 ---
 
@@ -159,9 +159,9 @@ Produce an evidence-grounded `adopt now` / `prototype later` / `reject` matrix f
 
 - `external/` directory containing the Claudest checkout (already cloned at phase folder root).
 - cli-codex CLI v0.118.0+ for iteration dispatch.
-- Reducer script `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` for state file maintenance.
-- Memory script `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` for memory artifact generation.
-- Validator script `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` for spec compliance.
+- Reducer script `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` for state file maintenance.
+- Memory script `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` for memory artifact generation.
+- Validator script `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` for spec compliance.
 - Public packets `023/013` (FTS5 fix), `024/002` (SessionStart hook), `024/003` (Stop hook tracking), `022/008` (signal extraction) — referenced as substrate dependencies in the sequencing analysis.
 
 ---

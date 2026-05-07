@@ -42,7 +42,7 @@ Last claim_adjudication_passed: true (no new P0/P1)
 
 ### T3. feature-catalog-impact-audit.md ↔ feature catalog
 - Open `feature-catalog-impact-audit.md` (29 KB at 011 root).
-- Verify: do the audit's claims about feature catalog entries actually match the current state of `.opencode/skill/sk-doc/feature_catalog/` (or wherever the catalog lives)?
+- Verify: do the audit's claims about feature catalog entries actually match the current state of `.opencode/skills/sk-doc/feature_catalog/` (or wherever the catalog lives)?
 - Flag any claim in the audit that's contradicted by the live catalog.
 
 ### T4. testing-playbook-impact-audit.md ↔ manual playbook

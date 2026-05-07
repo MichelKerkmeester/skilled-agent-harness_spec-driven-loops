@@ -35,7 +35,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` | Updated | OK | `resolveArtifactRoot` flat-first: empty rootDir → flat; flat-config matching target → reuse flat; non-matching prior content → allocate `pt-NN` |
+| `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Updated | OK | `resolveArtifactRoot` flat-first: empty rootDir → flat; flat-config matching target → reuse flat; non-matching prior content → allocate `pt-NN` |
 
 ---
 
@@ -43,7 +43,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Updated | OK | 7 cases: 1 root flat + 1 child flat first-run + 1 nested flat + 1 reuse-flat-on-match + 1 reuse pt-NN + 1 branch on flat-different-target + 1 branch on prior pt-NN-different-target |
+| `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Updated | OK | 7 cases: 1 root flat + 1 child flat first-run + 1 nested flat + 1 reuse-flat-on-match + 1 reuse pt-NN + 1 branch on flat-different-target + 1 branch on prior pt-NN-different-target |
 
 ---
 
@@ -51,10 +51,10 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Updated | OK | Added `step_stage_artifact_dir` after `step_update_config_status` in synthesis phase |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Updated | OK | Same step added |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Updated | OK | Same step added |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Updated | OK | Same step added |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Updated | OK | Added `step_stage_artifact_dir` after `step_update_config_status` in synthesis phase |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Updated | OK | Same step added |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Updated | OK | Same step added |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Updated | OK | Same step added |
 
 ---
 
@@ -62,8 +62,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/sk-deep-review/SKILL.md` | Updated | OK | Flat-first prose update at "State Packet Location" section |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Updated | OK | Flat-first prose update at "State Packet Location" section |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Updated | OK | Flat-first prose update at "State Packet Location" section |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Updated | OK | Flat-first prose update at "State Packet Location" section |
 
 ---
 
@@ -71,9 +71,9 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Updated | OK | Flat-first prose update |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Updated | OK | Flat-first prose update |
-| `.opencode/skill/system-spec-kit/references/structure/folder_structure.md` | Updated | OK | "Naming" + "Flat-first convention (post-028)" + "Required resolver" prose updates |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Updated | OK | Flat-first prose update |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Updated | OK | Flat-first prose update |
+| `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | Updated | OK | "Naming" + "Flat-first convention (post-028)" + "Required resolver" prose updates |
 
 ---
 

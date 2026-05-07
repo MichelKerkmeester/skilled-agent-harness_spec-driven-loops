@@ -4,7 +4,7 @@
 
 - Commit: `646f28d2b` (post-remediation)
 - MCP server: direct `spec_kit_memory` tool calls were exposed in Codex, but returned `user cancelled MCP tool call` before execution.
-- Dist fallback: used rebuilt dist handler dispatcher via `node --input-type=module` importing `.opencode/skill/system-spec-kit/mcp_server/dist/code_graph/tools/code-graph-tools.js`.
+- Dist fallback: used rebuilt dist handler dispatcher via `node --input-type=module` importing `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/tools/code-graph-tools.js`.
 - Dist build: existing rebuilt dist from source via `npm run build` in 012/004.
 - Status: `PARTIAL`, because the live MCP transport path could not be exercised; the fallback exercised the built dist handler path.
 
@@ -46,16 +46,16 @@ Step 1.1:
     "totalNodes": 56224,
     "totalEdges": 35095,
     "errors": [
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-context-handler.vitest.ts: Tree contains syntax errors (partial parse)",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts: Tree contains syntax errors (partial parse)",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts: Tree contains syntax errors (partial parse)",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts: Tree contains syntax errors (partial parse)",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts: Tree contains syntax errors (partial parse)",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts: Tree contains syntax errors (partial parse)",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/merge/anchor-merge-operation.ts: Tree contains syntax errors (partial parse)",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts: Tree contains syntax errors (partial parse)",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts: Tree contains syntax errors (partial parse)",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/anchor-metadata.ts: Tree contains syntax errors (partial parse)"
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-context-handler.vitest.ts: Tree contains syntax errors (partial parse)",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts: Tree contains syntax errors (partial parse)",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts: Tree contains syntax errors (partial parse)",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts: Tree contains syntax errors (partial parse)",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts: Tree contains syntax errors (partial parse)",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts: Tree contains syntax errors (partial parse)",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/merge/anchor-merge-operation.ts: Tree contains syntax errors (partial parse)",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts: Tree contains syntax errors (partial parse)",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts: Tree contains syntax errors (partial parse)",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/anchor-metadata.ts: Tree contains syntax errors (partial parse)"
     ],
     "durationMs": 48131,
     "fullScanRequested": true,
@@ -183,16 +183,16 @@ Step 2.2 same-process fallback:
     "totalNodes": 5,
     "totalEdges": 0,
     "errors": [
-      ".opencode/skill/mcp-code-mode/mcp_server/index.ts: memory access out of bounds",
-      ".opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts: memory access out of bounds",
-      ".opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts: memory access out of bounds",
-      ".opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts: memory access out of bounds",
-      ".opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts: memory access out of bounds",
-      ".opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts: memory access out of bounds",
-      ".opencode/skill/system-spec-kit/mcp_server/api/eval.ts: memory access out of bounds",
-      ".opencode/skill/system-spec-kit/mcp_server/api/index.ts: memory access out of bounds",
-      ".opencode/skill/system-spec-kit/mcp_server/api/indexing.ts: memory access out of bounds",
-      ".opencode/skill/system-spec-kit/mcp_server/api/providers.ts: memory access out of bounds"
+      ".opencode/skills/mcp-code-mode/mcp_server/index.ts: memory access out of bounds",
+      ".opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts: memory access out of bounds",
+      ".opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts: memory access out of bounds",
+      ".opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts: memory access out of bounds",
+      ".opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts: memory access out of bounds",
+      ".opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts: memory access out of bounds",
+      ".opencode/skills/system-spec-kit/mcp_server/api/eval.ts: memory access out of bounds",
+      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts: memory access out of bounds",
+      ".opencode/skills/system-spec-kit/mcp_server/api/indexing.ts: memory access out of bounds",
+      ".opencode/skills/system-spec-kit/mcp_server/api/providers.ts: memory access out of bounds"
     ],
     "durationMs": 1949,
     "fullScanRequested": true,
@@ -273,7 +273,7 @@ Response excerpts:
       "affectedFiles": 69,
       "recentErrors": [
         {
-          "filePath": ".opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh",
+          "filePath": ".opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh",
           "errorMessage": "resolved is not a function",
           "errorCount": 1,
           "lastSeenAt": "2026-05-06T07:30:08.616Z"

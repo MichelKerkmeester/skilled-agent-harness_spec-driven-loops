@@ -324,26 +324,26 @@ Security scan result: no `.DS_Store`/`Thumbs.db` artifacts and no obvious secret
   - `research/remediation-manifest.md` — 7039 chars, heading `# Remediation Manifest`
 - Placeholder/empty-file scan: no empty research markdown files found in the audited tree.
 - Broken internal/local links: 879 broken links across 26 files. The biggest offenders are:
-  - `research/analysis/analysis-X02.md` — 68 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts#L91`
-  - `research/analysis/analysis-X04.md` — 68 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L603`
-  - `research/analysis/analysis-X03.md` — 64 broken links; example: `</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L82>`
-  - `research/audits/audit-C10.md` — 62 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts`
-  - `research/audits/audit-C16.md` — 56 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:4`
-  - `research/audits/audit-C12.md` — 52 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L75`
-  - `research/analysis/analysis-X01.md` — 48 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L790`
-  - `research/audits/audit-C08.md` — 48 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:824`
-  - `research/audits/audit-C20.md` — 44 broken links; example: ` /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:202 `
+  - `research/analysis/analysis-X02.md` — 68 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts#L91`
+  - `research/analysis/analysis-X04.md` — 68 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L603`
+  - `research/analysis/analysis-X03.md` — 64 broken links; example: `</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L82>`
+  - `research/audits/audit-C10.md` — 62 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts`
+  - `research/audits/audit-C16.md` — 56 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:4`
+  - `research/audits/audit-C12.md` — 52 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L75`
+  - `research/analysis/analysis-X01.md` — 48 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L790`
+  - `research/audits/audit-C08.md` — 48 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:824`
+  - `research/audits/audit-C20.md` — 44 broken links; example: ` /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:202 `
   - `research/audits/audit-C18.md` — 41 broken links; example: `../feature-catalog/16-tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md`
-  - `research/audits/audit-C01.md` — 36 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts`
-  - `research/audits/audit-C03.md` — 30 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:725`
-  - `research/audits/audit-C05.md` — 28 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:384`
-  - `research/audits/audit-C13.md` — 28 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts`
-  - `research/audits/audit-C17.md` — 26 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts`
-  - `research/audits/audit-C15.md` — 24 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts#L89`
-  - `research/qa/qa-13-alignment-drift.md` — 24 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py`
+  - `research/audits/audit-C01.md` — 36 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts`
+  - `research/audits/audit-C03.md` — 30 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:725`
+  - `research/audits/audit-C05.md` — 28 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:384`
+  - `research/audits/audit-C13.md` — 28 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts`
+  - `research/audits/audit-C17.md` — 26 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts`
+  - `research/audits/audit-C15.md` — 24 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts#L89`
+  - `research/qa/qa-13-alignment-drift.md` — 24 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py`
   - `research/audits/audit-C07.md` — 23 broken links; example: `?:\`
-  - `research/audits/audit-C02.md` — 22 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:23`
-  - `research/audits/audit-C09.md` — 22 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts`
+  - `research/audits/audit-C02.md` — 22 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:23`
+  - `research/audits/audit-C09.md` — 22 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts`
 - Broken-link patterns observed:
   - absolute local filesystem paths wrapped as markdown links
   - URL-encoded spaces such as `Opencode%20Env` in local file paths

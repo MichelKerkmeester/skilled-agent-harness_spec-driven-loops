@@ -11,8 +11,8 @@ Compared BAD's lack of a separate memory subsystem to the local memory command t
 
 ## Evidence
 - BAD has no semantic memory, governed retrieval layer, or separate memory administration surface; it stays thin because it solves a narrower automation problem. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:63-78]
-- Local memory docs define four distinct surfaces: `save`, `search`, `manage`, and `learn`, and explicitly keep `/spec_kit:resume` as the user-facing recovery entrypoint. [SOURCE: .opencode/command/memory/README.txt:61-66] [SOURCE: .opencode/command/memory/README.txt:90-113] [SOURCE: .opencode/command/memory/README.txt:308-320]
-- The memory command README also documents broad tool coverage and governance/admin responsibilities that are meaningfully different from the spec lifecycle. [SOURCE: .opencode/command/memory/README.txt:248-299]
+- Local memory docs define four distinct surfaces: `save`, `search`, `manage`, and `learn`, and explicitly keep `/spec_kit:resume` as the user-facing recovery entrypoint. [SOURCE: .opencode/commands/memory/README.txt:61-66] [SOURCE: .opencode/commands/memory/README.txt:90-113] [SOURCE: .opencode/commands/memory/README.txt:308-320]
+- The memory command README also documents broad tool coverage and governance/admin responsibilities that are meaningfully different from the spec lifecycle. [SOURCE: .opencode/commands/memory/README.txt:248-299]
 
 ## Analysis
 This is where simplification should stop. BAD does not offer a competing memory architecture; it simply omits the problem. That makes it a bad guide for deleting local memory capabilities. The correct UX move is partial absorption: make save/resume feel natural inside the main lifecycle, but keep advanced search, governance, and learning surfaces available for the broader system that `system-spec-kit` actually is.
@@ -43,7 +43,7 @@ confidence: high
 finding: Do not fully collapse `/memory:*` into `/spec_kit:*`. The right move is partial UX integration for common save/resume behavior, while keeping advanced memory search, governance, and learning as their own surface.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/memory/README.txt`
+- **Target file or module:** `.opencode/commands/memory/README.txt`
 - **Change type:** rejected merge
 - **Blast radius:** high
 - **Prerequisites:** none

@@ -9,7 +9,7 @@ state_summary:
 - Last newInfoRatio: n/a (first iteration)
 - Convergence score: 0.00 (not started)
 
-Research Topic: Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agent/` inventory. Focus on (1) skill auto-loading patterns, (2) stack-agnostic detection, (3) caller-restriction enforcement (highest priority), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts.
+Research Topic: Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agents/` inventory. Focus on (1) skill auto-loading patterns, (2) stack-agnostic detection, (3) caller-restriction enforcement (highest priority), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts.
 
 Iteration: 1 of 8
 

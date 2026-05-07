@@ -49,8 +49,8 @@
       "external/src/detectors/blast-radius.ts",
       "external/src/eval.ts",
       "implementation-summary.md",
-      ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
+      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       "external/src/ast/extract-routes.ts",
       "external/src/types.ts",
       "external/src/detectors/graph.ts",
@@ -104,13 +104,13 @@
       {
         "name": "reduce-state.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
         "name": "generate-context.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {

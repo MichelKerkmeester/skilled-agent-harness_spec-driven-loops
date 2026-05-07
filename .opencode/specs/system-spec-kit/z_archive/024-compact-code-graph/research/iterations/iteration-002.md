@@ -143,9 +143,9 @@ Spec Kit Memory stores and ranks markdown/spec/context artifacts, enriches them 
 
 ## Sources
 
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:4-6,14-30,236-259,289-365,372-432,1196-1201] Server role, stdio transport, tool registration, auto-surfacing, token-budget handling, dynamic instructions
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:71-117,466-620,866-1016,1099-1168] Storage/retrieval initialization, startup scanning, pending recovery, BM25/graph/session modules, file watching
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:26-43,46-220,222-687] Tool taxonomy, JSON schema structure, scope parameters, lifecycle layers, maintenance/analysis/governance surfaces
-- [SOURCE: .opencode/skill/system-spec-kit/shared/index.ts:4-5,11-70,82-141,168-182,215-230] Shared canonical export surface, embedding APIs, retrieval contracts, learned ranking utilities
-- [SOURCE: .opencode/skill/system-spec-kit/shared/types.ts:22-118,183-253,452-509] Embedding provider contracts, unified search result/vector store types, MCP response envelope, task-specific embedding type system
-- [SOURCE: .opencode/skill/system-spec-kit/shared/README.md:37-41,43-77,90-98,171-239,251-357,386-419] Shared architecture, five-channel retrieval framing, provider comparison, configuration precedence, shared DB/runtime notes, profile-path example
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:4-6,14-30,236-259,289-365,372-432,1196-1201] Server role, stdio transport, tool registration, auto-surfacing, token-budget handling, dynamic instructions
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:71-117,466-620,866-1016,1099-1168] Storage/retrieval initialization, startup scanning, pending recovery, BM25/graph/session modules, file watching
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:26-43,46-220,222-687] Tool taxonomy, JSON schema structure, scope parameters, lifecycle layers, maintenance/analysis/governance surfaces
+- [SOURCE: .opencode/skills/system-spec-kit/shared/index.ts:4-5,11-70,82-141,168-182,215-230] Shared canonical export surface, embedding APIs, retrieval contracts, learned ranking utilities
+- [SOURCE: .opencode/skills/system-spec-kit/shared/types.ts:22-118,183-253,452-509] Embedding provider contracts, unified search result/vector store types, MCP response envelope, task-specific embedding type system
+- [SOURCE: .opencode/skills/system-spec-kit/shared/README.md:37-41,43-77,90-98,171-239,251-357,386-419] Shared architecture, five-channel retrieval framing, provider comparison, configuration precedence, shared DB/runtime notes, profile-path example

@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -42,7 +42,7 @@ _memory:
 Phase `007` cleaned up the current agent-improver wording so the source package, runtime mirrors, wrapper prompts, and active packet docs read more clearly and more accurately.
 
 This phase updated:
-- the source skill package wording in `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/skill/sk-improve-agent/README.md`, selected `references/`, and selected markdown `assets/`
+- the source skill package wording in `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/skills/sk-improve-agent/README.md`, selected `references/`, and selected markdown `assets/`
 - the canonical command wording and mirrored wrapper prompts
 - the runtime-specific agent-improver mirrors across OpenCode, Claude, Gemini, `.agents`, and Codex
 - the parent packet docs so phase `007` is recorded explicitly

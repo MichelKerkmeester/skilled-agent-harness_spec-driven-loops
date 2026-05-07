@@ -251,13 +251,13 @@ The re-analysis revealed systemic patterns including:
 
 | Source Type | Description | Location | Credibility |
 |-------------|-------------|----------|-------------|
-| Code | MCP Server | `.opencode/skill/system-spec-kit/mcp_server/` | High |
-| Code | Shared Modules | `.opencode/skill/system-spec-kit/shared/` | High |
-| Code | Scripts | `.opencode/skill/system-spec-kit/scripts/` | High |
-| Documentation | SKILL.md | `.opencode/skill/system-spec-kit/SKILL.md` | High |
-| Documentation | Commands | `.opencode/command/spec_kit/*.md` | High |
-| Documentation | References | `.opencode/skill/system-spec-kit/references/` | High |
-| Templates | All templates | `.opencode/skill/system-spec-kit/templates/` | High |
+| Code | MCP Server | `.opencode/skills/system-spec-kit/mcp_server/` | High |
+| Code | Shared Modules | `.opencode/skills/system-spec-kit/shared/` | High |
+| Code | Scripts | `.opencode/skills/system-spec-kit/scripts/` | High |
+| Documentation | SKILL.md | `.opencode/skills/system-spec-kit/SKILL.md` | High |
+| Documentation | Commands | `.opencode/commands/spec_kit/*.md` | High |
+| Documentation | References | `.opencode/skills/system-spec-kit/references/` | High |
+| Templates | All templates | `.opencode/skills/system-spec-kit/templates/` | High |
 
 ---
 
@@ -266,7 +266,7 @@ The re-analysis revealed systemic patterns including:
 ### Area 1: SKILL.md Analysis (Initial + Re-Analysis)
 
 **Files Analyzed:**
-- `.opencode/skill/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
 
 #### Initial Findings (4 issues)
 
@@ -292,7 +292,7 @@ Fix: Standardize on single value (recommend 3)
 ```
 Location: SKILL.md lines 109, 421-426, 787-788
 Issue: References /memory:save command extensively
-Evidence: No .opencode/command/spec_kit/memory_save.md exists
+Evidence: No .opencode/commands/spec_kit/memory_save.md exists
 Impact: Documented workflow doesn't work
 Fix: Create memory_save.md command file
 ```
@@ -365,8 +365,8 @@ Impact: npm link/install fails
 ### Area 2: MCP Server Core (Initial + Re-Analysis)
 
 **Files Analyzed:**
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/*.js`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/*.js`
 
 #### Initial Findings (3 issues)
 
@@ -474,7 +474,7 @@ Fix: Check mutex before tool execution
 ### Area 3: lib/ Modules (Re-Analysis - 40+ NEW issues)
 
 **Files Analyzed:**
-- All 29 .js files in `.opencode/skill/system-spec-kit/mcp_server/lib/`
+- All 29 .js files in `.opencode/skills/system-spec-kit/mcp_server/lib/`
 
 #### Summary by Category
 
@@ -569,7 +569,7 @@ Line 338: require() inside async function
 ### Area 4: Scripts (Re-Analysis - 26 NEW issues)
 
 **Files Analyzed:**
-- All scripts in `.opencode/skill/system-spec-kit/scripts/`
+- All scripts in `.opencode/skills/system-spec-kit/scripts/`
 - Including subdirectories: core/, extractors/, lib/, loaders/, renderers/, rules/, spec-folder/, utils/, tests/
 
 #### Summary by Category
@@ -659,7 +659,7 @@ test-validation.sh:356-359 - CWE-78 potential
 ### Area 5: Templates (Re-Analysis - 15 NEW issues)
 
 **Files Analyzed:**
-- All 10 templates in `.opencode/skill/system-spec-kit/templates/`
+- All 10 templates in `.opencode/skills/system-spec-kit/templates/`
 - Reference files: template_guide.md, template_style_guide.md, level_specifications.md
 
 #### Detailed Template Findings
@@ -668,7 +668,7 @@ test-validation.sh:356-359 - CWE-78 potential
 ```
 Location: plan.md line 355, tasks.md line 306
 Issue: Reference absolute template path instead of relative spec folder path
-Current: "See .opencode/skill/system-spec-kit/templates/checklist.md"
+Current: "See .opencode/skills/system-spec-kit/templates/checklist.md"
 Should be: "See checklist.md" (relative to spec folder)
 ```
 
@@ -742,8 +742,8 @@ Actual:
 ### Area 6: Commands (Re-Analysis - 18 NEW issues)
 
 **Files Analyzed:**
-- All 7 command files in `.opencode/command/spec_kit/`
-- All YAML assets in `.opencode/command/spec_kit/assets/`
+- All 7 command files in `.opencode/commands/spec_kit/`
+- All YAML assets in `.opencode/commands/spec_kit/assets/`
 
 #### Detailed Command Findings
 
@@ -816,7 +816,7 @@ No unified documentation of why they differ
 ### Area 7: References Documentation (Re-Analysis - 17 NEW issues)
 
 **Files Analyzed:**
-- All files in `.opencode/skill/system-spec-kit/references/`
+- All files in `.opencode/skills/system-spec-kit/references/`
 
 #### Detailed Reference Findings
 
@@ -904,8 +904,8 @@ Contradictory formats
 ### Area 8: shared/ and database/ (Re-Analysis - 16 NEW issues)
 
 **Files Analyzed:**
-- `.opencode/skill/system-spec-kit/shared/`
-- `.opencode/skill/system-spec-kit/database/`
+- `.opencode/skills/system-spec-kit/shared/`
+- `.opencode/skills/system-spec-kit/database/`
 
 #### Shared Module Findings
 
@@ -1029,9 +1029,9 @@ Issue: UNIQUE(spec_folder, file_path, anchor_id)
 ### Area 9: Assets and Configs (Re-Analysis - 15 NEW issues)
 
 **Files Analyzed:**
-- `.opencode/skill/system-spec-kit/assets/`
-- `.opencode/skill/system-spec-kit/mcp_server/configs/`
-- `.opencode/skill/system-spec-kit/constitutional/`
+- `.opencode/skills/system-spec-kit/assets/`
+- `.opencode/skills/system-spec-kit/mcp_server/configs/`
+- `.opencode/skills/system-spec-kit/constitutional/`
 
 #### Asset Findings
 
@@ -1537,7 +1537,7 @@ SELECT DISTINCT embedding_model FROM memory_index;
 | Shared | shared/ | 8+ | 16 |
 | Scripts | scripts/ | 10+ | 26 |
 | Templates | templates/ | 10 | 15 |
-| Commands | .opencode/command/spec_kit/ | 7 | 18 |
+| Commands | .opencode/commands/spec_kit/ | 7 | 18 |
 | References | references/ | 18+ | 17 |
 | Assets | assets/ | 3 | 5 |
 | Constitutional | constitutional/ | 2 | 4 |
@@ -1547,31 +1547,31 @@ SELECT DISTINCT embedding_model FROM memory_index;
 
 ```bash
 # Check missing await (CRITICAL)
-grep -n "formatSearchResults" .opencode/skill/system-spec-kit/mcp_server/context-server.js
+grep -n "formatSearchResults" .opencode/skills/system-spec-kit/mcp_server/context-server.js
 
 # Check CHANGELOG version format
-head -20 .opencode/skill/system-spec-kit/CHANGELOG.md
+head -20 .opencode/skills/system-spec-kit/CHANGELOG.md
 
 # Check E429 in ErrorCodes
-grep -n "E429" .opencode/skill/system-spec-kit/mcp_server/lib/errors.js
+grep -n "E429" .opencode/skills/system-spec-kit/mcp_server/lib/errors.js
 
 # Check JSON.parse without try-catch
-grep -rn "JSON.parse" .opencode/skill/system-spec-kit/mcp_server/lib/*.js | grep -v "try"
+grep -rn "JSON.parse" .opencode/skills/system-spec-kit/mcp_server/lib/*.js | grep -v "try"
 
 # Check config-loader usage
-grep -r "config-loader" .opencode/skill/system-spec-kit/ --include="*.js"
+grep -r "config-loader" .opencode/skills/system-spec-kit/ --include="*.js"
 
 # Check AGENTS.md references
-grep -r "AGENTS.md" .opencode/skill/system-spec-kit/
+grep -r "AGENTS.md" .opencode/skills/system-spec-kit/
 
 # Check hardcoded paths
-grep -rn "/Users/\|/tmp" .opencode/skill/system-spec-kit/ --include="*.js"
+grep -rn "/Users/\|/tmp" .opencode/skills/system-spec-kit/ --include="*.js"
 
 # Count lib/ modules
-ls -1 .opencode/skill/system-spec-kit/mcp_server/lib/*.js | wc -l
+ls -1 .opencode/skills/system-spec-kit/mcp_server/lib/*.js | wc -l
 
 # Check anchor_id population
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
+sqlite3 .opencode/skills/system-spec-kit/database/context-index.sqlite \
   "SELECT COUNT(*) FROM memory_index WHERE anchor_id IS NOT NULL"
 ```
 

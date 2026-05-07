@@ -13,8 +13,8 @@ status: converged
 Validate the replay sandbox, autosave fencing, and idempotency suite after the runtime-boundary mismatch surfaced.
 
 ## Files Reviewed
-- `.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/checklist.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/implementation-summary.md`
 

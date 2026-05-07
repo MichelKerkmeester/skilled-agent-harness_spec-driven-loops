@@ -37,7 +37,7 @@ contextType: "implementation"
 - [x] CHK-002 [P0] Technical approach defined in plan.md [EVIDENCE: documented in this checklist section]
   [EVIDENCE: plan.md created with 3 phases, architecture, dependencies]
 - [x] CHK-003 [P1] Dependencies identified and available [EVIDENCE: documented in this checklist section]
-  [EVIDENCE: cli-codex template, .opencode/agent/*.md, skill_advisor.py all accessible]
+  [EVIDENCE: cli-codex template, .opencode/agents/*.md, skill_advisor.py all accessible]
 
 ---
 
@@ -71,7 +71,7 @@ contextType: "implementation"
 - [x] CHK-020 [P0] skill_advisor.py returns cli-claude-code with confidence >= 0.8 [EVIDENCE: documented in this checklist section]
   [EVIDENCE: `python3 skill_advisor.py "use claude code cli"` returns confidence 0.95]
 - [x] CHK-021 [P0] Symlink resolves correctly [EVIDENCE: documented in this checklist section]
-  [EVIDENCE: `readlink .claude/skills/cli-claude-code` returns `../../.opencode/skill/cli-claude-code`]
+  [EVIDENCE: `readlink .claude/skills/cli-claude-code` returns `../../.opencode/skills/cli-claude-code`]
 - [x] CHK-022 [P1] All files exist (ls -la verification) [EVIDENCE: documented in this checklist section]
   [EVIDENCE: 2 root files + 4 references + 1 asset = 7 skill files total]
 - [x] CHK-023 [P1] Model IDs consistent across all files [EVIDENCE: documented in this checklist section]
@@ -107,7 +107,7 @@ contextType: "implementation"
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized [EVIDENCE: documented in this checklist section]
   [EVIDENCE: All spec docs created and aligned with Level 2 templates]
 - [x] CHK-041 [P1] 3 READMEs updated [EVIDENCE: documented in this checklist section]
-  [EVIDENCE: .opencode/skill/README.md (4 matches), .opencode/README.md (1 match), README.md (1 match)]
+  [EVIDENCE: .opencode/skills/README.md (4 matches), .opencode/README.md (1 match), README.md (1 match)]
 - [x] CHK-042 [P2] Cross-references to sibling skills
   [EVIDENCE: cli-gemini and cli-codex referenced in SKILL.md Sections 7-8 and README.md Section 8]
 

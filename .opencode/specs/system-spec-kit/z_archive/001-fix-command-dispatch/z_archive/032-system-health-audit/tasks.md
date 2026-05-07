@@ -29,34 +29,34 @@ All 34 tasks completed on 2025-12-25.
 
 ### P0-002: getDb() Export ✅
 - **Status:** Already present
-- **File:** `.opencode/skill/system-memory/scripts/lib/vector-index.js`
+- **File:** `.opencode/skills/system-memory/scripts/lib/vector-index.js`
 - **Finding:** Export already in module.exports
 
 ### P0-003: includeConstitutional Parameter ✅
 - **Status:** Fixed
-- **File:** `.opencode/skill/system-memory/mcp_server/semantic-memory.js`
+- **File:** `.opencode/skills/system-memory/mcp_server/semantic-memory.js`
 - **Change:** Added filter for constitutional memories when flag is false
 
 ## P1: CRITICAL - Fixed
 
 ### P1-001: Decay Formula Documentation ✅
-- **File:** `.opencode/skill/system-memory/SKILL.md`
+- **File:** `.opencode/skills/system-memory/SKILL.md`
 - **Change:** Updated to show exponential decay (~62-day half-life)
 
 ### P1-002: Promotion Tier ✅
-- **File:** `.opencode/skill/system-memory/mcp_server/lib/confidence-tracker.js`
+- **File:** `.opencode/skills/system-memory/mcp_server/lib/confidence-tracker.js`
 - **Change:** Changed "constitutional" to "critical"
 
 ### P1-003: Non-Atomic Metadata Update ✅
-- **File:** `.opencode/skill/system-memory/mcp_server/semantic-memory.js`
+- **File:** `.opencode/skills/system-memory/mcp_server/semantic-memory.js`
 - **Change:** Wrapped in transaction
 
 ### P1-004: Windows Path ✅
-- **File:** `.opencode/skill/system-memory/scripts/lib/opencode-capture.js`
+- **File:** `.opencode/skills/system-memory/scripts/lib/opencode-capture.js`
 - **Change:** Added `process.env.USERPROFILE` fallback
 
 ### P1-005: Auto-Promotion ✅
-- **File:** `.opencode/skill/system-memory/mcp_server/lib/confidence-tracker.js`
+- **File:** `.opencode/skills/system-memory/mcp_server/lib/confidence-tracker.js`
 - **Change:** Now calls promotion function when eligible
 
 ## P2: DATA - Fixed

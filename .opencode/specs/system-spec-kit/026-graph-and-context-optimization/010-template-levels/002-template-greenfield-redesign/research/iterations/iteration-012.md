@@ -7,22 +7,22 @@ GROUND-TRUTH INTEGRATION PROBE under the workflow-invariant lens. Read the curre
 ## Actions Taken
 
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-011.md` first.
-- Loaded `.opencode/skill/sk-deep-research/SKILL.md` to preserve the LEAF iteration contract and state-output requirements.
+- Loaded `.opencode/skills/sk-deep-research/SKILL.md` to preserve the LEAF iteration contract and state-output requirements.
 - Read the current source files:
-  - `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh`
-  - `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-  - `.opencode/skill/system-spec-kit/scripts/dist/spec-folder/generate-description.js`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts`
-  - `.opencode/skill/system-spec-kit/templates/level_1/spec.md`
-  - `.opencode/skill/system-spec-kit/templates/level_2/spec.md`
-  - `.opencode/skill/system-spec-kit/templates/level_3/spec.md`
-  - `.opencode/skill/system-spec-kit/templates/level_3+/spec.md`
-  - `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md`
-- Executed `bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --help` to capture the live help output exactly.
+  - `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh`
+  - `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+  - `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts`
+  - `.opencode/skills/system-spec-kit/templates/level_1/spec.md`
+  - `.opencode/skills/system-spec-kit/templates/level_2/spec.md`
+  - `.opencode/skills/system-spec-kit/templates/level_3/spec.md`
+  - `.opencode/skills/system-spec-kit/templates/level_3+/spec.md`
+  - `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md`
+- Executed `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --help` to capture the live help output exactly.
 - Grepped generated template sources for `preset`, `capability`, `capabilities`, `kind`, `manifest`, and `manifestVersion`.
 
 ## Findings
@@ -34,7 +34,7 @@ GROUND-TRUTH INTEGRATION PROBE under the workflow-invariant lens. Read the curre
 Live help output today:
 
 ```text
-Usage: .opencode/skill/system-spec-kit/scripts/spec/create.sh [options] <feature_description>
+Usage: .opencode/skills/system-spec-kit/scripts/spec/create.sh [options] <feature_description>
 
 Creates a new spec folder with templates based on documentation level.
 
@@ -78,28 +78,28 @@ Documentation Levels (CORE + ADDENDUM architecture v2.0):
 Template Composition:
   Core templates (~270 LOC) are shared across all levels.
   Higher levels ADD value, not just length.
-  Templates located in: .opencode/skill/system-spec-kit/templates/
+  Templates located in: .opencode/skills/system-spec-kit/templates/
 
 All levels include: scratch/ (git-ignored working files)
 
 Examples:
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh 'Add user authentication system' --short-name 'user-auth'
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh 'Implement complex OAuth2 flow' --level 2
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh 'Major architecture redesign' --level 3 --number 50
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh 'Large platform migration' --level 3 --sharded
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh 'Add user authentication system' --short-name 'user-auth'
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh 'Implement complex OAuth2 flow' --level 2
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh 'Major architecture redesign' --level 3 --number 50
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh 'Large platform migration' --level 3 --sharded
 
 Sub-folder Versioning Examples:
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh --subfolder specs/005-context-capture 'Initial implementation'
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh --subfolder specs/005-context-capture --topic 'refactor' 'Phase 2 refactoring'
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh --subfolder specs/005-context-capture 'Initial implementation'
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh --subfolder specs/005-context-capture --topic 'refactor' 'Phase 2 refactoring'
 
   Creates: specs/005-context-capture/001-initial-implementation/
            specs/005-context-capture/002-refactor/
 
 Phase Mode Examples:
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh --phase 'Large platform migration'
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh --phase --phases 3 'OAuth2 implementation'
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh --phase --phases 3 --phase-names 'foundation,implementation,integration' 'OAuth2 flow'
-  .opencode/skill/system-spec-kit/scripts/spec/create.sh --phase --parent specs/042-oauth2-flow --phases 2 --phase-names 'stabilization,rollout' 'OAuth2 flow'
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh --phase 'Large platform migration'
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh --phase --phases 3 'OAuth2 implementation'
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh --phase --phases 3 --phase-names 'foundation,implementation,integration' 'OAuth2 flow'
+  .opencode/skills/system-spec-kit/scripts/spec/create.sh --phase --parent specs/042-oauth2-flow --phases 2 --phase-names 'stabilization,rollout' 'OAuth2 flow'
   $0 --phase --phase-parent .opencode/specs/system-spec-kit/023-esm/011-fusion --phase-names "research,implementation" "Graph improvements"
 
   Creates: specs/042-oauth2-flow/
@@ -116,7 +116,7 @@ Phase Mode Examples:
 
 #### 2. `create.sh` Normal Stdout
 
-Current ordinary success template in `.opencode/skill/system-spec-kit/scripts/spec/create.sh`:
+Current ordinary success template in `.opencode/skills/system-spec-kit/scripts/spec/create.sh`:
 
 ```text
 SpecKit: Spec Folder Created Successfully
@@ -252,7 +252,7 @@ Phase parent: missing 1 required file
 Phase parents require only spec.md. Create it from templates/phase_parent/spec.md
 All required files present for Level $level
 Missing ${#missing[@]} required file(s)
-Create missing files: $missing_list. Use templates from .opencode/skill/system-spec-kit/templates/
+Create missing files: $missing_list. Use templates from .opencode/skills/system-spec-kit/templates/
 ```
 
 Current details are raw file names, for example:
@@ -271,7 +271,7 @@ implementation-summary.md (required: tasks show completion)
 | --- | --- | --- |
 | `All required files present for Level $level` | Same. | LEVEL-ONLY |
 | `Missing ${#missing[@]} required file(s)` plus file-only details. | Prefer `Level $level packet missing required file: decision-record.md` for each detail. | FIXED |
-| `Use templates from .opencode/skill/system-spec-kit/templates/` | `Use templates for Level $level from .opencode/skill/system-spec-kit/templates/`. | FIXED |
+| `Use templates from .opencode/skills/system-spec-kit/templates/` | `Use templates for Level $level from .opencode/skills/system-spec-kit/templates/`. | FIXED |
 
 #### 7. `check-sections.sh`, `check-template-headers.sh`, `check-section-counts.sh` Error Output
 
@@ -311,7 +311,7 @@ $display_name: Mid-document extra header '$value' appears before the last requir
 checklist.md: Uses **[P0]** format instead of CHK-NNN [P0] identifiers ($bare_priority_count items without CHK prefix)
 checklist.md: $bare_priority_count item(s) use **[P0]** format instead of CHK-NNN [P0]
 checklist.md: H1 should start with '# Verification Checklist:' (found: '${h1_line:0:60}')
-1. Copy the exact H1/H2 structure from the active template in .opencode/skill/system-spec-kit/templates/
+1. Copy the exact H1/H2 structure from the active template in .opencode/skills/system-spec-kit/templates/
 2. Restore missing or reordered required sections before custom sections
 3. Use '# Verification Checklist:' and CHK-NNN [P0/P1/P2] format for checklist files
 Move custom sections after the required template structure or document the deviation explicitly
@@ -400,10 +400,10 @@ Current level markers:
 Leak probe found:
 
 ```text
-.opencode/skill/system-spec-kit/templates/phase_parent/spec.md:21:    - Sub-phase manifest: which child phase folders exist and what each one does
-.opencode/skill/system-spec-kit/templates/level_3+/spec.md:198:**As a** [user type], **I want** [capability], **so that** [benefit].
-.opencode/skill/system-spec-kit/templates/level_3/spec.md:199:**As a** [user type], **I want** [capability], **so that** [benefit].
-.opencode/skill/system-spec-kit/templates/level_3/spec.md:208:**As a** [user type], **I want** [capability], **so that** [benefit].
+.opencode/skills/system-spec-kit/templates/phase_parent/spec.md:21:    - Sub-phase manifest: which child phase folders exist and what each one does
+.opencode/skills/system-spec-kit/templates/level_3+/spec.md:198:**As a** [user type], **I want** [capability], **so that** [benefit].
+.opencode/skills/system-spec-kit/templates/level_3/spec.md:199:**As a** [user type], **I want** [capability], **so that** [benefit].
+.opencode/skills/system-spec-kit/templates/level_3/spec.md:208:**As a** [user type], **I want** [capability], **so that** [benefit].
 ```
 
 | Today's text | Proposed text | Vocabulary verdict |
@@ -414,7 +414,7 @@ Leak probe found:
 
 #### 10. Generated `description.json` Field Shape
 
-Current explicit-description shape from `.opencode/skill/system-spec-kit/scripts/dist/spec-folder/generate-description.js`:
+Current explicit-description shape from `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js`:
 
 ```json
 {
@@ -430,7 +430,7 @@ Current explicit-description shape from `.opencode/skill/system-spec-kit/scripts
 }
 ```
 
-Current generated-from-spec shape in `.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts` has the same required/identity fields. It does not include `level`.
+Current generated-from-spec shape in `.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts` has the same required/identity fields. It does not include `level`.
 
 | Today's text | Proposed text | Vocabulary verdict |
 | --- | --- | --- |
@@ -488,7 +488,7 @@ Current `create_graph_metadata_file` shape:
 
 3. CI should fail on banned vocabulary in user-facing surfaces.
 
-   Add `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts`. It should scan CLI help-producing script text, validator messages, generated templates, command/skill docs if included in the packet, and generated metadata writers. The current source would fail because generated `spec.md` templates contain `[capability]` and phase-parent content contains `Sub-phase manifest`.
+   Add `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts`. It should scan CLI help-producing script text, validator messages, generated templates, command/skill docs if included in the packet, and generated metadata writers. The current source would fail because generated `spec.md` templates contain `[capability]` and phase-parent content contains `Sub-phase manifest`.
 
 ### Workflow-Invariance Test Spec
 
@@ -503,17 +503,17 @@ const repoRoot = path.resolve(__dirname, '../../../../..');
 const banned = /\b(?:preset|capability|capabilities|kind|manifest|manifestVersion)\b/i;
 
 const userFacingFiles = [
-  '.opencode/skill/system-spec-kit/scripts/spec/create.sh',
-  '.opencode/skill/system-spec-kit/scripts/rules/check-files.sh',
-  '.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh',
-  '.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh',
-  '.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh',
-  '.opencode/skill/system-spec-kit/scripts/spec/validate.sh',
-  '.opencode/skill/system-spec-kit/templates/level_1/spec.md',
-  '.opencode/skill/system-spec-kit/templates/level_2/spec.md',
-  '.opencode/skill/system-spec-kit/templates/level_3/spec.md',
-  '.opencode/skill/system-spec-kit/templates/level_3+/spec.md',
-  '.opencode/skill/system-spec-kit/templates/phase_parent/spec.md',
+  '.opencode/skills/system-spec-kit/scripts/spec/create.sh',
+  '.opencode/skills/system-spec-kit/scripts/rules/check-files.sh',
+  '.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh',
+  '.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh',
+  '.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh',
+  '.opencode/skills/system-spec-kit/scripts/spec/validate.sh',
+  '.opencode/skills/system-spec-kit/templates/level_1/spec.md',
+  '.opencode/skills/system-spec-kit/templates/level_2/spec.md',
+  '.opencode/skills/system-spec-kit/templates/level_3/spec.md',
+  '.opencode/skills/system-spec-kit/templates/level_3+/spec.md',
+  '.opencode/skills/system-spec-kit/templates/phase_parent/spec.md',
 ];
 
 function visibleLines(relativePath: string): string[] {
@@ -581,7 +581,7 @@ If the team wants the narrower wording requested in the prompt, drop `manifest|m
 ## Questions Remaining
 
 1. Should the workflow-invariance CI test include command docs, agent docs, and skill docs in the same first test, or split them into a second public-docs test to reduce false positives?
-2. Should existing generated fixtures under `.opencode/skill/system-spec-kit/scripts/tests/fixtures/` be rewritten immediately, or should the first CI pass focus on live templates and output-producing scripts only?
+2. Should existing generated fixtures under `.opencode/skills/system-spec-kit/scripts/tests/fixtures/` be rewritten immediately, or should the first CI pass focus on live templates and output-producing scripts only?
 
 ## Next Focus
 

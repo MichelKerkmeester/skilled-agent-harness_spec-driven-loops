@@ -45,7 +45,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet `041-sk-improve-agent-loop` already completed the functional agent-improver work, but the package still had structural drift against `sk-doc` rules. The skill entrypoint at `.opencode/skill/sk-improve-agent/SKILL.md`, the skill README, the bundled references, markdown assets, the canonical loop agent, and the slash command all had section-shape or packaging issues that prevented clean `sk-doc` validation and kept packet `041` short of a true 100 percent closeout.
+Packet `041-sk-improve-agent-loop` already completed the functional agent-improver work, but the package still had structural drift against `sk-doc` rules. The skill entrypoint at `.opencode/skills/sk-improve-agent/SKILL.md`, the skill README, the bundled references, markdown assets, the canonical loop agent, and the slash command all had section-shape or packaging issues that prevented clean `sk-doc` validation and kept packet `041` short of a true 100 percent closeout.
 
 ### Purpose
 Add a dedicated phase that brings `sk-improve-agent` and its related command and agent surfaces into `sk-doc` alignment, updates the parent packet to record that closure honestly, and verifies the whole `041` packet family again.
@@ -57,12 +57,12 @@ Add a dedicated phase that brings `sk-improve-agent` and its related command and
 ## 3. SCOPE
 
 ### In Scope
-- `.opencode/skill/sk-improve-agent/SKILL.md`
-- `.opencode/skill/sk-improve-agent/README.md`
-- Markdown files under `.opencode/skill/sk-improve-agent/references/`
-- Markdown files under `.opencode/skill/sk-improve-agent/assets/`
-- `.opencode/command/spec_kit/agent-improver.md`
-- `.opencode/agent/agent-improver.md`
+- `.opencode/skills/sk-improve-agent/SKILL.md`
+- `.opencode/skills/sk-improve-agent/README.md`
+- Markdown files under `.opencode/skills/sk-improve-agent/references/`
+- Markdown files under `.opencode/skills/sk-improve-agent/assets/`
+- `.opencode/commands/spec_kit/agent-improver.md`
+- `.opencode/agents/agent-improver.md`
 - Parent packet `041` docs and registry metadata needed to record phase `003`
 
 ### Out of Scope
@@ -71,9 +71,9 @@ Add a dedicated phase that brings `sk-improve-agent` and its related command and
 - Opening a new sibling packet outside `041`
 
 ### Files to Change
-- `.opencode/skill/sk-improve-agent/`
-- `.opencode/command/spec_kit/agent-improver.md`
-- `.opencode/agent/agent-improver.md`
+- `.opencode/skills/sk-improve-agent/`
+- `.opencode/commands/spec_kit/agent-improver.md`
+- `.opencode/agents/agent-improver.md`
 - `.opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/`
 - `.opencode/specs/descriptions.json`
 <!-- /ANCHOR:scope -->
@@ -87,10 +87,10 @@ Add a dedicated phase that brings `sk-improve-agent` and its related command and
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | `sk-improve-agent` packages cleanly | `package_skill.py --check` passes for `.opencode/skill/sk-improve-agent` |
+| REQ-001 | `sk-improve-agent` packages cleanly | `package_skill.py --check` passes for `.opencode/skills/sk-improve-agent` |
 | REQ-002 | README aligns with `sk-doc` | `validate_document.py --type readme` passes for the skill README |
-| REQ-003 | Canonical loop command aligns with `sk-doc` | `validate_document.py --type command` passes for `.opencode/command/spec_kit/agent-improver.md` |
-| REQ-004 | Canonical loop agent aligns with `sk-doc` | `validate_document.py --type agent` passes for `.opencode/agent/agent-improver.md` |
+| REQ-003 | Canonical loop command aligns with `sk-doc` | `validate_document.py --type command` passes for `.opencode/commands/spec_kit/agent-improver.md` |
+| REQ-004 | Canonical loop agent aligns with `sk-doc` | `validate_document.py --type agent` passes for `.opencode/agents/agent-improver.md` |
 | REQ-005 | Skill references and markdown assets align with `sk-doc` | All reference and asset markdown files pass `validate_document.py` |
 
 ### P1 - Required (complete OR user-approved deferral)

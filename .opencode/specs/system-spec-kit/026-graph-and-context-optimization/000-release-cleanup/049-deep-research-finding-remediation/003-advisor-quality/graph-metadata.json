@@ -54,7 +54,7 @@
       "mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts",
       "mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts",
       "mcp_server/skill_advisor/tests/compat/plugin-bridge.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
@@ -143,7 +143,7 @@
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {

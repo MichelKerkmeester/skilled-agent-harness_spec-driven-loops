@@ -20,7 +20,7 @@ The `calculateNoveltyBoost()` function in `composite-scoring.ts:529` always retu
 
 **Verdict**: No action needed. The feature was evaluated, found to have marginal value, and permanently disabled at the code level. Setting the env var to `true` would have zero effect.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:522-531`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:522-531`]
 
 ### Finding 2: SPECKIT_MEMORY_RECONSOLIDATION -- RECOMMEND ENABLE with checkpoint prerequisite
 
@@ -37,9 +37,9 @@ The `calculateNoveltyBoost()` function in `composite-scoring.ts:529` always retu
 
 **Recommendation**: ENABLE by default, but with auto-checkpoint creation on first activation. The assistive variant is already ON, so the full version is a natural progression.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:1-14`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:158-163`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:40-58`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:1-14`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:158-163`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:40-58`]
 
 ### Finding 3: SPECKIT_FILE_WATCHER -- KEEP OPT-IN (external dependency)
 
@@ -51,8 +51,8 @@ The `calculateNoveltyBoost()` function in `composite-scoring.ts:529` always retu
 
 **Recommendation**: KEEP OPT-IN. This requires an external native dependency (chokidar) that isn't guaranteed to be installed, consumes background resources (file descriptors, CPU for polling), and may cause issues in CI/container environments. Users who want it should explicitly opt in.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:293-299`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:1137`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:293-299`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:1137`]
 
 ### Finding 4: RERANKER_LOCAL -- KEEP OPT-IN (heavy native dependency + RAM requirement)
 
@@ -68,8 +68,8 @@ The `calculateNoveltyBoost()` function in `composite-scoring.ts:529` always retu
 
 **Recommendation**: KEEP OPT-IN. This is a heavyweight optional enhancement that requires specific hardware and software prerequisites. Enabling it by default would cause startup warnings/errors for most users.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts:5-6, 209-213, 275`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:303-309`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts:5-6, 209-213, 275`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:303-309`]
 
 ### Finding 5: SPECKIT_QUALITY_LOOP -- RECOMMEND ENABLE (pure algorithmic, no dependencies)
 
@@ -87,8 +87,8 @@ The only potential issue: it could reject saves that previously would have succe
 
 **Recommendation**: ENABLE by default. Pure algorithmic, bounded, deterministic, non-destructive. Prevents low-quality memory saves. No external dependencies.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:566-589`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:314-317`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:566-589`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:314-317`]
 
 ### Finding 6: SPECKIT_MEMORY_ADAPTIVE_RANKING -- KEEP OFF (roadmap/shadow feature, not ready)
 
@@ -100,8 +100,8 @@ The only potential issue: it could reject saves that previously would have succe
 
 **Recommendation**: KEEP OFF until the feature graduation process promotes it. Even if enabled, it defaults to shadow mode which is non-functional for end users. The feature needs more evaluation data before promotion.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts:321-337`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:58,67`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts:321-337`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:58,67`]
 
 ### Finding 7: Summary Recommendation Table
 
@@ -126,15 +126,15 @@ The only potential issue: it could reject saves that previously would have succe
 - None. All 6 features investigated successfully with clear verdicts.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts` (flag definitions, lines 158-318)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts` (novelty boost, lines 510-531)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts` (reconsolidation module, lines 1-50)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts` (assistive recon, lines 40-58)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts` (quality loop, lines 566-589)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts` (local reranker, lines 5-275)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts` (adaptive ranking, lines 310-337)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts` (capability flags, lines 58-67)
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` (file watcher docs, line 1137)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` (flag definitions, lines 158-318)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts` (novelty boost, lines 510-531)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts` (reconsolidation module, lines 1-50)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts` (assistive recon, lines 40-58)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts` (quality loop, lines 566-589)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts` (local reranker, lines 5-275)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts` (adaptive ranking, lines 310-337)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts` (capability flags, lines 58-67)
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` (file watcher docs, line 1137)
 
 ## Assessment
 - New information ratio: 0.64

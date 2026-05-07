@@ -5,7 +5,7 @@
   "targets": [
     {
       "id": "handover-canonical",
-      "path": ".opencode/agent/handover.md",
+      "path": ".opencode/agents/handover.md",
       "classification": "canonical",
       "mutableInPhase1": false,
       "candidateOnly": true,
@@ -16,7 +16,7 @@
         "tasks.md",
         "checklist.md",
         "memory/",
-        ".opencode/skill/system-spec-kit/templates/handover.md"
+        ".opencode/skills/system-spec-kit/templates/handover.md"
       ]
     },
     {
@@ -45,15 +45,15 @@
     }
   ],
   "fixed": [
-    ".opencode/command/spec_kit/handover.md",
+    ".opencode/commands/spec_kit/handover.md",
     ".agents/commands/spec_kit/handover.toml",
     ".gemini/commands/spec_kit/handover.toml",
-    ".opencode/skill/system-spec-kit/templates/handover.md"
+    ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
   "forbidden": [
-    ".opencode/command/spec_kit/handover.md",
+    ".opencode/commands/spec_kit/handover.md",
     ".agents/commands/spec_kit/handover.toml",
     ".gemini/commands/spec_kit/handover.toml",
-    ".opencode/skill/system-spec-kit/templates/handover.md"
+    ".opencode/skills/system-spec-kit/templates/handover.md"
   ]
 }

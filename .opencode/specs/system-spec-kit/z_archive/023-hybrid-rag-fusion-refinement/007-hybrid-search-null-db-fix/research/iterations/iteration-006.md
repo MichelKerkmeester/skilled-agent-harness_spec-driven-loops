@@ -2,11 +2,11 @@
 
 ## Focus
 
-This iteration audited the live lexical-search pipeline for compound-term recall and tokenizer behavior. I read the source and built artifacts for BM25/FTS query normalization, then ran SQL against `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` to verify how the live FTS index behaves for `cocoindex`, `speckit`, `memorystate`, and nearby variants.
+This iteration audited the live lexical-search pipeline for compound-term recall and tokenizer behavior. I read the source and built artifacts for BM25/FTS query normalization, then ran SQL against `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` to verify how the live FTS index behaves for `cocoindex`, `speckit`, `memorystate`, and nearby variants.
 
 ## Findings
 
-1. The source and built artifacts are in sync, and the in-memory BM25 stemmer is intentionally minimal. `STOP_WORDS` is a fixed English stop-list; `simpleStem()` only strips `ing`, `tion`, `ed`, `ly`, `es`, and `s`, with a small doubled-consonant cleanup after suffix removal. `splitLexicalFragments()` lowercases text but preserves hyphens and underscores, so the in-memory BM25 path keeps `memory-state`, `spec-kit`, and `coco-index` as single tokens instead of splitting them. `normalizeContentForBM25()` does not add any BM25-specific compound handling; it delegates to the generic content normalizer. Code: `.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:87-156`, `:562-590`, `.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/bm25-index.js:48-130`, `:471-497`, `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts:234-263`.
+1. The source and built artifacts are in sync, and the in-memory BM25 stemmer is intentionally minimal. `STOP_WORDS` is a fixed English stop-list; `simpleStem()` only strips `ing`, `tion`, `ed`, `ly`, `es`, and `s`, with a small doubled-consonant cleanup after suffix removal. `splitLexicalFragments()` lowercases text but preserves hyphens and underscores, so the in-memory BM25 path keeps `memory-state`, `spec-kit`, and `coco-index` as single tokens instead of splitting them. `normalizeContentForBM25()` does not add any BM25-specific compound handling; it delegates to the generic content normalizer. Code: `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:87-156`, `:562-590`, `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/bm25-index.js:48-130`, `:471-497`, `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts:234-263`.
 
    Runtime probe against the built JS:
 
@@ -26,7 +26,7 @@ This iteration audited the live lexical-search pipeline for compound-term recall
 
    Conclusion: the current stemmer does not split or normalize concatenated compounds like `cocoindex`, `speckit`, or `memorystate`; it only handles a small set of suffix cases.
 
-2. The live `memory_fts` table is using default FTS5 tokenization, not `porter`, and the live index already contains exact compound tokens for the terms in scope. Both the main schema migration and the downgrade-path schema builder create `memory_fts` without a `tokenize=` clause, and the compiled JS mirrors the same SQL. Code: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:751-757`, `.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:203-209`, `.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/vector-index-schema.js:639-648`.
+2. The live `memory_fts` table is using default FTS5 tokenization, not `porter`, and the live index already contains exact compound tokens for the terms in scope. Both the main schema migration and the downgrade-path schema builder create `memory_fts` without a `tokenize=` clause, and the compiled JS mirrors the same SQL. Code: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:751-757`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:203-209`, `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/vector-index-schema.js:639-648`.
 
    SQL evidence:
 
@@ -61,7 +61,7 @@ This iteration audited the live lexical-search pipeline for compound-term recall
 
    Conclusion: the exact compounds are not being lost during indexing. The live FTS corpus already contains searchable `cocoindex`, `speckit`, and `memorystate` terms.
 
-3. Compound recall is mostly fine for exact concatenated terms, but the current system is inconsistent across lexical channels for hyphenated and space-separated variants. The SQLite FTS path uses `normalizeLexicalQueryTokens(query).fts` and joins tokens with `OR`, while the in-memory BM25 path uses `normalizeLexicalQueryTokens(query).bm25`, which preserves hyphenated compounds and applies stemming. Code: `.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:55-60`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:153-156`, `:320`, `:562-570`, `.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/sqlite-fts.js:28-35`.
+3. Compound recall is mostly fine for exact concatenated terms, but the current system is inconsistent across lexical channels for hyphenated and space-separated variants. The SQLite FTS path uses `normalizeLexicalQueryTokens(query).fts` and joins tokens with `OR`, while the in-memory BM25 path uses `normalizeLexicalQueryTokens(query).bm25`, which preserves hyphenated compounds and applies stemming. Code: `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:55-60`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:153-156`, `:320`, `:562-570`, `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/sqlite-fts.js:28-35`.
 
    In-memory BM25 probe against the built JS:
 
@@ -101,7 +101,7 @@ This iteration audited the live lexical-search pipeline for compound-term recall
 
    Conclusion: the current system does not have one stable notion of “same term” for `foo-bar`, `foobar`, and `foo bar`. In-memory BM25 treats them as different tokens; SQLite FTS with default tokenization partially collapses them.
 
-4. Query sanitization is safe, but it strips user intent and broadens split queries aggressively. `sanitizeQueryTokens()` removes `AND`, `OR`, `NOT`, `NEAR`, `/N`, quotes, and `:`; then the SQLite FTS path wraps the resulting `fts` tokens in quotes and joins them with `OR`. That means `title:memory AND vector` becomes `title OR memory OR vector`, and `memory NEAR/5 state` becomes `memory OR state`. Code: `.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:534-571`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:55-60`, `.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/bm25-index.js:462-497`.
+4. Query sanitization is safe, but it strips user intent and broadens split queries aggressively. `sanitizeQueryTokens()` removes `AND`, `OR`, `NOT`, `NEAR`, `/N`, quotes, and `:`; then the SQLite FTS path wraps the resulting `fts` tokens in quotes and joins them with `OR`. That means `title:memory AND vector` becomes `title OR memory OR vector`, and `memory NEAR/5 state` becomes `memory OR state`. Code: `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:534-571`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:55-60`, `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/bm25-index.js:462-497`.
 
    Runtime probe:
 
@@ -140,12 +140,12 @@ This iteration audited the live lexical-search pipeline for compound-term recall
 
    Conclusion: the query builder currently favors recall over precision very aggressively. That helps recover split forms, but it also creates a lot of lexical noise for compound-like queries.
 
-5. Switching the live FTS table to `porter` would improve inflectional recall, but it does not solve the compound-term problem the user asked about, and it noticeably widens the match surface. On the real corpus, a disposable `porter unicode61` mirror increased recall for morphology-sensitive terms, but compound terms were unchanged. Code context: `.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:106-128`, `:562-570`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:55-60`.
+5. Switching the live FTS table to `porter` would improve inflectional recall, but it does not solve the compound-term problem the user asked about, and it noticeably widens the match surface. On the real corpus, a disposable `porter unicode61` mirror increased recall for morphology-sensitive terms, but compound terms were unchanged. Code context: `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:106-128`, `:562-570`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:55-60`.
 
    Real-corpus SQL experiment using disposable in-memory FTS mirrors:
 
    ```sql
-   ATTACH DATABASE '.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite' AS src;
+   ATTACH DATABASE '.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite' AS src;
    CREATE VIRTUAL TABLE u USING fts5(title, trigger_phrases, file_path, content_text, tokenize='unicode61');
    CREATE VIRTUAL TABLE p USING fts5(title, trigger_phrases, file_path, content_text, tokenize='porter unicode61');
    INSERT INTO u(...) SELECT ... FROM src.memory_index WHERE COALESCE(is_archived,0)=0;

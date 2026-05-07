@@ -72,7 +72,7 @@ None.
 ### P1 Findings
 
 1. **P1-001: 007 packet does not document the marker-sweep purpose it is supposed to authorize**
-   - **Evidence:** `007/spec.md:79`, `007/plan.md:39`, `007/tasks.md:50`, and related canonical docs remain scaffold placeholders, while the implementation under review is concrete marker emission in `.opencode/skill/system-spec-kit/scripts/spec/create.sh:528`.
+   - **Evidence:** `007/spec.md:79`, `007/plan.md:39`, `007/tasks.md:50`, and related canonical docs remain scaffold placeholders, while the implementation under review is concrete marker emission in `.opencode/skills/system-spec-kit/scripts/spec/create.sh:528`.
    - **Impact:** The approved spec folder does not authorize or explain the marker validation sweep with enough specificity for release/readiness review.
    - **Recommendation:** Replace scaffold placeholders with concrete purpose, scope, requirements, tasks, checklist evidence, decisions, and implementation summary for the marker sweep.
    - **Finding class:** matrix/evidence

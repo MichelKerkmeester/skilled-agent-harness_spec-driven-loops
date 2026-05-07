@@ -62,8 +62,8 @@ _memory:
 
 - [x] CHK-020 [P0] `ensure-ready` tests cover fresh, inline-selective, post-commit selective recovery, and stale-refusal paths [EVIDENCE: `tests/ensure-ready.vitest.ts` now covers inline selective reindex, small HEAD-drift recovery, and inline full-scan refusal]
 - [x] CHK-021 [P0] Structural handler tests prove safe inline behavior [EVIDENCE: `tests/code-graph-query-handler.vitest.ts` and `tests/code-graph-context-handler.vitest.ts` verify bounded handler readiness behavior]
-- [x] CHK-022 [P1] `npx tsc --noEmit` passes after runtime changes [EVIDENCE: `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit`]
-- [x] CHK-023 [P1] Strict packet validation passes after parent truth-sync [EVIDENCE: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict`]
+- [x] CHK-022 [P1] `npx tsc --noEmit` passes after runtime changes [EVIDENCE: `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit`]
+- [x] CHK-023 [P1] Strict packet validation passes after parent truth-sync [EVIDENCE: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict`]
 <!-- /ANCHOR:testing -->
 
 ---

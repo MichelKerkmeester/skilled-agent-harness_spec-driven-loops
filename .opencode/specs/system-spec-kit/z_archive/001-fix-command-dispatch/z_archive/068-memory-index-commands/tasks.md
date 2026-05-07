@@ -59,7 +59,7 @@ Tasks are grouped by phase to enable clear progress tracking.
 - ID format: `T###`
 
 ### Path Conventions
-- **Commands**: `.opencode/command/memory/`
+- **Commands**: `.opencode/commands/memory/`
 - **Spec folder**: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands`
 
 ---
@@ -124,7 +124,7 @@ Tasks are grouped by phase to enable clear progress tracking.
 **Independent Test**: Run all management operations, verify gates work
 
 **Implementation:**
-- [x] T021 [US2] Create `.opencode/command/memory/database.md` file
+- [x] T021 [US2] Create `.opencode/commands/memory/database.md` file
 - [x] T022 [US2] Write frontmatter (description, argument-hint, allowed-tools)
 - [x] T023 [US2] Write Gate 1 (Cleanup confirmation)
 - [x] T024 [US2] Write Gate 2 (Delete confirmation)

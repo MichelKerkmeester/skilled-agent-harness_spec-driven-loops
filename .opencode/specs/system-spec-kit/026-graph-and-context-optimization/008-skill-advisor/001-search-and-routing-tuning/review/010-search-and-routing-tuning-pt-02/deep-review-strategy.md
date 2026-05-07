@@ -23,7 +23,7 @@ Root review of `010-search-and-routing-tuning` covering the promoted parent meta
 <!-- /ANCHOR:review-dimensions -->
 <!-- ANCHOR:non-goals -->
 ## 4. NON-GOALS
-- Reopening runtime implementation files under `.opencode/skill/system-spec-kit/`.
+- Reopening runtime implementation files under `.opencode/skills/system-spec-kit/`.
 - Repairing packet docs during the review itself.
 - Auditing unrelated packet families outside `010-search-and-routing-tuning/`.
 
@@ -91,8 +91,8 @@ Root review of `010-search-and-routing-tuning` covering the promoted parent meta
 <!-- /ANCHOR:exhausted-approaches -->
 <!-- ANCHOR:ruled-out-directions -->
 ## 11. RULED OUT DIRECTIONS
-- A current Stage 3 continuity regression in the promoted runtime. Ruled out by the live MMR intent selection. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:209]
-- A current metadata-only host-selection regression in the promoted runtime. Ruled out by the live host resolver and targeted regression. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1054] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1157]
+- A current Stage 3 continuity regression in the promoted runtime. Ruled out by the live MMR intent selection. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:209]
+- A current metadata-only host-selection regression in the promoted runtime. Ruled out by the live host resolver and targeted regression. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1054] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1157]
 - A packet-local security issue in prompts, metadata, or review surfaces. The security passes found no secret handling or privilege-boundary defect.
 
 <!-- /ANCHOR:ruled-out-directions -->
@@ -142,9 +142,9 @@ Stop iteration. Open a narrow promotion-remediation pass that regenerates the pr
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/implementation-summary.md` | D1 | 1 | 0 P0, 1 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/graph-metadata.json` | D1 | 1 | 0 P0, 1 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/review/deep-review-dashboard.md` | D3, D4 | 19 | 0 P0, 2 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts` | D1, D3 | 14 | 0 P0, 1 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` | D1, D3 | 13 | 0 P0, 1 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts` | D1, D3 | 13 | 0 P0, 1 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts` | D1, D3 | 14 | 0 P0, 1 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | D1, D3 | 13 | 0 P0, 1 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts` | D1, D3 | 13 | 0 P0, 1 P1, 0 P2 | complete |
 <!-- MACHINE-OWNED: END -->
 
 <!-- /ANCHOR:files-under-review -->

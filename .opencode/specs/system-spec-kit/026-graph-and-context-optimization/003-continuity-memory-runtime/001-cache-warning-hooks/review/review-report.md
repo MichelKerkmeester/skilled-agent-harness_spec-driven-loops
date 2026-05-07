@@ -15,7 +15,7 @@ Two allocated iterations covered the live Stop-hook boundary and then the replay
 
 ### P1
 
-1. Packet `002` still documented `session-stop.ts` as a narrower writer-only boundary, but the live Stop path invokes `runContextAutosave()` by default and shells into `generate-context.js` whenever the state carries a spec folder and summary. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/spec.md:124] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/checklist.md:61] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:308]
+1. Packet `002` still documented `session-stop.ts` as a narrower writer-only boundary, but the live Stop path invokes `runContextAutosave()` by default and shells into `generate-context.js` whenever the state carries a spec folder and summary. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/spec.md:124] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/checklist.md:61] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:308]
 
     {
       "claim": "The packet evidence overstates the Stop hook boundary: live `processStopHook()` still performs default autosave work in addition to additive hook-state writes.",
@@ -24,9 +24,9 @@ Two allocated iterations covered the live Stop-hook boundary and then the replay
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/tasks.md:69",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/checklist.md:61",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/implementation-summary.md:63",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:85",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:308"
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:85",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:308"
       ],
       "counterevidenceSought": "The replay harness explicitly disables autosave and the replay suite therefore proves the narrower sandboxed writer path. That counterevidence is real for tests, but it does not remove the default runtime branch in `session-stop.ts`.",
       "alternativeExplanation": "The packet may have meant to allow compact continuity-wrapper autosave as part of the producer seam, but the current checklist and implementation summary say `session-stop.ts` only writes additive metadata.",
@@ -46,5 +46,5 @@ This is not a hidden code defect in the replay harness. The contradiction is bet
 
 ## 5. Cross-References
 
-- The replay harness and replay suite still truthfully prove the sandboxed path: `.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts` and `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts`.
-- The live default autosave branch remains in `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60-105` and `:308-309`.
+- The replay harness and replay suite still truthfully prove the sandboxed path: `.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts` and `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts`.
+- The live default autosave branch remains in `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60-105` and `:308-309`.

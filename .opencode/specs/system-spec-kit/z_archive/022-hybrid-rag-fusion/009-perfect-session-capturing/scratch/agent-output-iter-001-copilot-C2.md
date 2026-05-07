@@ -1,6 +1,6 @@
 ● Search (grep)
   │ "abort|validation|validate|quality|gate|halt|stop|throw|error|memory-indexer|index|contract|capa
-  │ bilit" in {workflow.ts,memory-indexer.ts} (.opencode/skill/system-spec-kit/scripts/core)
+  │ bilit" in {workflow.ts,memory-indexer.ts} (.opencode/skills/system-spec-kit/scripts/core)
   └ 5 lines found
 
 ● Search (grep)
@@ -30,7 +30,7 @@ I found the core file set; next I’ll locate those phase-spec paths exactly, th
 ● Search (grep)
   │ "abort|validation|validate|quality gate|gate|halt|stop|throw new
   │ Error|indexability|schema|contract|capabilit|required source|live proof" in
-  │ {workflow.ts,memory-indexer.ts} (.opencode/skill/system-spec-kit/scripts/core)
+  │ {workflow.ts,memory-indexer.ts} (.opencode/skills/system-spec-kit/scripts/core)
   └ 51 lines found
 
 ● Search (grep)
@@ -111,12 +111,12 @@ I found the core file set; next I’ll locate those phase-spec paths exactly, th
   │ "determineValidationDisposition|decideSemanticIndexing|validateMemoryTemplateContract|validateMe
   │ moryQualityContent|QUALITY_GATE|write_skip_index|abort_write|structured|stateless|skip.*index|th
   │ row new Error|warning|warn|getSourceCapabilities"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "skipped_quality_gate|skipped_index_policy|indexed|status|reason|index|validation|quality|abort|
-  │ write_skip_index|abort_write" (.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts)
+  │ write_skip_index|abort_write" (.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts)
   └ 113 lines found
 
 ● Count lines in target files (shell)
@@ -124,7 +124,7 @@ I found the core file set; next I’ll locate those phase-spec paths exactly, th
   │ pec.md,plan.md,implementation-summary.md,research.md,017-stateless-quality-gates/spec.md,018-run
   │ time-contract-and-indexability/spec.md,019-source-capabilities-and-structured-preference/spec.md
   │ ,020-live-proof-and-parity-hardening/spec.md}
-  │ .opencode/skill/system-spec-kit/scripts/core/{workflow.ts,memory-indexer.ts}
+  │ .opencode/skills/system-spec-kit/scripts/core/{workflow.ts,memory-indexer.ts}
   └ 12 lines...
 
 I’ve mapped the target files; now I’m extracting precise claim lines (with line numbers) from docs and the two runtime files so I can classify each claim as accurate/outdated/missing.
@@ -184,12 +184,12 @@ I’ve mapped the target files; now I’m extracting precise claim lines (with l
   │ "determineValidationDisposition|validateMemoryTemplateContract|validateMemoryQualityContent|QUAL
   │ ITY_GATE_ABORT|QUALITY_GATE_WARN|write_skip_index|abort_write|decideSemanticIndexing|indexBlocki
   │ ngRuleIds|blockingRuleIds|getSourceCapabilities|throw new Error"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "skipped_quality_gate|skipped_index_policy|indexed|embedding|reason|status"
-  │ (.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts)
   └ 84 lines found
 
 ● Read spec.md
@@ -230,49 +230,49 @@ I’ve mapped the target files; now I’m extracting precise claim lines (with l
   └ 119 lines read
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L150:240 (91 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1988:2175 (187 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2270:2345 (76 lines read)
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ 204 lines read
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1:120 (120 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1300:1390 (91 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1820:1895 (76 lines read)
 
 ● Search (grep)
   │ "captureCapabilities|getSourceCapabilities|determineValidationDisposition\(|validationDispositio
   │ n\.|QUALITY_GATE_FAIL|CONTAMINATION_GATE_ABORT|write_skip_index|abort_write"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 54 lines found
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L1:260 (259 lines read)
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L261:560 (300 lines read)
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L560:900 (190 lines read)
 
 ● Read spec.md

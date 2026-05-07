@@ -64,7 +64,7 @@ This is essentially what Dual-Graph does, but:
 ### 4. Building Our Own: Architecture Sketch
 
 ```
-New module: .opencode/skill/system-spec-kit/mcp_server/lib/search/code-graph.ts
+New module: .opencode/skills/system-spec-kit/mcp_server/lib/search/code-graph.ts
 
 Components:
 1. tree-sitter parser → Extract ASTs for JS/TS/Python/Shell
@@ -94,7 +94,7 @@ This means the architecture ALREADY has a graph search channel — it just needs
 - madge: too limited (JS/TS modules only, no function-level)
 
 ## Sources
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:77-78] — graph search imports
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:88] — graph flags imports
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:77-78] — graph search imports
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:88] — graph flags imports
 - [SOURCE: https://github.com/paul-gauthier/aider] — aider repo-map approach
 - [SOURCE: https://tree-sitter.github.io/tree-sitter/] — tree-sitter AST parsing

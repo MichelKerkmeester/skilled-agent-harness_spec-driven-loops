@@ -123,7 +123,7 @@ We needed to decide whether `sk-improve-agent` should begin by directly editing 
 
 ---
 
-### ADR-002: Use `.opencode/agent/handover.md` as the First Target Surface
+### ADR-002: Use `.opencode/agents/handover.md` as the First Target Surface
 
 ### Metadata
 
@@ -149,9 +149,9 @@ We needed one first target that was narrow, canonical, and measurable. The resea
 
 ### Decision
 
-**We chose**: Use `.opencode/agent/handover.md` as the first mutable source surface, evaluated through handover output expectations.
+**We chose**: Use `.opencode/agents/handover.md` as the first mutable source surface, evaluated through handover output expectations.
 
-**How it works**: The manifest marks `.opencode/agent/handover.md` as canonical. The loop generates bounded candidates related to that surface, and the scorer judges them against handover structure, required sections, and command-level expectations rather than open-ended prompt quality.
+**How it works**: The manifest marks `.opencode/agents/handover.md` as canonical. The loop generates bounded candidates related to that surface, and the scorer judges them against handover structure, required sections, and command-level expectations rather than open-ended prompt quality.
 
 ---
 
@@ -161,7 +161,7 @@ We needed one first target that was narrow, canonical, and measurable. The resea
 |--------|------|------|-------|
 | **Handover target** | Structured output, existing command, fixed section expectations | Narrower than some teams may want | 9/10 |
 | `@deep-research` as first target | High visibility, related to existing loop patterns | Too open-ended, evaluator becomes subjective fast | 4/10 |
-| Whole `.opencode/agent/` directory | Broad coverage | No clean first-wave trust boundary | 2/10 |
+| Whole `.opencode/agents/` directory | Broad coverage | No clean first-wave trust boundary | 2/10 |
 
 **Why this one**: It gives the loop a real scoring contract from day one without pretending the repo is ready for broad autonomous mutation.
 

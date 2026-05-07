@@ -23,13 +23,13 @@ All 4 P0 blockers were resolved with code evidence. All 12 P1 items were resolve
 - **Task:** T021
 - **Checklist:** CHK-200
 - **Status:** RESOLVED
-- **Evidence:** `scripts/package.json` includes boundary check in `npm run check` pipeline. `check-api-boundary.sh` exists at `.opencode/skill/system-spec-kit/scripts/check-api-boundary.sh` and checks lib/ -> api/ reverse imports.
+- **Evidence:** `scripts/package.json` includes boundary check in `npm run check` pipeline. `check-api-boundary.sh` exists at `.opencode/skills/system-spec-kit/scripts/check-api-boundary.sh` and checks lib/ -> api/ reverse imports.
 
 ### P0-2: Add missing exception to boundary doc (reindex-embeddings.ts)
 - **Task:** T022
 - **Checklist:** CHK-201
 - **Status:** RESOLVED
-- **Evidence:** Grep confirms `.opencode/skill/system-spec-kit/ARCHITECTURE_BOUNDARIES.md` contains "Current Exceptions" section (line 82). Cross-validated with `import-policy-allowlist.json` containing matching entries.
+- **Evidence:** Grep confirms `.opencode/skills/system-spec-kit/ARCHITECTURE_BOUNDARIES.md` contains "Current Exceptions" section (line 82). Cross-validated with `import-policy-allowlist.json` containing matching entries.
 
 ### P0-3: Expand prohibited patterns to cover `core/*`
 - **Task:** T023

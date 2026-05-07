@@ -40,7 +40,7 @@ The final command surface is 6 commands: `/memory:analyze`, `/memory:save`, `/me
 
 **Status**: COMPLETE at time of execution, but DRIFT HAS RECURRED
 
-Phase 012 synced 18 agent files (9 agents x 2 runtimes: Claude, Gemini) from canonical `.opencode/agent/` on 2026-03-15. All 31 tasks completed, all 9 checklist items verified.
+Phase 012 synced 18 agent files (9 agents x 2 runtimes: Claude, Gemini) from canonical `.opencode/agents/` on 2026-03-15. All 31 tasks completed, all 9 checklist items verified.
 
 However, the canonical agents have been modified since the sync date (e.g., write.md modified Mar 19, context.md modified Mar 20, debug/orchestrate/ultra-think/speckit modified Mar 18). The Claude and Gemini copies have NOT been kept in sync for all of these changes. Specific drift found:
 - `write.md`: canonical has new Mode 2 entries (Catalog Creation, Playbook Creation), Claude copy is missing them (683 bytes smaller)
@@ -71,7 +71,7 @@ However, the `/memory:shared` row that 013 claims to have added (lines 57/84) is
 - **Severity**: HIGH
 - **Category**: alignment
 - **Location**: `.claude/agents/write.md`, `.gemini/agents/deep-research.md`, and potentially others
-- **Description**: The canonical `.opencode/agent/` definitions have been modified after the 012 sync date (Mar 15) but the Claude and Gemini runtime copies have not been updated for all changes. This is the exact same problem 012 was created to solve, now recurring 6 days later.
+- **Description**: The canonical `.opencode/agents/` definitions have been modified after the 012 sync date (Mar 15) but the Claude and Gemini runtime copies have not been updated for all changes. This is the exact same problem 012 was created to solve, now recurring 6 days later.
 - **Evidence**:
   - `write.md`: canonical 22,801 bytes (Mar 19) vs Claude 22,118 bytes (Mar 15) -- 683 bytes smaller, missing Mode 2 entries for Catalog Creation and Playbook Creation, missing feature_catalog and manual_testing_playbook doc type rows, and missing deeper reference path pattern
   - `deep-research.md`: Gemini copy (Mar 18 18:10) stale vs canonical (Mar 18 19:41) -- budget guidance differs ("Maximum 8 tool calls" vs "8-11 tool calls"), missing progressive synthesis config block
@@ -111,18 +111,18 @@ However, the `/memory:shared` row that 013 claims to have added (lines 57/84) is
 - **Category**: completeness
 - **Location**: `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/013-agents-alignment/spec.md`
 - **Description**: Phase 012 listed 9 agents to sync but used the name `research/research.md` rather than distinguishing between `research/research.md` (which does not exist as a standalone agent) and `deep-research.md`. The actual canonical directory contains: context, debug, deep-research, handover, orchestrate, review, speckit, ultra-think, write. There is no separate `research/research.md` -- it was renamed/split to `deep-research.md`. The 012 spec references `research/research.md` 6 times.
-- **Evidence**: `ls .opencode/agent/*.md` shows `deep-research.md`, not `research/research.md`. 012 tasks.md references "T011: Sync research.md" and "T020: Sync research.md". The actual file is `deep-research.md` in all 3 runtimes.
+- **Evidence**: `ls .opencode/agents/*.md` shows `deep-research.md`, not `research/research.md`. 012 tasks.md references "T011: Sync research.md" and "T020: Sync research.md". The actual file is `deep-research.md` in all 3 runtimes.
 - **Impact**: The spec documentation uses an incorrect filename. However, the work WAS done correctly based on timestamp evidence (deep-research.md exists and was synced in all runtimes). This is a documentation naming error, not a functional gap.
 - **Recommended Fix**: No action needed unless 012 docs are being reused for a future sync. The naming discrepancy is cosmetic -- the work was executed on the correct file.
 
 ### O7-007: No Automated Sync Mechanism for Multi-Runtime Agent Alignment
 - **Severity**: HIGH
 - **Category**: architecture
-- **Location**: `.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`
+- **Location**: `.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`
 - **Description**: The 012 phase was a one-time manual sync. There is no automated mechanism to detect or prevent drift between canonical agent definitions and runtime copies. The drift that 012 fixed has already recurred within 6 days (O7-002). Without automation, this problem will continue to recur after every canonical agent update.
 - **Evidence**: O7-002 demonstrates that write.md, deep-research.md, and potentially other agents have already drifted again. The 012 implementation-summary has no "drift prevention" section and its "Recommended Next Steps" section is empty.
 - **Impact**: Every canonical agent update requires a manual 18-file sync operation. Missed syncs cause behavioral inconsistency across runtimes. The cost of this maintenance grows with the number of agents and runtimes.
-- **Recommended Fix**: Create a sync script (e.g., `scripts/sync-agents.sh`) that: (1) reads each canonical `.opencode/agent/*.md`, (2) extracts body content (post-frontmatter), (3) injects it into each runtime copy while preserving runtime-specific frontmatter, (4) reports any files that changed. Run this script as part of the commit workflow or as a pre-push hook.
+- **Recommended Fix**: Create a sync script (e.g., `scripts/sync-agents.sh`) that: (1) reads each canonical `.opencode/agents/*.md`, (2) extracts body content (post-frontmatter), (3) injects it into each runtime copy while preserving runtime-specific frontmatter, (4) reports any files that changed. Run this script as part of the commit workflow or as a pre-push hook.
 
 ### O7-008: 012 and 013 Are Distinct Phases (NOT Redundant)
 - **Severity**: LOW

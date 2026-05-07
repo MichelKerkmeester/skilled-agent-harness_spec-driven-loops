@@ -11,9 +11,9 @@ contextType: "planning"
 # Plan: 007-workflow-guidance-map
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption/spec.md`
 
 ## Implementation Order

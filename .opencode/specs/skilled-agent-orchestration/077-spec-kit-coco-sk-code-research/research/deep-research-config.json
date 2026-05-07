@@ -1,5 +1,5 @@
 {
-  "topic": "Deep research on three intertwined surfaces: (1) system-spec-kit skill + MCP server health, doc/code drift, validator + graph-metadata test coverage gaps, MCP tool surface coverage vs docs, performance hotspots; (2) mcp-coco-index skill + MCP server semantic-search effectiveness, freshness, CLI vs MCP parity, query routing vs decision tree, embedding-provider abstraction; (3) sk-code OpenCode references at .opencode/skill/sk-code/references/opencode/ and assets at .opencode/skill/sk-code/assets/opencode/ — staleness, coverage gaps (missing language-sub-detection docs, verification recipes, skills/agents/commands authoring checklists), drift between resource_map paths and on-disk structure, concrete add/refine/remove targets. Cross-cutting: sk-code router interaction with system-spec-kit spec-folder writes; mcp-coco-index ingestion of sk-code resources; missed integration points between the three surfaces.",
+  "topic": "Deep research on three intertwined surfaces: (1) system-spec-kit skill + MCP server health, doc/code drift, validator + graph-metadata test coverage gaps, MCP tool surface coverage vs docs, performance hotspots; (2) mcp-coco-index skill + MCP server semantic-search effectiveness, freshness, CLI vs MCP parity, query routing vs decision tree, embedding-provider abstraction; (3) sk-code OpenCode references at .opencode/skills/sk-code/references/opencode/ and assets at .opencode/skills/sk-code/assets/opencode/ — staleness, coverage gaps (missing language-sub-detection docs, verification recipes, skills/agents/commands authoring checklists), drift between resource_map paths and on-disk structure, concrete add/refine/remove targets. Cross-cutting: sk-code router interaction with system-spec-kit spec-folder writes; mcp-coco-index ingestion of sk-code resources; missed integration points between the three surfaces.",
   "maxIterations": 10,
   "convergenceThreshold": 0.10,
   "stuckThreshold": 3,
@@ -44,10 +44,10 @@
       "next-focus"
     ]
   },
-  "capabilityMatrixPath": ".opencode/skill/deep-research/assets/runtime_capabilities.json",
-  "capabilityMatrixDocPath": ".opencode/skill/deep-research/references/capability_matrix.md",
-  "runtimeCapabilityResolver": ".opencode/skill/deep-research/scripts/runtime-capabilities.cjs",
-  "reducerScriptPath": ".opencode/skill/deep-research/scripts/reduce-state.cjs",
+  "capabilityMatrixPath": ".opencode/skills/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/deep-research/references/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-research/scripts/reduce-state.cjs",
   "pauseSentinelPath": "research/.deep-research-pause",
   "archiveRoot": "research_archive",
   "migrationWindowDays": 28,

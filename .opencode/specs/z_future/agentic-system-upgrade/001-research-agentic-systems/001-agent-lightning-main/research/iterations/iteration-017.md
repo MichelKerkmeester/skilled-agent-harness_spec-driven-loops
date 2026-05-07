@@ -14,9 +14,9 @@ I compared the external repo's architecture and module structure with `system-sp
 ## Evidence
 - Agent Lightning's architecture overview is capability-layered: runners and tracers emit spans, the store keeps them synchronized, and algorithms consume traces to improve behavior. [SOURCE: external/AGENTS.md:3-9]
 - The external project structure groups modules by function: adapters, execution stack, training loop, tracer, reward logic, CLI, docs, examples, dashboard, scripts, and tests. [SOURCE: external/AGENTS.md:6-9]
-- `system-spec-kit`'s orchestrator frames work around a sizable named-agent taxonomy: `@context-prime`, `@context`, `@deep-research`, `@ultra-think`, `@speckit`, `@review`, `@write`, `@general`, `@debug`, and `@handover`. [SOURCE: .opencode/agent/orchestrate.md:93-118]
-- The orchestrator also carries depth rules, agent-definition loading rules, and structured delegation metadata so those role boundaries can be maintained. [SOURCE: .opencode/agent/orchestrate.md:108-167] [SOURCE: .opencode/agent/orchestrate.md:191-227]
-- The deep-research agent is itself a specialized role with read/write permissions, reducer-owned boundary rules, and loop-specific state semantics. [SOURCE: .opencode/agent/deep-research.md:22-32] [SOURCE: .opencode/agent/deep-research.md:46-60]
+- `system-spec-kit`'s orchestrator frames work around a sizable named-agent taxonomy: `@context-prime`, `@context`, `@deep-research`, `@ultra-think`, `@speckit`, `@review`, `@write`, `@general`, `@debug`, and `@handover`. [SOURCE: .opencode/agents/orchestrate.md:93-118]
+- The orchestrator also carries depth rules, agent-definition loading rules, and structured delegation metadata so those role boundaries can be maintained. [SOURCE: .opencode/agents/orchestrate.md:108-167] [SOURCE: .opencode/agents/orchestrate.md:191-227]
+- The deep-research agent is itself a specialized role with read/write permissions, reducer-owned boundary rules, and loop-specific state semantics. [SOURCE: .opencode/agents/deep-research.md:22-32] [SOURCE: .opencode/agents/deep-research.md:46-60]
 
 ## Analysis
 Public's named agents solve real workflow problems, especially around spec authoring and review isolation. But the comparison to Agent Lightning shows that capability boundaries can stay strong without proliferating many user-visible or architecture-visible role names. The external repo does not need a distinct named subsystem for every workflow nuance; it composes a smaller set of capabilities.
@@ -29,7 +29,7 @@ confidence: medium
 finding: `system-spec-kit` should simplify its agent architecture around capability layers rather than letting the named-role taxonomy keep expanding. The current role split is workable, but the architecture is starting to encode workflow history as permanent topology.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md` and agent taxonomy
+- **Target file or module:** `.opencode/agents/orchestrate.md` and agent taxonomy
 - **Change type:** architecture simplification
 - **Blast radius:** large
 - **Prerequisites:** identify capability-equivalent agents, define which roles remain truly exclusive, and preserve prompt specializations as overlays

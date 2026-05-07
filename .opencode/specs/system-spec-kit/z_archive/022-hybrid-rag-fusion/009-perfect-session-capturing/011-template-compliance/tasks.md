@@ -44,7 +44,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 ## 2. PHASE 1: SETUP
 
 - [x] T001 Review parent `010` docs and prior child phases for repo-aligned context (`.opencode/specs/.../009-perfect-session-capturing/`)
-- [x] T002 Locate the actual runtime prompt surfaces that replace the stale draft references (`.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.opencode/command/spec_kit/assets/`)
+- [x] T002 Locate the actual runtime prompt surfaces that replace the stale draft references (`.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.opencode/commands/spec_kit/assets/`)
 - [x] T003 Confirm no repo-local or home-directory Codex speckit runtime file exists to patch (`/Users/michelkerkmeester/.codex`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -53,11 +53,11 @@ This document records the current verified state for this scope. Use [spec.md](s
 <!-- ANCHOR:phase-2 -->
 ## 3. PHASE 2: IMPLEMENTATION
 
-- [x] T004 Create the shared live template contract helper at `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`
+- [x] T004 Create the shared live template contract helper at `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`
 - [x] T005 Update `check-template-headers.sh` for live required-header order, checklist H1, and `CHK-NNN` enforcement
 - [x] T006 [P] Update `check-anchors.sh` for live required-anchor comparison and custom-anchor warnings
 - [x] T007 Update `validate.sh` so `TEMPLATE_HEADERS` structural mismatches are errors in normal validation
-- [x] T008 [P] Update the shared/OpenCode runtime speckit agent docs under `.agents/agents/` and `.opencode/agent/`
+- [x] T008 [P] Update the shared/OpenCode runtime speckit agent docs under `.agents/agents/` and `.opencode/agents/`
 - [x] T009 [P] Update the Claude and Gemini runtime speckit agent docs
 - [x] T010 Update `/spec_kit` plan/implement/complete auto+confirm workflow assets with inline scaffolds and strict post-write validation
 <!-- /ANCHOR:phase-2 -->

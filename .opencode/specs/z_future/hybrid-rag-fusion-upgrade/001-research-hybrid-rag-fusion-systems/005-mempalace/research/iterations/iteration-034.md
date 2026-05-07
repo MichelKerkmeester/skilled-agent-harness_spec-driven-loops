@@ -52,7 +52,7 @@ For EACH finding:
 ## Assessment
 ## Findings
 ### Finding 1: Hook-driven preservation can create blocking saves without proof that good data was actually preserved
-- **Source**: [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh#L129); [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh#L64); [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L326); [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js#L85); [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
+- **Source**: [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh#L129); [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh#L64); [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L326); [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js#L85); [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
 - **What it does**: MemPalace blocks every 15 user turns and always blocks before compaction, then tells the AI to save; optional auto-ingest is backgrounded in the stop hook and synchronous only if `MEMPAL_DIR` is configured. The write path itself is weakly protected: `mempalace_add_drawer` uses deterministic IDs, but it does not actually call the semantic duplicate checker before writing.
 - **Why it matters for us**: If we copy this pattern into Public, the biggest failure mode is a false sense of safety: the runtime is interrupted, but preservation quality still depends on the model following instructions correctly. That can yield duplicated memories, noisy categorization, partial saves, or blocked UX with no durable improvement. Public’s current compaction transport and JSON-primary `generate-context.js` path are much more deterministic.
 - **Recommendation**: prototype later
@@ -284,10 +284,10 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
 9. Trace structural navigation next in `external/mempalace/palace_graph.py` and `external/mempalace/knowledge_graph.py`. Keep these separate in your notes: palace graph traversal is metadata-derived from ChromaDB rooms/halls/wings, while the knowledge graph is a separate SQLite temporal triple store with invalidation.
 10. Trace ingestion behavior next. Read `external/mempalace/miner.py`, `external/mempalace/convo_miner.py`, `external/mempalace/general_extractor.py`, and `external/mempalace/onboarding.py`. Focus on chunking strategy, room detection, no-summary posture, heuristic extraction, onboarding assumptions, and whether the system truly keeps everything or selectively restructures it during ingest.
 11. Read hook and benchmark artifacts after the implementation core: `external/hooks/README.md`, `external/hooks/mempal_save_hook.sh`, `external/hooks/mempal_precompact_hook.sh`, and `external/benchmarks/BENCHMARKS.md`. Treat these as crucial to the product story, but distinguish carefully between executable behavior, experimental behavior, and benchmark claims that require caution.
-12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
+12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
 13. Before the main research pass, validate the phase folder with this exact command:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
     ```
 14. After validation passes, run `spec_kit:deep-research` with this exact topic:
     ```text
@@ -295,7 +295,7 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
     ```
 15. Save all outputs inside `research/`, with `research/research.md` as the canonical report. Every meaningful finding must cite exact file paths, say whether the evidence is `source-confirmed`, `README-documented`, `benchmark-documented`, or mixed, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, identify the affected subsystem, and note migration or truthfulness risk. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
     ```
 
 ## 6. Research Questions
@@ -518,7 +518,7 @@ exec
 2004:- symptom: commit fails with `.git/index.lock`; cause: stale lock or concurrent git process; fix: confirm no active git process, remove stale lock, then retry commit [Task 4]
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1153ms:
 
 ───────────────────────────────────────────────────────────────
@@ -533,7 +533,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -546,7 +546,7 @@ exec
 codex
 I’ve confirmed `external/AGENTS.md` is present, which changes the external subtree’s local instructions from the earlier assumption in the prompt. Strict validation is running now, and in parallel I’m pulling the prior MemPalace packet memory so this pass stays aligned with the earlier evidence boundary decisions instead of re-litigating them.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -564,7 +564,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -867,7 +867,7 @@ exec
 
 - prompt authoring pattern for this packet family: keep the 13-section TIDD-EC structure, include ordered evidence reading, and force evidence tags (`source-confirmed`, `README-documented`, `benchmark-documented`) per finding [Task 1]
 - MemPalace-specific guardrails that proved useful: AAAK remains experimental/lossy, raw ChromaDB verbatim posture is baseline, and benchmark/README claims need code-backed verification before adoption [Task 1]
-- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
+- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
 - closeout integration for this packet should update `research-v2.md`, `recommendations-v2.md`, `findings-registry-v2.json`, and `deep-research-dashboard.md` while leaving historical `research/research.md` snapshot content intact [Task 2][Task 4]
 - Claudest continuation is now an execution-ready sequence to preserve in order: FTS helper and forced-degrade tests -> stop-hook metadata patch -> normalized analytics reader -> cached-summary fast path -> verifier/discoverer split -> token-insight contracts [Task 3]
 - Graphify closeout guidance is additive rather than replacement: enrich existing payload confidence/provenance and layered runtime hints (`session-prime`, `compact-inject`, `response-hints`), keep low-level invalidation as already covered by Public indexing, and defer clustering metadata to a later phase [Task 4]
@@ -6359,9 +6359,9 @@ exec
    724	*Results verified March 2026. Scripts and raw data committed to this repo.*
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Context Server
@@ -7047,7 +7047,7 @@ exec
    320	    content: [{ ...firstEntry, text: JSON.stringify(envelope, null, 2) }],
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	"use strict";
      2	// ---------------------------------------------------------------
@@ -7387,2885 +7387,2885 @@ exec
 406:      const block = plan?.compaction;
 
 exec
-/bin/zsh -lc "rg -n \"memory_match_triggers|trigger|include_cognitive|attention|decay|co-activation|session_id|turnNumber\" .opencode/skill/system-spec-kit/mcp_server -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"memory_match_triggers|trigger|include_cognitive|attention|decay|co-activation|session_id|turnNumber\" .opencode/skills/system-spec-kit/mcp_server -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:104:import * as attentionDecay from './lib/cognitive/attention-decay.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:105:import * as coActivation from './lib/cognitive/co-activation.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:125:import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:163:  triggered: unknown[];
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:365:    : typeof args.session_id === 'string'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:366:      ? args.session_id
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:823:    const triggerMatcher = await import('./lib/parsing/trigger-matcher.js');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:824:    if (typeof triggerMatcher.clearCache === 'function') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:825:      triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:829:    console.error(`[context-server] Failed to clear trigger cache after DB reinit: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1574:      attentionDecay,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1622:        console.error(`[context-server] Learned triggers ready (migrated=${migrated}, fts5Isolated=${isolated})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1656:      console.error('[context-server] Auto-backfill triggered: %d rows seeded into active_memory_projection', result.seeded);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1711:      attentionDecay.init(database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:26:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:93:  triggerCacheCleared: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:268:        latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:8:// Feature catalog: BM25 trigger phrase re-index gate
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:24:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:26:import * as attentionDecay from '../lib/cognitive/attention-decay.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:29:import * as coActivation from '../lib/cognitive/co-activation.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:61:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:74:  attentionScore?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:81:  decayedCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:90:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:96:  turnNumber: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:97:  decayApplied: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:108:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:109:  turnNumber?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:110:  include_cognitive?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:111:  // C2 FIX: Scope fields to prevent cross-scope trigger leaks
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:122:/** Per-turn decay rate for attention scoring. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:135:  const db = attentionDecay.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:158:  memoryInfo: { filePath: string; title: string | null; triggerPhrases: string[] },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:171:    console.warn('[memory-triggers] getTieredContent failed', {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:189:    session_id: rawSessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:190:    turnNumber: rawTurnNumber = 1,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:191:    include_cognitive: includeCognitive = true
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:235:  const turnNumber = (typeof rawTurnNumber === 'number' && Number.isFinite(rawTurnNumber) && rawTurnNumber >= 0)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:243:  // Eval logger — capture trigger query at entry (fail-safe)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:249:      intent: 'trigger_match',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:254:  } catch (_error: unknown) { /* eval logging must never break triggers handler */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:263:          scores: memoryIds.map(() => 1.0), // trigger matches are binary
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:264:          fusionMethod: 'trigger',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:269:      /* eval logging must never break triggers handler */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:276:    attentionDecay.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:278:  let decayStats: DecayStats | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:281:      decayStats = { decayedCount: workingMemory.batchUpdateScores(sessionId as string) };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:288:  const triggerMatchResult = triggerMatcher.matchTriggerPhrasesWithStats(prompt, limit * 2);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:289:  let results: TriggerMatch[] = triggerMatchResult.matches;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:291:  // C2 FIX: Post-filter by scope to prevent cross-tenant trigger leaks
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:329:  const detectedSignals = Array.isArray(triggerMatchResult.stats?.signals)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:330:    ? triggerMatchResult.stats.signals
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:332:  const degradedTriggerMatching = triggerMatchResult.stats?.degraded ?? null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:337:      summary: 'No matching trigger phrases found',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:339:        matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:344:          turnNumber: turnNumber,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:345:          decayApplied: decayStats ? decayStats.decayedCount : 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:349:        'Ensure memories have trigger phrases defined',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:351:        ...(degradedTriggerMatching ? ['Trigger matching ran in degraded mode; inspect server logs for skipped trigger sources'] : []),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:368:        attentionDecay.activateMemory(match.memoryId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:369:        // T209: Persist max attention boost for matched memories.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:399:      .map(wm => ({ memoryId: (wm.id as number) || 0, attentionScore: (wm.attention_score as number) || 1.0 }));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:401:    const turnDecayFactor = turnNumber > 1
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:402:      ? Math.pow(TURN_DECAY_RATE, turnNumber - 1)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:409:      let attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:417:          // WM already applies its own decay — skip turnDecayFactor to avoid double-decay.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:418:          effectiveRetrievability = Math.min(effectiveRetrievability, wmEntry.attentionScore);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:423:        attentionScore = effectiveRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:426:        // When no FSRS record, use WM score directly (already session-decayed) or apply turn decay
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:427:        const baseScore = wmEntry ? wmEntry.attentionScore : 1.0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:428:        attentionScore = wmEntry ? baseScore : baseScore * turnDecayFactor;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:429:        tier = tierClassifier.classifyState(attentionScore);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:432:      // Clamp to [0,1] — retrievability * decay or wmEntry scores
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:434:      attentionScore = Math.max(0, Math.min(1, attentionScore));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:438:        attentionScore: attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:450:        triggerPhrases: r.matchedPhrases
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:461:        attentionScore: r.attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:470:      turnNumber: turnNumber,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:471:      decayApplied: decayStats ? decayStats.decayedCount : 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:496:    : `Matched ${formattedResults.length} memories via trigger phrases`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:500:    hints.push('Enable cognitive features with include_cognitive: true');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:510:  const _triggersResponse = createMCPSuccessResponse({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:514:      matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:524:      triggerSignals: detectedSignals,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:529:  // Consumption instrumentation — log triggers event (fail-safe, never throws)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:531:    const db = attentionDecay.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:536:        event_type: 'triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:540:        session_id: sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:544:  } catch (_error: unknown) { /* instrumentation must never cause triggers handler to fail */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:546:  // Eval logger — capture final trigger results at exit (fail-safe)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:547:  const triggerMemoryIds = formattedResults.map(r => r.memoryId).filter(id => typeof id === 'number');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:548:  logFinalTriggerEval(triggerMemoryIds, latencyMs);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:550:  return _triggersResponse;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:117:      AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:185:          triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:200:          triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:271:          trigger_phrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:59:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:138:  triggerPhrases: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:147:      trigger_phrases: args.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:195:            triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:248:                  triggerPhrases: memory.triggerPhrases ?? [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:281:                      trigger_phrases: memory.triggerPhrases ?? [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:291:                      triggerPhrases: memory.triggerPhrases ?? [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:170:    triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:22:  ['session_id', 'sessionId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:40:  trigger_phrases: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:95:    SELECT id, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:139:    trigger_phrases: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:145:  const persistedTriggerPhrases = parseJsonStringArray(existing.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:146:  if (!areEquivalentStringArrays(persistedTriggerPhrases, parsed.triggerPhrases)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:235:      triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:300:        triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:168:    triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:321:        latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:335:    triggerPhrases: result.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:417:      hints.push('Async embedding mode: immediate background attempt triggered, background retry manager as safety net');
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:453:        `-${consolidation.hebbian.decayed} decayed, ${consolidation.stale.flagged} stale flagged`
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:42:    triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:66:    triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:250:        latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:49:    triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:85:  if (triggerPhrases !== undefined) updateParams.triggerPhrases = triggerPhrases;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:151:      // T2-6 — BM25 index stores title + trigger phrases; must re-index when either changes
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:155:      if ((updateParams.title !== undefined || updateParams.triggerPhrases !== undefined) && bm25Index.isBm25Enabled()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:159:            'SELECT title, content_text, trigger_phrases, file_path FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:160:          ).get(id) as { title: string | null; content_text: string | null; trigger_phrases: string | null; file_path: string | null } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:208:          triggerPhrases: updateParams.triggerPhrases ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:249:      latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:120:    hints.push('Session has not been primed yet. Make any tool call to trigger auto-priming.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:62:      session_id: input.sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:26:  triggers: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:57:function triggerPhrasesChanged(
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:74:  triggers: 0.25,
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:87: * Compute trigger phrase quality sub-score.
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:89: * Evaluates whether the memory metadata declares enough trigger phrases for
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:92: *   - 0 phrases  → score 0.0  (memory will never surface via trigger matching)
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:97: *   to contain a `triggerPhrases` key whose value is an array of strings.
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:103:  const triggers = Array.isArray(metadata.triggerPhrases) ? metadata.triggerPhrases : [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:104:  const count = triggers.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:108:    issues.push('No trigger phrases found');
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:112:    issues.push(`Only ${count} trigger phrase(s) — 4+ recommended`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:372: *   - triggers  × 0.25
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:381: *   through to `scoreTriggerPhrases`; must contain a `triggerPhrases` key
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:386: *   - `breakdown` — Per-dimension raw sub-scores (`triggers`, `anchors`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:389: *     in order: triggers → anchors → budget → coherence.
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:395:  const triggerResult = scoreTriggerPhrases(metadata);
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:401:    triggerResult.score * QUALITY_WEIGHTS.triggers +
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:409:      triggers: triggerResult.score,
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:415:      ...triggerResult.issues,
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:427: * - Re-extract trigger phrases from content headings/title
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:442:  // Fix #1 : Re-extract trigger phrases if missing/insufficient
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:443:  const hasTriggerIssue = issues.some(i => /trigger phrase/i.test(i));
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:445:    const existingTriggers = Array.isArray(fixedMetadata.triggerPhrases)
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:446:      ? (fixedMetadata.triggerPhrases as string[])
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:451:      fixedMetadata.triggerPhrases = extracted;
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:452:      fixed.push(`Re-extracted ${extracted.length} trigger phrases from content`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:482: * Extract trigger phrases from content by scanning headings and the title.
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:492:  let triggers: string[] = [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:494:  // Add title as a trigger if present
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:496:    triggers.push(title.trim().toLowerCase());
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:499:  // Extract markdown headings as triggers
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:504:    if (heading.length > 3 && heading.length < 80 && !triggers.includes(heading)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:505:      triggers.push(heading);
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:510:  triggers = triggers.filter(t =>
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:514:  return triggers.slice(0, 8); // Cap at 8 triggers
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:577: * @param metadata - Parsed memory metadata (must include triggerPhrases)
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:658:        fixedTriggerPhrases: triggerPhrasesChanged(metadata.triggerPhrases, currentMetadata.triggerPhrases)
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:659:          ? currentMetadata.triggerPhrases as string[]
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:684:    fixedTriggerPhrases: triggerPhrasesChanged(metadata.triggerPhrases, bestMetadata.triggerPhrases)
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:685:      ? bestMetadata.triggerPhrases as string[]
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:4:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:8:import { clearRelatedCache } from '../lib/cognitive/co-activation.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:27:  let triggerCacheCleared = false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:29:    triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:30:    triggerCacheCleared = true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:34:      `[mutation-hooks] triggerMatcher.clearCache failed for operation="${operation}":`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:37:    errors.push(`triggerMatcher.clearCache: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:38:    triggerCacheCleared = false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:99:    triggerCacheCleared,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:26:  triggerPhrases: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:53:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:102:        if (!matchesScopedValue(sessionId, r.session_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:265:      triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:318:    triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:66:type MemoryTriggersModule = typeof import('./memory-triggers.js');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:110:    memoryTriggersModule = loadHandlerModule<MemoryTriggersModule>('memory-triggers');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:224:// Memory triggers handlers
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:226:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:113:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:135:    session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:167:  ON session_learning(spec_folder, task_id, session_id, phase, updated_at, id)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:175:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:309:    sessionId: session_id = null
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:334:  const normalizedSessionId = normalizeSessionId(session_id);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:344:       AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:352:      SET session_id = ?, pre_knowledge_score = ?, pre_uncertainty_score = ?, pre_context_score = ?, knowledge_gaps = ?, updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:399:    (spec_folder, task_id, phase, session_id, pre_knowledge_score, pre_uncertainty_score, pre_context_score, knowledge_gaps, created_at, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:467:    sessionId: session_id = null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:491:  const normalizedSessionId = normalizeSessionId(session_id);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:501:    query += ' AND session_id = ?';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:538:        : `No preflight record found for spec_folder="${spec_folder}", task_id="${taskId}", session_id="${normalizedSessionId}". Call task_preflight first.`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:615:          sessionId: (preflightRecord.session_id as string | null) ?? normalizedSessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:663:    sessionId: session_id,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:686:    const normalizedSessionId = normalizeSessionId(session_id);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:694:      sql += ' AND session_id = ?';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:719:        sessionId: (row.session_id as string | null) ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:778:        summarySql += ' AND session_id = ?';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:16:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:421:    'trigger_cache_refresh',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:470:            triggerMatcher.refreshTriggerCache();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:471:            repair.actions.push('trigger_cache_refresh');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:477:              hints.push('Auto-repair completed: FTS5 index rebuilt and trigger cache refreshed.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:21:import { handleMemoryMatchTriggers } from './memory-triggers.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:649:  // Quick: Fast trigger-based matching for reactive context
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:652:    description: 'Fast trigger matching for real-time context (low latency)',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:653:    strategy: 'triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:709:    session_id: options.sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:710:    include_cognitive: true
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1442:        attentionScore: item.attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1530:        session_id: effectiveSessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:12:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:492:      triggerMatcher.refreshTriggerCache();
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:276:        triggerPhrases: channelFlags.useTrigger ? undefined : [],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:174:  session_id: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:175:  turnNumber: safeNumericPreprocess.pipe(z.number().int().min(1)).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:176:  include_cognitive: z.boolean().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:212:  triggerPhrases: optionalStringArray,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:347:  channels: z.array(z.enum(['vector', 'bm25', 'fts5', 'graph', 'trigger'])).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:471:  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:122:  attentionScore?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1208:        session_id: sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:12:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:35:  triggerPhrases: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:52:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:226:        triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:313:            triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:327:            triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:365:            trigger_phrases: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:465:    triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:473:      triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:577:      triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:584:        triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:601:        trigger_phrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:632:  // Otherwise stale trigger/tool-cache entries persist until next non-chunked save.
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:633:  triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:641:    triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:99:      error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:131:    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index ${whereClause} ORDER BY ${sortColumn} DESC LIMIT ? OFFSET ?`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:153:    triggerCount: safeJsonParseTyped<unknown[]>(row.trigger_phrases as string, 'array', []).length,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:488:  // This is the ONLY place where scan-triggered mtime updates occur.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:282:      'SELECT 1 FROM session_state WHERE session_id = ? LIMIT 1'
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:297:      'SELECT 1 FROM session_sent_memories WHERE session_id = ? LIMIT 1'
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:342:    WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:443:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:447:    PRIMARY KEY (session_id, memory_hash)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:452:  'CREATE INDEX IF NOT EXISTS idx_session_sent_session ON session_sent_memories(session_id);',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:523:      WHERE session_id = ? AND memory_hash = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:565:      SELECT memory_hash FROM session_sent_memories WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:568:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:647:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:678:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:713:      SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:723:      WHERE session_id = ? AND rowid IN (
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:725:        WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:848:      DELETE FROM session_sent_memories WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:878:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:960:    session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1036:        session_id, status, spec_folder, current_task, last_action,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1042:      ON CONFLICT(session_id) DO UPDATE SET
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1086:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1136:      SELECT session_id, status, spec_folder, current_task, last_action,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1141:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1160:      sessionId: row.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1180:        WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1199:      SELECT session_id, spec_folder, current_task, last_action,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1219:        sessionId: row.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:326:  // Auto-trigger: ensure graph is fresh before querying
-.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:90:          session_id: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:185:    triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:226:      const rejectScore = { total: 0, breakdown: { triggers: 0, anchors: 0, budget: 0, coherence: 0 }, issues: [`V-rule hard block: ${failedRuleIds.join(', ')}`] };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:243:          evidenceCounts: { primary: 0, support: 0, total: 0, semanticChars: 0, uniqueWords: 0, anchors: 0, triggerPhrases: 0 },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:267:    parsed.triggerPhrases = qualityLoopResult.fixedTriggerPhrases;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:643:          triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:744:          triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1727:        latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:255:    recommendedAction = 'Use a structural read to trigger bounded inline refresh when safe, or run code_graph_scan for broader stale states.';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:52:      error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:129:  let triggerCount = 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:141:    const triggerResult = database.prepare("SELECT SUM(json_array_length(trigger_phrases)) as count FROM memory_index WHERE trigger_phrases IS NOT NULL AND trigger_phrases != '[]'").get() as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:142:    triggerCount = (triggerResult && typeof triggerResult.count === 'number') ? triggerResult.count : 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:312:      totalTriggerPhrases: triggerCount,
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:4:// MCP tool handler for ccc_reindex — triggers incremental re-indexing.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:32:    recency: number;        // 1.0 if recent tool call, decays over time
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:163:/** Compute recency factor: 1.0 if <5 min, linear decay to 0.0 at 60 min. */
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:169:  // Linear decay between 5 min and 60 min
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:80:/** Arguments for trigger matching requests. */
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:84:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:85:  turnNumber?: number;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:86:  include_cognitive?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:100:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:328:  channels?: Array<'vector' | 'bm25' | 'fts5' | 'graph' | 'trigger'>;
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:4:// Dispatch for L2-L4 memory tools: search, triggers, save,
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:64:  'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:99:    case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:97:    // Auto-trigger: ensure graph is fresh before querying
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:16:      INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:23:      'SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:24:    ).get(sessionId, memoryId) as { attention_score: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:25:    return row ? row.attention_score : null;
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:30:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:36:    tmpDbPath = path.join(os.tmpdir(), `t214-decay-race-${Date.now()}.db`);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:49:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:79:    const sessionId = 'decay-floor-test';
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:82:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:85:    it('T214-01: Score near floor stays above floor after 1 decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:86:      const decayFloor = DECAY_FLOOR;
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:93:      expect(scoreAfter1).toBeGreaterThanOrEqual(decayFloor);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:96:    it('T214-02: Score clamps at floor after 20 decay cycles', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:97:      const decayFloor = DECAY_FLOOR;
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:105:      expect(scoreAfterMany).toBeGreaterThanOrEqual(decayFloor);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:108:    it('T214-03: Memory entry survives decay at floor', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:118:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:143:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(deleteSessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:148:        WHERE session_id = ? AND attention_score < ?
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:159:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:178:      const decayFloor = DECAY_FLOOR;
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:179:      expect(decayFloor).toBe(0.05);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:188:      const decayFloor = DECAY_FLOOR;
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:190:      expect(decayFloor).toBeGreaterThan(deleteThreshold);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:198:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:201:    it('T214-10: High-score memory (0.8) survives and decays normally', () => {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:82:  triggerPhrases?: string | string[];
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:97:  triggerPhrases: string[];
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:117:  attention: number | null;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:448:      triggerPhrases: Array.isArray(rawResult.triggerPhrases) ? rawResult.triggerPhrases :
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:449:                      safeJsonParse<string[]>(rawResult.triggerPhrases as string, []),
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:472:        attention: toNullableNumber(rawResult.attentionScore),
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:6:import * as coActivation from '../lib/cognitive/co-activation';
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1088:        source: 'trigger',
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1089:        sources: ['trigger'],
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1090:        sourceScores: { trigger: 0.96 },
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1091:        channelAttribution: ['trigger'],
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1098:      expect.arrayContaining(['vector', 'fts', 'bm25', 'graph', 'trigger'])
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1281:  it('T024: co-activation promotion happens before confidence truncation drops tail candidates', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1441:  it('S1-FIX-01: routeQuery trigger-phrase path is reachable from hybridSearchEnhanced', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1450:      triggerPhrases: [longTrigger],
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:130:        triggerPhrases: ['merge'],
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:175:        triggerPhrases: ['merge'],
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:212:        triggerPhrases: ['conflict'],
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:232:        triggerPhrases: ['conflict'],
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:23:type TriggerMatcherModule = Awaited<typeof import('./lib/parsing/trigger-matcher.js')>;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:34:let _trigger_matcher: TriggerMatcherModule | null = null;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:58:  return _trigger_matcher ??= await import('./lib/parsing/trigger-matcher.js');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:281:  const [vectorIndex, checkpointsLib, mutationLedger, triggerMatcher, causalEdges, history] = await Promise.all([
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:426:  // Invalidate trigger cache
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:427:  triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:15:    session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:27:    session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:55:  session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:126:    session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:136:  CREATE INDEX IF NOT EXISTS idx_feedback_session    ON feedback_events(session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:258:      conditions.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:31:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:43:      decay_half_life_days REAL DEFAULT 90.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:49:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:144:    const res = await formatSearchResults([], 'trigger');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:171:      triggerPhrases: '["hello","world"]',
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:184:  it('C4: triggerPhrases parsed from JSON string', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:190:      triggerPhrases: '["phrase1","phrase2"]'
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:194:    expect(envelope.data.results[0].triggerPhrases).toEqual(['phrase1', 'phrase2']);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:197:  it('C5: triggerPhrases as array preserved', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:203:      triggerPhrases: ['already', 'an', 'array']
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:207:    expect(envelope.data.results[0].triggerPhrases).toEqual(['already', 'an', 'array']);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:441:          trigger: [52],
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:459:    expect(trace?.channelsUsed).toEqual(expect.arrayContaining(['vector', 'fts', 'trigger']));
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:56:    triggerPhrases: ['test', 'memory'],
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:114:        trigger_phrases TEXT DEFAULT '[]',
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:635:          content: 'Merged addition that should trigger repair attempts',
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1010:    it('RO6: TM-04/TM-06 interaction: similarity 0.89 passes TM-04, triggers TM-06 merge', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:6:import * as handler from '../handlers/memory-triggers';
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:33:          path.join(HANDLERS_PATH, '..', 'handlers', 'memory-triggers.ts'),
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:42:          path.join(HANDLERS_PATH, 'memory-triggers.js'),
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:75:    it('T209-5: setAttentionScore called with (session_id, match.memoryId, score)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:78:      const strictPattern = /workingMemory\.setAttentionScore\(\s*(?:session_id|sessionId)\s*(as\s+string)?\s*,\s*match\.memoryId\s*,\s*[\d.]+\s*\)/;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:79:      const relaxedPattern = /workingMemory\.setAttentionScore\([^)]*(?:session_id|sessionId)/;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:101:          path.join(HANDLERS_PATH, '..', 'handlers', 'memory-triggers.ts'),
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:106:          path.join(HANDLERS_PATH, 'memory-triggers.js'),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:113:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:824:      triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:92:    claude_session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:93:    speckit_session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:117:    claude_session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:136:    UNIQUE(claude_session_id, transcript_path, byte_start)
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:160:    ON analytics_turns (claude_session_id, transcript_path, line_no);
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:167:  claude_session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:168:  speckit_session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:192:  claude_session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:393:    WHERE claude_session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:422:    WHERE claude_session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:453:    WHERE claude_session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:480:      claude_session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:481:      speckit_session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:502:    ON CONFLICT(claude_session_id) DO UPDATE SET
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:503:      speckit_session_id = excluded.speckit_session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:533:      claude_session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:614:    ORDER BY claude_session_id ASC
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:625:    WHERE claude_session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:4:// Session-based attention management
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:5:// DECAY STRATEGY (ADR-004): This module handles SESSION-SCOPED decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:8:// Independent of FSRS long-term decay — different time scale, different
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:9:// Domain (ephemeral session attention vs persistent memory scoring).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:10:// The T214/T008 decay/delete separation (floor=0.05, deleteThreshold=0.01)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:48:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:50:    attention_score REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:60:    UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:66:  CREATE INDEX IF NOT EXISTS idx_wm_session ON working_memory(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:67:  CREATE INDEX IF NOT EXISTS idx_wm_attention ON working_memory(session_id, attention_score DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:69:  CREATE INDEX IF NOT EXISTS idx_wm_session_focus_lru ON working_memory(session_id, last_focused ASC, id ASC);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:70:  CREATE INDEX IF NOT EXISTS idx_wm_session_attention_focus ON working_memory(session_id, attention_score DESC, last_focused DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:77:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:79:  attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:94:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:122:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:193:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:195:      attention_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:208:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:210:      attention_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:242:      'DELETE FROM working_memory WHERE session_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:261:      "SELECT DISTINCT session_id FROM working_memory WHERE datetime(last_focused) < datetime(?, '-' || ? || ' seconds')"
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:262:    ) as Database.Statement).all(nowIso, timeoutSeconds) as Array<{ session_id: string }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:267:      sessionModeRegistry.delete(row.session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:286:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:288:      ORDER BY attention_score DESC
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:303:      SELECT m.*, wm.attention_score, wm.focus_count, wm.last_focused
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:306:      WHERE wm.session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:307:      ORDER BY wm.attention_score DESC
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:338:        wm.attention_score AS attentionScore
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:341:      WHERE wm.session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:343:        AND wm.attention_score > ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:344:      ORDER BY wm.attention_score DESC, wm.last_focused DESC
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:369: * Calculate attention tier for an entry.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:371:function calculateTier(attentionScore: number): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:372:  if (attentionScore >= 0.8) return 'focused';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:373:  if (attentionScore >= 0.5) return 'active';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:374:  if (attentionScore >= 0.2) return 'peripheral';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:379: * Set or update the attention score for a memory in working memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:395:      'SELECT id FROM working_memory WHERE session_id = ? AND memory_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:401:        SET attention_score = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:406:        WHERE session_id = ? AND memory_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:413:        INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:433:    attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:444:  const clampedScore = Math.max(0, Math.min(1, attentionScore));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:451:        session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:453:        attention_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:461:      ON CONFLICT(session_id, memory_id) DO UPDATE SET
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:462:        attention_score = CASE
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:463:          WHEN excluded.attention_score > working_memory.attention_score THEN excluded.attention_score
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:464:          ELSE working_memory.attention_score
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:488:      'SELECT focus_count FROM working_memory WHERE session_id = ? AND memory_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:524:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ? AND memory_id IS NOT NULL'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:534:        WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:550: * Batch update attention scores with decay.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:552: * Separates the decay floor from the delete threshold to prevent the
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:553: * decay/delete race condition:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:554: *   - decayFloor (0.05): scores are clamped here, never decay below this
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:571:      SELECT id, attention_score, event_counter, mention_count
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:573:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:577:      attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:588:      SET attention_score = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:602:        const decayBase = entry.attention_score * Math.pow(EVENT_DECAY_FACTOR, eventsElapsed);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:604:        const rawScore = decayBase + mentionBoost;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:644:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:686:        AVG(attention_score) as avgAttention,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:687:        MAX(attention_score) as maxAttention,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:688:        MIN(attention_score) as minAttention,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:691:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:28:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:56:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:60:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:64:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:69:      SELECT id, tenant_id, user_id, session_id
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:91:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:95:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, agent_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:100:      SELECT id, tenant_id, user_id, agent_id, session_id
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:40:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:58:        actor TEXT DEFAULT 'system' CHECK(actor IN ('user', 'system', 'hook', 'decay')),
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:297:      // The beforeAll created the table with CHECK(actor IN ('user','system','hook','decay'))
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:9:import * as triggerMatcherMod from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:18:const triggerMatcherAvailable = false;
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:648:    it('T102-2: triggerMatcher module available', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:649:      expect(triggerMatcherMod).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:662:    it('T102-5: triggerMatcher.refreshTriggerCache exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:663:      expect(typeof triggerMatcherMod.refreshTriggerCache).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:666:    it('T102-6: Restore triggers index rebuild', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:667:      if (!vectorIndexMod || !triggerMatcherMod) {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:685:      const spyRefreshTrigger = vi.spyOn(triggerMatcherMod, 'refreshTriggerCache').mockImplementation(() => { calls.push('refreshTriggerCache'); return []; });
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:32:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:62:    triggerPhrases?: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:71:    INSERT INTO memory_index (title, trigger_phrases, spec_folder, parent_id, importance_tier, is_archived)
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:76:    opts.triggerPhrases || '',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:185:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:190:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:195:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:206:      triggerPhrases: 'auth, login, authentication',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:212:      triggerPhrases: 'auth, login, authentication',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:223:      triggerPhrases: 'auth, login, authentication',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:229:      triggerPhrases: 'auth, login, authentication',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:242:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:247:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:254:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:282:      triggerPhrases: 'auth, login',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:287:      triggerPhrases: 'auth, login',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:343:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:348:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:368:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:373:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:378:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:385:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:36:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:49:    INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:234:  // --- Hop decay ---
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:251:    // fix_bug, supersedes (CORRECTION tier 0 → edgePrior=1.0), 1-hop (decay=1.0), freshness=0.8
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:259:    // add_feature, supports (tier 2 → edgePrior=0.5), 2-hop (decay=0.5), freshness=1.0
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:360:      graphDensity: 0.1,  // Would trigger sparse mode if flag were ON
-.opencode/skill/system-spec-kit/mcp_server/tests/short-critical-quality-gate.vitest.ts:301:      title: 'Decision: adopt FSRS hybrid decay',
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:4:// Feature catalog: Classification-based decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:188:    return null; // No decay for constitutional/critical
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:204: * NOTE: The old formula (h / ln(2)) assumed exponential decay R = e^(-t/S),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:209:    return 999999; // Effectively infinite stability (no decay)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:235: *     retrievability, attentionScore, or defaults to 0
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:258:    } else if (typeof mem.attentionScore === 'number') {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:259:      r = mem.attentionScore;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:300:  // If no decay (constitutional/critical), always HOT
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:389:      validateToolInputSchema('memory_match_triggers', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:391:    expect(validateToolArgs('memory_match_triggers', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:6:import * as triggerHandlerModule from '../handlers/memory-triggers';
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:45:      expect(triggerHandlerModule).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:106:      if (triggerHandlerModule?.handleMemoryMatchTriggers) {
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:108:          name: 'triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:109:          run: () => triggerHandlerModule.handleMemoryMatchTriggers({} as Parameters<typeof triggerHandlerModule.handleMemoryMatchTriggers>[0]),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:8:// - Layer 2: Content quality scoring (title, triggers, length,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:38:  triggerQuality: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:82:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:123:  triggerQuality: 0.20,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:286: * If in-memory state is empty, first trigger the lazy DB load path. Only when no
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:487: * Score trigger phrase quality (0-1).
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:489: * @param triggerPhrases - Array of trigger phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:492:export function scoreTriggerQuality(triggerPhrases: string[]): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:493:  const count = triggerPhrases.length;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:552:  const hasTriggers = /^trigger[_-]?phrases?\s*:/m.test(frontmatter);
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:571:  trigger_phrases?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:580:  if ((Array.isArray(row.trigger_phrases) ? row.trigger_phrases.length : (row.trigger_phrases?.trim().length ?? 0)) > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:605:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:610:    triggerQuality: scoreTriggerQuality(params.triggerPhrases ?? []),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:637:    if (dimensions.triggerQuality === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:638:      reasons.push('No trigger phrases: add at least 1-2 trigger phrases');
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:777:            triggerQuality: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:812:    triggerPhrases: params.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:74:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:504:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:527:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:552:      const triggerName = `skip_reinforce_${Date.now()}`;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:557:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:566:          CREATE TRIGGER ${triggerName}
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:578:        db.exec(`DROP TRIGGER IF EXISTS ${triggerName}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:587:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:610:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:745:        triggerPhrases: ['trigger1', 'trigger2'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:772:        triggerPhrases: ['alpha', 'beta'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:781:      expect(result.triggerPhrases).toContain('alpha');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:841:trigger_phrases: ["test trigger"]
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:894:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:525:    const availableColumns = ['title', 'content_text', 'trigger_phrases', 'file_path']
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:212:      // Count distinct sessions (null session_id treated as each own distinct pseudo-session)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:213:      const sessionKey = ev.session_id ?? `__null_${ev.id}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:11:// Feature catalog: Classification-based decay
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:23:  decayEnabled: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:62:    decayEnabled: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:68:    decayEnabled: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:74:    decayEnabled: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:80:    decayEnabled: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:86:    decayEnabled: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:92:    decayEnabled: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:98:    decayEnabled: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:104:    decayEnabled: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:110:    decayEnabled: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:291: * Returns null if the type has no decay or is not recognized.
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:295:  if (!config || !config.decayEnabled) {
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:333:  return config ? config.decayEnabled : true;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:48:trigger_phrases:
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:132:session_id: "${titleSlug}-fixture"
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:263:      triggerCacheCleared: expect.any(Boolean),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:271:    expect(typeof parsed.data.postMutationHooks.triggerCacheCleared).toBe('boolean');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:295:      triggerCacheCleared: expect.any(Boolean),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:395:        qualityFlags: ['No trigger phrases found'],
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts:116:    // isCircuitOpen triggers half-open reset
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:175:  it('T11: cutoffGap reflects the gap that triggered truncation', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:19:  triggerPhrases: string[];
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:110:vi.mock('../lib/parsing/trigger-matcher', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:154:    triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:69:vi.mock('../lib/cognitive/co-activation', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:371:        { type: 'co-activation', delta: 0.03 },
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:25:  triggerPhrases?: string[] | string;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:50:  triggerPhrases?: string[] | string;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:60:  constitutional: 'meta-cognitive',  // Rules that never decay
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:64:  temporary: 'working',              // Session-scoped, fast decay
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:156:  triggerPhrases: string[] | string | null | undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:159:  // Normalize trigger phrases to array
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:161:  if (Array.isArray(triggerPhrases)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:162:    phrases = triggerPhrases;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:163:  } else if (typeof triggerPhrases === 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:165:      phrases = JSON.parse(triggerPhrases) as string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:167:      phrases = [triggerPhrases];
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:171:  // Build searchable text from title and triggers
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:221:    triggerPhrases = [],
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:276:  const keywordType = inferTypeFromKeywords(title, triggerPhrases, content);
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:303:      triggerPhrases: memory.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:323:  keywords: 'Matched keywords in title or trigger phrases',
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:348:  // Check if scratch/temp content has fast-decay type
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:351:    warnings.push(`Temporary file "${filePath}" has slow-decay type "${inferredType}"`);
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:221:    // Similarity of 0.9599 must not trigger auto-merge
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:224:    // Similarity of 0.96 must trigger auto-merge
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:38:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:54:      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:133:      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:78:    // Threshold is 0.4 — exactly at the boundary still triggers recovery
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:54:  it('contains the three no-decay context types', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:71:  it('classifies decision as no_decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:72:    expect(classifyHybridDecay('decision')).toBe('no_decay');
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:75:  it('classifies constitutional as no_decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:76:    expect(classifyHybridDecay('constitutional')).toBe('no_decay');
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:79:  it('classifies critical as no_decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:80:    expect(classifyHybridDecay('critical')).toBe('no_decay');
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:171:  it('engagement-sensitive types decay normally under FSRS', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:181:  it('no-decay policy applies when flag is absent from env (graduated default ON)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:183:    // Flag is now ON by default → no-decay applies to decision/critical
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:195:    // When hybrid decay is OFF but classification decay is ON, applyHybridDecayPolicy
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:196:    // must not be influenced by the classification decay flag
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:16:    trigger_phrases: 'auth, login, session',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:27:    decay_half_life_days: 60,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:32:    session_id: 'sess-abc123',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:56:    triggerPhrases: 'auth, login, session',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:67:    decayHalfLifeDays: 60,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:106:    expect(memory.decayHalfLifeDays).toBe(60);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:124:    expect(row.decay_half_life_days).toBe(60);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:211:    expect(memory.decayHalfLifeDays).toBe(60);
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:95:    { id: 403, content: 'Post-save review highlights title, trigger phrase, and importance tier issues. '.repeat(2) },
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:17:       - A memory object: classifyState(memoryObj) reads .retrievability or .attentionScore
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:377:    it('T256: Constitutional => null (no decay)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:381:    it('T257: Critical => null (no decay)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:48:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:84:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:195:              session_id: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:213:          if (normalizedSql === "UPDATE session_state SET status = 'completed', updated_at = ? WHERE session_id = ?") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:237:          if (normalizedSql === "UPDATE session_state SET status = 'active', updated_at = ? WHERE session_id = ?") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:256:          if (normalizedSql === 'SELECT 1 FROM session_state WHERE session_id = ? LIMIT 1') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:261:          if (normalizedSql === 'SELECT 1 FROM session_sent_memories WHERE session_id = ? LIMIT 1') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:265:          if (normalizedSql === 'SELECT session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, tenant_id, user_id, agent_id, created_at, updated_at FROM session_state WHERE session_id = ?') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:270:          if (normalizedSql === 'SELECT tenant_id, user_id, agent_id FROM session_state WHERE session_id = ? LIMIT 1') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:290:          if (normalizedSql === 'SELECT session_id, spec_folder, current_task, last_action, context_summary, pending_work, updated_at, tenant_id, user_id, agent_id FROM session_state WHERE status = \'interrupted\' ORDER BY updated_at DESC') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:295:                session_id: row.session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:424:        session_id: 'session-state-save',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:580:        'session_id',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:31:vi.mock('../lib/cognitive/co-activation', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:130:  it('applies learned-trigger match.weight exactly once (no extra 0.7x scaling)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:201:      // attentionScore is now independent and not set by stage2 fusion
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:202:      expect(row.attentionScore).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:254:    // attentionScore is now independent and not set by stage2 fusion
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:255:    expect(boosted.attentionScore).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:312:  it('precomputes co-activation neighbor counts once per boosted batch', async () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:4:// Feature catalog: Classification-based decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:6:// Memory decay. It exposes FSRS-based decay as the canonical path
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:14:// Composite attention      → 5-factor model (composite-scoring.ts) using FSRS temporal
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:15:// Session/working memory   → Linear decay (working-memory.ts) — separate domain
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:50:  decayRateByTier: DecayRateByTier;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:54:// ADR-061: Decay rates aligned with importance-tiers.js (1.0 = no decay)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:57:  decayRateByTier: {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:76:    throw new Error('[attention-decay] Database reference is required');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:92:  const rate = DECAY_CONFIG.decayRateByTier[importanceTier];
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:99: * Calculate retrievability-based decay using FSRS formula.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:113: * Apply FSRS-based decay to a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:135: * Activate a memory (boost its decay score via access recording).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:139:    console.warn('[attention-decay] Database not initialized. Server may still be starting up.');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:154:    console.warn(`[attention-decay] activateMemory error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:212:    console.warn(`[attention-decay] activateMemoryWithFsrs error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:230: * Calculate composite attention score using 5-factor model.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:240: * Get detailed attention breakdown for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:280: * Apply composite decay to a list of memories and return sorted by score.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:284:): Array<Record<string, unknown> & { attentionScore: number }> {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:288:      attentionScore: calculateCompositeAttention(m),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:290:    .sort((a, b) => b.attentionScore - a.attentionScore);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:294: * Get active memories sorted by attention score.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:300:    console.warn('[attention-decay] Database not initialized. Server may still be starting up.');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:316:    console.warn(`[attention-decay] getActiveMemories error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:347:  // Composite attention
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:871:        // Checklist.md missing for Level 2 -- will trigger suggest
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:43:  it('T018: Higher stability = slower decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:160:  it('T035: Medium similarity (0.90-0.94) triggers check', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:202:  it('Boundary at 0.95 correctly triggers REINFORCE', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:215:  it('Boundary at 0.70 correctly triggers CREATE below', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:327:  it('R with very high stability (100+) decays very slowly', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:339:  it('R with very low stability (0.1) decays very fast', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:345:    // Low stability should decay much faster
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:591:  it('C138-T1: constitutional tier has minimal decay multiplier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:596:  it('C138-T2: scratch tier has maximum decay multiplier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:609:  it('C138-T4: tier decay formula produces expected stability', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:611:    const decayRate = 0.5;
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:613:    // Constitutional: barely decays
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:614:    const constStab = oldStability * (1.0 - (decayRate * TIER_MULTIPLIER.constitutional));
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:617:    // Scratch: rapid decay
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:618:    const scratchStab = oldStability * (1.0 - (decayRate * TIER_MULTIPLIER.scratch));
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:35:  const row = db.prepare('SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?')
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:93:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:98:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:104:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:112:        SELECT session_id
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:114:        ORDER BY session_id ASC
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:115:      `).all() as Array<{ session_id: string }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:116:      const remainingSessionIds = remainingRows.map(row => row.session_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:55:    triggerPhrases: ['retrieval', 'recovery'],
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:25:import * as triggerMatcher from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:512:    vi.spyOn(triggerMatcher, 'matchTriggerPhrases').mockReturnValue([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:524:    expect(result!.triggered).toEqual([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:527:  it('T50: includes constitutional memories in tool-dispatch auto-surface results when trigger path is active', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:539:    vi.spyOn(triggerMatcher, 'matchTriggerPhrases').mockReturnValue([
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:543:        filePath: 'specs/042-signals/memory/triggered.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:556:    expect(result!.triggered).toHaveLength(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:557:    expect(result!.triggered[0]).toMatchObject({
-.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:423:      'trigger_phrases: auth, login, oauth',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:459:    expect(result).not.toContain('trigger_phrases');
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:137:        searchMode: 'trigger',
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:151:      expect(sel.context.searchMode).toBe('trigger');
-.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:2:// Converted from: co-activation.test.ts (custom runner)
-.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:3:// Aligned with production co-activation.ts named exports
-.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:5:import * as coActivation from '../lib/cognitive/co-activation';
-.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:10:  '../lib/cognitive/co-activation',
-.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:11:  '../lib/cognitive/co-activation',
-.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:69:    it('decayPerHop is 0.5', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:70:      expect(coActivation.CO_ACTIVATION_CONFIG.decayPerHop).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:345:      expect(config).toHaveProperty('decayPerHop');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:235:        SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:265:        SELECT session_id FROM session_sent_memories ORDER BY session_id
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:266:      `).all() as Array<{ session_id: string }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:268:      const sessions: Set<string> = new Set(entries.map((e) => e.session_id));
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:313:    'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:15: * Default co-activation boost strength when SPECKIT_COACTIVATION_STRENGTH is not set.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:46:  decayPerHop: 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:164: * Boost a search result's score based on co-activation with related memories.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:194:    console.warn('[co-activation] Database not initialized. Server may still be starting up.');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:232:    console.warn(`[co-activation] getRelatedMemories error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:291:      console.warn(`[co-activation] Invalid embedding size (${uint8.byteLength} bytes) for memory ${memoryId}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:314:    console.warn(`[co-activation] populateRelatedMemories error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:358:    console.warn(`[co-activation] getCausalNeighbors error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:430:      const decayedScore = current.score * CO_ACTIVATION_CONFIG.decayPerHop * (rel.similarity / 100);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:431:      if (!Number.isFinite(decayedScore) || decayedScore < 0.01) continue;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:435:        score: decayedScore,
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-aware-traversal.vitest.ts:57:  it('uses inverse hop decay by distance', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-aware-traversal.vitest.ts:63:  it('uses exponential freshness decay over age', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:2:// Converted from: attention-decay.test.ts (custom runner)
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:3:// Aligned with production attention-decay.ts + fsrs-scheduler.ts named exports
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:5:import * as attentionDecay from '../lib/cognitive/attention-decay';
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:8:type AttentionDecayDb = Parameters<typeof attentionDecay.init>[0];
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:9:const attentionDecayExports = attentionDecay as unknown as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:18:      expect(attentionDecay.DECAY_CONFIG).toBeTruthy();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:22:      const defaultRate = attentionDecay.DECAY_CONFIG.defaultDecayRate;
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:29:      const tiers = attentionDecay.DECAY_CONFIG.decayRateByTier;
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:36:      const minThreshold = attentionDecay.DECAY_CONFIG.minScoreThreshold;
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:50:      expect(() => attentionDecay.init(null as unknown as AttentionDecayDb)).toThrow('Database reference is required');
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:54:      expect(() => attentionDecay.init(undefined as unknown as AttentionDecayDb)).toThrow('Database reference is required');
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:59:      attentionDecay.init(mockDb as unknown as AttentionDecayDb);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:60:      const db = attentionDecay.getDb();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:65:      attentionDecay.clearSession();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:77:      expect(attentionDecay.getDecayRate('constitutional')).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:81:      expect(attentionDecay.getDecayRate('critical')).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:85:      expect(attentionDecay.getDecayRate('normal')).toBe(0.80);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:89:      expect(attentionDecay.getDecayRate('temporary')).toBe(0.60);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:93:      const defaultRate = attentionDecay.DECAY_CONFIG.defaultDecayRate;
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:94:      expect(attentionDecay.getDecayRate('unknown_tier')).toBe(defaultRate);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:98:      const defaultRate = attentionDecay.DECAY_CONFIG.defaultDecayRate;
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:99:      expect(attentionDecay.getDecayRate(null)).toBe(defaultRate);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:103:      const defaultRate = attentionDecay.DECAY_CONFIG.defaultDecayRate;
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:104:      expect(attentionDecay.getDecayRate(undefined)).toBe(defaultRate);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:116:      expect(attentionDecay.calculateRetrievabilityDecay(1.0, 0)).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:120:      const r1 = attentionDecay.calculateRetrievabilityDecay(1.0, 1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:125:    it('Higher stability = slower decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:126:      const rS1 = attentionDecay.calculateRetrievabilityDecay(1.0, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:127:      const rS5 = attentionDecay.calculateRetrievabilityDecay(5.0, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:132:      expect(attentionDecay.calculateRetrievabilityDecay(0, 5)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:136:      expect(attentionDecay.calculateRetrievabilityDecay(1.0, -5)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:151:      const recentResult = attentionDecay.applyFsrsDecay(recentMemory, 1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:158:      expect(attentionDecay.applyFsrsDecay(noReviewMemory, 0.8)).toBe(0.8);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:169:      attentionDecay.clearSession();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:170:      expect(attentionDecay.activateMemory(1)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:174:      attentionDecay.clearSession();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:175:      expect(attentionDecay.activateMemoryWithFsrs(1, 3)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:186:      attentionDecay.clearSession();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:187:      const result = attentionDecay.getActiveMemories();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:193:      attentionDecay.clearSession();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:194:      const result = attentionDecay.getActiveMemories(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:207:      expect(typeof attentionDecay.calculateCompositeAttention).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:212:      const score = attentionDecay.calculateCompositeAttention(minimalMemory);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:221:      const constScore = attentionDecay.calculateCompositeAttention(constMemory);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:222:      const normalScore = attentionDecay.calculateCompositeAttention(normalMemory);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:234:      expect(typeof attentionDecay.getAttentionBreakdown).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:239:      const breakdown = attentionDecay.getAttentionBreakdown(memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:247:      const breakdown = attentionDecay.getAttentionBreakdown(memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:253:      const breakdown = attentionDecay.getAttentionBreakdown(memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:261:     Production: applyCompositeDecay(memories: Array): Array (sorted by attentionScore)
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:266:      expect(typeof attentionDecay.applyCompositeDecay).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:274:      const result = attentionDecay.applyCompositeDecay(memories);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:279:    it('Each item has attentionScore', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:284:      const result = attentionDecay.applyCompositeDecay(memories);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:285:      expect(result.every((m) => typeof m.attentionScore === 'number')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:288:    it('Sorted descending by attentionScore', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:293:      const result = attentionDecay.applyCompositeDecay(memories);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:294:      expect(result[0].attentionScore).toBeGreaterThanOrEqual(result[1].attentionScore);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:298:      const emptyResult = attentionDecay.applyCompositeDecay([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:363:    it('Higher S = slower decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:393:      expect(attentionDecayExports[name]).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:400:      expect(attentionDecayExports[name]).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:407:      expect(attentionDecayExports[name]).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:416:    // Constitutional tier = infinite half-life (rate 1.0, no decay)
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:418:    it('High stability = minimal decay after 1000 days', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:419:      const constRetrievability = attentionDecay.calculateRetrievabilityDecay(1000.0, 1000);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:426:      expect(attentionDecay.applyFsrsDecay(deprMemory, 0.5)).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:429:    // Important tier has rate=1.0 (no decay)
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:431:      expect(attentionDecay.getDecayRate('important')).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:436:      attentionDecay.clearSession();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:437:      expect(attentionDecay.getDb()).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:457:      expect(attentionDecayExports[name]).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:11:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:13:      attention_score REAL NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:17:      UNIQUE(session_id, memory_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:24:describe('T010-T015: session-attention boost', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:49:      INSERT INTO working_memory (session_id, memory_id, attention_score)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:74:      INSERT INTO working_memory (session_id, memory_id, attention_score)
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:17:  readonly attention: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:44:    attention: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:51:    attention: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:58:    attention: 0.7,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:269:    attentionScore: normalizeAttention(matched.rule.attention),
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:28:} from '../lib/cognitive/attention-decay';
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:84:  it('T032-10: Temporal decays with time', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:185:  it('T033-05: Citation score decays over time', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:373:  it('T035-01: calculate_composite_attention exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:377:  it('T035-02: get_attention_breakdown exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:381:  it('T035-03: apply_composite_decay exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:385:  it('T035-04: FIVE_FACTOR_WEIGHTS available via composite-scoring (not re-exported from attention-decay)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:386:    // Attention-decay imports FIVE_FACTOR_WEIGHTS but does not re-export it
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:391:  it('T035-05: calculate_composite_attention returns score in [0, 1]', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:408:  it('T035-07: get_attention_breakdown returns proper structure', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:410:    // Known bug: attention-decay passes memory object to calculateImportanceScore(tier, baseWeight)
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:548:  it('EDGE-T05: High stability (S=10) slows decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:699:  it('EDGE-P02: Very high similarity (95+) triggers bonus', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:704:    // 95% triggers semantic_threshold bonus (0.8 threshold)
-.opencode/skill/system-spec-kit/mcp_server/tests/create-record-lineage-regressions.vitest.ts:25:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:565:      // Query about bugs should not trigger spec bonus
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:855:        trigger_phrases: '[]',
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:866:        decay_half_life_days: 60,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:871:        session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:898:        trigger_phrases: '[]',
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:909:        decay_half_life_days: 60,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:914:        session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:40:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:50:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:93:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:117:    triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:184:    it('T054-4: Changing 1 character produces a different hash — dedup does NOT trigger', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:452:    it('T054-6f: Same-path unchanged does not short-circuit when trigger phrases changed', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:453:      const content = 'Existing same-path row with stale trigger phrases.';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:457:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:465:        JSON.stringify(['legacy-trigger']),
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:483:      const content = 'Existing same-path row with stale trigger phrases.';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:487:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:495:        JSON.stringify(['legacy-trigger']),
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:504:          triggerPhrases: ['fresh-trigger'],
-.opencode/skill/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts:8:// Comparison, and decay/search behavior per tier.
-.opencode/skill/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts:120:    it('T504-06: Tier decay transitions work correctly', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts:121:      const decayExpectations: Record<ImportanceTier, boolean> = {
-.opencode/skill/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts:130:      for (const [tier, expectedDecay] of Object.entries(decayExpectations)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:4:// Feature catalog: Classification-based decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:12:// All long-term decay consumers MUST import constants from this file.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:16:// Timescale: minutes. Operates on session-scoped attention scores only.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:18:// DECAY STRATEGY (ADR-004): This is the CANONICAL long-term decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:19:// Algorithm. All temporal decay for persistent memories should route
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:23:// Consumers: attention-decay.ts (facade), composite-scoring.ts (temporal
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:238: * C138: Tier-based decay multipliers for long-term memory stability.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:239: * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:240: * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:243: * (lower value = slower perceived time = slower decay). It is a SEPARATE system from
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:262:     - Infinity stability → R(t) = 1.0 always (no decay)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:263:     - >1.0 stability multiplier → slower decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:264:     - <1.0 stability multiplier → faster decay */
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:269: * Infinity = no decay (retrievability always 1.0).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:270: * 2.0 = stability doubled → slower decay.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:274:  planning: Infinity,    // no decay — planning/decisions are permanent
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:275:  research: 2.0,         // 2x stability — research context decays slower
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:276:  implementation: 1.0,   // standard decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:277:  general: 1.0,          // standard decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:291: * constitutional/critical: Infinity = never decays.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:292: * important: 1.5x stability → slower decay.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:294: * temporary: 0.5x → faster decay (2x relative speed).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:295: * deprecated: 0.25x → fastest decay (4x relative speed).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:298:  constitutional: Infinity, // never decays
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:299:  critical: Infinity,       // never decays
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:300:  important: 1.5,           // slower decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:302:  temporary: 0.5,           // faster decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:303:  deprecated: 0.25,         // fastest decay
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:311: *     (no-decay wins unconditionally).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:316: * which makes R(t) = (1 + factor * t / Infinity)^decay = 1.0 for all t.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:326:  // Infinity * anything = Infinity (no-decay wins)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:335: * TM-03: Apply classification-based decay to a stability value.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:339: * Returns Infinity when the combined multiplier is Infinity (no-decay).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:387: * Context types that should never decay under the hybrid decay policy.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:408: * REQ-D4-002: Check whether the hybrid decay policy feature flag is enabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:417: * REQ-D4-002: Classify a memory's decay behaviour under the hybrid policy.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:420: *   - 'no_decay'       for decision / constitutional / critical context types
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:423:type HybridDecayClass = 'no_decay' | 'fsrs_schedule';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:427:    return 'no_decay';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:440: * REQ-D4-002: Apply the hybrid decay policy to a stability value.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:444: *   - decision / constitutional / critical → returns Infinity (no decay)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:449: * @returns Adjusted stability: Infinity for no-decay types, original otherwise
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:473:  // TM-03: Classification-based decay constants and functions
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:479:  // REQ-D4-002: Hybrid decay policy
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:164:    it('T418b: Tier multipliers affect retrievability decay rate', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:188:    it('T418c: classification decay path applies when enabled (no double decay)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:203:        // Expected path with classification decay:
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:399:      const decay = compositeScoring.FSRS_DECAY
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:401:      expect(typeof decay).toBe('number')
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:161:    const sessionMatches = !scope.sessionId || row.session_id === scope.sessionId;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:40:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:41:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-2', session_id: 'session-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:42:      { id: 3, tenant_id: 'tenant-b', user_id: 'user-1', session_id: 'session-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:55:      { tenant_id: 'a', user_id: 'u1', agent_id: null, session_id: null, shared_space_id: null },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:56:      { tenant_id: 'b', user_id: 'u2', agent_id: null, session_id: null, shared_space_id: null },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:66:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:67:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:82:        session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:110:  it('persists session_id as a queryable governance post-insert column', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:125:      session_id: 'session-123',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:127:    expect(ALLOWED_POST_INSERT_COLUMNS.has('session_id')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:137:        session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:202:        session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:232:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:233:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:234:      { id: 3, tenant_id: 'tenant-a', user_id: 'user-2', session_id: 'session-1', shared_space_id: 'space-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:235:      { id: 4, tenant_id: 'tenant-b', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:67:const VALID_SOURCES: QuerySource[] = ['manual', 'trigger_derived', 'pattern_derived', 'seed'];
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:217:   T007.4: ≥30 manual queries (NOT trigger-derived)
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:226:  it('T007.4.2: manual queries are not source="trigger_derived"', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:229:      expect(q.source).not.toBe('trigger_derived');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:4:import * as handler from '../handlers/memory-triggers';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:6:import * as triggerMatcher from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:9:import * as attentionDecay from '../lib/cognitive/attention-decay';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:11:import * as coActivation from '../lib/cognitive/co-activation';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:19:} from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:22:type AttentionDb = NonNullable<ReturnType<typeof attentionDecay.getDb>>;
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:76:    it('T517-2: handle_memory_match_triggers alias exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:77:      expect(typeof handler.handle_memory_match_triggers).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:129:    it('T517-8: Handler supports turnNumber parameter', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:144:  it('logs final eval result even when no trigger matches are found', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:145:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:161:    expect(data.matchType).toContain('trigger-phrase');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:166:      fusionMethod: 'trigger',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:170:  it('routes through trigger signal vocabulary path without changing response shape', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:174:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:178:    const response = await handler.handleMemoryMatchTriggers({ prompt: 'test', include_cognitive: false });
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:183:    const triggerSignals = getArray(meta.triggerSignals);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:188:    expect(triggerSignals).toHaveLength(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:191:  it('surfaces degraded trigger matching metadata when trigger parsing partially fails', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:192:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:198:          failures: [{ code: 'E_TRIGGER_SOURCE_PARSE', message: 'bad trigger payload', memoryId: 9 }],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:203:    const response = await handler.handleMemoryMatchTriggers({ prompt: 'test', include_cognitive: false });
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:224:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:248:    vi.spyOn(attentionDecay, 'getDb').mockReturnValue(mockDb);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:249:    vi.spyOn(attentionDecay, 'activateMemory').mockImplementation(() => false);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:269:      session_id: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:270:      include_cognitive: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:276:    expect(data.matchType).toBe('trigger-phrase-cognitive');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:282:  it('filters trigger matches by governed scope fields when provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:283:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:316:      include_cognitive: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts:290:  it('T21: routes trigger phrase match to simple tier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts:333:    // Even a trigger-phrase query gets all channels when disabled
-.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts:362:    // Empty query triggers complex fallback in classifier
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:341:  it('T-HEB-04: 30-day decay reduces edge strength', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:350:    expect(result.decayed).toBeGreaterThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:354:    expect(edge.strength).toBeCloseTo(0.7, 5); // 0.8 - 0.1 decay
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:498:    expect(result.hebbian.decayed).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:39:      session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:53:      WHERE spec_folder = ? AND task_id = ? AND session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:59:      WHERE spec_folder = ? AND task_id = ? AND session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:143:      WHERE spec_folder = ? AND task_id = ? AND session_id = ? AND phase = 'complete'
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:79:  // T015-04: Different model_id triggers cache miss (same content)
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:80:  it('T015-04: different model_id triggers cache miss', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:96:  it('T015-04b: different dimensions trigger cache miss for same hash and model', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:147:    // Lookup triggers last_used_at refresh
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:420:  it('does not trigger local recompute for empty nodeIds', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:435:  it('triggers local recompute when component is small', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:752:// INTEGRATION: Save triggers dirty-node refresh (REQ-D3-003)
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:755:describe('Integration: save triggers dirty-node refresh', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:25:describe('T005-T008: event-based decay pipeline', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:57:      WHERE session_id = 's1'
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:72:  it('T005/T006: batch decay uses event distance plus mention boost formula', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:76:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:81:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:88:    const row = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s2', 3) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:89:      attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:93:    expect(Math.abs(row.attention_score - expected)).toBeLessThan(1e-9);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:96:  it('T009: decay calculation covers event distance 0, 10, and 100 with mention boost', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:100:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:104:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:108:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:116:      SELECT memory_id, attention_score
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:118:      WHERE session_id = 's5'
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:120:    `).all() as Array<{ memory_id: number; attention_score: number }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:126:    expect(Math.abs(rows[0].attention_score - expected0)).toBeLessThan(1e-9);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:127:    expect(Math.abs(rows[1].attention_score - expected10)).toBeLessThan(1e-9);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:128:    expect(Math.abs(rows[2].attention_score - expected100)).toBeLessThan(1e-9);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:131:  it('T008: delete threshold is checked before decay floor clamp', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:135:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:139:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:145:    const deleted = db.prepare('SELECT COUNT(*) AS count FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s3', 5) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:150:    const floored = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s3', 6) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:151:      attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:153:    expect(floored.attention_score).toBe(wm.DECAY_FLOOR);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:157:  it('T007 wrap handling: event counter wraps and decay distance uses modular arithmetic', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:161:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:167:    const wrapped = db.prepare('SELECT event_counter, mention_count FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s4', 7) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:175:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:181:    const decayed = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s4', 8) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:182:      attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:184:    expect(Math.abs(decayed.attention_score - 0.85)).toBeLessThan(1e-9);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:187:  it('default-on contract: event decay runs when SPECKIT_EVENT_DECAY is unset', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:193:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:201:  it('opt-out contract: event decay is disabled only when SPECKIT_EVENT_DECAY=false', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:207:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:214:    const row = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s-disabled', 13) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:215:      attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:217:    expect(row.attention_score).toBe(0.9);
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:5: * Tests the decay/recency/boost behavior of composite-scoring.ts.
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:6: * Focuses on temporal decay curves, recency scoring, constitutional
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:8:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers', layer: 'L2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:34:  { camel: 'handleMemoryMatchTriggers', snake: 'handle_memory_match_triggers' },
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:174:  attentionSignalCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:620:  attentionSignalCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:629:    attentionSignalCount: input.attentionSignalCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts:29: * structured fields (title, trigger_phrases, context_type, etc.), so
-.opencode/skill/system-spec-kit/mcp_server/tests/channel-representation.vitest.ts:379:      ['trigger', [makeChannelResult('t1', 0.4)]],
-.opencode/skill/system-spec-kit/mcp_server/tests/channel-representation.vitest.ts:387:    expect(result.underRepresentedChannels).toContain('trigger');
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:111:    triggerPhrases: ['test', 'memory'],
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:246:      // Content with no title, no triggers, very short — should fail structural + quality
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:251:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:266:trigger_phrases: [integration test, quality gate, validation]
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:281:Signal density is computed as a weighted average of title quality, trigger quality, length quality,
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:289:        triggerPhrases: ['integration test', 'quality gate', 'validation'],
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:365:            trigger_phrases TEXT DEFAULT '[]',
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:484:  it('S4-INT-11: Save with similarity in [0.88, 0.92] passes quality gate then triggers reconsolidation merge', withEnvVars(
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:490:trigger_phrases: [implementation, quality gate, reconsolidation]
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:510:        triggerPhrases: ['implementation', 'quality gate', 'reconsolidation'],
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:844:  it('S4-INT-26: Similarity >= 0.92 triggers both dedup rejection AND merge', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:669:  it('T087: QUERY_TOO_LONG suggests memory_match_triggers()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:672:      a.includes('memory_match_triggers()')
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:4:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:23:  triggerId: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:50:/** Statistics about a trigger matching operation */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:146:    console.warn(`[trigger-matcher] ${operation}: ${durationMs}ms (target <50ms)`, details);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:148:    console.error(`[trigger-matcher] ${operation}: ${durationMs}ms`, details);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:157:// In-memory cache of trigger phrases for fast matching
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:158:let triggerCache: TriggerCacheEntry[] | null = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:159:let triggerCandidateIndex: Map<string, Set<number>> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:162:const triggerCacheLoaderStatementByConnection = new WeakMap<Database.Database, Database.Statement>();
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:177:  SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:180:    AND trigger_phrases IS NOT NULL
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:181:    AND trigger_phrases != '[]'
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:182:    AND trigger_phrases != ''
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:187:  const cachedStatement = triggerCacheLoaderStatementByConnection.get(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:193:  triggerCacheLoaderStatementByConnection.set(database, statement);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:208:  // word breaks. For pure CJK trigger phrases, prefer substring matching so valid
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:272:  if (!triggerCandidateIndex) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:273:    triggerCandidateIndex = new Map();
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:278:    const indexedIds = triggerCandidateIndex.get(key);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:280:      indexedIds.add(entry.triggerId);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:284:    triggerCandidateIndex.set(key, new Set([entry.triggerId]));
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:306:/** Get or create a cached regex for a trigger phrase. @param phrase - The trigger phrase @returns Compiled RegExp */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:337:/** Load all trigger phrases from the index into memory */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:342:  if (triggerCache && (now - cacheTimestamp) < CONFIG.CACHE_TTL_MS) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:343:    return triggerCache;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:349:    // Because trigger-matcher may be the first module to access the database in the
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:357:      console.warn('[trigger-matcher] Database not initialized. Server may still be starting up.');
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:366:      trigger_phrases: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:371:    triggerCache = [];
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:372:    triggerCandidateIndex = new Map();
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:377:        phrases = JSON.parse(row.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:380:        console.warn(`[trigger-matcher] Failed to parse trigger phrases for memory ${row.id}: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:405:          triggerId: triggerCache.length,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:415:        triggerCache.push(entry);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:429:    return triggerCache;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:432:    console.warn(`[trigger-matcher] Cache load failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:443:/** Clear the trigger cache (useful for testing or after updates) */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:445:  triggerCache = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:446:  triggerCandidateIndex = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:455:    size: triggerCache ? triggerCache.length : 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:621:/** Match user prompt against trigger phrases using exact string matching */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:683:  logExecutionTime('match_trigger_phrases', elapsed, {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:694:/** Match trigger phrases with additional stats */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:725:/** Get all unique trigger phrases in the cache */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:732:  if (cache.length === 0 || !triggerCandidateIndex || triggerCandidateIndex.size === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:743:    const indexedIds = triggerCandidateIndex.get(key);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:748:    for (const triggerId of indexedIds) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:749:      candidateIds.add(triggerId);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:759:    .map((triggerId) => cache[triggerId])
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:763:/** Get memories by trigger phrase */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:787:/** Refresh trigger cache (forces reload on next access) */
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:44:  'find spec',               // Also a trigger match
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:56:  // 4-8 terms, no trigger match
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:72:  // >8 terms, no trigger match
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:170:  it('when disabled, trigger matches still return "complex"', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:183:  it('classifies all simple queries as "simple" (≤3 terms or trigger match)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:219:  it('classifies trigger phrase matches as simple regardless of length', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:221:      // "get learning history" has 3 terms and is a trigger phrase
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:228:  it('reports high confidence for trigger matches', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:248:  it('classifies all moderate queries as "moderate" (4-8 terms, no trigger)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:305:  it('classifies all complex queries as "complex" (>8 terms, no trigger)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:480:  it('matches exact trigger phrase (case-insensitive)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:486:  it('does not match partial trigger phrase', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:491:  it('handles empty trigger phrase list', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:499:  it('trigger match overrides term count for classification', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:501:      // "get learning history" is a trigger phrase with exactly 3 terms
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:508:  it('no trigger match when triggerPhrases is undefined', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:10:      triggerCacheCleared: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:21:      triggerCacheCleared: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:37:      triggerCacheCleared: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:51:      triggerCacheCleared: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:86:      triggered: [{ id: 3 }],
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:93:    expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 2 constitutional and 1 triggered memories (6ms)'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:96:      triggeredCount: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:111:    expect(() => appendAutoSurfaceHints(malformedResult, { constitutional: [], triggered: [] })).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:115:    expect(() => appendAutoSurfaceHints(noTextResult, { constitutional: [], triggered: [] })).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:118:  it('appendAutoSurfaceHints skips hint injection when constitutional and triggered are empty', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:133:    appendAutoSurfaceHints(result, { constitutional: [], triggered: [] });
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:254:        sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:283:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:26:} from '../lib/storage/learned-triggers-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:87:      trigger_phrases TEXT DEFAULT '[]',
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:101:  // Create the FTS5 table matching the real schema (NO learned_triggers!)
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:105:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:119:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:127:    triggerPhrases = [],
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:135:    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence)
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:137:  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:216:    const hasColumn = columns.some(column => column.name === 'learned_triggers');
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:232:  it('R11-SCH04: CRITICAL - verifyFts5Isolation throws if learned_triggers in FTS5', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:233:    // Create a deliberately wrong FTS5 table with learned_triggers
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:242:        trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:245:        learned_triggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:263:    const hasColumn = columns.some((c: any) => c.name === 'learned_triggers');
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:350:  it('R11-TE02: filters out existing triggers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:411:    // Add learned_triggers column
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:434:    insertMemory(testDb, 1, { title: 'Auth Module', triggerPhrases: ['login', 'oauth'] });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:435:    insertMemory(testDb, 2, { title: 'Database Schema', triggerPhrases: ['migration', 'sql'] });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:438:      triggerPhrases: ['fresh'],
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:478:  it('R11-CO04: recordSelection is log-only during shadow period (no learned trigger persistence)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:490:    // No write/apply effect: learned_triggers must remain empty.
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:491:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get() as { learned_triggers?: string };
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:492:    const entries = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:507:    // Verify learned_triggers updated
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:508:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:509:    const entries = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:521:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:522:    const entries = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:529:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:530:    const entries = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:535:    // Pre-populate learned triggers
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:554:    // Replace the old audit entry with a very recent one to trigger shadow period
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:603:    testDb.prepare('UPDATE memory_index SET learned_triggers = ? WHERE id = 1')
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:609:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:610:    const remaining = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:619:    let row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:620:    let entries = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:628:    row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:629:    entries = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:934:  it('R11-NF10: no lastNegativeAt -> no recovery decay applied', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:935:    // Without lastNegativeAt, full penalty is applied (no decay)
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:979:  it('R11-FTS01: learned_triggers NOT in FTS5 after migration', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:983:  it('R11-FTS02: learned_triggers NOT in FTS5 after applying triggers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:988:  it('R11-FTS03: learned_triggers NOT in FTS5 after recordSelection', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:993:  it('R11-FTS04: learned_triggers NOT in FTS5 after expiry', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:999:  it('R11-FTS05: learned_triggers NOT in FTS5 after rollback', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:21:        memory_match_triggers: 3500,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:128:    vi.doMock('../handlers/memory-triggers', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:186:    vi.doMock('../handlers/memory-triggers', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:395:      const triggerKey = generateCacheKey('memory_match_triggers', { prompt: 'test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:397:      set(triggerKey, 'trigger_result', { toolName: 'memory_match_triggers' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:399:      expect(has(triggerKey)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:402:      expect(has(triggerKey)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:51:  triggerPhrases: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:253:  const triggerPhrases = extractTriggerPhrases(content);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:265:    triggerPhrases: triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:276:    triggerPhrases: triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:283:    // Memory type classification for decay calculation
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:541:/** Extract trigger phrases from ## Trigger Phrases section OR YAML frontmatter */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:543:  const triggers: string[] = [];
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:547:  const inlineMatch = frontmatter.match(/(?:triggerPhrases|trigger_phrases):\s*\[([^\]]+)\]/i);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:555:          triggers.push(cleaned);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:562:  if (triggers.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:567:      if (/^\s*(?:triggerPhrases|trigger_phrases):\s*$/i.test(line)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:579:          if (phrase.length > 0 && phrase.length < 100 && !/^-+$/.test(phrase) && !triggers.includes(phrase)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:580:            triggers.push(phrase);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:599:        if (phrase.length > 0 && phrase.length < 100 && !triggers.includes(phrase)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:600:          triggers.push(phrase);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:606:  return triggers;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:79:    it('T077: Meta-cognitive memory half-life = null (no decay)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:95:    it('getHalfLifeForType returns canonical decay values', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:194:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:62: * Time-based recovery: the penalty decays with a 30-day half-life since
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:71: *                         If null/undefined, no recovery decay is applied.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:85:  // Apply time-based recovery (exponential decay of penalty)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:91:      // Exponential decay: penalty * 2^(-elapsed / halfLife)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:92:      const decayFactor = Math.pow(2, -(elapsedMs / RECOVERY_HALF_LIFE_MS));
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:93:      effectivePenalty = rawPenalty * decayFactor;
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:19:  trigger_phrases: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:26:      if (sql.includes('SELECT id, title, content_text, trigger_phrases, file_path')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:394:        { id: 1, title: 'Memory System', content_text: 'Semantic search retrieval', trigger_phrases: 'memory,search', file_path: 'specs/001/spec.md' },
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:395:        { id: 2, title: 'Index Management', content_text: 'BM25 indexing pipeline', trigger_phrases: 'index,bm25', file_path: 'specs/002/spec.md' },
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:415:        { id: 10, title: 'Title Only', content_text: null, trigger_phrases: null, file_path: null },
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:416:        { id: 11, title: null, content_text: 'Content only text here', trigger_phrases: null, file_path: null },
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:436:        { id: 20, title: null, content_text: null, trigger_phrases: null, file_path: null },
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:437:        { id: 21, title: '', content_text: '', trigger_phrases: '', file_path: '' },
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:438:        { id: 22, title: 'Valid', content_text: 'Valid content here', trigger_phrases: null, file_path: null },
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:460:        { id: 100, title: 'Fresh', content_text: 'Fresh content only', trigger_phrases: null, file_path: null },
-.opencode/skill/system-spec-kit/mcp_server/tests/phase2-integration.vitest.ts:28:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/phase2-integration.vitest.ts:56:      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:157:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:171:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:185:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:191:    UNIQUE(spec_folder, loop_type, session_id, iteration)
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:200:  CREATE INDEX IF NOT EXISTS idx_coverage_session ON coverage_nodes(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:206:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_session ON coverage_edges(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:207:  CREATE INDEX IF NOT EXISTS idx_coverage_snapshot_session ON coverage_snapshots(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:266:    parts.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:308:      id, spec_folder, loop_type, session_id, kind, name,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:382:      id, spec_folder, loop_type, session_id, source_id, target_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:454:      spec_folder, loop_type, session_id, iteration, metrics, node_count, edge_count
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:457:    ON CONFLICT(spec_folder, loop_type, session_id, iteration) DO UPDATE SET
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:474:      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:493:      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:605:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:621:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:636:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-circuit-breaker.vitest.ts:118:    // isEmbeddingCircuitOpen triggers half-open reset
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:162:      'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:292:      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:402:      '../lib/cognitive/attention-decay',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:403:      '../lib/cognitive/co-activation',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:411:      '../lib/storage/learned-triggers-schema',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:451:      triggerMatcherClearMock: ReturnType<typeof vi.fn>
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:496:      const autoSurfaceMemoriesMock = vi.fn(async () => ({ constitutional: [], triggered: [] }))
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:526:      const triggerMatcherClearMock = vi.fn()
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:697:      vi.doMock('../lib/parsing/trigger-matcher', () => ({ clearCache: triggerMatcherClearMock }))
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:699:      vi.doMock('../lib/storage/learned-triggers-schema', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:705:      vi.doMock('../lib/cognitive/attention-decay', () => ({ init: vi.fn() }))
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:706:      vi.doMock('../lib/cognitive/co-activation', () => ({ init: vi.fn(), isEnabled: vi.fn(() => false) }))
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:865:        triggerMatcherClearMock,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:891:    it('T000b: callbacks are triggered after dispatchTool and non-blocking', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1025:        triggered: [{ memory_id: 2, matched_phrases: ['hook'] }],
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1084:        triggerMatcherClearMock,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1097:      expect(triggerMatcherClearMock).toHaveBeenCalledTimes(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1107:        triggered: [{ memory_id: 3, matched_phrases: ['query'] }],
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1136:        triggered: [{ memory_id: 11, matched_phrases: ['resume'] }],
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1169:        triggered: [{ memory_id: 12, matched_phrases: ['focused'] }],
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1199:        triggered: [{ memory_id: 2, matched_phrases: ['hook'] }],
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1226:      expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 constitutional and 1 triggered memories'))).toBe(true)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1229:        triggeredCount: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1247:        triggered: [{ memory_id: 2, matched_phrases: ['budget'] }],
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1274:      expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 constitutional and 1 triggered memories (11ms)'))).toBe(true)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1284:      actualAppendAutoSurfaceHints(result, { constitutional: [], triggered: [] })
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1301:      actualAppendAutoSurfaceHints(arrayResult, { constitutional: [{ id: 1 }], triggered: [{ id: 2 }] })
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1302:      actualAppendAutoSurfaceHints(nullResult, { constitutional: [{ id: 1 }], triggered: [{ id: 2 }] })
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1332:        triggered: [{ id: 2 }],
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1703:    const expectedAwareTools = ['memory_context', 'memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1747:      expect(hooksModule!.extractContextHint!({ prompt: 'trigger phrase' })).toBe('trigger phrase')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2086:      'memory_match_triggers': '[L2:Core]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2255:      { module: './lib/cognitive/attention-decay.js', name: 'Attention decay' },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2256:      { module: './lib/cognitive/co-activation.js', name: 'Co-activation' },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2444:      // Must NOT use >= 10 (which would trigger at exactly 10)
-.opencode/skill/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:460:        'Stage two applies scoring signals like causal boost and session attention. ' +
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:4:// T002 (degree as 5th RRF channel) + T003a (co-activation boost)
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:356:  // The co-activation module reads env vars at import time,
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:361:      const mod = await import('../lib/cognitive/co-activation');
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:367:      const mod = await import('../lib/cognitive/co-activation');
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:380:      const mod = await import('../lib/cognitive/co-activation');
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:399:      const { boostScore } = await import('../lib/cognitive/co-activation');
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:404:      const { boostScore } = await import('../lib/cognitive/co-activation');
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:420:    it('spreadActivation applies decay per hop', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:421:      const mod = await import('../lib/cognitive/co-activation');
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:422:      // The spread activation function uses decayPerHop = 0.5
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:424:      expect(mod.CO_ACTIVATION_CONFIG.decayPerHop).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:428:      const { boostScore } = await import('../lib/cognitive/co-activation');
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:443:      const mod = await import('../lib/cognitive/co-activation');
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:45:vi.mock('../lib/cognitive/co-activation.js', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:116:        triggerPhrases: ['atomic-save-fi'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:121:          'trigger_phrases:',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:183:          'session_id: "atomic-save-fi"',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:262:            triggerPhrases: 4,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:333:          triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:423:            triggerPhrases: 4,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:656:        triggerPhrases: ['atomic-save-fi'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1068:    it('persists quality-loop trigger phrase fixes into downstream save inputs', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1079:        triggerPhrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1123:        fixes: ['Re-extracted 4 trigger phrases from content'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1126:        fixedContent: buildParsedMemory('quality-loop-trigger-fix.md').content,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1130:      const filePath = createAtomicSaveTargetPath('quality-loop-trigger-fix.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1137:      expect((createMemoryRecordMock.mock.calls[0] as any)?.[1].triggerPhrases).toEqual(['alpha', 'beta', 'gamma', 'delta']);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1138:      expect((createMemoryRecordMock.mock.calls[0] as any)?.[1].content).toBe(buildParsedMemory('quality-loop-trigger-fix.md').content);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1139:      expect(fs.readFileSync(filePath, 'utf8')).toBe(buildParsedMemory('quality-loop-trigger-fix.md').content);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1362:        fixes: ['Re-extracted 4 trigger phrases from content'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1410:        fixes: ['Re-extracted 4 trigger phrases from content'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1567:            triggerPhrases: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1597:            'trigger_phrases:',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1645:            triggerPhrases: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1797:        triggerPhrases: ['stale-trigger'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1803:        triggerPhrases: ['fresh-trigger'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1822:        triggerPhrases: freshParsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:105: * - Positive validations can trigger auto-promotion (`importance_tier` changes),
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-density.vitest.ts:163:     are possible and should trigger escalation when below 0.5.
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:56:  memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:89:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:13:  triggered?: unknown[];
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:108:    const triggeredCount = Array.isArray(autoSurfacedContext?.triggered)
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:109:      ? autoSurfacedContext.triggered.length
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:113:    if (constitutionalCount > 0 || triggeredCount > 0) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:118:        `Auto-surface hook: injected ${constitutionalCount} constitutional and ${triggeredCount} triggered memories (${latency}ms)`
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:124:      triggeredCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:82: * for camelCase fallback fields (e.g. retryCount, triggerPhrases).
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:479:    // Off-by-one fix: retryCount is already incremented after the failure that triggered
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:922:  if (row.triggerPhrases && typeof row.triggerPhrases === 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:924:      return { ...row, triggerPhrases: JSON.parse(row.triggerPhrases) };
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:926:      return { ...row, triggerPhrases: [] };
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:14:     MAX_ACCUMULATOR_SIZE — overflow triggers auto-flush and clear
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:177:    it('MAX_ACCUMULATOR_SIZE overflow triggers flush-all and clear', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:189:      // The next trackAccess should trigger the overflow guard
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:414:    it('Decay-rate boundaries: rate=0 no decay, rate=1.0 near-complete decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:95:          trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:107:          decay_half_life_days REAL DEFAULT 90.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:113:          session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:122: * spec_folder with text similarity (based on title + trigger_phrases)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:145:    `SELECT m.title, m.trigger_phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:150:  ).get(memoryId) as { title: string | null; trigger_phrases: string | null } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:154:  const targetText = [targetRow.title || '', targetRow.trigger_phrases || ''].join(' ').trim();
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:159:    `SELECT m.id, m.title, m.trigger_phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:168:    trigger_phrases: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:173:    const siblingText = [sibling.title || '', sibling.trigger_phrases || ''].join(' ').trim();
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:210:    `SELECT m.id, m.spec_folder, m.title, m.trigger_phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:219:    trigger_phrases: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:246:      `SELECT m.id, m.title, m.trigger_phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:254:      trigger_phrases: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:260:      const text = [mem.title || '', mem.trigger_phrases || ''].join(' ').trim();
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:221:    it('contains vector, bm25, fts5, graph, trigger', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:226:      expect(ALL_CHANNELS).toContain('trigger');
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:361:    it('disables trigger channel correctly', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:362:      const flags = toHybridSearchFlags(new Set<AblationChannel>(['trigger']));
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:374:        new Set<AblationChannel>(['vector', 'bm25', 'fts5', 'graph', 'trigger']),
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:24:vi.mock('../lib/parsing/trigger-matcher', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:44:vi.mock('../lib/cognitive/co-activation', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:55:  expect(typeof result.triggerCacheCleared).toBe('boolean');
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:205:    it('T506-06c: Constitutional tier exempt from recency decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:357:      'Use memory_match_triggers() for prompt-based matching instead'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:360:    toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:700:        'Try memory_match_triggers() for trigger-based matching'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:703:      toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:7:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:34:  triggered: {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:89:  'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:185:      SELECT id, spec_folder, file_path, title, trigger_phrases, importance_tier
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:273:  const triggered = [...boundedResult.triggered];
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:274:  while (triggered.length > 0 && tokenCount > budgetLimit) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:275:    triggered.pop();
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:276:    boundedResult = { ...boundedResult, triggered };
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:303: * Phase C: Get top-N attention-weighted memory IDs from working memory.
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:304: * Used to boost trigger-matched results that also appear in the active
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:308: * @returns Set of memory IDs with high attention in working memory
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:315:    // Query top attention-weighted memories, scoped to the current session
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:323:        AND wm.attention_score > ?
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:325:      ORDER BY wm.attention_score DESC, wm.last_focused DESC
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:337: * Phase C: Apply 1.3x boost to trigger-matched results that also appear
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:338: * in the attention-weighted working memory set. Re-sorts results by
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:341: * @param triggered - Trigger-matched results from matchTriggerPhrases()
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:342: * @param attentionIds - Set of memory IDs from working memory
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:343: * @returns Re-sorted trigger matches with working memory boost applied
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:348:  triggered: triggerMatcher.TriggerMatch[],
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:349:  attentionIds: Set<number>,
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:350:): triggerMatcher.TriggerMatch[] {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:351:  if (attentionIds.size === 0 || triggered.length === 0) return triggered;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:355:  return [...triggered]
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:358:        (attentionIds.has(a.memoryId) ? ATTENTION_BOOST_FACTOR : 1.0);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:360:        (attentionIds.has(b.memoryId) ? ATTENTION_BOOST_FACTOR : 1.0);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:376:    // Get triggered memories via fast phrase matching
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:377:    let triggered = triggerMatcher.matchTriggerPhrases(contextHint, 5);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:379:    // Phase C: Attention-enriched boost — re-rank triggered results that
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:382:      const attentionIds = getAttentionWeightedMemoryIds(5);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:383:      if (attentionIds.size > 0 && triggered.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:384:        triggered = applyAttentionBoost(triggered, attentionIds);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:387:      // Graceful degradation — attention boost is optional
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:393:    if (constitutional.length === 0 && triggered.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:403:      triggered: triggered.map((t: triggerMatcher.TriggerMatch) => ({
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:463:    recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:497:    ?? (typeof toolArgs.session_id === 'string' ? toolArgs.session_id : null);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:529:        triggered: [],
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:541:      triggered: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:142:            session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:144:            attention_score REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:148:            UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:186:            session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:188:            attention_score REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:192:            UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:203:          INSERT INTO working_memory (session_id, memory_id, attention_score)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:211:          SELECT memory_id, attention_score
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:213:          WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:214:        `).get('session-alpha') as { memory_id: number | null; attention_score: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:218:        expect(detachedRow?.attention_score).toBeCloseTo(0.85, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:331:    session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:389:        session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:397:      WHERE session_id = ? AND memory_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:410:        'idx_wm_session_attention_focus',
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:429:        attentionScore: 0.62,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:460:        if (sql.includes('SELECT COUNT(*) as cnt FROM working_memory WHERE session_id = ? AND memory_id = ?')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:469:        attentionScore: 0.25,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:478:        attentionScore: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:491:        WHERE session_id = ? AND memory_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:511:        attentionScore: 0.25,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:522:        attentionScore: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:533:        WHERE session_id = ? AND memory_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:562:        attentionScore: 0.7,
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:337:      // If DB is available, invalid relation validation should trigger E102.
-.opencode/skill/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:385:      triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:464:        trigger: [3],
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:472:      // ID 3: vector + trigger (not exclusive)
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:476:      const triggerEcr = ecrs.find(e => e.channel === 'trigger');
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:480:      expect(triggerEcr!.exclusiveCount).toBe(0); // ID 3 is also in vector
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:235:// Citation recency decay constants
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:312:  // Graduated-ON semantics — classification decay is active unless explicitly disabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:327:  // TM-03: Classification decay applies at stability-level; when enabled do not
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:328:  // Additionally apply elapsed-time tier multipliers to avoid double decay.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:791:      temporal: { value: temporal, weight: weights.temporal, contribution: temporal * weights.temporal, description: 'FSRS retrievability decay' },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:1:// Converted from: trigger-extractor.test.ts (custom runner)
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:3:// TF-IDF + N-gram hybrid trigger phrase extraction
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:10:} from '@spec-kit/shared/trigger-extractor';
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:19:      When the heap allocator runs out of space, the garbage collector triggers
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:99:  describe('Deduplication of triggers (T515-03)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:100:    it('T515-03: no duplicate trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:118:  describe('Max triggers limit (T515-04)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:119:    it('T515-04: trigger count respects MAX_PHRASE_COUNT', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:182:      embedding vectors. The [trigger-extractor](./trigger-extractor.ts) module
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:63:vi.mock('../lib/parsing/trigger-matcher', async (importOriginal) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:124:let triggerMatcherMod: any = null;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:145:  triggerMatcherMod = await import('../lib/parsing/trigger-matcher');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:197:  if (triggerMatcherMod) {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:198:    vi.mocked(triggerMatcherMod.clearCache).mockImplementation(() => { calls.clearCache.push(true); });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:262:  if (triggerMatcherMod) {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:263:    vi.mocked(triggerMatcherMod.clearCache).mockImplementation(() => { calls.clearCache.push(true); });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:307:        trigger_phrases: existingMemory?.trigger_phrases ?? '[]',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:325:  if (triggerMatcherMod) {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:326:    vi.mocked(triggerMatcherMod.clearCache).mockImplementation(() => { calls.clearCache.push(true); });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:371:  triggerCount?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:381:    triggerCount = 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:392:        if (sql.includes('SUM(json_array_length')) return { count: triggerCount };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:729:  it('EXT-U2: Changed title triggers embedding regen', async (ctx) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:744:      triggerPhrases: ['new trigger'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:751:    expect(fields).toContain('triggerPhrases');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:881:      { id: 1, spec_folder: 'specs/001-test', file_path: '/test/mem1.md', title: 'Memory One', trigger_phrases: '["hello"]', importance_weight: 0.8, created_at: '2025-01-01', updated_at: '2025-06-01' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:882:      { id: 2, spec_folder: 'specs/001-test', file_path: '/test/mem2.md', title: null, trigger_phrases: null, importance_weight: 0.5, created_at: '2025-02-01', updated_at: '2025-05-01' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:894:      { id: 1, spec_folder: 'specs/test', file_path: '/p.md', title: null, trigger_phrases: null, importance_weight: 0.5, created_at: '2025-01-01', updated_at: '2025-01-01' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:913:    const rows = [{ id: 1, spec_folder: 's', file_path: 'f', title: 't', trigger_phrases: '[]', importance_weight: 0.5, created_at: 'c', updated_at: 'u' }];
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:937:  it('EXT-L7: triggerCount parsed from JSON', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:940:      { id: 1, spec_folder: 's', file_path: 'f', title: 't', trigger_phrases: '["a","b","c"]', importance_weight: 0.5, created_at: 'c', updated_at: 'u' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:945:    expect(parsed?.data?.results[0].triggerCount).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1420:    if (!handler?.handleMemoryHealth || !vectorIndex || !embeddingsSourceMod || !triggerMatcherMod?.refreshTriggerCache) {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1464:    const refreshSpy = vi.spyOn(triggerMatcherMod, 'refreshTriggerCache').mockImplementation(() => undefined as never);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1479:      expect(parsed?.data?.repair?.actions).toContain('trigger_cache_refresh');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1491:      !triggerMatcherMod?.refreshTriggerCache ||
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1540:    const refreshSpy = vi.spyOn(triggerMatcherMod, 'refreshTriggerCache').mockImplementation(() => undefined as never);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:36:  triggered: 400,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:41:const PRIORITY_ORDER = ['constitutional', 'codeGraph', 'cocoIndex', 'sessionState', 'triggered'] as const;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:124:  triggeredSize: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:132:    { name: 'triggered', floor: DEFAULT_FLOORS.triggered, actualSize: triggeredSize },
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:4:// Feature catalog: Classification-based decay
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:12:  decay: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:36:    decay: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:45:    decay: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:52:    decay: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:54:    description: 'High priority, no decay',
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:59:    decay: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:66:    decay: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:73:    decay: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:110:// Check if tier allows decay over time (normal, temporary)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:113:  return config.decay === true;
-.opencode/skill/system-spec-kit/mcp_server/tests/signal-vocab.vitest.ts:20:} from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:28:  /** The search mode used (e.g. "search", "context", "trigger"). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:129:    session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:238:         total_results_shown, session_id, notes)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:281:             selected_rank, total_results_shown, session_id, notes,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:295:      session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:309:        sessionId: row.session_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:61:vi.mock('../handlers/memory-triggers', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:109:  it('logs context_quick channel for quick trigger-based flow', async () => {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:113:  input: Pick<HookInput, 'session_id'> & { specFolder?: string } = {},
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:115:  const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:141:        '- `memory_match_triggers({ prompt })` — fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:202:      content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:216:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:218:  hookLog('info', 'session-prime', `SessionStart triggered (source: ${source}, session: ${sessionId})`);
-.opencode/skill/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:17:      expect(DEFAULT_FLOORS.triggered).toBe(400);
-.opencode/skill/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:34:      // CocoIndex and triggered are empty, their floors + overflow go to others
-.opencode/skill/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:76:        'triggered',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts:29:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:497:      it('T007-FT1: Natural leaf at maxDepth-1 does NOT trigger max_depth_reached', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:507:      it('T007-FT2: Node at maxDepth DOES trigger max_depth_reached', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/lazy-loading.vitest.ts:57:  it('T018: empty inputs return null without triggering provider init', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:12:    triggered: 'Trigger: compaction recovery context',
-.opencode/skill/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:34:      const result = mergeCompactBrief(createInput({ cocoIndex: '', triggered: '' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:60:        triggered: '',
-.opencode/skill/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:74:        triggered: '',
-.opencode/skill/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:90:        attentionSignalCount: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:36:// T020-1: Constitutional / critical importance tier — no decay
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:37:describe('T020-1: Constitutional and critical tiers never decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:73:// T020-2: Decision context_type — no decay
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:74:describe('T020-2: Decision context_type never decays', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:92:// T020-3: Temporary tier — faster decay
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:93:describe('T020-3: Temporary tier decays faster than normal', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:110:  it('temporary decays faster than normal: retrievability at 30 days', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:139:  it('research + normal = 2.0 stability increase (slower decay than standard)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay.vitest.ts:155:  it('decision + constitutional = Infinity (both are no-decay; Infinity wins)', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:294:    session_id: decision.normalized.sessionId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:337:      action, decision, memory_id, logical_key, tenant_id, user_id, agent_id, session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:422:    clauses.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:492:      && matchesExactScope(row.session_id, normalized.sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:538:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:556:    session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:609:      sessionId: row.session_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:96:/** Detect graph state without triggering any reindex */
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:344: * Does NOT trigger reindexing.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/edge-density.ts:45:  /** true when density < 0.5 — triggers R10 escalation. */
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:26:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:39:        trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:49:      INSERT INTO memory_index (id, title, trigger_phrases, content_text, file_path, spec_folder, is_archived)
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:59:      INSERT INTO memory_fts (rowid, title, trigger_phrases, content_text, file_path)
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:60:      SELECT id, title, trigger_phrases, content_text, file_path FROM memory_index;
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:82:    expect(FTS5_BM25_WEIGHTS[1]).toBe(5.0);  // trigger_phrases
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:190:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:5:import * as handler from '../handlers/memory-triggers';
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:15:    it('Setup: memory-triggers handler loaded', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:116:  describe('T208: turnNumber-based decay', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:119:    it('T208-1: Turn decay factors decrease with turn number', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:131:    it('T208-2: Turn decay changes tier classification', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:143:    it('T208-3: Turn decay drops HOT to lower tier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:167:    it('T208-5: turnNumber=0 and turnNumber=1 produce factor=1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:176:  describe('T208: Handler turnNumber integration', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:183:      expect(typeof handlerExports.handle_memory_match_triggers).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:190:        { memoryId: 40, attentionScore: 0.95, tier: 'HOT', importance_tier: 'constitutional', stability: 1.0, id: 40 },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:191:        { memoryId: 41, attentionScore: 0.50, tier: 'WARM', importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString(), id: 41 },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:192:        { memoryId: 42, attentionScore: 0.10, tier: 'COLD', importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01', created_at: '2023-01-01', id: 42 },
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:26:  'handlers/memory-triggers.js': 470, // actual: 454 — Trigger matching with cognitive features + governance/scope wiring
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:31:  'hooks/memory-surface.js': 520,   // actual: 503 — Memory surface hooks with constitutional cache, auto-surface, attention-enriched hints, priming, session snapshots, and Phase 024 bootstrap telemetry
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:106:    'handlers/memory-triggers.js',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:440:        triggerPhrases: ['alpha', 'first test'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:452:        triggerPhrases: ['beta', 'second test'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:479:        triggerPhrases: ['alpha', 'updated'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:511:        triggerPhrases: ['symlink'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:518:        triggerPhrases: ['symlink', 'alias'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:532:    it('getMemory returns correct memory with parsed trigger_phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:538:      expect(Array.isArray(mem!.trigger_phrases)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:539:      expect(mem!.trigger_phrases).toContain('alpha');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1203:        triggerPhrases: ['vector', 'search'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1217:        triggerPhrases: ['test', 'second'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1225:        triggerPhrases: ['other', 'folder'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1237:        triggerPhrases: ['cache invalidation', 'stale cache'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1246:        triggerPhrases: ['cache invalidation', 'stale cache'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1262:        triggerPhrases: ['cache invalidation', 'stale cache'],
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1382:      // Empty content triggers early return (no API call needed)
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1391:    it('adds new terms from query to trigger_phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1396:      expect(mem?.trigger_phrases).toContain('vector');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1397:      expect(mem?.trigger_phrases).toContain('search');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1398:      expect(mem?.trigger_phrases).toContain('implementation');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1416:    it('does not re-add existing trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/channel-enforcement.vitest.ts:353:  it('T11: when router returns ≥2 channels both present in top-k, no promotion is triggered', () => {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:14:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:16:  trigger?: 'auto' | 'manual';
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:74:// Mock co-activation spreading so it never touches the DB.
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:75:vi.mock('../lib/cognitive/co-activation', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/session-state.vitest.ts:234:    // Accessing any session triggers eviction of expired ones
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:1:// Converted from: trigger-matcher.test.ts (custom runner)
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:12:  trigger_phrases: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:49:} from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:106:    it('T501-01: exact match on trigger phrase', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:137:    it('T501-04: multi-word trigger phrase matches', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:202:    it('T501-08e: trigger normalization is consistent for indexing and lookup', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:264:  describe('Unicode trigger matching (T501-13)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:265:    it('T501-13a: Unicode-aware boundaries match Cyrillic and CJK trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:277:          trigger_phrases: JSON.stringify(['Cafe\u0301 Mode', 'быстрый поиск', '情報検索']),
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:320:        trigger_phrases: JSON.stringify([`topic${index + 1} marker${index + 1}`]),
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:329:        trigger_phrases: JSON.stringify(['unicode trigger repair', 'candidate index optimization']),
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:335:      const prompt = 'Please ship the unicode trigger repair and candidate index optimization fixes';
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:348:        trigger_phrases: JSON.stringify([`background${index + 1} archive${index + 1}`]),
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:357:        trigger_phrases: JSON.stringify(['focused trigger benchmark']),
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:363:      const prompt = 'We need the focused trigger benchmark to pass';
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:380:      expect(candidates.some((entry) => entry.phrase === 'focused trigger benchmark')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:393:          trigger_phrases: JSON.stringify(['prepared statement cache']),
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:88:      // The 5th call should trigger flush (0.4 + 0.1 = 0.5 >= ACCUMULATOR_THRESHOLD)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:7:// Search path (disabling vector, graph, and trigger channels)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:11:// Keyword search achieves without any semantic, graph, or trigger
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:118: * using ONLY the BM25/FTS5 channel (vector, graph, trigger disabled).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:175:        'Each additional channel (vector, graph, trigger) must show a statistically meaningful ' +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:474: * the BM25/FTS5 path ONLY — vector, graph, and trigger channels must be
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:529:    // Run BM25-only search (channels: bm25/fts only, no vector/graph/trigger)
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:240:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:20:    it('CREATE TABLE schema includes learned_triggers column', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:21:      // The v21 migration adds learned_triggers. Verify it is present in
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:32:      expect(source).toContain('learned_triggers TEXT');
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:214:    it('co-activation config fetches 2*maxRelated (not maxRelated+1)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:221:        '../lib/cognitive/co-activation.ts'
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:225:    // Create a symlink loop to trigger ELOOP
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:247:  it('ENOENT still triggers parent-walk (atomic save)', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:55:    // Score: frequency * recency_decay
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:56:    // recency_decay = 1 / (1 + age_in_minutes / 10)
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:58:    useCase: 'Direct access to search, save, and trigger matching when L1 routing is not needed.',
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:185:  const triggered = autoSurfaced?.triggered ?? [];
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:186:  if (triggered.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:190:  const lines = triggered.map((memory) => {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:227:  // Build sessionState input: recent context + topics + attention signals
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:236:  // Working memory attention signals
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:237:  const attentionSignals = extractAttentionSignals(sanitizedLines);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:238:  if (attentionSignals.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:239:    sessionParts.push('Working memory attention:\n' + attentionSignals.join('\n'));
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:254:    selectedFrom: ['transcript-tail', 'active-files', 'recent-topics', 'attention-signals'],
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:257:    attentionSignalCount: attentionSignals.length,
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:275:    triggered: '',        // Triggered memories not available in hooks
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:298:    `Compaction auto-surface returned ${autoSurfaced.constitutional.length} constitutional and ${autoSurfaced.triggered.length} triggered memories (${autoSurfaced.latencyMs}ms)`,
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:302:  const triggeredSection = renderTriggeredMemories(autoSurfaced);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:303:  const surfacedSections = [constitutionalSection, triggeredSection]
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:321:  const attentionSignals = extractAttentionSignals(sanitizedLines);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:327:  if (attentionSignals.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:328:    sessionParts.push('Working memory attention:\n' + attentionSignals.join('\n'));
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:339:    selectedFrom: ['transcript-tail', 'active-files', 'recent-topics', 'attention-signals'],
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:342:    attentionSignalCount: attentionSignals.length,
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:362:    triggered: '',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:378:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:379:  hookLog('info', 'compact-inject', `PreCompact triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'})`);
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:90:    expect(names).toContain('session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:227:    expect(row.session_id).toBe('session-XYZ');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:230:  it('allows null session_id', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:234:    expect(events[0].session_id).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:334:    expect(forSess1[0].session_id).toBe('sess-1');
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:173:// Imports Database type and working-memory module which trigger better-sqlite3
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:11:} from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:17:   MODULE LOADING  (mock vector-index for trigger-matcher)
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:22:type TriggerMatcherModule = typeof import('../lib/parsing/trigger-matcher');
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:36:  trigger_phrases: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:83:  triggerPhrases?: string[] | string;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:111:// Create in-memory DB with the memory_index table trigger-matcher expects
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:120:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:126:    INSERT INTO memory_index (id, spec_folder, file_path, title, trigger_phrases, importance_weight, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:130:    insert.run(r.id, r.spec_folder, r.file_path, r.title, r.trigger_phrases, r.importance_weight, r.embedding_status ?? 'success');
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:138:let triggerMatcher: TriggerMatcherModule;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:149:/** Helper: replace the mock DB and clear cache so trigger-matcher re-reads */
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:152:  if (triggerMatcher?.clearCache) triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:159:describe('EXTENDED TESTS: trigger-matcher + memory-types + type-inference', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:161:    triggerMatcher = await import('../lib/parsing/trigger-matcher.js') as TriggerMatcherModule;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:169:    triggerMatcher?.clearCache?.();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:178:      const fn = triggerMatcher.logExecutionTime;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:189:      const fn = triggerMatcher.logExecutionTime;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:197:      const fn = triggerMatcher.logExecutionTime;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:206:      const fn = triggerMatcher.logExecutionTime;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:208:      const origFlag = triggerMatcher.CONFIG.LOG_EXECUTION_TIME;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:209:      triggerMatcher.CONFIG.LOG_EXECUTION_TIME = false;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:211:      triggerMatcher.CONFIG.LOG_EXECUTION_TIME = origFlag;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:216:      const fn = triggerMatcher.logExecutionTime;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:229:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["alpha phrase","beta phrase"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:231:      triggerMatcher.loadTriggerCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:232:      const stats = triggerMatcher.getCacheStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:238:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["test regex"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:240:      const cache = triggerMatcher.loadTriggerCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:247:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["save context"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:249:      const cache = triggerMatcher.loadTriggerCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:256:      triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:257:      const origMax = triggerMatcher.CONFIG.MAX_REGEX_CACHE_SIZE;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:258:      triggerMatcher.CONFIG.MAX_REGEX_CACHE_SIZE = 3;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:261:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["phrase one","phrase two","phrase three","phrase four","phrase five"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:263:      triggerMatcher.loadTriggerCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:264:      const stats = triggerMatcher.getCacheStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:265:      triggerMatcher.CONFIG.MAX_REGEX_CACHE_SIZE = origMax;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:272:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["some phrase"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:274:      triggerMatcher.loadTriggerCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:275:      triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:276:      const stats = triggerMatcher.getCacheStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:285:      const fn = triggerMatcher.loadTriggerCache;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:293:    it('3.3.2 loads rows with valid trigger_phrases JSON', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:294:      const fn = triggerMatcher.loadTriggerCache;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:297:        { id: 1, spec_folder: 'specs/001', file_path: '/a.md', title: 'Test A', trigger_phrases: '["save context","memory"]', importance_weight: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:298:        { id: 2, spec_folder: 'specs/002', file_path: '/b.md', title: 'Test B', trigger_phrases: '["debug"]', importance_weight: 0.6 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:304:    it('3.3.3 skips rows with invalid JSON trigger_phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:305:      const fn = triggerMatcher.loadTriggerCache;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:308:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: 'NOT_JSON', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:309:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T', trigger_phrases: '["valid"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:317:      const fn = triggerMatcher.loadTriggerCache;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:320:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["ab","abc","a"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:327:    it('3.3.4b filters single-word stopword trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:328:      const fn = triggerMatcher.loadTriggerCache;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:331:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["the","save context","debug"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:338:      const fn = triggerMatcher.loadTriggerCache;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:341:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["hello"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:346:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T2', trigger_phrases: '["different"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:355:      const fn = triggerMatcher.loadTriggerCache;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:358:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["alpha"]', importance_weight: 0.5, embedding_status: 'success' },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:359:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T', trigger_phrases: '["beta"]', importance_weight: 0.5, embedding_status: 'pending' },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:371:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:374:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["save context"]', importance_weight: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:384:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:387:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["save context","memory save"]', importance_weight: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:388:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T2', trigger_phrases: '["other phrase"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:399:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:402:        { id: 1, spec_folder: 's', file_path: '/bad.md', title: 'Bad', trigger_phrases: 'NOT_JSON', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:403:        { id: 2, spec_folder: 's', file_path: '/good.md', title: 'Good', trigger_phrases: '["valid trigger"]', importance_weight: 0.7 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:405:      const result = fn('valid trigger') as TriggerMatchWithStats & {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:413:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:421:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:433:      const fn = triggerMatcher.getAllPhrases;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:442:      const fn = triggerMatcher.getAllPhrases;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:445:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["alpha","beta"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:446:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T', trigger_phrases: '["beta","gamma"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:457:      const fn = triggerMatcher.getAllPhrases;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:460:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["Hello World"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:472:      { id: 1, spec_folder: 'specs/001', file_path: '/a.md', title: 'Memory A', trigger_phrases: '["save context","memory"]', importance_weight: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:473:      { id: 2, spec_folder: 'specs/002', file_path: '/b.md', title: 'Memory B', trigger_phrases: '["save context"]', importance_weight: 0.6 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:474:      { id: 3, spec_folder: 'specs/003', file_path: '/c.md', title: 'Memory C', trigger_phrases: '["different"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:478:      const fn = triggerMatcher.getMemoriesByPhrase;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:486:      const fn = triggerMatcher.getMemoriesByPhrase;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:499:      const fn = triggerMatcher.getMemoriesByPhrase;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:507:      const fn = triggerMatcher.getMemoriesByPhrase;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:519:      const fn = triggerMatcher.refreshTriggerCache;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:522:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["old phrase"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:524:      triggerMatcher.loadTriggerCache();
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:527:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T2', trigger_phrases: '["new phrase"]', importance_weight: 0.7 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:537:      const fn = triggerMatcher.refreshTriggerCache;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:540:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["test"]', importance_weight: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:616:      expect(config!.decayEnabled).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:632:    it('4.3.4 meta-cognitive has decayEnabled=false', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:637:      expect(config!.decayEnabled).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:676:    it('4.5.1 decaying types return true', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:902:    it('5.4.3 scratch slow-decay warns', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:925:    it('5.4.6 /temp/ slow-decay warns', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:43:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:179:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers' },
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:105:  it('preserves attentionScore as an independent signal after reranking', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:112:      { id: 1, score: 0.6, attentionScore: 0.17, content: 'alpha' },
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:113:      { id: 2, score: 0.5, attentionScore: 0.04, content: 'beta' },
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:121:    expect(result.rows[0]?.attentionScore).toBe(0.17);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:27:  triggers: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:87:  'triggers',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:238:    triggers: scenario.wrapper.triggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:6:// T006 (classification-based decay TM-03).
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:206:  // T041-14: Constitutional tier has Infinity multiplier (no decay)
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:207:  it('T041-14: constitutional tier → Infinity multiplier (never decays)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:214:  // T041-15: Temporary tier decays faster than normal
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:215:  it('T041-15: temporary tier decays faster than normal', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:242:  // T041-18: Constitutional with any context → Infinity (no decay wins)
-.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:10:    triggerCacheCleared: boolean;
-.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:23:      `trigger=${hookResult.triggerCacheCleared ? 'ok' : 'failed'}, ` +
-.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:33:    !hookResult.triggerCacheCleared ||
-.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:50:      triggerCacheCleared: hookResult.triggerCacheCleared,
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:197:      // "not...but" in combined text triggers negation pattern
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:542:    it('C138-T2: contradicting content triggers detection', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:15:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:17:  attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:21:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:23:  attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:50:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:78:        session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:80:        attention_score REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:84:        UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:120:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:125:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:148:      expect(entry.session_id).toBe('session-alpha');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:149:      expect(entry.attention_score).toBe(0.85);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:176:      expect(entry1.session_id).toBe('session-alpha');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:177:      expect(entry1.attention_score).toBe(0.85);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:186:        INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:195:        "SELECT * FROM working_memory WHERE session_id = 'session-beta'"
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:308:  it('T3: large result counts trigger the floor', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:12:// - Channel toggle mechanism (vector, bm25, fts5, graph, trigger)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:52:export type AblationChannel = 'vector' | 'bm25' | 'fts5' | 'graph' | 'trigger';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:60:  'trigger',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:1008:    useTrigger: !disabledChannels.has('trigger'),
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:208:  it('T05: recordFallback sets trigger and degraded flags', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:35:  /** Filter to specific channels (e.g. 'vector', 'bm25', 'fts', 'graph', 'trigger'). */
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:23:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:45:      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases, created_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:88:      SELECT session_id, memory_id, attention_score, source_tool, source_call_id, extraction_rule_id, redaction_applied
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:94:    expect(row.attention_score).toBe(0.9);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:72:      trigger_phrases: '["rule"]',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:105:          id, spec_folder, file_path, title, trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:157:      lines.push('Freshness: stale — first structural read may trigger bounded inline refresh or recommend code_graph_scan.');
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:27:export type QuerySource = 'manual' | 'trigger_derived' | 'pattern_derived' | 'seed';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:70:    trigger_derived: GROUND_TRUTH_QUERIES.filter(q => q.source === 'trigger_derived').length,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:47:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:140:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:156:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:173:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:175:      attention_score REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:185:      UNIQUE(session_id, memory_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:201:      session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:217:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:221:      PRIMARY KEY (session_id, memory_hash)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:270:      session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:278:      session_id, status, spec_folder, current_task, tenant_id, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:289:  database.prepare('UPDATE working_memory SET attention_score = ? WHERE memory_id = ?').run(9.0, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:290:  database.prepare('UPDATE working_memory SET attention_score = ? WHERE memory_id = ?').run(8.0, 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:291:  database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task-a', 'session-a');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:292:  database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task-b', 'session-b');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:438:          anchor_id TEXT, trigger_phrases TEXT, importance_weight REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:623:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:628:          session_id, status, spec_folder, current_task, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:632:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:647:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:650:      database.prepare('UPDATE working_memory SET attention_score = ? WHERE memory_id = ?').run(8.0, 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:651:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task', 'session-test');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:652:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('other-live-task', 'session-other');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:655:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:671:        database.prepare('SELECT session_id, attention_score FROM working_memory WHERE memory_id = ?').get(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:672:      ).toEqual({ session_id: 'session-test', attention_score: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:674:        database.prepare('SELECT session_id, attention_score FROM working_memory WHERE memory_id = ?').get(2)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:675:      ).toEqual({ session_id: 'session-other', attention_score: 8 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:677:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-test')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:680:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-other')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:705:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:710:          session_id, status, spec_folder, current_task, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:714:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:722:      database.prepare('UPDATE working_memory SET attention_score = ? WHERE memory_id = ?').run(9.0, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:723:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task', 'session-test');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:726:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:735:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:740:          session_id, status, spec_folder, current_task, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:744:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:759:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:760:      ).toEqual({ attention_score: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:762:        (database.prepare('SELECT COUNT(*) as cnt FROM working_memory WHERE session_id = ?').get('session-extra') as { cnt: number }).cnt
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:765:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-test')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:768:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-extra')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:774:        (database.prepare('SELECT COUNT(*) as cnt FROM session_sent_memories WHERE session_id = ?').get('session-extra') as { cnt: number }).cnt
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:851:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:852:      ).toEqual({ attention_score: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:854:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(2)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:855:      ).toEqual({ attention_score: 8 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:882:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:883:      ).toEqual({ attention_score: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:885:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(2)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:886:      ).toEqual({ attention_score: 2 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:888:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-a')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:891:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-b')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:923:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:924:      ).toEqual({ attention_score: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:926:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(2)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:927:      ).toEqual({ attention_score: 8 });
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:615:      trigger_phrases: ['hybrid-search', 'bm25-sync'],
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:634:      trigger_phrases: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:639:      [1, { id: 1, title: 'Auth doc', content_text: 'authentication search memory body', trigger_phrases: 'auth', file_path: 'specs/auth/1.md' }],
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:640:      [2, { id: 2, title: 'Cache doc', content_text: 'cache retrieval system body', trigger_phrases: 'cache', file_path: 'specs/cache/2.md' }],
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:703:          trigger_phrases: 'updated trigger phrase',
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:731:      buildBm25DocumentText: vi.fn((row: { title?: string | null; content_text?: string | null; trigger_phrases?: string | string[] | null; file_path?: string | null }) =>
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:735:          Array.isArray(row.trigger_phrases) ? row.trigger_phrases.join(' ') : (row.trigger_phrases ?? ''),
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:763:        triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:778:  it('BM25 re-index fires when triggerPhrases change', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:780:    await handleMemoryUpdate({ id: 42, triggerPhrases: ['updated trigger phrase'] });
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:792:        trigger_phrases: 'updated trigger phrase',
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:798:  it('BM25 re-index does NOT fire when non-trigger fields change', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:120:        memory_match_triggers: 'L2',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:37:    triggerPhrases: ['test'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:97:triggerPhrases: ["feature work", "session context"]
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:388:    it('T24: missing specFolder triggers error', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:393:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:404:    it('T25: content too short triggers error', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:408:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:419:    it('T26: content too long triggers error', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:423:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:438:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:529:      expect(result.triggerPhrases.length).toBeGreaterThanOrEqual(2);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:19:  triggered: string;         // Triggered memories (from Memory)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:133:  const triggeredSize = estimateTokens(input.triggered);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:140:    triggeredSize,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:174:  pushSection(input.triggered, 'triggered', 'Triggered Memories', 'memory');
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:226:        { source: 'triggered', lastUpdated: null, staleness: 'unknown' },
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:21:vi.mock('../lib/parsing/trigger-matcher', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:37:import * as triggerMatcher from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:87:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:99:  it('returns null when no DB and no triggered memories (nothing to surface)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:124:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:137:  it('returns null for memory_match_triggers', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:138:    const result = await autoSurfaceAtToolDispatch('memory_match_triggers', { prompt: 'some prompt' });
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:164:  it('does not invoke trigger matcher for memory-aware tools', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:165:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:176:    // With a trigger match present, a non-memory-aware tool should proceed
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:180:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:181:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:200:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:213:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:226:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:244:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:248:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:256:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:264:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:272:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:280:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:297:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:301:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:324:  it('returns AutoSurfaceResult shape when triggered memories exist', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:325:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:331:    expect(result).toHaveProperty('triggered');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:337:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:343:  it('result.triggered is an array', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:344:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:347:    expect(Array.isArray(result?.triggered)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:350:  it('result.triggered items have expected fields', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:351:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:354:    const triggered = result?.triggered ?? [];
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:355:    expect(triggered.length).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:356:    expect(triggered[0]).toHaveProperty('memory_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:357:    expect(triggered[0]).toHaveProperty('spec_folder');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:358:    expect(triggered[0]).toHaveProperty('title');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:359:    expect(triggered[0]).toHaveProperty('matched_phrases');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:363:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:371:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:388:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:400:  it('returns null when no DB and no triggered matches (nothing to surface)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:440:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:452:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:464:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:482:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:486:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:507:  it('returns AutoSurfaceResult shape when triggered memories exist', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:508:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:514:    expect(result).toHaveProperty('triggered');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:519:  it('result.triggered items have correct field names', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:520:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:523:    const triggered = result?.triggered ?? [];
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:524:    expect(triggered[0]).toHaveProperty('memory_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:525:    expect(triggered[0]).toHaveProperty('spec_folder');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:526:    expect(triggered[0]).toHaveProperty('title');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:527:    expect(triggered[0]).toHaveProperty('matched_phrases');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:531:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:551:  it('trigger-matcher is limited to 5 results per surface call (per-budget control)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:556:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:574:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:591:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:614:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:649:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:654:  it('autoSurfaceMemories returns result when triggered matches exist', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:655:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:659:    expect(result).toHaveProperty('triggered');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:664:  it('autoSurfaceMemories does not throw on triggerMatcher error', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:665:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockImplementation(() => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:673:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:692:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:693:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:749:      triggered: '## Triggered\nRecent auth memory surfaced.',
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:773:      triggered: '',
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:784:    // cocoIndex and triggered were empty — their section sources ('cocoindex', 'memory') should not
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:799:      triggered: repeat('## Triggered\nRecent auth memory surfaced from specs/007.', 100),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:6:// And trigger handlers. All writes go to the eval DB (speckit-eval.db).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:93:  /** Channel name: "vector", "bm25", "graph", or "trigger". */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:137: * context, triggers). Returns the queryId and evalRunId that
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:56:    triggerPhrases: ['retrieval', 'confidence'],
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:9:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:10://                 timestamp, trigger: "manual"|"auto" }
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:128:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:129:  hookLog('info', 'gemini:compact-cache', `PreCompress triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'})`);
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:146:    attentionSignalCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:82:vi.mock('../lib/parsing/trigger-matcher', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:114:  triggerPhrases: string[];
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:137:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:170:    triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:189:    triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:204:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:217:    JSON.stringify(params.triggerPhrases ?? []),
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:260:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:293:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:75:        attentionScore: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:91:        attentionScore: 0.75,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:162:        { id: 1, importance_tier: 'constitutional', similarity: 0.95, attentionScore: 1.0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:91:        'trigger_cache_refresh',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:35:          session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:66:            session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:132:    "SELECT COUNT(*) AS value FROM memory_index WHERE session_id IS NULL OR TRIM(session_id) = ''",
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:22:        trigger_phrases: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:33:        decay_half_life_days: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:38:        session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:15:// The handlers (memory-context, memory-search, memory-triggers) all import
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:38:// Mock the sub-handlers (memory-search, memory-triggers) to avoid
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:48:vi.mock('../handlers/memory-triggers', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:570:          attentionScore: 0.92,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:684:          attentionScore: 0.81,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:715:          attentionScore: 0.77,
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:9://   { session_id, transcript_path, cwd, hook_event_name, timestamp, source }
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:107:        '- `memory_match_triggers({ prompt })` - fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:163:    content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:176:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:178:  hookLog('info', 'gemini:session-prime', `SessionStart triggered (source: ${source}, session: ${sessionId})`);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:154:          session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts:360:      'decay. The reranking stage uses MMR for diversity. Finally, the',
-.opencode/skill/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts:416:      triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts:446:      triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:245:  it('T045-14: degradation events have correct tier and trigger structure', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:253:        expect(event.trigger).toHaveProperty('reason');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:254:        expect(event.trigger).toHaveProperty('topScore');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:255:        expect(event.trigger).toHaveProperty('resultCount');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:256:        expect(['low_quality', 'insufficient_results', 'both']).toContain(event.trigger.reason);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:343:    // TopCap = 0.13 * 0.5 = 0.065, decayPerRank = 0.13 * 0.08 = 0.0104
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:346:    // Pin decay curve on second result
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:264:    detail: 'Queries must be NOT derived from trigger phrases',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/shared.ts:11:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/shared.ts:19:  trigger?: 'manual' | 'auto';
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:907:      // Reading via getEdgesFrom should trigger touchEdgeAccess
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:29:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:400:      it('TR1: No triggers scores 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:404:      it('TR2: One trigger scores 0.5', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:408:      it('TR3: Two triggers score 0.5', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:412:      it('TR4: Three triggers score 1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:416:      it('TR5: Five triggers score 1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:489:          trigger_phrases: '[save, quality]',
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:501:          trigger_phrases: '[save, quality, gate, TM-04]',
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:509:          triggerPhrases: ['save', 'quality', 'gate', 'TM-04'],
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:521:          triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:537:          triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:548:          trigger_phrases: '[save, quality, gate]',
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:555:          triggerPhrases: ['save', 'quality', 'gate'],
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:732:        trigger_phrases: '[save, quality, gate, TM-04]',
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:741:        triggerPhrases: ['save', 'quality', 'gate', 'TM-04'],
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:773:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:787:        trigger_phrases: '[save, quality, gate]',
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:795:        triggerPhrases: ['save', 'quality', 'gate'],
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:815:        trigger_phrases: '[save, quality, gate]',
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:823:        triggerPhrases: ['save', 'quality', 'gate'],
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:851:        trigger_phrases: '[save, quality, gate]',
-.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:859:        triggerPhrases: ['save', 'quality', 'gate'],
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:21:export type ConsumptionEventType = 'search' | 'context' | 'triggers';
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:33:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:44:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:106:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:116:    CREATE INDEX IF NOT EXISTS idx_consumption_log_session_id
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:117:      ON consumption_log (session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:148:         session_id, timestamp, latency_ms, spec_folder_filter, metadata)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:157:      event.session_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:197:    if (options.session_id) {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:198:      conditions.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:199:      params.push(options.session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:239:    // Unique sessions (add session_id IS NOT NULL to existing conditions)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:240:    const sessionConditions = [...conditions, 'session_id IS NOT NULL'];
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:243:      SELECT COUNT(DISTINCT session_id) as cnt
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:407:        SELECT session_id, COUNT(*) as query_count
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:409:        WHERE session_id IS NOT NULL
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:410:        GROUP BY session_id
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:414:      `).all(exampleLimit) as Array<{ session_id: string; query_count: number }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:421:          const sid = r.session_id.length > 36 ? r.session_id.substring(0, 36) + '...' : r.session_id;
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:72:  it('T001-01: "save" classifies as simple via trigger match', () => {
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts:11:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts:93:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts:67:    expect(promptContext[0].attentionScore).toBeGreaterThan(0.05);
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:33:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:50:       session_id, timestamp, latency_ms, spec_folder_filter, metadata)
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:59:    event.session_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:103:    expect(columnNames).toContain('session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:121:  it('T001-D: creates indexes on event_type, session_id, timestamp', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:129:    expect(indexNames).toContain('idx_consumption_log_session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:157:      session_id: 'session-abc',
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:169:    expect(row.session_id).toBe('session-abc');
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:182:      session_id: 'session-xyz',
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:194:  it('T002-C: logs a "triggers" event', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:196:      event_type: 'triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:200:      session_id: 'session-triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:204:    const row = db.prepare(`SELECT * FROM consumption_log WHERE event_type = 'triggers'`).get() as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:206:    expect(row.event_type).toBe('triggers');
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:217:      session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:225:    expect(row.session_id).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:280:    forceLogConsumptionEvent(db, { event_type: 'triggers', result_count: 2 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:292:    expect(stats.by_event_type['triggers']).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:318:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-A', result_count: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:319:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-A', result_count: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:320:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-B', result_count: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:423:      forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'heavy-session-001', query_text: `q${i}`, result_count: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:425:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'light-session', query_text: 'only one', result_count: 3 });
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:68:        session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:100:    database.prepare('INSERT INTO session_state (session_id, spec_folder) VALUES (?, ?)').run('session-1', staleSpecFolder);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:107:    const sessionRow = database.prepare('SELECT spec_folder FROM session_state WHERE session_id = ?').get('session-1') as { spec_folder: string };
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:120:  it('creates trigger-cache and temporal-contiguity indexes during the v24 upgrade', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:124:    database.exec('DROP INDEX IF EXISTS idx_trigger_cache_source');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:134:      'idx_trigger_cache_source',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:150:        session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:12:import { CO_ACTIVATION_CONFIG, spreadActivation } from '../cognitive/co-activation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:61:import type { SpreadResult } from '../cognitive/co-activation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:93:  /** Optional trigger phrases for query-classifier trigger-match routing path. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:94:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:199:/** Why degradation was triggered at a given tier. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:210:  trigger: DegradationTrigger;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:247:/** Number of top results used as seeds for co-activation spreading. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:464:    // (title 10x, trigger_phrases 5x, file_path 2x, content 1x)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:722:  trigger?: 'empty' | DegradationTrigger;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:796:    const trigger = checkDegradation(primaryResults);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:797:    if (!trigger) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:815:      trigger,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:838:      trigger: 'empty',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1009:    const routeResult = routeQuery(query, options.triggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1482:      // Boost scores of results that appear in co-activation graph
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1496:      // P1-2 FIX: Re-sort after co-activation boost to ensure boosted results
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1500:      // Non-critical enrichment — co-activation failure does not affect core ranking
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1501:      console.warn('[hybrid-search] co-activation enrichment failed:', err instanceof Error ? err.message : String(err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2009:/** Per-rank score decay for Tier-3 results, as a fraction of the top existing score. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2032:  const decayPerRank = topExisting * TIER3_DECAY_PER_RANK;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2035:    const calibrated = Math.max(0, topCap - (index * decayPerRank));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2153:    trigger: tier1Trigger,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2181:    trigger: tier2Trigger,
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:442:    // To call vector, graph, or trigger search paths (those are controlled by
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:20:vi.mock('../lib/parsing/trigger-matcher', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:40:vi.mock('../lib/cognitive/co-activation', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:64:    expect(result.triggerCacheCleared).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:82:      throw new Error('trigger cache failure');
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:88:    expect(result.triggerCacheCleared).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:93:    expect(result.errors).toEqual(['triggerMatcher.clearCache: trigger cache failure']);
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:96:      '[mutation-hooks] triggerMatcher.clearCache failed for operation="update":',
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:97:      'trigger cache failure'
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:9:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:34:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-denylist.vitest.ts:3:// Into learned relevance feedback trigger phrases.
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:65:} from '../lib/cognitive/co-activation';
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:231:      // S1 features: co-activation, RRF (on by default)
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:537:    it('15. Very old memory: decay applied, still scores > 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:699:      // Fan-effect: more relations = less total boost (1/sqrt(n) decay)
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:2:// Append-only audit trail with SQLite trigger enforcement
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:40:    session_id: 'sess-001',
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:70:    expect(names).toContain('session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:82:    expect(entry.session_id).toBe('sess-001');
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:160:  it('verifies append-only triggers exist', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:164:  it('verifyAppendOnly returns false when triggers are missing', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:180:      session_id: 'sess-merge-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:190:    expect(entry.session_id).toBe('sess-merge-1');
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:250:    // Table and triggers still work after re-init
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:57:    attentionScore: 0.77,
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:58:    triggerPhrases: ['alpha', 'beta'],
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:151:      attention: 0.77,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:82:    `INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at) VALUES (?, ?, ?, ?)`
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:228:        const remaining = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get('other-session') as CountRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:407:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('save-1') as SessionStateRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:425:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('save-2') as SessionStateRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:445:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('complete-1') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:469:        const row1 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-1') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:471:        const row2 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-2') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:514:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('recover-1') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:702:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('cp-1') as SessionStateRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:725:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('cp-2') as SessionStateRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:754:          const count = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get(sid) as CountRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:771:          const count = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get(sid) as CountRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:792:        // Manually trigger enforce via a new markMemorySent
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:793:        sm.markMemorySent(sid, mem({ id: 3004, anchorId: 'trigger-enforce' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:797:          'SELECT memory_hash FROM session_sent_memories WHERE session_id = ? ORDER BY sent_at ASC'
-.opencode/skill/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts:123:      claude_session_id: 'analytics-session',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts:124:      speckit_session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:39:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:44:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:52:  triggerPhrasesFormat?: 'list' | 'string' | 'empty_array';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:65:    triggerPhrases = ['pipeline-enforcement', 'save-pipeline-test', 'memory-gate-validation', 'enforcement-fixture'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:72:    triggerPhrasesFormat = 'list',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:94:    const triggerPhrasesYaml = triggerPhrasesFormat === 'string'
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:95:      ? `trigger_phrases: "${triggerPhrases.join(', ')}"`
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:96:      : triggerPhrasesFormat === 'empty_array'
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:97:        ? 'trigger_phrases: []'
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:98:        : `trigger_phrases:\n${triggerPhrases.map(tp => `  - "${tp}"`).join('\n')}`;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:107:    parts.push(triggerPhrasesYaml);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:226:session_id: "pipeline-enforcement-fixture"
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:433:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:445:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:453:  it('auto-fix rescues missing trigger phrases from headings', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:455:    // Content with headings (for trigger extraction) but NO trigger phrases and NO anchors.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:457:    //   triggers=0*0.25 + anchors=0.5*0.30 + budget=1.0*0.20 + coherence=0.75*0.25
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:458:    //   = 0 + 0.15 + 0.20 + 0.1875 = 0.5375 → below 0.6 → triggers auto-fix
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:459:    // After auto-fix extracts 4 triggers from title + headings:
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:460:    //   triggers=1.0*0.25 → total = 0.25 + 0.15 + 0.20 + 0.1875 = 0.7875 → passes!
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:462:    const metadata: Record<string, unknown> = { triggerPhrases: [], title: 'Gate Analysis' };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:467:    expect(result.fixes.some(f => /trigger phrase/i.test(f))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:477:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:487:    // Build content that would fail quality loop (no triggers, short, no structure)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:495:    const metadata: Record<string, unknown> = { triggerPhrases: parsed.triggerPhrases };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:507:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:511:    // Even if auto-fix extracted triggers, if total score still below threshold -> rejected
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:528:      triggerPhrases: ['test-trigger', 'enforcement', 'pipeline', 'gates'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:548:      triggerPhrases: ['trigger-a', 'trigger-b'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:564:      triggerPhrases: ['trigger'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:580:      triggerPhrases: ['pipeline-enforcement'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:596:      triggerPhrases: ['pipeline-enforcement'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:614:      triggerPhrases: ['trigger-a', 'trigger-b', 'trigger-c'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:637:      triggerPhrases: ['trigger-a', 'trigger-b', 'trigger-c'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:655:      triggerPhrases: ['trigger'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:716:  it('detects trigger_phrases as string instead of YAML list', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:717:    const content = buildValidPipelineMemory({ triggerPhrasesFormat: 'string' });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:721:    expect(result.violations.some(v => v.code === 'invalid_trigger_phrases')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:724:  it('accepts trigger_phrases as empty array []', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:725:    const content = buildValidPipelineMemory({ triggerPhrasesFormat: 'empty_array' });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:729:    const triggerViolation = result.violations.find(v => v.code === 'invalid_trigger_phrases');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:730:    expect(triggerViolation).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:786:      triggerPhrases: [],  // 0 trigger quality
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:811:      triggerPhrases: ['test'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:830:      triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:847:      triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:895:      triggerPhrases: ['pipeline-enforcement', 'save-pipeline-test', 'memory-gate-validation', 'enforcement-fixture'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:904:      triggerPhrases: ['pipeline-enforcement'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:922:      triggerPhrases: ['pipeline-enforcement'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:949:    // Now run quality gate with empty title and no triggers to force failure
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:954:      triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:959:      // Signal density should be low with null title and empty triggers
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:967:    // Content that would fail quality loop (no triggers, short, no anchors)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:969:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:980:      triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1042:    const qlMetadata: Record<string, unknown> = { triggerPhrases: parsed.triggerPhrases };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1067:      triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1080:    const content = `---\ntitle: "Anchor Stress Test"\ndescription: "test"\ntrigger_phrases:\n  - "anchor-stress"\nimportance_tier: "normal"\ncontextType: "implementation"\n---\n\n${anchors}`;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1091:  it('rejects emoji-only trigger phrases as non-semantic', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1092:    const content = buildValidPipelineMemory({ triggerPhrases: ['🎉', '🚀', '✅', '🔥'] });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1093:    const metadata: Record<string, unknown> = { triggerPhrases: ['🎉', '🚀', '✅', '🔥'] };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1095:    // Quality loop should penalize emoji-only triggers as they don't match retrieval patterns
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1102:      triggerPhrases: ['🎉', '🚀', '✅', '🔥'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1108:    // Emoji triggers (< 4 chars each after normalization) should be filtered
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1109:    expect(suffResult.evidenceCounts.triggerPhrases).toBeLessThan(4);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1166:  it('quality loop handles exactly 3 trigger phrases at boundary', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1168:      triggerPhrases: ['trigger-a', 'trigger-b', 'trigger-c'],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1171:    // 3 triggers → score 0.5 (below 4 threshold for perfect score)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1180:      triggerPhrases: ['test-trigger'],
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:86:      useDecay: { type: 'boolean', default: true, description: 'Apply temporal decay scoring to results' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:95:        description: 'Enable session-based score boost from working_memory attention signals. Defaults to SPECKIT_SESSION_BOOST env flag.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:212:  description: '[L2:Core] Fast trigger phrase matching with cognitive memory features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related memories. Pass session_id and turnNumber for cognitive features. Token Budget: 3500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:219:  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:294:  inputSchema: { type: 'object', additionalProperties: false, properties: { id: { type: 'number', minimum: 1, description: 'Memory ID to update' }, title: { type: 'string', description: 'New title' }, triggerPhrases: { type: 'array', items: { type: 'string' }, description: 'Updated trigger phrases' }, importanceWeight: { type: 'number', minimum: 0, maximum: 1, description: 'New importance weight (0-1)' }, importanceTier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Set importance tier. Constitutional tier memories always surface at top of results.' }, allowPartialUpdate: { type: 'boolean', default: false, description: 'Allow update to succeed even if embedding regeneration fails. When true, metadata changes are applied and the embedding is marked for re-index. When false (default), the entire update is rolled back on embedding failure.' } }, required: ['id'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:310:      searchMode: { type: 'string', description: 'Optional search mode context (search/context/trigger)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:522:        items: { type: 'string', enum: ['vector', 'bm25', 'fts5', 'graph', 'trigger'] },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:8:// Writes to a SEPARATE `learned_triggers` column (NOT FTS5 index).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:11:// 1. Separate column -- `learned_triggers` TEXT column, NOT in FTS5 index
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:19:// 9. Rollback mechanism -- can clear all learned triggers
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:22:// Query weight: 0.7x (learned triggers weighted lower than organic triggers)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:31:} from '../storage/learned-triggers-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:59:/** Result of a learned trigger query with 0.7x weighting. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:74:/** Learned trigger query weight multiplier (0.7x of organic triggers) */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:130: * SQL for partial covering index on learned_triggers (A2-P2-4).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:132: * Only indexes rows that actually have learned trigger data.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:135:  CREATE INDEX IF NOT EXISTS idx_memory_learned_triggers
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:136:  ON memory_index(id, learned_triggers)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:137:  WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:143: * Ensure the partial index on learned_triggers exists (idempotent, once per process).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:154:    console.error(`[learned-feedback] Failed to create learned_triggers index: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:192: * and existing triggers (Safeguards #3, #4).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:196: * - Terms must NOT already exist as organic trigger phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:201: * @param existingTriggers - Current trigger phrases already on the memory
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:219:      // Must not already be an organic trigger
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:277:      'SELECT created_at, trigger_phrases, learned_triggers FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:278:    ).get(memoryId) as { created_at?: string; trigger_phrases?: string; learned_triggers?: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:291:    // Extract existing organic triggers
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:293:    if (memory.trigger_phrases) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:294:      if (Array.isArray(memory.trigger_phrases)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:295:        existingTriggers = memory.trigger_phrases;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:298:          const parsed = JSON.parse(memory.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:299:          existingTriggers = Array.isArray(parsed) ? parsed : [memory.trigger_phrases];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:301:          existingTriggers = memory.trigger_phrases.split(',').map((t: string) => t.trim());
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:329:    // Apply learned triggers (Safeguard #1 -- separate column, NOT FTS5)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:344: * Apply learned trigger terms to a memory's learned_triggers column.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:347: * CRITICAL: Writes ONLY to memory_index.learned_triggers column,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:351: * @param terms - Terms to add as learned triggers
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:363:      'SELECT learned_triggers FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:364:    ).get(memoryId) as { learned_triggers?: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:370:    const existing = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:398:    // CRITICAL: Update ONLY the learned_triggers column on memory_index.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:401:      'UPDATE memory_index SET learned_triggers = ? WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:443: * Query learned triggers for search results, applying 0.7x weight.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:445: * Searches the learned_triggers column (NOT FTS5) for matches against
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:477:    // Fetch memories that have learned triggers (uses idx_memory_learned_triggers partial index)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:479:      `SELECT id, learned_triggers FROM memory_index WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:480:    ).all() as Array<{ id: number; learned_triggers: string }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:486:      const entries = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:527:      `SELECT id, learned_triggers FROM memory_index WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:528:    ).all() as Array<{ id: number; learned_triggers: string }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:536:      const entries = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:555:          'UPDATE memory_index SET learned_triggers = ? WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:571: * Clear ALL learned triggers from all memories (Safeguard #9 -- Rollback).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:575: * @returns Number of memories that had triggers cleared
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:584:      `SELECT id, learned_triggers FROM memory_index WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:585:    ).all() as Array<{ id: number; learned_triggers: string }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:588:      const entries = parseLearnedTriggers(row.learned_triggers);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:603:    // Reset all learned_triggers to empty
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:605:      `UPDATE memory_index SET learned_triggers = '[]' WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:609:    console.warn(`[learned-feedback] Rollback complete: cleared learned triggers from ${count} memories`);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:5:import * as triggerHandler from '../handlers/memory-triggers';
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:6:import * as triggerMatcher from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:7:import * as attentionDecay from '../lib/cognitive/attention-decay';
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:8:import * as coActivation from '../lib/cognitive/co-activation';
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:30:        { name: 'triggerHandler', ref: triggerHandler },
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:32:      if (triggerMatcher) modules.push({ name: 'triggerMatcher', ref: triggerMatcher });
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:33:      if (attentionDecay) modules.push({ name: 'attentionDecay', ref: attentionDecay });
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:38:      expect(triggerHandler).toBeTruthy();
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:47:      const response = await triggerHandler.handleMemoryMatchTriggers(
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:48:        {} as Parameters<typeof triggerHandler.handleMemoryMatchTriggers>[0]
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:57:      const response = await triggerHandler.handleMemoryMatchTriggers({ prompt: '' });
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:65:      // Should not throw an input validation error about session_id/turnNumber.
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:68:        await triggerHandler.handleMemoryMatchTriggers({
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:69:          prompt: 'test trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:70:          session_id: 'sess-test-001',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:71:          turnNumber: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:76:        expect(message).not.toMatch(/session_id/);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:77:        expect(message).not.toMatch(/turnNumber/);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:81:    it('T527-5: include_cognitive parameter accepted', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:83:        await triggerHandler.handleMemoryMatchTriggers({
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:84:          prompt: 'test trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:85:          include_cognitive: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:88:        // Fail only if the error is specifically about include_cognitive
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:89:        expect(getErrorMessage(error)).not.toMatch(/include_cognitive/);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:99:      expect(typeof triggerHandler.handleMemoryMatchTriggers).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:100:      const fn = triggerHandler.handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:106:      const response = await triggerHandler.handleMemoryMatchTriggers(
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:107:        {} as Parameters<typeof triggerHandler.handleMemoryMatchTriggers>[0]
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:117:      const response = await triggerHandler.handleMemoryMatchTriggers(
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:118:        { prompt: 12345 } as unknown as Parameters<typeof triggerHandler.handleMemoryMatchTriggers>[0]
-.opencode/skill/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:104:    expect(events.every((event) => event.session_id === 'sess-e')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:13:describe('FSRS hybrid decay policy', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:40:  it('makes applyClassificationDecay honor the hybrid no-decay override when enabled', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:14:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:389:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('old-session', 1, 0.5, '${oldTime}')`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:390:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('fresh-session', 2, 0.8, '${new Date().toISOString()}')`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:395:    const remaining = db.prepare('SELECT session_id, memory_id FROM working_memory').all() as WorkingMemoryRow[];
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:397:    expect(remaining[0].session_id).toBe('fresh-session');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:418:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', 1, 0.9)`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:437:      db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', ${i}, ${score})`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:457:        INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:464:    const remaining = db.prepare('SELECT memory_id FROM working_memory WHERE session_id = ? ORDER BY memory_id').all('s1') as Array<Pick<WorkingMemoryRow, 'memory_id'>>;
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:487:      db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', ${i}, 0.5)`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:489:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s2', ${maxCap + 1}, 0.5)`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:490:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s2', ${maxCap + 2}, 0.5)`);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store.vitest.ts:38:      id, spec_folder, file_path, title, trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:4:import * as triggerHandler from '../handlers/memory-triggers';
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:59:    it('T531-3: session_id parameter accepted by triggers', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:62:          triggerHandler.handleMemoryMatchTriggers({
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:63:            prompt: 'test session trigger',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:64:            session_id: 'dedup-session-003',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:71:        expect(getErrorMessage(error)).not.toContain('session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:43:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:54:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:117:  it('T003: quick mode has triggers strategy and 800 token budget', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:119:    expect(quickMode.strategy).toBe('triggers');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:399:  it('T031: Quick mode strategy is triggers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:400:    expect(CONTEXT_MODES.quick.strategy).toBe('triggers');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:419:      desc.includes('reactive') || desc.includes('trigger') || desc.includes('real-time')
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:34:} from '../lib/cognitive/co-activation';
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:42:} from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:43:import type { TriggerMatch } from '../lib/parsing/trigger-matcher';
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:312:  it('T002.3 — degree channel triggers convergence bonus when memory appears in multiple channels', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:419:    // Total boost DECREASES as relatedCount increases (1/sqrt(n) decay).
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:424:  it('T003a.2 — fan-effect decay verified across 5 data points', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:508:  it('T005a.3 — "i was wrong" triggers correction category', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:650:describe('Cross-feature: degree + co-activation interaction', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:653:  it('CF.1 — degree ranking and co-activation boost compound to promote well-connected memories', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:670:    // Now apply co-activation boost on top of a hypothetical base score
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:24:      INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:31:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:52:        trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:127:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:128:      getTestDb().prepare('DELETE FROM session_state WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:145:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:159:        'SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:164:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:165:      getTestDb().prepare('DELETE FROM session_sent_memories WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:205:          session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:207:          attention_score REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:211:          UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:215:        INSERT INTO working_memory (session_id, memory_id, attention_score, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:229:        WHERE session_id = 'legacy-session' AND memory_id = 1
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:89:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:91:      attention_score REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:101:      UNIQUE(session_id, memory_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:114:      session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:146:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:153:      session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:166:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:170:      PRIMARY KEY (session_id, memory_hash)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:206:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:215:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:221:      learned_triggers
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:254:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:263:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:269:      learned_triggers
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:301:      id, session_id, memory_id, attention_score, added_at, last_focused, focus_count,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:323:      id, timestamp, mutation_type, reason, prior_hash, new_hash, linked_memory_ids, decision_meta, actor, session_id
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:357:    INSERT INTO session_learning (id, session_id, memory_id, insight, created_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:363:      id, action, decision, memory_id, logical_key, tenant_id, user_id, agent_id, session_id, shared_space_id, reason, metadata, created_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:385:      session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:390:    INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:99:      const triggers = memoryParser.extractTriggerPhrases(content);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:103:      expect(Array.isArray(triggers)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:104:      expect(triggers.length).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:177:    it('T500-06a: Inline YAML trigger phrases extracted', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:179:triggerPhrases: ["save context", "memory save", "persist state"]
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:184:      const triggersInline = memoryParser.extractTriggerPhrases(contentInline);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:186:      expect(Array.isArray(triggersInline)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:187:      expect(triggersInline.length).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:188:      expect(triggersInline).toContain('save context');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:189:      expect(triggersInline).toContain('memory save');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:190:      expect(triggersInline).toContain('persist state');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:193:    it('T500-06b: Multi-line YAML trigger phrases extracted', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:195:triggerPhrases:
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:203:      const triggersMulti = memoryParser.extractTriggerPhrases(contentMultiLine);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:205:      expect(Array.isArray(triggersMulti)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:206:      expect(triggersMulti.length).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:211:triggerPhrases: ["frontmatter trigger"]
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:220:triggerPhrases:
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:221:  - body trigger
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:224:      expect(memoryParser.extractTriggerPhrases(content)).toEqual(['frontmatter trigger']);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:349:triggerPhrases: ["alpha", "beta", "gamma"]
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:354:      const triggers = memoryParser.extractTriggerPhrases(content);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:355:      expect(Array.isArray(triggers)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:356:      expect(triggers.length).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:370:      const triggers = memoryParser.extractTriggerPhrases(content);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:375:      expect(triggers).toEqual([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:7:// - Quality score computation (trigger phrases, anchors, budget, coherence)
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:8:// - Auto-fix strategies (re-extract triggers, normalize anchors, trim budget)
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:67:  triggerPhrases: ['sprint 0', 'measurement foundation', 'eval infrastructure', 'retrieval quality'],
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:75:  triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:105:  it('returns 0 when no trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:106:    const result = scoreTriggerPhrases({ triggerPhrases: [] });
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:109:    expect(result.issues[0]).toMatch(/no trigger phrases/i);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:112:  it('returns 0.5 for 1-3 trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:113:    const result = scoreTriggerPhrases({ triggerPhrases: ['a', 'b'] });
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:116:    expect(result.issues[0]).toMatch(/2 trigger phrase/i);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:119:  it('returns 1.0 for 4+ trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:120:    const result = scoreTriggerPhrases({ triggerPhrases: ['a', 'b', 'c', 'd'] });
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:125:  it('handles missing triggerPhrases field gracefully', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:283:    expect(score.breakdown.triggers).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:291:    // BAD_CONTENT = 'short': triggers=0, anchors=0.5 (neutral), budget=1.0, coherence=0.25
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:294:    expect(score.breakdown.triggers).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:300:    const weightSum = QUALITY_WEIGHTS.triggers + QUALITY_WEIGHTS.anchors +
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:307:    if (score.breakdown.triggers === 1.0 && score.breakdown.anchors === 1.0 &&
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:314:    const score = computeMemoryQualityScore(BROKEN_ANCHOR_CONTENT, { triggerPhrases: ['test'] });
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:363:  it('extracts title as trigger phrase', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:364:    const triggers = extractTriggersFromContent('# Heading\nContent', 'My Title');
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:365:    expect(triggers).toContain('my title');
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:368:  it('extracts markdown headings as triggers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:370:    const triggers = extractTriggersFromContent(content);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:371:    expect(triggers.length).toBeGreaterThanOrEqual(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:372:    expect(triggers).toContain('first heading');
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:373:    expect(triggers).toContain('second heading');
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:374:    expect(triggers).toContain('third heading');
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:377:  it('caps triggers at 8', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:379:    const triggers = extractTriggersFromContent(headings);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:380:    expect(triggers.length).toBeLessThanOrEqual(8);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:385:    const triggers = extractTriggersFromContent(content);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:387:    expect(triggers).not.toContain('hi');
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:396:  it('re-extracts trigger phrases when missing', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:398:    const metadata = { triggerPhrases: [], title: 'My Document' };
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:399:    const result = attemptAutoFix(content, metadata, ['No trigger phrases found']);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:402:    expect((result.metadata.triggerPhrases as string[]).length).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:407:    const metadata = { triggerPhrases: ['test'] };
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:415:    const metadata = { triggerPhrases: ['test', 'a', 'b', 'c'] };
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:422:    const result = attemptAutoFix('content', { triggerPhrases: ['a'] }, ['some random issue']);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:474:    const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 2 });
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:484:    const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:493:    // Content that is close to threshold but below 0.6 without triggers.
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:494:    // Has no anchors (0.5 neutral), no triggers (0), budget ok (1.0), coherence (1.0).
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:497:    // After auto-fix extracts triggers (0.5 for 1-3): total = 0.5*0.25 + 0.5*0.30 + 1.0*0.20 + 1.0*0.25 = 0.125 + 0.15 + 0.20 + 0.25 = 0.725
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:512:    const fixableMetadata = { triggerPhrases: [], title: 'Important Sprint Documentation' };
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:515:    // After auto-fix extracts triggers from headings, score should improve above 0.65
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:519:    expect(result.fixes.some(f => /trigger/i.test(f))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:528:    // BAD_CONTENT is 'short' with no triggers — score.total is close to 0
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:537:    const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:553:    const metadata = { triggerPhrases: [], title: 'Title Here' };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:10:  parse_trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:34:    triggerCacheCleared: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:80:vi.mock('../lib/parsing/trigger-matcher', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:164:      triggerCacheCleared: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:39:    triggerPhrases: ['embedding optimization', 'rollback decision'],
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:53:      '- Keep retrieval-time decay unchanged',
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:103:        'Keep retrieval-time decay unchanged',
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-cleanup-ordering.vitest.ts:51:        triggerPhrases: [],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:37:/** Gap multiplier: gap must exceed this multiple of the median gap to trigger truncation.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:51:  /** Low-confidence threshold — results below this trigger recovery. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:59:// Minimum result count considered "good enough" — fewer than this triggers partial recovery.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:22:        session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:28:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:32:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:36:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:4:// Feature catalog: Classification-based decay
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:6:// Central nodes decay slower and peripheral nodes decay faster.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:33: * nodes (low centrality) decay faster — reflecting the intuition that
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:49:/** Per-hop decay factor applied to traversal score. 1-hop = 1.0, 2-hop = 0.5. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:105:  attentionScore?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:272: * Compute hop decay factor. Formula: HOP_DECAY_BASE / hopDistance.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:378:    attentionScore: score,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:400: * Compute the hop-distance decay boost: MAX_BOOST_PER_HOP / hopDistance,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:482:      // C138-P2: Combine hop-distance decay with relation-weighted walk score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:510:    SELECT id, spec_folder, file_path, title, importance_tier, trigger_phrases, created_at
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:641:      attentionScore: score,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts:287:        // Can trigger OOM or context mixing on local LLM inference.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts:348:  // If modelLoadPromise is pending when shutdown triggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:52:    vi.doMock('../handlers/memory-triggers', () => ({
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:5:/** Maximum trigger phrases stored for each memory. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:42:  trigger_phrases?: string | string[] | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:43:  triggerPhrases?: string | string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:81:  trigger_phrases?: string | string[] | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:105:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:120:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:180: * Parses trigger phrase storage into a normalized string array.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:181: * @param value - The stored trigger phrase payload.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:182: * @returns Parsed trigger phrases, or an empty array on invalid input.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:184:export function parse_trigger_phrases(value: string | string[] | null | undefined): string[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:163:    triggerPhrases = [],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:189:  const triggers_json = JSON.stringify(triggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:202:      triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:222:        spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:228:      specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:272:    triggerPhrases = [],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:285:  const triggers_json = JSON.stringify(triggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:298:            trigger_phrases = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:313:      `).run(title, triggers_json, importanceWeight, canonicalFilePath, failureReason, now, encodingIntent, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:321:        spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:327:      specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:359:    triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:392:    if (triggerPhrases !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:393:      updates.push('trigger_phrases = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:394:      values.push(JSON.stringify(triggerPhrases));
-.opencode/skill/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:72:  it('T6: single very low score triggers gap via absolute threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:100:  it('T8: all scores below MIN_ABSOLUTE_SCORE trigger gap regardless of Z', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:24: * Session attention boost for search result re-ranking.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:375: * REQ-D4-002: Hybrid decay policy — type-aware no-decay for permanent artifacts.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:378: * stability (no decay). All other types follow the standard FSRS schedule.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:599: * Queries causal_edges for neighbor titles when recovery triggers.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:4:// Feature catalog: BM25 trigger phrase re-index gate
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:31:  trigger_phrases?: string | string[] | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:55: * trigger_phrases:  5.0 — curated keywords next most important
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:63:  trigger_phrases: BM25_FTS5_WEIGHTS[1],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:181:function normalizeTriggerPhrasesForBM25(triggerPhrases: string | string[] | null | undefined): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:182:  if (Array.isArray(triggerPhrases)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:183:    return triggerPhrases
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:188:  if (typeof triggerPhrases !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:192:  const trimmed = triggerPhrases.trim();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:222:  const triggerPhrases = normalizeTriggerPhrasesForBM25(row.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:223:  if (triggerPhrases) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:224:    textParts.push(triggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:380:        `SELECT id, title, content_text, trigger_phrases, file_path
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:388:        trigger_phrases: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:11:  parse_trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:260: * Learns new trigger phrases from a selected result.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:263: * @returns True when trigger phrases were updated.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:270:  let memory: { trigger_phrases?: string | null } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:273:      'SELECT trigger_phrases FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:274:    ).get(selected_memory_id) as { trigger_phrases?: string | null } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:284:    existing = parse_trigger_phrases(memory.trigger_phrases || undefined);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:314:      'UPDATE memory_index SET trigger_phrases = ? WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:163:  // BM25-inspired weights: title(10) highest signal, content(5), triggers(2), folder(1).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:5:// 100+ stop words that should never be learned as trigger phrases.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:57:   to serve as meaningful trigger phrases.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:76: * as trigger phrases. All terms stored in lowercase for case-insensitive matching.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:74:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:129:    session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:422:// V21: Add learned_triggers column (R11 learned feedback)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:425:// V24: Add trigger-cache source and temporal contiguity indexes
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:554:        database.exec('CREATE INDEX IF NOT EXISTS idx_memory_type_decay ON memory_index(memory_type, half_life_days)');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:754:            title, trigger_phrases, file_path, content_text,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:761:            INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:762:            VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:767:            INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:768:            VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:769:            INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:770:            VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:775:            INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:776:            VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1068:  // V20 -> v21: Add learned_triggers column (R11 learned feedback)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1071:      database.exec("ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]'");
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1072:      logger.info('Migration v21: Added learned_triggers column (R11)');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1075:        console.warn('[VectorIndex] Migration v21 warning (learned_triggers):', get_error_message(e));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1134:      'idx_trigger_cache_source',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1135:      `CREATE INDEX IF NOT EXISTS idx_trigger_cache_source
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1138:         AND trigger_phrases IS NOT NULL
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1139:         AND trigger_phrases != '[]'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1140:         AND trigger_phrases != ''`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1149:    logger.info('Migration v24: Created trigger-cache source and temporal contiguity indexes');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1449:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1461:      ON governance_audit(tenant_id, user_id, agent_id, session_id, shared_space_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1467:        ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1765:  if (!column_names.includes('session_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1767:      database.exec(`ALTER TABLE memory_index ADD COLUMN session_id TEXT`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1768:      console.warn('[vector-index] Migration: Added session_id column');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1773:      logDuplicateColumnMigrationSkip('session_id', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1789:  if (!column_names.includes('decay_half_life_days')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1791:      database.exec(`ALTER TABLE memory_index ADD COLUMN decay_half_life_days REAL DEFAULT 90.0`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1792:      console.warn('[vector-index] Migration: Added decay_half_life_days column');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1797:      logDuplicateColumnMigrationSkip('decay_half_life_days', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2070:      CREATE INDEX IF NOT EXISTS idx_trigger_cache_source
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2073:        AND trigger_phrases IS NOT NULL
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2074:        AND trigger_phrases != '[]'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2075:        AND trigger_phrases != ''
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2077:    logger.info('Created idx_trigger_cache_source index');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2079:    console.warn('[vector-index] Failed to create idx_trigger_cache_source', {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2081:      index: 'idx_trigger_cache_source',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2190:    'UPDATE session_state SET spec_folder = ? WHERE session_id = ? AND spec_folder = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2194:    `SELECT session_id, spec_folder FROM session_state WHERE spec_folder IS NOT NULL`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2195:  ).all() as Array<{ session_id: string; spec_folder: string }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2202:      updateStmt.run(canonical, row.session_id, row.spec_folder);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2306:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2317:      decay_half_life_days REAL DEFAULT 90.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2325:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2355:      learned_triggers TEXT DEFAULT '[]',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2385:      title, trigger_phrases, file_path, content_text,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2390:  // Create FTS5 sync triggers (includes content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2393:      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2394:      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2400:      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2401:      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2402:      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2403:      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2409:      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2410:      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2435:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2436:    CREATE INDEX IF NOT EXISTS idx_memories_governed_scope ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2439:    CREATE INDEX IF NOT EXISTS idx_trigger_cache_source
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2442:        AND trigger_phrases IS NOT NULL
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2443:        AND trigger_phrases != '[]'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2444:        AND trigger_phrases != '';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2461:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:137:  // Feedback boost (learned trigger weight)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:206:    if (signal === 'graph_boosted') return 'graph co-activation';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:207:    if (signal === 'session_boosted') return 'session attention';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:211:    if (signal === 'feedback_boosted') return 'learned trigger';
-.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts:60:/** Minimum file size (chars) to trigger chunking */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/deterministic-extractor.ts:190: * @param onWriteFn - Callback to trigger graph refresh for newly inserted edges.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:373:    // generate a basic reformulation to trigger the parallel search path.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:76: * Check if the query exactly matches any known trigger phrase (case-insensitive).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:79: * @param triggerPhrases - Known trigger phrases to match against.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:80: * @returns True when the query matches a trigger phrase exactly.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:82:function hasTriggerMatch(query: string, triggerPhrases: string[]): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:83:  if (triggerPhrases.length === 0) return false;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:85:  return triggerPhrases.some(tp => tp.trim().toLowerCase() === normalized);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:95: * @param hasTrigger    - Whether a trigger phrase matched.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:130: * - Simple: ≤3 terms OR trigger phrase match
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:131: * - Complex: >8 terms AND no trigger match
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:140: * @param triggerPhrases - Optional array of known trigger phrases.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:145:  triggerPhrases?: string[],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:168:    const triggers = triggerPhrases ?? [];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:169:    const triggerMatch = hasTriggerMatch(query, triggers);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:176:    if (triggerMatch || termCount <= SIMPLE_TERM_THRESHOLD) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:178:    } else if (termCount > COMPLEX_TERM_THRESHOLD && !triggerMatch) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:184:    const confidence = determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:191:        hasTriggerMatch: triggerMatch,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:21:  attentionScore?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:82:  'similarity' | 'score' | 'importance_weight' | 'rrfScore' | 'intentAdjustedScore' | 'attentionScore'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:191: * Executes search channels (FTS5, semantic, trigger, graph, co-activation)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:224: * Single point for ALL scoring signals: RRF/RSF, causal boost, co-activation,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:373:  attentionScore?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:387:    attentionScore: r.attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:434:    if (row.attentionScore !== snap.attentionScore) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:436:        `[Stage4Invariant] Score mutation detected: id=${snap.id} attentionScore changed from ${snap.attentionScore} to ${row.attentionScore}`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:151: * This gives title matches 10x weight, trigger_phrases 5x, etc.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:15://     - Learned trigger and negative-feedback reads from DB
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:22:// 1.  Session boost           — working-memory attention amplification
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:23:// 1a. Recency fusion          — time-decay bonus for recent memories
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:31:// 6.  Feedback signals        — learned trigger boosts + negative demotions
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:62:} from '../../cognitive/co-activation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:63:import type { SpreadResult } from '../../cognitive/co-activation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:121:/** Number of top results used as seeds for co-activation spreading. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:277:    // Preserve attentionScore — it is set by the attention-decay module and
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:290:    // Preserve attentionScore — it is set by the attention-decay module and
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:398: * a graph-based boost. Extracts contributing causal edges, co-activation edges,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:514:    if (coActivationDelta !== 0) boostFactors.push({ type: 'co-activation', delta: coActivationDelta });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:692: * Apply feedback signals — learned trigger boosts and negative feedback demotions.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:694: * Learned triggers: each memory that matches the query's learned terms receives
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:697: * configured learned-trigger weighting (0.7x).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:705: * @param query   - Original search query (used for learned trigger matching)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:726:  // -- Learned trigger boosts --
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:737:    console.warn(`[stage2-fusion] learned trigger query failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:757:    // Apply learned trigger boost (additive to base score, capped at 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:930: *   1.  Session boost      (hybrid only — working memory attention)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:931: *   1a. Recency fusion     (all types — time-decay bonus)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:939: *   6.  Feedback signals   (all types — learned triggers + negative feedback)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:978:  // Only for hybrid search type — session attention signals are most meaningful
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:999:  // Applies a time-decay bonus to each candidate based on its created_at timestamp.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1057:  // Appear in the co-activation graph. Matches V1 hybrid-search behavior.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1076:              // Uses the same sqrt scaling as co-activation.ts boostScore().
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1080:              return withGraphContribution(updated, 'coActivationDelta', resolveBaseScore(updated) - baseScore, 'co-activation');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1084:          // Re-sort after co-activation boost to ensure boosted results
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1091:      // Non-critical enrichment — co-activation failure does not affect core ranking
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1093:      console.warn(`[stage2-fusion] co-activation spreading failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:31: * When enabled, session attention scores from working_memory are used
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:72:function calculateSessionBoost(attentionScore: number, causalBoost: number = 0): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:73:  if (!Number.isFinite(attentionScore) || attentionScore <= 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:77:  const rawBoost = attentionScore * SESSION_BOOST_MULTIPLIER;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:96:      SELECT memory_id, attention_score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:98:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:102:      attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:106:      const boost = calculateSessionBoost(row.attention_score);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:176:          // M11 FIX: Preserve original attentionScore (working-memory signal),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:178:          attentionScore: result.attentionScore ?? finalScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:44:  'trigger_phrases',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:55:  'decay_half_life_days',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:60:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:120:      trigger_phrases TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:131:      decay_half_life_days REAL DEFAULT 90.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:136:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:175:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:191:    CREATE INDEX IF NOT EXISTS idx_memory_type_decay ON memory_index(memory_type, half_life_days);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:206:      title, trigger_phrases, file_path, content_text,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:213:      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:214:      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:220:      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:221:      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:222:      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:223:      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:229:      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:230:      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:359:          attentionScore: original?.attentionScore ?? row.attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:423:        attentionScore: original.attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:707:    // Validate ALL PerFolderDescription fields — type mismatch triggers spec.md fallback.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:723:      return null; // Structurally invalid — triggers spec.md fallback
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:135: * @param triggerPhrases - Optional trigger phrases for simple-tier classification
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:140:  triggerPhrases?: string[],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:142:  const classification = classifyQueryComplexity(query, triggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:17:/** Absolute minimum score; any top score below this triggers a gap. */
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:215:    const decayDays = getRecencyDecayDays();
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:216:    recencyScore = Math.max(0, Math.min(1, 1 - (ageDays / decayDays)));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:7:// DECAY STRATEGY (ADR-004): Search-time temporal decay uses an
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:32:  parse_trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:651:      row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:981:      trigger_phrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:982:      triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:992:      triggerPhrases: metadata_alias.trigger_phrases || metadata_alias.triggerPhrases || [],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-expander.ts:54:  trigger: ['activation', 'match-phrase'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:17:  parse_trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:71:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:96:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:202:  // ADR-004: FSRS-preferred decay with half-life fallback
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:203:  const decay_expr = useDecay
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:211:         ELSE m.importance_weight * POWER(0.5, (julianday('now') - julianday(m.updated_at)) / COALESCE(NULLIF(m.decay_half_life_days, 0), 90.0))
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:264:             ${decay_expr} as effective_importance
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:278:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:400:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:659:      parse_trigger_phrases(row.trigger_phrases).join(' '),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:670:        if (parse_trigger_phrases(row.trigger_phrases).join(' ').toLowerCase().includes(term)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:686:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:54:  hebbian: { strengthened: number; decayed: number };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:333: * 30-day decay: edges not accessed in 30 days lose 0.1 strength.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:337:export function runHebbianCycle(database: Database.Database): { strengthened: number; decayed: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:339:  let decayed = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:378:          updateEdge(edge.id, { strength: newStrength }, 'hebbian', 'decay-30-day');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:379:          decayed++;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:388:  return { strengthened, decayed };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:432: * 2. Hebbian strengthening + decay
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:443:  // T002b: Hebbian strengthening + decay
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:236:      // D3-fix: trigger_phrases may be string[] (parsed) or string (raw JSON)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:237:      const triggers = mem.trigger_phrases;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:238:      if (Array.isArray(triggers) && triggers.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:239:        contents.push(triggers.join(' '));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:240:      } else if (typeof triggers === 'string' && triggers.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:241:        contents.push(triggers);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:290: * Useful in Stage 1 for conditional branching without triggering the
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:37:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:212:    ['session', normalizeScopeValue(row.session_id)],
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:462:      trigger_phrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:482:    JSON.stringify(parsed.triggerPhrases),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:529:        trigger_phrases: parsed.triggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:282:    // This state and trigger recovery (e.g., re-index from DB or replay the write).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:56: * Controls when dirty-node recomputation is triggered after write operations.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:337: * call triggers execution.  The actual refresh callback (`_globalRefreshFn`)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:375:  logger.warn('Global graph refresh triggered but no refresh function registered.');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:320:  'learned_feedback_audit', 'learned_trigger_scores', 'learned_trigger_feedback',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:443:    || columns.has('session_id')
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1109:        session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1111:        attention_score REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1121:        UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1284:  if ((column === 'trigger_phrases' || column === 'quality_flags') && Array.isArray(value)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1316:    'trigger_phrases',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1327:    'decay_half_life_days',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1332:    'session_id',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1678:    // Merge mode: INSERT OR REPLACE triggers CASCADE DELETE on working_memory
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1825:          // Apply the snapshot values without triggering CASCADE deletes.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1883:      // Throw to trigger ROLLBACK — this undoes both the DELETEs and partial INSERTs,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:39:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:60:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:5:// Schema migration for the learned_triggers column.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:7:// ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:13:// Rollback: ALTER TABLE memory_index DROP COLUMN learned_triggers;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:22: * A single learned trigger entry stored in the learned_triggers JSON array.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:39:/** Column name for learned triggers (NOT in FTS5 index) */
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:40:export const LEARNED_TRIGGERS_COLUMN = 'learned_triggers';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:42:/** Default value for the learned_triggers column */
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:50: * Add the learned_triggers column to memory_index if it does not already exist.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:55: *   title, trigger_phrases, file_path, content_text
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:56: * learned_triggers is deliberately excluded to keep user-generated content
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:76:    console.warn('[learned-triggers-schema] Migration complete: learned_triggers column added');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:84:    console.error(`[learned-triggers-schema] Migration failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:94: * CRITICAL test: Verify that learned_triggers is NOT present in the
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:99: *   title, trigger_phrases, file_path, content_text
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:101: * If learned_triggers appears in FTS5, it means user-generated feedback
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:105: * @returns true if isolation is verified (learned_triggers NOT in FTS5)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:106: * @throws Error if learned_triggers IS found in FTS5 (critical violation)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:122:    // Check that learned_triggers does NOT appear in the FTS5 CREATE statement
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:123:    if (createSql.includes('learned_triggers')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:125:        'CRITICAL: learned_triggers found in FTS5 index (memory_fts). ' +
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:126:        'This violates data isolation requirements. Learned triggers must ' +
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:127:        'ONLY exist in the memory_index.learned_triggers column, never in FTS5.'
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:137:    console.error(`[learned-triggers-schema] FTS5 isolation check failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:147: * Drop the learned_triggers column from memory_index.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:164:    console.warn('[learned-triggers-schema] Rollback complete: learned_triggers column removed');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:168:    console.error(`[learned-triggers-schema] Rollback failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:178: * Parse the learned_triggers JSON column value into typed entries.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:181: * @returns Parsed array of learned trigger entries
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:203: * Serialize learned trigger entries to JSON for storage.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:205: * @param entries - Array of learned trigger entries
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:6:// SQLite triggers enforce immutability (no UPDATE/DELETE on ledger)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:27:  session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:38:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:44:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:74:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:100:    session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:108:  CREATE INDEX IF NOT EXISTS idx_ledger_session ON mutation_ledger(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:150:    INSERT INTO mutation_ledger (mutation_type, reason, prior_hash, new_hash, linked_memory_ids, decision_meta, actor, session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:162:    entry.session_id ?? null
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:187:  if (opts.session_id) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:188:    conditions.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:189:    params.push(opts.session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:241: * Verify that append-only triggers exist on the mutation_ledger table.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:242: * Returns true if both UPDATE and DELETE triggers are present.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:245:  const triggers = db.prepare(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:246:    "SELECT name FROM sqlite_master WHERE type = 'trigger' AND tbl_name = 'mutation_ledger'"
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:249:  const names = triggers.map(t => t.name);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:395:        session_id: input.session_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:431:      session_id: input.session_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:60:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:278:      const mergedTriggerPhrases = buildMergedTriggerPhrases(currentRow, newMemory.triggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:285:        trigger_phrases: mergedTriggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:303:        trigger_phrases: mergedTriggerPhrases,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:854:  triggerPhrases?: string[],
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:856:  if (Array.isArray(triggerPhrases)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:857:    return JSON.stringify(triggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:859:  const existingValue = existingRow.trigger_phrases;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:922:    session_id: existingRow.session_id,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:104:import * as attentionDecay from './lib/cognitive/attention-decay.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:105:import * as coActivation from './lib/cognitive/co-activation.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:125:import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:163:  triggered: unknown[];
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:365:    : typeof args.session_id === 'string'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:366:      ? args.session_id
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:823:    const triggerMatcher = await import('./lib/parsing/trigger-matcher.js');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:824:    if (typeof triggerMatcher.clearCache === 'function') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:825:      triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:829:    console.error(`[context-server] Failed to clear trigger cache after DB reinit: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1574:      attentionDecay,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1622:        console.error(`[context-server] Learned triggers ready (migrated=${migrated}, fts5Isolated=${isolated})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1656:      console.error('[context-server] Auto-backfill triggered: %d rows seeded into active_memory_projection', result.seeded);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1711:      attentionDecay.init(database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:26:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:93:  triggerCacheCleared: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:268:        latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:8:// Feature catalog: BM25 trigger phrase re-index gate
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:24:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:26:import * as attentionDecay from '../lib/cognitive/attention-decay.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:29:import * as coActivation from '../lib/cognitive/co-activation.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:61:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:74:  attentionScore?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:81:  decayedCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:90:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:96:  turnNumber: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:97:  decayApplied: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:108:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:109:  turnNumber?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:110:  include_cognitive?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:111:  // C2 FIX: Scope fields to prevent cross-scope trigger leaks
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:122:/** Per-turn decay rate for attention scoring. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:135:  const db = attentionDecay.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:158:  memoryInfo: { filePath: string; title: string | null; triggerPhrases: string[] },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:171:    console.warn('[memory-triggers] getTieredContent failed', {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:189:    session_id: rawSessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:190:    turnNumber: rawTurnNumber = 1,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:191:    include_cognitive: includeCognitive = true
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:235:  const turnNumber = (typeof rawTurnNumber === 'number' && Number.isFinite(rawTurnNumber) && rawTurnNumber >= 0)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:243:  // Eval logger — capture trigger query at entry (fail-safe)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:249:      intent: 'trigger_match',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:254:  } catch (_error: unknown) { /* eval logging must never break triggers handler */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:263:          scores: memoryIds.map(() => 1.0), // trigger matches are binary
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:264:          fusionMethod: 'trigger',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:269:      /* eval logging must never break triggers handler */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:276:    attentionDecay.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:278:  let decayStats: DecayStats | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:281:      decayStats = { decayedCount: workingMemory.batchUpdateScores(sessionId as string) };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:288:  const triggerMatchResult = triggerMatcher.matchTriggerPhrasesWithStats(prompt, limit * 2);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:289:  let results: TriggerMatch[] = triggerMatchResult.matches;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:291:  // C2 FIX: Post-filter by scope to prevent cross-tenant trigger leaks
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:329:  const detectedSignals = Array.isArray(triggerMatchResult.stats?.signals)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:330:    ? triggerMatchResult.stats.signals
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:332:  const degradedTriggerMatching = triggerMatchResult.stats?.degraded ?? null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:337:      summary: 'No matching trigger phrases found',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:339:        matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:344:          turnNumber: turnNumber,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:345:          decayApplied: decayStats ? decayStats.decayedCount : 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:349:        'Ensure memories have trigger phrases defined',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:351:        ...(degradedTriggerMatching ? ['Trigger matching ran in degraded mode; inspect server logs for skipped trigger sources'] : []),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:368:        attentionDecay.activateMemory(match.memoryId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:369:        // T209: Persist max attention boost for matched memories.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:399:      .map(wm => ({ memoryId: (wm.id as number) || 0, attentionScore: (wm.attention_score as number) || 1.0 }));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:401:    const turnDecayFactor = turnNumber > 1
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:402:      ? Math.pow(TURN_DECAY_RATE, turnNumber - 1)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:409:      let attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:417:          // WM already applies its own decay — skip turnDecayFactor to avoid double-decay.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:418:          effectiveRetrievability = Math.min(effectiveRetrievability, wmEntry.attentionScore);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:423:        attentionScore = effectiveRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:426:        // When no FSRS record, use WM score directly (already session-decayed) or apply turn decay
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:427:        const baseScore = wmEntry ? wmEntry.attentionScore : 1.0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:428:        attentionScore = wmEntry ? baseScore : baseScore * turnDecayFactor;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:429:        tier = tierClassifier.classifyState(attentionScore);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:432:      // Clamp to [0,1] — retrievability * decay or wmEntry scores
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:434:      attentionScore = Math.max(0, Math.min(1, attentionScore));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:438:        attentionScore: attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:450:        triggerPhrases: r.matchedPhrases
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:461:        attentionScore: r.attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:470:      turnNumber: turnNumber,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:471:      decayApplied: decayStats ? decayStats.decayedCount : 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:496:    : `Matched ${formattedResults.length} memories via trigger phrases`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:500:    hints.push('Enable cognitive features with include_cognitive: true');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:510:  const _triggersResponse = createMCPSuccessResponse({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:514:      matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:524:      triggerSignals: detectedSignals,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:529:  // Consumption instrumentation — log triggers event (fail-safe, never throws)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:531:    const db = attentionDecay.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:536:        event_type: 'triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:540:        session_id: sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:544:  } catch (_error: unknown) { /* instrumentation must never cause triggers handler to fail */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:546:  // Eval logger — capture final trigger results at exit (fail-safe)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:547:  const triggerMemoryIds = formattedResults.map(r => r.memoryId).filter(id => typeof id === 'number');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:548:  logFinalTriggerEval(triggerMemoryIds, latencyMs);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:550:  return _triggersResponse;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:117:      AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:185:          triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:200:          triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:271:          trigger_phrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:59:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:138:  triggerPhrases: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:147:      trigger_phrases: args.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:195:            triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:248:                  triggerPhrases: memory.triggerPhrases ?? [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:281:                      trigger_phrases: memory.triggerPhrases ?? [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:291:                      triggerPhrases: memory.triggerPhrases ?? [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:170:    triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:22:  ['session_id', 'sessionId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:40:  trigger_phrases: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:95:    SELECT id, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:139:    trigger_phrases: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:145:  const persistedTriggerPhrases = parseJsonStringArray(existing.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:146:  if (!areEquivalentStringArrays(persistedTriggerPhrases, parsed.triggerPhrases)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:235:      triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:300:        triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:168:    triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:321:        latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:335:    triggerPhrases: result.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:417:      hints.push('Async embedding mode: immediate background attempt triggered, background retry manager as safety net');
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:453:        `-${consolidation.hebbian.decayed} decayed, ${consolidation.stale.flagged} stale flagged`
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:42:    triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:66:    triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:250:        latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:49:    triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:85:  if (triggerPhrases !== undefined) updateParams.triggerPhrases = triggerPhrases;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:151:      // T2-6 — BM25 index stores title + trigger phrases; must re-index when either changes
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:155:      if ((updateParams.title !== undefined || updateParams.triggerPhrases !== undefined) && bm25Index.isBm25Enabled()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:159:            'SELECT title, content_text, trigger_phrases, file_path FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:160:          ).get(id) as { title: string | null; content_text: string | null; trigger_phrases: string | null; file_path: string | null } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:208:          triggerPhrases: updateParams.triggerPhrases ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:249:      latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:120:    hints.push('Session has not been primed yet. Make any tool call to trigger auto-priming.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:62:      session_id: input.sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:26:  triggers: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:57:function triggerPhrasesChanged(
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:74:  triggers: 0.25,
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:87: * Compute trigger phrase quality sub-score.
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:89: * Evaluates whether the memory metadata declares enough trigger phrases for
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:92: *   - 0 phrases  → score 0.0  (memory will never surface via trigger matching)
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:97: *   to contain a `triggerPhrases` key whose value is an array of strings.
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:103:  const triggers = Array.isArray(metadata.triggerPhrases) ? metadata.triggerPhrases : [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:104:  const count = triggers.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:108:    issues.push('No trigger phrases found');
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:112:    issues.push(`Only ${count} trigger phrase(s) — 4+ recommended`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:372: *   - triggers  × 0.25
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:381: *   through to `scoreTriggerPhrases`; must contain a `triggerPhrases` key
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:386: *   - `breakdown` — Per-dimension raw sub-scores (`triggers`, `anchors`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:389: *     in order: triggers → anchors → budget → coherence.
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:395:  const triggerResult = scoreTriggerPhrases(metadata);
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:401:    triggerResult.score * QUALITY_WEIGHTS.triggers +
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:409:      triggers: triggerResult.score,
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:415:      ...triggerResult.issues,
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:427: * - Re-extract trigger phrases from content headings/title
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:442:  // Fix #1 : Re-extract trigger phrases if missing/insufficient
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:443:  const hasTriggerIssue = issues.some(i => /trigger phrase/i.test(i));
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:445:    const existingTriggers = Array.isArray(fixedMetadata.triggerPhrases)
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:446:      ? (fixedMetadata.triggerPhrases as string[])
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:451:      fixedMetadata.triggerPhrases = extracted;
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:452:      fixed.push(`Re-extracted ${extracted.length} trigger phrases from content`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:482: * Extract trigger phrases from content by scanning headings and the title.
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:492:  let triggers: string[] = [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:494:  // Add title as a trigger if present
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:496:    triggers.push(title.trim().toLowerCase());
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:499:  // Extract markdown headings as triggers
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:504:    if (heading.length > 3 && heading.length < 80 && !triggers.includes(heading)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:505:      triggers.push(heading);
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:510:  triggers = triggers.filter(t =>
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:514:  return triggers.slice(0, 8); // Cap at 8 triggers
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:577: * @param metadata - Parsed memory metadata (must include triggerPhrases)
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:658:        fixedTriggerPhrases: triggerPhrasesChanged(metadata.triggerPhrases, currentMetadata.triggerPhrases)
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:659:          ? currentMetadata.triggerPhrases as string[]
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:684:    fixedTriggerPhrases: triggerPhrasesChanged(metadata.triggerPhrases, bestMetadata.triggerPhrases)
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:685:      ? bestMetadata.triggerPhrases as string[]
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:4:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:8:import { clearRelatedCache } from '../lib/cognitive/co-activation.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:27:  let triggerCacheCleared = false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:29:    triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:30:    triggerCacheCleared = true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:34:      `[mutation-hooks] triggerMatcher.clearCache failed for operation="${operation}":`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:37:    errors.push(`triggerMatcher.clearCache: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:38:    triggerCacheCleared = false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:99:    triggerCacheCleared,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:26:  triggerPhrases: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:53:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:102:        if (!matchesScopedValue(sessionId, r.session_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:265:      triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:318:    triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:66:type MemoryTriggersModule = typeof import('./memory-triggers.js');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:110:    memoryTriggersModule = loadHandlerModule<MemoryTriggersModule>('memory-triggers');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:224:// Memory triggers handlers
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:226:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:113:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:135:    session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:167:  ON session_learning(spec_folder, task_id, session_id, phase, updated_at, id)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:175:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:309:    sessionId: session_id = null
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:334:  const normalizedSessionId = normalizeSessionId(session_id);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:344:       AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:352:      SET session_id = ?, pre_knowledge_score = ?, pre_uncertainty_score = ?, pre_context_score = ?, knowledge_gaps = ?, updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:399:    (spec_folder, task_id, phase, session_id, pre_knowledge_score, pre_uncertainty_score, pre_context_score, knowledge_gaps, created_at, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:467:    sessionId: session_id = null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:491:  const normalizedSessionId = normalizeSessionId(session_id);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:501:    query += ' AND session_id = ?';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:538:        : `No preflight record found for spec_folder="${spec_folder}", task_id="${taskId}", session_id="${normalizedSessionId}". Call task_preflight first.`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:615:          sessionId: (preflightRecord.session_id as string | null) ?? normalizedSessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:663:    sessionId: session_id,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:686:    const normalizedSessionId = normalizeSessionId(session_id);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:694:      sql += ' AND session_id = ?';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:719:        sessionId: (row.session_id as string | null) ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:778:        summarySql += ' AND session_id = ?';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:16:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:421:    'trigger_cache_refresh',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:470:            triggerMatcher.refreshTriggerCache();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:471:            repair.actions.push('trigger_cache_refresh');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:477:              hints.push('Auto-repair completed: FTS5 index rebuilt and trigger cache refreshed.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:21:import { handleMemoryMatchTriggers } from './memory-triggers.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:649:  // Quick: Fast trigger-based matching for reactive context
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:652:    description: 'Fast trigger matching for real-time context (low latency)',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:653:    strategy: 'triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:709:    session_id: options.sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:710:    include_cognitive: true
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1442:        attentionScore: item.attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1530:        session_id: effectiveSessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:12:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:492:      triggerMatcher.refreshTriggerCache();
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:276:        triggerPhrases: channelFlags.useTrigger ? undefined : [],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:174:  session_id: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:175:  turnNumber: safeNumericPreprocess.pipe(z.number().int().min(1)).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:176:  include_cognitive: z.boolean().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:212:  triggerPhrases: optionalStringArray,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:347:  channels: z.array(z.enum(['vector', 'bm25', 'fts5', 'graph', 'trigger'])).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:471:  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:122:  attentionScore?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1208:        session_id: sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:12:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:35:  triggerPhrases: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:52:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:226:        triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:313:            triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:327:            triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:365:            trigger_phrases: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:465:    triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:473:      triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:577:      triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:584:        triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:601:        trigger_phrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:632:  // Otherwise stale trigger/tool-cache entries persist until next non-chunked save.
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:633:  triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:641:    triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:99:      error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:131:    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index ${whereClause} ORDER BY ${sortColumn} DESC LIMIT ? OFFSET ?`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:153:    triggerCount: safeJsonParseTyped<unknown[]>(row.trigger_phrases as string, 'array', []).length,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:488:  // This is the ONLY place where scan-triggered mtime updates occur.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:282:      'SELECT 1 FROM session_state WHERE session_id = ? LIMIT 1'
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:297:      'SELECT 1 FROM session_sent_memories WHERE session_id = ? LIMIT 1'
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:342:    WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:443:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:447:    PRIMARY KEY (session_id, memory_hash)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:452:  'CREATE INDEX IF NOT EXISTS idx_session_sent_session ON session_sent_memories(session_id);',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:523:      WHERE session_id = ? AND memory_hash = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:565:      SELECT memory_hash FROM session_sent_memories WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:568:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:647:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:678:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:713:      SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:723:      WHERE session_id = ? AND rowid IN (
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:725:        WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:848:      DELETE FROM session_sent_memories WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:878:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:960:    session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1036:        session_id, status, spec_folder, current_task, last_action,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1042:      ON CONFLICT(session_id) DO UPDATE SET
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1086:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1136:      SELECT session_id, status, spec_folder, current_task, last_action,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1141:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1160:      sessionId: row.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1180:        WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1199:      SELECT session_id, spec_folder, current_task, last_action,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1219:        sessionId: row.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:326:  // Auto-trigger: ensure graph is fresh before querying
+.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:90:          session_id: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:185:    triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:226:      const rejectScore = { total: 0, breakdown: { triggers: 0, anchors: 0, budget: 0, coherence: 0 }, issues: [`V-rule hard block: ${failedRuleIds.join(', ')}`] };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:243:          evidenceCounts: { primary: 0, support: 0, total: 0, semanticChars: 0, uniqueWords: 0, anchors: 0, triggerPhrases: 0 },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:267:    parsed.triggerPhrases = qualityLoopResult.fixedTriggerPhrases;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:643:          triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:744:          triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1727:        latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:255:    recommendedAction = 'Use a structural read to trigger bounded inline refresh when safe, or run code_graph_scan for broader stale states.';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:52:      error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:129:  let triggerCount = 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:141:    const triggerResult = database.prepare("SELECT SUM(json_array_length(trigger_phrases)) as count FROM memory_index WHERE trigger_phrases IS NOT NULL AND trigger_phrases != '[]'").get() as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:142:    triggerCount = (triggerResult && typeof triggerResult.count === 'number') ? triggerResult.count : 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:312:      totalTriggerPhrases: triggerCount,
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:4:// MCP tool handler for ccc_reindex — triggers incremental re-indexing.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:32:    recency: number;        // 1.0 if recent tool call, decays over time
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:163:/** Compute recency factor: 1.0 if <5 min, linear decay to 0.0 at 60 min. */
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:169:  // Linear decay between 5 min and 60 min
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:80:/** Arguments for trigger matching requests. */
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:84:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:85:  turnNumber?: number;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:86:  include_cognitive?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:100:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:328:  channels?: Array<'vector' | 'bm25' | 'fts5' | 'graph' | 'trigger'>;
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:4:// Dispatch for L2-L4 memory tools: search, triggers, save,
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:64:  'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:99:    case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:97:    // Auto-trigger: ensure graph is fresh before querying
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:16:      INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:23:      'SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:24:    ).get(sessionId, memoryId) as { attention_score: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:25:    return row ? row.attention_score : null;
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:30:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:36:    tmpDbPath = path.join(os.tmpdir(), `t214-decay-race-${Date.now()}.db`);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:49:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:79:    const sessionId = 'decay-floor-test';
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:82:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:85:    it('T214-01: Score near floor stays above floor after 1 decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:86:      const decayFloor = DECAY_FLOOR;
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:93:      expect(scoreAfter1).toBeGreaterThanOrEqual(decayFloor);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:96:    it('T214-02: Score clamps at floor after 20 decay cycles', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:97:      const decayFloor = DECAY_FLOOR;
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:105:      expect(scoreAfterMany).toBeGreaterThanOrEqual(decayFloor);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:108:    it('T214-03: Memory entry survives decay at floor', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:118:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:143:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(deleteSessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:148:        WHERE session_id = ? AND attention_score < ?
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:159:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:178:      const decayFloor = DECAY_FLOOR;
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:179:      expect(decayFloor).toBe(0.05);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:188:      const decayFloor = DECAY_FLOOR;
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:190:      expect(decayFloor).toBeGreaterThan(deleteThreshold);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:198:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:201:    it('T214-10: High-score memory (0.8) survives and decays normally', () => {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:82:  triggerPhrases?: string | string[];
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:97:  triggerPhrases: string[];
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:117:  attention: number | null;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:448:      triggerPhrases: Array.isArray(rawResult.triggerPhrases) ? rawResult.triggerPhrases :
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:449:                      safeJsonParse<string[]>(rawResult.triggerPhrases as string, []),
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:472:        attention: toNullableNumber(rawResult.attentionScore),
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:6:import * as coActivation from '../lib/cognitive/co-activation';
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1088:        source: 'trigger',
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1089:        sources: ['trigger'],
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1090:        sourceScores: { trigger: 0.96 },
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1091:        channelAttribution: ['trigger'],
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1098:      expect.arrayContaining(['vector', 'fts', 'bm25', 'graph', 'trigger'])
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1281:  it('T024: co-activation promotion happens before confidence truncation drops tail candidates', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1441:  it('S1-FIX-01: routeQuery trigger-phrase path is reachable from hybridSearchEnhanced', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1450:      triggerPhrases: [longTrigger],
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:130:        triggerPhrases: ['merge'],
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:175:        triggerPhrases: ['merge'],
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:212:        triggerPhrases: ['conflict'],
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:232:        triggerPhrases: ['conflict'],
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:23:type TriggerMatcherModule = Awaited<typeof import('./lib/parsing/trigger-matcher.js')>;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:34:let _trigger_matcher: TriggerMatcherModule | null = null;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:58:  return _trigger_matcher ??= await import('./lib/parsing/trigger-matcher.js');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:281:  const [vectorIndex, checkpointsLib, mutationLedger, triggerMatcher, causalEdges, history] = await Promise.all([
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:426:  // Invalidate trigger cache
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:427:  triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:15:    session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:27:    session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:55:  session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:126:    session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:136:  CREATE INDEX IF NOT EXISTS idx_feedback_session    ON feedback_events(session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:258:      conditions.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:31:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:43:      decay_half_life_days REAL DEFAULT 90.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:49:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:144:    const res = await formatSearchResults([], 'trigger');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:171:      triggerPhrases: '["hello","world"]',
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:184:  it('C4: triggerPhrases parsed from JSON string', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:190:      triggerPhrases: '["phrase1","phrase2"]'
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:194:    expect(envelope.data.results[0].triggerPhrases).toEqual(['phrase1', 'phrase2']);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:197:  it('C5: triggerPhrases as array preserved', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:203:      triggerPhrases: ['already', 'an', 'array']
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:207:    expect(envelope.data.results[0].triggerPhrases).toEqual(['already', 'an', 'array']);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:441:          trigger: [52],
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:459:    expect(trace?.channelsUsed).toEqual(expect.arrayContaining(['vector', 'fts', 'trigger']));
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:56:    triggerPhrases: ['test', 'memory'],
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:114:        trigger_phrases TEXT DEFAULT '[]',
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:635:          content: 'Merged addition that should trigger repair attempts',
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1010:    it('RO6: TM-04/TM-06 interaction: similarity 0.89 passes TM-04, triggers TM-06 merge', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:6:import * as handler from '../handlers/memory-triggers';
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:33:          path.join(HANDLERS_PATH, '..', 'handlers', 'memory-triggers.ts'),
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:42:          path.join(HANDLERS_PATH, 'memory-triggers.js'),
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:75:    it('T209-5: setAttentionScore called with (session_id, match.memoryId, score)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:78:      const strictPattern = /workingMemory\.setAttentionScore\(\s*(?:session_id|sessionId)\s*(as\s+string)?\s*,\s*match\.memoryId\s*,\s*[\d.]+\s*\)/;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:79:      const relaxedPattern = /workingMemory\.setAttentionScore\([^)]*(?:session_id|sessionId)/;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:101:          path.join(HANDLERS_PATH, '..', 'handlers', 'memory-triggers.ts'),
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:106:          path.join(HANDLERS_PATH, 'memory-triggers.js'),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:113:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:824:      triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:92:    claude_session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:93:    speckit_session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:117:    claude_session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:136:    UNIQUE(claude_session_id, transcript_path, byte_start)
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:160:    ON analytics_turns (claude_session_id, transcript_path, line_no);
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:167:  claude_session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:168:  speckit_session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:192:  claude_session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:393:    WHERE claude_session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:422:    WHERE claude_session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:453:    WHERE claude_session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:480:      claude_session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:481:      speckit_session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:502:    ON CONFLICT(claude_session_id) DO UPDATE SET
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:503:      speckit_session_id = excluded.speckit_session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:533:      claude_session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:614:    ORDER BY claude_session_id ASC
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:625:    WHERE claude_session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:4:// Session-based attention management
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:5:// DECAY STRATEGY (ADR-004): This module handles SESSION-SCOPED decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:8:// Independent of FSRS long-term decay — different time scale, different
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:9:// Domain (ephemeral session attention vs persistent memory scoring).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:10:// The T214/T008 decay/delete separation (floor=0.05, deleteThreshold=0.01)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:48:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:50:    attention_score REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:60:    UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:66:  CREATE INDEX IF NOT EXISTS idx_wm_session ON working_memory(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:67:  CREATE INDEX IF NOT EXISTS idx_wm_attention ON working_memory(session_id, attention_score DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:69:  CREATE INDEX IF NOT EXISTS idx_wm_session_focus_lru ON working_memory(session_id, last_focused ASC, id ASC);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:70:  CREATE INDEX IF NOT EXISTS idx_wm_session_attention_focus ON working_memory(session_id, attention_score DESC, last_focused DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:77:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:79:  attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:94:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:122:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:193:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:195:      attention_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:208:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:210:      attention_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:242:      'DELETE FROM working_memory WHERE session_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:261:      "SELECT DISTINCT session_id FROM working_memory WHERE datetime(last_focused) < datetime(?, '-' || ? || ' seconds')"
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:262:    ) as Database.Statement).all(nowIso, timeoutSeconds) as Array<{ session_id: string }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:267:      sessionModeRegistry.delete(row.session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:286:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:288:      ORDER BY attention_score DESC
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:303:      SELECT m.*, wm.attention_score, wm.focus_count, wm.last_focused
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:306:      WHERE wm.session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:307:      ORDER BY wm.attention_score DESC
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:338:        wm.attention_score AS attentionScore
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:341:      WHERE wm.session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:343:        AND wm.attention_score > ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:344:      ORDER BY wm.attention_score DESC, wm.last_focused DESC
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:369: * Calculate attention tier for an entry.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:371:function calculateTier(attentionScore: number): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:372:  if (attentionScore >= 0.8) return 'focused';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:373:  if (attentionScore >= 0.5) return 'active';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:374:  if (attentionScore >= 0.2) return 'peripheral';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:379: * Set or update the attention score for a memory in working memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:395:      'SELECT id FROM working_memory WHERE session_id = ? AND memory_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:401:        SET attention_score = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:406:        WHERE session_id = ? AND memory_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:413:        INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:433:    attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:444:  const clampedScore = Math.max(0, Math.min(1, attentionScore));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:451:        session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:453:        attention_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:461:      ON CONFLICT(session_id, memory_id) DO UPDATE SET
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:462:        attention_score = CASE
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:463:          WHEN excluded.attention_score > working_memory.attention_score THEN excluded.attention_score
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:464:          ELSE working_memory.attention_score
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:488:      'SELECT focus_count FROM working_memory WHERE session_id = ? AND memory_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:524:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ? AND memory_id IS NOT NULL'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:534:        WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:550: * Batch update attention scores with decay.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:552: * Separates the decay floor from the delete threshold to prevent the
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:553: * decay/delete race condition:
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:554: *   - decayFloor (0.05): scores are clamped here, never decay below this
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:571:      SELECT id, attention_score, event_counter, mention_count
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:573:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:577:      attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:588:      SET attention_score = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:602:        const decayBase = entry.attention_score * Math.pow(EVENT_DECAY_FACTOR, eventsElapsed);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:604:        const rawScore = decayBase + mentionBoost;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:644:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:686:        AVG(attention_score) as avgAttention,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:687:        MAX(attention_score) as maxAttention,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:688:        MIN(attention_score) as minAttention,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:691:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:28:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:56:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:60:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:64:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:69:      SELECT id, tenant_id, user_id, session_id
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:91:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:95:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, agent_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:100:      SELECT id, tenant_id, user_id, agent_id, session_id
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:40:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:58:        actor TEXT DEFAULT 'system' CHECK(actor IN ('user', 'system', 'hook', 'decay')),
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:297:      // The beforeAll created the table with CHECK(actor IN ('user','system','hook','decay'))
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:9:import * as triggerMatcherMod from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:18:const triggerMatcherAvailable = false;
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:648:    it('T102-2: triggerMatcher module available', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:649:      expect(triggerMatcherMod).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:662:    it('T102-5: triggerMatcher.refreshTriggerCache exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:663:      expect(typeof triggerMatcherMod.refreshTriggerCache).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:666:    it('T102-6: Restore triggers index rebuild', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:667:      if (!vectorIndexMod || !triggerMatcherMod) {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:685:      const spyRefreshTrigger = vi.spyOn(triggerMatcherMod, 'refreshTriggerCache').mockImplementation(() => { calls.push('refreshTriggerCache'); return []; });
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:32:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:62:    triggerPhrases?: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:71:    INSERT INTO memory_index (title, trigger_phrases, spec_folder, parent_id, importance_tier, is_archived)
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:76:    opts.triggerPhrases || '',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:185:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:190:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:195:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:206:      triggerPhrases: 'auth, login, authentication',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:212:      triggerPhrases: 'auth, login, authentication',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:223:      triggerPhrases: 'auth, login, authentication',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:229:      triggerPhrases: 'auth, login, authentication',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:242:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:247:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:254:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:282:      triggerPhrases: 'auth, login',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:287:      triggerPhrases: 'auth, login',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:343:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:348:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:368:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:373:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:378:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:385:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:36:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:49:    INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:234:  // --- Hop decay ---
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:251:    // fix_bug, supersedes (CORRECTION tier 0 → edgePrior=1.0), 1-hop (decay=1.0), freshness=0.8
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:259:    // add_feature, supports (tier 2 → edgePrior=0.5), 2-hop (decay=0.5), freshness=1.0
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:360:      graphDensity: 0.1,  // Would trigger sparse mode if flag were ON
+.opencode/skills/system-spec-kit/mcp_server/tests/short-critical-quality-gate.vitest.ts:301:      title: 'Decision: adopt FSRS hybrid decay',
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:4:// Feature catalog: Classification-based decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:188:    return null; // No decay for constitutional/critical
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:204: * NOTE: The old formula (h / ln(2)) assumed exponential decay R = e^(-t/S),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:209:    return 999999; // Effectively infinite stability (no decay)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:235: *     retrievability, attentionScore, or defaults to 0
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:258:    } else if (typeof mem.attentionScore === 'number') {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:259:      r = mem.attentionScore;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:300:  // If no decay (constitutional/critical), always HOT
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:389:      validateToolInputSchema('memory_match_triggers', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:391:    expect(validateToolArgs('memory_match_triggers', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:6:import * as triggerHandlerModule from '../handlers/memory-triggers';
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:45:      expect(triggerHandlerModule).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:106:      if (triggerHandlerModule?.handleMemoryMatchTriggers) {
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:108:          name: 'triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts:109:          run: () => triggerHandlerModule.handleMemoryMatchTriggers({} as Parameters<typeof triggerHandlerModule.handleMemoryMatchTriggers>[0]),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:8:// - Layer 2: Content quality scoring (title, triggers, length,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:38:  triggerQuality: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:82:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:123:  triggerQuality: 0.20,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:286: * If in-memory state is empty, first trigger the lazy DB load path. Only when no
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:487: * Score trigger phrase quality (0-1).
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:489: * @param triggerPhrases - Array of trigger phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:492:export function scoreTriggerQuality(triggerPhrases: string[]): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:493:  const count = triggerPhrases.length;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:552:  const hasTriggers = /^trigger[_-]?phrases?\s*:/m.test(frontmatter);
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:571:  trigger_phrases?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:580:  if ((Array.isArray(row.trigger_phrases) ? row.trigger_phrases.length : (row.trigger_phrases?.trim().length ?? 0)) > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:605:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:610:    triggerQuality: scoreTriggerQuality(params.triggerPhrases ?? []),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:637:    if (dimensions.triggerQuality === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:638:      reasons.push('No trigger phrases: add at least 1-2 trigger phrases');
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:777:            triggerQuality: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:812:    triggerPhrases: params.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:74:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:504:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:527:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:552:      const triggerName = `skip_reinforce_${Date.now()}`;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:557:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:566:          CREATE TRIGGER ${triggerName}
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:578:        db.exec(`DROP TRIGGER IF EXISTS ${triggerName}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:587:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:610:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:745:        triggerPhrases: ['trigger1', 'trigger2'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:772:        triggerPhrases: ['alpha', 'beta'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:781:      expect(result.triggerPhrases).toContain('alpha');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:841:trigger_phrases: ["test trigger"]
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:894:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:525:    const availableColumns = ['title', 'content_text', 'trigger_phrases', 'file_path']
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:212:      // Count distinct sessions (null session_id treated as each own distinct pseudo-session)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:213:      const sessionKey = ev.session_id ?? `__null_${ev.id}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:11:// Feature catalog: Classification-based decay
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:23:  decayEnabled: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:62:    decayEnabled: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:68:    decayEnabled: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:74:    decayEnabled: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:80:    decayEnabled: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:86:    decayEnabled: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:92:    decayEnabled: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:98:    decayEnabled: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:104:    decayEnabled: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:110:    decayEnabled: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:291: * Returns null if the type has no decay or is not recognized.
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:295:  if (!config || !config.decayEnabled) {
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:333:  return config ? config.decayEnabled : true;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:48:trigger_phrases:
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:132:session_id: "${titleSlug}-fixture"
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:263:      triggerCacheCleared: expect.any(Boolean),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:271:    expect(typeof parsed.data.postMutationHooks.triggerCacheCleared).toBe('boolean');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:295:      triggerCacheCleared: expect.any(Boolean),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:395:        qualityFlags: ['No trigger phrases found'],
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts:116:    // isCircuitOpen triggers half-open reset
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:175:  it('T11: cutoffGap reflects the gap that triggered truncation', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:19:  triggerPhrases: string[];
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:110:vi.mock('../lib/parsing/trigger-matcher', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:154:    triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:69:vi.mock('../lib/cognitive/co-activation', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:371:        { type: 'co-activation', delta: 0.03 },
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:25:  triggerPhrases?: string[] | string;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:50:  triggerPhrases?: string[] | string;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:60:  constitutional: 'meta-cognitive',  // Rules that never decay
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:64:  temporary: 'working',              // Session-scoped, fast decay
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:156:  triggerPhrases: string[] | string | null | undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:159:  // Normalize trigger phrases to array
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:161:  if (Array.isArray(triggerPhrases)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:162:    phrases = triggerPhrases;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:163:  } else if (typeof triggerPhrases === 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:165:      phrases = JSON.parse(triggerPhrases) as string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:167:      phrases = [triggerPhrases];
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:171:  // Build searchable text from title and triggers
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:221:    triggerPhrases = [],
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:276:  const keywordType = inferTypeFromKeywords(title, triggerPhrases, content);
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:303:      triggerPhrases: memory.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:323:  keywords: 'Matched keywords in title or trigger phrases',
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:348:  // Check if scratch/temp content has fast-decay type
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:351:    warnings.push(`Temporary file "${filePath}" has slow-decay type "${inferredType}"`);
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:221:    // Similarity of 0.9599 must not trigger auto-merge
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:224:    // Similarity of 0.96 must trigger auto-merge
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:38:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:54:      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:133:      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:78:    // Threshold is 0.4 — exactly at the boundary still triggers recovery
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:54:  it('contains the three no-decay context types', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:71:  it('classifies decision as no_decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:72:    expect(classifyHybridDecay('decision')).toBe('no_decay');
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:75:  it('classifies constitutional as no_decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:76:    expect(classifyHybridDecay('constitutional')).toBe('no_decay');
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:79:  it('classifies critical as no_decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:80:    expect(classifyHybridDecay('critical')).toBe('no_decay');
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:171:  it('engagement-sensitive types decay normally under FSRS', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:181:  it('no-decay policy applies when flag is absent from env (graduated default ON)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:183:    // Flag is now ON by default → no-decay applies to decision/critical
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:195:    // When hybrid decay is OFF but classification decay is ON, applyHybridDecayPolicy
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-decay-policy.vitest.ts:196:    // must not be influenced by the classification decay flag
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:16:    trigger_phrases: 'auth, login, session',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:27:    decay_half_life_days: 60,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:32:    session_id: 'sess-abc123',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:56:    triggerPhrases: 'auth, login, session',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:67:    decayHalfLifeDays: 60,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:106:    expect(memory.decayHalfLifeDays).toBe(60);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:124:    expect(row.decay_half_life_days).toBe(60);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:211:    expect(memory.decayHalfLifeDays).toBe(60);
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:95:    { id: 403, content: 'Post-save review highlights title, trigger phrase, and importance tier issues. '.repeat(2) },
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:17:       - A memory object: classifyState(memoryObj) reads .retrievability or .attentionScore
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:377:    it('T256: Constitutional => null (no decay)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:381:    it('T257: Critical => null (no decay)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:48:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:84:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:195:              session_id: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:213:          if (normalizedSql === "UPDATE session_state SET status = 'completed', updated_at = ? WHERE session_id = ?") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:237:          if (normalizedSql === "UPDATE session_state SET status = 'active', updated_at = ? WHERE session_id = ?") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:256:          if (normalizedSql === 'SELECT 1 FROM session_state WHERE session_id = ? LIMIT 1') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:261:          if (normalizedSql === 'SELECT 1 FROM session_sent_memories WHERE session_id = ? LIMIT 1') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:265:          if (normalizedSql === 'SELECT session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, tenant_id, user_id, agent_id, created_at, updated_at FROM session_state WHERE session_id = ?') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:270:          if (normalizedSql === 'SELECT tenant_id, user_id, agent_id FROM session_state WHERE session_id = ? LIMIT 1') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:290:          if (normalizedSql === 'SELECT session_id, spec_folder, current_task, last_action, context_summary, pending_work, updated_at, tenant_id, user_id, agent_id FROM session_state WHERE status = \'interrupted\' ORDER BY updated_at DESC') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:295:                session_id: row.session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:424:        session_id: 'session-state-save',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:580:        'session_id',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:31:vi.mock('../lib/cognitive/co-activation', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:130:  it('applies learned-trigger match.weight exactly once (no extra 0.7x scaling)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:201:      // attentionScore is now independent and not set by stage2 fusion
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:202:      expect(row.attentionScore).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:254:    // attentionScore is now independent and not set by stage2 fusion
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:255:    expect(boosted.attentionScore).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:312:  it('precomputes co-activation neighbor counts once per boosted batch', async () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:4:// Feature catalog: Classification-based decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:6:// Memory decay. It exposes FSRS-based decay as the canonical path
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:14:// Composite attention      → 5-factor model (composite-scoring.ts) using FSRS temporal
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:15:// Session/working memory   → Linear decay (working-memory.ts) — separate domain
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:50:  decayRateByTier: DecayRateByTier;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:54:// ADR-061: Decay rates aligned with importance-tiers.js (1.0 = no decay)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:57:  decayRateByTier: {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:76:    throw new Error('[attention-decay] Database reference is required');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:92:  const rate = DECAY_CONFIG.decayRateByTier[importanceTier];
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:99: * Calculate retrievability-based decay using FSRS formula.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:113: * Apply FSRS-based decay to a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:135: * Activate a memory (boost its decay score via access recording).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:139:    console.warn('[attention-decay] Database not initialized. Server may still be starting up.');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:154:    console.warn(`[attention-decay] activateMemory error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:212:    console.warn(`[attention-decay] activateMemoryWithFsrs error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:230: * Calculate composite attention score using 5-factor model.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:240: * Get detailed attention breakdown for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:280: * Apply composite decay to a list of memories and return sorted by score.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:284:): Array<Record<string, unknown> & { attentionScore: number }> {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:288:      attentionScore: calculateCompositeAttention(m),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:290:    .sort((a, b) => b.attentionScore - a.attentionScore);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:294: * Get active memories sorted by attention score.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:300:    console.warn('[attention-decay] Database not initialized. Server may still be starting up.');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:316:    console.warn(`[attention-decay] getActiveMemories error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:347:  // Composite attention
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:871:        // Checklist.md missing for Level 2 -- will trigger suggest
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:43:  it('T018: Higher stability = slower decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:160:  it('T035: Medium similarity (0.90-0.94) triggers check', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:202:  it('Boundary at 0.95 correctly triggers REINFORCE', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:215:  it('Boundary at 0.70 correctly triggers CREATE below', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:327:  it('R with very high stability (100+) decays very slowly', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:339:  it('R with very low stability (0.1) decays very fast', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:345:    // Low stability should decay much faster
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:591:  it('C138-T1: constitutional tier has minimal decay multiplier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:596:  it('C138-T2: scratch tier has maximum decay multiplier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:609:  it('C138-T4: tier decay formula produces expected stability', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:611:    const decayRate = 0.5;
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:613:    // Constitutional: barely decays
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:614:    const constStab = oldStability * (1.0 - (decayRate * TIER_MULTIPLIER.constitutional));
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:617:    // Scratch: rapid decay
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:618:    const scratchStab = oldStability * (1.0 - (decayRate * TIER_MULTIPLIER.scratch));
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:35:  const row = db.prepare('SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?')
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:93:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:98:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:104:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:112:        SELECT session_id
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:114:        ORDER BY session_id ASC
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:115:      `).all() as Array<{ session_id: string }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:116:      const remainingSessionIds = remainingRows.map(row => row.session_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:55:    triggerPhrases: ['retrieval', 'recovery'],
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:25:import * as triggerMatcher from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:512:    vi.spyOn(triggerMatcher, 'matchTriggerPhrases').mockReturnValue([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:524:    expect(result!.triggered).toEqual([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:527:  it('T50: includes constitutional memories in tool-dispatch auto-surface results when trigger path is active', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:539:    vi.spyOn(triggerMatcher, 'matchTriggerPhrases').mockReturnValue([
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:543:        filePath: 'specs/042-signals/memory/triggered.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:556:    expect(result!.triggered).toHaveLength(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:557:    expect(result!.triggered[0]).toMatchObject({
+.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:423:      'trigger_phrases: auth, login, oauth',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:459:    expect(result).not.toContain('trigger_phrases');
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:137:        searchMode: 'trigger',
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:151:      expect(sel.context.searchMode).toBe('trigger');
+.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:2:// Converted from: co-activation.test.ts (custom runner)
+.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:3:// Aligned with production co-activation.ts named exports
+.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:5:import * as coActivation from '../lib/cognitive/co-activation';
+.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:10:  '../lib/cognitive/co-activation',
+.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:11:  '../lib/cognitive/co-activation',
+.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:69:    it('decayPerHop is 0.5', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:70:      expect(coActivation.CO_ACTIVATION_CONFIG.decayPerHop).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.vitest.ts:345:      expect(config).toHaveProperty('decayPerHop');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:235:        SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:265:        SELECT session_id FROM session_sent_memories ORDER BY session_id
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:266:      `).all() as Array<{ session_id: string }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:268:      const sessions: Set<string> = new Set(entries.map((e) => e.session_id));
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:313:    'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:15: * Default co-activation boost strength when SPECKIT_COACTIVATION_STRENGTH is not set.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:46:  decayPerHop: 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:164: * Boost a search result's score based on co-activation with related memories.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:194:    console.warn('[co-activation] Database not initialized. Server may still be starting up.');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:232:    console.warn(`[co-activation] getRelatedMemories error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:291:      console.warn(`[co-activation] Invalid embedding size (${uint8.byteLength} bytes) for memory ${memoryId}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:314:    console.warn(`[co-activation] populateRelatedMemories error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:358:    console.warn(`[co-activation] getCausalNeighbors error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:430:      const decayedScore = current.score * CO_ACTIVATION_CONFIG.decayPerHop * (rel.similarity / 100);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:431:      if (!Number.isFinite(decayedScore) || decayedScore < 0.01) continue;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:435:        score: decayedScore,
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-aware-traversal.vitest.ts:57:  it('uses inverse hop decay by distance', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-aware-traversal.vitest.ts:63:  it('uses exponential freshness decay over age', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:2:// Converted from: attention-decay.test.ts (custom runner)
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:3:// Aligned with production attention-decay.ts + fsrs-scheduler.ts named exports
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:5:import * as attentionDecay from '../lib/cognitive/attention-decay';
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:8:type AttentionDecayDb = Parameters<typeof attentionDecay.init>[0];
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:9:const attentionDecayExports = attentionDecay as unknown as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:18:      expect(attentionDecay.DECAY_CONFIG).toBeTruthy();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:22:      const defaultRate = attentionDecay.DECAY_CONFIG.defaultDecayRate;
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:29:      const tiers = attentionDecay.DECAY_CONFIG.decayRateByTier;
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:36:      const minThreshold = attentionDecay.DECAY_CONFIG.minScoreThreshold;
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:50:      expect(() => attentionDecay.init(null as unknown as AttentionDecayDb)).toThrow('Database reference is required');
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:54:      expect(() => attentionDecay.init(undefined as unknown as AttentionDecayDb)).toThrow('Database reference is required');
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:59:      attentionDecay.init(mockDb as unknown as AttentionDecayDb);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:60:      const db = attentionDecay.getDb();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:65:      attentionDecay.clearSession();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:77:      expect(attentionDecay.getDecayRate('constitutional')).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:81:      expect(attentionDecay.getDecayRate('critical')).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:85:      expect(attentionDecay.getDecayRate('normal')).toBe(0.80);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:89:      expect(attentionDecay.getDecayRate('temporary')).toBe(0.60);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:93:      const defaultRate = attentionDecay.DECAY_CONFIG.defaultDecayRate;
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:94:      expect(attentionDecay.getDecayRate('unknown_tier')).toBe(defaultRate);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:98:      const defaultRate = attentionDecay.DECAY_CONFIG.defaultDecayRate;
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:99:      expect(attentionDecay.getDecayRate(null)).toBe(defaultRate);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:103:      const defaultRate = attentionDecay.DECAY_CONFIG.defaultDecayRate;
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:104:      expect(attentionDecay.getDecayRate(undefined)).toBe(defaultRate);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:116:      expect(attentionDecay.calculateRetrievabilityDecay(1.0, 0)).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:120:      const r1 = attentionDecay.calculateRetrievabilityDecay(1.0, 1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:125:    it('Higher stability = slower decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:126:      const rS1 = attentionDecay.calculateRetrievabilityDecay(1.0, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:127:      const rS5 = attentionDecay.calculateRetrievabilityDecay(5.0, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:132:      expect(attentionDecay.calculateRetrievabilityDecay(0, 5)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:136:      expect(attentionDecay.calculateRetrievabilityDecay(1.0, -5)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:151:      const recentResult = attentionDecay.applyFsrsDecay(recentMemory, 1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:158:      expect(attentionDecay.applyFsrsDecay(noReviewMemory, 0.8)).toBe(0.8);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:169:      attentionDecay.clearSession();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:170:      expect(attentionDecay.activateMemory(1)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:174:      attentionDecay.clearSession();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:175:      expect(attentionDecay.activateMemoryWithFsrs(1, 3)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:186:      attentionDecay.clearSession();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:187:      const result = attentionDecay.getActiveMemories();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:193:      attentionDecay.clearSession();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:194:      const result = attentionDecay.getActiveMemories(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:207:      expect(typeof attentionDecay.calculateCompositeAttention).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:212:      const score = attentionDecay.calculateCompositeAttention(minimalMemory);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:221:      const constScore = attentionDecay.calculateCompositeAttention(constMemory);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:222:      const normalScore = attentionDecay.calculateCompositeAttention(normalMemory);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:234:      expect(typeof attentionDecay.getAttentionBreakdown).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:239:      const breakdown = attentionDecay.getAttentionBreakdown(memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:247:      const breakdown = attentionDecay.getAttentionBreakdown(memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:253:      const breakdown = attentionDecay.getAttentionBreakdown(memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:261:     Production: applyCompositeDecay(memories: Array): Array (sorted by attentionScore)
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:266:      expect(typeof attentionDecay.applyCompositeDecay).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:274:      const result = attentionDecay.applyCompositeDecay(memories);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:279:    it('Each item has attentionScore', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:284:      const result = attentionDecay.applyCompositeDecay(memories);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:285:      expect(result.every((m) => typeof m.attentionScore === 'number')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:288:    it('Sorted descending by attentionScore', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:293:      const result = attentionDecay.applyCompositeDecay(memories);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:294:      expect(result[0].attentionScore).toBeGreaterThanOrEqual(result[1].attentionScore);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:298:      const emptyResult = attentionDecay.applyCompositeDecay([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:363:    it('Higher S = slower decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:393:      expect(attentionDecayExports[name]).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:400:      expect(attentionDecayExports[name]).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:407:      expect(attentionDecayExports[name]).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:416:    // Constitutional tier = infinite half-life (rate 1.0, no decay)
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:418:    it('High stability = minimal decay after 1000 days', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:419:      const constRetrievability = attentionDecay.calculateRetrievabilityDecay(1000.0, 1000);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:426:      expect(attentionDecay.applyFsrsDecay(deprMemory, 0.5)).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:429:    // Important tier has rate=1.0 (no decay)
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:431:      expect(attentionDecay.getDecayRate('important')).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:436:      attentionDecay.clearSession();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:437:      expect(attentionDecay.getDb()).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:457:      expect(attentionDecayExports[name]).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:11:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:13:      attention_score REAL NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:17:      UNIQUE(session_id, memory_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:24:describe('T010-T015: session-attention boost', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:49:      INSERT INTO working_memory (session_id, memory_id, attention_score)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:74:      INSERT INTO working_memory (session_id, memory_id, attention_score)
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:17:  readonly attention: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:44:    attention: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:51:    attention: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:58:    attention: 0.7,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:269:    attentionScore: normalizeAttention(matched.rule.attention),
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:28:} from '../lib/cognitive/attention-decay';
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:84:  it('T032-10: Temporal decays with time', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:185:  it('T033-05: Citation score decays over time', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:373:  it('T035-01: calculate_composite_attention exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:377:  it('T035-02: get_attention_breakdown exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:381:  it('T035-03: apply_composite_decay exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:385:  it('T035-04: FIVE_FACTOR_WEIGHTS available via composite-scoring (not re-exported from attention-decay)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:386:    // Attention-decay imports FIVE_FACTOR_WEIGHTS but does not re-export it
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:391:  it('T035-05: calculate_composite_attention returns score in [0, 1]', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:408:  it('T035-07: get_attention_breakdown returns proper structure', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:410:    // Known bug: attention-decay passes memory object to calculateImportanceScore(tier, baseWeight)
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:548:  it('EDGE-T05: High stability (S=10) slows decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:699:  it('EDGE-P02: Very high similarity (95+) triggers bonus', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:704:    // 95% triggers semantic_threshold bonus (0.8 threshold)
+.opencode/skills/system-spec-kit/mcp_server/tests/create-record-lineage-regressions.vitest.ts:25:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:565:      // Query about bugs should not trigger spec bonus
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:855:        trigger_phrases: '[]',
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:866:        decay_half_life_days: 60,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:871:        session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:898:        trigger_phrases: '[]',
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:909:        decay_half_life_days: 60,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:914:        session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:40:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:50:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:93:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:117:    triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:184:    it('T054-4: Changing 1 character produces a different hash — dedup does NOT trigger', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:452:    it('T054-6f: Same-path unchanged does not short-circuit when trigger phrases changed', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:453:      const content = 'Existing same-path row with stale trigger phrases.';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:457:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:465:        JSON.stringify(['legacy-trigger']),
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:483:      const content = 'Existing same-path row with stale trigger phrases.';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:487:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:495:        JSON.stringify(['legacy-trigger']),
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:504:          triggerPhrases: ['fresh-trigger'],
+.opencode/skills/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts:8:// Comparison, and decay/search behavior per tier.
+.opencode/skills/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts:120:    it('T504-06: Tier decay transitions work correctly', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts:121:      const decayExpectations: Record<ImportanceTier, boolean> = {
+.opencode/skills/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts:130:      for (const [tier, expectedDecay] of Object.entries(decayExpectations)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:4:// Feature catalog: Classification-based decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:12:// All long-term decay consumers MUST import constants from this file.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:16:// Timescale: minutes. Operates on session-scoped attention scores only.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:18:// DECAY STRATEGY (ADR-004): This is the CANONICAL long-term decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:19:// Algorithm. All temporal decay for persistent memories should route
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:23:// Consumers: attention-decay.ts (facade), composite-scoring.ts (temporal
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:238: * C138: Tier-based decay multipliers for long-term memory stability.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:239: * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:240: * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:243: * (lower value = slower perceived time = slower decay). It is a SEPARATE system from
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:262:     - Infinity stability → R(t) = 1.0 always (no decay)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:263:     - >1.0 stability multiplier → slower decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:264:     - <1.0 stability multiplier → faster decay */
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:269: * Infinity = no decay (retrievability always 1.0).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:270: * 2.0 = stability doubled → slower decay.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:274:  planning: Infinity,    // no decay — planning/decisions are permanent
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:275:  research: 2.0,         // 2x stability — research context decays slower
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:276:  implementation: 1.0,   // standard decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:277:  general: 1.0,          // standard decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:291: * constitutional/critical: Infinity = never decays.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:292: * important: 1.5x stability → slower decay.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:294: * temporary: 0.5x → faster decay (2x relative speed).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:295: * deprecated: 0.25x → fastest decay (4x relative speed).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:298:  constitutional: Infinity, // never decays
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:299:  critical: Infinity,       // never decays
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:300:  important: 1.5,           // slower decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:302:  temporary: 0.5,           // faster decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:303:  deprecated: 0.25,         // fastest decay
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:311: *     (no-decay wins unconditionally).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:316: * which makes R(t) = (1 + factor * t / Infinity)^decay = 1.0 for all t.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:326:  // Infinity * anything = Infinity (no-decay wins)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:335: * TM-03: Apply classification-based decay to a stability value.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:339: * Returns Infinity when the combined multiplier is Infinity (no-decay).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:387: * Context types that should never decay under the hybrid decay policy.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:408: * REQ-D4-002: Check whether the hybrid decay policy feature flag is enabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:417: * REQ-D4-002: Classify a memory's decay behaviour under the hybrid policy.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:420: *   - 'no_decay'       for decision / constitutional / critical context types
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:423:type HybridDecayClass = 'no_decay' | 'fsrs_schedule';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:427:    return 'no_decay';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:440: * REQ-D4-002: Apply the hybrid decay policy to a stability value.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:444: *   - decision / constitutional / critical → returns Infinity (no decay)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:449: * @returns Adjusted stability: Infinity for no-decay types, original otherwise
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:473:  // TM-03: Classification-based decay constants and functions
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:479:  // REQ-D4-002: Hybrid decay policy
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:164:    it('T418b: Tier multipliers affect retrievability decay rate', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:188:    it('T418c: classification decay path applies when enabled (no double decay)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:203:        // Expected path with classification decay:
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:399:      const decay = compositeScoring.FSRS_DECAY
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:401:      expect(typeof decay).toBe('number')
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:161:    const sessionMatches = !scope.sessionId || row.session_id === scope.sessionId;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:40:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:41:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-2', session_id: 'session-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:42:      { id: 3, tenant_id: 'tenant-b', user_id: 'user-1', session_id: 'session-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:55:      { tenant_id: 'a', user_id: 'u1', agent_id: null, session_id: null, shared_space_id: null },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:56:      { tenant_id: 'b', user_id: 'u2', agent_id: null, session_id: null, shared_space_id: null },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:66:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:67:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:82:        session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:110:  it('persists session_id as a queryable governance post-insert column', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:125:      session_id: 'session-123',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:127:    expect(ALLOWED_POST_INSERT_COLUMNS.has('session_id')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:137:        session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:202:        session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:232:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:233:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:234:      { id: 3, tenant_id: 'tenant-a', user_id: 'user-2', session_id: 'session-1', shared_space_id: 'space-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:235:      { id: 4, tenant_id: 'tenant-b', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:67:const VALID_SOURCES: QuerySource[] = ['manual', 'trigger_derived', 'pattern_derived', 'seed'];
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:217:   T007.4: ≥30 manual queries (NOT trigger-derived)
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:226:  it('T007.4.2: manual queries are not source="trigger_derived"', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:229:      expect(q.source).not.toBe('trigger_derived');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:4:import * as handler from '../handlers/memory-triggers';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:6:import * as triggerMatcher from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:9:import * as attentionDecay from '../lib/cognitive/attention-decay';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:11:import * as coActivation from '../lib/cognitive/co-activation';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:19:} from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:22:type AttentionDb = NonNullable<ReturnType<typeof attentionDecay.getDb>>;
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:76:    it('T517-2: handle_memory_match_triggers alias exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:77:      expect(typeof handler.handle_memory_match_triggers).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:129:    it('T517-8: Handler supports turnNumber parameter', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:144:  it('logs final eval result even when no trigger matches are found', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:145:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:161:    expect(data.matchType).toContain('trigger-phrase');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:166:      fusionMethod: 'trigger',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:170:  it('routes through trigger signal vocabulary path without changing response shape', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:174:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:178:    const response = await handler.handleMemoryMatchTriggers({ prompt: 'test', include_cognitive: false });
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:183:    const triggerSignals = getArray(meta.triggerSignals);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:188:    expect(triggerSignals).toHaveLength(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:191:  it('surfaces degraded trigger matching metadata when trigger parsing partially fails', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:192:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:198:          failures: [{ code: 'E_TRIGGER_SOURCE_PARSE', message: 'bad trigger payload', memoryId: 9 }],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:203:    const response = await handler.handleMemoryMatchTriggers({ prompt: 'test', include_cognitive: false });
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:224:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:248:    vi.spyOn(attentionDecay, 'getDb').mockReturnValue(mockDb);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:249:    vi.spyOn(attentionDecay, 'activateMemory').mockImplementation(() => false);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:269:      session_id: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:270:      include_cognitive: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:276:    expect(data.matchType).toBe('trigger-phrase-cognitive');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:282:  it('filters trigger matches by governed scope fields when provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:283:    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:316:      include_cognitive: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts:290:  it('T21: routes trigger phrase match to simple tier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts:333:    // Even a trigger-phrase query gets all channels when disabled
+.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts:362:    // Empty query triggers complex fallback in classifier
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:341:  it('T-HEB-04: 30-day decay reduces edge strength', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:350:    expect(result.decayed).toBeGreaterThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:354:    expect(edge.strength).toBeCloseTo(0.7, 5); // 0.8 - 0.1 decay
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:498:    expect(result.hebbian.decayed).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:39:      session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:53:      WHERE spec_folder = ? AND task_id = ? AND session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:59:      WHERE spec_folder = ? AND task_id = ? AND session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:143:      WHERE spec_folder = ? AND task_id = ? AND session_id = ? AND phase = 'complete'
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:79:  // T015-04: Different model_id triggers cache miss (same content)
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:80:  it('T015-04: different model_id triggers cache miss', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:96:  it('T015-04b: different dimensions trigger cache miss for same hash and model', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:147:    // Lookup triggers last_used_at refresh
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:420:  it('does not trigger local recompute for empty nodeIds', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:435:  it('triggers local recompute when component is small', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:752:// INTEGRATION: Save triggers dirty-node refresh (REQ-D3-003)
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:755:describe('Integration: save triggers dirty-node refresh', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:25:describe('T005-T008: event-based decay pipeline', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:57:      WHERE session_id = 's1'
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:72:  it('T005/T006: batch decay uses event distance plus mention boost formula', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:76:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:81:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:88:    const row = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s2', 3) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:89:      attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:93:    expect(Math.abs(row.attention_score - expected)).toBeLessThan(1e-9);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:96:  it('T009: decay calculation covers event distance 0, 10, and 100 with mention boost', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:100:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:104:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:108:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:116:      SELECT memory_id, attention_score
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:118:      WHERE session_id = 's5'
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:120:    `).all() as Array<{ memory_id: number; attention_score: number }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:126:    expect(Math.abs(rows[0].attention_score - expected0)).toBeLessThan(1e-9);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:127:    expect(Math.abs(rows[1].attention_score - expected10)).toBeLessThan(1e-9);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:128:    expect(Math.abs(rows[2].attention_score - expected100)).toBeLessThan(1e-9);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:131:  it('T008: delete threshold is checked before decay floor clamp', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:135:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:139:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:145:    const deleted = db.prepare('SELECT COUNT(*) AS count FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s3', 5) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:150:    const floored = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s3', 6) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:151:      attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:153:    expect(floored.attention_score).toBe(wm.DECAY_FLOOR);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:157:  it('T007 wrap handling: event counter wraps and decay distance uses modular arithmetic', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:161:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:167:    const wrapped = db.prepare('SELECT event_counter, mention_count FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s4', 7) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:175:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:181:    const decayed = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s4', 8) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:182:      attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:184:    expect(Math.abs(decayed.attention_score - 0.85)).toBeLessThan(1e-9);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:187:  it('default-on contract: event decay runs when SPECKIT_EVENT_DECAY is unset', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:193:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:201:  it('opt-out contract: event decay is disabled only when SPECKIT_EVENT_DECAY=false', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:207:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:214:    const row = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s-disabled', 13) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:215:      attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:217:    expect(row.attention_score).toBe(0.9);
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:5: * Tests the decay/recency/boost behavior of composite-scoring.ts.
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:6: * Focuses on temporal decay curves, recency scoring, constitutional
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:8:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers', layer: 'L2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:34:  { camel: 'handleMemoryMatchTriggers', snake: 'handle_memory_match_triggers' },
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:174:  attentionSignalCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:620:  attentionSignalCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:629:    attentionSignalCount: input.attentionSignalCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts:29: * structured fields (title, trigger_phrases, context_type, etc.), so
+.opencode/skills/system-spec-kit/mcp_server/tests/channel-representation.vitest.ts:379:      ['trigger', [makeChannelResult('t1', 0.4)]],
+.opencode/skills/system-spec-kit/mcp_server/tests/channel-representation.vitest.ts:387:    expect(result.underRepresentedChannels).toContain('trigger');
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:111:    triggerPhrases: ['test', 'memory'],
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:246:      // Content with no title, no triggers, very short — should fail structural + quality
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:251:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:266:trigger_phrases: [integration test, quality gate, validation]
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:281:Signal density is computed as a weighted average of title quality, trigger quality, length quality,
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:289:        triggerPhrases: ['integration test', 'quality gate', 'validation'],
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:365:            trigger_phrases TEXT DEFAULT '[]',
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:484:  it('S4-INT-11: Save with similarity in [0.88, 0.92] passes quality gate then triggers reconsolidation merge', withEnvVars(
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:490:trigger_phrases: [implementation, quality gate, reconsolidation]
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:510:        triggerPhrases: ['implementation', 'quality gate', 'reconsolidation'],
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:844:  it('S4-INT-26: Similarity >= 0.92 triggers both dedup rejection AND merge', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:669:  it('T087: QUERY_TOO_LONG suggests memory_match_triggers()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:672:      a.includes('memory_match_triggers()')
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:4:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:23:  triggerId: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:50:/** Statistics about a trigger matching operation */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:146:    console.warn(`[trigger-matcher] ${operation}: ${durationMs}ms (target <50ms)`, details);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:148:    console.error(`[trigger-matcher] ${operation}: ${durationMs}ms`, details);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:157:// In-memory cache of trigger phrases for fast matching
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:158:let triggerCache: TriggerCacheEntry[] | null = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:159:let triggerCandidateIndex: Map<string, Set<number>> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:162:const triggerCacheLoaderStatementByConnection = new WeakMap<Database.Database, Database.Statement>();
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:177:  SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:180:    AND trigger_phrases IS NOT NULL
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:181:    AND trigger_phrases != '[]'
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:182:    AND trigger_phrases != ''
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:187:  const cachedStatement = triggerCacheLoaderStatementByConnection.get(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:193:  triggerCacheLoaderStatementByConnection.set(database, statement);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:208:  // word breaks. For pure CJK trigger phrases, prefer substring matching so valid
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:272:  if (!triggerCandidateIndex) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:273:    triggerCandidateIndex = new Map();
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:278:    const indexedIds = triggerCandidateIndex.get(key);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:280:      indexedIds.add(entry.triggerId);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:284:    triggerCandidateIndex.set(key, new Set([entry.triggerId]));
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:306:/** Get or create a cached regex for a trigger phrase. @param phrase - The trigger phrase @returns Compiled RegExp */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:337:/** Load all trigger phrases from the index into memory */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:342:  if (triggerCache && (now - cacheTimestamp) < CONFIG.CACHE_TTL_MS) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:343:    return triggerCache;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:349:    // Because trigger-matcher may be the first module to access the database in the
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:357:      console.warn('[trigger-matcher] Database not initialized. Server may still be starting up.');
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:366:      trigger_phrases: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:371:    triggerCache = [];
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:372:    triggerCandidateIndex = new Map();
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:377:        phrases = JSON.parse(row.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:380:        console.warn(`[trigger-matcher] Failed to parse trigger phrases for memory ${row.id}: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:405:          triggerId: triggerCache.length,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:415:        triggerCache.push(entry);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:429:    return triggerCache;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:432:    console.warn(`[trigger-matcher] Cache load failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:443:/** Clear the trigger cache (useful for testing or after updates) */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:445:  triggerCache = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:446:  triggerCandidateIndex = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:455:    size: triggerCache ? triggerCache.length : 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:621:/** Match user prompt against trigger phrases using exact string matching */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:683:  logExecutionTime('match_trigger_phrases', elapsed, {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:694:/** Match trigger phrases with additional stats */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:725:/** Get all unique trigger phrases in the cache */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:732:  if (cache.length === 0 || !triggerCandidateIndex || triggerCandidateIndex.size === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:743:    const indexedIds = triggerCandidateIndex.get(key);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:748:    for (const triggerId of indexedIds) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:749:      candidateIds.add(triggerId);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:759:    .map((triggerId) => cache[triggerId])
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:763:/** Get memories by trigger phrase */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:787:/** Refresh trigger cache (forces reload on next access) */
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:44:  'find spec',               // Also a trigger match
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:56:  // 4-8 terms, no trigger match
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:72:  // >8 terms, no trigger match
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:170:  it('when disabled, trigger matches still return "complex"', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:183:  it('classifies all simple queries as "simple" (≤3 terms or trigger match)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:219:  it('classifies trigger phrase matches as simple regardless of length', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:221:      // "get learning history" has 3 terms and is a trigger phrase
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:228:  it('reports high confidence for trigger matches', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:248:  it('classifies all moderate queries as "moderate" (4-8 terms, no trigger)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:305:  it('classifies all complex queries as "complex" (>8 terms, no trigger)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:480:  it('matches exact trigger phrase (case-insensitive)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:486:  it('does not match partial trigger phrase', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:491:  it('handles empty trigger phrase list', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:499:  it('trigger match overrides term count for classification', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:501:      // "get learning history" is a trigger phrase with exactly 3 terms
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:508:  it('no trigger match when triggerPhrases is undefined', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:10:      triggerCacheCleared: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:21:      triggerCacheCleared: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:37:      triggerCacheCleared: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:51:      triggerCacheCleared: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:86:      triggered: [{ id: 3 }],
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:93:    expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 2 constitutional and 1 triggered memories (6ms)'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:96:      triggeredCount: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:111:    expect(() => appendAutoSurfaceHints(malformedResult, { constitutional: [], triggered: [] })).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:115:    expect(() => appendAutoSurfaceHints(noTextResult, { constitutional: [], triggered: [] })).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:118:  it('appendAutoSurfaceHints skips hint injection when constitutional and triggered are empty', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:133:    appendAutoSurfaceHints(result, { constitutional: [], triggered: [] });
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:254:        sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:283:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:26:} from '../lib/storage/learned-triggers-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:87:      trigger_phrases TEXT DEFAULT '[]',
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:101:  // Create the FTS5 table matching the real schema (NO learned_triggers!)
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:105:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:119:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:127:    triggerPhrases = [],
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:135:    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence)
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:137:  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:216:    const hasColumn = columns.some(column => column.name === 'learned_triggers');
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:232:  it('R11-SCH04: CRITICAL - verifyFts5Isolation throws if learned_triggers in FTS5', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:233:    // Create a deliberately wrong FTS5 table with learned_triggers
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:242:        trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:245:        learned_triggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:263:    const hasColumn = columns.some((c: any) => c.name === 'learned_triggers');
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:350:  it('R11-TE02: filters out existing triggers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:411:    // Add learned_triggers column
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:434:    insertMemory(testDb, 1, { title: 'Auth Module', triggerPhrases: ['login', 'oauth'] });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:435:    insertMemory(testDb, 2, { title: 'Database Schema', triggerPhrases: ['migration', 'sql'] });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:438:      triggerPhrases: ['fresh'],
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:478:  it('R11-CO04: recordSelection is log-only during shadow period (no learned trigger persistence)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:490:    // No write/apply effect: learned_triggers must remain empty.
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:491:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get() as { learned_triggers?: string };
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:492:    const entries = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:507:    // Verify learned_triggers updated
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:508:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:509:    const entries = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:521:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:522:    const entries = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:529:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:530:    const entries = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:535:    // Pre-populate learned triggers
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:554:    // Replace the old audit entry with a very recent one to trigger shadow period
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:603:    testDb.prepare('UPDATE memory_index SET learned_triggers = ? WHERE id = 1')
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:609:    const row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:610:    const remaining = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:619:    let row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:620:    let entries = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:628:    row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:629:    entries = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:934:  it('R11-NF10: no lastNegativeAt -> no recovery decay applied', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:935:    // Without lastNegativeAt, full penalty is applied (no decay)
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:979:  it('R11-FTS01: learned_triggers NOT in FTS5 after migration', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:983:  it('R11-FTS02: learned_triggers NOT in FTS5 after applying triggers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:988:  it('R11-FTS03: learned_triggers NOT in FTS5 after recordSelection', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:993:  it('R11-FTS04: learned_triggers NOT in FTS5 after expiry', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:999:  it('R11-FTS05: learned_triggers NOT in FTS5 after rollback', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:21:        memory_match_triggers: 3500,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:128:    vi.doMock('../handlers/memory-triggers', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:186:    vi.doMock('../handlers/memory-triggers', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:395:      const triggerKey = generateCacheKey('memory_match_triggers', { prompt: 'test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:397:      set(triggerKey, 'trigger_result', { toolName: 'memory_match_triggers' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:399:      expect(has(triggerKey)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:402:      expect(has(triggerKey)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:51:  triggerPhrases: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:253:  const triggerPhrases = extractTriggerPhrases(content);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:265:    triggerPhrases: triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:276:    triggerPhrases: triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:283:    // Memory type classification for decay calculation
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:541:/** Extract trigger phrases from ## Trigger Phrases section OR YAML frontmatter */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:543:  const triggers: string[] = [];
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:547:  const inlineMatch = frontmatter.match(/(?:triggerPhrases|trigger_phrases):\s*\[([^\]]+)\]/i);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:555:          triggers.push(cleaned);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:562:  if (triggers.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:567:      if (/^\s*(?:triggerPhrases|trigger_phrases):\s*$/i.test(line)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:579:          if (phrase.length > 0 && phrase.length < 100 && !/^-+$/.test(phrase) && !triggers.includes(phrase)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:580:            triggers.push(phrase);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:599:        if (phrase.length > 0 && phrase.length < 100 && !triggers.includes(phrase)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:600:          triggers.push(phrase);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:606:  return triggers;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:79:    it('T077: Meta-cognitive memory half-life = null (no decay)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:95:    it('getHalfLifeForType returns canonical decay values', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:194:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:62: * Time-based recovery: the penalty decays with a 30-day half-life since
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:71: *                         If null/undefined, no recovery decay is applied.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:85:  // Apply time-based recovery (exponential decay of penalty)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:91:      // Exponential decay: penalty * 2^(-elapsed / halfLife)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:92:      const decayFactor = Math.pow(2, -(elapsedMs / RECOVERY_HALF_LIFE_MS));
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:93:      effectivePenalty = rawPenalty * decayFactor;
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:19:  trigger_phrases: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:26:      if (sql.includes('SELECT id, title, content_text, trigger_phrases, file_path')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:394:        { id: 1, title: 'Memory System', content_text: 'Semantic search retrieval', trigger_phrases: 'memory,search', file_path: 'specs/001/spec.md' },
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:395:        { id: 2, title: 'Index Management', content_text: 'BM25 indexing pipeline', trigger_phrases: 'index,bm25', file_path: 'specs/002/spec.md' },
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:415:        { id: 10, title: 'Title Only', content_text: null, trigger_phrases: null, file_path: null },
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:416:        { id: 11, title: null, content_text: 'Content only text here', trigger_phrases: null, file_path: null },
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:436:        { id: 20, title: null, content_text: null, trigger_phrases: null, file_path: null },
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:437:        { id: 21, title: '', content_text: '', trigger_phrases: '', file_path: '' },
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:438:        { id: 22, title: 'Valid', content_text: 'Valid content here', trigger_phrases: null, file_path: null },
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts:460:        { id: 100, title: 'Fresh', content_text: 'Fresh content only', trigger_phrases: null, file_path: null },
+.opencode/skills/system-spec-kit/mcp_server/tests/phase2-integration.vitest.ts:28:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/phase2-integration.vitest.ts:56:      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:157:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:171:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:185:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:191:    UNIQUE(spec_folder, loop_type, session_id, iteration)
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:200:  CREATE INDEX IF NOT EXISTS idx_coverage_session ON coverage_nodes(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:206:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_session ON coverage_edges(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:207:  CREATE INDEX IF NOT EXISTS idx_coverage_snapshot_session ON coverage_snapshots(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:266:    parts.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:308:      id, spec_folder, loop_type, session_id, kind, name,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:382:      id, spec_folder, loop_type, session_id, source_id, target_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:454:      spec_folder, loop_type, session_id, iteration, metrics, node_count, edge_count
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:457:    ON CONFLICT(spec_folder, loop_type, session_id, iteration) DO UPDATE SET
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:474:      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:493:      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:605:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:621:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:636:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-circuit-breaker.vitest.ts:118:    // isEmbeddingCircuitOpen triggers half-open reset
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:162:      'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:292:      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:402:      '../lib/cognitive/attention-decay',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:403:      '../lib/cognitive/co-activation',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:411:      '../lib/storage/learned-triggers-schema',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:451:      triggerMatcherClearMock: ReturnType<typeof vi.fn>
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:496:      const autoSurfaceMemoriesMock = vi.fn(async () => ({ constitutional: [], triggered: [] }))
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:526:      const triggerMatcherClearMock = vi.fn()
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:697:      vi.doMock('../lib/parsing/trigger-matcher', () => ({ clearCache: triggerMatcherClearMock }))
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:699:      vi.doMock('../lib/storage/learned-triggers-schema', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:705:      vi.doMock('../lib/cognitive/attention-decay', () => ({ init: vi.fn() }))
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:706:      vi.doMock('../lib/cognitive/co-activation', () => ({ init: vi.fn(), isEnabled: vi.fn(() => false) }))
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:865:        triggerMatcherClearMock,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:891:    it('T000b: callbacks are triggered after dispatchTool and non-blocking', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1025:        triggered: [{ memory_id: 2, matched_phrases: ['hook'] }],
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1084:        triggerMatcherClearMock,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1097:      expect(triggerMatcherClearMock).toHaveBeenCalledTimes(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1107:        triggered: [{ memory_id: 3, matched_phrases: ['query'] }],
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1136:        triggered: [{ memory_id: 11, matched_phrases: ['resume'] }],
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1169:        triggered: [{ memory_id: 12, matched_phrases: ['focused'] }],
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1199:        triggered: [{ memory_id: 2, matched_phrases: ['hook'] }],
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1226:      expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 constitutional and 1 triggered memories'))).toBe(true)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1229:        triggeredCount: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1247:        triggered: [{ memory_id: 2, matched_phrases: ['budget'] }],
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1274:      expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 constitutional and 1 triggered memories (11ms)'))).toBe(true)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1284:      actualAppendAutoSurfaceHints(result, { constitutional: [], triggered: [] })
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1301:      actualAppendAutoSurfaceHints(arrayResult, { constitutional: [{ id: 1 }], triggered: [{ id: 2 }] })
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1302:      actualAppendAutoSurfaceHints(nullResult, { constitutional: [{ id: 1 }], triggered: [{ id: 2 }] })
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1332:        triggered: [{ id: 2 }],
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1703:    const expectedAwareTools = ['memory_context', 'memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1747:      expect(hooksModule!.extractContextHint!({ prompt: 'trigger phrase' })).toBe('trigger phrase')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2086:      'memory_match_triggers': '[L2:Core]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2255:      { module: './lib/cognitive/attention-decay.js', name: 'Attention decay' },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2256:      { module: './lib/cognitive/co-activation.js', name: 'Co-activation' },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2444:      // Must NOT use >= 10 (which would trigger at exactly 10)
+.opencode/skills/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:460:        'Stage two applies scoring signals like causal boost and session attention. ' +
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:4:// T002 (degree as 5th RRF channel) + T003a (co-activation boost)
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:356:  // The co-activation module reads env vars at import time,
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:361:      const mod = await import('../lib/cognitive/co-activation');
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:367:      const mod = await import('../lib/cognitive/co-activation');
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:380:      const mod = await import('../lib/cognitive/co-activation');
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:399:      const { boostScore } = await import('../lib/cognitive/co-activation');
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:404:      const { boostScore } = await import('../lib/cognitive/co-activation');
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:420:    it('spreadActivation applies decay per hop', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:421:      const mod = await import('../lib/cognitive/co-activation');
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:422:      // The spread activation function uses decayPerHop = 0.5
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:424:      expect(mod.CO_ACTIVATION_CONFIG.decayPerHop).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:428:      const { boostScore } = await import('../lib/cognitive/co-activation');
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:443:      const mod = await import('../lib/cognitive/co-activation');
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:45:vi.mock('../lib/cognitive/co-activation.js', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:116:        triggerPhrases: ['atomic-save-fi'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:121:          'trigger_phrases:',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:183:          'session_id: "atomic-save-fi"',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:262:            triggerPhrases: 4,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:333:          triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:423:            triggerPhrases: 4,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:656:        triggerPhrases: ['atomic-save-fi'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1068:    it('persists quality-loop trigger phrase fixes into downstream save inputs', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1079:        triggerPhrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1123:        fixes: ['Re-extracted 4 trigger phrases from content'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1126:        fixedContent: buildParsedMemory('quality-loop-trigger-fix.md').content,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1130:      const filePath = createAtomicSaveTargetPath('quality-loop-trigger-fix.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1137:      expect((createMemoryRecordMock.mock.calls[0] as any)?.[1].triggerPhrases).toEqual(['alpha', 'beta', 'gamma', 'delta']);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1138:      expect((createMemoryRecordMock.mock.calls[0] as any)?.[1].content).toBe(buildParsedMemory('quality-loop-trigger-fix.md').content);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1139:      expect(fs.readFileSync(filePath, 'utf8')).toBe(buildParsedMemory('quality-loop-trigger-fix.md').content);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1362:        fixes: ['Re-extracted 4 trigger phrases from content'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1410:        fixes: ['Re-extracted 4 trigger phrases from content'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1567:            triggerPhrases: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1597:            'trigger_phrases:',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1645:            triggerPhrases: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1797:        triggerPhrases: ['stale-trigger'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1803:        triggerPhrases: ['fresh-trigger'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1822:        triggerPhrases: freshParsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:105: * - Positive validations can trigger auto-promotion (`importance_tier` changes),
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-density.vitest.ts:163:     are possible and should trigger escalation when below 0.5.
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:56:  memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:89:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:13:  triggered?: unknown[];
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:108:    const triggeredCount = Array.isArray(autoSurfacedContext?.triggered)
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:109:      ? autoSurfacedContext.triggered.length
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:113:    if (constitutionalCount > 0 || triggeredCount > 0) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:118:        `Auto-surface hook: injected ${constitutionalCount} constitutional and ${triggeredCount} triggered memories (${latency}ms)`
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:124:      triggeredCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:82: * for camelCase fallback fields (e.g. retryCount, triggerPhrases).
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:479:    // Off-by-one fix: retryCount is already incremented after the failure that triggered
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:922:  if (row.triggerPhrases && typeof row.triggerPhrases === 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:924:      return { ...row, triggerPhrases: JSON.parse(row.triggerPhrases) };
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:926:      return { ...row, triggerPhrases: [] };
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:14:     MAX_ACCUMULATOR_SIZE — overflow triggers auto-flush and clear
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:177:    it('MAX_ACCUMULATOR_SIZE overflow triggers flush-all and clear', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:189:      // The next trackAccess should trigger the overflow guard
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:414:    it('Decay-rate boundaries: rate=0 no decay, rate=1.0 near-complete decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:95:          trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:107:          decay_half_life_days REAL DEFAULT 90.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:113:          session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:122: * spec_folder with text similarity (based on title + trigger_phrases)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:145:    `SELECT m.title, m.trigger_phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:150:  ).get(memoryId) as { title: string | null; trigger_phrases: string | null } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:154:  const targetText = [targetRow.title || '', targetRow.trigger_phrases || ''].join(' ').trim();
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:159:    `SELECT m.id, m.title, m.trigger_phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:168:    trigger_phrases: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:173:    const siblingText = [sibling.title || '', sibling.trigger_phrases || ''].join(' ').trim();
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:210:    `SELECT m.id, m.spec_folder, m.title, m.trigger_phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:219:    trigger_phrases: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:246:      `SELECT m.id, m.title, m.trigger_phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:254:      trigger_phrases: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:260:      const text = [mem.title || '', mem.trigger_phrases || ''].join(' ').trim();
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:221:    it('contains vector, bm25, fts5, graph, trigger', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:226:      expect(ALL_CHANNELS).toContain('trigger');
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:361:    it('disables trigger channel correctly', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:362:      const flags = toHybridSearchFlags(new Set<AblationChannel>(['trigger']));
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:374:        new Set<AblationChannel>(['vector', 'bm25', 'fts5', 'graph', 'trigger']),
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:24:vi.mock('../lib/parsing/trigger-matcher', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:44:vi.mock('../lib/cognitive/co-activation', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:55:  expect(typeof result.triggerCacheCleared).toBe('boolean');
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:205:    it('T506-06c: Constitutional tier exempt from recency decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:357:      'Use memory_match_triggers() for prompt-based matching instead'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:360:    toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:700:        'Try memory_match_triggers() for trigger-based matching'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:703:      toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:7:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:34:  triggered: {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:89:  'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:185:      SELECT id, spec_folder, file_path, title, trigger_phrases, importance_tier
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:273:  const triggered = [...boundedResult.triggered];
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:274:  while (triggered.length > 0 && tokenCount > budgetLimit) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:275:    triggered.pop();
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:276:    boundedResult = { ...boundedResult, triggered };
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:303: * Phase C: Get top-N attention-weighted memory IDs from working memory.
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:304: * Used to boost trigger-matched results that also appear in the active
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:308: * @returns Set of memory IDs with high attention in working memory
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:315:    // Query top attention-weighted memories, scoped to the current session
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:323:        AND wm.attention_score > ?
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:325:      ORDER BY wm.attention_score DESC, wm.last_focused DESC
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:337: * Phase C: Apply 1.3x boost to trigger-matched results that also appear
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:338: * in the attention-weighted working memory set. Re-sorts results by
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:341: * @param triggered - Trigger-matched results from matchTriggerPhrases()
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:342: * @param attentionIds - Set of memory IDs from working memory
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:343: * @returns Re-sorted trigger matches with working memory boost applied
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:348:  triggered: triggerMatcher.TriggerMatch[],
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:349:  attentionIds: Set<number>,
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:350:): triggerMatcher.TriggerMatch[] {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:351:  if (attentionIds.size === 0 || triggered.length === 0) return triggered;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:355:  return [...triggered]
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:358:        (attentionIds.has(a.memoryId) ? ATTENTION_BOOST_FACTOR : 1.0);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:360:        (attentionIds.has(b.memoryId) ? ATTENTION_BOOST_FACTOR : 1.0);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:376:    // Get triggered memories via fast phrase matching
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:377:    let triggered = triggerMatcher.matchTriggerPhrases(contextHint, 5);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:379:    // Phase C: Attention-enriched boost — re-rank triggered results that
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:382:      const attentionIds = getAttentionWeightedMemoryIds(5);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:383:      if (attentionIds.size > 0 && triggered.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:384:        triggered = applyAttentionBoost(triggered, attentionIds);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:387:      // Graceful degradation — attention boost is optional
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:393:    if (constitutional.length === 0 && triggered.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:403:      triggered: triggered.map((t: triggerMatcher.TriggerMatch) => ({
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:463:    recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:497:    ?? (typeof toolArgs.session_id === 'string' ? toolArgs.session_id : null);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:529:        triggered: [],
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:541:      triggered: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:142:            session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:144:            attention_score REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:148:            UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:186:            session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:188:            attention_score REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:192:            UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:203:          INSERT INTO working_memory (session_id, memory_id, attention_score)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:211:          SELECT memory_id, attention_score
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:213:          WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:214:        `).get('session-alpha') as { memory_id: number | null; attention_score: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:218:        expect(detachedRow?.attention_score).toBeCloseTo(0.85, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:331:    session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:389:        session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:397:      WHERE session_id = ? AND memory_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:410:        'idx_wm_session_attention_focus',
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:429:        attentionScore: 0.62,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:460:        if (sql.includes('SELECT COUNT(*) as cnt FROM working_memory WHERE session_id = ? AND memory_id = ?')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:469:        attentionScore: 0.25,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:478:        attentionScore: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:491:        WHERE session_id = ? AND memory_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:511:        attentionScore: 0.25,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:522:        attentionScore: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:533:        WHERE session_id = ? AND memory_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:562:        attentionScore: 0.7,
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:337:      // If DB is available, invalid relation validation should trigger E102.
+.opencode/skills/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:385:      triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:464:        trigger: [3],
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:472:      // ID 3: vector + trigger (not exclusive)
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:476:      const triggerEcr = ecrs.find(e => e.channel === 'trigger');
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:480:      expect(triggerEcr!.exclusiveCount).toBe(0); // ID 3 is also in vector
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:235:// Citation recency decay constants
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:312:  // Graduated-ON semantics — classification decay is active unless explicitly disabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:327:  // TM-03: Classification decay applies at stability-level; when enabled do not
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:328:  // Additionally apply elapsed-time tier multipliers to avoid double decay.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:791:      temporal: { value: temporal, weight: weights.temporal, contribution: temporal * weights.temporal, description: 'FSRS retrievability decay' },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:1:// Converted from: trigger-extractor.test.ts (custom runner)
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:3:// TF-IDF + N-gram hybrid trigger phrase extraction
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:10:} from '@spec-kit/shared/trigger-extractor';
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:19:      When the heap allocator runs out of space, the garbage collector triggers
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:99:  describe('Deduplication of triggers (T515-03)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:100:    it('T515-03: no duplicate trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:118:  describe('Max triggers limit (T515-04)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:119:    it('T515-04: trigger count respects MAX_PHRASE_COUNT', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:182:      embedding vectors. The [trigger-extractor](./trigger-extractor.ts) module
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:63:vi.mock('../lib/parsing/trigger-matcher', async (importOriginal) => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:124:let triggerMatcherMod: any = null;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:145:  triggerMatcherMod = await import('../lib/parsing/trigger-matcher');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:197:  if (triggerMatcherMod) {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:198:    vi.mocked(triggerMatcherMod.clearCache).mockImplementation(() => { calls.clearCache.push(true); });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:262:  if (triggerMatcherMod) {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:263:    vi.mocked(triggerMatcherMod.clearCache).mockImplementation(() => { calls.clearCache.push(true); });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:307:        trigger_phrases: existingMemory?.trigger_phrases ?? '[]',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:325:  if (triggerMatcherMod) {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:326:    vi.mocked(triggerMatcherMod.clearCache).mockImplementation(() => { calls.clearCache.push(true); });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:371:  triggerCount?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:381:    triggerCount = 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:392:        if (sql.includes('SUM(json_array_length')) return { count: triggerCount };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:729:  it('EXT-U2: Changed title triggers embedding regen', async (ctx) => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:744:      triggerPhrases: ['new trigger'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:751:    expect(fields).toContain('triggerPhrases');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:881:      { id: 1, spec_folder: 'specs/001-test', file_path: '/test/mem1.md', title: 'Memory One', trigger_phrases: '["hello"]', importance_weight: 0.8, created_at: '2025-01-01', updated_at: '2025-06-01' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:882:      { id: 2, spec_folder: 'specs/001-test', file_path: '/test/mem2.md', title: null, trigger_phrases: null, importance_weight: 0.5, created_at: '2025-02-01', updated_at: '2025-05-01' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:894:      { id: 1, spec_folder: 'specs/test', file_path: '/p.md', title: null, trigger_phrases: null, importance_weight: 0.5, created_at: '2025-01-01', updated_at: '2025-01-01' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:913:    const rows = [{ id: 1, spec_folder: 's', file_path: 'f', title: 't', trigger_phrases: '[]', importance_weight: 0.5, created_at: 'c', updated_at: 'u' }];
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:937:  it('EXT-L7: triggerCount parsed from JSON', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:940:      { id: 1, spec_folder: 's', file_path: 'f', title: 't', trigger_phrases: '["a","b","c"]', importance_weight: 0.5, created_at: 'c', updated_at: 'u' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:945:    expect(parsed?.data?.results[0].triggerCount).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1420:    if (!handler?.handleMemoryHealth || !vectorIndex || !embeddingsSourceMod || !triggerMatcherMod?.refreshTriggerCache) {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1464:    const refreshSpy = vi.spyOn(triggerMatcherMod, 'refreshTriggerCache').mockImplementation(() => undefined as never);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1479:      expect(parsed?.data?.repair?.actions).toContain('trigger_cache_refresh');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1491:      !triggerMatcherMod?.refreshTriggerCache ||
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1540:    const refreshSpy = vi.spyOn(triggerMatcherMod, 'refreshTriggerCache').mockImplementation(() => undefined as never);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:36:  triggered: 400,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:41:const PRIORITY_ORDER = ['constitutional', 'codeGraph', 'cocoIndex', 'sessionState', 'triggered'] as const;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:124:  triggeredSize: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:132:    { name: 'triggered', floor: DEFAULT_FLOORS.triggered, actualSize: triggeredSize },
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:4:// Feature catalog: Classification-based decay
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:12:  decay: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:36:    decay: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:45:    decay: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:52:    decay: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:54:    description: 'High priority, no decay',
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:59:    decay: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:66:    decay: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:73:    decay: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:110:// Check if tier allows decay over time (normal, temporary)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:113:  return config.decay === true;
+.opencode/skills/system-spec-kit/mcp_server/tests/signal-vocab.vitest.ts:20:} from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:28:  /** The search mode used (e.g. "search", "context", "trigger"). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:129:    session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:238:         total_results_shown, session_id, notes)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:281:             selected_rank, total_results_shown, session_id, notes,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:295:      session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:309:        sessionId: row.session_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:61:vi.mock('../handlers/memory-triggers', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:109:  it('logs context_quick channel for quick trigger-based flow', async () => {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:113:  input: Pick<HookInput, 'session_id'> & { specFolder?: string } = {},
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:115:  const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:141:        '- `memory_match_triggers({ prompt })` — fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:202:      content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:216:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:218:  hookLog('info', 'session-prime', `SessionStart triggered (source: ${source}, session: ${sessionId})`);
+.opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:17:      expect(DEFAULT_FLOORS.triggered).toBe(400);
+.opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:34:      // CocoIndex and triggered are empty, their floors + overflow go to others
+.opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:76:        'triggered',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts:29:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:497:      it('T007-FT1: Natural leaf at maxDepth-1 does NOT trigger max_depth_reached', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:507:      it('T007-FT2: Node at maxDepth DOES trigger max_depth_reached', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/lazy-loading.vitest.ts:57:  it('T018: empty inputs return null without triggering provider init', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:12:    triggered: 'Trigger: compaction recovery context',
+.opencode/skills/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:34:      const result = mergeCompactBrief(createInput({ cocoIndex: '', triggered: '' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:60:        triggered: '',
+.opencode/skills/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:74:        triggered: '',
+.opencode/skills/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:90:        attentionSignalCount: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:36:// T020-1: Constitutional / critical importance tier — no decay
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:37:describe('T020-1: Constitutional and critical tiers never decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:73:// T020-2: Decision context_type — no decay
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:74:describe('T020-2: Decision context_type never decays', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:92:// T020-3: Temporary tier — faster decay
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:93:describe('T020-3: Temporary tier decays faster than normal', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:110:  it('temporary decays faster than normal: retrievability at 30 days', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:139:  it('research + normal = 2.0 stability increase (slower decay than standard)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay.vitest.ts:155:  it('decision + constitutional = Infinity (both are no-decay; Infinity wins)', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:294:    session_id: decision.normalized.sessionId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:337:      action, decision, memory_id, logical_key, tenant_id, user_id, agent_id, session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:422:    clauses.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:492:      && matchesExactScope(row.session_id, normalized.sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:538:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:556:    session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:609:      sessionId: row.session_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:96:/** Detect graph state without triggering any reindex */
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:344: * Does NOT trigger reindexing.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/edge-density.ts:45:  /** true when density < 0.5 — triggers R10 escalation. */
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:26:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:39:        trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:49:      INSERT INTO memory_index (id, title, trigger_phrases, content_text, file_path, spec_folder, is_archived)
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:59:      INSERT INTO memory_fts (rowid, title, trigger_phrases, content_text, file_path)
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:60:      SELECT id, title, trigger_phrases, content_text, file_path FROM memory_index;
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:82:    expect(FTS5_BM25_WEIGHTS[1]).toBe(5.0);  // trigger_phrases
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:190:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:5:import * as handler from '../handlers/memory-triggers';
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:15:    it('Setup: memory-triggers handler loaded', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:116:  describe('T208: turnNumber-based decay', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:119:    it('T208-1: Turn decay factors decrease with turn number', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:131:    it('T208-2: Turn decay changes tier classification', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:143:    it('T208-3: Turn decay drops HOT to lower tier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:167:    it('T208-5: turnNumber=0 and turnNumber=1 produce factor=1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:176:  describe('T208: Handler turnNumber integration', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:183:      expect(typeof handlerExports.handle_memory_match_triggers).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:190:        { memoryId: 40, attentionScore: 0.95, tier: 'HOT', importance_tier: 'constitutional', stability: 1.0, id: 40 },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:191:        { memoryId: 41, attentionScore: 0.50, tier: 'WARM', importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString(), id: 41 },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:192:        { memoryId: 42, attentionScore: 0.10, tier: 'COLD', importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01', created_at: '2023-01-01', id: 42 },
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:26:  'handlers/memory-triggers.js': 470, // actual: 454 — Trigger matching with cognitive features + governance/scope wiring
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:31:  'hooks/memory-surface.js': 520,   // actual: 503 — Memory surface hooks with constitutional cache, auto-surface, attention-enriched hints, priming, session snapshots, and Phase 024 bootstrap telemetry
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:106:    'handlers/memory-triggers.js',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:440:        triggerPhrases: ['alpha', 'first test'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:452:        triggerPhrases: ['beta', 'second test'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:479:        triggerPhrases: ['alpha', 'updated'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:511:        triggerPhrases: ['symlink'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:518:        triggerPhrases: ['symlink', 'alias'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:532:    it('getMemory returns correct memory with parsed trigger_phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:538:      expect(Array.isArray(mem!.trigger_phrases)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:539:      expect(mem!.trigger_phrases).toContain('alpha');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1203:        triggerPhrases: ['vector', 'search'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1217:        triggerPhrases: ['test', 'second'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1225:        triggerPhrases: ['other', 'folder'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1237:        triggerPhrases: ['cache invalidation', 'stale cache'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1246:        triggerPhrases: ['cache invalidation', 'stale cache'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1262:        triggerPhrases: ['cache invalidation', 'stale cache'],
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1382:      // Empty content triggers early return (no API call needed)
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1391:    it('adds new terms from query to trigger_phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1396:      expect(mem?.trigger_phrases).toContain('vector');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1397:      expect(mem?.trigger_phrases).toContain('search');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1398:      expect(mem?.trigger_phrases).toContain('implementation');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1416:    it('does not re-add existing trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/channel-enforcement.vitest.ts:353:  it('T11: when router returns ≥2 channels both present in top-k, no promotion is triggered', () => {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:14:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:16:  trigger?: 'auto' | 'manual';
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:74:// Mock co-activation spreading so it never touches the DB.
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:75:vi.mock('../lib/cognitive/co-activation', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts:234:    // Accessing any session triggers eviction of expired ones
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:1:// Converted from: trigger-matcher.test.ts (custom runner)
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:12:  trigger_phrases: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:49:} from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:106:    it('T501-01: exact match on trigger phrase', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:137:    it('T501-04: multi-word trigger phrase matches', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:202:    it('T501-08e: trigger normalization is consistent for indexing and lookup', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:264:  describe('Unicode trigger matching (T501-13)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:265:    it('T501-13a: Unicode-aware boundaries match Cyrillic and CJK trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:277:          trigger_phrases: JSON.stringify(['Cafe\u0301 Mode', 'быстрый поиск', '情報検索']),
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:320:        trigger_phrases: JSON.stringify([`topic${index + 1} marker${index + 1}`]),
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:329:        trigger_phrases: JSON.stringify(['unicode trigger repair', 'candidate index optimization']),
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:335:      const prompt = 'Please ship the unicode trigger repair and candidate index optimization fixes';
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:348:        trigger_phrases: JSON.stringify([`background${index + 1} archive${index + 1}`]),
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:357:        trigger_phrases: JSON.stringify(['focused trigger benchmark']),
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:363:      const prompt = 'We need the focused trigger benchmark to pass';
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:380:      expect(candidates.some((entry) => entry.phrase === 'focused trigger benchmark')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:393:          trigger_phrases: JSON.stringify(['prepared statement cache']),
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:88:      // The 5th call should trigger flush (0.4 + 0.1 = 0.5 >= ACCUMULATOR_THRESHOLD)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:7:// Search path (disabling vector, graph, and trigger channels)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:11:// Keyword search achieves without any semantic, graph, or trigger
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:118: * using ONLY the BM25/FTS5 channel (vector, graph, trigger disabled).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:175:        'Each additional channel (vector, graph, trigger) must show a statistically meaningful ' +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:474: * the BM25/FTS5 path ONLY — vector, graph, and trigger channels must be
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:529:    // Run BM25-only search (channels: bm25/fts only, no vector/graph/trigger)
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:240:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:20:    it('CREATE TABLE schema includes learned_triggers column', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:21:      // The v21 migration adds learned_triggers. Verify it is present in
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:32:      expect(source).toContain('learned_triggers TEXT');
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:214:    it('co-activation config fetches 2*maxRelated (not maxRelated+1)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:221:        '../lib/cognitive/co-activation.ts'
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:225:    // Create a symlink loop to trigger ELOOP
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:247:  it('ENOENT still triggers parent-walk (atomic save)', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:55:    // Score: frequency * recency_decay
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:56:    // recency_decay = 1 / (1 + age_in_minutes / 10)
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:58:    useCase: 'Direct access to search, save, and trigger matching when L1 routing is not needed.',
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:185:  const triggered = autoSurfaced?.triggered ?? [];
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:186:  if (triggered.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:190:  const lines = triggered.map((memory) => {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:227:  // Build sessionState input: recent context + topics + attention signals
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:236:  // Working memory attention signals
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:237:  const attentionSignals = extractAttentionSignals(sanitizedLines);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:238:  if (attentionSignals.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:239:    sessionParts.push('Working memory attention:\n' + attentionSignals.join('\n'));
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:254:    selectedFrom: ['transcript-tail', 'active-files', 'recent-topics', 'attention-signals'],
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:257:    attentionSignalCount: attentionSignals.length,
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:275:    triggered: '',        // Triggered memories not available in hooks
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:298:    `Compaction auto-surface returned ${autoSurfaced.constitutional.length} constitutional and ${autoSurfaced.triggered.length} triggered memories (${autoSurfaced.latencyMs}ms)`,
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:302:  const triggeredSection = renderTriggeredMemories(autoSurfaced);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:303:  const surfacedSections = [constitutionalSection, triggeredSection]
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:321:  const attentionSignals = extractAttentionSignals(sanitizedLines);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:327:  if (attentionSignals.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:328:    sessionParts.push('Working memory attention:\n' + attentionSignals.join('\n'));
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:339:    selectedFrom: ['transcript-tail', 'active-files', 'recent-topics', 'attention-signals'],
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:342:    attentionSignalCount: attentionSignals.length,
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:362:    triggered: '',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:378:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:379:  hookLog('info', 'compact-inject', `PreCompact triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'})`);
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:90:    expect(names).toContain('session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:227:    expect(row.session_id).toBe('session-XYZ');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:230:  it('allows null session_id', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:234:    expect(events[0].session_id).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:334:    expect(forSess1[0].session_id).toBe('sess-1');
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:173:// Imports Database type and working-memory module which trigger better-sqlite3
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:11:} from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:17:   MODULE LOADING  (mock vector-index for trigger-matcher)
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:22:type TriggerMatcherModule = typeof import('../lib/parsing/trigger-matcher');
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:36:  trigger_phrases: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:83:  triggerPhrases?: string[] | string;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:111:// Create in-memory DB with the memory_index table trigger-matcher expects
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:120:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:126:    INSERT INTO memory_index (id, spec_folder, file_path, title, trigger_phrases, importance_weight, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:130:    insert.run(r.id, r.spec_folder, r.file_path, r.title, r.trigger_phrases, r.importance_weight, r.embedding_status ?? 'success');
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:138:let triggerMatcher: TriggerMatcherModule;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:149:/** Helper: replace the mock DB and clear cache so trigger-matcher re-reads */
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:152:  if (triggerMatcher?.clearCache) triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:159:describe('EXTENDED TESTS: trigger-matcher + memory-types + type-inference', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:161:    triggerMatcher = await import('../lib/parsing/trigger-matcher.js') as TriggerMatcherModule;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:169:    triggerMatcher?.clearCache?.();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:178:      const fn = triggerMatcher.logExecutionTime;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:189:      const fn = triggerMatcher.logExecutionTime;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:197:      const fn = triggerMatcher.logExecutionTime;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:206:      const fn = triggerMatcher.logExecutionTime;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:208:      const origFlag = triggerMatcher.CONFIG.LOG_EXECUTION_TIME;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:209:      triggerMatcher.CONFIG.LOG_EXECUTION_TIME = false;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:211:      triggerMatcher.CONFIG.LOG_EXECUTION_TIME = origFlag;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:216:      const fn = triggerMatcher.logExecutionTime;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:229:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["alpha phrase","beta phrase"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:231:      triggerMatcher.loadTriggerCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:232:      const stats = triggerMatcher.getCacheStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:238:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["test regex"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:240:      const cache = triggerMatcher.loadTriggerCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:247:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["save context"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:249:      const cache = triggerMatcher.loadTriggerCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:256:      triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:257:      const origMax = triggerMatcher.CONFIG.MAX_REGEX_CACHE_SIZE;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:258:      triggerMatcher.CONFIG.MAX_REGEX_CACHE_SIZE = 3;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:261:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["phrase one","phrase two","phrase three","phrase four","phrase five"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:263:      triggerMatcher.loadTriggerCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:264:      const stats = triggerMatcher.getCacheStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:265:      triggerMatcher.CONFIG.MAX_REGEX_CACHE_SIZE = origMax;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:272:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["some phrase"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:274:      triggerMatcher.loadTriggerCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:275:      triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:276:      const stats = triggerMatcher.getCacheStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:285:      const fn = triggerMatcher.loadTriggerCache;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:293:    it('3.3.2 loads rows with valid trigger_phrases JSON', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:294:      const fn = triggerMatcher.loadTriggerCache;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:297:        { id: 1, spec_folder: 'specs/001', file_path: '/a.md', title: 'Test A', trigger_phrases: '["save context","memory"]', importance_weight: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:298:        { id: 2, spec_folder: 'specs/002', file_path: '/b.md', title: 'Test B', trigger_phrases: '["debug"]', importance_weight: 0.6 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:304:    it('3.3.3 skips rows with invalid JSON trigger_phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:305:      const fn = triggerMatcher.loadTriggerCache;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:308:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: 'NOT_JSON', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:309:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T', trigger_phrases: '["valid"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:317:      const fn = triggerMatcher.loadTriggerCache;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:320:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["ab","abc","a"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:327:    it('3.3.4b filters single-word stopword trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:328:      const fn = triggerMatcher.loadTriggerCache;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:331:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["the","save context","debug"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:338:      const fn = triggerMatcher.loadTriggerCache;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:341:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["hello"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:346:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T2', trigger_phrases: '["different"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:355:      const fn = triggerMatcher.loadTriggerCache;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:358:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["alpha"]', importance_weight: 0.5, embedding_status: 'success' },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:359:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T', trigger_phrases: '["beta"]', importance_weight: 0.5, embedding_status: 'pending' },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:371:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:374:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["save context"]', importance_weight: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:384:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:387:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["save context","memory save"]', importance_weight: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:388:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T2', trigger_phrases: '["other phrase"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:399:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:402:        { id: 1, spec_folder: 's', file_path: '/bad.md', title: 'Bad', trigger_phrases: 'NOT_JSON', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:403:        { id: 2, spec_folder: 's', file_path: '/good.md', title: 'Good', trigger_phrases: '["valid trigger"]', importance_weight: 0.7 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:405:      const result = fn('valid trigger') as TriggerMatchWithStats & {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:413:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:421:      const fn = triggerMatcher.matchTriggerPhrasesWithStats;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:433:      const fn = triggerMatcher.getAllPhrases;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:442:      const fn = triggerMatcher.getAllPhrases;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:445:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["alpha","beta"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:446:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T', trigger_phrases: '["beta","gamma"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:457:      const fn = triggerMatcher.getAllPhrases;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:460:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["Hello World"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:472:      { id: 1, spec_folder: 'specs/001', file_path: '/a.md', title: 'Memory A', trigger_phrases: '["save context","memory"]', importance_weight: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:473:      { id: 2, spec_folder: 'specs/002', file_path: '/b.md', title: 'Memory B', trigger_phrases: '["save context"]', importance_weight: 0.6 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:474:      { id: 3, spec_folder: 'specs/003', file_path: '/c.md', title: 'Memory C', trigger_phrases: '["different"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:478:      const fn = triggerMatcher.getMemoriesByPhrase;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:486:      const fn = triggerMatcher.getMemoriesByPhrase;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:499:      const fn = triggerMatcher.getMemoriesByPhrase;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:507:      const fn = triggerMatcher.getMemoriesByPhrase;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:519:      const fn = triggerMatcher.refreshTriggerCache;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:522:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["old phrase"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:524:      triggerMatcher.loadTriggerCache();
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:527:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T2', trigger_phrases: '["new phrase"]', importance_weight: 0.7 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:537:      const fn = triggerMatcher.refreshTriggerCache;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:540:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["test"]', importance_weight: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:616:      expect(config!.decayEnabled).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:632:    it('4.3.4 meta-cognitive has decayEnabled=false', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:637:      expect(config!.decayEnabled).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:676:    it('4.5.1 decaying types return true', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:902:    it('5.4.3 scratch slow-decay warns', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:925:    it('5.4.6 /temp/ slow-decay warns', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:43:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:179:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers' },
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:105:  it('preserves attentionScore as an independent signal after reranking', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:112:      { id: 1, score: 0.6, attentionScore: 0.17, content: 'alpha' },
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:113:      { id: 2, score: 0.5, attentionScore: 0.04, content: 'beta' },
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:121:    expect(result.rows[0]?.attentionScore).toBe(0.17);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:27:  triggers: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:87:  'triggers',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:238:    triggers: scenario.wrapper.triggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:6:// T006 (classification-based decay TM-03).
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:206:  // T041-14: Constitutional tier has Infinity multiplier (no decay)
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:207:  it('T041-14: constitutional tier → Infinity multiplier (never decays)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:214:  // T041-15: Temporary tier decays faster than normal
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:215:  it('T041-15: temporary tier decays faster than normal', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:242:  // T041-18: Constitutional with any context → Infinity (no decay wins)
+.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:10:    triggerCacheCleared: boolean;
+.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:23:      `trigger=${hookResult.triggerCacheCleared ? 'ok' : 'failed'}, ` +
+.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:33:    !hookResult.triggerCacheCleared ||
+.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:50:      triggerCacheCleared: hookResult.triggerCacheCleared,
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:197:      // "not...but" in combined text triggers negation pattern
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:542:    it('C138-T2: contradicting content triggers detection', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:15:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:17:  attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:21:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:23:  attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:50:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:78:        session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:80:        attention_score REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:84:        UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:120:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:125:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:148:      expect(entry.session_id).toBe('session-alpha');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:149:      expect(entry.attention_score).toBe(0.85);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:176:      expect(entry1.session_id).toBe('session-alpha');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:177:      expect(entry1.attention_score).toBe(0.85);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:186:        INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:195:        "SELECT * FROM working_memory WHERE session_id = 'session-beta'"
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:308:  it('T3: large result counts trigger the floor', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:12:// - Channel toggle mechanism (vector, bm25, fts5, graph, trigger)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:52:export type AblationChannel = 'vector' | 'bm25' | 'fts5' | 'graph' | 'trigger';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:60:  'trigger',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:1008:    useTrigger: !disabledChannels.has('trigger'),
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:208:  it('T05: recordFallback sets trigger and degraded flags', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:35:  /** Filter to specific channels (e.g. 'vector', 'bm25', 'fts', 'graph', 'trigger'). */
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:23:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:45:      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases, created_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:88:      SELECT session_id, memory_id, attention_score, source_tool, source_call_id, extraction_rule_id, redaction_applied
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:94:    expect(row.attention_score).toBe(0.9);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:72:      trigger_phrases: '["rule"]',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:105:          id, spec_folder, file_path, title, trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:157:      lines.push('Freshness: stale — first structural read may trigger bounded inline refresh or recommend code_graph_scan.');
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:27:export type QuerySource = 'manual' | 'trigger_derived' | 'pattern_derived' | 'seed';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:70:    trigger_derived: GROUND_TRUTH_QUERIES.filter(q => q.source === 'trigger_derived').length,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:47:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:140:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:156:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:173:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:175:      attention_score REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:185:      UNIQUE(session_id, memory_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:201:      session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:217:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:221:      PRIMARY KEY (session_id, memory_hash)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:270:      session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:278:      session_id, status, spec_folder, current_task, tenant_id, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:289:  database.prepare('UPDATE working_memory SET attention_score = ? WHERE memory_id = ?').run(9.0, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:290:  database.prepare('UPDATE working_memory SET attention_score = ? WHERE memory_id = ?').run(8.0, 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:291:  database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task-a', 'session-a');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:292:  database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task-b', 'session-b');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:438:          anchor_id TEXT, trigger_phrases TEXT, importance_weight REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:623:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:628:          session_id, status, spec_folder, current_task, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:632:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:647:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:650:      database.prepare('UPDATE working_memory SET attention_score = ? WHERE memory_id = ?').run(8.0, 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:651:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task', 'session-test');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:652:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('other-live-task', 'session-other');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:655:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:671:        database.prepare('SELECT session_id, attention_score FROM working_memory WHERE memory_id = ?').get(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:672:      ).toEqual({ session_id: 'session-test', attention_score: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:674:        database.prepare('SELECT session_id, attention_score FROM working_memory WHERE memory_id = ?').get(2)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:675:      ).toEqual({ session_id: 'session-other', attention_score: 8 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:677:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-test')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:680:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-other')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:705:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:710:          session_id, status, spec_folder, current_task, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:714:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:722:      database.prepare('UPDATE working_memory SET attention_score = ? WHERE memory_id = ?').run(9.0, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:723:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task', 'session-test');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:726:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:735:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:740:          session_id, status, spec_folder, current_task, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:744:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:759:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:760:      ).toEqual({ attention_score: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:762:        (database.prepare('SELECT COUNT(*) as cnt FROM working_memory WHERE session_id = ?').get('session-extra') as { cnt: number }).cnt
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:765:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-test')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:768:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-extra')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:774:        (database.prepare('SELECT COUNT(*) as cnt FROM session_sent_memories WHERE session_id = ?').get('session-extra') as { cnt: number }).cnt
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:851:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:852:      ).toEqual({ attention_score: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:854:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(2)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:855:      ).toEqual({ attention_score: 8 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:882:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:883:      ).toEqual({ attention_score: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:885:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(2)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:886:      ).toEqual({ attention_score: 2 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:888:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-a')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:891:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-b')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:923:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:924:      ).toEqual({ attention_score: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:926:        database.prepare('SELECT attention_score FROM working_memory WHERE memory_id = ?').get(2)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:927:      ).toEqual({ attention_score: 8 });
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:615:      trigger_phrases: ['hybrid-search', 'bm25-sync'],
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:634:      trigger_phrases: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:639:      [1, { id: 1, title: 'Auth doc', content_text: 'authentication search memory body', trigger_phrases: 'auth', file_path: 'specs/auth/1.md' }],
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:640:      [2, { id: 2, title: 'Cache doc', content_text: 'cache retrieval system body', trigger_phrases: 'cache', file_path: 'specs/cache/2.md' }],
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:703:          trigger_phrases: 'updated trigger phrase',
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:731:      buildBm25DocumentText: vi.fn((row: { title?: string | null; content_text?: string | null; trigger_phrases?: string | string[] | null; file_path?: string | null }) =>
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:735:          Array.isArray(row.trigger_phrases) ? row.trigger_phrases.join(' ') : (row.trigger_phrases ?? ''),
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:763:        triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:778:  it('BM25 re-index fires when triggerPhrases change', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:780:    await handleMemoryUpdate({ id: 42, triggerPhrases: ['updated trigger phrase'] });
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:792:        trigger_phrases: 'updated trigger phrase',
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:798:  it('BM25 re-index does NOT fire when non-trigger fields change', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:120:        memory_match_triggers: 'L2',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:37:    triggerPhrases: ['test'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:97:triggerPhrases: ["feature work", "session context"]
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:388:    it('T24: missing specFolder triggers error', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:393:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:404:    it('T25: content too short triggers error', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:408:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:419:    it('T26: content too long triggers error', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:423:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:438:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:529:      expect(result.triggerPhrases.length).toBeGreaterThanOrEqual(2);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:19:  triggered: string;         // Triggered memories (from Memory)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:133:  const triggeredSize = estimateTokens(input.triggered);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:140:    triggeredSize,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:174:  pushSection(input.triggered, 'triggered', 'Triggered Memories', 'memory');
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:226:        { source: 'triggered', lastUpdated: null, staleness: 'unknown' },
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:21:vi.mock('../lib/parsing/trigger-matcher', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:37:import * as triggerMatcher from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:87:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:99:  it('returns null when no DB and no triggered memories (nothing to surface)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:124:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:137:  it('returns null for memory_match_triggers', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:138:    const result = await autoSurfaceAtToolDispatch('memory_match_triggers', { prompt: 'some prompt' });
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:164:  it('does not invoke trigger matcher for memory-aware tools', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:165:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:176:    // With a trigger match present, a non-memory-aware tool should proceed
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:180:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:181:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:200:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:213:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:226:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:244:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:248:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:256:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:264:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:272:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:280:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:297:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:301:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:324:  it('returns AutoSurfaceResult shape when triggered memories exist', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:325:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:331:    expect(result).toHaveProperty('triggered');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:337:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:343:  it('result.triggered is an array', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:344:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:347:    expect(Array.isArray(result?.triggered)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:350:  it('result.triggered items have expected fields', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:351:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:354:    const triggered = result?.triggered ?? [];
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:355:    expect(triggered.length).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:356:    expect(triggered[0]).toHaveProperty('memory_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:357:    expect(triggered[0]).toHaveProperty('spec_folder');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:358:    expect(triggered[0]).toHaveProperty('title');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:359:    expect(triggered[0]).toHaveProperty('matched_phrases');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:363:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:371:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:388:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:400:  it('returns null when no DB and no triggered matches (nothing to surface)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:440:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:452:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:464:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:482:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:486:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:507:  it('returns AutoSurfaceResult shape when triggered memories exist', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:508:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:514:    expect(result).toHaveProperty('triggered');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:519:  it('result.triggered items have correct field names', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:520:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:523:    const triggered = result?.triggered ?? [];
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:524:    expect(triggered[0]).toHaveProperty('memory_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:525:    expect(triggered[0]).toHaveProperty('spec_folder');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:526:    expect(triggered[0]).toHaveProperty('title');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:527:    expect(triggered[0]).toHaveProperty('matched_phrases');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:531:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:551:  it('trigger-matcher is limited to 5 results per surface call (per-budget control)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:556:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:574:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:591:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:614:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:649:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:654:  it('autoSurfaceMemories returns result when triggered matches exist', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:655:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:659:    expect(result).toHaveProperty('triggered');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:664:  it('autoSurfaceMemories does not throw on triggerMatcher error', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:665:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockImplementation(() => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:673:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:692:    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:693:    const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:749:      triggered: '## Triggered\nRecent auth memory surfaced.',
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:773:      triggered: '',
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:784:    // cocoIndex and triggered were empty — their section sources ('cocoindex', 'memory') should not
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:799:      triggered: repeat('## Triggered\nRecent auth memory surfaced from specs/007.', 100),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:6:// And trigger handlers. All writes go to the eval DB (speckit-eval.db).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:93:  /** Channel name: "vector", "bm25", "graph", or "trigger". */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:137: * context, triggers). Returns the queryId and evalRunId that
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:56:    triggerPhrases: ['retrieval', 'confidence'],
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:9:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:10://                 timestamp, trigger: "manual"|"auto" }
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:128:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:129:  hookLog('info', 'gemini:compact-cache', `PreCompress triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'})`);
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:146:    attentionSignalCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:82:vi.mock('../lib/parsing/trigger-matcher', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:114:  triggerPhrases: string[];
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:137:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:170:    triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:189:    triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:204:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:217:    JSON.stringify(params.triggerPhrases ?? []),
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:260:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:293:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:75:        attentionScore: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:91:        attentionScore: 0.75,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:162:        { id: 1, importance_tier: 'constitutional', similarity: 0.95, attentionScore: 1.0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:91:        'trigger_cache_refresh',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:35:          session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:66:            session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:132:    "SELECT COUNT(*) AS value FROM memory_index WHERE session_id IS NULL OR TRIM(session_id) = ''",
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:22:        trigger_phrases: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:33:        decay_half_life_days: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:38:        session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:15:// The handlers (memory-context, memory-search, memory-triggers) all import
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:38:// Mock the sub-handlers (memory-search, memory-triggers) to avoid
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:48:vi.mock('../handlers/memory-triggers', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:570:          attentionScore: 0.92,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:684:          attentionScore: 0.81,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:715:          attentionScore: 0.77,
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:9://   { session_id, transcript_path, cwd, hook_event_name, timestamp, source }
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:107:        '- `memory_match_triggers({ prompt })` - fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:163:    content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:176:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:178:  hookLog('info', 'gemini:session-prime', `SessionStart triggered (source: ${source}, session: ${sessionId})`);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:154:          session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts:360:      'decay. The reranking stage uses MMR for diversity. Finally, the',
+.opencode/skills/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts:416:      triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts:446:      triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:245:  it('T045-14: degradation events have correct tier and trigger structure', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:253:        expect(event.trigger).toHaveProperty('reason');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:254:        expect(event.trigger).toHaveProperty('topScore');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:255:        expect(event.trigger).toHaveProperty('resultCount');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:256:        expect(['low_quality', 'insufficient_results', 'both']).toContain(event.trigger.reason);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:343:    // TopCap = 0.13 * 0.5 = 0.065, decayPerRank = 0.13 * 0.08 = 0.0104
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:346:    // Pin decay curve on second result
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:264:    detail: 'Queries must be NOT derived from trigger phrases',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/shared.ts:11:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/shared.ts:19:  trigger?: 'manual' | 'auto';
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:907:      // Reading via getEdgesFrom should trigger touchEdgeAccess
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:29:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:400:      it('TR1: No triggers scores 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:404:      it('TR2: One trigger scores 0.5', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:408:      it('TR3: Two triggers score 0.5', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:412:      it('TR4: Three triggers score 1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:416:      it('TR5: Five triggers score 1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:489:          trigger_phrases: '[save, quality]',
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:501:          trigger_phrases: '[save, quality, gate, TM-04]',
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:509:          triggerPhrases: ['save', 'quality', 'gate', 'TM-04'],
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:521:          triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:537:          triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:548:          trigger_phrases: '[save, quality, gate]',
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:555:          triggerPhrases: ['save', 'quality', 'gate'],
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:732:        trigger_phrases: '[save, quality, gate, TM-04]',
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:741:        triggerPhrases: ['save', 'quality', 'gate', 'TM-04'],
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:773:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:787:        trigger_phrases: '[save, quality, gate]',
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:795:        triggerPhrases: ['save', 'quality', 'gate'],
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:815:        trigger_phrases: '[save, quality, gate]',
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:823:        triggerPhrases: ['save', 'quality', 'gate'],
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:851:        trigger_phrases: '[save, quality, gate]',
+.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:859:        triggerPhrases: ['save', 'quality', 'gate'],
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:21:export type ConsumptionEventType = 'search' | 'context' | 'triggers';
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:33:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:44:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:106:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:116:    CREATE INDEX IF NOT EXISTS idx_consumption_log_session_id
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:117:      ON consumption_log (session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:148:         session_id, timestamp, latency_ms, spec_folder_filter, metadata)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:157:      event.session_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:197:    if (options.session_id) {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:198:      conditions.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:199:      params.push(options.session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:239:    // Unique sessions (add session_id IS NOT NULL to existing conditions)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:240:    const sessionConditions = [...conditions, 'session_id IS NOT NULL'];
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:243:      SELECT COUNT(DISTINCT session_id) as cnt
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:407:        SELECT session_id, COUNT(*) as query_count
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:409:        WHERE session_id IS NOT NULL
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:410:        GROUP BY session_id
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:414:      `).all(exampleLimit) as Array<{ session_id: string; query_count: number }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:421:          const sid = r.session_id.length > 36 ? r.session_id.substring(0, 36) + '...' : r.session_id;
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:72:  it('T001-01: "save" classifies as simple via trigger match', () => {
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts:11:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts:93:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts:67:    expect(promptContext[0].attentionScore).toBeGreaterThan(0.05);
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:33:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:50:       session_id, timestamp, latency_ms, spec_folder_filter, metadata)
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:59:    event.session_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:103:    expect(columnNames).toContain('session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:121:  it('T001-D: creates indexes on event_type, session_id, timestamp', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:129:    expect(indexNames).toContain('idx_consumption_log_session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:157:      session_id: 'session-abc',
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:169:    expect(row.session_id).toBe('session-abc');
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:182:      session_id: 'session-xyz',
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:194:  it('T002-C: logs a "triggers" event', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:196:      event_type: 'triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:200:      session_id: 'session-triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:204:    const row = db.prepare(`SELECT * FROM consumption_log WHERE event_type = 'triggers'`).get() as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:206:    expect(row.event_type).toBe('triggers');
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:217:      session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:225:    expect(row.session_id).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:280:    forceLogConsumptionEvent(db, { event_type: 'triggers', result_count: 2 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:292:    expect(stats.by_event_type['triggers']).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:318:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-A', result_count: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:319:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-A', result_count: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:320:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-B', result_count: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:423:      forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'heavy-session-001', query_text: `q${i}`, result_count: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:425:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'light-session', query_text: 'only one', result_count: 3 });
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:68:        session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:100:    database.prepare('INSERT INTO session_state (session_id, spec_folder) VALUES (?, ?)').run('session-1', staleSpecFolder);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:107:    const sessionRow = database.prepare('SELECT spec_folder FROM session_state WHERE session_id = ?').get('session-1') as { spec_folder: string };
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:120:  it('creates trigger-cache and temporal-contiguity indexes during the v24 upgrade', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:124:    database.exec('DROP INDEX IF EXISTS idx_trigger_cache_source');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:134:      'idx_trigger_cache_source',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:150:        session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:12:import { CO_ACTIVATION_CONFIG, spreadActivation } from '../cognitive/co-activation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:61:import type { SpreadResult } from '../cognitive/co-activation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:93:  /** Optional trigger phrases for query-classifier trigger-match routing path. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:94:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:199:/** Why degradation was triggered at a given tier. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:210:  trigger: DegradationTrigger;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:247:/** Number of top results used as seeds for co-activation spreading. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:464:    // (title 10x, trigger_phrases 5x, file_path 2x, content 1x)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:722:  trigger?: 'empty' | DegradationTrigger;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:796:    const trigger = checkDegradation(primaryResults);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:797:    if (!trigger) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:815:      trigger,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:838:      trigger: 'empty',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1009:    const routeResult = routeQuery(query, options.triggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1482:      // Boost scores of results that appear in co-activation graph
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1496:      // P1-2 FIX: Re-sort after co-activation boost to ensure boosted results
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1500:      // Non-critical enrichment — co-activation failure does not affect core ranking
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1501:      console.warn('[hybrid-search] co-activation enrichment failed:', err instanceof Error ? err.message : String(err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2009:/** Per-rank score decay for Tier-3 results, as a fraction of the top existing score. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2032:  const decayPerRank = topExisting * TIER3_DECAY_PER_RANK;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2035:    const calibrated = Math.max(0, topCap - (index * decayPerRank));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2153:    trigger: tier1Trigger,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2181:    trigger: tier2Trigger,
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:442:    // To call vector, graph, or trigger search paths (those are controlled by
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:20:vi.mock('../lib/parsing/trigger-matcher', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:40:vi.mock('../lib/cognitive/co-activation', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:64:    expect(result.triggerCacheCleared).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:82:      throw new Error('trigger cache failure');
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:88:    expect(result.triggerCacheCleared).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:93:    expect(result.errors).toEqual(['triggerMatcher.clearCache: trigger cache failure']);
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:96:      '[mutation-hooks] triggerMatcher.clearCache failed for operation="update":',
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:97:      'trigger cache failure'
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:9:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:34:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-denylist.vitest.ts:3:// Into learned relevance feedback trigger phrases.
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:65:} from '../lib/cognitive/co-activation';
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:231:      // S1 features: co-activation, RRF (on by default)
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:537:    it('15. Very old memory: decay applied, still scores > 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:699:      // Fan-effect: more relations = less total boost (1/sqrt(n) decay)
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:2:// Append-only audit trail with SQLite trigger enforcement
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:40:    session_id: 'sess-001',
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:70:    expect(names).toContain('session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:82:    expect(entry.session_id).toBe('sess-001');
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:160:  it('verifies append-only triggers exist', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:164:  it('verifyAppendOnly returns false when triggers are missing', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:180:      session_id: 'sess-merge-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:190:    expect(entry.session_id).toBe('sess-merge-1');
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:250:    // Table and triggers still work after re-init
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:57:    attentionScore: 0.77,
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:58:    triggerPhrases: ['alpha', 'beta'],
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:151:      attention: 0.77,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:82:    `INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at) VALUES (?, ?, ?, ?)`
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:228:        const remaining = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get('other-session') as CountRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:407:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('save-1') as SessionStateRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:425:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('save-2') as SessionStateRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:445:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('complete-1') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:469:        const row1 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-1') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:471:        const row2 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-2') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:514:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('recover-1') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:702:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('cp-1') as SessionStateRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:725:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('cp-2') as SessionStateRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:754:          const count = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get(sid) as CountRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:771:          const count = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get(sid) as CountRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:792:        // Manually trigger enforce via a new markMemorySent
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:793:        sm.markMemorySent(sid, mem({ id: 3004, anchorId: 'trigger-enforce' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:797:          'SELECT memory_hash FROM session_sent_memories WHERE session_id = ? ORDER BY sent_at ASC'
+.opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts:123:      claude_session_id: 'analytics-session',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts:124:      speckit_session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:39:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:44:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:52:  triggerPhrasesFormat?: 'list' | 'string' | 'empty_array';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:65:    triggerPhrases = ['pipeline-enforcement', 'save-pipeline-test', 'memory-gate-validation', 'enforcement-fixture'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:72:    triggerPhrasesFormat = 'list',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:94:    const triggerPhrasesYaml = triggerPhrasesFormat === 'string'
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:95:      ? `trigger_phrases: "${triggerPhrases.join(', ')}"`
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:96:      : triggerPhrasesFormat === 'empty_array'
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:97:        ? 'trigger_phrases: []'
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:98:        : `trigger_phrases:\n${triggerPhrases.map(tp => `  - "${tp}"`).join('\n')}`;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:107:    parts.push(triggerPhrasesYaml);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:226:session_id: "pipeline-enforcement-fixture"
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:433:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:445:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:453:  it('auto-fix rescues missing trigger phrases from headings', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:455:    // Content with headings (for trigger extraction) but NO trigger phrases and NO anchors.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:457:    //   triggers=0*0.25 + anchors=0.5*0.30 + budget=1.0*0.20 + coherence=0.75*0.25
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:458:    //   = 0 + 0.15 + 0.20 + 0.1875 = 0.5375 → below 0.6 → triggers auto-fix
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:459:    // After auto-fix extracts 4 triggers from title + headings:
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:460:    //   triggers=1.0*0.25 → total = 0.25 + 0.15 + 0.20 + 0.1875 = 0.7875 → passes!
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:462:    const metadata: Record<string, unknown> = { triggerPhrases: [], title: 'Gate Analysis' };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:467:    expect(result.fixes.some(f => /trigger phrase/i.test(f))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:477:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:487:    // Build content that would fail quality loop (no triggers, short, no structure)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:495:    const metadata: Record<string, unknown> = { triggerPhrases: parsed.triggerPhrases };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:507:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:511:    // Even if auto-fix extracted triggers, if total score still below threshold -> rejected
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:528:      triggerPhrases: ['test-trigger', 'enforcement', 'pipeline', 'gates'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:548:      triggerPhrases: ['trigger-a', 'trigger-b'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:564:      triggerPhrases: ['trigger'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:580:      triggerPhrases: ['pipeline-enforcement'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:596:      triggerPhrases: ['pipeline-enforcement'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:614:      triggerPhrases: ['trigger-a', 'trigger-b', 'trigger-c'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:637:      triggerPhrases: ['trigger-a', 'trigger-b', 'trigger-c'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:655:      triggerPhrases: ['trigger'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:716:  it('detects trigger_phrases as string instead of YAML list', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:717:    const content = buildValidPipelineMemory({ triggerPhrasesFormat: 'string' });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:721:    expect(result.violations.some(v => v.code === 'invalid_trigger_phrases')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:724:  it('accepts trigger_phrases as empty array []', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:725:    const content = buildValidPipelineMemory({ triggerPhrasesFormat: 'empty_array' });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:729:    const triggerViolation = result.violations.find(v => v.code === 'invalid_trigger_phrases');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:730:    expect(triggerViolation).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:786:      triggerPhrases: [],  // 0 trigger quality
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:811:      triggerPhrases: ['test'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:830:      triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:847:      triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:895:      triggerPhrases: ['pipeline-enforcement', 'save-pipeline-test', 'memory-gate-validation', 'enforcement-fixture'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:904:      triggerPhrases: ['pipeline-enforcement'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:922:      triggerPhrases: ['pipeline-enforcement'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:949:    // Now run quality gate with empty title and no triggers to force failure
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:954:      triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:959:      // Signal density should be low with null title and empty triggers
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:967:    // Content that would fail quality loop (no triggers, short, no anchors)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:969:    const metadata: Record<string, unknown> = { triggerPhrases: [] };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:980:      triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1042:    const qlMetadata: Record<string, unknown> = { triggerPhrases: parsed.triggerPhrases };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1067:      triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1080:    const content = `---\ntitle: "Anchor Stress Test"\ndescription: "test"\ntrigger_phrases:\n  - "anchor-stress"\nimportance_tier: "normal"\ncontextType: "implementation"\n---\n\n${anchors}`;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1091:  it('rejects emoji-only trigger phrases as non-semantic', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1092:    const content = buildValidPipelineMemory({ triggerPhrases: ['🎉', '🚀', '✅', '🔥'] });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1093:    const metadata: Record<string, unknown> = { triggerPhrases: ['🎉', '🚀', '✅', '🔥'] };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1095:    // Quality loop should penalize emoji-only triggers as they don't match retrieval patterns
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1102:      triggerPhrases: ['🎉', '🚀', '✅', '🔥'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1108:    // Emoji triggers (< 4 chars each after normalization) should be filtered
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1109:    expect(suffResult.evidenceCounts.triggerPhrases).toBeLessThan(4);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1166:  it('quality loop handles exactly 3 trigger phrases at boundary', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1168:      triggerPhrases: ['trigger-a', 'trigger-b', 'trigger-c'],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1171:    // 3 triggers → score 0.5 (below 4 threshold for perfect score)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1180:      triggerPhrases: ['test-trigger'],
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:86:      useDecay: { type: 'boolean', default: true, description: 'Apply temporal decay scoring to results' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:95:        description: 'Enable session-based score boost from working_memory attention signals. Defaults to SPECKIT_SESSION_BOOST env flag.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:212:  description: '[L2:Core] Fast trigger phrase matching with cognitive memory features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related memories. Pass session_id and turnNumber for cognitive features. Token Budget: 3500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:219:  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:294:  inputSchema: { type: 'object', additionalProperties: false, properties: { id: { type: 'number', minimum: 1, description: 'Memory ID to update' }, title: { type: 'string', description: 'New title' }, triggerPhrases: { type: 'array', items: { type: 'string' }, description: 'Updated trigger phrases' }, importanceWeight: { type: 'number', minimum: 0, maximum: 1, description: 'New importance weight (0-1)' }, importanceTier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Set importance tier. Constitutional tier memories always surface at top of results.' }, allowPartialUpdate: { type: 'boolean', default: false, description: 'Allow update to succeed even if embedding regeneration fails. When true, metadata changes are applied and the embedding is marked for re-index. When false (default), the entire update is rolled back on embedding failure.' } }, required: ['id'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:310:      searchMode: { type: 'string', description: 'Optional search mode context (search/context/trigger)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:522:        items: { type: 'string', enum: ['vector', 'bm25', 'fts5', 'graph', 'trigger'] },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:8:// Writes to a SEPARATE `learned_triggers` column (NOT FTS5 index).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:11:// 1. Separate column -- `learned_triggers` TEXT column, NOT in FTS5 index
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:19:// 9. Rollback mechanism -- can clear all learned triggers
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:22:// Query weight: 0.7x (learned triggers weighted lower than organic triggers)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:31:} from '../storage/learned-triggers-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:59:/** Result of a learned trigger query with 0.7x weighting. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:74:/** Learned trigger query weight multiplier (0.7x of organic triggers) */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:130: * SQL for partial covering index on learned_triggers (A2-P2-4).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:132: * Only indexes rows that actually have learned trigger data.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:135:  CREATE INDEX IF NOT EXISTS idx_memory_learned_triggers
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:136:  ON memory_index(id, learned_triggers)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:137:  WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:143: * Ensure the partial index on learned_triggers exists (idempotent, once per process).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:154:    console.error(`[learned-feedback] Failed to create learned_triggers index: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:192: * and existing triggers (Safeguards #3, #4).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:196: * - Terms must NOT already exist as organic trigger phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:201: * @param existingTriggers - Current trigger phrases already on the memory
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:219:      // Must not already be an organic trigger
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:277:      'SELECT created_at, trigger_phrases, learned_triggers FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:278:    ).get(memoryId) as { created_at?: string; trigger_phrases?: string; learned_triggers?: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:291:    // Extract existing organic triggers
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:293:    if (memory.trigger_phrases) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:294:      if (Array.isArray(memory.trigger_phrases)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:295:        existingTriggers = memory.trigger_phrases;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:298:          const parsed = JSON.parse(memory.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:299:          existingTriggers = Array.isArray(parsed) ? parsed : [memory.trigger_phrases];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:301:          existingTriggers = memory.trigger_phrases.split(',').map((t: string) => t.trim());
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:329:    // Apply learned triggers (Safeguard #1 -- separate column, NOT FTS5)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:344: * Apply learned trigger terms to a memory's learned_triggers column.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:347: * CRITICAL: Writes ONLY to memory_index.learned_triggers column,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:351: * @param terms - Terms to add as learned triggers
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:363:      'SELECT learned_triggers FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:364:    ).get(memoryId) as { learned_triggers?: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:370:    const existing = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:398:    // CRITICAL: Update ONLY the learned_triggers column on memory_index.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:401:      'UPDATE memory_index SET learned_triggers = ? WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:443: * Query learned triggers for search results, applying 0.7x weight.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:445: * Searches the learned_triggers column (NOT FTS5) for matches against
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:477:    // Fetch memories that have learned triggers (uses idx_memory_learned_triggers partial index)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:479:      `SELECT id, learned_triggers FROM memory_index WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:480:    ).all() as Array<{ id: number; learned_triggers: string }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:486:      const entries = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:527:      `SELECT id, learned_triggers FROM memory_index WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:528:    ).all() as Array<{ id: number; learned_triggers: string }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:536:      const entries = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:555:          'UPDATE memory_index SET learned_triggers = ? WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:571: * Clear ALL learned triggers from all memories (Safeguard #9 -- Rollback).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:575: * @returns Number of memories that had triggers cleared
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:584:      `SELECT id, learned_triggers FROM memory_index WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:585:    ).all() as Array<{ id: number; learned_triggers: string }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:588:      const entries = parseLearnedTriggers(row.learned_triggers);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:603:    // Reset all learned_triggers to empty
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:605:      `UPDATE memory_index SET learned_triggers = '[]' WHERE learned_triggers IS NOT NULL AND learned_triggers != '[]'`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:609:    console.warn(`[learned-feedback] Rollback complete: cleared learned triggers from ${count} memories`);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:5:import * as triggerHandler from '../handlers/memory-triggers';
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:6:import * as triggerMatcher from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:7:import * as attentionDecay from '../lib/cognitive/attention-decay';
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:8:import * as coActivation from '../lib/cognitive/co-activation';
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:30:        { name: 'triggerHandler', ref: triggerHandler },
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:32:      if (triggerMatcher) modules.push({ name: 'triggerMatcher', ref: triggerMatcher });
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:33:      if (attentionDecay) modules.push({ name: 'attentionDecay', ref: attentionDecay });
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:38:      expect(triggerHandler).toBeTruthy();
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:47:      const response = await triggerHandler.handleMemoryMatchTriggers(
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:48:        {} as Parameters<typeof triggerHandler.handleMemoryMatchTriggers>[0]
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:57:      const response = await triggerHandler.handleMemoryMatchTriggers({ prompt: '' });
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:65:      // Should not throw an input validation error about session_id/turnNumber.
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:68:        await triggerHandler.handleMemoryMatchTriggers({
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:69:          prompt: 'test trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:70:          session_id: 'sess-test-001',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:71:          turnNumber: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:76:        expect(message).not.toMatch(/session_id/);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:77:        expect(message).not.toMatch(/turnNumber/);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:81:    it('T527-5: include_cognitive parameter accepted', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:83:        await triggerHandler.handleMemoryMatchTriggers({
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:84:          prompt: 'test trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:85:          include_cognitive: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:88:        // Fail only if the error is specifically about include_cognitive
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:89:        expect(getErrorMessage(error)).not.toMatch(/include_cognitive/);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:99:      expect(typeof triggerHandler.handleMemoryMatchTriggers).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:100:      const fn = triggerHandler.handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:106:      const response = await triggerHandler.handleMemoryMatchTriggers(
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:107:        {} as Parameters<typeof triggerHandler.handleMemoryMatchTriggers>[0]
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:117:      const response = await triggerHandler.handleMemoryMatchTriggers(
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:118:        { prompt: 12345 } as unknown as Parameters<typeof triggerHandler.handleMemoryMatchTriggers>[0]
+.opencode/skills/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:104:    expect(events.every((event) => event.session_id === 'sess-e')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:13:describe('FSRS hybrid decay policy', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-hybrid-decay.vitest.ts:40:  it('makes applyClassificationDecay honor the hybrid no-decay override when enabled', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:14:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:389:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('old-session', 1, 0.5, '${oldTime}')`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:390:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('fresh-session', 2, 0.8, '${new Date().toISOString()}')`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:395:    const remaining = db.prepare('SELECT session_id, memory_id FROM working_memory').all() as WorkingMemoryRow[];
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:397:    expect(remaining[0].session_id).toBe('fresh-session');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:418:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', 1, 0.9)`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:437:      db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', ${i}, ${score})`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:457:        INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:464:    const remaining = db.prepare('SELECT memory_id FROM working_memory WHERE session_id = ? ORDER BY memory_id').all('s1') as Array<Pick<WorkingMemoryRow, 'memory_id'>>;
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:487:      db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', ${i}, 0.5)`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:489:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s2', ${maxCap + 1}, 0.5)`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:490:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s2', ${maxCap + 2}, 0.5)`);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store.vitest.ts:38:      id, spec_folder, file_path, title, trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:4:import * as triggerHandler from '../handlers/memory-triggers';
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:59:    it('T531-3: session_id parameter accepted by triggers', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:62:          triggerHandler.handleMemoryMatchTriggers({
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:63:            prompt: 'test session trigger',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:64:            session_id: 'dedup-session-003',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:71:        expect(getErrorMessage(error)).not.toContain('session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:43:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:54:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:117:  it('T003: quick mode has triggers strategy and 800 token budget', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:119:    expect(quickMode.strategy).toBe('triggers');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:399:  it('T031: Quick mode strategy is triggers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:400:    expect(CONTEXT_MODES.quick.strategy).toBe('triggers');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:419:      desc.includes('reactive') || desc.includes('trigger') || desc.includes('real-time')
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:34:} from '../lib/cognitive/co-activation';
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:42:} from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:43:import type { TriggerMatch } from '../lib/parsing/trigger-matcher';
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:312:  it('T002.3 — degree channel triggers convergence bonus when memory appears in multiple channels', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:419:    // Total boost DECREASES as relatedCount increases (1/sqrt(n) decay).
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:424:  it('T003a.2 — fan-effect decay verified across 5 data points', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:508:  it('T005a.3 — "i was wrong" triggers correction category', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:650:describe('Cross-feature: degree + co-activation interaction', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:653:  it('CF.1 — degree ranking and co-activation boost compound to promote well-connected memories', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:670:    // Now apply co-activation boost on top of a hypothetical base score
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:24:      INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:31:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:52:        trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:127:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:128:      getTestDb().prepare('DELETE FROM session_state WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:145:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:159:        'SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:164:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:165:      getTestDb().prepare('DELETE FROM session_sent_memories WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:205:          session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:207:          attention_score REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:211:          UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:215:        INSERT INTO working_memory (session_id, memory_id, attention_score, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:229:        WHERE session_id = 'legacy-session' AND memory_id = 1
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:89:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:91:      attention_score REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:101:      UNIQUE(session_id, memory_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:114:      session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:146:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:153:      session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:166:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:170:      PRIMARY KEY (session_id, memory_hash)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:206:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:215:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:221:      learned_triggers
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:254:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:263:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:269:      learned_triggers
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:301:      id, session_id, memory_id, attention_score, added_at, last_focused, focus_count,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:323:      id, timestamp, mutation_type, reason, prior_hash, new_hash, linked_memory_ids, decision_meta, actor, session_id
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:357:    INSERT INTO session_learning (id, session_id, memory_id, insight, created_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:363:      id, action, decision, memory_id, logical_key, tenant_id, user_id, agent_id, session_id, shared_space_id, reason, metadata, created_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:385:      session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:390:    INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:99:      const triggers = memoryParser.extractTriggerPhrases(content);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:103:      expect(Array.isArray(triggers)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:104:      expect(triggers.length).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:177:    it('T500-06a: Inline YAML trigger phrases extracted', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:179:triggerPhrases: ["save context", "memory save", "persist state"]
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:184:      const triggersInline = memoryParser.extractTriggerPhrases(contentInline);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:186:      expect(Array.isArray(triggersInline)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:187:      expect(triggersInline.length).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:188:      expect(triggersInline).toContain('save context');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:189:      expect(triggersInline).toContain('memory save');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:190:      expect(triggersInline).toContain('persist state');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:193:    it('T500-06b: Multi-line YAML trigger phrases extracted', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:195:triggerPhrases:
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:203:      const triggersMulti = memoryParser.extractTriggerPhrases(contentMultiLine);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:205:      expect(Array.isArray(triggersMulti)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:206:      expect(triggersMulti.length).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:211:triggerPhrases: ["frontmatter trigger"]
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:220:triggerPhrases:
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:221:  - body trigger
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:224:      expect(memoryParser.extractTriggerPhrases(content)).toEqual(['frontmatter trigger']);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:349:triggerPhrases: ["alpha", "beta", "gamma"]
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:354:      const triggers = memoryParser.extractTriggerPhrases(content);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:355:      expect(Array.isArray(triggers)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:356:      expect(triggers.length).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:370:      const triggers = memoryParser.extractTriggerPhrases(content);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:375:      expect(triggers).toEqual([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:7:// - Quality score computation (trigger phrases, anchors, budget, coherence)
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:8:// - Auto-fix strategies (re-extract triggers, normalize anchors, trim budget)
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:67:  triggerPhrases: ['sprint 0', 'measurement foundation', 'eval infrastructure', 'retrieval quality'],
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:75:  triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:105:  it('returns 0 when no trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:106:    const result = scoreTriggerPhrases({ triggerPhrases: [] });
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:109:    expect(result.issues[0]).toMatch(/no trigger phrases/i);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:112:  it('returns 0.5 for 1-3 trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:113:    const result = scoreTriggerPhrases({ triggerPhrases: ['a', 'b'] });
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:116:    expect(result.issues[0]).toMatch(/2 trigger phrase/i);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:119:  it('returns 1.0 for 4+ trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:120:    const result = scoreTriggerPhrases({ triggerPhrases: ['a', 'b', 'c', 'd'] });
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:125:  it('handles missing triggerPhrases field gracefully', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:283:    expect(score.breakdown.triggers).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:291:    // BAD_CONTENT = 'short': triggers=0, anchors=0.5 (neutral), budget=1.0, coherence=0.25
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:294:    expect(score.breakdown.triggers).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:300:    const weightSum = QUALITY_WEIGHTS.triggers + QUALITY_WEIGHTS.anchors +
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:307:    if (score.breakdown.triggers === 1.0 && score.breakdown.anchors === 1.0 &&
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:314:    const score = computeMemoryQualityScore(BROKEN_ANCHOR_CONTENT, { triggerPhrases: ['test'] });
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:363:  it('extracts title as trigger phrase', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:364:    const triggers = extractTriggersFromContent('# Heading\nContent', 'My Title');
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:365:    expect(triggers).toContain('my title');
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:368:  it('extracts markdown headings as triggers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:370:    const triggers = extractTriggersFromContent(content);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:371:    expect(triggers.length).toBeGreaterThanOrEqual(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:372:    expect(triggers).toContain('first heading');
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:373:    expect(triggers).toContain('second heading');
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:374:    expect(triggers).toContain('third heading');
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:377:  it('caps triggers at 8', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:379:    const triggers = extractTriggersFromContent(headings);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:380:    expect(triggers.length).toBeLessThanOrEqual(8);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:385:    const triggers = extractTriggersFromContent(content);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:387:    expect(triggers).not.toContain('hi');
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:396:  it('re-extracts trigger phrases when missing', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:398:    const metadata = { triggerPhrases: [], title: 'My Document' };
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:399:    const result = attemptAutoFix(content, metadata, ['No trigger phrases found']);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:402:    expect((result.metadata.triggerPhrases as string[]).length).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:407:    const metadata = { triggerPhrases: ['test'] };
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:415:    const metadata = { triggerPhrases: ['test', 'a', 'b', 'c'] };
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:422:    const result = attemptAutoFix('content', { triggerPhrases: ['a'] }, ['some random issue']);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:474:    const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 2 });
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:484:    const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:493:    // Content that is close to threshold but below 0.6 without triggers.
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:494:    // Has no anchors (0.5 neutral), no triggers (0), budget ok (1.0), coherence (1.0).
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:497:    // After auto-fix extracts triggers (0.5 for 1-3): total = 0.5*0.25 + 0.5*0.30 + 1.0*0.20 + 1.0*0.25 = 0.125 + 0.15 + 0.20 + 0.25 = 0.725
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:512:    const fixableMetadata = { triggerPhrases: [], title: 'Important Sprint Documentation' };
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:515:    // After auto-fix extracts triggers from headings, score should improve above 0.65
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:519:    expect(result.fixes.some(f => /trigger/i.test(f))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:528:    // BAD_CONTENT is 'short' with no triggers — score.total is close to 0
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:537:    const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:553:    const metadata = { triggerPhrases: [], title: 'Title Here' };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:10:  parse_trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:34:    triggerCacheCleared: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:80:vi.mock('../lib/parsing/trigger-matcher', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:164:      triggerCacheCleared: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:39:    triggerPhrases: ['embedding optimization', 'rollback decision'],
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:53:      '- Keep retrieval-time decay unchanged',
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:103:        'Keep retrieval-time decay unchanged',
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-cleanup-ordering.vitest.ts:51:        triggerPhrases: [],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:37:/** Gap multiplier: gap must exceed this multiple of the median gap to trigger truncation.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:51:  /** Low-confidence threshold — results below this trigger recovery. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:59:// Minimum result count considered "good enough" — fewer than this triggers partial recovery.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:22:        session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:28:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:32:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:36:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:4:// Feature catalog: Classification-based decay
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:6:// Central nodes decay slower and peripheral nodes decay faster.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:33: * nodes (low centrality) decay faster — reflecting the intuition that
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:49:/** Per-hop decay factor applied to traversal score. 1-hop = 1.0, 2-hop = 0.5. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:105:  attentionScore?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:272: * Compute hop decay factor. Formula: HOP_DECAY_BASE / hopDistance.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:378:    attentionScore: score,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:400: * Compute the hop-distance decay boost: MAX_BOOST_PER_HOP / hopDistance,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:482:      // C138-P2: Combine hop-distance decay with relation-weighted walk score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:510:    SELECT id, spec_folder, file_path, title, importance_tier, trigger_phrases, created_at
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:641:      attentionScore: score,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts:287:        // Can trigger OOM or context mixing on local LLM inference.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts:348:  // If modelLoadPromise is pending when shutdown triggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:52:    vi.doMock('../handlers/memory-triggers', () => ({
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:5:/** Maximum trigger phrases stored for each memory. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:42:  trigger_phrases?: string | string[] | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:43:  triggerPhrases?: string | string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:81:  trigger_phrases?: string | string[] | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:105:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:120:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:180: * Parses trigger phrase storage into a normalized string array.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:181: * @param value - The stored trigger phrase payload.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:182: * @returns Parsed trigger phrases, or an empty array on invalid input.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:184:export function parse_trigger_phrases(value: string | string[] | null | undefined): string[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:163:    triggerPhrases = [],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:189:  const triggers_json = JSON.stringify(triggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:202:      triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:222:        spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:228:      specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:272:    triggerPhrases = [],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:285:  const triggers_json = JSON.stringify(triggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:298:            trigger_phrases = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:313:      `).run(title, triggers_json, importanceWeight, canonicalFilePath, failureReason, now, encodingIntent, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:321:        spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:327:      specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:359:    triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:392:    if (triggerPhrases !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:393:      updates.push('trigger_phrases = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:394:      values.push(JSON.stringify(triggerPhrases));
+.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:72:  it('T6: single very low score triggers gap via absolute threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:100:  it('T8: all scores below MIN_ABSOLUTE_SCORE trigger gap regardless of Z', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:24: * Session attention boost for search result re-ranking.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:375: * REQ-D4-002: Hybrid decay policy — type-aware no-decay for permanent artifacts.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:378: * stability (no decay). All other types follow the standard FSRS schedule.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:599: * Queries causal_edges for neighbor titles when recovery triggers.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:4:// Feature catalog: BM25 trigger phrase re-index gate
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:31:  trigger_phrases?: string | string[] | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:55: * trigger_phrases:  5.0 — curated keywords next most important
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:63:  trigger_phrases: BM25_FTS5_WEIGHTS[1],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:181:function normalizeTriggerPhrasesForBM25(triggerPhrases: string | string[] | null | undefined): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:182:  if (Array.isArray(triggerPhrases)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:183:    return triggerPhrases
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:188:  if (typeof triggerPhrases !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:192:  const trimmed = triggerPhrases.trim();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:222:  const triggerPhrases = normalizeTriggerPhrasesForBM25(row.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:223:  if (triggerPhrases) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:224:    textParts.push(triggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:380:        `SELECT id, title, content_text, trigger_phrases, file_path
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:388:        trigger_phrases: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:11:  parse_trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:260: * Learns new trigger phrases from a selected result.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:263: * @returns True when trigger phrases were updated.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:270:  let memory: { trigger_phrases?: string | null } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:273:      'SELECT trigger_phrases FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:274:    ).get(selected_memory_id) as { trigger_phrases?: string | null } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:284:    existing = parse_trigger_phrases(memory.trigger_phrases || undefined);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:314:      'UPDATE memory_index SET trigger_phrases = ? WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:163:  // BM25-inspired weights: title(10) highest signal, content(5), triggers(2), folder(1).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:5:// 100+ stop words that should never be learned as trigger phrases.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:57:   to serve as meaningful trigger phrases.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:76: * as trigger phrases. All terms stored in lowercase for case-insensitive matching.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:74:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:129:    session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:422:// V21: Add learned_triggers column (R11 learned feedback)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:425:// V24: Add trigger-cache source and temporal contiguity indexes
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:554:        database.exec('CREATE INDEX IF NOT EXISTS idx_memory_type_decay ON memory_index(memory_type, half_life_days)');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:754:            title, trigger_phrases, file_path, content_text,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:761:            INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:762:            VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:767:            INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:768:            VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:769:            INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:770:            VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:775:            INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:776:            VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1068:  // V20 -> v21: Add learned_triggers column (R11 learned feedback)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1071:      database.exec("ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]'");
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1072:      logger.info('Migration v21: Added learned_triggers column (R11)');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1075:        console.warn('[VectorIndex] Migration v21 warning (learned_triggers):', get_error_message(e));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1134:      'idx_trigger_cache_source',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1135:      `CREATE INDEX IF NOT EXISTS idx_trigger_cache_source
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1138:         AND trigger_phrases IS NOT NULL
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1139:         AND trigger_phrases != '[]'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1140:         AND trigger_phrases != ''`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1149:    logger.info('Migration v24: Created trigger-cache source and temporal contiguity indexes');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1449:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1461:      ON governance_audit(tenant_id, user_id, agent_id, session_id, shared_space_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1467:        ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1765:  if (!column_names.includes('session_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1767:      database.exec(`ALTER TABLE memory_index ADD COLUMN session_id TEXT`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1768:      console.warn('[vector-index] Migration: Added session_id column');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1773:      logDuplicateColumnMigrationSkip('session_id', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1789:  if (!column_names.includes('decay_half_life_days')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1791:      database.exec(`ALTER TABLE memory_index ADD COLUMN decay_half_life_days REAL DEFAULT 90.0`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1792:      console.warn('[vector-index] Migration: Added decay_half_life_days column');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1797:      logDuplicateColumnMigrationSkip('decay_half_life_days', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2070:      CREATE INDEX IF NOT EXISTS idx_trigger_cache_source
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2073:        AND trigger_phrases IS NOT NULL
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2074:        AND trigger_phrases != '[]'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2075:        AND trigger_phrases != ''
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2077:    logger.info('Created idx_trigger_cache_source index');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2079:    console.warn('[vector-index] Failed to create idx_trigger_cache_source', {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2081:      index: 'idx_trigger_cache_source',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2190:    'UPDATE session_state SET spec_folder = ? WHERE session_id = ? AND spec_folder = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2194:    `SELECT session_id, spec_folder FROM session_state WHERE spec_folder IS NOT NULL`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2195:  ).all() as Array<{ session_id: string; spec_folder: string }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2202:      updateStmt.run(canonical, row.session_id, row.spec_folder);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2306:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2317:      decay_half_life_days REAL DEFAULT 90.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2325:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2355:      learned_triggers TEXT DEFAULT '[]',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2385:      title, trigger_phrases, file_path, content_text,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2390:  // Create FTS5 sync triggers (includes content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2393:      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2394:      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2400:      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2401:      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2402:      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2403:      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2409:      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2410:      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2435:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2436:    CREATE INDEX IF NOT EXISTS idx_memories_governed_scope ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2439:    CREATE INDEX IF NOT EXISTS idx_trigger_cache_source
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2442:        AND trigger_phrases IS NOT NULL
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2443:        AND trigger_phrases != '[]'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2444:        AND trigger_phrases != '';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2461:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:137:  // Feedback boost (learned trigger weight)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:206:    if (signal === 'graph_boosted') return 'graph co-activation';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:207:    if (signal === 'session_boosted') return 'session attention';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:211:    if (signal === 'feedback_boosted') return 'learned trigger';
+.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts:60:/** Minimum file size (chars) to trigger chunking */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/deterministic-extractor.ts:190: * @param onWriteFn - Callback to trigger graph refresh for newly inserted edges.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:373:    // generate a basic reformulation to trigger the parallel search path.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:76: * Check if the query exactly matches any known trigger phrase (case-insensitive).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:79: * @param triggerPhrases - Known trigger phrases to match against.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:80: * @returns True when the query matches a trigger phrase exactly.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:82:function hasTriggerMatch(query: string, triggerPhrases: string[]): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:83:  if (triggerPhrases.length === 0) return false;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:85:  return triggerPhrases.some(tp => tp.trim().toLowerCase() === normalized);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:95: * @param hasTrigger    - Whether a trigger phrase matched.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:130: * - Simple: ≤3 terms OR trigger phrase match
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:131: * - Complex: >8 terms AND no trigger match
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:140: * @param triggerPhrases - Optional array of known trigger phrases.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:145:  triggerPhrases?: string[],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:168:    const triggers = triggerPhrases ?? [];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:169:    const triggerMatch = hasTriggerMatch(query, triggers);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:176:    if (triggerMatch || termCount <= SIMPLE_TERM_THRESHOLD) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:178:    } else if (termCount > COMPLEX_TERM_THRESHOLD && !triggerMatch) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:184:    const confidence = determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:191:        hasTriggerMatch: triggerMatch,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:21:  attentionScore?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:82:  'similarity' | 'score' | 'importance_weight' | 'rrfScore' | 'intentAdjustedScore' | 'attentionScore'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:191: * Executes search channels (FTS5, semantic, trigger, graph, co-activation)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:224: * Single point for ALL scoring signals: RRF/RSF, causal boost, co-activation,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:373:  attentionScore?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:387:    attentionScore: r.attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:434:    if (row.attentionScore !== snap.attentionScore) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:436:        `[Stage4Invariant] Score mutation detected: id=${snap.id} attentionScore changed from ${snap.attentionScore} to ${row.attentionScore}`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:151: * This gives title matches 10x weight, trigger_phrases 5x, etc.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:15://     - Learned trigger and negative-feedback reads from DB
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:22:// 1.  Session boost           — working-memory attention amplification
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:23:// 1a. Recency fusion          — time-decay bonus for recent memories
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:31:// 6.  Feedback signals        — learned trigger boosts + negative demotions
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:62:} from '../../cognitive/co-activation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:63:import type { SpreadResult } from '../../cognitive/co-activation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:121:/** Number of top results used as seeds for co-activation spreading. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:277:    // Preserve attentionScore — it is set by the attention-decay module and
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:290:    // Preserve attentionScore — it is set by the attention-decay module and
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:398: * a graph-based boost. Extracts contributing causal edges, co-activation edges,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:514:    if (coActivationDelta !== 0) boostFactors.push({ type: 'co-activation', delta: coActivationDelta });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:692: * Apply feedback signals — learned trigger boosts and negative feedback demotions.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:694: * Learned triggers: each memory that matches the query's learned terms receives
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:697: * configured learned-trigger weighting (0.7x).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:705: * @param query   - Original search query (used for learned trigger matching)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:726:  // -- Learned trigger boosts --
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:737:    console.warn(`[stage2-fusion] learned trigger query failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:757:    // Apply learned trigger boost (additive to base score, capped at 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:930: *   1.  Session boost      (hybrid only — working memory attention)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:931: *   1a. Recency fusion     (all types — time-decay bonus)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:939: *   6.  Feedback signals   (all types — learned triggers + negative feedback)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:978:  // Only for hybrid search type — session attention signals are most meaningful
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:999:  // Applies a time-decay bonus to each candidate based on its created_at timestamp.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1057:  // Appear in the co-activation graph. Matches V1 hybrid-search behavior.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1076:              // Uses the same sqrt scaling as co-activation.ts boostScore().
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1080:              return withGraphContribution(updated, 'coActivationDelta', resolveBaseScore(updated) - baseScore, 'co-activation');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1084:          // Re-sort after co-activation boost to ensure boosted results
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1091:      // Non-critical enrichment — co-activation failure does not affect core ranking
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1093:      console.warn(`[stage2-fusion] co-activation spreading failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:31: * When enabled, session attention scores from working_memory are used
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:72:function calculateSessionBoost(attentionScore: number, causalBoost: number = 0): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:73:  if (!Number.isFinite(attentionScore) || attentionScore <= 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:77:  const rawBoost = attentionScore * SESSION_BOOST_MULTIPLIER;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:96:      SELECT memory_id, attention_score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:98:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:102:      attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:106:      const boost = calculateSessionBoost(row.attention_score);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:176:          // M11 FIX: Preserve original attentionScore (working-memory signal),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:178:          attentionScore: result.attentionScore ?? finalScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:44:  'trigger_phrases',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:55:  'decay_half_life_days',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:60:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:120:      trigger_phrases TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:131:      decay_half_life_days REAL DEFAULT 90.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:136:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:175:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:191:    CREATE INDEX IF NOT EXISTS idx_memory_type_decay ON memory_index(memory_type, half_life_days);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:206:      title, trigger_phrases, file_path, content_text,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:213:      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:214:      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:220:      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:221:      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:222:      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:223:      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:229:      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:230:      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:359:          attentionScore: original?.attentionScore ?? row.attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:423:        attentionScore: original.attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:707:    // Validate ALL PerFolderDescription fields — type mismatch triggers spec.md fallback.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:723:      return null; // Structurally invalid — triggers spec.md fallback
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:135: * @param triggerPhrases - Optional trigger phrases for simple-tier classification
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:140:  triggerPhrases?: string[],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:142:  const classification = classifyQueryComplexity(query, triggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:17:/** Absolute minimum score; any top score below this triggers a gap. */
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:215:    const decayDays = getRecencyDecayDays();
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:216:    recencyScore = Math.max(0, Math.min(1, 1 - (ageDays / decayDays)));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:7:// DECAY STRATEGY (ADR-004): Search-time temporal decay uses an
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:32:  parse_trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:651:      row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:981:      trigger_phrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:982:      triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:992:      triggerPhrases: metadata_alias.trigger_phrases || metadata_alias.triggerPhrases || [],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-expander.ts:54:  trigger: ['activation', 'match-phrase'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:17:  parse_trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:71:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:96:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:202:  // ADR-004: FSRS-preferred decay with half-life fallback
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:203:  const decay_expr = useDecay
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:211:         ELSE m.importance_weight * POWER(0.5, (julianday('now') - julianday(m.updated_at)) / COALESCE(NULLIF(m.decay_half_life_days, 0), 90.0))
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:264:             ${decay_expr} as effective_importance
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:278:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:400:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:659:      parse_trigger_phrases(row.trigger_phrases).join(' '),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:670:        if (parse_trigger_phrases(row.trigger_phrases).join(' ').toLowerCase().includes(term)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:686:    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:54:  hebbian: { strengthened: number; decayed: number };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:333: * 30-day decay: edges not accessed in 30 days lose 0.1 strength.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:337:export function runHebbianCycle(database: Database.Database): { strengthened: number; decayed: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:339:  let decayed = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:378:          updateEdge(edge.id, { strength: newStrength }, 'hebbian', 'decay-30-day');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:379:          decayed++;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:388:  return { strengthened, decayed };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:432: * 2. Hebbian strengthening + decay
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:443:  // T002b: Hebbian strengthening + decay
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:236:      // D3-fix: trigger_phrases may be string[] (parsed) or string (raw JSON)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:237:      const triggers = mem.trigger_phrases;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:238:      if (Array.isArray(triggers) && triggers.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:239:        contents.push(triggers.join(' '));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:240:      } else if (typeof triggers === 'string' && triggers.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:241:        contents.push(triggers);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:290: * Useful in Stage 1 for conditional branching without triggering the
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:37:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:212:    ['session', normalizeScopeValue(row.session_id)],
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:462:      trigger_phrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:482:    JSON.stringify(parsed.triggerPhrases),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:529:        trigger_phrases: parsed.triggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:282:    // This state and trigger recovery (e.g., re-index from DB or replay the write).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:56: * Controls when dirty-node recomputation is triggered after write operations.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:337: * call triggers execution.  The actual refresh callback (`_globalRefreshFn`)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:375:  logger.warn('Global graph refresh triggered but no refresh function registered.');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:320:  'learned_feedback_audit', 'learned_trigger_scores', 'learned_trigger_feedback',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:443:    || columns.has('session_id')
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1109:        session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1111:        attention_score REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1121:        UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1284:  if ((column === 'trigger_phrases' || column === 'quality_flags') && Array.isArray(value)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1316:    'trigger_phrases',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1327:    'decay_half_life_days',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1332:    'session_id',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1678:    // Merge mode: INSERT OR REPLACE triggers CASCADE DELETE on working_memory
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1825:          // Apply the snapshot values without triggering CASCADE deletes.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1883:      // Throw to trigger ROLLBACK — this undoes both the DELETEs and partial INSERTs,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:39:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:60:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:5:// Schema migration for the learned_triggers column.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:7:// ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:13:// Rollback: ALTER TABLE memory_index DROP COLUMN learned_triggers;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:22: * A single learned trigger entry stored in the learned_triggers JSON array.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:39:/** Column name for learned triggers (NOT in FTS5 index) */
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:40:export const LEARNED_TRIGGERS_COLUMN = 'learned_triggers';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:42:/** Default value for the learned_triggers column */
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:50: * Add the learned_triggers column to memory_index if it does not already exist.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:55: *   title, trigger_phrases, file_path, content_text
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:56: * learned_triggers is deliberately excluded to keep user-generated content
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:76:    console.warn('[learned-triggers-schema] Migration complete: learned_triggers column added');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:84:    console.error(`[learned-triggers-schema] Migration failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:94: * CRITICAL test: Verify that learned_triggers is NOT present in the
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:99: *   title, trigger_phrases, file_path, content_text
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:101: * If learned_triggers appears in FTS5, it means user-generated feedback
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:105: * @returns true if isolation is verified (learned_triggers NOT in FTS5)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:106: * @throws Error if learned_triggers IS found in FTS5 (critical violation)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:122:    // Check that learned_triggers does NOT appear in the FTS5 CREATE statement
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:123:    if (createSql.includes('learned_triggers')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:125:        'CRITICAL: learned_triggers found in FTS5 index (memory_fts). ' +
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:126:        'This violates data isolation requirements. Learned triggers must ' +
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:127:        'ONLY exist in the memory_index.learned_triggers column, never in FTS5.'
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:137:    console.error(`[learned-triggers-schema] FTS5 isolation check failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:147: * Drop the learned_triggers column from memory_index.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:164:    console.warn('[learned-triggers-schema] Rollback complete: learned_triggers column removed');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:168:    console.error(`[learned-triggers-schema] Rollback failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:178: * Parse the learned_triggers JSON column value into typed entries.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:181: * @returns Parsed array of learned trigger entries
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:203: * Serialize learned trigger entries to JSON for storage.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:205: * @param entries - Array of learned trigger entries
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:6:// SQLite triggers enforce immutability (no UPDATE/DELETE on ledger)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:27:  session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:38:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:44:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:74:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:100:    session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:108:  CREATE INDEX IF NOT EXISTS idx_ledger_session ON mutation_ledger(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:150:    INSERT INTO mutation_ledger (mutation_type, reason, prior_hash, new_hash, linked_memory_ids, decision_meta, actor, session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:162:    entry.session_id ?? null
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:187:  if (opts.session_id) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:188:    conditions.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:189:    params.push(opts.session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:241: * Verify that append-only triggers exist on the mutation_ledger table.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:242: * Returns true if both UPDATE and DELETE triggers are present.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:245:  const triggers = db.prepare(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:246:    "SELECT name FROM sqlite_master WHERE type = 'trigger' AND tbl_name = 'mutation_ledger'"
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:249:  const names = triggers.map(t => t.name);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:395:        session_id: input.session_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:431:      session_id: input.session_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:60:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:278:      const mergedTriggerPhrases = buildMergedTriggerPhrases(currentRow, newMemory.triggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:285:        trigger_phrases: mergedTriggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:303:        trigger_phrases: mergedTriggerPhrases,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:854:  triggerPhrases?: string[],
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:856:  if (Array.isArray(triggerPhrases)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:857:    return JSON.stringify(triggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:859:  const existingValue = existingRow.trigger_phrases;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:922:    session_id: existingRow.session_id,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '180,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '180,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    180	/* ───────────────────────────────────────────────────────────────
    181	   3. MATCH TRIGGERS HANDLER
@@ -10550,7 +10550,7 @@ exec
    460	        tier: r.tier,
 
 exec
-/bin/zsh -lc 'rg -n "startup|scan|watcher|embedding model|waitForEmbeddingModel|ALLOWED_BASE_PATHS|BACKGROUND|inline reindex|selective_reindex|bootstr|resume|latencyMs|GRAPH_ENRICHMENT_TIMEOUT_MS|DynamicMemoryStats|AutoSurfaceResult|dirty|recompute|code_graph_scan" .opencode/skill/system-spec-kit/mcp_server/context-server.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "startup|scan|watcher|embedding model|waitForEmbeddingModel|ALLOWED_BASE_PATHS|BACKGROUND|inline reindex|selective_reindex|bootstr|resume|latencyMs|GRAPH_ENRICHMENT_TIMEOUT_MS|DynamicMemoryStats|AutoSurfaceResult|dirty|recompute|code_graph_scan" .opencode/skills/system-spec-kit/mcp_server/context-server.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 5:// Logic in tools/*.ts. This file retains server init, startup,
 22:  ALLOWED_BASE_PATHS,
@@ -10661,7 +10661,7 @@ exec
 1891:  setImmediate(() => startupScan(DEFAULT_BASE_PATH));
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '1480,1765p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '1480,1765p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1480	async function main(): Promise<void> {
   1481	  // Node version mismatch detection (non-blocking)
@@ -10951,9 +10951,9 @@ exec
   1765	      if (shadowSchedulerStarted) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '1884,1910p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '1884,1910p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '1230,1335p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '1230,1335p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1884	  }
   1885	
@@ -11823,9 +11823,9 @@ exec
    239	        )
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '480,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '480,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "executePipeline|toolCache|includeContent|progressive|cache|rerank|stage|fusion|community fallback|session boost|causal boost" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "executePipeline|toolCache|includeContent|progressive|cache|rerank|stage|fusion|community fallback|session boost|causal boost" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 8:import * as toolCache from '../lib/cache/tool-cache.js';
 14:// 4-stage pipeline architecture
@@ -12273,7 +12273,7 @@ exec
    860	      }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '860,1260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '860,1260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    860	      }
    861	    }
@@ -12699,7 +12699,7 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - **Source strength**: primary
 
 ### Finding 2: Hook-enforced preservation trades compaction safety for user-visible latency spikes and maintenance debt
-- **Source**: `external/hooks/mempal_save_hook.sh` [SOURCE: external/hooks/mempal_save_hook.sh:55-150], `external/hooks/mempal_precompact_hook.sh` [SOURCE: external/hooks/mempal_precompact_hook.sh:49-76], `external/mempalace/mcp_server.py` [SOURCE: external/mempalace/mcp_server.py:326-381], `external/mempalace/dedup.py` [SOURCE: external/mempalace/dedup.py:51-127], `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-92], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-416]
+- **Source**: `external/hooks/mempal_save_hook.sh` [SOURCE: external/hooks/mempal_save_hook.sh:55-150], `external/hooks/mempal_precompact_hook.sh` [SOURCE: external/hooks/mempal_precompact_hook.sh:49-76], `external/mempalace/mcp_server.py` [SOURCE: external/mempalace/mcp_server.py:326-381], `external/mempalace/dedup.py` [SOURCE: external/mempalace/dedup.py:51-127], `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-92], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-416]
 - **What it does**: The stop hook blocks every 15 user messages, and the pre-compact hook always blocks. Optional auto-ingest can run in the background or synchronously. The write path itself only guarantees deterministic-id idempotency; it does not call duplicate checking before `upsert`, so cleanup is deferred to a separate dedup sweep.
 - **Why it matters**: This pattern protects against total context loss, but it pushes latency directly into active sessions and creates follow-on dedup work. Public’s JSON-primary `generate-context.js` save flow plus compaction transport injection is slower to adopt automatically, but more deterministic and less interruption-heavy.
 - **Recommendation**: reject
@@ -12707,7 +12707,7 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - **Source strength**: primary
 
 ### Finding 3: Raw-everything indexing keeps ingestion simple, but guarantees rapid storage growth and expensive repair paths
-- **Source**: `external/mempalace/miner.py` [SOURCE: external/mempalace/miner.py:54-58,278-317], `external/mempalace/convo_miner.py` [SOURCE: external/mempalace/convo_miner.py:39-107,232-359], `external/mempalace/general_extractor.py` [SOURCE: external/mempalace/general_extractor.py:1-20,30-169], `external/mempalace/cli.py` [SOURCE: external/mempalace/cli.py:168-235], `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-92], `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1333]
+- **Source**: `external/mempalace/miner.py` [SOURCE: external/mempalace/miner.py:54-58,278-317], `external/mempalace/convo_miner.py` [SOURCE: external/mempalace/convo_miner.py:39-107,232-359], `external/mempalace/general_extractor.py` [SOURCE: external/mempalace/general_extractor.py:1-20,30-169], `external/mempalace/cli.py` [SOURCE: external/mempalace/cli.py:168-235], `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-92], `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1230-1333]
 - **What it does**: Project mining chunks readable files into 800-char drawers with 100-char overlap. Conversation mining emits exchange or heuristic chunks and upserts each one. Repair extracts the whole collection in 5000-row batches, backs up the palace directory, deletes the collection, and re-files everything. Public, by contrast, saves one structured context artifact and uses incremental startup indexing for changed files only.
 - **Why it matters**: MemPalace avoids LLM extraction cost, but storage and index volume grow quickly, and maintenance jobs become corpus-wide operations. Public pays more intelligence up front during save/index, but its storage growth is materially more controlled.
 - **Recommendation**: reject
@@ -12731,7 +12731,7 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - **Source strength**: primary
 
 ### Finding 6: Public already chooses higher startup/index overhead in exchange for safer steady-state retrieval and compaction behavior
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1333,1488-1758,1886-1891], `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:486-810,1042-1143], `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:273-286,363-452], `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-92], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-416]
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1230-1333,1488-1758,1886-1891], `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:486-810,1042-1143], `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:273-286,363-452], `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-92], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-416]
 - **What it does**: Public validates embeddings at startup, initializes integrity/WAL/backfill/BM25/cognitive/background jobs, connects MCP before the background scan finishes, and then runs incremental discovery in the background. Retrieval uses a cached multi-stage pipeline with intent routing, rerank, session/causal/community boosts, dedup, and progressive disclosure. Trigger matching also applies decay and activation only when cognitive mode is in play.
 - **Why it matters**: Public is already paying meaningful startup and indexing cost, but in a controlled place that preserves predictable live-tool behavior. That is a better trade-off for this codebase than adopting MemPalace’s lower-startup / higher-interruption model.
 - **Recommendation**: adopt now
@@ -12753,10 +12753,10 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - `external/hooks/mempal_precompact_hook.sh:64-76`
 - `external/benchmarks/BENCHMARKS.md:24-38`
 - `external/benchmarks/BENCHMARKS.md:524-536`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1333`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1488-1758`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:718-810`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-92`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1230-1333`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1488-1758`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:718-810`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-92`
 - `.opencode/plugins/spec-kit-compact-code-graph.js:396-416`
 
 ## Assessment
@@ -12803,7 +12803,7 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - **Source strength**: primary
 
 ### Finding 2: Hook-enforced preservation trades compaction safety for user-visible latency spikes and maintenance debt
-- **Source**: `external/hooks/mempal_save_hook.sh` [SOURCE: external/hooks/mempal_save_hook.sh:55-150], `external/hooks/mempal_precompact_hook.sh` [SOURCE: external/hooks/mempal_precompact_hook.sh:49-76], `external/mempalace/mcp_server.py` [SOURCE: external/mempalace/mcp_server.py:326-381], `external/mempalace/dedup.py` [SOURCE: external/mempalace/dedup.py:51-127], `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-92], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-416]
+- **Source**: `external/hooks/mempal_save_hook.sh` [SOURCE: external/hooks/mempal_save_hook.sh:55-150], `external/hooks/mempal_precompact_hook.sh` [SOURCE: external/hooks/mempal_precompact_hook.sh:49-76], `external/mempalace/mcp_server.py` [SOURCE: external/mempalace/mcp_server.py:326-381], `external/mempalace/dedup.py` [SOURCE: external/mempalace/dedup.py:51-127], `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-92], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-416]
 - **What it does**: The stop hook blocks every 15 user messages, and the pre-compact hook always blocks. Optional auto-ingest can run in the background or synchronously. The write path itself only guarantees deterministic-id idempotency; it does not call duplicate checking before `upsert`, so cleanup is deferred to a separate dedup sweep.
 - **Why it matters**: This pattern protects against total context loss, but it pushes latency directly into active sessions and creates follow-on dedup work. Public’s JSON-primary `generate-context.js` save flow plus compaction transport injection is slower to adopt automatically, but more deterministic and less interruption-heavy.
 - **Recommendation**: reject
@@ -12811,7 +12811,7 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - **Source strength**: primary
 
 ### Finding 3: Raw-everything indexing keeps ingestion simple, but guarantees rapid storage growth and expensive repair paths
-- **Source**: `external/mempalace/miner.py` [SOURCE: external/mempalace/miner.py:54-58,278-317], `external/mempalace/convo_miner.py` [SOURCE: external/mempalace/convo_miner.py:39-107,232-359], `external/mempalace/general_extractor.py` [SOURCE: external/mempalace/general_extractor.py:1-20,30-169], `external/mempalace/cli.py` [SOURCE: external/mempalace/cli.py:168-235], `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-92], `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1333]
+- **Source**: `external/mempalace/miner.py` [SOURCE: external/mempalace/miner.py:54-58,278-317], `external/mempalace/convo_miner.py` [SOURCE: external/mempalace/convo_miner.py:39-107,232-359], `external/mempalace/general_extractor.py` [SOURCE: external/mempalace/general_extractor.py:1-20,30-169], `external/mempalace/cli.py` [SOURCE: external/mempalace/cli.py:168-235], `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-92], `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1230-1333]
 - **What it does**: Project mining chunks readable files into 800-char drawers with 100-char overlap. Conversation mining emits exchange or heuristic chunks and upserts each one. Repair extracts the whole collection in 5000-row batches, backs up the palace directory, deletes the collection, and re-files everything. Public, by contrast, saves one structured context artifact and uses incremental startup indexing for changed files only.
 - **Why it matters**: MemPalace avoids LLM extraction cost, but storage and index volume grow quickly, and maintenance jobs become corpus-wide operations. Public pays more intelligence up front during save/index, but its storage growth is materially more controlled.
 - **Recommendation**: reject
@@ -12835,7 +12835,7 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - **Source strength**: primary
 
 ### Finding 6: Public already chooses higher startup/index overhead in exchange for safer steady-state retrieval and compaction behavior
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1333,1488-1758,1886-1891], `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:486-810,1042-1143], `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:273-286,363-452], `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-92], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-416]
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1230-1333,1488-1758,1886-1891], `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:486-810,1042-1143], `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:273-286,363-452], `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-92], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-416]
 - **What it does**: Public validates embeddings at startup, initializes integrity/WAL/backfill/BM25/cognitive/background jobs, connects MCP before the background scan finishes, and then runs incremental discovery in the background. Retrieval uses a cached multi-stage pipeline with intent routing, rerank, session/causal/community boosts, dedup, and progressive disclosure. Trigger matching also applies decay and activation only when cognitive mode is in play.
 - **Why it matters**: Public is already paying meaningful startup and indexing cost, but in a controlled place that preserves predictable live-tool behavior. That is a better trade-off for this codebase than adopting MemPalace’s lower-startup / higher-interruption model.
 - **Recommendation**: adopt now
@@ -12857,10 +12857,10 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - `external/hooks/mempal_precompact_hook.sh:64-76`
 - `external/benchmarks/BENCHMARKS.md:24-38`
 - `external/benchmarks/BENCHMARKS.md:524-536`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1333`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1488-1758`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:718-810`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-92`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1230-1333`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1488-1758`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:718-810`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-92`
 - `.opencode/plugins/spec-kit-compact-code-graph.js:396-416`
 
 ## Assessment

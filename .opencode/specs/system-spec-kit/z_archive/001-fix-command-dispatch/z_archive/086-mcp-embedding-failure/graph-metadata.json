@@ -42,9 +42,9 @@
     "key_files": [
       "shared/embeddings/factory.js",
       "shared/embeddings/providers/hf-local.js",
-      ".opencode/skill/system-spec-kit/mcp_server/package.json",
-      ".opencode/skill/system-spec-kit/references/debugging/troubleshooting.md",
-      ".opencode/skill/system-spec-kit/references/config/environment_variables.md",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/references/debugging/troubleshooting.md",
+      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -66,19 +66,19 @@
       {
         "name": "package.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/package.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
         "source": "derived"
       },
       {
         "name": "troubleshooting.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/debugging/troubleshooting.md",
+        "path": ".opencode/skills/system-spec-kit/references/debugging/troubleshooting.md",
         "source": "derived"
       },
       {
         "name": "environment_variables.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/config/environment_variables.md",
+        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
         "source": "derived"
       },
       {

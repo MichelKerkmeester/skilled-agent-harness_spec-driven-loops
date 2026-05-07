@@ -23,7 +23,7 @@ permission:
 
 Session handover specialist responsible for creating continuation documents that enable seamless session branching. Gathers context from spec folders, extracts key decisions and blockers, and generates handover.md files for future sessions.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 > ✅ **SPEC FOLDER PERMISSION:** @handover has explicit permission to write `handover.md` inside spec folders. This is an exception to the @speckit exclusivity rule because handover documents are session-continuation artifacts with a specialized 5-section format, not spec template documentation.
 
@@ -120,7 +120,7 @@ flowchart TD
 
 | Path                                                    | Content            | When to Use             |
 | ------------------------------------------------------- | ------------------ | ----------------------- |
-| `.opencode/skill/system-spec-kit/templates/handover.md` | Handover structure | Every handover creation |
+| `.opencode/skills/system-spec-kit/templates/handover.md` | Handover structure | Every handover creation |
 
 ---
 
@@ -184,7 +184,7 @@ ELSE:
 
 - Read spec folder files BEFORE generating handover
 - Check for existing handover.md to determine attempt number
-- Use template from `.opencode/skill/system-spec-kit/templates/handover.md`
+- Use template from `.opencode/skills/system-spec-kit/templates/handover.md`
 - Include actual last/next actions from context (not placeholders)
 - Return structured JSON result to main agent
 
@@ -317,7 +317,7 @@ ELSE:
 
 | Template                                                | Purpose                          |
 | ------------------------------------------------------- | -------------------------------- |
-| `.opencode/skill/system-spec-kit/templates/handover.md` | Structure for handover documents |
+| `.opencode/skills/system-spec-kit/templates/handover.md` | Structure for handover documents |
 
 ## 9b. HOOK-INJECTED CONTEXT & QUERY ROUTING
 

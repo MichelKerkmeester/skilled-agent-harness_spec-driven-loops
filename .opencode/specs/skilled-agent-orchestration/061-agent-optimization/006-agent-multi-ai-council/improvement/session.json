@@ -1,7 +1,7 @@
 {
   "session_id": "imp-multi-ai-council-20260502T170037Z",
   "started_at": "2026-05-02T17:00:37Z",
-  "target_path": ".opencode/agent/ultra-think.md",
+  "target_path": ".opencode/agents/ultra-think.md",
   "agent_name": "ultra-think",
   "rename_to": "multi-ai-council",
   "spec_folder": "specs/skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council",

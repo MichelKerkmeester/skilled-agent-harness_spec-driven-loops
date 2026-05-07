@@ -11,8 +11,8 @@ Compared BAD's setup/run/configure entrypoints to the local command inventories,
 
 ## Evidence
 - BAD centers operator UX on a small surface: install, `/bad setup`, `/bad`, and optional `/bad configure`. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:35-59] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/docs/index.md:92-98]
-- `system-spec-kit` exposes 8 primary `spec_kit` commands, a separate 4-command `memory` family, and documents 15 YAML workflow assets behind those entrypoints. [SOURCE: .opencode/command/spec_kit/README.txt:43-63] [SOURCE: .opencode/command/spec_kit/README.txt:85-111] [SOURCE: .opencode/command/memory/README.txt:61-66]
-- The local docs already need FAQ entries to explain lifecycle distinctions such as `plan` versus `complete` and when to use `resume`. [SOURCE: .opencode/command/spec_kit/README.txt:225-239]
+- `system-spec-kit` exposes 8 primary `spec_kit` commands, a separate 4-command `memory` family, and documents 15 YAML workflow assets behind those entrypoints. [SOURCE: .opencode/commands/spec_kit/README.txt:43-63] [SOURCE: .opencode/commands/spec_kit/README.txt:85-111] [SOURCE: .opencode/commands/memory/README.txt:61-66]
+- The local docs already need FAQ entries to explain lifecycle distinctions such as `plan` versus `complete` and when to use `resume`. [SOURCE: .opencode/commands/spec_kit/README.txt:225-239]
 
 ## Analysis
 The local surface is not "wrong," but it is ask-heavy. An operator needs to first understand the taxonomy, then choose the right family, then choose the right mode. BAD instead makes the default journey obvious and pushes complexity into the coordinator contract. That does not mean local commands should disappear; it means the first UX layer should be intent-first instead of inventory-first.
@@ -43,7 +43,7 @@ confidence: high
 finding: `system-spec-kit` should stop making operators reason from the full command inventory first. BAD shows that a thinner intent-first surface can preserve backend power while reducing UX friction.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/README.txt`
+- **Target file or module:** `.opencode/commands/spec_kit/README.txt`
 - **Change type:** UX simplification
 - **Blast radius:** medium
 - **Prerequisites:** identify 3-5 common operator intents worth stabilizing as presets or aliases

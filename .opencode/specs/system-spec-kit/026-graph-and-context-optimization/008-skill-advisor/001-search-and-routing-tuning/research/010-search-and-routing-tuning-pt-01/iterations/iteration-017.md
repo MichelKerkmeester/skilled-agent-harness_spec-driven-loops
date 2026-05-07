@@ -4,12 +4,12 @@
 Map the exact Stage 3 threshold seam so phase `004-raise-rerank-minimum` can move from `2` to `4-5` without accidental behavioral regressions.
 
 ## Findings
-1. The rerank minimum is enforced only in Stage 3, not in `cross-encoder.rerankResults()` itself. `applyCrossEncoderReranking()` exits early when `results.length < MIN_RESULTS_FOR_RERANK`, so the threshold change affects pipeline behavior but not direct cross-encoder unit tests. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:50] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:306] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:321]
+1. The rerank minimum is enforced only in Stage 3, not in `cross-encoder.rerankResults()` itself. `applyCrossEncoderReranking()` exits early when `results.length < MIN_RESULTS_FOR_RERANK`, so the threshold change affects pipeline behavior but not direct cross-encoder unit tests. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:50] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:306] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:321]
 2. The safest first move is `MIN_RESULTS_FOR_RERANK = 4`, not `5`. At `4`, two-document and three-document result sets skip reranking, but common `top-4`/`top-5` candidate windows still get neural ordering. At `5`, every 4-result continuity query would also skip reranking, which is a steeper unmeasured behavior change. [INFERENCE: conservative change while telemetry is still absent]
 3. The important runtime edge cases at `4` are:
    - `results.length <= 3`: Stage 2 order becomes final
    - `results.length = 4`: reranking still runs, which is the new proving ground
-   - local-gguf path shares the same Stage 3 guard, so the threshold change applies equally to remote and local rerankers. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:321] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:334]
+   - local-gguf path shares the same Stage 3 guard, so the threshold change applies equally to remote and local rerankers. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:321] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:334]
 4. Phase `004` therefore needs new threshold-specific tests, not just a constant edit: at minimum, add explicit "3 results => not applied" and "4 results => applied" assertions around `applyCrossEncoderReranking()`. [INFERENCE: current test coverage exercises rerank behavior, but not the boundary itself]
 
 ## Ruled Out
@@ -19,7 +19,7 @@ Map the exact Stage 3 threshold seam so phase `004-raise-rerank-minimum` can mov
 - None this iteration.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
 - `017-research-search-fusion-tuning/004-raise-rerank-minimum/spec.md`
 
 ## Assessment

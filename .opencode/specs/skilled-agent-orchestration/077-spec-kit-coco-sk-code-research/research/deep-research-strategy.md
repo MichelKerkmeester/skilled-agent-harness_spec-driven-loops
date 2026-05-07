@@ -19,7 +19,7 @@ Deep research on three intertwined surfaces:
 
 2. **mcp-coco-index** — skill + MCP server. Semantic-search effectiveness, indexing freshness/staleness behavior, CLI vs MCP parity, query routing decisions vs documented decision tree, embedding-provider abstraction, concrete improvement targets.
 
-3. **sk-code OpenCode side** — `.opencode/skill/sk-code/references/opencode/` and `.opencode/skill/sk-code/assets/opencode/`. Audit: do they need updating, refining, or extra files? Look for staleness vs current `.opencode/` patterns, coverage gaps (missing language-sub-detection docs, missing verification recipes, missing checklists for skills/agents/commands authoring), drift between declared `resource_map` paths and on-disk structure, concrete add/refine/remove targets.
+3. **sk-code OpenCode side** — `.opencode/skills/sk-code/references/opencode/` and `.opencode/skills/sk-code/assets/opencode/`. Audit: do they need updating, refining, or extra files? Look for staleness vs current `.opencode/` patterns, coverage gaps (missing language-sub-detection docs, missing verification recipes, missing checklists for skills/agents/commands authoring), drift between declared `resource_map` paths and on-disk structure, concrete add/refine/remove targets.
 
 **Cross-cutting questions:**
 
@@ -34,7 +34,7 @@ Deep research on three intertwined surfaces:
 - [ ] Q1 — Where does system-spec-kit have the greatest doc/code drift right now (validator, templates, manifest, MCP tools)?
 - [ ] Q2 — Are there test-coverage gaps in `validate.sh --strict`, `graph-metadata-backfill`, `generate-context.js`, or anchor/template-headers checks that mask real bugs?
 - [ ] Q3 — Does mcp-coco-index's CLI/MCP routing match the documented decision tree, and is its index freshness behavior reliable across edits?
-- [ ] Q4 — Is mcp-coco-index actually ingesting `.opencode/skill/sk-code/` resources? Are queries surfacing them with usable rank?
+- [ ] Q4 — Is mcp-coco-index actually ingesting `.opencode/skills/sk-code/` resources? Are queries surfacing them with usable rank?
 - [ ] Q5 — What concrete OpenCode references/assets are missing from `sk-code/references/opencode/` and `sk-code/assets/opencode/` that the smart router would benefit from?
 - [ ] Q6 — Does the sk-code router's `STACK_FOLDERS` contract match on-disk structure today (post-069 motion_dev integration, post-068 sk-doc reorg)?
 - [ ] Q7 — When `/spec_kit:complete` writes inside `.opencode/`, is sk-code's OpenCode surface correctly loaded (smart-router cross-skill integration)?
@@ -116,23 +116,23 @@ Prior packets in this track:
 
 Validator paths to inspect:
 
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`
-- `.opencode/skill/system-spec-kit/scripts/dist/spec-folder/generate-description.js`
-- `.opencode/skill/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`
+- `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js`
+- `.opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
 
 mcp-coco-index entry points:
 
-- `.opencode/skill/mcp-coco-index/SKILL.md` (+ scripts/)
+- `.opencode/skills/mcp-coco-index/SKILL.md` (+ scripts/)
 - MCP server folder (under `mcp-servers/coco-index/` or similar)
 
 sk-code OpenCode resources:
 
-- `.opencode/skill/sk-code/references/opencode/`
-- `.opencode/skill/sk-code/assets/opencode/`
-- `.opencode/skill/sk-code/SKILL.md` (smart router + STACK_FOLDERS)
+- `.opencode/skills/sk-code/references/opencode/`
+- `.opencode/skills/sk-code/assets/opencode/`
+- `.opencode/skills/sk-code/SKILL.md` (smart router + STACK_FOLDERS)
 
 ---
 

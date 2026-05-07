@@ -7,9 +7,9 @@
 
 ## 1. Agent Network
 
-11 agents total: 2 built-in (OpenCode platform) + 9 custom agents defined in `.opencode/agent/`, `.claude/agents/`, `.opencode/agent/chatgpt/`, and `.gemini/agents/`.
+11 agents total: 2 built-in (OpenCode platform) + 9 custom agents defined in `.opencode/agents/`, `.claude/agents/`, `.opencode/agents/chatgpt/`, and `.gemini/agents/`.
 
-Custom agents share the same role definitions across 4 runtime directories. OpenCode (`.opencode/agent/`) is the source of truth. Claude, ChatGPT and Gemini directories are runtime adapters.
+Custom agents share the same role definitions across 4 runtime directories. OpenCode (`.opencode/agents/`) is the source of truth. Claude, ChatGPT and Gemini directories are runtime adapters.
 
 ### All 11 Agents
 
@@ -31,9 +31,9 @@ Custom agents share the same role definitions across 4 runtime directories. Open
 
 | Runtime | Agent Directory | Config File | Notes |
 |---------|----------------|-------------|-------|
-| OpenCode (default) | `.opencode/agent/` | `opencode.json` | Source of truth |
+| OpenCode (default) | `.opencode/agents/` | `opencode.json` | Source of truth |
 | Claude Code | `.claude/agents/` | `.claude/mcp.json` | 9 agent files |
-| ChatGPT | `.opencode/agent/chatgpt/` | n/a | 9 agent files |
+| ChatGPT | `.opencode/agents/chatgpt/` | n/a | 9 agent files |
 | Gemini CLI | `.gemini/agents/` | `.gemini/settings.json` | 9 agent files |
 
 **Note on agent counts**: The current README says "10 specialized agents" in the architecture diagram but "11 specialized agents" in the Agent Network section. The correct count is 11 (2 built-in + 9 custom). The `@general` and `@explore` agents are OpenCode built-ins without custom definition files.
@@ -46,7 +46,7 @@ Custom agents share the same role definitions across 4 runtime directories. Open
 
 ## 2. Skills Library
 
-16 skill directories in `.opencode/skill/` (excluding `scripts/` and `README.md` which are not skills).
+16 skill directories in `.opencode/skills/` (excluding `scripts/` and `README.md` which are not skills).
 
 ### All 16 Skills
 
@@ -80,7 +80,7 @@ Custom agents share the same role definitions across 4 runtime directories. Open
 | Git | 1 | sk-git |
 | Prompt Engineering | 1 | sk-improve-prompt |
 
-[SOURCE: `.opencode/skill/` - 16 directories verified via ls]
+[SOURCE: `.opencode/skills/` - 16 directories verified via ls]
 [SOURCE: Each `SKILL.md` frontmatter - descriptions and versions extracted directly]
 
 ---
@@ -172,7 +172,7 @@ Auto-detected: over-engineering, premature optimization, cargo culting, gold-pla
 
 **Current README discrepancy**: The current README says "19 commands across 4 namespaces" and lists only 5 memory commands. The actual count is 22 commands (8 spec_kit + 7 memory + 5 create + 1 utility + 1 agent_router). The memory namespace now has 7 commands (`analyze` and `shared` were added).
 
-[SOURCE: `.opencode/command/` - all 22 .md files verified]
+[SOURCE: `.opencode/commands/` - all 22 .md files verified]
 [SOURCE: `README.md:464-524` - current command documentation showing 19]
 
 ---
@@ -237,7 +237,7 @@ Additionally, a `paper` provider is registered (local MCP remote at 127.0.0.1:29
 |----------|-------|--------|
 | Agents (total) | 11 | 2 built-in + 9 custom |
 | Agent runtime platforms | 4 | OpenCode, Claude Code, ChatGPT, Gemini CLI |
-| Skills | 16 | `.opencode/skill/` directories |
+| Skills | 16 | `.opencode/skills/` directories |
 | MCP tools (memory) | 25 | spec_kit_memory server |
 | MCP tools (code mode) | 7 | code_mode server |
 | MCP tools (total) | 32 | 25 memory + 7 code mode |
@@ -369,7 +369,7 @@ The current README has 15 sections. The template prescribes 9. The current appro
 - No HVR banned words (see sk-doc checklist)
 - Progressive disclosure: 10s understand -> 30s decide -> 2m working -> depth on demand
 
-[SOURCE: `.opencode/skill/sk-doc/assets/documentation/readme_template.md:1-1093`]
+[SOURCE: `.opencode/skills/sk-doc/assets/documentation/readme_template.md:1-1093`]
 
 ---
 
@@ -377,13 +377,13 @@ The current README has 15 sections. The template prescribes 9. The current appro
 
 ### D1: MCP Server README
 
-- **Path**: `.opencode/skill/system-spec-kit/mcp_server/README.md`
+- **Path**: `.opencode/skills/system-spec-kit/mcp_server/README.md`
 - **Spec**: `022-hybrid-rag-fusion/016-rewrite-memory-mcp-readme/`
 - **Relationship**: D4 (this README) should link to D1 for memory engine depth. Avoid duplicating MCP tool documentation. Summary-only in root README with "See [MCP Server Documentation](...) for complete reference."
 
 ### D3: Spec Kit README
 
-- **Path**: `.opencode/skill/system-spec-kit/README.md`
+- **Path**: `.opencode/skills/system-spec-kit/README.md`
 - **Spec**: `022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/`
 - **Relationship**: D4 should link to D3 for spec folder workflow depth. Avoid duplicating template architecture, validation rules, or memory pipeline details. Summary-only in root README with "See [Spec Kit Documentation](...) for complete reference."
 
@@ -414,8 +414,8 @@ Content that currently lives only in the root README (gate system, agent network
 | Claim | Evidence Grade | Source |
 |-------|---------------|--------|
 | 11 agents | A (verified) | Agent definition files in 4 runtime directories |
-| 16 skills | A (verified) | `.opencode/skill/` directory listing |
-| 22 commands | A (verified) | `.opencode/command/` file listing (22 .md files) |
+| 16 skills | A (verified) | `.opencode/skills/` directory listing |
+| 22 commands | A (verified) | `.opencode/commands/` file listing (22 .md files) |
 | 3 gates | A (verified) | CLAUDE.md sections 89-117 |
 | 32 MCP tools (25+7) | B (from README) | README architecture diagram, not independently verified |
 | 6 Code Mode integrations | A (verified) | `.utcp_config.json` - 6 manual_call_templates |

@@ -19,9 +19,9 @@ Instead, the stop hook does two things with `pendingCompactPrime`:
 
 That same `pendingCompactPrime` field is also the cache written by the PreCompact hook. So the stop-time "auto-save" path is not a separate implementation; it is reusing the compaction-prime cache slot as a lightweight surrogate.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:146-167]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:15-28]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:234-241]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:146-167]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:15-28]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:234-241]
 
 ### 2. P1-5 is TRUE: the end-line fix has not landed, so multi-line range handling is still broken
 No corrective fix is present in the current structural indexer. All three regex parsers still stamp captures with `endLine: lineNum`:
@@ -37,14 +37,14 @@ Those one-line ranges flow directly into `capturesToNodes()`, so every node inhe
 
 So the research finding remains current: the range-collapse bug is still present, and no fix has been applied since Segment 6. The only nuance is that `CALLS` is not universally zero: one-line definitions or declaration-line calls can still resolve. The bug remains a real correctness problem for normal multi-line bodies.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:39-42]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:45-48]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:51-61]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:119-143]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:163-166]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:178-191]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:282-313]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:194-213]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:39-42]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:45-48]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:51-61]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:119-143]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:163-166]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:178-191]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:282-313]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:194-213]
 
 ### 3. P1-6 is TRUE: the public `code_graph_context` handler strips manual/graph seed identity before resolution
 The public handler accepts provider-typed seed inputs that include `provider`, `symbolName`, `kind`, `nodeId`, and `symbolId`. But during normalization it converts everything into plain `CodeGraphSeed[]`.
@@ -74,13 +74,13 @@ But the public handler erases that identity first, so manual and graph seeds can
 
 So the deep review finding is correct: the public `code_graph_context` entry point strips manual/graph seed identity during processing.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:9-31]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:39-57]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:14-23]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:47-53]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:18-43]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:82-165]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:242-247]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:9-31]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:39-57]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:14-23]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:47-53]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:18-43]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:82-165]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:242-247]
 
 ## Synthesis
 All three target review findings remain valid against the current code.
@@ -98,13 +98,13 @@ All three target review findings remain valid against the current code.
 None. The requested source files plus the adjacent resolver/state files were sufficient to verify all three findings.
 
 ## Sources Consulted
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
 
 ## Assessment
 - New information ratio: 0.36

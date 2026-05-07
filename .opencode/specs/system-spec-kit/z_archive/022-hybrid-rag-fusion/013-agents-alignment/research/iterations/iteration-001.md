@@ -24,7 +24,7 @@
 
 ## Verified OK
 - `deep-research` naming: no stale `research` agent files anywhere
-- Codex lineage: all 10 `.codex/agents/*.toml` files say `Converted from: .opencode/agent/chatgpt/...`
+- Codex lineage: all 10 `.codex/agents/*.toml` files say `Converted from: .opencode/agents/chatgpt/...`
 - Gemini symlink: `.gemini -> .agents` confirmed
 - description.json: folder path, ID, parent chain correct
 - Agent names: identical 10-member set across all 5 runtimes

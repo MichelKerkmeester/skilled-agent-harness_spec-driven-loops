@@ -37,7 +37,7 @@ Phase 023 shipped all six work areas from the 021 smart-router research packet a
 
 - 5 stale route paths fixed across `mcp-code-mode`, `sk-improve-agent`, `sk-deep-research`, `sk-deep-review`, `sk-doc`.
 - 4 CLI skill routers (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-copilot`) now return `UNKNOWN` + disambiguation checklist on zero-score instead of silent `GENERATION` default.
-- `.gitignore` updated to ignore `.opencode/skill/.smart-router-telemetry/`.
+- `.gitignore` updated to ignore `.opencode/skills/.smart-router-telemetry/`.
 
 ### Fixed
 

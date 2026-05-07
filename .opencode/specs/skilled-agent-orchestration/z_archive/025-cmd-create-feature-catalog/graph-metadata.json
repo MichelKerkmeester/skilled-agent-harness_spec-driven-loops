@@ -41,20 +41,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/create/feature-catalog.md",
-      ".opencode/command/create/assets/create_feature_catalog_auto.yaml",
-      ".opencode/command/create/assets/create_feature_catalog_confirm.yaml",
-      ".opencode/command/create/README.txt",
-      ".opencode/command/README.txt",
+      ".opencode/commands/create/feature-catalog.md",
+      ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
+      ".opencode/commands/create/assets/create_feature_catalog_confirm.yaml",
+      ".opencode/commands/create/README.txt",
+      ".opencode/commands/README.txt",
       ".opencode/README.md",
-      ".opencode/agent/write.md",
+      ".opencode/agents/write.md",
       ".claude/agents/write.md",
       ".codex/agents/write.toml",
       ".gemini/commands/create/feature-catalog.toml",
       "spec.md",
-      ".opencode/skill/sk-doc/references/specific/feature_catalog_creation.md",
-      ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
-      ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
+      ".opencode/skills/sk-doc/references/specific/feature_catalog_creation.md",
+      ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
+      ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -65,25 +65,25 @@
       {
         "name": "feature-catalog.md",
         "kind": "doc",
-        "path": ".opencode/command/create/feature-catalog.md",
+        "path": ".opencode/commands/create/feature-catalog.md",
         "source": "derived"
       },
       {
         "name": "create_feature_catalog_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_feature_catalog_auto.yaml",
+        "path": ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
         "source": "derived"
       },
       {
         "name": "create_feature_catalog_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_feature_catalog_confirm.yaml",
+        "path": ".opencode/commands/create/assets/create_feature_catalog_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/create/README.txt",
+        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {
@@ -95,7 +95,7 @@
       {
         "name": "write.md",
         "kind": "doc",
-        "path": ".opencode/agent/write.md",
+        "path": ".opencode/agents/write.md",
         "source": "derived"
       },
       {
@@ -119,19 +119,19 @@
       {
         "name": "feature_catalog_creation.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/references/specific/feature_catalog_creation.md",
+        "path": ".opencode/skills/sk-doc/references/specific/feature_catalog_creation.md",
         "source": "derived"
       },
       {
         "name": "feature_catalog_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
         "source": "derived"
       },
       {
         "name": "feature_catalog_snippet_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
         "source": "derived"
       },
       {

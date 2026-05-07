@@ -67,7 +67,7 @@ Read-only audit: Feature Catalog → Source Code → Findings Report
 
 ### Key Components
 - **Feature Catalog**: `feature_catalog/19--feature-flag-reference/` — source of truth
-- **Source Code**: `.opencode/skill/system-spec-kit/` — implementation files
+- **Source Code**: `.opencode/skills/system-spec-kit/` — implementation files
 - **Audit Output**: This spec folder — findings and documentation
 
 ### Data Flow

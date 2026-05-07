@@ -5,13 +5,13 @@
 
 ## Sources Read
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/review/deep-review-strategy.md:31`
-- `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs:200`
-- `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs:216`
-- `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs:233`
-- `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs:250`
-- `.opencode/skill/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:87`
-- `.opencode/skill/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:124`
-- `.opencode/skill/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:161`
+- `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200`
+- `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:216`
+- `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:233`
+- `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:250`
+- `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:87`
+- `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:124`
+- `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:161`
 
 ## Findings
 No new finding. The resolver implements the intended branch order: root specs stay flat, matching pt-NN packets are reused, matching flat artifacts are reused, empty child roots go flat, and non-matching prior content allocates the next pt-NN. The focused resolver suite was re-run during this review and passed 7/7.

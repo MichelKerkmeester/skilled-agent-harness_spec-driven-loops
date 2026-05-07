@@ -18,7 +18,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -146,7 +146,7 @@ The user chose bare `sk-code` over the recommended `sk-code-stack`. Sibling skil
 
 **We chose**: Bare `sk-code` (no suffix).
 
-**How it works**: The new skill lives at `.opencode/skill/sk-code/`. Sibling skills `sk-code-review`, `sk-code-opencode` keep their suffixed names. Advisor scoring uses exact-name keys, not substring matching, so "review code" continues to route to `sk-code-review`.
+**How it works**: The new skill lives at `.opencode/skills/sk-code/`. Sibling skills `sk-code-review`, `sk-code-opencode` keep their suffixed names. Advisor scoring uses exact-name keys, not substring matching, so "review code" continues to route to `sk-code-review`.
 
 ---
 
@@ -199,7 +199,7 @@ The user chose bare `sk-code` over the recommended `sk-code-stack`. Sibling skil
 ### Implementation
 
 **What changes**:
-- Skill folder: `.opencode/skill/sk-code/`
+- Skill folder: `.opencode/skills/sk-code/`
 - Advisor scoring keys: exact-name `sk-code` (no substring expansion)
 - All cross-repo references retarget to `sk-code`
 
@@ -346,9 +346,9 @@ The advisor currently scores both legacy skills competitively. After merge, they
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
 | **Exclusion list + frontmatter (chosen)** | Non-invasive; reversible by removing 1 entry; respects "don't overwrite"; survives rebuilds | Two places to keep in sync (.py and .ts) | 9/10 |
-| Rename SKILL.md → SKILL.deprecated.md | Strongest isolation; advisor discovery glob skips them | Mutates folder structure; breaks any external link to `.opencode/skill/sk-code-web/SKILL.md` | 6/10 |
+| Rename SKILL.md → SKILL.deprecated.md | Strongest isolation; advisor discovery glob skips them | Mutates folder structure; breaks any external link to `.opencode/skills/sk-code-web/SKILL.md` | 6/10 |
 | Frontmatter weight=0 only | Simplest | Re-amplification risk during rebuilds; insufficient | 3/10 |
-| Move to `.opencode/skill/_archive/` | Strongest signal | Heavy folder restructure; breaks every literal path reference | 4/10 |
+| Move to `.opencode/skills/_archive/` | Strongest signal | Heavy folder restructure; breaks every literal path reference | 4/10 |
 
 **Why this one**: Best balance of effectiveness and respect for user directive. Reversibility is a single-line edit.
 
@@ -505,7 +505,7 @@ The merge needs a stack-agnostic namespace for content shared across web + non-w
 <!--
 Level 3 Decision Record — 5 ADRs.
 Direct, active voice. No em dashes, no hedging.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
 
 <!-- /ANCHOR:adr-005 -->

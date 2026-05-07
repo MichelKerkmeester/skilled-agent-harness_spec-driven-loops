@@ -63,7 +63,7 @@ _memory:
 - [x] T010 Chose the canonical graph regime for convergence handling. `[EVIDENCE: decision-record.md]`
 - [x] T011 Wired graph upsert and graph convergence into the live research path. `[EVIDENCE: .opencode/changelog/12--sk-deep-research/v1.6.0.0.md]`
 - [x] T012 Wired graph upsert and graph convergence into the live review path. `[EVIDENCE: .opencode/changelog/13--sk-deep-review/v1.3.0.0.md]`
-- [x] T013 Added session-scoped graph reads and dedicated isolation coverage. `[EVIDENCE: v1.6.0.0; v1.3.0.0; .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts]`
+- [x] T013 Added session-scoped graph reads and dedicated isolation coverage. `[EVIDENCE: v1.6.0.0; v1.3.0.0; .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts]`
 - [x] T014 Provisioned structural graph tooling on the live deep-research and deep-review paths. `[EVIDENCE: implementation-summary.md; decision-record.md]`
 
 ### Reducer Surfacing and Replay
@@ -89,7 +89,7 @@ _memory:
 - [x] T023 Research release evidence records active graph usage, blocked-stop surfacing, and fixture coverage. `[EVIDENCE: .opencode/changelog/12--sk-deep-research/v1.6.0.0.md]`
 - [x] T024 Review release evidence records fail-closed reducer handling, graph usage, and fixture coverage. `[EVIDENCE: .opencode/changelog/13--sk-deep-review/v1.3.0.0.md]`
 - [x] T025 Improve-agent release evidence records journal wiring, sample-quality, and replay consumers. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md]`
-- [x] T026 Dedicated graph and reducer suites exist for the phase. `[EVIDENCE: .opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts; session-isolation.vitest.ts]`
+- [x] T026 Dedicated graph and reducer suites exist for the phase. `[EVIDENCE: .opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts; session-isolation.vitest.ts]`
 - [x] T027 Focused closing audit captured the remaining Phase 008 release-readiness gaps. `[EVIDENCE: scratch/closing-review.md]`
 - [x] T028 Closing-audit fixes were landed and documented. `[EVIDENCE: c07c9fbcf; f99739742]`
 - [x] T029 The phase packet itself is aligned to the current Level 3 template. `[EVIDENCE: validate.sh --strict on this phase]`

@@ -20,15 +20,15 @@ LIMIT 1
 ```
 This would match when CocoIndex reports line 45 but the function starts at line 43. Confidence: 0.95 (between exact's 1.0 and enclosing's 0.7).
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:168-240]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:168-240]
 
 **B. Manual seed resolution lacks fuzzy name matching.** `resolveManualSeed()` does `WHERE name = ?` (exact string match). This fails for partial names, typos, or when the AI uses a slightly different name (e.g., "buildContext" vs "buildCodeContext"). Adding a `LIKE` fallback would improve manual seed hit rate significantly.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:83-128]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:83-128]
 
 **C. No score propagation from CocoIndex.** `resolveCocoIndexSeed()` discards the CocoIndex similarity score entirely -- it converts to a bare `CodeGraphSeed` and delegates. The original CocoIndex score could inform the confidence value of the `ArtifactRef`, especially when combined with resolution quality. A seed with CocoIndex score 0.9 + enclosing resolution should have higher confidence than one with CocoIndex score 0.3 + enclosing resolution.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:74-79]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:74-79]
 
 ### 2. Automatic Re-Indexing: Three Trigger Points Identified
 
@@ -40,8 +40,8 @@ Currently, CocoIndex re-indexing is fully manual (`ccc index` CLI or `ccc_reinde
 
 **C. On file save (debounced).** Individual file saves are low-impact but frequent. A debounced trigger (e.g., 30 seconds after last save) would keep both indexes fresh. The code graph's `code_graph_scan` already supports incremental indexing with content hash checks, making individual file updates cheap. CocoIndex's daemon architecture supports background indexing and "search during indexing" (streams IndexWaitingNotice), so freshness wouldn't block searches.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/mcp-coco-index/SKILL.md:267-306 (daemon architecture)]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:22-30 (content hash tracking)]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/mcp-coco-index/SKILL.md:267-306 (daemon architecture)]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:22-30 (content hash tracking)]
 
 ### 3. Query Intent Router Improvements
 
@@ -61,8 +61,8 @@ The current integration (from segment 5 research) designed a query-intent router
 
 **C. Automatic dual-query for ambiguous intents.** When the router cannot confidently classify intent (scores within ambiguity delta), execute both searches in parallel and merge results. The compact-merger.ts already handles 3-source merging with deduplication.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/mcp-coco-index/SKILL.md:68-96 (intent scoring pattern)]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:1-44 (merge infrastructure)]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/mcp-coco-index/SKILL.md:68-96 (intent scoring pattern)]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:1-44 (merge infrastructure)]
 
 ### 4. Hybrid Query Patterns: CocoIndex Seeds into Code Graph Expansion
 
@@ -74,8 +74,8 @@ The current architecture already supports CocoIndex -> Code Graph bridging via `
 
 **C. Working set warm-up.** On session start, use the code graph to identify the "hot" files from the last session (files with recent edits tracked via `code_files.indexed_at`), then use CocoIndex to pre-fetch semantically adjacent code. This creates a broader initial context than either system alone.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:48-118 (buildContext with seed resolution)]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:18-25 (CocoIndexSeed type)]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:48-118 (buildContext with seed resolution)]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:18-25 (CocoIndexSeed type)]
 
 ### 5. Underutilized CocoIndex Features
 
@@ -87,8 +87,8 @@ Analysis of the CocoIndex MCP skill reveals several capabilities not fully lever
 
 **C. `ccc_feedback` tool is available but never called.** The Spec Kit Memory MCP exposes `ccc_feedback` for submitting search result quality feedback, but no code path automatically calls it. After the AI uses a CocoIndex result (e.g., reads the file, uses the finding), implicit positive feedback could be logged. This would build a quality signal over time.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/mcp-coco-index/SKILL.md:236-242 (MCP tool parameters)]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:164-177 (computeFreshness)]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/mcp-coco-index/SKILL.md:236-242 (MCP tool parameters)]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:164-177 (computeFreshness)]
 
 ## Ruled Out
 
@@ -100,11 +100,11 @@ Analysis of the CocoIndex MCP skill reveals several capabilities not fully lever
 None identified this iteration. All investigated approaches are viable improvement paths.
 
 ## Sources Consulted
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts` (full file, 268 lines)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts` (full file, 330 lines)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts` (first 80 lines)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (first 60 lines, schema)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/mcp-coco-index/SKILL.md` (full file, 627 lines)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts` (full file, 268 lines)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts` (full file, 330 lines)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts` (first 80 lines)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (first 60 lines, schema)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/mcp-coco-index/SKILL.md` (full file, 627 lines)
 
 ## Assessment
 - New information ratio: 0.80

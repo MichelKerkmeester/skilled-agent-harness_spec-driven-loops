@@ -22,7 +22,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/learned-feedback.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 2) inspect source-backed assertions or snapshots showing eager warmup stays disabled and deprecated warmup flags only surface as compatibility warnings 3) inspect source-backed assertions or snapshots showing shadow scoring runtime helpers return inert values and novelty boost reports as not applied 4) inspect source-backed assertions or snapshots showing hybrid search always follows adaptive fusion as the default live path without consulting the retired flag"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/learned-feedback.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 2) inspect source-backed assertions or snapshots showing eager warmup stays disabled and deprecated warmup flags only surface as compatibility warnings 3) inspect source-backed assertions or snapshots showing shadow scoring runtime helpers return inert values and novelty boost reports as not applied 4) inspect source-backed assertions or snapshots showing hybrid search always follows adaptive fusion as the default live path without consulting the retired flag"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -42,7 +42,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npx vitest run tests/lazy-loading.vitest.ts tests/context-server.vitest.ts` 3) `sed -n '840,890p' context-server.ts` 4) `rg -n \"shouldEagerWarmup"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npx vitest run tests/lazy-loading.vitest.ts tests/context-server.vitest.ts` 3) `sed -n '840,890p' context-server.ts` 4) `rg -n \"shouldEagerWarmup"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -62,7 +62,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npx vitest run tests/shadow-scoring.vitest.ts tests/mpab-quality-gate-integration.vitest.ts` 3) `sed -n '230,420p' lib/eval/shadow-scoring.ts` 4) `rg -n \"runShadowScoring"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npx vitest run tests/shadow-scoring.vitest.ts tests/mpab-quality-gate-integration.vitest.ts` 3) `sed -n '230,420p' lib/eval/shadow-scoring.ts` 4) `rg -n \"runShadowScoring"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -82,7 +82,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npx vitest run tests/cold-start.vitest.ts tests/search-flags.vitest.ts tests/scoring-observability.vitest.ts` 3) `sed -n '470,530p' lib/scoring/composite-scoring.ts` 4) `sed -n '1,120p' lib/search/graph-flags.ts` 5) `rg -n \"SPECKIT_NOVELTY_BOOST"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npx vitest run tests/cold-start.vitest.ts tests/search-flags.vitest.ts tests/scoring-observability.vitest.ts` 3) `sed -n '470,530p' lib/scoring/composite-scoring.ts` 4) `sed -n '1,120p' lib/search/graph-flags.ts` 5) `rg -n \"SPECKIT_NOVELTY_BOOST"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -102,7 +102,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npx vitest run tests/adaptive-fusion.vitest.ts tests/hybrid-search.vitest.ts` 3) `sed -n '985,1015p' lib/search/hybrid-search.ts` 4) `rg -n \"SPECKIT_ADAPTIVE_FUSION\" INSTALL_GUIDE.md` 5) `rg -n \"hybridAdaptiveFuse\" lib/search/hybrid-search.ts tests/adaptive-fusion.vitest.ts tests/hybrid-search.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npx vitest run tests/adaptive-fusion.vitest.ts tests/hybrid-search.vitest.ts` 3) `sed -n '985,1015p' lib/search/hybrid-search.ts` 4) `rg -n \"SPECKIT_ADAPTIVE_FUSION\" INSTALL_GUIDE.md` 5) `rg -n \"hybridAdaptiveFuse\" lib/search/hybrid-search.ts tests/adaptive-fusion.vitest.ts tests/hybrid-search.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."

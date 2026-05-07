@@ -40,12 +40,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -55,37 +55,37 @@
       {
         "name": "memory-search.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
         "source": "derived"
       },
       {
         "name": "memory-context.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
         "source": "derived"
       },
       {
         "name": "memory-save.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
         "source": "derived"
       },
       {
         "name": "scope-governance.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
         "source": "derived"
       },
       {
         "name": "types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts",
         "source": "derived"
       },
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {

@@ -13,7 +13,7 @@ _memory:
     next_safe_action: "Begin Phase 2 (002-matrix-execute): 45-cell test matrix"
     blockers: []
     key_files:
-      - .opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md
+      - .opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase1-complete"
@@ -26,7 +26,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -64,8 +64,8 @@ Total intent coverage: 9 of 11 distinct sk-doc intents (representative subset; O
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-doc/manual_testing_playbook/{01-05}/{001-003}-*.md` | Created | 15 scenarios |
-| `.opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Created | Index linking all 15 scenarios with 1-line summaries |
+| `.opencode/skills/sk-doc/manual_testing_playbook/{01-05}/{001-003}-*.md` | Created | 15 scenarios |
+| `.opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Created | Index linking all 15 scenarios with 1-line summaries |
 | `071/001-scenario-author/{spec,plan,tasks,implementation-summary}.md` | Created | Phase 1 spec docs |
 <!-- /ANCHOR:what-built -->
 

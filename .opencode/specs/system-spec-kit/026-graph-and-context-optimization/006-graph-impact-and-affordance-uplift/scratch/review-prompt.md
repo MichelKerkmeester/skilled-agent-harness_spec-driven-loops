@@ -30,14 +30,14 @@ You are **NOT** reviewing for code quality (no code shipped yet) — you are rev
 - `006-docs-and-catalogs-rollup/`
 
 ### 5. Public code state (anchors cited in 012 specs — verify they exist + line numbers are reasonable)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` (cited at :92 for code_edges metadata column)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` (cited at :85-94 metadata writer, :1369 indexFiles entry)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts` (cited at :862-909 computeBlastRadius, :978-981 query output)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` (cited at :82-94 schema)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts` (cited at :49-77 freshness decay)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` (cited at :43 ALLOWED_ENTITY_KINDS)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts` (cited at :9-43)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts` (cited at :12-18 EDGE_MULTIPLIER, :20-81 lane logic)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` (cited at :92 for code_edges metadata column)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` (cited at :85-94 metadata writer, :1369 indexFiles entry)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts` (cited at :862-909 computeBlastRadius, :978-981 query output)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` (cited at :82-94 schema)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts` (cited at :49-77 freshness decay)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` (cited at :43 ALLOWED_ENTITY_KINDS)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts` (cited at :9-43)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts` (cited at :12-18 EDGE_MULTIPLIER, :20-81 lane logic)
 
 ## What to check (severity-tagged findings)
 

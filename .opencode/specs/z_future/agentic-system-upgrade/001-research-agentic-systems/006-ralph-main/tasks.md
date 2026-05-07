@@ -34,7 +34,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Review existing iterations `001-020` and prior synthesis (`research/`)
-- [x] T002 Read Phase 3 comparison surfaces in `external/`, `.opencode/command/`, `.opencode/agent/`, and `.opencode/skill/`
+- [x] T002 Read Phase 3 comparison surfaces in `external/`, `.opencode/commands/`, `.opencode/agents/`, and `.opencode/skills/`
 - [x] T003 Confirm packet scope and preserve `external/` as read-only (`006-ralph-main/`)
 <!-- /ANCHOR:phase-1 -->
 

@@ -4,7 +4,7 @@
 
 - Created `.opencode/plugins/spec-kit-skill-advisor.js`.
 - Created `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs`.
-- Created `.opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts`.
+- Created `.opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts`.
 
 ## Decisions
 

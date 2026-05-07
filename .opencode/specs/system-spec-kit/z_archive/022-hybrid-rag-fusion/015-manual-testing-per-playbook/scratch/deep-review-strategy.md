@@ -29,8 +29,8 @@ Verify that every feature in the system-spec-kit feature catalog (222 entries ac
 Review: Feature catalog ↔ Manual testing playbook ↔ Spec phase traceability for system-spec-kit
 
 **Three artifact sets under review:**
-1. **Feature Catalog:** `.opencode/skill/system-spec-kit/feature_catalog/` — 222 entries, 21 categories (01-21)
-2. **Manual Testing Playbook:** `.opencode/skill/system-spec-kit/manual_testing_playbook/` — 230 scenarios, 19 categories (01-19) + root MANUAL_TESTING_PLAYBOOK.md
+1. **Feature Catalog:** `.opencode/skills/system-spec-kit/feature_catalog/` — 222 entries, 21 categories (01-21)
+2. **Manual Testing Playbook:** `.opencode/skills/system-spec-kit/manual_testing_playbook/` — 230 scenarios, 19 categories (01-19) + root MANUAL_TESTING_PLAYBOOK.md
 3. **Spec Phases:** `specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/` — 22 phase folders (001-022)
 
 **Key traceability checks:**

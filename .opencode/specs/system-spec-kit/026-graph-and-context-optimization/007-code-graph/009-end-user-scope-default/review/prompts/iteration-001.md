@@ -24,8 +24,8 @@ This is a 3-iter VERIFICATION SWEEP. **IDEAL OUTCOME: 0 findings (PASS verdict).
 
 ## SCOPE
 
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
 
 ## DIMENSION FOCUS — SECURITY (iter 1)
 

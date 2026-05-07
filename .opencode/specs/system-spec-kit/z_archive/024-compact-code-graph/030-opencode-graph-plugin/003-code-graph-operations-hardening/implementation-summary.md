@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 3 is now implemented in runtime code. Packet 030 has a new hardening helper in `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts`, and the session-facing handlers now emit a reusable `graphOps` contract alongside their existing payload contracts.
+Phase 3 is now implemented in runtime code. Packet 030 has a new hardening helper in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts`, and the session-facing handlers now emit a reusable `graphOps` contract alongside their existing payload contracts.
 
 ### Hardening Contract
 
@@ -58,13 +58,13 @@ The helper now standardizes:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts` | Created | Graph hardening contract and metadata-only preview helper |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts` | Modified | Emit graph ops contract for health surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modified | Emit graph ops contract for resume surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modified | Emit graph ops contract for bootstrap surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-ops-hardening.vitest.ts` | Created | Verify graph ops helper behavior |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts` | Modified | Verify bootstrap output includes graph ops data |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts` | Modified | Verify resume output includes graph ops data |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts` | Created | Graph hardening contract and metadata-only preview helper |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts` | Modified | Emit graph ops contract for health surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modified | Emit graph ops contract for resume surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modified | Emit graph ops contract for bootstrap surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-ops-hardening.vitest.ts` | Created | Verify graph ops helper behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts` | Modified | Verify bootstrap output includes graph ops data |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts` | Modified | Verify resume output includes graph ops data |
 <!-- /ANCHOR:what-built -->
 
 ---

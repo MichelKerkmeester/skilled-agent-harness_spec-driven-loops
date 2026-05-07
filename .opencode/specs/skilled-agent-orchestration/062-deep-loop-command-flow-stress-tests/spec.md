@@ -77,7 +77,7 @@ Adapted from 060/004 + 060/005 patterns:
 ### Sub-phase A (CP-scenario authoring)
 
 1. **Read 060/003 §7** — apply the 13-question authoring preflight to the new agent's command surface
-2. **Author 6 CP-XXX scenarios** — mix of command-flow (most) + body-level (where applicable). Each scenario is a self-contained `.md` in `.opencode/skill/sk-deep-{review,research}/manual_testing_playbook/0X--*/`
+2. **Author 6 CP-XXX scenarios** — mix of command-flow (most) + body-level (where applicable). Each scenario is a self-contained `.md` in `.opencode/skills/sk-deep-{review,research}/manual_testing_playbook/0X--*/`
 3. **Define per-CP signal contracts** — what file:line / journal event / artifact must exist after each scenario runs
 4. **Sandbox helper** — `setup-cp-sandbox.sh` per agent, builds isolated `/tmp/cp-NNN-sandbox/` with command-capable temp project root
 5. **Validation gates** — like 060/004 had 5 verification gates A-E, define equivalents

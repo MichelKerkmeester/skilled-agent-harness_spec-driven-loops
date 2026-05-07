@@ -276,8 +276,8 @@ Test files needed for modules without dedicated test coverage:
 ## References
 
 - **Parent Spec:** `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined`
-- **Test Location:** `.opencode/skill/system-spec-kit/mcp_server/tests/`
-- **Coverage Config:** `.opencode/skill/system-spec-kit/mcp_server/package.json`
+- **Test Location:** `.opencode/skills/system-spec-kit/mcp_server/tests/`
+- **Coverage Config:** `.opencode/skills/system-spec-kit/mcp_server/package.json`
 - **CI Integration:** TBD
 
 ---

@@ -4,9 +4,9 @@
 Identify which tests break when Stage 3 no longer reranks 2-document fixtures and convert that into concrete phase-004 implementation guidance.
 
 ## Findings
-1. `stage3-rerank-regression.vitest.ts` is the main direct casualty: the first three regression tests call `applyCrossEncoderReranking()` with only 2 input rows and currently expect `result.applied === true`. Those fixtures must be expanded to at least 4 rows if phase `004` raises the threshold to 4. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:42] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:70] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:93] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:116]
-2. The `executeStage3()` regression at line 142 is unaffected because it disables cross-encoder reranking (`rerank: false`) and only exercises MMR/non-embedded row preservation. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:142]
-3. Direct `crossEncoder.rerankResults()` suites in `cross-encoder.vitest.ts`, `cross-encoder-extended.vitest.ts`, and `reranker-eval-comparison.vitest.ts` do not need threshold updates, because they bypass the Stage 3 minimum guard entirely. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:177] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:349] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:325]
+1. `stage3-rerank-regression.vitest.ts` is the main direct casualty: the first three regression tests call `applyCrossEncoderReranking()` with only 2 input rows and currently expect `result.applied === true`. Those fixtures must be expanded to at least 4 rows if phase `004` raises the threshold to 4. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:42] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:70] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:93] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:116]
+2. The `executeStage3()` regression at line 142 is unaffected because it disables cross-encoder reranking (`rerank: false`) and only exercises MMR/non-embedded row preservation. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:142]
+3. Direct `crossEncoder.rerankResults()` suites in `cross-encoder.vitest.ts`, `cross-encoder-extended.vitest.ts`, and `reranker-eval-comparison.vitest.ts` do not need threshold updates, because they bypass the Stage 3 minimum guard entirely. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:177] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:349] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:325]
 4. Safe phase-004 guidance:
    - change the constant to `4`
    - expand the three direct Stage 3 regression fixtures from 2 rows to 4 rows
@@ -20,10 +20,10 @@ Identify which tests break when Stage 3 no longer reranks 2-document fixtures an
 - Treating the evaluation-comparison suite as evidence for Stage 3 threshold behavior; it tests the reranker module directly.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts`
 
 ## Assessment
 - New information ratio: 0.58

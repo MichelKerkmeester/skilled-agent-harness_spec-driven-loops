@@ -51,7 +51,7 @@ All paths relative to repo root: `/Users/michelkerkmeester/MEGA/Development/Code
 
 1. Read `lib/ensure-ready.ts:160-220` to confirm what calls `indexFiles(config)` there. Is the bounded auto-indexer truly stale-only by intent, or could it be a bug-by-omission too?
 2. Read `tests/tree-sitter-parser.vitest.ts:155-200` to confirm whether the test mocks would still pass with the new optional parameter (signature change should be backward-compatible).
-3. Run `rg -n 'indexFiles\(' .opencode/skill/system-spec-kit/mcp_server` to enumerate ALL call sites and confirm none were missed.
+3. Run `rg -n 'indexFiles\(' .opencode/skills/system-spec-kit/mcp_server` to enumerate ALL call sites and confirm none were missed.
 4. For each caller, state explicitly: keeps default (`skipFreshFiles=true`)? OR needs explicit override?
 
 ### G2 (P0): Stress-test Fix 2 against legitimate duplicate scenarios

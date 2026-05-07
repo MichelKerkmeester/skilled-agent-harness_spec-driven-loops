@@ -2,7 +2,7 @@
   "status": "benchmark-complete",
   "profileId": "handover",
   "family": "session-handover",
-  "target": ".opencode/agent/handover.md",
+  "target": ".opencode/agents/handover.md",
   "label": "handover-candidate-weak",
   "aggregateScore": 69,
   "maxScore": 100,

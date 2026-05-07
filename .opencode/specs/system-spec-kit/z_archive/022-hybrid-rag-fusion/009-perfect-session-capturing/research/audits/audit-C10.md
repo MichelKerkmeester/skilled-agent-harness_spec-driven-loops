@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-9b16-7963-90d9-15b65e09a3b6
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts (338 lines).
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts (338 lines).
 
 This file extracts file information from session data (files read, modified, created).
 
@@ -56,8 +56,8 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m auditing that extractor file line-by-line now, focusing on the six areas you listed and mapping each issue back to exact line numbers. I’ll first load the full 338-line source with numbering, then return findings in your required format.
 exec
-/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-     338 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
+/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+     338 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
      1	// ---------------------------------------------------------------
      2	// MODULE: File Extractor
      3	// ---------------------------------------------------------------
@@ -80,10 +80,10 @@ exec
 codex
 I’ve loaded all 338 lines. Next I’m checking the helper/config functions this file relies on (`toRelativePath`, config limits, basename handling) so the findings on normalization and limits are evidence-based rather than assumptions.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/path-utils.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
-nl: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core.ts: No such file or directory
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/path-utils.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
+nl: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core.ts: No such file or directory
  succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: File Helpers
@@ -129,29 +129,29 @@ nl: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skil
 codex
 I found `toRelativePath` and basename behavior; now I’m locating where `CONFIG.MAX_FILES_IN_MEMORY` and `CONFIG.PROJECT_ROOT` are defined to validate configurability and truncation behavior.
 exec
-/bin/zsh -lc "rg --line-number \"MAX_FILES_IN_MEMORY|PROJECT_ROOT|export const CONFIG|const CONFIG\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:148:      projectRoot: CONFIG.PROJECT_ROOT
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:155:        CONFIG.PROJECT_ROOT
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:166:          projectRoot: CONFIG.PROJECT_ROOT
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:173:        projectRoot: CONFIG.PROJECT_ROOT,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:133:      encoding: 'utf8', cwd: CONFIG.PROJECT_ROOT, stdio: ['pipe', 'pipe', 'pipe']
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:136:      ? `detached:${execSync('git rev-parse --short HEAD', { encoding: 'utf8', cwd: CONFIG.PROJECT_ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).trim()}`
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:623:    const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:629:      path.join(CONFIG.PROJECT_ROOT, 'specs'),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:630:      path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:724:  const activeSpecsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:130:  const resolved = path.resolve(CONFIG.PROJECT_ROOT, normalizedInput);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:211:    ? path.join(CONFIG.PROJECT_ROOT, primaryArg)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:311:  const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:402:    ? path.join(CONFIG.PROJECT_ROOT, specFolderArg)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:102:    const normalized = toRelativePath(rawPath, CONFIG.PROJECT_ROOT);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:159:  if (allFiles.length > CONFIG.MAX_FILES_IN_MEMORY) {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:160:    console.warn(`Warning: Truncating files list from ${allFiles.length} to ${CONFIG.MAX_FILES_IN_MEMORY}`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:164:    .slice(0, CONFIG.MAX_FILES_IN_MEMORY)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts:160:    path.join(CONFIG.PROJECT_ROOT, 'specs'),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts:161:    path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
+/bin/zsh -lc "rg --line-number \"MAX_FILES_IN_MEMORY|PROJECT_ROOT|export const CONFIG|const CONFIG\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:148:      projectRoot: CONFIG.PROJECT_ROOT
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:155:        CONFIG.PROJECT_ROOT
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:166:          projectRoot: CONFIG.PROJECT_ROOT
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:173:        projectRoot: CONFIG.PROJECT_ROOT,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:133:      encoding: 'utf8', cwd: CONFIG.PROJECT_ROOT, stdio: ['pipe', 'pipe', 'pipe']
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:136:      ? `detached:${execSync('git rev-parse --short HEAD', { encoding: 'utf8', cwd: CONFIG.PROJECT_ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).trim()}`
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:623:    const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:629:      path.join(CONFIG.PROJECT_ROOT, 'specs'),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:630:      path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:724:  const activeSpecsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:130:  const resolved = path.resolve(CONFIG.PROJECT_ROOT, normalizedInput);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:211:    ? path.join(CONFIG.PROJECT_ROOT, primaryArg)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:311:  const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:402:    ? path.join(CONFIG.PROJECT_ROOT, specFolderArg)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:102:    const normalized = toRelativePath(rawPath, CONFIG.PROJECT_ROOT);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:159:  if (allFiles.length > CONFIG.MAX_FILES_IN_MEMORY) {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:160:    console.warn(`Warning: Truncating files list from ${allFiles.length} to ${CONFIG.MAX_FILES_IN_MEMORY}`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:164:    .slice(0, CONFIG.MAX_FILES_IN_MEMORY)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:160:    path.join(CONFIG.PROJECT_ROOT, 'specs'),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:161:    path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts' | sed -n '1,290p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 63ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts' | sed -n '1,290p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 63ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Config
      3	// ---------------------------------------------------------------
@@ -173,31 +173,31 @@ exec
     19	  maxConversationMessages: number;
     20	  maxToolOutputLines: number;
 exec
-/bin/zsh -lc "rg --line-number \"extractFilesFromData|enhanceFilesWithSemanticDescriptions|SemanticFileInfo|ACTION\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:611:      ACTION_VERBS
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:673:    assertExists(ACTION_VERBS, 'T-009i: ACTION_VERBS constant exists', `${ACTION_VERBS.size} verbs`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1246:      extractFilesFromData,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1247:      enhanceFilesWithSemanticDescriptions,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1274:    // Test 4: extractFilesFromData extracts from FILES array
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1279:    const extractedFiles = extractFilesFromData(dataWithFiles, []);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1281:      pass('T-019d: extractFilesFromData extracts from FILES', extractedFiles[0].FILE_PATH);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1283:      fail('T-019d: extractFilesFromData extracts from FILES', `Got ${extractedFiles.length} files`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1286:    // Test 5: enhanceFilesWithSemanticDescriptions enhances files
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1291:    const enhanced = enhanceFilesWithSemanticDescriptions(files, semanticChanges);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1293:      pass('T-019e: enhanceFilesWithSemanticDescriptions enhances files', enhanced[0].DESCRIPTION);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1295:      fail('T-019e: enhanceFilesWithSemanticDescriptions enhances files', enhanced[0].DESCRIPTION);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:28:  ACTION?: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:62:export interface SemanticFileInfo {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:89:   3. FILE EXTRACTION
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:92:function extractFilesFromData(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:175:function enhanceFilesWithSemanticDescriptions(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:177:  semanticFileChanges: Map<string, SemanticFileInfo>
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:189:        ACTION: info.action === 'created' ? 'Created' : 'Modified'
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:195:    let basenameMatch: { path: string; info: SemanticFileInfo } | null = null;
+/bin/zsh -lc "rg --line-number \"extractFilesFromData|enhanceFilesWithSemanticDescriptions|SemanticFileInfo|ACTION\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:611:      ACTION_VERBS
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:673:    assertExists(ACTION_VERBS, 'T-009i: ACTION_VERBS constant exists', `${ACTION_VERBS.size} verbs`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1246:      extractFilesFromData,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1247:      enhanceFilesWithSemanticDescriptions,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1274:    // Test 4: extractFilesFromData extracts from FILES array
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1279:    const extractedFiles = extractFilesFromData(dataWithFiles, []);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1281:      pass('T-019d: extractFilesFromData extracts from FILES', extractedFiles[0].FILE_PATH);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1283:      fail('T-019d: extractFilesFromData extracts from FILES', `Got ${extractedFiles.length} files`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1286:    // Test 5: enhanceFilesWithSemanticDescriptions enhances files
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1291:    const enhanced = enhanceFilesWithSemanticDescriptions(files, semanticChanges);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1293:      pass('T-019e: enhanceFilesWithSemanticDescriptions enhances files', enhanced[0].DESCRIPTION);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1295:      fail('T-019e: enhanceFilesWithSemanticDescriptions enhances files', enhanced[0].DESCRIPTION);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:28:  ACTION?: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:62:export interface SemanticFileInfo {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:89:   3. FILE EXTRACTION
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:92:function extractFilesFromData(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:175:function enhanceFilesWithSemanticDescriptions(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:177:  semanticFileChanges: Map<string, SemanticFileInfo>
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:189:        ACTION: info.action === 'created' ? 'Created' : 'Modified'
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:195:    let basenameMatch: { path: string; info: SemanticFileInfo } | null = null;
 codex
 I’m now tracing where semantic file actions are produced (`extractFileChanges`) because that directly affects whether `ACTION` can represent read/write/create or only modified/created in this extractor.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts' | sed -n '170,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts' | sed -n '170,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    170	    const content: string = msg.prompt || msg.content || msg.CONTENT || '';
    171	    const type: MessageType = classifyMessage(content);
    172	    const bucket = classified.get(type);
@@ -219,7 +219,7 @@ exec
    188	  const index: number = searchContent.indexOf(filePath);
    189	  return index === -1 ? -1 : searchFrom + index;
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '540,640p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '540,640p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    540	        PATTERN_PARALLEL: patternType === 'parallel',
    541	        PHASES: phaseDetails,
    542	        HAS_PHASES: phaseDetails.length > 0,
@@ -241,7 +241,7 @@ exec
    558	    if (filtered.hadContamination) {
    559	      hadContamination = true;
 exec
-/bin/zsh -lc "rg --line-number \"filesRead|filesCreated|filesModified|FILES\\s*:|observations\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg --line-number \"filesRead|filesCreated|filesModified|FILES\\s*:|observations\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 4:// Orchestrates session data collection — gathers observations, files, decisions, and context
 137:  observations?: Observation[];
 141:  filesModified?: Array<{ path: string; changes_summary?: string }>;
@@ -263,7 +263,7 @@ exec
 566:  const sessionStatus = determineSessionStatus(blockers, observations, userPrompts.length);
 568:    observations, userPrompts.length, toolCounts, sessionStatus
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '110,190p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '110,190p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    110	export interface PendingTask {
    111	  TASK_ID: string;
    112	  TASK_DESCRIPTION: string;
@@ -285,7 +285,7 @@ exec
    128	  CONTEXT_SUMMARY: string;
    129	  PENDING_TASKS: PendingTask[];
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts' | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts' | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Semantic Summarizer
      3	// ---------------------------------------------------------------
@@ -307,7 +307,7 @@ exec
     19	/** Message-like record for semantic analysis */
     20	export interface SemanticMessage {
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js' | sed -n '640,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js' | sed -n '640,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
    640	    assertEqual(detectObservationType({ type: 'feature' }), 'feature', 'EXT-File-005: Explicit type preserved');
    641	    assertEqual(detectObservationType({ type: 'observation', narrative: 'Fixed the bug in auth' }), 'bugfix', 'EXT-File-006: Bug keywords = bugfix');
    642	    assertEqual(detectObservationType({ type: 'observation', narrative: 'Implemented new login feature' }), 'feature', 'EXT-File-007: Implement keywords = feature');
@@ -329,7 +329,7 @@ exec
    658	
    659	    // Test file deduplication
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/config/config.jsonc' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/config/config.jsonc' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// CONFIG: SPEC KIT SETTINGS
      3	// ───────────────────────────────────────────────────────────────
@@ -351,12 +351,12 @@ exec
     19	  // 2. SEMANTIC SEARCH
     20	  // ─────────────────────────────────────────────────────────────
 exec
-/bin/zsh -lc "rg --line-number \"files_modified|filesModified|FILES\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg --line-number \"files_modified|filesModified|FILES\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 36:  FILES?: FileEntry[];
 codex
 I’m quickly checking the data loader shape to confirm whether legacy keys like `filesModified` are still produced upstream or effectively dead code in this extractor.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Data Loader
      3	// ---------------------------------------------------------------
@@ -378,7 +378,7 @@ exec
     19	} from '../utils/input-normalizer';
     20	import type { RawInputData, NormalizedData, OpencodeCapture, Observation, UserPrompt, RecentContext, FileEntry, DataSource } from '../utils/input-normalizer';
 exec
-/bin/zsh -lc "rg --line-number \"filesModified|FILES|files.*created|files.*read|observations\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg --line-number \"filesModified|FILES|files.*created|files.*read|observations\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 38:/** A file entry in the FILES array */
 48:  filesModified?: string[];
 54:  FILES?: Array<FileEntry | Record<string, unknown>>;
@@ -402,7 +402,7 @@ exec
 codex
 I confirmed upstream normalization next, since it changes what this extractor actually receives (especially around legacy `filesModified` vs `FILES`). That affects whether the “4 sources” are truly active.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '210,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '210,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    210	  return {
    211	    type: 'implementation',
    212	    title: 'Technical Implementation Details',
@@ -424,7 +424,7 @@ exec
    228	    observations: [],
    229	    userPrompts: [],
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '430,500p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '430,500p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    430	  for (const tool of filteredToolCalls) {
    431	    const toolObs: Observation = {
    432	      type: tool.tool === 'edit' || tool.tool === 'write' ? 'implementation' : 'observation',
@@ -447,7 +447,7 @@ exec
    449	
 codex
 ### FINDING-01: Better descriptions can be discarded by “shorter-is-better” dedup rule
-- **File:** [file-extractor.ts:109](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:113](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:35](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts)
+- **File:** [file-extractor.ts:109](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:113](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:35](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** For duplicate paths, the code keeps a new description only when it is valid and shorter than the existing one.
@@ -457,7 +457,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Long-path elision can merge distinct files into one dedup key
-- **File:** [file-extractor.ts:102](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:19](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts)
+- **File:** [file-extractor.ts:102](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:19](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `toRelativePath` shortens long paths to `a/.../x/y`, and that shortened path is used as the dedup `Map` key.
@@ -467,7 +467,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: File action collapses almost everything to “Modified”
-- **File:** [file-extractor.ts:189](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [semantic-summarizer.ts:196](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts)
+- **File:** [file-extractor.ts:189](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [semantic-summarizer.ts:196](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Only `created` maps to `Created`; all other actions become `Modified`.
@@ -477,7 +477,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: ACTION can be missing entirely for many files
-- **File:** [file-extractor.ts:218](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:165](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:218](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:165](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** If no semantic match exists, original file object is returned with no `ACTION`.
@@ -487,7 +487,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: `IS_DECISION` can be false while TYPE is `DECISION`
-- **File:** [file-extractor.ts:72](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:255](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:263](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:72](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:255](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:263](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Explicit `obs.type` is returned as-is, but `IS_DECISION` checks strict lowercase equality.
@@ -497,7 +497,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-06: Observation type detection ignores structured fact text
-- **File:** [file-extractor.ts:75](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:75](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Only string facts are included in keyword detection; object facts contribute empty strings.
@@ -507,7 +507,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-07: Observation dedup merges non-consecutive entries despite comment claiming consecutive-only
-- **File:** [file-extractor.ts:270](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:270](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Global map merges matching keys across entire array, not just consecutive observations.
@@ -517,7 +517,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Dedup mutates original `obs.files` via in-place sort
-- **File:** [file-extractor.ts:288](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:288](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** `sort()` mutates `obs.files`.
@@ -527,7 +527,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: FILES/filesModified entry parsing can throw on malformed array items
-- **File:** [file-extractor.ts:120](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:129](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:120](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:129](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Code assumes each entry is a non-null object; `null` entries will throw.
@@ -537,7 +537,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-10: `obs.files` is not type-checked before iteration
-- **File:** [file-extractor.ts:135](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:135](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Truthy non-array values can be iterated unexpectedly (e.g., string -> char-by-char).
@@ -547,7 +547,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-11: MAX_FILES limit is hardcoded to 10 in runtime config
-- **File:** [file-extractor.ts:159](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [config.ts:219](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts)
+- **File:** [file-extractor.ts:159](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [config.ts:219](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** `MAX_FILES_IN_MEMORY` is fixed at 10.
@@ -557,7 +557,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: Truncation strategy can drop important files
-- **File:** [file-extractor.ts:154](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:164](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:154](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:164](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Files are ordered by “valid description first” then insertion order; slicing drops remainder blindly.
@@ -567,7 +567,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-13: Path normalization is inconsistent for slash style and absolute/relative variants
-- **File:** [file-extractor.ts:102](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:17](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts), [file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts)
+- **File:** [file-extractor.ts:102](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:17](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts), [file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Short paths may retain backslashes or absolute forms; dedup may miss equivalents.
@@ -577,7 +577,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-14: Per-file metadata is minimal and misses change metrics
-- **File:** [file-extractor.ts:25](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:165](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:25](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:165](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Extracted metadata is only `FILE_PATH`, `DESCRIPTION`, optional `ACTION`.
@@ -587,7 +587,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-15: “Source 2” legacy parser is likely stale in normalized flows
-- **File:** [file-extractor.ts:126](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [input-normalizer.ts:237](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+- **File:** [file-extractor.ts:126](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [input-normalizer.ts:237](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Extractor supports `filesModified`, but normalizer already converts legacy `filesModified` into `FILES`.
@@ -606,7 +606,7 @@ codex
 tokens used
 58,799
 ### FINDING-01: Better descriptions can be discarded by “shorter-is-better” dedup rule
-- **File:** [file-extractor.ts:109](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:113](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:35](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts)
+- **File:** [file-extractor.ts:109](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:113](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:35](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** For duplicate paths, the code keeps a new description only when it is valid and shorter than the existing one.
@@ -616,7 +616,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Long-path elision can merge distinct files into one dedup key
-- **File:** [file-extractor.ts:102](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:19](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts)
+- **File:** [file-extractor.ts:102](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:19](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `toRelativePath` shortens long paths to `a/.../x/y`, and that shortened path is used as the dedup `Map` key.
@@ -626,7 +626,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: File action collapses almost everything to “Modified”
-- **File:** [file-extractor.ts:189](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [semantic-summarizer.ts:196](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts)
+- **File:** [file-extractor.ts:189](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [semantic-summarizer.ts:196](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Only `created` maps to `Created`; all other actions become `Modified`.
@@ -636,7 +636,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: ACTION can be missing entirely for many files
-- **File:** [file-extractor.ts:218](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:165](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:218](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:165](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** If no semantic match exists, original file object is returned with no `ACTION`.
@@ -646,7 +646,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: `IS_DECISION` can be false while TYPE is `DECISION`
-- **File:** [file-extractor.ts:72](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:255](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:263](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:72](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:255](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:263](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Explicit `obs.type` is returned as-is, but `IS_DECISION` checks strict lowercase equality.
@@ -656,7 +656,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-06: Observation type detection ignores structured fact text
-- **File:** [file-extractor.ts:75](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:75](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Only string facts are included in keyword detection; object facts contribute empty strings.
@@ -666,7 +666,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-07: Observation dedup merges non-consecutive entries despite comment claiming consecutive-only
-- **File:** [file-extractor.ts:270](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:270](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Global map merges matching keys across entire array, not just consecutive observations.
@@ -676,7 +676,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Dedup mutates original `obs.files` via in-place sort
-- **File:** [file-extractor.ts:288](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:288](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** `sort()` mutates `obs.files`.
@@ -686,7 +686,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: FILES/filesModified entry parsing can throw on malformed array items
-- **File:** [file-extractor.ts:120](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:129](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:120](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:129](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Code assumes each entry is a non-null object; `null` entries will throw.
@@ -696,7 +696,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-10: `obs.files` is not type-checked before iteration
-- **File:** [file-extractor.ts:135](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:135](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Truthy non-array values can be iterated unexpectedly (e.g., string -> char-by-char).
@@ -706,7 +706,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-11: MAX_FILES limit is hardcoded to 10 in runtime config
-- **File:** [file-extractor.ts:159](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [config.ts:219](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts)
+- **File:** [file-extractor.ts:159](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [config.ts:219](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** `MAX_FILES_IN_MEMORY` is fixed at 10.
@@ -716,7 +716,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: Truncation strategy can drop important files
-- **File:** [file-extractor.ts:154](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:164](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:154](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:164](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Files are ordered by “valid description first” then insertion order; slicing drops remainder blindly.
@@ -726,7 +726,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-13: Path normalization is inconsistent for slash style and absolute/relative variants
-- **File:** [file-extractor.ts:102](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:17](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts), [file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts)
+- **File:** [file-extractor.ts:102](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-helpers.ts:17](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts), [file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Short paths may retain backslashes or absolute forms; dedup may miss equivalents.
@@ -736,7 +736,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-14: Per-file metadata is minimal and misses change metrics
-- **File:** [file-extractor.ts:25](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:165](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+- **File:** [file-extractor.ts:25](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [file-extractor.ts:165](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Extracted metadata is only `FILE_PATH`, `DESCRIPTION`, optional `ACTION`.
@@ -746,7 +746,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-15: “Source 2” legacy parser is likely stale in normalized flows
-- **File:** [file-extractor.ts:126](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts), [input-normalizer.ts:237](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+- **File:** [file-extractor.ts:126](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts), [input-normalizer.ts:237](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Extractor supports `filesModified`, but normalizer already converts legacy `filesModified` into `FILES`.

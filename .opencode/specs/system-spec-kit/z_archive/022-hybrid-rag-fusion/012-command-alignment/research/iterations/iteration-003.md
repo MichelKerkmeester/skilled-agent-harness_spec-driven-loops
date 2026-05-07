@@ -32,12 +32,12 @@
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/description.json
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/scratch/deep-review-strategy.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/research/deep-research-state.jsonl
-- .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
-- .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
-- .opencode/command/memory/analyze.md
-- .opencode/command/memory/manage.md
-- .opencode/command/memory/shared.md
-- .opencode/command/memory/README.txt
+- .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
+- .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+- .opencode/commands/memory/analyze.md
+- .opencode/commands/memory/manage.md
+- .opencode/commands/memory/shared.md
+- .opencode/commands/memory/README.txt
 - .opencode/specs/system-spec-kit/021-spec-kit-phase-system/spec.md
 
 ## Summary

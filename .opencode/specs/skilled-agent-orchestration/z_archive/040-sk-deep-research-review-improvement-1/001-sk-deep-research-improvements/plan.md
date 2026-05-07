@@ -107,10 +107,10 @@ The command YAML initializes or resumes a `research/` packet, dispatches a singl
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Document validation | Changed skill docs, references, and runtime mirror Markdown | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` |
+| Document validation | Changed skill docs, references, and runtime mirror Markdown | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` |
 | Focused unit/integration verification | Deep-research contract parity and reducer behavior | `node mcp_server/node_modules/vitest/vitest.mjs run tests/deep-research-contract-parity.vitest.ts tests/deep-research-reducer.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts` |
 | Syntax parsing | Changed config, command YAML, and Codex TOML mirror | `python3.11`, Ruby `YAML.load_file` |
-| Packet validation | This phase folder only | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` |
+| Packet validation | This phase folder only | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` |
 <!-- /ANCHOR:testing -->
 
 ---

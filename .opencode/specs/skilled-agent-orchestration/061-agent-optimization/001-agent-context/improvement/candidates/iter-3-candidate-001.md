@@ -28,7 +28,7 @@ Read-only context retrieval agent. The **exclusive entry point for exploration t
 
 For prior-work recovery, this agent follows the same canonical continuity order as `/spec_kit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
 > **Routing Rule**: No other agent performs exploration directly. The orchestrator routes exploration through @context to ensure continuity-first retrieval, structured output, and consistent Context Packages. @context itself is LEAF-only and must not dispatch sub-agents.
 
@@ -461,13 +461,13 @@ Use CocoIndex when the query is semantic and exact tokens are unknown. Use exact
 
 | Agent | File | Relationship |
 | --- | --- | --- |
-| Orchestrator | `.opencode/agent/orchestrate.md` | Primary dispatcher — sends exploration requests and receives Context Packages |
+| Orchestrator | `.opencode/agents/orchestrate.md` | Primary dispatcher — sends exploration requests and receives Context Packages |
 
 ### Complementary Agents
 
 | Agent | File | Relationship |
 | --- | --- | --- |
-| @deep-research | `.opencode/agent/deep-research.md` | Deeper alternative selected by the orchestrator when iterative investigation is needed |
+| @deep-research | `.opencode/agents/deep-research.md` | Deeper alternative selected by the orchestrator when iterative investigation is needed |
 | @general | Built-in | Implementation agent that may use @context findings after retrieval completes |
 | Spec authoring | Distributed governance | Spec documentation uses @context findings through main-agent governance flow |
 

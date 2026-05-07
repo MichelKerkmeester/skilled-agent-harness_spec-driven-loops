@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -63,7 +63,7 @@ The packet audited files from 033, 034, and the merged 036 matrix runner commit.
 | `audit-findings.md` | Created | Per-file audit report and skill-gap follow-ups |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md` | Created | Level 2 packet structure |
 | `description.json`, `graph-metadata.json` | Created | Memory/graph metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/**/*.ts` | Modified | Minimal sk-code-opencode alignment fixes |
+| `.opencode/skills/system-spec-kit/mcp_server/**/*.ts` | Modified | Minimal sk-code-opencode alignment fixes |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -93,9 +93,9 @@ The audit used sk-code-opencode's TypeScript standards and checklists, verified 
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/001-sk-code-opencode-audit --strict` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run memory-retention-sweep advisor-rebuild hooks-codex-freshness` | PASS, 3 files and 10 tests |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/001-sk-code-opencode-audit --strict` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run memory-retention-sweep advisor-rebuild hooks-codex-freshness` | PASS, 3 files and 10 tests |
 <!-- /ANCHOR:verification -->
 
 ---

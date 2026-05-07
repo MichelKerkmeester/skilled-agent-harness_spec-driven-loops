@@ -33,7 +33,7 @@ contextType: "planning"
 
 ### Overview
 
-Create a single command file (`.opencode/command/create/prompt.md`) that serves as a user-facing entry point for the sk-improve-prompt skill. The command implements the Mode-Based Command Template pattern from command_template.md, with argument dispatch for sk-improve-prompt mode prefixes and :auto/:confirm execution modes.
+Create a single command file (`.opencode/commands/create/prompt.md`) that serves as a user-facing entry point for the sk-improve-prompt skill. The command implements the Mode-Based Command Template pattern from command_template.md, with argument dispatch for sk-improve-prompt mode prefixes and :auto/:confirm execution modes.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -49,7 +49,7 @@ Create a single command file (`.opencode/command/create/prompt.md`) that serves 
 
 ### Definition of Done
 
-- [ ] Command file created at `.opencode/command/create/prompt.md`
+- [ ] Command file created at `.opencode/commands/create/prompt.md`
 - [ ] All command_template.md validation checklist items pass
 - [ ] Manual invocation test succeeds
 - [ ] Spec docs updated (implementation-summary.md)
@@ -138,7 +138,7 @@ User invocation → Mandatory Gate → Argument Router → Skill Loader → Enha
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Command file causes errors or conflicts with existing create commands
-- **Procedure**: Delete `.opencode/command/create/prompt.md` (single file, no other changes)
+- **Procedure**: Delete `.opencode/commands/create/prompt.md` (single file, no other changes)
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -184,7 +184,7 @@ Phase 1 (Structure) ──► Phase 2 (Core Logic) ──► Phase 3 (Polish & V
 
 ### Rollback Procedure
 
-1. Delete `.opencode/command/create/prompt.md`
+1. Delete `.opencode/commands/create/prompt.md`
 2. Verify `/create:prompt` no longer resolves
 3. No data reversal needed (no persistent state)
 

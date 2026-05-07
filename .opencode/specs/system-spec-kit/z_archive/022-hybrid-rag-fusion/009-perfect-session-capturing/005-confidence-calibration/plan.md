@@ -77,7 +77,7 @@ Type extension -- add fields to a core data type, update the producer (extractor
 - **`DecisionRecord` type (`scripts/types/session-types.ts`)**: Extended with `CHOICE_CONFIDENCE` and `RATIONALE_CONFIDENCE` alongside derived `CONFIDENCE`
 - **Decision extractor (`scripts/extractors/decision-extractor.ts`)**: Produces dual confidence from conversation evidence signals
 - **Decision tree generator (`scripts/lib/decision-tree-generator.ts`)**: Consumes dual confidence for richer node labeling
-- **Template renderers (`.opencode/skill/system-spec-kit/templates/context_template.md`)**: Display split confidence in decision sections
+- **Template renderers (`.opencode/skills/system-spec-kit/templates/context_template.md`)**: Display split confidence in decision sections
 - **Workflow (`scripts/core/workflow.ts`)**: Percent conversion updated for dual model
 
 ### Data Flow
@@ -113,7 +113,7 @@ Type extension -- add fields to a core data type, update the producer (extractor
 ### Phase 3: Consumer Updates
 
 - [x] Update `decision-tree-generator.ts` to show split confidence on tree nodes when values diverge by > 0.1
-- [x] Update renderer surfaces (`ascii-boxes.ts`, `.opencode/skill/system-spec-kit/templates/context_template.md`) to include split labels when dual values are present
+- [x] Update renderer surfaces (`ascii-boxes.ts`, `.opencode/skills/system-spec-kit/templates/context_template.md`) to include split labels when dual values are present
 - [x] Update `workflow.ts` percent conversion to use legacy `CONFIDENCE` while carrying dual fields for rendering
 
 ### Phase 4: Verification

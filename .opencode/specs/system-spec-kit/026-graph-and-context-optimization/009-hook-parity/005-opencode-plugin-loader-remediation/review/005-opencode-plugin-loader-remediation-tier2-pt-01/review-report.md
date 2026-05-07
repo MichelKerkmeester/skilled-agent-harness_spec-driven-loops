@@ -6,9 +6,9 @@ Overall verdict: **CONDITIONAL**. `hasAdvisories: true`. Active finding counts a
 
 Single-pass coverage included D1 correctness, D2 security, D3 traceability, and D4 maintainability across the packet docs, OpenCode plugin entrypoints, relocated bridge helpers, focused tests, parent hook-parity tracking, and `.github/hooks/superset-notify.json`.
 
-Headline: plugin helper isolation is sound at runtime. `.opencode/plugins/` contains only the two plugin entrypoints plus README, the plugin entrypoints use static bridge paths under `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`, and the focused tests cover entrypoint purity, legacy parser fail-open behavior, OpenCode hook shape, per-instance state, in-flight dedup, and size caps. The structural full-vitest blocker is real config drift in Copilot/Superset hook wiring, but it is outside the plugin-loader risk surface.
+Headline: plugin helper isolation is sound at runtime. `.opencode/plugins/` contains only the two plugin entrypoints plus README, the plugin entrypoints use static bridge paths under `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`, and the focused tests cover entrypoint purity, legacy parser fail-open behavior, OpenCode hook shape, per-instance state, in-flight dedup, and size caps. The structural full-vitest blocker is real config drift in Copilot/Superset hook wiring, but it is outside the plugin-loader risk surface.
 
-The conditional verdict comes from one traceability P1: canonical packet evidence still claims helper files live under `.opencode/plugin-helpers/`, while the live code and README use `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`. That does not break the loader fix, but it makes the packet's verification replay materially untrustworthy until the docs are repaired.
+The conditional verdict comes from one traceability P1: canonical packet evidence still claims helper files live under `.opencode/plugin-helpers/`, while the live code and README use `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`. That does not break the loader fix, but it makes the packet's verification replay materially untrustworthy until the docs are repaired.
 
 Adversarial self-check on P1-001: **confirmed**. Hunter re-read the implementation summary, checklist, live README, and plugin imports and found the docs contradict the executable state. Skeptic is right that the runtime path is safe and the README is current, so this is not a D1 loader bug. Referee keeps P1 because checked verification evidence asserts a non-existent helper directory as a passed gate.
 
@@ -29,7 +29,7 @@ Planning Packet:
     "compact-plugin-output-guard-hardening",
     "compact-plugin-session-id-normalization"
   ],
-  "specSeed": "Update canonical packet docs and checklist evidence to name .opencode/skill/system-spec-kit/mcp_server/plugin_bridges/ as the shipped helper location, preserving .opencode/plugin-helpers/ only as historical draft context if needed.",
+  "specSeed": "Update canonical packet docs and checklist evidence to name .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/ as the shipped helper location, preserving .opencode/plugin-helpers/ only as historical draft context if needed.",
   "planSeed": "Phase 1: patch stale helper-path evidence in spec, plan, checklist, implementation-summary, and decision-record. Phase 2: optionally add compact-plugin defensive output and session-ID parity with the skill-advisor plugin. Phase 3: rerun focused plugin-loader tests and strict spec validation."
 }
 ```
@@ -38,7 +38,7 @@ Planning Packet:
 
 | ID | Severity | Title | Dimension | Evidence | Impact | Fix recommendation | Disposition |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| P1-001 | P1 | Canonical verification evidence names a helper directory that does not exist | D3 Traceability | `implementation-summary.md:51` says helpers moved to `.opencode/plugin-helpers/`; `implementation-summary.md:117-118` records `ls .opencode/plugin-helpers/` as PASS; `checklist.md:112` records the same path as evidence. Live state disagrees: `.opencode/plugins/README.md:10` names `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`, `.opencode/plugins/spec-kit-skill-advisor.js:37` resolves that bridge path, and `.opencode/plugins/spec-kit-compact-code-graph.js:30` / `:44` import from that same helper location. | Release replay fails or sends future maintainers to the wrong directory even though the runtime fix is correct. | Patch the packet docs and checklist evidence to the live `plugin_bridges/` location; keep `.opencode/plugin-helpers/` only in archived rationale if explicitly labelled historical. | active; confirmed by self-check |
+| P1-001 | P1 | Canonical verification evidence names a helper directory that does not exist | D3 Traceability | `implementation-summary.md:51` says helpers moved to `.opencode/plugin-helpers/`; `implementation-summary.md:117-118` records `ls .opencode/plugin-helpers/` as PASS; `checklist.md:112` records the same path as evidence. Live state disagrees: `.opencode/plugins/README.md:10` names `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`, `.opencode/plugins/spec-kit-skill-advisor.js:37` resolves that bridge path, and `.opencode/plugins/spec-kit-compact-code-graph.js:30` / `:44` import from that same helper location. | Release replay fails or sends future maintainers to the wrong directory even though the runtime fix is correct. | Patch the packet docs and checklist evidence to the live `plugin_bridges/` location; keep `.opencode/plugin-helpers/` only in archived rationale if explicitly labelled historical. | active; confirmed by self-check |
 | P2-001 | P2 | Compact plugin lacks the output-shape guard added to skill-advisor | D1 Correctness / D4 Maintainability | Compact plugin calls `output.system.some()` and `output.system.push()` without normalizing `output.system` at `.opencode/plugins/spec-kit-compact-code-graph.js:380` and `:384`; it also calls `output.context.some()` / `push()` at `:453` and `:457`. Skill-advisor has the defensive guard at `.opencode/plugins/spec-kit-skill-advisor.js:567-572`, with tests at `spec-kit-skill-advisor-plugin.vitest.ts:451-464`. | If OpenCode or a test harness passes `{}` or `{ system: null }`, compact injection can throw instead of fail-opening. Current host likely supplies arrays, so advisory only. | Mirror the skill-advisor guard for compact system and compaction outputs; add focused tests. | active advisory |
 | P2-002 | P2 | Compact plugin session cache key does not normalize non-string session IDs | D1 Correctness / D4 Maintainability | Compact cache key interpolates raw `sessionID` at `.opencode/plugins/spec-kit-compact-code-graph.js:120-121`. Skill-advisor normalizes object session IDs deterministically at `.opencode/plugins/spec-kit-skill-advisor.js:140-147`, with regression coverage at `spec-kit-skill-advisor-plugin.vitest.ts:466-487`. | Object-shaped session IDs would collapse to `[object Object]` in compact cache keys. OpenCode normally provides strings, so this is a defensive parity advisory. | Reuse a stable session-ID normalizer in compact cache keys and invalidation paths; add one object-session regression. | active advisory |
 
@@ -47,7 +47,7 @@ Planning Packet:
 ```json
 {
   "findingId": "P1-001",
-  "claim": "Canonical packet verification evidence is stale because it asserts .opencode/plugin-helpers/ exists and contains helper bridges, while live runtime code uses .opencode/skill/system-spec-kit/mcp_server/plugin_bridges/.",
+  "claim": "Canonical packet verification evidence is stale because it asserts .opencode/plugin-helpers/ exists and contains helper bridges, while live runtime code uses .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/.",
   "evidenceRefs": [
     "specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/005-opencode-plugin-loader-remediation/implementation-summary.md:51",
     "specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/005-opencode-plugin-loader-remediation/implementation-summary.md:117",
@@ -75,7 +75,7 @@ Hunter -> Skeptic -> Referee:
 
 P0: none.
 
-P1: helper-path traceability repair. Update `spec.md`, `plan.md`, `checklist.md`, `implementation-summary.md`, and `decision-record.md` so shipped helper location evidence names `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`. The current `.opencode/plugins/README.md` is already aligned.
+P1: helper-path traceability repair. Update `spec.md`, `plan.md`, `checklist.md`, `implementation-summary.md`, and `decision-record.md` so shipped helper location evidence names `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`. The current `.opencode/plugins/README.md` is already aligned.
 
 P2 advisories: compact plugin hardening. Add output-shape guards and stable session-ID normalization to compact-code-graph so it matches the defensive posture already shipped in skill-advisor.
 

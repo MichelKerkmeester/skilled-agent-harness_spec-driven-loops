@@ -99,7 +99,7 @@ After fix: both INSERT paths use the same unified column set.
 ### Phase 2: Gate Numbering Fixes (KL-2) [P1]
 
 Phase 2a — Active files:
-1. `.opencode/agent/orchestrate.md` line 231: `Gate 4` → `Gate 3`
+1. `.opencode/agents/orchestrate.md` line 231: `Gate 4` → `Gate 3`
 2. `AGENTS.md` line 503: `Gate 4 Option B` → `Gate 3 Option B`
 3. `scripts-registry.json` lines 45, 54: `Gate 6` → `Completion Verification Rule`
 4. `scripts/README.md` lines 136, 244, 325: `Gate 6` → `Completion Verification Rule`

@@ -28,15 +28,15 @@ The rule (for evergreen docs):
 
 ### Read these first
 
-- `.opencode/skill/sk-doc/SKILL.md` (where the new rule needs to be added)
-- `.opencode/skill/sk-doc/references/` (any existing rule files — DQI, anchor conventions)
-- `.opencode/skill/sk-doc/assets/` (templates — README, install guide, feature catalog, manual testing playbook)
+- `.opencode/skills/sk-doc/SKILL.md` (where the new rule needs to be added)
+- `.opencode/skills/sk-doc/references/` (any existing rule files — DQI, anchor conventions)
+- `.opencode/skills/sk-doc/assets/` (templates — README, install guide, feature catalog, manual testing playbook)
 
 ### Implementation
 
 #### Phase 1: Update sk-doc with the new rule
 
-Add a new rule to sk-doc. Suggested location: a new file `.opencode/skill/sk-doc/references/evergreen_packet_id_rule.md` (referenced from SKILL.md), OR inline in `SKILL.md`'s standards section, OR appended to the existing DQI rules file. Use whichever pattern sk-doc already uses for adjacent rules.
+Add a new rule to sk-doc. Suggested location: a new file `.opencode/skills/sk-doc/references/evergreen_packet_id_rule.md` (referenced from SKILL.md), OR inline in `SKILL.md`'s standards section, OR appended to the existing DQI rules file. Use whichever pattern sk-doc already uses for adjacent rules.
 
 The rule should include:
 - The two doc classes (spec-local vs evergreen)
@@ -84,12 +84,12 @@ Run the audit grep again across all evergreen docs. Confirm zero remaining viola
 ```bash
 grep -rnE '\b0[0-9]{2}-[a-z-]+|\bpacket [0-9]{3}|\b03[0-9]/00[0-9]|\bF-013-[0-9]+|\bP1-[0-9]+|\bphase [0-9]{3}|\bfrom packet|\bin packet|\bvia packet' \
   AGENTS.md CLAUDE.md \
-  .opencode/skill/system-spec-kit/{SKILL,ARCHITECTURE,README}.md \
-  .opencode/skill/system-spec-kit/mcp_server/{README,INSTALL_GUIDE,ENV_REFERENCE}.md \
-  .opencode/skill/system-spec-kit/mcp_server/**/README.md \
-  .opencode/skill/system-spec-kit/feature_catalog/**/*.md \
-  .opencode/skill/system-spec-kit/manual_testing_playbook/**/*.md \
-  .opencode/skill/system-spec-kit/references/**/*.md \
+  .opencode/skills/system-spec-kit/{SKILL,ARCHITECTURE,README}.md \
+  .opencode/skills/system-spec-kit/mcp_server/{README,INSTALL_GUIDE,ENV_REFERENCE}.md \
+  .opencode/skills/system-spec-kit/mcp_server/**/README.md \
+  .opencode/skills/system-spec-kit/feature_catalog/**/*.md \
+  .opencode/skills/system-spec-kit/manual_testing_playbook/**/*.md \
+  .opencode/skills/system-spec-kit/references/**/*.md \
   2>/dev/null | head -30
 ```
 

@@ -61,7 +61,7 @@ _memory:
 
 This is **Phase 53** of the `000-release-cleanup` parent under `026-graph-and-context-optimization`.
 
-**Scope Boundary**: Five disjoint doc-quality work-blocks plus one folder merge under `.opencode/skill/system-spec-kit/`. No executable-code changes. No content-semantics changes to existing scenarios — only structural alignment with sk-doc templates.
+**Scope Boundary**: Five disjoint doc-quality work-blocks plus one folder merge under `.opencode/skills/system-spec-kit/`. No executable-code changes. No content-semantics changes to existing scenarios — only structural alignment with sk-doc templates.
 
 **Dependencies**:
 - `sk-doc` skill provides canonical templates (`skill_reference_template.md`, `readme_code_template.md`, `manual_testing_playbook_template.md`) and the validator script.
@@ -84,7 +84,7 @@ This is **Phase 53** of the `000-release-cleanup` parent under `026-graph-and-co
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Five doc-quality drift items have accumulated under `.opencode/skill/system-spec-kit/`: (1) the `references/multi-ai-council/` directory has 6 files with inconsistent frontmatter (only 1 of 6 conforms to `skill_reference_template.md`); (2) two manifest maintainer docs (`templates/manifest/EXTENSION_GUIDE.md`, `MIGRATION.md`) lack reference frontmatter entirely; (3) `shared/predicates/` (560 LOC, 1 source + tests) has no folder README despite all 9 sibling directories under `shared/` having one; (4) `mcp_server/code_graph/lib/utils/` (64 LOC) has no folder README; (5) `mcp_server/skill_advisor/` carries two parallel manual-testing surfaces — `operator_runbook/` (43 scenarios, full subsystem coverage) and `manual_testing_playbook/` (4 scenarios, narrow critical path) — whose existence in parallel violates the sk-doc single-source-of-truth contract. Each item is small in isolation, but together they erode template adherence and make sk-doc governance harder to enforce.
+Five doc-quality drift items have accumulated under `.opencode/skills/system-spec-kit/`: (1) the `references/multi-ai-council/` directory has 6 files with inconsistent frontmatter (only 1 of 6 conforms to `skill_reference_template.md`); (2) two manifest maintainer docs (`templates/manifest/EXTENSION_GUIDE.md`, `MIGRATION.md`) lack reference frontmatter entirely; (3) `shared/predicates/` (560 LOC, 1 source + tests) has no folder README despite all 9 sibling directories under `shared/` having one; (4) `mcp_server/code_graph/lib/utils/` (64 LOC) has no folder README; (5) `mcp_server/skill_advisor/` carries two parallel manual-testing surfaces — `operator_runbook/` (43 scenarios, full subsystem coverage) and `manual_testing_playbook/` (4 scenarios, narrow critical path) — whose existence in parallel violates the sk-doc single-source-of-truth contract. Each item is small in isolation, but together they erode template adherence and make sk-doc governance harder to enforce.
 
 ### Purpose
 Bring all five surfaces into alignment with sk-doc's canonical templates in a single orchestrated pass, so the next batch of phase parents inherits a clean precedent.
@@ -98,8 +98,8 @@ Bring all five surfaces into alignment with sk-doc's canonical templates in a si
 ### In Scope
 - Frontmatter + structure alignment of 6 files under `references/multi-ai-council/` against `skill_reference_template.md`.
 - Frontmatter + structure alignment of `templates/manifest/EXTENSION_GUIDE.md` and `MIGRATION.md` against `skill_reference_template.md`. Files stay at `templates/manifest/`; **no relocation**.
-- Creation of `.opencode/skill/system-spec-kit/shared/predicates/README.md` using `readme_code_template.md`.
-- Creation of `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/utils/README.md` using `readme_code_template.md`.
+- Creation of `.opencode/skills/system-spec-kit/shared/predicates/README.md` using `readme_code_template.md`.
+- Creation of `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/utils/README.md` using `readme_code_template.md`.
 - Merger of `mcp_server/skill_advisor/operator_runbook/` (43 scenarios) into `mcp_server/skill_advisor/manual_testing_playbook/`. Operator_runbook directory **physically deleted** post-merge (no archival, no symlink, no tombstone). All cross-repo references updated.
 
 ### Out of Scope
@@ -115,12 +115,12 @@ See `resource-map.md` for the complete enumerated path catalog. Summary:
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/references/multi-ai-council/*.md` (6) | Modify | Add reference frontmatter, intro, divider, numbered H2 |
-| `.opencode/skill/system-spec-kit/templates/manifest/{EXTENSION_GUIDE,MIGRATION}.md` (2) | Modify | Add reference frontmatter, intro, divider, numbered H2 |
-| `.opencode/skill/system-spec-kit/shared/predicates/README.md` | Create | New folder README (readme_code_template) |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/utils/README.md` | Create | New folder README (readme_code_template) |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/**` | Modify/Create | Rewrite entry-point file; add 9 category dirs and 43 per-test scaffolds; absorb 4 SAD overlaps |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/operator_runbook/**` | Delete | Entire directory `rm -rf` |
+| `.opencode/skills/system-spec-kit/references/multi-ai-council/*.md` (6) | Modify | Add reference frontmatter, intro, divider, numbered H2 |
+| `.opencode/skills/system-spec-kit/templates/manifest/{EXTENSION_GUIDE,MIGRATION}.md` (2) | Modify | Add reference frontmatter, intro, divider, numbered H2 |
+| `.opencode/skills/system-spec-kit/shared/predicates/README.md` | Create | New folder README (readme_code_template) |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/utils/README.md` | Create | New folder README (readme_code_template) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/**` | Modify/Create | Rewrite entry-point file; add 9 category dirs and 43 per-test scaffolds; absorb 4 SAD overlaps |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/**` | Delete | Entire directory `rm -rf` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -176,8 +176,8 @@ See `resource-map.md` for the complete enumerated path catalog. Summary:
 | Risk | `create.sh` auto-branched to `scaffold/053-…` | Low | Per memory `feedback_stay_on_main_no_feature_branches`, immediately switched back to main; --phase mode used --skip-branch implicitly (verified: still on main) |
 | Risk | Implementation-summary unfilled at completion | Low | Per memory `project_implementation_summary_unfilled_gap`, explicit task in tasks.md ensures fill before completion-claim |
 | Risk | Codex CLI not in fast mode | Low | Per memory `feedback_codex_cli_fast_mode`, every dispatch passes `-c service_tier="fast"` explicitly |
-| Dependency | `sk-doc` validator script | Critical | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` runs on each modified file |
-| Dependency | `system-spec-kit` strict validate | Critical | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Dependency | `sk-doc` validator script | Critical | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` runs on each modified file |
+| Dependency | `system-spec-kit` strict validate | Critical | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 <!-- /ANCHOR:risks -->
 
 ---

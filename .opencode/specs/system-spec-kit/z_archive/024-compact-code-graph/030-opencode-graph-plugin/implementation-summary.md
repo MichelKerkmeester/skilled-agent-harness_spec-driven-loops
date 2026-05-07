@@ -123,14 +123,14 @@ That sequencing kept transport logic thin, kept graph operations beneath the tra
 
 | Check | Result |
 |-------|--------|
-| `npm run build` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
-| `npm run typecheck` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
+| `npm run build` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
+| `npm run typecheck` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
 | `npx vitest run tests/opencode-transport.vitest.ts tests/code-graph-ops-hardening.vitest.ts tests/session-resume.vitest.ts tests/session-bootstrap.vitest.ts tests/opencode-plugin.vitest.ts` | PASS |
 | `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/session-resume.vitest.ts tests/startup-brief.vitest.ts tests/structural-contract.vitest.ts tests/hook-session-start.vitest.ts` | PASS |
 | `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/ensure-ready.vitest.ts tests/code-graph-query-handler.vitest.ts tests/code-graph-context-handler.vitest.ts` | PASS |
 | `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts tests/copilot-hook-wiring.vitest.ts` | PASS |
 | `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/opencode-transport.vitest.ts tests/startup-brief.vitest.ts tests/hook-session-start.vitest.ts` | PASS |
-| `npx tsc --build --verbose` in `.opencode/skill/system-spec-kit/mcp_server` | PASS - rebuilt stale OpenCode transport output so the snapshot note reached live startup digests |
+| `npx tsc --build --verbose` in `.opencode/skills/system-spec-kit/mcp_server` | PASS - rebuilt stale OpenCode transport output so the snapshot note reached live startup digests |
 | `node --check .opencode/plugins/spec-kit-compact-code-graph.js` | PASS |
 | `jq empty opencode.json` | PASS |
 | Codex startup recovery docs reviewed against the `session_bootstrap` MCP path | PASS |
@@ -138,7 +138,7 @@ That sequencing kept transport logic thin, kept graph operations beneath the tra
 | `./.github/hooks/scripts/session-start.sh` smoke run | PASS - emitted the shared startup banner plus the startup-snapshot note |
 | Dist-hook smoke runs for Copilot, Claude, and Gemini startup surfaces | PASS |
 | Fresh OpenCode live retest of startup digest, `session_resume({ minimal: true })`, and structural readiness | PASS - startup digest includes the startup-snapshot note and matches the freshness-aware runtime surfaces |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict` | PASS after Phase 5 runtime and doc truth-sync |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict` | PASS after Phase 5 runtime and doc truth-sync |
 | `jq empty` on all packet `description.json` files | PASS |
 | Parallel review lane | Surfaced the final parent-doc mismatch and that mismatch was corrected before closeout |
 <!-- /ANCHOR:verification -->

@@ -117,7 +117,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-[What to investigate next] ACCUMULATED FINDINGS SUMMARY: but more resilient retrieval lifecycle.` - Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0 Warnings: 0`; it also emitted the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+[What to investigate next] ACCUMULATED FINDINGS SUMMARY: but more resilient retrieval lifecycle.` - Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0 Warnings: 0`; it also emitted the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

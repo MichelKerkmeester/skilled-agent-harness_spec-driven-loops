@@ -63,7 +63,7 @@ Three sequential phases, each producing a verifiable artifact. Prose-only delive
 
 ### Phase 2 — Author deliverable assets
 
-**Goal**: Produce `codex_app_personalization.md` and `codex_voice_module.md` in `.opencode/skill/cli-codex/assets/`.
+**Goal**: Produce `codex_app_personalization.md` and `codex_voice_module.md` in `.opencode/skills/cli-codex/assets/`.
 
 **Steps:**
 1. Enumerate the seven target behavior shifts (derived from Claude-vs-Codex delta analysis in spec §2):
@@ -96,13 +96,13 @@ Three sequential phases, each producing a verifiable artifact. Prose-only delive
 **Goal**: Wire the new assets into `cli-codex` SKILL.md without disturbing existing routing.
 
 **Steps:**
-1. Read `.opencode/skill/cli-codex/SKILL.md` in full (already done during context loading).
+1. Read `.opencode/skills/cli-codex/SKILL.md` in full (already done during context loading).
 2. Identify three insertion points:
    - **Resource Domains table** (§2 Smart Routing) — add two rows for the new assets.
    - **ALWAYS load list** (LOADING_LEVELS["ALWAYS"] pseudocode block) — add `assets/codex_voice_module.md` so every CLI dispatch appends it.
    - **RULES §4 ALWAYS section** — add rule #10: "ALWAYS append the voice module block to Codex delegation prompts; ALWAYS surface `codex_app_personalization.md` when user asks about Codex APP configuration."
 3. Apply edits via `Edit` tool, each as a surgical patch (no replace_all).
-4. Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice --strict`.
+4. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice --strict`.
 
 **Exit criteria**: SKILL.md references both new assets; no broken anchors; validation passes.
 
@@ -116,7 +116,7 @@ Three sequential phases, each producing a verifiable artifact. Prose-only delive
 1. Author `implementation-summary.md` with post-implementation evidence (files created, byte counts, SKILL.md diff summary).
 2. Walk `checklist.md` — mark each item `[x]` with an evidence citation (file path + line or observed artifact).
 3. Compose save-context JSON payload with `specFolder`, `sessionSummary`, `user_prompts`, `recent_context`, `FILES`, `keyDecisions`, `nextSteps`.
-4. Invoke `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice` — this generates `description.json`, refreshes `graph-metadata.json`, and indexes the spec folder in Spec Kit Memory.
+4. Invoke `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice` — this generates `description.json`, refreshes `graph-metadata.json`, and indexes the spec folder in Spec Kit Memory.
 5. Address any POST-SAVE QUALITY REVIEW HIGH issues via manual Edit.
 
 **Exit criteria**: Checklist fully verified; validate.sh exits 0; memory save succeeds with no HIGH issues.
@@ -127,8 +127,8 @@ Three sequential phases, each producing a verifiable artifact. Prose-only delive
 
 | Dependency                                                      | Required For         | Status    |
 | --------------------------------------------------------------- | -------------------- | --------- |
-| `.opencode/skill/cli-codex/SKILL.md` exists at stable version   | Phase 3              | Confirmed |
-| `.opencode/skill/cli-codex/assets/` directory exists            | Phase 2              | Confirmed |
+| `.opencode/skills/cli-codex/SKILL.md` exists at stable version   | Phase 3              | Confirmed |
+| `.opencode/skills/cli-codex/assets/` directory exists            | Phase 2              | Confirmed |
 | `generate-context.js` available at dist path                    | Phase 4              | Assumed present (standard Spec Kit Memory path) |
 | `validate.sh` script available                                  | Phase 3, Phase 4     | Assumed present                                 |
 
@@ -137,8 +137,8 @@ Three sequential phases, each producing a verifiable artifact. Prose-only delive
 ## 4. ROLLBACK STRATEGY
 
 Prose-only deliverables with no runtime coupling. Rollback is trivial:
-1. `rm` both new asset files in `.opencode/skill/cli-codex/assets/`.
-2. Revert SKILL.md via `git checkout .opencode/skill/cli-codex/SKILL.md`.
+1. `rm` both new asset files in `.opencode/skills/cli-codex/assets/`.
+2. Revert SKILL.md via `git checkout .opencode/skills/cli-codex/SKILL.md`.
 3. `rm -rf` the spec folder if the feature is being discarded entirely.
 
 No data migration, no cache invalidation, no downstream consumers beyond Codex sessions that chose to adopt the personalization.

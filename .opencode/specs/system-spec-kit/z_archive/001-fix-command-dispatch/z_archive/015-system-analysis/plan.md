@@ -69,14 +69,14 @@ We will re-structure the document to insert the new protocol as **Section 3**.
 ```markdown
 ## 3. COMMAND PATTERN REFERENCE PROTOCOL
 
-**Philosophy**: Commands (`.opencode/command/**/*.yaml`) are high-value "Reference Patterns" containing optimized logic, not rigid laws for manual execution.
+**Philosophy**: Commands (`.opencode/commands/**/*.yaml`) are high-value "Reference Patterns" containing optimized logic, not rigid laws for manual execution.
 
 > **SIDE NOTE**: If a command is *explicitly invoked* (e.g., `/spec_kit:complete`), its logic is **ENFORCED LAW**, not just a reference.
 
 **Execution Protocol**:
 
 1.  **🔍 Scan**: Before diving in, use a parallel sub-agent to scan available commands and identify which ones are relevant to the task.
-    *   *Prompt*: "Scan .opencode/command/ for workflows relevant to [task]."
+    *   *Prompt*: "Scan .opencode/commands/ for workflows relevant to [task]."
 
 2.  **🧩 Extract**: Treat these commands as reference patterns. Extract their:
     *   **Logic**: Decision trees and confidence checkpoints.

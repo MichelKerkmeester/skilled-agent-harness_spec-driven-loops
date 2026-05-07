@@ -11,15 +11,15 @@
       "summary": "Ambiguous CALLS/import subject resolution still ranks only the first 10 SQL matches, so the operation-aware selector can miss the correct implementation symbol in larger ambiguity sets.",
       "evidence": [
         "review/iterations/iteration-01.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:45",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:134",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:218",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:337"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:45",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:134",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:218",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:337"
       ],
       "recommended_fix": "Re-rank the full ambiguous match set instead of truncating to the first 10 SQL rows, and add a >10-candidate regression for the new operation-aware selector.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts"
       ],
       "related_findings": [
         "F-008"
@@ -33,14 +33,14 @@
       "summary": "The packet preserves CocoIndex seed fidelity only when callers send `seed.file`; `seed.filePath` falls through the generic seed path and drops provider-specific metadata.",
       "evidence": [
         "review/iterations/iteration-02.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:169",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:199",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:184"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:169",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:199",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:184"
       ],
       "recommended_fix": "Normalize `filePath` and `file` equivalently for CocoIndex seeds and add direct regression coverage for the `filePath` form.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts"
       ],
       "related_findings": [],
       "negative_if_ruled_out": null
@@ -52,14 +52,14 @@
       "summary": "The new `partialOutput` contract undercounts omitted anchors when the deadline expires before multiple remaining anchors are processed.",
       "evidence": [
         "review/iterations/iteration-03.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:116",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:171",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:145"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:116",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:171",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:145"
       ],
       "recommended_fix": "Count all remaining anchors when deadline pressure interrupts the build loop and add a multi-anchor timeout regression.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts"
       ],
       "related_findings": [
         "F-009"
@@ -73,17 +73,17 @@
       "summary": "No-op incremental scans can report `filesSkipped: 0` and clear the persisted edge-enrichment summary even though fresh files were skipped before parsing and no new graph state was written.",
       "evidence": [
         "review/iterations/iteration-04.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1366",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:186",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:207",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:240",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts:147"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1366",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:186",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:207",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:240",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts:147"
       ],
       "recommended_fix": "Track pre-parse skipped files separately from persisted results and only clear the stored enrichment summary when a replacement graph state is actually persisted.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts"
       ],
       "related_findings": [
         "F-010"
@@ -129,7 +129,7 @@
       ],
       "recommended_fix": "Add packet-local Gemini and Copilot startup hook regressions, or narrow the closeout language to the runtimes with direct assertions.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/tests/",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/implementation-summary.md",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/resource-map.md"
       ],
@@ -163,11 +163,11 @@
       "summary": "The ambiguity regression suite does not cover match sets larger than the new hard candidate cap, so the ranking defect in `F-001` is not currently guarded.",
       "evidence": [
         "review/iterations/iteration-01.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:337"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:337"
       ],
       "recommended_fix": "Add a large-ambiguity regression that proves the selector still picks the intended implementation node beyond 10 matches.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts"
       ],
       "related_findings": [
         "F-001"
@@ -181,11 +181,11 @@
       "summary": "The context handler's new partial-output coverage does not include a multi-anchor deadline case, leaving the `omittedAnchors` bug from `F-003` unguarded.",
       "evidence": [
         "review/iterations/iteration-03.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:145"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:145"
       ],
       "recommended_fix": "Add a multi-anchor timeout regression that asserts `partialOutput.omittedAnchors` matches the number of skipped anchors.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts"
       ],
       "related_findings": [
         "F-003"
@@ -199,11 +199,11 @@
       "summary": "The scan regression suite mocks `indexFiles()` in a way that bypasses the real `skipFreshFiles` contract, so the no-op incremental bug from `F-004` remains untested.",
       "evidence": [
         "review/iterations/iteration-04.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts:147"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts:147"
       ],
       "recommended_fix": "Add a no-op incremental regression where `indexFiles()` returns an empty result set and assert summary preservation plus correct skipped-file accounting.",
       "target_files": [
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts"
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts"
       ],
       "related_findings": [
         "F-004"

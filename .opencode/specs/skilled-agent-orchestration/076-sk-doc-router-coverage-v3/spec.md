@@ -13,8 +13,8 @@ _memory:
     next_safe_action: "Validate + commit"
     blockers: []
     key_files:
-      - .opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md
-      - .opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md
+      - .opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md
+      - .opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md
       - .opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3/scripts/extract_metrics_v3.py
       - .opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3/matrix_v3.csv
     session_dedup:
@@ -84,9 +84,9 @@ Add SD-016 (OPTIMIZATION) and SD-017 (INSTALL_GUIDE) scenario files, run the mat
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md` | Create | SD-016 scenario file |
-| `.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md` | Create | SD-017 scenario file |
-| `.opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add SD-016 + SD-017 to Categories + Scenario Index |
+| `.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md` | Create | SD-016 scenario file |
+| `.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md` | Create | SD-017 scenario file |
+| `.opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add SD-016 + SD-017 to Categories + Scenario Index |
 | `076/scripts/extract_metrics_v3.py` | Create | Markdown-bullet-aware extractor |
 | `076/scripts/run-matrix-076.sh` | Create | Variant of 071 dispatcher restricted to SD-016/017 |
 | `076/logs/{SD-016,SD-017}/{codex,copilot,opencode}.log` | Create | Raw CLI output captures |

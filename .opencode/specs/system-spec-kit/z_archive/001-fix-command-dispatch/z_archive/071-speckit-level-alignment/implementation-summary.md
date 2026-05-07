@@ -99,14 +99,14 @@ None - existing configuration preserved.
 
 ```bash
 # Verified level folders exist and contain correct files
-ls -la .opencode/skill/system-spec-kit/templates/level_*/
+ls -la .opencode/skills/system-spec-kit/templates/level_*/
 
 # Verified no COMPLEXITY_GATE markers in level folders
-grep -r "COMPLEXITY_GATE" .opencode/skill/system-spec-kit/templates/level_*/
+grep -r "COMPLEXITY_GATE" .opencode/skills/system-spec-kit/templates/level_*/
 # Result: No matches
 
 # Verified no broken paths in scripts
-grep -r "templates/spec.md" .opencode/skill/system-spec-kit/scripts/
+grep -r "templates/spec.md" .opencode/skills/system-spec-kit/scripts/
 # Result: No matches
 
 # Ran full test suite

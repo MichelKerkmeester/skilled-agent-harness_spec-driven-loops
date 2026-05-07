@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-A tier-2 code review validated the Outcome A implementation (helper isolation plus legacy export hardening). Review findings corrected stale helper-location evidence from `.opencode/plugin-helpers/` to the actual `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/` path across canonical docs. The review also closed compact-plugin P2 advisories by adding defensive output-array guards and stable object-sessionID cache keys.
+A tier-2 code review validated the Outcome A implementation (helper isolation plus legacy export hardening). Review findings corrected stale helper-location evidence from `.opencode/plugin-helpers/` to the actual `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` path across canonical docs. The review also closed compact-plugin P2 advisories by adding defensive output-array guards and stable object-sessionID cache keys.
 
 ### Added
 

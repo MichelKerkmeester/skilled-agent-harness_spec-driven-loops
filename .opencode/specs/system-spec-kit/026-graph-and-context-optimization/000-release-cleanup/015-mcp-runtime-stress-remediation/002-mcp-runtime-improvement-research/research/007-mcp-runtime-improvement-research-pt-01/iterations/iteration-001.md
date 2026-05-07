@@ -20,13 +20,13 @@ The 005 implementation summary frontmatter and metadata still describe the packe
 
 Claimed fix surfaces:
 
-- Cluster 1, REQ-002: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- Cluster 1, REQ-002: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
   - Claimed changes: `enforceTokenBudget()` under-budget early return, survivor preservation through structural truncation, and re-derived returned-count metadata.
   - Claimed evidence: targeted vitest suites plus inline `node` probes against freshly built `dist/`.
-- Cluster 2, REQ-001/004/016: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts` and `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- Cluster 2, REQ-001/004/016: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts` and `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
   - Claimed changes: centroid-only confidence floor at `0.30`, `meta.intent.classificationKind = "task-intent"`, `data.queryIntentRouting.classificationKind = "backend-routing"`, and `seeAlso` cross-pointer.
   - Claimed evidence: classifier regression cases including `classifyIntent("Semantic Search") -> understand`.
-- Cluster 3, REQ-003: `.opencode/command/memory/search.md`
+- Cluster 3, REQ-003: `.opencode/commands/memory/search.md`
   - Claimed changes: forbidden phrase enforcement table for render vocabulary.
   - Claimed evidence: spec-side grep command, not server-side renderer tests.
 
@@ -46,7 +46,7 @@ Compiled marker evidence also matches the claimed source patches:
 - `dist/handlers/memory-context.js` contains the `actualTokens / budgetTokens < 0.50` sanity guard.
 - `dist/handlers/memory-context.js` contains `preservedAfterStructural`, `fallbackToStructuredBudget`, `returnedResultCount`, and the `classificationKind` / `seeAlso` annotations.
 - `dist/lib/search/intent-classifier.js` contains `CENTROID_ONLY_CONFIDENCE_THRESHOLD = 0.30` and the centroid-only evidence gate comments.
-- `.opencode/command/memory/search.md` contains `Forbidden Phrase Enforcement (REQ-003 / Cluster 3)` and the required replacement table.
+- `.opencode/commands/memory/search.md` contains `Forbidden Phrase Enforcement (REQ-003 / Cluster 3)` and the required replacement table.
 
 This directly eliminates "source was patched but `dist/` was not rebuilt" as the root cause for Clusters 1 and 2.
 
@@ -77,7 +77,7 @@ Because both live calls were cancelled by the client, this iteration cannot hone
 
 `opencode.json` starts the Spec Kit Memory MCP server as:
 
-`node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js`
+`node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js`
 
 `mcp_server/package.json` exposes:
 
@@ -104,7 +104,7 @@ Required protocol:
 
 1. Patch source.
 2. Run targeted tests.
-3. Run `npm run build` in `.opencode/skill/system-spec-kit/mcp_server`.
+3. Run `npm run build` in `.opencode/skills/system-spec-kit/mcp_server`.
 4. Verify `dist/` timestamps and markers are newer/present.
 5. Restart the MCP-owning client/runtime so `node .../dist/context-server.js` is relaunched.
 6. Run a live MCP tool probe through the client, not only a direct `node` import.

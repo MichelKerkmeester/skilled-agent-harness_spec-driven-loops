@@ -70,7 +70,7 @@ Template compliance shim anchor for rollback.
 ### Steps
 
 1. **Audit memory commands:**
-   - Read all files in `.opencode/command/memory/`
+   - Read all files in `.opencode/commands/memory/`
    - Identify compaction references, save triggers, context assumptions
    - Document which commands need changes
 2. **Update `/spec_kit:resume` to pass `profile: "resume"`:**
@@ -83,7 +83,7 @@ Template compliance shim anchor for rollback.
    - Preserve existing save behavior as default when no hooks are active
 4. **Audit agent definitions for compaction recovery instructions:**
    - Search all 4 agent directories for compaction-related content:
-     `.claude/agents/`, `.opencode/agent/`, `.codex/agents/`, `.gemini/agents/`
+     `.claude/agents/`, `.opencode/agents/`, `.codex/agents/`, `.gemini/agents/`
    - List every agent file that references: compaction, compact, recovery, resume, context loss
 5. **Update agent definitions to reference hook-injected context:**
    - Add conditional block: "If hook-injected context is present in conversation, use it"

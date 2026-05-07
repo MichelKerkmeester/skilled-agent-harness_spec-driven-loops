@@ -50,20 +50,20 @@ Next: Phase 5 - Extract renderers/template-renderer.js
 ### 2.3 Files Modified
 | File | Change Summary | Status |
 |------|----------------|--------|
-| `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Reduced from 4,113 to 3,510 lines | IN_PROGRESS |
-| `.opencode/skill/system-spec-kit/scripts/core/config.js` | New: CONFIG + loadConfig() (172 lines) | COMPLETE |
-| `.opencode/skill/system-spec-kit/scripts/core/index.js` | New: re-export file (16 lines) | COMPLETE |
-| `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.js` | New: 4 file extraction functions (248 lines) | COMPLETE |
-| `.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.js` | New: extractDiagrams + extractPhasesFromData (240 lines) | COMPLETE |
-| `.opencode/skill/system-spec-kit/scripts/extractors/decision-tree-generator.js` | New: generateDecisionTree (180 lines) | COMPLETE |
-| `.opencode/skill/system-spec-kit/scripts/extractors/index.js` | New: re-export file (18 lines) | COMPLETE |
+| `.opencode/skills/system-spec-kit/scripts/generate-context.js` | Reduced from 4,113 to 3,510 lines | IN_PROGRESS |
+| `.opencode/skills/system-spec-kit/scripts/core/config.js` | New: CONFIG + loadConfig() (172 lines) | COMPLETE |
+| `.opencode/skills/system-spec-kit/scripts/core/index.js` | New: re-export file (16 lines) | COMPLETE |
+| `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.js` | New: 4 file extraction functions (248 lines) | COMPLETE |
+| `.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.js` | New: extractDiagrams + extractPhasesFromData (240 lines) | COMPLETE |
+| `.opencode/skills/system-spec-kit/scripts/extractors/decision-tree-generator.js` | New: generateDecisionTree (180 lines) | COMPLETE |
+| `.opencode/skills/system-spec-kit/scripts/extractors/index.js` | New: re-export file (18 lines) | COMPLETE |
 
 ---
 
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
-- **File:** `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+- **File:** `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 - **Context:** Continue modularization with Phase 5 (Renderers)
 
 ### 3.2 Priority Tasks Remaining
@@ -119,7 +119,7 @@ scripts/
 
 ### Test Command
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && ./test-snapshot-modularization.sh verify
+cd .opencode/skills/system-spec-kit/scripts && ./test-snapshot-modularization.sh verify
 ```
 
 ### Remaining Extraction Targets (Phase 5-7)

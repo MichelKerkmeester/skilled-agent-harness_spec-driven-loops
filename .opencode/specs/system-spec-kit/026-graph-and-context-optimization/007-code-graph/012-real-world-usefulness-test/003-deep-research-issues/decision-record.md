@@ -12,7 +12,7 @@ contextType: "general"
 # Decision Record: Deep Research Issues
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -50,7 +50,7 @@ The day-to-day failure is partly code and partly launch environment. Hook smoke 
 **Date**: 2026-05-06  
 **Decision**: ACCEPTED.
 
-**Context**: User clarification on 2026-05-06 states that the code graph default scope excluding `.opencode/skill/**`, `agent/**`, `command/**`, `specs/**`, and `plugins/**` is intentional. The code graph is primarily for indexing the user's production code, such as web app and project code, not the framework backend. Template users will not maintain `.opencode/` skills; they will use the code graph on their own project files.
+**Context**: User clarification on 2026-05-06 states that the code graph default scope excluding `.opencode/skills/**`, `agent/**`, `command/**`, `specs/**`, and `plugins/**` is intentional. The code graph is primarily for indexing the user's production code, such as web app and project code, not the framework backend. Template users will not maintain `.opencode/` skills; they will use the code graph on their own project files.
 
 **Implication**: F-001 (default scope excludes `.opencode/**`) is reclassified from P0 to DESIGN-INTENT. F-005 (`.codex/config.toml` lacks `SPECKIT_CODE_GRAPH_INDEX_*`) and F-004 (invalid env token handling) are demoted to P2 maintainer-only, since end users should not need those env vars.
 

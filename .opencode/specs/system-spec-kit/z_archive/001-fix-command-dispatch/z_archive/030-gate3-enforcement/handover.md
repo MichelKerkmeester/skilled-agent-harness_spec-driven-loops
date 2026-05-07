@@ -33,7 +33,7 @@ contextType: "general"
 |--------|-------------|----------------|
 | **memory_load REMOVED** | Replaced with `includeContent` parameter in memory_search | `semantic-memory.js` |
 | **Search embeds load logic** | `memory_search({ includeContent: true })` returns file content directly | `semantic-memory.js` |
-| **Constitutional folder** | New location: `.opencode/skill/system-memory/constitutional/` | `memory-parser.js`, created folder |
+| **Constitutional folder** | New location: `.opencode/skills/system-memory/constitutional/` | `memory-parser.js`, created folder |
 | **Gate 4 updated** | Renamed to "MEMORY CONTEXT", uses search-based workflow | `AGENTS.md`, `SKILL.md` |
 
 ### 2.2 Technical Implementation
@@ -47,7 +47,7 @@ contextType: "general"
 6. Updated version to 12.6.0
 
 **Memory Parser Changes (`memory-parser.js`):**
-1. Updated `isMemoryFile()` to accept `.opencode/skill/*/constitutional/*.md` paths
+1. Updated `isMemoryFile()` to accept `.opencode/skills/*/constitutional/*.md` paths
 
 **Documentation Updates:**
 - `SKILL.md`: Version 12.6.0, added `includeContent` parameter docs, updated workflows
@@ -57,10 +57,10 @@ contextType: "general"
 
 | File | Change Summary | Status |
 |------|---------------|--------|
-| `.opencode/skill/system-memory/mcp_server/semantic-memory.js` | Removed memory_load, added includeContent to search | COMPLETE |
-| `.opencode/skill/system-memory/mcp_server/lib/memory-parser.js` | Accept constitutional/ path | COMPLETE |
-| `.opencode/skill/system-memory/SKILL.md` | Document includeContent, update workflows | COMPLETE |
-| `.opencode/skill/system-memory/constitutional/gate-enforcement.md` | New constitutional memory file | COMPLETE |
+| `.opencode/skills/system-memory/mcp_server/semantic-memory.js` | Removed memory_load, added includeContent to search | COMPLETE |
+| `.opencode/skills/system-memory/mcp_server/lib/memory-parser.js` | Accept constitutional/ path | COMPLETE |
+| `.opencode/skills/system-memory/SKILL.md` | Document includeContent, update workflows | COMPLETE |
+| `.opencode/skills/system-memory/constitutional/gate-enforcement.md` | New constitutional memory file | COMPLETE |
 | `AGENTS.md` | Gate 4 → MEMORY CONTEXT | COMPLETE |
 
 ---
@@ -81,7 +81,7 @@ contextType: "general"
 1. **Index constitutional memory:**
 ```javascript
 memory_save({ 
-  filePath: "/path/to/.opencode/skill/system-memory/constitutional/gate-enforcement.md",
+  filePath: "/path/to/.opencode/skills/system-memory/constitutional/gate-enforcement.md",
   force: true 
 })
 ```
@@ -165,7 +165,7 @@ memory_search() → metadata → Read(filePath) (alternative)
 ### Constitutional Memory Location
 ```
 OLD: specs/*/memory/*.md (mixed with session context)
-NEW: .opencode/skill/system-memory/constitutional/*.md (dedicated folder)
+NEW: .opencode/skills/system-memory/constitutional/*.md (dedicated folder)
 ```
 
 ---
@@ -184,7 +184,7 @@ Next: Restart MCP, test includeContent, verify memory_load removed
 REQUIRED FIRST STEP: Restart OpenCode to pick up MCP server changes
 
 Then run:
-1. memory_save({ filePath: ".opencode/skill/system-memory/constitutional/gate-enforcement.md" })
+1. memory_save({ filePath: ".opencode/skills/system-memory/constitutional/gate-enforcement.md" })
 2. memory_search({ query: "gate 3", includeContent: true, limit: 1 })
 3. Verify result[0].content contains file content
 

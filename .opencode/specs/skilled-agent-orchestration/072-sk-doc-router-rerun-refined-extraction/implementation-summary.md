@@ -25,7 +25,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-You can now read `matrix_v2.csv` for refined per-cell metrics on the same 45 cells captured in 071, plus `review-report-v2.md` for the v1-vs-v2 delta analysis. The big new finding: cli-copilot doesn't just over-list resources verbosely (071's hypothesis) — it actively HALLUCINATES file names that don't exist in sk-doc's actual filesystem. Spot-check on SD-001 (DOC_QUALITY) shows copilot citing `dqi_rubric.md`, `dqi_checklist.md`, `dqi_score_template.md` — none of which exist in `.opencode/skill/sk-doc/`. cli-codex and cli-opencode stick to real paths under `references/global/` and `assets/documentation/`.
+You can now read `matrix_v2.csv` for refined per-cell metrics on the same 45 cells captured in 071, plus `review-report-v2.md` for the v1-vs-v2 delta analysis. The big new finding: cli-copilot doesn't just over-list resources verbosely (071's hypothesis) — it actively HALLUCINATES file names that don't exist in sk-doc's actual filesystem. Spot-check on SD-001 (DOC_QUALITY) shows copilot citing `dqi_rubric.md`, `dqi_checklist.md`, `dqi_score_template.md` — none of which exist in `.opencode/skills/sk-doc/`. cli-codex and cli-opencode stick to real paths under `references/global/` and `assets/documentation/`.
 
 The v2 extractor combined two heuristic improvements: (1) skip paragraphs that lead with negative markers ("Not loaded:", "would NOT load", etc.) and (2) match basenames in addition to full paths — many CLIs cite resources as bare `foo.md` after a `References (references/):` section header rather than as full paths. The basename-matching change moved the needle on copilot accuracy (5.6% → 11.1%) and opencode accuracy (43.3% → 47.2%); cli-codex was already using full paths so its number was unchanged.
 
@@ -67,7 +67,7 @@ The v2 extractor combined two heuristic improvements: (1) skip paragraphs that l
 
 Iteration on 071's extract_metrics.py. First v2 attempt only added negative-segment filtering — produced near-identical numbers because the bigger gap was basename mismatch. Sampled SD-001/copilot.log directly: copilot's response uses `core_standards.md` (basename), not `references/global/core_standards.md` (full path), so v1's path-only regex never matched. Refined v2 to extract bare filenames and compare against basename(expected_resources). Re-run produced corrected numbers: copilot 11.1%, opencode 47.2%, codex 66.7% (unchanged).
 
-The hallucination discovery was a side effect of looking at copilot's actual response text for the basename-matching fix. Once the matcher was fair, copilot's mentions of `dqi_rubric.md`/`dqi_checklist.md`/etc. became visible as false positives. A quick `find .opencode/skill/sk-doc -name 'dqi_*'` confirmed those files don't exist.
+The hallucination discovery was a side effect of looking at copilot's actual response text for the basename-matching fix. Once the matcher was fair, copilot's mentions of `dqi_rubric.md`/`dqi_checklist.md`/etc. became visible as false positives. A quick `find .opencode/skills/sk-doc -name 'dqi_*'` confirmed those files don't exist.
 
 No new matrix dispatches: 072 read-only-consumed 071's logs.
 <!-- /ANCHOR:how-delivered -->

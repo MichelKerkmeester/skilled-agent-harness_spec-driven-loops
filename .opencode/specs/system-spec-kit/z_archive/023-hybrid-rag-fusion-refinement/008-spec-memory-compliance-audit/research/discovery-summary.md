@@ -76,7 +76,7 @@
 
 ## Database Status
 
-- **Path**: `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`
+- **Path**: `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
 - **Connected**: yes
 - **Healthy**: yes
 - **Version**: 1.8.0

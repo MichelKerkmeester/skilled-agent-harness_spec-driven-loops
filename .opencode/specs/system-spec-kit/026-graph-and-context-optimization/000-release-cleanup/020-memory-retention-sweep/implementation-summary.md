@@ -54,18 +54,18 @@ Implemented governed memory retention enforcement for `memory_index.delete_after
 | `implementation-summary.md` | Created | This summary |
 | `description.json` | Created | Memory metadata |
 | `graph-metadata.json` | Created | Graph metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts` | Created | Shared retention sweep implementation |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts` | Created | MCP handler wrapper |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts` | Modified | Default-on scheduled retention interval |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts` | Modified | Tool dispatch registration |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Modified | MCP tool schema registration |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modified | Zod input validation |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/types.ts` | Modified | Retention sweep args type |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts` | Modified | Lazy handler export |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts` | Created | Targeted retention tests |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modified | Memory retention behavior and manual trigger docs |
-| `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Retention env flag docs |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` | Modified | `delete_after` sweep comment |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts` | Created | Shared retention sweep implementation |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts` | Created | MCP handler wrapper |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts` | Modified | Default-on scheduled retention interval |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts` | Modified | Tool dispatch registration |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Modified | MCP tool schema registration |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modified | Zod input validation |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts` | Modified | Retention sweep args type |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts` | Modified | Lazy handler export |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts` | Created | Targeted retention tests |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | Memory retention behavior and manual trigger docs |
+| `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Retention env flag docs |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` | Modified | `delete_after` sweep comment |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -92,11 +92,11 @@ Phase 1 initialized the Level 2 packet files. Phase 2 added the shared sweep, MC
 
 | Behavior | Evidence |
 |----------|----------|
-| Expired candidate selection | `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:48-64` |
-| Delete + history + governance audit | `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:148-190` |
-| Scheduled interval and env flags | `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:204-290` |
-| MCP tool registration | `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:328-332`; `.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:75-110` |
-| Targeted coverage | `.opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:68-190` |
+| Expired candidate selection | `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:48-64` |
+| Delete + history + governance audit | `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:148-190` |
+| Scheduled interval and env flags | `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:204-290` |
+| MCP tool registration | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:328-332`; `.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:75-110` |
+| Targeted coverage | `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:68-190` |
 
 ---
 
@@ -107,7 +107,7 @@ Phase 1 initialized the Level 2 packet files. Phase 2 added the shared sweep, MC
 |-------|--------------------|--------|
 | Targeted retention test | `npx vitest run memory-retention-sweep` | PASS: 1 file, 6 tests |
 | TypeScript build | `npm run build` | PASS: exit 0 |
-| Strict validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep --strict` | PASS: final run exits 0 |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep --strict` | PASS: final run exits 0 |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -22,7 +22,7 @@ contextType: "implementation"
 
 Before this phase, running a default scan against any repo using this template indexed **everything**: your code, plus the framework's own skills, agents, commands, specs, and plugins. If you searched for a function name, results were polluted with framework internals, and end users had no clean way to filter them out.
 
-After this phase, the default scope is "your code only." Framework folders (`.opencode/skill/`, `.opencode/agent/`, `.opencode/command/`, `specs/`, `plugins/`) are opt-in via environment variables (`SPECKIT_CODE_GRAPH_INDEX_SKILLS=true`, etc.) or per-call scope arguments. The MCP server's own implementation directories (`mcp-coco-index/`, `mcp_server/`) are excluded entirely because they belong to the framework, not the user.
+After this phase, the default scope is "your code only." Framework folders (`.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, `specs/`, `plugins/`) are opt-in via environment variables (`SPECKIT_CODE_GRAPH_INDEX_SKILLS=true`, etc.) or per-call scope arguments. The MCP server's own implementation directories (`mcp-coco-index/`, `mcp_server/`) are excluded entirely because they belong to the framework, not the user.
 
 The phase landed in three commits over 2.5 hours: the initial cut, two follow-up fixes that closed 1 P0 and 3 P1 from a deep-review, and a final verification that the scope policy was clean.
 
@@ -60,5 +60,5 @@ Commits: `79e97aec9` (initial), `03d873276` (FIX-009-v2: 1 P0 + 3 P1 + 3 P2), `c
 
 ### Follow-Ups
 
-- Phase 011 builds on this scope foundation by adding granular per-folder controls (for example "include skills but exclude .opencode/skill/system-spec-kit").
+- Phase 011 builds on this scope foundation by adding granular per-folder controls (for example "include skills but exclude .opencode/skills/system-spec-kit").
 - Phase 012/005 hardened scope changes against accidental data loss by adding a fingerprint-based guard on the scan path.

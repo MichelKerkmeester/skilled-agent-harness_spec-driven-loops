@@ -4,8 +4,8 @@
 |---|---|---|---|
 | 3 | Wrong old taxonomy | `"CORE + ADDENDUM template architecture (v2.2)"` | Say “Level-based template workflow, validation, and Spec Kit Memory.” Do not name private internals in AI-facing description. |
 | 61 | Deleted path + old template source model | `"templates/level_N/"`, `"root cross-cutting templates"` | Replace with “MUST start from the level-appropriate generated template output or workflow-owned template source.” Avoid deleted paths. |
-| 63 | Deleted path | `` `.opencode/skill/system-spec-kit/templates/handover.md` `` | Replace with “created by `/memory:save` when first needed.” |
-| 65 | Deleted root-template location | `` `resource-map.md` is a peer cross-cutting template under `.opencode/skill/system-spec-kit/templates/` `` | Replace with “`resource-map.md` remains optional and is generated from the workflow’s template source when needed.” |
+| 63 | Deleted path | `` `.opencode/skills/system-spec-kit/templates/handover.md` `` | Replace with “created by `/memory:save` when first needed.” |
+| 65 | Deleted root-template location | `` `resource-map.md` is a peer cross-cutting template under `.opencode/skills/system-spec-kit/templates/` `` | Replace with “`resource-map.md` remains optional and is generated from the workflow’s template source when needed.” |
 | 85, 95 | Wrong composition wording | `"template composition"`, `"Template usage and composition rules"` | Replace with “level selection, template usage, and structure guides.” |
 | 96 | Deleted paths + wrong taxonomy | `` `templates/level_N/` ``, `` `core/` ``, `` `addendum/` `` | Replace with “Use `create.sh --level N`; templates are selected through the level resolver.” |
 | 108 | Deleted script | `` `templates/compose.sh` `` | Remove from primary operational scripts. |

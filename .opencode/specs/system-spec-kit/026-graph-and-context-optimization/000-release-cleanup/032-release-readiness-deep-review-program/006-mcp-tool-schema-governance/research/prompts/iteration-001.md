@@ -8,12 +8,12 @@ READ-ONLY deep-review audit. Output: `review-report.md` with severity-classified
 
 ### Target surface
 
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` (canonical TOOL_DEFINITIONS)
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` (Zod input schemas)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts` (dispatcher)
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` (tool dispatch)
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` (canonical TOOL_DEFINITIONS)
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` (Zod input schemas)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` (dispatcher)
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` (tool dispatch)
 
 ### Audit dimensions + schema-specific questions
 
@@ -37,7 +37,7 @@ For maintainability: schemas live in one canonical place per tool; no schema dup
 ### Read also
 
 - 042 README refresh (canonical tool-count source)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/` (scope-governance + provenance)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/` (scope-governance + provenance)
 - 033 `memory_retention_sweep` schema (recently added)
 - 034 `advisor_rebuild` schema (recently added)
 

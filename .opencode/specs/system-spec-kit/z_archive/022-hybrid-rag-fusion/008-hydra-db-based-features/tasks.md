@@ -46,7 +46,7 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 
 ### Research and Closure Baseline
 
-- [x] T001 [W:FOUNDATION] Review active Level 3 and 3+ templates before normalizing the Hydra pack (`.opencode/skill/system-spec-kit/templates/level_3/`, `.opencode/skill/system-spec-kit/templates/level_3+/`)
+- [x] T001 [W:FOUNDATION] Review active Level 3 and 3+ templates before normalizing the Hydra pack (`.opencode/skills/system-spec-kit/templates/level_3/`, `.opencode/skills/system-spec-kit/templates/level_3+/`)
 - [x] T002 [W:FOUNDATION] Reproduce parent-pack and phase-pack validation failures plus the runtime review findings (`spec.md`, `plan.md`, `checklist.md`, `implementation-summary.md`)
 - [x] T003 [W:FOUNDATION] Lock the March 17 2026 rerun set as the authoritative evidence baseline for this closure pass (`implementation-summary.md`)
 - [x] T004 [W:FOUNDATION] Confirm the closure scope covers parent docs, all six phase packs, targeted runtime fixes, and live five-CLI proof capture (`spec.md`, `plan.md`, `tasks.md`)
@@ -68,7 +68,7 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 
 - [x] T020 [W:RUNTIME] Fix owner-only shared-space access enforcement (`mcp_server/lib/collab/shared-spaces.ts`, `mcp_server/tests/shared-spaces.vitest.ts`)
 - [x] T021 [W:RUNTIME] Fix retention sweeps so deletion uses the passed database handle (`mcp_server/lib/governance/scope-governance.ts`, `mcp_server/lib/search/vector-index-mutations.ts`, `mcp_server/tests/memory-governance.vitest.ts`)
-- [x] T022 [W:PROOF] Execute and capture live prompt proof for all five CLIs, then align operator docs with the recorded outcomes (`.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md`, `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`, `implementation-summary.md`)
+- [x] T022 [W:PROOF] Execute and capture live prompt proof for all five CLIs, then align operator docs with the recorded outcomes (`.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`, `implementation-summary.md`)
 - [x] T023 [W:PROOF] Tighten Hydra truth-sync regression coverage for dates, totals, and CLI-proof wording (`mcp_server/tests/hydra-spec-pack-consistency.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
@@ -77,11 +77,11 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T030 [W:VERIFY] Re-run root and recursive Hydra spec validation (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh`)
+- [x] T030 [W:VERIFY] Re-run root and recursive Hydra spec validation (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
 - [x] T031 [W:VERIFY] Re-run targeted shared-space and retention regressions plus Hydra/doc suites in `mcp_server`
 - [x] T032 [W:VERIFY] Re-run `npx tsc --noEmit`, `npm run build`, `npm run test:hydra:phase1`, and full `npm test` in `mcp_server`
-- [x] T033 [W:VERIFY] Re-run scripts-side `npm run check`, `npm run build`, and targeted multi-CLI capture suites in `.opencode/skill/system-spec-kit/scripts`
-- [x] T034 [W:VERIFY] Re-run `python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` in `.opencode/skill/system-spec-kit`
+- [x] T033 [W:VERIFY] Re-run scripts-side `npm run check`, `npm run build`, and targeted multi-CLI capture suites in `.opencode/skills/system-spec-kit/scripts`
+- [x] T034 [W:VERIFY] Re-run `python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` in `.opencode/skills/system-spec-kit`
 - [x] T035 [W:VERIFY] Record the final closure outcome and remaining non-technical governance limits in `implementation-summary.md`
 <!-- /ANCHOR:phase-3 -->
 
@@ -139,5 +139,5 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 - **Verification Checklist**: See `checklist.md`
 - **Implementation Summary**: See `implementation-summary.md`
 - **Decision Records**: See `decision-record.md`
-- **Operator Docs**: `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md`, `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
+- **Operator Docs**: `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`
 <!-- /ANCHOR:cross-refs -->

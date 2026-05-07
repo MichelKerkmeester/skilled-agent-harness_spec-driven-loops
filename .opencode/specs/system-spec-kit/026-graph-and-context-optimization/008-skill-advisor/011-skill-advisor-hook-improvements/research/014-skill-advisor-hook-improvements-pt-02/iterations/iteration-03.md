@@ -10,15 +10,15 @@ This iteration compared renderer and build-path parity instead of only threshold
 - `iteration-01.md`
 - `iteration-02.md`
 - `.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
 
 ### Findings
 
-- OpenCode native mode does not use the shared `renderAdvisorBrief()` renderer; it uses a local `renderNativeBrief()` helper, so prompt-boundary behavior is no longer centrally defined for that runtime [.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs:112-143] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:100-138].
-- The shared renderer surfaces ambiguity when the top two candidates are within `0.05` and the token cap allows expansion, but the OpenCode native renderer only reports the top recommendation, so an ambiguous route can look decisive in OpenCode while appearing ambiguous elsewhere [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:123-131] [.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs:123-142].
-- Codex still has a separate native fast path that bypasses prompt policy, prompt-cache invalidation, deleted-skill cache suppression, and shared-payload construction before falling back to the shared builder only when the native probe fails [.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:180-241] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:339-467].
+- OpenCode native mode does not use the shared `renderAdvisorBrief()` renderer; it uses a local `renderNativeBrief()` helper, so prompt-boundary behavior is no longer centrally defined for that runtime [.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs:112-143] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:100-138].
+- The shared renderer surfaces ambiguity when the top two candidates are within `0.05` and the token cap allows expansion, but the OpenCode native renderer only reports the top recommendation, so an ambiguous route can look decisive in OpenCode while appearing ambiguous elsewhere [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:123-131] [.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs:123-142].
+- Codex still has a separate native fast path that bypasses prompt policy, prompt-cache invalidation, deleted-skill cache suppression, and shared-payload construction before falling back to the shared builder only when the native probe fails [.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:180-241] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:339-467].
 
 ### Evidence
 
@@ -34,14 +34,14 @@ This iteration compared renderer and build-path parity instead of only threshold
 >     `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`,
 >     Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
 >   );
-> } [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:123-131]
+> } [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:123-131]
 
 > const nativeResult = await buildNativeCodexAdvisorBrief(prompt, options);
 > if (nativeResult) {
 >   return nativeResult;
 > }
 >
-> return buildSkillAdvisorBrief(prompt, { [.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:231-236]
+> return buildSkillAdvisorBrief(prompt, { [.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:231-236]
 
 ### Negative Knowledge
 

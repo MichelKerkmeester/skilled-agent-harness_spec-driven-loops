@@ -35,8 +35,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create skill directory structure (.opencode/skill/cli-copilot/{references,assets})
-- [ ] T002 Read cli-claude-code as template reference (.opencode/skill/cli-claude-code/)
+- [ ] T001 Create skill directory structure (.opencode/skills/cli-copilot/{references,assets})
+- [ ] T002 Read cli-claude-code as template reference (.opencode/skills/cli-claude-code/)
 - [ ] T003 [P] Compile Copilot CLI research data (web research)
 
 ---
@@ -49,13 +49,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Create SKILL.md with 8 sections and smart routing (.opencode/skill/cli-copilot/SKILL.md)
-- [ ] T005 [P] Create cli_reference.md — CLI flags, 7+ models, auth (.opencode/skill/cli-copilot/references/cli_reference.md)
-- [ ] T006 [P] Create agent_delegation.md — built-in + custom agents (.opencode/skill/cli-copilot/references/agent_delegation.md)
-- [ ] T007 [P] Create copilot_tools.md — unique capabilities, 4-way comparison (.opencode/skill/cli-copilot/references/copilot_tools.md)
-- [ ] T008 [P] Create integration_patterns.md — 10 orchestration patterns (.opencode/skill/cli-copilot/references/integration_patterns.md)
-- [ ] T009 Create prompt_templates.md — 10 template categories (.opencode/skill/cli-copilot/assets/prompt_templates.md)
-- [ ] T010 Create README.md companion guide (.opencode/skill/cli-copilot/README.md)
+- [ ] T004 Create SKILL.md with 8 sections and smart routing (.opencode/skills/cli-copilot/SKILL.md)
+- [ ] T005 [P] Create cli_reference.md — CLI flags, 7+ models, auth (.opencode/skills/cli-copilot/references/cli_reference.md)
+- [ ] T006 [P] Create agent_delegation.md — built-in + custom agents (.opencode/skills/cli-copilot/references/agent_delegation.md)
+- [ ] T007 [P] Create copilot_tools.md — unique capabilities, 4-way comparison (.opencode/skills/cli-copilot/references/copilot_tools.md)
+- [ ] T008 [P] Create integration_patterns.md — 10 orchestration patterns (.opencode/skills/cli-copilot/references/integration_patterns.md)
+- [ ] T009 Create prompt_templates.md — 10 template categories (.opencode/skills/cli-copilot/assets/prompt_templates.md)
+- [ ] T010 Create README.md companion guide (.opencode/skills/cli-copilot/README.md)
 
 ---
 
@@ -73,9 +73,9 @@ contextType: "implementation"
 
 - [ ] T011 Review Gemini output for structure and accuracy
 - [ ] T012 Verify AI-agnostic language (no hardcoded conductor)
-- [ ] T013 Register in skill_advisor.py — 3 booster sections (.opencode/skill/scripts/skill_advisor.py)
+- [ ] T013 Register in skill_advisor.py — 3 booster sections (.opencode/skills/scripts/skill_advisor.py)
 - [ ] T014 Create symlink (.claude/skills/cli-copilot)
-- [ ] T015 [P] Update .opencode/skill/README.md
+- [ ] T015 [P] Update .opencode/skills/README.md
 - [ ] T016 [P] Update .opencode/README.md
 - [ ] T017 [P] Update root README.md
 - [ ] T018 Run skill_advisor.py confidence test (>= 0.8)

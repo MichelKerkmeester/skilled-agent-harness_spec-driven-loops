@@ -18,9 +18,9 @@ _memory:
     next_safe_action: "Use packet for downstream work"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/README"
-      - ".opencode/skill/system-spec-kit/mcp_server/vitest.config.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/package.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/README"
+      - ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/package.json"
       - "migration-plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -64,7 +64,7 @@ _memory:
 Stress-test coverage for the MCP server lived inside `mcp_server/tests/`, making it harder to distinguish explicit stress, load, and matrix-cell validation from the default unit and integration suite.
 
 ### Purpose
-Create a dedicated `.opencode/skill/system-spec-kit/mcp_server/stress_test/` folder, move confirmed stress suites there, keep default tests fast and runnable, and provide an explicit `npm run stress` command for operator-run stress validation.
+Create a dedicated `.opencode/skills/system-spec-kit/mcp_server/stress_test/` folder, move confirmed stress suites there, keep default tests fast and runnable, and provide an explicit `npm run stress` command for operator-run stress validation.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -90,13 +90,13 @@ Create a dedicated `.opencode/skill/system-spec-kit/mcp_server/stress_test/` fol
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/` | Create | Dedicated stress-test folder and README |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/*.vitest.ts` | Move | Confirmed stress suites moved from `tests/` |
-| `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts` | Modify | Exclude the dedicated stress folder from default tests |
-| `.opencode/skill/system-spec-kit/mcp_server/package.json` | Modify | Add `npm run stress` |
-| `.opencode/skill/system-spec-kit/mcp_server/tsconfig.json` | Modify | Exclude stress test files from build |
-| `.opencode/skill/system-spec-kit/mcp_server/README` | Modify | Document new folder in structure map |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/README` | Modify | Clarify default test vs stress-test boundary |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/` | Create | Dedicated stress-test folder and README |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/*.vitest.ts` | Move | Confirmed stress suites moved from `tests/` |
+| `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` | Modify | Exclude the dedicated stress folder from default tests |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modify | Add `npm run stress` |
+| `.opencode/skills/system-spec-kit/mcp_server/tsconfig.json` | Modify | Exclude stress test files from build |
+| `.opencode/skills/system-spec-kit/mcp_server/README` | Modify | Document new folder in structure map |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/README` | Modify | Clarify default test vs stress-test boundary |
 | `specs/.../015-mcp-runtime-stress-remediation/**/*.md` | Modify | Refresh direct path references for moved stress suite |
 | `specs/.../005-stress-test-folder-migration/*` | Create | Level 2 packet docs and migration plan |
 <!-- /ANCHOR:scope -->

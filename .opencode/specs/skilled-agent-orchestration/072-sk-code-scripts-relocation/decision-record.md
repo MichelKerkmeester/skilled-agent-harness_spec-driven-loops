@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The root `.opencode/skill/sk-code/scripts/` folder currently contains tooling named for Webflow minification plus alignment-drift validation that needs inspection. `sk-code` already organizes stack-specific knowledge under `assets/<surface>/` and `references/<surface>/`, so Webflow-specific scripts fit better under `assets/webflow/scripts/`.
+The root `.opencode/skills/sk-code/scripts/` folder currently contains tooling named for Webflow minification plus alignment-drift validation that needs inspection. `sk-code` already organizes stack-specific knowledge under `assets/<surface>/` and `references/<surface>/`, so Webflow-specific scripts fit better under `assets/webflow/scripts/`.
 
 ### Constraints
 
@@ -65,7 +65,7 @@ The root `.opencode/skill/sk-code/scripts/` folder currently contains tooling na
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Relocate Webflow-specific root scripts to `.opencode/skill/sk-code/assets/webflow/scripts/` and relocate the generic alignment-drift validator/test pair to `.opencode/skill/sk-code/assets/scripts/`.
+**We chose**: Relocate Webflow-specific root scripts to `.opencode/skills/sk-code/assets/webflow/scripts/` and relocate the generic alignment-drift validator/test pair to `.opencode/skills/sk-code/assets/scripts/`.
 
 **How it works**: The three minification scripts move directly to the Webflow scripts asset folder. The alignment-drift validator and its test move to a root asset scripts folder because inspection showed OpenCode and multi-language alignment checks, not Webflow/CDN behavior.
 <!-- /ANCHOR:adr-001-decision -->
@@ -129,8 +129,8 @@ The root `.opencode/skill/sk-code/scripts/` folder currently contains tooling na
 ### Implementation
 
 **What changes**:
-- Three minification-related `.mjs` scripts move to `.opencode/skill/sk-code/assets/webflow/scripts/`.
-- Alignment-drift validator and test move to `.opencode/skill/sk-code/assets/scripts/`.
+- Three minification-related `.mjs` scripts move to `.opencode/skills/sk-code/assets/webflow/scripts/`.
+- Alignment-drift validator and test move to `.opencode/skills/sk-code/assets/scripts/`.
 - All old-path references in the inventory are updated to the selected new paths.
 
 **Inspection verdict**: Generic/OpenCode alignment tooling. The validator docstring says "Lightweight recurring alignment checks for OpenCode codebases" and lists TS, JS, Python, Shell, JSON, and JSONC coverage. `rg` found no Webflow, CDN, `src/2_javascript`, Motion, or gsap references in the validator/test pair.

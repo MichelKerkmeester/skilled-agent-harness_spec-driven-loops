@@ -81,13 +81,13 @@ Deliver all ten deferred items with explicit ADRs for the policy choices and ver
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` | Modify | Add template versions and per-document section gate profiles |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/validation/orchestrator.ts` | Create | Add single-process validation orchestration |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Modify | Route validation through the orchestrator and apply exit-code taxonomy |
-| `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts` | Modify | Add batch `--out-dir` mode |
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Add canonical save advisory lock |
-| `.opencode/skill/system-spec-kit/templates/manifest/EXTENSION_GUIDE.md` | Create | Document new document-type extension workflow |
-| `.opencode/skill/system-spec-kit/templates/manifest/MIGRATION.md` | Create | Document legacy marker and broad-doc-list migration policy |
+| `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` | Modify | Add template versions and per-document section gate profiles |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts` | Create | Add single-process validation orchestration |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Route validation through the orchestrator and apply exit-code taxonomy |
+| `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts` | Modify | Add batch `--out-dir` mode |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Add canonical save advisory lock |
+| `.opencode/skills/system-spec-kit/templates/manifest/EXTENSION_GUIDE.md` | Create | Document new document-type extension workflow |
+| `.opencode/skills/system-spec-kit/templates/manifest/MIGRATION.md` | Create | Document legacy marker and broad-doc-list migration policy |
 <!-- /ANCHOR:scope -->
 
 ---

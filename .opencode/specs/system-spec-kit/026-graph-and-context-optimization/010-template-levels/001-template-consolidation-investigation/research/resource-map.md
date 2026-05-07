@@ -4,40 +4,40 @@
 
 Theme: Helper documentation should move out of rendered runtime level directories and into the master template README.
 
-- `.opencode/skill/system-spec-kit/templates/README.md`
-- `.opencode/skill/system-spec-kit/templates/level_1/README.md`
-- `.opencode/skill/system-spec-kit/templates/level_2/README.md`
-- `.opencode/skill/system-spec-kit/templates/level_3/README.md`
-- `.opencode/skill/system-spec-kit/templates/level_3+/README.md`
+- `.opencode/skills/system-spec-kit/templates/README.md`
+- `.opencode/skills/system-spec-kit/templates/level_1/README.md`
+- `.opencode/skills/system-spec-kit/templates/level_2/README.md`
+- `.opencode/skills/system-spec-kit/templates/level_3/README.md`
+- `.opencode/skills/system-spec-kit/templates/level_3+/README.md`
 
 ## Documents
 
 Theme: Cross-cutting and generated template documents define the byte-parity and scaffold contract.
 
-- `.opencode/skill/system-spec-kit/templates`
-- `.opencode/skill/system-spec-kit/templates/addendum`
-- `.opencode/skill/system-spec-kit/templates/addendum/phase`
-- `.opencode/skill/system-spec-kit/templates/context-index.md`
-- `.opencode/skill/system-spec-kit/templates/core`
-- `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
-- `.opencode/skill/system-spec-kit/templates/handover.md`
-- `.opencode/skill/system-spec-kit/templates/level_1`
-- `.opencode/skill/system-spec-kit/templates/level_1/spec.md`
-- `.opencode/skill/system-spec-kit/templates/level_2`
-- `.opencode/skill/system-spec-kit/templates/level_3`
-- `.opencode/skill/system-spec-kit/templates/level_3+`
-- `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md`
-- `.opencode/skill/system-spec-kit/templates/research.md`
-- `.opencode/skill/system-spec-kit/templates/resource-map.md`
+- `.opencode/skills/system-spec-kit/templates`
+- `.opencode/skills/system-spec-kit/templates/addendum`
+- `.opencode/skills/system-spec-kit/templates/addendum/phase`
+- `.opencode/skills/system-spec-kit/templates/context-index.md`
+- `.opencode/skills/system-spec-kit/templates/core`
+- `.opencode/skills/system-spec-kit/templates/debug-delegation.md`
+- `.opencode/skills/system-spec-kit/templates/handover.md`
+- `.opencode/skills/system-spec-kit/templates/level_1`
+- `.opencode/skills/system-spec-kit/templates/level_1/spec.md`
+- `.opencode/skills/system-spec-kit/templates/level_2`
+- `.opencode/skills/system-spec-kit/templates/level_3`
+- `.opencode/skills/system-spec-kit/templates/level_3+`
+- `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md`
+- `.opencode/skills/system-spec-kit/templates/research.md`
+- `.opencode/skills/system-spec-kit/templates/resource-map.md`
 
 ## Commands
 
 Theme: Command YAMLs are path-contract consumers and should migrate after the resolver wrapper exists.
 
-- `.opencode/command/create/assets/create_agent_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`
+- `.opencode/commands/create/assets/create_agent_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`
 
 ## Agents
 
@@ -52,7 +52,7 @@ Theme: Runtime agent docs cite template sources and should change only after com
 
 Theme: The system-spec-kit skill owns the template tree, generator, validation scripts, and migration surface.
 
-- `.opencode/skill/system-spec-kit`
+- `.opencode/skills/system-spec-kit`
 
 ## Specs
 
@@ -75,28 +75,28 @@ Theme: The research packet preserves the iteration trail, state log, deltas, and
 
 Theme: Scripts are the active migration surface for generation, copying, validation, staleness checks, and maintenance-only wrappers.
 
-- `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`
-- `.opencode/skill/system-spec-kit/scripts/memory/backfill-frontmatter.ts`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`
-- `.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh`
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
-- `.opencode/skill/system-spec-kit/scripts/templates/compose.sh`
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`
-- `.opencode/skill/system-spec-kit/scripts/wrap-all-templates.sh`
-- `.opencode/skill/system-spec-kit/scripts/wrap-all-templates.ts`
+- `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`
+- `.opencode/skills/system-spec-kit/scripts/memory/backfill-frontmatter.ts`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`
+- `.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh`
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
+- `.opencode/skills/system-spec-kit/scripts/templates/compose.sh`
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`
+- `.opencode/skills/system-spec-kit/scripts/wrap-all-templates.sh`
+- `.opencode/skills/system-spec-kit/scripts/wrap-all-templates.ts`
 
 ## Tests
 
 Theme: Tests should enforce golden byte parity, resolver behavior, ANCHOR invariants, and normalized validator output.
 
-- `.opencode/skill/system-spec-kit/scripts/tests/template-rendered-parity.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/template-rendered-parity.vitest.ts`
 
 ## Config
 
 Theme: Package-level test wiring is the enforceable local CI surface for the new parity and resolver tests.
 
-- `.opencode/skill/system-spec-kit/scripts/package.json`
+- `.opencode/skills/system-spec-kit/scripts/package.json`
 
 ## Meta
 

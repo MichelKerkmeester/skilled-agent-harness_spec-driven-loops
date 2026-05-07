@@ -247,7 +247,7 @@ Twenty audit agents reviewed the entire system-spec-kit codebase and specificati
 | O06-003 | Sub-Child 005-live-proof still in progress | `000-dynamic-capture-deprecation/005/` | Last blocker for claiming universal session capture parity. Tasks T002-T004 are still open. |
 | O06-011 | Rollback procedure references non-existent Phase 020 | `009/plan.md:209` | Rollback steps reference "phases 018 through 020" but phase 020 does not exist. |
 | O07-002 | Agent drift has recurred 6 days after 012 sync | `.claude/agents/write.md`, `.gemini/agents/deep-research.md` | Canonical agents modified post-sync, Claude/Gemini copies not updated. `write.md` missing Mode 2 entries, `deep-research.md` has stale budget guidance. |
-| O07-007 | No automated agent sync mechanism exists | `.opencode/agent/`, `.claude/agents/`, `.gemini/agents/` | 012 was a one-time manual sync. No script or CI check prevents drift. |
+| O07-007 | No automated agent sync mechanism exists | `.opencode/agents/`, `.claude/agents/`, `.gemini/agents/` | 012 was a one-time manual sync. No script or CI check prevents drift. |
 | O08-003 | Skill count mismatch: 18 actual vs 16 claimed | Root README | Two skills (`sk-deep-research`, `mcp-coco-index`) missing from Skills Library listing. |
 | O08-004 | Command count mismatch: 22 actual vs 21 claimed | Root README | Three commands (`/spec_kit:deep-research`, `/create:feature-catalog`, `/create:testing-playbook`) missing from tables. |
 | O08-005 | Spec Kit README claims 7 memory commands but actual is 6 | Spec Kit README line 52 | After context/analyze merge, memory command count is 6 not 7. |

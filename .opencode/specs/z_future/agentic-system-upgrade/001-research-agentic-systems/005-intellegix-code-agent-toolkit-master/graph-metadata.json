@@ -47,20 +47,20 @@
       "spec.md",
       "plan.md",
       "implementation-summary.md",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/command/spec_kit/deep-research.md",
-      ".opencode/skill/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skill/sk-deep-research/references/state_format.md",
-      ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-      ".opencode/skill/sk-deep-research/references/convergence.md",
-      ".opencode/agent/orchestrate.md",
-      ".opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md",
-      ".opencode/skill/sk-deep-research/assets/deep_research_strategy.md",
-      ".opencode/skill/system-spec-kit/templates/research.md",
-      ".opencode/skill/system-spec-kit/references/validation/validation_rules.md",
-      ".opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
-      ".opencode/skill/system-spec-kit/references/templates/level_specifications.md"
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
+      ".opencode/skills/sk-deep-research/references/state_format.md",
+      ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+      ".opencode/skills/sk-deep-research/references/convergence.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+      ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
+      ".opencode/skills/system-spec-kit/templates/research.md",
+      ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+      ".opencode/skills/system-spec-kit/references/templates/level_specifications.md"
     ],
     "entities": [
       {
@@ -102,79 +102,79 @@
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/deep-research.md",
+        "path": ".opencode/commands/spec_kit/deep-research.md",
         "source": "derived"
       },
       {
         "name": "loop_protocol.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/loop_protocol.md",
+        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
         "source": "derived"
       },
       {
         "name": "state_format.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/state_format.md",
+        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
         "source": "derived"
       },
       {
         "name": "deep_research_config.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
+        "path": ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
         "source": "derived"
       },
       {
         "name": "convergence.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/convergence.md",
+        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
         "source": "derived"
       },
       {
         "name": "orchestrate.md",
         "kind": "doc",
-        "path": ".opencode/agent/orchestrate.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
         "name": "gate-tool-routing.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md",
+        "path": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
         "source": "derived"
       },
       {
         "name": "deep_research_strategy.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/assets/deep_research_strategy.md",
+        "path": ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
         "source": "derived"
       },
       {
         "name": "validation_rules.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/validation/validation_rules.md",
+        "path": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
         "source": "derived"
       },
       {
         "name": "deep-research-contract-parity.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
         "source": "derived"
       },
       {
         "name": "deep-research-reducer.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
         "source": "derived"
       },
       {
         "name": "level_specifications.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/templates/level_specifications.md",
+        "path": ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
         "source": "derived"
       },
       {

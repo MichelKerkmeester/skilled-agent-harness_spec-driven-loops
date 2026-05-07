@@ -12,9 +12,9 @@ contextType: "planning"
 
 ## Affected Files
 - `.opencode/plugins/spec-kit-compact-code-graph.js`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
 
 ## Implementation Order
 1. Define the compaction action-card contract and dedupe rules.

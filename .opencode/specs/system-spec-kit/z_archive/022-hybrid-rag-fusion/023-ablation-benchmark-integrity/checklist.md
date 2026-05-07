@@ -62,8 +62,8 @@ _memory:
 
 - [x] CHK-020 [P0] Targeted Vitest coverage passes for integrity guards and eval-mode search [Evidence: `npm exec --workspace=@spec-kit/mcp-server vitest run tests/ablation-framework.vitest.ts tests/handler-eval-reporting.vitest.ts tests/hybrid-search.vitest.ts` passed with 151 tests after the data refresh and eval DB override changes.]
 - [x] CHK-021 [P0] Refreshed `ground-truth.json` validates with zero chunk-backed or missing IDs against the repo DB [Evidence: SQLite audit after refresh reported `unique_ids=126`, `parent_rows=126`, `chunk_rows=0`, `missing=0`.]
-- [x] CHK-022 [P1] One full ablation rerun completes on the aligned repo DB [Evidence: `SPECKIT_ABLATION=true npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts` produced run `ablation-1774694183830-651d` with baseline `0.32323232323232315`.]
-- [x] CHK-023 [P1] One focused `fts5` ablation rerun completes on the aligned repo DB [Evidence: `SPECKIT_ABLATION=true npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts --channels fts5` produced run `ablation-1774694221880-ef57`.]
+- [x] CHK-022 [P1] One full ablation rerun completes on the aligned repo DB [Evidence: `SPECKIT_ABLATION=true npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts` produced run `ablation-1774694183830-651d` with baseline `0.32323232323232315`.]
+- [x] CHK-023 [P1] One focused `fts5` ablation rerun completes on the aligned repo DB [Evidence: `SPECKIT_ABLATION=true npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts --channels fts5` produced run `ablation-1774694221880-ef57`.]
 <!-- /ANCHOR:testing -->
 
 ---

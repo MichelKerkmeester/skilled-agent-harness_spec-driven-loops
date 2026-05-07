@@ -110,7 +110,7 @@ function expect(actual) {
 // 2. LOAD MODULE UNDER TEST
 // ─────────────────────────────────────────────────────────────────
 
-const MODULE_PATH = path.resolve(__dirname, '../../../../.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js');
+const MODULE_PATH = path.resolve(__dirname, '../../../../.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js');
 
 let folderScoring;
 try {

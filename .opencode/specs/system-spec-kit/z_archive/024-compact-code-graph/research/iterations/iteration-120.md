@@ -13,7 +13,7 @@ The highest-confidence explanation for the current OpenCode behavior is:
 
 - Local plugin mutates `output.messages` by pushing a synthetic object literal into `anchor.parts`. [SOURCE: `.opencode/plugins/spec-kit-compact-code-graph.js:196-210`] [SOURCE: `.opencode/plugins/spec-kit-compact-code-graph.js:326-350`]
 - External `opencode-lcm` also mutates `messages`, but does so through a centralized store path typed against `Part[]` from `@opencode-ai/sdk`. [SOURCE: `030-opencode-graph-plugin/external/opencode-lcm-master/src/index.ts:311-313`] [SOURCE: `030-opencode-graph-plugin/external/opencode-lcm-master/src/store.ts:2901-2922`]
-- Our current tests do not validate the real runtime schema boundary. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:101-119`]
+- Our current tests do not validate the real runtime schema boundary. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:101-119`]
 - An older archived plugin in this repo used `messages.transform` more conservatively by mutating existing tool-part state in place. [SOURCE: `z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/index.ts:1657-1693`]
 
 ## Best Next Action

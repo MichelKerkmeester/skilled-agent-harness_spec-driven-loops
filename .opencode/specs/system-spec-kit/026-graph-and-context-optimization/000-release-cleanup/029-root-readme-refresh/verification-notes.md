@@ -14,10 +14,10 @@ contextType: "general"
 
 | Surface | Verified Count | Command / Source |
 |---------|---------------:|------------------|
-| `spec_kit_memory` tools | 54 | `TOOL_DEFINITIONS` array in `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` counted with a local Node parser. |
-| Local `name: '` descriptors in `tool-schemas.ts` | 50 | `grep -c "name: '" .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` |
-| Imported Skill Advisor descriptors | 4 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate` imported from `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tools/index.ts`. |
-| Advisor input schema entries | 4 | `AdvisorToolInputSchemas` in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts`. |
+| `spec_kit_memory` tools | 54 | `TOOL_DEFINITIONS` array in `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` counted with a local Node parser. |
+| Local `name: '` descriptors in `tool-schemas.ts` | 50 | `grep -c "name: '" .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` |
+| Imported Skill Advisor descriptors | 4 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate` imported from `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tools/index.ts`. |
+| Advisor input schema entries | 4 | `AdvisorToolInputSchemas` in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts`. |
 | Native MCP total | 63 | 54 `spec_kit_memory` + 7 `code_mode` + 1 `cocoindex_code` + 1 `sequential_thinking`. Bindings verified in `opencode.json`. |
 | OpenCode agent definitions | 10 | `find .opencode/agent -maxdepth 1 -type f -name '*.md' \| wc -l`; excludes `README.txt`. |
 | Claude agent definitions | 10 | `find .claude/agents -maxdepth 1 -type f -name '*.md' \| wc -l`; excludes `README.txt`. |
@@ -29,16 +29,16 @@ contextType: "general"
 ## Raw Command Results
 
 ```text
-grep -c "name: '" .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+grep -c "name: '" .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
 50
 
-grep -c "name: '" .opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts
+grep -c "name: '" .opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts
 0
 
 node parser over TOOL_DEFINITIONS array
 54
 
-ls .opencode/agent/ | wc -l
+ls .opencode/agents/ | wc -l
 11
 
 ls .claude/agents/ | wc -l

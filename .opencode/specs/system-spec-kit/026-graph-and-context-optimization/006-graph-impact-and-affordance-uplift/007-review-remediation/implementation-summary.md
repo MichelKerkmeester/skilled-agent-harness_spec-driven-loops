@@ -74,12 +74,12 @@ _memory:
 
 The `detect_changes` story now reads consistently as a callable MCP tool across:
 - `README.md` (root) — "Phase 012 adds the read-only `detect_changes` MCP tool …"
-- `.opencode/skill/system-spec-kit/SKILL.md` — `detect_changes` row updated (no longer "deferred")
-- `.opencode/skill/system-spec-kit/README.md` — `Preflight` row updated; footer updated
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` — `detect_changes` section heading no longer "tool-schema deferred"
-- `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` — §4a smoke test wording aligned (no scope change; tool is callable as documented)
-- `.opencode/skill/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md` — overview and current-reality reflect MCP-tool registration
-- `.opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md` — invocation example uses canonical `detect_changes({ … })` shape
+- `.opencode/skills/system-spec-kit/SKILL.md` — `detect_changes` row updated (no longer "deferred")
+- `.opencode/skills/system-spec-kit/README.md` — `Preflight` row updated; footer updated
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` — `detect_changes` section heading no longer "tool-schema deferred"
+- `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` — §4a smoke test wording aligned (no scope change; tool is callable as documented)
+- `.opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md` — overview and current-reality reflect MCP-tool registration
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md` — invocation example uses canonical `detect_changes({ … })` shape
 
 ### T-B — Verification Evidence Sync (closes R-007-1, R-007-5, R-007-7, R-007-15, R-007-19, R-007-20, R-007-21)
 
@@ -291,8 +291,8 @@ deferred / not-yet-wired handlers do NOT count.
 **Synced:**
 - `/README.md` lines 7, 56, 1261, 1281, 1301 → "60 MCP tools" (51 spec_kit_memory + 7 code mode + 1 CocoIndex + 1 sequential thinking) and "51 tools, 7 layers + L8 graph/advisor + L9 coverage"
 - `/README.md` line 677 → "51-tool memory and code-graph surface"
-- `.opencode/skill/system-spec-kit/README.md` line 62 → 51 (with explicit canonical-source note)
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` lines ~1274-1283 → table updated to 51 with L8 + L9 rows added; "deferred handlers do NOT count" footnote
+- `.opencode/skills/system-spec-kit/README.md` line 62 → 51 (with explicit canonical-source note)
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` lines ~1274-1283 → table updated to 51 with L8 + L9 rows added; "deferred handlers do NOT count" footnote
 
 #### R-007-18 — Broken FEATURE_CATALOG_IN_SIMPLE_TERMS.md link
 Removed the dangling Related-Documents link in `/README.md` line 1288 and
@@ -380,8 +380,8 @@ Tier 2 state-hygiene update (2026-04-28): no 006/007 batch item is left in ambig
 
 **T-C scope (R-007-6 + R-007-10):**
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && tsc --noEmit --composite false -p tsconfig.json` — **PASS** (no output; clean). Verified 2026-04-25 in 010-007-C worktree.
-- `cd .opencode/skill/system-spec-kit/mcp_server && vitest run tests/tool-input-schema.vitest.ts` — **PASS** (`Test Files 1 passed (1) | Tests 79 passed (79) | Duration 233ms`). 6 new T-C cases included (3 accept + 3 reject for `minConfidence`).
+- `cd .opencode/skills/system-spec-kit/mcp_server && tsc --noEmit --composite false -p tsconfig.json` — **PASS** (no output; clean). Verified 2026-04-25 in 010-007-C worktree.
+- `cd .opencode/skills/system-spec-kit/mcp_server && vitest run tests/tool-input-schema.vitest.ts` — **PASS** (`Test Files 1 passed (1) | Tests 79 passed (79) | Duration 233ms`). 6 new T-C cases included (3 accept + 3 reject for `minConfidence`).
 - Backward compat: existing `code_graph_query` callers without `minConfidence` continue to pass schema validation (covered by the pre-existing `'code_graph_query accepts structural traversal options'` case at lines 503-514 of the test file, which omits `minConfidence`).
 - Affordance DEFER: no behavioural change — `AdvisorRecommendInputSchema.strict()` continues to reject `affordances` at the public boundary, matching the design intent.
 

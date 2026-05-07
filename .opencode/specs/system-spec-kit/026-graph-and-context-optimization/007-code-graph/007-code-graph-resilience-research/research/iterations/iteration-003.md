@@ -2,9 +2,9 @@
 
 ## Summary
 
-The code-graph database is a rebuildable structural cache at `.opencode/skill/system-spec-kit/mcp_server/database/code-graph.sqlite`, with WAL sidecars when active. The schema is version 3 and contains only `code_files`, `code_nodes`, `code_edges`, `schema_version`, and `code_graph_metadata` plus ordinary B-tree indexes; there are no code-graph FTS5 or sqlite-vec virtual tables to salvage. The cleanest corruption posture is therefore quarantine-first, recover only for forensic salvage, then run a full code-graph scan from source as the authoritative rebuild path. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:37-47`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:50-115`; `.opencode/skill/system-spec-kit/mcp_server/README.md:540-546`]
+The code-graph database is a rebuildable structural cache at `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite`, with WAL sidecars when active. The schema is version 3 and contains only `code_files`, `code_nodes`, `code_edges`, `schema_version`, and `code_graph_metadata` plus ordinary B-tree indexes; there are no code-graph FTS5 or sqlite-vec virtual tables to salvage. The cleanest corruption posture is therefore quarantine-first, recover only for forensic salvage, then run a full code-graph scan from source as the authoritative rebuild path. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:37-47`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:50-115`; `.opencode/skills/system-spec-kit/mcp_server/README.md:540-546`]
 
-On a deliberately damaged temporary copy of the local `code-graph.sqlite`, `PRAGMA integrity_check;` reported a b-tree page error, while `sqlite3 corrupt.sqlite ".recover"` emitted a SQL script starting with `.dbconfig defensive off`, `BEGIN`, `PRAGMA writable_schema = on`, database pragmas, `CREATE TABLE` statements, surviving `INSERT OR IGNORE` rows, index creation, `PRAGMA writable_schema = off`, and `COMMIT`. Importing that stream into a new database yielded `PRAGMA integrity_check; => ok`, but the source DB was empty before damage, so the recovered data rows were limited to schema metadata. [SOURCE: local temp-copy experiment using SQLite 3.51.0; `.opencode/skill/system-spec-kit/mcp_server/database/code-graph.sqlite` schema dump and integrity check]
+On a deliberately damaged temporary copy of the local `code-graph.sqlite`, `PRAGMA integrity_check;` reported a b-tree page error, while `sqlite3 corrupt.sqlite ".recover"` emitted a SQL script starting with `.dbconfig defensive off`, `BEGIN`, `PRAGMA writable_schema = on`, database pragmas, `CREATE TABLE` statements, surviving `INSERT OR IGNORE` rows, index creation, `PRAGMA writable_schema = off`, and `COMMIT`. Importing that stream into a new database yielded `PRAGMA integrity_check; => ok`, but the source DB was empty before damage, so the recovered data rows were limited to schema metadata. [SOURCE: local temp-copy experiment using SQLite 3.51.0; `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` schema dump and integrity check]
 
 SQLite documents `.recover` as a salvage stream (`sqlite3 corrupt.db .recover > data.sql`, then `sqlite3 recovered.db < data.sql`) and explicitly warns that recovered content can be missing, resurrect previously deleted rows, be altered, violate constraints, or be moved into a lost-and-found table. This makes `.recover` useful as an emergency extraction tool, not as a trust-restoring substitute for a full code-graph rescan. [SOURCE: https://www.sqlite.org/recovery.html; https://www.sqlite.org/cli.html]
 
@@ -15,7 +15,7 @@ SQLite documents `.recover` as a salvage stream (`sqlite3 corrupt.db .recover > 
    1. Stop MCP/server processes that may hold a `better-sqlite3` handle, then resolve the DB directory without changing data:
 
       ```sh
-      DB_DIR="${SPEC_KIT_DB_DIR:-${SPECKIT_DB_DIR:-.opencode/skill/system-spec-kit/mcp_server/database}}"
+      DB_DIR="${SPEC_KIT_DB_DIR:-${SPECKIT_DB_DIR:-.opencode/skills/system-spec-kit/mcp_server/database}}"
       DB="$DB_DIR/code-graph.sqlite"
       STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
       SAFE_DIR="$DB_DIR/recovery-$STAMP"
@@ -62,14 +62,14 @@ SQLite documents `.recover` as a salvage stream (`sqlite3 corrupt.db .recover > 
       sqlite3 -readonly "$DB" "SELECT file_path FROM code_files WHERE file_mtime_ms = 0 LIMIT 50;"
       ```
 
-   2. If integrity is `ok`, re-run the smallest safe scan. The code intentionally stages `file_mtime_ms = 0` before writing nodes and edges, then finalizes the real mtime only after structural rows land, so interrupted writes remain stale and retryable. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-248`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:281-321`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-424`]
+   2. If integrity is `ok`, re-run the smallest safe scan. The code intentionally stages `file_mtime_ms = 0` before writing nodes and edges, then finalizes the real mtime only after structural rows land, so interrupted writes remain stale and retryable. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-248`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:281-321`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-424`]
 
       ```sh
       # If stale count is <= 50, allow the normal selective path.
       # Run MCP code_graph_scan with {"incremental": true}.
       ```
 
-   3. Escalate to full scan when `code_graph_status` reports `empty`/`error`, when Git HEAD changed, or when stale files exceed the existing selective threshold of 50. The scan handler already forces full reindex on Git HEAD drift and prunes missing tracked files differently for incremental vs full scans. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:102-187`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:174-206`]
+   3. Escalate to full scan when `code_graph_status` reports `empty`/`error`, when Git HEAD changed, or when stale files exceed the existing selective threshold of 50. The scan handler already forces full reindex on Git HEAD drift and prunes missing tracked files differently for incremental vs full scans. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:102-187`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:174-206`]
 
       ```sh
       # Run MCP code_graph_scan with {"incremental": false}.
@@ -89,7 +89,7 @@ SQLite documents `.recover` as a salvage stream (`sqlite3 corrupt.db .recover > 
       mv "$DB-shm" "$ROLLBACK_DIR/" 2>/dev/null || true
       ```
 
-   2. Restore the latest known-good triplet if one exists, otherwise leave the DB absent and let `initDb()` create a clean schema. Avoid raw DB dump import/export as a portability mechanism; the hardening contract already marks raw DB dump export as disallowed and post-import repair as required. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ops-hardening.ts:21-43`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ops-hardening.ts:102-109`]
+   2. Restore the latest known-good triplet if one exists, otherwise leave the DB absent and let `initDb()` create a clean schema. Avoid raw DB dump import/export as a portability mechanism; the hardening contract already marks raw DB dump export as disallowed and post-import repair as required. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ops-hardening.ts:21-43`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ops-hardening.ts:102-109`]
 
       ```sh
       cp -p "$SAFE_DIR/code-graph.sqlite" "$DB" 2>/dev/null || true
@@ -139,18 +139,18 @@ SQLite documents `.recover` as a salvage stream (`sqlite3 corrupt.db .recover > 
 
 4. Confirm tool-level readiness:
 
-   - `code_graph_status` should report `status:"ok"`, a non-error `freshness`, `schemaVersion:3`, row counts, `parseHealth`, and `graphQualitySummary`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:10-76`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:675-716`]
-   - `detect_changes` must continue blocking on any non-fresh graph before returning affected symbols; this guards against false-safe output during recovery. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:552-554`]
+   - `code_graph_status` should report `status:"ok"`, a non-error `freshness`, `schemaVersion:3`, row counts, `parseHealth`, and `graphQualitySummary`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:10-76`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:675-716`]
+   - `detect_changes` must continue blocking on any non-fresh graph before returning affected symbols; this guards against false-safe output during recovery. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:552-554`]
    - Run at least one known `code_graph_query` outline/relationship query after full scan to ensure query surfaces see the rebuilt rows.
 
 ## Limitations
 
 - `.recover` is salvage, not proof of correctness. SQLite warns that recovered content can be permanently missing, previously deleted rows can reappear, values can be altered, constraints can be violated, and content can be moved between tables or into a lost-and-found table. [SOURCE: https://www.sqlite.org/recovery.html]
 - If the WAL sidecar is not copied before recovery, recent committed frames that were not checkpointed into `code-graph.sqlite` may be absent from the recovery input.
-- The code graph DB does not store source-file bodies; it stores paths, hashes, line ranges, signatures/docstrings, nodes, and edges. Lost graph rows are best regenerated by parsing source, not reconstructed manually. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:53-115`]
+- The code graph DB does not store source-file bodies; it stores paths, hashes, line ranges, signatures/docstrings, nodes, and edges. Lost graph rows are best regenerated by parsing source, not reconstructed manually. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:53-115`]
 - Recovered `code_edges` can reference missing `code_nodes` even when the database file is structurally valid, because `.recover` may not preserve application-level consistency. Run orphan checks and prefer full scan.
 - Current code-graph storage has no FTS5 or sqlite-vec virtual tables, so there is no local FTS/vector index to reindex in this DB. If this playbook is adapted to `context-index.sqlite` or another DB with FTS/vector tables, the recovered table content should be followed by explicit FTS rebuild / vector re-embedding or a full application-level reindex rather than trusting recovered auxiliary indexes.
-- Because `dbFileSize` reports raw SQLite file size, it can remain large after deletes and should not be used as evidence that logical graph rows survived. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-001.md:19-20`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:707-710`]
+- Because `dbFileSize` reports raw SQLite file size, it can remain large after deletes and should not be used as evidence that logical graph rows survived. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-001.md:19-20`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:707-710`]
 
 ## Files Reviewed
 
@@ -158,24 +158,24 @@ SQLite documents `.recover` as a salvage stream (`sqlite3 corrupt.db .recover > 
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-001.md:11-24`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-002.md:11-25`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/deep-research-state.jsonl:1-4`
-- `.opencode/skill/system-spec-kit/mcp_server/core/config.ts:63-109`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:33-63`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md:30-32`
-- `.opencode/skill/system-spec-kit/mcp_server/README.md:540-554`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:50-180`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:281-424`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:675-735`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:102-187`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-387`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:130-225`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:10-76`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ops-hardening.ts:21-43`
+- `.opencode/skills/system-spec-kit/mcp_server/core/config.ts:63-109`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:33-63`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md:30-32`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md:540-554`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:50-180`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:281-424`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:675-735`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:102-187`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-387`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:130-225`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:10-76`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ops-hardening.ts:21-43`
 - `https://www.sqlite.org/recovery.html`
 - `https://www.sqlite.org/cli.html`
 - `https://www.sqlite.org/pragma.html#pragma_integrity_check`
 - `https://www.sqlite.org/pragma.html#pragma_wal_checkpoint`
-- Local temp-copy `.recover` experiment against `.opencode/skill/system-spec-kit/mcp_server/database/code-graph.sqlite` using SQLite 3.51.0
+- Local temp-copy `.recover` experiment against `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` using SQLite 3.51.0
 
 ## Convergence Signals
 

@@ -18,7 +18,7 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/global/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 # Implementation Summary
 
@@ -58,7 +58,7 @@ Phase 027 now delivers a shared structural bootstrap contract for non-hook runti
 | File | Change |
 |------|--------|
 | `AGENTS.md` | Updated startup/recovery contract wording for hookless OpenCode flow |
-| `.opencode/agent/context.md` | Added structural-context section in prime package format |
+| `.opencode/agents/context.md` | Added structural-context section in prime package format |
 | `../spec.md` | Phase map includes explicit `027-opencode-structural-priming` registration |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md` | Marked complete and synchronized with shipped behavior |
 <!-- /ANCHOR:what-built -->

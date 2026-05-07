@@ -41,23 +41,23 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs",
-      ".opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs",
-      ".opencode/skill/system-spec-kit/scripts/optimizer/search.cjs",
-      ".opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs",
-      ".opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs",
-      ".opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
-      ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-      ".opencode/skill/sk-deep-review/assets/deep_review_config.json",
-      ".opencode/skill/sk-deep-research/references/convergence.md",
-      ".opencode/skill/sk-deep-review/references/convergence.md",
-      ".opencode/command/spec_kit/deep-research.md",
-      ".opencode/command/spec_kit/deep-review.md",
-      ".opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/search.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+      ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+      ".opencode/skills/sk-deep-review/assets/deep_review_config.json",
+      ".opencode/skills/sk-deep-research/references/convergence.md",
+      ".opencode/skills/sk-deep-review/references/convergence.md",
+      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/spec_kit/deep-review.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts",
       "spec.md",
       "plan.md",
       "decision-record.md"
@@ -66,97 +66,97 @@
       {
         "name": "replay-corpus.cjs",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs",
         "source": "derived"
       },
       {
         "name": "rubric.cjs",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs",
         "source": "derived"
       },
       {
         "name": "search.cjs",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/scripts/optimizer/search.cjs",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/search.cjs",
         "source": "derived"
       },
       {
         "name": "replay-runner.cjs",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs",
         "source": "derived"
       },
       {
         "name": "promote.cjs",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs",
         "source": "derived"
       },
       {
         "name": "optimizer-manifest.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
         "source": "derived"
       },
       {
         "name": "deep_research_config.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
+        "path": ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
         "source": "derived"
       },
       {
         "name": "deep_review_config.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-deep-review/assets/deep_review_config.json",
+        "path": ".opencode/skills/sk-deep-review/assets/deep_review_config.json",
         "source": "derived"
       },
       {
         "name": "convergence.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/convergence.md",
+        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
         "source": "derived"
       },
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/deep-research.md",
+        "path": ".opencode/commands/spec_kit/deep-research.md",
         "source": "derived"
       },
       {
         "name": "deep-review.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/deep-review.md",
+        "path": ".opencode/commands/spec_kit/deep-review.md",
         "source": "derived"
       },
       {
         "name": "optimizer-replay-corpus.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts",
         "source": "derived"
       },
       {
         "name": "optimizer-rubric.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts",
         "source": "derived"
       },
       {
         "name": "optimizer-search.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts",
         "source": "derived"
       },
       {
         "name": "optimizer-replay-runner.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
         "source": "derived"
       },
       {
         "name": "optimizer-promote.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts",
         "source": "derived"
       },
       {

@@ -59,7 +59,7 @@ Tool routing enforcement — fixing root cause of AI tool misjudgment for CocoIn
 - Reading runtime detection plus cross-runtime fallback tests clarified that the real runtime split is transport timing (`hooks` vs `tool_fallback`), not separate routing content per runtime.
 - Reading `query-intent-classifier.ts` with `memory-context.ts` exposed a reusable heuristic already present in the codebase, making classifier design an extension problem instead of a greenfield one.
 - Comparing the MCP classifier to runtime search-protocol docs made the missing `exact_text` bucket obvious: Grep/Glob routing exists in docs, but not in the server-side heuristic.
-- Reading `.opencode/agent/context-prime.md` and `.claude/agents/context-prime.md` together confirmed that the display contract is already stable across runtimes and can absorb a shared `Tool Routing` section without runtime divergence.
+- Reading `.opencode/agents/context-prime.md` and `.claude/agents/context-prime.md` together confirmed that the display contract is already stable across runtimes and can absorb a shared `Tool Routing` section without runtime divergence.
 - Pairing `hooks/response-hints.ts` with the existing startup/envelope tests in `context-server.vitest.ts` made the test strategy concrete: extend live `setInstructions()` checks, add PrimePackage builder tests, and reuse call-handler hint injection tests.
 
 ---
@@ -96,11 +96,11 @@ Iteration 10: Investigate over-aggressive enforcement failure modes and escape h
 ## 12. KNOWN CONTEXT
 - No prior memory found (evidence gap — this is new research territory)
 - CocoIndex code search found relevant source files:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/README.md` — Code graph lib overview
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts` — LLM-oriented graph neighborhoods
-  - `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` — Tool definitions including code_graph_status, code_graph_context
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts` — CocoIndex to graph node resolution
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts` — Context handler
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/README.md` — Code graph lib overview
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts` — LLM-oriented graph neighborhoods
+  - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` — Tool definitions including code_graph_status, code_graph_context
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts` — CocoIndex to graph node resolution
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts` — Context handler
 - Runtime fixtures show 4 runtimes: claude-code (hooks enabled), codex-cli (hooks unavailable), copilot-cli (hooks unavailable), gemini-cli (hooks unavailable)
 - Session priming fires via `primeSessionIfNeeded()` in `hooks/memory-surface.ts`
 - `buildServerInstructions()` in `context-server.ts:605` currently covers memory stats + session recovery, no tool routing

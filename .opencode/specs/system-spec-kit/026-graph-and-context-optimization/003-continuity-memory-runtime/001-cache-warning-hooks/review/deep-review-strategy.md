@@ -87,9 +87,9 @@ Completed. No active findings remain after iteration 22.
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/tasks.md` | D3 | 2 | 0 P0, 0 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/checklist.md` | D3 | 2 | 0 P0, 0 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks/implementation-summary.md` | D3, D4 | 2 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` | D1, D3 | 2 | 0 P0, 1 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts` | D2, D3 | 2 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts` | D1, D2 | 2 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` | D1, D3 | 2 | 0 P0, 1 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts` | D2, D3 | 2 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts` | D1, D2 | 2 | 0 P0, 0 P1, 0 P2 | complete |
 
 ## 15. REVIEW BOUNDARIES
 

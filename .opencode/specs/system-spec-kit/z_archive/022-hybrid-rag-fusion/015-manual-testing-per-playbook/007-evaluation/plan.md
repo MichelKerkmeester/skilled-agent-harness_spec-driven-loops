@@ -67,7 +67,7 @@ Execute 2 manual test scenarios for the evaluation category. EX-026 runs an abla
 Manual test execution following playbook-defined scenarios.
 
 ### Key Components
-- **Playbook scenarios**: `.opencode/skill/system-spec-kit/manual_testing_playbook/07--evaluation/` (EX-026/EX-027), `.opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/` (EX-046/EX-047/EX-048), and `.opencode/skill/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/` (EX-049)
+- **Playbook scenarios**: `.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/` (EX-026/EX-027), `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/` (EX-046/EX-047/EX-048), and `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/` (EX-049)
 - **MCP tools under test**: eval_run_ablation, eval_reporting_dashboard
 - **Evidence capture**: Tool output saved as verdict evidence
 

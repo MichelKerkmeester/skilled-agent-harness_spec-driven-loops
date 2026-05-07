@@ -12,10 +12,10 @@ All gate metrics must PASS before advancing to the next stage.
 
 [ ] T055 Phase 2 dark launch confirmed stable (scratch/t028-t055-dark-launch-checklist.md)
 [ ] Telemetry dashboard can be re-run on demand:
-    npx tsx .opencode/skill/system-spec-kit/scripts/evals/deleted-phase3-telemetry-dashboard-script
+    npx tsx .opencode/skills/system-spec-kit/scripts/evals/deleted-phase3-telemetry-dashboard-script
     .opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag
 [ ] Rollback runbook available:
-    .opencode/skill/system-spec-kit/references/workflows/rollback-runbook.md
+    .opencode/skills/system-spec-kit/references/workflows/rollback-runbook.md
 
 ---
 
@@ -209,7 +209,7 @@ Rollback command (quick reference):
   unset SPECKIT_AUTO_RESUME SPECKIT_EXTRACTION SPECKIT_CAUSAL_BOOST
   (or set all to "false")
   Restart MCP server.
-  Full procedure: .opencode/skill/system-spec-kit/references/workflows/rollback-runbook.md
+  Full procedure: .opencode/skills/system-spec-kit/references/workflows/rollback-runbook.md
 
 ---
 

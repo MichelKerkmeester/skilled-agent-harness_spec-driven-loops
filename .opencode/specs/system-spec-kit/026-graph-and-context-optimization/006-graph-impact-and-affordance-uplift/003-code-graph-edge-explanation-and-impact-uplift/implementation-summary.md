@@ -37,8 +37,8 @@ _memory:
 - Ambiguous symbol subjects return candidate metadata and a structured fallback instead of silently choosing a default graph node.
 - Added targeted test coverage in existing Code Graph Vitest files for edge metadata, relationship output, context propagation, risk levels, confidence filtering, ambiguity candidates and failure fallback.
 - Added per-packet docs:
-  - `.opencode/skill/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md`
-  - `.opencode/skill/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md`
+  - `.opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md`
+  - `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md`
 
 ## Risk Classification Rules Decided
 Final graph-local `riskLevel` rules:
@@ -79,7 +79,7 @@ $ cd mcp_server && npx --no-install vitest run \
    Duration  1.34s
 
 # validate.sh --strict (003 sub-phase)
-$ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/003-code-graph-edge-explanation-and-impact-uplift \
   --strict
 → FAILED (template-section conformance — cosmetic; not a contract violation)
@@ -93,7 +93,7 @@ $ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
 | Relationship query output coverage | PASS | `code-graph-query-handler.vitest.ts` asserts per-edge `reason` and `step`; inside the 9 PASSED files. |
 | Blast-radius risk/depth/filter/ambiguity/fallback coverage | PASS | `code-graph-query-handler.vitest.ts` adds low, medium, high, `minConfidence`, ambiguity and `failureFallback` cases; all passing. |
 | Context propagation coverage | PASS | `code-graph-context-handler.vitest.ts` asserts structured edge metadata and text brief propagation; inside the 9 PASSED files. |
-| sk-doc DQI | OPERATOR-PENDING | Original implementation reported feature catalog DQI 87 and playbook DQI 89 via `extract_structure.py`, but those scores were captured outside the canonical Wave-3 channel; operator may re-run `python3 .opencode/skill/sk-doc/scripts/validate_document.py` for both entries to attest the numeric scores against the current rubric. |
+| sk-doc DQI | OPERATOR-PENDING | Original implementation reported feature catalog DQI 87 and playbook DQI 89 via `extract_structure.py`, but those scores were captured outside the canonical Wave-3 channel; operator may re-run `python3 .opencode/skills/sk-doc/scripts/validate_document.py` for both entries to attest the numeric scores against the current rubric. |
 | `vitest run code_graph/tests/` | PASS | Wave-3 canonical: `npx --no-install vitest run ...` (9 passed | 1 skipped, 90 passed | 3 skipped, 1.34s). |
 | `tsc --noEmit` | PASS | Wave-3 canonical: `npx --no-install tsc --noEmit` exit 0 (clean after type-widening fix in commit c6e766dc5). |
 | `validate.sh --strict` | FAILED-COSMETIC | Wave-3 canonical: FAILED on template-section conformance; cosmetic style debt, not a content/contract violation. Tracked as deferred P2 cleanup in 010/007. |

@@ -79,7 +79,7 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Markdown formatting remains valid across all rewritten files [Evidence: `python3 .opencode/skill/sk-doc/scripts/validate_document.py` passed for the four rewritten root playbooks in `mcp-coco-index`, `sk-improve-agent`, `sk-deep-research`, and `sk-deep-review`]
+- [x] CHK-010 [P0] Markdown formatting remains valid across all rewritten files [Evidence: `python3 .opencode/skills/sk-doc/scripts/validate_document.py` passed for the four rewritten root playbooks in `mcp-coco-index`, `sk-improve-agent`, `sk-deep-research`, and `sk-deep-review`]
 - [x] CHK-011 [P0] No broken prompt blocks, malformed tables, or path regressions introduced [Evidence: root playbook validation passed; representative reads of `CCC-005`, `RT-027`, `DR-014`, and `DRV-022` kept prompt blocks, tables, and source anchors intact]
 - [x] CHK-012 [P1] Command sequences remain deterministic after wording updates [Evidence: scoped rewrite preserved command structures; RT-027 was rewritten from unshipped resume behavior to current fresh-session continuation guidance]
 - [x] CHK-013 [P1] Rewritten files follow the same modernization contract across all five targets [Evidence: prompts were rewritten across all five requested targets; stale-term sweep reported `orchestrator_prompt_label=0`, `deprecated_improve_agent_command=0`, `resume_flag=0`, `resume_mode=0`]

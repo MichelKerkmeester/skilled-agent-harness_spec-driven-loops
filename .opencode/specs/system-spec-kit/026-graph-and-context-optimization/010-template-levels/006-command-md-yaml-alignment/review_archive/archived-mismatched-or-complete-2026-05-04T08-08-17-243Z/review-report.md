@@ -63,7 +63,7 @@ The target packet is not release-ready as an active implementation/spec packet. 
 - T001 Decide active-vs-fixture status for `007-fleet-marker-validation-sweep`.
 - T002 If active, rewrite spec/plan/tasks/checklist/summary/ADR placeholders.
 - T003 Render or document Level 3 AI protocol sections.
-- T004 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <target> --strict` and capture pass evidence.
+- T004 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <target> --strict` and capture pass evidence.
 - T005 Refresh `description.json` and `graph-metadata.json` after the status decision.
 
 ## Traceability Status

@@ -162,7 +162,7 @@ Summary of requirements:
 ### 4.2 Non-Functional
 
 - **NF-1**: Zero new P0 findings introduced by remediation commits (verified by `/spec_kit:deep-review :auto` ×7 per `feedback_phase_018_autonomous` (user memory)).
-- **NF-2**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict` on the 017 spec folder exits 0 with 0 warnings after implementation completes.
+- **NF-2**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict` on the 017 spec folder exits 0 with 0 warnings after implementation completes.
 - **NF-3**: Wave A + Wave B atomic-ship constraints respected (no transient inconsistency windows in `description.json` vs `graph-metadata.json` or in `code-graph/*` handler vocabulary).
 - **NF-4**: All 170/179 completed CHK evidence markers in the 016 `checklist.md` rewrapped to canonical `]` closer BEFORE T-EVD-01 lint activates in `--strict` mode.
 
@@ -269,7 +269,7 @@ T-CNS-01 → T-W1-CNS-04 → T-CNS-02 → T-CGC-01 → T-W1-CGC-03 → T-W1-CNS-
 2. **`lib/code-graph/readiness-contract.ts`** (new): T-CGC-01 creates the module; T-W1-CGC-03 consumes it. Atomic-ship OR staged with `trustState: 'unavailable'` stubs.
 3. **`hooks/*/shared.ts` + `hooks/copilot/*`**: T-W1-HOK-02 (extract shared-provenance.ts) MUST precede T-W1-HOK-01 (Copilot compact-cache). Reverse order re-inlines `wrapRecoveredCompactPayload` as 3rd duplicate.
 4. **`shared/gate-3-classifier.ts` + tests**: T-SAN-01 + T-SAN-03 MUST land together (SAN-03 tests fail until SAN-01 lands).
-5. **`.opencode/skill/system-spec-kit/scripts/spec/validate.sh`**: T-EVD-01 + T-SCP-02 batch into one lint-addition PR. T-EVD-01 `--strict` mode MUST NOT activate until 016 checklist.md rewrap completes.
+5. **`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`**: T-EVD-01 + T-SCP-02 batch into one lint-addition PR. T-EVD-01 `--strict` mode MUST NOT activate until 016 checklist.md rewrap completes.
 
 ### Rollout hazards
 

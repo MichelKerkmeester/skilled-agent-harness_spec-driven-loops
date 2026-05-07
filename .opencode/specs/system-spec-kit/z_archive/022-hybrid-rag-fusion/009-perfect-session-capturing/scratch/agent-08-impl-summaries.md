@@ -166,7 +166,7 @@
 - **How It Was Tested:** Fail — required `## How It Was Tested` heading is missing; file uses `## Verification` at line 75 instead. Evidence quality is **specific**.
 - **Key Decisions:** Pass — section exists at line 63 and records explicit design choices.
 - **Files Changed:** Partial — a file table exists, but not as a dedicated `## Files Changed` section; first marker appears at line 35.
-- **Files table accuracy:** Issue — 9/11 referenced entries resolve cleanly. Problems: line 48 `.opencode/command/spec_kit/assets/spec_kit_{plan,implement,complete}_{auto,confirm}.yaml` is a pattern, not a concrete file path; line 49 `System-spec-kit fixture and test lanes under .opencode/skill/system-spec-kit/scripts/` is too broad/non-literal to verify as a single file.
+- **Files table accuracy:** Issue — 9/11 referenced entries resolve cleanly. Problems: line 48 `.opencode/commands/spec_kit/assets/spec_kit_{plan,implement,complete}_{auto,confirm}.yaml` is a pattern, not a concrete file path; line 49 `System-spec-kit fixture and test lanes under .opencode/skills/system-spec-kit/scripts/` is too broad/non-literal to verify as a single file.
 
 ### 013-auto-detection-fixes
 

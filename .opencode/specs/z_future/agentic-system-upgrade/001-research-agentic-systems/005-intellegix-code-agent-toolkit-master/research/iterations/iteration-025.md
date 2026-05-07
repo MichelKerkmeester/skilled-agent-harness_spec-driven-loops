@@ -12,10 +12,10 @@ No. The local LEAF iteration pattern is still the right abstraction for evidence
 I compared the local deep-research and deep-review agent contracts with the external research and orchestration roles. I focused on whether the external model preserves the same evidence discipline, state contract, and iteration boundary.
 
 ## Evidence
-- `[SOURCE: .opencode/agent/deep-research.md:22-33]` The local deep-research agent is explicitly a single-iteration actor with permission to write packet-local research artifacts and progressive synthesis.
-- `[SOURCE: .opencode/agent/deep-research.md:50-60]` The deep-research workflow formalizes state read, focused investigation, iteration artifact creation, JSONL append, reducer sync, and research update.
-- `[SOURCE: .opencode/agent/deep-review.md:21-31]` The local deep-review agent is likewise a single-iteration actor with explicit review-only write scope inside `review/`.
-- `[SOURCE: .opencode/agent/deep-review.md:45-57]` The deep-review loop formalizes dimension selection, analysis actions, severity classification, iteration artifact writing, strategy update, and JSONL append.
+- `[SOURCE: .opencode/agents/deep-research.md:22-33]` The local deep-research agent is explicitly a single-iteration actor with permission to write packet-local research artifacts and progressive synthesis.
+- `[SOURCE: .opencode/agents/deep-research.md:50-60]` The deep-research workflow formalizes state read, focused investigation, iteration artifact creation, JSONL append, reducer sync, and research update.
+- `[SOURCE: .opencode/agents/deep-review.md:21-31]` The local deep-review agent is likewise a single-iteration actor with explicit review-only write scope inside `review/`.
+- `[SOURCE: .opencode/agents/deep-review.md:45-57]` The deep-review loop formalizes dimension selection, analysis actions, severity classification, iteration artifact writing, strategy update, and JSONL append.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/agents/research.md:15-22]` The external research agent is a broad specialist for web research and technology evaluation, not a packet-local iterative reducer participant.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/agents/orchestrator.md:15-23]` The external orchestrator is a loop manager rather than a research-evidence reducer.
 
@@ -30,7 +30,7 @@ confidence: high
 finding: `system-spec-kit` should reject replacing `@deep-research` and `@deep-review` with generic external-style research or orchestrator roles. Keep the LEAF iteration model.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/deep-research.md`, `.opencode/agent/deep-review.md`
+- **Target file or module:** `.opencode/agents/deep-research.md`, `.opencode/agents/deep-review.md`
 - **Change type:** rejected
 - **Blast radius:** architectural
 - **Prerequisites:** none

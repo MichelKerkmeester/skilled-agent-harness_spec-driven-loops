@@ -78,9 +78,9 @@ Built the complete evaluator-first MVP for bounded agent improvement. The phase 
 | `sk-improve-agent/scripts/promote-candidate.cjs` | Guarded canonical promotion with manifest validation and proposal-only blocking. |
 | `sk-improve-agent/scripts/rollback-candidate.cjs` | Canonical rollback helper with ledger-backed baseline restore. |
 | `sk-improve-agent/scripts/check-mirror-drift.cjs` | Mirror drift reporter comparing manifest surfaces to discovered copies. |
-| `.opencode/agent/agent-improver.md` | Canonical mutator agent definition. |
-| `.opencode/command/improve/agent.md` | Command entrypoint for the improvement loop. |
-| `.opencode/skill/sk-improve-agent/` | Full skill package with charter, strategy, config, manifest, SKILL.md, README. |
+| `.opencode/agents/agent-improver.md` | Canonical mutator agent definition. |
+| `.opencode/commands/improve/agent.md` | Command entrypoint for the improvement loop. |
+| `.opencode/skills/sk-improve-agent/` | Full skill package with charter, strategy, config, manifest, SKILL.md, README. |
 
 </details>
 

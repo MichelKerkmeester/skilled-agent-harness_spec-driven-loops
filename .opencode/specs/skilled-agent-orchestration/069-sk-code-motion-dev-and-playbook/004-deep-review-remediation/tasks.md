@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T-001 F-004 - P0 - Prove Webflow pointer no-clobber state by checking cached and unstaged numstat for `.opencode/skill/sk-code/references/webflow/`; document empty-output pass because no Webflow deletion is present.
+- [x] T-001 F-004 - P0 - Prove Webflow pointer no-clobber state by checking cached and unstaged numstat for `.opencode/skills/sk-code/references/webflow/`; document empty-output pass because no Webflow deletion is present.
 - [x] T-002 F-005 - P0 - Convert `layout_transition.js` from undocumented `window.MotionPlus`/`window.Motion` probing to documented `await import("motion-plus/animate-layout")` with `unstable_animateLayout`, try/catch, and reduced-motion handling.
 <!-- /ANCHOR:phase-1 -->
 

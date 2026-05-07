@@ -224,7 +224,7 @@ contextType: "implementation"
 
 ```bash
 # Run all tests
-cd .opencode/skill/system-spec-kit && npm test
+cd .opencode/skills/system-spec-kit && npm test
 
 # Run bug fix verification tests
 node scripts/test-bug-fixes.js
@@ -238,7 +238,7 @@ node -c mcp_server/lib/vector-index.js
 node -c scripts/generate-context.js
 
 # Check database schema
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".schema"
+sqlite3 .opencode/skills/system-spec-kit/database/context-index.sqlite ".schema"
 ```
 
 ---

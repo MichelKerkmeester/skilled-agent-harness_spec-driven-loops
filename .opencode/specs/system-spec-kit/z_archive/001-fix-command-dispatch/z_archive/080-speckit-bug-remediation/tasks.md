@@ -312,7 +312,7 @@ Verify: Test with adversarial inputs, check no hangs
 
 ```bash
 # Run all verification:
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 node tests/fsrs-scheduler.test.js
 node tests/modularization.test.js
 npm test

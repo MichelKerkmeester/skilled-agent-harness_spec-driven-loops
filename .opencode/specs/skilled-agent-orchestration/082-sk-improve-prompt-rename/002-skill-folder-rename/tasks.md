@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Phase 003 opencode internals"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-prompt/SKILL.md"
-      - ".opencode/skill/sk-prompt/README.md"
-      - ".opencode/skill/sk-prompt/graph-metadata.json"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/skills/sk-prompt/README.md"
+      - ".opencode/skills/sk-prompt/graph-metadata.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-skill-folder-rename"
@@ -55,7 +55,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read authoritative parent and phase docs (`spec.md`, `resource-map.md`, `002-skill-folder-rename/spec.md`) - evidence: all listed docs read before edits.
-- [x] T002 Verify pre-state (`.opencode/skill/sk-improve-prompt/`) - evidence: `ls .opencode/skill/sk-improve-prompt/` returned `README.md`, `SKILL.md`, `assets`, `changelog`, `graph-metadata.json`, `references`.
+- [x] T002 Verify pre-state (`.opencode/skills/sk-improve-prompt/`) - evidence: `ls .opencode/skills/sk-improve-prompt/` returned `README.md`, `SKILL.md`, `assets`, `changelog`, `graph-metadata.json`, `references`.
 - [x] T003 [P] Inspect worktree and scoped existing diffs - evidence: `git status --short`, `git diff --name-only`, and targeted diffs showed pre-existing user work in `graph-metadata.json` and `skill-graph.json`.
 <!-- /ANCHOR:phase-1 -->
 
@@ -64,7 +64,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Rename skill folder to `.opencode/skill/sk-prompt/` - evidence: `git mv` was attempted and blocked by `.git/index.lock`; physical `mv` completed.
+- [x] T004 Rename skill folder to `.opencode/skills/sk-prompt/` - evidence: `git mv` was attempted and blocked by `.git/index.lock`; physical `mv` completed.
 - [x] T005 Update eight skill-local self-reference files - evidence: scoped replacement completed in `SKILL.md`, `README.md`, `graph-metadata.json`, `assets/cli_prompt_quality_card.md`, `references/depth_framework.md`, and three changelog files.
 - [x] T006 Update `skill-graph.json` prompt skill keys and refs - evidence: `families`, `adjacency`, `signals`, and `skill_advisor.enhances` now use `sk-prompt`.
 - [x] T007 Retarget changelog symlink - evidence: `.opencode/changelog/sk-prompt -> ../skill/sk-prompt/changelog`; old symlink path absent.
@@ -76,9 +76,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Verify post-state folder and frontmatter - evidence: `ls .opencode/skill/sk-prompt/SKILL.md` succeeded and `sed -n '1,12p'` showed `name: sk-prompt`.
-- [x] T010 Verify old-name absence in scoped files - evidence: `rg -n "sk-improve-prompt" .opencode/skill/sk-prompt .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` returned no matches.
-- [x] T011 Verify JSON validity - evidence: `jq . .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` exited 0.
+- [x] T009 Verify post-state folder and frontmatter - evidence: `ls .opencode/skills/sk-prompt/SKILL.md` succeeded and `sed -n '1,12p'` showed `name: sk-prompt`.
+- [x] T010 Verify old-name absence in scoped files - evidence: `rg -n "sk-improve-prompt" .opencode/skills/sk-prompt .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` returned no matches.
+- [x] T011 Verify JSON validity - evidence: `jq . .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` exited 0.
 - [x] T012 Verify advisor status - evidence: compiled `handleAdvisorStatus(...)` reported freshness `live`, generation `1214`.
 - [x] T013 Update phase documentation - evidence: `implementation-summary.md`, `tasks.md`, and `spec.md` continuity updated for Phase 002 completion.
 <!-- /ANCHOR:phase-3 -->

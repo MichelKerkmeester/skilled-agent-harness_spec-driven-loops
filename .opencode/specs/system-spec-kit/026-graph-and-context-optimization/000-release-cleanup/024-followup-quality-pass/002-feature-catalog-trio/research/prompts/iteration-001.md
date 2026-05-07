@@ -24,7 +24,7 @@ find .opencode/skill -type f -name '*feature*catalog*'
 Per sk-doc skill standards, feature catalogs have a defined template. Confirm the template location:
 
 ```bash
-find .opencode/skill/sk-doc -name '*feature*catalog*'
+find .opencode/skills/sk-doc -name '*feature*catalog*'
 ```
 
 Read at least one existing feature catalog (e.g., system-spec-kit's) before editing to understand the format.

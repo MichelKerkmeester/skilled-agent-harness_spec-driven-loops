@@ -5,7 +5,7 @@ Complete the convergence pass by resolving the remaining phase-003 scope questio
 
 ## Findings
 1. The prior conclusions do not contradict one another. They form a stable implementation sequence: telemetry establishes observability, length-penalty removal fixes the clearest continuity regression, rerank minimum `4` trims low-signal reranks with bounded fallout, and continuity-profile work comes last because it changes semantics more broadly. [SOURCE: research/iterations/iteration-021.md] [SOURCE: research/iterations/iteration-022.md] [SOURCE: research/iterations/iteration-023.md] [SOURCE: research/iterations/iteration-024.md]
-2. Phase `003-continuity-search-profile` should default to the narrow internal scope first: add `continuity` only at the adaptive-fusion/internal-caller seam and validate it through the string-typed K harness. Treat broad public continuity intent as a separate follow-on only if operator-facing APIs genuinely need it. [SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60] [SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:137] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:7] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:43] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:402]
+2. Phase `003-continuity-search-profile` should default to the narrow internal scope first: add `continuity` only at the adaptive-fusion/internal-caller seam and validate it through the string-typed K harness. Treat broad public continuity intent as a separate follow-on only if operator-facing APIs genuinely need it. [SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60] [SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:137] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:7] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:43] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:402]
 3. The final combined priority ranking is:
    - `002-add-reranker-telemetry`: highest priority, low behavior risk, enabling data
    - `001-remove-length-penalty`: highest direct continuity improvement, moderate contract/test risk
@@ -25,10 +25,10 @@ Complete the convergence pass by resolving the remaining phase-003 scope questio
 - `research/iterations/iteration-022.md`
 - `research/iterations/iteration-023.md`
 - `research/iterations/iteration-024.md`
-- `.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts`
+- `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts`
 
 ## Assessment
 - New information ratio: 0.07

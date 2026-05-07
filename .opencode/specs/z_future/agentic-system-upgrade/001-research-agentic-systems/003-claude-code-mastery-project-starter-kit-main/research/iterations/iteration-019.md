@@ -12,8 +12,8 @@ Compared the external repo's `progress`, checklist, and issues artifacts to the 
 ## Evidence
 - The external `progress` command is designed as a narrative status checkpoint: inspect docs, tests, source, and git activity, then explain what is done, what is missing, and what to do next. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/commands/progress.md:11-60]
 - The external repo pairs that with plain artifacts such as `tests/CHECKLIST.md` and `tests/ISSUES_FOUND.md`, which make project state scannable to a human without requiring them to reverse-engineer tool internals. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/tests/CHECKLIST.md:1-55] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/tests/ISSUES_FOUND.md:1-29]
-- The local repo already has stronger underlying state in validators, deep-research dashboards, JSONL traces, memory health/reporting tools, and command families, but those surfaces are distributed and more tool-centric. [SOURCE: .opencode/command/README.txt:40-49] [SOURCE: .opencode/skill/sk-deep-research/SKILL.md:231-244]
-- The local deep-research workflow already maintains a dashboard and synthesis report, which means the repo has enough structured state to support more human-readable readiness projections without inventing a new storage system. [SOURCE: .opencode/agent/deep-research.md:159-213]
+- The local repo already has stronger underlying state in validators, deep-research dashboards, JSONL traces, memory health/reporting tools, and command families, but those surfaces are distributed and more tool-centric. [SOURCE: .opencode/commands/README.txt:40-49] [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:231-244]
+- The local deep-research workflow already maintains a dashboard and synthesis report, which means the repo has enough structured state to support more human-readable readiness projections without inventing a new storage system. [SOURCE: .opencode/agents/deep-research.md:159-213]
 
 ## Analysis
 This does not look like an architectural gap so much as a packaging gap. `system-spec-kit` already knows a lot about packet state, validation health, research convergence, and memory quality. What it lacks, in places, is a friendlier operator summary that answers "where am I, what is broken, and what should happen next?" without requiring the user to understand the mechanics behind each subsystem. The external repo is much weaker under the hood, but it is often stronger at turning state into an immediately readable human checkpoint.
@@ -42,7 +42,7 @@ finding: `system-spec-kit` should probably expose more human-readable readiness 
 - **Priority:** nice-to-have
 
 ## Counter-evidence sought
-I looked for evidence that the local repo entirely lacks progress surfaces; it does not. The issue is more that those surfaces are specialized and distributed rather than absent. [SOURCE: .opencode/command/README.txt:40-49]
+I looked for evidence that the local repo entirely lacks progress surfaces; it does not. The issue is more that those surfaces are specialized and distributed rather than absent. [SOURCE: .opencode/commands/README.txt:40-49]
 
 ## Follow-up questions for next iteration
 Should profile-style presets play any role in how readiness is presented, or would that import the wrong model from the external starter kit?

@@ -125,7 +125,7 @@ Evidence flows from source files and tests into `review-report.md`. No target ru
 |-----------|-------|-------|
 | Static audit | Status, rebuild, daemon, scoring, shim, hook fallback | `rg`, `sed`, source reads |
 | Evidence review | Existing Vitest coverage and prior packet run-output | File:line citations |
-| Packet validation | Level 2 packet docs and metadata | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Packet validation | Level 2 packet docs and metadata | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 <!-- /ANCHOR:testing -->
 
 ---

@@ -4,10 +4,10 @@
 Map the non-hard Tier1 heuristics, the category-to-target mapping, and the Tier2 prototype library so later measurement can explain both predictions and merge destinations.
 
 ## Findings
-1. Tier1 heuristic scoring is cue-driven and asymmetric: each cue regex adds `0.18`, but some categories also receive floor boosts, such as `narrative_progress` at `0.72`, `narrative_delivery` at `0.74`, `decision` at `0.76`, `task_update` at `0.90`, `handover_state` at `0.84`, `research_finding` at `0.80`, `metadata_only` at `0.93`, and `drop` at `0.92`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:340] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:842]
-2. Target selection is deterministic by category: progress and delivery append paragraphs to `implementation-summary.md`, research and handover append sections, tasks update a phase anchor, metadata writes `_memory.continuity`, and `decision` switches between ADR insertion on `L3/L3+` and in-place summary updates on `L1/L2`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:918] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/content-router.vitest.ts:92]
-3. The Tier2 library is balanced structurally: five prototypes per category across all eight categories, with labels, tags, and negative hints. That makes prototype coverage broad enough for a synthetic corpus without inventing a separate labeling scheme. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:1] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/content-router.vitest.ts:415]
-4. Several prototype texts intentionally contain overlapping language such as "verification," "same-pass alignment," "research," or "current state," which means the library is designed to expose confusion pressure rather than remove it. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:47] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:173]
+1. Tier1 heuristic scoring is cue-driven and asymmetric: each cue regex adds `0.18`, but some categories also receive floor boosts, such as `narrative_progress` at `0.72`, `narrative_delivery` at `0.74`, `decision` at `0.76`, `task_update` at `0.90`, `handover_state` at `0.84`, `research_finding` at `0.80`, `metadata_only` at `0.93`, and `drop` at `0.92`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:340] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:842]
+2. Target selection is deterministic by category: progress and delivery append paragraphs to `implementation-summary.md`, research and handover append sections, tasks update a phase anchor, metadata writes `_memory.continuity`, and `decision` switches between ADR insertion on `L3/L3+` and in-place summary updates on `L1/L2`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:918] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/content-router.vitest.ts:92]
+3. The Tier2 library is balanced structurally: five prototypes per category across all eight categories, with labels, tags, and negative hints. That makes prototype coverage broad enough for a synthetic corpus without inventing a separate labeling scheme. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:1] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/content-router.vitest.ts:415]
+4. Several prototype texts intentionally contain overlapping language such as "verification," "same-pass alignment," "research," or "current state," which means the library is designed to expose confusion pressure rather than remove it. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:47] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:173]
 
 ## Ruled Out
 - Assuming the prototype library is sparse or skewed toward one category. It is balanced by count.
@@ -16,10 +16,10 @@ Map the non-hard Tier1 heuristics, the category-to-target mapping, and the Tier2
 - Treating Tier2 as independent from target selection. The prototype scorer still inherits the same `buildTarget()` mapping as Tier1 and Tier3.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:340`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:842`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:918`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:1`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:340`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:842`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:918`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:1`
 
 ## Assessment
 - New information ratio: 0.88

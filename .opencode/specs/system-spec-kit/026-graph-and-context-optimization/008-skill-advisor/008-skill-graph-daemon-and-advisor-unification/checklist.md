@@ -62,7 +62,7 @@ Every completed `[x]` P0/P1 item below must carry concrete evidence. Items left 
 ## Testing
 
 - [x] CHK-020 [P0] Child implementation tests passed during shipment [EVIDENCE: `implementation-summary.md:62` children convergence log].
-- [x] CHK-021 [P0] Phase 027 parent strict validation exits 0 after parity repair. [EVIDENCE: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification --strict` exit 0]
+- [x] CHK-021 [P0] Phase 027 parent strict validation exits 0 after parity repair. [EVIDENCE: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification --strict` exit 0]
 - [x] CHK-022 [P1] Phase 027 child parity validation exits 0 in final remediation pass. [EVIDENCE: same validator exit 0; output reports `PHASE_LINKS: No phase folders detected (non-phased spec)` after child packets were flattened]
 - [x] CHK-023 [P1] Promotion gates are part of shipped scope [EVIDENCE: `implementation-summary.md:129` promotion gate summary].
 <!-- /ANCHOR:testing -->

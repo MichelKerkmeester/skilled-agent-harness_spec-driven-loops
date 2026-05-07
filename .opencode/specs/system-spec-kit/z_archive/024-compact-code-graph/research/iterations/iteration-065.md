@@ -6,12 +6,12 @@ Investigate how OpenCode (the primary non-hook runtime) structures its agents, c
 ## Findings
 
 ### 1. OpenCode Agent Architecture
-OpenCode agents are defined as markdown files in `.opencode/agent/` with YAML frontmatter specifying name, description, mode (primary/subagent), temperature, permissions (read/write/edit/bash/grep/glob/webfetch/memory), and MCP server bindings. There are 10 agents: context, debug, deep-research, deep-review, handover, orchestrate, review, speckit, ultra-think, write.
+OpenCode agents are defined as markdown files in `.opencode/agents/` with YAML frontmatter specifying name, description, mode (primary/subagent), temperature, permissions (read/write/edit/bash/grep/glob/webfetch/memory), and MCP server bindings. There are 10 agents: context, debug, deep-research, deep-review, handover, orchestrate, review, speckit, ultra-think, write.
 
 Key architectural insight: OpenCode has NO native hook system. There is no equivalent to Claude Code's `settings.local.json` hooks (PreCompact, SessionStart, Stop). Agents are dispatched on-demand by the orchestrator or directly by the user -- there is no lifecycle event interception.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/ -- directory listing showing 10 agent files]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/context.md -- YAML frontmatter with permission model and mcpServers binding]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/ -- directory listing showing 10 agent files]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/context.md -- YAML frontmatter with permission model and mcpServers binding]
 
 ### 2. MCP Server Registration in OpenCode
 `opencode.json` registers 4 MCP servers directly: `sequential_thinking`, `spec_kit_memory`, `cocoindex_code`, and `code_mode`. All use `"type": "local"` with command arrays. The `spec_kit_memory` server provides all memory tools (memory_context, memory_search, code_graph_scan, code_graph_query, etc.). The `cocoindex_code` server provides semantic code search.
@@ -21,25 +21,25 @@ Critical finding: Both code_graph and CocoIndex tools are already available to A
 [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/opencode.json:19-43 -- spec_kit_memory and cocoindex_code MCP configs]
 
 ### 3. OpenCode Command System as Hook Substitute
-Commands in `.opencode/command/spec_kit/` are YAML-based workflow definitions (e.g., `resume.md`, `complete.md`, `plan.md`, `implement.md`). The `/spec_kit:resume` command (spec_kit_resume_auto.yaml) already implements session detection, memory loading, and progress calculation -- but focuses purely on memory context, not code graph or CocoIndex.
+Commands in `.opencode/commands/spec_kit/` are YAML-based workflow definitions (e.g., `resume.md`, `complete.md`, `plan.md`, `implement.md`). The `/spec_kit:resume` command (spec_kit_resume_auto.yaml) already implements session detection, memory loading, and progress calculation -- but focuses purely on memory context, not code graph or CocoIndex.
 
 The resume command's 4-step workflow (detect session -> load memory -> calculate progress -> present resume) is the ideal injection point for code graph auto-refresh. Adding a Step 1.5 ("ensure structural index freshness") would give OpenCode users code-graph-enriched context on every session resume.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml -- full workflow definition with 4 steps]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml -- full workflow definition with 4 steps]
 
 ### 4. The @context Agent as Universal Enrichment Gateway
 The @context agent is the "exclusive entry point for ALL exploration tasks" -- every codebase search routes through it. Its 3-layer retrieval (Memory -> Codebase -> Deep Memory) currently does NOT include code graph or CocoIndex as automatic layers. Adding code_graph_context as a Layer 1.5 (between Memory and Codebase) would mean every exploration automatically benefits from structural graph data.
 
 The agent already binds `mcpServers: [spec_kit_memory, cocoindex_code]` in its frontmatter, confirming tool availability. The missing piece is instruction-level triggers: the agent instructions should mandate `code_graph_context` calls alongside memory calls.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/context.md:21-23 -- mcpServers binding showing spec_kit_memory + cocoindex_code]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/context.md:117 -- 3-layer tool sequence without code graph]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/context.md:21-23 -- mcpServers binding showing spec_kit_memory + cocoindex_code]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/context.md:117 -- 3-layer tool sequence without code graph]
 
 ### 5. Concrete OpenCode Integration Design
 
 **Tier A: Instruction-File Auto-Triggers (Zero Code Changes)**
 
-Modify `.opencode/agent/context.md` to add a new Layer 1.5 in the retrieval sequence:
+Modify `.opencode/agents/context.md` to add a new Layer 1.5 in the retrieval sequence:
 
 ```
 Current:  memory_match_triggers -> memory_context -> memory_search -> CocoIndex -> Glob -> Grep -> Read
@@ -114,12 +114,12 @@ Parity assessment: Tiers A-D together achieve ~90% feature parity with Claude Co
 None discovered this iteration. All proposed approaches (Tiers A-D) are viable.
 
 ## Sources Consulted
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/` -- all 10 agent files (listed)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/context.md` -- full read (429 lines)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agent/orchestrate.md` -- partial read (100 lines)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/` -- all 10 agent files (listed)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/context.md` -- full read (429 lines)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/agents/orchestrate.md` -- partial read (100 lines)
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/opencode.json` -- full read (62 lines)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` -- full read (211 lines)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/spec_kit/` -- directory listing
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` -- full read (211 lines)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/` -- directory listing
 
 ## Assessment
 - New information ratio: 0.67
@@ -129,7 +129,7 @@ None discovered this iteration. All proposed approaches (Tiers A-D) are viable.
 ## Reflection
 - What worked and why: Direct reading of OpenCode agent definitions and config files revealed the complete integration surface. The @context agent's explicit 3-layer retrieval model made it immediately clear where code_graph_context should be inserted (Layer 1.5). The resume command's step-based YAML workflow showed the exact injection point for index freshness checks.
 - What did not work and why: N/A -- all research avenues were productive.
-- What I would do differently: Could have also read the `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` to verify the MCP first-call priming feasibility from the server side. This would strengthen the Tier D recommendation.
+- What I would do differently: Could have also read the `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` to verify the MCP first-call priming feasibility from the server side. This would strengthen the Tier D recommendation.
 
 ## Recommended Next Focus
 Consolidation iteration: Synthesize all Q13-Q16 findings into a prioritized feature improvement roadmap. The 4-tier OpenCode integration design (this iteration) should be merged with the 3-tier auto-enrichment design (iteration 057), the non-hook runtime UX tiers (iteration 058), and the CocoIndex improvements (iteration 059) into a single implementation priority matrix.

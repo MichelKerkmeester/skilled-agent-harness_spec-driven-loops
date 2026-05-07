@@ -57,8 +57,8 @@ After deep analysis using Sequential Thinking, the full design risks over-engine
 
 | Task | Files | LOC | Priority |
 |------|-------|-----|----------|
-| Create quick-continue.md template | `.opencode/skill/system-spec-kit/templates/quick-continue.md` | 30 | P0 |
-| Create /handover command (simple) | `.opencode/command/handover/handover.md` | 60 | P0 |
+| Create quick-continue.md template | `.opencode/skills/system-spec-kit/templates/quick-continue.md` | 30 | P0 |
+| Create /handover command (simple) | `.opencode/commands/handover/handover.md` | 60 | P0 |
 | Add branch protocol to Gate 0 | `AGENTS.md` Section 2 | 20 | P0 |
 | Add Gate 7 (soft reminder only) | `AGENTS.md` Section 2 | 30 | P0 |
 
@@ -104,9 +104,9 @@ No hard enforcement in MVP - trust users.
 
 | Task | Files | LOC | Priority |
 |------|-------|-----|----------|
-| Create STATE.md template | `.opencode/skill/system-spec-kit/templates/state.md` | 60 | P1 |
-| Update generate-context.js | `.opencode/skill/system-memory/scripts/generate-context.js` | 40 | P1 |
-| Enhance /spec_kit:resume | `.opencode/command/spec_kit/resume.md` | 30 | P1 |
+| Create STATE.md template | `.opencode/skills/system-spec-kit/templates/state.md` | 60 | P1 |
+| Update generate-context.js | `.opencode/skills/system-memory/scripts/generate-context.js` | 40 | P1 |
+| Enhance /spec_kit:resume | `.opencode/commands/spec_kit/resume.md` | 30 | P1 |
 
 **Phase 2 Total:** ~130 LOC
 
@@ -147,8 +147,8 @@ No hard enforcement in MVP - trust users.
 
 | Task | Files | LOC | Priority |
 |------|-------|-----|----------|
-| Add /handover:full variant | `.opencode/command/handover/handover.md` | 40 | P2 |
-| Create Sonnet agent prompt | `.opencode/command/handover/assets/handover_agent.yaml` | 60 | P2 |
+| Add /handover:full variant | `.opencode/commands/handover/handover.md` | 40 | P2 |
+| Create Sonnet agent prompt | `.opencode/commands/handover/assets/handover_agent.yaml` | 60 | P2 |
 | Gate 7 progressive (15/25/35) | `AGENTS.md` Section 2 | 50 | P2 |
 | Gate 0.5 continuation validation | `AGENTS.md` Section 2 | 40 | P2 |
 | Keyword detection triggers | `AGENTS.md` Section 2 | 30 | P2 |
@@ -399,4 +399,4 @@ Action:
 
 - [spec.md](./spec.md) - Research findings and gap analysis
 - [AGENTS.md](/AGENTS.md) - Gate system documentation
-- [SKILL.md](/.opencode/skill/system-spec-kit/SKILL.md) - SpecKit skill definition
+- [SKILL.md](/.opencode/skills/system-spec-kit/SKILL.md) - SpecKit skill definition

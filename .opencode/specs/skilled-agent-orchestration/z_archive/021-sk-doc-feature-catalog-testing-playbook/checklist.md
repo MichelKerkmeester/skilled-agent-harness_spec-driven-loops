@@ -46,7 +46,7 @@ Verification checklist for the final shipped documentation contract across examp
 - [x] CHK-011 [P0] Feature catalogs use the final root-catalog and per-feature-file structure [EVIDENCE: `system-spec-kit/feature_catalog/` root docs and per-feature files were aligned to the final frontmatter/header contract]
 - [x] CHK-012 [P1] Former canonical playbook sidecar docs were removed from the contract [EVIDENCE: root playbooks absorbed review/subagent guidance and the obsolete files were deleted]
 - [x] CHK-013 [P1] `sk-doc` templates and references describe the same structure that ships in the example packages [EVIDENCE: playbook and feature-catalog template bundles plus creation references were aligned]
-- [x] CHK-014 [P1] Runtime consumer docs resolve the new grouped-reference paths [EVIDENCE: create-command assets and `.opencode/agent/write.md` were updated to the grouped `references/global/` and `references/specific/` layout]
+- [x] CHK-014 [P1] Runtime consumer docs resolve the new grouped-reference paths [EVIDENCE: create-command assets and `.opencode/agents/write.md` were updated to the grouped `references/global/` and `references/specific/` layout]
 <!-- /ANCHOR:code-quality -->
 
 ---

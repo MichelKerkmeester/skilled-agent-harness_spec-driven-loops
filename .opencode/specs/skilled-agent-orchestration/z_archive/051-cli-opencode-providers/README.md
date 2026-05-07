@@ -73,15 +73,15 @@ Move to Level 2 when verification checklist tracking is required.
 
 ```bash
 mkdir -p specs/###-short-name
-cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/###-short-name/
-cp .opencode/skill/system-spec-kit/templates/level_1/plan.md specs/###-short-name/
-cp .opencode/skill/system-spec-kit/templates/level_1/tasks.md specs/###-short-name/
+cp .opencode/skills/system-spec-kit/templates/level_1/spec.md specs/###-short-name/
+cp .opencode/skills/system-spec-kit/templates/level_1/plan.md specs/###-short-name/
+cp .opencode/skills/system-spec-kit/templates/level_1/tasks.md specs/###-short-name/
 ```
 
 At completion, add and fill:
 
 ```bash
-cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md specs/###-short-name/
+cp .opencode/skills/system-spec-kit/templates/level_1/implementation-summary.md specs/###-short-name/
 ```
 
 Resume follow-up work through `/spec_kit:resume`, which rebuilds packet continuity from `handover.md -> _memory.continuity -> spec docs`. Save continuity with `/memory:save`, which routes updates into canonical packet docs such as `implementation-summary.md` and `handover.md`.

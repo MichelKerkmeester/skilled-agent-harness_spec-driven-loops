@@ -45,13 +45,13 @@
       "plan.md",
       "tasks.md",
       "research/research.md",
-      ".opencode/skill/sk-deep-research/SKILL.md",
-      ".opencode/skill/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skill/sk-deep-research/references/convergence.md",
-      ".opencode/skill/sk-deep-research/references/state_format.md",
-      ".opencode/skill/sk-deep-research/references/quick_reference.md",
-      ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-      ".opencode/skill/sk-deep-research/assets/deep_research_strategy.md",
+      ".opencode/skills/sk-deep-research/SKILL.md",
+      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
+      ".opencode/skills/sk-deep-research/references/convergence.md",
+      ".opencode/skills/sk-deep-research/references/state_format.md",
+      ".opencode/skills/sk-deep-research/references/quick_reference.md",
+      ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+      ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -82,43 +82,43 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/SKILL.md",
+        "path": ".opencode/skills/sk-deep-research/SKILL.md",
         "source": "derived"
       },
       {
         "name": "loop_protocol.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/loop_protocol.md",
+        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
         "source": "derived"
       },
       {
         "name": "convergence.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/convergence.md",
+        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
         "source": "derived"
       },
       {
         "name": "state_format.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/state_format.md",
+        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
         "source": "derived"
       },
       {
         "name": "quick_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/quick_reference.md",
+        "path": ".opencode/skills/sk-deep-research/references/quick_reference.md",
         "source": "derived"
       },
       {
         "name": "deep_research_config.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
+        "path": ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
         "source": "derived"
       },
       {
         "name": "deep_research_strategy.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/assets/deep_research_strategy.md",
+        "path": ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
         "source": "derived"
       },
       {

@@ -23,7 +23,7 @@ Prior Findings: P0=0 P1=1 P2=1
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep the reviewed target read-only.
+Load `.opencode/skills/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep the reviewed target read-only.
 
 ## Review Focus
 

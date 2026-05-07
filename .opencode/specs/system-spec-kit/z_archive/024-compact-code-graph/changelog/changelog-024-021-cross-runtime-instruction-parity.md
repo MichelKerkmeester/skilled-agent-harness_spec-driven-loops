@@ -58,7 +58,7 @@ When this phase landed, Claude still had the strongest startup/recovery story an
 
 **Problem:** In OpenCode, bootstrapping a session with full context required three separate manual calls: `memory_context()` to load prior session state, `code_graph_status()` to check the structural index, and `ccc_status()` to verify CocoIndex (the semantic code search system). There was no single-call way to prime a session, which meant the orchestrator either had to hard-code all three calls or the user had to remember them.
 
-**Fix:** Created a new lightweight agent at `.opencode/agent/context-prime.md` (227 lines). This `@context-prime` agent is a LEAF-only retrieval agent -- meaning it gathers and returns information but never modifies files. It calls all three priming tools in one pass and returns a compact "Prime Package" containing: the active spec folder, the current task and its status, any blockers, recommended next steps, and the health status of the code graph. Session priming is now a single delegation (`@context-prime`) instead of three separate manual calls.
+**Fix:** Created a new lightweight agent at `.opencode/agents/context-prime.md` (227 lines). This `@context-prime` agent is a LEAF-only retrieval agent -- meaning it gathers and returns information but never modifies files. It calls all three priming tools in one pass and returns a compact "Prime Package" containing: the active spec folder, the current task and its status, any blockers, recommended next steps, and the health status of the code graph. Session priming is now a single delegation (`@context-prime`) instead of three separate manual calls.
 
 ---
 
@@ -99,8 +99,8 @@ When this phase landed, Claude still had the strongest startup/recovery story an
 
 | File | What changed |
 |------|-------------|
-| `.opencode/agent/context-prime.md` | New agent for one-call session priming (227 lines) |
-| `.opencode/agent/orchestrate.md` | Session Bootstrap delegation to @context-prime |
+| `.opencode/agents/context-prime.md` | New agent for one-call session priming (227 lines) |
+| `.opencode/agents/orchestrate.md` | Session Bootstrap delegation to @context-prime |
 | `CODEX.md` | No Hook Transport trigger table added |
 | `AGENTS.md` | No Hook Transport trigger table + @context-prime reference |
 | `GEMINI.md` | No Hook Transport trigger table for Gemini lifecycle |

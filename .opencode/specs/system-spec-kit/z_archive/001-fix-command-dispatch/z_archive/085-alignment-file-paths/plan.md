@@ -23,9 +23,9 @@ contextType: "planning"
 
 ### Step 1.2: Add get_infrastructure_folder_patterns() function
 - Map infrastructure subpaths to folder name patterns
-- `.opencode/skill/system-spec-kit/` → ['memory', 'spec-kit', 'speckit', 'opencode']
-- `.opencode/command/` → ['command', 'memory', 'opencode']
-- `.opencode/agent/` → ['agent', 'opencode']
+- `.opencode/skills/system-spec-kit/` → ['memory', 'spec-kit', 'speckit', 'opencode']
+- `.opencode/commands/` → ['command', 'memory', 'opencode']
+- `.opencode/agents/` → ['agent', 'opencode']
 
 ### Step 1.3: Modify calculate_alignment_score()
 - Accept optional workDomain parameter

@@ -28,13 +28,13 @@ Iteration: 10 of 14 — **WORKFLOW-INVARIANT CONSTRAINT PASS — back to drawing
 Re-evaluate the previously converged C+F hybrid design AGAINST this constraint. Specifically:
 
 1. **Re-read the Gate 3 classifier and AI-facing skill text** to identify EVERY surface where today's AI inferred level number gets used:
-   - `.opencode/skill/system-spec-kit/shared/gate-3-classifier.ts`
-   - `.opencode/skill/system-spec-kit/SKILL.md`
-   - `.opencode/skill/sk-doc/` (any AI-facing prompts about levels)
+   - `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts`
+   - `.opencode/skills/system-spec-kit/SKILL.md`
+   - `.opencode/skills/sk-doc/` (any AI-facing prompts about levels)
    - `CLAUDE.md` and `AGENTS.md` (the level system docs)
-   - `.opencode/command/spec_kit/` slash command markdown files (do they mention level?)
-   - `.opencode/agent/` agent markdown files (do they prompt the AI to think about levels?)
-   - `.opencode/skill/system-spec-kit/scripts/spec/create.sh` `--help` text (would AI parse this for choices?)
+   - `.opencode/commands/spec_kit/` slash command markdown files (do they mention level?)
+   - `.opencode/agents/` agent markdown files (do they prompt the AI to think about levels?)
+   - `.opencode/skills/system-spec-kit/scripts/spec/create.sh` `--help` text (would AI parse this for choices?)
 
 2. **For every surface that mentions "level"**, classify:
    - **STRICTLY INVISIBLE TO USER** (e.g., `create.sh` internal switch) — safe to refactor freely
@@ -45,7 +45,7 @@ Re-evaluate the previously converged C+F hybrid design AGAINST this constraint. 
    - **Stress-test 1**: today's classifier emits a level number (1/2/3/3+/phase). Does the new design accept that as input WITHOUT requiring the AI to know about kind/capabilities/preset? Sketch the EXACT mapping function (level → preset → kind+capabilities+files).
    - **Stress-test 2**: when the AI calls `create.sh --level 3`, does any user-visible output (stdout, log lines, file names, file contents) differ from today? List every diff. Should be zero, or only "clean" diffs (e.g., absence of stale empty stub files).
    - **Stress-test 3**: when the validator runs and reports failures, do the error messages mention "capability" or "preset"? They MUST mention "level" (or be silent about taxonomy entirely). Verify by reading `check-files.sh`, `check-sections.sh`, `check-template-headers.sh` proposed diffs from iter 7.
-   - **Stress-test 4**: when the user resumes work via `/spec_kit:resume` or `/spec_kit:complete`, does any AI-facing prompt change? Read `.opencode/command/spec_kit/resume.md` and `.opencode/command/spec_kit/complete.md`.
+   - **Stress-test 4**: when the user resumes work via `/spec_kit:resume` or `/spec_kit:complete`, does any AI-facing prompt change? Read `.opencode/commands/spec_kit/resume.md` and `.opencode/commands/spec_kit/complete.md`.
    - **Stress-test 5**: when AI authors a packet's frontmatter, does it write `level: 3` (today's behavior) or something new? Recommend keeping `<!-- SPECKIT_LEVEL: 3 -->` and `level: 3` frontmatter for full backward-readability + AI-prompt-invariance.
 
 4. **Identify any DESIGN CHANGES required to honor the constraint**:

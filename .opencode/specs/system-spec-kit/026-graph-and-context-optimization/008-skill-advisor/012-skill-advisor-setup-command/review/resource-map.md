@@ -27,13 +27,13 @@ contextType: "review"
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/description.json`
 
 ### Implementation files (out-of-folder)
-- `.opencode/command/spec_kit/skill-advisor.md`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml`
-- `.opencode/command/spec_kit/README.txt`
+- `.opencode/commands/spec_kit/skill-advisor.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml`
+- `.opencode/commands/spec_kit/README.txt`
 - `.opencode/install_guides/SET-UP - Skill Advisor.md`
 - `.opencode/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md`
 
 ### Parent doc updates
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/context-index.md`
@@ -42,19 +42,19 @@ contextType: "review"
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/changelog/changelog-008-012-skill-advisor-setup-command.md`
 
 ### Parity references (read for cross-checking)
-- `.opencode/command/spec_kit/resume.md`
-- `.opencode/command/spec_kit/plan.md`
-- `.opencode/command/spec_kit/deep-review.md`
-- `.opencode/skill/sk-doc/assets/agents/command_template.md`
-- `.opencode/skill/sk-doc/references/global/hvr_rules.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/text.ts`
-- `.opencode/skill/system-spec-kit/graph-metadata.json` (sample real metadata for schema comparison)
+- `.opencode/commands/spec_kit/resume.md`
+- `.opencode/commands/spec_kit/plan.md`
+- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/skills/sk-doc/assets/agents/command_template.md`
+- `.opencode/skills/sk-doc/references/global/hvr_rules.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/text.ts`
+- `.opencode/skills/system-spec-kit/graph-metadata.json` (sample real metadata for schema comparison)
 
 ---
 
@@ -98,12 +98,12 @@ contextType: "review"
 
 | File | Findings touching this file |
 |---|---|
-| `.opencode/command/spec_kit/skill-advisor.md` | F-CORR-001, F-CORR-002, F-CORR-003, F-SEC-001, F-SEC-003, F-SEC-005, F-MAINT-001 |
-| `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml` | F-CORR-003, F-CORR-005, F-CORR-006, F-CORR-007, F-CORR-008, F-SEC-001, F-SEC-002, F-SEC-003, F-SEC-005 |
-| `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml` | F-CORR-010, F-CORR-011, F-CORR-012, F-CORR-013, F-SEC-001, F-SEC-002 |
+| `.opencode/commands/spec_kit/skill-advisor.md` | F-CORR-001, F-CORR-002, F-CORR-003, F-SEC-001, F-SEC-003, F-SEC-005, F-MAINT-001 |
+| `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml` | F-CORR-003, F-CORR-005, F-CORR-006, F-CORR-007, F-CORR-008, F-SEC-001, F-SEC-002, F-SEC-003, F-SEC-005 |
+| `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml` | F-CORR-010, F-CORR-011, F-CORR-012, F-CORR-013, F-SEC-001, F-SEC-002 |
 | `.opencode/install_guides/SET-UP - Skill Advisor.md` | F-SEC-003, F-SEC-005 |
 | `.opencode/README.md` | F-TRACE-004 |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | F-MAINT-002 |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | F-MAINT-002 |
 | Spec folder packet docs | F-TRACE-001, F-TRACE-002 |
 | Parent docs (context-index, spec, tasks) | F-TRACE-003 |
 | `008-skill-advisor/changelog/changelog-008-012-*.md` | F-TRACE-005, F-TRACE-006 |
@@ -118,29 +118,29 @@ Reproduce key checks from the review:
 
 ```bash
 # DQI for command + install guide
-python3 .opencode/skill/sk-doc/scripts/extract_structure.py .opencode/command/spec_kit/skill-advisor.md
-python3 .opencode/skill/sk-doc/scripts/extract_structure.py '.opencode/install_guides/SET-UP - Skill Advisor.md'
+python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/commands/spec_kit/skill-advisor.md
+python3 .opencode/skills/sk-doc/scripts/extract_structure.py '.opencode/install_guides/SET-UP - Skill Advisor.md'
 
 # HVR check
 grep -niE 'leverage|robust|seamless|ecosystem|utilize|holistic|curate|harness|elevate|foster|empower|landscape|groundbreaking|cutting-edge|delve|illuminate|innovative|remarkable' \
-  .opencode/command/spec_kit/skill-advisor.md \
+  .opencode/commands/spec_kit/skill-advisor.md \
   '.opencode/install_guides/SET-UP - Skill Advisor.md' \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md \
-  .opencode/skill/system-spec-kit/mcp_server/README.md
+  .opencode/skills/system-spec-kit/mcp_server/README.md
 
 # README count verification (F-TRACE-004)
 find .opencode/command -type f -name '*.md' | wc -l                                      # claimed 23
-find .opencode/command/spec_kit -maxdepth 1 -type f -name '*.md' | wc -l                  # claimed 10
+find .opencode/commands/spec_kit -maxdepth 1 -type f -name '*.md' | wc -l                  # claimed 10
 find .opencode/command -type f \( -name '*.yaml' -o -name '*.yml' \) | wc -l              # claimed 31
-find .opencode/command/spec_kit/assets -maxdepth 1 -type f \( -name '*.yaml' -o -name '*.yml' \) | wc -l
+find .opencode/commands/spec_kit/assets -maxdepth 1 -type f \( -name '*.yaml' -o -name '*.yml' \) | wc -l
 
 # Strict spec validation
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command --strict
 
 # YAML parse check
-python3 -c "import yaml; yaml.safe_load(open('.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml'))"
-python3 -c "import yaml; yaml.safe_load(open('.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml'))"
+python3 -c "import yaml; yaml.safe_load(open('.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml'))"
+python3 -c "import yaml; yaml.safe_load(open('.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml'))"
 ```
 
 ---

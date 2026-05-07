@@ -99,10 +99,10 @@ Keep this Level 3 packet truthful by updating it to record the landed Codex `spe
 | `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix/checklist.md` | Update | Packet-local completion and verification evidence reflect the new runtime fix |
 | `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix/decision-record.md` | Update | ADR stays aligned to the current narrow remediation slice |
 | `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix/implementation-summary.md` | Update | Truthful summary of the landed runtime fix plus packet truth-sync |
-| `.opencode/skill/system-spec-kit/scripts/utils/logger.ts` | Reference | Landed stderr-only structured logging fix tracked by this packet |
+| `.opencode/skills/system-spec-kit/scripts/utils/logger.ts` | Reference | Landed stderr-only structured logging fix tracked by this packet |
 | `opencode.json`, `.mcp.json`, `.codex/config.toml`, `.claude/mcp.json`, `.vscode/mcp.json`, `.gemini/settings.json` | Reference | Landed writable home DB-path alignment across launcher surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`, `.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts` | Reference | Landed DB-isolation remediation and regression coverage for `initializeDb(':memory:')` / custom-path flows |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts`, `.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts` | Reference | Landed caveat-fix surfaces that keep the remediation slice green |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts` | Reference | Landed DB-isolation remediation and regression coverage for `initializeDb(':memory:')` / custom-path flows |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts` | Reference | Landed caveat-fix surfaces that keep the remediation slice green |
 <!-- /ANCHOR:scope -->
 
 ---

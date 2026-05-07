@@ -85,16 +85,16 @@ Provide level-appropriate templates through dedicated folder structure, eliminat
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/lib/complexity/` | Create | Core complexity detection infrastructure |
-| `.opencode/skill/system-spec-kit/lib/expansion/` | Create | Template folder selection system |
-| `.opencode/skill/system-spec-kit/templates/level_1/` | Create | Minimal templates (spec, plan, tasks, implementation-summary) |
-| `.opencode/skill/system-spec-kit/templates/level_2/` | Create | Standard templates + checklist |
-| `.opencode/skill/system-spec-kit/templates/level_3/` | Create | Full templates + decision-record |
-| `.opencode/skill/system-spec-kit/templates/level_3+/` | Create | Extended templates + AI protocols, workstreams |
-| `.opencode/skill/system-spec-kit/scripts/create-spec-folder.sh` | Modify | Add --complexity flag, folder selection logic |
-| `.opencode/skill/system-spec-kit/scripts/detect-complexity.js` | Create | CLI detection tool |
-| `.opencode/skill/system-spec-kit/scripts/expand-template.js` | Create | CLI folder selection tool |
-| `.opencode/skill/system-spec-kit/config/complexity-config.jsonc` | Create | Configuration file |
+| `.opencode/skills/system-spec-kit/lib/complexity/` | Create | Core complexity detection infrastructure |
+| `.opencode/skills/system-spec-kit/lib/expansion/` | Create | Template folder selection system |
+| `.opencode/skills/system-spec-kit/templates/level_1/` | Create | Minimal templates (spec, plan, tasks, implementation-summary) |
+| `.opencode/skills/system-spec-kit/templates/level_2/` | Create | Standard templates + checklist |
+| `.opencode/skills/system-spec-kit/templates/level_3/` | Create | Full templates + decision-record |
+| `.opencode/skills/system-spec-kit/templates/level_3+/` | Create | Extended templates + AI protocols, workstreams |
+| `.opencode/skills/system-spec-kit/scripts/create-spec-folder.sh` | Modify | Add --complexity flag, folder selection logic |
+| `.opencode/skills/system-spec-kit/scripts/detect-complexity.js` | Create | CLI detection tool |
+| `.opencode/skills/system-spec-kit/scripts/expand-template.js` | Create | CLI folder selection tool |
+| `.opencode/skills/system-spec-kit/config/complexity-config.jsonc` | Create | Configuration file |
 
 <!-- /ANCHOR:scope -->
 ---

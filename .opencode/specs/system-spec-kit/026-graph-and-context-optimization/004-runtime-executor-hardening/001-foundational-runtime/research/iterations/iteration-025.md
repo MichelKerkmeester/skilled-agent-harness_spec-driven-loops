@@ -6,7 +6,7 @@ I re-read the five target seams, then shifted from first-hop runtime consumers t
 ## Findings
 
 ### Finding R25-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 - **Lines:** `223-237`
 - **Severity:** P2
 - **Description:** The deferred-enrichment branch is no longer just a source-local boolean collapse; the repo now treats that success-shaped state as the expected contract. When planner-first mode skips enrichment, `post-insert.ts` returns all five `enrichmentStatus` booleans as `true`, even though no enrichment work ran. `response-builder.ts` only emits a warning when any boolean is `false`, so the deferred path becomes observationally identical to a fully successful run unless a caller separately inspects `executionStatus`.
@@ -14,7 +14,7 @@ I re-read the five target seams, then shifted from first-hop runtime consumers t
 - **Downstream Impact:** Save-path consumers and regressions are now built around “all booleans true means good enough,” so a future attempt to distinguish **completed**, **skipped**, and **deferred** enrichment would require undoing both runtime and test-level assumptions. Until then, internal callers that key off booleans or warning presence can misread “backfill still required” as “work already done.”
 
 ### Finding R25-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `319-334`
 - **Severity:** P2
 - **Description:** The ambiguous readiness branch remains effectively unguarded because the direct query suites are written around a hardcoded happy-state tuple: `fresh` readiness plus `structured` detector provenance. That means the already-known “readiness failure vs empty graph” dishonesty path is not just under-tested; the default regression surface actively normalizes the misleading state combination that hides it.
@@ -22,7 +22,7 @@ I re-read the five target seams, then shifted from first-hop runtime consumers t
 - **Downstream Impact:** The main regression surface for `code_graph_query` will not catch cases where the tool returns `status: "ok"` after readiness failed or was never meaningfully established. That leaves the structural tool most routing surfaces recommend vulnerable to shipping ambiguous “empty-or-failed” payloads without CI pressure against the dishonest branch.
 
 ### Finding R25-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
 - **Lines:** `223-233`
 - **Severity:** P2
 - **Description:** The schema-invalid-as-legacy fallback is now codified as a **clean success contract**, not just an implementation fallback. `validateGraphMetadataContent(...)` returns `ok: true` with no degraded or migrated marker when legacy parsing succeeds, and the direct schema test asserts exactly that outcome. Downstream callers therefore have no test-protected place to surface that recovery provenance.
@@ -30,7 +30,7 @@ I re-read the five target seams, then shifted from first-hop runtime consumers t
 - **Downstream Impact:** Fallback-recovered graph metadata still enters indexing and search as if it were pristine current-schema content, and the validator’s own contract makes it hard to add an honest recovery signal without changing expected behavior. The result is that malformed modern metadata can keep looking authoritative long after the original parse failure has been laundered away.
 
 ### Finding R25-004
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `83-87`
 - **Severity:** P1
 - **Description:** The unvalidated `JSON.parse(raw) as HookState` seam now fans out across multiple runtimes, not just Claude. The same persisted state file is consumed by Gemini startup and compaction hooks, so a syntactically valid but schema-drifted state blob can misstate the active spec folder, inject stale or malformed compact payloads, or suppress recovery context in a second runtime with no additional validation layer.

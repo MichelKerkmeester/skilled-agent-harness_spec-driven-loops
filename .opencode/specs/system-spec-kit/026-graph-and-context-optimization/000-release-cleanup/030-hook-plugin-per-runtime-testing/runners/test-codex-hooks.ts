@@ -38,7 +38,7 @@ export async function runCodexHookTests(sandbox: SandboxDetection = detectSandbo
 
   const hook = await runCommand({
     command: 'node',
-    args: ['.opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js'],
+    args: ['.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js'],
     stdin: JSON.stringify({
       session_id: 'packet-043-codex',
       hook_event_name: 'UserPromptSubmit',
@@ -56,7 +56,7 @@ export async function runCodexHookTests(sandbox: SandboxDetection = detectSandbo
       '--input-type=module',
       '-e',
       [
-        "import { smokeCheckCodexColdStartContext } from './.opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/lib/freshness-smoke-check.js';",
+        "import { smokeCheckCodexColdStartContext } from './.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/lib/freshness-smoke-check.js';",
         'console.log(JSON.stringify(smokeCheckCodexColdStartContext()));',
       ].join(' '),
     ],
@@ -85,8 +85,8 @@ export async function runCodexHookTests(sandbox: SandboxDetection = detectSandbo
       },
     },
     [
-      '.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194',
-      '.opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts:28',
+      '.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194',
+      '.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts:28',
     ],
     CONFIG_PATH,
   );

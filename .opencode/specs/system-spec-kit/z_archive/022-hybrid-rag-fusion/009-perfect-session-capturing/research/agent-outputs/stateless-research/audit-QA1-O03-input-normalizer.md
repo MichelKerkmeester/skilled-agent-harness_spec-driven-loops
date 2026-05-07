@@ -1,6 +1,6 @@
 # QA Audit: input-normalizer.ts
 
-**File:** `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` (547 LOC)
+**File:** `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` (547 LOC)
 **Auditor:** Opus 4.6 (Reviewer agent)
 **Date:** 2026-03-09
 **Scope:** Field mapping completeness, prompt relevance filtering, contamination prevention bypass risk, type narrowing correctness

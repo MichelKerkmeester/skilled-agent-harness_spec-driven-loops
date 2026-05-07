@@ -124,7 +124,7 @@ User request → Gate 2 skill_advisor.py → cli-gemini SKILL.md loads
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Skill causes confusion or incorrect Gemini CLI invocations
-- **Procedure**: Delete .opencode/skill/cli-gemini/ directory; skill stops loading
+- **Procedure**: Delete .opencode/skills/cli-gemini/ directory; skill stops loading
 <!-- /ANCHOR:rollback -->
 
 ---

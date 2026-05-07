@@ -98,7 +98,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts, .opencode/skill/system-spec-kit/mcp_server/lib/eval/hydra-baseline.ts, .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
+- Files modified: .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts, .opencode/skills/system-spec-kit/mcp_server/lib/eval/hydra-baseline.ts, .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
 
 - Last: Hydra baseline controls delivered
 
@@ -109,7 +109,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts |
+| Active File | .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts |
 | Last Action | Hydra baseline controls delivered |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -126,17 +126,17 @@ Next: Continue implementation
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts` - Phase 1
+- `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts` - Phase 1
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/hydra-baseline.ts` - Phase 1
+- `.opencode/skills/system-spec-kit/mcp_server/lib/eval/hydra-baseline.ts` - Phase 1
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts` - Phase 1
+- `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts` - Phase 1
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` - Schema definition
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` - Schema definition
 
-- `.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts` - Database migration
+- `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts` - Database migration
 
-- `.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts` - Database migration
+- `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts` - Database migration
 
 **How to Extend**:
 
@@ -159,11 +159,11 @@ Added capability flags, baseline metrics capture, migration checkpoint scripts, 
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/config/(merged-small-files)` | Tree-thinning merged 1 small files (capability-flags.ts). Merged from .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts : Updated capability flags |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/eval/(merged-small-files)` | Tree-thinning merged 1 small files (hydra-baseline.ts). Merged from .opencode/skill/system-spec-kit/mcp_server/lib/eval/hydra-baseline.ts : Updated hydra baseline |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/(merged-small-files)` | Tree-thinning merged 1 small files (retrieval-telemetry.ts). Merged from .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts : Updated retrieval telemetry |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/(merged-small-files)` | Tree-thinning merged 1 small files (vector-index-schema.ts). Merged from .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts : Updated vector index schema |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/(merged-small-files)` | Tree-thinning merged `create-checkpoint.ts` and `restore-checkpoint.ts` into one synthetic summary entry for migration scripts. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/config/(merged-small-files)` | Tree-thinning merged 1 small files (capability-flags.ts). Merged from .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts : Updated capability flags |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/(merged-small-files)` | Tree-thinning merged 1 small files (hydra-baseline.ts). Merged from .opencode/skills/system-spec-kit/mcp_server/lib/eval/hydra-baseline.ts : Updated hydra baseline |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/(merged-small-files)` | Tree-thinning merged 1 small files (retrieval-telemetry.ts). Merged from .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts : Updated retrieval telemetry |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/(merged-small-files)` | Tree-thinning merged 1 small files (vector-index-schema.ts). Merged from .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts : Updated vector index schema |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/(merged-small-files)` | Tree-thinning merged `create-checkpoint.ts` and `restore-checkpoint.ts` into one synthetic summary entry for migration scripts. |
 
 ---
 
@@ -173,7 +173,7 @@ Added capability flags, baseline metrics capture, migration checkpoint scripts, 
 
 Added capability flags, baseline metrics capture, migration checkpoint scripts, telemetry phase fields, and schema compatibility validator for Phase 1.
 
-**Files:** .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts, .opencode/skill/system-spec-kit/mcp_server/lib/eval/hydra-baseline.ts, .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts, .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts, .opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts, .opencode/skill/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts
+**Files:** .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts, .opencode/skills/system-spec-kit/mcp_server/lib/eval/hydra-baseline.ts, .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts, .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts, .opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts, .opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts
 **Details:** TypeScript check passed | Targeted Vitest suites passed | Checklist completion check moved to READY FOR COMPLETION after deferral normalization
 
 ---
@@ -223,7 +223,7 @@ No conversation messages were captured. This may indicate an issue with data col
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features", limit: 10 })
@@ -235,7 +235,7 @@ ls -la system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features --force
 ```
 
 ### Recovery Priority
@@ -366,15 +366,15 @@ trigger_phrases:
   - "phase fields schema compatibility"
   - "fields schema compatibility validator"
   - "schema compatibility validator phase"
-  - ".opencode/skill/system-spec-kit/mcp server/lib/config/ merged-small-files tree-thinning"
+  - ".opencode/skills/system-spec-kit/mcp server/lib/config/ merged-small-files tree-thinning"
   - "server/lib/config/ merged-small-files tree-thinning merged"
   - "merged small files capability-flags.ts"
-  - "merged .opencode/skill/system-spec-kit/mcp server/lib/config/capability-flags.ts capability"
-  - ".opencode/skill/system-spec-kit/mcp server/lib/config/capability-flags.ts capability flags"
-  - "server/lib/config/capability-flags.ts capability flags .opencode/skill/system-spec-kit/mcp"
-  - "capability flags .opencode/skill/system-spec-kit/mcp server/lib/eval/"
-  - "flags .opencode/skill/system-spec-kit/mcp server/lib/eval/ merged-small-files"
-  - ".opencode/skill/system-spec-kit/mcp server/lib/eval/ merged-small-files tree-thinning"
+  - "merged .opencode/skills/system-spec-kit/mcp server/lib/config/capability-flags.ts capability"
+  - ".opencode/skills/system-spec-kit/mcp server/lib/config/capability-flags.ts capability flags"
+  - "server/lib/config/capability-flags.ts capability flags .opencode/skills/system-spec-kit/mcp"
+  - "capability flags .opencode/skills/system-spec-kit/mcp server/lib/eval/"
+  - "flags .opencode/skills/system-spec-kit/mcp server/lib/eval/ merged-small-files"
+  - ".opencode/skills/system-spec-kit/mcp server/lib/eval/ merged-small-files tree-thinning"
   - "system"
   - "spec"
   - "kit/022"
@@ -386,11 +386,11 @@ trigger_phrases:
   - "features"
 
 key_files:
-  - ".opencode/skill/system-spec-kit/mcp_server/lib/config/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/lib/eval/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/lib/telemetry/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/lib/search/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/scripts/migrations/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/lib/config/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/lib/eval/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/lib/telemetry/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/lib/search/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/scripts/migrations/(merged-small-files)"
 
 # Relationships
 related_sessions:

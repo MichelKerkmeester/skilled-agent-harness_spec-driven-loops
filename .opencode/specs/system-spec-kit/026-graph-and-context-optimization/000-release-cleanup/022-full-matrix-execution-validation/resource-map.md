@@ -45,11 +45,11 @@ _memory:
 <!-- ANCHOR:skills -->
 ## 5. Skills
 
-> `.opencode/skill/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
+> `.opencode/skills/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
 <!-- /ANCHOR:skills -->
 
 ---
@@ -193,7 +193,7 @@ _memory:
 
 - Paths are repo-root relative and use the real `.opencode/specs` tree rather than the `specs` symlink.
 - This map was derived from packet commit history with shared commits split by packet-owned paths and commit-body scope.
-- Keep action/status vocabulary aligned with `.opencode/skill/system-spec-kit/templates/resource-map.md`.
+- Keep action/status vocabulary aligned with `.opencode/skills/system-spec-kit/templates/resource-map.md`.
 - Preserve category precedence: Specs over Config, Meta over root READMEs, Skills over Documents, Tests over Scripts.
 - Refresh this map whenever the packet receives additional touched paths or a canonical save changes packet-local metadata.
 <!-- /ANCHOR:author-instructions -->

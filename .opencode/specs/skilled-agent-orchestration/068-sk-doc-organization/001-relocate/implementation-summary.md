@@ -15,10 +15,10 @@ _memory:
     next_safe_action: "Begin Phase 2 (002-update-and-mirror): substring sweep across canonical .opencode/"
     blockers: []
     key_files:
-      - .opencode/skill/sk-doc/assets/agent_template.md
-      - .opencode/skill/sk-doc/assets/command_template.md
-      - .opencode/skill/sk-doc/assets/feature_catalog/
-      - .opencode/skill/sk-doc/assets/testing_playbook/
+      - .opencode/skills/sk-doc/assets/agent_template.md
+      - .opencode/skills/sk-doc/assets/command_template.md
+      - .opencode/skills/sk-doc/assets/feature_catalog/
+      - .opencode/skills/sk-doc/assets/testing_playbook/
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase1-complete"
@@ -31,7 +31,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -61,11 +61,11 @@ The four moved items are the sk-doc skill's most frequently loaded templates. Pr
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-doc/assets/feature_catalog/` | Moved (was `assets/documentation/feature_catalog/`) | 2 inner files (`feature_catalog_template.md`, `feature_catalog_snippet_template.md`) preserved |
-| `.opencode/skill/sk-doc/assets/testing_playbook/` | Moved (was `assets/documentation/testing_playbook/`) | 2 inner files (`manual_testing_playbook_template.md`, `manual_testing_playbook_snippet_template.md`) preserved |
-| `.opencode/skill/sk-doc/assets/agent_template.md` | Moved (was `assets/agents/agent_template.md`) | 30,668 bytes preserved (byte-identical) |
-| `.opencode/skill/sk-doc/assets/command_template.md` | Moved (was `assets/agents/command_template.md`) | 35,277 bytes preserved (byte-identical) |
-| `.opencode/skill/sk-doc/assets/agents/` | Deleted | Empty after moves; physical `rmdir`, no archive |
+| `.opencode/skills/sk-doc/assets/feature_catalog/` | Moved (was `assets/documentation/feature_catalog/`) | 2 inner files (`feature_catalog_template.md`, `feature_catalog_snippet_template.md`) preserved |
+| `.opencode/skills/sk-doc/assets/testing_playbook/` | Moved (was `assets/documentation/testing_playbook/`) | 2 inner files (`manual_testing_playbook_template.md`, `manual_testing_playbook_snippet_template.md`) preserved |
+| `.opencode/skills/sk-doc/assets/agent_template.md` | Moved (was `assets/agents/agent_template.md`) | 30,668 bytes preserved (byte-identical) |
+| `.opencode/skills/sk-doc/assets/command_template.md` | Moved (was `assets/agents/command_template.md`) | 35,277 bytes preserved (byte-identical) |
+| `.opencode/skills/sk-doc/assets/agents/` | Deleted | Empty after moves; physical `rmdir`, no archive |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -98,8 +98,8 @@ No feature branch was created (memory rule: stay on main; `--skip-branch` flag h
 
 | Check | Result |
 |-------|--------|
-| `ls -la .opencode/skill/sk-doc/assets/` shows new layout | PASS — 4 promoted items + documentation/ + flowcharts/ + skill/ + template_rules.json |
-| `test ! -e .opencode/skill/sk-doc/assets/agents` | PASS — `OK: agents/ deleted` |
+| `ls -la .opencode/skills/sk-doc/assets/` shows new layout | PASS — 4 promoted items + documentation/ + flowcharts/ + skill/ + template_rules.json |
+| `test ! -e .opencode/skills/sk-doc/assets/agents` | PASS — `OK: agents/ deleted` |
 | `git status --porcelain` shows 6 R-lines | PASS — 6 staged renames pre-commit |
 | `git log -1 --format=%H %s` matches commit message | PASS — `ccd73ef55 feat(sk-doc): relocate feature_catalog/testing_playbook/templates to assets/ root (068/001)` |
 | `git branch --show-current` | PASS — `main` |
@@ -119,5 +119,5 @@ No feature branch was created (memory rule: stay on main; `--skip-branch` flag h
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

@@ -87,9 +87,9 @@ Hold the conditional hardening packet so the train has a place for remaining lex
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts*` | Modify if audit requires | Harden lexical capability detection and forced-degrade reporting. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts` | Modify if audit requires | Cover the forced-degrade matrix and chosen-path telemetry. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md` | Modify if audit requires | Document the truthful forced-degrade matrix. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts*` | Modify if audit requires | Harden lexical capability detection and forced-degrade reporting. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts` | Modify if audit requires | Cover the forced-degrade matrix and chosen-path telemetry. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md` | Modify if audit requires | Document the truthful forced-degrade matrix. |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -7,14 +7,14 @@ Fill spec folder 132-anchor-enforcement-automation with Level 3+ documentation, 
 Per orchestrate.md and AGENTS.md protocols:
 
 ### Phase 1: Documentation Creation (@speckit - EXCLUSIVE)
-- Agent: @speckit (loaded from .opencode/agent/speckit.md)
+- Agent: @speckit (loaded from .opencode/agents/speckit.md)
 - Scope: Create ALL Level 3+ template files (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md)
-- Templates: .opencode/skill/system-spec-kit/templates/level_3+/
+- Templates: .opencode/skills/system-spec-kit/templates/level_3+/
 - Anchors: Add ANCHOR tags throughout per spec 129 standards
 - Tool calls: ~25-30 (will split into multiple @speckit dispatches per TCB rules)
 
 ### Phase 2: Research Deep-Dive (@research - :with-research flag)
-- Agent: @research (loaded from .opencode/agent/research/research/research.md)
+- Agent: @research (loaded from .opencode/agents/research/research/research.md)
 - Scope: Create research/research.md with comprehensive analysis
 - Focus: Template compliance requirements, anchor format enforcement, validation mechanisms, automation opportunities
 - Tool calls: ~15-20

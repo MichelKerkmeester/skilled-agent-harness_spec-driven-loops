@@ -110,7 +110,7 @@ The v3 numbers are within ±5pp of v2 across all 3 CLIs. The 2 new intents repro
 | Matrix CSV (51 cells) | `076/matrix_v3.csv` |
 | Extractor source | `076/scripts/extract_metrics_v3.py` |
 | Dispatcher source | `076/scripts/run-matrix-076.sh` |
-| New scenario files | `.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/00[45]-*.md` |
+| New scenario files | `.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/00[45]-*.md` |
 | Raw logs (6 new) | `076/logs/SD-016/*.log`, `076/logs/SD-017/*.log` |
 | Per-CLI deltas | `076/deltas/*.jsonl` |
 | Predecessor v2 report | `072/review-report-v2.md` |

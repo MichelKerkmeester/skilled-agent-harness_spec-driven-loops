@@ -192,19 +192,19 @@ All 5 memory commands aligned with `command_template.md`:
 
 ### Command Count
 ```bash
-$ ls .opencode/command/memory/*.md | wc -l
+$ ls .opencode/commands/memory/*.md | wc -l
 5
 ```
 
 ### No Deprecated Files
 ```bash
-$ ls .opencode/command/memory/ | grep -E "(search|database|checkpoint|why|correct)"
+$ ls .opencode/commands/memory/ | grep -E "(search|database|checkpoint|why|correct)"
 (no output) ✅
 ```
 
 ### No Legacy References
 ```bash
-$ grep -r "memory:why" .opencode/command/memory/
+$ grep -r "memory:why" .opencode/commands/memory/
 (no output) ✅
 
 $ grep -r "memory_drift_context" .opencode/
@@ -311,9 +311,9 @@ Each agent searched for these 7 legacy patterns:
 
 ## References
 
-- **Spec 082:** `.opencode/skill/system-spec-kit/` - Original design recommendations
-- **Template:** `.opencode/skill/sk-doc/assets/opencode/command_template.md`
-- **Commands:** `.opencode/command/memory/` - Final 5 command files
+- **Spec 082:** `.opencode/skills/system-spec-kit/` - Original design recommendations
+- **Template:** `.opencode/skills/sk-doc/assets/opencode/command_template.md`
+- **Commands:** `.opencode/commands/memory/` - Final 5 command files
 - **This spec:** `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/083-memory-command-consolidation`
 ---
 

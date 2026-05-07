@@ -17,9 +17,9 @@ _memory:
     blockers: []
     key_files:
       - "plan.md"
-      - ".opencode/skill/deep-review"
-      - ".opencode/skill/deep-research"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/deep-review"
+      - ".opencode/skills/deep-research"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-002"
@@ -79,10 +79,10 @@ Phase 002 makes the rename real at the folder and advisor graph-source level. Th
 Sequential rename-and-patch workflow with exact-string replacement and deterministic verification.
 
 ### Key Components
-- **Folder roots**: `.opencode/skill/deep-review/` and `.opencode/skill/deep-research/`.
-- **Advisor graph source**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
-- **Internal content**: Files inside `.opencode/skill/deep-review/` and `.opencode/skill/deep-research/` after the move.
-- **Validator**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- **Folder roots**: `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`.
+- **Advisor graph source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
+- **Internal content**: Files inside `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/` after the move.
+- **Validator**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 
 ### Data Flow
 `git mv` changes folder paths. Exact replacements update graph and internal text references. Rebuild consumes the patched graph JSON. Verification checks paths, JSON keys, old-name absence, and spec contract validity.
@@ -95,10 +95,10 @@ Sequential rename-and-patch workflow with exact-string replacement and determini
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/skill/sk-deep-review/` | Old review skill root | `git mv` to `.opencode/skill/deep-review/` | `ls` and old-folder grep |
-| `.opencode/skill/sk-deep-research/` | Old research skill root | `git mv` to `.opencode/skill/deep-research/` | `ls` and old-folder grep |
-| `.opencode/skill/deep-review/**` | Renamed internal files | Replace `sk-deep-review` and cross-reference `sk-deep-research` | exact grep returns no rows |
-| `.opencode/skill/deep-research/**` | Renamed internal files | Replace `sk-deep-research` and cross-reference `sk-deep-review` | exact grep returns no rows |
+| `.opencode/skills/sk-deep-review/` | Old review skill root | `git mv` to `.opencode/skills/deep-review/` | `ls` and old-folder grep |
+| `.opencode/skills/sk-deep-research/` | Old research skill root | `git mv` to `.opencode/skills/deep-research/` | `ls` and old-folder grep |
+| `.opencode/skills/deep-review/**` | Renamed internal files | Replace `sk-deep-review` and cross-reference `sk-deep-research` | exact grep returns no rows |
+| `.opencode/skills/deep-research/**` | Renamed internal files | Replace `sk-deep-research` and cross-reference `sk-deep-review` | exact grep returns no rows |
 | `skill-graph.json` | Advisor graph source | Replace quoted old IDs with new IDs | Python JSON parse and signal-key assertions |
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -147,13 +147,13 @@ Sequential rename-and-patch workflow with exact-string replacement and determini
 Verification commands:
 
 ```bash
-ls -la .opencode/skill/ | grep -E "sk-deep-(review|research)" && echo "ERROR: old folders still present" || echo "OK: old folders gone"
-ls -la .opencode/skill/deep-review .opencode/skill/deep-research
-/usr/bin/python3 -c "import json; d=json.load(open('.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json')); assert 'deep-review' in d['signals'] and 'deep-research' in d['signals']; assert 'deep-review' not in d['signals'] and 'deep-research' not in d['signals']; print('OK: skill-graph.json keys updated')"
-grep -rl "deep-review\|deep-research" .opencode/skill/deep-review/ .opencode/skill/deep-research/ 2>/dev/null | head -5
-node .opencode/skill/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename --strict
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict
+ls -la .opencode/skills/ | grep -E "sk-deep-(review|research)" && echo "ERROR: old folders still present" || echo "OK: old folders gone"
+ls -la .opencode/skills/deep-review .opencode/skills/deep-research
+/usr/bin/python3 -c "import json; d=json.load(open('.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json')); assert 'deep-review' in d['signals'] and 'deep-research' in d['signals']; assert 'deep-review' not in d['signals'] and 'deep-research' not in d['signals']; print('OK: skill-graph.json keys updated')"
+grep -rl "deep-review\|deep-research" .opencode/skills/deep-review/ .opencode/skills/deep-research/ 2>/dev/null | head -5
+node .opencode/skills/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict
 ```
 <!-- /ANCHOR:testing -->
 
@@ -221,7 +221,7 @@ Planning -> B.1 git mv -> B.2 skill-graph.json -> B.3 internal content -> B.4 re
 
 | Trigger | Rollback |
 |---------|----------|
-| Downstream phase requires old folder roots | Move `.opencode/skill/deep-review/` and `.opencode/skill/deep-research/` back to the old roots, then restore `skill-graph.json` from Git |
+| Downstream phase requires old folder roots | Move `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/` back to the old roots, then restore `skill-graph.json` from Git |
 | Advisor graph keys rejected | Revert only `skill-graph.json` and rerun the JSON key assertion |
 | Internal replacement overreaches | Revert the two renamed skill folders from Git and reapply exact replacements with a narrower file list |
 <!-- /ANCHOR:enhanced-rollback -->

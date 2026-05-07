@@ -19,7 +19,7 @@ _memory:
     next_safe_action: "Use packet for downstream work"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/references/global/evergreen packet ID rule"
+      - ".opencode/skills/sk-doc/references/global/evergreen packet ID rule"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/audit findings"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -81,11 +81,11 @@ Teach `sk-doc` to keep runtime docs packet-history free, then audit and fix rece
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-doc/sk-doc skill` | Modify | Route doc quality work to the evergreen rule |
-| `.opencode/skill/sk-doc/references/global/evergreen packet ID rule` | Create | Rule defining spec-local vs evergreen docs |
-| `.opencode/skill/sk-doc/assets/documentation/**/* markdown` | Modify | Add template reminders |
-| `.opencode/skill/system-spec-kit/**/* markdown` | Modify | Surgical evergreen wording fixes |
-| `.opencode/skill/cli-opencode/**/* markdown` | Modify | Replace example packet IDs with approved spec-folder wording |
+| `.opencode/skills/sk-doc/sk-doc skill` | Modify | Route doc quality work to the evergreen rule |
+| `.opencode/skills/sk-doc/references/global/evergreen packet ID rule` | Create | Rule defining spec-local vs evergreen docs |
+| `.opencode/skills/sk-doc/assets/documentation/**/* markdown` | Modify | Add template reminders |
+| `.opencode/skills/system-spec-kit/**/* markdown` | Modify | Surgical evergreen wording fixes |
+| `.opencode/skills/cli-opencode/**/* markdown` | Modify | Replace example packet IDs with approved spec-folder wording |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/*` | Create | Packet docs and audit findings |
 <!-- /ANCHOR:scope -->
 

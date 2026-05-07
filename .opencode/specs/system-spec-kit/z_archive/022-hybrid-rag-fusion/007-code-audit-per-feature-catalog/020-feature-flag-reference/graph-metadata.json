@@ -36,7 +36,7 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md",
       "config/config.jsonc",
       "config/filters.jsonc",
       "plan.md",
@@ -49,7 +49,7 @@
       {
         "name": "08-audit-phase-020-mapping-note.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md",
         "source": "derived"
       },
       {

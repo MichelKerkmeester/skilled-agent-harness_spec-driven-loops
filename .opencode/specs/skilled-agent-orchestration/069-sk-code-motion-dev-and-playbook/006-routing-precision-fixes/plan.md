@@ -137,9 +137,9 @@ Required inventories:
 
 | Test Type | Scope | Command |
 |-----------|-------|---------|
-| Spec validation | Phase 006 docs | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/006-routing-precision-fixes --strict` |
-| Parent validation | Packet 069 phase parent | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` |
-| JSON validation | Skill-advisor graph | `python3 -c "import json; json.load(open('.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json'))"` |
+| Spec validation | Phase 006 docs | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/006-routing-precision-fixes --strict` |
+| Parent validation | Packet 069 phase parent | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` |
+| JSON validation | Skill-advisor graph | `python3 -c "import json; json.load(open('.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json'))"` |
 | Mini matrix | RD-002, CS-002, LS-001 | Phase 005 `run_codex.sh` commands from the dispatch |
 | Result presence | Copied recheck YAMLs | `ls specs/.../006-routing-precision-fixes/spot-recheck-results/` |
 <!-- /ANCHOR:testing -->

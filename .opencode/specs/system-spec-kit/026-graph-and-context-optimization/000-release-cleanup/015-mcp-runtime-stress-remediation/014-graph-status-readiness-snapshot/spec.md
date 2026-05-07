@@ -25,9 +25,9 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "implementation-summary.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts"
     completion_pct: 90
     open_questions: []
     answered_questions: []
@@ -92,9 +92,9 @@ Add a read-only `getGraphReadinessSnapshot(rootDir)` helper that returns the sam
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modify | Add `getGraphReadinessSnapshot()` + `GraphReadinessSnapshot` type |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modify | Use snapshot's `action` + `reason` when building readiness block |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts` | Create | Coverage for criteria A–E from spec §5 |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modify | Add `getGraphReadinessSnapshot()` + `GraphReadinessSnapshot` type |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modify | Use snapshot's `action` + `reason` when building readiness block |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts` | Create | Coverage for criteria A–E from spec §5 |
 | `spec.md` / `plan.md` / `tasks.md` / `checklist.md` / `implementation-summary.md` | Create | Packet docs |
 | `description.json` / `graph-metadata.json` | Create | Spec metadata |
 <!-- /ANCHOR:scope -->

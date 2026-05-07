@@ -39,7 +39,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown + YAML frontmatter |
 | **Framework** | sk-doc testing-playbook contract |
-| **Storage** | `.opencode/skill/sk-git/manual_testing_playbook/` |
+| **Storage** | `.opencode/skills/sk-git/manual_testing_playbook/` |
 | **Testing** | `validate_document.py` + manual structural sweep + @review DQI |
 
 ### Overview
@@ -93,7 +93,7 @@ Doc-as-code with template-driven generation. Special handling for refusal scenar
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Not applicable - documentation-creation packet, not a fix. Only `.opencode/skill/sk-git/manual_testing_playbook/**` is created.
+Not applicable - documentation-creation packet, not a fix. Only `.opencode/skills/sk-git/manual_testing_playbook/**` is created.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
@@ -166,7 +166,7 @@ Not applicable - documentation-creation packet, not a fix. Only `.opencode/skill
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: cli-codex output fails validate_document.py and cannot be repaired in ≤2 follow-up dispatches; or @review reports >2 P0 findings without clear remediation.
-- **Procedure**: `git rm -rf .opencode/skill/sk-git/manual_testing_playbook/`; revert child 002 spec docs to draft; document blocker.
+- **Procedure**: `git rm -rf .opencode/skills/sk-git/manual_testing_playbook/`; revert child 002 spec docs to draft; document blocker.
 <!-- /ANCHOR:rollback -->
 
 ---

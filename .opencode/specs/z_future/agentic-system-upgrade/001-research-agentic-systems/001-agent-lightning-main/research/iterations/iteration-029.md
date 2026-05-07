@@ -14,9 +14,9 @@ I compared Public's gate and hook references with Agent Lightning's concise cont
 ## Evidence
 - `CLAUDE.md` requires Gates 1-3 before tool use, including memory recovery, skill routing, and spec-folder binding rules. [SOURCE: CLAUDE.md:109-168]
 - `AGENTS.md` repeats the gate system, Gate 3 persistence rules, memory-save contract, and completion-verification rules. [SOURCE: AGENTS.md:161-222]
-- The constitutional gate memory further mirrors this by summarizing gate cross-references and continuation validation. [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:58-69]
-- The main `system-spec-kit` skill also documents startup injection and runtime-specific hook surfaces such as `session-prime`, `session-stop`, transcript parsing, and cross-runtime fallback behavior. [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:736-770]
-- The dedicated hook reference adds concrete registration JSON, lifecycle stages, hook state storage, budgets, and fallback behavior. [SOURCE: .opencode/skill/system-spec-kit/references/config/hook_system.md:1-50]
+- The constitutional gate memory further mirrors this by summarizing gate cross-references and continuation validation. [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:58-69]
+- The main `system-spec-kit` skill also documents startup injection and runtime-specific hook surfaces such as `session-prime`, `session-stop`, transcript parsing, and cross-runtime fallback behavior. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:736-770]
+- The dedicated hook reference adds concrete registration JSON, lifecycle stages, hook state storage, budgets, and fallback behavior. [SOURCE: .opencode/skills/system-spec-kit/references/config/hook_system.md:1-50]
 - Agent Lightning's contributor guidance stays short: architecture overview, project structure, commands, style, testing, and contribution expectations. [SOURCE: external/AGENTS.md:3-16]
 
 ## Analysis

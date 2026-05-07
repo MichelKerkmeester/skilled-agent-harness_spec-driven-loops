@@ -31,7 +31,7 @@ Last claim_adjudication_passed: true
 Audit the security boundaries surfaced by Track A + Track B + Wave-1 + Wave-2:
 
 ### S1. Cleanup CLI transaction safety + audit durability
-- `.opencode/skill/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts`
+- `.opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts`
 - Confirm apply path runs ALL mutations inside a single `database.transaction(...)`.
 - Confirm TOCTOU closure: plan rebuild happens INSIDE the transaction snapshot at lines 429–435 (per implementation-summary §Wave-2).
 - Audit failure modes: what happens if `governance_audit` insert fails mid-transaction? Does the cleanup commit anyway (durability vs atomicity tradeoff)?
@@ -39,32 +39,32 @@ Audit the security boundaries surfaced by Track A + Track B + Wave-1 + Wave-2:
 - Test the action-string contract (`tier_downgrade_non_constitutional_path`, `tier_downgrade_non_constitutional_path_cleanup`) is consistent across emitters.
 
 ### S2. Symlink / realpath bypass surface
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/canonical-path.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/canonical-path.ts`
 - Verify `resolveCanonicalPath()` uses `fs.realpathSync` with fail-open fallback. Does the fail-open path leak any unexpected behavior under adversarial inputs (broken symlinks, recursive loops)?
 - Check every consumer: `memory-save.ts`, `code-graph/lib/structural-indexer.ts`. Are realpath results used for the invariant check, or is the original string-normalized path still used in any branch?
 - Adversarial test: a symlink at `safe/path` → `/z_future/poisoned.md`. Does the SSOT predicate correctly reject it via realpath?
 
 ### S3. Walker DoS caps under adversarial trees
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts` (`.gitignore` 1MB cap, depth 20, 50,000 nodes)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` (same caps)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts` (`.gitignore` 1MB cap, depth 20, 50,000 nodes)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` (same caps)
 - Adversarial inputs: deeply nested directories (depth > 20), directory bombs (>50K nodes), giant `.gitignore` files (>1MB). Confirm the walker stops gracefully and emits warnings rather than crashing or silently truncating.
 - Check the warning emission path: is it actually observable to operators, or just logged to stderr?
 
 ### S4. Constitutional tier promotion / downgrade bypass paths
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts` — constitutional → critical transition audit
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts` — post-insert metadata guard
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts` — SQL-layer downgrade
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts` — constitutional → critical transition audit
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts` — post-insert metadata guard
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts` — SQL-layer downgrade
 - Is there any code path where a row can be promoted TO constitutional without going through the SSOT predicate? Look for raw SQL UPDATE or INSERT statements that bypass the helper.
 - Does `memory_update` audit downgrade attempts even when the downgrade is silently applied at the SQL layer? Verify governance_audit emission path.
 - Cross-check `tests/memory-crud-update-constitutional-guard.vitest.ts` for promotion-bypass coverage.
 
 ### S5. Governance audit durability under failure
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` (recordTierDowngradeAudit)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` (recordTierDowngradeAudit)
 - Per CHK-S03: audit insert errors are caught, logged, and the invariant outcome is preserved. Confirm this. What happens if the database is read-only or the audit table is missing? Does the system fail-open (preserve invariant, lose audit) or fail-closed (block mutation)?
 - Race conditions: can two concurrent saves race the audit insert? Does the action_string + path uniqueness handle dedup?
 
 ### S6. Save-time invariant guard (rejection path)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` save-time guard
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` save-time guard
 - Confirm rejected paths return a stable error code (not a vague exception). Any path where the rejection is logged-but-saved-anyway?
 - Check that the rejection happens BEFORE any DB write, not after a partial commit.
 

@@ -4,7 +4,7 @@
 **Source span:** `iteration-001.md` through `iteration-050.md` (50 iterations) plus interim syntheses at iterations 32, 38, 41, 44, 47.
 **Author:** synthesis agent (read-only analysis pass)
 **Date:** 2026-04-16
-**Scope:** `.opencode/skill/system-spec-kit/mcp_server/` and associated governance surfaces (`skill_advisor/`, command assets, manual playbook runner, runtime root docs).
+**Scope:** `.opencode/skills/system-spec-kit/mcp_server/` and associated governance surfaces (`skill_advisor/`, command assets, manual playbook runner, runtime root docs).
 
 This document is the final deliverable of Phase 016. It consolidates the raw iteration findings, the five interim syntheses, and the original Copilot deep-dive into a single action-oriented report intended to drive Phase 017+ remediation.
 

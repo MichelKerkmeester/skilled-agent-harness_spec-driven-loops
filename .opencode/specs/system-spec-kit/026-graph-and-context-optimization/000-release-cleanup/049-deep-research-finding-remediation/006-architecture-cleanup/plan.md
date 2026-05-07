@@ -18,13 +18,13 @@ _memory:
     next_safe_action: "Execute Phase 2: apply 15 refactors in D3 -> D2 -> D1 order"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/trust-state.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/graph/community-summaries.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/context-server.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/trust-state.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/community-summaries.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-006-architecture-cleanup"
@@ -37,7 +37,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -151,7 +151,7 @@ For the watcher refactor (F-016-D1-06): rely on the existing watcher test suite 
 ## 6. DEPENDENCIES
 
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §16 (boundary discipline), §17 (dependency graph), §18 (schema duplication)
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Stress runner: `cd mcp_server && npm run stress`
 - Existing package: `zod-to-json-schema` (already in `mcp_server/package.json` per dependency check)
 - No cross-packet dependencies; sub-phase 006 is independent within Wave 2.

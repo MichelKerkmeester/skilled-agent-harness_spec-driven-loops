@@ -53,7 +53,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Create Level 3 spec folder (`.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger`)
-- [x] T002 Analyze `sk-code` and `sk-code-opencode` file trees (`.opencode/skill/sk-code`, `.opencode/skill/sk-code-opencode`)
+- [x] T002 Analyze `sk-code` and `sk-code-opencode` file trees (`.opencode/skills/sk-code`, `.opencode/skills/sk-code-opencode`)
 - [x] T003 [P] Run exact reference searches for `sk-code-opencode`, `sk-code-*`, `GO`, and `NEXTJS` references
 - [x] T004 [P] Create detailed resource map (`resource-map.md`)
 - [x] T005 Get user approval before implementation (User instructed: "Continue if you have next steps")
@@ -64,25 +64,25 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T006 Rewrite `sk-code/SKILL.md` with two-axis detection (`.opencode/skill/sk-code/SKILL.md`)
-- [x] T007 Rename `stack_detection.md` → `code_surface_detection.md`, add OPENCODE detection + language sub-detection (`.opencode/skill/sk-code/references/router/code_surface_detection.md`)
-- [x] T008 Move OpenCode references into `sk-code/references/opencode/` (`.opencode/skill/sk-code/references/opencode/{shared,javascript,typescript,python,shell,config}/**`)
-- [x] T009 Move OpenCode checklists into `sk-code/assets/opencode/checklists/` (`.opencode/skill/sk-code/assets/opencode/checklists/**`)
-- [x] T010 Move verifier scripts into `sk-code/scripts/` (`.opencode/skill/sk-code/scripts/verify_alignment_drift.py`, `test_verify_alignment_drift.py`)
+- [x] T006 Rewrite `sk-code/SKILL.md` with two-axis detection (`.opencode/skills/sk-code/SKILL.md`)
+- [x] T007 Rename `stack_detection.md` → `code_surface_detection.md`, add OPENCODE detection + language sub-detection (`.opencode/skills/sk-code/references/router/code_surface_detection.md`)
+- [x] T008 Move OpenCode references into `sk-code/references/opencode/` (`.opencode/skills/sk-code/references/opencode/{shared,javascript,typescript,python,shell,config}/**`)
+- [x] T009 Move OpenCode checklists into `sk-code/assets/opencode/checklists/` (`.opencode/skills/sk-code/assets/opencode/checklists/**`)
+- [x] T010 Move verifier scripts into `sk-code/scripts/` (`.opencode/skills/sk-code/scripts/verify_alignment_drift.py`, `test_verify_alignment_drift.py`)
 - [x] T011 Add OPENCODE entries to resource loading and verification contracts in SKILL.md
-- [x] T012 Delete historical changelogs (`.opencode/skill/sk-code-opencode/changelog/`; removed with obsolete directory)
-- [x] T013 Delete Go branch files (`.opencode/skill/sk-code/references/go/**`, `.opencode/skill/sk-code/assets/go/**`)
-- [x] T014 Delete React/NextJS branch files (`.opencode/skill/sk-code/references/nextjs/**`, `.opencode/skill/sk-code/assets/nextjs/**`)
-- [x] T015 Delete `cross_stack_pairing.md` (`.opencode/skill/sk-code/references/router/cross_stack_pairing.md`)
-- [x] T016 Rewrite router docs for two-axis model (`.opencode/skill/sk-code/references/router/{resource_loading,intent_classification,phase_lifecycle}.md`)
-- [x] T017 Rewrite runtime agent supported-stack and overlay text (`.opencode/agent/**`, `.claude/agents/**`, `.codex/agents/**`, `.gemini/agents/**`)
-- [x] T018 Rewrite `spec_kit` command YAML overlay text (`.opencode/command/spec_kit/assets/*.yaml`)
-- [x] T019 Rewrite `sk-code-review` contract to single-skill model (`.opencode/skill/sk-code-review/**`)
-- [x] T020 Rewrite CLI skill dispatch guidance (`.opencode/skill/cli-*/SKILL.md`)
-- [x] T021 Update skill advisor scorer lanes and fixtures (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/**`)
-- [x] T022 Update hook/advisor tests (`.opencode/skill/system-spec-kit/mcp_server/tests/**`)
-- [x] T023 Update repository docs and install guides (`README.md`, `AGENTS.md`, `.opencode/install_guides/**`, `.opencode/skill/README.md`)
-- [x] T024 Regenerate telemetry JSONL (`.opencode/skill/.smart-router-telemetry/compliance.jsonl`, `smart-router-measurement-results.jsonl`)
+- [x] T012 Delete historical changelogs (`.opencode/skills/sk-code-opencode/changelog/`; removed with obsolete directory)
+- [x] T013 Delete Go branch files (`.opencode/skills/sk-code/references/go/**`, `.opencode/skills/sk-code/assets/go/**`)
+- [x] T014 Delete React/NextJS branch files (`.opencode/skills/sk-code/references/nextjs/**`, `.opencode/skills/sk-code/assets/nextjs/**`)
+- [x] T015 Delete `cross_stack_pairing.md` (`.opencode/skills/sk-code/references/router/cross_stack_pairing.md`)
+- [x] T016 Rewrite router docs for two-axis model (`.opencode/skills/sk-code/references/router/{resource_loading,intent_classification,phase_lifecycle}.md`)
+- [x] T017 Rewrite runtime agent supported-stack and overlay text (`.opencode/agents/**`, `.claude/agents/**`, `.codex/agents/**`, `.gemini/agents/**`)
+- [x] T018 Rewrite `spec_kit` command YAML overlay text (`.opencode/commands/spec_kit/assets/*.yaml`)
+- [x] T019 Rewrite `sk-code-review` contract to single-skill model (`.opencode/skills/sk-code-review/**`)
+- [x] T020 Rewrite CLI skill dispatch guidance (`.opencode/skills/cli-*/SKILL.md`)
+- [x] T021 Update skill advisor scorer lanes and fixtures (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/**`)
+- [x] T022 Update hook/advisor tests (`.opencode/skills/system-spec-kit/mcp_server/tests/**`)
+- [x] T023 Update repository docs and install guides (`README.md`, `AGENTS.md`, `.opencode/install_guides/**`, `.opencode/skills/README.md`)
+- [x] T024 Regenerate telemetry JSONL (`.opencode/skills/.smart-router-telemetry/compliance.jsonl`, `smart-router-measurement-results.jsonl`)
 - [x] T025 Refresh metadata and generated skill graph (`description.json`, `graph-metadata.json`, `skill-graph.json`)
 - [x] T026 Delete `sk-code-opencode/` directory (final step, after live references verified clean)
 <!-- /ANCHOR:phase-2 -->

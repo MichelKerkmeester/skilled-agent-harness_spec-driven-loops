@@ -14,8 +14,8 @@ The current `EdgeType` in `indexer-types.ts` defines 7 edge types: `CONTAINS`, `
 
 - **TYPE_OF** — TypeScript type annotations (`x: SomeType`, function return types, generic parameters) create implicit dependencies on types/interfaces/classes. The current parser ignores these entirely. Adding `TYPE_OF` edges would capture the "this function depends on this interface's shape" relationship, which is more semantically meaningful than import edges for understanding coupling.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:12-15]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:195-343]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:12-15]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:195-343]
 
 ### 2. Regex Parser Limitations — Endline Accuracy and Nesting
 The regex-based parser has a fundamental limitation: `endLine` is always set to `startLine` for all captures. This means function/class bodies are never tracked — the parser only knows where a symbol declaration starts, not where it ends. This causes:
@@ -26,7 +26,7 @@ The regex-based parser has a fundamental limitation: `endLine` is always set to 
 
 The fix is either (a) add brace/indent counting to the regex parser as a targeted improvement, or (b) migrate to tree-sitter WASM which provides accurate ranges natively.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:30-107 — all captures set endLine = lineNum (same as startLine)]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:30-107 — all captures set endLine = lineNum (same as startLine)]
 
 ### 3. Tree-sitter WASM Migration Path
 The structural indexer header comments state "Tree-sitter WASM integration planned as future enhancement." A practical migration path:
@@ -38,7 +38,7 @@ The structural indexer header comments state "Tree-sitter WASM integration plann
 - **API change**: `RawCapture` already has `startLine/endLine/startColumn/endColumn` — tree-sitter maps directly to these fields. The `CodeNode` and `CodeEdge` types need no changes.
 - **Priority**: HIGH — the endLine bug makes CALLS detection almost non-functional, which is the most valuable edge type for AI context.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:7 — "Tree-sitter WASM integration planned"]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:7 — "Tree-sitter WASM integration planned"]
 [INFERENCE: based on analysis of web-tree-sitter npm package API from prior iterations 31, 38]
 
 ### 4. Budget Allocator Improvements
@@ -49,7 +49,7 @@ The current budget allocation (from iteration 49) uses a floor-based system with
 - **Dynamic overflow**: Rather than a fixed 800-token overflow pool, make it proportional to total context budget. At high token usage (>70% of context window), compress all floors proportionally.
 - **Source-quality scoring**: Weight budget allocation by source quality — if CocoIndex returns high-confidence matches (score > 0.8), increase its budget; if graph results are sparse (few edges), reallocate its budget.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:331-338]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:331-338]
 [SOURCE: Iteration 049 findings — three-source allocator design]
 
 ### 5. 3-Source Merger Improvements
@@ -60,7 +60,7 @@ The merge strategy (iteration 52) uses constitutional priority with deduplicatio
 - **Interleaved ranking**: Rather than appending source blocks sequentially (constitutional, then graph, then CocoIndex), interleave results by relevance score. This produces more coherent context for the AI.
 - **Conflict resolution**: When graph says function A calls function B, but CocoIndex's semantic search suggests they are unrelated, flag the disagreement as a signal (one source may be stale).
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:60-83 — buildContext output structure]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:60-83 — buildContext output structure]
 [INFERENCE: based on iteration 52 merge strategy and CodeNode.contentHash field in indexer-types.ts]
 
 ### 6. Hook System Improvements
@@ -72,7 +72,7 @@ From iterations 11-20 (hooks architecture), identified improvements:
 - **Cross-runtime hook parity**: Claude has the richest hook system (PreCompact, SessionStart, Stop). For Copilot/Gemini CLIs with limited hooks, simulate equivalent behavior via MCP tool auto-invocation patterns (see Q15 for details).
 
 [SOURCE: Iterations 11-20 findings — hook architecture, PreCompact/SessionStart/Stop lifecycle]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:30-92 — scan handler]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:30-92 — scan handler]
 
 ### 7. Additional SymbolKind Gaps
 The current `SymbolKind` type misses several common constructs:
@@ -85,8 +85,8 @@ The current `SymbolKind` type misses several common constructs:
 
 The `variable` kind exists in the type definition but is never emitted by any parser. The `parameter` kind is defined but also never emitted.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:7-10]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:30-107 — only emits function, class, method, interface, type_alias, enum, import, export]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:7-10]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:30-107 — only emits function, class, method, interface, type_alias, enum, import, export]
 
 ### 8. Query API Missing Operations
 The `code_graph_query` handler supports 5 operations: `outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`. Missing useful operations:
@@ -98,7 +98,7 @@ The `code_graph_query` handler supports 5 operations: `outline`, `calls_from`, `
 - **`impact`**: Already in `code_graph_context` but not in `code_graph_query` — reverse caller analysis to understand what depends on a symbol.
 - **`search`**: Text search across symbol names/signatures without needing exact match (the current `resolveSubject` only does exact name lookup).
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:9 — only 5 operations]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:9 — only 5 operations]
 
 ## Ruled Out
 - LSP-based approach: Previously exhausted (per strategy.md section 9). Server-per-language overhead is impractical.
@@ -108,12 +108,12 @@ The `code_graph_query` handler supports 5 operations: `outline`, `calls_from`, `
 None newly discovered. The regex parser limitations are fixable via tree-sitter migration, not fundamentally unviable.
 
 ## Sources Consulted
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts` (full file)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (full file)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts` (full file)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts` (full file)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` (full file)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts` (full file)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (full file)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts` (full file)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts` (full file)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` (full file)
 - Prior iteration findings: 31 (tree-sitter evaluation), 38 (tree-sitter deep dive), 48 (query-intent router), 49 (budget allocator), 52 (merge strategy)
 
 ## Assessment

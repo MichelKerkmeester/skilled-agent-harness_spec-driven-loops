@@ -57,7 +57,7 @@ Create a verification-focused phase that proves a real `candidate-better` handov
 ## 3. SCOPE
 
 ### In Scope
-- Guarded promotion-path verification for `.opencode/agent/handover.md`
+- Guarded promotion-path verification for `.opencode/agents/handover.md`
 - A packet-local improved handover candidate used only for verification
 - Repeatability evidence for both `handover` and `context-prime`
 - A small scorer calibration so a structurally better handover candidate can beat the current baseline
@@ -69,8 +69,8 @@ Create a verification-focused phase that proves a real `candidate-better` handov
 - Broadening target families beyond `handover` and `context-prime`
 
 ### Files to Change
-- `.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs`
-- `.opencode/skill/sk-improve-agent/references/evaluator_contract.md`
+- `.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs`
+- `.opencode/skills/sk-improve-agent/references/evaluator_contract.md`
 - `.opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/004-sk-improve-agent-promotion-verification/`
 - `.opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/`
 - `.opencode/specs/descriptions.json`

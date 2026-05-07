@@ -12,14 +12,14 @@ They should stay. The real UX problem is not that these specialist skills exist,
 I compared the specialist skill contracts and their dedicated command wrappers against the broader skill-routing system to separate "niche but justified" from "unnecessarily exposed."
 
 ## Evidence
-- [SOURCE: .opencode/skill/sk-improve-prompt/SKILL.md:19-47] `sk-improve-prompt` has a narrow, legitimate domain: structured prompt enhancement using explicit frameworks and scoring.
-- [SOURCE: .opencode/skill/sk-improve-agent/SKILL.md:24-56] `sk-improve-agent` also has a narrow but real use case: bounded agent improvement with evidence gates and rollback discipline.
-- [SOURCE: .opencode/command/improve/prompt.md:61-149] The prompt improver already sits behind a dedicated command surface with its own setup flow.
-- [SOURCE: .opencode/command/improve/agent.md:61-151] The agent improver likewise lives behind a dedicated command and narrow setup contract.
-- [SOURCE: .opencode/skill/README.md:42-46] The broader skills system presents all skills as discoverable on-demand capabilities.
-- [SOURCE: .opencode/skill/scripts/skill_advisor.py:7-16] Gate 2 routes non-trivial requests through a confidence-thresholded advisor.
-- [SOURCE: .opencode/skill/scripts/skill_advisor.py:211-217] The advisor has a generalized confidence model intended to apply broadly.
-- [SOURCE: .opencode/skill/scripts/skill_advisor.py:259-283] It also contains strong direct boosters for deep-research, deep-review, agent-improvement, and related specialist loops.
+- [SOURCE: .opencode/skills/sk-improve-prompt/SKILL.md:19-47] `sk-improve-prompt` has a narrow, legitimate domain: structured prompt enhancement using explicit frameworks and scoring.
+- [SOURCE: .opencode/skills/sk-improve-agent/SKILL.md:24-56] `sk-improve-agent` also has a narrow but real use case: bounded agent improvement with evidence gates and rollback discipline.
+- [SOURCE: .opencode/commands/improve/prompt.md:61-149] The prompt improver already sits behind a dedicated command surface with its own setup flow.
+- [SOURCE: .opencode/commands/improve/agent.md:61-151] The agent improver likewise lives behind a dedicated command and narrow setup contract.
+- [SOURCE: .opencode/skills/README.md:42-46] The broader skills system presents all skills as discoverable on-demand capabilities.
+- [SOURCE: .opencode/skills/scripts/skill_advisor.py:7-16] Gate 2 routes non-trivial requests through a confidence-thresholded advisor.
+- [SOURCE: .opencode/skills/scripts/skill_advisor.py:211-217] The advisor has a generalized confidence model intended to apply broadly.
+- [SOURCE: .opencode/skills/scripts/skill_advisor.py:259-283] It also contains strong direct boosters for deep-research, deep-review, agent-improvement, and related specialist loops.
 
 ## Analysis
 The presence of specialist skills is not, by itself, a UX smell. `sk-improve-prompt` and `sk-improve-agent` correspond to real, bounded operator intents and already live behind dedicated commands. Deleting them would sacrifice valuable niche workflows for little gain. The real issue is that the system's default routing and documentation posture can make specialist islands feel like part of the everyday baseline. The external repo's lesson is to keep specialized mechanisms available without making them part of the default mental model. In other words: keep the skills, shrink their ambient prominence.

@@ -51,35 +51,35 @@ contextType: "implementation"
 ### Test File Existence
 
 - [x] CHK-001 [P0] `test-session-learning.js` created and exists
-  - Location: `.opencode/skill/system-spec-kit/mcp_server/tests/`
+  - Location: `.opencode/skills/system-spec-kit/mcp_server/tests/`
   - Evidence: File exists, 70505 bytes, last modified 2026-01-24
 
 - [x] CHK-002 [P0] `test-memory-handlers.js` created and exists
-  - Location: `.opencode/skill/system-spec-kit/mcp_server/tests/`
+  - Location: `.opencode/skills/system-spec-kit/mcp_server/tests/`
   - Evidence: File exists, 71683 bytes, last modified 2026-01-24
 
 - [x] CHK-003 [P0] `test-cognitive-integration.js` created and exists
-  - Location: `.opencode/skill/system-spec-kit/mcp_server/tests/`
+  - Location: `.opencode/skills/system-spec-kit/mcp_server/tests/`
   - Evidence: File exists, 46424 bytes, last modified 2026-01-24
 
 - [x] CHK-004 [P0] `test-validation-system.js` created and exists
-  - Location: `.opencode/skill/system-spec-kit/scripts/tests/`
+  - Location: `.opencode/skills/system-spec-kit/scripts/tests/`
   - Evidence: File exists, 56440 bytes, last modified 2026-01-24
 
 - [x] CHK-005 [P0] `test-template-comprehensive.js` created and exists
-  - Location: `.opencode/skill/system-spec-kit/scripts/tests/`
+  - Location: `.opencode/skills/system-spec-kit/scripts/tests/`
   - Evidence: File exists, 52358 bytes, last modified 2026-01-24
 
 - [x] CHK-006 [P0] `test_dual_threshold.py` created and exists
-  - Location: `.opencode/skill/system-spec-kit/scripts/tests/`
+  - Location: `.opencode/skills/system-spec-kit/scripts/tests/`
   - Evidence: File exists, 26524 bytes, last modified 2026-01-24
 
 - [x] CHK-007 [P0] `test-extractors-loaders.js` created and exists
-  - Location: `.opencode/skill/system-spec-kit/scripts/tests/`
+  - Location: `.opencode/skills/system-spec-kit/scripts/tests/`
   - Evidence: File exists, 66292 bytes, last modified 2026-01-24
 
 - [x] CHK-008 [P0] `test-five-checks.js` created and exists
-  - Location: `.opencode/skill/system-spec-kit/scripts/tests/`
+  - Location: `.opencode/skills/system-spec-kit/scripts/tests/`
   - Evidence: File exists, 42670 bytes, last modified 2026-01-24
 
 ### Test Execution
@@ -293,7 +293,7 @@ All P0 and P1 items verified complete.
 
 ```bash
 # Quick verification (all P0 file existence)
-cd .opencode/skill/system-spec-kit
+cd .opencode/skills/system-spec-kit
 ls -la mcp_server/tests/test-session-learning.js \
        mcp_server/tests/test-memory-handlers.js \
        mcp_server/tests/test-cognitive-integration.js \

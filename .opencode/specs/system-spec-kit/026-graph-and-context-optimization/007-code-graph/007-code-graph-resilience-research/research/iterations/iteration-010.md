@@ -10,7 +10,7 @@ Drift detection should be dependency-free TypeScript. The lowest-risk persistenc
 
 ## Current Config Schema
 
-The current interface is defined at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80`:
+The current interface is defined at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80`:
 
 ```ts
 export interface IndexerConfig {
@@ -22,39 +22,39 @@ export interface IndexerConfig {
 }
 ```
 
-Defaults are produced by `getDefaultConfig(rootDir)` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120`: it sets the language globs, default excludes, `maxFileSizeBytes: 102_400`, and `languages: ['javascript', 'typescript', 'python', 'bash']`.
+Defaults are produced by `getDefaultConfig(rootDir)` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120`: it sets the language globs, default excludes, `maxFileSizeBytes: 102_400`, and `languages: ['javascript', 'typescript', 'python', 'bash']`.
 
 Resolution order today:
 
-1. `code_graph_scan` chooses `args.rootDir ?? process.cwd()` and resolves/canonicalizes the path at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:127-170`.
-2. It calls `getDefaultConfig(resolvedRootDir)` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:170`.
-3. `args.includeGlobs` replaces the default include list at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:171`.
-4. `args.excludeGlobs` appends to the default exclude list at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:172`.
-5. The final config goes into `indexFiles(config, { skipFreshFiles: effectiveIncremental })` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:186`.
-6. Auto-index uses `getDefaultConfig(rootDir)` directly for full scans and selective reindexing at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:333-356`.
+1. `code_graph_scan` chooses `args.rootDir ?? process.cwd()` and resolves/canonicalizes the path at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:127-170`.
+2. It calls `getDefaultConfig(resolvedRootDir)` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:170`.
+3. `args.includeGlobs` replaces the default include list at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:171`.
+4. `args.excludeGlobs` appends to the default exclude list at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:172`.
+5. The final config goes into `indexFiles(config, { skipFreshFiles: effectiveIncremental })` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:186`.
+6. Auto-index uses `getDefaultConfig(rootDir)` directly for full scans and selective reindexing at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:333-356`.
 
-No reviewed path loads `IndexerConfig` from a config file or env vars. The only env-adjacent parser choice is `SPECKIT_PARSER`, which affects parser backend, not indexer config or weights, at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:782-784`.
+No reviewed path loads `IndexerConfig` from a config file or env vars. The only env-adjacent parser choice is `SPECKIT_PARSER`, which affects parser backend, not indexer config or weights, at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:782-784`.
 
 ## Weight Production Points
 
 | Edge type | Producer | Current value | Patch point |
 |---|---|---:|---|
-| `CONTAINS` | `extractEdges()` class -> method loop | `1.0` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:895-905` |
-| `IMPORTS` | `extractEdges()` import node -> same-file target | `1.0` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:909-918` |
-| `EXPORTS` | `extractEdges()` exported symbol -> export capture | `1.0` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:922-930` |
-| `EXTENDS` | `extractEdges()` class -> parent class | `0.95` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:935-944` |
-| `IMPLEMENTS` | `extractEdges()` class -> interface/type/import | `0.95` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:950-960` |
-| `CALLS` | `extractEdges()` callable regex body scan | `0.8` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:967-993` |
-| `DECORATES` | `extractEdges()` decorator symbol -> decorated symbol | `0.9` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1000-1016` |
-| `OVERRIDES` | `extractEdges()` method -> parent class method | `0.9` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1022-1038` |
-| `TYPE_OF` | `extractEdges()` symbol -> referenced type symbol | `0.85` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1048-1065` |
-| `TESTED_BY` | `finalizeIndexResults()` test-file heuristic | `0.6` | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1357-1375` |
+| `CONTAINS` | `extractEdges()` class -> method loop | `1.0` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:895-905` |
+| `IMPORTS` | `extractEdges()` import node -> same-file target | `1.0` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:909-918` |
+| `EXPORTS` | `extractEdges()` exported symbol -> export capture | `1.0` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:922-930` |
+| `EXTENDS` | `extractEdges()` class -> parent class | `0.95` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:935-944` |
+| `IMPLEMENTS` | `extractEdges()` class -> interface/type/import | `0.95` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:950-960` |
+| `CALLS` | `extractEdges()` callable regex body scan | `0.8` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:967-993` |
+| `DECORATES` | `extractEdges()` decorator symbol -> decorated symbol | `0.9` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1000-1016` |
+| `OVERRIDES` | `extractEdges()` method -> parent class method | `0.9` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1022-1038` |
+| `TYPE_OF` | `extractEdges()` symbol -> referenced type symbol | `0.85` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1048-1065` |
+| `TESTED_BY` | `finalizeIndexResults()` test-file heuristic | `0.6` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1357-1375` |
 
-The metadata mirror is centralized in `buildEdgeMetadata(confidence, detectorProvenance, evidenceClass)`, but callers pass the same hard-coded literal used as `CodeEdge.weight`; see `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:86-105`.
+The metadata mirror is centralized in `buildEdgeMetadata(confidence, detectorProvenance, evidenceClass)`, but callers pass the same hard-coded literal used as `CodeEdge.weight`; see `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:86-105`.
 
-Two parser producers call `extractEdges()` without any config surface: regex parse at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:690-716`, and tree-sitter parse at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:650-653`. The file-path rewrite step only remaps IDs and preserves existing weights at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:786-802`.
+Two parser producers call `extractEdges()` without any config surface: regex parse at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:690-716`, and tree-sitter parse at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:650-653`. The file-path rewrite step only remaps IDs and preserves existing weights at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:786-802`.
 
-Persisted edges receive explicit weights in `replaceEdges()` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:358-375`; the schema default `weight REAL DEFAULT 1.0` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:86-92` is not the effective source for normal inserts.
+Persisted edges receive explicit weights in `replaceEdges()` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:358-375`; the schema default `weight REAL DEFAULT 1.0` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:86-92` is not the effective source for normal inserts.
 
 ## Proposed Config Extension
 
@@ -126,7 +126,7 @@ Validation should reject non-finite values and values outside `[0, 1]`. Resoluti
 
 ## Drift Computation Module
 
-Add a no-dependency module, likely `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/edge-drift.ts`.
+Add a no-dependency module, likely `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/edge-drift.ts`.
 
 Suggested types and functions:
 
@@ -195,17 +195,17 @@ PSI formula: for every edge type in the union of baseline/current keys, smooth e
 
 Cost analysis:
 
-- Let `k` be the number of edge classes. Current `EdgeType` has 10 values at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:12-16`.
+- Let `k` be the number of edge classes. Current `EdgeType` has 10 values at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:12-16`.
 - Snapshot construction from `edgesByType` is `O(k)` time and `O(k)` memory.
 - PSI and JSD are both `O(k)` time and `O(k)` memory if implemented over a key union.
-- DB aggregation for current counts can reuse `getStats().edgesByType`, which already does `SELECT edge_type, COUNT(*) ... GROUP BY edge_type` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:671-695`.
+- DB aggregation for current counts can reuse `getStats().edgesByType`, which already does `SELECT edge_type, COUNT(*) ... GROUP BY edge_type` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:671-695`.
 - No external npm package is needed; all math uses `Math.log` and basic numeric guards.
 
 ## Baseline Persistence
 
-Use `code_graph_metadata` first. The table is already generic key/value JSON storage with timestamps at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:99-103`, and migrations recreate it defensively at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:130-139`.
+Use `code_graph_metadata` first. The table is already generic key/value JSON storage with timestamps at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:99-103`, and migrations recreate it defensively at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:130-139`.
 
-Current metadata helpers are private at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:190-204`, with exported typed wrappers for git head, detector provenance, and graph-edge enrichment at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:211-269`. Follow that pattern:
+Current metadata helpers are private at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:190-204`, with exported typed wrappers for git head, detector provenance, and graph-edge enrichment at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:211-269`. Follow that pattern:
 
 ```ts
 export function getEdgeDistributionBaseline(
@@ -237,10 +237,10 @@ Use a `status.ts` extension for v1, plus scan-time persistence.
 
 Why status wins:
 
-- `code_graph_status` already returns the health payload and `edgesByType` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62`.
-- `getStats()` already computes `edgesByType` and `graphQualitySummary` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:671-716`.
-- The scan handler already persists graph-quality metadata after indexing at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:230-262`, so adding baseline/report persistence there fits the existing lifecycle.
-- Tool registration changes are non-trivial: a new MCP tool would need `TOOL_NAMES` and dispatch wiring at `.opencode/skill/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:19-29` and `.opencode/skill/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:58-96`, schema exposure in `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:554-647`, and Zod validation in `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:445-450`.
+- `code_graph_status` already returns the health payload and `edgesByType` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62`.
+- `getStats()` already computes `edgesByType` and `graphQualitySummary` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:671-716`.
+- The scan handler already persists graph-quality metadata after indexing at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:230-262`, so adding baseline/report persistence there fits the existing lifecycle.
+- Tool registration changes are non-trivial: a new MCP tool would need `TOOL_NAMES` and dispatch wiring at `.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:19-29` and `.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:58-96`, schema exposure in `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:554-647`, and Zod validation in `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:445-450`.
 
 Trade-off: status extension makes drift visible but does not give operators a command to reset or export baselines. That is acceptable for the first implementation. Add `code_graph_drift` later if manual baseline management becomes a real workflow.
 
@@ -267,20 +267,20 @@ Suggested status field:
 
 Minimum patch surface:
 
-1. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:12-16` - keep `EdgeType` as the key union for default weights.
-2. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80` - extend `IndexerConfig` with `edgeWeights`, `edgeWeightOverrides`, and `edgeDrift`.
-3. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120` - add `DEFAULT_EDGE_WEIGHTS`, drift defaults, and `resolveEdgeWeights()` to `getDefaultConfig()`.
-4. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:857-1071` - add an `edgeWeights` parameter to `extractEdges()` and replace every inline weight/confidence literal with `edgeWeights[edgeType]`.
-5. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:690-716` - thread default/resolved weights through the regex parser call site, or move edge extraction out of parser adapters so `indexFiles()` can supply config.
-6. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:650-653` - thread default/resolved weights through the tree-sitter call site.
-7. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1357-1381` - change `finalizeIndexResults()` to receive resolved weights and use `edgeWeights.TESTED_BY`.
-8. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1472-1478` - pass config weights into the finalize phase.
-9. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:190-269` - add public typed baseline/report metadata wrappers beside existing graph-quality metadata functions.
-10. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:671-716` - include `edgeDistributionDrift` in `graphQualitySummary` or expose a dedicated getter used by status.
-11. `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:230-262` - after persistence, build current distribution, initialize baseline if absent, compute and store latest drift report.
-12. `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62` - surface drift under `graphQualitySummary.edgeDistributionDrift`.
-13. `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:73-80` - extend default-config tests to assert default weight and drift config.
-14. `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts` or a new drift test file - verify baseline initialization, stable comparison, warning/review thresholds, and malformed metadata fallback.
+1. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:12-16` - keep `EdgeType` as the key union for default weights.
+2. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80` - extend `IndexerConfig` with `edgeWeights`, `edgeWeightOverrides`, and `edgeDrift`.
+3. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120` - add `DEFAULT_EDGE_WEIGHTS`, drift defaults, and `resolveEdgeWeights()` to `getDefaultConfig()`.
+4. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:857-1071` - add an `edgeWeights` parameter to `extractEdges()` and replace every inline weight/confidence literal with `edgeWeights[edgeType]`.
+5. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:690-716` - thread default/resolved weights through the regex parser call site, or move edge extraction out of parser adapters so `indexFiles()` can supply config.
+6. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:650-653` - thread default/resolved weights through the tree-sitter call site.
+7. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1357-1381` - change `finalizeIndexResults()` to receive resolved weights and use `edgeWeights.TESTED_BY`.
+8. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1472-1478` - pass config weights into the finalize phase.
+9. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:190-269` - add public typed baseline/report metadata wrappers beside existing graph-quality metadata functions.
+10. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:671-716` - include `edgeDistributionDrift` in `graphQualitySummary` or expose a dedicated getter used by status.
+11. `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:230-262` - after persistence, build current distribution, initialize baseline if absent, compute and store latest drift report.
+12. `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62` - surface drift under `graphQualitySummary.edgeDistributionDrift`.
+13. `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:73-80` - extend default-config tests to assert default weight and drift config.
+14. `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts` or a new drift test file - verify baseline initialization, stable comparison, warning/review thresholds, and malformed metadata fallback.
 
 ## Files Reviewed
 
@@ -288,29 +288,29 @@ Minimum patch surface:
 - `research/deltas/iteration-009.json:1-58`
 - `research/deltas/iteration-012.json:1-65`
 - `research/deep-research-state.jsonl:1-14`
-- `.opencode/skill/sk-deep-research/SKILL.md:1-220`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:1-120`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:60-105`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:680-716`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:780-820`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:850-1085`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1338-1388`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1400-1535`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:640-660`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:80-130`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:180-270`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:330-390`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:660-725`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:190-245`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:320-370`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:1-288`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:1-77`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/index.ts:1-11`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:1-97`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts:70-111`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:554-647`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:445-450`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:65-90`
+- `.opencode/skills/sk-deep-research/SKILL.md:1-220`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:1-120`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:60-105`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:680-716`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:780-820`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:850-1085`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1338-1388`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1400-1535`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:640-660`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:80-130`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:180-270`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:330-390`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:660-725`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:190-245`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:320-370`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:1-288`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:1-77`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/index.ts:1-11`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:1-97`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:70-111`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:554-647`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:445-450`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:65-90`
 
 ## Convergence Signals
 

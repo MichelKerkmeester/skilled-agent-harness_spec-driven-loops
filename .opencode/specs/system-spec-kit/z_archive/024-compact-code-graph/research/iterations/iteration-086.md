@@ -28,7 +28,7 @@ The repo's root `AGENTS.md` already includes:
 
 - a research/exploration workflow that starts with `memory_match_triggers()` and then `memory_context()` / `memory_search()`
 - Gate 1 instructions that explicitly require `memory_match_triggers(prompt)` at turn start
-- runtime routing that says the Copilot/OpenCode profile uses `.opencode/agent/`
+- runtime routing that says the Copilot/OpenCode profile uses `.opencode/agents/`
 
 So the memory-side priming pattern already exists in the universal instruction layer. What is still missing is an equally explicit instruction telling Copilot when to check code-graph freshness and when to enrich with structural context.
 
@@ -108,7 +108,7 @@ This aligns with the repo's existing `AGENTS.md` rule that semantic code discove
 [SOURCE: https://docs.github.com/en/copilot/how-tos/copilot-cli/add-custom-instructions]
 
 ### 6. Copilot markdown profiles and Codex TOML agents imply different integration strategies
-In this repo's runtime abstraction, the Copilot/OpenCode profile uses markdown agent definitions under `.opencode/agent/` with YAML frontmatter such as `name`, `description`, `mode`, `permission`, and `mcpServers`. Codex uses `.codex/agents/*.toml` with explicit fields such as `name`, `sandbox_mode`, `model`, `model_reasoning_effort`, plus a large `developer_instructions` string.
+In this repo's runtime abstraction, the Copilot/OpenCode profile uses markdown agent definitions under `.opencode/agents/` with YAML frontmatter such as `name`, `description`, `mode`, `permission`, and `mcpServers`. Codex uses `.codex/agents/*.toml` with explicit fields such as `name`, `sandbox_mode`, `model`, `model_reasoning_effort`, plus a large `developer_instructions` string.
 
 Separately, official Copilot custom-agent docs describe repository-level Copilot custom agents as markdown files with YAML frontmatter in `.github/agents/*.agent.md`.
 
@@ -120,8 +120,8 @@ The key integration implication is:
 
 In short: **Codex can rely more heavily on per-agent TOML prompts; Copilot should rely more heavily on automatically loaded repository instruction files, with markdown agent profiles as a secondary specialization surface.**
 
-[SOURCE: .opencode/agent/context.md:1-23]
-[SOURCE: .opencode/agent/deep-research.md:1-20]
+[SOURCE: .opencode/agents/context.md:1-23]
+[SOURCE: .opencode/agents/deep-research.md:1-20]
 [SOURCE: .codex/agents/context.toml:1-24]
 [SOURCE: .codex/agents/deep-research.toml:1-24]
 [SOURCE: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents]
@@ -138,8 +138,8 @@ In short: **Codex can rely more heavily on per-agent TOML prompts; Copilot shoul
 ## Sources Consulted
 - `AGENTS.md`
 - `.claude/CLAUDE.md`
-- `.opencode/agent/context.md`
-- `.opencode/agent/deep-research.md`
+- `.opencode/agents/context.md`
+- `.opencode/agents/deep-research.md`
 - `.codex/agents/context.toml`
 - `.codex/agents/deep-research.toml`
 - repository scan of `.github/`

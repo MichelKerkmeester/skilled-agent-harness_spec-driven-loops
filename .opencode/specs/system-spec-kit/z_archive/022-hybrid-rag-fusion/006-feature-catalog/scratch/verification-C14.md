@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce98-5793-7862-9ed0-0dd0bcf3d8fc
 --------
 user
-You are a feature catalog verification agent. Read these feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/01-verify-fix-verify-memory-quality-loop.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/09-encoding-intent-capture-at-index-time.md (files 01 through 09). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
+You are a feature catalog verification agent. Read these feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/01-verify-fix-verify-memory-quality-loop.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/09-encoding-intent-capture-at-index-time.md (files 01 through 09). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
 
 OUTPUT FORMAT (repeat for each feature file):
 ---
@@ -37,18 +37,18 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m reading the nine feature snippets first, then I’ll trace each `## Source Files` entry into the `mcp_server` code and compare the documented “Current Reality” against what the implementation actually does.
 exec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/01-verify-fix-verify-memory-quality-loop.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/03-memory-search-reranking-with-load-aware-prioritization.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/02-flexible-memory-score-thresholds-by-context.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/05-quality-filters-in-memory-statistics-and-health-reports.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/06-adaptive-token-budgeting-for-memory-context-loading.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/07-unified-memory-context-loading-with-global-hybrid-search.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/08-content-gap-signals-for-search-and-load-decision-making.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-query-traceability-for-search-result-explanations.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/09-encoding-intent-capture-at-index-time.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/02-flexible-memory-score-thresholds-by-context.md: No such file or directory
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/01-verify-fix-verify-memory-quality-loop.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/03-memory-search-reranking-with-load-aware-prioritization.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/02-flexible-memory-score-thresholds-by-context.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/05-quality-filters-in-memory-statistics-and-health-reports.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/06-adaptive-token-budgeting-for-memory-context-loading.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/07-unified-memory-context-loading-with-global-hybrid-search.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/08-content-gap-signals-for-search-and-load-decision-making.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-query-traceability-for-search-result-explanations.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/09-encoding-intent-capture-at-index-time.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/02-flexible-memory-score-thresholds-by-context.md: No such file or directory
  exited 1 in 52ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/03-memory-search-reranking-with-load-aware-prioritization.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/03-memory-search-reranking-with-load-aware-prioritization.md: No such file or directory
  succeeded in 52ms:
 # Verify-fix-verify memory quality loop
 
@@ -71,15 +71,15 @@ Rejection rates are logged per spec folder so you can spot folders that consiste
 
 ### Tests
  exited 1 in 50ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/05-quality-filters-in-memory-statistics-and-health-reports.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/05-quality-filters-in-memory-statistics-and-health-reports.md: No such file or directory
  exited 1 in 50ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/06-adaptive-token-budgeting-for-memory-context-loading.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/06-adaptive-token-budgeting-for-memory-context-loading.md: No such file or directory
  exited 1 in 51ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/07-unified-memory-context-loading-with-global-hybrid-search.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/07-unified-memory-context-loading-with-global-hybrid-search.md: No such file or directory
  exited 1 in 51ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/08-content-gap-signals-for-search-and-load-decision-making.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/08-content-gap-signals-for-search-and-load-decision-making.md: No such file or directory
  exited 1 in 51ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-query-traceability-for-search-result-explanations.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-query-traceability-for-search-result-explanations.md: No such file or directory
  succeeded in 50ms:
 # Encoding-intent capture at index time
 
@@ -104,54 +104,54 @@ The classification is stored as read-only metadata on the `encoding_intent` colu
 codex
 Some filenames in the requested range don’t exist under the exact names you gave, so I’m enumerating the folder to map the real `01` through `09` files and continue verification against those.
 exec
-/bin/zsh -lc "find '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server' -maxdepth 4 -type f | sed 's#"'^#/##'"' | head -n 400" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/16-dry-run-preflight-for-memory-save.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/12-generation-time-duplicate-and-empty-content-prevention.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/02-signal-vocabulary-expansion.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/01-verify-fix-verify-memory-quality-loop.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/10-auto-entity-extraction.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/14-quality-gate-timer-persistence.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/05-pre-storage-quality-gate.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/15-deferred-lexical-only-indexing.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/08-anchor-aware-chunk-thinning.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/07-smarter-memory-content-generation.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/06-reconsolidation-on-save.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/09-encoding-intent-capture-at-index-time.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/03-pre-flight-token-budget-validation.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/13-entity-normalization-consolidation.md
+/bin/zsh -lc "find '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server' -maxdepth 4 -type f | sed 's#"'^#/##'"' | head -n 400" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/16-dry-run-preflight-for-memory-save.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/12-generation-time-duplicate-and-empty-content-prevention.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/02-signal-vocabulary-expansion.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/01-verify-fix-verify-memory-quality-loop.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/10-auto-entity-extraction.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/14-quality-gate-timer-persistence.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/05-pre-storage-quality-gate.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/15-deferred-lexical-only-indexing.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/08-anchor-aware-chunk-thinning.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/07-smarter-memory-content-generation.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/06-reconsolidation-on-save.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/09-encoding-intent-capture-at-index-time.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/03-pre-flight-token-budget-validation.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/13-entity-normalization-consolidation.md
  succeeded in 52ms:
 sed: 1: "s#^#/##
 ": bad flag in substitute command: '#'
 codex
 The catalog’s actual `01` through `09` filenames differ from the labels in your prompt, so I’m verifying the real numbered files in that folder rather than the non-existent aliases. Next I’m reading those nine snippets and the referenced implementation/tests together to check accuracy and coverage.
 exec
-/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "for f in '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/'{01,02,03,04,05,06,07,08,09}-*.md; do printf 'FILE: %s\\n' \""'$f"; sed -n '"'1,220p' \""'$f"; printf '"'\\n===END===\\n'; done" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "for f in '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/'{01,02,03,04,05,06,07,08,09}-*.md; do printf 'FILE: %s\\n' \""'$f"; sed -n '"'1,220p' \""'$f"; printf '"'\\n===END===\\n'; done" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
 Total output lines: 505
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/eslint.config.mjs
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/db-helpers.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/index.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/eslint.config.mjs
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/db-helpers.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/index.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts
  succeeded in 52ms:
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/01-verify-fix-verify-memory-quality-loop.md
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/01-verify-fix-verify-memory-quality-loop.md
 # Verify-fix-verify memory quality loop
 
 ## Current Reality
@@ -175,26 +175,26 @@ codex
 I’ve got the nine real snippet files. Now I’m drilling into the referenced modules and a few neighboring save/search handlers so I can separate “description mismatch” from “paths missing” from “important file omitted.”
 exec
 /bin/zsh -lc "for f in \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts'; do \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts'; do \\
   if [ -f \""'$f" ]; then printf '"'FILE: %s\\n' \""'$f"; sed -n '"'1,260p' \""'$f"; printf '"'\\n===END===\\n'; else printf 'MISSING: %s\\n===END===\\n' \""'$f"; fi; '"\\
 done" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 Total output lines: 3549
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts
 // ---------------------------------------------------------------
 // MODULE: Quality Loop (T008)
 // ---------------------------------------------------------------
@@ -214,39 +214,39 @@ interface QualityScore {
   issues: string[];
 exec
 /bin/zsh -lc "for p in \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/shared' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts' \\
-'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/scripts'; do if [ -e \""'$p" ]; then echo EXISTS:$p; else echo MISSING:$p; fi; done' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit' | rg '("'^|/)(shared|scripts)/|slug-utils|generate-description|create'"\\.sh"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-EXISTS:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared
-MISSING:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/shared
-EXISTS:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts
-EXISTS:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/scripts
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/shared' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts' \\
+'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/scripts'; do if [ -e \""'$p" ]; then echo EXISTS:$p; else echo MISSING:$p; fi; done' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit' | rg '("'^|/)(shared|scripts)/|slug-utils|generate-description|create'"\\.sh"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+EXISTS:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared
+MISSING:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/shared
+EXISTS:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts
+EXISTS:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/scripts
  succeeded in 52ms:
 Total output lines: 524
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/scripts/reindex-embeddings.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/scripts/README.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/embeddings/profile.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/embeddings/README.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/embeddings/factory.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/embeddings/providers/hf-local.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/embeddings/providers/openai.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/chunking.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/config.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/paths.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/index.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/tsconfig.json
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/lib/structure-aware-chunker.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/scoring/README.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/scripts/reindex-embeddings.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/scripts/README.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/embeddings/profile.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/embeddings/README.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/chunking.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/config.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/paths.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/index.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/tsconfig.json
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/lib/structure-aware-chunker.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/scoring/README.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts
 exec
-/bin/zsh -lc "sed -n '220,420p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"runQualityLoop|SPECKIT_QUALITY_LOOP|rejection|reject|logQuality|quality loop|spec folder\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/eval-db.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '220,420p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"runQualityLoop|SPECKIT_QUALITY_LOOP|rejection|reject|logQuality|quality loop|spec folder\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/eval-db.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
   if (content.length > 200) {
     score += 0.25; // substantial content
   } else {
@@ -268,28 +268,28 @@ exec
  *
  * The total is rounded to three decimal places before being returned.
  succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:25:  rejected: boolean;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:26:  rejectionReason?: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:44:  return process.env.SPECKIT_QUALITY_LOOP?.toLowerCase() === 'true';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:396: * Run the verify-fix-verify quality loop on memory content.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:398: * Gated behind SPECKIT_QUALITY_LOOP env var.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:400: * rejects after maxRetries failures.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:405: * @returns QualityLoopResult with pass/fail, scores, fixes, rejection info
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:407:function runQualityLoop(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:424:      rejected: false,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:435:    logQualityMetrics(score, 1, true, false);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:441:      rejected: false,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:456:      logQualityMetrics(score, attempt + 1, true, false);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:462:        rejected: false,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:475:  const rejectionReason = `Quality score ${score.total.toFixed(3)} below threshold ${threshold} after ${maxRetries} auto-fix attempts. Issues: ${score.issues.join('; ')}`;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:477:  logQualityMetrics(score, maxRetries + 1, false, true);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:484:    rejected: true,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:485:    rejectionReason,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:486:    // AI-WHY: Return mutated content even on rejection so callers that soft-reject can persist
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:495:function logQualityMetrics(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:499:  rejected: boolean,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:25:  rejected: boolean;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:26:  rejectionReason?: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:44:  return process.env.SPECKIT_QUALITY_LOOP?.toLowerCase() === 'true';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:396: * Run the verify-fix-verify quality loop on memory content.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:398: * Gated behind SPECKIT_QUALITY_LOOP env var.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:400: * rejects after maxRetries failures.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:405: * @returns QualityLoopResult with pass/fail, scores, fixes, rejection info
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:407:function runQualityLoop(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:424:      rejected: false,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:435:    logQualityMetrics(score, 1, true, false);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:441:      rejected: false,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:456:      logQualityMetrics(score, attempt + 1, true, false);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:462:        rejected: false,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:475:  const rejectionReason = `Quality score ${score.total.toFixed(3)} below threshold ${threshold} after ${maxRetries} auto-fix attempts. Issues: ${score.issues.join('; ')}`;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:477:  logQualityMetrics(score, maxRetries + 1, false, true);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:484:    rejected: true,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:485:    rejectionReason,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:486:    // AI-WHY: Return mutated content even on rejection so callers that soft-reject can persist
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:495:function logQualityMetrics(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:499:  rejected: boolean,
 exec
-/bin/zsh -lc "sed -n '420,560p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '420,560p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
       passed: true,
       score,
       attempts: 1,
@@ -311,8 +311,8 @@ exec
       score,
       attempts: 1,
 exec
-/bin/zsh -lc "sed -n '260,420p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"SignalCategory|correction|preference|neutral|prefer|actually|I was wrong|detect|signal|signal categories|vocab|vocabulary|true-mem|category\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/signal-vocab.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '260,420p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"SignalCategory|correction|preference|neutral|prefer|actually|I was wrong|detect|signal|signal categories|vocab|vocabulary|true-mem|category\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/signal-vocab.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 export function clearCache(): void {
   triggerCache = null;
   cacheTimestamp = 0;
@@ -334,28 +334,28 @@ export function getCacheStats(): CacheStats {
 
 /** Normalize string for Unicode-safe comparison */
  succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:5:// detection, regex caching, and matching performance.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:9:/** Signal category detected in user prompt */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:10:export type SignalCategory = 'correction' | 'preference' | 'neutral';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:12:/** Result of signal detection for a prompt */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:14:  category: SignalCategory;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:54:  signals?: SignalDetection[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:317:/** Keywords for CORRECTION signals — user is correcting a prior statement */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:319:  'actually',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:322:  'correction',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:328:/** Keywords for PREFERENCE signals — user is expressing a preference or intent */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:330:  'prefer',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:339:// AI-WHY: Correction signals (0.2) weighted higher than preferences (0.1) — corrections indicate stronger search intent
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:340:/** Boost values per signal category */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:341:const SIGNAL_BOOSTS: Record<Exclude<SignalCategory, 'neutral'>, number> = {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:342:  correction: 0.2,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:343:  preference: 0.1,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:347: * Detect importance signals in a user prompt.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:348: * Returns an array of detected SignalDetection entries.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:351:export function detectSignals(prompt: string): SignalDetection[] {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:357:  const detected: SignalDetection[] = [];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:5:// detection, regex caching, and matching performance.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:9:/** Signal category detected in user prompt */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:10:export type SignalCategory = 'correction' | 'preference' | 'neutral';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:12:/** Result of signal detection for a prompt */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:14:  category: SignalCategory;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:54:  signals?: SignalDetection[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:317:/** Keywords for CORRECTION signals — user is correcting a prior statement */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:319:  'actually',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:322:  'correction',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:328:/** Keywords for PREFERENCE signals — user is expressing a preference or intent */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:330:  'prefer',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:339:// AI-WHY: Correction signals (0.2) weighted higher than preferences (0.1) — corrections indicate stronger search intent
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:340:/** Boost values per signal category */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:341:const SIGNAL_BOOSTS: Record<Exclude<SignalCategory, 'neutral'>, number> = {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:342:  correction: 0.2,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:343:  preference: 0.1,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:347: * Detect importance signals in a user prompt.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:348: * Returns an array of detected SignalDetection entries.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:351:export function detectSignals(prompt: string): SignalDetection[] {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:357:  const detected: SignalDetection[] = [];
 exec
-/bin/zsh -lc "sed -n '460,525p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '460,525p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
   const results = Array.from(matchesByMemory.values())
     .sort((a, b) => {
       const phraseDiff = b.matchedPhrases.length - a.matchedPhrases.length;
@@ -377,9 +377,9 @@ exec
 
   return results;
 exec
-/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"token|budget|header|headers|SPECKIT_CONTEXT_HEADERS|includeContent|400|summary|truncate|overflow|query ID|candidate count|greedy|round-robin|result|content\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,520p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"token|budget|header|headers|SPECKIT_CONTEXT_HEADERS|includeContent|400|summary|truncate|overflow|query ID|candidate count|greedy|round-robin|result|content\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,520p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Preflight
 // ---------------------------------------------------------------
@@ -403,24 +403,24 @@ export interface PreflightErrorCodes {
  succeeded in 52ms:
 Total output lines: 477
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:23:import { estimateTokens } from '../formatters/token-metrics';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:54:  tokenBudget?: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:62:  includeContent?: boolean;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:82:  tokenBudget?: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:93:  includeContent?: boolean;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:95:  tokenUsage?: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:99:/** T205: Token budget enforcement metadata */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:101:  budgetTokens: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:104:  truncated: boolean;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:114:    const directRows = Array.isArray(outerData?.results)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:115:      ? outerData.results as Array<Record<string, unknown>>
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:121:    const nestedContent = Array.isArray(outerData?.content)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:122:      ? outerData.content as Array<{ type?: string; text?: string }>
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:131:    return Array.isArray(nestedData?.results)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:132:      ? nestedData.results as Array<Record<string, unknown>>
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:142:   Enforces per-layer/per-mode token budgets by estimating the
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:143:   token count of strategy results and truncating when exceeded.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:144:   Uses character-based estimation: 1 token ≈ 4 chars.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:23:import { estimateTokens } from '../formatters/token-metrics';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:54:  tokenBudget?: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:62:  includeContent?: boolean;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:82:  tokenBudget?: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:93:  includeContent?: boolean;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:95:  tokenUsage?: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:99:/** T205: Token budget enforcement metadata */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:101:  budgetTokens: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:104:  truncated: boolean;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:114:    const directRows = Array.isArray(outerData?.results)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:115:      ? outerData.results as Array<Record<string, unknown>>
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:121:    const nestedContent = Array.isArray(outerData?.content)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:122:      ? outerData.content as Array<{ type?: string; text?: string }>
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:131:    return Array.isArray(nestedData?.results)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:132:      ? nestedData.results as Array<Record<string, unknown>>
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:142:   Enforces per-layer/per-mode token budgets by estimating the
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:143:   token count of strategy results and truncating when exceeded.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:144:   Uses character-based estimation: 1 token ≈ 4 chars.
  succeeded in 51ms:
     return result;
   }
@@ -443,7 +443,7 @@ Total output lines: 477
   for (const tag of openingTags) {
     const { id: anchorId, position } = tag;
 exec
-/bin/zsh -lc "sed -n '520,760p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '520,760p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 
   return result;
 }
@@ -465,33 +465,33 @@ export function validateContentSize(content: string, options: {
   } = options;
 
 exec
-/bin/zsh -lc "rg -n \"SPECKIT_CONTEXT_HEADERS|header overhead|12 tokens|floor 200|400 characters|first 400|summary|includeContent|context headers|token budget\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg -n \"SPECKIT_CONTEXT_HEADERS|header overhead|12 tokens|floor 200|400 characters|first 400|summary|includeContent|context headers|token budget\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 Total output lines: 799
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts:338:    // T205: Enforce per-layer token budgets with actual truncation
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts:376:                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts:384:                envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts:391:        // Non-JSON response, skip token budget injection
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts:450:    // Aggregate per-file results into a summary
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:154:    summary: `Queued ingest job ${job.id} (${job.filesTotal} file(s))`,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:191:    summary: `Ingest job ${job.id}: ${job.state} (${job.filesProcessed}/${job.filesTotal})`,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:221:      summary: `Ingest job ${job.id} is already terminal (${job.state})`,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:230:    summary: `Cancelled ingest job ${cancelled.id}`,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:96:      summary: `No memories found with tier="${tier}"${specFolder ? ` in folder "${specFolder}"` : ''}${olderThanDays ? ` older than ${olderThanDays} days` : ''}`,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:224:  const summary = `Deleted ${deletedCount} "${tier}" memory(s)${specFolder ? ` from "${specFolder}"` : ''}${olderThanDays ? ` older than ${olderThanDays} days` : ''}`;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:254:    summary,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:143:/** Get tiered content for a memory based on its tier state (HOT=full, WARM=summary, COLD=excluded) */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:155:    // AI-WHY: WARM tier returns truncated summary
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:253:      summary: 'No matching trigger phrases found',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:408:  const summary = useCognitive
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:426:    summary,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:193:      summary: `Memory ${id} update aborted: database unavailable`,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts:338:    // T205: Enforce per-layer token budgets with actual truncation
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts:376:                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts:384:                envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts:391:        // Non-JSON response, skip token budget injection
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts:450:    // Aggregate per-file results into a summary
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:154:    summary: `Queued ingest job ${job.id} (${job.filesTotal} file(s))`,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:191:    summary: `Ingest job ${job.id}: ${job.state} (${job.filesProcessed}/${job.filesTotal})`,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:221:      summary: `Ingest job ${job.id} is already terminal (${job.state})`,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:230:    summary: `Cancelled ingest job ${cancelled.id}`,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:96:      summary: `No memories found with tier="${tier}"${specFolder ? ` in folder "${specFolder}"` : ''}${olderThanDays ? ` older than ${olderThanDays} days` : ''}`,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:224:  const summary = `Deleted ${deletedCount} "${tier}" memory(s)${specFolder ? ` from "${specFolder}"` : ''}${olderThanDays ? ` older than ${olderThanDays} days` : ''}`;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:254:    summary,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:143:/** Get tiered content for a memory based on its tier state (HOT=full, WARM=summary, COLD=excluded) */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:155:    // AI-WHY: WARM tier returns truncated summary
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:253:      summary: 'No matching trigger phrases found',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:408:  const summary = useCognitive
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:426:    summary,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:193:      summary: `Memory ${id} update aborted: database unavailable`,
 codex
 I’ve confirmed one of the catalog entries is describing retrieval-time truncation while pointing at save-time preflight code, so I’m checking the actual retrieval budget modules too. That lets me tell you whether the issue is “wrong description,” “wrong paths,” or both.
 exec
-/bin/zsh -lc "sed -n '130,240p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '330,410p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"Context retrieved via|truncated:|token budget enforced|budget\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests' | rg 'token-budget|memory-context|context-server|hybrid-search-context-headers'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '130,240p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '330,410p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"Context retrieved via|truncated:|token budget enforced|budget\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests' | rg 'token-budget|memory-context|context-server|hybrid-search-context-headers'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
     const nestedData = nestedEnvelope?.data as Record<string, unknown> | undefined;
     return Array.isArray(nestedData?.results)
       ? nestedData.results as Array<Record<string, unknown>>
@@ -534,52 +534,52 @@ exec
           const data = (dataValue && typeof dataValue === 'object' && !Array.isArray(dataValue))
             ? dataValue as Record<string, unknown>
  succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/README.md:280:├── token-budget-enforcement.vitest.ts     # Token budget enforcement
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/README.md:307:├── token-budget.vitest.ts                # Token budget enforcement
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/README.md:325:├── dynamic-token-budget.vitest.ts        # Dynamic token budget
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:19:    it('T205-A1: All layer token budgets correct', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:20:      const budgets: Record<string, number> = {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:41:      for (const [tool, expected] of Object.entries(budgets)) {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:43:        expect(actual, `${tool} budget`).toBe(expected);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:47:    it('T205-A2: Unknown tool gets default budget (1000)', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:48:      const budget = layerDefs.getTokenBudget('nonexistent_tool');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:49:      expect(budget).toBe(1000);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:52:    it('T205-A3: All 7 layers have positive token budgets', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:55:        expect((layer as { tokenBudget: number }).tokenBudget, `${id} should have positive budget`).toBeGreaterThan(0);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:64:    it('T205-B1: Small result under budget is not truncated', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:75:      expect(enforcement.actualTokens).toBeLessThanOrEqual(enforcement.budgetTokens);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:78:    it('T205-B2: Large result over budget IS truncated', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:129:      // If not truncated, it fit within budget — also acceptable
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:163:    it('T205-C4: Uses getTokenBudget for layer-specific budgets', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:176:    it('T205-D1: Mode budgets correct', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:186:    it('T205-D2: Auto mode delegates budget (undefined)', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:206:        throw new Error('Expected all non-auto mode budgets to be defined');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/README.md:280:├── token-budget-enforcement.vitest.ts     # Token budget enforcement
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/README.md:307:├── token-budget.vitest.ts                # Token budget enforcement
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/README.md:325:├── dynamic-token-budget.vitest.ts        # Dynamic token budget
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:19:    it('T205-A1: All layer token budgets correct', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:20:      const budgets: Record<string, number> = {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:41:      for (const [tool, expected] of Object.entries(budgets)) {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:43:        expect(actual, `${tool} budget`).toBe(expected);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:47:    it('T205-A2: Unknown tool gets default budget (1000)', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:48:      const budget = layerDefs.getTokenBudget('nonexistent_tool');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:49:      expect(budget).toBe(1000);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:52:    it('T205-A3: All 7 layers have positive token budgets', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:55:        expect((layer as { tokenBudget: number }).tokenBudget, `${id} should have positive budget`).toBeGreaterThan(0);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:64:    it('T205-B1: Small result under budget is not truncated', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:75:      expect(enforcement.actualTokens).toBeLessThanOrEqual(enforcement.budgetTokens);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:78:    it('T205-B2: Large result over budget IS truncated', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:129:      // If not truncated, it fit within budget — also acceptable
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:163:    it('T205-C4: Uses getTokenBudget for layer-specific budgets', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:176:    it('T205-D1: Mode budgets correct', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:186:    it('T205-D2: Auto mode delegates budget (undefined)', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:206:        throw new Error('Expected all non-auto mode budgets to be defined');
 exec
-/bin/zsh -lc "rg -n \"truncateToBudget|budgetLimit|overflow\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:961:      const budgeted = truncateToBudget(reranked, adjustedBudget, {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:994:            budgetLimit: budgetResult.budget,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1493:/** Maximum characters for a summary fallback when a single result overflows the budget. */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1501:  budgetLimit: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1510:  overflow?: OverflowLogEntry;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1580: * @param options - Optional includeContent flag and queryId for overflow logging.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1581: * @returns Object with truncated results, truncation flag, and optional overflow log entry.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1583:function truncateToBudget(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1603:  // AI-WHY: Single-result overflow with includeContent: return summary fallback
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1606:    const overflow: OverflowLogEntry = {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1610:      budgetLimit: effectiveBudget,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1615:      `[hybrid-search] Token budget overflow (single-result summary fallback): ` +
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1618:    return { results: [summary], truncated: true, overflow };
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1635:  const overflow: OverflowLogEntry = {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1639:    budgetLimit: effectiveBudget,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1645:    `[hybrid-search] Token budget overflow: ${totalTokens} tokens > ${effectiveBudget} budget, ` +
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1649:  return { results: accepted, truncated: true, overflow };
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1680:  truncateToBudget,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:392:    // AI-WHY: Wrap snapshot SELECTs + INSERT + overflow DELETE in a transaction for atomicity
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:184:    // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
+/bin/zsh -lc "rg -n \"truncateToBudget|budgetLimit|overflow\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:961:      const budgeted = truncateToBudget(reranked, adjustedBudget, {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:994:            budgetLimit: budgetResult.budget,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1493:/** Maximum characters for a summary fallback when a single result overflows the budget. */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1501:  budgetLimit: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1510:  overflow?: OverflowLogEntry;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1580: * @param options - Optional includeContent flag and queryId for overflow logging.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1581: * @returns Object with truncated results, truncation flag, and optional overflow log entry.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1583:function truncateToBudget(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1603:  // AI-WHY: Single-result overflow with includeContent: return summary fallback
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1606:    const overflow: OverflowLogEntry = {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1610:      budgetLimit: effectiveBudget,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1615:      `[hybrid-search] Token budget overflow (single-result summary fallback): ` +
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1618:    return { results: [summary], truncated: true, overflow };
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1635:  const overflow: OverflowLogEntry = {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1639:    budgetLimit: effectiveBudget,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1645:    `[hybrid-search] Token budget overflow: ${totalTokens} tokens > ${effectiveBudget} budget, ` +
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1649:  return { results: accepted, truncated: true, overflow };
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1680:  truncateToBudget,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:392:    // AI-WHY: Wrap snapshot SELECTs + INSERT + overflow DELETE in a transaction for atomicity
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:184:    // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
 exec
-/bin/zsh -lc "sed -n '930,1015p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1490,1665p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"SPECKIT_CONTEXT_HEADERS|header overhead|12 tokens|Math.max\\(200|first 400|SUMMARY_CHAR_LIMIT|truncateToBudget|OverflowLogEntry|queryId\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '930,1015p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1490,1665p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"SPECKIT_CONTEXT_HEADERS|header overhead|12 tokens|Math.max\\(200|first 400|SUMMARY_CHAR_LIMIT|truncateToBudget|OverflowLogEntry|queryId\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 /** Default token budget — configurable via SPECKIT_TOKEN_BUDGET env var. */
 const DEFAULT_TOKEN_BUDGET = 2000;
 
@@ -622,30 +622,30 @@ interface TruncateToBudgetResult {
           // AI-GUARD: Folder scoring is optional and must not break retrieval
         }
  succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:958:      // CHK-060: Reserve token overhead for contextual tree headers (~12 tokens per result)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:961:      const budgeted = truncateToBudget(reranked, adjustedBudget, {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:963:        queryId: `hybrid-${Date.now()}`,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1497:interface OverflowLogEntry {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1498:  queryId: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1510:  overflow?: OverflowLogEntry;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1580: * @param options - Optional includeContent flag and queryId for overflow logging.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1583:function truncateToBudget(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1586:  options?: { includeContent?: boolean; queryId?: string }
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1590:  const queryId = options?.queryId ?? `q-${Date.now()}`;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1606:    const overflow: OverflowLogEntry = {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1607:      queryId,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1635:  const overflow: OverflowLogEntry = {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1636:    queryId,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1680:  truncateToBudget,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1699:  OverflowLogEntry,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:11:  truncateToBudget,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:19:  OverflowLogEntry,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:115:describe('truncateToBudget', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:130:    const { results: output, truncated, overflow } = truncateToBudget(results, 10000);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:958:      // CHK-060: Reserve token overhead for contextual tree headers (~12 tokens per result)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:961:      const budgeted = truncateToBudget(reranked, adjustedBudget, {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:963:        queryId: `hybrid-${Date.now()}`,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1497:interface OverflowLogEntry {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1498:  queryId: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1510:  overflow?: OverflowLogEntry;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1580: * @param options - Optional includeContent flag and queryId for overflow logging.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1583:function truncateToBudget(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1586:  options?: { includeContent?: boolean; queryId?: string }
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1590:  const queryId = options?.queryId ?? `q-${Date.now()}`;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1606:    const overflow: OverflowLogEntry = {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1607:      queryId,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1635:  const overflow: OverflowLogEntry = {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1636:    queryId,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1680:  truncateToBudget,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1699:  OverflowLogEntry,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:11:  truncateToBudget,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:19:  OverflowLogEntry,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:115:describe('truncateToBudget', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:130:    const { results: output, truncated, overflow } = truncateToBudget(results, 10000);
 exec
-/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"description\\.json|descriptions\\.json|generateFolderDescriptions|stale|spec\\.md|discoverSpecFolder|SPECKIT_FOLDER_DISCOVERY|ensureUniqueMemoryFilename|memorySequence|memoryNameHistory|parentChain|folderSlug|specId|skip full-corpus search|description alone|prefer fresh per-folder\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec/create.sh' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,560p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"description\\.json|descriptions\\.json|generateFolderDescriptions|stale|spec\\.md|discoverSpecFolder|SPECKIT_FOLDER_DISCOVERY|ensureUniqueMemoryFilename|memorySequence|memoryNameHistory|parentChain|folderSlug|specId|skip full-corpus search|description alone|prefer fresh per-folder\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec/create.sh' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,560p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Folder Discovery
 // ---------------------------------------------------------------
@@ -669,24 +669,24 @@ export interface FolderDescription {
  succeeded in 51ms:
 Total output lines: 350
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:4:// Tests: ensureUniqueMemoryFilename collision detection and resolution
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:16:function ensureUniqueMemoryFilename(contextDir: string, filename: string): string {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:51:describe('ensureUniqueMemoryFilename', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:53:    const result = ensureUniqueMemoryFilename(tmpDir, '08-03-26_10-24__my-slug.md');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:59:    const result = ensureUniqueMemoryFilename(nonExistent, 'test.md');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:65:    const result = ensureUniqueMemoryFilename(tmpDir, '08-03-26_10-24__my-slug.md');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:73:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:80:      const name = ensureUniqueMemoryFilename(tmpDir, 'collision.md');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:89:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:4:// Tests: ensureDescriptionCache, isCacheStale, discoverSpecFolder,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:15:  discoverSpecFolder,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:16:  generateFolderDescriptions,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:33:    SPECKIT_FOLDER_DISCOVERY: process.env.SPECKIT_FOLDER_DISCOVERY,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:57:  fs.writeFileSync(path.join(specDir, 'spec.md'), specContent, 'utf-8');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:73:    delete process.env.SPECKIT_FOLDER_DISCOVERY;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:78:    process.env.SPECKIT_FOLDER_DISCOVERY = 'true';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:149:    fs.writeFileSync(path.join(canonicalSpecDir, 'spec.md'), '# Authentication System', 'utf-8');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:162:    const linkFirst = generateFolderDescriptions([specsLinkPath, openCodeSpecsDir]);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:4:// Tests: ensureUniqueMemoryFilename collision detection and resolution
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:16:function ensureUniqueMemoryFilename(contextDir: string, filename: string): string {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:51:describe('ensureUniqueMemoryFilename', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:53:    const result = ensureUniqueMemoryFilename(tmpDir, '08-03-26_10-24__my-slug.md');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:59:    const result = ensureUniqueMemoryFilename(nonExistent, 'test.md');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:65:    const result = ensureUniqueMemoryFilename(tmpDir, '08-03-26_10-24__my-slug.md');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:73:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:80:      const name = ensureUniqueMemoryFilename(tmpDir, 'collision.md');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/slug-uniqueness.vitest.ts:89:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:4:// Tests: ensureDescriptionCache, isCacheStale, discoverSpecFolder,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:15:  discoverSpecFolder,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:16:  generateFolderDescriptions,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:33:    SPECKIT_FOLDER_DISCOVERY: process.env.SPECKIT_FOLDER_DISCOVERY,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:57:  fs.writeFileSync(path.join(specDir, 'spec.md'), specContent, 'utf-8');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:73:    delete process.env.SPECKIT_FOLDER_DISCOVERY;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:78:    process.env.SPECKIT_FOLDER_DISCOVERY = 'true';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:149:    fs.writeFileSync(path.join(canonicalSpecDir, 'spec.md'), '# Authentication System', 'utf-8');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:162:    const linkFirst = generateFolderDescriptions([specsLinkPath, openCodeSpecsDir]);
  succeeded in 51ms:
 export function extractDescription(specContent: string): string {
   if (!specContent || typeof specContent !== 'string') {
@@ -709,7 +709,7 @@ export function extractDescription(specContent: string): string {
       }
     }
 exec
-/bin/zsh -lc "sed -n '560,860p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '560,860p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
   try {
     content = fs.readFileSync(specMdPath, 'utf-8');
   } catch (_error: unknown) {
@@ -731,11 +731,11 @@ exec
   // Build parent chain from path segments between basePath and folderPath
   const relativePath = path.relative(basePath, folderPath).replace(/\\/g, '/');
 exec
-/bin/zsh -lc "sed -n '130,185p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,180p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '830,875p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1035,1050p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec/create.sh'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '540,570p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "sed -n '130,185p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,180p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '830,875p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1035,1050p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec/create.sh'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '540,570p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
     preExtractedTriggers,
     keyTopics,
     enhancedFiles,
@@ -837,14 +837,14 @@ fi
 # 7. SHARDED SPEC SECTIONS (Level 3 with --sharded flag)
 # ───────────────────────────────────────────────────────────────
 exec
-/bin/zsh -lc "rg -n \"isFolderDiscoveryEnabled|SPECKIT_FOLDER_DISCOVERY|default ON|default true\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"isFolderDiscoveryEnabled|SPECKIT_FOLDER_DISCOVERY|default ON|default true\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 53: * Default: TRUE (graduated). Set SPECKIT_FOLDER_DISCOVERY=false to disable.
 55:export function isFolderDiscoveryEnabled(): boolean {
 56:  return isFeatureEnabled('SPECKIT_FOLDER_DISCOVERY');
 exec
-/bin/zsh -lc "sed -n '280,560p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,280p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"signal density|0\\.4|warn-only|14 days|activation|would-reject|SPECKIT_SAVE_QUALITY_GATE|semantic dedup|0\\.92|title quality|trigger quality|length quality|anchor quality|metadata quality|Layer 1|Layer 2|Layer 3|structural|cosine similarity|near-duplicate\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '280,560p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,280p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"signal density|0\\.4|warn-only|14 days|activation|would-reject|SPECKIT_SAVE_QUALITY_GATE|semantic dedup|0\\.92|title quality|trigger quality|length quality|anchor quality|metadata quality|Layer 1|Layer 2|Layer 3|structural|cosine similarity|near-duplicate\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 function ensureActivationTimestampInitialized(): void {
   if (qualityGateActivatedAt !== null) return;
 
@@ -887,28 +887,28 @@ function ensureActivationTimestampInitialized(): void {
 // P1-015: Activation timestamp is persisted to SQLite config
 // table so the 14-day graduation countdown survives server
  succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:462:        graphSignalsCacheCleared: false, coactivationCacheCleared: false,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:103:    const originalEnv = process.env.SPECKIT_SAVE_QUALITY_GATE;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:107:        process.env.SPECKIT_SAVE_QUALITY_GATE = originalEnv;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:109:        delete process.env.SPECKIT_SAVE_QUALITY_GATE;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:114:      delete process.env.SPECKIT_SAVE_QUALITY_GATE;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:119:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'true';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:124:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'TRUE';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:129:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:134:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:150:    const originalEnv = process.env.SPECKIT_SAVE_QUALITY_GATE;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:154:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'true';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:160:        process.env.SPECKIT_SAVE_QUALITY_GATE = originalEnv;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:162:        delete process.env.SPECKIT_SAVE_QUALITY_GATE;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:166:    it('WO1: No warn-only when timestamp is not set', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:170:    it('WO2: Warn-only mode active within 14 days of activation', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:175:    it('WO3: Warn-only mode inactive after 14 days', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:181:    it('WO4: Would-reject logged but save allowed in warn-only mode', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:186:        title: null, // Will fail structural
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:195:        expect.stringContaining('[QUALITY-GATE] warn-only')
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:201:    it('WO5: WARN_ONLY_PERIOD_MS is 14 days', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:462:        graphSignalsCacheCleared: false, coactivationCacheCleared: false,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:103:    const originalEnv = process.env.SPECKIT_SAVE_QUALITY_GATE;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:107:        process.env.SPECKIT_SAVE_QUALITY_GATE = originalEnv;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:109:        delete process.env.SPECKIT_SAVE_QUALITY_GATE;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:114:      delete process.env.SPECKIT_SAVE_QUALITY_GATE;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:119:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'true';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:124:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'TRUE';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:129:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:134:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:150:    const originalEnv = process.env.SPECKIT_SAVE_QUALITY_GATE;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:154:      process.env.SPECKIT_SAVE_QUALITY_GATE = 'true';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:160:        process.env.SPECKIT_SAVE_QUALITY_GATE = originalEnv;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:162:        delete process.env.SPECKIT_SAVE_QUALITY_GATE;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:166:    it('WO1: No warn-only when timestamp is not set', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:170:    it('WO2: Warn-only mode active within 14 days of activation', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:175:    it('WO3: Warn-only mode inactive after 14 days', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:181:    it('WO4: Would-reject logged but save allowed in warn-only mode', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:186:        title: null, // Will fail structural
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:195:        expect.stringContaining('[QUALITY-GATE] warn-only')
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts:201:    it('WO5: WARN_ONLY_PERIOD_MS is 14 days', () => {
 exec
-/bin/zsh -lc "sed -n '560,760p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '560,760p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
   specFolder: string,
   findSimilar: FindSimilarFn
 ): SemanticDedupResult {
@@ -930,10 +930,10 @@ exec
     }
 
 exec
-/bin/zsh -lc "sed -n '260,520p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"top-3|limit: 3|0\\.88|0\\.75|Math\\.min\\(1\\.0|importance_weight|frequency_counter|supersedes|checkpoint|warning and skips|SPECKIT_RECONSOLIDATION|merge|conflict resolution|deprecated|same spec folder\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '260,520p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"top-3|limit: 3|0\\.88|0\\.75|Math\\.min\\(1\\.0|importance_weight|frequency_counter|supersedes|checkpoint|warning and skips|SPECKIT_RECONSOLIDATION|merge|conflict resolution|deprecated|same spec folder\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Reconsolidation
 // ---------------------------------------------------------------
@@ -997,34 +997,34 @@ export function mergeContent(existing: string, incoming: string): string {
   const existingLines = new Set(
     existing.split('\n').map(line => line.trim()).filter(line => line.length > 0)
  succeeded in 53ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:79: * Default: TRUE (graduated). Set SPECKIT_RECONSOLIDATION=false to disable.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:82:  return isFeatureEnabled('SPECKIT_RECONSOLIDATION');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:97: * @deprecated Always returns true. Legacy V1 pipeline was removed in
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:48:        const reconMsg = 'TM-06: reconsolidation skipped — create checkpoint "pre-reconsolidation" first';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:79:                importance_weight: typeof (r.importance_weight as unknown) === 'number'
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:80:                  ? (r.importance_weight as number)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:146:          // Reconsolidation handled the memory (merge or conflict) — skip normal CREATE path
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:149:          const reconId = reconResult.action === 'merge'
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:175:              status: reconResult.action === 'merge' ? 'merged' : 'superseded',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:7:// After embedding generation, check top-3 most similar memories
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:9:// - similarity >= 0.88: MERGE (duplicate - merge content,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:10://   boost importance_weight)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:11:// - similarity 0.75-0.88: CONFLICT (supersede prior memory via causal
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:12://   'supersedes' edge)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:13:// - similarity < 0.75: COMPLEMENT (store new memory unchanged)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:15:// Behind SPECKIT_RECONSOLIDATION flag (default OFF)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:16:// REQUIRES: checkpoint created before first enable
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:28:export type ReconsolidationAction = 'merge' | 'conflict' | 'complement';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:38:  importance_weight?: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:55:/** Result of a merge operation */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:79: * Default: TRUE (graduated). Set SPECKIT_RECONSOLIDATION=false to disable.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:82:  return isFeatureEnabled('SPECKIT_RECONSOLIDATION');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:97: * @deprecated Always returns true. Legacy V1 pipeline was removed in
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:48:        const reconMsg = 'TM-06: reconsolidation skipped — create checkpoint "pre-reconsolidation" first';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:79:                importance_weight: typeof (r.importance_weight as unknown) === 'number'
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:80:                  ? (r.importance_weight as number)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:146:          // Reconsolidation handled the memory (merge or conflict) — skip normal CREATE path
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:149:          const reconId = reconResult.action === 'merge'
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:175:              status: reconResult.action === 'merge' ? 'merged' : 'superseded',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:7:// After embedding generation, check top-3 most similar memories
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:9:// - similarity >= 0.88: MERGE (duplicate - merge content,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:10://   boost importance_weight)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:11:// - similarity 0.75-0.88: CONFLICT (supersede prior memory via causal
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:12://   'supersedes' edge)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:13:// - similarity < 0.75: COMPLEMENT (store new memory unchanged)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:15:// Behind SPECKIT_RECONSOLIDATION flag (default OFF)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:16:// REQUIRES: checkpoint created before first enable
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:28:export type ReconsolidationAction = 'merge' | 'conflict' | 'complement';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:38:  importance_weight?: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:55:/** Result of a merge operation */
 exec
-/bin/zsh -lc "rg -n \"frequency_counter\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
+/bin/zsh -lc "rg -n \"frequency_counter\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
 
 exec
-/bin/zsh -lc "sed -n '260,420p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"normalizeContentForEmbedding|normalizeContentForBM25|strip YAML|frontmatter|anchor markers|HTML comments|code fence|markdown tables|markdown lists|headings|no feature flag|BM25|embedding generation|memory-save|normalize markdown\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"normalizeContentForEmbedding|normalizeContentForBM25\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '260,420p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"normalizeContentForEmbedding|normalizeContentForBM25|strip YAML|frontmatter|anchor markers|HTML comments|code fence|markdown tables|markdown lists|headings|no feature flag|BM25|embedding generation|memory-save|normalize markdown\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"normalizeContentForEmbedding|normalizeContentForBM25\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
   // comments, code fences, tables, lists, headings, whitespace).
   // A separate entry point exists so BM25-specific adjustments
   // (e.g. preserving backtick inline code, adding stemming hints)
@@ -1053,49 +1053,49 @@ exec
 //       → normalizeContentForBM25(content_text)
 //
  succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:136:    console.error(`[memory-save] Quality loop applied ${qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(filePath)}`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:167:    console.error(`[memory-save] File exceeds chunking threshold (${parsed.content.length} chars), using chunked indexing`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:208:        console.error(`[memory-save] TM-04: Quality gate REJECTED save for ${path.basename(filePath)}: ${qualityGateResult.reasons.join('; ')}`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:224:        console.warn(`[memory-save] TM-04: Quality gate WARN-ONLY for ${path.basename(filePath)}: ${qualityGateResult.reasons.join('; ')}`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:228:      console.warn(`[memory-save] TM-04: Quality gate error (proceeding with save): ${message}`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:396: * `indexMemoryFile` requires async embedding generation while
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:2:// MODULE: BM25 Index
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:6:import { normalizeContentForBM25 } from '../parsing/content-normalizer';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:12:interface BM25SearchResult {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:15:   * BM25 term-frequency relevance score (unbounded, typically 0-25+).
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:22:interface BM25Stats {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:36: * C138: Field weight multipliers for weighted BM25 scoring.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:42: * not the in-memory BM25 engine in this file. Exported for shared access.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:49:const BM25_FIELD_WEIGHTS: Record<string, number> = {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:57:  return process.env.ENABLE_BM25 !== 'false';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:118:   3. BM25 INDEX CLASS
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:121:class BM25Index {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:201:  search(query: string, limit: number = 10): BM25SearchResult[] {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:205:    const results: BM25SearchResult[] = [];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:219:  getStats(): BM25Stats {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:136:    console.error(`[memory-save] Quality loop applied ${qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(filePath)}`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:167:    console.error(`[memory-save] File exceeds chunking threshold (${parsed.content.length} chars), using chunked indexing`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:208:        console.error(`[memory-save] TM-04: Quality gate REJECTED save for ${path.basename(filePath)}: ${qualityGateResult.reasons.join('; ')}`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:224:        console.warn(`[memory-save] TM-04: Quality gate WARN-ONLY for ${path.basename(filePath)}: ${qualityGateResult.reasons.join('; ')}`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:228:      console.warn(`[memory-save] TM-04: Quality gate error (proceeding with save): ${message}`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:396: * `indexMemoryFile` requires async embedding generation while
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:2:// MODULE: BM25 Index
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:6:import { normalizeContentForBM25 } from '../parsing/content-normalizer';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:12:interface BM25SearchResult {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:15:   * BM25 term-frequency relevance score (unbounded, typically 0-25+).
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:22:interface BM25Stats {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:36: * C138: Field weight multipliers for weighted BM25 scoring.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:42: * not the in-memory BM25 engine in this file. Exported for shared access.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:49:const BM25_FIELD_WEIGHTS: Record<string, number> = {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:57:  return process.env.ENABLE_BM25 !== 'false';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:118:   3. BM25 INDEX CLASS
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:121:class BM25Index {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:201:  search(query: string, limit: number = 10): BM25SearchResult[] {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:205:    const results: BM25SearchResult[] = [];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:219:  getStats(): BM25Stats {
  succeeded in 53ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:17:import { normalizeContentForEmbedding } from '../lib/parsing/content-normalizer';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:256:          chunkEmbedding = await embeddings.generateDocumentEmbedding(normalizeContentForEmbedding(chunk.content));
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:10:import { normalizeContentForEmbedding } from '../../lib/parsing/content-normalizer';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:46:        const normalizedContent = normalizeContentForEmbedding(parsed.content);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:8:  normalizeContentForEmbedding,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:9:  normalizeContentForBM25,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:359:// normalizeContentForEmbedding — full pipeline
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:362:describe('normalizeContentForEmbedding', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:364:    expect(normalizeContentForEmbedding('')).toBe('');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:369:    expect(normalizeContentForEmbedding(null)).toBe('');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:371:    expect(normalizeContentForEmbedding(undefined)).toBe('');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:376:    expect(normalizeContentForEmbedding(input)).toContain('Content here.');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:377:    expect(normalizeContentForEmbedding(input)).not.toContain('title:');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:382:    const result = normalizeContentForEmbedding(input);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:389:    expect(normalizeContentForEmbedding(input)).not.toContain('TODO');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:390:    expect(normalizeContentForEmbedding(input)).toContain('Keep this.');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:395:    const result = normalizeContentForEmbedding(input);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:403:    const result = normalizeContentForEmbedding(input);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:411:    const result = normalizeContentForEmbedding(input);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:420:    const result = normalizeContentForEmbedding(input);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:17:import { normalizeContentForEmbedding } from '../lib/parsing/content-normalizer';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:256:          chunkEmbedding = await embeddings.generateDocumentEmbedding(normalizeContentForEmbedding(chunk.content));
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:10:import { normalizeContentForEmbedding } from '../../lib/parsing/content-normalizer';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:46:        const normalizedContent = normalizeContentForEmbedding(parsed.content);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:8:  normalizeContentForEmbedding,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:9:  normalizeContentForBM25,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:359:// normalizeContentForEmbedding — full pipeline
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:362:describe('normalizeContentForEmbedding', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:364:    expect(normalizeContentForEmbedding('')).toBe('');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:369:    expect(normalizeContentForEmbedding(null)).toBe('');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:371:    expect(normalizeContentForEmbedding(undefined)).toBe('');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:376:    expect(normalizeContentForEmbedding(input)).toContain('Content here.');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:377:    expect(normalizeContentForEmbedding(input)).not.toContain('title:');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:382:    const result = normalizeContentForEmbedding(input);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:389:    expect(normalizeContentForEmbedding(input)).not.toContain('TODO');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:390:    expect(normalizeContentForEmbedding(input)).toContain('Keep this.');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:395:    const result = normalizeContentForEmbedding(input);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:403:    const result = normalizeContentForEmbedding(input);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:411:    const result = normalizeContentForEmbedding(input);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:420:    const result = normalizeContentForEmbedding(input);
 exec
-/bin/zsh -lc "sed -n '1,120p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,120p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 // ---------------------------------------------------------------
 // MODULE: Embedding Pipeline
 // ---------------------------------------------------------------
@@ -1117,9 +1117,9 @@ export interface EmbeddingResult {
 
 export async function generateOrCacheEmbedding(
 exec
-/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"0\\.6|0\\.4|0\\.3|never returns an empty array|structure bonus|short chunks|100 characters|headings|code blocks|list items|anchor presence|content density|drop|thinning|applyChunkThinning|chunk thinning\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"applyChunkThinning|chunk-thinning|scoreChunk|splitInto|thinning\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"0\\.6|0\\.4|0\\.3|never returns an empty array|structure bonus|short chunks|100 characters|headings|code blocks|list items|anchor presence|content density|drop|thinning|applyChunkThinning|chunk thinning\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"applyChunkThinning|chunk-thinning|scoreChunk|splitInto|thinning\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Chunk Thinning
 // ---------------------------------------------------------------
@@ -1141,39 +1141,39 @@ export interface ChunkScore {
   chunk: AnchorChunk;
   score: number;        // 0-1 composite score
  succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:19:import { thinChunks } from '../lib/chunking/chunk-thinning';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:130:  const thinningResult = thinChunks(chunkResult.chunks);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:131:  const retainedChunks = thinningResult.retained;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:133:    console.warn(`[memory-save] No chunks retained after thinning for ${filePath}`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:135:             title: parsed.title ?? '', message: 'Zero chunks retained after thinning' };
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:137:  const droppedChunkCount = thinningResult.dropped.length;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:143:    console.error(`[memory-save] Chunk thinning retained ${retainedChunks.length}/${chunkResult.chunks.length} chunks`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:19:import { thinChunks } from '../lib/chunking/chunk-thinning';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:130:  const thinningResult = thinChunks(chunkResult.chunks);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:131:  const retainedChunks = thinningResult.retained;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:133:    console.warn(`[memory-save] No chunks retained after thinning for ${filePath}`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:135:             title: parsed.title ?? '', message: 'Zero chunks retained after thinning' };
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:137:  const droppedChunkCount = thinningResult.dropped.length;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:143:    console.error(`[memory-save] Chunk thinning retained ${retainedChunks.length}/${chunkResult.chunks.length} chunks`);
  succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:4:// Scores chunks by anchor presence + content density, then
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:5:// applies a thinning threshold to drop low-quality chunks.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:21:  anchorScore: number;  // 0 or 1 based on anchor presence
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:22:  densityScore: number; // 0-1 based on content density
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:32:  dropped: AnchorChunk[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:40:// Default threshold — chunks below this composite score are dropped
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:41:const DEFAULT_THINNING_THRESHOLD = 0.3;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:44:const ANCHOR_WEIGHT = 0.6;   // Anchor presence is primary signal
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:45:const DENSITY_WEIGHT = 0.4;  // Content density is secondary
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:52: * Compute content density for a chunk.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:69:  // Penalize very short chunks (< 100 chars after stripping)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:72:  // Count meaningful content markers (headings, code blocks, lists)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:73:  const headings = (content.match(/^#{1,6}\s/gm) || []).length;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:77:  const structureBonus = Math.min(0.2, (headings + codeBlocks + listItems) * 0.05);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:87: * Score a chunk based on anchor presence and content density.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:94:  // Also penalize very short chunks and boilerplate-heavy chunks
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:113: * Apply anchor-aware thinning to a set of chunks.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:115: * Scores each chunk and drops those below the threshold.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:126:      dropped: [],
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:137:  const dropped = scores.filter(s => !s.retained).map(s => s.chunk);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:4:// Scores chunks by anchor presence + content density, then
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:5:// applies a thinning threshold to drop low-quality chunks.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:21:  anchorScore: number;  // 0 or 1 based on anchor presence
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:22:  densityScore: number; // 0-1 based on content density
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:32:  dropped: AnchorChunk[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:40:// Default threshold — chunks below this composite score are dropped
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:41:const DEFAULT_THINNING_THRESHOLD = 0.3;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:44:const ANCHOR_WEIGHT = 0.6;   // Anchor presence is primary signal
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:45:const DENSITY_WEIGHT = 0.4;  // Content density is secondary
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:52: * Compute content density for a chunk.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:69:  // Penalize very short chunks (< 100 chars after stripping)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:72:  // Count meaningful content markers (headings, code blocks, lists)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:73:  const headings = (content.match(/^#{1,6}\s/gm) || []).length;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:77:  const structureBonus = Math.min(0.2, (headings + codeBlocks + listItems) * 0.05);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:87: * Score a chunk based on anchor presence and content density.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:94:  // Also penalize very short chunks and boilerplate-heavy chunks
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:113: * Apply anchor-aware thinning to a set of chunks.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:115: * Scores each chunk and drops those below the threshold.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:126:      dropped: [],
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts:137:  const dropped = scores.filter(s => !s.retained).map(s => s.chunk);
 exec
-/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"encoding_intent|classifyEncodingIntent|document|code|structured_data|0\\.4|fenced code|import/export/function|punctuation|YAML frontmatter|pipe tables|key-value|stored|read-only metadata|retrieval-time scoring|SPECKIT_ENCODING_INTENT|default ON|parent records|chunks\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,180p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,260p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"encoding_intent|classifyEncodingIntent|document|code|structured_data|0\\.4|fenced code|import/export/function|punctuation|YAML frontmatter|pipe tables|key-value|stored|read-only metadata|retrieval-time scoring|SPECKIT_ENCODING_INTENT|default ON|parent records|chunks\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,180p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 // ---------------------------------------------------------------
 // MODULE: Encoding Intent
 // ---------------------------------------------------------------
@@ -1195,26 +1195,26 @@ exec
 
 export type EncodingIntent = 'document' | 'code' | 'structured_data';
  succeeded in 50ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:15:import { classifyEncodingIntent } from '../../lib/search/encoding-intent';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:85:              const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:86:              const callbackSpecLevel = isSpecDocumentType(parsed.documentType)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:90:                ? classifyEncodingIntent(memory.content)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:101:                documentType: parsed.documentType || 'memory',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:120:                encoding_intent: memoryEncodingIntent,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:121:                document_type: parsed.documentType || 'memory',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:36: * Cross-encoder reranking gate.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:39:export function isCrossEncoderEnabled(): boolean {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:99: * still accepted but ignored — V2 is the only code path.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:127: * Records intent metadata (document, code, structured_data) alongside embeddings.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:128: * Default: TRUE (graduated). Set SPECKIT_ENCODING_INTENT=false to disable.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:131:  return isFeatureEnabled('SPECKIT_ENCODING_INTENT');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:169: * S5: Cross-document entity linking (entity-based cross-doc edges).
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:7:// intent categories: 'document' (prose), 'code' (programming),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:8:// or 'structured_data' (tables/JSON/YAML). The classification is
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:9:// stored in the `encoding_intent` column alongside the embedding
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:10:// and serves as read-only metadata — it has NO retrieval-time
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:14://   Controlled by SPECKIT_ENCODING_INTENT=true (opt-in, default off).
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:15://   When the flag is off, classifyEncodingIntent() still returns a
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:15:import { classifyEncodingIntent } from '../../lib/search/encoding-intent';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:85:              const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:86:              const callbackSpecLevel = isSpecDocumentType(parsed.documentType)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:90:                ? classifyEncodingIntent(memory.content)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:101:                documentType: parsed.documentType || 'memory',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:120:                encoding_intent: memoryEncodingIntent,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:121:                document_type: parsed.documentType || 'memory',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:36: * Cross-encoder reranking gate.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:39:export function isCrossEncoderEnabled(): boolean {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:99: * still accepted but ignored — V2 is the only code path.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:127: * Records intent metadata (document, code, structured_data) alongside embeddings.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:128: * Default: TRUE (graduated). Set SPECKIT_ENCODING_INTENT=false to disable.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:131:  return isFeatureEnabled('SPECKIT_ENCODING_INTENT');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:169: * S5: Cross-document entity linking (entity-based cross-doc edges).
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:7:// intent categories: 'document' (prose), 'code' (programming),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:8:// or 'structured_data' (tables/JSON/YAML). The classification is
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:9:// stored in the `encoding_intent` column alongside the embedding
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:10:// and serves as read-only metadata — it has NO retrieval-time
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:14://   Controlled by SPECKIT_ENCODING_INTENT=true (opt-in, default off).
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:15://   When the flag is off, classifyEncodingIntent() still returns a
  succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Create Record
@@ -1260,10 +1260,10 @@ import { getCanonicalPathKey } from '../lib/utils/canonical-path';
 codex
 I’ve got the behavior-level comparisons for the trickier entries. I’m doing one last pass with a path checker so each block can cleanly say which listed files exist and which don’t, instead of relying on manual spot checks.
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'),path=require('path'); const root='/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit'; const dir=path.join(root,'feature_catalog/13--memory-quality-and-indexing'); const files=fs.readdirSync(dir).filter(f=>/"'^0[1-9]-.*'"\\\\.md"'$/.test(f)).sort(); for (const file of files){ const text=fs.readFileSync(path.join(dir,file),'"'utf8'); const paths=[...text.matchAll(/\\\\|\\\\s*"'`([''^`]+)`'"\\\\s*\\\\|/g)].map(m=>m[1]).filter(p=>p"'!=='"'File'&&p"'!=='"'Focus'); const unique=[...new Set(paths)]; const invalid=unique.filter(rel=>"'!fs.existsSync(path.join(root,rel))); console.log('"'FILE',file); console.log('TOTAL',unique.length); console.log('INVALID',invalid.length?invalid.join(' | '):'NONE'); }\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
+/bin/zsh -lc "node -e \"const fs=require('fs'),path=require('path'); const root='/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit'; const dir=path.join(root,'feature_catalog/13--memory-quality-and-indexing'); const files=fs.readdirSync(dir).filter(f=>/"'^0[1-9]-.*'"\\\\.md"'$/.test(f)).sort(); for (const file of files){ const text=fs.readFileSync(path.join(dir,file),'"'utf8'); const paths=[...text.matchAll(/\\\\|\\\\s*"'`([''^`]+)`'"\\\\s*\\\\|/g)].map(m=>m[1]).filter(p=>p"'!=='"'File'&&p"'!=='"'Focus'); const unique=[...new Set(paths)]; const invalid=unique.filter(rel=>"'!fs.existsSync(path.join(root,rel))); console.log('"'FILE',file); console.log('TOTAL',unique.length); console.log('INVALID',invalid.length?invalid.join(' | '):'NONE'); }\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
 zsh:1: unmatched "
 exec
-/bin/zsh -lc "node -e 'const fs=require(\"fs\"),path=require(\"path\"); const root=\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit\"; const dir=path.join(root,\"feature_catalog/13--memory-quality-and-indexing\"); const files=fs.readdirSync(dir).filter(f=>/"'^0[1-9]-.*'"\\.md"'$/.test(f)).sort(); for (const file of files){ const text=fs.readFileSync(path.join(dir,file),"utf8"); const paths=[...text.matchAll(/'"\\|\\s*"'`([''^`]+)`'"\\s*\\|/g)].map(m=>m[1]).filter(p=>p"'!=="File"&&p!=="Focus"); const unique=[...new Set(paths)]; const invalid=unique.filter(rel=>!fs.existsSync(path.join(root,rel))); console.log("FILE",file); console.log("TOTAL",unique.length); console.log("INVALID",invalid.length?invalid.join(" | "):"NONE"); }'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "node -e 'const fs=require(\"fs\"),path=require(\"path\"); const root=\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit\"; const dir=path.join(root,\"feature_catalog/13--memory-quality-and-indexing\"); const files=fs.readdirSync(dir).filter(f=>/"'^0[1-9]-.*'"\\.md"'$/.test(f)).sort(); for (const file of files){ const text=fs.readFileSync(path.join(dir,file),"utf8"); const paths=[...text.matchAll(/'"\\|\\s*"'`([''^`]+)`'"\\s*\\|/g)].map(m=>m[1]).filter(p=>p"'!=="File"&&p!=="Focus"); const unique=[...new Set(paths)]; const invalid=unique.filter(rel=>!fs.existsSync(path.join(root,rel))); console.log("FILE",file); console.log("TOTAL",unique.length); console.log("INVALID",invalid.length?invalid.join(" | "):"NONE"); }'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 FILE 01-verify-fix-verify-memory-quality-loop.md
 TOTAL 4
 INVALID NONE
@@ -1285,50 +1285,50 @@ INVALID mcp_server/tests/retry.vitest.ts
 FILE 07-smarter-memory-content-generation.md
 TOTAL 16
 exec
-/bin/zsh -lc "rg -n \"matchTriggerPhrasesWithStats|detectSignals|applySignalBoosts|SPECKIT_SIGNAL_VOCAB\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:244:  const triggerMatchResult = triggerMatcher.matchTriggerPhrasesWithStats(prompt, limit * 2);
+/bin/zsh -lc "rg -n \"matchTriggerPhrasesWithStats|detectSignals|applySignalBoosts|SPECKIT_SIGNAL_VOCAB\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:244:  const triggerMatchResult = triggerMatcher.matchTriggerPhrasesWithStats(prompt, limit * 2);
 exec
-/bin/zsh -lc "rg -n \"discoverSpecFolder|folder discovery|SPECKIT_FOLDER_DISCOVERY\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts:43:  'SPECKIT_FOLDER_DISCOVERY',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts:67:  { flag: 'SPECKIT_FOLDER_DISCOVERY', checker: isFolderDiscoveryEnabled },
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:4:// Tests: ensureDescriptionCache, isCacheStale, discoverSpecFolder,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:15:  discoverSpecFolder,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:33:    SPECKIT_FOLDER_DISCOVERY: process.env.SPECKIT_FOLDER_DISCOVERY,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:73:    delete process.env.SPECKIT_FOLDER_DISCOVERY;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:78:    process.env.SPECKIT_FOLDER_DISCOVERY = 'true';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:467:   5. discoverSpecFolder (CHK-PI-B3-002 / CHK-PI-B3-004)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:470:describe('CHK-PI-B3-002: discoverSpecFolder', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:486:    const result = discoverSpecFolder('authentication login', [specsDir]);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:498:    const result = discoverSpecFolder('quantum physics rocket science', [specsDir]);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:504:    const result = discoverSpecFolder('anything', []);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:514:  it('T046-18: discoverSpecFolder returns null on nonexistent base path', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:515:    const result = discoverSpecFolder('test query', ['/nonexistent/path/that/does/not/exist']);
+/bin/zsh -lc "rg -n \"discoverSpecFolder|folder discovery|SPECKIT_FOLDER_DISCOVERY\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts:43:  'SPECKIT_FOLDER_DISCOVERY',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts:67:  { flag: 'SPECKIT_FOLDER_DISCOVERY', checker: isFolderDiscoveryEnabled },
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:4:// Tests: ensureDescriptionCache, isCacheStale, discoverSpecFolder,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:15:  discoverSpecFolder,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:33:    SPECKIT_FOLDER_DISCOVERY: process.env.SPECKIT_FOLDER_DISCOVERY,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:73:    delete process.env.SPECKIT_FOLDER_DISCOVERY;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:78:    process.env.SPECKIT_FOLDER_DISCOVERY = 'true';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:467:   5. discoverSpecFolder (CHK-PI-B3-002 / CHK-PI-B3-004)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:470:describe('CHK-PI-B3-002: discoverSpecFolder', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:486:    const result = discoverSpecFolder('authentication login', [specsDir]);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:498:    const result = discoverSpecFolder('quantum physics rocket science', [specsDir]);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:504:    const result = discoverSpecFolder('anything', []);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:514:  it('T046-18: discoverSpecFolder returns null on nonexistent base path', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:515:    const result = discoverSpecFolder('test query', ['/nonexistent/path/that/does/not/exist']);
 exec
-/bin/zsh -lc "rg -n \"runQualityGate|isQualityGateEnabled|SPECKIT_SAVE_QUALITY_GATE|warn-only|quality gate\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests' | rg 'save-quality-gate|memory-save|mpab-quality-gate-integration|handler-memory-save'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:24:// TODO: Extract quality gate, reconsolidation, chunked-indexing from memory-save (2,553 LOC source).
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:32:  'handlers/memory-save.js': 2200,  // actual: 1210 — Save logic with parsing, validation, indexing + quality gate + reconsolidation
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:24:  isQualityGateEnabled,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:25:  runQualityGate,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:143:  SPECKIT_SAVE_QUALITY_GATE: 'SPECKIT_SAVE_QUALITY_GATE',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:250:    delete process.env.SPECKIT_SAVE_QUALITY_GATE;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:255:    { SPECKIT_SAVE_QUALITY_GATE: 'true' },
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:257:      expect(isQualityGateEnabled()).toBe(true);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:261:      const result: QualityGateResult = runQualityGate({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:268:      // Should fail (either reject or warn-only depending on activation timestamp)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:276:    { SPECKIT_SAVE_QUALITY_GATE: 'true' },
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:280:trigger_phrases: [integration test, quality gate, validation]
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:286:This memory contains substantial content about the implementation of the quality gate feature.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:291:The quality gate uses a 3-layer approach for maximum coverage while maintaining low false-positive rates.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:299:      const result: QualityGateResult = runQualityGate({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:303:        triggerPhrases: ['integration test', 'quality gate', 'validation'],
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:313:    { SPECKIT_SAVE_QUALITY_GATE: 'false' },
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:315:      expect(isQualityGateEnabled()).toBe(false);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:319:      const result: QualityGateResult = runQualityGate({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:416:    delete process.env.SPECKIT_SAVE_QUALITY_GATE;
+/bin/zsh -lc "rg -n \"runQualityGate|isQualityGateEnabled|SPECKIT_SAVE_QUALITY_GATE|warn-only|quality gate\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests' | rg 'save-quality-gate|memory-save|mpab-quality-gate-integration|handler-memory-save'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:24:// TODO: Extract quality gate, reconsolidation, chunked-indexing from memory-save (2,553 LOC source).
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:32:  'handlers/memory-save.js': 2200,  // actual: 1210 — Save logic with parsing, validation, indexing + quality gate + reconsolidation
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:24:  isQualityGateEnabled,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:25:  runQualityGate,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:143:  SPECKIT_SAVE_QUALITY_GATE: 'SPECKIT_SAVE_QUALITY_GATE',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:250:    delete process.env.SPECKIT_SAVE_QUALITY_GATE;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:255:    { SPECKIT_SAVE_QUALITY_GATE: 'true' },
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:257:      expect(isQualityGateEnabled()).toBe(true);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:261:      const result: QualityGateResult = runQualityGate({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:268:      // Should fail (either reject or warn-only depending on activation timestamp)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:276:    { SPECKIT_SAVE_QUALITY_GATE: 'true' },
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:280:trigger_phrases: [integration test, quality gate, validation]
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:286:This memory contains substantial content about the implementation of the quality gate feature.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:291:The quality gate uses a 3-layer approach for maximum coverage while maintaining low false-positive rates.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:299:      const result: QualityGateResult = runQualityGate({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:303:        triggerPhrases: ['integration test', 'quality gate', 'validation'],
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:313:    { SPECKIT_SAVE_QUALITY_GATE: 'false' },
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:315:      expect(isQualityGateEnabled()).toBe(false);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:319:      const result: QualityGateResult = runQualityGate({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:416:    delete process.env.SPECKIT_SAVE_QUALITY_GATE;
 exec
-/bin/zsh -lc "rg -n \"encoding_intent\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server' | rg -v 'create-record|chunking-orchestrator|reconsolidation-bridge|vector-index|schema|encoding-intent.vitest|tool-schemas|README|search-flags|db-helpers|INSERT|UPDATE|SELECT encoding_intent'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:111:  encoding_intent?: string | null;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:9:// stored in the `encoding_intent` column alongside the embedding
+/bin/zsh -lc "rg -n \"encoding_intent\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server' | rg -v 'create-record|chunking-orchestrator|reconsolidation-bridge|vector-index|schema|encoding-intent.vitest|tool-schemas|README|search-flags|db-helpers|INSERT|UPDATE|SELECT encoding_intent'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:111:  encoding_intent?: string | null;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts:9:// stored in the `encoding_intent` column alongside the embedding
 codex
 ---
 FEATURE: 01-verify-fix-verify-memory-quality-loop.md

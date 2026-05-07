@@ -81,7 +81,7 @@ Phase 012 added or documented three helper tools around CocoIndex usage:
 
 - `ccc_status` reports availability, `binaryPath`, `indexExists`, and `indexSize`.
 - `ccc_reindex` provides an explicit re-index path.
-- `ccc_feedback` appends local JSONL feedback under `.opencode/skill/mcp-coco-index/feedback/search-feedback.jsonl`.
+- `ccc_feedback` appends local JSONL feedback under `.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl`.
 
 `ccc_feedback` does not write into the CocoIndex database and does not mirror `memory_validate` parameters.
 
@@ -141,7 +141,7 @@ The packet was rewritten from the Level 2 templates and then aligned to the deli
 1. **SessionStart is status-only.** It reports CocoIndex binary availability but does not call `ensure_ready.sh` and does not ensure readiness.
 2. **PreCompact semantic integration is hint-only.** It does not execute or cache real CocoIndex semantic-neighbor queries.
 3. **`ccc_status` is intentionally narrow.** It reports availability, `binaryPath`, `indexExists`, and `indexSize` only.
-4. **`ccc_feedback` is local only.** It appends JSONL under `.opencode/skill/mcp-coco-index/feedback/search-feedback.jsonl`, does not write to the CocoIndex database, and does not mirror `memory_validate` parameters.
+4. **`ccc_feedback` is local only.** It appends JSONL under `.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl`, does not write to the CocoIndex database, and does not mirror `memory_validate` parameters.
 5. **Broader docs remain incomplete.** The system-spec-kit README and tool reference were not updated in this phase.
 6. **Background CocoIndex re-index from SessionStart is not implemented.** Any re-index must be triggered separately.
 <!-- /ANCHOR:limitations -->

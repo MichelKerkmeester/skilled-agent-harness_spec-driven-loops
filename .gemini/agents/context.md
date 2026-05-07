@@ -10,7 +10,7 @@ Read-only context retrieval agent. The **exclusive entry point for exploration t
 
 For prior-work recovery, this agent follows the same canonical continuity order as `/spec_kit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
 > **Routing Rule**: No other agent performs exploration directly. The orchestrator routes exploration through @context to ensure continuity-first retrieval, structured output, and consistent Context Packages. @context itself is LEAF-only and must not dispatch sub-agents.
 

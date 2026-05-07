@@ -147,18 +147,18 @@ _memory:
 
 ### Phase 4B — AI-facing cleanup (T-416 to T-429)
 
-- [ ] T-416 MODIFY `.opencode/skill/system-spec-kit/SKILL.md`: remove file-path references; KEEP level vocabulary
+- [ ] T-416 MODIFY `.opencode/skills/system-spec-kit/SKILL.md`: remove file-path references; KEEP level vocabulary
 - [ ] T-417 [P] MODIFY `CLAUDE.md`: remove file-path references; KEEP Level 1/2/3/3+ vocabulary
 - [ ] T-418 [P] MODIFY `AGENTS.md`: mirror CLAUDE.md edits
 - [ ] T-419 [P] MODIFY `AGENTS_Barter.md` + `AGENTS_example_fs_enterprises.md`: mirror per `feedback_agents_md_sync_triad.md`
 
 Audit-surfaced cleanup (per resource-map §2.5):
 
-- [ ] T-421 [P] MODIFY 10 `.opencode/agent/*.md` files: rename `CAPABILITY SCAN` → `ROUTING SCAN` heading (per §2.5a)
-- [ ] T-422 MODIFY `.opencode/agent/improve-agent.md` deeper edits: replace 11 `manifest` occurrences with `control file` / `run contract` / `approved scope` (lines 36/52/60/62/76/98/108/122/124/189/234)
-- [ ] T-423 MODIFY `.opencode/agent/orchestrate.md` deeper edits: replace `templates/level_N/` references with resolver wording (lines 337/357/377/389)
-- [ ] T-424 [P] MODIFY 5 `.opencode/command/spec_kit/*.md` files: rename `config.executor.kind` → `config.executor.type` in deep-research.md + deep-review.md; `Optimizer manifest` → `Optimizer configuration`; `child manifest` → `child list` in resume.md; replace deleted-path refs in plan.md + complete.md (per §2.5b)
-- [ ] T-425 MODIFY 12 `.opencode/command/spec_kit/assets/*.yaml` files: refactor `executor.kind`→`type` schema in deep-research/deep-review YAMLs (10+ occurrences each); replace deleted-path refs in plan/implement/complete YAMLs; rename `child manifest` → `child list` in resume YAMLs (per §2.5c)
+- [ ] T-421 [P] MODIFY 10 `.opencode/agents/*.md` files: rename `CAPABILITY SCAN` → `ROUTING SCAN` heading (per §2.5a)
+- [ ] T-422 MODIFY `.opencode/agents/improve-agent.md` deeper edits: replace 11 `manifest` occurrences with `control file` / `run contract` / `approved scope` (lines 36/52/60/62/76/98/108/122/124/189/234)
+- [ ] T-423 MODIFY `.opencode/agents/orchestrate.md` deeper edits: replace `templates/level_N/` references with resolver wording (lines 337/357/377/389)
+- [ ] T-424 [P] MODIFY 5 `.opencode/commands/spec_kit/*.md` files: rename `config.executor.kind` → `config.executor.type` in deep-research.md + deep-review.md; `Optimizer manifest` → `Optimizer configuration`; `child manifest` → `child list` in resume.md; replace deleted-path refs in plan.md + complete.md (per §2.5b)
+- [ ] T-425 MODIFY 12 `.opencode/commands/spec_kit/assets/*.yaml` files: refactor `executor.kind`→`type` schema in deep-research/deep-review YAMLs (10+ occurrences each); replace deleted-path refs in plan/implement/complete YAMLs; rename `child manifest` → `child list` in resume YAMLs (per §2.5c)
 - [ ] T-426 MODIFY `system-spec-kit/SKILL.md` per §2.5d: 16 finding rows — drop "CORE+ADDENDUM v2.2" wording, deleted paths, banned vocabulary; preserve Level vocabulary throughout
 - [ ] T-427 MODIFY `system-spec-kit/README.md` per §2.5d: 16 finding rows — heavy architecture rewrite at lines 498-539 (entire CORE+ADDENDUM section → manifest-driven description)
 - [ ] T-428 MODIFY 18 `system-spec-kit/references/*.md` files per §2.5e (heaviest in `templates/`, `structure/`, `validation/`, `workflows/` subdirs)

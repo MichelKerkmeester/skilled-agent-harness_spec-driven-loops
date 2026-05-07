@@ -20,12 +20,12 @@ _memory:
       - "Full package lint has unused-variable findings outside this packet's write scope."
     key_files:
       - ".github/hooks/scripts/user-prompt-submitted.sh"
-      - ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts"
-      - ".opencode/skill/cli-copilot/SKILL.md"
-      - ".opencode/skill/cli-copilot/README.md"
-      - ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md"
-      - ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts"
+      - ".opencode/skills/cli-copilot/SKILL.md"
+      - ".opencode/skills/cli-copilot/README.md"
+      - ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "026-009-004-copilot-remediation-2026-04-22"
@@ -42,7 +42,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 

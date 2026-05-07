@@ -9,7 +9,7 @@
  */
 
 const path = require('path');
-const detector = require('../../../../.opencode/skill/system-spec-kit/lib/complexity/detector');
+const detector = require('../../../../.opencode/skills/system-spec-kit/lib/complexity/detector');
 
 let passed = 0;
 let failed = 0;

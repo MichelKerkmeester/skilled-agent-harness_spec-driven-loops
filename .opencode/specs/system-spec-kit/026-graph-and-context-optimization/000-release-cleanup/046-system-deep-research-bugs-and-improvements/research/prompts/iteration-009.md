@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 009 of 20. The packet root is
 
 **Angle B4 — Spec-kit validator correctness**
 
-Audit `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` and the rule scripts in `.opencode/skill/system-spec-kit/scripts/rules/`. Are there false positives (failing valid spec folders) or false negatives (passing invalid)? Specifically: SPEC_DOC_INTEGRITY checks, EVIDENCE_CITED patterns (does it really catch all evidence formats?), TEMPLATE_HEADERS detection (regex sufficiency). Cite specific rule file:line.
+Audit `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` and the rule scripts in `.opencode/skills/system-spec-kit/scripts/rules/`. Are there false positives (failing valid spec folders) or false negatives (passing invalid)? Specifically: SPEC_DOC_INTEGRITY checks, EVIDENCE_CITED patterns (does it really catch all evidence formats?), TEMPLATE_HEADERS detection (regex sufficiency). Cite specific rule file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

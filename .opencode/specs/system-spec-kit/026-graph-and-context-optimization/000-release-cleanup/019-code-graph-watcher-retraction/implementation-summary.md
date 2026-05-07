@@ -56,7 +56,7 @@ Completed doc-only remediation for 013's P1-1 structural code-graph watcher over
 | `implementation-summary.md` | Created | This summary |
 | `description.json` | Created | Memory metadata |
 | `graph-metadata.json` | Created | Graph metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modified | Code-graph freshness model and 013 reality-matrix reference |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | Code-graph freshness model and 013 reality-matrix reference |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -88,10 +88,10 @@ Phase 1 initialized packet docs and metadata at `completion_pct: 5`. Phase 2 pat
 | Check | Command / Artifact | Result |
 |-------|--------------------|--------|
 | Source evidence | 013 report + iteration 004 | PASS: P1-1 validated as read-path/manual |
-| README freshness model | `.opencode/skill/system-spec-kit/mcp_server/README.md:517-529` | PASS: read-path self-heal, manual scan, status diagnostic, and required-action behavior documented |
+| README freshness model | `.opencode/skills/system-spec-kit/mcp_server/README.md:517-529` | PASS: read-path self-heal, manual scan, status diagnostic, and required-action behavior documented |
 | Related doc sweep | targeted `rg` over README, system-spec-kit skill guide, CLAUDE.md, and hook reference | PASS: no current false structural watcher claim found |
 | Runtime-code scope | targeted diff review | PASS: no runtime code files edited |
-| Strict validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction --strict` | PASS: RESULT PASSED, 0 errors, 0 warnings |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction --strict` | PASS: RESULT PASSED, 0 errors, 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---

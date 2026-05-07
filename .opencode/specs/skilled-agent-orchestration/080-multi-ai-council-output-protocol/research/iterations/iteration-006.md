@@ -8,7 +8,7 @@ Answer Q6: determine whether four-runtime mirror-sync for `multi-ai-council` can
 
 - Confirmed iteration number from `deep-research-state.jsonl`; five prior iteration records make this iteration 6.
 - Read the strategy, findings registry, and iteration 5 narrative to preserve Q1-Q5 decisions and follow Section 11 Next Focus.
-- Compared the four `multi-ai-council` runtime mirrors: `.opencode/agent/multi-ai-council.md`, `.claude/agents/multi-ai-council.md`, `.gemini/agents/multi-ai-council.md`, and `.codex/agents/multi-ai-council.toml`.
+- Compared the four `multi-ai-council` runtime mirrors: `.opencode/agents/multi-ai-council.md`, `.claude/agents/multi-ai-council.md`, `.gemini/agents/multi-ai-council.md`, and `.codex/agents/multi-ai-council.toml`.
 - Searched the repo for existing mirror/sync/parity patterns and inspected the deep-research contract parity test as the closest sibling pattern.
 - Checked packet 080 council report and decision record for the maintenance constraint behind the mirror-sync question.
 
@@ -16,12 +16,12 @@ Answer Q6: determine whether four-runtime mirror-sync for `multi-ai-council` can
 
 ### 1. Mirror-sync should mean normalized contract parity, not byte-for-byte equality
 
-The live mirror files are not byte-identical: `.opencode/agent/multi-ai-council.md` is 689 LOC, `.claude/agents/multi-ai-council.md` is 687 LOC, `.gemini/agents/multi-ai-council.md` is 671 LOC, and `.codex/agents/multi-ai-council.toml` is 675 LOC.
+The live mirror files are not byte-identical: `.opencode/agents/multi-ai-council.md` is 689 LOC, `.claude/agents/multi-ai-council.md` is 687 LOC, `.gemini/agents/multi-ai-council.md` is 671 LOC, and `.codex/agents/multi-ai-council.toml` is 675 LOC.
 
 The differences are expected in part. Gemini strips unsupported OpenCode frontmatter keys: the diff removes `mode`, the full `permission` block, and `mcpServers` from the top of `.gemini/agents/multi-ai-council.md`. Codex converts the body into TOML with `developer_instructions = '''...'''` and runtime fields such as `sandbox_mode = "read-only"`.
 
 Concrete evidence:
-- `.opencode/agent/multi-ai-council.md:1` starts with OpenCode frontmatter including permissions and MCP servers.
+- `.opencode/agents/multi-ai-council.md:1` starts with OpenCode frontmatter including permissions and MCP servers.
 - `.gemini/agents/multi-ai-council.md:1` preserves only `name`, `description`, and `temperature` in frontmatter.
 - `.codex/agents/multi-ai-council.toml:1` declares the converted agent and wraps the markdown body under `developer_instructions`.
 
@@ -29,9 +29,9 @@ The right check is therefore a normalizer that extracts the canonical instructio
 
 ### 2. A sibling parity-test pattern already exists, but it is stale and too specific
 
-`.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` already encodes the broad pattern: define `runtimeMirrors` for `.opencode`, `.claude`, `.gemini`, and `.codex` at lines 35-40, then assert contract markers across each file at lines 59-72. It also asserts canonical path discipline for command assets at lines 87-108 and checks a runtime capability matrix at lines 111-124.
+`.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` already encodes the broad pattern: define `runtimeMirrors` for `.opencode`, `.claude`, `.gemini`, and `.codex` at lines 35-40, then assert contract markers across each file at lines 59-72. It also asserts canonical path discipline for command assets at lines 87-108 and checks a runtime capability matrix at lines 111-124.
 
-That is the right shape for Q6: a Vitest contract test catches drift at test time without promoting `multi-ai-council` into a dedicated skill. But the existing test is not copy-paste-ready. It imports `.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs` at lines 12-15 and lists `.opencode/skill/sk-deep-research/...` primary docs at lines 25-32, while the live folder on disk is `.opencode/skill/deep-research/`. The pattern is reusable; the paths need a fresh, council-specific implementation or a cleaned-up generalized helper.
+That is the right shape for Q6: a Vitest contract test catches drift at test time without promoting `multi-ai-council` into a dedicated skill. But the existing test is not copy-paste-ready. It imports `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` at lines 12-15 and lists `.opencode/skills/sk-deep-research/...` primary docs at lines 25-32, while the live folder on disk is `.opencode/skills/deep-research/`. The pattern is reusable; the paths need a fresh, council-specific implementation or a cleaned-up generalized helper.
 
 ### 3. The repo currently documents mirroring as an expectation, not as an enforced invariant
 
@@ -41,9 +41,9 @@ I did not find an existing general agent mirror-sync script in the searched syst
 
 ### 4. Packet 081 should add a general checker if small, with a council-specific fallback
 
-The best follow-on is a general `agent-mirror-contract` test/helper under `.opencode/skill/system-spec-kit/scripts/` or `.opencode/skill/system-spec-kit/scripts/tests/` that can be parameterized by agent name:
+The best follow-on is a general `agent-mirror-contract` test/helper under `.opencode/skills/system-spec-kit/scripts/` or `.opencode/skills/system-spec-kit/scripts/tests/` that can be parameterized by agent name:
 
-- Inputs: canonical `.opencode/agent/<name>.md`, mirror paths, required body headings, required marker strings, and allowed runtime wrapper differences.
+- Inputs: canonical `.opencode/agents/<name>.md`, mirror paths, required body headings, required marker strings, and allowed runtime wrapper differences.
 - Normalization: strip YAML frontmatter for markdown mirrors, extract `developer_instructions` from Codex TOML, normalize line endings, and compare contract markers rather than full file bytes.
 - Exit behavior: fail tests when a required mirror is missing, when required sections are absent, or when runtime-specific wrappers violate expected metadata.
 - First fixture: `multi-ai-council`, because packet 080 already made mirror drift a concrete maintenance risk.
@@ -56,9 +56,9 @@ If that general helper is too much for packet 081, the stopgap should be a narro
 - `## 14. STATE SCHEMA - JSONL EVENT TYPES`
 - `## 15. CONVERGENCE SIGNAL - 2/3 AGREEMENT RULE`
 - `ai-council-state.jsonl`
-- `Reference: .opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md`
+- `Reference: .opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md`
 
-This preserves ADR-001's lightweight bound because the invariant lives in the existing system-spec-kit test surface, not in a new `.opencode/skill/multi-ai-council/` package.
+This preserves ADR-001's lightweight bound because the invariant lives in the existing system-spec-kit test surface, not in a new `.opencode/skills/multi-ai-council/` package.
 
 ### 5. Commit-time automation is optional; test-time enforcement is enough for v1.1
 

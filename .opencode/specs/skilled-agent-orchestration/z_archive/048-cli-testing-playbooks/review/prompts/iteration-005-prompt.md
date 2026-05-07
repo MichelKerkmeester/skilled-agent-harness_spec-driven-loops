@@ -14,7 +14,7 @@ This is the LAST iteration. Use it to:
 
 1. **De-duplicate prior findings** — many P0/P1 findings from iters 1-4 may overlap. List the canonical de-duplicated finding set across all 4 iterations.
 2. **Surface missed findings** — what did iters 1-4 NOT catch that they should have? Specifically scan:
-   - The `.opencode/command/create/assets/create_testing_playbook_auto.yaml` and `create_testing_playbook_confirm.yaml` files (iter 4 noted these still reference `CURRENT REALITY`)
+   - The `.opencode/commands/create/assets/create_testing_playbook_auto.yaml` and `create_testing_playbook_confirm.yaml` files (iter 4 noted these still reference `CURRENT REALITY`)
    - Any spec files I may have not touched: `.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/scratch/` (if it exists), `description.json`, `graph-metadata.json`
    - Any stragglers in the rename pass — search the entire `.opencode/` tree for `CURRENT REALITY` outside the legitimate feature-catalog contexts and historical spec records
    - Validate the implementation-summary.md claim that 504 files carry the new heading — count them yourself

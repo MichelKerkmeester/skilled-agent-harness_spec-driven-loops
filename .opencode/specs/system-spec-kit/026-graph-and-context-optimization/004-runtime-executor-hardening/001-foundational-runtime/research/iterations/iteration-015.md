@@ -6,7 +6,7 @@ I re-read the five requested runtime seams against Iterations 001-014 and the Ph
 ## Findings
 
 ### Finding R15-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `61-77, 281-309`
 - **Severity:** P1
 - **Description:** Transcript-driven retargeting silently rewrites the autosave destination and immediately saves into the replacement packet. Trigger: the persisted `lastSpecFolder` exists, but `detectSpecFolder(...)` finds a different unambiguous packet in the current transcript tail. Caller perception: the stop hook simply validated continuity state and completed normally. Reality: the hook overwrites `lastSpecFolder` with an info log only, then `runContextAutosave()` reloads that new value and writes the summary into the retargeted packet during the same stop event.
@@ -14,7 +14,7 @@ I re-read the five requested runtime seams against Iterations 001-014 and the Ph
 - **Downstream Impact:** A transcript that briefly mentions another packet near the tail can cause continuity to be saved into the wrong spec folder without a caller-visible failure. Resume, handover, and memory-search flows then consume a plausible-looking save artifact that belongs to the wrong packet.
 
 ### Finding R15-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `294-295, 340-369`
 - **Severity:** P2
 - **Description:** Spec-folder detection only inspects the last 50 KB of the transcript, so long sessions can silently hide the real active packet and degrade into stale-target preservation. Trigger: the current packet reference appears earlier than the tail window, or the tail contains a different/ambiguous packet mix. Caller perception: the transcript was genuinely ambiguous, so preserving the prior autosave target is the safe choice. Reality: the detector never considered most of the transcript and may therefore preserve an obsolete packet target or miss the only correct packet reference.
@@ -22,7 +22,7 @@ I re-read the five requested runtime seams against Iterations 001-014 and the Ph
 - **Downstream Impact:** Long-running sessions can keep autosaving into an older packet even after the operator has moved to a different packet earlier in the conversation. The warning shape suggests benign ambiguity, not that the detector intentionally ignored most of the transcript.
 
 ### Finding R15-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `294-295, 370-378`
 - **Severity:** P1
 - **Description:** Transcript I/O failure is silently collapsed into the same "ambiguous transcript" path as ordinary packet ambiguity. Trigger: the transcript file is unreadable, missing, or rotated between hook input capture and `detectSpecFolder()` execution. Caller perception: packet detection ran and found no unambiguous winner, so preserving the existing autosave target is an informed fallback. Reality: detection never succeeded at all; the catch block discards the I/O failure and returns `null`, which the caller treats as mere ambiguity.

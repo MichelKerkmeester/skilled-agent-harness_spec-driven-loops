@@ -93,6 +93,6 @@ _memory:
 - Parent: 078-opencode-authoring-recipe (phase parent)
 - Successor: 078/002 spec-kit-load (depends on Phase 1 shipping)
 - 077 findings closed: F-001-005, F-006-002, F-007-001, F-007-002, F-008-001, F-008-002, F-008-004, F-010-001, F-010-004 (9 P1 findings)
-- Changelog: `.opencode/skill/sk-code/changelog/v3.2.0.0.md`
+- Changelog: `.opencode/skills/sk-code/changelog/v3.2.0.0.md`
 - New assets: `assets/opencode/checklists/{skill,agent,command,mcp_server,spec_folder}_authoring.md` + `assets/opencode/recipes/spec_folder_write.md`
 <!-- /ANCHOR:cross-refs -->

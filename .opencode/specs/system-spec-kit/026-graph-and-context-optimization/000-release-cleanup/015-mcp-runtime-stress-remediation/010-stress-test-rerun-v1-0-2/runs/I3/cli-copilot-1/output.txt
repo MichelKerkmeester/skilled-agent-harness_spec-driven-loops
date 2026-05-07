@@ -7,7 +7,7 @@ I’m checking the command surface first so I can run the right preflight agains
   └ No matches found
 
 ● Search (grep)
-  │ "preflight" in *.md (.opencode/command, .opencode/skill/system-spec-kit,
+  │ "preflight" in *.md (.opencode/command, .opencode/skills/system-spec-kit,
   │ .claude/skills/system-spec-kit)
   └ 6 lines found
 
@@ -27,7 +27,7 @@ I found this is in the Spec Kit Memory surface; now I’m narrowing the exact su
 
 ● Search (grep)
   │ "(/memory:search.*preflight|preflight.*task_preflight|task_preflight\()" in
-  │ *.md (.opencode/command, .opencode/skill/system-spec-kit,
+  │ *.md (.opencode/command, .opencode/skills/system-spec-kit,
   │ .claude/skills/system-spec-kit)
   └ 27 lines found
 
@@ -40,7 +40,7 @@ I found this is in the Spec Kit Memory surface; now I’m narrowing the exact su
   └ No matches found
 
 ● Read search.md
-  │ .opencode/command/memory/search.md
+  │ .opencode/commands/memory/search.md
   └ L460:540 (81 lines read)
 
 ● Search (glob)
@@ -83,7 +83,7 @@ I’ve mapped the shorthand to `system-spec-kit/026-graph-and-context-optimizati
 I’ve got the packet context. One nuance: `T101` is already marked complete in that packet’s `tasks.md`, but I can still record the requested baseline under this session so it’s isolated cleanly.
 
 ● Read search.md
-  │ .opencode/command/memory/search.md
+  │ .opencode/commands/memory/search.md
   └ L890:920 (31 lines read)
 
 ● task_preflight (MCP: spec_kit_memory) · specFolder: "specs/system-spec-kit/026-graph-and-context-…

@@ -18,10 +18,10 @@ _memory:
     next_safe_action: "Keep focused regression suite, typecheck/build, and packet validators green before release."
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/response-envelope.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/response-envelope.ts"
       - "specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/decision-record"
     session_dedup:
       fingerprint: "sha256:003-skill-advisor-fail-open-2026-04-28"
@@ -37,7 +37,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -76,47 +76,47 @@ The 008/008 packet now uses the runtime `skill_advisor` path spelling, carries f
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | Modified | Add unavailable fail-open branch before scoring. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend-unavailable.vitest.ts` | Created | Cover unavailable fail-open and no-scorer-call behavior. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/auth/trusted-caller.ts` | Created | Centralize trusted caller validation. |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Modified | Derive trusted caller metadata. |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts` | Modified | Thread caller context through dispatch. |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/skill-graph-tools.ts` | Modified | Pass caller context into skill-graph handlers. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` | Modified | Gate mutation on trusted callers and use shared redacted envelopes. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handlers/skill-graph-scan-auth.vitest.ts` | Created | Cover trusted and untrusted scan paths. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | Modified | Run SQLite integrity quick_check in live DB initialization. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/sqlite-integrity.ts` | Created | Share SQLite integrity checking. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts` | Modified | Serialize rebuild recovery with lease and busy retry. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/skill-graph-corruption-recovery.vitest.ts` | Created | Cover malformed DB recovery on the live path. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/skill-graph-rebuild-concurrency.vitest.ts` | Created | Cover concurrent rebuild serialization. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/skill-graph-diagnostic-redaction.vitest.ts` | Created | Cover path redaction across public diagnostics. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/response-envelope.ts` | Created | Share response envelopes and redaction helpers. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts` | Modified | Use shared response envelope. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/status.ts` | Modified | Use shared response envelope. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | Modified | Redact unavailable diagnostic errors. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts` | Modified | Remove lock-path leakage from timeout diagnostics. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | Modified | Add unavailable fail-open branch before scoring. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend-unavailable.vitest.ts` | Created | Cover unavailable fail-open and no-scorer-call behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/auth/trusted-caller.ts` | Created | Centralize trusted caller validation. |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Modified | Derive trusted caller metadata. |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Modified | Thread caller context through dispatch. |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/skill-graph-tools.ts` | Modified | Pass caller context into skill-graph handlers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` | Modified | Gate mutation on trusted callers and use shared redacted envelopes. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handlers/skill-graph-scan-auth.vitest.ts` | Created | Cover trusted and untrusted scan paths. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | Modified | Run SQLite integrity quick_check in live DB initialization. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/sqlite-integrity.ts` | Created | Share SQLite integrity checking. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts` | Modified | Serialize rebuild recovery with lease and busy retry. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/skill-graph-corruption-recovery.vitest.ts` | Created | Cover malformed DB recovery on the live path. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/skill-graph-rebuild-concurrency.vitest.ts` | Created | Cover concurrent rebuild serialization. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/skill-graph-diagnostic-redaction.vitest.ts` | Created | Cover path redaction across public diagnostics. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/response-envelope.ts` | Created | Share response envelopes and redaction helpers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts` | Modified | Use shared response envelope. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/status.ts` | Modified | Use shared response envelope. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | Modified | Redact unavailable diagnostic errors. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts` | Modified | Remove lock-path leakage from timeout diagnostics. |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Modified | Redact plugin status bridge/path output. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/state-mutation.ts` | Created | Share daemon mutation retry boundary. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts` | Modified | Route daemon DB mutations through the helper. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts` | Created | Single source of scorer lane ids, weights, and schema metadata. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts` | Modified | Derive scorer lanes from registry. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts` | Modified | Derive weights and lanes from registry. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Modified | Consume registry-derived lane metadata. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts` | Modified | Derive lane enum from registry. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/contract.ts` | Created | Define shared advisor compatibility contract. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/compat-contract.json` | Created | JSON sidecar consumed by non-TS runtimes. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modified | Read compatibility defaults from JSON sidecar. |
-| `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs` | Modified | Read compatibility defaults from JSON sidecar. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/skill-graph-db.ts` | Created | Share SQLite graph metadata fixture setup. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/skill-graph-handlers.vitest.ts` | Modified | Use shared SQLite fixture and trusted scan context. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/skill-graph-db.vitest.ts` | Modified | Use shared SQLite fixture. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/state-mutation.ts` | Created | Share daemon mutation retry boundary. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts` | Modified | Route daemon DB mutations through the helper. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts` | Created | Single source of scorer lane ids, weights, and schema metadata. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts` | Modified | Derive scorer lanes from registry. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts` | Modified | Derive weights and lanes from registry. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Modified | Consume registry-derived lane metadata. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts` | Modified | Derive lane enum from registry. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/contract.ts` | Created | Define shared advisor compatibility contract. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/compat-contract.json` | Created | JSON sidecar consumed by non-TS runtimes. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modified | Read compatibility defaults from JSON sidecar. |
+| `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs` | Modified | Read compatibility defaults from JSON sidecar. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/skill-graph-db.ts` | Created | Share SQLite graph metadata fixture setup. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/skill-graph-handlers.vitest.ts` | Modified | Use shared SQLite fixture and trusted scan context. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/skill-graph-db.vitest.ts` | Modified | Use shared SQLite fixture. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/spec.md` | Modified | Document trusted-caller model and runtime path spelling. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/checklist.md` | Modified | Add resolvable evidence anchors and validation status. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/decision-record.md` | Modified | Add child ADRs for the remediated sub-tracks. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/implementation-summary.md` | Modified | Fix lane weight and promotion-gate traceability. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md` | Modified | Add untrusted scan negative case. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md` | Modified | Align derived_generated lane weight at 0.15. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md` | Modified | Document registry-derived lane weights. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md` | Modified | Add untrusted scan negative case. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md` | Modified | Align derived_generated lane weight at 0.15. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md` | Modified | Document registry-derived lane weights. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -164,8 +164,8 @@ Phase 4 reduced drift risk in repeated patterns. Lane metadata, compatibility de
 | `python3 -m pytest skill_advisor/tests/python/test_skill_advisor.py` | PASS, exit 0; 4 tests. |
 | `npm run typecheck` | PASS, exit 0. |
 | `npm run build` | PASS, exit 0. |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification --strict` | PASS, exit 0. |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open --strict` | PASS, exit 0. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification --strict` | PASS, exit 0. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-skill-advisor-fail-open --strict` | PASS, exit 0. |
 ### Per-Finding Disposition
 
 | Finding | Severity | Disposition | Evidence |
@@ -203,5 +203,5 @@ None identified.
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

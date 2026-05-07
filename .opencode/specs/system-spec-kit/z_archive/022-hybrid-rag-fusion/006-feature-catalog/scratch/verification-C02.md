@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce97-ca1f-7a33-884c-7d6428a7a81d
 --------
 user
-You are a feature catalog verification agent. Read each feature snippet file in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/02--mutation/ (10 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
+You are a feature catalog verification agent. Read each feature snippet file in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/ (10 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
 
 OUTPUT FORMAT (repeat for each feature file):
 ---
@@ -41,7 +41,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
 exec
 /bin/zsh -lc 'find .. -name AGENTS.md -print' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "python3 .opencode/skill/scripts/skill_advisor.py \"You are a feature catalog verification agent. Read each feature snippet file in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/02--mutation/ (10 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing.\" --threshold 0.8" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 601ms:
+/bin/zsh -lc "python3 .opencode/skills/scripts/skill_advisor.py \"You are a feature catalog verification agent. Read each feature snippet file in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/ (10 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing.\" --threshold 0.8" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 601ms:
 [
   {
     "skill": "system-spec-kit",
@@ -71,9 +71,9 @@ exec
 codex
 I’ve confirmed the task routes most strongly to the `system-spec-kit` skill, so I’m loading just enough of that guidance and then I’ll enumerate the 10 mutation snippets before tracing each one into the MCP server code.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'find .opencode/skill/system-spec-kit/feature_catalog/02--mutation -maxdepth 1 -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "find .opencode/skill/system-spec-kit/mcp_server -maxdepth 3 -type f | sort | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'find .opencode/skills/system-spec-kit/feature_catalog/02--mutation -maxdepth 1 -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "find .opencode/skills/system-spec-kit/mcp_server -maxdepth 3 -type f | sort | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 ---
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -95,44 +95,44 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/01-memory-indexing-memorysave.md
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/02-memory-metadata-update-memoryupdate.md
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/03-single-and-folder-delete-memorydelete.md
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/04-tier-based-bulk-deletion-memorybulkdelete.md
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/05-validation-feedback-memoryvalidate.md
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/06-transaction-wrappers-on-mutation-handlers.md
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.md
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/08-prediction-error-save-arbitration.md
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation/10-per-memory-history-log.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/01-memory-indexing-memorysave.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/02-memory-metadata-update-memoryupdate.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/03-single-and-folder-delete-memorydelete.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/04-tier-based-bulk-deletion-memorybulkdelete.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/05-validation-feedback-memoryvalidate.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/06-transaction-wrappers-on-mutation-handlers.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/08-prediction-error-save-arbitration.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation/10-per-memory-history-log.md
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/.github/hooks/superset-notify.json
-.opencode/skill/system-spec-kit/mcp_server/.node-version-marker
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md
-.opencode/skill/system-spec-kit/mcp_server/LICENSE
-.opencode/skill/system-spec-kit/mcp_server/README.md
-.opencode/skill/system-spec-kit/mcp_server/_pending
-.opencode/skill/system-spec-kit/mcp_server/api/README.md
-.opencode/skill/system-spec-kit/mcp_server/api/eval.ts
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts
-.opencode/skill/system-spec-kit/mcp_server/api/indexing.ts
-.opencode/skill/system-spec-kit/mcp_server/api/providers.ts
-.opencode/skill/system-spec-kit/mcp_server/api/search.ts
-.opencode/skill/system-spec-kit/mcp_server/api/storage.ts
-.opencode/skill/system-spec-kit/mcp_server/cli.ts
-.opencode/skill/system-spec-kit/mcp_server/configs/README.md
-.opencode/skill/system-spec-kit/mcp_server/configs/cognitive.ts
-.opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts
-.opencode/skill/system-spec-kit/mcp_server/core/README.md
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts
+.opencode/skills/system-spec-kit/mcp_server/.github/hooks/superset-notify.json
+.opencode/skills/system-spec-kit/mcp_server/.node-version-marker
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md
+.opencode/skills/system-spec-kit/mcp_server/LICENSE
+.opencode/skills/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/_pending
+.opencode/skills/system-spec-kit/mcp_server/api/README.md
+.opencode/skills/system-spec-kit/mcp_server/api/eval.ts
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts
+.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts
+.opencode/skills/system-spec-kit/mcp_server/api/providers.ts
+.opencode/skills/system-spec-kit/mcp_server/api/search.ts
+.opencode/skills/system-spec-kit/mcp_server/api/storage.ts
+.opencode/skills/system-spec-kit/mcp_server/cli.ts
+.opencode/skills/system-spec-kit/mcp_server/configs/README.md
+.opencode/skills/system-spec-kit/mcp_server/configs/cognitive.ts
+.opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts
+.opencode/skills/system-spec-kit/mcp_server/core/README.md
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts
 codex
 The catalog files are in place. Next I’m pulling the relevant sections from all 10 snippets and the live handler source tree so I can compare each “Current Reality” claim against the actual implementation instead of just checking filenames.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/03-single-and-folder-delete-memorydelete.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/02-memory-metadata-update-memoryupdate.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/01-memory-indexing-memorysave.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg --files .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/mcp_server/hooks .opencode/skill/system-spec-kit/mcp_server/core .opencode/skill/system-spec-kit/mcp_server/api | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/03-single-and-folder-delete-memorydelete.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/02-memory-metadata-update-memoryupdate.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/01-memory-indexing-memorysave.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg --files .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/mcp_server/hooks .opencode/skills/system-spec-kit/mcp_server/core .opencode/skills/system-spec-kit/mcp_server/api | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 # Memory metadata update (memory_update)
 
 ## Current Reality
@@ -196,36 +196,36 @@ Bulk deletes by spec folder are more involved. The system first creates an auto-
 | `mcp_server/core/db-state.ts` | Core | Database state management |
 | `mcp_server/core/index.ts` | Core | Module barrel export |
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/api/README.md
-.opencode/skill/system-spec-kit/mcp_server/api/eval.ts
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts
-.opencode/skill/system-spec-kit/mcp_server/api/indexing.ts
-.opencode/skill/system-spec-kit/mcp_server/api/providers.ts
-.opencode/skill/system-spec-kit/mcp_server/api/search.ts
-.opencode/skill/system-spec-kit/mcp_server/api/storage.ts
-.opencode/skill/system-spec-kit/mcp_server/core/README.md
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts
-.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts
-.opencode/skill/system-spec-kit/mcp_server/core/index.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
+.opencode/skills/system-spec-kit/mcp_server/api/README.md
+.opencode/skills/system-spec-kit/mcp_server/api/eval.ts
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts
+.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts
+.opencode/skills/system-spec-kit/mcp_server/api/providers.ts
+.opencode/skills/system-spec-kit/mcp_server/api/search.ts
+.opencode/skills/system-spec-kit/mcp_server/api/storage.ts
+.opencode/skills/system-spec-kit/mcp_server/core/README.md
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts
+.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts
+.opencode/skills/system-spec-kit/mcp_server/core/index.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
 codex
 I’ve got the first three snippets, and there’s already a pattern: the catalog entries are listing a much broader source surface than the live tree exposes. I’m pulling the remaining seven now and then I’ll cross-check the concrete handler logic for each feature.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/04-tier-based-bulk-deletion-memorybulkdelete.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/05-validation-feedback-memoryvalidate.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/06-transaction-wrappers-on-mutation-handlers.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/08-prediction-error-save-arbitration.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/02--mutation/10-per-memory-history-log.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/04-tier-based-bulk-deletion-memorybulkdelete.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/05-validation-feedback-memoryvalidate.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/06-transaction-wrappers-on-mutation-handlers.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/08-prediction-error-save-arbitration.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/02--mutation/10-per-memory-history-log.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 # Tier-based bulk deletion (memory_bulk_delete)
 
 ## Current Reality
@@ -375,12 +375,12 @@ The history log is populated by the save handler on creation, the update handler
 codex
 I’ve got all 10 snippets now. The next pass is focused on the live TypeScript: handler registrations, feature-specific symbols, and any schema/table names mentioned in the prose, so I can separate “accurate but over-documented” from “describes code that isn’t there.”
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"memory_save|memory_update|memory_delete|memory_bulk_delete|memory_validate|namespace|memory_history|memory_conflicts|negative_feedback_events|allowPartialUpdate|asyncEmbedding|olderThanDays|queryId|autoPromotion|recordNegativeFeedbackEvent|SPECKIT_NEGATIVE_FEEDBACK|SPECKIT_RELATIONS|force: true|force\\b\" .opencode/skill/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"memory_save|memory_update|memory_delete|memory_bulk_delete|memory_validate|namespace|memory_history|memory_conflicts|negative_feedback_events|allowPartialUpdate|asyncEmbedding|olderThanDays|queryId|autoPromotion|recordNegativeFeedbackEvent|SPECKIT_NEGATIVE_FEEDBACK|SPECKIT_RELATIONS|force: true|force\\b\" .opencode/skills/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Memory Save Handler
 // ---------------------------------------------------------------
@@ -488,33 +488,33 @@ import { buildMutationHookFeedback } from '../hooks/mutation-feedback';
  succeeded in 52ms:
 Total output lines: 1096
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:238:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:338:    // T205: Enforce per-layer token budgets with actual truncation
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:550:/** Maximum time (ms) to wait for async cleanup before force-exiting. */
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:948:          await indexMemoryFile(filePath, { asyncEmbedding: true });
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:967:              await indexMemoryFile(filePath, { asyncEmbedding: true });
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:64:  - `memory-save` preserves `document_type` and `spec_level` across create/update/reinforce flows. Integrates with embedding cache for deduplication of unchanged content.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:117:  force?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:130:async function indexSingleFile(filePath: string, force: boolean = false): Promise<IndexResult> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:131:  return indexMemoryFile(filePath, { force });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:142:    force = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:243:    if (incremental && !force) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:295:      enabled: incremental && !force,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:311:  if (incremental && !force) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:351:      return await indexSingleFile(filePath, force);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:529:    hints.push('All files already up-to-date. Use force: true to re-index');
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:76:  force?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:123:  { force = false, applyPostInsertMetadata }: ChunkingOptions = {},
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:159:    if (existing && !force) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:238:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:338:    // T205: Enforce per-layer token budgets with actual truncation
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:550:/** Maximum time (ms) to wait for async cleanup before force-exiting. */
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:948:          await indexMemoryFile(filePath, { asyncEmbedding: true });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:967:              await indexMemoryFile(filePath, { asyncEmbedding: true });
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:64:  - `memory-save` preserves `document_type` and `spec_level` across create/update/reinforce flows. Integrates with embedding cache for deduplication of unchanged content.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:117:  force?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:130:async function indexSingleFile(filePath: string, force: boolean = false): Promise<IndexResult> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:131:  return indexMemoryFile(filePath, { force });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:142:    force = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:243:    if (incremental && !force) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:295:      enabled: incremental && !force,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:311:  if (incremental && !force) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:351:      return await indexSingleFile(filePath, force);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:529:    hints.push('All files already up-to-date. Use force: true to re-index');
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:76:  force?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:123:  { force = false, applyPostInsertMetadata }: ChunkingOptions = {},
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:159:    if (existing && !force) {
 codex
 I’ve confirmed the handlers are real and active. Now I’m drilling into the disputed details: `memory_validate` actually lives in `checkpoints.ts`, and I’m checking schema/tool registration plus the PE/history claims that mention tables and modules that may not exist in this tree.
 exec
-/bin/zsh -lc "sed -n '280,480p' .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '120,240p' .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '280,480p' .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '120,240p' .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Pe Orchestration
 // ---------------------------------------------------------------
@@ -643,11 +643,11 @@ import { validateToolArgs } from '../schemas/tool-input-schemas';
 codex
 The schema/tooling side is giving clearer signals: some features are definitely implemented, but several descriptions are ahead of or sideways from the code. I’m checking the remaining pieces now, especially `memory_validate`’s internals, schema tables, and whether the “history” and “corrections” modules exist at all.
 exec
-/bin/zsh -lc "sed -n '1,140p' .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg --files .opencode/skill/system-spec-kit/mcp_server/lib | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,460p' .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '460,760p' .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"memory_history|CREATE TABLE IF NOT EXISTS memory_history|memory_corrections|negative_feedback_events|recordNegativeFeedbackEvent|confidenceTracker|executeAutoPromotion|recordSelection\\(|recordUserSelection\\(|SPECKIT_NEGATIVE_FEEDBACK|SPECKIT_RELATIONS|corrections\" .opencode/skill/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,140p' .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg --files .opencode/skills/system-spec-kit/mcp_server/lib | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,460p' .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '460,760p' .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"memory_history|CREATE TABLE IF NOT EXISTS memory_history|memory_corrections|negative_feedback_events|recordNegativeFeedbackEvent|confidenceTracker|executeAutoPromotion|recordSelection\\(|recordUserSelection\\(|SPECKIT_NEGATIVE_FEEDBACK|SPECKIT_RELATIONS|corrections\" .opencode/skills/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Checkpoints
 // ---------------------------------------------------------------
@@ -669,26 +669,26 @@ import { checkDatabaseUpdated } from '../core';
 import { requireDb, toErrorMessage } from '../utils';
 
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/pressure-monitor.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/pressure-monitor.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts
  succeeded in 51ms:
         content_text = ?,
         quality_score = ?,
@@ -732,35 +732,35 @@ import { requireDb, toErrorMessage } from '../utils';
         console.warn('[VectorIndex] Migration v15 warning (idx_quality_score):', get_error_message(e));
       }
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:13:import * as confidenceTracker from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:14:import { executeAutoPromotion } from '../lib/search/auto-promotion';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:17:import { recordNegativeFeedbackEvent } from '../lib/scoring/negative-feedback';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:342:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:354:    const promotionResult = executeAutoPromotion(database, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:366:    recordNegativeFeedbackEvent(database, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:379:    groundTruthSelectionId = recordUserSelection(queryId, memoryId, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:393:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:239:  description: '[L4:Mutation] Update an existing memory with corrections. Re-generates embedding if content changes. Token Budget: 500.',
-.opencode/skill/system-spec-kit/mcp_server/README.md:731:| `SPECKIT_RELATIONS`          | `true`  | Enable causal memory graph                                                            |
-.opencode/skill/system-spec-kit/mcp_server/README.md:790:| `SPECKIT_NEGATIVE_FEEDBACK`    | `true`  | `wasUseful=false` applies score demotion with 30-day recovery (A4) |
-.opencode/skill/system-spec-kit/mcp_server/README.md:803:| `memory_history`     | Access and modification history                                    |
-.opencode/skill/system-spec-kit/mcp_server/README.md:808:| `memory_corrections` | Learning from corrections                                          |
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:37:    // Create memory_history table
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:39:      CREATE TABLE IF NOT EXISTS memory_history (
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/index.ts:7:// Re-export all corrections exports at top level
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/index.ts:8:export * from './corrections';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:72:      FROM negative_feedback_events
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:218:export function executeAutoPromotion(db: Database, memoryId: number): AutoPromotionResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:265:    console.error(`[auto-promotion] executeAutoPromotion failed for memory ${memoryId}: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:13:import * as confidenceTracker from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:14:import { executeAutoPromotion } from '../lib/search/auto-promotion';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:17:import { recordNegativeFeedbackEvent } from '../lib/scoring/negative-feedback';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:342:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:354:    const promotionResult = executeAutoPromotion(database, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:366:    recordNegativeFeedbackEvent(database, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:379:    groundTruthSelectionId = recordUserSelection(queryId, memoryId, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:393:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:239:  description: '[L4:Mutation] Update an existing memory with corrections. Re-generates embedding if content changes. Token Budget: 500.',
+.opencode/skills/system-spec-kit/mcp_server/README.md:731:| `SPECKIT_RELATIONS`          | `true`  | Enable causal memory graph                                                            |
+.opencode/skills/system-spec-kit/mcp_server/README.md:790:| `SPECKIT_NEGATIVE_FEEDBACK`    | `true`  | `wasUseful=false` applies score demotion with 30-day recovery (A4) |
+.opencode/skills/system-spec-kit/mcp_server/README.md:803:| `memory_history`     | Access and modification history                                    |
+.opencode/skills/system-spec-kit/mcp_server/README.md:808:| `memory_corrections` | Learning from corrections                                          |
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:37:    // Create memory_history table
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:39:      CREATE TABLE IF NOT EXISTS memory_history (
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/index.ts:7:// Re-export all corrections exports at top level
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/index.ts:8:export * from './corrections';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:72:      FROM negative_feedback_events
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:218:export function executeAutoPromotion(db: Database, memoryId: number): AutoPromotionResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:265:    console.error(`[auto-promotion] executeAutoPromotion failed for memory ${memoryId}: ${msg}`);
 codex
 I’ve verified that the “corrections” module and `memory_history` storage do exist, but some snippets are still mixing accurate concepts with the wrong integration points. I’m grabbing the schema and mutation internals that determine whether those features are actually wired into the live handlers.
 exec
-/bin/zsh -lc "sed -n '1030,1155p' .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '320,520p' .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1030,1155p' .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '320,520p' .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     const sqlite_vec = get_sqlite_vec_available();
     if (embedding && sqlite_vec) {
       const expected_dim = get_embedding_dim();
@@ -890,35 +890,35 @@ codex
 I’m switching from manual spot checks to a repo-wide path audit now so the final report can cleanly separate “description mismatch” from “file list is stale.” After that I’ll synthesize the missing source files for each feature based on the actual handler/import graph.
 exec
 /bin/zsh -lc "find . -maxdepth 3 -type d \\( -name shared -o -name scripts \\) | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/mcp_server/tests | sort | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/mcp_server/tests | sort | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ./.agents/scripts
-./.opencode/skill/scripts
+./.opencode/skills/scripts
  succeeded in 50ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fallback.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/anchor-id-simplification.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/anchor-metadata.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/anchor-prefix-matching.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/api-key-validation.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/api-validation.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-processor.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fallback.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/anchor-id-simplification.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/anchor-metadata.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/anchor-prefix-matching.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/api-key-validation.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/api-validation.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-processor.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-security.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'),path=require('path');const base='/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit';const dir=path.join(base,'feature_catalog/02--mutation');for(const file of fs.readdirSync(dir).filter(f=>f.endsWith('.md')).sort()){const text=fs.readFileSync(path.join(dir,file),'utf8');const unique=[...new Set([...text.matchAll(/"'`([''^`]+)`/g)].map(m=>m[1]).filter(p=>p.includes('"'/')&&"'!/[{}]/.test(p)&&!/''^now$|''^true$|''^false$/.test(p)))];const invalid=unique.filter(p=>!fs.existsSync(path.join(base,p))&&!fs.existsSync(path.join('"'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public',p)));console.log(file+'\\t'+(invalid.length?invalid.join(' | '):'NONE'));}\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
+/bin/zsh -lc "node -e \"const fs=require('fs'),path=require('path');const base='/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit';const dir=path.join(base,'feature_catalog/02--mutation');for(const file of fs.readdirSync(dir).filter(f=>f.endsWith('.md')).sort()){const text=fs.readFileSync(path.join(dir,file),'utf8');const unique=[...new Set([...text.matchAll(/"'`([''^`]+)`/g)].map(m=>m[1]).filter(p=>p.includes('"'/')&&"'!/[{}]/.test(p)&&!/''^now$|''^true$|''^false$/.test(p)))];const invalid=unique.filter(p=>!fs.existsSync(path.join(base,p))&&!fs.existsSync(path.join('"'/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public',p)));console.log(file+'\\t'+(invalid.length?invalid.join(' | '):'NONE'));}\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
 zsh:1: unmatched "
 exec
-/bin/zsh -lc "node -e 'const fs=require(\"fs\"),path=require(\"path\");const base=\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit\";const dir=path.join(base,\"feature_catalog/02--mutation\");for(const file of fs.readdirSync(dir).filter(f=>f.endsWith(\".md\")).sort()){const text=fs.readFileSync(path.join(dir,file),\"utf8\");const unique=[...new Set([...text.matchAll(/"'`([''^`]+)`/g)].map(m=>m[1]).filter(p=>p.includes("/")&&!/[{}]/.test(p)&&!/''^now$|''^true$|''^false$/.test(p)))];const invalid=unique.filter(p=>!fs.existsSync(path.join(base,p))&&!fs.existsSync(path.join("/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public",p)));console.log(file+"'"\\t\"+(invalid.length?invalid.join(\" | \"):\"NONE\"));}'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "node -e 'const fs=require(\"fs\"),path=require(\"path\");const base=\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit\";const dir=path.join(base,\"feature_catalog/02--mutation\");for(const file of fs.readdirSync(dir).filter(f=>f.endsWith(\".md\")).sort()){const text=fs.readFileSync(path.join(dir,file),\"utf8\");const unique=[...new Set([...text.matchAll(/"'`([''^`]+)`/g)].map(m=>m[1]).filter(p=>p.includes("/")&&!/[{}]/.test(p)&&!/''^now$|''^true$|''^false$/.test(p)))];const invalid=unique.filter(p=>!fs.existsSync(path.join(base,p))&&!fs.existsSync(path.join("/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public",p)));console.log(file+"'"\\t\"+(invalid.length?invalid.join(\" | \"):\"NONE\"));}'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 01-memory-indexing-memorysave.md	mcp_server/tests/retry.vitest.ts
 02-memory-metadata-update-memoryupdate.md	mcp_server/tests/retry.vitest.ts
 03-single-and-folder-delete-memorydelete.md	mcp_server/tests/retry.vitest.ts
@@ -930,7 +930,7 @@ exec
 09-correction-tracking-with-undo.md	lib/learning/corrections.ts
 10-per-memory-history-log.md	NONE
 exec
-/bin/zsh -lc "node -e 'const fs=require(\"fs\"),path=require(\"path\");const base=\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit\";const dir=path.join(base,\"feature_catalog/02--mutation\");for(const file of fs.readdirSync(dir).filter(f=>f.endsWith(\".md\")).sort()){const text=fs.readFileSync(path.join(dir,file),\"utf8\");const s=text.indexOf(\"## Source Files\");const e=text.indexOf(\"## Source Metadata\");const section=text.slice(s,e>0?e:text.length);const unique=[...new Set([...section.matchAll(/"'`([''^`]+)`/g)].map(m=>m[1]).filter(p=>p.includes("/")&&!/[{}]/.test(p)&&!p.includes("/")===false))];const invalid=unique.filter(p=>!fs.existsSync(path.join(base,p))&&!fs.existsSync(path.join("/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public",p)));console.log(file+"'"\\t\"+(invalid.length?invalid.join(\" | \"):\"NONE\"));}'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "node -e 'const fs=require(\"fs\"),path=require(\"path\");const base=\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit\";const dir=path.join(base,\"feature_catalog/02--mutation\");for(const file of fs.readdirSync(dir).filter(f=>f.endsWith(\".md\")).sort()){const text=fs.readFileSync(path.join(dir,file),\"utf8\");const s=text.indexOf(\"## Source Files\");const e=text.indexOf(\"## Source Metadata\");const section=text.slice(s,e>0?e:text.length);const unique=[...new Set([...section.matchAll(/"'`([''^`]+)`/g)].map(m=>m[1]).filter(p=>p.includes("/")&&!/[{}]/.test(p)&&!p.includes("/")===false))];const invalid=unique.filter(p=>!fs.existsSync(path.join(base,p))&&!fs.existsSync(path.join("/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public",p)));console.log(file+"'"\\t\"+(invalid.length?invalid.join(\" | \"):\"NONE\"));}'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 01-memory-indexing-memorysave.md	mcp_server/tests/retry.vitest.ts
 02-memory-metadata-update-memoryupdate.md	mcp_server/tests/retry.vitest.ts
 03-single-and-folder-delete-memorydelete.md	mcp_server/tests/retry.vitest.ts
@@ -943,45 +943,45 @@ exec
 10-per-memory-history-log.md	NONE
 exec
 /bin/zsh -lc 'rg --files shared | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'find .opencode/skill/system-spec-kit/mcp_server -maxdepth 2 -type d | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc 'find .opencode/skills/system-spec-kit/mcp_server -maxdepth 2 -type d | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 rg: shared: IO error for operation on shared: No such file or directory (os error 2)
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server
-.opencode/skill/system-spec-kit/mcp_server/.github
-.opencode/skill/system-spec-kit/mcp_server/.github/hooks
-.opencode/skill/system-spec-kit/mcp_server/api
-.opencode/skill/system-spec-kit/mcp_server/configs
-.opencode/skill/system-spec-kit/mcp_server/core
-.opencode/skill/system-spec-kit/mcp_server/database
-.opencode/skill/system-spec-kit/mcp_server/dist
-.opencode/skill/system-spec-kit/mcp_server/dist/api
-.opencode/skill/system-spec-kit/mcp_server/dist/configs
-.opencode/skill/system-spec-kit/mcp_server/dist/core
-.opencode/skill/system-spec-kit/mcp_server/dist/database
-.opencode/skill/system-spec-kit/mcp_server/dist/formatters
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks
-.opencode/skill/system-spec-kit/mcp_server/dist/lib
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas
-.opencode/skill/system-spec-kit/mcp_server/dist/scripts
-.opencode/skill/system-spec-kit/mcp_server/dist/tests
-.opencode/skill/system-spec-kit/mcp_server/dist/tools
+.opencode/skills/system-spec-kit/mcp_server
+.opencode/skills/system-spec-kit/mcp_server/.github
+.opencode/skills/system-spec-kit/mcp_server/.github/hooks
+.opencode/skills/system-spec-kit/mcp_server/api
+.opencode/skills/system-spec-kit/mcp_server/configs
+.opencode/skills/system-spec-kit/mcp_server/core
+.opencode/skills/system-spec-kit/mcp_server/database
+.opencode/skills/system-spec-kit/mcp_server/dist
+.opencode/skills/system-spec-kit/mcp_server/dist/api
+.opencode/skills/system-spec-kit/mcp_server/dist/configs
+.opencode/skills/system-spec-kit/mcp_server/dist/core
+.opencode/skills/system-spec-kit/mcp_server/dist/database
+.opencode/skills/system-spec-kit/mcp_server/dist/formatters
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks
+.opencode/skills/system-spec-kit/mcp_server/dist/lib
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas
+.opencode/skills/system-spec-kit/mcp_server/dist/scripts
+.opencode/skills/system-spec-kit/mcp_server/dist/tests
+.opencode/skills/system-spec-kit/mcp_server/dist/tools
 exec
-/bin/zsh -lc 'rg -n "shared/chunking.ts|shared/config.ts|shared/embeddings.ts" .opencode/skill/system-spec-kit/feature_catalog/02--mutation/01-memory-indexing-memorysave.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'ls -ld .opencode/skill/system-spec-kit/shared .opencode/skill/system-spec-kit/shared/chunking.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-drwxr-xr-x@ 22 michelkerkmeester  staff   704 Mar  8 14:47 .opencode/skill/system-spec-kit/shared
--rw-r--r--@  1 michelkerkmeester  staff  3785 Mar  8 17:21 .opencode/skill/system-spec-kit/shared/chunking.ts
+/bin/zsh -lc 'rg -n "shared/chunking.ts|shared/config.ts|shared/embeddings.ts" .opencode/skills/system-spec-kit/feature_catalog/02--mutation/01-memory-indexing-memorysave.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'ls -ld .opencode/skills/system-spec-kit/shared .opencode/skills/system-spec-kit/shared/chunking.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+drwxr-xr-x@ 22 michelkerkmeester  staff   704 Mar  8 14:47 .opencode/skills/system-spec-kit/shared
+-rw-r--r--@  1 michelkerkmeester  staff  3785 Mar  8 17:21 .opencode/skills/system-spec-kit/shared/chunking.ts
  succeeded in 52ms:
 121:| `shared/chunking.ts` | Shared | Content chunking |
 122:| `shared/config.ts` | Shared | Shared configuration |
 123:| `shared/embeddings.ts` | Shared | Embedding utilities |
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/prediction-error-gate.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/handlers/README.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/prediction-error-gate.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/handlers/README.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Prediction Error Gate
 // ---------------------------------------------------------------
@@ -1108,30 +1108,30 @@ import {
 import { createHash } from 'crypto';
 import type Database from 'better-sqlite3';
 exec
-/bin/zsh -lc 'rg -n "isConsolidationEnabled|isSaveQualityGateEnabled|isEncodingIntentEnabled|isReconsolidationEnabled|SPECKIT_RECONSOLIDATION|SPECKIT_CONSOLIDATION|SPECKIT_SAVE_QUALITY_GATE" .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts .opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts .opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:15:// Behind SPECKIT_RECONSOLIDATION flag (default OFF)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:119: * @returns true if SPECKIT_RECONSOLIDATION is not explicitly disabled (default: ON)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:121:export function isReconsolidationEnabled(): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:122:  return process.env.SPECKIT_RECONSOLIDATION?.toLowerCase() !== 'false';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:442:  if (!isReconsolidationEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:71: * Default: TRUE (graduated). Set SPECKIT_SAVE_QUALITY_GATE=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:73:export function isSaveQualityGateEnabled(): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:74:  return isFeatureEnabled('SPECKIT_SAVE_QUALITY_GATE');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:79: * Default: TRUE (graduated). Set SPECKIT_RECONSOLIDATION=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:81:export function isReconsolidationEnabled(): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:82:  return isFeatureEnabled('SPECKIT_RECONSOLIDATION');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:119: * Default: TRUE (graduated). Set SPECKIT_CONSOLIDATION=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:121:export function isConsolidationEnabled(): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:122:  return isFeatureEnabled('SPECKIT_CONSOLIDATION');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:130:export function isEncodingIntentEnabled(): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:13:// Behind SPECKIT_SAVE_QUALITY_GATE flag (default OFF)
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:217: * Default: TRUE (graduated Sprint 4). Set SPECKIT_SAVE_QUALITY_GATE=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:219: * @returns true if SPECKIT_SAVE_QUALITY_GATE is not explicitly disabled
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:222:  return process.env.SPECKIT_SAVE_QUALITY_GATE?.toLowerCase() !== 'false';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:13:import { reconsolidate, isReconsolidationEnabled } from '../../lib/storage/reconsolidation';
+/bin/zsh -lc 'rg -n "isConsolidationEnabled|isSaveQualityGateEnabled|isEncodingIntentEnabled|isReconsolidationEnabled|SPECKIT_RECONSOLIDATION|SPECKIT_CONSOLIDATION|SPECKIT_SAVE_QUALITY_GATE" .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts .opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts .opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:15:// Behind SPECKIT_RECONSOLIDATION flag (default OFF)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:119: * @returns true if SPECKIT_RECONSOLIDATION is not explicitly disabled (default: ON)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:121:export function isReconsolidationEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:122:  return process.env.SPECKIT_RECONSOLIDATION?.toLowerCase() !== 'false';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:442:  if (!isReconsolidationEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:71: * Default: TRUE (graduated). Set SPECKIT_SAVE_QUALITY_GATE=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:73:export function isSaveQualityGateEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:74:  return isFeatureEnabled('SPECKIT_SAVE_QUALITY_GATE');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:79: * Default: TRUE (graduated). Set SPECKIT_RECONSOLIDATION=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:81:export function isReconsolidationEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:82:  return isFeatureEnabled('SPECKIT_RECONSOLIDATION');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:119: * Default: TRUE (graduated). Set SPECKIT_CONSOLIDATION=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:121:export function isConsolidationEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:122:  return isFeatureEnabled('SPECKIT_CONSOLIDATION');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:130:export function isEncodingIntentEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:13:// Behind SPECKIT_SAVE_QUALITY_GATE flag (default OFF)
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:217: * Default: TRUE (graduated Sprint 4). Set SPECKIT_SAVE_QUALITY_GATE=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:219: * @returns true if SPECKIT_SAVE_QUALITY_GATE is not explicitly disabled
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:222:  return process.env.SPECKIT_SAVE_QUALITY_GATE?.toLowerCase() !== 'false';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:13:import { reconsolidate, isReconsolidationEnabled } from '../../lib/storage/reconsolidation';
  succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Search Flags
@@ -1196,19 +1196,19 @@ import {
 } from '../../lib/search/search-flags';
 import type * as memoryParser from '../../lib/parsing/memory-parser';
 exec
-/bin/zsh -lc "rg -n \"function update_memory|clear_search_cache|clear_constitutional_cache|update_memory\\(|export function update_memory|export function updateMemory\" .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:39:  clear_constitutional_cache,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:18:  clear_constitutional_cache,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:23:  clear_search_cache,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:107:    return update_memory({
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:236:export function update_memory(params: UpdateMemoryParams): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:277:      clear_constitutional_cache();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:381:    clear_search_cache();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:382:    clear_constitutional_cache();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:477:      clear_constitutional_cache();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:478:      clear_search_cache();
+/bin/zsh -lc "rg -n \"function update_memory|clear_search_cache|clear_constitutional_cache|update_memory\\(|export function update_memory|export function updateMemory\" .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:39:  clear_constitutional_cache,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:18:  clear_constitutional_cache,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:23:  clear_search_cache,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:107:    return update_memory({
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:236:export function update_memory(params: UpdateMemoryParams): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:277:      clear_constitutional_cache();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:381:    clear_search_cache();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:382:    clear_constitutional_cache();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:477:      clear_constitutional_cache();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:478:      clear_search_cache();
 exec
-/bin/zsh -lc "sed -n '236,325p' .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '236,325p' .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 export function update_memory(params: UpdateMemoryParams): number {
   const database = initialize_db();
 
@@ -1230,7 +1230,7 @@ export function update_memory(params: UpdateMemoryParams): number {
 
   const now = new Date().toISOString();
 exec
-/bin/zsh -lc "sed -n '325,395p' .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '325,395p' .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
         throw new Error(`Embedding must be ${expected_dim} dimensions, got ${embedding.length}`);
       }
 
@@ -1252,62 +1252,62 @@ exec
 }
 
 exec
-/bin/zsh -lc 'rg -n "namespace|multi-tenant|tenant" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
+/bin/zsh -lc 'rg -n "namespace|multi-tenant|tenant" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
 
 exec
-/bin/zsh -lc "rg -n \"recordCorrection|record_correction|undoCorrection|undo_correction|getCorrections|corrections\\.\" .opencode/skill/system-spec-kit/mcp_server --glob '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:239:  description: '[L4:Mutation] Update an existing memory with corrections. Re-generates embedding if content changes. Token Budget: 500.',
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/README.md:54:├── corrections.ts   # Memory correction tracking with stability adjustments
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/README.md:63:| `corrections.ts` | Correction types, stability adjustments, history tracking |
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/README.md:93:| `record_correction(params)` | Record a correction with stability updates |
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/README.md:94:| `undo_correction(id)` | Reverse a correction, restore stability |
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/README.md:121:corrections.init(db);
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/README.md:124:const result = corrections.record_correction({
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/README.md:166:import { undo_correction } from './index';
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/README.md:169:const result = undo_correction(7);
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:354: * Provides the record_correction helper.
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:356:export function record_correction(params: RecordCorrectionParams): CorrectionResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:424:    // AI-SAFETY: record_correction validates db before starting this transaction
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:454:      // AI-SAFETY: record_correction validates db before starting this transaction
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:480:        // AI-SAFETY: record_correction validates db before starting this transaction
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:481:        // AI-SAFETY: undo_correction throws when db is not initialized before creating this transaction
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:525:    console.error(`[corrections] record_correction failed: ${get_error_message(error)}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:535: * Provides the undo_correction helper.
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:537:export function undo_correction(correction_id: number): UndoResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:591:        // AI-SAFETY: undo_correction throws when db is not initialized before creating this transaction
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:622:    console.error(`[corrections] undo_correction failed: ${get_error_message(error)}`);
+/bin/zsh -lc "rg -n \"recordCorrection|record_correction|undoCorrection|undo_correction|getCorrections|corrections\\.\" .opencode/skills/system-spec-kit/mcp_server --glob '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:239:  description: '[L4:Mutation] Update an existing memory with corrections. Re-generates embedding if content changes. Token Budget: 500.',
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/README.md:54:├── corrections.ts   # Memory correction tracking with stability adjustments
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/README.md:63:| `corrections.ts` | Correction types, stability adjustments, history tracking |
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/README.md:93:| `record_correction(params)` | Record a correction with stability updates |
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/README.md:94:| `undo_correction(id)` | Reverse a correction, restore stability |
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/README.md:121:corrections.init(db);
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/README.md:124:const result = corrections.record_correction({
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/README.md:166:import { undo_correction } from './index';
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/README.md:169:const result = undo_correction(7);
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:354: * Provides the record_correction helper.
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:356:export function record_correction(params: RecordCorrectionParams): CorrectionResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:424:    // AI-SAFETY: record_correction validates db before starting this transaction
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:454:      // AI-SAFETY: record_correction validates db before starting this transaction
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:480:        // AI-SAFETY: record_correction validates db before starting this transaction
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:481:        // AI-SAFETY: undo_correction throws when db is not initialized before creating this transaction
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:525:    console.error(`[corrections] record_correction failed: ${get_error_message(error)}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:535: * Provides the undo_correction helper.
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:537:export function undo_correction(correction_id: number): UndoResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:591:        // AI-SAFETY: undo_correction throws when db is not initialized before creating this transaction
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:622:    console.error(`[corrections] undo_correction failed: ${get_error_message(error)}`);
 exec
-/bin/zsh -lc "rg -n \"recordHistory|memory_history|history\\.init|history\\.record|getHistory\\(\" .opencode/skill/system-spec-kit/mcp_server --glob '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/README.md:803:| `memory_history`     | Access and modification history                                    |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:57:        database.exec('CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1057:  // H5 FIX: Add idx_history_timestamp index for memory_history table
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1059:    database.exec(`CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1073:    CREATE TABLE IF NOT EXISTS memory_history (
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1121:    CREATE INDEX IF NOT EXISTS idx_history_memory ON memory_history(memory_id, timestamp);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1122:    CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:355:    database.prepare('DELETE FROM memory_history WHERE memory_id = ?').run(id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:445:        database.prepare('DELETE FROM memory_history WHERE memory_id = ?').run(id);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:55:    CREATE TABLE IF NOT EXISTS memory_history (
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:105: * Provides the recordHistory helper.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:107:export function recordHistory(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:118:    INSERT INTO memory_history (id, memory_id, event, prev_value, new_value, actor)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:128:export function getHistory(memoryId: number, limit?: number): HistoryEntry[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:132:    ? 'SELECT * FROM memory_history WHERE memory_id = ? ORDER BY timestamp DESC, rowid DESC LIMIT ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:133:    : 'SELECT * FROM memory_history WHERE memory_id = ? ORDER BY timestamp DESC, rowid DESC';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:153:      FROM memory_history h
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:172:    FROM memory_history
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:395:| v2      | Add `idx_history_timestamp` index on `memory_history`                        |
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/README.md:173:| **Storage** | `memory_history` table with foreign key to `memory_index` |
+/bin/zsh -lc "rg -n \"recordHistory|memory_history|history\\.init|history\\.record|getHistory\\(\" .opencode/skills/system-spec-kit/mcp_server --glob '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/README.md:803:| `memory_history`     | Access and modification history                                    |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:57:        database.exec('CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1057:  // H5 FIX: Add idx_history_timestamp index for memory_history table
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1059:    database.exec(`CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1073:    CREATE TABLE IF NOT EXISTS memory_history (
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1121:    CREATE INDEX IF NOT EXISTS idx_history_memory ON memory_history(memory_id, timestamp);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1122:    CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:355:    database.prepare('DELETE FROM memory_history WHERE memory_id = ?').run(id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:445:        database.prepare('DELETE FROM memory_history WHERE memory_id = ?').run(id);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:55:    CREATE TABLE IF NOT EXISTS memory_history (
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:105: * Provides the recordHistory helper.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:107:export function recordHistory(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:118:    INSERT INTO memory_history (id, memory_id, event, prev_value, new_value, actor)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:128:export function getHistory(memoryId: number, limit?: number): HistoryEntry[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:132:    ? 'SELECT * FROM memory_history WHERE memory_id = ? ORDER BY timestamp DESC, rowid DESC LIMIT ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:133:    : 'SELECT * FROM memory_history WHERE memory_id = ? ORDER BY timestamp DESC, rowid DESC';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:153:      FROM memory_history h
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:172:    FROM memory_history
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:395:| v2      | Add `idx_history_timestamp` index on `memory_history`                        |
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/README.md:173:| **Storage** | `memory_history` table with foreign key to `memory_index` |
 exec
-/bin/zsh -lc 'ls .opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts .opencode/skill/system-spec-kit/mcp_server/scripts/memory/cleanup-orphaned-vectors.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 53ms:
-ls: .opencode/skill/system-spec-kit/mcp_server/scripts/memory/cleanup-orphaned-vectors.ts: No such file or directory
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts
+/bin/zsh -lc 'ls .opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts .opencode/skills/system-spec-kit/mcp_server/scripts/memory/cleanup-orphaned-vectors.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 53ms:
+ls: .opencode/skills/system-spec-kit/mcp_server/scripts/memory/cleanup-orphaned-vectors.ts: No such file or directory
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/save/db-helpers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"normalizeContentForBM25|addDocument\\(|normalizeContentForEmbedding\\(\" .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index*.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/save/db-helpers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"normalizeContentForBM25|addDocument\\(|normalizeContentForEmbedding\\(\" .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index*.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 // ---------------------------------------------------------------
 // MODULE: Create Record
 // ---------------------------------------------------------------
@@ -1392,20 +1392,20 @@ export const ALLOWED_POST_INSERT_COLUMNS = new Set<string>([
  * Build and execute a dynamic `UPDATE memory_index SET ... WHERE id = ?`
  * from the supplied field map.  Reduces the five near-identical post-insert
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:6:import { normalizeContentForBM25 } from '../parsing/content-normalizer';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:136:  addDocument(id: string, text: string): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:235:      this.addDocument(doc.id, doc.text);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:262:        if (row.content_text) textParts.push(normalizeContentForBM25(row.content_text));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:267:          this.addDocument(String(row.id), text);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:157:              bm25Index.getIndex().addDocument(String(id), text);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:119:        bm25.addDocument(String(memory_id), parsed.content);
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:222:      bm25.addDocument(String(parentId), chunkResult.parentSummary);
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:256:          chunkEmbedding = await embeddings.generateDocumentEmbedding(normalizeContentForEmbedding(chunk.content));
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:319:          bm25.addDocument(String(childId), chunk.content);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:46:        const normalizedContent = normalizeContentForEmbedding(parsed.content);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:130:                  bm25.addDocument(String(memoryId), memory.content);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:6:import { normalizeContentForBM25 } from '../parsing/content-normalizer';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:136:  addDocument(id: string, text: string): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:235:      this.addDocument(doc.id, doc.text);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:262:        if (row.content_text) textParts.push(normalizeContentForBM25(row.content_text));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:267:          this.addDocument(String(row.id), text);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:157:              bm25Index.getIndex().addDocument(String(id), text);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:119:        bm25.addDocument(String(memory_id), parsed.content);
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:222:      bm25.addDocument(String(parentId), chunkResult.parentSummary);
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:256:          chunkEmbedding = await embeddings.generateDocumentEmbedding(normalizeContentForEmbedding(chunk.content));
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:319:          bm25.addDocument(String(childId), chunk.content);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:46:        const normalizedContent = normalizeContentForEmbedding(parsed.content);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:130:                  bm25.addDocument(String(memoryId), memory.content);
 exec
-/bin/zsh -lc "sed -n '1,180p' .opencode/skill/system-spec-kit/mcp_server/handlers/index.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,180p' .opencode/skills/system-spec-kit/mcp_server/handlers/index.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 // ---------------------------------------------------------------
 // MODULE: Index
 // ---------------------------------------------------------------
@@ -1427,7 +1427,7 @@ import * as memoryIngest from './memory-ingest';
 /* ---------------------------------------------------------------
    RE-EXPORTS: All handler functions
 exec
-/bin/zsh -lc 'rg -n "14|warn-only|0.4|50|0.92|signal density|Layer 1|Layer 2|Layer 3" .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc 'rg -n "14|warn-only|0.4|50|0.92|signal density|Layer 1|Layer 2|Layer 3" .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 8:// - Layer 1: Structural validation (existing checks, formalized)
 9:// - Layer 2: Content quality scoring (title, triggers, length,
 10://            anchors, metadata, signal density)

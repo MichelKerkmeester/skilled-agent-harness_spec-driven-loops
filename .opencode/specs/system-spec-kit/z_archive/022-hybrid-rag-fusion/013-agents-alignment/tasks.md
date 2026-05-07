@@ -43,7 +43,7 @@ _memory:
 <!-- alias: Audit Current Runtime Reality -->
 
 - [x] T001 Read the canonical `013` packet and identify stale copy-model language (`./spec.md`, `./plan.md`, `./tasks.md`, `./checklist.md`, `./implementation-summary.md`)
-- [x] T002 Verify the two source families at `.opencode/agent/*.md` and `.opencode/agent/chatgpt/*.md`
+- [x] T002 Verify the two source families at `.opencode/agents/*.md` and `.opencode/agents/chatgpt/*.md`
 - [x] T003 Verify runtime targets for Claude, Codex, and Gemini, including `.gemini -> .agents`
 - [x] T004 Confirm 10-file family counts across base, ChatGPT, Claude, Codex, and Gemini paths
 - [x] T004a Identify scoped runtime-facing drift in Gemini delegation guidance and write-agent projections

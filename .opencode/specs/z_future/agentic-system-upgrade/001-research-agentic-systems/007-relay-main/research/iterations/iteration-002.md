@@ -17,8 +17,8 @@ Read Relay's SDK READMEs and `relay.ts` hook definitions/event wiring, then comp
 - `spawnPty()` invokes `onStart`, `onError`, and `onSuccess` around the spawn call itself. [SOURCE: external/packages/sdk/src/relay.ts:560-615]
 - Event wiring calls `onMessageReceived`, `onAgentReady`, and channel subscription hooks from broker events. [SOURCE: external/packages/sdk/src/relay.ts:1219-1294]
 - The Python SDK mirrors this with `on_message_received`, `on_agent_ready`, `on_agent_exited`, `on_agent_spawned`, `on_worker_output`, and `on_agent_idle`. [SOURCE: external/packages/sdk-py/README.md:150-159]
-- Public's Codex delegation reference centers on a stateless conductor/executor loop: the caller decomposes, validates, and re-prompts; each exec is stateless by default. [SOURCE: .opencode/skill/cli-codex/references/agent_delegation.md:17-22] [SOURCE: .opencode/skill/cli-codex/references/agent_delegation.md:124-132]
-- Gemini and Copilot delegation references follow the same conductor/executor pattern without any equivalent runtime callback surface. [SOURCE: .opencode/skill/cli-gemini/references/agent_delegation.md:15-22] [SOURCE: .opencode/skill/cli-gemini/references/agent_delegation.md:81-88] [SOURCE: .opencode/skill/cli-copilot/references/agent_delegation.md:14-20] [SOURCE: .opencode/skill/cli-copilot/references/agent_delegation.md:198-206]
+- Public's Codex delegation reference centers on a stateless conductor/executor loop: the caller decomposes, validates, and re-prompts; each exec is stateless by default. [SOURCE: .opencode/skills/cli-codex/references/agent_delegation.md:17-22] [SOURCE: .opencode/skills/cli-codex/references/agent_delegation.md:124-132]
+- Gemini and Copilot delegation references follow the same conductor/executor pattern without any equivalent runtime callback surface. [SOURCE: .opencode/skills/cli-gemini/references/agent_delegation.md:15-22] [SOURCE: .opencode/skills/cli-gemini/references/agent_delegation.md:81-88] [SOURCE: .opencode/skills/cli-copilot/references/agent_delegation.md:14-20] [SOURCE: .opencode/skills/cli-copilot/references/agent_delegation.md:198-206]
 
 ## Analysis
 Relay's hook model gives the coordinator structured interception points during transport, not just after the worker finishes. Public's current documentation assumes asynchronous delegation ends in a single synthesized answer or saved artifact, so it never teaches conductors how to react to intermediate lifecycle events. That is fine for current CLI delegation, but it leaves no shared vocabulary for future live collaboration features.
@@ -28,7 +28,7 @@ confidence: high
 finding: Relay's biggest immediately transferable idea is not the broker itself but the explicit event contract. Public should teach delegation surfaces to talk about spawn, ready, output, idle, and completion events consistently, even before a transport layer exists.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md`, `.opencode/skill/cli-codex/references/agent_delegation.md`, `.opencode/skill/cli-gemini/references/agent_delegation.md`, `.opencode/skill/cli-copilot/references/agent_delegation.md`
+- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/skills/cli-codex/references/agent_delegation.md`, `.opencode/skills/cli-gemini/references/agent_delegation.md`, `.opencode/skills/cli-copilot/references/agent_delegation.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define a shared event glossary that all three CLI delegation skills can reuse

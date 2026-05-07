@@ -107,7 +107,7 @@ Server start
 - [x] T001 FTS5 guard applied in `sqlite-fts.ts` line 58
 - [x] T002 `bun run build` compiled successfully
 - [x] T003 30 dashboard designs generated in `scratch/`
-- [x] T004 Design 10 applied to `.opencode/command/memory/search.md`
+- [x] T004 Design 10 applied to `.opencode/commands/memory/search.md`
 - [x] T005 Design 10 applied to `.agents/commands/memory/search.toml`
 
 ### Phase 2: P0 — DB Path Enforcement and Injection

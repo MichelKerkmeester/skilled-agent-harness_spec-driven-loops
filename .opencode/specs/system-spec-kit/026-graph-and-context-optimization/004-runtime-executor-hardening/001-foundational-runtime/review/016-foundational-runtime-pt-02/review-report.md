@@ -24,7 +24,7 @@ Five natural clusters dominate the remediation backlog: **Unicode sanitization i
 
 ### CONDITIONAL
 
-**Rationale** (per `.opencode/skill/sk-code-review/references/review_core.md` §Verdicts):
+**Rationale** (per `.opencode/skills/sk-code-review/references/review_core.md` §Verdicts):
 - **0 active P0 findings** → FAIL is NOT triggered. Iter 5 raised a compound C1 P0 on homoglyph + session-auth tautology; iter 6 + iter 7 + iter 8 combined adjudication retracted C1 to P2 (vacuous-guard, not bypass).
 - **5 active P1 findings** → PASS is NOT reachable without remediation.
 - **15 active P2 findings** → informational; `hasAdvisories=true` flag should accompany any PASS re-evaluation after P1 remediation.
@@ -33,7 +33,7 @@ Five natural clusters dominate the remediation backlog: **Unicode sanitization i
 
 To move from CONDITIONAL to PASS:
 1. Remediate all 5 P1 findings (Section 5 provides a prioritized backlog).
-2. Re-run a reduced-scope deep-review targeting the remediated surfaces, OR run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after the remediation spec folder closes.
+2. Re-run a reduced-scope deep-review targeting the remediated surfaces, OR run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after the remediation spec folder closes.
 3. Restore traceability coherence (close parent + 3 child `tasks.md`, add Phase 017 commit-hash manifest to v3.4.0.2 changelog).
 
 ### Binary quality gates
@@ -273,7 +273,7 @@ Based on iter 7 regression-verification (17 suites pass, 178/179 green, 1 skippe
 
 ## 7. Adversarial Self-Check
 
-Following `.opencode/skill/sk-code-review/references/review_core.md` §Adversarial Self-Check, this section consolidates Hunter/Skeptic/Referee outcomes across iter 6 (self-check), iter 7 (regression-verification with empirical probes), iter 8 (p0-escalation threat model).
+Following `.opencode/skills/sk-code-review/references/review_core.md` §Adversarial Self-Check, this section consolidates Hunter/Skeptic/Referee outcomes across iter 6 (self-check), iter 7 (regression-verification with empirical probes), iter 8 (p0-escalation threat model).
 
 ### Refuted compound hypotheses (iter 5 + iter 7 + iter 8)
 

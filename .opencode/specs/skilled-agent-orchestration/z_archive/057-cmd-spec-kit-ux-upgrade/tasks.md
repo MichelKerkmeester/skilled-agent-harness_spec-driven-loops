@@ -73,7 +73,7 @@ _memory:
 - [x] T008 Append synthesis completion event (`research/deep-research-state.jsonl`)
 - [x] T009 Validate JSONL parse (`research/deep-research-state.jsonl`)
 - [x] T010 Verify 17 numbered sections (`research/research.md`)
-- [x] T011 Run strict packet validation (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh`)
+- [x] T011 Run strict packet validation (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -41,10 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/create/sk-skill.md",
-      ".opencode/command/create/assets/create_sk_skill_auto.yaml",
-      ".opencode/command/create/assets/create_sk_skill_confirm.yaml",
-      ".opencode/agent/write.md",
+      ".opencode/commands/create/sk-skill.md",
+      ".opencode/commands/create/assets/create_sk_skill_auto.yaml",
+      ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
+      ".opencode/agents/write.md",
       ".codex/agents/write.toml",
       ".opencode/README.md",
       ".opencode/install_guides/README.md",
@@ -59,25 +59,25 @@
       {
         "name": "sk-skill.md",
         "kind": "doc",
-        "path": ".opencode/command/create/sk-skill.md",
+        "path": ".opencode/commands/create/sk-skill.md",
         "source": "derived"
       },
       {
         "name": "create_sk_skill_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_sk_skill_auto.yaml",
+        "path": ".opencode/commands/create/assets/create_sk_skill_auto.yaml",
         "source": "derived"
       },
       {
         "name": "create_sk_skill_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_sk_skill_confirm.yaml",
+        "path": ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "write.md",
         "kind": "doc",
-        "path": ".opencode/agent/write.md",
+        "path": ".opencode/agents/write.md",
         "source": "derived"
       },
       {

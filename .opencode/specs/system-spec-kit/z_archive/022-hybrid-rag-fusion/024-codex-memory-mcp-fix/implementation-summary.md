@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -56,7 +56,7 @@ The packet does not claim the whole `022` remediation program is done. Instead, 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The runtime fix landed first in `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` with regression coverage in `.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts`. After that, I updated this packet's README, spec, plan, tasks, checklist, decision record, and summary so they truthfully describe the new root cause, the active-connection promotion helper behavior, and the verification evidence. The packet still closes only the narrow Codex/spec_kit_memory slice and keeps broader follow-on work explicit instead of pretending the whole remediation program is done.
+The runtime fix landed first in `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` with regression coverage in `.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts`. After that, I updated this packet's README, spec, plan, tasks, checklist, decision record, and summary so they truthfully describe the new root cause, the active-connection promotion helper behavior, and the verification evidence. The packet still closes only the narrow Codex/spec_kit_memory slice and keeps broader follow-on work explicit instead of pretending the whole remediation program is done.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,8 +79,8 @@ The runtime fix landed first in `.opencode/skill/system-spec-kit/mcp_server/lib/
 |-------|--------|
 | `npx vitest run tests/vector-index-store-remediation.vitest.ts tests/handler-memory-list-edge.vitest.ts tests/handler-memory-health-edge.vitest.ts tests/handler-memory-search.vitest.ts` | PASS - focused suites passed and include the regression proving `initializeDb(':memory:')` stays inside the in-memory DB |
 | `npm run test:core` | PASS - 316 files total (315 passed, 1 skipped); 8714 tests total (8614 passed, 74 skipped, 26 todo); duration 101.83s |
-| `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server` | PASS - alignment drift check passed |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix` | PASS - packet validates cleanly after truth-sync updates |
+| `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` | PASS - alignment drift check passed |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix` | PASS - packet validates cleanly after truth-sync updates |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -30,13 +30,13 @@ Ship the runtime for packet `005-code-graph-upgrades` per its 9-task roadmap. Pa
    - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/research-governance-contracts/z_archive/research-governance-contracts/008-graph-first-routing-nudge/spec.md` §3 Out of Scope — the non-overlap boundary
    - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/research-governance-contracts/z_archive/research-governance-contracts/007-detector-provenance-and-regression-floor/spec.md` — the regression floor discipline
 7. **Existing runtime you'll touch** (read current state before editing):
-   - `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts` — has 005's `CertaintyStatus`, 006's `StructuralTrust` axes (`ParserProvenance`/`EvidenceStatus`/`FreshnessAuthority`), 011's validator
-   - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts` — the code-graph query handler (blast-radius lives here)
-   - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts` — code-graph context enrichment
-   - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` — scan-time detector output
-   - `.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts` — an existing detector with provenance labels
-   - `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts` — graph search logic
-   - `.opencode/skill/system-spec-kit/mcp_server/tools/types.ts` — blast-radius type definitions
+   - `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` — has 005's `CertaintyStatus`, 006's `StructuralTrust` axes (`ParserProvenance`/`EvidenceStatus`/`FreshnessAuthority`), 011's validator
+   - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts` — the code-graph query handler (blast-radius lives here)
+   - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts` — code-graph context enrichment
+   - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` — scan-time detector output
+   - `.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts` — an existing detector with provenance labels
+   - `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts` — graph search logic
+   - `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts` — blast-radius type definitions
 
 ## STEP 0 — Override the planning-only boundary (do this first)
 
@@ -63,7 +63,7 @@ This is the only pre-implementation edit. Do not change any other text in 014/sp
 **Goal**: Graph detector outputs distinguish `ast | structured | regex | heuristic` provenance and never mislabel non-AST results as AST.
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts` — add a new `DetectorProvenance` type (or extend 006's existing `PARSER_PROVENANCE_VALUES` const array if it currently lacks `structured`). Export the type + assertion helper + isDetectorProvenance guard.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` — add a new `DetectorProvenance` type (or extend 006's existing `PARSER_PROVENANCE_VALUES` const array if it currently lacks `structured`). Export the type + assertion helper + isDetectorProvenance guard.
 - Scan `mcp_server/lib/search/` for detector files that emit provenance labels. `evidence-gap-detector.ts` is a known candidate from packet 007's audit (which found no AST overclaims). Do NOT rewrite detectors whose provenance is already honest. Focus on any detector that currently has no provenance field or uses a loose string.
 - `mcp_server/handlers/code-graph/scan.ts` and `mcp_server/handlers/code-graph/context.ts` — wire the detector provenance into scan/context responses if they aren't already carrying it.
 
@@ -82,8 +82,8 @@ This is the only pre-implementation edit. Do not change any other text in 014/sp
 **Goal**: `code_graph_query` blast-radius enforces `maxDepth` BEFORE result inclusion (not after), and supports explicit multi-file union semantics.
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts` — the main query handler. Search for `blastRadius`, `maxDepth`, or `traverse` logic. If the current code applies `maxDepth` as a post-filter instead of bounding the traversal itself, fix it.
-- `.opencode/skill/system-spec-kit/mcp_server/tools/types.ts` — if the blast-radius input type needs a `unionMode?: 'single' | 'multi'` parameter (or similar) to request explicit multi-file union, add it.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts` — the main query handler. Search for `blastRadius`, `maxDepth`, or `traverse` logic. If the current code applies `maxDepth` as a post-filter instead of bounding the traversal itself, fix it.
+- `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts` — if the blast-radius input type needs a `unionMode?: 'single' | 'multi'` parameter (or similar) to request explicit multi-file union, add it.
 
 **Constraint**:
 - Depth enforcement must be at the traversal level (cut the BFS/DFS at depth N), not a post-filter that still visits all nodes.
@@ -100,8 +100,8 @@ This is the only pre-implementation edit. Do not change any other text in 014/sp
 **Goal**: Code-graph outputs surface honest degree-based hot-file breadcrumbs as low-authority "change carefully" hints (NOT authority claims).
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts` or `handlers/code-graph/context.ts` — add a helper that computes degree (in-degree + out-degree) for each file node in the result set, then annotates nodes with a `hotFileBreadcrumb?: { degree: number; changeCarefullyReason: string }` field when degree exceeds a threshold (suggested default: top 10% of nodes in the result set, or absolute >= 20, whichever is lower).
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts` — if a new breadcrumb type is needed, add it as an OPTIONAL field on the existing code-graph payload owner type (additive only).
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts` or `handlers/code-graph/context.ts` — add a helper that computes degree (in-degree + out-degree) for each file node in the result set, then annotates nodes with a `hotFileBreadcrumb?: { degree: number; changeCarefullyReason: string }` field when degree exceeds a threshold (suggested default: top 10% of nodes in the result set, or absolute >= 20, whichever is lower).
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` — if a new breadcrumb type is needed, add it as an OPTIONAL field on the existing code-graph payload owner type (additive only).
 
 **Constraint**:
 - The breadcrumb wording must be ADVISORY: `changeCarefullyReason: "High-degree node; changes here ripple to N dependents"`. NEVER use authority wording like `authority: 'high'` or `trustLevel: 'critical'`.
@@ -117,12 +117,12 @@ This is the only pre-implementation edit. Do not change any other text in 014/sp
 **Goal**: Graph payload schema gains `edgeEvidenceClass` (e.g., `direct_call | import | type_reference | inferred_heuristic | test_coverage`) and `numericConfidence` (0.0-1.0) on existing owner contracts, additively. NO new graph-only owner payload family.
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts` — add:
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` — add:
   - `EdgeEvidenceClass` type (enum or string literal union)
   - `GraphEdgeEnrichment` interface with `edgeEvidenceClass` + `numericConfidence` (optional fields)
   - Helper: `attachGraphEdgeEnrichment(payload, enrichment)` similar to 011's `attachStructuralTrustFields`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts` — populate edge enrichment on query results when the caller requests enriched output (gate behind a request flag or return unconditionally if backward-compatible)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` — if bootstrap surfaces code-graph context payloads, ensure edge enrichment is PRESERVED through to the bootstrap output (don't strip it). Refer to how 011's `structuralTrust` is preserved via `extractStructuralTrustFromPayload` → `attachStructuralTrustFields`. Mirror that pattern for edge enrichment.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts` — populate edge enrichment on query results when the caller requests enriched output (gate behind a request flag or return unconditionally if backward-compatible)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` — if bootstrap surfaces code-graph context payloads, ensure edge enrichment is PRESERVED through to the bootstrap output (don't strip it). Refer to how 011's `structuralTrust` is preserved via `extractStructuralTrustFromPayload` → `attachStructuralTrustFields`. Mirror that pattern for edge enrichment.
 
 **Constraint (ADR-001)**:
 - 011 owns the fail-closed trust contract. Your edge enrichment is ADDITIVE on top of 011's payload envelope. Do NOT create a new validator, new owner surface, or new trust axis.
@@ -139,12 +139,12 @@ This is the only pre-implementation edit. Do not change any other text in 014/sp
 **Goal**: Frozen fixtures that fail on detector-provenance regressions AND blast-radius depth regressions. Owned by 014 but co-located with 007's fixture discipline.
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/scripts/tests/` — follow the pattern of `detector-regression-floor.vitest.ts.test.ts` (007's existing fixture harness). Add a new file `graph-upgrades-regression-floor.vitest.ts.test.ts` that:
+- `.opencode/skills/system-spec-kit/scripts/tests/` — follow the pattern of `detector-regression-floor.vitest.ts.test.ts` (007's existing fixture harness). Add a new file `graph-upgrades-regression-floor.vitest.ts.test.ts` that:
   - Loads frozen input samples (inline or from `scripts/tests/fixtures/graph-upgrades/`)
   - Runs the detector provenance logic from Lane A and asserts provenance labels match frozen expectations
   - Runs the blast-radius traversal from Lane B with a frozen graph and asserts depth-cap behavior
   - FAILS on any regression that reintroduces AST overclaiming or depth-cap leakage
-- (Optional) `.opencode/skill/system-spec-kit/scripts/tests/fixtures/graph-upgrades/` — create if you decide to externalize the fixture data
+- (Optional) `.opencode/skills/system-spec-kit/scripts/tests/fixtures/graph-upgrades/` — create if you decide to externalize the fixture data
 
 **Constraint**:
 - Must use the same pattern as 007's existing `detector-regression-floor.vitest.ts.test.ts` (note: the `.vitest.ts.test.ts` suffix is intentional for scripts-side vitest config — follow the existing convention)
@@ -175,7 +175,7 @@ This is the only pre-implementation edit. Do not change any other text in 014/sp
 ## VERIFICATION COMMANDS (run after each lane AND at the very end)
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 TMPDIR=./.tmp/tsc-tmp npm run typecheck
 TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/shared-payload-certainty.vitest.ts \
@@ -190,7 +190,7 @@ TMPDIR=./.tmp/vitest-tmp npx vitest run \
   <any new 014-specific test files you added>
 cd -
 
-cd .opencode/skill/system-spec-kit/scripts
+cd .opencode/skills/system-spec-kit/scripts
 TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/detector-regression-floor.vitest.ts.test.ts \
   tests/session-cached-consumer.vitest.ts.test.ts \
@@ -198,7 +198,7 @@ TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/graph-upgrades-regression-floor.vitest.ts.test.ts
 cd -
 
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades
 ```
 
