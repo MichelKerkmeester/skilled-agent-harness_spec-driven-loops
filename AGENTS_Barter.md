@@ -341,17 +341,17 @@ Use the agent directory that matches the active runtime/provider profile:
 
 ### Agent Definitions
 
-- **`@context`** - LEAF-only retrieval agent for codebase search, pattern discovery, and context loading. Uses memory triggers/context, memory search, CocoIndex, and direct code evidence. LEAF constraint: `@context` MUST NOT dispatch sub-agents, use the Task tool, or write files. All results are returned to the caller; never held in nested context
 - **`@orchestrate`** - Multi-agent coordination, complex workflows
+- **`@context`** - LEAF-only retrieval agent for codebase search, pattern discovery, and context loading. Uses memory triggers/context, memory search, CocoIndex, and direct code evidence. LEAF constraint: `@context` MUST NOT dispatch sub-agents, use the Task tool, or write files. All results are returned to the caller; never held in nested context
 - **`@code`** - Application-code implementation specialist (LEAF, write-capable). Stack-aware via `sk-code` skill delegation; fail-closed verification. Dispatched ONLY by `@orchestrate` (orchestrator-only convention; `Depth: 1` marker required per §0 dispatch gate; not harness-enforced).
-- **`@create`** - Dedicated `/create:*` documentation executor (LEAF, write-capable). Loads `sk-doc` on every invocation, reads the command template before writing, and refuses non-`/create:*` callers by convention-level Phase 0 gate.
 - **`@review`** - Code review, PRs, quality gates (READ-ONLY)
 - **`@debug`** - Fresh perspective debugging (5-phase root-cause). Dispatched via Task tool; retains exclusive write access for `debug-delegation.md`
+- **`@create`** - Dedicated `/create:*` documentation executor (LEAF, write-capable). Loads `sk-doc` on every invocation, reads the command template before writing, and refuses non-`/create:*` callers by convention-level Phase 0 gate.
+- **`@multi-ai-council`** - Multi-strategy planning architect (planning-only)
+- **`@prompt-improver`** - Prompt engineering via `sk-prompt`. Dispatched by `/improve:prompt`
 - **`@deep-research`** - Autonomous deep research iterations (LEAF). Dispatched by `/spec_kit:deep-research`
 - **`@deep-review`** - Autonomous deep review iterations (LEAF, P0/P1/P2). Dispatched by `/spec_kit:deep-review`
-- **`@multi-ai-council`** - Multi-strategy planning architect (planning-only)
-- **`@improve-agent`** - Bounded agent improvement via `deep-agent-improvement`. Dispatched by `/improve:agent`
-- **`@prompt-improver`** - Prompt engineering via `sk-prompt`. Dispatched by `/improve:prompt`
+- **`@deep-agent-improvement`** - Bounded agent improvement via `deep-agent-improvement`. Dispatched by `/improve:agent`
 
 #### Distributed Governance Rule
 

@@ -59,15 +59,45 @@ triggerPhrases:
 
 Full definitions: **AGENTS.md § 2 — MANDATORY GATES**
 
-| Gate       | Type           | One-Line Summary                                          |
-| ---------- | -------------- | --------------------------------------------------------- |
-| **Gate 1** | SOFT           | Understanding + context surfacing on each user message    |
-| **Gate 2** | REQUIRED       | Skill routing via `skill_advisor.py` or user direction    |
-| **Gate 3** | **HARD BLOCK** | Spec folder A/B/C/D/E question before ANY file modification |
+| Gate       | Type           | One-Line Summary                                                          |
+| ---------- | -------------- | ------------------------------------------------------------------------- |
+| **Gate 1** | SOFT           | Understanding + context surfacing on each user message                    |
+| **Gate 2** | REQUIRED       | Skill routing via Skill Advisor Hook (primary) or `skill_advisor.py`      |
+| **Gate 3** | **HARD BLOCK** | Spec folder A/B/C/D/E question before ANY file modification               |
+| **Gate 4** | **HARD BLOCK** | Skill-owned workflow enforcement for iterative loops (`:auto` suffix etc) |
 
 **Critical:** Gate 3 overrides Gates 1-2. If file modification detected → ask spec folder FIRST, analyze after.
+**Critical:** Gate 4 enforces canonical command surfaces for deep-research/deep-review loops; cannot be bypassed via direct agent dispatch or `/tmp` state.
 
 <!-- /ANCHOR:gate-cross-reference -->
+
+<!-- ANCHOR:compaction-recovery -->
+
+## Compaction Recovery
+
+**TRIGGER:** Context compaction event (user mentions "compaction", "context lost", explicit `/compact` invocation, or post-compaction system reminder).
+
+**ACTION:**
+1. STOP — do not take any action, do not use any tools.
+2. Re-read the project AGENTS.md (canonical) and any active spec folder's `handover.md` / `_memory.continuity` / `implementation-summary.md` ladder.
+3. Summarise:
+   - Current task and status
+   - User's most recent instruction (especially constraints like "plan only", "discuss first")
+   - Modified files and their current state
+   - Any errors encountered and their resolutions
+   - Current git branch and uncommitted changes
+4. Present this summary and WAIT for confirmation before proceeding.
+5. Do NOT assume the compaction summary's implied next steps are correct.
+
+**Always preserve through compaction:**
+- Exact file paths of all modifications
+- Error messages verbatim
+- The user's last 2-3 instructions with exact wording
+- Any "do not" or "avoid" constraints from the user
+
+After 2+ compactions in one session, recommend `/clear` and a fresh start.
+
+<!-- /ANCHOR:compaction-recovery -->
 
 <!-- ANCHOR:continuation-validation -->
 
@@ -92,14 +122,14 @@ Full definitions: **AGENTS.md § 2 — MANDATORY GATES**
 
 ## Quick Reference
 
-| Rule                    | Trigger                     | Source        |
-| ----------------------- | --------------------------- | ------------- |
-| Gates 1-3               | See above                   | AGENTS.md § 2 |
-| First Message Protocol  | First msg + file mod intent | AGENTS.md § 2 |
-| Memory Save Rule        | "save context/memory"       | AGENTS.md § 2 |
-| Completion Verification | "done/complete/finished"    | AGENTS.md § 2 |
-| Compaction Recovery     | Context loss / compaction   | **This file** |
-| Continuation Validation | "CONTINUATION - Attempt"    | **This file** |
+| Rule                    | Trigger                                | Source            |
+| ----------------------- | -------------------------------------- | ----------------- |
+| Gates 1-4               | See above                              | AGENTS.md § 2     |
+| Memory Save Rule        | "save context/memory"                  | AGENTS.md § 2     |
+| Completion Verification | "done/complete/finished"               | AGENTS.md § 2     |
+| Violation Recovery      | About to skip gates / gates skipped    | AGENTS.md § 2     |
+| Compaction Recovery     | Context loss / compaction              | **This file**     |
+| Continuation Validation | "CONTINUATION - Attempt"               | **This file**     |
 
 <!-- /ANCHOR:gate-quick-reference -->
 

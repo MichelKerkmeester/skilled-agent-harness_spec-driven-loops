@@ -102,13 +102,13 @@ Implementation surfaces backing this routing contract:
 | Tool | Source File | Role |
 |------|-------------|------|
 | `mcp__cocoindex_code__search` | `.opencode/skills/mcp-coco-index/SKILL.md` | Semantic code search via vector embeddings |
-| `code_graph_query` | `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph.ts` | Structural query handler (callers/imports/deps) |
-| `code_graph_context` | `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph.ts` | Bounded code-graph context retrieval |
+| `code_graph_query` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts` | Structural query handler (callers/imports/deps) |
+| `code_graph_context` | `.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts` | Bounded code-graph context retrieval |
 | `memory_search` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | 3-channel hybrid search with RRF fusion |
 | `memory_context` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Intent-routed context retrieval (L1 entry point) |
-| `memory_match_triggers` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-match-triggers.ts` | Trigger-phrase matcher (constitutional + tier-aware) |
-| FTS5 fallback | `.opencode/skills/system-spec-kit/mcp_server/lib/search/fts5-search.ts` | Full-text exact-keyword channel |
-| BM25 reranker | `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25.ts` | Relevance-ranked keyword channel |
+| `memory_match_triggers` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts` | Trigger-phrase matcher (constitutional + tier-aware) |
+| FTS5 fallback | `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts` | Full-text exact-keyword channel |
+| BM25 reranker | `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts` | Relevance-ranked keyword channel |
 
 Decision tables in this file are derived from these handlers. When a handler signature or routing contract changes, update both the handler docstrings and this rule together.
 
