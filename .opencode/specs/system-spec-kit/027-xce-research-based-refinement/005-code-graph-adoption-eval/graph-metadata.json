@@ -1,0 +1,18 @@
+{
+  "packet_id": "005-code-graph-adoption-eval",
+  "parent_id": "027-xce-research-based-refinement",
+  "level": 3,
+  "title": "Phase 005 — Code Graph Adoption Evaluation Harness",
+  "manual": {
+    "depends_on": ["001-code-graph-hld-lld", "002-code-graph-trace", "003-code-graph-impact-analysis", "004-skill-advisor-first-action-mandate"]
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T15:00:00Z",
+  "lastUpdatedAt": "2026-05-08T15:00:00Z"
+}

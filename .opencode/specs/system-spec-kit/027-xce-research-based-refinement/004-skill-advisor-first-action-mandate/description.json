@@ -1,0 +1,27 @@
+{
+  "title": "Phase 004 — Skill Advisor First-Action Mandate (render.ts strengthening)",
+  "description": "ADAPT XCE's static 'ALWAYS use X FIRST' steering pattern to dynamic skill_advisor brief. Strengthen render.ts from suggestion ('use ${label}') to mandate ('MUST invoke ${label} FIRST — ${hint}') with per-skill FIRST_ACTION_HINT map. ~30 LOC, single render.ts edit, no scorer changes. Lowest effort highest impact phase — ship first.",
+  "trigger_phrases": [
+    "027 phase 004",
+    "skill advisor first-action mandate",
+    "advisor MUST invoke",
+    "render.ts strengthening"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "level": 1,
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-08T15:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "027-xce-research-based-refinement",
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  }
+}

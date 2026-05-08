@@ -1,0 +1,18 @@
+{
+  "packet_id": "004-skill-advisor-first-action-mandate",
+  "parent_id": "027-xce-research-based-refinement",
+  "level": 1,
+  "title": "Phase 004 — Skill Advisor First-Action Mandate",
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T15:00:00Z",
+  "lastUpdatedAt": "2026-05-08T15:00:00Z"
+}

@@ -36,17 +36,33 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: XCE Research-Based Refinement
+# Feature Specification: XCE Research-Based Refinement (Phase Parent)
 
 <!-- SPECKIT_LEVEL: 2 -->
 
+> **Phase Parent**: This packet has graduated from a research-only packet to a phase parent with 5 implementation phase children. The original research run completed 2026-05-08 with 10 iterations + synthesis. The 4 ADOPT/ADAPT verdicts from `research/findings.md` are now scoped as phases 001-005 below.
+
+## PHASES
+
+| Phase | Title | Verdict | Level | LOC | Depends on |
+|-------|-------|---------|------:|----:|-----------|
+| **[001-code-graph-hld-lld](./001-code-graph-hld-lld/spec.md)** | Deterministic HLD/LLD Narrative Generation | ADOPT (#1, #8) | 2 | ~250 | none |
+| **[002-code-graph-trace](./002-code-graph-trace/spec.md)** | Symbol→Class→Module→Role Trace Tool | ADAPT (#2, #6, #7, #9) | 2 | ~310 | 001 |
+| **[003-code-graph-impact-analysis](./003-code-graph-impact-analysis/spec.md)** | Risk-Scored Impact Analysis | ADAPT (#3) | 2 | ~350 | (optional 001/002) |
+| **[004-skill-advisor-first-action-mandate](./004-skill-advisor-first-action-mandate/spec.md)** | Render-layer "MUST invoke FIRST" mandate | ADAPT (#11, #13) | 1 | ~30 | none |
+| **[005-code-graph-adoption-eval](./005-code-graph-adoption-eval/spec.md)** | Lightweight Local Eval Harness | ADAPT (#14) + DEFER (#15) | 2 | ~500 | 001-004 |
+
+**Total**: ~1,440 LOC across 5 phases. Recommended execution order: 004 first (lowest effort, highest impact), then 001 → 002 → 003 in parallel, then 005 last.
+
+**Cross-cuts**: see `research/research.md` for the original synthesis, `research/findings.md` for the 21-feature adoption matrix, `research/sub-packet-proposals.md` for the per-phase scope rationale, and `research/resource-map.md` for the path ledger from research input → phase output.
+
 ---
 
-## EXECUTIVE SUMMARY
+## EXECUTIVE SUMMARY (research phase — 2026-05-08, complete)
 
 The `external/` folder of this packet contains the public Xanther Context Engine (XCE) integration repository — README, MIT license, MCP configs for 5 IDEs, and 3 steering files (`CLAUDE.md`, `kiro.md`, `opencode-prompt.txt`). XCE is a hosted SaaS MCP server that delivers architectural context (HLD, LLD, component descriptions, call graphs, impact analysis) via 5 tool primitives, claiming +7.4pp on SWE-bench Verified for Sonnet 4.0 and ~20% token reduction when steering rules are active. The underlying PRAT (Persistent Recursive Abstract Tree) algorithm is closed-source.
 
-This packet scopes a deep-research run that compares XCE's public surface against our local `code_graph` (`mcp_server/code_graph/`) and `skill_advisor` (`mcp_server/skill_advisor/`) subsystems, identifies concrete adoption candidates, and proposes sub-packets for any features that warrant implementation. The research must produce file:line-cited findings, an adoption matrix, and a non-adoption list with rationale.
+This packet scopes a deep-research run that compared XCE's public surface against our local `code_graph` (`mcp_server/code_graph/`) and `skill_advisor` (`mcp_server/skill_advisor/`) subsystems, identified concrete adoption candidates, and proposed sub-packets for features that warranted implementation. The research produced file:line-cited findings, an adoption matrix (4 ADOPT, 6 ADAPT, 2 DEFER, 9 SKIP), and a non-adoption list with rationale. Phases 001-005 (above) implement the actionable verdicts.
 
 **Key Decisions in this Spec**:
 - Research-only packet at Level 2. Implementation follows in child or sibling packets keyed off the synthesis output.

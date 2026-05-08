@@ -1,0 +1,18 @@
+{
+  "packet_id": "003-code-graph-impact-analysis",
+  "parent_id": "027-xce-research-based-refinement",
+  "level": 2,
+  "title": "Phase 003 — Risk-Scored Impact Analysis",
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T15:00:00Z",
+  "lastUpdatedAt": "2026-05-08T15:00:00Z"
+}

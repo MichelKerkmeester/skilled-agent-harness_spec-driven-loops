@@ -1,0 +1,18 @@
+{
+  "packet_id": "002-code-graph-trace",
+  "parent_id": "027-xce-research-based-refinement",
+  "level": 2,
+  "title": "Phase 002 — Symbol-to-Architecture Trace Tool",
+  "manual": {
+    "depends_on": ["001-code-graph-hld-lld"]
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T15:00:00Z",
+  "lastUpdatedAt": "2026-05-08T15:00:00Z"
+}

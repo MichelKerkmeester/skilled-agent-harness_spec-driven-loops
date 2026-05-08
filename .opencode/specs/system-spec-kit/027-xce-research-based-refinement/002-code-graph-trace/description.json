@@ -1,0 +1,27 @@
+{
+  "title": "Phase 002 — Symbol-to-Architecture Trace Tool (code_graph_trace)",
+  "description": "ADAPT XCE xce_trace concept: walk symbol → class → module → architectural role using existing CONTAINS edges + Phase 001 HLD classification. New code_graph_trace MCP tool. ~310 LOC: 1 new lib + 1 new handler + 1 tool reg edit + optional code_packages table + optional memoization cache. Depends on Phase 001.",
+  "trigger_phrases": [
+    "027 phase 002",
+    "code-graph trace",
+    "code_graph_trace",
+    "trace tool"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "level": 2,
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-08T15:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "027-xce-research-based-refinement",
+  "manual": {
+    "depends_on": ["001-code-graph-hld-lld"]
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  }
+}

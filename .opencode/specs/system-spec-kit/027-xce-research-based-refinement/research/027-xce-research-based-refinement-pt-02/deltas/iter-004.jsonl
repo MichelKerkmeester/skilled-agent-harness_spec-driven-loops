@@ -1,0 +1,8 @@
+{"type":"iteration","iteration":4,"focus":"IRQ4","status":"complete","newInfoRatio":0.71,"summary":"Cross-validated Phase 004's first-action mandate against confidence boundaries, uncertainty pass-through, token caps, static hint-map drift, CLI skill triggering, legacy tests, and prompt-cache behavior."}
+{"type":"finding","id":"f-iter004-001","severity":"P1","label":"Confidence boundary is inclusive at exactly 0.80","verdict":"CONFIRMED","iteration":4}
+{"type":"finding","id":"f-iter004-002","severity":"P0","label":"High uncertainty can still pass through passes_threshold true","verdict":"BLOCKING","iteration":4}
+{"type":"finding","id":"f-iter004-003","severity":"P1","label":"Proposed concise hints fit both 80-token and 120-token caps","verdict":"CONFIRMED","iteration":4}
+{"type":"finding","id":"f-iter004-004","severity":"P0","label":"Static FIRST_ACTION_HINT coverage is already inventory-fragile","verdict":"BLOCKING","iteration":4}
+{"type":"finding","id":"f-iter004-005","severity":"P1","label":"CLI skills can exceed 0.8 only on explicit delegation wording in observed fixtures","verdict":"CONFIRMED","iteration":4}
+{"type":"finding","id":"f-iter004-006","severity":"P0","label":"Legacy tests are string-pinned and must be updated intentionally","verdict":"BLOCKING","iteration":4}
+{"type":"finding","id":"f-iter004-007","severity":"P2","label":"Prompt-cache hit rate should not change from brief wording alone","verdict":"NO-CHANGE-NEEDED","iteration":4}
