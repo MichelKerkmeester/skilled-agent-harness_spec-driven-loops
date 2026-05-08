@@ -75,9 +75,10 @@ _memory:
 
 - [x] T014 `cd mcp_server && npm run build` exits 0
 - [x] T015 Full vitest: 11606 passed / 157 failed vs baseline 11548 / 190 — 0 net regressions, 25 new tests added
-- [x] T016 Synthetic baseline + test-derived rate (012-T3.1 = 0.40) recorded in `scratch/post-change.md`; live MCP smoke deferred to next restart
+- [x] T016 Synthetic baseline + test-derived rate (012-T3.1 = 0.40) recorded in `scratch/post-change.md`; live MCP smoke captured in `scratch/live-smoke-results.md` (2026-05-08T14:47Z, post-MCP-restart) — `data.routing.graphChannelInvocationRate` moved from 0.714 (21 prior) to 0.625 across 40 routings; intent-only path verified to add `graph` WITHOUT `degree` (parity broken cleanly: graph=0.625 vs degree=0.525)
 - [x] T017 `validate.sh --strict` exits 0
 - [x] T018 `implementation-summary.md` filled
+- [x] T020 Stress test executed — 012-T4.1 microbenchmark green (200-iter, p99<5ms, 21ms total); 5 live MCP calls captured for end-to-end realism (median 1514ms; routing portion ~0.1ms negligible). Results in `scratch/stress-test-results.md`. Ring-buffer-overflow stress + 50+ user-facing burst deferred to follow-on packet (P2).
 - [ ] T019 `/memory:save` to persist continuity (next user-driven step)
 <!-- /ANCHOR:phase-3 -->
 

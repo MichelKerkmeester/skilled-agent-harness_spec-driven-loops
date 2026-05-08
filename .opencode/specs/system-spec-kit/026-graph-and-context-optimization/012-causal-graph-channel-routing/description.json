@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "026-graph-and-context-optimization/012-causal-graph-channel-routing",
   "description": "Activate the graph and degree channels for intent-driven and entity-rich short queries. shouldPreserveGraph + entity-density override + routing-telemetry rolling counter expose graphChannelInvocationRate via memory_health.",
   "keywords": [
@@ -12,13 +13,14 @@
     "routing-telemetry rolling counter",
     "complexity router graph activation"
   ],
-  "lastUpdated": "2026-05-08T14:13:00Z",
+  "lastUpdated": "2026-05-08T14:58:31.285Z",
   "specId": "012",
   "folderSlug": "causal-graph-channel-routing",
   "parentChain": [
     "026-graph-and-context-optimization"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-05-26_15-58__refined-012-packet-handover-md-post-mcp-restart.md"
+  ]
 }
