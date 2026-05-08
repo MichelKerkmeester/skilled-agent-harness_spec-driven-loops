@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
   "description": "Feature Specification: manual-testing-per-playbook evaluation phase",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "evaluation",
     "phase"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.555Z",
+  "lastUpdated": "2026-05-08T08:26:58.231Z",
   "specId": "007",
   "folderSlug": "evaluation",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"
   ],

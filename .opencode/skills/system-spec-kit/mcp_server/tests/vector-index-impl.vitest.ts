@@ -1073,6 +1073,106 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       expect(report).toHaveProperty('isConsistent');
       expect(report.totalMemories).toBeGreaterThanOrEqual(0);
     });
+
+    it('cleanFiles=true with autoClean=true deletes memory_index rows whose file_path is missing', () => {
+      // Avoid cross-test pollution: prior tests created memories with file_paths
+      // that were never physically written; cleanFiles would sweep them all.
+      // Materialize a placeholder file at every existing memory's file_path so
+      // only our ghost row qualifies as orphan.
+      const db = mod.getDb();
+      if (db) {
+        const rows = db.prepare('SELECT id, file_path FROM memory_index WHERE file_path IS NOT NULL').all() as Array<{ id: number; file_path: string | null }>;
+        for (const row of rows) {
+          if (row.file_path && !fs.existsSync(row.file_path)) {
+            try {
+              fs.mkdirSync(path.dirname(row.file_path), { recursive: true });
+              fs.writeFileSync(row.file_path, `# placeholder for memory ${row.id}\n`);
+            } catch (_: unknown) {}
+          }
+        }
+      }
+
+      // Seed: one memory with an existing file, one with a missing file
+      const livePath = path.join(TMP_DIR, 'cleanfiles-live.md');
+      const ghostPath = path.join(TMP_DIR, 'cleanfiles-ghost.md');
+      fs.writeFileSync(livePath, '# Live Memory\n');
+      // Note: ghostPath is intentionally NOT written
+
+      const liveId = mod.indexMemoryDeferred({
+        specFolder: 'specs/cleanfiles-test',
+        filePath: livePath,
+        title: 'Live Memory',
+        triggerPhrases: ['cleanfiles-live'],
+      });
+      const ghostId = mod.indexMemoryDeferred({
+        specFolder: 'specs/cleanfiles-test',
+        filePath: ghostPath,
+        title: 'Ghost Memory',
+        triggerPhrases: ['cleanfiles-ghost'],
+      });
+
+      // Pre-state: ghost shows up as orphan file, live does not
+      const pre = mod.verifyIntegrity({ autoClean: false }) as IntegrityReport;
+      const ghostInPre = pre.orphanedFiles.some((o) => o.id === ghostId);
+      const liveInPre = pre.orphanedFiles.some((o) => o.id === liveId);
+      expect(ghostInPre).toBe(true);
+      expect(liveInPre).toBe(false);
+
+      // Run cleanup: cleanFiles=true with autoClean=true should delete ghost
+      const post = mod.verifyIntegrity({ autoClean: true, cleanFiles: true }) as IntegrityReport;
+
+      // Ghost is gone from orphanedFiles and from memory_index
+      const ghostInPost = post.orphanedFiles.some((o) => o.id === ghostId);
+      expect(ghostInPost).toBe(false);
+      expect(mod.getMemory(ghostId)).toBeNull();
+      expect(post.cleaned?.files).toBeGreaterThanOrEqual(1);
+
+      // Live memory survives
+      expect(mod.getMemory(liveId)).toBeTruthy();
+    });
+
+    it('cleanFiles=true with autoClean=false is a no-op for files', () => {
+      // Seed: one memory whose file is missing
+      const ghostPath = path.join(TMP_DIR, 'cleanfiles-noop-ghost.md');
+      const ghostId = mod.indexMemoryDeferred({
+        specFolder: 'specs/cleanfiles-noop-test',
+        filePath: ghostPath,
+        title: 'Ghost Noop',
+        triggerPhrases: ['cleanfiles-noop'],
+      });
+
+      // cleanFiles=true with autoClean=false MUST NOT delete the row
+      const report = mod.verifyIntegrity({ autoClean: false, cleanFiles: true }) as IntegrityReport;
+      const ghostInReport = report.orphanedFiles.some((o) => o.id === ghostId);
+      expect(ghostInReport).toBe(true);
+      expect(mod.getMemory(ghostId)).toBeTruthy();
+      expect(report.cleaned).toBeUndefined();
+
+      // Cleanup
+      mod.deleteMemory(ghostId);
+    });
+
+    it('cleanFiles=false with autoClean=true does not delete file orphans', () => {
+      // Seed: one memory whose file is missing
+      const ghostPath = path.join(TMP_DIR, 'cleanfiles-default-ghost.md');
+      const ghostId = mod.indexMemoryDeferred({
+        specFolder: 'specs/cleanfiles-default-test',
+        filePath: ghostPath,
+        title: 'Ghost Default',
+        triggerPhrases: ['cleanfiles-default'],
+      });
+
+      // autoClean=true alone (cleanFiles defaults to false) MUST NOT delete file orphans
+      const report = mod.verifyIntegrity({ autoClean: true }) as IntegrityReport;
+      const ghostInReport = report.orphanedFiles.some((o) => o.id === ghostId);
+      expect(ghostInReport).toBe(true);
+      expect(mod.getMemory(ghostId)).toBeTruthy();
+      // cleaned.files should be 0 or absent
+      expect(report.cleaned?.files ?? 0).toBe(0);
+
+      // Cleanup
+      mod.deleteMemory(ghostId);
+    });
   });
 
   // ───────────────────────────────────────────────────────────────

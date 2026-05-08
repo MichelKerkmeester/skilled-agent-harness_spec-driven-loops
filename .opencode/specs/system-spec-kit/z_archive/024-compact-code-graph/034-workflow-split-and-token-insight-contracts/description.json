@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/034-workflow-split-and-token-insight-contracts",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/034-workflow-split-and-token-insight-contracts",
   "description": "Feature Specification: Workflow Split and Token Insight Contracts",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "insight",
     "contracts"
   ],
-  "lastUpdated": "2026-04-12T15:47:03.518Z",
+  "lastUpdated": "2026-05-08T08:26:58.415Z",
   "specId": "034",
   "folderSlug": "workflow-split-and-token-insight-contracts",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

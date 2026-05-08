@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/005-command-agent-alignment",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/005-command-agent-alignment",
   "description": "Phase 5: Command & Agent Alignment",
   "keywords": [
     "phase",
@@ -7,11 +7,12 @@
     "agent",
     "alignment"
   ],
-  "lastUpdated": "2026-04-25T06:16:27.511Z",
+  "lastUpdated": "2026-05-08T08:26:58.332Z",
   "specId": "005",
   "folderSlug": "command-agent-alignment",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

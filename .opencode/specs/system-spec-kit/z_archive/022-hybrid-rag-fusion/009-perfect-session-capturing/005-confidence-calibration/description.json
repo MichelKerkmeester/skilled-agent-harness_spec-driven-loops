@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/005-confidence-calibration",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/005-confidence-calibration",
   "description": "Feature Specification: Confidence Calibration",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "confidence",
     "calibration"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.403Z",
+  "lastUpdated": "2026-05-08T08:26:58.139Z",
   "specId": "005",
   "folderSlug": "confidence-calibration",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"
   ],

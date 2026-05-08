@@ -1,7 +1,7 @@
 {
   "title": "Resource Map Template",
-  "summary": "Introduce templates/resource-map.md as an optional, level-agnostic path-catalog template and wire it into every discovery surface (level READMEs, SKILL.md, references, feature_catalog, manual_testing_playbook, spec-doc-paths.ts, CLAUDE.md).",
   "level": 2,
+  "summary": "Introduce templates/resource-map.md as an optional, level-agnostic path-catalog template and wire it into every discovery surface (level READMEs, SKILL.md, references, feature_catalog, manual_testing_playbook, spec-doc-paths.ts, CLAUDE.md).",
   "status": "in-progress",
   "priority": "P1",
   "phase": {
@@ -36,7 +36,7 @@
     "map",
     "template"
   ],
-  "lastUpdated": "2026-04-26T07:03:47.456Z",
+  "lastUpdated": "2026-05-08T08:26:57.582Z",
   "specId": "002",
   "folderSlug": "resource-map-template-creation",
   "parentChain": [

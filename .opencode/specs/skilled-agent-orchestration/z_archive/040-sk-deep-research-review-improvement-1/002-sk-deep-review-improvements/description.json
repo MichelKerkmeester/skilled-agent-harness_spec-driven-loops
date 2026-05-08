@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements",
+  "specFolder": "skilled-agent-orchestration/z_archive/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements",
   "description": "Feature Specification: Phase 2 -- sk-deep-review Improvements",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "sk-deep-review",
     "improvements"
   ],
-  "lastUpdated": "2026-04-26T07:03:47.382Z",
+  "lastUpdated": "2026-05-08T08:26:56.884Z",
   "specId": "002",
   "folderSlug": "sk-deep-review-improvements",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "040-sk-deep-research-review-improvement-1"
   ],
   "memorySequence": 0,

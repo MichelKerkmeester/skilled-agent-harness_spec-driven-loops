@@ -1,9 +1,14 @@
 {
+  "title": "096 - opencode plural-rename + post-rename review/remediation cycle (umbrella)",
+  "trigger_phrases": [
+    "096 umbrella",
+    "opencode plural rename cycle",
+    "post-rename review remediation",
+    "skilled-agent-orchestration release cycle"
+  ],
+  "level": "phase-parent",
   "schema_version": 1,
   "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-  "title": "096 - opencode plural-rename + post-rename review/remediation cycle (umbrella)",
-  "description": "Phase-parent umbrella for the full rename → 3 deep-reviews → 3 remediations → 1 feature-add cycle. 8 phases shipping the canonical example of iterative review + remediation convergence.",
-  "level": "phase-parent",
   "status": "complete",
   "completion_pct": 100,
   "key_topics": [
@@ -16,14 +21,29 @@
     "umbrella",
     "phase-parent"
   ],
-  "trigger_phrases": [
-    "096 umbrella",
-    "opencode plural rename cycle",
-    "post-rename review remediation",
-    "skilled-agent-orchestration release cycle"
-  ],
   "importance_tier": "high",
   "context_type": "infrastructure-quality",
   "created_at": "2026-05-07T13:00:00Z",
-  "last_updated_at": "2026-05-08T01:30:00Z"
+  "last_updated_at": "2026-05-08T01:30:00Z",
+  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "description": "Feature Specification: 096 - opencode plural-rename + post-rename review/remediation cycle",
+  "keywords": [
+    "feature",
+    "specification",
+    "096",
+    "opencode",
+    "plural-rename",
+    "post-rename",
+    "review",
+    "remediation",
+    "cycle"
+  ],
+  "lastUpdated": "2026-05-08T08:26:56.621Z",
+  "specId": "096",
+  "folderSlug": "rename-opencode-dirs-to-plural",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

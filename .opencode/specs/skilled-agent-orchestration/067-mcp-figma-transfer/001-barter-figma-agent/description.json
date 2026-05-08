@@ -1,17 +1,24 @@
 {
-  "specFolder": "067-mcp-figma-transfer/001-barter-figma-agent",
-  "description": "Phase 1: barter-figma-agent",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/067-mcp-figma-transfer/001-barter-figma-agent",
+  "description": "Feature Specification: Phase 1 — Author Barter Figma MCP Agent",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "barter-figma-agent"
+    "author",
+    "barter",
+    "figma",
+    "mcp",
+    "agent"
   ],
-  "lastUpdated": "2026-05-05T07:49:58.416Z",
+  "lastUpdated": "2026-05-08T08:26:56.332Z",
   "specId": "001",
   "folderSlug": "barter-figma-agent",
   "parentChain": [
+    "skilled-agent-orchestration",
     "067-mcp-figma-transfer"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

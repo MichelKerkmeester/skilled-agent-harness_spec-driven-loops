@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/031-copilot-startup-hook-wiring",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/031-copilot-startup-hook-wiring",
   "description": "Feature Specification: Copilot Startup Hook Wiring",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "hook",
     "wiring"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.170Z",
+  "lastUpdated": "2026-05-08T08:26:58.396Z",
   "specId": "031",
   "folderSlug": "copilot-startup-hook-wiring",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph",
     "030-opencode-graph-plugin"
   ],

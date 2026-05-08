@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/022-mcp-coco-integration",
+  "specFolder": "skilled-agent-orchestration/z_archive/022-mcp-coco-integration",
   "description": "Feature Specification: CocoIndex Code MCP Integration",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "mcp",
     "integration"
   ],
-  "lastUpdated": "2026-04-24T15:56:54.854Z",
+  "lastUpdated": "2026-05-08T08:26:56.784Z",
   "specId": "022",
   "folderSlug": "mcp-coco-integration",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 4,
   "memoryNameHistory": [

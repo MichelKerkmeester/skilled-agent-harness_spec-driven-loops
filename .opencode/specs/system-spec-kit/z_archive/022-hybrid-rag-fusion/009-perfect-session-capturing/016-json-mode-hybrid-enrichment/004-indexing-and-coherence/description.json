@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/004-indexing-and-coherence",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/004-indexing-and-coherence",
   "description": "Feature Specification: Indexing & Coherence",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "indexing",
     "coherence"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.475Z",
+  "lastUpdated": "2026-05-08T08:26:58.178Z",
   "specId": "004",
   "folderSlug": "indexing-and-coherence",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing",
     "016-json-mode-hybrid-enrichment"

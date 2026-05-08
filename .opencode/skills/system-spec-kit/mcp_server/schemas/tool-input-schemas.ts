@@ -358,6 +358,7 @@ const memoryHealthSchema = getSchema({
   specFolder: optionalPathString(),
   autoRepair: z.boolean().optional(),
   confirmed: z.boolean().optional(),
+  cleanFiles: z.boolean().optional(),
 });
 
 const checkpointCreateSchema = getSchema({
@@ -726,7 +727,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_list: ['limit', 'offset', 'specFolder', 'sortBy', 'includeChunks'],
   memory_stats: ['folderRanking', 'excludePatterns', 'includeScores', 'includeArchived', 'limit'],
-  memory_health: ['reportMode', 'limit', 'specFolder', 'autoRepair', 'confirmed'],
+  memory_health: ['reportMode', 'limit', 'specFolder', 'autoRepair', 'confirmed', 'cleanFiles'],
   memory_delete: ['id', 'specFolder', 'confirm'],
   memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
   memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],

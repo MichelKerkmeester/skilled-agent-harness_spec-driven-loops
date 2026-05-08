@@ -1,16 +1,17 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/001-baseline-and-safety-rails",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/001-baseline-and-safety-rails",
   "description": "Feature Specification: 001-baseline-and-safety-rails",
   "keywords": [
     "feature",
     "specification",
     "001-baseline-and-safety-rails"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.324Z",
+  "lastUpdated": "2026-05-08T08:26:58.088Z",
   "specId": "001",
   "folderSlug": "baseline-and-safety-rails",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "008-hydra-db-based-features"
   ],

@@ -8,10 +8,10 @@
     "057 deep research",
     "cmd-spec-kit-ux-upgrade"
   ],
+  "level": 2,
   "name": "057-cmd-spec-kit-ux-upgrade",
   "version": "1.0.0",
   "importance_tier": "high",
-  "level": 2,
   "status": "in_progress",
   "completion_pct": 0,
   "key_files": [
@@ -26,7 +26,7 @@
     ".opencode/commands/create",
     ".opencode/agent"
   ],
-  "specFolder": "skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade",
+  "specFolder": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade",
   "description": "Feature Specification: spec-kit UX comparison vs external SPAR-Kit",
   "keywords": [
     "feature",
@@ -36,11 +36,12 @@
     "external",
     "spar-kit"
   ],
-  "lastUpdated": "2026-05-02T10:39:47.777Z",
+  "lastUpdated": "2026-05-08T08:26:57.057Z",
   "specId": "057",
   "folderSlug": "cmd-spec-kit-ux-upgrade",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

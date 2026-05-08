@@ -1100,7 +1100,7 @@ export class SQLiteVectorStore extends IVectorStore {
   }
 
   async verifyIntegrity(
-    options: { autoClean?: boolean } = {},
+    options: { autoClean?: boolean; cleanFiles?: boolean } = {},
   ): Promise<{
     totalMemories: number;
     totalVectors: number;
@@ -1109,7 +1109,7 @@ export class SQLiteVectorStore extends IVectorStore {
     orphanedFiles: Array<{ id: number; file_path: string; reason: string }>;
     orphanedChunks: number;
     isConsistent: boolean;
-    cleaned?: { vectors: number; chunks: number };
+    cleaned?: { vectors: number; chunks: number; files: number };
   }> {
     this._ensureInitialized();
     const database = this._getDatabase();

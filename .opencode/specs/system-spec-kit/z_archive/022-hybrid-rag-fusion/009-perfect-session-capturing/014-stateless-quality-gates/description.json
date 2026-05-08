@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates",
   "description": "Feature Specification: Stateless Quality Gate Fixes",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "gate",
     "fixes"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.446Z",
+  "lastUpdated": "2026-05-08T08:26:58.153Z",
   "specId": "014",
   "folderSlug": "stateless-quality-gates",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"
   ],

@@ -1,21 +1,21 @@
 {
-  "specFolder": "075-cli-copilot-hallucination-caveat",
-  "description": "cli-copilot hallucination caveat in README + sk-doc invocation hints (075)",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/075-cli-copilot-hallucination-caveat",
+  "description": "Feature Specification: 075 cli-copilot Hallucination Caveat",
   "keywords": [
+    "feature",
+    "specification",
+    "075",
     "cli-copilot",
     "hallucination",
-    "caveat",
-    "readme",
-    "sk-doc",
-    "invocation",
-    "hints",
-    "075"
+    "caveat"
   ],
-  "lastUpdated": "2026-05-05T15:24:06.361Z",
+  "lastUpdated": "2026-05-08T08:26:56.481Z",
   "specId": "075",
   "folderSlug": "cli-copilot-hallucination-caveat",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,12 +1,15 @@
 {
   "specFolder": "000-release-cleanup",
-  "description": "Doc-alignment and missing-README fill-in",
+  "description": "AutoClean orphan files: extend verify_integrity with cleanFiles option",
   "keywords": [
-    "doc-alignment",
-    "missing-readme",
-    "fill-in"
+    "autoclean",
+    "orphan",
+    "files",
+    "extend",
+    "cleanfiles",
+    "option"
   ],
-  "lastUpdated": "2026-05-07T10:45:30.853Z",
+  "lastUpdated": "2026-05-08T10:21:44.566Z",
   "specId": "000",
   "folderSlug": "release-cleanup",
   "parentChain": [],

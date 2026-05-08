@@ -243,6 +243,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     specFolder,
     autoRepair = false,
     confirmed = false,
+    cleanFiles = false,
   } = args ?? {};
 
   if (reportMode !== 'full' && reportMode !== DIVERGENT_ALIAS_REPORT_MODE) {
@@ -276,6 +277,15 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     return createMCPErrorResponse({
       tool: 'memory_health',
       error: 'confirmed must be a boolean',
+      code: 'E_INVALID_INPUT',
+      details: { requestId },
+      startTime,
+    });
+  }
+  if (typeof cleanFiles !== 'boolean') {
+    return createMCPErrorResponse({
+      tool: 'memory_health',
+      error: 'cleanFiles must be a boolean',
       code: 'E_INVALID_INPUT',
       details: { requestId },
       startTime,
@@ -424,6 +434,8 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     'trigger_cache_refresh',
     'orphan_edges_cleanup',
     'orphan_vector_cleanup',
+    'orphan_chunks_cleanup',
+    ...(cleanFiles ? ['orphan_files_cleanup'] : []),
   ];
 
   if (database) {
@@ -555,9 +567,10 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
 
   if (autoRepair && database) {
     try {
-      const integrityReport = vectorIndex.verifyIntegrity({ autoClean: true });
+      const integrityReport = vectorIndex.verifyIntegrity({ autoClean: true, cleanFiles });
       const cleanedVectors = integrityReport.cleaned?.vectors ?? 0;
       const cleanedChunks = integrityReport.cleaned?.chunks ?? 0;
+      const cleanedFiles = integrityReport.cleaned?.files ?? 0;
 
       if (cleanedVectors > 0) {
         trackRepairOutcome(true);
@@ -569,6 +582,12 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         trackRepairOutcome(true);
         repair.actions.push(`orphan_chunks_cleaned:${cleanedChunks}`);
         hints.push(`Auto-repair: removed ${cleanedChunks} orphaned chunk(s)`);
+      }
+
+      if (cleanedFiles > 0) {
+        trackRepairOutcome(true);
+        repair.actions.push(`orphan_files_cleaned:${cleanedFiles}`);
+        hints.push(`Auto-repair: removed ${cleanedFiles} orphaned file row(s) (memory_index rows whose file_path no longer exists on disk)`);
       }
 
       const postRepairReport = vectorIndex.verifyIntegrity({ autoClean: false });

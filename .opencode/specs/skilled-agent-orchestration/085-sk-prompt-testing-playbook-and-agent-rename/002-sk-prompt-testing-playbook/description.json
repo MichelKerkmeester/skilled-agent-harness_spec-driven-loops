@@ -1,17 +1,25 @@
 {
-  "specFolder": "085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
-  "description": "Phase 2: sk-prompt-testing-playbook",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
+  "description": "Feature Specification: Phase 002 — Manual Testing Playbook for sk-prompt Skill",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "sk-prompt-testing-playbook"
+    "002",
+    "manual",
+    "testing",
+    "playbook",
+    "sk-prompt",
+    "skill"
   ],
-  "lastUpdated": "2026-05-06T13:19:26.869Z",
+  "lastUpdated": "2026-05-08T08:26:56.576Z",
   "specId": "002",
   "folderSlug": "sk-prompt-testing-playbook",
   "parentChain": [
+    "skilled-agent-orchestration",
     "085-sk-prompt-testing-playbook-and-agent-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

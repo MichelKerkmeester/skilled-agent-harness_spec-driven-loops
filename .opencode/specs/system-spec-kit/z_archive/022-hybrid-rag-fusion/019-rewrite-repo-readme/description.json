@@ -1,15 +1,16 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/019-rewrite-repo-readme",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/019-rewrite-repo-readme",
   "description": "Specification: 019-rewrite-repo-readme",
   "keywords": [
     "specification",
     "019-rewrite-repo-readme"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.643Z",
+  "lastUpdated": "2026-05-08T08:26:58.259Z",
   "specId": "019",
   "folderSlug": "rewrite-repo-readme",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion"
   ],
   "memorySequence": 2,

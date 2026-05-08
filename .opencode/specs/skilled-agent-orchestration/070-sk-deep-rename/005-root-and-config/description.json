@@ -1,19 +1,22 @@
 {
   "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config",
-  "description": "Phase 005 — Update root docs (README.md, AGENTS.md, AGENTS_Barter.md, CLAUDE.md if present) and configs (opencode.json, .utcp_config.json, .claude/settings*.json) for sk-deep-* → deep-* rename.",
+  "description": "Feature Specification: Phase 005 Root Docs and Configs",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "root-docs",
-    "configs",
-    "readme",
-    "agents-md",
-    "claude-md",
-    "opencode-json"
+    "005",
+    "root",
+    "docs",
+    "configs"
   ],
-  "lastUpdated": "2026-05-05T18:00:00.000Z",
-  "specId": "070",
-  "folderSlug": "005-root-and-config",
-  "parentChain": ["skilled-agent-orchestration", "070-sk-deep-rename"],
+  "lastUpdated": "2026-05-08T08:26:56.418Z",
+  "specId": "005",
+  "folderSlug": "root-and-config",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "070-sk-deep-rename"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

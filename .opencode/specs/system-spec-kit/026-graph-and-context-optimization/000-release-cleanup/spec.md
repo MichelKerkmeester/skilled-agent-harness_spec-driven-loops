@@ -105,6 +105,7 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 | 52 | `052-missing-code-readmes-resource-map/` | Implement exact missing code README manifest: 65 target README files created and validated from B01-B17. | complete |
 | 53 | 053-doc-alignment-and-readme-filling/ | [Phase 53 scope] | Pending |
 | 54 | 054-runtime-cleanup-followups/ | [Phase 54 scope] | Pending |
+| 55 | 055-autoclean-orphan-files/ | [Phase 55 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -123,6 +124,7 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 | `051-readme-code-template` | `052-missing-code-readmes-resource-map` | README template guidance exists before implementing remaining code-folder README coverage | Phase 052 strict validation exits 0 and the exact 65 target README files validate cleanly |
 | 052-missing-code-readmes-resource-map | 053-doc-alignment-and-readme-filling | [Criteria TBD] | [Verification TBD] |
 | 053-doc-alignment-and-readme-filling | 054-runtime-cleanup-followups | [Criteria TBD] | [Verification TBD] |
+| 054-runtime-cleanup-followups | 055-autoclean-orphan-files | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

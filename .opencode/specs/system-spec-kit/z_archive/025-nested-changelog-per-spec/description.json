@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/025-nested-changelog-per-spec",
+  "specFolder": "system-spec-kit/z_archive/025-nested-changelog-per-spec",
   "description": "Feature Specification: Nested Changelog Per Spec",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "per",
     "spec"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.978Z",
+  "lastUpdated": "2026-05-08T08:26:58.420Z",
   "specId": "025",
   "folderSlug": "nested-changelog-per-spec",
   "parentChain": [
-    "system-spec-kit"
+    "system-spec-kit",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

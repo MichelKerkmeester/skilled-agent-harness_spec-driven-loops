@@ -1,18 +1,18 @@
 {
   "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
-  "description": "Phase 004 — Deep Review Remediation: fix the 2 P0 + 7 P1 + 4 P2 findings raised by the 7-iteration deep review. Restores PASS verdict before commit.",
+  "description": "Feature Specification: Packet 069 Deep Review Remediation",
   "keywords": [
-    "phase",
-    "deep-review",
-    "remediation",
-    "p0-blockers",
-    "motion-dev",
-    "no-clobber-fix",
-    "snippet-fix"
+    "feature",
+    "specification",
+    "packet",
+    "069",
+    "deep",
+    "review",
+    "remediation"
   ],
-  "lastUpdated": "2026-05-05T12:00:00.000Z",
-  "specId": "069",
-  "folderSlug": "004-deep-review-remediation",
+  "lastUpdated": "2026-05-08T08:26:56.386Z",
+  "specId": "004",
+  "folderSlug": "deep-review-remediation",
   "parentChain": [
     "skilled-agent-orchestration",
     "069-sk-code-motion-dev-and-playbook"

@@ -1,9 +1,14 @@
 {
+  "title": "Phase 001 - dist rebuild",
+  "trigger_phrases": [
+    "dist rebuild",
+    "098 phase 001",
+    "097 remediation",
+    "infrastructure quality"
+  ],
+  "level": 2,
   "schema_version": 1,
   "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/001-dist-rebuild",
-  "title": "Phase 001 - dist rebuild",
-  "description": "Rebuild stale system-spec-kit MCP dist output after the 096 plural-directory rename and document generated-output drift evidence.",
-  "level": 2,
   "status": "complete",
   "completion_pct": 100,
   "key_topics": [
@@ -12,14 +17,28 @@
     "097-findings",
     "infrastructure-quality"
   ],
-  "trigger_phrases": [
-    "dist rebuild",
-    "098 phase 001",
-    "097 remediation",
-    "infrastructure quality"
-  ],
   "importance_tier": "high",
   "context_type": "infrastructure-quality",
   "created_at": "2026-05-07T18:30:00Z",
-  "last_updated_at": "2026-05-07T18:30:00Z"
+  "last_updated_at": "2026-05-07T18:30:00Z",
+  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/001-dist-rebuild",
+  "description": "Feature Specification: Phase 001 - dist rebuild",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "001",
+    "dist",
+    "rebuild"
+  ],
+  "lastUpdated": "2026-05-08T08:26:56.635Z",
+  "specId": "001",
+  "folderSlug": "dist-rebuild",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "096-rename-opencode-dirs-to-plural",
+    "003-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

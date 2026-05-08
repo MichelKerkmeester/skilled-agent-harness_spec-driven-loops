@@ -1,18 +1,17 @@
 {
   "specFolder": "skilled-agent-orchestration/070-sk-deep-rename",
-  "description": "Feature Specification: sk-deep-review → deep-review + sk-deep-research → deep-research skill rename — Phase Parent",
+  "description": "Feature Specification: sk-deep-* → deep-* Skill Rename — Phase Parent",
   "keywords": [
     "feature",
     "specification",
-    "skill-rename",
-    "sk-deep-review",
-    "sk-deep-research",
-    "deep-review",
-    "deep-research",
-    "phase-parent",
-    "naming-cleanup"
+    "sk-deep",
+    "deep",
+    "skill",
+    "rename",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-05T18:00:00.000Z",
+  "lastUpdated": "2026-05-08T08:26:56.399Z",
   "specId": "070",
   "folderSlug": "sk-deep-rename",
   "parentChain": [

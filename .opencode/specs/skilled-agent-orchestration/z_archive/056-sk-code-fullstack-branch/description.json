@@ -6,10 +6,10 @@
     "smart router alignment",
     "stack scaffolding"
   ],
+  "level": 2,
   "name": "056-sk-code-fullstack-branch",
   "version": "2.0.0",
   "importance_tier": "high",
-  "level": 2,
   "status": "complete",
   "completion_pct": 100,
   "absorbed_packet": "skilled-agent-orchestration/057-sk-code-multi-stack-placeholders",
@@ -27,7 +27,7 @@
     ".opencode/skills/sk-code/references/router/cross_stack_pairing.md",
     ".opencode/skills/sk-code/changelog/v1.3.0.0.md"
   ],
-  "specFolder": "skilled-agent-orchestration/056-sk-code-fullstack-branch",
+  "specFolder": "skilled-agent-orchestration/z_archive/056-sk-code-fullstack-branch",
   "description": "Feature Specification: sk-code multi-stack scaffolding",
   "keywords": [
     "feature",
@@ -36,11 +36,12 @@
     "multi-stack",
     "scaffolding"
   ],
-  "lastUpdated": "2026-04-30T17:23:41.580Z",
+  "lastUpdated": "2026-05-08T08:26:57.052Z",
   "specId": "056",
   "folderSlug": "sk-code-fullstack-branch",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

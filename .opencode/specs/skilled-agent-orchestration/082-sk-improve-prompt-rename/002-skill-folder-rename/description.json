@@ -1,15 +1,21 @@
 {
   "level": "1",
-  "specFolder": "082-sk-improve-prompt-rename/002-skill-folder-rename",
-  "description": "Phase 2: skill-folder-rename",
+  "specFolder": "skilled-agent-orchestration/082-sk-improve-prompt-rename/002-skill-folder-rename",
+  "description": "Feature Specification: Phase 002 Skill Folder Rename",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "skill-folder-rename"
+    "002",
+    "skill",
+    "folder",
+    "rename"
   ],
-  "lastUpdated": "2026-05-06T10:23:35.802Z",
+  "lastUpdated": "2026-05-08T08:26:56.535Z",
   "specId": "002",
   "folderSlug": "skill-folder-rename",
   "parentChain": [
+    "skilled-agent-orchestration",
     "082-sk-improve-prompt-rename"
   ],
   "memorySequence": 0,

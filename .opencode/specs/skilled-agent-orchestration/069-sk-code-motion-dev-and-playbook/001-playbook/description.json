@@ -1,17 +1,20 @@
 {
   "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
-  "description": "Phase 001 — Manual Testing Playbook Refinement: extend sk-code/manual_testing_playbook with motion.dev scenarios, animation regression, perf gates, and cross-browser checks; align with sk-doc playbook standards.",
+  "description": "Feature Specification: sk-code Manual Testing Playbook Motion.dev Refinement",
   "keywords": [
-    "phase",
-    "playbook",
-    "manual-testing",
+    "feature",
+    "specification",
     "sk-code",
-    "sk-doc-alignment",
-    "animation-regression"
+    "manual",
+    "testing",
+    "playbook",
+    "motion",
+    "dev",
+    "refinement"
   ],
-  "lastUpdated": "2026-05-05T07:30:00.000Z",
-  "specId": "069",
-  "folderSlug": "001-playbook",
+  "lastUpdated": "2026-05-08T08:26:56.374Z",
+  "specId": "001",
+  "folderSlug": "playbook",
   "parentChain": [
     "skilled-agent-orchestration",
     "069-sk-code-motion-dev-and-playbook"

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/001-precompact-hook",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/001-precompact-hook",
   "description": "Phase 1: Compaction Context Injection (PreCompact + SessionStart)",
   "keywords": [
     "phase",
@@ -9,11 +9,12 @@
     "precompact",
     "sessionstart"
   ],
-  "lastUpdated": "2026-04-25T06:16:27.486Z",
+  "lastUpdated": "2026-05-08T08:26:58.318Z",
   "specId": "001",
   "folderSlug": "precompact-hook",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_future/agentic-system-upgrade/001-research-agentic-systems/001-agent-lightning-main",
+  "specFolder": "z_future/agentic-system-upgrade/001-research-agentic-systems/001-agent-lightning-main",
   "description": "Feature Specification: 001-agent-lightning-main Research Phase",
   "keywords": [
     "feature",
@@ -8,11 +8,10 @@
     "research",
     "phase"
   ],
-  "lastUpdated": "2026-04-24T15:56:56.871Z",
+  "lastUpdated": "2026-05-08T08:26:58.425Z",
   "specId": "001",
   "folderSlug": "agent-lightning-main",
   "parentChain": [
-    "system-spec-kit",
     "z_future",
     "agentic-system-upgrade",
     "001-research-agentic-systems"

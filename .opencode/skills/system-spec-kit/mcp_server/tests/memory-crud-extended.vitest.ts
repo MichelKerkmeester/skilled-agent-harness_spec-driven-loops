@@ -1661,6 +1661,92 @@ describe('handleMemoryHealth - Happy Path', () => {
       expect.arrayContaining([expect.stringContaining('orphanedFiles=2')])
     );
   });
+
+  it('EXT-H16: autoRepair with cleanFiles=true cleans orphaned file rows', async (ctx) => {
+    if (
+      !handler?.handleMemoryHealth ||
+      !vectorIndex ||
+      !embeddingsSourceMod ||
+      !causalEdgesMod?.init ||
+      !causalEdgesMod?.cleanupOrphanedEdges
+    ) {
+      ctx.skip();
+      return;
+    }
+    installHealthMocks({ dbAvailable: true, memoryCount: 42 });
+
+    vi.mocked(embeddingsSourceMod.getProviderMetadata).mockImplementation(() => ({
+      provider: 'test',
+      model: 'test-model',
+      healthy: true,
+    }));
+    vi.mocked(embeddingsSourceMod.getEmbeddingProfile).mockImplementation(() => ({
+      dim: 768,
+      getDatabasePath: (base: string) => `${base}/test.db`,
+    }));
+    vi.mocked(causalEdgesMod.init).mockImplementation(() => undefined);
+    vi.mocked(causalEdgesMod.cleanupOrphanedEdges).mockImplementation(() => ({ deleted: 0 }));
+
+    // Two file orphans pre-clean; both deleted by cleanFiles path; post-clean is consistent.
+    vi.mocked(vectorIndex.verifyIntegrity)
+      .mockReturnValueOnce({
+        totalMemories: 42,
+        totalVectors: 42,
+        orphanedVectors: 0,
+        missingVectors: 0,
+        orphanedFiles: [
+          { id: 201, file_path: '/tmp/missing-a.md', reason: 'File no longer exists on filesystem' },
+          { id: 202, file_path: '/tmp/missing-b.md', reason: 'File no longer exists on filesystem' },
+        ],
+        orphanedChunks: 0,
+        isConsistent: false,
+      })
+      .mockReturnValueOnce({
+        totalMemories: 40,
+        totalVectors: 40,
+        orphanedVectors: 0,
+        missingVectors: 0,
+        orphanedFiles: [],
+        orphanedChunks: 0,
+        isConsistent: true,
+        cleaned: { vectors: 0, chunks: 0, files: 2 },
+      })
+      .mockReturnValueOnce({
+        totalMemories: 40,
+        totalVectors: 40,
+        orphanedVectors: 0,
+        missingVectors: 0,
+        orphanedFiles: [],
+        orphanedChunks: 0,
+        isConsistent: true,
+      });
+
+    const result = await handler.handleMemoryHealth({
+      autoRepair: true,
+      confirmed: true,
+      cleanFiles: true,
+    });
+    const parsed = parseResponse(result);
+
+    expect(parsed?.data?.repair?.actions).toEqual(
+      expect.arrayContaining(['orphan_files_cleaned:2'])
+    );
+    expect(parsed?.hints).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining('removed 2 orphaned file row(s)'),
+      ])
+    );
+  });
+
+  it('EXT-H17: cleanFiles must be a boolean — invalid input returns error', async () => {
+    if (!handler?.handleMemoryHealth || !vectorIndex) {
+      throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable');
+    }
+    const result = await handler.handleMemoryHealth({ cleanFiles: 'yes' as unknown as boolean });
+    expect(result?.isError).toBe(true);
+    const parsed = parseResponse(result);
+    expect(parsed?.error ?? parsed?.summary ?? '').toMatch(/cleanFiles must be a boolean/);
+  });
 });
 
 /* ───────────────────────────────────────────────────────────────

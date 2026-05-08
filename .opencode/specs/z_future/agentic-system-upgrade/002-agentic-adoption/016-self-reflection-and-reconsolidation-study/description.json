@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_future/agentic-system-upgrade/002-agentic-adoption/016-self-reflection-and-reconsolidation-study",
+  "specFolder": "z_future/agentic-system-upgrade/002-agentic-adoption/016-self-reflection-and-reconsolidation-study",
   "description": "Feature Specification: 016 Self Reflection and Reconsolidation Study",
   "keywords": [
     "feature",
@@ -10,11 +10,10 @@
     "reconsolidation",
     "study"
   ],
-  "lastUpdated": "2026-04-24T15:56:56.985Z",
+  "lastUpdated": "2026-05-08T08:26:58.528Z",
   "specId": "016",
   "folderSlug": "self-reflection-and-reconsolidation-study",
   "parentChain": [
-    "system-spec-kit",
     "z_future",
     "agentic-system-upgrade",
     "002-agentic-adoption"

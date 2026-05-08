@@ -1,18 +1,24 @@
 {
-  "specFolder": "049-deep-research-finding-remediation",
-  "description": "Sub-phase children for 049 deep-research finding remediation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation",
+  "description": "Feature Specification: 049 Deep-Research Finding Remediation (Phase Parent)",
   "keywords": [
-    "sub-phase",
-    "children",
+    "feature",
+    "specification",
     "049",
     "deep-research",
     "finding",
-    "remediation"
+    "remediation",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-01T09:02:25.624Z",
+  "lastUpdated": "2026-05-08T08:26:57.438Z",
   "specId": "049",
   "folderSlug": "deep-research-finding-remediation",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "01-05-26_10-02__shipped-a-5-packet-campaign-045-049-that-closed.md"

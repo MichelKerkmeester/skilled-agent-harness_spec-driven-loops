@@ -1283,10 +1283,10 @@ export function get_memory_preview(memory_id: number, max_lines = 50): { id: num
  * @returns The integrity summary.
  */
 export function verify_integrity(
-  options: { autoClean?: boolean } = {},
+  options: { autoClean?: boolean; cleanFiles?: boolean } = {},
   database: Database.Database = initialize_db(),
-): { totalMemories: number; totalVectors: number; orphanedVectors: number; missingVectors: number; orphanedFiles: Array<{ id: number; file_path: string; reason: string }>; orphanedChunks: number; isConsistent: boolean; cleaned?: { vectors: number; chunks: number } } {
-  const { autoClean = false } = options;
+): { totalMemories: number; totalVectors: number; orphanedVectors: number; missingVectors: number; orphanedFiles: Array<{ id: number; file_path: string; reason: string }>; orphanedChunks: number; isConsistent: boolean; cleaned?: { vectors: number; chunks: number; files: number } } {
+  const { autoClean = false, cleanFiles = false } = options;
   const sqlite_vec = get_sqlite_vec_available();
 
   const find_orphaned_vector_ids = () => {
@@ -1355,7 +1355,38 @@ export function verify_integrity(
     return orphaned;
   };
 
-  const orphaned_files = check_orphaned_files();
+  const orphaned_files_pre = check_orphaned_files();
+  let cleaned_files = 0;
+  const cleaned_file_ids = new Set<number>();
+
+  if (autoClean && cleanFiles && orphaned_files_pre.length > 0) {
+    logger.info(`Auto-cleaning ${orphaned_files_pre.length} orphaned file rows...`);
+    for (const orphan of orphaned_files_pre) {
+      try {
+        const spec_folder = (database.prepare('SELECT spec_folder FROM memory_index WHERE id = ?')
+          .get(orphan.id) as { spec_folder: string | null } | undefined)?.spec_folder ?? null;
+        const deleted = delete_memory_from_database(database, orphan.id);
+        if (deleted) {
+          cleaned_files++;
+          cleaned_file_ids.add(orphan.id);
+          try {
+            recordHistory(orphan.id, 'DELETE', null, null, 'mcp:integrity_check_files', spec_folder);
+          } catch (error: unknown) {
+            logger.warn('Failed to record integrity-check-files delete history', {
+              error: error instanceof Error ? error.message : String(error),
+            });
+          }
+        }
+      } catch (e: unknown) {
+        console.warn(`[vector-index] Failed to clean orphaned file row ${orphan.id}: ${get_error_message(e)}`);
+      }
+    }
+    logger.info(`Cleaned ${cleaned_files} orphaned file rows`);
+  }
+
+  const orphaned_files = (autoClean && cleanFiles)
+    ? orphaned_files_pre.filter((o) => !cleaned_file_ids.has(o.id))
+    : orphaned_files_pre;
 
   const find_orphaned_chunks = () => {
     try {
@@ -1412,8 +1443,8 @@ export function verify_integrity(
     orphanedFiles: orphaned_files,
     orphanedChunks: effective_orphaned_chunks,
     isConsistent: (orphaned_vectors - cleaned_vectors) === 0 && missing_vectors === 0 && orphaned_files.length === 0 && effective_orphaned_chunks === 0,
-    cleaned: (autoClean && (cleaned_vectors > 0 || cleaned_chunks > 0))
-      ? { vectors: cleaned_vectors, chunks: cleaned_chunks }
+    cleaned: (autoClean && (cleaned_vectors > 0 || cleaned_chunks > 0 || cleaned_files > 0))
+      ? { vectors: cleaned_vectors, chunks: cleaned_chunks, files: cleaned_files }
       : undefined
   };
 }

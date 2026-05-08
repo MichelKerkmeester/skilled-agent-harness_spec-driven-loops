@@ -1,18 +1,18 @@
 {
   "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/006-routing-precision-fixes",
-  "description": "Phase 006 — Routing Precision Fixes: apply 9 findings (2 P0 + 6 P1 + 1 P2) + 4 recommendations from cross-CLI playbook audit (005). Restores PASS verdict on RD-002 + CS-002 critical-path scenarios.",
+  "description": "Feature Specification: Phase 006 Routing Precision Fixes",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "routing-fixes",
-    "smart-router",
-    "skill-graph",
-    "advisor-weights",
-    "motion-dev",
-    "audit-remediation"
+    "006",
+    "routing",
+    "precision",
+    "fixes"
   ],
-  "lastUpdated": "2026-05-05T13:30:00.000Z",
-  "specId": "069",
-  "folderSlug": "006-routing-precision-fixes",
+  "lastUpdated": "2026-05-08T08:26:56.395Z",
+  "specId": "006",
+  "folderSlug": "routing-precision-fixes",
   "parentChain": [
     "skilled-agent-orchestration",
     "069-sk-code-motion-dev-and-playbook"

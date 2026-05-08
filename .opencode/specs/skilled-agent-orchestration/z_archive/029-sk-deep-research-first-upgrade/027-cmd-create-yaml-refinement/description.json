@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/027-cmd-create-yaml-refinement",
+  "specFolder": "skilled-agent-orchestration/z_archive/029-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement",
   "description": "Feature Specification: Create Command YAML Refinement",
   "keywords": [
     "feature",
@@ -9,11 +9,13 @@
     "yaml",
     "refinement"
   ],
-  "lastUpdated": "2026-04-24T15:56:54.877Z",
+  "lastUpdated": "2026-05-08T08:26:56.827Z",
   "specId": "027",
   "folderSlug": "cmd-create-yaml-refinement",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive",
+    "029-sk-deep-research-first-upgrade"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

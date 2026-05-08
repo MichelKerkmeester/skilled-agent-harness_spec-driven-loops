@@ -1,14 +1,21 @@
 {
-  "specFolder": "049-deep-research-finding-remediation/006-architecture-cleanup",
-  "description": "Phase 6: architecture-cleanup",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/006-architecture-cleanup",
+  "description": "Feature Specification: 006 Architecture Cleanup Remediation",
   "keywords": [
-    "phase",
-    "architecture-cleanup"
+    "feature",
+    "specification",
+    "006",
+    "architecture",
+    "cleanup",
+    "remediation"
   ],
-  "lastUpdated": "2026-05-01T08:29:24.609Z",
+  "lastUpdated": "2026-05-08T08:26:57.464Z",
   "specId": "006",
   "folderSlug": "architecture-cleanup",
   "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
     "049-deep-research-finding-remediation"
   ],
   "memorySequence": 1,

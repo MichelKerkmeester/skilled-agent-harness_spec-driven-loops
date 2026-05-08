@@ -1,7 +1,10 @@
 {
-  "specFolder": "067-mcp-figma-transfer",
-  "description": "mcp-figma transfer (tri-repo): withdraw mcp-figma developer skill from Code_Environment/Public, reframe as a Figma MCP Agent in AI_Systems/Barter (mir",
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/067-mcp-figma-transfer",
+  "description": "Feature Specification: mcp-figma transfer (tri-repo): withdraw mcp-figma developer skill from Code_Environment/Public, reframe as a Figma MCP Agent in",
   "keywords": [
+    "feature",
+    "specification",
     "mcp-figma",
     "transfer",
     "tri-repo",
@@ -12,21 +15,14 @@
     "reframe",
     "figma",
     "mcp",
-    "agent",
-    "barter",
-    "mirroring",
-    "clickup",
-    "dual-publish",
-    "sanitized",
-    "duplicate",
-    "register",
-    "readme"
+    "agent"
   ],
-  "lastUpdated": "2026-05-05T07:49:57.720Z",
+  "lastUpdated": "2026-05-08T08:26:56.321Z",
   "specId": "067",
   "folderSlug": "mcp-figma-transfer",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

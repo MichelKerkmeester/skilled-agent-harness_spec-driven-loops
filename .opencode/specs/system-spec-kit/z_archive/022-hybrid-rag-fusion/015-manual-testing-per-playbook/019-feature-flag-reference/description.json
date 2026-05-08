@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference",
   "description": "Feature Specification: manual-testing-per-playbook feature-flag-reference phase",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "feature-flag-reference",
     "phase"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.609Z",
+  "lastUpdated": "2026-05-08T08:26:58.241Z",
   "specId": "019",
   "folderSlug": "feature-flag-reference",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"
   ],

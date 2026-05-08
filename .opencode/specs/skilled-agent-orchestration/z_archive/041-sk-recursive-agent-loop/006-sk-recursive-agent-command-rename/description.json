@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename",
+  "specFolder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename",
   "description": "Feature Specification: Recursive Agent Command Rename",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "command",
     "rename"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.005Z",
+  "lastUpdated": "2026-05-08T08:26:56.914Z",
   "specId": "006",
   "folderSlug": "sk-recursive-agent-command-rename",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "041-sk-recursive-agent-loop"
   ],
   "memorySequence": 0,

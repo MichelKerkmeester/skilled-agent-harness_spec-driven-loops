@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_future/agentic-system-upgrade/002-agentic-adoption/011-event-journal-and-replay-study",
+  "specFolder": "z_future/agentic-system-upgrade/002-agentic-adoption/011-event-journal-and-replay-study",
   "description": "Feature Specification: 011 Event Journal and Replay Study",
   "keywords": [
     "feature",
@@ -10,11 +10,10 @@
     "replay",
     "study"
   ],
-  "lastUpdated": "2026-04-24T15:56:56.960Z",
+  "lastUpdated": "2026-05-08T08:26:58.499Z",
   "specId": "011",
   "folderSlug": "event-journal-and-replay-study",
   "parentChain": [
-    "system-spec-kit",
     "z_future",
     "agentic-system-upgrade",
     "002-agentic-adoption"

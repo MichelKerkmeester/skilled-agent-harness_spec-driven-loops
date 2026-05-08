@@ -1,14 +1,21 @@
 {
-  "specFolder": "049-deep-research-finding-remediation/009-test-reliability",
-  "description": "Phase 9: test-reliability",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/009-test-reliability",
+  "description": "Feature Specification: 009 Test Reliability Remediation",
   "keywords": [
-    "phase",
-    "test-reliability"
+    "feature",
+    "specification",
+    "009",
+    "test",
+    "reliability",
+    "remediation"
   ],
-  "lastUpdated": "2026-05-01T05:58:28.244Z",
+  "lastUpdated": "2026-05-08T08:26:57.477Z",
   "specId": "009",
   "folderSlug": "test-reliability",
   "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
     "049-deep-research-finding-remediation"
   ],
   "memorySequence": 1,

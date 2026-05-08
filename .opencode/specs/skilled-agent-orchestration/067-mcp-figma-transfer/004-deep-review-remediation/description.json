@@ -1,21 +1,22 @@
 {
-  "specFolder": "067-mcp-figma-transfer/004-deep-review-remediation",
-  "description": "Phase 4 deep-review remediation for strict validation, checklist evidence, and state backfill.",
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/067-mcp-figma-transfer/004-deep-review-remediation",
+  "description": "Feature Specification: Phase 4 — Deep Review Remediation",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "deep-review",
-    "remediation",
-    "strict-validation",
-    "checklist-evidence",
-    "state-backfill"
+    "deep",
+    "review",
+    "remediation"
   ],
-  "lastUpdated": "2026-05-05T12:50:00.000Z",
+  "lastUpdated": "2026-05-08T08:26:56.345Z",
   "specId": "004",
   "folderSlug": "deep-review-remediation",
   "parentChain": [
+    "skilled-agent-orchestration",
     "067-mcp-figma-transfer"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

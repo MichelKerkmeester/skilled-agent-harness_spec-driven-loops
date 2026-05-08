@@ -1,15 +1,20 @@
 {
   "level": "1",
-  "specFolder": "082-sk-improve-prompt-rename/004-runtime-mirrors",
-  "description": "Phase 4: runtime-mirrors",
+  "specFolder": "skilled-agent-orchestration/082-sk-improve-prompt-rename/004-runtime-mirrors",
+  "description": "Feature Specification: Phase 004 Runtime Mirrors",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "runtime-mirrors"
+    "004",
+    "runtime",
+    "mirrors"
   ],
-  "lastUpdated": "2026-05-06T10:23:37.233Z",
+  "lastUpdated": "2026-05-08T08:26:56.543Z",
   "specId": "004",
   "folderSlug": "runtime-mirrors",
   "parentChain": [
+    "skilled-agent-orchestration",
     "082-sk-improve-prompt-rename"
   ],
   "memorySequence": 0,

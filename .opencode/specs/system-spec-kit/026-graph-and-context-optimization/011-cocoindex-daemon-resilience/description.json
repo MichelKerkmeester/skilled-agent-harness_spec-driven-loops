@@ -1,11 +1,5 @@
 {
-  "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience",
   "title": "CocoIndex daemon resilience",
-  "description": "Five interacting bugs in mcp-coco-index daemon caused leaked-zombie processes and CPU-spinning log spam. Five iterations of deep research expanded the surface from 2 surface bugs to a 7-patch remediation plus three formally-refuted hypotheses (LMDB, worker reaping, backlog starvation). The leak mechanism is the unconditional socket-unlink at daemon startup combined with a non-atomic start_daemon. The CPU spike is 90 percent double logger.exception per disconnect across 6 unsafe send_bytes sites. Plan: 7 patches across client.py + daemon.py, 13 tasks, 21 findings (13 P0, 4 P1, 4 P2), severance event Apr 27 17:08:49 (NOT May 1 as initial spec hypothesized).",
-  "status": "research_complete",
-  "level": 2,
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "trigger_phrases": [
     "027-cocoindex-daemon-resilience",
     "cocoindex daemon leak",
@@ -14,6 +8,29 @@
     "stale daemon zombie",
     "daemon.py:436 error handler"
   ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience",
+  "status": "research_complete",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "importance_tier": "important",
-  "created_at": "2026-05-07T07:38:00Z"
+  "created_at": "2026-05-07T07:38:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience",
+  "description": "Feature Specification: CocoIndex daemon resilience",
+  "keywords": [
+    "feature",
+    "specification",
+    "cocoindex",
+    "daemon",
+    "resilience"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.809Z",
+  "specId": "011",
+  "folderSlug": "cocoindex-daemon-resilience",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

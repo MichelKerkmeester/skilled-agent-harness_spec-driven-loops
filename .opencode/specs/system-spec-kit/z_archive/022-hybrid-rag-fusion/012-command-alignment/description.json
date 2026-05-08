@@ -1,15 +1,16 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/012-command-alignment",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/012-command-alignment",
   "description": "Specification: 012-command-alignment",
   "keywords": [
     "specification",
     "012-command-alignment"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.509Z",
+  "lastUpdated": "2026-05-08T08:26:58.196Z",
   "specId": "012",
   "folderSlug": "command-alignment",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion"
   ],
   "memorySequence": 3,

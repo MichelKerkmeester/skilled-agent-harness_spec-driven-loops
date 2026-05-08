@@ -1,15 +1,20 @@
 {
   "level": "1",
-  "specFolder": "082-sk-improve-prompt-rename/005-root-and-config",
-  "description": "Phase 5: root-and-config",
+  "specFolder": "skilled-agent-orchestration/082-sk-improve-prompt-rename/005-root-and-config",
+  "description": "Feature Specification: Phase 005 Root and Config",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "root-and-config"
+    "005",
+    "root",
+    "config"
   ],
-  "lastUpdated": "2026-05-06T10:23:37.901Z",
+  "lastUpdated": "2026-05-08T08:26:56.547Z",
   "specId": "005",
   "folderSlug": "root-and-config",
   "parentChain": [
+    "skilled-agent-orchestration",
     "082-sk-improve-prompt-rename"
   ],
   "memorySequence": 0,

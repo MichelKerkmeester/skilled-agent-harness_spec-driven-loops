@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/003-constitutional-learn-refactor",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/003-constitutional-learn-refactor",
   "description": "Feature Specification: Refactor /memory:learn → Constitutional Memory Manager",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "constitutional",
     "manager"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.196Z",
+  "lastUpdated": "2026-05-08T08:26:58.066Z",
   "specId": "003",
   "folderSlug": "constitutional-learn-refactor",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion"
   ],
   "memorySequence": 0,

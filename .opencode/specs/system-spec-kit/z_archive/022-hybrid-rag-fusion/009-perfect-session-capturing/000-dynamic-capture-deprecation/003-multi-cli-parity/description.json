@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity",
   "description": "Feature Specification: Multi-CLI Parity Hardening",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "parity",
     "hardening"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.371Z",
+  "lastUpdated": "2026-05-08T08:26:58.126Z",
   "specId": "003",
   "folderSlug": "multi-cli-parity",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing",
     "000-dynamic-capture-deprecation"

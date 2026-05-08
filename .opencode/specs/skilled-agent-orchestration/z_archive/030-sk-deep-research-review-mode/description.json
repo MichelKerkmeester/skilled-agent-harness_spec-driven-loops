@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/030-sk-deep-research-review-mode",
+  "specFolder": "skilled-agent-orchestration/z_archive/030-sk-deep-research-review-mode",
   "description": "Feature Specification: sk-deep-research Review Mode",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "review",
     "mode"
   ],
-  "lastUpdated": "2026-04-24T15:56:54.892Z",
+  "lastUpdated": "2026-05-08T08:26:56.833Z",
   "specId": "030",
   "folderSlug": "sk-deep-research-review-mode",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

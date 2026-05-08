@@ -1,14 +1,23 @@
 {
-  "specFolder": "049-deep-research-finding-remediation/005-resource-leaks-silent-errors",
-  "description": "Phase 5: resource-leaks-silent-errors",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/005-resource-leaks-silent-errors",
+  "description": "Feature Specification: 005 Resource Leaks And Silent Errors Remediation",
   "keywords": [
-    "phase",
-    "resource-leaks-silent-errors"
+    "feature",
+    "specification",
+    "005",
+    "resource",
+    "leaks",
+    "silent",
+    "errors",
+    "remediation"
   ],
-  "lastUpdated": "2026-05-01T07:55:29.751Z",
+  "lastUpdated": "2026-05-08T08:26:57.459Z",
   "specId": "005",
   "folderSlug": "resource-leaks-silent-errors",
   "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
     "049-deep-research-finding-remediation"
   ],
   "memorySequence": 1,

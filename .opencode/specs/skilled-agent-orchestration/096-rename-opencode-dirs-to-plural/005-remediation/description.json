@@ -1,9 +1,13 @@
 {
+  "title": "100 - 099 deep-review remediation",
+  "trigger_phrases": [
+    "100 remediation",
+    "099 findings remediation",
+    "post-098 hardening"
+  ],
+  "level": 2,
   "schema_version": 1,
   "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation",
-  "title": "100 - 099 deep-review remediation",
-  "description": "Resolved all 13 P1 findings raised by packet 099 deep-review of the 093-098 track. P1-026 (reducer findings extraction) was initially scoped as deferred but fixed in a follow-on pass within this packet.",
-  "level": 2,
   "status": "complete",
   "completion_pct": 100,
   "key_topics": [
@@ -16,13 +20,27 @@
     "advisor-routing",
     "p1"
   ],
-  "trigger_phrases": [
-    "100 remediation",
-    "099 findings remediation",
-    "post-098 hardening"
-  ],
   "importance_tier": "high",
   "context_type": "infrastructure-quality",
   "created_at": "2026-05-07T20:30:00Z",
-  "last_updated_at": "2026-05-07T20:50:00Z"
+  "last_updated_at": "2026-05-07T20:50:00Z",
+  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation",
+  "description": "Feature Specification: 100 - 099 deep-review remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "100",
+    "099",
+    "deep-review",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-08T08:26:56.664Z",
+  "specId": "005",
+  "folderSlug": "remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "096-rename-opencode-dirs-to-plural"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

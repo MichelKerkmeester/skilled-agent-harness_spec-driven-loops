@@ -1,17 +1,24 @@
 {
-  "specFolder": "085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
-  "description": "Phase 1: prompt-improver-rename",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+  "description": "Feature Specification: Phase 001 — Rename @improve-prompt agent to @prompt-improver",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "prompt-improver-rename"
+    "001",
+    "rename",
+    "improve-prompt",
+    "agent",
+    "prompt-improver"
   ],
-  "lastUpdated": "2026-05-06T13:19:26.189Z",
+  "lastUpdated": "2026-05-08T08:26:56.572Z",
   "specId": "001",
   "folderSlug": "prompt-improver-rename",
   "parentChain": [
+    "skilled-agent-orchestration",
     "085-sk-prompt-testing-playbook-and-agent-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

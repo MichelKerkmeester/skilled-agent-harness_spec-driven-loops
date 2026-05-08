@@ -5,13 +5,16 @@
     "feature",
     "specification",
     "sk-code",
-    "motion-dev",
-    "playbook",
-    "manual-testing",
+    "motion",
+    "dev",
     "cross-stack",
-    "phase-parent"
+    "category",
+    "playbook",
+    "refinement",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-05T07:30:00.000Z",
+  "lastUpdated": "2026-05-08T08:26:56.370Z",
   "specId": "069",
   "folderSlug": "sk-code-motion-dev-and-playbook",
   "parentChain": [

@@ -1,15 +1,20 @@
 {
   "level": "1",
-  "specFolder": "082-sk-improve-prompt-rename/003-opencode-internals",
-  "description": "Phase 3: opencode-internals",
+  "specFolder": "skilled-agent-orchestration/082-sk-improve-prompt-rename/003-opencode-internals",
+  "description": "Feature Specification: Phase 003 Opencode Internals",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "opencode-internals"
+    "003",
+    "opencode",
+    "internals"
   ],
-  "lastUpdated": "2026-05-06T10:23:36.498Z",
+  "lastUpdated": "2026-05-08T08:26:56.539Z",
   "specId": "003",
   "folderSlug": "opencode-internals",
   "parentChain": [
+    "skilled-agent-orchestration",
     "082-sk-improve-prompt-rename"
   ],
   "memorySequence": 0,

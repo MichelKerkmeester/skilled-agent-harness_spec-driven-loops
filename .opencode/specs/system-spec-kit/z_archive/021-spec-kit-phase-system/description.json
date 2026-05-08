@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/021-spec-kit-phase-system",
+  "specFolder": "system-spec-kit/z_archive/021-spec-kit-phase-system",
   "description": "Feature Specification: SpecKit Phase System",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "system"
   ],
-  "lastUpdated": "2026-04-25T06:16:27.464Z",
+  "lastUpdated": "2026-05-08T08:26:58.055Z",
   "specId": "021",
   "folderSlug": "spec-kit-phase-system",
   "parentChain": [
-    "system-spec-kit"
+    "system-spec-kit",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

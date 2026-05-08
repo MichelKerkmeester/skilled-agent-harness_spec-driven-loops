@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/048-cli-testing-playbooks",
+  "specFolder": "skilled-agent-orchestration/z_archive/048-cli-testing-playbooks",
   "description": "Feature Specification: CLI Testing Playbooks",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "testing",
     "playbooks"
   ],
-  "lastUpdated": "2026-04-26T15:55:38.369Z",
+  "lastUpdated": "2026-05-08T08:26:57.011Z",
   "specId": "048",
   "folderSlug": "cli-testing-playbooks",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 6,
   "memoryNameHistory": [

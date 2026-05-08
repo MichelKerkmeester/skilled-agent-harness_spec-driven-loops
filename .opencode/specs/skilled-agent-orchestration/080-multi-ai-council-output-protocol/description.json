@@ -1,25 +1,18 @@
 {
   "level": 3,
   "specFolder": "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
-  "description": "Introduce a new ai-council/ subfolder convention parallel to research/ (deep-research) and review/ (deep-review) for capturing multi-ai-council deliberation rounds, per-seat outputs, critiques, and the final synthesized plan. Lightweight: no dedicated skill folder. All council logic stays in the @multi-ai-council agent body plus optional shared references under system-spec-kit. Adds iteration support (resume from state.jsonl), validator awareness, and a documented invocation contract.",
+  "description": "Feature Specification: Multi-AI Council Output Protocol",
   "keywords": [
-    "multi-ai-council",
-    "ai-council",
+    "feature",
+    "specification",
+    "multi-ai",
     "council",
-    "deliberation",
-    "subfolder-convention",
-    "agent-output",
-    "iterative-planning",
-    "system-spec-kit",
-    "validator",
-    "state-jsonl",
-    "seat-diversity",
-    "convergence",
-    "skilled-agent-orchestration"
+    "output",
+    "protocol"
   ],
-  "lastUpdated": "2026-05-06T13:46:29.524Z",
-  "specId": "080-multi-ai-council-output-protocol",
-  "folderSlug": "080-multi-ai-council-output-protocol",
+  "lastUpdated": "2026-05-08T08:26:56.519Z",
+  "specId": "080",
+  "folderSlug": "multi-ai-council-output-protocol",
   "parentChain": [
     "skilled-agent-orchestration"
   ],

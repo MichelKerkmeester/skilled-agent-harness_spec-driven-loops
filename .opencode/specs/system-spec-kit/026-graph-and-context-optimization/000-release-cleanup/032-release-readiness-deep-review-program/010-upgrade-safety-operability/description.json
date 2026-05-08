@@ -7,8 +7,8 @@
     "install guide review",
     "doctor mcp install review"
   ],
-  "status": "complete",
   "level": 2,
+  "status": "complete",
   "importance": "important",
   "contextType": "review",
   "key_files": [
@@ -30,7 +30,7 @@
     "deep",
     "review"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.575Z",
+  "lastUpdated": "2026-05-08T08:26:57.381Z",
   "specId": "010",
   "folderSlug": "upgrade-safety-operability",
   "parentChain": [

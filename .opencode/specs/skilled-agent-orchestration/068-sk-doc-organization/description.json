@@ -1,22 +1,28 @@
 {
   "level": "phase",
-  "specFolder": "068-sk-doc-organization",
-  "description": "Remediate sk-doc reorg deep-review findings (P1 broken link + 2 P2 doc accuracy)",
+  "specFolder": "skilled-agent-orchestration/068-sk-doc-organization",
+  "description": "Feature Specification: Reorganize sk-doc/assets - promote heavy-traffic templates to assets root, propagate references across 4 runtimes",
   "keywords": [
-    "remediate",
+    "feature",
+    "specification",
+    "reorganize",
     "sk-doc",
-    "reorg",
-    "deep-review",
-    "findings",
-    "broken",
-    "link",
-    "doc",
-    "accuracy"
+    "assets",
+    "promote",
+    "heavy-traffic",
+    "templates",
+    "root",
+    "propagate",
+    "references",
+    "across",
+    "runtimes"
   ],
-  "lastUpdated": "2026-05-05T09:51:15.736Z",
+  "lastUpdated": "2026-05-08T08:26:56.349Z",
   "specId": "068",
   "folderSlug": "sk-doc-organization",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

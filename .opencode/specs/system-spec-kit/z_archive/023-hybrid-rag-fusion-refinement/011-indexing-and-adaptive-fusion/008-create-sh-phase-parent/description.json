@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
+  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
   "description": "Feature Specification: Append Nested Child Phases in create.sh",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "phases",
     "create"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.762Z",
+  "lastUpdated": "2026-05-08T08:26:58.308Z",
   "specId": "008",
   "folderSlug": "create-sh-phase-parent",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "023-hybrid-rag-fusion-refinement",
     "011-indexing-and-adaptive-fusion"
   ],

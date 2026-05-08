@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification",
+  "specFolder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification",
   "description": "Feature Specification: Recursive Agent Promotion Verification",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "promotion",
     "verification"
   ],
-  "lastUpdated": "2026-04-24T15:56:54.985Z",
+  "lastUpdated": "2026-05-08T08:26:56.904Z",
   "specId": "004",
   "folderSlug": "sk-recursive-agent-promotion-verification",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "041-sk-recursive-agent-loop"
   ],
   "memorySequence": 0,

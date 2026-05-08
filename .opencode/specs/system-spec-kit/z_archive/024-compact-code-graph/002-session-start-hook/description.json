@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/002-session-start-hook",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/002-session-start-hook",
   "description": "Phase 2: SessionStart Hook — Session Priming",
   "keywords": [
     "phase",
@@ -8,11 +8,12 @@
     "session",
     "priming"
   ],
-  "lastUpdated": "2026-04-25T06:16:27.492Z",
+  "lastUpdated": "2026-05-08T08:26:58.323Z",
   "specId": "002",
   "folderSlug": "session-start-hook",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

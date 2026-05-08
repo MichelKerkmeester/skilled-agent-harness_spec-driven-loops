@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/028-startup-highlights-remediation",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/028-startup-highlights-remediation",
   "description": "Spec: Startup Highlights Remediation",
   "keywords": [
     "spec",
@@ -7,11 +7,12 @@
     "highlights",
     "remediation"
   ],
-  "lastUpdated": "2026-04-13T04:56:38.031Z",
+  "lastUpdated": "2026-05-08T08:26:58.366Z",
   "specId": "028",
   "folderSlug": "startup-highlights-remediation",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

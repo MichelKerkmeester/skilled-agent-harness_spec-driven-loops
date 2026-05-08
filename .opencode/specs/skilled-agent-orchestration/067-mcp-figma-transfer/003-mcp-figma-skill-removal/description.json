@@ -1,17 +1,23 @@
 {
-  "specFolder": "067-mcp-figma-transfer/003-mcp-figma-skill-removal",
-  "description": "Phase 3: mcp-figma-skill-removal",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal",
+  "description": "Feature Specification: Phase 3 — Remove mcp-figma skill from Code_Environment/Public",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "mcp-figma-skill-removal"
+    "remove",
+    "mcp-figma",
+    "skill",
+    "public"
   ],
-  "lastUpdated": "2026-05-05T07:49:59.800Z",
+  "lastUpdated": "2026-05-08T08:26:56.341Z",
   "specId": "003",
   "folderSlug": "mcp-figma-skill-removal",
   "parentChain": [
+    "skilled-agent-orchestration",
     "067-mcp-figma-transfer"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,0 +1,37 @@
+{
+  "title": "XCE Research-Based Refinement",
+  "trigger_phrases": [
+    "027 xce research-based refinement",
+    "xanther context engine adoption",
+    "PRAT algorithm reverse engineering",
+    "code_graph architecture context gap",
+    "code_graph trace tool",
+    "code_graph impact analysis",
+    "advisor first-action mandate",
+    "HLD LLD generation pipeline"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement",
+  "status": "planning",
+  "parent_id": "system-spec-kit",
+  "importance_tier": "important",
+  "created_at": "2026-05-08T00:00:00Z",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
+  "description": "Feature Specification: XCE Research-Based Refinement",
+  "keywords": [
+    "feature",
+    "specification",
+    "xce",
+    "research-based",
+    "refinement"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.814Z",
+  "specId": "027",
+  "folderSlug": "xce-research-based-refinement",
+  "parentChain": [
+    "system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

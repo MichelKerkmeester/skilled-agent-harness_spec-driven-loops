@@ -1,23 +1,21 @@
 {
-  "specFolder": "074-test-alignment-validator-esm-migration",
-  "description": "Migrate test-alignment-validator from CommonJS to ESM (resolves import.meta blocker deferred from 073)",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/074-test-alignment-validator-esm-migration",
+  "description": "Feature Specification: 074 test-alignment-validator ESM Migration",
   "keywords": [
-    "migrate",
+    "feature",
+    "specification",
+    "074",
     "test-alignment-validator",
-    "commonjs",
     "esm",
-    "resolves",
-    "import",
-    "meta",
-    "blocker",
-    "deferred",
-    "073"
+    "migration"
   ],
-  "lastUpdated": "2026-05-05T15:20:01.138Z",
+  "lastUpdated": "2026-05-08T08:26:56.476Z",
   "specId": "074",
   "folderSlug": "test-alignment-validator-esm-migration",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

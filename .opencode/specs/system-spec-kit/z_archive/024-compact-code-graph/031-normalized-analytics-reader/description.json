@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/031-normalized-analytics-reader",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
   "description": "Feature Specification: Normalized Analytics Reader",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "analytics",
     "reader"
   ],
-  "lastUpdated": "2026-04-12T15:47:03.506Z",
+  "lastUpdated": "2026-05-08T08:26:58.401Z",
   "specId": "031",
   "folderSlug": "normalized-analytics-reader",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

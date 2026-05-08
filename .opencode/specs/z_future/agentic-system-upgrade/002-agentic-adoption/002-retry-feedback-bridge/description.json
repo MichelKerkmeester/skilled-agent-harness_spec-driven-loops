@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_future/agentic-system-upgrade/002-agentic-adoption/002-retry-feedback-bridge",
+  "specFolder": "z_future/agentic-system-upgrade/002-agentic-adoption/002-retry-feedback-bridge",
   "description": "Feature Specification: 002 Retry Feedback Bridge",
   "keywords": [
     "feature",
@@ -9,11 +9,10 @@
     "feedback",
     "bridge"
   ],
-  "lastUpdated": "2026-04-24T15:56:56.914Z",
+  "lastUpdated": "2026-05-08T08:26:58.452Z",
   "specId": "002",
   "folderSlug": "retry-feedback-bridge",
   "parentChain": [
-    "system-spec-kit",
     "z_future",
     "agentic-system-upgrade",
     "002-agentic-adoption"

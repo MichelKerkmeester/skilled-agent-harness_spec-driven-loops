@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
+  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
   "description": "Feature Specification: Search Retrieval Quality Fixes",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "quality",
     "fixes"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.718Z",
+  "lastUpdated": "2026-05-08T08:26:58.302Z",
   "specId": "010",
   "folderSlug": "search-retrieval-quality-fixes",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],
   "memorySequence": 1,

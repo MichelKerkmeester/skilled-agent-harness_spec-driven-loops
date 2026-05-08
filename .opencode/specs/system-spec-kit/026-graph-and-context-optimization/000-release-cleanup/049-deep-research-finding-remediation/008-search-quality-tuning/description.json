@@ -1,14 +1,21 @@
 {
-  "specFolder": "049-deep-research-finding-remediation/008-search-quality-tuning",
-  "description": "Phase 8: search-quality-tuning",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/008-search-quality-tuning",
+  "description": "Feature Specification: 008 Search Quality Tuning",
   "keywords": [
-    "phase",
-    "search-quality-tuning"
+    "feature",
+    "specification",
+    "008",
+    "search",
+    "quality",
+    "tuning"
   ],
-  "lastUpdated": "2026-05-01T06:19:02.020Z",
+  "lastUpdated": "2026-05-08T08:26:57.472Z",
   "specId": "008",
   "folderSlug": "search-quality-tuning",
   "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
     "049-deep-research-finding-remediation"
   ],
   "memorySequence": 1,

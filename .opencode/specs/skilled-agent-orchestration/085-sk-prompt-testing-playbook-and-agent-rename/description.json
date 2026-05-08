@@ -1,17 +1,21 @@
 {
   "specFolder": "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename",
-  "description": "Phase parent: rename @improve-prompt agent to @prompt-improver (Phase 001) + author manual testing playbook for sk-prompt skill (Phase 002)",
+  "description": "Feature Specification: sk-prompt Manual Testing Playbook + @improve-prompt → @prompt-improver Agent Rename — Phase Parent",
   "keywords": [
-    "agent-rename",
-    "prompt-improver",
-    "improve-prompt",
+    "feature",
+    "specification",
     "sk-prompt",
-    "manual-testing-playbook",
-    "phase-parent",
-    "naming-convention",
-    "noun-as-agent-name"
+    "manual",
+    "testing",
+    "playbook",
+    "improve-prompt",
+    "prompt-improver",
+    "agent",
+    "rename",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-06T17:40:29.437Z",
+  "lastUpdated": "2026-05-08T08:26:56.567Z",
   "specId": "085",
   "folderSlug": "sk-prompt-testing-playbook-and-agent-rename",
   "parentChain": [

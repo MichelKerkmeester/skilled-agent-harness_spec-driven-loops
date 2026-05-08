@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/002-opencode-transport-adapter",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/002-opencode-transport-adapter",
   "description": "Feature Specification: OpenCode Transport Adapter",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "transport",
     "adapter"
   ],
-  "lastUpdated": "2026-04-06T09:57:55.154Z",
+  "lastUpdated": "2026-05-08T08:26:58.377Z",
   "specId": "002",
   "folderSlug": "opencode-transport-adapter",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph",
     "030-opencode-graph-plugin"
   ],

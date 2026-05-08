@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/004-ux-hooks-automation",
+  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/004-ux-hooks-automation",
   "description": "Feature Specification: UX Hooks Automation",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "hooks",
     "automation"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.201Z",
+  "lastUpdated": "2026-05-08T08:26:58.071Z",
   "specId": "004",
   "folderSlug": "ux-hooks-automation",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "022-hybrid-rag-fusion"
   ],
   "memorySequence": 1,

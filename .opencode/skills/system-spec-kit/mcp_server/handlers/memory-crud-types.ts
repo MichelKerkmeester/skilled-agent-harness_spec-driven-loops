@@ -54,6 +54,7 @@ interface HealthArgs {
   specFolder?: string;
   autoRepair?: boolean;
   confirmed?: boolean;
+  cleanFiles?: boolean;
 }
 
 /** Partial embedding provider metadata — see shared/types.ts ProviderMetadata for the full shape. */
