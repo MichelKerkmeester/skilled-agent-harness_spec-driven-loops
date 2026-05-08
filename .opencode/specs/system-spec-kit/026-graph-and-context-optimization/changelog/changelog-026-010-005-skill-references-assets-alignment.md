@@ -1,0 +1,1 @@
+../010-template-levels/changelog/changelog-005-skill-references-assets-alignment.md

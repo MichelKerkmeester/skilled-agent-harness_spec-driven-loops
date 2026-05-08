@@ -208,6 +208,29 @@ const INTENT_CENTROID_SEEDS: Record<IntentType, string[]> = {
   ],
 };
 
+const INTENT_STABILITY_CORPUS: ReadonlyArray<{ query: string; expectedIntent: IntentType; group: string }> = [
+  { query: 'add a new memory search filter', expectedIntent: 'add_feature', group: 'add-feature' },
+  { query: 'create support for another retrieval option', expectedIntent: 'add_feature', group: 'add-feature' },
+  { query: 'implement a command flag for search routing', expectedIntent: 'add_feature', group: 'add-feature' },
+  { query: 'build a small health probe for the daemon', expectedIntent: 'add_feature', group: 'add-feature' },
+  { query: 'fix the broken memory search result ranking', expectedIntent: 'fix_bug', group: 'fix-bug' },
+  { query: 'debug why semantic search returns unrelated folders', expectedIntent: 'fix_bug', group: 'fix-bug' },
+  { query: 'repair the failing causal stats output', expectedIntent: 'fix_bug', group: 'fix-bug' },
+  { query: 'resolve the context quality warning bug', expectedIntent: 'fix_bug', group: 'fix-bug' },
+  { query: 'refactor the folder discovery helper', expectedIntent: 'refactor', group: 'refactor' },
+  { query: 'clean up duplicate query routing logic', expectedIntent: 'refactor', group: 'refactor' },
+  { query: 'explain how memory search works', expectedIntent: 'understand', group: 'understand' },
+  { query: 'give me an overview of the causal graph flow', expectedIntent: 'understand', group: 'understand' },
+  { query: 'what is the purpose of semantic search', expectedIntent: 'understand', group: 'understand' },
+  { query: 'Semantic Search', expectedIntent: 'understand', group: 'understand' },
+  { query: 'find the spec for memory search remediation', expectedIntent: 'find_spec', group: 'find-spec' },
+  { query: 'show the requirements for the daemon probe', expectedIntent: 'find_spec', group: 'find-spec' },
+  { query: 'what did the plan say about fallback tiers', expectedIntent: 'find_spec', group: 'find-spec' },
+  { query: 'show the decision record for session dedup', expectedIntent: 'find_decision', group: 'find-decision' },
+  { query: 'why did we choose structural code graph naming', expectedIntent: 'find_decision', group: 'find-decision' },
+  { query: 'what alternatives were considered for custom answer routing', expectedIntent: 'find_decision', group: 'find-decision' },
+];
+
 /**
  * P3-12: Negative patterns — when matched, penalize the given intent.
  * E.g., "how to fix" should not score for "understand".
@@ -853,6 +876,7 @@ export {
   INTENT_WEIGHT_ADJUSTMENTS,
   INTENT_LAMBDA_MAP,
   INTENT_TO_PROFILE,
+  INTENT_STABILITY_CORPUS,
 
   // Scoring
   calculateKeywordScore,

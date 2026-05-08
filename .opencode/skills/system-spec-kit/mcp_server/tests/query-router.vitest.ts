@@ -15,6 +15,9 @@ import {
   FALLBACK_CHANNELS,
   getChannelSubset,
   routeQuery,
+  buildQualityGapFallbackPlan,
+  QUALITY_GAP_AVG_SCORE_THRESHOLD,
+  QUALITY_GAP_FALLBACK_DEADLINE_MS,
   shouldPreserveGraph,
   isGraphChannelPreservationEnabled,
   enforceMinimumChannels,
@@ -601,5 +604,55 @@ describe('012-T4: routing latency', () => {
     // 5ms budget per spec REQ-005. Generous on cold-start DB (entity-density
     // returns 0 quickly when getDb throws).
     expect(p99).toBeLessThan(5);
+  });
+});
+
+/* ───────────────────────────────────────────────────────────────
+   006-T1: quality-gap fallback engagement (REQ-007 / REQ-010)
+   ──────────────────────────────────────────────────────────────── */
+
+describe('006-T1: quality-gap fallback routing', () => {
+  beforeEach(() => {
+    setEnv(COMPLEXITY_FLAG, 'true');
+    resetRoutingTelemetry();
+  });
+
+  afterEach(() => {
+    restoreEnv();
+    resetRoutingTelemetry();
+  });
+
+  it('006-T1.1: engages FTS5 -> BM25 -> Grep fallback only for QUALITY=gap below threshold', () => {
+    const engaged = buildQualityGapFallbackPlan({
+      quality: 'gap',
+      avgScore: QUALITY_GAP_AVG_SCORE_THRESHOLD - 0.01,
+    });
+    expect(engaged).toEqual({
+      engaged: true,
+      reason: expect.stringContaining('QUALITY=gap'),
+      deadlineMs: QUALITY_GAP_FALLBACK_DEADLINE_MS,
+      tiers: ['fts5', 'bm25', 'grep'],
+    });
+
+    const safe = buildQualityGapFallbackPlan({
+      quality: 'gap',
+      avgScore: QUALITY_GAP_AVG_SCORE_THRESHOLD,
+    });
+    expect(safe.engaged).toBe(false);
+  });
+
+  it('006-T1.2: records fallback policy in routeQuery plan when quality gap is weak', () => {
+    const result = routeQuery('find memory packet context', undefined, {
+      quality: 'gap',
+      avg_score: 0.12,
+    });
+
+    expect(result.qualityFallback.engaged).toBe(true);
+    expect(result.queryPlan.routingReasons).toContain('quality-gap-fallback-engaged');
+    expect(result.queryPlan.fallbackPolicy).toMatchObject({
+      mode: 'fts5_bm25_grep_broadening',
+      deadlineMs: 200,
+      tiers: ['fts5', 'bm25', 'grep'],
+    });
   });
 });

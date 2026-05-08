@@ -1,5 +1,5 @@
 ---
-description: Unified continuity retrieval: spec-doc search, baselines, causal graph, ablations, dashboards.
+description: Unified continuity retrieval: spec-doc search, baselines, memory causal graph, ablations, dashboards.
 argument-hint: "<query> [--intent:<type>] | preflight <specFolder> <taskId> | postflight <specFolder> <taskId> | history <specFolder> | causal <memoryId> | link <sourceId> <targetId> <relation> | unlink <edgeId> | causal-stats | ablation | dashboard"
 allowed-tools: Read, spec_kit_memory_memory_context, spec_kit_memory_memory_quick_search, spec_kit_memory_memory_search, spec_kit_memory_memory_match_triggers, spec_kit_memory_task_preflight, spec_kit_memory_task_postflight, spec_kit_memory_memory_drift_why, spec_kit_memory_memory_causal_link, spec_kit_memory_memory_causal_stats, spec_kit_memory_memory_causal_unlink, spec_kit_memory_eval_run_ablation, spec_kit_memory_eval_reporting_dashboard, spec_kit_memory_memory_get_learning_history
 ---
@@ -29,10 +29,12 @@ IF $ARGUMENTS is empty, undefined, or contains only whitespace:
           - label: "Find decision"
             description: "Context for decision rationale lookup"
           - label: "Analysis tools"
-            description: "Epistemic baselines, causal graph, ablation, dashboards"
+            description: "Epistemic baselines, memory causal graph, ablation, dashboards"
     → WAIT for user response
     → If "Analysis tools" selected → Display ANALYSIS OVERVIEW (Section 8)
     → Otherwise → Use their response to determine the intent and query
+    → If the AskUserQuestion response is a custom answer rather than one of the listed options,
+      treat that custom answer as the literal retrieval query and route it through RETRIEVAL MODE
     → Only THEN continue with this workflow
 
 IF $ARGUMENTS starts with a KNOWN ANALYSIS SUBCOMMAND (Section 3):
@@ -52,7 +54,7 @@ IF $ARGUMENTS contains a query (any other text):
 
 # Memory Search Command
 
-Unified entry point for knowledge retrieval and analysis. Combines intent-aware context search (retrieval mode) with epistemic measurement, causal graph tools, and evaluation dashboards (analysis mode).
+Unified entry point for knowledge retrieval and analysis. Combines intent-aware context search (retrieval mode) with epistemic measurement, memory causal graph tools, and evaluation dashboards (analysis mode).
 
 ---
 
@@ -64,7 +66,7 @@ Start by classifying `$ARGUMENTS` into retrieval mode or analysis mode. Follow t
 
 ```yaml
 role: Retrieval & Analysis Specialist
-purpose: Unified entry point combining intent-aware retrieval with epistemic measurement, causal graph, and evaluation tools
+purpose: Unified entry point combining intent-aware retrieval with epistemic measurement, memory causal graph, and evaluation tools
 action: Route through retrieval or analysis mode based on argument pattern
 
 operating_mode:
@@ -82,7 +84,7 @@ operating-mode block and markdown workflow steps.
 
 ## 1. PURPOSE
 
-> **L1 Orchestration + L6 Analysis**: This command operates at both the L1 retrieval layer (orchestrating lower-level context-retrieval operations) and the L6 analysis layer (epistemic baselines, causal graph, evaluation). It provides a single entry point for all knowledge-related context-retrieval operations.
+> **L1 Orchestration + L6 Analysis**: This command operates at both the L1 retrieval layer (orchestrating lower-level context-retrieval operations) and the L6 analysis layer (epistemic baselines, memory causal graph, evaluation). It provides a single entry point for all knowledge-related context-retrieval operations.
 
 Provide a unified entry point that:
 
@@ -97,7 +99,7 @@ Provide a unified entry point that:
 
 **Analysis mode** (subcommand-triggered):
 - Epistemic measurement: Capture knowledge baselines before and after tasks (`task_preflight`, `task_postflight`)
-- Causal graph: Trace decision lineage, create/remove causal links, view graph stats (`memory_drift_why`, `memory_causal_link`, `memory_causal_unlink`, `memory_causal_stats`)
+- Memory causal graph: Trace decision lineage, create/remove causal links, view graph stats (`memory_drift_why`, `memory_causal_link`, `memory_causal_unlink`, `memory_causal_stats`)
 - Evaluation: Run channel ablation studies and view reporting dashboards (`eval_run_ablation`, `eval_reporting_dashboard`)
 - Learning history: View PREFLIGHT/POSTFLIGHT records and Learning Index trends (`memory_get_learning_history`)
 
@@ -107,7 +109,7 @@ Provide a unified entry point that:
 
 The unified context tool runs a hybrid retrieval pipeline with **graph-first routing** (026):
 
-- **Graph channel has priority** in the fusion strategy: structural queries (callers, imports, dependencies) are routed to `code_graph_query` first, before semantic or lexical channels
+- **Structural code graph channel has priority** in the fusion strategy: structural queries (callers, imports, dependencies) are routed to `code_graph_query` first, before semantic or lexical channels
 - Tri-channel retrieval (graph + vector/semantic + FTS5/BM25) with graph results given precedence in the fusion merge
 - CocoIndex semantic search (`mcp__cocoindex_code__search`) integrates as the vector/semantic channel, providing natural-language code discovery alongside indexed-continuity vector search
 - When graph and semantic channels miss or return weak results, a 3-tier FTS fallback activates: FTS5 full-text → BM25 keyword scoring → Grep/Glob filesystem search. Post-026 FTS5 remediation improved BM25 tokenization and ranking accuracy
@@ -158,7 +160,7 @@ The unified context tool runs a hybrid retrieval pipeline with **graph-first rou
 | `/memory:search causal 42` | Trace causal chain for memory #42 |
 | `/memory:search link 42 43 caused` | Link memory #42 → #43 as caused |
 | `/memory:search unlink 5` | Remove causal edge #5 |
-| `/memory:search causal-stats` | View causal graph statistics |
+| `/memory:search causal-stats` | View memory causal graph statistics |
 | `/memory:search ablation` | Run channel ablation study |
 | `/memory:search dashboard` | View reporting dashboard |
 
@@ -425,6 +427,8 @@ Prevent duplicate context when the same query spans multiple sessions or when ov
 - Content hashing: Each result is hashed; duplicates with same hash are merged (keeping most recent version)
 - Cross-session detection via `sessionId` metadata and content hash comparison
 - Timestamp-based recency preference when duplicates found
+- When the caller omits `sessionId`, the server uses a memory-specific runtime session identifier for `memory_context`; this keeps trigger and constitutional channel dedup stable within the MCP process without broadening global session state.
+- Dedup applies to standard retrieval results, trigger-derived context, and constitutional-tier injections before the response is budgeted.
 
 #### Deduplication Metadata
 
@@ -605,7 +609,7 @@ STATUS=OK ACTION=history
 
 ---
 
-### 5B. Causal Graph
+### 5B. Memory Causal Graph
 
 #### Causal Trace
 
@@ -851,10 +855,10 @@ STATUS=OK ACTION=dashboard
 | ANALYSIS | | | |
 | Preflight | `task_preflight()` | SINGLE | Show error msg |
 | Postflight | `task_postflight()` | SINGLE | Show error msg |
-| Causal trace | `memory_drift_why()` | SINGLE | Show error msg |
-| Causal link | `memory_causal_link()` | SINGLE | Show error msg |
-| Causal unlink | `memory_causal_unlink()` | SINGLE | Show error msg |
-| Causal stats | `memory_causal_stats()` | SINGLE | Show error msg |
+| Memory causal trace | `memory_drift_why()` | SINGLE | Show error msg |
+| Memory causal link | `memory_causal_link()` | SINGLE | Show error msg |
+| Memory causal unlink | `memory_causal_unlink()` | SINGLE | Show error msg |
+| Memory causal stats | `memory_causal_stats()` | SINGLE | Show error msg |
 | Ablation | `eval_run_ablation()` | SINGLE | Show error msg |
 | Dashboard | `eval_reporting_dashboard()` | SINGLE | Show error msg |
 | History | `memory_get_learning_history()` | SINGLE | Show error msg |
@@ -863,7 +867,7 @@ STATUS=OK ACTION=dashboard
 
 > **Note:** The dedicated `spec_kit_memory_memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, governed retrieval params (`tenantId`, `userId`, `agentId`), `limit`, `sessionId`, `enableDedup`, `includeContent`, `includeTrace`, `tokenUsage`, and `anchors`. `spec_kit_memory_memory_quick_search()` also supports governed retrieval via `tenantId`, `userId`, and `agentId`. This is the recommended unified approach. The manual orchestration below is for advanced use cases requiring fine-grained control.
 
-> **Adaptive Fusion, Hybrid Routing & Telemetry:** Retrieval combines vector, FTS5/BM25, and graph channels, then applies intent-adaptive fusion and reranking. Results may be routed through artifact-class classification before scoring. When `SPECKIT_ADAPTIVE_FUSION` is enabled, weights adapt dynamically by intent, including the internal continuity profile (`0.52 / 0.18 / 0.07 / 0.23`) used for resume-style retrieval. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured (query timing, score distributions, fusion decisions) and written to the telemetry log, while `getRerankerStatus()` reports reranker latency and cache `hits` / `misses` / `staleHits` / `evictions`.
+> **Adaptive Fusion, Hybrid Routing & Telemetry:** Retrieval combines vector, FTS5/BM25, and structural code graph channels, then applies intent-adaptive fusion and reranking. Results may be routed through artifact-class classification before scoring. When `SPECKIT_ADAPTIVE_FUSION` is enabled, weights adapt dynamically by intent, including the internal continuity profile (`0.52 / 0.18 / 0.07 / 0.23`) used for resume-style retrieval. When `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured (query timing, score distributions, fusion decisions) and written to the telemetry log, while `getRerankerStatus()` reports reranker latency and cache `hits` / `misses` / `staleHits` / `evictions`.
 >
 > **MMR and Evidence Gap Prevention:** Post-fusion MMR reduces redundant context chunks, and low-confidence retrieval can trigger an early evidence-gap warning so sparse results are treated cautiously.
 
@@ -908,7 +912,7 @@ spec_kit_memory_memory_search({
 spec_kit_memory_task_preflight({ specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore, knowledgeGaps, sessionId })
 spec_kit_memory_task_postflight({ specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore, gapsClosed, newGapsDiscovered })
 
-// Causal graph
+// Memory causal graph
 spec_kit_memory_memory_drift_why({ memoryId, maxDepth, direction, relations, includeMemoryDetails })
 spec_kit_memory_memory_causal_link({ sourceId, targetId, relation, strength, evidence })
 spec_kit_memory_memory_causal_unlink({ edgeId })
@@ -1017,11 +1021,11 @@ MEMORY:SEARCH - ANALYSIS TOOLS
   [postflight]  Capture post-task state and learning delta
   [history]     View learning history for a spec folder
 
-  Causal Graph
+  Memory Causal Graph
   [causal]        Trace decision lineage for a spec-doc record
   [link]          Create causal relationship
   [unlink]        Remove causal relationship
-  [causal-stats]  View graph coverage statistics
+  [causal-stats]  View memory causal graph coverage statistics
 
   Evaluation
   [ablation]    Run channel ablation study

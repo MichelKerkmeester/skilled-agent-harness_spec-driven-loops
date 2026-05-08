@@ -21,6 +21,7 @@ import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
 // Artifact-class routing (spec/plan/tasks/checklist/memory)
 import { getStrategyForQuery } from '../lib/search/artifact-routing.js';
 import { routeQuery } from '../lib/search/query-router.js';
+import { probeCocoIndexDaemon } from '../lib/cocoindex/daemon-probe.js';
 import { createEmptyQueryPlan, type QueryPlan } from '../lib/query/query-plan.js';
 import { calibrateCocoIndexOverfetch } from '../lib/search/cocoindex-calibration.js';
 import { getGraphReadinessSnapshot } from '../code_graph/lib/ensure-ready.js';
@@ -483,6 +484,22 @@ function buildSearchResponseFromPayload(
   });
 }
 
+function resolveSearchScore(result: Record<string, unknown>): number | null {
+  const candidate = result.score ?? result.similarity ?? result.averageSimilarity ?? result.intentAdjustedScore;
+  if (typeof candidate !== 'number' || !Number.isFinite(candidate)) {
+    return null;
+  }
+  return candidate > 1 ? candidate / 100 : candidate;
+}
+
+function computeAverageScore(results: Array<Record<string, unknown>>): number {
+  const scores = results
+    .map(resolveSearchScore)
+    .filter((score): score is number => score !== null);
+  if (scores.length === 0) return 0;
+  return scores.reduce((sum, score) => sum + score, 0) / scores.length;
+}
+
 function attachLexicalCapabilityMetadata(
   response: MCPResponse,
   snapshot: LexicalCapabilitySnapshot | null,
@@ -745,6 +762,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const effectiveQuery = normalizedQuery ?? (hasValidConcepts ? concepts.join(', ') : '');
   const searchDecisionRequestId = `memory_search-${_searchStartTime}`;
   let searchDecisionEnvelope: SearchDecisionEnvelope | null = null;
+  const cocoIndexProbe = probeCocoIndexDaemon();
 
   if (!hasValidQuery && !hasValidConcepts) {
     return createMCPErrorResponse({
@@ -1049,6 +1067,16 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
     const canonicalFilter = filterCanonicalSourceRows(resultsForFormatting);
     resultsForFormatting = canonicalFilter.results;
+    const avgScore = computeAverageScore(resultsForFormatting as Array<Record<string, unknown>>);
+    const requestQualityLabel = pipelineResult.metadata.stage4.evidenceGapDetected ? 'gap' : 'weak';
+    const qualityGapRouting = routeQuery(effectiveQuery, undefined, {
+      quality: requestQualityLabel,
+      avgScore,
+    });
+    const qualityFallback = qualityGapRouting.qualityFallback;
+    if (qualityFallback.engaged) {
+      queryPlan = qualityGapRouting.queryPlan;
+    }
 
     if (sessionId && isSessionRetrievalStateEnabled()) {
       const activeGoal = effectiveQuery.trim().length > 0 ? effectiveQuery : null;
@@ -1082,7 +1110,16 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         ...pipelineResult.annotations.featureFlags,
       },
       pipelineMetadata: pipelineResult.metadata,
+      qualityGapFallback: qualityFallback,
     };
+    if (cocoIndexProbe.status !== 'reachable') {
+      extraData.cocoIndex = {
+        status: cocoIndexProbe.status,
+        reason: cocoIndexProbe.reason,
+        logCapState: cocoIndexProbe.logCapState,
+      };
+      extraData.vectorChannelWarning = 'WARN: vector channel unavailable, lexical-only';
+    }
     if (lexicalCapability) {
       extraData.lexicalPath = lexicalCapability.lexicalPath;
       extraData.fallbackState = lexicalCapability.fallbackState;
@@ -1175,7 +1212,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           decision: 'memory_search_response',
         },
         cocoIndex: {
-          available: true,
+          available: cocoIndexProbe.status === 'reachable',
           pathClass: Object.keys(cocoindexCalibration.pathClassCounts)[0],
         },
       },
@@ -1236,6 +1273,19 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           parsed.summary = `${pipelineResult.annotations.evidenceGapWarning}\n\n${parsed.summary}`;
           formatted.content[0].text = JSON.stringify(parsed, null, 2);
         }
+      } catch (_error: unknown) {
+        // Non-fatal
+      }
+    }
+    if (cocoIndexProbe.status !== 'reachable' && formatted?.content?.[0]?.text) {
+      try {
+        const parsed = JSON.parse(formatted.content[0].text) as Record<string, unknown>;
+        const hints = Array.isArray(parsed.hints) ? parsed.hints : [];
+        parsed.hints = [
+          ...hints,
+          'WARN: vector channel unavailable, lexical-only',
+        ];
+        formatted.content[0].text = JSON.stringify(parsed, null, 2);
       } catch (_error: unknown) {
         // Non-fatal
       }

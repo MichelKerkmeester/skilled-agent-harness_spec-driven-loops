@@ -1,0 +1,18 @@
+{
+  "packet_id": "009-p2-032-cleanup",
+  "parent_id": "096-rename-opencode-dirs-to-plural",
+  "level": 1,
+  "title": "P2-032 strategy-doc cleanup",
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "in-progress",
+    "completion_pct": 0,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T20:45:00Z",
+  "lastUpdatedAt": "2026-05-08T20:45:00Z"
+}

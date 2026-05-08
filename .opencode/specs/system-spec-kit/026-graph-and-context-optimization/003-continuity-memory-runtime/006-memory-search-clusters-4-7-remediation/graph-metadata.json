@@ -1,0 +1,20 @@
+{
+  "packet_id": "006-memory-search-clusters-4-7-remediation",
+  "parent_id": "003-continuity-memory-runtime",
+  "level": 2,
+  "title": "Memory search Clusters 4-7 remediation",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T21:00:00Z",
+  "lastUpdatedAt": "2026-05-08T21:15:00Z"
+}

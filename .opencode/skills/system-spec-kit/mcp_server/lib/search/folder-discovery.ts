@@ -90,6 +90,7 @@ const DESCRIPTION_REPAIR_MERGE_SAFE = (() => {
   const rawValue = process.env.SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE?.trim().toLowerCase();
   return rawValue !== 'false' && rawValue !== '0';
 })();
+const DEFAULT_PER_TOKEN_SIMILARITY_THRESHOLD = 0.45;
 const SCAN_SKIP_DIRECTORIES = new Set([
   '.git',
   '.hg',
@@ -271,6 +272,15 @@ function getDescriptionWritePayload(
 
 export function getRepairMergeSafe(): boolean {
   return DESCRIPTION_REPAIR_MERGE_SAFE;
+}
+
+export function getPerTokenSimilarityThreshold(): number {
+  const rawValue = process.env.SPECKIT_FOLDER_DISCOVERY_TOKEN_THRESHOLD;
+  if (!rawValue) return DEFAULT_PER_TOKEN_SIMILARITY_THRESHOLD;
+  const parsed = Number.parseFloat(rawValue);
+  return Number.isFinite(parsed) && parsed >= 0 && parsed <= 1
+    ? parsed
+    : DEFAULT_PER_TOKEN_SIMILARITY_THRESHOLD;
 }
 
 function normalizeBasePaths(basePaths: string[]): string[] {
@@ -589,6 +599,56 @@ export function findRelevantFolders(
   results.sort((a, b) => b.relevanceScore - a.relevanceScore);
 
   return results.slice(0, limit);
+}
+
+function getComparableFolderTokens(folder: FolderDescription): string[] {
+  const tokens = [
+    ...folder.keywords,
+    ...extractKeywords(folder.description),
+    ...extractKeywords(folder.specFolder.replace(/[/-]+/g, ' ')),
+  ];
+  return [...new Set(tokens.filter((token) => token.length >= 3))];
+}
+
+export function tokenSimilarity(left: string, right: string): number {
+  if (left === right) return 1;
+  if (left.length === 0 || right.length === 0) return 0;
+  if (left.includes(right) || right.includes(left)) {
+    return Math.min(left.length, right.length) / Math.max(left.length, right.length);
+  }
+
+  const leftBigrams = new Set<string>();
+  for (let index = 0; index < left.length - 1; index++) {
+    leftBigrams.add(left.slice(index, index + 2));
+  }
+  const rightBigrams = new Set<string>();
+  for (let index = 0; index < right.length - 1; index++) {
+    rightBigrams.add(right.slice(index, index + 2));
+  }
+  if (leftBigrams.size === 0 || rightBigrams.size === 0) return 0;
+
+  let intersection = 0;
+  for (const bigram of leftBigrams) {
+    if (rightBigrams.has(bigram)) intersection++;
+  }
+  return (2 * intersection) / (leftBigrams.size + rightBigrams.size);
+}
+
+export function passesPerTokenSimilarityGate(
+  queryTerms: string[],
+  folder: FolderDescription,
+  perTokenThreshold = getPerTokenSimilarityThreshold(),
+): boolean {
+  if (queryTerms.length === 0) return false;
+
+  const folderTokens = getComparableFolderTokens(folder);
+  return queryTerms.every((term) => {
+    const bestSimilarity = folderTokens.reduce(
+      (best, token) => Math.max(best, tokenSimilarity(term, token)),
+      0,
+    );
+    return bestSimilarity >= perTokenThreshold;
+  });
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -1112,10 +1172,18 @@ export function discoverSpecFolder(
     const cache = ensureDescriptionCache(basePaths);
     if (!cache) return null;
 
-    const matches = findRelevantFolders(query, cache, 1);
+    const matches = findRelevantFolders(query, cache, 5);
     if (matches.length === 0) return null;
 
-    const best = matches[0];
+    const queryTerms = extractKeywords(query);
+    const perTokenThreshold = getPerTokenSimilarityThreshold();
+    const best = matches.find((match) => {
+      const folder = cache.folders.find((entry) => entry.specFolder === match.specFolder);
+      return folder
+        ? passesPerTokenSimilarityGate(queryTerms, folder, perTokenThreshold)
+        : false;
+    });
+    if (!best) return null;
     if (best.relevanceScore < threshold) return null;
 
     return best.specFolder;
@@ -1124,3 +1192,5 @@ export function discoverSpecFolder(
     return null;
   }
 }
+
+export { DEFAULT_PER_TOKEN_SIMILARITY_THRESHOLD };

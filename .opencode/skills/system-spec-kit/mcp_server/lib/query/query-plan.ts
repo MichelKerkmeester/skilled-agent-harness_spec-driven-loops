@@ -23,7 +23,8 @@ type QueryPlanFallbackMode =
   | 'safe_complexity'
   | 'full_pipeline'
   | 'classifier_default'
-  | 'telemetry_only';
+  | 'telemetry_only'
+  | 'fts5_bm25_grep_broadening';
 
 interface QueryPlanSkippedChannel {
   channel: string;
@@ -33,6 +34,8 @@ interface QueryPlanSkippedChannel {
 interface QueryPlanFallbackPolicy {
   mode: QueryPlanFallbackMode;
   reason: string;
+  tiers?: string[];
+  deadlineMs?: number;
 }
 
 interface QueryPlan {

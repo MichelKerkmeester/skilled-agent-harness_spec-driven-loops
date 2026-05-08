@@ -1,0 +1,1 @@
+../007-code-graph/changelog/changelog-012-005-scope-guard.md

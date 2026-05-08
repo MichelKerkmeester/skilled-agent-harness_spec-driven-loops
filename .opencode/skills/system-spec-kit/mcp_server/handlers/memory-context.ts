@@ -2,7 +2,7 @@
 // MODULE: Memory Context
 // ────────────────────────────────────────────────────────────────
 
-import { randomUUID } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import { readFileSync } from 'node:fs';
 
 // Layer definitions
@@ -159,6 +159,11 @@ interface SessionLifecycleResolution {
   counter: number;
   error?: string;
 }
+
+const PROCESS_MEMORY_SESSION_ID = `memory-context:${createHash('sha256')
+  .update(`${process.cwd()}:${process.pid}:${process.ppid}`)
+  .digest('hex')
+  .slice(0, 16)}`;
 
 interface EffectiveModeIntentClassification {
   detectedIntent?: string;
@@ -1101,14 +1106,12 @@ function resolveSessionLifecycle(
   }
 
   const requestedSessionId = trustedSession.requestedSessionId;
-  const effectiveSessionId = trustedSession.effectiveSessionId;
-  const resumed = trustedSession.trusted;
-  const priorMode = resumed
-    ? workingMemory.getSessionInferredMode(effectiveSessionId)
-    : null;
-  const counter = resumed
-    ? workingMemory.getSessionEventCounter(effectiveSessionId)
-    : 0;
+  const effectiveSessionId = requestedSessionId
+    ? trustedSession.effectiveSessionId
+    : (process.env.SPECKIT_MEMORY_SESSION_ID?.trim() || PROCESS_MEMORY_SESSION_ID);
+  const priorMode = workingMemory.getSessionInferredMode(effectiveSessionId);
+  const counter = workingMemory.getSessionEventCounter(effectiveSessionId);
+  const resumed = trustedSession.trusted || counter > 0 || priorMode !== null;
 
   return {
     requestedSessionId,

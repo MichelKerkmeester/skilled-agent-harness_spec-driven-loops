@@ -1,0 +1,1 @@
+../002-resource-map-template/changelog/changelog-003-resource-map-deep-loop-integration.md

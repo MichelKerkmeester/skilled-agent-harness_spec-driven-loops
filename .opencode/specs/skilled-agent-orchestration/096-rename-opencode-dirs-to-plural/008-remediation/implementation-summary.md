@@ -9,12 +9,11 @@ contextType: "infrastructure-quality"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/008-remediation"
-    last_updated_at: "2026-05-08T01:15:00Z"
+    last_updated_at: "2026-05-08T20:50:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "5 fixes landed; P2-032 deferred"
+    recent_action: "6 fixes landed; P2-032 closed via 096/009 cleanup packet"
     next_safe_action: "Track release-ready; optional deep-review #3 to confirm verdict-flip"
-    blockers:
-      - "P2-032 strategy-doc drift in 102 review artifact (cosmetic; deferred)"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
@@ -41,8 +40,8 @@ _memory:
 | **Spec Folder** | `skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/008-remediation` |
 | **Completed** | 2026-05-08 |
 | **Level** | 2 |
-| **Findings resolved** | P1-027, P1-028, P2-027, P2-027r, P2-028 (5 of 6) |
-| **Deferred** | P2-032 (cosmetic strategy-doc drift) |
+| **Findings resolved** | P1-027, P1-028, P2-027, P2-027r, P2-028, P2-032 (6 of 6 — P2-032 closed via 096/009 cleanup packet on 2026-05-08) |
+| **Deferred** | None |
 | **Actual Effort** | ~30 minutes wall-clock |
 <!-- /ANCHOR:metadata -->
 
@@ -95,9 +94,9 @@ Note: native advisor bridge has a separate stale-state issue that's not surfaced
 
 Test count: 21 → 25 (all pass).
 
-### P2-032 — Deferred (cosmetic strategy-doc drift)
+### P2-032 — Closed via 096/009 cleanup packet (2026-05-08)
 
-102's `review/deep-review-strategy.md` claims `aliases.ts` was touched by 101 but 101's implementation-summary doesn't list it. Cosmetic drift in a review artifact; not affecting any runtime behavior. Tracked in `_memory.continuity.blockers` for future cleanup pass.
+102's `review/deep-review-strategy.md` previously claimed `aliases.ts` was touched by 101, but 101's implementation-summary did not list it. Cosmetic drift in a review artifact; no runtime behavior affected. Closed by `096/009-p2-032-cleanup`: three stale references removed (surface count "6 → 5", line-33 inventory bullet, line-57 cross-reference target, line-100 meta-evidence count). Iter-narrative mentions of aliases.ts were preserved as audit trail of the original false-claim discovery.
 
 ### Files Changed
 
@@ -131,7 +130,7 @@ Direct Edit + Python script for the 4-YAML --pure insertion (anchor: each block 
 | Remove sandboxMode rather than implement read-only branch | OpenCode CLI has no read-only equivalent. Removing matches the parser's existing reject-pattern for unsupported fields (e.g., serviceTier-for-cli-claude-code). Cleaner than adding stub-only support |
 | Use regex disambiguation for cli-opencode (not single-token) | tokenize() splits on `\b\w+\b` which doesn't include `-`. Single-token boost would require adding a new word. Regex matches the natural CLI-orchestrator phrasing |
 | Add 4 test cases in one block | Unit-test coverage gap for cli-opencode was P2-028's specific ask; 4 cases cover the main parse paths (accept default, reject sandboxMode, reject serviceTier, accept no-model) |
-| Defer P2-032 (cosmetic strategy doc drift) | Strategy doc is in 102 review artifact; doesn't affect any runtime behavior. Low ROI to fix now |
+| Defer P2-032 then close via 096/009 (cosmetic strategy doc drift) | Strategy doc is in 102 review artifact; doesn't affect any runtime behavior. Closed in a follow-on cleanup packet on 2026-05-08 once track was otherwise release-ready. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -166,7 +165,7 @@ Direct Edit + Python script for the 4-YAML --pure insertion (anchor: each block 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **P2-032 cosmetic strategy-doc drift deferred** — 102 review-research-paths cites aliases.ts as a 101-touched file but 101 implementation-summary doesn't list it. Tracked in continuity blockers; non-blocking.
+1. **P2-032 cosmetic strategy-doc drift — CLOSED via 096/009** — Three stale aliases.ts references removed from 102's strategy doc and continuity blockers cleared on 2026-05-08.
 2. **Native advisor bridge has stale-state issue** — surfaced during P2-027r verification but is a separate observability concern (the local fallback works correctly, which is the default path). Not a release-blocker.
 3. **No adversarial test fixture for the YAML --pure correctness** — relies on schema validation in executor-config + manual smoke test. A dedicated YAML-resolver test would lock the contract.
 <!-- /ANCHOR:limitations -->
@@ -184,13 +183,13 @@ Direct Edit + Python script for the 4-YAML --pure insertion (anchor: each block 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-Packet 103 resolves 5 of 6 findings from packet 102 deep-review (2 P1s + 3 P2s). P2-032 deferred as cosmetic. All 25 executor-config tests + 33 combined executor tests pass. cli-opencode is now correctly wired with --pure flag for DeepSeek-family compatibility, sandboxMode rejection, advisor disambiguation, and unit-test coverage. Track is release-ready pending optional final deep-review #3.
+Packet 103 resolves 5 of 6 findings from packet 102 deep-review (2 P1s + 3 P2s) at ship time. The remaining cosmetic P2-032 was closed in 096/009 on 2026-05-08, taking the count to 6 of 6. All 25 executor-config tests + 33 combined executor tests pass. cli-opencode is now correctly wired with --pure flag for DeepSeek-family compatibility, sandboxMode rejection, advisor disambiguation, and unit-test coverage. Track is release-ready pending optional final deep-review #3.
 <!-- /ANCHOR:summary -->
 
 ---
 
 ## Followups
 
-- **P2-032 strategy-doc drift cleanup** (advisory; deferred): reconcile 102's deep-review-strategy.md surface inventory with 101's implementation-summary or update 101 to acknowledge the broader surfaces.
+- ~~**P2-032 strategy-doc drift cleanup**~~ — Closed via `096/009-p2-032-cleanup` on 2026-05-08.
 - **Native advisor bridge stale-state** (advisory; observability): investigate why native bridge returns [] for explicit-lane matches that local fallback handles correctly.
 - **YAML resolver adversarial test fixture** (advisory): dedicated test proving the if_cli_opencode branch resolves correctly with valid + invalid configs.

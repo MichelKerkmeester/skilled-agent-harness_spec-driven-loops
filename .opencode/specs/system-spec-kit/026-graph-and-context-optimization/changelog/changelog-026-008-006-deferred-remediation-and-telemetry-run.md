@@ -1,0 +1,1 @@
+../008-skill-advisor/changelog/changelog-006-deferred-remediation-and-telemetry-run.md

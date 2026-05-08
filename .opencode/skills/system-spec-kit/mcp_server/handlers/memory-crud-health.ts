@@ -21,6 +21,7 @@ import { summarizeAliasConflicts } from './memory-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import { getEmbeddingRetryStats } from '../lib/providers/retry-manager.js';
 import { getSnapshot as getRoutingTelemetrySnapshot } from '../lib/search/routing-telemetry.js';
+import { probeCocoIndexDaemon } from '../lib/cocoindex/daemon-probe.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -623,6 +624,10 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   }
 
   const routingTelemetry = getRoutingTelemetrySnapshot();
+  const cocoIndex = probeCocoIndexDaemon();
+  if (cocoIndex.status !== 'reachable') {
+    hints.push('WARN: vector channel unavailable, lexical-only');
+  }
 
   return createMCPSuccessResponse({
     tool: 'memory_health',
@@ -646,6 +651,14 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         databasePath: redactPath(vectorIndex.getDbPath() ?? ''),
       },
       embeddingRetry,
+      cocoIndex: {
+        status: cocoIndex.status,
+        reason: cocoIndex.reason,
+        logCapState: cocoIndex.logCapState,
+        pidLockHolder: cocoIndex.pidLockHolder,
+        checkedAt: cocoIndex.checkedAt,
+        ttlMs: cocoIndex.ttlMs,
+      },
       routing: {
         graphChannelInvocationRate: routingTelemetry.graphChannelInvocationRate,
         channelInvocationRates: routingTelemetry.channelInvocationRates,

@@ -10,6 +10,7 @@
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import type { CausalChainNode, CausalEdge } from '../lib/storage/causal-edges.js';
+import { buildRelationCoverageState } from '../lib/causal/relation-coverage.js';
 
 // Core utilities
 import { checkDatabaseUpdated } from '../core/index.js';
@@ -108,9 +109,20 @@ const RELATION_SKEW_SHARE_THRESHOLD = 0.80;
 const RELATION_SKEW_MIN_TOTAL = 50;
 const RELATION_INSUFFICIENT_TOTAL = 5;
 const VALID_CAUSAL_RELATIONS = Object.values(causalEdges.RELATION_TYPES) as string[];
+const MEMORY_CAUSAL_OUTPUT_RELATIONS = [
+  'supersedes',
+  'caused',
+  'supports',
+  'contradicts',
+  'produced',
+  'cited_by',
+] as const;
 
 function createZeroFilledRelationCounts(seed: Record<string, number> = {}): Record<string, number> {
   const counts: Record<string, number> = {};
+  for (const relation of MEMORY_CAUSAL_OUTPUT_RELATIONS) {
+    counts[relation] = seed[relation] ?? 0;
+  }
   for (const relation of VALID_CAUSAL_RELATIONS) {
     counts[relation] = seed[relation] ?? 0;
   }
@@ -169,6 +181,28 @@ function computeRelationBalance(
   }
 
   return result;
+}
+
+function readTopUnlinkedRecords(
+  db: import('better-sqlite3').Database,
+  limit = 5,
+): Array<{ id: number | string; title: string; specFolder: string | null }> {
+  try {
+    const safeLimit = Math.max(1, Math.min(20, Math.floor(limit)));
+    return (db.prepare(`
+      SELECT id, COALESCE(title, file_path, CAST(id AS TEXT)) AS title, spec_folder AS specFolder
+      FROM memory_index m
+      WHERE NOT EXISTS (
+        SELECT 1 FROM causal_edges ce
+        WHERE ce.source_id = CAST(m.id AS TEXT)
+           OR ce.target_id = CAST(m.id AS TEXT)
+      )
+      ORDER BY COALESCE(importance_weight, 0) DESC, updated_at DESC, id DESC
+      LIMIT ?
+    `) as import('better-sqlite3').Statement).all(safeLimit) as Array<{ id: number | string; title: string; specFolder: string | null }>;
+  } catch {
+    return [];
+  }
 }
 
 function logCausalHandlerError(tool: string, error: unknown): void {
@@ -790,20 +824,28 @@ async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPRespo
     const safeTotalEdges = stats.totalEdges ?? 0;
     const byRelation = createZeroFilledRelationCounts(stats.byRelation);
     const relationBalance = computeRelationBalance(causalEdges.getAllEdges(1000));
+    const relationCoverage = buildRelationCoverageState(byRelation, db);
     const coveragePercent = totalMemories.count > 0
       ? Math.round((uniqueLinked.size / totalMemories.count) * 10000) / 100
       : 0;
 
     const meetsTarget = coveragePercent >= 60;
     const health = !meetsTarget
-      ? 'degraded'
+      ? 'attention'
       : orphanedEdges.length === 0 ? 'healthy' : 'has_orphans';
 
-    const summary = `Causal graph: ${safeTotalEdges} edges, ${coveragePercent}% coverage (${health})`;
+    const summary = `Memory causal graph: ${safeTotalEdges} edges, ${coveragePercent}% coverage (${health})`;
 
     const hints: string[] = [];
     if (!meetsTarget) {
-      hints.push(`Coverage ${coveragePercent}% below 60% target - add more causal links`);
+      const topUnlinkedRecords = readTopUnlinkedRecords(db, 5);
+      const topRecordHint = topUnlinkedRecords.length > 0
+        ? `Top ${topUnlinkedRecords.length} unlinked records: ${topUnlinkedRecords.map((record) => `#${record.id} ${record.title}`).join('; ')}`
+        : 'Top N unlinked records unavailable; run memory_health({ autoRepair: true, confirmed: true }) to backfill.';
+      hints.push(`Coverage ${coveragePercent}% below 60% target - ${topRecordHint}`);
+      if (relationCoverage.remediationHint) {
+        hints.push(relationCoverage.remediationHint);
+      }
     }
     if (orphanedEdges.length > 0) {
       hints.push(`${orphanedEdges.length} orphaned edges detected - consider cleanup`);
@@ -817,14 +859,17 @@ async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPRespo
       summary,
       data: {
         total_edges: safeTotalEdges,
+        graphName: 'memory causal graph',
         by_relation: byRelation,
         avg_strength: stats.avgStrength,
         unique_sources: stats.uniqueSources,
         unique_targets: stats.uniqueTargets,
         ...relationBalance,
+        relationCoverage,
         link_coverage_percent: coveragePercent + '%',
         orphanedEdges: orphanedEdges.length,
         health,
+        reason: meetsTarget ? null : `Coverage ${coveragePercent}% is below the 60% target`,
         targetCoverage: '60%',
         currentCoverage: coveragePercent + '%',
         meetsTarget: meetsTarget

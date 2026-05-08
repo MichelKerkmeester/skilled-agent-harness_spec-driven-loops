@@ -32,6 +32,12 @@ const EXPECTED_RELATIONS = [
   'supports',
 ] as const;
 
+const EXPECTED_STATS_RELATIONS = [
+  ...EXPECTED_RELATIONS,
+  'produced',
+  'cited_by',
+] as const;
+
 function parseEnvelope(response: unknown): { envelope: MCPEnvelope; isError: boolean } {
   const cast = response as MCPTextResponse;
   expect(cast.content?.[0]?.text).toBeTypeOf('string');
@@ -295,22 +301,22 @@ describe('Integration Causal Graph (T528)', () => {
 
       const byRelation = envelope.data.by_relation as Record<string, number>;
       const deltaByRelation = envelope.data.deltaByRelation as Record<string, number>;
-      expect(Object.keys(byRelation).sort()).toEqual([...EXPECTED_RELATIONS].sort());
-      expect(Object.keys(deltaByRelation).sort()).toEqual([...EXPECTED_RELATIONS].sort());
-      for (const relation of EXPECTED_RELATIONS) {
+      expect(Object.keys(byRelation).sort()).toEqual([...EXPECTED_STATS_RELATIONS].sort());
+      expect(Object.keys(deltaByRelation).sort()).toEqual([...EXPECTED_STATS_RELATIONS].sort());
+      for (const relation of EXPECTED_STATS_RELATIONS) {
         expect(byRelation[relation]).toBe(0);
         expect(deltaByRelation[relation]).toBe(0);
       }
       expect(envelope.data.balanceStatus).toBe('insufficient_data');
     });
 
-    it('T014-CS5: meetsTarget false reports degraded health', async () => {
+    it('T014-CS5: meetsTarget false reports attention health', async () => {
       const response = await causalHandler.handleMemoryCausalStats({} as CausalStatsArgs);
       const { envelope, isError } = parseEnvelope(response);
       expect(isError).toBe(false);
 
       expect(envelope.data.meetsTarget).toBe(false);
-      expect(envelope.data.health).toBe('degraded');
+      expect(envelope.data.health).toBe('attention');
     });
 
     it('T014-CS6: supersedes burst reports relation skew and remediation hint', async () => {

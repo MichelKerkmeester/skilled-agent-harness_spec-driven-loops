@@ -1,0 +1,1 @@
+../009-hook-parity/changelog/changelog-002-copilot-hook-parity-remediation.md

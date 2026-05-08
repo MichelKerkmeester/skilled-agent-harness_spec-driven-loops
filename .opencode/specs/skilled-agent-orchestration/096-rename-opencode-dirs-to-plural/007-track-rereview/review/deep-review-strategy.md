@@ -27,10 +27,9 @@ DeepSeek-family models. **This is itself a P1 finding for 101 to be surfaced in 
 099 closed with 0 P0, 13 P1, 6 P2 (verdict FAIL with `hasAdvisories=true`). 100-099-remediation
 then shipped and claims 12 of 13 P1 are resolved (commits afd708fa6 + 0d7211c67); the 13th P1
 (reducer extracts findings from delta records, P1-026) is also claimed resolved. Concurrently
-101-cli-opencode-executor adds cli-opencode as the 5th deep-loop executor across 6 surfaces:
+101-cli-opencode-executor adds cli-opencode as the 5th deep-loop executor across 5 surfaces (P2-032 closed via 096/009 cleanup: prior strategy-doc claim that `aliases.ts` was a 101 surface was a category error caught in iter-1 as CROSS_REF_BROKEN):
 
 - `executor-config.ts` — `EXECUTOR_KIND_FLAG_SUPPORT['cli-opencode']` + EXECUTOR_KINDS array
-- `aliases.ts` — advisor alias for `cli-opencode`
 - `spec_kit_deep-research_auto.yaml` — `if_cli_opencode` dispatch branch
 - `spec_kit_deep-research_confirm.yaml` — same
 - `spec_kit_deep-review_auto.yaml` — same
@@ -38,7 +37,7 @@ then shipped and claims 12 of 13 P1 are resolved (commits afd708fa6 + 0d7211c67)
 
 This re-review confirms (a) verdict actually flips 099 FAIL → PASS this time, (b) 100 remediation
 didn't introduce new defects (especially the reducer delta-extraction logic), (c) 101 executor
-wiring landed cleanly across all 6 surfaces, and (d) cli-opencode dispatch is functional
+wiring landed cleanly across all 5 surfaces, and (d) cli-opencode dispatch is functional
 end-to-end (smoke result is the headline finding).
 <!-- /ANCHOR:review-charter -->
 
@@ -54,7 +53,6 @@ end-to-end (smoke result is the headline finding).
 - `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation/` (NEW — phase parent + sub-phases)
 - `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor/` (NEW — executor wiring)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` (101 surface)
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/aliases.ts` (101 surface)
 - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (101 surface)
 - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` (101 surface)
 - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (101 surface)
@@ -97,7 +95,7 @@ end-to-end (smoke result is the headline finding).
 
 ### Executor wiring (101)
 - 5th deep-loop executor (`cli-opencode`) added at commit e125ea341
-- 6 surfaces touched: executor-config.ts, aliases.ts, 4 deep-loop YAML files
+- 5 surfaces touched: executor-config.ts, 4 deep-loop YAML files (P2-032 corrected: aliases.ts was not a 101 surface; iter-1 caught the prior claim as CROSS_REF_BROKEN)
 - Pre-flight smoke detected DeepSeek MCP-tool-name regex rejection under default plugin loading
 - This packet's run is the meta-test of 101 wiring; smoke result becomes headline finding
 

@@ -11,7 +11,7 @@ import {
   type QueryComplexityTier,
   type ClassificationResult,
 } from './query-classifier.js';
-import { getStrategyForQuery } from './artifact-routing.js';
+import { getStrategyForQuery, type ArtifactClass } from './artifact-routing.js';
 import { classifyIntent } from './intent-classifier.js';
 import {
   buildRoutingQueryPlan,
@@ -47,6 +47,20 @@ interface RouteResult {
   channels: ChannelName[];
   classification: ClassificationResult;
   queryPlan: QueryPlan;
+  qualityFallback: QualityGapFallbackPlan;
+}
+
+interface QualityGapSignal {
+  quality?: string;
+  avgScore?: number;
+  avg_score?: number;
+}
+
+interface QualityGapFallbackPlan {
+  engaged: boolean;
+  reason: string | null;
+  deadlineMs: number;
+  tiers: Array<'fts5' | 'bm25' | 'grep'>;
 }
 
 /** All available channels in execution order. */
@@ -69,6 +83,8 @@ const BM25_PRESERVING_ARTIFACTS = new Set([
 
 /** Entity-density threshold: ≥2 query terms hitting high-degree memory rows. */
 const ENTITY_DENSITY_ACTIVATION_THRESHOLD = 2;
+const QUALITY_GAP_AVG_SCORE_THRESHOLD = 0.20;
+const QUALITY_GAP_FALLBACK_DEADLINE_MS = 200;
 
 /* ───────────────────────────────────────────────────────────────
    2. DEFAULT ROUTING CONFIG
@@ -131,7 +147,7 @@ function shouldPreserveBm25(query: string): boolean {
     return true;
   }
 
-  const artifact = getStrategyForQuery(query).detectedClass;
+  const artifact = resolveArtifactClass(query);
   return BM25_PRESERVING_ARTIFACTS.has(artifact);
 }
 
@@ -196,6 +212,34 @@ function safeGetDb(): Database.Database | null {
   }
 }
 
+function resolveArtifactClass(query: string): ArtifactClass {
+  try {
+    return getStrategyForQuery(query)?.detectedClass ?? 'unknown';
+  } catch {
+    return 'unknown';
+  }
+}
+
+function resolveAvgScore(signal: QualityGapSignal | undefined): number | null {
+  const candidate = signal?.avgScore ?? signal?.avg_score;
+  return typeof candidate === 'number' && Number.isFinite(candidate) ? candidate : null;
+}
+
+function buildQualityGapFallbackPlan(signal?: QualityGapSignal): QualityGapFallbackPlan {
+  const avgScore = resolveAvgScore(signal);
+  const quality = typeof signal?.quality === 'string' ? signal.quality.toLowerCase() : null;
+  const engaged = quality === 'gap' && avgScore !== null && avgScore < QUALITY_GAP_AVG_SCORE_THRESHOLD;
+
+  return {
+    engaged,
+    reason: engaged
+      ? `QUALITY=gap and avg_score=${avgScore.toFixed(3)} below ${QUALITY_GAP_AVG_SCORE_THRESHOLD.toFixed(2)}`
+      : null,
+    deadlineMs: QUALITY_GAP_FALLBACK_DEADLINE_MS,
+    tiers: engaged ? ['fts5', 'bm25', 'grep'] : [],
+  };
+}
+
 /* ───────────────────────────────────────────────────────────────
    4. CONVENIENCE: CLASSIFY + ROUTE
 ----------------------------------------------------------------*/
@@ -214,13 +258,15 @@ function safeGetDb(): Database.Database | null {
 function routeQuery(
   query: string,
   triggerPhrases?: string[],
+  qualitySignal?: QualityGapSignal,
 ): RouteResult {
   const classification = classifyQueryComplexity(query, triggerPhrases);
+  const qualityFallback = buildQualityGapFallbackPlan(qualitySignal);
 
   // When feature flag is disabled, classifier returns 'complex' with 'fallback' confidence.
   // In that case, always return all channels (full pipeline — safe default).
   if (!isComplexityRouterEnabled()) {
-    const artifactClass = getStrategyForQuery(query).detectedClass;
+    const artifactClass = resolveArtifactClass(query);
     const intent = classifyIntent(query).intent;
     const routingPlan = buildRoutingQueryPlan({
       query,
@@ -230,10 +276,17 @@ function routeQuery(
       allChannels: ALL_CHANNELS,
       intent,
       authorityNeed: inferAuthorityNeed({ intent, artifactClass, query }),
-      routingReasons: ['complexity-router-disabled'],
+      routingReasons: [
+        'complexity-router-disabled',
+        ...(qualityFallback.engaged ? ['quality-gap-fallback-engaged'] : []),
+      ],
       fallbackPolicy: {
-        mode: 'full_pipeline',
-        reason: 'Complexity router disabled, preserving full pipeline behavior',
+        mode: qualityFallback.engaged ? 'fts5_bm25_grep_broadening' : 'full_pipeline',
+        reason: qualityFallback.reason ?? 'Complexity router disabled, preserving full pipeline behavior',
+        ...(qualityFallback.engaged ? {
+          tiers: qualityFallback.tiers,
+          deadlineMs: qualityFallback.deadlineMs,
+        } : {}),
       },
     });
     recordInvocation([...ALL_CHANNELS]);
@@ -242,11 +295,12 @@ function routeQuery(
       channels: [...ALL_CHANNELS],
       classification,
       queryPlan: mergeQueryPlans(classification.queryPlan, routingPlan),
+      qualityFallback,
     };
   }
 
   const channels = getChannelSubset(classification.tier);
-  const artifactClass = getStrategyForQuery(query).detectedClass;
+  const artifactClass = resolveArtifactClass(query);
   const intent = classifyIntent(query).intent;
 
   // Existing override: bm25 preservation for simple-tier authority-artifact
@@ -288,7 +342,16 @@ function routeQuery(
     allChannels: ALL_CHANNELS,
     intent,
     authorityNeed: inferAuthorityNeed({ intent, artifactClass, query }),
-    routingReasons,
+    routingReasons: [
+      ...routingReasons,
+      ...(qualityFallback.engaged ? ['quality-gap-fallback-engaged'] : []),
+    ],
+    fallbackPolicy: qualityFallback.engaged ? {
+      mode: 'fts5_bm25_grep_broadening',
+      reason: qualityFallback.reason ?? 'QUALITY=gap fallback engaged',
+      tiers: qualityFallback.tiers,
+      deadlineMs: qualityFallback.deadlineMs,
+    } : undefined,
   });
 
   recordInvocation(adjustedChannels);
@@ -298,6 +361,7 @@ function routeQuery(
     channels: adjustedChannels,
     classification,
     queryPlan: mergeQueryPlans(classification.queryPlan, routingPlan),
+    qualityFallback,
   };
 }
 
@@ -317,10 +381,13 @@ export {
   MIN_CHANNELS,
   FALLBACK_CHANNELS,
   ENTITY_DENSITY_ACTIVATION_THRESHOLD,
+  QUALITY_GAP_AVG_SCORE_THRESHOLD,
+  QUALITY_GAP_FALLBACK_DEADLINE_MS,
 
   // Functions
   getChannelSubset,
   routeQuery,
+  buildQualityGapFallbackPlan,
   shouldPreserveGraph,
   isGraphChannelPreservationEnabled,
 
