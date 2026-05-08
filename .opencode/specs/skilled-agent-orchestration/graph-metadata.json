@@ -1,6 +1,6 @@
 {
   "derived": {
-    "last_active_child_id": "skilled-agent-orchestration/102-track-rereview-2",
+    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
     "last_active_at": "2026-05-07T22:23:13.285Z",
     "last_save_at": "2026-05-07T22:23:13.285Z"
   },
@@ -37,9 +37,6 @@
     "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git",
     "skilled-agent-orchestration/094-playbook-prompt-naturalness",
     "skilled-agent-orchestration/095-sk-code-review-playbook-execution",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-    "skilled-agent-orchestration/097-track-review",
-    "skilled-agent-orchestration/099-track-rereview",
-    "skilled-agent-orchestration/102-track-rereview-2"
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural"
   ]
 }

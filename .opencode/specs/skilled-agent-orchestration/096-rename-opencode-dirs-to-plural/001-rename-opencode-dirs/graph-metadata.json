@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "parent_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "children_ids": [
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/001-skills",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/002-agents",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/003-commands",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks"
+  ],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/095-sk-code-review-playbook-execution"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "096 plural rename",
+      "opencode skill skills rename",
+      "opencode agent agents rename",
+      "opencode command commands rename",
+      "skill discovery fix"
+    ],
+    "key_topics": [
+      "096",
+      "rename",
+      "plural",
+      "opencode",
+      "discovery"
+    ],
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks",
+    "level": "phase-parent",
+    "is_phase_parent": true,
+    "session_outcome": "all_4_phases_complete"
+  }
+}

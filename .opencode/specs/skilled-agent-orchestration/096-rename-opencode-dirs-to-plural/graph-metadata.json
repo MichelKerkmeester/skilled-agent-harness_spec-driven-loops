@@ -4,38 +4,38 @@
   "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
   "parent_id": "skilled-agent-orchestration",
   "children_ids": [
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-skills",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-agents",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-commands",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-symlinks"
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-track-review",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview",
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/008-remediation"
   ],
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/095-sk-code-review-playbook-execution"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "096 plural rename",
-      "opencode skill skills rename",
-      "opencode agent agents rename",
-      "opencode command commands rename",
-      "skill discovery fix"
+      "096 umbrella",
+      "opencode plural rename cycle",
+      "post-rename review remediation"
     ],
     "key_topics": [
       "096",
-      "rename",
-      "plural",
-      "opencode",
-      "discovery"
+      "opencode-plural-rename",
+      "deep-review",
+      "remediation",
+      "umbrella"
     ],
     "status": "complete",
     "completion_pct": 100,
-    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-symlinks",
+    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/008-remediation",
     "level": "phase-parent",
     "is_phase_parent": true,
-    "session_outcome": "all_4_phases_complete"
+    "session_outcome": "8_phases_complete_release_ready"
   }
 }

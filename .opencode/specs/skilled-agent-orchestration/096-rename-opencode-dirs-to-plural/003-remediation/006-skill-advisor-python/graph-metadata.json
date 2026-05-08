@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/006-skill-advisor-python",
+  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/006-skill-advisor-python",
+  "parent_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/001-dist-rebuild"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor python",
+      "098 phase 006",
+      "097 remediation",
+      "infrastructure quality"
+    ],
+    "key_topics": [
+      "skill-advisor-python",
+      "098-remediation",
+      "097-findings",
+      "infrastructure-quality"
+    ],
+    "status": "complete",
+    "completion_pct": 100,
+    "level": 2
+  }
+}
