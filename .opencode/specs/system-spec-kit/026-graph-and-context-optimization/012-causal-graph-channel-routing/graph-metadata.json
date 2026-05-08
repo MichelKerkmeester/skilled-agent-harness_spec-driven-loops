@@ -49,6 +49,7 @@
       "mcp_server/handlers/memory-crud-health.ts",
       "mcp_server/tests/query-router.vitest.ts",
       "mcp_server/tests/entity-density.vitest.ts",
+      "mcp_server/tests/routing-telemetry-stress.vitest.ts",
       "scratch/post-change.md",
       "tests/query-router.vitest.ts",
       "tests/entity-density.vitest.ts",
@@ -61,8 +62,7 @@
       "scratch/baseline.md",
       "implementation-summary.md",
       "checklist.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/handover.md",
-      "specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/resource-map.md"
+      "specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/handover.md"
     ],
     "entities": [
       {
@@ -99,6 +99,12 @@
         "name": "entity-density.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/entity-density.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "routing-telemetry-stress.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/routing-telemetry-stress.vitest.ts",
         "source": "derived"
       },
       {
@@ -168,12 +174,6 @@
         "source": "derived"
       },
       {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/resource-map.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Phase 12 of the 026 graph-and-context-optimization wrapper. The 010-graph-impact-and-affordance-uplift wrapper added causal-trust display and trust axes; this phase closes the runtime-utilization gap by ensuring the *channel selector* actually activates the graph channel for queries where causal traversal would surface results that vector+fts cannot.",
     "created_at": "2026-05-08T10:50:28Z",
-    "last_save_at": "2026-05-08T14:58:31.285Z",
+    "last_save_at": "2026-05-08T16:00:21.861Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-08T14:13:00Z",
     "source_docs": [

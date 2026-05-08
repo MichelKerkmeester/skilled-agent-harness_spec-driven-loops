@@ -13,14 +13,15 @@
     "routing-telemetry rolling counter",
     "complexity router graph activation"
   ],
-  "lastUpdated": "2026-05-08T14:58:31.285Z",
+  "lastUpdated": "2026-05-08T16:00:21.861Z",
   "specId": "012",
   "folderSlug": "causal-graph-channel-routing",
   "parentChain": [
     "026-graph-and-context-optimization"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "08-05-26_15-58__refined-012-packet-handover-md-post-mcp-restart.md"
+    "08-05-26_15-58__refined-012-packet-handover-md-post-mcp-restart.md",
+    "08-05-26_17-00__closed-all-deferred-stress-sub-criteria-for-012.md"
   ]
 }
