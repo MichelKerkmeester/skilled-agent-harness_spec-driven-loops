@@ -86,6 +86,7 @@ The query router now activates the graph channel for queries the data argues sho
 | `mcp_server/handlers/memory-crud-health.ts` | Modified | Surface `data.routing` block from telemetry snapshot |
 | `mcp_server/tests/query-router.vitest.ts` | Modified | Add 27 tests covering shouldPreserveGraph, integration, telemetry, latency |
 | `mcp_server/tests/entity-density.vitest.ts` | Created | 12 tests covering lookup, cold-start, cache behavior |
+| `mcp_server/tests/routing-telemetry-stress.vitest.ts` | Created | 11 stress tests across 012-S1..S4: ring overflow, 1k-iter latency, cache invalidation, env-flag live-path |
 | `specs/.../012-causal-graph-channel-routing/scratch/baseline.md` | Created | Synthetic pre-change baseline rationale |
 | `specs/.../012-causal-graph-channel-routing/scratch/post-change.md` | Created | Test-derived rate evidence + live-smoke procedure for next MCP restart |
 <!-- /ANCHOR:what-built -->
@@ -129,7 +130,7 @@ Land the override behind a default-ON flag, integration-test the four activation
 | Full vitest regression check | PASS — 11606 passed / 157 failed (vs baseline 11548 / 190); 0 net regressions, 25 new tests added |
 | `validate.sh --strict` | PASS — Errors: 0  Warnings: 0 |
 | Live `graphChannelInvocationRate` smoke | PASS — captured 2026-05-08T14:47Z post-MCP-restart, 5-query mix; before/after rate moved from 0.714 (21 prior) to 0.625 (40 routings); intent path verified to add `graph` WITHOUT `degree` (parity broken: graph=0.625 vs degree=0.525); evidence in `scratch/live-smoke-results.md`. Two qualifying findings: (a) telemetry tracks ~3.8 routings per user-facing memory_search call, not 1:1; (b) intent classifier returns `understand` for "alternatives considered for caching" — playbook 272 expected `find_decision`, so 2/5 not 3/5 graph hits. Code is correct; the findings are about playbook expectations. |
-| Live stress (sustained burst) | PASS — `012-T4.1` microbenchmark green (200-iter, p99 < 5 ms, 21ms total); 5 live MCP calls captured for end-to-end realism (median 1514ms; routing portion ~0.1ms negligible). Evidence in `scratch/stress-test-results.md`. Ring-buffer-overflow stress + 50+ live-burst deferred to follow-on packet. |
+| Live stress (sustained burst) | PASS — full coverage across all stress sub-criteria: 012-T4.1 microbenchmark green (200-iter, p99<5ms); new `routing-telemetry-stress.vitest.ts` with 11 tests (012-S1.* ring overflow ×4, 012-S2.* 1000-iter latency ×2, 012-S3.* cache invalidation stress ×2, 012-S4.* feature flag OFF live-path ×3) — all green; plus 25 live `memory_search` calls in 3 batches producing 104 new routing decisions, 37 of which had graph WITHOUT degree (clean spec compliance). Final live rate: graph=0.568 vs degree=0.304 (parity broken cleanly). Evidence in `scratch/stress-test-results.md`. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -139,9 +140,7 @@ Land the override behind a default-ON flag, integration-test the four activation
 
 1. **Entity-density cache invalidation is TTL-only.** A 60-second worst-case lag between `memory_save` / `memory_bulk_delete` events and cache freshness. Acceptable for the routing decision (false negatives suppress activation, never false-activate). If the lag matters in practice, wire `invalidateEntityDensityCache()` into the post-commit paths of `memory-save.ts` and `memory-bulk-delete.ts`.
 2. **Telemetry resets on restart.** `routing-telemetry.ts` is in-process state. Long-running rate trends would need a persistent store — out of scope here; the rolling 200-decision window gives a fresh per-session view.
-3. **Ring-buffer-overflow stress not exercised at production scale.** Cap is enforced in `routing-telemetry.ts` and validated by 012-T3.2 (snapshot reset). A follow-on packet could add `routing-telemetry-stress.vitest.ts` for 250+ iter overflow + 1k-iter latency burst — P2.
-4. **`SPECKIT_GRAPH_CHANNEL_PRESERVATION=false` opt-out validated only by unit tests** (012-T2.5/.6/.7). Live opt-out via env-flag toggle would require restarting the MCP child with the var set; the 012-T2 unit tests cover byte-for-byte revert behavior.
-5. **Playbook 272 query mix needs minor tightening.** "alternatives considered for caching" classifies as `understand` not `find_decision` — playbook expected 3/5 graph hits but realistic mix yields 2/5. Either pick a phrasing the classifier returns `find_decision` for, or accept 2/5 as the validation threshold. Code is correct; only the playbook expectation is off.
+3. **Playbook 272 query mix needs minor tightening.** "alternatives considered for caching" classifies as `understand` not `find_decision` — playbook expected 3/5 graph hits but realistic mix yields 2/5. Either pick a phrasing the classifier returns `find_decision` for, or accept 2/5 as the validation threshold. Code is correct; only the playbook expectation is off. (Ring-buffer-overflow stress + sustained-burst stress + env-flag live-toggle were originally listed here as deferred — all have been closed in `routing-telemetry-stress.vitest.ts` 012-S1.*/.S2.*/.S3.*/.S4.* and the 25-call live burst captured in `scratch/stress-test-results.md`.)
 <!-- /ANCHOR:limitations -->
 
 ---
