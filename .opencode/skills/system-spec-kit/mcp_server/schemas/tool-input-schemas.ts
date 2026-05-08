@@ -565,6 +565,19 @@ const codeGraphVerifySchema = getSchema({
   allowInlineIndex: z.boolean().optional(),
 });
 
+const codeGraphApplySchema = getSchema({
+  rootDir: optionalPathString(),
+  operation: z.enum(['rescan', 'prune-excludes', 'repair-nodes', 'recover-sqlite-corruption', 'rollback-bad-apply']).optional(),
+  confirm: z.boolean().optional(),
+  dryRun: z.boolean().optional(),
+  crashRootCauseAddressed: z.boolean().optional(),
+  quarantineOlderThanDays: boundedNumber(1, 365).optional(),
+  lowTierOptIn: z.boolean().optional(),
+  excludePatterns: optionalStringArray,
+  batteryPath: optionalPathString(),
+  includeDetails: z.boolean().optional(),
+});
+
 const detectChangesSchema = getSchema({
   diff: z.string().min(1),
   rootDir: optionalPathString(),
@@ -692,6 +705,7 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   code_graph_status: getSchema({}) as unknown as ToolInputSchema,
   code_graph_context: codeGraphContextSchema as unknown as ToolInputSchema,
   code_graph_verify: codeGraphVerifySchema as unknown as ToolInputSchema,
+  code_graph_apply: codeGraphApplySchema as unknown as ToolInputSchema,
   detect_changes: detectChangesSchema as unknown as ToolInputSchema,
   skill_graph_scan: skillGraphScanSchema as unknown as ToolInputSchema,
   skill_graph_query: skillGraphQuerySchema as unknown as ToolInputSchema,
@@ -755,6 +769,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   code_graph_status: [],
   code_graph_context: ['input', 'queryMode', 'subject', 'seeds', 'budgetTokens', 'profile', 'includeTrace'],
   code_graph_verify: ['rootDir', 'batteryPath', 'category', 'failFast', 'includeDetails', 'persistBaseline', 'allowInlineIndex'],
+  code_graph_apply: ['rootDir', 'operation', 'confirm', 'dryRun', 'crashRootCauseAddressed', 'quarantineOlderThanDays', 'lowTierOptIn', 'excludePatterns', 'batteryPath', 'includeDetails'],
   detect_changes: ['diff', 'rootDir'],
   skill_graph_scan: ['skillsRoot'],
   skill_graph_query: ['queryType', 'skillId', 'sourceSkillId', 'targetSkillId', 'family', 'minInbound', 'depth', 'limit'],

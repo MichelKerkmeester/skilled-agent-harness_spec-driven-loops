@@ -1,0 +1,23 @@
+{
+  "packet_id": "098-multi-ai-council-write-authority",
+  "parent_id": "skilled-agent-orchestration",
+  "level": 3,
+  "title": "Multi-AI Council write authority",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+      "skilled-agent-orchestration/089-multi-ai-council-persistence",
+      "skilled-agent-orchestration/092-multi-ai-council-deferrals"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T21:45:00Z",
+  "lastUpdatedAt": "2026-05-08T23:18:00Z",
+  "status": "complete"
+}

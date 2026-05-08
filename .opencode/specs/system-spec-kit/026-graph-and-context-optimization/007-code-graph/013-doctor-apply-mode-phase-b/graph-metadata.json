@@ -1,0 +1,21 @@
+{
+  "packet_id": "013-doctor-apply-mode-phase-b",
+  "parent_id": "007-code-graph",
+  "level": 3,
+  "title": "/doctor:code-graph apply-mode (Phase B)",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T21:30:00Z",
+  "lastUpdatedAt": "2026-05-08T22:50:00Z"
+}

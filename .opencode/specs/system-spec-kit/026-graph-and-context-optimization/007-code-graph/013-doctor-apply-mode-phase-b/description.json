@@ -1,0 +1,32 @@
+{
+  "title": "/doctor:code-graph apply-mode (Phase B)",
+  "description": "Phase B (apply-mode auto-fix) for /doctor:code-graph using research packet 007's 4 prerequisite artifacts: 28-query gold battery, 3-state staleness model, 3-procedure recovery playbook, 3-tier exclude-rule confidence. Wires gold battery as verification gate; rolls back on post-flight failure; confines self-healing to soft-stale states.",
+  "trigger_phrases": [
+    "doctor code graph apply mode",
+    "doctor code graph phase b",
+    "code-graph apply auto-fix",
+    "code-graph verification battery gating",
+    "code-graph recovery playbook automation",
+    "026/007/013 packet"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "level": 3,
+  "status": "complete",
+  "priority": "P1",
+  "createdAt": "2026-05-08T21:30:00Z",
+  "branch": "main",
+  "parent_track": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
+  "parent_id": "007-code-graph",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command",
+      "system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null
+  }
+}

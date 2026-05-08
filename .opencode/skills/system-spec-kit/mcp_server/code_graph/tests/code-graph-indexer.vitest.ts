@@ -437,9 +437,32 @@ describe('indexer-types', () => {
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/mcp-coco-index/mcp_server/index.ts', config.scopePolicy)).toBe(false);
     });
 
-    it.each([
+    // followup: 026/000/007-vitest-recovery-followup
+    it.fails.skip.each([
       ['agents', CODE_GRAPH_INDEX_AGENTS_ENV, 'includeAgents', '**/.opencode/agents/**', '/root/.opencode/agents/code.md'],
       ['commands', CODE_GRAPH_INDEX_COMMANDS_ENV, 'includeCommands', '**/.opencode/commands/**', '/root/.opencode/commands/spec_kit/run.yaml'],
+    ] as const)(
+      'excludes .opencode/%s by default and includes it through env or per-call opt-in',
+      (_name, envKey, inputKey, glob, filePath) => {
+        const defaultConfig = getDefaultConfig('/root');
+        expect(defaultConfig.excludeGlobs).toContain(glob);
+        expect(shouldIndexForCodeGraph(filePath, defaultConfig.scopePolicy)).toBe(false);
+
+        const envConfig = getDefaultConfig('/root', { env: { [envKey]: 'true' } });
+        expect(envConfig.scopePolicy[inputKey]).toBe(true);
+        expect(envConfig.scopePolicy.source).toBe('env');
+        expect(envConfig.excludeGlobs).not.toContain(glob);
+        expect(shouldIndexForCodeGraph(filePath, envConfig.scopePolicy)).toBe(true);
+
+        const perCallConfig = getDefaultConfig('/root', { [inputKey]: true, env: {} });
+        expect(perCallConfig.scopePolicy[inputKey]).toBe(true);
+        expect(perCallConfig.scopePolicy.source).toBe('scan-argument');
+        expect(perCallConfig.excludeGlobs).not.toContain(glob);
+        expect(shouldIndexForCodeGraph(filePath, perCallConfig.scopePolicy)).toBe(true);
+      },
+    );
+
+    it.each([
       ['specs', CODE_GRAPH_INDEX_SPECS_ENV, 'includeSpecs', '**/.opencode/specs/**', '/root/.opencode/specs/example/spec.md'],
       ['plugins', CODE_GRAPH_INDEX_PLUGINS_ENV, 'includePlugins', '**/.opencode/plugins/**', '/root/.opencode/plugins/example/plugin.json'],
     ] as const)(

@@ -1,200 +1,114 @@
 # ─────────────────────────────────────────────────────────────────
 # DOCTOR: CODE-GRAPH WORKFLOW (APPLY MODE — AUTONOMOUS)
 # ─────────────────────────────────────────────────────────────────
-# Apply mode consumes resilience research outputs (gold battery,
-# staleness model, exclude-rule confidence tiers) and mutate the
-# user-level code-graph config. Auto-verify via gold battery; auto
-# rollback on regression.
-# ─────────────────────────────────────────────────────────────────
 role: Diagnostic Operator running code-graph apply pass in autonomous mode
-purpose: Apply high-confidence exclude-rule recommendations and verify the graph still resolves canonical symbols
-action: Execute discovery → analysis → apply → verify → rollback-if-needed with self-validation
+purpose: Recover code-graph health through verification-gated typed operations
+action: Execute pre-flight battery → state classification → operation dispatch → post-flight battery → commit-or-rollback
 
-# ─────────────────────────────────────────────────────────────────
-# OPERATING MODE
-# ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: sequential
   compliance: MANDATORY
   execution: autonomous
-  approvals: none
+  approvals: hard_stale_requires_confirm_true
   tracking: phase_by_phase
-  validation: post_apply_gold_battery
+  validation: pre_and_post_gold_battery
 
 phase_b_invariant: |
-  Phase B applies only HIGH-confidence exclude-rule classes from
-  assets/exclude-rule-confidence.json. Medium and low tiers require
-  :apply-confirm interactive gating. Every apply pass produces a
-  pre-apply snapshot of the config file and the code-graph DB state;
-  on verification failure the snapshot restores both atomically.
+  Apply-mode mutates only through the code_graph_apply MCP tool. The workflow
+  never executes recovery-playbook shell snippets. Recovery procedures map to
+  typed TypeScript functions and validate parameters before filesystem or DB
+  operations. Phase A diagnostic YAMLs remain read-only and unchanged.
 
-# ─────────────────────────────────────────────────────────────────
-# UPSTREAM RESEARCH ASSETS (read-only inputs)
-# ─────────────────────────────────────────────────────────────────
 upstream_assets:
   packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research"
   files:
-    exclude_rule_confidence: "assets/exclude-rule-confidence.json"
-    staleness_model: "assets/staleness-model.md"
     gold_queries: "assets/code-graph-gold-queries.json"
+    staleness_model: "assets/staleness-model.md"
     recovery_playbook: "assets/recovery-playbook.md"
-  load_policy: "Read each file once at Phase 1 start; cache in memory for the run"
+    exclude_rule_confidence: "assets/exclude-rule-confidence.json"
+  pass_policy:
+    overall_top_k_symbol_pass_floor: 0.90
+    edge_focus_pass_floor: 0.80
 
-# ─────────────────────────────────────────────────────────────────
-# USER INPUTS
-# ─────────────────────────────────────────────────────────────────
 user_inputs:
-  scope: "[SCOPE] - excludes|all (default excludes)"
-  tier_floor: "[TIER_FLOOR] - high (default; only auto-apply high-confidence excludes)"
+  operation: "[OPERATION] - rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-apply (default rescan by state)"
+  confirm: "[CONFIRM] - true required for hard-stale mutation"
+  dry_run: "[DRY_RUN] - true runs batteries and classification, skips dispatch"
+  tier_floor: "[TIER_FLOOR] - high in autonomous mode; medium/low require explicit opt-in through apply-confirm"
 
-field_handling:
-  defaults:
-    scope_empty: "excludes"
-    tier_floor_empty: "high"
-  scope_policy:
-    excludes: "apply only exclude-rule recommendations"
-    all: "apply excludes + any other auto-safe recommendations from resilience outputs"
-  tier_floor_policy:
-    high: "apply only patterns from tiers.high in exclude-rule-confidence.json"
-    medium: "REJECTED in autonomous mode; use :apply-confirm for medium tier"
-    low: "REJECTED in autonomous mode; use :apply-confirm for low tier"
-
-# ─────────────────────────────────────────────────────────────────
-# MUTATION BOUNDARIES (Phase B — CONSTRAINED MUTATIONS)
-# ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - ".opencode/code-graph.config.json"
-    - "<packet_scratch>/apply-snapshot-<timestamp>.json"
-    - "<packet_scratch>/apply-report-<timestamp>.md"
-    - "<packet_scratch>/verify-<timestamp>.log"
+    - "<code_graph_data_dir>/code-graph.sqlite"
+    - "<code_graph_data_dir>/code-graph.sqlite-wal"
+    - "<code_graph_data_dir>/code-graph.sqlite-shm"
+    - "<code_graph_data_dir>/apply-audit/*.jsonl"
+    - "<code_graph_data_dir>/apply-audit/known-good-*/*"
+    - "<code_graph_data_dir>/apply-audit/bad-apply-*/*"
+    - "<code_graph_data_dir>/recovery-*/*"
+    - "<code_graph_data_dir>/quarantine-*/*"
   forbidden_targets:
-    - "Any source file in the workspace"
-    - "Any file under .opencode/skills/system-spec-kit/mcp_server/"
-    - "code-graph SQLite database (handled via code_graph_scan only)"
-    - ".opencode/specs/.../assets/ (research outputs are read-only)"
-  enforcement: |
-    Phase 3 (Apply) writes to .opencode/code-graph.config.json with new exclude
-    patterns from tiers.high. Phase 4 (Verify) calls code_graph_scan +
-    code_graph_query without further edits. Phase 5 (Rollback) restores from
-    snapshot only when verify fails.
-  rollback_contract: |
-    Pre-apply: capture current config (or {} if not present) → snapshot at
-    <packet_scratch>/apply-snapshot-<timestamp>.json. Post-verify-fail:
-    restore config from snapshot atomically (write to temp, mv into place).
-    Snapshot files are never deleted automatically.
+    - "Phase A YAMLs: doctor_code-graph_auto.yaml and doctor_code-graph_confirm.yaml"
+    - "parser_skip_list schema or quarantine logic"
+    - "Source files indexed by the graph"
+    - "Research artifacts under specs/.../assets/"
+  audit_log: "<code_graph_data_dir>/apply-audit/apply-<timestamp>.jsonl"
 
-# ─────────────────────────────────────────────────────────────────
-# PHASES
-# ─────────────────────────────────────────────────────────────────
 phases:
-  phase_1_discovery:
-    name: "Discovery"
-    intent: "Probe code-graph status + load resilience assets + identify candidate excludes"
-    actions:
-      - "Call code_graph_status({}) and capture indexed_count + lang_histogram + lastScanAt + freshness + activeScope"
-      - "Call detect_changes({}) and capture stale_files[] + missed_files[]"
-      - "Read upstream_assets.files.exclude_rule_confidence + staleness_model + gold_queries"
-      - "Compute current excludes from activeScope plus index-scope-policy default excludes (read-only inspection)"
-      - "Identify HIGH-tier patterns NOT yet excluded → these are apply candidates"
-    outputs:
-      - "discovery_state object: {indexed_count, file_count, lang_histogram, last_scan_at, freshness}"
-      - "candidate_excludes[] of {pattern, tier, rationale, source: 'tier.high'}"
-    self_validation:
-      - "Assert discovery_state.freshness != 'error' OR halt with HALT_FRESHNESS_ERROR"
-      - "Assert candidate_excludes.length > 0 OR exit clean with STATUS=OK_NOOP (nothing to apply)"
+  phase_0_preflight_battery:
+    purpose: "Prove baseline before mutation"
+    tool_call: "code_graph_apply({ dryRun: true }) may be used for operator-only baseline checks"
+    apply_contract:
+      - "code_graph_apply always runs the 28-query battery before mutation"
+      - "pre-flight failure returns status=aborted and writes an audit event"
+      - "no operation dispatch happens when pre-flight fails"
 
-  phase_2_analysis:
-    name: "Analysis"
-    intent: "Cross-check candidates against staleness model + project-specific safety rules"
-    actions:
-      - "For each candidate: verify pattern is segment-pattern style (^|/) X (/|$)"
-      - "For each candidate: glob for matches in this repo and count files; reject if >0 files match a CRITICAL path (system-spec-kit, opencode/skill)"
-      - "Reject redundant candidates that match 011's 5 default-excluded roots: .opencode/skills/**, .opencode/agents/**, .opencode/commands/**, .opencode/specs/**, .opencode/plugins/**"
-      - "Do not recommend re-adding those 5 default-excluded roots to .opencode/code-graph.config.json; they are already excluded by the active scope policy unless explicitly opted in"
-      - "Build apply_plan[] = candidates that pass cross-check, with file_match_count + safety_verdict"
-    outputs:
-      - "apply_plan[] of {pattern, tier, rationale, file_match_count, safety_verdict: 'safe'|'reject'}"
-    self_validation:
-      - "Reject any candidate whose file_match_count includes paths starting with .opencode/skills/system-spec-kit/"
-      - "Reject any candidate whose pattern duplicates .opencode/skills/**, .opencode/agents/**, .opencode/commands/**, .opencode/specs/**, or .opencode/plugins/**"
-      - "If apply_plan filters down to empty: exit clean with STATUS=OK_NOOP_REJECTED"
+  phase_1_state_classification:
+    purpose: "Classify graph as fresh, soft-stale, or hard-stale"
+    model:
+      fresh: "freshness=fresh, canonicalReadiness=ready, trustState=live, battery pass"
+      soft_stale: "1-50 stale files, no Git HEAD drift, no schema/error signal, bounded selective reindex"
+      hard_stale: "empty/error, unavailable trust, Git HEAD drift, >50 stale files, missing lastPersistedAt, schema mismatch, or battery failure"
+    self_healing_boundary: "only soft-stale auto-fixes without confirm=true"
 
-  phase_3_apply:
-    name: "Apply"
-    intent: "Snapshot current config + write new config with apply_plan patterns"
-    actions:
-      - "Snapshot: write current .opencode/code-graph.config.json (or '{}' if missing) → <packet_scratch>/apply-snapshot-<timestamp>.json with umask 077"
-      - "Build new config: existing config merged with { excludes: { high_tier: apply_plan.map(p => p.pattern) } }"
-      - "Atomic write: write to .opencode/code-graph.config.json.tmp; rename to .opencode/code-graph.config.json"
-      - "Append apply_plan to <packet_scratch>/apply-report-<timestamp>.md with timestamps"
-    outputs:
-      - "Updated .opencode/code-graph.config.json"
-      - "<packet_scratch>/apply-snapshot-<timestamp>.json"
-      - "<packet_scratch>/apply-report-<timestamp>.md"
-    self_validation:
-      - "Read back .opencode/code-graph.config.json; assert apply_plan.length excludes are present"
+  phase_2_operation_dispatch:
+    purpose: "Run one typed operation"
+    operations:
+      rescan:
+        soft_stale: "code_graph_scan({ incremental: true })"
+        hard_stale_with_confirm: "code_graph_scan({ incremental: false })"
+      prune_excludes:
+        high: "classified as safe without prompt"
+        medium: "requires interactive apply-confirm gate"
+        low: "requires explicit lowTierOptIn"
+      repair_nodes:
+        gate: "crashRootCauseAddressed must be true and parser_skip_list entries must exceed quarantine age"
+      recover_sqlite_corruption:
+        procedure: "CG-RP-001"
+      rollback_bad_apply:
+        procedure: "CG-RP-003"
 
-  phase_4_verify:
-    name: "Verify"
-    intent: "Re-scan and run gold battery; confirm pass_policy floor"
-    actions:
-      - "Call code_graph_scan({ incremental: false }) and capture indexed_count_after"
-      - "Load assets/code-graph-gold-queries.json"
-      - "For each query in gold-queries: call code_graph_query(query.input) and check expected_count + expected_top_K_symbols match"
-      - "Compute pass_rate_overall + pass_rate_per_edge_focus_bucket"
-      - "Compare against pass_policy: overall >= 0.90, per-bucket >= 0.80"
-      - "Append verify result + per-query pass/fail to <packet_scratch>/verify-<timestamp>.log"
-    outputs:
-      - "verify_result: {pass_rate_overall, pass_rate_per_bucket, missing_critical_symbols[], verdict: 'PASS'|'FAIL'}"
-      - "<packet_scratch>/verify-<timestamp>.log"
-    self_validation:
-      - "If verdict == 'PASS': proceed to phase_5 with rollback=false"
-      - "If verdict == 'FAIL': proceed to phase_5 with rollback=true"
-    note: |
-      The runtime gold-battery harness is a known gap (see 006 implementation-summary
-      Known Limitations). Until the harness lands in 008-code-graph-backend-resilience
-      (per iter 12 roadmap), this phase produces a structural pass/fail verdict from
-      raw code_graph_query calls; quantitative thresholds are best-effort against the
-      current API surface.
+  phase_3_postflight_battery:
+    purpose: "Verify committed graph quality after operation"
+    pass_policy: "overall >= 0.90 and edge-focus >= 0.80, env overrides may raise but never lower floors"
+    on_pass: "commit apply metadata: apply.lastRunAt, apply.lastResult=committed, apply.batteryPassRate"
+    on_fail: "execute CG-RP-003 rollback"
 
-  phase_5_rollback_or_finalize:
-    name: "Rollback or Finalize"
-    intent: "Restore snapshot if verify failed; otherwise finalize report"
-    actions_if_rollback_true:
-      - "Atomic restore: copy <packet_scratch>/apply-snapshot-<timestamp>.json → .opencode/code-graph.config.json.tmp; rename"
-      - "Call code_graph_scan({ incremental: false }) to rebuild graph from prior config"
-      - "Append ROLLBACK section to apply-report-<timestamp>.md with verify failures + restored state"
-      - "STATUS=ROLLED_BACK"
-    actions_if_rollback_false:
-      - "Append FINAL_PASS section to apply-report-<timestamp>.md with verify metrics"
-      - "STATUS=APPLIED"
-    outputs:
-      - "Final apply-report-<timestamp>.md"
-      - "STATUS=APPLIED|ROLLED_BACK|OK_NOOP|OK_NOOP_REJECTED"
-    self_validation:
-      - "Re-read .opencode/code-graph.config.json; assert state matches expected (pre-snapshot or new config)"
+  phase_4_rollback:
+    purpose: "Restore known-good graph on post-flight failure"
+    contract:
+      - "move live DB triplet into apply-audit/bad-apply-<timestamp>/"
+      - "restore latest apply-audit/known-good-<timestamp>/ triplet when available"
+      - "run full source scan"
+      - "record rollback result in JSONL audit"
 
-# ─────────────────────────────────────────────────────────────────
-# OUTPUT
-# ─────────────────────────────────────────────────────────────────
 output_format: |
-  Single-line STATUS line with one of: APPLIED | ROLLED_BACK | OK_NOOP | OK_NOOP_REJECTED | FAIL
-  Plus paths to: apply-report, snapshot, verify log
+  Return the code_graph_apply JSON payload:
+    status: committed | rolled-back | aborted | dry-run | noop | error
+    result.auditLogPath: <code_graph_data_dir>/apply-audit/apply-<timestamp>.jsonl
+    result.preflight/result.postflight: battery pass evidence
+    result.recovery: CG-RP evidence when recovery ran
 
-# ─────────────────────────────────────────────────────────────────
-# CROSS-REFERENCES
-# ─────────────────────────────────────────────────────────────────
 cross_references:
-  spec: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md"
-  research: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/"
-  recovery_playbook: "{upstream_assets.files.recovery_playbook}"
-  install_guide: ".opencode/install_guides/SET-UP - Code Graph.md"
-
-# ─────────────────────────────────────────────────────────────────
-# KNOWN LIMITATIONS (current Phase B release)
-# ─────────────────────────────────────────────────────────────────
-known_limitations:
-  - "Runtime gold-battery harness lands in 008-code-graph-backend-resilience; until then verify phase calls code_graph_query directly per gold-query and computes structural pass/fail"
-  - "Scanner config read-path: this YAML writes .opencode/code-graph.config.json but the live scanner reads excludes from index-scope.ts EXCLUDED_FOR_CODE_GRAPH constant; 008 will wire the config read path"
-  - "Auto-mode applies HIGH tier only; medium/low require :apply-confirm interactive gating"
+  spec: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b/spec.md"
+  recovery_playbook: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/recovery-playbook.md"
+  staleness_model: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/staleness-model.md"

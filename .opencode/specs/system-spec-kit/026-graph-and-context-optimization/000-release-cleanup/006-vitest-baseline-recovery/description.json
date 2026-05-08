@@ -1,0 +1,30 @@
+{
+  "title": "Vitest baseline recovery",
+  "description": "Triage and remediate the 198 vitest failures across 166 files surfaced after Unit A's full-repo run. Sampled failures sit in skill_advisor scorer, hooks, scaffold, alignment, code-graph \u2014 outside Unit A's surface \u2014 and pre-date this packet. Classify each failure into fixture-drift / runtime-regression / environmental / flaky; fix what's fixable; document the rest with explicit annotations.",
+  "trigger_phrases": [
+    "vitest baseline recovery",
+    "198 vitest failures",
+    "skill advisor scorer projection-fallback",
+    "filesystem-fallback fixture drift",
+    "v3.4.1.0 baseline reconciliation",
+    "026/000/006 packet"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "level": 2,
+  "status": "complete",
+  "priority": "P1",
+  "createdAt": "2026-05-08T21:35:00Z",
+  "branch": "main",
+  "parent_track": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "parent_id": "000-release-cleanup",
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null
+  },
+  "lastUpdatedAt": "2026-05-08T23:20:00Z"
+}

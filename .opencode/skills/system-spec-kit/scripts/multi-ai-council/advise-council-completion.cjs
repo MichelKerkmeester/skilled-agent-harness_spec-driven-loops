@@ -97,10 +97,25 @@ function collectAdvisories(packetSpecFolder) {
   return advisories;
 }
 
-function renderHuman(packetSpecFolder, advisories) {
+function collectSummary(packetSpecFolder) {
+  const packetPath = path.resolve(packetSpecFolder);
+  const statePath = path.join(packetPath, 'ai-council', 'ai-council-state.jsonl');
+  const stateEvents = readStateEvents(statePath) || [];
+  return {
+    artifact_written: stateEvents.filter((event) => event.event === 'artifact_written').length,
+    rollback: stateEvents.filter((event) => event.event === 'rollback').length,
+    artifact_superseded: stateEvents.filter((event) => event.event === 'artifact_superseded').length,
+  };
+}
+
+function renderHuman(packetSpecFolder, advisories, summary = null) {
   const lines = [`Council completion advisory for ${path.resolve(packetSpecFolder)}`];
-  if (!advisories.length) return `${lines[0]}\nNo advisories.\n`;
-  return `${lines.concat(advisories.map((advisory) => `- ${advisory}`)).join('\n')}\n`;
+  const body = advisories.length ? advisories.map((advisory) => `- ${advisory}`) : ['No advisories.'];
+  if (summary) {
+    body.push(`Artifact writes recorded: ${summary.artifact_written}`);
+    body.push(`Rollback events recorded: ${summary.rollback}`);
+  }
+  return `${lines.concat(body).join('\n')}\n`;
 }
 
 function main(argv = process.argv.slice(2)) {
@@ -109,12 +124,13 @@ function main(argv = process.argv.slice(2)) {
   const advisories = args.packetSpecFolder && !args.unknown
     ? collectAdvisories(args.packetSpecFolder)
     : [args.unknown ? `unknown argument: ${args.unknown}` : usage()];
+  const summary = args.packetSpecFolder && !args.unknown ? collectSummary(args.packetSpecFolder) : null;
 
   if (!args.quiet) {
     if (args.json) {
-      process.stdout.write(`${JSON.stringify({ packet: path.resolve(packet), advisories })}\n`);
+      process.stdout.write(`${JSON.stringify({ packet: path.resolve(packet), advisories, summary })}\n`);
     } else {
-      process.stdout.write(renderHuman(packet, advisories));
+      process.stdout.write(renderHuman(packet, advisories, summary));
     }
   }
 
@@ -123,6 +139,7 @@ function main(argv = process.argv.slice(2)) {
 
 module.exports = {
   collectAdvisories,
+  collectSummary,
   main,
 };
 

@@ -1,0 +1,94 @@
+[
+  {
+    "file": ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+    "title": "T67: Imports Memory parser from './lib/parsing/memory-parser.js'"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+    "title": "context-server.js is within line limit"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+    "title": "tool-schemas.js is within line limit"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+    "title": "handlers/memory-save.js is within line limit"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+    "title": "formatters/search-results.js is within line limit"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts",
+    "title": "excludes .opencode/agents by default and includes it through env or per-call opt-in"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts",
+    "title": "excludes .opencode/commands by default and includes it through env or per-call opt-in"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
+    "title": "renders required docs for Level 1 from manifest templates"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
+    "title": "renders required docs for Level 2 from manifest templates"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
+    "title": "renders required docs for Level 3 from manifest templates"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
+    "title": "renders required docs for Level 3+ from manifest templates"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_plan_auto.yaml: intake_triggered payload carries distinct folderState + startState fields"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_plan_auto.yaml: intake_completed payload carries distinct folderState + startState fields"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_plan_auto.yaml: folder_state is mapped explicitly to start_state via map_to_start_state (or equivalent)"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_plan_confirm.yaml: intake_triggered payload carries distinct folderState + startState fields"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_plan_confirm.yaml: intake_completed payload carries distinct folderState + startState fields"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_plan_confirm.yaml: folder_state is mapped explicitly to start_state via map_to_start_state (or equivalent)"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_complete_auto.yaml: intake_triggered payload carries distinct folderState + startState fields"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_complete_auto.yaml: intake_completed payload carries distinct folderState + startState fields"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_complete_auto.yaml: folder_state is mapped explicitly to start_state via map_to_start_state (or equivalent)"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_complete_confirm.yaml: intake_triggered payload carries distinct folderState + startState fields"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_complete_confirm.yaml: intake_completed payload carries distinct folderState + startState fields"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/scripts/tests/yaml-intake-event-payloads.vitest.ts",
+    "title": "spec_kit_complete_confirm.yaml: folder_state is mapped explicitly to start_state via map_to_start_state (or equivalent)"
+  }
+]

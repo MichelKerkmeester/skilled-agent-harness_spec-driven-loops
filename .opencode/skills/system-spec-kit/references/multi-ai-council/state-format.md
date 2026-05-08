@@ -55,25 +55,52 @@ type CouncilComplete = {
   final_report_path: string;
   convergence?: boolean;
 };
+
+type ArtifactWritten = {
+  event: "artifact_written";
+  path: string;
+  bytes: number;
+  checksum: `sha256:${string}`;
+  timestamp: string;
+  seat_id?: string | null;
+  round_id: `round-${string}`;
+};
+
+type Rollback = {
+  event: "rollback";
+  round_id: `round-${string}`;
+  reason: string;
+  timestamp: string;
+  supersedes?: string[];
+};
+
+type ArtifactSuperseded = {
+  event: "artifact_superseded";
+  original_path: string;
+  round_id: `round-${string}`;
+  rollback_event_id: string;
+  superseded_by: "rollback";
+  timestamp: string;
+};
 ```
 
 ---
 
 ## 2. OPTIONAL METADATA FIELDS
 
-Helper-emitted v1.1 rows add three optional metadata fields before the event payload:
+Helper-emitted v1.1 and writer-emitted v1.2 rows add three optional metadata fields before the event payload:
 
 ```ts
 type StateMetadata = {
-  schema_version?: "1.1";
+  schema_version?: "1.1" | "1.2";
   protocol?: "multi-ai-council";
-  producer?: "persist-artifacts.cjs@1.1.0";
+  producer?: "persist-artifacts.cjs@1.1.0" | "persist-artifacts@1.2.0";
 };
 ```
 
 Examples:
 
-- `schema_version: "1.1"` identifies helper-emitted rows. Missing means implicit v1.
+- `schema_version: "1.1"` identifies helper-emitted rows; `schema_version: "1.2"` identifies scoped writer rows. Missing means implicit v1.
 - `protocol: "multi-ai-council"` distinguishes council state from other JSONL logs.
 - `producer: "persist-artifacts.cjs@1.1.0"` identifies the writer family and version.
 
@@ -120,6 +147,21 @@ This follows agent body §14 and ADR-001 in `.opencode/specs/skilled-agent-orche
 {"schema_version":"1.1","protocol":"multi-ai-council","producer":"persist-artifacts.cjs@1.1.0","event":"round_end","round":1,"timestamp":"2026-05-06T12:03:30.000Z","new_findings_count":0}
 {"schema_version":"1.1","protocol":"multi-ai-council","producer":"persist-artifacts.cjs@1.1.0","event":"council_complete","timestamp":"2026-05-06T12:04:00.000Z","final_report_path":"ai-council/council-report.md","convergence":true}
 ```
+
+---
+
+## 5.1 WORKED EXAMPLE (V1.2 AUDIT TRAIL)
+
+v1.2 adds audit events to the same append-only JSONL. Each artifact write records the relative `ai-council/` path, byte count, sha256 checksum, timestamp, optional seat id, and round id.
+
+```jsonl
+{"schema_version":"1.2","protocol":"multi-ai-council","producer":"persist-artifacts@1.2.0","event":"artifact_written","path":"ai-council-state.jsonl","bytes":842,"checksum":"sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef","timestamp":"2026-05-08T22:30:00.000Z","seat_id":null,"round_id":"round-001"}
+{"schema_version":"1.2","protocol":"multi-ai-council","producer":"persist-artifacts@1.2.0","event":"artifact_written","path":"seats/round-001/seat-001-cli-codex.md","bytes":2048,"checksum":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","timestamp":"2026-05-08T22:30:01.000Z","seat_id":"seat-001","round_id":"round-001"}
+{"schema_version":"1.2","protocol":"multi-ai-council","producer":"persist-artifacts@1.2.0","event":"rollback","round_id":"round-001","reason":"seat-002 timed out","timestamp":"2026-05-08T22:31:00.000Z","rollback_event_id":"rollback-round-001-20260508T223100Z","supersedes":["seats/round-001/seat-001-cli-codex.md"]}
+{"schema_version":"1.2","protocol":"multi-ai-council","producer":"persist-artifacts@1.2.0","event":"artifact_superseded","original_path":"seats/round-001/seat-001-cli-codex.md","round_id":"round-001","rollback_event_id":"rollback-round-001-20260508T223100Z","superseded_by":"rollback","timestamp":"2026-05-08T22:31:00.000Z"}
+```
+
+v1 readers must ignore `artifact_written`, `rollback`, and `artifact_superseded` events without error. v1.2 readers use them for completeness summaries, checksum verification, and rollback forensics.
 
 ---
 

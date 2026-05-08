@@ -1,7 +1,7 @@
 ---
 description: Diagnose and fix code-graph index health (stale, missed, bloat). :auto/:confirm/:apply/:apply-confirm.
-argument-hint: "[:auto|:confirm|:apply|:apply-confirm] [--scope=stale|missed|bloat|all|excludes] [--tier-floor=high|medium|low|all]"
-allowed-tools: Read, Edit, Write, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_kit_memory__code_graph_status, mcp__spec_kit_memory__code_graph_query, mcp__spec_kit_memory__code_graph_context, mcp__spec_kit_memory__code_graph_scan, mcp__spec_kit_memory__detect_changes, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search
+argument-hint: "[:auto|:confirm|:apply|:apply-confirm] [--scope=stale|missed|bloat|all|excludes] [--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-apply] [--dry-run] [--confirm]"
+allowed-tools: Read, Edit, Write, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_kit_memory__code_graph_status, mcp__spec_kit_memory__code_graph_query, mcp__spec_kit_memory__code_graph_context, mcp__spec_kit_memory__code_graph_scan, mcp__spec_kit_memory__code_graph_apply, mcp__spec_kit_memory__detect_changes, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search
 ---
 
 > **EXECUTION PROTOCOL — READ FIRST**
@@ -308,3 +308,29 @@ No watcher or background task applies these recommendations; apply mode and manu
 | New scan completed | Re-run `/doctor:code-graph:auto` | Refresh diagnostic |
 
 **ALWAYS** end with: "What would you like to do next?"
+
+---
+
+## 13. PHASE B APPLY-MODE RUNTIME
+
+Phase B is now implemented through the `code_graph_apply` MCP tool and the `doctor_code-graph_apply.yaml` workflow. Apply-mode runs the gold-query battery before mutation, classifies the graph as `fresh`, `soft-stale`, or `hard-stale`, dispatches one typed operation, then runs the battery again before committing.
+
+### Invocation
+
+```text
+/doctor:code-graph:apply --scope=all --dry-run
+/doctor:code-graph:apply --operation=rescan
+/doctor:code-graph:apply --operation=recover-sqlite-corruption --confirm
+/doctor:code-graph:apply --operation=rollback-bad-apply --confirm
+```
+
+### Recovery Mapping
+
+| Symptom | State | Apply Operation | Procedure |
+|---------|-------|-----------------|-----------|
+| 1-50 stale tracked files, no hard signal | `soft-stale` | `rescan` | CG-RP-002 partial-scan retry |
+| SQLite open/integrity failure | `hard-stale` | `recover-sqlite-corruption --confirm` | CG-RP-001 SQLite corruption |
+| Post-flight battery failure | rollback path | automatic rollback | CG-RP-003 bad-apply rollback |
+| Parser quarantine entries older than threshold | gated repair | `repair-nodes --crashRootCauseAddressed` | parser_skip_list read-only repair gate |
+
+Audit logs are JSONL only for this MVP and live under the code graph data directory in `apply-audit/`. Recovery report markdown is intentionally deferred; the JSONL trail carries pre-flight battery, operation, post-flight battery, and commit-or-rollback evidence.

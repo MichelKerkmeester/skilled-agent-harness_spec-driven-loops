@@ -678,6 +678,31 @@ const codeGraphVerify: ToolDefinition = {
   },
 };
 
+const codeGraphApply: ToolDefinition = {
+  name: 'code_graph_apply',
+  description: '[L8:Code Graph] Verification-gated apply-mode for code graph recovery. Runs the gold-query battery before and after typed recovery operations, enforces soft-stale self-healing boundaries, writes JSONL audit logs, and rolls back bad applies. Token Budget: 1000.',
+  inputSchema: {
+    type: 'object', additionalProperties: false,
+    properties: {
+      rootDir: { type: 'string', description: 'Workspace root (default: current working directory)' },
+      operation: {
+        type: 'string',
+        enum: ['rescan', 'prune-excludes', 'repair-nodes', 'recover-sqlite-corruption', 'rollback-bad-apply'],
+        description: 'Apply operation to run. Defaults to re-scan routing based on staleness state.',
+      },
+      confirm: { type: 'boolean', description: 'Required for hard-stale recovery before any mutation.' },
+      dryRun: { type: 'boolean', description: 'Run pre/post batteries and classification, but skip operation dispatch.' },
+      crashRootCauseAddressed: { type: 'boolean', description: 'Required true before repair-nodes re-parses parser_skip_list candidates.' },
+      quarantineOlderThanDays: { type: 'number', minimum: 1, maximum: 365, description: 'Minimum parser_skip_list age for repair-nodes eligibility.' },
+      lowTierOptIn: { type: 'boolean', description: 'Required to include low-tier exclude-rule patterns.' },
+      excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Candidate exclude patterns for prune-excludes classification.' },
+      batteryPath: { type: 'string', description: 'Optional gold-query battery path under approved asset roots.' },
+      includeDetails: { type: 'boolean', description: 'Include per-query battery details in apply response.' },
+    },
+    required: [],
+  },
+};
+
 const detectChanges: ToolDefinition = {
   name: 'detect_changes',
   description: '[L6:Analysis] Read-only preflight: maps a unified-diff input to the structural symbols it touches via line-range overlap against indexed code_nodes. Refuses to answer when graph readiness is anything other than "fresh" — returns status: "blocked" instead of a false-safe empty affectedSymbols[]. Use BEFORE acting on a diff so callers see hard refuse on stale/empty/error state. Token Budget: 1200.',
@@ -964,6 +989,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   codeGraphStatus,
   codeGraphContext,
   codeGraphVerify,
+  codeGraphApply,
   detectChanges,
   // L8: Skill Graph
   skillGraphScan,

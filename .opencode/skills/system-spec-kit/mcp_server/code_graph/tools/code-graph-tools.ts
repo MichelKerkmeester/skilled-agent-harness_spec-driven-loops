@@ -1,13 +1,14 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Tools
 // ───────────────────────────────────────────────────────────────
-// Dispatch for code graph MCP tools: scan, query, status, context, verify, detect_changes.
+// Dispatch for code graph MCP tools: scan, query, status, context, verify, apply, detect_changes.
 import {
   handleCodeGraphScan,
   handleCodeGraphQuery,
   handleCodeGraphStatus,
   handleCodeGraphContext,
   handleCodeGraphVerify,
+  handleCodeGraphApply,
   handleCccStatus,
   handleCccReindex,
   handleCccFeedback,
@@ -24,6 +25,7 @@ export const TOOL_NAMES = new Set([
   'code_graph_status',
   'code_graph_context',
   'code_graph_verify',
+  'code_graph_apply',
   'detect_changes',
   'ccc_status',
   'ccc_reindex',
@@ -76,6 +78,8 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
       return toMCP(await handleCodeGraphContext(parseArgs<Parameters<typeof handleCodeGraphContext>[0]>(args)));
     case 'code_graph_verify':
       return toMCP(await handleCodeGraphVerify(parseArgs<Parameters<typeof handleCodeGraphVerify>[0]>(args)));
+    case 'code_graph_apply':
+      return toMCP(await handleCodeGraphApply(parseArgs<Parameters<typeof handleCodeGraphApply>[0]>(args)));
     case 'detect_changes': {
       const missingKeys = getMissingRequiredStringArgs(args, ['diff']);
       if (missingKeys.length > 0) {

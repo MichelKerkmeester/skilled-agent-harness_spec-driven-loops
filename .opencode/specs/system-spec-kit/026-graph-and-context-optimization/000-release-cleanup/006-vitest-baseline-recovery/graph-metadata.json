@@ -1,0 +1,19 @@
+{
+  "packet_id": "006-vitest-baseline-recovery",
+  "parent_id": "000-release-cleanup",
+  "level": 2,
+  "title": "Vitest baseline recovery",
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T21:35:00Z",
+  "lastUpdatedAt": "2026-05-08T23:20:00Z",
+  "status": "complete"
+}

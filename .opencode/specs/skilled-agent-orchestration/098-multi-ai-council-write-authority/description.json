@@ -1,0 +1,33 @@
+{
+  "title": "Multi-AI Council write authority",
+  "description": "Flip the multi-ai-council agent from planning-only (write: deny) to scoped-write (write: allow, restricted to ai-council/**) across all 4 runtime mirrors. Adds artifact_written audit-trail events to ai-council-state.jsonl (v1.1 \u2192 v1.2 additive); defines round-NNN-scoped rollback semantics. Closes packet 089's NO-GO blocker for v1.2+.",
+  "trigger_phrases": [
+    "multi-ai-council write authority",
+    "council write authority",
+    "council ai-council folder writes",
+    "council artifact_written audit",
+    "098 multi-ai-council writes"
+  ],
+  "importance_tier": "critical",
+  "contextType": "implementation",
+  "level": 3,
+  "status": "complete",
+  "priority": "P1",
+  "createdAt": "2026-05-08T21:45:00Z",
+  "branch": "main",
+  "parent_track": "skilled-agent-orchestration",
+  "parent_id": null,
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+      "skilled-agent-orchestration/089-multi-ai-council-persistence",
+      "skilled-agent-orchestration/092-multi-ai-council-deferrals"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null
+  },
+  "lastUpdatedAt": null
+}
