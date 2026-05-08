@@ -51,6 +51,3 @@ Canonical 7-step Memory Handback procedure shared across the five cli-* sibling 
 ## 4. PER-SKILL TEMPLATE ANCHOR
 
 Each cli-* skill cites a specific `assets/prompt_templates.md §N` anchor for its Memory Epilogue. Look in the skill's §4 Memory Handback Protocol for the cited section number — the reference paths are otherwise identical.
-
----
-

@@ -42,7 +42,7 @@ export interface SkillGraphLease {
 
 const DEFAULT_STALE_AFTER_MS = 30_000;
 const DEFAULT_HEARTBEAT_MS = 5_000;
-const LEASE_RELATIVE_PATH = join('.opencode', 'skill', '.advisor-state', 'skill-graph-daemon-lease.sqlite');
+const LEASE_RELATIVE_PATH = join('.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite');
 
 function defaultLeaseDbPath(workspaceRoot: string): string {
   return join(resolve(workspaceRoot), LEASE_RELATIVE_PATH);

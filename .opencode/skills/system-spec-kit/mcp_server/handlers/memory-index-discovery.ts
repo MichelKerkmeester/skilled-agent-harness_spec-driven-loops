@@ -245,7 +245,7 @@ export function detectSpecLevel(specPath: string): number | null {
 /** Discover constitutional memory files from skill constitutional directories. */
 export function findConstitutionalFiles(workspacePath: string): string[] {
   const results: string[] = [];
-  const skillDir = path.join(workspacePath, '.opencode', 'skill');
+  const skillDir = path.join(workspacePath, '.opencode', 'skills');
 
   if (!fs.existsSync(skillDir)) return results;
 

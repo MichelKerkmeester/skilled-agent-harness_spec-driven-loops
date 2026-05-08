@@ -1,0 +1,70 @@
+# FTS/vec Mismatch Pre-state Snapshot — REQ-002 baseline
+# Captured: 2026-05-08T08:56Z
+# Source: memory_health.consistency.mismatchedIds
+#
+# Counts:
+#   rowsTotal:    6858 (memory_index parent table)
+#   ftsRowsTotal: 6858
+#   vecRowsTotal: 6857
+#   gap:          1 row missing from vec (or duplicate in FTS) — but mismatch list shows 50 IDs
+#   embeddingRetry: pending=0 failed=2 (2 rows have failed embeddings, possibly explaining part of the gap)
+#
+# Mismatched IDs (50 total):
+3072
+3077
+3073
+3078
+3074
+3079
+3075
+3080
+3076
+3081
+3132
+3133
+2620
+2621
+445
+957
+960
+961
+962
+963
+964
+446
+965
+966
+967
+968
+970
+971
+972
+447
+969
+973
+974
+975
+976
+977
+448
+978
+979
+980
+981
+983
+984
+449
+982
+985
+986
+987
+988
+989
+
+# Observations:
+# - IDs 445-449 are interleaved with IDs 957-989 (5 sequential blocks of ~10 IDs each)
+# - IDs 3072-3081 are tightly clustered (10 sequential)
+# - IDs 3132-3133 paired
+# - IDs 2620-2621 paired
+# - Pattern suggests a batch-write ordering issue (FTS rows landed but vec embeddings failed/skipped)
+# - embeddingRetry.failed=2 is far less than 50, so this is NOT solely embedding failures

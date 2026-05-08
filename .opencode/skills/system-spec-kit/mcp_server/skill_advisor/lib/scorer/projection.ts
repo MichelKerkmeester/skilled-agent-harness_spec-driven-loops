@@ -37,7 +37,7 @@ interface SkillMarkdownMetadata {
   readonly keywords: readonly string[];
 }
 
-const SKILL_GRAPH_DB = join('.opencode', 'skill', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
+const SKILL_GRAPH_DB = join('.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
 
 const COMMAND_BRIDGES: readonly SkillProjection[] = [
   {
@@ -242,7 +242,7 @@ function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
 }
 
 function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
-  const skillRoot = join(workspaceRoot, '.opencode', 'skill');
+  const skillRoot = join(workspaceRoot, '.opencode', 'skills');
   const skills: SkillProjection[] = [];
   const edges: SkillEdgeProjection[] = [];
   if (!existsSync(skillRoot)) {

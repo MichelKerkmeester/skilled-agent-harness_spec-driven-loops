@@ -1,0 +1,30 @@
+{
+  "_comment": "Pre-state snapshot for REQ-003 — captured 2026-05-08T08:56Z via memory_stats MCP call",
+  "totalMemories": 6858,
+  "byStatus": {
+    "pending": 0,
+    "success": 5428,
+    "failed": 1,
+    "retry": 0,
+    "partial": 0
+  },
+  "oldestMemory": "2026-04-25T10:29:28.414Z",
+  "newestMemory": "2026-05-08T08:43:35.421Z",
+  "totalSpecFolders": 1020,
+  "totalTriggerPhrases": 33058,
+  "tierBreakdown": {
+    "constitutional": 2,
+    "critical": 135,
+    "deprecated": 2751,
+    "important": 2128,
+    "normal": 1842
+  },
+  "databaseSizeBytes": 294838272,
+  "lastIndexedAt": "2026-05-08T08:43:35.421Z",
+  "expected_post_delete": {
+    "totalMemories": 4107,
+    "tierBreakdown.deprecated": 0,
+    "deltaMemories": -2751,
+    "_note": "If actual delta != -2751, investigate before claiming REQ-003 done."
+  }
+}

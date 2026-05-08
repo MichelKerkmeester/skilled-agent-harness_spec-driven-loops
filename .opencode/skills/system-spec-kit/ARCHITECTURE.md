@@ -121,6 +121,8 @@ Generated memory artifacts are supporting context only.
 
 <!-- /ANCHOR:overview -->
 
+---
+
 <!-- ANCHOR:topology -->
 ## 2. PACKAGE TOPOLOGY
 
@@ -183,6 +185,8 @@ This keeps the runtime internals private while still exposing a stable boundary 
 
 <!-- /ANCHOR:topology -->
 
+---
+
 <!-- ANCHOR:continuity-flows -->
 ## 3. CANONICAL CONTINUITY FLOWS
 
@@ -237,6 +241,8 @@ Generated memory files still matter for search, traceability, and evidence captu
 
 <!-- /ANCHOR:continuity-flows -->
 
+---
+
 <!-- ANCHOR:runtime-subsystems -->
 ## 4. RUNTIME SUBSYSTEMS
 
@@ -267,6 +273,8 @@ Three graph systems now coexist:
 The skill advisor is a self-contained subsystem at `mcp_server/skill_advisor/`; see §5 for package internals, §7 for hook integration.
 
 <!-- /ANCHOR:runtime-subsystems -->
+
+---
 
 <!-- ANCHOR:skill-advisor -->
 ## 5. SKILL-ADVISOR SUBSYSTEM
@@ -344,6 +352,8 @@ Regression suite: `mcp_server/skill_advisor/scripts/skill_advisor_regression.py`
 
 <!-- /ANCHOR:skill-advisor -->
 
+---
+
 <!-- ANCHOR:code-graph -->
 ## 6. CODE-GRAPH SUBSYSTEM
 
@@ -391,6 +401,8 @@ The contract normalizes `ensure-ready` freshness (`fresh|stale|empty`) onto the 
 
 <!-- /ANCHOR:code-graph -->
 
+---
+
 <!-- ANCHOR:hook-integration -->
 ## 7. HOOK AND PLUGIN INTEGRATION
 
@@ -429,6 +441,8 @@ A companion bridge `spec-kit-compact-code-graph-bridge.mjs` + `spec-kit-compact-
 
 <!-- /ANCHOR:hook-integration -->
 
+---
+
 <!-- ANCHOR:enforcement -->
 ## 8. ENFORCEMENT AND VERIFICATION
 
@@ -457,6 +471,8 @@ Key checks:
 
 <!-- /ANCHOR:enforcement -->
 
+---
+
 <!-- ANCHOR:decision-records -->
 ## 9. DECISION RECORDS
 
@@ -477,6 +493,8 @@ captured in the runtime source anchors under `mcp_server/skill_advisor/` and
 Cross-ADR flow: ADR-001 → ADR-004 (lease needs a long-running writer); ADR-002 is applied by ADR-003 / ADR-005 / ADR-006; ADR-003 is the load-bearing decision ADR-006 protects; ADR-007 clarifies that ADR-006 gates preserve Python-correct behavior while allowing measured native improvements.
 
 <!-- /ANCHOR:decision-records -->
+
+---
 
 <!-- ANCHOR:related -->
 ## 10. RELATED

@@ -41,7 +41,7 @@ function sleep(ms: number): Promise<void> {
 
 function writeSkill(root: string, index: number): void {
   const slug = `bench-skill-${String(index).padStart(3, '0')}`;
-  const skillDir = join(root, '.opencode', 'skill', slug);
+  const skillDir = join(root, '.opencode', 'skills', slug);
   mkdirSync(skillDir, { recursive: true });
   writeFileSync(
     join(skillDir, 'SKILL.md'),

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/054-runtime-cleanup-followups",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/096-singular-skill-path-residue"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "054-runtime-cleanup-followups",
+      "advisor resolver false sentinel",
+      "findAdvisorWorkspaceRoot bare sentinel",
+      "fts vec mismatch",
+      "memory consistency degraded",
+      "memory bulk delete deprecated",
+      "packet 096 follow-on",
+      "runtime cleanup followups"
+    ],
+    "key_topics": [
+      "advisor",
+      "workspace-root",
+      "sentinel",
+      "fts-vec-consistency",
+      "memory-bulk-delete",
+      "deprecated-tier",
+      "packet-096-followup"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/utils/workspace-root.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts"
+    ],
+    "entities": [
+      "findAdvisorWorkspaceRoot",
+      "DEFAULT_SENTINEL",
+      "memory_bulk_delete",
+      "memory_health.consistency",
+      "checkpoint_create"
+    ],
+    "causal_summary": "Closes out packet 096 path-residue fix with three runtime follow-ons: harden walk-up resolver against false sentinels (REQ-001), diagnose 50 FTS/vec mismatched IDs (REQ-002), bulk-delete 2,751 deprecated-tier records (REQ-003).",
+    "created_at": "2026-05-08T08:36:13Z",
+    "last_save_at": "2026-05-08T08:36:13Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ]
+  }
+}

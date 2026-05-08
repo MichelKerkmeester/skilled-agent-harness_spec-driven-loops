@@ -1239,7 +1239,7 @@ function getPendingRecoveryLocations(basePath: string): string[] {
   for (const root of getStartupWorkspaceRoots(basePath)) {
     scanLocations.push(path.join(root, 'specs'));
     scanLocations.push(path.join(root, '.opencode', 'specs'));
-    const skillDir = path.join(root, '.opencode', 'skill');
+    const skillDir = path.join(root, '.opencode', 'skills');
     try {
       if (!fs.existsSync(skillDir)) continue;
       for (const entry of fs.readdirSync(skillDir, { withFileTypes: true })) {
@@ -1405,9 +1405,9 @@ async function startupScan(basePath: string): Promise<void> {
 
 function resolveSkillGraphSourceDir(): string | null {
   const candidates = Array.from(new Set([
-    path.resolve(DEFAULT_BASE_PATH, '.opencode', 'skill'),
-    path.resolve(process.cwd(), '.opencode', 'skill'),
-    path.resolve(import.meta.dirname, '..', '..', '..', '..', '.opencode', 'skill'),
+    path.resolve(DEFAULT_BASE_PATH, '.opencode', 'skills'),
+    path.resolve(process.cwd(), '.opencode', 'skills'),
+    path.resolve(import.meta.dirname, '..', '..', '..', '..', '.opencode', 'skills'),
   ]));
 
   for (const candidate of candidates) {

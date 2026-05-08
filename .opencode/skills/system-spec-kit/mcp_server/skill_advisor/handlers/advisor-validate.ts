@@ -134,7 +134,7 @@ function summarizeScopedOutcomeTotals(
 
 function findWorkspaceRoot(start = dirname(fileURLToPath(import.meta.url))): string {
   // SKILL.md is the marker file in this caller because the cwd-based default
-  // sentinel ('.opencode/skill') would also match sibling workspaces when the
+  // sentinel ('.opencode/skills') would also match sibling workspaces when the
   // validator is invoked from a sub-directory. The shared helper's fallback
   // is `resolve(start)`; this caller's contract has historically used
   // `process.cwd()` instead, so we re-check existence on the result.

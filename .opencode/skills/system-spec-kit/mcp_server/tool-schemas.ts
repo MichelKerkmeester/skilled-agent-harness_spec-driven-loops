@@ -575,7 +575,7 @@ const codeGraphScan: ToolDefinition = {
           { type: 'array', items: { type: 'string', pattern: '^sk-[a-z0-9-]+$' } },
         ],
         default: false,
-        description: 'Include all .opencode/skill files with true, or only named sk-* skills with an array; default false keeps end-user code scope',
+        description: 'Include all .opencode/skills files with true, or only named sk-* skills with an array; default false keeps end-user code scope',
       },
       includeAgents: { type: 'boolean', default: false, description: 'Include .opencode/agent files in this scan; default false keeps end-user code scope' },
       includeCommands: { type: 'boolean', default: false, description: 'Include .opencode/command files in this scan; default false keeps end-user code scope' },
@@ -697,7 +697,7 @@ const skillGraphScan: ToolDefinition = {
   inputSchema: {
     type: 'object', additionalProperties: false,
     properties: {
-      skillsRoot: { type: 'string', description: 'Optional skills root to scan (default: .opencode/skill). Must resolve to a path under the current workspace; paths escaping the workspace are rejected.' },
+      skillsRoot: { type: 'string', description: 'Optional skills root to scan (default: .opencode/skills). Must resolve to a path under the current workspace; paths escaping the workspace are rejected.' },
     },
     required: [],
   },

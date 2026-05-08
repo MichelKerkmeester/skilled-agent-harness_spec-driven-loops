@@ -752,7 +752,7 @@ function buildKeyFileLookupPaths(
       lookups.add(path.resolve(repoRoot, '.opencode', normalized));
     }
 
-    const systemSpecKitRoot = path.join(repoRoot, '.opencode', 'skill', 'system-spec-kit');
+    const systemSpecKitRoot = path.join(repoRoot, '.opencode', 'skills', 'system-spec-kit');
     const workspaceRoots = [
       systemSpecKitRoot,
       path.join(systemSpecKitRoot, 'mcp_server'),

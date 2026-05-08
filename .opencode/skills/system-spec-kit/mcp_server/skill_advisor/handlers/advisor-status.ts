@@ -24,8 +24,8 @@ import type {
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
 
-const SKILL_GRAPH_DB = join('.opencode', 'skill', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
-const SKILL_ROOT = join('.opencode', 'skill');
+const SKILL_GRAPH_DB = join('.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
+const SKILL_ROOT = join('.opencode', 'skills');
 const DEFAULT_MAX_METADATA_FILES = 5_000;
 
 function isFreshness(value: string): value is AdvisorFreshness {

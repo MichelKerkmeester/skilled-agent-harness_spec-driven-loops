@@ -13,15 +13,17 @@ trigger_phrases:
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. ARCHITECTURE](#2-architecture)
-- [3. PACKAGE TOPOLOGY](#3-package-topology)
-- [4. DIRECTORY TREE](#4-directory-tree)
-- [5. KEY FILES](#5-key-files)
-- [6. BOUNDARIES AND FLOW](#6-boundaries-and-flow)
-- [7. ENTRYPOINTS](#7-entrypoints)
-- [8. VALIDATION](#8-validation)
-- [9. RELATED](#9-related)
+- [Templates](#templates)
+  - [TABLE OF CONTENTS](#table-of-contents)
+  - [1. OVERVIEW](#1-overview)
+  - [2. ARCHITECTURE](#2-architecture)
+  - [3. PACKAGE TOPOLOGY](#3-package-topology)
+  - [4. DIRECTORY TREE](#4-directory-tree)
+  - [5. KEY FILES](#5-key-files)
+  - [6. BOUNDARIES AND FLOW](#6-boundaries-and-flow)
+  - [7. ENTRYPOINTS](#7-entrypoints)
+  - [8. VALIDATION](#8-validation)
+  - [9. RELATED](#9-related)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -149,19 +151,19 @@ templates/
 <!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
-| File | Responsibility |
-|---|---|
-| `manifest/spec-kit-docs.json` | Defines Level contracts, document registry, template versions and section gates. |
-| `manifest/spec.md.tmpl` | Renders feature specification documents. |
-| `manifest/plan.md.tmpl` | Renders implementation plan documents. |
-| `manifest/tasks.md.tmpl` | Renders task breakdown documents. |
-| `manifest/implementation-summary.md.tmpl` | Renders delivery summaries and continuity anchors. |
-| `manifest/checklist.md.tmpl` | Renders verification checklists. |
-| `manifest/decision-record.md.tmpl` | Renders architecture decision records. |
-| `manifest/handover.md.tmpl` | Renders handover documents for memory-save workflows. |
-| `manifest/resource-map.md.tmpl` | Renders optional path ledgers for larger packets. |
-| `manifest/EXTENSION_GUIDE.md` | Explains how maintainers add a new document type. |
-| `examples/` | Shows rendered output for each public Level. |
+| File                                      | Responsibility                                                                   |
+| ----------------------------------------- | -------------------------------------------------------------------------------- |
+| `manifest/spec-kit-docs.json`             | Defines Level contracts, document registry, template versions and section gates. |
+| `manifest/spec.md.tmpl`                   | Renders feature specification documents.                                         |
+| `manifest/plan.md.tmpl`                   | Renders implementation plan documents.                                           |
+| `manifest/tasks.md.tmpl`                  | Renders task breakdown documents.                                                |
+| `manifest/implementation-summary.md.tmpl` | Renders delivery summaries and continuity anchors.                               |
+| `manifest/checklist.md.tmpl`              | Renders verification checklists.                                                 |
+| `manifest/decision-record.md.tmpl`        | Renders architecture decision records.                                           |
+| `manifest/handover.md.tmpl`               | Renders handover documents for memory-save workflows.                            |
+| `manifest/resource-map.md.tmpl`           | Renders optional path ledgers for larger packets.                                |
+| `manifest/EXTENSION_GUIDE.md`             | Explains how maintainers add a new document type.                                |
+| `examples/`                               | Shows rendered output for each public Level.                                     |
 
 <!-- /ANCHOR:key-files -->
 
@@ -170,37 +172,37 @@ templates/
 <!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
-| Boundary | Rule |
-|---|---|
-| Imports | Scripts read this folder as data. Template files do not import code. |
-| Exports | Rendered packet docs are written into `specs/` by `create.sh`, not by this folder directly. |
+| Boundary  | Rule                                                                                                                                                 |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Imports   | Scripts read this folder as data. Template files do not import code.                                                                                 |
+| Exports   | Rendered packet docs are written into `specs/` by `create.sh`, not by this folder directly.                                                          |
 | Ownership | Template content, Level contracts and rendered examples belong here. Runtime validation logic belongs in `scripts/` and `mcp_server/lib/templates/`. |
 
 Render flow:
 
 ```text
 ╭──────────────────────────────────────────╮
-│ create.sh receives Level and target path  │
+│ create.sh receives Level and target path │
 ╰──────────────────────────────────────────╯
                    │
                    ▼
 ┌──────────────────────────────────────────┐
-│ resolver reads spec-kit-docs.json         │
+│ resolver reads spec-kit-docs.json        │
 └──────────────────────────────────────────┘
                    │
                    ▼
 ┌──────────────────────────────────────────┐
-│ renderer applies IF gates to .md.tmpl     │
+│ renderer applies IF gates to .md.tmpl    │
 └──────────────────────────────────────────┘
                    │
                    ▼
 ┌──────────────────────────────────────────┐
-│ scaffold writes rendered docs to specs/   │
+│ scaffold writes rendered docs to specs/  │
 └──────────────────────────────────────────┘
                    │
                    ▼
 ╭──────────────────────────────────────────╮
-│ validate.sh checks the same contract      │
+│ validate.sh checks the same contract     │
 ╰──────────────────────────────────────────╯
 ```
 
@@ -211,14 +213,14 @@ Render flow:
 <!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
-| Entrypoint | Type | Purpose |
-|---|---|---|
-| `manifest/spec-kit-docs.json` | Data file | Primary Level and document contract consumed by scripts. |
-| `manifest/*.md.tmpl` | Template files | Rendered into packet markdown files. |
-| `examples/level-*` | Reference folders | Show expected rendered output by Level. |
-| `scripts/spec/create.sh` | Script caller | Reads this folder to scaffold packets. |
-| `scripts/spec/validate.sh` | Script caller | Reads the same contract to validate packets. |
-| `scripts/templates/inline-gate-renderer.sh` | Script caller | Renders gated template blocks for a selected Level. |
+| Entrypoint                                  | Type              | Purpose                                                  |
+| ------------------------------------------- | ----------------- | -------------------------------------------------------- |
+| `manifest/spec-kit-docs.json`               | Data file         | Primary Level and document contract consumed by scripts. |
+| `manifest/*.md.tmpl`                        | Template files    | Rendered into packet markdown files.                     |
+| `examples/level-*`                          | Reference folders | Show expected rendered output by Level.                  |
+| `scripts/spec/create.sh`                    | Script caller     | Reads this folder to scaffold packets.                   |
+| `scripts/spec/validate.sh`                  | Script caller     | Reads the same contract to validate packets.             |
+| `scripts/templates/inline-gate-renderer.sh` | Script caller     | Renders gated template blocks for a selected Level.      |
 
 <!-- /ANCHOR:entrypoints -->
 
