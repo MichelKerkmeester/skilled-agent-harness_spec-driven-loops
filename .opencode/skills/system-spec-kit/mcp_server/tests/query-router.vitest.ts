@@ -15,10 +15,13 @@ import {
   FALLBACK_CHANNELS,
   getChannelSubset,
   routeQuery,
+  shouldPreserveGraph,
+  isGraphChannelPreservationEnabled,
   enforceMinimumChannels,
   type ChannelName,
   type ChannelRoutingConfig,
 } from '../lib/search/query-router';
+import { resetRoutingTelemetry, getSnapshot as getRoutingSnapshot } from '../lib/search/routing-telemetry';
 
 /* ───────────────────────────────────────────────────────────────
    HELPERS
@@ -399,5 +402,204 @@ describe('T026-06: Edge Cases', () => {
     for (const channel of DEFAULT_ROUTING_CONFIG.moderate) {
       expect(DEFAULT_ROUTING_CONFIG.complex).toContain(channel);
     }
+  });
+});
+
+/* ───────────────────────────────────────────────────────────────
+   012-T1: shouldPreserveGraph — UNIT (REQ-001)
+   ──────────────────────────────────────────────────────────────── */
+
+const COMPLEXITY_FLAG = 'SPECKIT_COMPLEXITY_ROUTER';
+const GRAPH_PRESERVATION_FLAG = 'SPECKIT_GRAPH_CHANNEL_PRESERVATION';
+
+describe('012-T1: shouldPreserveGraph', () => {
+  beforeEach(() => {
+    setEnv(COMPLEXITY_FLAG, 'true');
+    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+  });
+
+  afterEach(() => {
+    restoreEnv();
+  });
+
+  it('012-T1.1: find_decision intent → preserved with graph-preserved-by-intent reason', () => {
+    const decision = shouldPreserveGraph('why did we choose this approach', null);
+    expect(decision.preserved).toBe(true);
+    expect(decision.reasons).toContain('graph-preserved-by-intent');
+    expect(decision.includeDegree).toBe(false);
+  });
+
+  it('012-T1.2: find_spec intent → preserved with graph-preserved-by-intent reason', () => {
+    const decision = shouldPreserveGraph('find the spec for auth flow', null);
+    expect(decision.preserved).toBe(true);
+    expect(decision.reasons).toContain('graph-preserved-by-intent');
+  });
+
+  it('012-T1.3: refactor intent without entity hits → not preserved', () => {
+    // "refactor" alone classifies as refactor intent, not find_*. With null DB,
+    // entity-density scores 0, so no preservation.
+    const decision = shouldPreserveGraph('refactor module', null);
+    expect(decision.preserved).toBe(false);
+    expect(decision.reasons).toHaveLength(0);
+  });
+
+  it('012-T1.4: empty query → not preserved', () => {
+    const decision = shouldPreserveGraph('', null);
+    expect(decision.preserved).toBe(false);
+  });
+
+  it('012-T1.5: cold-start (null DB) tolerates intent-driven activation (REQ-006)', () => {
+    // Even with no DB, the intent-driven path still works.
+    const decision = shouldPreserveGraph('find decision record', null);
+    expect(decision.preserved).toBe(true);
+    expect(decision.reasons).toContain('graph-preserved-by-intent');
+    expect(decision.includeDegree).toBe(false);
+  });
+});
+
+/* ───────────────────────────────────────────────────────────────
+   012-T2: routeQuery INTEGRATION — graph-preservation override (REQ-002)
+   ──────────────────────────────────────────────────────────────── */
+
+describe('012-T2: routeQuery graph-preservation', () => {
+  beforeEach(() => {
+    setEnv(COMPLEXITY_FLAG, 'true');
+    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    resetRoutingTelemetry();
+  });
+
+  afterEach(() => {
+    restoreEnv();
+    resetRoutingTelemetry();
+  });
+
+  it('012-T2.1: simple-tier find_decision query routes graph channel', () => {
+    const result = routeQuery('why chose this');
+    expect(result.tier).toBe('simple');
+    expect(result.channels).toContain('graph');
+    // No entity-density, so no degree.
+    expect(result.channels).not.toContain('degree');
+    expect(result.queryPlan.routingReasons).toContain('graph-preserved-by-intent');
+  });
+
+  it('012-T2.2: moderate-tier find_spec query routes graph channel', () => {
+    const result = routeQuery('find the spec for auth scope');
+    expect(result.tier).toBe('moderate');
+    expect(result.channels).toContain('graph');
+    expect(result.queryPlan.routingReasons).toContain('graph-preserved-by-intent');
+  });
+
+  it('012-T2.3: simple-tier non-find intent routes WITHOUT graph (no regression)', () => {
+    const result = routeQuery('refactor module');
+    expect(result.tier).toBe('simple');
+    expect(result.channels).not.toContain('graph');
+  });
+
+  it('012-T2.4: complex-tier find_decision query already includes graph; reasons not duplicated', () => {
+    const result = routeQuery(
+      'why did we choose to implement the authentication flow with the existing decision record approach instead'
+    );
+    expect(result.tier).toBe('complex');
+    expect(result.channels).toContain('graph');
+    // Override is a no-op for complex tier.
+    expect(result.queryPlan.routingReasons).not.toContain('graph-preserved-by-intent');
+  });
+
+  it('012-T2.5: feature flag OFF → graph preservation disabled (REQ-008)', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, 'false');
+    const result = routeQuery('why chose this');
+    expect(result.tier).toBe('simple');
+    expect(result.channels).not.toContain('graph');
+  });
+
+  it('012-T2.6: feature flag explicit true', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, 'true');
+    expect(isGraphChannelPreservationEnabled()).toBe(true);
+  });
+
+  it('012-T2.7: feature flag default ON', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    expect(isGraphChannelPreservationEnabled()).toBe(true);
+  });
+});
+
+/* ───────────────────────────────────────────────────────────────
+   012-T3: routing-telemetry — graphChannelInvocationRate (REQ-004)
+   ──────────────────────────────────────────────────────────────── */
+
+describe('012-T3: routing telemetry', () => {
+  beforeEach(() => {
+    setEnv(COMPLEXITY_FLAG, 'true');
+    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    resetRoutingTelemetry();
+  });
+
+  afterEach(() => {
+    restoreEnv();
+    resetRoutingTelemetry();
+  });
+
+  it('012-T3.1: snapshot reports graph rate after mixed routing', () => {
+    routeQuery('why chose auth approach');                     // simple find_decision → graph
+    routeQuery('find the spec for tasks');                     // moderate find_spec → graph
+    routeQuery('refactor');                                    // simple refactor → no graph
+    routeQuery('refactor the module quickly');                 // moderate refactor → no graph
+    routeQuery('refactor the database connection module now'); // moderate refactor → no graph
+
+    const snap = getRoutingSnapshot();
+    expect(snap.totalRecorded).toBe(5);
+    expect(snap.graphChannelInvocationRate).toBeCloseTo(0.4, 2);
+    expect(snap.channelInvocationRates.vector).toBe(1);
+    expect(snap.channelInvocationRates.fts).toBe(1);
+  });
+
+  it('012-T3.2: snapshot resets after resetRoutingTelemetry()', () => {
+    routeQuery('find decision record');
+    expect(getRoutingSnapshot().totalRecorded).toBe(1);
+    resetRoutingTelemetry();
+    expect(getRoutingSnapshot().totalRecorded).toBe(0);
+    expect(getRoutingSnapshot().graphChannelInvocationRate).toBe(0);
+  });
+});
+
+/* ───────────────────────────────────────────────────────────────
+   012-T4: ROUTING LATENCY (REQ-005)
+   ──────────────────────────────────────────────────────────────── */
+
+describe('012-T4: routing latency', () => {
+  beforeEach(() => {
+    setEnv(COMPLEXITY_FLAG, 'true');
+    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    resetRoutingTelemetry();
+  });
+
+  afterEach(() => {
+    restoreEnv();
+    resetRoutingTelemetry();
+  });
+
+  it('012-T4.1: routing decision p99 stays under 5ms', () => {
+    const N = 200;
+    const queries = [
+      'find decision record',
+      'why chose auth',
+      'refactor module',
+      'fix the bug in handler',
+      'understand architecture',
+      'cli-opencode',
+      'feature flag cleanup',
+    ];
+    const samples: number[] = [];
+    for (let i = 0; i < N; i++) {
+      const q = queries[i % queries.length];
+      const start = performance.now();
+      routeQuery(q);
+      samples.push(performance.now() - start);
+    }
+    samples.sort((a, b) => a - b);
+    const p99 = samples[Math.floor(N * 0.99) - 1];
+    // 5ms budget per spec REQ-005. Generous on cold-start DB (entity-density
+    // returns 0 quickly when getDb throws).
+    expect(p99).toBeLessThan(5);
   });
 });

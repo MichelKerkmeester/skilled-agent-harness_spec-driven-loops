@@ -141,6 +141,25 @@ opencode run --share --port 4096 \
   "Run iteration 3 of the deep-research loop for the approved spec folder." 2>&1
 ```
 
+### 5. Background / Automation Dispatch (REQUIRES `</dev/null`)
+
+> **⚠️ Critical:** opencode v1.14.39 reads stdin at startup before session creation. Any non-interactive dispatch that redirects stdout/stderr MUST also redirect stdin from `/dev/null`, or the process hangs at 0% CPU after the `+60s snapshot prune cleanup` log line. Foreground `| tail` accidentally bypasses the bug because the upstream pipe stage is empty; `> stdout.log 2> stderr.log` does not.
+
+```bash
+# RIGHT — automation pattern with explicit closed stdin
+timeout 720 opencode run \
+  --model deepseek/deepseek-v4-pro \
+  --variant high \
+  --pure \
+  --dangerously-skip-permissions \
+  "$(cat prompt.md)" \
+  </dev/null \
+  > stdout.log \
+  2> stderr.log
+```
+
+See `references/integration_patterns.md` §6 for the full failure-mode + fix matrix and `CHANGELOG-2026-05-08-tool-name-regex-fix.md` §Fix 4 for discovery context.
+
 <!-- /ANCHOR:quick-start -->
 
 ---

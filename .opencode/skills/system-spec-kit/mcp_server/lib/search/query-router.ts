@@ -4,6 +4,7 @@
 // Tier-to-channel-subset routing for query complexity
 // Maps classifier tiers to channel subsets for selective pipeline execution.
 
+import type Database from 'better-sqlite3';
 import {
   classifyQueryComplexity,
   isComplexityRouterEnabled,
@@ -18,8 +19,12 @@ import {
   mergeQueryPlans,
   type QueryPlan,
 } from '../query/query-plan.js';
+import * as vectorIndex from './vector-index.js';
+import { getEntityDensityScore } from './entity-density.js';
+import { recordInvocation } from './routing-telemetry.js';
 
 // Feature catalog: Query complexity router
+// Feature catalog: Causal graph channel routing utilization
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -61,6 +66,9 @@ const BM25_PRESERVING_ARTIFACTS = new Set([
   'implementation-summary',
   'research',
 ]);
+
+/** Entity-density threshold: ≥2 query terms hitting high-degree memory rows. */
+const ENTITY_DENSITY_ACTIVATION_THRESHOLD = 2;
 
 /* ───────────────────────────────────────────────────────────────
    2. DEFAULT ROUTING CONFIG
@@ -127,6 +135,67 @@ function shouldPreserveBm25(query: string): boolean {
   return BM25_PRESERVING_ARTIFACTS.has(artifact);
 }
 
+/**
+ * Default-ON feature flag for graph-channel preservation. Set
+ * SPECKIT_GRAPH_CHANNEL_PRESERVATION=false (P2 / REQ-008) to no-op the
+ * shouldPreserveGraph + entity-density override and revert to byte-for-byte
+ * pre-change channel selection.
+ */
+function isGraphChannelPreservationEnabled(): boolean {
+  const raw = process.env.SPECKIT_GRAPH_CHANNEL_PRESERVATION?.toLowerCase()?.trim();
+  return raw !== 'false';
+}
+
+interface GraphPreservationDecision {
+  preserved: boolean;
+  reasons: string[];
+  includeDegree: boolean;
+}
+
+/**
+ * REQ-001 / REQ-003: Decide whether the graph channel should be added to a
+ * routing decision regardless of complexity tier. Mirrors shouldPreserveBm25
+ * semantics (intent-driven) and adds an entity-density override.
+ *
+ * - Intent-driven: classifyIntent ∈ {find_decision, find_spec} → preserved.
+ * - Entity-density: ≥2 query terms exact-match titles/triggers of memory_index
+ *   rows with ≥3 outgoing causal_edges → preserved + degree.
+ *
+ * Cold-start (empty causal_edges or missing DB): the entity-density signal
+ * scores 0 and the override stays inactive (REQ-006).
+ */
+function shouldPreserveGraph(
+  query: string,
+  db: Database.Database | null,
+): GraphPreservationDecision {
+  const reasons: string[] = [];
+  let preserved = false;
+  let includeDegree = false;
+
+  const intent = classifyIntent(query).intent;
+  if (intent === 'find_spec' || intent === 'find_decision') {
+    preserved = true;
+    reasons.push('graph-preserved-by-intent');
+  }
+
+  const densityScore = getEntityDensityScore(query, db);
+  if (densityScore >= ENTITY_DENSITY_ACTIVATION_THRESHOLD) {
+    preserved = true;
+    includeDegree = true;
+    reasons.push('graph-preserved-by-entity-density');
+  }
+
+  return { preserved, reasons, includeDegree };
+}
+
+function safeGetDb(): Database.Database | null {
+  try {
+    return vectorIndex.getDb();
+  } catch {
+    return null;
+  }
+}
+
 /* ───────────────────────────────────────────────────────────────
    4. CONVENIENCE: CLASSIFY + ROUTE
 ----------------------------------------------------------------*/
@@ -167,6 +236,7 @@ function routeQuery(
         reason: 'Complexity router disabled, preserving full pipeline behavior',
       },
     });
+    recordInvocation([...ALL_CHANNELS]);
     return {
       tier: classification.tier,
       channels: [...ALL_CHANNELS],
@@ -178,9 +248,38 @@ function routeQuery(
   const channels = getChannelSubset(classification.tier);
   const artifactClass = getStrategyForQuery(query).detectedClass;
   const intent = classifyIntent(query).intent;
-  const adjustedChannels = classification.tier === 'simple' && shouldPreserveBm25(query)
+
+  // Existing override: bm25 preservation for simple-tier authority-artifact
+  // queries. Behavior unchanged.
+  let adjustedChannels = classification.tier === 'simple' && shouldPreserveBm25(query)
     ? enforceMinimumChannels([...channels, 'bm25'])
     : channels;
+  const routingReasons: string[] = [];
+  if (
+    classification.tier === 'simple'
+    && adjustedChannels.includes('bm25')
+    && !channels.includes('bm25')
+  ) {
+    routingReasons.push('bm25-preserved-for-authority-artifact');
+  }
+
+  // REQ-002 / REQ-003: graph-channel preservation override. Adds the graph
+  // channel to simple/moderate tiers when intent is find_spec/find_decision OR
+  // when the entity-density signal fires. Complex-tier already includes graph
+  // so the override is a no-op there. The feature flag (REQ-008, default-ON)
+  // keeps a clean revert path.
+  if (isGraphChannelPreservationEnabled() && classification.tier !== 'complex') {
+    const decision = shouldPreserveGraph(query, safeGetDb());
+    if (decision.preserved) {
+      const additions: ChannelName[] = ['graph'];
+      if (decision.includeDegree) additions.push('degree');
+      adjustedChannels = enforceMinimumChannels([...adjustedChannels, ...additions]);
+      for (const reason of decision.reasons) {
+        if (!routingReasons.includes(reason)) routingReasons.push(reason);
+      }
+    }
+  }
+
   const routingPlan = buildRoutingQueryPlan({
     query,
     complexity: classification.tier,
@@ -189,10 +288,10 @@ function routeQuery(
     allChannels: ALL_CHANNELS,
     intent,
     authorityNeed: inferAuthorityNeed({ intent, artifactClass, query }),
-    routingReasons: classification.tier === 'simple' && adjustedChannels.includes('bm25') && !channels.includes('bm25')
-      ? ['bm25-preserved-for-authority-artifact']
-      : [],
+    routingReasons,
   });
+
+  recordInvocation(adjustedChannels);
 
   return {
     tier: classification.tier,
@@ -217,10 +316,13 @@ export {
   ALL_CHANNELS,
   MIN_CHANNELS,
   FALLBACK_CHANNELS,
+  ENTITY_DENSITY_ACTIVATION_THRESHOLD,
 
   // Functions
   getChannelSubset,
   routeQuery,
+  shouldPreserveGraph,
+  isGraphChannelPreservationEnabled,
 
   // Internal helpers (exported for testing)
   enforceMinimumChannels,

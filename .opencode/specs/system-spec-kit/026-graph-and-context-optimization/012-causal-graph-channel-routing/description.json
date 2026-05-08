@@ -1,0 +1,24 @@
+{
+  "specFolder": "026-graph-and-context-optimization/012-causal-graph-channel-routing",
+  "description": "Activate the graph and degree channels for intent-driven and entity-rich short queries. shouldPreserveGraph + entity-density override + routing-telemetry rolling counter expose graphChannelInvocationRate via memory_health.",
+  "keywords": [
+    "012-causal-graph-channel-routing",
+    "shouldPreserveGraph",
+    "entity-density override",
+    "graphChannelInvocationRate",
+    "graph-preserved-by-intent",
+    "graph-preserved-by-entity-density",
+    "SPECKIT_GRAPH_CHANNEL_PRESERVATION",
+    "routing-telemetry rolling counter",
+    "complexity router graph activation"
+  ],
+  "lastUpdated": "2026-05-08T14:13:00Z",
+  "specId": "012",
+  "folderSlug": "causal-graph-channel-routing",
+  "parentChain": [
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

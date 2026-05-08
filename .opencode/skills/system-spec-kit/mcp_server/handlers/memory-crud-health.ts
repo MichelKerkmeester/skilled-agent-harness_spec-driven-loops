@@ -20,6 +20,7 @@ import { toErrorMessage } from '../utils/index.js';
 import { summarizeAliasConflicts } from './memory-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import { getEmbeddingRetryStats } from '../lib/providers/retry-manager.js';
+import { getSnapshot as getRoutingTelemetrySnapshot } from '../lib/search/routing-telemetry.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -621,6 +622,8 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     hints.push(`${aliasConflicts.divergentHashGroups} alias group(s) have divergent content hashes`);
   }
 
+  const routingTelemetry = getRoutingTelemetrySnapshot();
+
   return createMCPSuccessResponse({
     tool: 'memory_health',
     summary,
@@ -643,6 +646,12 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         databasePath: redactPath(vectorIndex.getDbPath() ?? ''),
       },
       embeddingRetry,
+      routing: {
+        graphChannelInvocationRate: routingTelemetry.graphChannelInvocationRate,
+        channelInvocationRates: routingTelemetry.channelInvocationRates,
+        totalRecorded: routingTelemetry.totalRecorded,
+        windowSize: routingTelemetry.windowSize,
+      },
     },
     hints,
     startTime,

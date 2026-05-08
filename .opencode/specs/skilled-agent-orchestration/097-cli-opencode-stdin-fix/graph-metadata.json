@@ -1,0 +1,18 @@
+{
+  "packet_id": "097-cli-opencode-stdin-fix",
+  "parent_id": "skilled-agent-orchestration",
+  "level": 2,
+  "title": "cli-opencode `</dev/null` stdin-redirect fix",
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "in-progress",
+    "completion_pct": 0,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-08T13:30:00Z",
+  "lastUpdatedAt": "2026-05-08T13:30:00Z"
+}

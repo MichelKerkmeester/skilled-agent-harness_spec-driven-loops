@@ -1,0 +1,28 @@
+{
+  "title": "cli-opencode `</dev/null` stdin-redirect fix",
+  "description": "Add `</dev/null` to all 4 deep-research/deep-review YAML workflow `if_cli_opencode` dispatches, the cli-opencode skill (SKILL.md/README/references/assets), 2 stress-test dispatch scripts, and the cli-opencode CHANGELOG. opencode v1.14.39 reads stdin at startup before session creation; non-interactive automation that redirects stdout/stderr without explicit closed stdin hangs forever at 0% CPU after `+60s snapshot prune cleanup`. The 9-character `</dev/null` redirect provides EOF on stdin and unblocks the dispatch.",
+  "trigger_phrases": [
+    "097 cli-opencode stdin fix",
+    "opencode run hangs",
+    "opencode dev null stdin",
+    "opencode background dispatch hang",
+    "cli-opencode automation hang"
+  ],
+  "importance_tier": "important",
+  "contextType": "fix",
+  "level": 2,
+  "status": "in-progress",
+  "priority": "P0",
+  "createdAt": "2026-05-08T13:30:00Z",
+  "branch": "main",
+  "parent_track": "skilled-agent-orchestration",
+  "parent_id": null,
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "in-progress",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  }
+}

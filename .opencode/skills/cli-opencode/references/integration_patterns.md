@@ -258,31 +258,91 @@ Options:
    use case 2 instead of refusal.
 ```
 
-## 6. SILENT STDIN CONSUMPTION (BACKGROUND DISPATCH)
+## 6. STDIN HANDLING — `</dev/null` IS REQUIRED FOR ALL NON-INTERACTIVE DISPATCH
 
-When dispatching `opencode run` in the background inside a `while read` loop, the same trap that affects cli-codex applies: the backgrounded process inherits the loop's stdin and silently consumes the remaining input.
+**`opencode run` reads stdin at startup before session creation (opencode v1.14.39).** Without an explicit closed stdin, ANY non-interactive automation that redirects stdout/stderr hangs forever at 0% CPU — even with a clean tool registry, valid model, and `--pure` set. This is the third independent root cause discovered during the 027-xce-research-based-refinement deep-research run on 2026-05-08; see `../CHANGELOG-2026-05-08-tool-name-regex-fix.md` §Fix 4 and memory `feedback_opencode_run_requires_dev_null_stdin.md`.
 
-### Failure pattern
+### Hang symptom (diagnostic)
+
+If you see ALL of:
+- Process at 0% CPU after >60s
+- `~/.local/share/opencode/log/<timestamp>.log` last entry is `service=snapshot prune=7.days cleanup`
+- 0 bytes stdout, 0 bytes stderr
+- No TCP connections to provider
+- 12-min timeout fires, exit code 124
+
+…it's the stdin-startup-deadlock. Append `</dev/null`.
+
+### Failure patterns (all hang)
 
 ```bash
-# WRONG — background opencode silently consumes the rest of input.jsonl
+# WRONG #1 — file redirect without </dev/null
+opencode run --model X "<prompt>" > stdout.log 2> stderr.log
+
+# WRONG #2 — combined redirect via tee
+opencode run --model X "<prompt>" 2>&1 | tee combined.log
+
+# WRONG #3 — background opencode in while-read loop without </dev/null
 while IFS= read -r line; do
   opencode run --format json "<prompt>" > "$LOG" 2>&1 &
 done < input.jsonl
+# Both bugs apply: stdin-startup-read AND silent loop-stdin consumption.
 ```
 
-The first iteration spawns `opencode run`. The backgrounded process inherits the loop's stdin and reads the rest of `input.jsonl`. The loop exits after one or two iterations with no error.
-
-### Fix
+### Fix patterns (all work)
 
 ```bash
-# CORRECT — redirect background opencode stdin from /dev/null
+# RIGHT #1 — file redirect with </dev/null
+opencode run --model X "<prompt>" </dev/null > stdout.log 2> stderr.log
+
+# RIGHT #2 — combined redirect with explicit closed stdin via < /dev/null
+opencode run --model X "<prompt>" </dev/null 2>&1 | tee combined.log
+
+# RIGHT #3 — background in while-read loop
 while IFS= read -r line; do
   opencode run --format json "<prompt>" > "$LOG" 2>&1 </dev/null &
 done < input.jsonl
+
+# RIGHT #4 — foreground pipe to tail (works WITHOUT </dev/null because the empty pipe upstream provides EOF)
+opencode run --model X "<prompt>" 2>&1 | tail -15
 ```
 
-The `</dev/null` redirect prevents the backgrounded process from consuming the loop's stdin. This pattern is required for any cli-opencode background dispatch inside a read loop.
+### Why foreground `| tail` accidentally works
+
+When you run `opencode run "..." 2>&1 | tail`, the shell sets up a pipe BEFORE invoking opencode. opencode's stdin is NOT connected to your terminal — it's connected to the upstream pipe stage, which has no producer (the prompt is the positional argument, not piped via stdin). The shell closes that pipe immediately, opencode reads EOF, and startup proceeds. This is fragile — `2>&1 | tee combined.log` does NOT work because `tee` may keep the pipe open differently depending on shell + tee implementation. **Always use `</dev/null` explicitly** rather than relying on accidental pipe behavior.
+
+### Position rule
+
+`</dev/null` belongs:
+- AFTER the prompt positional argument
+- BEFORE the `> stdout 2> stderr` redirects (or anywhere on the command line — shell parses redirects independent of position, but right-after-prompt is conventional and easiest to spot during code review)
+
+```bash
+# canonical order
+opencode run --flags "<prompt>" </dev/null > stdout 2> stderr
+#                              ^^^^^^^^^^
+#                              stdin from /dev/null (immediate EOF)
+```
+
+### Background dispatch from automation scripts (the deep-research / deep-review pattern)
+
+```bash
+timeout 720 opencode run \
+  --model deepseek/deepseek-v4-pro \
+  --variant high \
+  --pure \
+  --dangerously-skip-permissions \
+  "$(cat prompt.md)" \
+  </dev/null \
+  > "$LOG_DIR/iter-N-stdout.log" \
+  2> "$LOG_DIR/iter-N-stderr.log"
+```
+
+This is the pattern enforced by the 4 `if_cli_opencode` blocks in the deep-research and deep-review YAML workflow files. Any new automation that dispatches opencode MUST follow it.
+
+### Upstream
+
+The bug is in opencode v1.14.39. The fix would be: in the `run` subcommand entrypoint, check `process.stdin.isTTY` (or equivalent) and skip the stdin read in non-interactive mode — the message is already provided as a positional argument, so stdin is informational only. Until upstream patches this, `</dev/null` at every callsite is the workaround. File a bug report with opencode-ai/opencode if not already filed.
 
 ## 7. MEMORY HANDBACK
 

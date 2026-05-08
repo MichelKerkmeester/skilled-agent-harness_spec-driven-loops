@@ -124,6 +124,20 @@ opencode run \
 | `--format json` | json | Structured event stream is what external runtimes parse |
 | `--dir` | repo root | Pin the working directory to avoid CWD ambiguity |
 
+### Stdin handling — `</dev/null` is required for non-interactive dispatch
+
+> **opencode v1.14.39 reads stdin at startup before session creation.** If you redirect stdout/stderr to files in automation (`> stdout.log 2> stderr.log`), opencode hangs at 0% CPU after the `+60s snapshot prune cleanup` log line because stdin remains attached to the parent terminal and never receives EOF.
+
+ALWAYS append `</dev/null` AFTER the prompt argument and BEFORE the stdout/stderr redirects:
+
+```bash
+opencode run --model X "<prompt>" </dev/null > stdout.log 2> stderr.log
+#                                  ^^^^^^^^^^
+#                                  redirects stdin from /dev/null → immediate EOF
+```
+
+Foreground `| tail` accidentally works because the upstream pipe stage provides closed stdin, but `> file 2> file` does not. See `references/integration_patterns.md` §6 for the full failure-mode + fix matrix and `../CHANGELOG-2026-05-08-tool-name-regex-fix.md` §Fix 4 for the discovery context.
+
 ### Sessions, share URLs, and ports
 
 `--share` publishes the session over the OpenCode share infrastructure. The skill ONLY appends `--share` for use case 2 (in-OpenCode parallel detached sessions). External-runtime dispatches do NOT publish share URLs by default.
