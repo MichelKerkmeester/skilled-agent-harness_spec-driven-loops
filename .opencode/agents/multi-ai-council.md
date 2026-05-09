@@ -5,8 +5,8 @@ mode: all
 temperature: 0.1
 permission:
   read: allow
-  write: { mode: allow, paths: ["ai-council/**"] }
-  edit: { mode: allow, paths: ["ai-council/**"] }
+  write: allow
+  edit: allow
   bash: deny
   grep: allow
   glob: allow

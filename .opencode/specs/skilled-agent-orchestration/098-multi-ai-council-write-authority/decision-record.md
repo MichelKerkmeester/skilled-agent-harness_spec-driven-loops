@@ -75,14 +75,14 @@ Flip the council's permission YAML to:
 ```yaml
 permission:
   write: allow
-    paths: ["ai-council/**"]
   edit: allow
-    paths: ["ai-council/**"]
   bash: deny
   patch: deny
 ```
 
 Apply the flip across all 4 runtime mirrors (`.opencode`, `.claude`, `.codex`, `.gemini`) atomically. The 4-runtime mirror parity test from packet 080 extends to cover the new permission shape.
+
+> **OpenCode schema note (corrected 2026-05-09):** the original draft of this ADR proposed `write: { mode: allow, paths: ["ai-council/**"] }` as the YAML. OpenCode's permission schema does not accept a `paths` array on `PermissionActionConfig` — the valid forms are the simple action strings (`allow` | `ask` | `deny`) or a glob-keyed map. Loading the path-array form fails with `Expected PermissionActionConfig, got ["ai-council/**"] permission.write.paths`. The shipped form is the simple `allow` shown above; **path-scope is enforced at the writer-library layer** (`scripts/multi-ai-council/lib/persist-artifacts.js` throws `OUT_OF_SCOPE_WRITE` for any target outside `ai-council/**`). Defense-in-depth via the lib check; the YAML is the runtime permission, not the path firewall.
 
 
 <!-- /ANCHOR:adr-001-decision -->

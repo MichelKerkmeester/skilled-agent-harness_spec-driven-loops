@@ -50,38 +50,9 @@ UTCP_CONFIG_FILE = ".utcp_config.json"
 multi_agent = true
 child_agents_md = true
 
-# Profiles for codex exec -p <name> (non-interactive delegation)
-[profiles.context]
-sandbox_mode = "read-only"
-model_reasoning_effort = "high"
-
-[profiles.deep-review]
-sandbox_mode = "workspace-write"
-model_reasoning_effort = "high"
-
-[profiles.debug]
-sandbox_mode = "workspace-write"
-model_reasoning_effort = "high"
-
-[profiles.orchestrate]
-sandbox_mode = "read-only"
-model_reasoning_effort = "high"
-
-[profiles.research]
-sandbox_mode = "workspace-write"
-model_reasoning_effort = "high"
-
-[profiles.review]
-sandbox_mode = "read-only"
-model_reasoning_effort = "high"
-
-[profiles.multi-ai-council]
-sandbox_mode = "read-only"
-model_reasoning_effort = "high"
-
-[profiles.write]
-sandbox_mode = "workspace-write"
-model_reasoning_effort = "high"
+# Profiles for `codex exec -p <name>` are NOT defined here.
+# Codex ignores [profiles.*] in project-local configs.
+# They live at user level (~/.codex/config.toml) — see entries there.
 
 # Agents for interactive multi-agent TUI (codex with multi_agent feature)
 [agents.code]

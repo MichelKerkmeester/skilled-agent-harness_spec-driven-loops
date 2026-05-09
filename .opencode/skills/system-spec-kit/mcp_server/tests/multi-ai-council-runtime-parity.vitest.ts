@@ -29,8 +29,12 @@ function body(text: string): string {
 describe('multi-ai-council runtime mirror parity', () => {
   it('keeps markdown mirror permission YAML byte-equivalent', () => {
     const canonical = frontmatter(read(markdownMirrors[0]));
-    expect(canonical).toContain('write: { mode: allow, paths: ["ai-council/**"] }');
-    expect(canonical).toContain('edit: { mode: allow, paths: ["ai-council/**"] }');
+    // OpenCode permission schema accepts `allow` | `ask` | `deny` strings or
+    // a glob-keyed object — NOT a `paths: [...]` array. Path-scope to
+    // `ai-council/**` is enforced in lib/persist-artifacts.js via
+    // OUT_OF_SCOPE_WRITE rejection. See ADR-001 follow-up note.
+    expect(canonical).toContain('write: allow');
+    expect(canonical).toContain('edit: allow');
     expect(canonical).toContain('bash: deny');
     expect(canonical).toContain('patch: deny');
 
