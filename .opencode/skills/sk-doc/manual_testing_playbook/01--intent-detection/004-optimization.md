@@ -5,7 +5,7 @@ title: 'OPTIMIZATION intent: rewrite a doc for token efficiency / llms.txt gener
 expected_intent: OPTIMIZATION
 expected_resources:
   - references/global/optimization.md
-  - assets/documentation/llmstxt_templates.md
+  - assets/llmstxt_templates.md
 expected_token_range_input: 800-2500
 expected_token_range_output: 800-2500
 created: 2026-05-05
@@ -56,7 +56,7 @@ Optimize this long SKILL.md for token efficiency and generate an llms.txt summar
 - **Intent picked**: `OPTIMIZATION`
 - **Resources loaded**:
   - `references/global/optimization.md`
-  - `assets/documentation/llmstxt_templates.md`
+  - `assets/llmstxt_templates.md`
 - **Outcome**: CLI loads only the two optimization-specific resources and produces a structured response describing token-compression strategies + an llms.txt scaffold suggestion.
 
 ## Cross-CLI Variants

@@ -21,8 +21,8 @@ expected_resources:
   - assets/skill/skill_reference_template.md
   - assets/agent_template.md
   - assets/command_template.md
-  - assets/documentation/readme_template.md
-  - assets/documentation/changelog_template.md
+  - assets/readme/readme_template.md
+  - assets/changelog_template.md
   - assets/flowcharts/simple_workflow.md
   - assets/flowcharts/decision_tree_flow.md
 expected_token_range_input: 5000-10000

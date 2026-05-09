@@ -86,7 +86,7 @@ operating_mode:
 
 Packet 083 trimmed 36 frontmatter descriptions when the project hit ~10,050 chars and Claude Code dropped 15 from auto-discovery. Without a permanent audit tool, the same drift will recur silently as new skills are added. This command provides the audit that 083 should have shipped. It is composable: `--json --fail-over=5600` is the recommended pre-commit / CI invocation.
 
-Reference: see `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md` § "Description Budget & Trim Style" for the trim style guide. The audit script reuses constants from `.opencode/skills/sk-doc/scripts/quick_validate.py`.
+Reference: see `.opencode/skills/sk-doc/assets/frontmatter_templates.md` § "Description Budget & Trim Style" for the trim style guide. The audit script reuses constants from `.opencode/skills/sk-doc/scripts/quick_validate.py`.
 
 ---
 

@@ -25,7 +25,7 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 - Creating new README for any folder or project
 - User requests "create a README", "add documentation", "write a README"
 - Folder needs comprehensive documentation
-- Workflow: [readme_creation.md](./references/specific/readme_creation.md) | Template: [readme_template.md](./assets/documentation/readme_template.md)
+- Workflow: [readme_creation.md](./references/specific/readme_creation.md) | Template: [readme_template.md](./assets/readme/readme_template.md)
 
 **Frontmatter Validation** - Use `frontmatter_templates.md` when:
 - Validating YAML frontmatter in any document
@@ -36,7 +36,7 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 - Authoring a global component changelog at `.opencode/changelog/{NN--component}/v{VERSION}.md`
 - Composing GitHub release notes that mirror the changelog body
 - Choosing between compact (under 10 changes) and expanded (10+ changes or major) formats
-- Template: [changelog_template.md](./assets/documentation/changelog_template.md). Used by `/create:changelog` (auto + confirm). Nested packet-local changelogs use the spec-kit templates at `.opencode/skills/system-spec-kit/templates/changelog/` instead.
+- Template: [changelog_template.md](./assets/changelog_template.md). Used by `/create:changelog` (auto + confirm). Nested packet-local changelogs use the spec-kit templates at `.opencode/skills/system-spec-kit/templates/changelog/` instead.
 
 **Validation Workflow** - Apply after Write/Edit operations:
 - Auto-correct filename violations (ALL CAPS to lowercase, hyphens to underscores)
@@ -158,7 +158,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 
 - `references/global/` for documentation standards, validation rules, optimization guidance, voice rules, and shared execution workflows.
 - `references/specific/` for document-family and component creation guides such as skill creation, agent creation, install guides, feature catalogs, and manual testing playbooks.
-- `assets/documentation/` for README, frontmatter, llms.txt, install-guide, and changelog/release-notes templates.
+- `assets/readme/` for README and install-guide scaffolds; `assets/changelog_template.md`, `assets/frontmatter_templates.md`, and `assets/llmstxt_templates.md` at the assets/ root for cross-cutting templates.
 - `assets/skill/` for skill creation templates; `assets/agent_template.md` and `assets/command_template.md` at the assets/ root for agent and command creation templates.
 - `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root for feature catalog and manual testing playbook package templates.
 - `assets/flowcharts/` for reusable ASCII flowchart patterns and diagram examples.
@@ -205,22 +205,22 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "DOC_QUALITY": ["references/global/validation.md", "references/global/workflows.md", "references/global/core_standards.md", "references/global/evergreen_packet_id_rule.md"],
-    "OPTIMIZATION": ["references/global/optimization.md", "assets/documentation/llmstxt_templates.md"],
+    "OPTIMIZATION": ["references/global/optimization.md", "assets/llmstxt_templates.md"],
     "SKILL_CREATION": ["references/specific/skill_creation.md", "assets/skill/skill_md_template.md", "assets/skill/skill_reference_template.md"],
     "AGENT_COMMAND": ["references/specific/agent_creation.md", "assets/agent_template.md", "assets/command_template.md"],
     "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
-    "INSTALL_GUIDE": ["assets/documentation/install_guide_template.md", "references/specific/install_guide_creation.md"],
+    "INSTALL_GUIDE": ["assets/readme/install_guide_template.md", "references/specific/install_guide_creation.md"],
     "HVR": ["references/global/hvr_rules.md"],
     "PLAYBOOK": ["references/specific/manual_testing_playbook_creation.md", "assets/testing_playbook/manual_testing_playbook_template.md"],
     "FEATURE_CATALOG": ["references/specific/feature_catalog_creation.md", "assets/feature_catalog/feature_catalog_template.md"],
-    "README_CREATION": ["references/specific/readme_creation.md", "assets/documentation/readme_template.md"],
-    "CHANGELOG": ["assets/documentation/changelog_template.md"],
+    "README_CREATION": ["references/specific/readme_creation.md", "assets/readme/readme_template.md"],
+    "CHANGELOG": ["assets/changelog_template.md"],
 }
 
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
     "ON_DEMAND_KEYWORDS": ["full standards", "all templates", "deep dive", "readme", "documentation", "manual testing playbook", "feature catalog", "release notes", "corpus/readme", "corpus documentation"],
-    "ON_DEMAND": ["assets/documentation/frontmatter_templates.md"],
+    "ON_DEMAND": ["assets/frontmatter_templates.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -434,7 +434,7 @@ Need fast navigation? See [quick_reference.md](./references/global/quick_referen
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/global/quick_reference.md`, routed references under references/global/ and references/specific/, templates under assets/ root (`agent_template.md`, `command_template.md`, `feature_catalog/`, `testing_playbook/`) plus assets/documentation/, assets/skill/, and assets/flowcharts/, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/global/quick_reference.md`, routed references under references/global/ and references/specific/, templates under assets/ root (`agent_template.md`, `command_template.md`, `feature_catalog/`, `testing_playbook/`) plus assets/readme/, assets/skill/, and assets/flowcharts/, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/init_skill.py`, `scripts/package_skill.py`, `scripts/quick_validate.py`, `scripts/validate_flowchart.sh`.
 

@@ -614,7 +614,7 @@ workflow:
     description_budget:
       soft_target: 130
       hard_cap: 1536
-      reference: ".opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md § Description Budget & Trim Style"
+      reference: ".opencode/skills/sk-doc/assets/frontmatter_templates.md § Description Budget & Trim Style"
     outputs:
     - quality_score: number
     - validation_findings: list

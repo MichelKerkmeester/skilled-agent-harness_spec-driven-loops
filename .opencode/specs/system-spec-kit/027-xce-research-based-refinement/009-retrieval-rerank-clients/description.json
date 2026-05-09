@@ -1,0 +1,52 @@
+{
+  "title": "Phase 009 — Retrieval Rerank Clients (Shared RerankClient + EmbeddingCacheClient Interfaces)",
+  "trigger_phrases": [
+    "027 phase 009",
+    "retrieval rerank clients",
+    "shared RerankClient",
+    "EmbeddingCacheClient",
+    "shared rerank client coco memory",
+    "cross-backend embedding overlap telemetry"
+  ],
+  "level": 3,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-09T11:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "027-xce-research-based-refinement",
+  "manual": {
+    "depends_on": []
+  },
+  "soft_depends_on": [],
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-retrieval-rerank-clients",
+  "description": "Phase 009 — ADAPT pt-03 RQ-B5 client extraction. Extract shared RerankClient<T> from memory's cross-encoder.ts so memory backend + coco-index share provider/cache/circuit-breaker semantics. Define EmbeddingCacheClient interface (memory adapter only — Coco adapter DEFERRED until cross-backend hit-rate overlap telemetry justifies). SKIP shared indexing pipelines (binding boundary). 4 sub-phases; ~250-420 prod LOC + ~120-220 tests. Memory consumer behavior unchanged after extraction; CocoIndex consumer opt-in via SPECKIT_COCO_USE_SHARED_RERANK flag.",
+  "keywords": [
+    "feature",
+    "specification",
+    "rerank",
+    "client",
+    "embedding",
+    "cache",
+    "interface",
+    "extraction",
+    "shared",
+    "voyage"
+  ],
+  "lastUpdated": "2026-05-09T11:00:00Z",
+  "specId": "009",
+  "folderSlug": "retrieval-rerank-clients",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

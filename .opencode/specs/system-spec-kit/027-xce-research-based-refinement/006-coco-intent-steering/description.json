@@ -1,0 +1,52 @@
+{
+  "title": "Phase 006 — Coco-Index Intent Steering + Bounded Query Expansion",
+  "trigger_phrases": [
+    "027 phase 006",
+    "coco intent steering",
+    "mcp-coco-index intent classifier",
+    "coco query expansion",
+    "coco advisor first-action hint",
+    "mcp-coco-index intent steering query expansion"
+  ],
+  "level": 3,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-09T11:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "027-xce-research-based-refinement",
+  "manual": {
+    "depends_on": []
+  },
+  "soft_depends_on": [
+    "004-skill-advisor-first-action-mandate"
+  ],
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-coco-intent-steering",
+  "description": "Phase 006 — ADAPT XCE's intent-steering pattern into mcp-coco-index. Rule-based intent classifier shim before query embedding, bounded query expansion (≤3 embeddings, exact-intent suppression), Phase-004 advisor first-action hint. Cross-language (Python+TypeScript). Default-off behind SPECKIT_COCOINDEX_INTENT_EXPAND. Phase-005 eval gate before active rollout. ~250-350 prod LOC + ~120-180 tests.",
+  "keywords": [
+    "feature",
+    "specification",
+    "coco-index",
+    "intent",
+    "steering",
+    "query",
+    "expansion",
+    "rerank"
+  ],
+  "lastUpdated": "2026-05-09T11:00:00Z",
+  "specId": "006",
+  "folderSlug": "coco-intent-steering",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

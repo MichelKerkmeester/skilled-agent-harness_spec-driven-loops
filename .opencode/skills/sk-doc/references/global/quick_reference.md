@@ -176,13 +176,13 @@ python scripts/package_skill.py skill-path        # Package skill
 │   ├── command_template.md (slash command template)
 │   ├── feature_catalog/ (feature catalog template bundle)
 │   ├── testing_playbook/ (manual testing playbook template bundle)
-│   ├── documentation/
-│   │   ├── frontmatter_templates.md (YAML frontmatter examples)
-│   │   ├── readme_template.md (README structure and patterns)
-│   │   ├── readme_code_template.md (README for code repos/projects)
+│   ├── changelog_template.md (changelog/release-notes template)
+│   ├── frontmatter_templates.md (YAML frontmatter examples)
+│   ├── llmstxt_templates.md (llms.txt generation examples)
+│   ├── readme/
 │   │   ├── install_guide_template.md (install guide template)
-│   │   ├── changelog_template.md (changelog/release-notes template)
-│   │   └── llmstxt_templates.md (llms.txt generation examples)
+│   │   ├── readme_code_template.md (README for code repos/projects)
+│   │   └── readme_template.md (README structure and patterns)
 │   ├── skill/
 │   │   ├── skill_md_template.md (SKILL.md file template)
 │   │   ├── skill_asset_template.md (skill asset template)
@@ -353,7 +353,7 @@ Validation note: the current validator checks the root playbook, but it does not
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
-- [frontmatter_templates.md](../../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
+- [frontmatter_templates.md](../../assets/frontmatter_templates.md) - Frontmatter by document type
 - [command_template.md](../../assets/command_template.md) - Command file templates
 - [feature_catalog_template.md](../../assets/feature_catalog/feature_catalog_template.md) - Feature catalog template
 - [feature_catalog_snippet_template.md](../../assets/feature_catalog/feature_catalog_snippet_template.md) - Per-feature catalog template

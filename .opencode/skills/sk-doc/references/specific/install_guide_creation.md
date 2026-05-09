@@ -280,7 +280,7 @@ $env:MCP_PATH = "$HOME\.mcp"
 - **[workflows.md](../global/workflows.md)** - Document creation workflows
 - **[quick_reference.md](../global/quick_reference.md)** - Quick command reference
 - **[skill_creation.md](./skill_creation.md)** - Skill creation workflow
-- **[install_guide_template.md](../../assets/documentation/install_guide_template.md)** - Template for new install guides
+- **[install_guide_template.md](../../assets/readme/install_guide_template.md)** - Template for new install guides
 
 ### Pre-Publish Checklist
 

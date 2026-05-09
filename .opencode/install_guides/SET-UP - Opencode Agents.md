@@ -1145,7 +1145,7 @@ done
 | ------------------------ | ------------------------------------------- | ------------------------ |
 | agent_template.md        | `../skill/sk-doc/assets/opencode/`          | Agent file structure     |
 | skill_md_template.md     | `../skill/sk-doc/assets/opencode/`          | SKILL.md structure       |
-| install_guide_template.md| `../skill/sk-doc/assets/documentation/`     | Install guide structure  |
+| install_guide_template.md| `../skill/sk-doc/assets/readme/`     | Install guide structure  |
 
 ### Quick Start Summary
 

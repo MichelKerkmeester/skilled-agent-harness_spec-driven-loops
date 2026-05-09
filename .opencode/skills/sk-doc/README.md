@@ -206,18 +206,13 @@ sk-doc/
 ├── SKILL.md                                         # Entry point with routing logic
 ├── README.md                                        # This file
 ├── assets/
-│   ├── documentation/                               # Document templates
-│   │   ├── changelog_template.md                    # Global changelog and GitHub release notes
-│   │   ├── frontmatter_templates.md                 # Frontmatter validation (11 types)
-│   │   ├── install_guide_template.md                # 5-phase install guide template
-│   │   ├── llmstxt_templates.md                     # llms.txt generation templates
-│   │   ├── readme_template.md                       # README structure with HVR rules
-│   │   ├── feature_catalog/
-│   │   │   ├── feature_catalog_template.md          # Root catalog scaffold
-│   │   │   └── feature_catalog_snippet_template.md  # Per-feature catalog file
-│   │   └── testing_playbook/
-│   │       ├── manual_testing_playbook_template.md  # Root playbook scaffold
-│   │       └── manual_testing_playbook_snippet_template.md  # Per-feature scenario file
+│   ├── changelog_template.md                    # Global changelog and GitHub release notes
+│   ├── frontmatter_templates.md                 # Frontmatter validation (11 types)
+│   ├── llmstxt_templates.md                     # llms.txt generation templates
+│   ├── readme/                                  # README-shaped scaffolds
+│   │   ├── install_guide_template.md            # 5-phase install guide template
+│   │   ├── readme_code_template.md              # README for code repos/projects
+│   │   └── readme_template.md                   # README structure with HVR rules
 │   ├── flowcharts/                                  # ASCII flowchart patterns (7 types)
 │   │   ├── simple_workflow.md                       # Linear sequential
 │   │   ├── decision_tree_flow.md                    # Branching logic

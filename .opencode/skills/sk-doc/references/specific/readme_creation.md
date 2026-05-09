@@ -84,7 +84,7 @@ Project, Skill and Feature READMEs use both tiers. Component and Code Folder REA
 
 ## 3. REQUIRED SECTIONS
 
-Every README follows a 9-section structure. For the full section-by-type requirements matrix (which sections are required, optional or skipped per README type), see [readme_template.md](../../assets/documentation/readme_template.md) Section 3.
+Every README follows a 9-section structure. For the full section-by-type requirements matrix (which sections are required, optional or skipped per README type), see [readme_template.md](../../assets/readme/readme_template.md) Section 3.
 
 **Minimum viable README**: Overview + Quick Start + Troubleshooting (for most non-root directories).
 
@@ -92,7 +92,7 @@ Every README follows a 9-section structure. For the full section-by-type require
 
 ## 4. SECTION WRITING STANDARDS
 
-For detailed "Must include" lists per section, see [readme_template.md](../../assets/documentation/readme_template.md) Section 5. This section covers workflow guidance and writing tips unique to each section.
+For detailed "Must include" lists per section, see [readme_template.md](../../assets/readme/readme_template.md) Section 5. This section covers workflow guidance and writing tips unique to each section.
 
 ### Overview (Section 1)
 
@@ -378,7 +378,7 @@ Use `[PLACEHOLDER]` format with descriptive names:
 ## 8. CROSS-REFERENCES
 
 ### Templates
-- [readme_template.md](../../assets/documentation/readme_template.md) - Copy-paste scaffold for new READMEs (section structure, "Must include" lists, complete template)
+- [readme_template.md](../../assets/readme/readme_template.md) - Copy-paste scaffold for new READMEs (section structure, "Must include" lists, complete template)
 
 ### Standards
 - [hvr_rules.md](../global/hvr_rules.md) - Human Voice Rules (writing standards)

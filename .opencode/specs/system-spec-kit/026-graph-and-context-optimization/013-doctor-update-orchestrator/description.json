@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
+  "description": "Feature Specification: 013 Doctor Update Orchestrator",
+  "keywords": [
+    "feature",
+    "specification",
+    "013",
+    "doctor",
+    "update",
+    "orchestrator"
+  ],
+  "lastUpdated": "2026-05-09T12:23:01.228Z",
+  "specId": "013",
+  "folderSlug": "doctor-update-orchestrator",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "09-05-26_13-15__existing-doctor-surface-5-commands-covers-code.md",
+    "09-05-26_13-23__phase-a-scaffold-complete-6-level-2-packet-docs.md"
+  ]
+}

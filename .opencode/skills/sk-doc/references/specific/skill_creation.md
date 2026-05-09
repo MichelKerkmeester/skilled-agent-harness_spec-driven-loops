@@ -44,7 +44,7 @@ skill-name/
     └── assets/           - Files used in output (subfolders OK for organization)
         ├── skill/         - Skill creation templates (SKILL.md, reference, asset)
         ├── agents/        - Agent and command creation templates
-        └── documentation/ - Document templates (README, install guides)
+        └── readme/ - README-shaped scaffolds (README, install guide)
 ```
 
 **Folder Organization Principle**:
@@ -53,7 +53,7 @@ skill-name/
   - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together for clarity
-  - Example: `assets/skill/`, `assets/documentation/`, `assets/flowcharts/`
+  - Example: `assets/skill/`, `assets/readme/`, `assets/flowcharts/`
 - **scripts/** = Typically flat, but subfolders OK for large script collections
 
 ### SKILL.md Requirements
@@ -407,7 +407,7 @@ version: 1.0.0
 ---
 ```
 
-> **Complete Reference**: For validation rules, format specifications, and all document types, see [frontmatter_templates.md](../../assets/documentation/frontmatter_templates.md)
+> **Complete Reference**: For validation rules, format specifications, and all document types, see [frontmatter_templates.md](../../assets/frontmatter_templates.md)
 
 ### Step 5: Packaging a Skill (~2 min)
 
@@ -590,7 +590,7 @@ description: "Multi-stack coding standards, references, and assets. Provides sur
 description: "Multi-stack coding standards and verification. Smart router auto-detects the active surface and loads matching code patterns."
 ```
 
-**Trim rules** (see [`frontmatter_templates.md` § Description Budget & Trim Style](../../assets/documentation/frontmatter_templates.md) for the canonical reference):
+**Trim rules** (see [`frontmatter_templates.md` § Description Budget & Trim Style](../../assets/frontmatter_templates.md) for the canonical reference):
 - **Soft target**: ≤ 130 chars for skills, ≤ 110 for commands. Hard cap 1,536 (Claude Code). Project ceiling 5,600 (leaves headroom for built-ins under 8,000 default).
 - **DROP**: product enumerations (ClickUp/Notion/Figma…), stack lists (Webflow/Motion.dev/GSAP…), marketing prose (`Mandatory for…`, `Provides…efficient…`), parenthetical jargon
 - **KEEP**: skill name token, primary verb, primary domain noun, mode suffixes (`:auto`/`:confirm`), numeric specifics (`9 steps`, `5-dim scoring`)
@@ -997,7 +997,7 @@ Use these templates when authoring layered skills:
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
 - [skill_reference_template.md](../../assets/skill/skill_reference_template.md) - Reference file templates
 - [skill_asset_template.md](../../assets/skill/skill_asset_template.md) - Asset file templates
-- [frontmatter_templates.md](../../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
+- [frontmatter_templates.md](../../assets/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files
 - [core_standards.md](../global/core_standards.md) - Document type rules and structural requirements

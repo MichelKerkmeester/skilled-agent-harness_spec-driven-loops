@@ -8,7 +8,14 @@
     "code_graph trace tool",
     "code_graph impact analysis",
     "advisor first-action mandate",
-    "HLD LLD generation pipeline"
+    "HLD LLD generation pipeline",
+    "027 pt-03 coco-index xce teachings",
+    "027 pt-03 memory backend causal graph xce",
+    "mcp-coco-index intent steering query expansion",
+    "memory backend semantic trigger matching",
+    "session-trace causal edge inference",
+    "feedback-ledger learned retention",
+    "shared rerank client coco memory"
   ],
   "level": 2,
   "schema_version": 1,
@@ -23,10 +30,15 @@
     "002-code-graph-trace",
     "003-code-graph-impact-analysis",
     "004-skill-advisor-first-action-mandate",
-    "005-code-graph-adoption-eval"
+    "005-code-graph-adoption-eval",
+    "006-coco-intent-steering",
+    "007-memory-semantic-triggers",
+    "008-feedback-reducers",
+    "009-retrieval-rerank-clients",
+    "010-coco-memory-context-extras"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-  "description": "Phase parent for the XCE adoption work. Pass 1 research complete (10 iterations + synthesis, 2026-05-08) and pt-02 cross-validation amendments applied. Implementation is scoped as 5 phase children: 004 first-action mandate (Level 1), 001 HLD/LLD (Level 2), 002 trace (Level 2), 003 impact analysis (Level 2), and 005 adoption eval (Level 3). Total ~1,900-2,320 LOC after pt-02 hardening.",
+  "description": "Phase parent for the XCE adoption work. Pass 1 research complete (10 iterations + synthesis, 2026-05-08), pt-02 cross-validation amendments applied (10 IRQs, 2026-05-09), pt-03 scope-expansion research complete (10 iterations, gpt-5.5 high fast, 2026-05-09), and 5 net-new L3 phase children scaffolded from pt-03 recommendations (2026-05-09). Total 10 phase children now scaffolded: 001 HLD/LLD (L2), 002 trace (L2), 003 impact analysis (L2), 004 first-action mandate (L1), 005 adoption eval (L3) — all from pt-01/pt-02; 006 coco intent steering (L3), 007 memory semantic triggers (L3), 008 feedback reducers + 3 P0 fixes (L3), 009 retrieval rerank clients (L3), 010 coco+memory context extras (L3) — all from pt-03. Phases 006-010 each have 9 files including resource-map.md per user directive. Pt-03 verdict: bounded ADAPT throughout, default-off / shadow-first, no SaaS, no embedding swaps. P0 fixes inside Phase 008 Sub-Phase 1 are correctness preconditions for Sub-Phases 4 (Consumer B) and 5 (Consumer C).",
   "keywords": [
     "feature",
     "specification",
@@ -34,15 +46,17 @@
     "research-based",
     "refinement"
   ],
-  "lastUpdated": "2026-05-08T16:39:21.326Z",
+  "lastUpdated": "2026-05-09T11:30:00.000Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
   "parentChain": [
     "system-spec-kit"
   ],
-  "memorySequence": 2,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "08-05-26_16-41__2nd-pass-cross-validation-deep-research-run-via.md",
-    "08-05-26_17-39__applied-24-blocking-finding-amendments-from-pt-02.md"
+    "08-05-26_17-39__applied-24-blocking-finding-amendments-from-pt-02.md",
+    "09-05-26_10-11__pt-03-scope-expansion-coco-index-memory-backend.md",
+    "09-05-26_11-30__scaffolded-5-l3-phase-children-006-010.md"
   ]
 }

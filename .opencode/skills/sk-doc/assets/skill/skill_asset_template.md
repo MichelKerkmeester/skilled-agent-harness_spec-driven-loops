@@ -905,10 +905,10 @@ Integration:
 ## 15. REFERENCES AND RELATED RESOURCES
 
 ### Templates
-- [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type
+- [frontmatter_templates.md](../frontmatter_templates.md) - Frontmatter by document type
 - [skill_md_template.md](./skill_md_template.md) - If converting to skill
 - [skill_reference_template.md](./skill_reference_template.md) - Reference file templates
-- [llmstxt_templates.md](../documentation/llmstxt_templates.md) - llms.txt file templates
+- [llmstxt_templates.md](../llmstxt_templates.md) - llms.txt file templates
 
 ### Standards
 - [core_standards.md](../../references/global/core_standards.md) - Document type rules

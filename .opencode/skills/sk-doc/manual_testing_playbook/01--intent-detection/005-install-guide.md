@@ -4,7 +4,7 @@ category: 01--intent-detection
 title: 'INSTALL_GUIDE intent: scaffold an install guide for a new MCP server'
 expected_intent: INSTALL_GUIDE
 expected_resources:
-  - assets/documentation/install_guide_template.md
+  - assets/readme/install_guide_template.md
   - references/specific/install_guide_creation.md
 expected_token_range_input: 800-2500
 expected_token_range_output: 1500-3500
@@ -55,7 +55,7 @@ Create an MCP-Postgres install guide with prerequisites, npm setup, env config, 
 
 - **Intent picked**: `INSTALL_GUIDE`
 - **Resources loaded**:
-  - `assets/documentation/install_guide_template.md`
+  - `assets/readme/install_guide_template.md`
   - `references/specific/install_guide_creation.md`
 - **Outcome**: CLI loads only the two install-guide-specific resources and produces a structured response describing the install-guide section layout (prerequisites, install, configuration, verification, troubleshooting).
 

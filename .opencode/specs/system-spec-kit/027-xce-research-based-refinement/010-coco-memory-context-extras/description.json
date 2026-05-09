@@ -1,0 +1,57 @@
+{
+  "title": "Phase 010 — Coco-Index Few-Shot Exemplars + Memory LLM-Curated Context",
+  "trigger_phrases": [
+    "027 phase 010",
+    "coco few-shot exemplars",
+    "coco example bank",
+    "memory LLM-curated context",
+    "memory_context curator",
+    "ccc_examples_clear",
+    "data.curatedContext"
+  ],
+  "level": 3,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P2",
+  "createdAt": "2026-05-09T11:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "027-xce-research-based-refinement",
+  "manual": {
+    "depends_on": []
+  },
+  "soft_depends_on": [
+    "005-code-graph-adoption-eval",
+    "007-memory-semantic-triggers",
+    "008-feedback-reducers"
+  ],
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-coco-memory-context-extras",
+  "description": "Phase 010 — ADAPT pt-03 RQ-A4 (coco few-shot exemplars) + RQ-B2 (memory LLM-curated context packaging). Two presentation-layer features in one packet — neither alters scoring authority. Coco exemplars in SEPARATE response group `exemplars: [...]` from new local SQLite/vec0 table; capped storage + TTL + reconciliation + ccc_examples_clear maintenance. Memory data.curatedContext as post-retrieval packaging plan with strict JSON schema validation; budget split (retrievalCandidateLimit + presentationLimit + curationTokenBudget); LLM cache extension. Both default-off + shadow-first + Phase-005 lift required for active mode. ~500-800 prod LOC + ~340-570 tests across 5 sub-phases.",
+  "keywords": [
+    "feature",
+    "specification",
+    "coco",
+    "exemplars",
+    "memory",
+    "curator",
+    "context",
+    "presentation",
+    "llm",
+    "shadow"
+  ],
+  "lastUpdated": "2026-05-09T11:00:00Z",
+  "specId": "010",
+  "folderSlug": "coco-memory-context-extras",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

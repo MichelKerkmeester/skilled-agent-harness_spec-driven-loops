@@ -9,7 +9,7 @@ expected_resources:
   - references/global/validation.md
   - references/global/core_standards.md
   - references/specific/changelog.md
-  - assets/documentation/changelog_template.md
+  - assets/changelog_template.md
 expected_token_range_input: 2000-5000
 expected_token_range_output: 3000-6000
 created: 2026-05-05

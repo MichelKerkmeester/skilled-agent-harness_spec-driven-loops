@@ -22,20 +22,20 @@ trigger_phrases:
 
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. QUICK START](#2-quick-start)
-- [3. FEATURES](#3-features)
-  - [3.1 SPEC FOLDER WORKFLOWS](#31-spec-folder-workflows)
-  - [3.2 MEMORY SYSTEM](#32-memory-system)
-  - [3.3 COMMANDS](#33-commands)
-  - [3.4 TEMPLATES](#34-templates)
-  - [3.5 SCRIPTS AND VALIDATION](#35-scripts-and-validation)
-- [4. STRUCTURE](#4-structure)
-- [5. CONFIGURATION](#5-configuration)
-- [6. USAGE EXAMPLES](#6-usage-examples)
-- [7. TROUBLESHOOTING](#7-troubleshooting)
-- [8. FAQ](#8-faq)
-- [9. RELATED DOCUMENTS](#9-related-documents)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. FEATURES](#3--features)
+  - [3.1 SPEC FOLDER WORKFLOWS](#31--spec-folder-workflows)
+  - [3.2 MEMORY SYSTEM](#32--memory-system)
+  - [3.3 COMMANDS](#33--commands)
+  - [3.4 TEMPLATES](#34--templates)
+  - [3.5 SCRIPTS AND VALIDATION](#35--scripts-and-validation)
+- [4. STRUCTURE](#4--structure)
+- [5. CONFIGURATION](#5--configuration)
+- [6. USAGE EXAMPLES](#6--usage-examples)
+- [7. TROUBLESHOOTING](#7--troubleshooting)
+- [8. FAQ](#8--faq)
+- [9. RELATED DOCUMENTS](#9--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 

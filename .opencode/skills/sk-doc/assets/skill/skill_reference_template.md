@@ -999,7 +999,7 @@ def test_default_mode():
 ## 9. REFERENCES AND RELATED RESOURCES
 
 ### Templates
-- [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type
+- [frontmatter_templates.md](../frontmatter_templates.md) - Frontmatter by document type
 - [skill_md_template.md](./skill_md_template.md) - If converting to skill
 - [skill_asset_template.md](./skill_asset_template.md) - Asset file creation guide
 

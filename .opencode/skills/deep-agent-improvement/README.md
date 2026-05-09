@@ -16,18 +16,18 @@ Evaluator-first workflow for improving agents across their full integration surf
 
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. QUICK START](#2-quick-start)
-- [3. FEATURES](#3-features)
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. FEATURES](#3--features)
 - [4. 5-DIMENSION EVALUATION](#4-5-dimension-evaluation)
-- [5. STRUCTURE](#5-structure)
-- [6. SCRIPTS](#6-scripts)
-- [7. CONFIGURATION](#7-configuration)
-- [8. USAGE EXAMPLES](#8-usage-examples)
-- [9. RUNTIME PARITY](#9-runtime-parity)
-- [10. TROUBLESHOOTING](#10-troubleshooting)
-- [11. FAQ](#11-faq)
-- [12. RELATED DOCUMENTS](#12-related-documents)
+- [5. STRUCTURE](#5--structure)
+- [6. SCRIPTS](#6--scripts)
+- [7. CONFIGURATION](#7--configuration)
+- [8. USAGE EXAMPLES](#8--usage-examples)
+- [9. RUNTIME PARITY](#9--runtime-parity)
+- [10. TROUBLESHOOTING](#10--troubleshooting)
+- [11. FAQ](#11--faq)
+- [12. RELATED DOCUMENTS](#12--related-documents)
 
 ---
 

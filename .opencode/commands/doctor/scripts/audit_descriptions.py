@@ -28,7 +28,7 @@ Outputs:
 Constants come from the same source-of-truth as quick_validate.py
 (packet 086): 130/110 soft, 1536 hard, 5600 project ceiling.
 
-Reference: .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md
+Reference: .opencode/skills/sk-doc/assets/frontmatter_templates.md
            § "Description Budget & Trim Style"
 """
 

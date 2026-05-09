@@ -257,7 +257,7 @@ $ARGUMENTS
 
 ## 3. CHANGELOG FORMAT REFERENCE
 
-**Canonical template:** `.opencode/skills/sk-doc/assets/documentation/changelog_template.md`
+**Canonical template:** `.opencode/skills/sk-doc/assets/changelog_template.md`
 **Writing style rules:** `PUBLIC_RELEASE.md` Section 7
 
 The template defines two formats:

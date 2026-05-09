@@ -76,7 +76,7 @@ SKILL.md architecture follows progressive disclosure:
 | `allowed-tools` | ✅ | Array: `[Tool1, Tool2]` | `[Read, Write, Edit, Bash]` |
 | `version` | ⭐ | Semver | `1.0.0` |
 
-> **Description budget & trim style**: see [`frontmatter_templates.md` § Description Budget & Trim Style](../documentation/frontmatter_templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose; keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
+> **Description budget & trim style**: see [`frontmatter_templates.md` § Description Budget & Trim Style](../frontmatter_templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose; keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
 
 ### Template
 
@@ -583,7 +583,7 @@ Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md) when the skill has installat
     ├── references/       - Detailed documentation (flat or domain subfolders)
     └── assets/           - Templates and examples (subfolders OK)
         ├── opencode/     - OpenCode component templates (skills, agents, commands)
-        └── documentation/ - Document templates (README, install guides)
+        └── readme/        - README-shaped scaffolds (README, install guide)
 ```
 
 **Folder Organization Principle**:
@@ -592,7 +592,7 @@ Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md) when the skill has installat
   - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together
-  - Example: `assets/skill/`, `assets/documentation/`, `assets/flowcharts/`
+  - Example: `assets/skill/`, `assets/readme/`, `assets/flowcharts/`
 - **scripts/** = Typically flat, but subfolders OK for large script collections
 
 **Native Discovery**:
@@ -1165,7 +1165,7 @@ python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/[skill-
 ## 7. REFERENCES AND RELATED RESOURCES
 
 ### Templates
-- [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type
+- [frontmatter_templates.md](../frontmatter_templates.md) - Frontmatter by document type
 - [skill_asset_template.md](./skill_asset_template.md) - Asset file creation guide
 - [skill_reference_template.md](./skill_reference_template.md) - Reference file templates
 

@@ -420,7 +420,7 @@ Purpose: Templates, examples, and data files used in skill output.
 
 Naming: `snake_case`
 
-Folder organization: Subfolders ALLOWED when organizing many files by category (e.g., `assets/opencode/`, `assets/documentation/`)
+Folder organization: Subfolders ALLOWED when organizing many files by category (e.g., `assets/opencode/`, `assets/readme/`)
 
 Best practices:
 - Use `[PLACEHOLDER]` format for replaceable content
