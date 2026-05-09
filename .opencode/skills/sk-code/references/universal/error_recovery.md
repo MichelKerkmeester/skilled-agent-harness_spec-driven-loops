@@ -123,5 +123,5 @@ State: what failed (verbatim), what you tried, what you suspect, and what you pr
 - `assets/universal/checklists/debugging_checklist.md` - 4-phase debugging workflow that wraps this recovery flow.
 - `assets/universal/checklists/verification_checklist.md` - runs after recovery completes, before any "done" claim.
 - `references/universal/code_quality_standards.md` - severity contract (recovery failures are typically P0).
-- `references/router/phase_lifecycle.md` - Phase 2 Debugging position in the sk-code lifecycle.
+- `references/phase_detection.md` - Phase 2 Debugging position in the sk-code lifecycle.
 - Surface-specific debugging refs under `references/webflow/` and `references/opencode/`.

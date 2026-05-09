@@ -38,7 +38,7 @@ Comprehensive coverage through specialization + parallel execution + synthesis p
 
 ### Key Sources
 
-- Phase 0 (Research) entry point in the sk-code lifecycle: `references/router/phase_lifecycle.md`.
+- Phase 0 (Research) entry point in the sk-code lifecycle: `references/phase_detection.md`.
 - Surface performance refs under `references/webflow/performance/` (when available); OPENCODE performance work uses targeted language/runtime evidence from `references/opencode/`.
 
 ---
@@ -202,7 +202,7 @@ The cross-cutting nature of the finding — visibility gating tied to LCP, anima
 
 ## 8. RELATED RESOURCES
 
-- `references/router/phase_lifecycle.md` - Phase 0 Research position in the sk-code lifecycle.
+- `references/phase_detection.md` - Phase 0 Research position in the sk-code lifecycle.
 - `references/universal/code_quality_standards.md` - severity tiers for findings reported by agents.
 - `references/universal/error_recovery.md` - decision tree when agent investigation hits a dead end.
 - `references/webflow/performance/cwv_remediation.md` and `references/webflow/performance/resource_loading.md` - Webflow performance refs.

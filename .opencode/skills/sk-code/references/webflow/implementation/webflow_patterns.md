@@ -18,7 +18,7 @@ Platform constraints and collection list patterns for Webflow development. These
 Follow code quality standards:
 - **Initialization:** Use CDN-safe pattern with guard flags and delays
 - **Naming:** Use `snake_case` for functions/variables
-- See [code_quality_standards.md](../standards/code_quality_standards.md) for complete standards
+- See [code_quality_standards.md](../javascript/quality_standards.md) for complete standards
 
 ### When to Use
 - Working with Webflow CMS Collections
@@ -1066,8 +1066,10 @@ document.querySelectorAll('.fs-sort-select--hidden').forEach(sel => {
 ## 9. RELATED RESOURCES
 
 ### Reference Files
+- [`../css/patterns.md`](../css/patterns.md) — CSS-specific Webflow patterns (token system, state machines, BEM hover/focus, form validation, accessibility, mobile)
 - [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns complement async rendering solutions
-- [code_quality_standards.md](../standards/code_quality_standards.md) - CDN-safe initialization pattern for Webflow platform
+- [code_quality_standards.md](../javascript/quality_standards.md) - CDN-safe initialization pattern for Webflow platform
+- [`../css/quality_standards.md`](../css/quality_standards.md) - CSS quality patterns for Webflow Designer styling layer + 4 CSS enforcement subsections
 - [performance_patterns.md](./performance_patterns.md) - Performance optimization for collection lists with many items
 
 ### Source Files (Evidence)

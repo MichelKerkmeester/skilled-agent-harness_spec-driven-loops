@@ -2,7 +2,7 @@
 name: sk-code
 description: "Multi-stack coding standards and verification. Smart router auto-detects the active surface and loads matching code patterns."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 3.2.1.0
+version: 3.3.0.0
 ---
 
 <!-- Keywords: sk-code, code workflows, smart-router, code-surface-detection, webflow, frontend, html, css, javascript, Motion.dev, motion-dev, motion_dev, cross-stack-animation, gsap, lenis, swiper, hls, filepond, opencode, system-code, mcp, typescript, python, shell, jsonc, code-quality, debugging-workflow, verification -->
@@ -64,9 +64,11 @@ Authoring-time load is the contract documented in `system-spec-kit/SKILL.md §16
 
 ---
 
+<!-- /ANCHOR:when-to-use -->
+<!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Code Surface Detection (FIRST)
+### Surface Detection (FIRST)
 
 Detection is context-aware and uses CWD plus changed/target files. **Precedence**: OPENCODE target/CWD wins over WEBFLOW markers (because mixed-marker workspaces are common — `.opencode/` system tools sometimes ship frontend animation libraries internally). When neither matches, fall through to UNKNOWN.
 
@@ -117,7 +119,29 @@ fi
 - `OPENCODE`: `.opencode/` system code and config with language sub-detection.
 - `UNKNOWN`: ask a short disambiguation question and do not pretend unsupported stacks are covered.
 
-For details: `references/router/code_surface_detection.md`.
+For details: `references/stack_detection.md`.
+
+### Phase Detection
+
+```text
+TASK CONTEXT
+    |
+    +- STEP 0: Detect surface from CWD + target files (primary routing key)
+    |    +- references/<surface>/  (webflow / opencode)
+    |    +- assets/<surface>/      (webflow / opencode)
+    |
+    +- STEP 1: Detect language sub-key (OPENCODE only) for verification commands
+    |
+    +- STEP 2: Weighted intent scoring (top-2 when ambiguity delta is small)
+    |
+    +- Phase 1: Implementation -> per-language style + standards + implementation trio
+    +- Phase 2: Debugging       -> debugging refs + universal error recovery
+    +- Phase 3: Verification    -> surface-appropriate verification commands + checklist
+```
+
+**The Iron Law**: NO COMPLETION CLAIMS WITHOUT RUNNING SURFACE-APPROPRIATE VERIFICATION.
+
+Phase contract details: [`references/phase_detection.md`](./references/phase_detection.md).
 
 ### OPENCODE Language Sub-Detection
 
@@ -136,8 +160,8 @@ Ambiguous multi-language tasks load the top matching language references plus th
 ### Resource Domains
 
 - `references/universal/`: surface-agnostic error recovery, code quality, style, and research guidance.
-- `references/router/`: detection, intent scoring, loading, and lifecycle internals.
-- `references/webflow/`, `assets/webflow/`: live Webflow/frontend implementation, standards, debugging, verification, performance, deployment, checklists, and patterns.
+- `references/`: detection, intent scoring, loading, and lifecycle internals.
+- `references/webflow/`, `assets/webflow/`: live Webflow/frontend per-language references under `references/webflow/{javascript,css,html}/*` — JS and CSS each carry `style_guide.md`, `quality_standards.md`, `quick_reference.md`; CSS additionally carries `patterns.md` (Webflow tokens, state machines, focus/form patterns); HTML carries `style_guide.md` only (Webflow Designer manages most HTML). Cross-language rules + enforcement workflow + dev workflow live under `references/webflow/shared/*`. Categorical workflow patterns (implementation, debugging, verification, performance, deployment) and copy-paste templates (`assets/webflow/templates/component_template.{js,css}`) round out the surface. Mirrors the OPENCODE per-language layout so the smart router resolves both surfaces with identical key-derived patterns.
 - `references/motion_dev/`, `assets/motion_dev/`: cross-stack Motion.dev API, timeline, scroll/gesture, performance, decision-matrix, integration, install, playbook hook, and snippet resources. Webflow docs link here for generic Motion details while keeping Webflow-CDN and Designer guidance in `references/webflow/`.
 - `references/opencode/`, `assets/opencode/`: OpenCode system-code language standards, shared patterns, hooks, alignment automation, and quality checklists.
 - `assets/webflow/scripts/`: Webflow build, minification, and runtime verification utilities.
@@ -169,6 +193,12 @@ Top intent always loads. A close second intent also loads when scores are within
 | WEBFLOW | `node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs`, `node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs`, `node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs`, plus desktop/mobile browser console clean evidence when runtime behavior changes |
 | OPENCODE | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root <changed-scope>`, plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | UNKNOWN | User-selected verification command set before completion claim |
+
+### Smart Router Pseudocode
+
+Smart Router pseudocode (full implementation): see [`references/smart_routing.md`](./references/smart_routing.md) for the authoritative `INTENT_MODEL`, `RESOURCE_MAP`, load tiers, and surface→intent routing logic.
+
+<!-- /ANCHOR:smart-routing -->
 
 ---
 
@@ -247,6 +277,6 @@ Ask for the runtime surface and required verification commands. Do not route gen
 
 ## 7. REFERENCES
 
-Start with `references/router/code_surface_detection.md`, `references/router/intent_classification.md`, `references/router/resource_loading.md`, and `references/router/phase_lifecycle.md`. Then load `references/webflow/**` or `references/opencode/**` based on detected surface.
+Start with `references/stack_detection.md`, `references/smart_routing.md`, `references/smart_routing.md`, and `references/phase_detection.md`. Then load `references/webflow/**` or `references/opencode/**` based on detected surface.
 
 Scripts: `.opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs`, `.opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs`, `.opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs`, `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py`, `.opencode/skills/sk-code/assets/scripts/test_verify_alignment_drift.py`.

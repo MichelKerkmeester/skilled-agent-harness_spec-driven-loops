@@ -18,7 +18,7 @@ This scenario verifies the primary cross-stack route: a Webflow frontend request
 For a Webflow hero in src/2_javascript/hero.js, show the pinned Motion CDN pattern and in-view animation snippet.
 ```
 
-**Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):
+**Expected detection markers** (verbatim from `references/stack_detection.md`):
 ```bash
 # 2. WEBFLOW
 [ -d "src/2_javascript" ]
@@ -32,9 +32,9 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 **Expected surface**: `WEBFLOW`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/router/code_surface_detection.md`
-- `references/router/intent_classification.md`
-- `references/router/resource_loading.md`
+- `references/stack_detection.md`
+- `references/smart_routing.md`
+- `references/smart_routing.md`
 - `references/webflow/implementation/animation_workflows.md`
 - `references/webflow/implementation/observer_patterns.md`
 - `references/webflow/implementation/third_party_integrations.md`
@@ -59,7 +59,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Failure triage**:
 1. If surface is not `WEBFLOW`, verify the prompt includes `src/2_javascript/` and Webflow terms.
-2. If Motion.dev paths are missing, inspect `references/router/resource_loading.md` Section 3.
+2. If Motion.dev paths are missing, inspect `references/smart_routing.md` Section 3.
 3. If an agent was dispatched, verify the universal prompt says analyze only and "DO NOT dispatch any agent."
 
 ---
@@ -76,8 +76,8 @@ Expected result files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/references/router/code_surface_detection.md` - WEBFLOW marker block.
-- `.opencode/skills/sk-code/references/router/resource_loading.md` - WEBFLOW plus MOTION_DEV loading rules.
+- `.opencode/skills/sk-code/references/stack_detection.md` - WEBFLOW marker block.
+- `.opencode/skills/sk-code/references/smart_routing.md` - WEBFLOW plus MOTION_DEV loading rules.
 - `.opencode/skills/sk-code/references/motion_dev/quick_start.md` - Motion install and import guidance.
 - `.opencode/skills/sk-code/assets/motion_dev/snippets/in_view_reveal.js` - Required snippet.
 

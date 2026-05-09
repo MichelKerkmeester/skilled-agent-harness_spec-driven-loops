@@ -18,7 +18,7 @@ This scenario verifies accessibility guidance for Webflow Motion.dev work. The A
 For a Webflow page with motion.dev-powered cards in src/2_javascript/cards.js, how should sk-code route a prefers-reduced-motion fix before editing?
 ```
 
-**Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):
+**Expected detection markers** (verbatim from `references/stack_detection.md`):
 ```bash
 # 2. WEBFLOW
 [ -d "src/2_javascript" ]
@@ -32,11 +32,11 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 **Expected surface**: `WEBFLOW`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/router/code_surface_detection.md`
-- `references/router/intent_classification.md`
-- `references/router/resource_loading.md`
+- `references/stack_detection.md`
+- `references/smart_routing.md`
+- `references/smart_routing.md`
 - `references/webflow/implementation/animation_workflows.md`
-- `references/webflow/standards/code_quality_standards.md`
+- `references/webflow/javascript/quality_standards.md`
 - `references/webflow/verification/verification_workflows.md`
 - `references/motion_dev/performance_and_pitfalls.md`
 - `references/motion_dev/integration_patterns.md`

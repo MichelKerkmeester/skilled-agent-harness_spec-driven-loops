@@ -26,7 +26,7 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 ```
 
 **Markers present**:
-- WEBFLOW library marker: `Lenis` (matches `references/router/code_surface_detection.md:30-37`)
+- WEBFLOW library marker: `Lenis` (matches `references/stack_detection.md:30-37`)
 - OPENCODE path marker: `.opencode/skills/sk-doc/scripts/preview-server.js`
 
 **Expected behavior** (one of two acceptable outcomes):
@@ -42,7 +42,7 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 ### Preconditions
 
 1. SKILL.md is at HEAD-of-main.
-2. `references/router/code_surface_detection.md` precedence section is intact.
+2. `references/stack_detection.md` precedence section is intact.
 3. Either remediation for F-NEW-001 has landed (then test for Outcome A) OR has not (then test for either A or B; document which behavior the AI exhibits).
 
 ### Exact Command Sequence
@@ -67,7 +67,7 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` §2 "Code Surface Detection (FIRST)" — post-remediation pseudocode with explicit if/elif/else precedence.
-- `.opencode/skills/sk-code/references/router/code_surface_detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
+- `.opencode/skills/sk-code/references/stack_detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/iterations/iteration-008-historical-gpt55-high.md` — F-NEW-001 source (historical gpt-5.5 high adversarial pass).
 
 ## 5. SOURCE METADATA

@@ -18,7 +18,7 @@ This scenario verifies dual performance loading. A Webflow page with Motion.dev-
 Our Webflow landing page in src/2_javascript/hero.js uses motion.dev for scroll reveals and hover cards. LCP and INP regressed. Which sk-code references would you load before advising fixes?
 ```
 
-**Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):
+**Expected detection markers** (verbatim from `references/stack_detection.md`):
 ```bash
 # 2. WEBFLOW
 [ -d "src/2_javascript" ]
@@ -32,9 +32,9 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 **Expected surface**: `WEBFLOW`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/router/code_surface_detection.md`
-- `references/router/intent_classification.md`
-- `references/router/resource_loading.md`
+- `references/stack_detection.md`
+- `references/smart_routing.md`
+- `references/smart_routing.md`
 - `references/webflow/performance/cwv_remediation.md`
 - `references/webflow/performance/interaction_gated_loading.md`
 - `references/webflow/performance/resource_loading.md`
@@ -53,7 +53,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - **FAIL** iff either required performance reference is missing, surface is not `WEBFLOW`, or an agent is dispatched.
 
 **Failure triage**:
-1. If Webflow performance refs are missing, inspect the `PERFORMANCE` map in `references/router/resource_loading.md`.
+1. If Webflow performance refs are missing, inspect the `PERFORMANCE` map in `references/smart_routing.md`.
 2. If Motion performance refs are missing, inspect the `MOTION_DEV` map in the same file.
 3. If surface is wrong, verify `src/2_javascript/hero.js` is present in the prompt.
 

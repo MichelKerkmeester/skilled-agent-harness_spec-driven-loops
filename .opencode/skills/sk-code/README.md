@@ -47,11 +47,11 @@ This is also **the template customization surface** for end users adopting this 
 
 | Metric | Value |
 | --- | --- |
-| Skill version | 3.2.1.0 |
+| Skill version | 3.3.0.0 |
 | SKILL.md size | 252 LOC |
 | Surfaces shipped | 3 (WEBFLOW, OPENCODE, MOTION_DEV) |
 | Smart Router pseudocode | Inline in SKILL.md §2 SMART ROUTING |
-| Reference directories | 5 (`router/`, `universal/`, `webflow/`, `opencode/`, `motion_dev/`) |
+| Reference directories | 4 (`universal/`, `webflow/`, `opencode/`, `motion_dev/`) + 3 routing files at root (`stack_detection.md`, `smart_routing.md`, `phase_detection.md`)|Reference directories | 4 (`universal/`, `webflow/`, `opencode/`, `motion_dev/`) + 3 routing files at root (`stack_detection.md`, `smart_routing.md`, `phase_detection.md`) |
 | OPENCODE language sub-detection | 5 languages (JavaScript, TypeScript, Python, Shell, JSON/JSONC) |
 | Verification scripts | `verify_alignment_drift.py` (OPENCODE), browser evidence (WEBFLOW) |
 
@@ -366,10 +366,10 @@ A: Verification before completion is the safety check that distinguishes confide
 | Resource | Path | Purpose |
 | --- | --- | --- |
 | SKILL.md | `.opencode/skills/sk-code/SKILL.md` | Surface-aware router contract with phase lifecycle |
-| Surface detection | `references/router/code_surface_detection.md` | Detection markers and resolution chain |
-| Intent classification | `references/router/intent_classification.md` | Implementation/debugging/quality/verification routing |
-| Resource loading | `references/router/resource_loading.md` | Per-surface and per-intent loading rules |
-| Phase lifecycle | `references/router/phase_lifecycle.md` | Detect → classify → load → verify |
+| Surface detection | `references/stack_detection.md` | Detection markers and resolution chain |
+| Intent classification | `references/smart_routing.md` | Implementation/debugging/quality/verification routing |
+| Resource loading | `references/smart_routing.md` | Per-surface and per-intent loading rules |
+| Phase lifecycle | `references/phase_detection.md` | Detect → classify → load → verify |
 | WEBFLOW references | `references/webflow/` | Frontend HTML/CSS/JS + animation libs |
 | OPENCODE references | `references/opencode/` | System-code standards per language |
 | MOTION_DEV references | `references/motion_dev/` | Cross-stack motion.dev API |

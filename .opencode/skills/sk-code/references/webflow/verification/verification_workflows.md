@@ -645,7 +645,7 @@ EVIDENCE:
 ### Reference Files
 - [implementation_workflows.md](../implementation/implementation_workflows.md) - Verify implementations work correctly
 - [debugging_workflows.md](../debugging/debugging_workflows.md) - Verify fixes work after debugging
-- [shared_patterns.md](../standards/shared_patterns.md) - Use standard DevTools verification patterns
+- [dev_workflow.md](../shared/dev_workflow.md) - Use standard DevTools verification patterns
 
 ### Templates
 - [verification_checklist.md](../../assets/checklists/verification_checklist.md) - Printable verification checklist

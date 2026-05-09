@@ -28,8 +28,8 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 **Expected behavior**: sk-code recognizes the absence of supported markers and asks for explicit runtime/verification disambiguation.
 
 **Expected references loaded**:
-- `references/router/code_surface_detection.md` (always loaded for router decision)
-- `references/router/intent_classification.md`
+- `references/stack_detection.md` (always loaded for router decision)
+- `references/smart_routing.md`
 - `references/universal/code_quality_standards.md` (universal baseline ALWAYS loads)
 
 **Expected NOT loaded**: any `references/webflow/*`, any `references/opencode/*`, any `assets/webflow/*`, any `assets/opencode/*`. Only universal-tier resources are permitted.
@@ -65,7 +65,7 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 | 1 | Advisor returns a result (sk-code may or may not win — both are acceptable). |
 | 4 | sk-code emits `SURFACE: UNKNOWN`. |
 | 5 | AI response contains both "what runtime" AND "what verification commands" (or semantically equivalent). |
-| 6 | No surface-specific refs loaded; only `references/router/*` and `references/universal/code_quality_standards.md`. |
+| 6 | No surface-specific refs loaded; only `references/*` and `references/universal/code_quality_standards.md`. |
 
 ### Pass/Fail Criteria
 
@@ -82,7 +82,7 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — Multi-Repository Architecture table with "Unsupported / Unknown" row.
-- `.opencode/skills/sk-code/references/router/code_surface_detection.md` — Marker definitions (none should match Go).
+- `.opencode/skills/sk-code/references/stack_detection.md` — Marker definitions (none should match Go).
 - `AGENTS.md` (project root) — Multi-Repository Architecture table cross-reference.
 
 ## 5. SOURCE METADATA

@@ -39,10 +39,13 @@ For formal findings-first review output, run `sk-code-review` as the baseline an
 - Baseline security/quality/test review checks: `sk-code-review` references
 - This checklist: web-specific JavaScript/CSS standards evidence
 
-### Source Standards
+### Source Standards (per-language tree)
 
-- [code_style_guide.md](../../references/standards/code_style_guide.md) - Naming, formatting, commenting rules
-- [code_quality_standards.md](../../references/standards/code_quality_standards.md) - Quality patterns
+- [shared/cross_language_rules.md](../../references/webflow/shared/cross_language_rules.md) - Cross-language rules (file naming, comment WHY-not-WHAT, banner format, platform prefixes)
+- [javascript/style_guide.md](../../references/webflow/javascript/style_guide.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
+- [javascript/quality_standards.md](../../references/webflow/javascript/quality_standards.md) - JS defensive patterns + JS naming/init enforcement
+- [css/style_guide.md](../../references/webflow/css/style_guide.md) - CSS naming (BEM), custom properties, attribute selectors, animation CSS, file org
+- [css/quality_standards.md](../../references/webflow/css/quality_standards.md) - CSS quality patterns + CSS enforcement subsections
 
 ---
 
@@ -50,7 +53,7 @@ For formal findings-first review output, run `sk-code-review` as the baseline an
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 3](../../references/standards/code_style_guide.md#3-📁-file-structure)
+**Reference:** [code_style_guide.md Section 3](../../references/javascript/style_guide.md)
 
 ### File Header Format
 
@@ -92,7 +95,7 @@ For formal findings-first review output, run `sk-code-review` as the baseline an
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 3](../../references/standards/code_style_guide.md#3-📁-file-structure)
+**Reference:** [code_style_guide.md Section 3](../../references/javascript/style_guide.md)
 
 ### Section Headers
 
@@ -153,7 +156,7 @@ const INIT_FLAG = '__componentNameInit';
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 5](../../references/standards/code_style_guide.md#5-💬-commenting-rules)
+**Reference:** [code_style_guide.md Section 5](../../references/javascript/style_guide.md)
 
 ### Comment Principles
 
@@ -206,7 +209,7 @@ if (element) { }
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 2](../../references/standards/code_style_guide.md#2-📝-naming-conventions)
+**Reference:** [code_style_guide.md Section 2](../../references/javascript/style_guide.md)
 
 ### Variable Naming
 
@@ -266,7 +269,7 @@ function data(form) { }    // Should be: get_form_data
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_quality_standards.md Section 2](../../references/standards/code_quality_standards.md#2-🔧-initialization-pattern-cdn-safe)
+**Reference:** [code_quality_standards.md Section 2](../../references/javascript/quality_standards.md)
 
 ### CDN-Safe Initialization
 
@@ -316,7 +319,7 @@ if (window.Webflow?.push) {
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 4](../../references/standards/code_style_guide.md#4-🎨-formatting)
+**Reference:** [code_style_guide.md Section 4](../../references/javascript/style_guide.md)
 
 ### Basic Formatting
 
@@ -333,7 +336,7 @@ if (window.Webflow?.push) {
 
 **Applies to:** CSS (`.css`)
 
-**Reference:** [code_style_guide.md Section 6](../../references/standards/code_style_guide.md#6-🎯-css-style-conventions)
+**Reference:** [css/style_guide.md](../../references/webflow/css/style_guide.md) — full CSS conventions (BEM naming, custom property prefixes, attribute selectors, animation CSS, file organization)
 
 ### Custom Property Naming
 
@@ -513,14 +516,17 @@ After completing validation, document the results using the appropriate template
 
 ## 11. RELATED RESOURCES
 
-### Source Standards
+### Per-language source standards
 
-- [code_style_guide.md](../../references/standards/code_style_guide.md) - Naming, formatting, commenting rules
-- [code_quality_standards.md](../../references/standards/code_quality_standards.md) - Quality patterns
+- [shared/cross_language_rules.md](../../references/webflow/shared/cross_language_rules.md) - File naming, comment principles, file-header banner, platform prefixes
+- [javascript/style_guide.md](../../references/webflow/javascript/style_guide.md) - JS naming + file structure + formatting + JSDoc
+- [javascript/quality_standards.md](../../references/webflow/javascript/quality_standards.md) - JS defensive patterns + naming/init enforcement
+- [css/style_guide.md](../../references/webflow/css/style_guide.md) - CSS naming + custom properties + animation CSS
+- [css/quality_standards.md](../../references/webflow/css/quality_standards.md) - CSS quality patterns + enforcement subsections
 
 ### Enforcement Reference
 
-- [code_style_enforcement.md](../../references/standards/code_style_enforcement.md) - Validation prompts, examples, remediation
+- [code_style_enforcement.md](../../references/shared/enforcement.md) - Validation prompts, examples, remediation
 
 ### Parent Skill
 

@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  doctor-sandbox:
+    build:
+      context: ../../../../../..
+      dockerfile: .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/Dockerfile
+    volumes:
+      - ../../../../../..:/workspace
+      - ./evidence:/workspace/evidence
+    environment:
+      - SPECKIT_SANDBOX=1
+      - SPECKIT_EVIDENCE_ROOT=/workspace/evidence
+      - SPECKIT_FAIL_STEP=${SPECKIT_FAIL_STEP:-}
+      - SPECKIT_DOCTOR_RUNNER=${SPECKIT_DOCTOR_RUNNER:-}
+    working_dir: /workspace

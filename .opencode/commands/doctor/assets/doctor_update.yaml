@@ -1,0 +1,243 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: UPDATE WORKFLOW (CONFIRM - PER-PHASE PROMPT)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator running unified spec-kit update in interactive confirm mode
+purpose: Execute dependency-safe database rebuild with explicit approval at every phase boundary.
+action: flock -> prompt -> probe -> prompt -> migrate -> prompt -> snapshot -> dashboard -> dependency.order -> post.run.validation -> state.log
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_orchestrator
+  compliance: MANDATORY
+  execution: interactive
+  approvals: per_phase_boundary
+  tracking: phase_by_phase
+  validation: post_run_gold_battery
+  state_log: "mcp_server/database/.doctor-update.last-run.json"
+
+
+# ─────────────────────────────────────────────────────────────────
+# UPDATE ORCHESTRATOR INVARIANT
+# ─────────────────────────────────────────────────────────────────
+update_orchestrator_invariant: |
+  The update orchestrator is a single-instance, flock-protected database rebuild
+  chain. It executes the dependency DAG in order, snapshots every in-scope DB
+  before mutation unless explicitly waived, and restores failed plus downstream
+  DBs on retry exhaustion. SIGINT follows ADR-001/ADR-007: set cancel, allow a
+  ~5 sec SQLite settle window, restore the in-flight snapshot, log, and exit 130.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  files:
+    spec: "spec.md"  # REQ-004..REQ-017 orchestrator contract
+    decision_record: "decision-record.md"  # ADR-001..ADR-008 safety decisions
+    council_spec: "decision-record.md#adr-002"  # council 10-line /doctor:update spec family
+    checklist: "checklist.md#doctor-update-orchestrator"  # CHK-502..CHK-511 acceptance bars
+  pass_policy:
+    flock_required: true  # ADR-005 / REQ-005
+    full_snapshot_required: true  # ADR-002 / REQ-006 unless --no-snapshot
+    retry_backoff_seconds: 5  # ADR-004
+    sigint_settle_seconds: 5  # ADR-001 revises ADR-007 timing
+    snapshot_retention_days: 30  # ADR-002 cleanup policy unless --keep-snapshots
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  mode: "confirm"
+  force: "[FORCE] boolean"
+  no_snapshot: "[NO_SNAPSHOT] boolean"
+  cleanup_legacy: "[CLEANUP_LEGACY] boolean"
+  migrate: "[MIGRATE] boolean"
+  keep_snapshots: "[KEEP_SNAPSHOTS] boolean"
+  skip_status_check: false
+
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    force_empty: "false"
+    no_snapshot_empty: "false"
+    cleanup_legacy_empty: "false"
+    migrate_empty: "false"
+    keep_snapshots_empty: "false"
+  force_policy:
+    true: "warn on active MCP clients and continue"
+    false: "warn and prompt/abort when active MCP clients are detected"
+  no_snapshot_policy:
+    true: "skip DB snapshots; rollback is unavailable for unsnapshotted DBs"
+    false: "snapshot every allowed DB before dependency execution"
+  migrate_policy:
+    true: "run migration-manifest Phase 0 before snapshots"
+    false: "skip migration phase unless version-skip is auto-detected"
+  cleanup_legacy_policy:
+    true: "detect known legacy files from manifest and prompt-delete each"
+    false: "report legacy findings without deletion prompts"
+  keep_snapshots_policy:
+    true: "skip snapshot cleanup older than 30 days"
+    false: "cleanup snapshots older than 30 days during final phase"
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  allowed_targets:
+    - "mcp_server/database/code-graph.sqlite"  # structural code graph DB
+    - "mcp_server/database/code-graph.sqlite.pre-doctor-update.*.bak"
+    - "mcp_server/database/context-index.sqlite"  # memory FTS/metadata DB
+    - "mcp_server/database/context-index.sqlite.pre-doctor-update.*.bak"
+    - "mcp_server/database/context-index__voyage__voyage-4__1024.sqlite"  # memory vector DB
+    - "mcp_server/database/context-index__voyage__voyage-4__1024.sqlite.pre-doctor-update.*.bak"
+    - "mcp_server/database/skill-graph.sqlite"  # skill routing graph DB
+    - "mcp_server/database/skill-graph.sqlite.pre-doctor-update.*.bak"
+    - "mcp_server/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
+    - "mcp_server/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
+    - "mcp_server/database/speckit-eval.db"  # eval/ablation DB
+    - "mcp_server/database/speckit-eval.db.pre-doctor-update.*.bak"
+    - "mcp_server/database/.doctor-update.flock"  # single-instance lock
+    - "mcp_server/database/.doctor-update.lock"
+    - "mcp_server/database/.doctor-update.last-run.json"  # orchestrator state log
+  forbidden_targets:
+    - ".opencode/specs/**/*.md"  # never write into spec packet docs from /doctor:update
+    - ".opencode/specs/**/description.json"  # spec metadata belongs to memory-save tooling
+    - ".opencode/specs/**/graph-metadata.json"  # graph metadata not an orchestrator DB target
+    - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
+    - ".opencode/skills/**/graph-metadata.json"
+    - ".opencode/skills/system-spec-kit/mcp_server/**/*.ts"
+    - ".opencode/agents/**/*.md"
+    - ".opencode/commands/doctor/*.md"
+    - ".opencode/commands/doctor/assets/doctor_*.yaml"
+    - "mcp_server/database/migration-manifest.json"
+    - "**/migration-manifest.json"
+    - "source files indexed by code graph or CocoIndex"
+    - "direct SQL outside VACUUM INTO snapshot and snapshot restore"
+  validator:
+    name: canonical_path_validator
+    rule: "validate allowed_targets and forbidden_targets before snapshot, mutation, rollback, and state-log write"
+
+# ─────────────────────────────────────────────────────────────────
+# STATE LOG SCHEMA
+# ─────────────────────────────────────────────────────────────────
+state_log_schema:
+  command: "/doctor:update"
+  mode: "confirm"
+  start: "ISO-8601"
+  end: "ISO-8601"
+  duration_seconds: "number"
+  steps:
+    - name: "subsystem"
+      phase: "number"
+      start: "ISO-8601"
+      end: "ISO-8601"
+      exit: "0|1|130"
+      snapshot_path: "string|null"
+  final_status: "ok|failed|rolled_back|cancelled|unrollbackable"
+
+# ─────────────────────────────────────────────────────────────────
+# INTERACTIVE PROMPTS
+# ─────────────────────────────────────────────────────────────────
+interactive_prompts:
+  phase_boundary_options: ["approve", "inspect details", "skip safe optional step", "abort"]
+  failure_options: ["retry from start", "rollback snapshot and exit", "leave as-is (dangerous)"]
+  regression_options: ["rollback", "accept regression with note", "inspect"]
+
+# ─────────────────────────────────────────────────────────────────
+# DEPENDENCY ORDER
+# ─────────────────────────────────────────────────────────────────
+dependency:
+  order: ["code-graph", "context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_flock_acquire:
+    council_line: 1
+    approval: "prompt before acquiring lock"
+    flock: "ACQUIRE flock at mcp_server/database/.doctor-update.flock; refuse if held"
+    pid_file: "mcp_server/database/.doctor-update.lock"
+    stale_lock_rule: "refuse if PID-file stale-locked >2h"
+    refusal_message: "holding PID + start timestamp"
+
+  phase_2_probe_mcp_activity:
+    council_line: 2
+    approval: "prompt before probing active clients"
+    probe: "PROBE other MCP-client activity"
+    active_behavior: "if active, warn and prompt; --force marks force-ok"
+
+  phase_8_migration_phase_0:
+    council_line: 8
+    approval: "prompt before migration manifest Phase 0"
+    condition: "user_inputs.migrate OR auto-detected version skip"
+    migration: "run migration-manifest.json Phase 0 before snapshots"
+    gap_detected: "refuse to proceed if manifest gap detected"
+
+  phase_3_snapshot_all_databases:
+    council_line: 3
+    approval: "prompt before snapshot; include disk use estimate"
+    condition: "unless --no-snapshot"
+    snapshot: "SNAPSHOT every *.sqlite via VACUUM INTO"
+    filename: "<name>.pre-doctor-update.<version>.<timestamp>.bak"
+    disk_free: "refuse if disk free < 2x DB total"
+
+  phase_4_status_dashboard:
+    council_line: 4
+    approval: "prompt after rendering dashboard and before selecting actions"
+    cross_subsystem_dashboard:
+      rows: ["code-graph", "context-index", "causal-edges", "skill-graph", "advisor", "deep-loop", "cocoindex", "eval"]
+      columns: ["status", "age", "recommended action"]
+
+  phase_5_dependency_order_execute:
+    council_line: 4
+    approval: "prompt before each dependency step"
+    dependency.order: ["code-graph", "context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
+    execute:
+      code-graph: "code_graph_scan({ incremental: false })"
+      context-index: "memory_index_scan({ incremental: false, force: true })"
+      causal-edges-init: "memory_causal_link(...) for high-confidence missing lineage"
+      skill-graph: "skill_graph_scan({})"
+      advisor: "advisor_rebuild({ force: true }) + advisor_validate({})"
+      deep-loop-graph: "deep_loop_graph_upsert(...)"
+      speckit-eval: "eval_run_ablation({})"
+    failure:
+      council_line: 5
+      retry: "one retry with 5-sec backoff"
+      after_retry_failure: "prompt retry / rollback / leave"
+
+  phase_6_sigint_cancel_contract:
+    council_line: 6
+    SIGINT: "set cancel flag; let current SQLite tx commit/abort; restore snapshot of in-flight DB; log cancelled by user; exit 130"
+    settle_window: "~5 sec per ADR-001"
+
+  phase_7_post_run_validation:
+    council_line: 7
+    approval: "prompt before accepting validation results when any warning exists"
+    post.run.validation:
+      - "existence + schema-version + row-count delta within bounds"
+      - "gold-battery sanity check per DB"
+    regression: "prompt"
+
+  phase_9_legacy_cleanup:
+    council_line: 9
+    condition: "user_inputs.cleanup_legacy == true"
+    legacy: "detect known-legacy files per migration-manifest"
+    deletion: "prompt-delete each; never silent"
+
+  phase_10_state_log_unlock_cleanup:
+    council_line: 10
+    state.log: "write .doctor-update.last-run.json with timestamps, durations, snapshot paths"
+    release_flock: true
+    cleanup: "prompt before deleting snapshots >30 days unless --keep-snapshots"
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT FORMAT
+# ─────────────────────────────────────────────────────────────────
+output_format: |
+  Render phase decisions, cross-subsystem health dashboard, validation results, state log path, and STATUS.

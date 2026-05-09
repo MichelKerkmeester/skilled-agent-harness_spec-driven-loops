@@ -1,0 +1,21 @@
+{
+  "packet_id": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
+  "title": "099 Webflow per-language style guides",
+  "level": 3,
+  "manual": {
+    "depends_on": [],
+    "supersedes": []
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "checklist_completed": true,
+    "implementation_summary_present": true,
+    "last_updated_at": "2026-05-09T17:55:00Z"
+  },
+  "edges": {
+    "outbound": [],
+    "inbound": []
+  },
+  "schema_version": 2
+}

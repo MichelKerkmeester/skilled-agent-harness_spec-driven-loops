@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "spec-kit-migration-manifest",
+  "version": "1.0.0",
+  "last_updated": "2026-05-09T13:47:51Z",
+  "valid_source_versions": [
+    "3.3.0.0",
+    "3.3.0.1",
+    "3.3.1.0",
+    "3.4.0.0",
+    "3.4.1.0"
+  ],
+  "current_version": "3.4.1.0",
+  "semantics": {
+    "mode": "detect-and-recommend",
+    "cleanup_policy": "never auto-delete; cleanup requires --cleanup-legacy plus per-file confirmation",
+    "gap_policy": "refuse --migrate when source version is not listed in valid_source_versions",
+    "idempotency": "all declared migrations are safe to re-run and converge on the same post-state"
+  },
+  "paths": {
+    "database_dir": "mcp_server/database",
+    "checkpoint_helpers": "mcp_server/scripts/migrations",
+    "legacy_spec_memory_glob": "memory/*.md"
+  },
+  "versions": {
+    "3.3.0.0": {
+      "released": "2026-04",
+      "summary": "Pre-3.4 baseline with legacy spec memory files, no per-folder graph-metadata.json, and no current SQLite-backed doctor orchestration state.",
+      "deprecated_files": [
+        {
+          "pattern": "memory/*.md",
+          "scope": "spec-folder",
+          "reason": "Continuity moved to canonical spec-doc frontmatter and handover/decision documents in 3.4.0.0.",
+          "detect_only": true,
+          "action_on_cleanup": "prompt_delete_only_after_user_confirms_with_cleanup_legacy"
+        },
+        {
+          "pattern": "mcp_server/database/memory.db",
+          "scope": "system-spec-kit database directory",
+          "reason": "Legacy memory database artifact superseded by context-index.sqlite and profile-specific context-index*.sqlite databases.",
+          "detect_only": true,
+          "action_on_cleanup": "prompt_delete_only_after_user_confirms_with_cleanup_legacy"
+        }
+      ],
+      "schema_migrations": [
+        {
+          "id": "M-3.3.0.0-001",
+          "description": "Migrate continuity from legacy spec-folder memory/*.md artifacts into canonical spec documents: implementation-summary.md _memory.continuity, handover.md, and decision-record.md.",
+          "target_db": "spec-docs",
+          "target_schema_version": "canonical-continuity-frontmatter",
+          "idempotent": true,
+          "script": "DEFERRED: mcp_server/scripts/migrations/3.3.0.0-to-3.4.0.0-continuity.py",
+          "fallback_operation": "run /memory:save or generate-context.js for affected spec folders after reviewing detected legacy files"
+        },
+        {
+          "id": "M-3.3.0.0-002",
+          "description": "Backfill required per-folder description.json and graph-metadata.json files for spec graph traversal and memory search routing.",
+          "target_db": "spec-docs",
+          "target_schema_version": "graph-metadata.schema_version=1",
+          "idempotent": true,
+          "script": "DEFERRED: mcp_server/scripts/migrations/3.3.0.0-to-3.4.0.0-graph-metadata.py",
+          "fallback_operation": "run scripts/dist/spec-folder/generate-description.js and scripts/dist/graph/backfill-graph-metadata.js"
+        },
+        {
+          "id": "M-3.3.0.0-003",
+          "description": "Initialize current SQLite structural graph storage and rescan repository symbols.",
+          "target_db": "code-graph.sqlite",
+          "target_schema_version": "5",
+          "idempotent": true,
+          "script": "DEFERRED: mcp_server/scripts/migrations/3.3.0.0-to-3.4.0.0-code-graph.py",
+          "fallback_operation": "run code_graph_scan({ incremental: false })"
+        }
+      ],
+      "expected_post_state": {
+        "files_present": [
+          "implementation-summary.md with optional _memory.continuity",
+          "description.json",
+          "graph-metadata.json",
+          "mcp_server/database/context-index.sqlite",
+          "mcp_server/database/code-graph.sqlite"
+        ],
+        "files_absent_required": [],
+        "files_absent_after_cleanup": [
+          "memory/*.md",
+          "mcp_server/database/memory.db"
+        ],
+        "legacy_files_may_remain_without_cleanup": true,
+        "schema_version": {
+          "graph_metadata": 1,
+          "context_index_minimum": 27,
+          "code_graph": 5
+        }
+      }
+    },
+    "3.4.0.0": {
+      "released": "2026-05-09",
+      "summary": "Memory-system rewrite: continuity moved into spec docs, legacy memory/*.md artifacts retired, graph-metadata.json became required, and graph/search routing became machine-readable.",
+      "deprecated_files": [
+        {
+          "pattern": "memory/*.md",
+          "scope": "spec-folder",
+          "reason": "Legacy memory files are read-only archive after the canonical spec-doc continuity cutover.",
+          "detect_only": true,
+          "action_on_cleanup": "prompt_delete_only_after_user_confirms_with_cleanup_legacy"
+        },
+        {
+          "pattern": "mcp_server/database/memory.db",
+          "scope": "system-spec-kit database directory",
+          "reason": "Zero-byte legacy memory database artifact is superseded by context-index.sqlite.",
+          "detect_only": true,
+          "action_on_cleanup": "prompt_delete_only_after_user_confirms_with_cleanup_legacy"
+        }
+      ],
+      "schema_migrations": [
+        {
+          "id": "M-3.4.0.0-001",
+          "description": "Ensure context-index and vector-index databases are at the current memory schema and rebuild canonical spec-doc rows after the continuity cutover.",
+          "target_db": "context-index.sqlite and context-index__*.sqlite",
+          "target_schema_version": "27",
+          "idempotent": true,
+          "script": "DEFERRED: mcp_server/scripts/migrations/3.4.0.0-to-3.4.1.0-context-index.py",
+          "fallback_operation": "run memory_index_scan({ incremental: false, force: true })"
+        },
+        {
+          "id": "M-3.4.0.0-002",
+          "description": "Rebuild code-graph.sqlite with the recovered tree-sitter parser path and current structural graph schema.",
+          "target_db": "code-graph.sqlite",
+          "target_schema_version": "5",
+          "idempotent": true,
+          "script": "DEFERRED: mcp_server/scripts/migrations/3.4.0.0-to-3.4.1.0-code-graph.py",
+          "fallback_operation": "run code_graph_scan({ incremental: false })"
+        },
+        {
+          "id": "M-3.4.0.0-003",
+          "description": "Rebuild skill-graph.sqlite from .opencode/skills/*/graph-metadata.json and refresh the live Skill Advisor daemon state.",
+          "target_db": "skill-graph.sqlite",
+          "target_schema_version": "1",
+          "idempotent": true,
+          "script": "DEFERRED: mcp_server/scripts/migrations/3.4.0.0-to-3.4.1.0-skill-graph.py",
+          "fallback_operation": "run skill_graph_scan({}) and advisor_rebuild({ force: true })"
+        },
+        {
+          "id": "M-3.4.0.0-004",
+          "description": "Initialize or refresh deep-loop coverage graph state for research/review convergence surfaces.",
+          "target_db": "deep-loop-graph.sqlite",
+          "target_schema_version": "2",
+          "idempotent": true,
+          "script": "DEFERRED: mcp_server/scripts/migrations/3.4.0.0-to-3.4.1.0-deep-loop.py",
+          "fallback_operation": "run deep_loop_graph_upsert(...) for deterministic iteration batches"
+        },
+        {
+          "id": "M-3.4.0.0-005",
+          "description": "Refresh CocoIndex semantic daemon/index state after the 3.4.1.0 daemon idempotency and bounded-log fixes.",
+          "target_db": "cocoindex semantic store",
+          "target_schema_version": "current",
+          "idempotent": true,
+          "script": "DEFERRED: mcp_server/scripts/migrations/3.4.0.0-to-3.4.1.0-cocoindex.py",
+          "fallback_operation": "run ccc_status({}) and ccc_reindex({ full: true }) when stale or unhealthy"
+        }
+      ],
+      "expected_post_state": {
+        "files_present": [
+          "description.json",
+          "graph-metadata.json",
+          "mcp_server/database/context-index.sqlite",
+          "mcp_server/database/context-index__voyage__voyage-4__1024.sqlite",
+          "mcp_server/database/code-graph.sqlite",
+          "mcp_server/database/skill-graph.sqlite",
+          "mcp_server/database/deep-loop-graph.sqlite"
+        ],
+        "files_absent_required": [],
+        "files_absent_after_cleanup": [
+          "memory/*.md",
+          "mcp_server/database/memory.db"
+        ],
+        "legacy_files_may_remain_without_cleanup": true,
+        "schema_version": {
+          "context_index": 27,
+          "vector_index": 27,
+          "code_graph": 5,
+          "skill_graph": 1,
+          "deep_loop_graph": 2,
+          "graph_metadata": 1
+        }
+      }
+    },
+    "3.4.1.0": {
+      "released": "2026-05-09",
+      "summary": "Current version: doctor commands, live Skill Advisor daemon, CocoIndex daemon resilience, tree-sitter code-graph recovery, and causal-graph routing are active.",
+      "deprecated_files": [],
+      "schema_migrations": [],
+      "expected_post_state": {
+        "files_present": [
+          "mcp_server/database/context-index.sqlite",
+          "mcp_server/database/code-graph.sqlite",
+          "mcp_server/database/skill-graph.sqlite"
+        ],
+        "files_absent_required": [],
+        "files_absent_after_cleanup": [],
+        "legacy_files_may_remain_without_cleanup": true,
+        "schema_version": "current"
+      }
+    }
+  },
+  "upgrade_paths": [
+    {
+      "from": "3.3.0.0",
+      "to": "3.4.1.0",
+      "chain": [
+        "3.3.0.0",
+        "3.4.0.0",
+        "3.4.1.0"
+      ],
+      "display_chain": "3.3.0.0 -> 3.4.0.0 -> 3.4.1.0",
+      "steps": [
+        "M-3.3.0.0-001",
+        "M-3.3.0.0-002",
+        "M-3.3.0.0-003",
+        "M-3.4.0.0-001",
+        "M-3.4.0.0-002",
+        "M-3.4.0.0-003",
+        "M-3.4.0.0-004",
+        "M-3.4.0.0-005"
+      ],
+      "estimated_runtime_minutes": 15
+    },
+    {
+      "from": "3.3.0.1",
+      "to": "3.4.1.0",
+      "chain": [
+        "3.3.0.1",
+        "3.4.0.0",
+        "3.4.1.0"
+      ],
+      "display_chain": "3.3.0.1 -> 3.4.0.0 -> 3.4.1.0",
+      "inherits_steps_from": "3.3.0.0",
+      "estimated_runtime_minutes": 15
+    },
+    {
+      "from": "3.3.1.0",
+      "to": "3.4.1.0",
+      "chain": [
+        "3.3.1.0",
+        "3.4.0.0",
+        "3.4.1.0"
+      ],
+      "display_chain": "3.3.1.0 -> 3.4.0.0 -> 3.4.1.0",
+      "inherits_steps_from": "3.3.0.0",
+      "estimated_runtime_minutes": 15
+    },
+    {
+      "from": "3.4.0.0",
+      "to": "3.4.1.0",
+      "chain": [
+        "3.4.0.0",
+        "3.4.1.0"
+      ],
+      "display_chain": "3.4.0.0 -> 3.4.1.0",
+      "steps": [
+        "M-3.4.0.0-001",
+        "M-3.4.0.0-002",
+        "M-3.4.0.0-003",
+        "M-3.4.0.0-004",
+        "M-3.4.0.0-005"
+      ],
+      "estimated_runtime_minutes": 10
+    },
+    {
+      "from": "3.4.1.0",
+      "to": "3.4.1.0",
+      "chain": [
+        "3.4.1.0"
+      ],
+      "display_chain": "3.4.1.0",
+      "steps": [],
+      "estimated_runtime_minutes": 0
+    }
+  ],
+  "metadata": {
+    "consumed_by": "/doctor:update --migrate",
+    "authored_by": "packet 026/013-doctor-update-orchestrator (Track D)",
+    "council_adr": "ADR-008 in 013/decision-record.md",
+    "script_status": "migration scripts are intentionally deferred by REQ-020; this Track D manifest is declarative only",
+    "source_changelogs": [
+      ".opencode/skills/system-spec-kit/changelog/v3.3.0.0.md",
+      ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
+      ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md"
+    ],
+    "current_schema_versions": {
+      "context_index": 27,
+      "vector_index": 27,
+      "code_graph": 5,
+      "skill_graph": 1,
+      "deep_loop_graph": 2
+    },
+    "last_verified_with": [
+      "python3 -m json.tool",
+      "jq top-level field checks",
+      "jq per-version block checks"
+    ]
+  }
+}

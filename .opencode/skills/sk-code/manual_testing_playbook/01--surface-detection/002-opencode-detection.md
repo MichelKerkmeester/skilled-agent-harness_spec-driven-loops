@@ -11,7 +11,7 @@ This scenario verifies that sk-code's smart router identifies OPENCODE as the ac
 
 When OPENCODE is detected, the router proceeds to language sub-detection (handled separately by LS-* scenarios) and loads the appropriate sub-language reference set.
 
-Detection markers are defined verbatim in `references/router/code_surface_detection.md:39-40` and SKILL.md smart router pseudocode lines 62-64.
+Detection markers are defined verbatim in `references/stack_detection.md:39-40` and SKILL.md smart router pseudocode lines 62-64.
 
 ## 2. SCENARIO CONTRACT
 
@@ -27,9 +27,9 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 - Sub-language: `TYPESCRIPT` (target file extension `.ts`)
 
 **Expected references loaded**:
-- `references/router/code_surface_detection.md`
-- `references/router/intent_classification.md`
-- `references/router/resource_loading.md`
+- `references/stack_detection.md`
+- `references/smart_routing.md`
+- `references/smart_routing.md`
 - `references/universal/code_quality_standards.md`
 - `references/opencode/shared/code_organization.md`
 - `references/opencode/shared/universal_patterns.md`
@@ -86,14 +86,14 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 ### Failure Triage
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` for sk-code signals "opencode", "system code", "typescript".
-2. If surface != OPENCODE: verify target path detection in `references/router/code_surface_detection.md:39-40`. The path `.opencode/...` should match.
+2. If surface != OPENCODE: verify target path detection in `references/stack_detection.md:39-40`. The path `.opencode/...` should match.
 3. If sub-language != TYPESCRIPT: verify `.ts` extension is in the TYPESCRIPT extension list in SKILL.md sub-detection table (lines 78-90).
 4. If `references/webflow/*` is loaded: the router has a leak — the WEBFLOW markers (motion.dev, GSAP, etc.) MUST NOT match this prompt. Verify the marker grep patterns are anchored correctly.
 
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — Smart router + sub-detection table (lines 53-90).
-- `.opencode/skills/sk-code/references/router/code_surface_detection.md` — OPENCODE marker definition (lines 39-40).
+- `.opencode/skills/sk-code/references/stack_detection.md` — OPENCODE marker definition (lines 39-40).
 - `.opencode/skills/sk-code/references/opencode/typescript/` — Expected-loaded TypeScript references.
 - `.opencode/skills/sk-code/references/opencode/shared/` — Expected-loaded shared OPENCODE references.
 - `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py` — OPENCODE alignment verifier (run after the edit for evidence).

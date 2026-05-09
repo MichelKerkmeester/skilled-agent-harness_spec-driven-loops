@@ -1,24 +1,27 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
-  "description": "Feature Specification: 013 Doctor Update Orchestrator",
+  "description": "Feature Specification: Doctor Update Orchestrator (phase parent)",
   "keywords": [
     "feature",
     "specification",
-    "013",
     "doctor",
     "update",
-    "orchestrator"
+    "orchestrator",
+    "phase-parent",
+    "doctor-commands",
+    "sandbox-testing-playbook"
   ],
-  "lastUpdated": "2026-05-09T12:23:01.228Z",
+  "lastUpdated": "2026-05-09T16:00:00.000Z",
   "specId": "013",
   "folderSlug": "doctor-update-orchestrator",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization"
   ],
-  "memorySequence": 2,
-  "memoryNameHistory": [
-    "09-05-26_13-15__existing-doctor-surface-5-commands-covers-code.md",
-    "09-05-26_13-23__phase-a-scaffold-complete-6-level-2-packet-docs.md"
-  ]
+  "childTopology": [
+    "001-doctor-commands",
+    "002-sandbox-testing-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

@@ -20,7 +20,7 @@ Follow code quality standards for all implementations:
 - **Initialization:** Use CDN-safe pattern with guard flags and delays
 - **Animation:** CSS first, Motion.dev for complexity - see [animation_workflows.md](./animation_workflows.md)
 - **Webflow:** Collection list patterns, async rendering - see [webflow_patterns.md](./webflow_patterns.md)
-- See [code_quality_standards.md](../standards/code_quality_standards.md) for complete standards
+- See [code_quality_standards.md](../javascript/quality_standards.md) for complete standards
 
 > **Cross-stack motion.dev reference**: For Motion API and integration guidance that is not Webflow-specific, see [`../../motion_dev/quick_start.md`](../../motion_dev/quick_start.md) and [`../../motion_dev/integration_patterns.md`](../../motion_dev/integration_patterns.md). Webflow lifecycle, CDN timing, and Designer constraints remain covered by the Webflow implementation guides linked here.
 
@@ -573,9 +573,9 @@ function sanitizeText(text) {
 ### Reference Files
 - [debugging_workflows.md](../debugging/debugging_workflows.md) - Debug timing and validation issues with systematic approach
 - [verification_workflows.md](../verification/verification_workflows.md) - Verify implementations work correctly across browsers and viewports
-- [shared_patterns.md](../standards/shared_patterns.md) - Common DevTools and logging patterns for all workflows
+- [dev_workflow.md](../shared/dev_workflow.md) - Common DevTools and logging patterns for all workflows
 - [animation_workflows.md](./animation_workflows.md) - Complete animation implementation guide including waitForTransitionEnd pattern
-- [code_quality_standards.md](../standards/code_quality_standards.md) - CDN-safe initialization pattern and naming conventions
+- [code_quality_standards.md](../javascript/quality_standards.md) - CDN-safe initialization pattern and naming conventions
 
 ### Templates
 - [wait_patterns.js](../../assets/patterns/wait_patterns.js) - Production-ready condition-based waiting templates with error handling

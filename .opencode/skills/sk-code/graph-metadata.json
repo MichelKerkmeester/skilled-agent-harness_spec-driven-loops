@@ -160,10 +160,10 @@
     "source_docs": [
       "SKILL.md",
       "README.md",
-      "references/router/code_surface_detection.md",
-      "references/router/intent_classification.md",
-      "references/router/resource_loading.md",
-      "references/router/phase_lifecycle.md",
+      "references/stack_detection.md",
+      "references/smart_routing.md",
+      "references/smart_routing.md",
+      "references/phase_detection.md",
       "references/motion_dev/animate_and_timelines.md",
       "references/motion_dev/decision_matrix.md",
       "references/motion_dev/integration_patterns.md",
@@ -174,10 +174,10 @@
     "key_files": [
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/README.md",
-      ".opencode/skills/sk-code/references/router/code_surface_detection.md",
-      ".opencode/skills/sk-code/references/router/intent_classification.md",
-      ".opencode/skills/sk-code/references/router/resource_loading.md",
-      ".opencode/skills/sk-code/references/router/phase_lifecycle.md",
+      ".opencode/skills/sk-code/references/stack_detection.md",
+      ".opencode/skills/sk-code/references/smart_routing.md",
+      ".opencode/skills/sk-code/references/smart_routing.md",
+      ".opencode/skills/sk-code/references/phase_detection.md",
       ".opencode/skills/sk-code/references/motion_dev/quick_start.md",
       ".opencode/skills/sk-code/references/motion_dev/decision_matrix.md",
       ".opencode/skills/sk-code/references/motion_dev/integration_patterns.md",
@@ -205,7 +205,7 @@
       {
         "name": "code_surface_detection",
         "kind": "reference",
-        "path": ".opencode/skills/sk-code/references/router/code_surface_detection.md",
+        "path": ".opencode/skills/sk-code/references/stack_detection.md",
         "source": "derived"
       },
       {

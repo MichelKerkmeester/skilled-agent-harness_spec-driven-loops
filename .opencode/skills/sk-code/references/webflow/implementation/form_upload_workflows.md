@@ -30,7 +30,7 @@ Single source of truth for understanding, maintaining, and extending the file up
 ### Prerequisites
 
 - **[implementation_workflows.md](./implementation_workflows.md)**: Condition-based waiting, validation patterns
-- **[code_quality_standards.md](../standards/code_quality_standards.md)**: Naming conventions, initialization patterns
+- **[code_quality_standards.md](../javascript/quality_standards.md)**: Naming conventions, initialization patterns
 - **FilePond CDN**: `unpkg.com/filepond` (CSS + JS + plugins — check HTML source for current version)
 - **Cloudflare Worker**: `worker--upload-form.lorenzo-89a.workers.dev`
 
@@ -731,8 +731,12 @@ window.cleanupFilepondInstances();
 
 ## 11. RELATED RESOURCES
 
+### Reference Files
+
+- [`../css/quality_standards.md`](../css/quality_standards.md) - CSS quality patterns relevant to form-field state styling (BEM enforcement, custom property prefixes, attribute selector i flag)
+
 - **[implementation_workflows.md](./implementation_workflows.md)** — Condition-based waiting, validation patterns used by the upload connector
 - **[security_patterns.md](./security_patterns.md)** — XSS prevention relevant to file upload handling
-- **[code_quality_standards.md](../standards/code_quality_standards.md)** — Naming conventions and initialization patterns
+- **[code_quality_standards.md](../javascript/quality_standards.md)** — Naming conventions and initialization patterns
 - **CDN Deployment**: See [cdn_deployment.md](../deployment/cdn_deployment.md) for R2 upload workflow
 - **Minification**: See [minification_guide.md](../deployment/minification_guide.md) for terser configuration

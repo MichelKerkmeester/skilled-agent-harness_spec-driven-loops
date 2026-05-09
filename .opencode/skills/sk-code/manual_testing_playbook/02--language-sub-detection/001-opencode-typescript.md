@@ -9,7 +9,7 @@ description: "Verify that within OPENCODE surface, TypeScript file extensions tr
 
 This scenario verifies the language sub-detection layer within OPENCODE. When the target file extension is `.ts`, `.tsx`, `.mts`, or `.d.ts`, sk-code MUST load the `references/opencode/typescript/*` set and corresponding `assets/opencode/checklists/typescript_checklist.md`, while excluding python, shell, and config sub-language references.
 
-Sub-detection rules are defined in SKILL.md lines 78-90 and `references/router/code_surface_detection.md:50-62`.
+Sub-detection rules are defined in SKILL.md lines 78-90 and `references/stack_detection.md:50-62`.
 
 ## 2. SCENARIO CONTRACT
 
@@ -63,7 +63,7 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (lines 78-90 — sub-detection table).
-- `.opencode/skills/sk-code/references/router/code_surface_detection.md` (lines 50-62).
+- `.opencode/skills/sk-code/references/stack_detection.md` (lines 50-62).
 - `.opencode/skills/sk-code/references/opencode/typescript/{style_guide,quality_standards,quick_reference}.md`.
 
 ## 5. SOURCE METADATA

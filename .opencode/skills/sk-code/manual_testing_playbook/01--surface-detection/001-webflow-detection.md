@@ -11,7 +11,7 @@ This scenario verifies that sk-code's smart router correctly identifies WEBFLOW 
 
 WEBFLOW is the frontend HTML/CSS/JS surface for Webflow / vanilla-animation projects. When detected, sk-code MUST load `references/webflow/*` and `assets/webflow/*` and SHOULD NOT load any `references/opencode/*` resources.
 
-Detection markers are defined verbatim in `references/router/code_surface_detection.md:30-37`.
+Detection markers are defined verbatim in `references/stack_detection.md:30-37`.
 
 ## 2. SCENARIO CONTRACT
 
@@ -27,16 +27,18 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - Triggering markers: `src/2_javascript/` (path marker) AND `Lenis` (library marker) → either alone is sufficient per `code_surface_detection.md:30-37`.
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/router/code_surface_detection.md` (always loaded for router decision)
-- `references/router/intent_classification.md`
-- `references/router/resource_loading.md`
-- `references/router/phase_lifecycle.md`
+- `references/stack_detection.md` (always loaded for router decision)
+- `references/smart_routing.md`
+- `references/smart_routing.md`
+- `references/phase_detection.md`
 - `references/universal/code_quality_standards.md`
 - `references/webflow/implementation/webflow_patterns.md`
 - `references/webflow/implementation/animation_patterns.md`
 - `references/webflow/implementation/observer_patterns.md`
-- `references/webflow/standards/code_quality.md`
-- `references/webflow/standards/style_guide.md`
+- `references/webflow/javascript/quality_standards.md`
+- `references/webflow/javascript/style_guide.md`
+- `references/webflow/css/style_guide.md`
+- `references/webflow/shared/cross_language_rules.md`
 
 **Expected assets loaded**:
 - `assets/webflow/checklists/code_quality.md`
@@ -53,7 +55,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 ### Preconditions
 
 1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main.
-2. `references/router/code_surface_detection.md:30-37` contains the WEBFLOW marker block (verify with `head -40 .opencode/skills/sk-code/references/router/code_surface_detection.md`).
+2. `references/stack_detection.md:30-37` contains the WEBFLOW marker block (verify with `head -40 .opencode/skills/sk-code/references/stack_detection.md`).
 3. Sandbox: create `/tmp/skc-SD001-sandbox/src/2_javascript/scroll.js` with placeholder content (the AI doesn't need to actually write — we're testing routing).
 4. Skill advisor binary callable: `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --help` exits 0.
 
@@ -93,14 +95,14 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 ### Failure Triage
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` `sk-code.signals` array — ensure "webflow", "frontend", "animation" are present.
-2. If surface != WEBFLOW: re-read `references/router/code_surface_detection.md:30-37` and verify the markers in the prompt actually match the regex/grep patterns.
+2. If surface != WEBFLOW: re-read `references/stack_detection.md:30-37` and verify the markers in the prompt actually match the regex/grep patterns.
 3. If `references/opencode/*` is loaded: the router is mis-classifying. Check whether the CWD shell variable (`PWD`) accidentally contains `/.opencode/` (would trigger OPENCODE) — the marker priority is documented in SKILL.md smart router pseudocode.
 
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — Smart router pseudocode (lines 53-68).
-- `.opencode/skills/sk-code/references/router/code_surface_detection.md` — WEBFLOW marker definitions (lines 30-37).
-- `.opencode/skills/sk-code/references/router/intent_classification.md` — Intent → resource-loading mapping.
+- `.opencode/skills/sk-code/references/stack_detection.md` — WEBFLOW marker definitions (lines 30-37).
+- `.opencode/skills/sk-code/references/smart_routing.md` — Intent → resource-loading mapping.
 - `.opencode/skills/sk-code/references/webflow/implementation/webflow_patterns.md` — Expected-loaded reference.
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` — sk-code signals + adjacency.
 

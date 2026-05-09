@@ -1,6 +1,6 @@
 ---
-description: Audit skill/command/agent description budget against Claude Code's 8000-char default. Modes :auto, :confirm.
-argument-hint: "[:auto|:confirm] [--json] [--top-n=N] [--fail-over=N] [--project-ceiling=N]"
+description: Audit skill, command, and agent description budgets through the interactive confirm workflow.
+argument-hint: "[--json] [--top-n=N] [--fail-over=N] [--project-ceiling=N]"
 allowed-tools: Read, Bash, Glob
 ---
 
@@ -13,20 +13,20 @@ allowed-tools: Read, Bash, Glob
 > **YOUR FIRST ACTION:**
 > 1. Run the unified setup phase below and resolve: `execution_mode`, `json_output`, `top_n`, `fail_over`, `project_ceiling`
 > 2. Load the corresponding YAML from `assets/`:
->    - Auto: `doctor_skill-budget_auto.yaml`
->    - Confirm: `doctor_skill-budget_confirm.yaml`
+>    - Confirm: `doctor_skill-budget.yaml`
 > 3. Execute the YAML workflow using those resolved values
 >
 > All content below is reference for the YAML workflow. Read-only command — no mutations.
 
 ## CONSTRAINTS
 
+- **ONLY MODE ()**: this doctor command is always interactive by design; deleted mode suffixes are invalid.
 - **READ-ONLY.** This command never writes files, never modifies skill/command/agent descriptions, never re-indexes the advisor.
 - **DO NOT** dispatch any agent from this document.
 - **YAML START CONDITION**: do not load YAML until ALL inputs are bound: `execution_mode`, `json_output`, `top_n`, `fail_over`, `project_ceiling`.
 
-> **Format:** `/doctor:skill-budget [:auto|:confirm] [flags]`
-> Examples: `/doctor:skill-budget:auto` | `/doctor:skill-budget:auto --fail-over=5600` | `/doctor:skill-budget:auto --json`
+> **Format:** `/doctor:skill-budget` [flags]
+> Example: `/doctor:skill-budget`
 
 ## GATE 3 STATUS: EXEMPT
 
@@ -42,9 +42,8 @@ Read-only audit; no spec folder required. Diagnostic output only.
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 1. CHECK mode suffix:
-   ├─ ":auto"    → execution_mode = "AUTONOMOUS" (omit Q0)
-   ├─ ":confirm" → execution_mode = "INTERACTIVE" (omit Q0)
-   └─ No suffix  → execution_mode = "ASK" (include Q0)
+   - default -> execution_mode = "INTERACTIVE", yaml = "doctor_skill-budget.yaml"
+   - No suffix -> execution_mode = "INTERACTIVE", yaml = "doctor_skill-budget.yaml" (confirm is the only supported mode)
 
 2. PARSE flags from $ARGUMENTS:
    ├─ --json                → json_output = TRUE  (default FALSE)
@@ -53,13 +52,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ --project-ceiling=N   → project_ceiling = N (default 5600)
    └─ Defaults: json_output=FALSE, top_n=10, fail_over=unset, project_ceiling=5600
 
-3. ASK with SINGLE prompt (only if execution_mode = "ASK"):
+3. ASK with a single prompt only if required flags are unresolved.
 
-   Q0. Execution Mode:
-     A) Autonomous - run audit, print report, return STATUS
-     B) Interactive - print report, then ask whether to also run --fail-over check
-
-4. WAIT for user response (DO NOT PROCEED if Q0 was asked)
+4. WAIT only when an unresolved flag question was asked
 
 5. SET STATUS: PASSED
 ```
@@ -100,7 +95,7 @@ $ARGUMENTS
 
 ## 3. CONTRACT
 
-**Inputs:** Optional mode suffix (`:auto`, `:confirm`) and flags (`--json`, `--top-n=N`, `--fail-over=N`, `--project-ceiling=N`).
+**Inputs:** Optional mode suffix () and flags (`--json`, `--top-n=N`, `--fail-over=N`, `--project-ceiling=N`).
 **Outputs:** Human-readable table OR JSON envelope; `STATUS=<OK|FAIL>` and exit code (non-zero when over `--fail-over` threshold OR when any item exceeds the 1,536-char hard cap).
 
 ---
@@ -144,8 +139,7 @@ Agents are reported unique-by-name with a `mirrored: N surfaces` annotation when
 
 After setup phase passes, load and execute the appropriate YAML prompt:
 
-- **AUTONOMOUS**: `.opencode/commands/doctor/assets/doctor_skill-budget_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/doctor/assets/doctor_skill-budget_confirm.yaml`
+- **INTERACTIVE**: `.opencode/commands/doctor/assets/doctor_skill-budget.yaml`
 
 The YAML workflow is a single phase that calls `audit_descriptions.py` with resolved flags and surfaces the report.
 
@@ -190,11 +184,11 @@ STATUS=FAIL ERROR="description budget exceeded"
 ## 8. EXAMPLES
 
 ```
-/doctor:skill-budget:auto                     # Run audit, print human report
-/doctor:skill-budget:auto --json              # JSON envelope to stdout
-/doctor:skill-budget:auto --fail-over=5600    # Non-zero exit when over ceiling
-/doctor:skill-budget:auto --top-n=20          # Show top 20 instead of default 10
-/doctor:skill-budget:auto --json --fail-over=5600  # Recommended CI / pre-commit form
+/doctor:skill-budget                     # Run audit, print human report
+/doctor:skill-budget --json              # JSON envelope to stdout
+/doctor:skill-budget --fail-over=5600    # Non-zero exit when over ceiling
+/doctor:skill-budget --top-n=20          # Show top 20 instead of default 10
+/doctor:skill-budget --json --fail-over=5600  # Recommended CI / pre-commit form
 ```
 
 ---
@@ -203,7 +197,7 @@ STATUS=FAIL ERROR="description budget exceeded"
 
 | Command | Relationship |
 | ------- | ------------ |
-| `/doctor:skill-advisor:auto` | Tunes scoring tables; can run after a budget trim re-orders top recommendations |
+| `/doctor:skill-advisor` | Tunes scoring tables; can run after a budget trim re-orders top recommendations |
 | `/create:sk-skill` | Per-create-time validation already runs `quick_validate.py` (Tier 2 of packet 086) |
 | `/memory:save` | Refresh canonical continuity after acting on audit findings |
 

@@ -26,7 +26,7 @@ CSS first for simplicity and performance. Motion.dev when you need programmatic 
 Follow code quality standards:
 - **Initialization:** Use CDN-safe pattern with guard flags and delays
 - **Naming:** Use `snake_case` for functions/variables
-- See [code_quality_standards.md](../standards/code_quality_standards.md) for complete standards
+- See [code_quality_standards.md](../javascript/quality_standards.md) for complete standards
 
 ---
 
@@ -184,7 +184,16 @@ function close_dropdown(dropdown) {
 
 ## 4. MOTION.DEV INTEGRATION
 
-> **Cross-stack motion.dev reference**: For Motion API surface, decision matrix, snippets, and integration patterns that apply across stacks, see [`../../motion_dev/quick_start.md`](../../motion_dev/quick_start.md), [`../../motion_dev/decision_matrix.md`](../../motion_dev/decision_matrix.md), and [`../../motion_dev/integration_patterns.md`](../../motion_dev/integration_patterns.md). The Webflow guidance in this section remains authoritative for Webflow CDN loading, `window.Motion`, and Designer-specific initialization timing.
+> **Cross-stack motion.dev reference**: The full Motion.dev knowledge base lives at [`../../motion_dev/`](../../motion_dev/). Load by topic:
+>
+> - [`quick_start.md`](../../motion_dev/quick_start.md) — install modes, API availability, first-call patterns
+> - [`decision_matrix.md`](../../motion_dev/decision_matrix.md) — when to use Motion.dev vs CSS vs `requestAnimationFrame`
+> - [`integration_patterns.md`](../../motion_dev/integration_patterns.md) — non-Webflow integration patterns and module loading
+> - [`animate_and_timelines.md`](../../motion_dev/animate_and_timelines.md) — `animate()` API surface, keyframe shapes, easing
+> - [`scroll_and_gestures.md`](../../motion_dev/scroll_and_gestures.md) — `scroll()`, `inView()`, gesture-driven animation
+> - [`performance_and_pitfalls.md`](../../motion_dev/performance_and_pitfalls.md) — `will-change` cleanup, GPU acceleration, frame-rate gotchas
+>
+> The Webflow guidance in this section remains authoritative for Webflow CDN loading, `window.Motion`, and Designer-specific initialization timing.
 
 ### Library Loading (Global Setup)
 
@@ -263,7 +272,7 @@ function close_dropdown(dropdown) {
 - Retry logic handles variable CDN loading times
 - `window.Motion || {}` safely destructures even if undefined
 
-**See:** [code_quality_standards.md](../standards/code_quality_standards.md) Section 4 for complete CDN-safe pattern documentation.
+**See:** [code_quality_standards.md](../javascript/quality_standards.md) Section 4 for complete CDN-safe pattern documentation.
 
 ### Standardized Animation Parameters
 
@@ -1036,10 +1045,12 @@ animate(element, {
 ## 9. RELATED RESOURCES
 
 ### Reference Files
+- [`../css/patterns.md`](../css/patterns.md) — CSS animation-relevant patterns (state machine pattern, color-mix interpolation, GPU-accelerated state triggers)
 - [implementation_workflows.md](./implementation_workflows.md) - Implementation phase guidance
 - [debugging_workflows.md](../debugging/debugging_workflows.md) - Animation debugging techniques
 - [verification_workflows.md](../verification/verification_workflows.md) - Animation verification procedures
-- [code_quality_standards.md](../standards/code_quality_standards.md) - CDN-safe initialization patterns
+- [code_quality_standards.md](../javascript/quality_standards.md) - CDN-safe initialization patterns
+- [`../css/quality_standards.md`](../css/quality_standards.md) - CSS animation quality patterns (will-change management, GPU-accelerated properties, easing standards aligned with Motion.dev, fluid typography)
 
 ### Related Skills
 - `mcp-chrome-devtools` - CLI-based performance profiling and animation testing

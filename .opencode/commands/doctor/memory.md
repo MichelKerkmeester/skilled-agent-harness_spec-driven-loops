@@ -1,6 +1,6 @@
 ---
-description: Diagnose and rebuild the memory continuity-index (FTS+vector). Long-pole rebuild (5-15 min). :auto/:confirm read-only health; :apply/:apply-confirm rebuild with snapshot.
-argument-hint: "[:auto|:confirm|:apply|:apply-confirm] [--incremental=true|false] [--no-snapshot] [--dry-run]"
+description: Diagnose the memory continuity index with an interactive read-only health workflow.
+argument-hint: "[--incremental=true|false] [--no-snapshot] [--dry-run]"
 allowed-tools: Read, Bash, Grep, Glob, mcp__spec_kit_memory__memory_health, mcp__spec_kit_memory__memory_index_scan, mcp__spec_kit_memory__memory_drift_why, mcp__spec_kit_memory__memory_search, mcp__spec_kit_memory__memory_stats
 ---
 
@@ -13,27 +13,25 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__spec_kit_memory__memory_health, mcp_
 > **YOUR FIRST ACTION:**
 > 1. Run the unified setup phase in this Markdown entrypoint and resolve: `execution_mode`, `intent`, `incremental`, `no_snapshot`, `dry_run`
 > 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - `:auto` → `doctor_memory_auto.yaml` (read-only health)
->    - `:confirm` → `doctor_memory_confirm.yaml` (interactive health)
->    - `:apply` → `doctor_memory_apply.yaml` (rebuild with snapshot)
->    - `:apply-confirm` → `doctor_memory_apply-confirm.yaml` (interactive rebuild)
+>    - → `doctor_memory.yaml` (interactive health)
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
 
 ## CONSTRAINTS
 
+- **ONLY MODE ()**: this doctor command is always interactive by design; deleted mode suffixes are invalid.
 - **DO NOT** dispatch any agent from this document
 - **ALL** workflow execution happens through the YAML — this document is setup + reference only
 - **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound: `execution_mode`, `intent`, `incremental`, `no_snapshot`, `dry_run`
-- **DIAGNOSTIC MODES (`:auto`, `:confirm`) ARE READ-ONLY**: zero mutations to repo files; report goes to packet-local scratch only
-- **APPLY MODES (`:apply`, `:apply-confirm`)**: pre-apply snapshot via `VACUUM INTO` + post-verify gold-battery + auto-rollback on regression in autonomous mode; user-approval gates in `:apply-confirm`
+- **CONFIRM WORKFLOW IS READ-ONLY**: zero mutations to repo files; report goes to packet-local scratch only
+- **confirm workflow ()**: pre-run snapshot via `VACUUM INTO` + post-verify gold-battery + auto-rollback on regression in interactive workflow; user-approval gates in 
 - **LONG-POLE WARNING**: full rebuild (`incremental=false`) takes 5-15 min depending on markdown corpus size and embedding provider; explicit ETA prompt before any rebuild
 - **NO MUTATIONS** in `--dry-run` mode — propose only, never write
 
-> **Format:** `/doctor:memory [:auto|:confirm|:apply|:apply-confirm] [flags]`
-> Examples: `/doctor:memory:auto` | `/doctor:memory:apply` | `/doctor:memory:apply --incremental=false` | `/doctor:memory:apply-confirm --no-snapshot`
+> **Format:** `/doctor:memory` [flags]
+> Example: `/doctor:memory`
 
 ## GATE 3 STATUS: EXEMPT
 
@@ -47,7 +45,7 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__spec_kit_memory__memory_health, mcp_
 
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-This workflow gathers ALL inputs in ONE prompt. No mode suffix prompts the user to choose execution mode (Q0 in setup); `:auto`, `:confirm`, `:apply`, `:apply-confirm` suffixes skip that question.
+This workflow gathers ALL inputs in ONE prompt. Only the suffix is supported; doctor commands are interactive by design.
 
 ---
 
@@ -61,56 +59,47 @@ This workflow gathers ALL inputs in ONE prompt. No mode suffix prompts the user 
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 1. CHECK mode suffix:
-   ├─ ":auto"          → execution_mode = "AUTONOMOUS",  intent = "DIAGNOSE", yaml = "doctor_memory_auto.yaml"
-   ├─ ":confirm"       → execution_mode = "INTERACTIVE", intent = "DIAGNOSE", yaml = "doctor_memory_confirm.yaml"
-   ├─ ":apply"         → execution_mode = "AUTONOMOUS",  intent = "APPLY",    yaml = "doctor_memory_apply.yaml"
-   ├─ ":apply-confirm" → execution_mode = "INTERACTIVE", intent = "APPLY",    yaml = "doctor_memory_apply-confirm.yaml"
-   └─ No suffix        → execution_mode = "ASK" (include Q0)
+   - default -> execution_mode = "INTERACTIVE", yaml = "doctor_memory.yaml"
+   - No suffix -> execution_mode = "INTERACTIVE", yaml = "doctor_memory.yaml" (confirm is the only supported mode)
 
 2. PARSE flags from $ARGUMENTS:
-   ├─ --incremental=true|false → incremental = parsed (default: true for diagnostic, false for apply)
-   ├─ --no-snapshot            → no_snapshot = TRUE (advanced opt-out; only honored in :apply* modes)
-   ├─ --dry-run                → dry_run = TRUE (propose only, no writes; only honored in :apply* modes)
-   └─ Defaults: incremental=true (diagnostic) | false (apply), no_snapshot=FALSE, dry_run=FALSE
+   ├─ --incremental=true|false → incremental = parsed (default: true for diagnostic, false for run)
+   ├─ --no-snapshot            → no_snapshot = TRUE (advanced opt-out; only honored in interactive workflow)
+   ├─ --dry-run                → dry_run = TRUE (propose only, no writes; only honored in interactive workflow)
+   └─ Defaults: incremental=true (diagnostic) | false (run), no_snapshot=FALSE, dry_run=FALSE
 
 3. Lightweight discovery (read-only):
    - Run: memory_health({reportMode: "summary"})
    - Run: memory_stats({})
    - Store: total_records, last_index_at, fts_health, embedding_health, db_size_bytes
 
-4. ASK with SINGLE prompt (include only applicable questions):
+4. ASK with a single prompt only for unresolved flags:
 
-   Q0. Execution Mode (if no suffix):
-     A) :auto         - read-only health check (~30s)
-     B) :confirm      - read-only health with interactive review
-     C) :apply        - rebuild with snapshot (5-15 min, autonomous)
-     D) :apply-confirm - rebuild with snapshot (5-15 min, interactive gates)
-
-   Q1. Incremental vs full rebuild (always ask in :apply* if not flagged):
+   Q1. Incremental vs full rebuild (always ask if not flagged):
      A) Incremental (default for routine refresh) - skips unchanged files via content hash; <2 min
      B) Full rebuild - deletes old embeddings + rebuilds FTS; 5-15 min
 
-   Q2. Long-pole confirmation (always ask in :apply* unless --no-prompt):
+   Q2. Long-pole confirmation (always ask unless --no-prompt):
      "Full rebuild can take 5-15 min depending on markdown corpus size and embedding provider.
       Snapshot of context-index.sqlite (134M) + voyage embeddings DB (362M) will be taken first.
       Disk usage during snapshot: ~1 GB transient. Proceed?"
      A) Yes, proceed
      B) No, cancel
 
-   Q3. Snapshot opt-out (always ask in :apply* if --no-snapshot not flagged):
+   Q3. Snapshot opt-out (always ask if --no-snapshot not flagged):
      A) Take snapshot before rebuild (default; recommended)
      B) Skip snapshot (advanced; rollback unavailable on failure)
 
-   Reply format: "C, B, A, A" or just confirm defaults: "auto-confirm"
+   Reply format: "C, B, A, A" or just confirm defaults: "confirm defaults"
 
-5. WAIT for user response (DO NOT PROCEED if execution_mode = ASK)
+5. WAIT only when an unresolved flag question was asked
 
 6. Parse and store:
    - execution_mode | intent | incremental | no_snapshot | dry_run
 
 7. SET STATUS: PASSED
 
-DO NOT proceed until user explicitly answers (when ASK)
+DO NOT proceed until any required flag prompt is answered
 NEVER mutate context-index without snapshot (unless --no-snapshot explicitly set)
 NEVER split questions into multiple prompts
 ```
@@ -127,14 +116,14 @@ Diagnose and rebuild the memory continuity-index (FTS+vector channels backing `m
 ```yaml
 role: Expert Operator running memory continuity-index diagnostics + rebuild
 purpose: Detect FTS/embedding drift, restore freshness via memory_index_scan, validate via gold-battery search
-action: Discovery → analysis → (apply: snapshot → rebuild → verify → rollback-on-regression)
+action: Discovery → analysis → (run: snapshot → rebuild → verify → rollback-on-regression)
 ```
 
 ## 1. PURPOSE
 
 Restore the memory continuity-index (FTS5 + vector embeddings) to alignment with the current markdown corpus. The index drifts when spec-doc files are added, edited, or moved without an immediate `/memory:save` invocation; when embedding providers are swapped (voyage-2 → voyage-4); when chunk boundaries shift due to anchor renumbering or section restructuring; or when alias trigger phrases evolve in frontmatter without a re-scan. Drift degrades `memory_search` recall, leaves `memory_save` unable to suggest causal links, and can produce search results that point at superseded record IDs.
 
-This command surfaces the drift signals (read-only via `:auto` / `:confirm`) and rebuilds the index (mutating via `:apply` / `:apply-confirm`) with mandatory snapshot, gold-battery validation, and auto-rollback on regression. The full rebuild is the long pole of `/doctor:update` — explicit ETA prompt before any `:apply*` execution.
+This command surfaces the drift signals (read-only via ) and rebuilds the index (mutating via ) with mandatory snapshot, gold-battery validation, and auto-rollback on regression. The full rebuild is the long pole of `/doctor:update` — explicit ETA prompt before any execution.
 
 ## SUBSYSTEM CONTRACT
 
@@ -162,15 +151,15 @@ The diagnostic phase detects:
 5. **Embedding provider change** — vector DB rows with old provider id (e.g., voyage-2 vs voyage-4)
 6. **Divergent alias groups** — same canonical name routed to different record IDs across the index
 
-## RECOMMENDED MODES
+## WHEN TO RUN CONFIRM
 
-| Symptom | Recommended Mode |
+| Symptom | Recommended Invocation |
 | --- | --- |
-| Routine weekly health check | `:auto` |
-| Investigating slow `memory_search` results | `:confirm` then drill into `memory_drift_why` per record |
-| New packets recently saved, want full FTS coverage | `:apply --incremental=true` |
-| Embedding provider change OR major schema drift | `:apply --incremental=false` (full rebuild) |
-| Embedding rebuild during low-activity window | `:apply-confirm --incremental=false` |
+| Routine weekly health check | |
+| Investigating slow `memory_search` results | then drill into `memory_drift_why` per record |
+| New packets recently saved, want full FTS coverage | `--incremental=true` |
+| Embedding provider change OR major schema drift | `--incremental=false` (full rebuild) |
+| Embedding rebuild during low-activity window | `--incremental=false` |
 
 ## MUTATION BOUNDARIES (Phase 3 enforced)
 
@@ -195,23 +184,23 @@ Phase 1 — Analysis
   Tools: memory_drift_why per suspected record (limit 5 for diagnostic mode)
   Output: { drift_classes: { embedding_drift: N, fts_miss: M, ... }, recommended_action }
 
-Phase 2 — Snapshot (only in :apply*)
+Phase 2 — Snapshot
   Purpose: VACUUM INTO snapshot of both DBs before any write
   Tools: Bash(sqlite3 ... 'VACUUM INTO ...'), disk-free preflight
   Output: { snapshot_paths: [context-index.bak, voyage.bak], snapshot_bytes }
   Halt-on: disk-free < 2x current DB total
 
-Phase 3 — Apply (only in :apply*)
+Phase 3 — run
   First activity: validate_targets (canonical-path validator)
   Then: memory_index_scan({incremental, force: !incremental})
   Output: { added: N, updated: M, deleted: K, duration_seconds }
 
-Phase 4 — Post-verify (only in :apply*)
+Phase 4 — Post-verify
   Purpose: gold-battery sanity check (5 representative memory_search queries)
   Tools: memory_search per query; compare result count to baseline (Recall@20 within bounds)
   Output: { gold_battery_pass: bool, regressions: [list] }
 
-Phase 5 — Rollback (only on :apply regression in :auto mode)
+Phase 5 — Rollback (only on regression in interactive workflow)
   Purpose: restore both DBs from snapshot
   Tools: Bash(cp -p)
   Output: { rolled_back: true, restored_at }
@@ -223,13 +212,13 @@ Phase 6 — Report
 
 ## 6. INSTRUCTIONS
 
-The orchestrator (`assets/doctor_memory_<mode>.yaml`) executes the workflow phases above. As the operator running this command:
+The orchestrator (`assets/doctor_memory.yaml`) executes the workflow phases above. As the operator running this command:
 
 1. **Resolve mode + flags** via the Unified Setup Phase prompt above. Do not advance until ALL inputs are bound (`execution_mode`, `intent`, `incremental`, `no_snapshot`, `dry_run`).
-2. **Load the matching YAML** from `assets/`. Each mode has a dedicated YAML file (`auto`, `confirm`, `apply`, `apply-confirm`).
-3. **Execute the YAML phases sequentially**. Phase 0 and Phase 1 are read-only across all modes. Phase 2-5 only run in `:apply*` modes.
-4. **In `:apply*` modes, never skip the snapshot phase** unless the user passed `--no-snapshot` explicitly. The validator (Phase 3 first activity) refuses if the snapshot path is missing.
-5. **Honor the gold-battery threshold** in Phase 4. If post-rebuild `memory_search` recall drops below the baseline, auto-rollback in `:auto` mode or prompt user in `:apply-confirm`.
+2. **Load the matching YAML** from `assets/`. The surviving YAML file is `doctor_memory.yaml`.
+3. **Execute the YAML phases sequentially**. Phase 0 and Phase 1 are read-only. Phase 2-5 only run in modes.
+4. **In modes, never skip the snapshot phase** unless the user passed `--no-snapshot` explicitly. The validator (Phase 3 first activity) refuses if the snapshot path is missing.
+5. **Honor the gold-battery threshold** in Phase 4. If post-rebuild `memory_search` recall drops below the baseline, auto-rollback in mode or prompt user in .
 6. **Always emit the state log** in Phase 6, regardless of success or failure. The log feeds `/doctor:update`'s cross-subsystem dashboard.
 
 Read the YAML file end-to-end before starting Phase 0. Do not paraphrase; the YAML defines exact tool sequences, parameters, and halt conditions.
@@ -254,14 +243,14 @@ Read the YAML file end-to-end before starting Phase 0. Do not paraphrase; the YA
 - fts_miss: M records missing from FTS
 - chunk_boundary_drift: K records with structural drift
 
-### Action Taken (if :apply*)
+### Action Taken
 - Snapshot: <path> + <voyage path>
 - Rebuild: incremental={true|false}, added=N, updated=M, deleted=K
 - Duration: <seconds>
 - Gold-battery: PASS|FAIL
 
 ### Recommendation
-[Run /doctor:memory:apply | Schedule for low-activity window | No action needed]
+[Run /doctor:memory | Schedule for low-activity window | No action needed]
 ```
 
 ## NEXT STEPS
@@ -269,9 +258,9 @@ Read the YAML file end-to-end before starting Phase 0. Do not paraphrase; the YA
 After running this command:
 
 - **OK + no drift** → no action needed; rerun in 1-2 weeks
-- **DEGRADED** → run `:apply --incremental=true` for routine refresh
-- **STALE** → run `:apply --incremental=false` for full rebuild during low-activity window
-- **MISSING** → MCP server hasn't initialized the index; run `:apply` to bootstrap
+- **DEGRADED** → run `--incremental=true` for routine refresh
+- **STALE** → run `--incremental=false` for full rebuild during low-activity window
+- **MISSING** → MCP server hasn't initialized the index; run to bootstrap
 
 ## RELATED COMMANDS
 

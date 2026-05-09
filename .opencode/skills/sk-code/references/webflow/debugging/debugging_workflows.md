@@ -1903,7 +1903,7 @@ bdg stop 2>&1
 ### Reference Files
 - [implementation_workflows.md](../implementation/implementation_workflows.md) - Debug timing and validation issues
 - [verification_workflows.md](../verification/verification_workflows.md) - Verify fixes work correctly
-- [shared_patterns.md](../standards/shared_patterns.md) - Use common DevTools and logging patterns
+- [dev_workflow.md](../shared/dev_workflow.md) - Use common DevTools and logging patterns
 
 ### Asset Files
 - [lenis_patterns.js](../../assets/integrations/lenis_patterns.js) - Complete Lenis smooth scroll integration patterns

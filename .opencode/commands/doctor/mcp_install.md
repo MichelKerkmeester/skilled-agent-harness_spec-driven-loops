@@ -4,9 +4,11 @@ argument-hint: "[--server <name>] [--runtime <name>]"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
 
-> **EXECUTION PROTOCOL — READ FIRST**
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
 > This command runs a structured YAML workflow.
+>
+> **MODE POLICY:** Standalone doctor operation. Do not add a mode suffix.
 >
 > **YOUR FIRST ACTION:**
 > 1. Load the YAML workflow file:

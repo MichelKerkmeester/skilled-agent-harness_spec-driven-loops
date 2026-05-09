@@ -18,7 +18,7 @@ This scenario verifies that design-choice prompts load the decision matrix. The 
 For a hover state on cards, should I use motion.dev or plain CSS? I need the routing decision and the references you would load, not an implementation.
 ```
 
-**Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):
+**Expected detection markers** (verbatim from `references/stack_detection.md`):
 ```text
 `motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses WEBFLOW, OPENCODE, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 ```
@@ -26,9 +26,9 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 **Expected surface**: `UNKNOWN` or `N/A`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/router/code_surface_detection.md`
-- `references/router/intent_classification.md`
-- `references/router/resource_loading.md`
+- `references/stack_detection.md`
+- `references/smart_routing.md`
+- `references/smart_routing.md`
 - `references/motion_dev/decision_matrix.md`
 - `references/motion_dev/performance_and_pitfalls.md`
 - `references/motion_dev/integration_patterns.md`
@@ -43,7 +43,7 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 - **FAIL** iff `decision_matrix.md` is omitted, the AI invents a surface, or it gives an implementation-only answer.
 
 **Failure triage**:
-1. If no decision matrix loads, inspect `CODE_QUALITY / DECISION` in `references/router/resource_loading.md`.
+1. If no decision matrix loads, inspect `CODE_QUALITY / DECISION` in `references/smart_routing.md`.
 2. If `WEBFLOW` is selected, verify the prompt contains no Webflow path, vendor global, or `wrangler.toml`.
 3. If the response is one-sided, compare it against `references/motion_dev/decision_matrix.md`.
 

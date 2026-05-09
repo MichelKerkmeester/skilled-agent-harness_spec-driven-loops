@@ -18,7 +18,7 @@ This scenario verifies mixed-marker precedence. A `.opencode/` TypeScript tool m
 Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?
 ```
 
-**Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):
+**Expected detection markers** (verbatim from `references/stack_detection.md`):
 ```bash
 # 1. OPENCODE (highest precedence — disambiguates mixed-marker workspaces)
 # CWD under .opencode/ OR any changed/target file under .opencode/
@@ -27,9 +27,9 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 **Expected surface**: `OPENCODE`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/router/code_surface_detection.md`
-- `references/router/intent_classification.md`
-- `references/router/resource_loading.md`
+- `references/stack_detection.md`
+- `references/smart_routing.md`
+- `references/smart_routing.md`
 - `references/opencode/shared/universal_patterns.md`
 - `references/opencode/shared/code_organization.md`
 - `references/opencode/typescript/quick_reference.md`
@@ -73,8 +73,8 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/references/router/code_surface_detection.md` - OPENCODE precedence rule.
-- `.opencode/skills/sk-code/references/router/resource_loading.md` - OPENCODE and MOTION_DEV maps.
+- `.opencode/skills/sk-code/references/stack_detection.md` - OPENCODE precedence rule.
+- `.opencode/skills/sk-code/references/smart_routing.md` - OPENCODE and MOTION_DEV maps.
 - `.opencode/skills/sk-code/references/opencode/typescript/quick_reference.md` - Expected TypeScript route.
 - `.opencode/skills/sk-code/assets/motion_dev/snippets/es_module_bootstrap.js` - Supplementary Motion ESM pattern.
 

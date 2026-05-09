@@ -18,7 +18,7 @@ This scenario protects the generic-node guard introduced in Packet 069. A bare M
 For a non-Webflow vanilla JS page, which Motion.dev references and snippets should sk-code load for hover cards and in-view reveal?
 ```
 
-**Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):
+**Expected detection markers** (verbatim from `references/stack_detection.md`):
 ```text
 Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.opencode/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
 ```
@@ -26,9 +26,9 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 **Expected surface**: `UNKNOWN` or `N/A`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/router/code_surface_detection.md`
-- `references/router/intent_classification.md`
-- `references/router/resource_loading.md`
+- `references/stack_detection.md`
+- `references/smart_routing.md`
+- `references/smart_routing.md`
 - `references/motion_dev/quick_start.md`
 - `references/motion_dev/integration_patterns.md`
 - `references/motion_dev/scroll_and_gestures.md`
@@ -51,7 +51,7 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 
 **Failure triage**:
 1. If `WEBFLOW` is detected, re-read the generic-node guard in `code_surface_detection.md`.
-2. If no Motion.dev refs load, inspect `MOTION_DEV` signals in `references/router/intent_classification.md`.
+2. If no Motion.dev refs load, inspect `MOTION_DEV` signals in `references/smart_routing.md`.
 3. If the response proceeds to implementation, verify the universal prompt is routed as read-only analysis.
 
 ---
@@ -68,8 +68,8 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/references/router/code_surface_detection.md` - generic-node guard.
-- `.opencode/skills/sk-code/references/router/intent_classification.md` - MOTION_DEV signals.
+- `.opencode/skills/sk-code/references/stack_detection.md` - generic-node guard.
+- `.opencode/skills/sk-code/references/smart_routing.md` - MOTION_DEV signals.
 - `.opencode/skills/sk-code/references/motion_dev/decision_matrix.md` - CSS/Motion/WAAPI trade-offs.
 - `.opencode/skills/sk-code/assets/motion_dev/snippets/hover_gesture.js` - Required snippet.
 

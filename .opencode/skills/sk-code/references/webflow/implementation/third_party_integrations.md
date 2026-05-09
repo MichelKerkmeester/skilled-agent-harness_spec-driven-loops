@@ -1096,6 +1096,6 @@ function destroy_player(player) {
 ## 9. RELATED RESOURCES
 
 ### Reference Files
-- [code_quality_standards.md](../standards/code_quality_standards.md) - CDN-safe initialization pattern for all library integrations
+- [code_quality_standards.md](../javascript/quality_standards.md) - CDN-safe initialization pattern for all library integrations
 - [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns for library loading
 - [performance_patterns.md](./performance_patterns.md) - Lazy loading and code splitting strategies

@@ -19,6 +19,10 @@
 # ───────────────────────────────────────────
 .opencode/agents/.provider-backups/
 
+# Sandbox derived fixtures (copied from external/ on demand by fetch-fixtures.sh)
+# ───────────────────────────────────────────
+.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/*/fixtures/states/*.tar.gz
+
 
 # Build output
 # ───────────────────────────────────────────

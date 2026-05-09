@@ -18,7 +18,7 @@ This scenario verifies that Motion.dev snippets can be reused outside Webflow wh
 Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla JS page? Tell me which snippet and references you would load, and call out any naming-convention caveat.
 ```
 
-**Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):
+**Expected detection markers** (verbatim from `references/stack_detection.md`):
 ```text
 `motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses WEBFLOW, OPENCODE, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 ```
@@ -26,12 +26,12 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 **Expected surface**: `UNKNOWN` or `N/A`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/router/code_surface_detection.md`
-- `references/router/resource_loading.md`
+- `references/stack_detection.md`
+- `references/smart_routing.md`
 - `references/motion_dev/quick_start.md`
 - `references/motion_dev/integration_patterns.md`
 - `references/motion_dev/scroll_and_gestures.md`
-- `references/webflow/standards/code_style_guide.md`
+- `references/webflow/javascript/style_guide.md`
 
 **Expected assets loaded**:
 - `assets/motion_dev/snippets/in_view_reveal.js`
@@ -45,8 +45,8 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 
 **Failure triage**:
 1. If the snippet is missing, inspect `assets/motion_dev/snippets/`.
-2. If the response says Webflow is required, re-read `references/router/resource_loading.md` Section 3.
-3. If no caveat appears, inspect `references/webflow/standards/code_style_guide.md` for local naming guidance.
+2. If the response says Webflow is required, re-read `references/smart_routing.md` Section 3.
+3. If no caveat appears, inspect `references/webflow/javascript/style_guide.md` for local naming guidance.
 
 ---
 
@@ -64,7 +64,7 @@ Evidence files:
 
 - `.opencode/skills/sk-code/assets/motion_dev/snippets/in_view_reveal.js` - Required reusable snippet.
 - `.opencode/skills/sk-code/references/motion_dev/integration_patterns.md` - Cross-stack integration guidance.
-- `.opencode/skills/sk-code/references/webflow/standards/code_style_guide.md` - Snake_case caveat source.
+- `.opencode/skills/sk-code/references/webflow/javascript/style_guide.md` - Snake_case caveat source.
 
 ---
 

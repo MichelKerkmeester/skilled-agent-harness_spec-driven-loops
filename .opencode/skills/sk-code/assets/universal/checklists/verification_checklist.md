@@ -107,7 +107,7 @@ Without evidence, "done" is a guess.
 
 ## 8. RELATED RESOURCES
 
-- `references/router/phase_lifecycle.md` — Phase 3 Verification position in the sk-code lifecycle.
+- `references/phase_detection.md` — Phase 3 Verification position in the sk-code lifecycle.
 - `assets/universal/checklists/debugging_checklist.md` — runs before this checklist when bugs surface.
 - `references/webflow/verification/verification_workflows.md` — WEBFLOW deep-dive (browser matrix, Lighthouse, multi-viewport).
 - `references/opencode/shared/alignment_verification_automation.md` — OPENCODE alignment verification.

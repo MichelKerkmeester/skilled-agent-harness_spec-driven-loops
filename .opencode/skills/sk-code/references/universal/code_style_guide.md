@@ -28,7 +28,7 @@ Names communicate intent. Files express one concept. Comments explain WHY (never
 
 ### Key Sources
 
-- Surface style guides: `references/webflow/standards/code_style_guide.md` and `references/opencode/{javascript,typescript,python,shell,config}/`.
+- Surface style guides: `references/webflow/javascript/style_guide.md` and `references/opencode/{javascript,typescript,python,shell,config}/`.
 - Project-level enforcement (banned phrases, voice rules): the project CLAUDE.md / AGENTS.md is authoritative for this user's projects.
 
 ---
@@ -146,7 +146,7 @@ For the rules that ARE language-specific, see:
 
 | Surface  | Reference                                                                                  |
 | -------- | ------------------------------------------------------------------------------------------ |
-| WEBFLOW  | `references/webflow/standards/code_style_guide.md` (snake_case JS, semantic CSS prefixes, BEM, GPU animation) |
+| WEBFLOW  | `references/webflow/javascript/style_guide.md` (snake_case JS, semantic CSS prefixes, BEM, GPU animation) |
 | OPENCODE | `references/opencode/` language standards and `assets/opencode/checklists/`               |
 
 ---

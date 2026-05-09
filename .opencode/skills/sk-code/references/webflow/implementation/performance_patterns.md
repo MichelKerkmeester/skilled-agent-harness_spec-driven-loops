@@ -271,12 +271,12 @@ element.addEventListener('pointermove', (e) => {
 
 **Throttle vs Debounce - When to Use:**
 
-| Pattern | Timing | Use Case | Behavior |
-|---------|--------|----------|----------|
-| **Throttle** | 64ms | pointermove, scroll, RAF loops | Executes at regular intervals |
-| **Debounce** | 100ms | Search input | Waits for pause in input |
-| **Debounce** | 180ms | Form validation | Faster than typing speed |
-| **Debounce** | 200ms | Resize handlers | Avoids layout thrashing |
+| Pattern      | Timing | Use Case                       | Behavior                      |
+| ------------ | ------ | ------------------------------ | ----------------------------- |
+| **Throttle** | 64ms   | pointermove, scroll, RAF loops | Executes at regular intervals |
+| **Debounce** | 100ms  | Search input                   | Waits for pause in input      |
+| **Debounce** | 180ms  | Form validation                | Faster than typing speed      |
+| **Debounce** | 200ms  | Resize handlers                | Avoids layout thrashing       |
 
 **Key insight:** Throttle is for continuous events where you need regular updates. Debounce is for discrete events where you want to wait for the user to finish.
 
@@ -512,11 +512,28 @@ echo "✅ PASS: Animation performance budgets met"
 
 ## 5. RELATED RESOURCES
 
-### Reference Files
+### Topical performance deep-dives (`webflow/performance/`)
+
+This file is the high-level checklist + budgets + anti-patterns index. For deep-dive topical guidance on each performance area, load the matching file under [`../performance/`](../performance/):
+
+- [`../performance/cwv_remediation.md`](../performance/cwv_remediation.md) — LCP / FCP / TBT / CLS deep remediation playbook with measurement tooling and per-metric implementation checklists
+- [`../performance/resource_loading.md`](../performance/resource_loading.md) — preconnect, dns-prefetch, preload, prefetch, async CSS loading, script loading patterns (referenced by §2 "Asset Optimization" + "Request Optimization" above)
+- [`../performance/third_party.md`](../performance/third_party.md) — GTM delay, analytics deferral, consent scripts, external font loading, third-party priority matrix
+- [`../performance/interaction_gated_loading.md`](../performance/interaction_gated_loading.md) — defer-until-interaction patterns, gate selection, non-deferrable exclusions, anti-patterns
+- [`../performance/webflow_constraints.md`](../performance/webflow_constraints.md) — Typekit / jQuery / Webflow.js / CSS generation / custom code injection constraints (what Webflow controls vs what you can change)
+
+### Reference Files (sibling implementation patterns)
 - [debugging_workflows.md](../debugging/debugging_workflows.md) - Performance debugging workflows for identifying bottlenecks
 - [verification_workflows.md](../verification/verification_workflows.md) - Browser testing and verification workflows
 - [animation_workflows.md](./animation_workflows.md) - Animation performance patterns for GPU-accelerated properties
 - [webflow_patterns.md](./webflow_patterns.md) - Webflow-specific performance considerations for collection lists
+
+### Per-language quality patterns
+- [`../javascript/quality_standards.md`](../javascript/quality_standards.md) — JS-side performance patterns (RequestAnimationFrame, GPU acceleration hints, debounced resize, event delegation)
+- [`../css/quality_standards.md`](../css/quality_standards.md) — CSS-side performance patterns (will-change management, GPU-accelerated properties, easing standards, fluid typography)
+
+### Cross-stack
+- [`../../motion_dev/performance_and_pitfalls.md`](../../motion_dev/performance_and_pitfalls.md) — Motion.dev performance and pitfalls (will-change cleanup, GPU acceleration, frame-rate gotchas)
 
 ### Related Skills
 - `mcp-chrome-devtools` - Automated performance budget enforcement via CLI for regression detection

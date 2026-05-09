@@ -136,5 +136,5 @@ The two skills compose: `sk-code` surface evidence + `sk-code-review` baseline =
 - `references/universal/error_recovery.md` - decision tree when a quality gate failure can't be resolved in-place.
 - `assets/universal/checklists/debugging_checklist.md` - applies after Phase 1.5 fails and you need root-cause analysis.
 - `assets/universal/checklists/verification_checklist.md` - runs after Phase 1.5 clears, before any "done" claim.
-- `references/router/phase_lifecycle.md` - Phase 1.5 position in the sk-code lifecycle.
+- `references/phase_detection.md` - Phase 1.5 position in the sk-code lifecycle.
 - Surface quality checklists under `assets/webflow/checklists/` and `assets/opencode/checklists/`.

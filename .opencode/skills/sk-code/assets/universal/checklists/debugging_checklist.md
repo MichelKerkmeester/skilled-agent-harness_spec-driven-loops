@@ -77,7 +77,7 @@ Walk this checklist top-to-bottom on any debugging session that survives more th
 
 ## 5. RELATED RESOURCES
 
-- `references/router/phase_lifecycle.md` — Phase 2 Debugging position in the sk-code lifecycle.
+- `references/phase_detection.md` — Phase 2 Debugging position in the sk-code lifecycle.
 - `references/universal/error_recovery.md` — universal recover-in-place / rollback / escalate decision tree.
 - `assets/universal/checklists/verification_checklist.md` — runs after debugging completes, before any "done" claim.
 - `references/webflow/debugging/debugging_workflows.md` — WEBFLOW deep-dive (DevTools workflows, network capture, multi-viewport).
