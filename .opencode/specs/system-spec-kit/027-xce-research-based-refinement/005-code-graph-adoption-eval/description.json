@@ -1,6 +1,5 @@
 {
   "title": "Phase 005 — Code Graph Adoption Evaluation Harness",
-  "description": "ADAPT XCE benchmark methodology to lightweight local eval. CLI dispatcher spawns OpenCode subprocesses for 12-20 refactoring tasks in baseline (current advisor brief) vs after (Phase 004 mandate brief) modes. 3 primary metrics + 2 diagnostics + RQ8 token-reduction instrumentation. ~500 LOC: CLI + metric lib + task set + report generator + smoke test + stress config. Depends on Phases 001-004.",
   "trigger_phrases": [
     "027 phase 005",
     "code-graph adoption eval",
@@ -8,9 +7,9 @@
     "baseline vs after measurement",
     "token reduction validation"
   ],
+  "level": 3,
   "importance_tier": "important",
   "contextType": "implementation",
-  "level": 3,
   "status": "spec-scaffolded",
   "priority": "P2",
   "createdAt": "2026-05-08T15:00:00Z",
@@ -18,11 +17,36 @@
   "parent_track": "027-xce-research-based-refinement",
   "parent_id": "027-xce-research-based-refinement",
   "manual": {
-    "depends_on": ["001-code-graph-hld-lld", "002-code-graph-trace", "003-code-graph-impact-analysis", "004-skill-advisor-first-action-mandate"]
+    "depends_on": [
+      "001-code-graph-hld-lld",
+      "002-code-graph-trace",
+      "003-code-graph-impact-analysis",
+      "004-skill-advisor-first-action-mandate"
+    ]
   },
   "derived": {
     "status": "spec-scaffolded",
     "completion_pct": 0,
     "last_active_child_id": null
-  }
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval",
+  "description": "Feature Specification: Code Graph Adoption Evaluation Harness",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "adoption",
+    "evaluation",
+    "harness"
+  ],
+  "lastUpdated": "2026-05-09T07:57:32.881Z",
+  "specId": "005",
+  "folderSlug": "code-graph-adoption-eval",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

@@ -34,8 +34,8 @@ importance_tier: "normal"
 The adapter code, tests, and registration files are live. User-level `~/.codex/hooks.json`
 registers `SessionStart` and `UserPromptSubmit` alongside Superset's `notify.sh`;
 `.codex/settings.json` keeps the repo-local prompt/policy hook examples; `.codex/policy.json`
-holds the Bash deny policy. Codex native hooks require `[features].codex_hooks = true`
-or the equivalent `--enable codex_hooks` runtime flag.
+holds the Bash deny policy. Codex native hooks require `[features].hooks = true`
+or the equivalent `--enable hooks` runtime flag.
 
 SessionStart smoke check:
 
@@ -91,7 +91,7 @@ Checked-in `.codex/settings.json` template shape:
 ```
 
 This repository file is a template example. Live native Codex hooks require
-`[features].codex_hooks = true` plus user or workspace `hooks.json`
+`[features].hooks = true` plus user or workspace `hooks.json`
 registration in the active Codex configuration.
 
 Documented `.codex/policy.json` snippet:

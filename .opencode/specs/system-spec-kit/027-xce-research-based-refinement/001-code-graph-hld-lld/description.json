@@ -1,15 +1,14 @@
 {
   "title": "Phase 001 — Deterministic HLD/LLD Narrative Generation for code_graph",
-  "description": "Implement template-only HLD/LLD narrative layer over existing code_graph SQLite data. Headline ADOPT from 027 XCE research adoption matrix. ~250 LOC: 1 new lib + 1 new handler + 1 tool reg + 1 omni integration edit + tests. Zero LLM dependency, zero schema migration.",
   "trigger_phrases": [
     "027 phase 001",
     "code-graph hld-lld",
     "code-graph narrative",
     "code_graph_hld_lld"
   ],
+  "level": 2,
   "importance_tier": "important",
   "contextType": "implementation",
-  "level": 2,
   "status": "spec-scaffolded",
   "priority": "P1",
   "createdAt": "2026-05-08T15:00:00Z",
@@ -23,5 +22,24 @@
     "status": "spec-scaffolded",
     "completion_pct": 0,
     "last_active_child_id": null
-  }
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld",
+  "description": "Feature Specification: Deterministic HLD/LLD Narrative for code_graph",
+  "keywords": [
+    "feature",
+    "specification",
+    "deterministic",
+    "hld",
+    "lld",
+    "narrative"
+  ],
+  "lastUpdated": "2026-05-09T07:57:32.861Z",
+  "specId": "001",
+  "folderSlug": "code-graph-hld-lld",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

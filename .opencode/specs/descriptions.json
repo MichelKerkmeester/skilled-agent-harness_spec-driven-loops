@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-08T10:39:54.067Z",
+  "generated": "2026-05-09T07:57:32.561Z",
   "folders": [
     {
       "specFolder": "00--ai-systems/001-global-shared",
@@ -74,7 +74,7 @@
         "routing",
         "review"
       ],
-      "lastUpdated": "2026-04-24T15:56:54.740Z"
+      "lastUpdated": "2026-05-08T12:13:17.478Z"
     },
     {
       "specFolder": "00--ai-systems/002-sales-communication-flows",
@@ -627,7 +627,7 @@
         "dropdown",
         "fix"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "00--anobel.com/z_archive/019-form-attribute-audit",
@@ -677,7 +677,7 @@
         "anobel",
         "com"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "00--anobel.com/z_archive/023-performance-review",
@@ -2484,6 +2484,45 @@
       "lastUpdated": "2026-05-08T08:26:56.673Z"
     },
     {
+      "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
+      "description": "Feature Specification: P2-032 strategy-doc cleanup",
+      "keywords": [
+        "feature",
+        "specification",
+        "p2-032",
+        "strategy-doc",
+        "cleanup"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/097-cli-opencode-stdin-fix",
+      "description": "Feature Specification: cli-opencode `</dev/null` Stdin-Redirect Fix",
+      "keywords": [
+        "feature",
+        "specification",
+        "cli-opencode",
+        "dev",
+        "null",
+        "stdin-redirect",
+        "fix"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/098-multi-ai-council-write-authority",
+      "description": "Feature Specification: Multi-AI Council write authority",
+      "keywords": [
+        "feature",
+        "specification",
+        "multi-ai",
+        "council",
+        "write",
+        "authority"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
       "description": "Feature Specification: cli-gemini Skill",
       "keywords": [
@@ -3307,7 +3346,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -3508,7 +3547,7 @@
         "intent",
         "specifications"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-specify/assets",
@@ -3518,7 +3557,7 @@
         "intent",
         "specifications"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade/external/specs/completed/Spar-Install",
@@ -3526,7 +3565,7 @@
       "keywords": [
         "spar-install"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade/external/templates",
@@ -3536,7 +3575,7 @@
         "intent",
         "specifications"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/058-spec-kit-ux-adoptions",
@@ -3574,20 +3613,19 @@
         "context",
         "optimization"
       ],
-      "lastUpdated": "2026-05-02T10:39:47.844Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
-      "description": "AutoClean orphan files: extend verify_integrity with cleanFiles option",
+      "description": "Feature Specification: 000 Release Cleanup",
       "keywords": [
-        "autoclean",
-        "orphan",
-        "files",
-        "extend",
-        "cleanfiles",
-        "option"
+        "feature",
+        "specification",
+        "000",
+        "release",
+        "cleanup"
       ],
-      "lastUpdated": "2026-05-08T10:21:44.566Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-indexer-storage-boundary",
@@ -3665,6 +3703,18 @@
       "lastUpdated": "2026-05-08T08:26:57.087Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery",
+      "description": "Feature Specification: Vitest baseline recovery",
+      "keywords": [
+        "feature",
+        "specification",
+        "vitest",
+        "baseline",
+        "recovery"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-search-rag-measurement-driven-implementation",
       "description": "Feature Specification: 007 Search RAG Measurement-Driven Implementation",
       "keywords": [
@@ -3677,6 +3727,19 @@
         "implementation"
       ],
       "lastUpdated": "2026-05-08T08:26:57.092Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup",
+      "description": "Feature Specification: Vitest baseline recovery followup",
+      "keywords": [
+        "feature",
+        "specification",
+        "vitest",
+        "baseline",
+        "recovery",
+        "followup"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-w3-w7-runtime-wiring-and-audit",
@@ -4791,7 +4854,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/042-stress-coverage-audit-and-run",
@@ -4881,7 +4944,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation",
@@ -5117,6 +5180,21 @@
       "lastUpdated": "2026-05-08T10:39:41.319Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/056-test-fixture-singular-to-plural-sweep",
+      "description": "Feature Specification: 056 Test Fixture Singular→Plural Sweep",
+      "keywords": [
+        "feature",
+        "specification",
+        "056",
+        "test",
+        "fixture",
+        "singular",
+        "plural",
+        "sweep"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline",
       "description": "Feature Specification: Graph and Context Systems Master Research Packet",
       "keywords": [
@@ -5337,6 +5415,20 @@
         "refinements"
       ],
       "lastUpdated": "2026-05-08T08:26:57.602Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-clusters-4-7-remediation",
+      "description": "Feature Specification: Memory search Clusters 4-7 remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "memory",
+        "search",
+        "clusters",
+        "4-7",
+        "remediation"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening",
@@ -5820,6 +5912,19 @@
       "lastUpdated": "2026-05-08T08:26:57.702Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/013-doctor-apply-mode-phase-b",
+      "description": "Feature Specification: /doctor:code-graph apply-mode (Phase B)",
+      "keywords": [
+        "feature",
+        "specification",
+        "doctor",
+        "code-graph",
+        "apply-mode",
+        "phase"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
       "description": "Feature Specification: Skill Advisor",
       "keywords": [
@@ -6235,8 +6340,24 @@
       "lastUpdated": "2026-05-08T08:26:57.809Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing",
+      "description": "Activate the graph and degree channels for intent-driven and entity-rich short queries. shouldPreserveGraph + entity-density override + routing-telemetry rolling counter expose graphChannelInvocationRate via memory_health.",
+      "keywords": [
+        "012-causal-graph-channel-routing",
+        "shouldPreserveGraph",
+        "entity-density override",
+        "graphChannelInvocationRate",
+        "graph-preserved-by-intent",
+        "graph-preserved-by-entity-density",
+        "SPECKIT_GRAPH_CHANNEL_PRESERVATION",
+        "routing-telemetry rolling counter",
+        "complexity router graph activation"
+      ],
+      "lastUpdated": "2026-05-08T16:00:21.861Z"
+    },
+    {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-      "description": "Feature Specification: XCE Research-Based Refinement",
+      "description": "Phase parent for the XCE adoption work. Pass 1 research complete (10 iterations + synthesis, 2026-05-08) and pt-02 cross-validation amendments applied. Implementation is scoped as 5 phase children: 004 first-action mandate (Level 1), 001 HLD/LLD (Level 2), 002 trace (Level 2), 003 impact analysis (Level 2), and 005 adoption eval (Level 3). Total ~1,900-2,320 LOC after pt-02 hardening.",
       "keywords": [
         "feature",
         "specification",
@@ -6244,7 +6365,71 @@
         "research-based",
         "refinement"
       ],
-      "lastUpdated": "2026-05-08T08:26:57.814Z"
+      "lastUpdated": "2026-05-08T16:39:21.326Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld",
+      "description": "Feature Specification: Deterministic HLD/LLD Narrative for code_graph",
+      "keywords": [
+        "feature",
+        "specification",
+        "deterministic",
+        "hld",
+        "lld",
+        "narrative"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace",
+      "description": "Feature Specification: code_graph_trace — Symbol-to-Architecture Trace Tool",
+      "keywords": [
+        "feature",
+        "specification",
+        "symbol-to-architecture",
+        "trace",
+        "tool"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-code-graph-impact-analysis",
+      "description": "Feature Specification: code_graph_impact_analysis — Risk-Scored Impact Analysis",
+      "keywords": [
+        "feature",
+        "specification",
+        "risk-scored",
+        "impact",
+        "analysis"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-skill-advisor-first-action-mandate",
+      "description": "Feature Specification: Skill Advisor First-Action Mandate",
+      "keywords": [
+        "feature",
+        "specification",
+        "skill",
+        "advisor",
+        "first-action",
+        "mandate"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval",
+      "description": "Feature Specification: Code Graph Adoption Evaluation Harness",
+      "keywords": [
+        "feature",
+        "specification",
+        "code",
+        "graph",
+        "adoption",
+        "evaluation",
+        "harness"
+      ],
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -10501,7 +10686,7 @@
         "obsidian-export",
         "specification"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/openspec/specs/obsidian-plugin",
@@ -10510,7 +10695,7 @@
         "obsidian-plugin",
         "specification"
       ],
-      "lastUpdated": "2026-05-08T10:39:54.067Z"
+      "lastUpdated": "2026-05-09T07:57:32.561Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",

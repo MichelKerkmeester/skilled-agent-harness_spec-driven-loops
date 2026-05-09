@@ -1,6 +1,5 @@
 {
   "title": "Memory search Clusters 4-7 remediation",
-  "description": "Close 13 P1/P2 defects from phase 005's audit covering causal-stats output hygiene (Cluster 4), state hygiene (Cluster 5), folder discovery + channel health (Cluster 6), and quality fallback + edge growth (Cluster 7). Surface CocoIndex daemon health on memory_health. Promote informal 20-paraphrase intent-classifier stability test to a formal corpus.",
   "trigger_phrases": [
     "memory search clusters 4-7 remediation",
     "causal-stats output hygiene fix",
@@ -11,9 +10,9 @@
     "cocoindex daemon health probe",
     "026/003/006 packet"
   ],
+  "level": 2,
   "importance_tier": "important",
   "contextType": "implementation",
-  "level": 2,
   "status": "complete",
   "priority": "P1",
   "createdAt": "2026-05-08T21:00:00Z",
@@ -29,5 +28,26 @@
     "status": "complete",
     "completion_pct": 100,
     "last_active_child_id": null
-  }
+  },
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-memory-search-clusters-4-7-remediation",
+  "description": "Feature Specification: Memory search Clusters 4-7 remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "memory",
+    "search",
+    "clusters",
+    "4-7",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-09T07:57:32.842Z",
+  "specId": "006",
+  "folderSlug": "memory-search-clusters-4-7-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "003-continuity-memory-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

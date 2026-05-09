@@ -232,7 +232,7 @@ export async function runAdvisorSubprocess(
     ?? join(
       options.workspaceRoot,
       '.opencode',
-      'skill',
+      'skills',
       'system-spec-kit',
       'mcp_server',
       'skill_advisor',

@@ -1,15 +1,14 @@
 {
   "title": "P2-032 strategy-doc cleanup",
-  "description": "Remove three stale aliases.ts references from 007-track-rereview deep-review strategy doc (claim that aliases.ts is a 101-cli-opencode-executor surface — it isn't; iter-1 review caught it as CROSS_REF_BROKEN). Clear the deferred-blocker entry from 008-remediation continuity. Closes the last open finding from the 8-phase plural-rename remediation cycle.",
   "trigger_phrases": [
     "P2-032 strategy doc cleanup",
     "aliases.ts cross-ref broken",
     "plural rename cosmetic followup",
     "096/009 packet"
   ],
+  "level": 1,
   "importance_tier": "normal",
   "contextType": "fix",
-  "level": 1,
   "status": "in-progress",
   "priority": "P2",
   "createdAt": "2026-05-08T20:45:00Z",
@@ -23,5 +22,23 @@
     "status": "in-progress",
     "completion_pct": 0,
     "last_active_child_id": null
-  }
+  },
+  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
+  "description": "Feature Specification: P2-032 strategy-doc cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "p2-032",
+    "strategy-doc",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-09T07:57:32.756Z",
+  "specId": "009",
+  "folderSlug": "p2-032-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "096-rename-opencode-dirs-to-plural"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

@@ -1,17 +1,25 @@
 {
-  "specFolder": "000-release-cleanup/056-test-fixture-singular-to-plural-sweep",
-  "description": "Phase 1: test-fixture-singular-to-plural-sweep",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/056-test-fixture-singular-to-plural-sweep",
+  "description": "Feature Specification: 056 Test Fixture Singular→Plural Sweep",
   "keywords": [
-    "phase",
-    "test-fixture-singular-to-plural-sweep"
+    "feature",
+    "specification",
+    "056",
+    "test",
+    "fixture",
+    "singular",
+    "plural",
+    "sweep"
   ],
-  "lastUpdated": "2026-05-08T11:03:42.924Z",
+  "lastUpdated": "2026-05-09T07:57:32.835Z",
   "specId": "056",
   "folderSlug": "test-fixture-singular-to-plural-sweep",
   "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
     "000-release-cleanup"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

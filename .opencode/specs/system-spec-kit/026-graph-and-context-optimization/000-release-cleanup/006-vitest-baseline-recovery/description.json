@@ -1,6 +1,5 @@
 {
   "title": "Vitest baseline recovery",
-  "description": "Triage and remediate the 198 vitest failures across 166 files surfaced after Unit A's full-repo run. Sampled failures sit in skill_advisor scorer, hooks, scaffold, alignment, code-graph \u2014 outside Unit A's surface \u2014 and pre-date this packet. Classify each failure into fixture-drift / runtime-regression / environmental / flaky; fix what's fixable; document the rest with explicit annotations.",
   "trigger_phrases": [
     "vitest baseline recovery",
     "198 vitest failures",
@@ -9,9 +8,9 @@
     "v3.4.1.0 baseline reconciliation",
     "026/000/006 packet"
   ],
+  "level": 2,
   "importance_tier": "important",
   "contextType": "implementation",
-  "level": 2,
   "status": "complete",
   "priority": "P1",
   "createdAt": "2026-05-08T21:35:00Z",
@@ -26,5 +25,24 @@
     "completion_pct": 100,
     "last_active_child_id": null
   },
-  "lastUpdatedAt": "2026-05-08T23:20:00Z"
+  "lastUpdatedAt": "2026-05-08T23:20:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery",
+  "description": "Feature Specification: Vitest baseline recovery",
+  "keywords": [
+    "feature",
+    "specification",
+    "vitest",
+    "baseline",
+    "recovery"
+  ],
+  "lastUpdated": "2026-05-09T07:57:32.807Z",
+  "specId": "006",
+  "folderSlug": "vitest-baseline-recovery",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

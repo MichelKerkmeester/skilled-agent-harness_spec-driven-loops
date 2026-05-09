@@ -1,18 +1,20 @@
 {
-  "specFolder": "000-release-cleanup",
-  "description": "AutoClean orphan files: extend verify_integrity with cleanFiles option",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "description": "Feature Specification: 000 Release Cleanup",
   "keywords": [
-    "autoclean",
-    "orphan",
-    "files",
-    "extend",
-    "cleanfiles",
-    "option"
+    "feature",
+    "specification",
+    "000",
+    "release",
+    "cleanup"
   ],
-  "lastUpdated": "2026-05-08T10:21:44.566Z",
+  "lastUpdated": "2026-05-09T07:57:32.797Z",
   "specId": "000",
   "folderSlug": "release-cleanup",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "Feature Specification: 000 Release Cleanup"

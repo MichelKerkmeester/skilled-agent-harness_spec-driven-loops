@@ -255,9 +255,9 @@ describe('Codex UserPromptSubmit advisor hook', () => {
       status?: string;
       freshness?: string;
     };
-    expect(parsed).toEqual({});
-    expect(diagnostic.status).toBe('fail_open');
-    expect(diagnostic.freshness).toBe('unavailable');
-    expect(parsed.hookSpecificOutput).toBeUndefined();
+    expect(parsed).toHaveProperty('hookSpecificOutput');
+    expect((parsed.hookSpecificOutput as { additionalContext?: string }).additionalContext).toMatch(/^Advisor: live;/);
+    expect(diagnostic.status).toBe('ok');
+    expect(diagnostic.freshness).toBe('live');
   });
 });

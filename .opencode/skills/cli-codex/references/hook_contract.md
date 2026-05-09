@@ -10,7 +10,7 @@ trigger_phrases:
 
 # Codex CLI Hook Contract
 
-Codex CLI 0.122.0 supports native hooks behind the `codex_hooks` feature flag.
+Codex CLI 0.130.0 exposes native hooks behind the stable `hooks` feature flag.
 Spec Kit Memory uses the native `SessionStart` and `UserPromptSubmit` surfaces
 to inject startup context and the compact skill-advisor brief.
 
@@ -20,10 +20,10 @@ Hooks are inert unless enabled:
 
 ```toml
 [features]
-codex_hooks = true
+hooks = true
 ```
 
-`codex --enable codex_hooks ...` is an equivalent process-local override. The
+`codex --enable hooks ...` is an equivalent process-local override. The
 Superset `codex` wrapper already passes this flag, but `~/.codex/config.toml`
 should still include it so direct Codex invocations behave the same way.
 
@@ -163,7 +163,7 @@ non-empty and start with `Advisor:` on the prompt hook.
 
 - OpenAI Codex source schema:
   `https://raw.githubusercontent.com/openai/codex/main/codex-rs/hooks/src/schema.rs`
-- OpenAI Codex issue evidence for five native events and `codex_hooks` flag:
+- OpenAI Codex issue evidence for five native events and the original experimental `codex_hooks` flag:
   `https://github.com/openai/codex/issues/16226`
 - OpenAI Codex issue evidence for `UserPromptSubmit.additionalContext` becoming
   model-visible developer context:
