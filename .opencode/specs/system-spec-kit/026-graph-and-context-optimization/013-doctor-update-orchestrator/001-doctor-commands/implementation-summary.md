@@ -10,30 +10,28 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"
-    last_updated_at: "2026-05-09T12:30:00Z"
-    last_updated_by: "spec-kit-implement"
-    recent_action: "Mode-reduction docs realigned"
-    next_safe_action: "Run controlled smoke tests"
-    blockers: []
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+    last_updated_at: "2026-05-09T19:55:00Z"
+    last_updated_by: "spec-kit-handover"
+    recent_action: "Shipped Round 2 fixes (FIX-07 through FIX-10) closing v3-3 spec metadata backfill gap"
+    next_safe_action: "Re-dispatch /doctor:update against fresh /tmp to verify Round 2 indexing"
+    blockers:
+      - "R1+R2 verification dispatch with real v3-3 spec content still pending"
     key_files:
-      - "spec.md"
-      - "plan.md"
-      - "tasks.md"
-      - "checklist.md"
-      - "decision-record.md"
-      - ".opencode/commands/doctor/memory.md"
-      - ".opencode/commands/doctor/assets/doctor_memory.yaml"
+      - ".opencode/commands/doctor/update.md"
+      - ".opencode/commands/doctor/assets/doctor_update.yaml"
+      - ".opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json"
+      - "ai-council/council-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "spec-kit-implement-2026-05-09"
+      session_id: "spec-kit-handover-001-doctor-commands-2026-05-09"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 99
     open_questions: []
     answered_questions:
-      - "ADR-001: memory_index_scan tx model = per-batch (per-file) — confirmed Phase A.1"
-      - "ADR-002..ADR-008: 7 council questions answered with operational-safety lens"
-      - "ADR-009: external GPT-5.5 high dispatch — deferred to optional REQ-021"
+      - "ADR-001 through ADR-009 captured in decision-record.md"
+      - "Council R1 2026-05-09: 7 fixes (FIX-00..06) shipped + live-verified at 16-min runtime"
+      - "Council R2 2026-05-09: 4 fixes (FIX-07..10) shipped closing spec metadata gap"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: 013 Doctor Update Orchestrator

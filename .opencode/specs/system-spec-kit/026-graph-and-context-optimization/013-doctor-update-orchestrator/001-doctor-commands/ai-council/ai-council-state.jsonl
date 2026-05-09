@@ -1,0 +1,7 @@
+{"event":"round_start","round":1,"timestamp":"2026-05-09T19:40:00Z","seats":["seat-001-analytical","seat-002-critical","seat-003-pragmatic"]}
+{"event":"seat_returned","round":1,"seat":"seat-001-analytical","timestamp":"2026-05-09T19:42:00Z","status":"ok"}
+{"event":"seat_returned","round":1,"seat":"seat-002-critical","timestamp":"2026-05-09T19:42:00Z","status":"ok"}
+{"event":"seat_returned","round":1,"seat":"seat-003-pragmatic","timestamp":"2026-05-09T19:42:00Z","status":"ok"}
+{"event":"deliberation_synthesized","round":1,"timestamp":"2026-05-09T19:48:00Z","convergence_score":0.85}
+{"event":"round_end","round":1,"timestamp":"2026-05-09T19:48:00Z","new_findings_count":5}
+{"event":"council_complete","timestamp":"2026-05-09T19:50:00Z","final_report_path":"ai-council/council-report.md","convergence":true}

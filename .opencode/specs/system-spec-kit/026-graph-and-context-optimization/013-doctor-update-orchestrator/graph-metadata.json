@@ -43,9 +43,9 @@
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
-    "last_active_at": "2026-05-09T17:05:14.651Z",
-    "last_save_at": "2026-05-09T17:05:14.651Z",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands",
+    "last_active_at": "2026-05-09T18:34:54.702Z",
+    "last_save_at": "2026-05-09T18:34:54.702Z",
     "key_files": [
       "spec.md",
       "description.json",

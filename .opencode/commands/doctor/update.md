@@ -155,13 +155,15 @@ Forbidden targets include all spec folder docs, all skills, all agents, all comm
 | Phase | Council Line                                                                           | YAML Activity                                                   |
 | ----- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
 | 1     | Acquire flock; refuse if held or PID stale-locked >2h                                  | `phase_1_flock_acquire`                                         |
+| 1.5   | Verify mcp_server/dist/context-server.js exists; build via npm if missing; release flock on abort | `phase_1_5_mcp_server_bootability`        |
 | 2     | Probe other MCP-client activity; warn and prompt unless `--force`                      | `phase_2_probe_mcp_activity`                                    |
 | 3     | Snapshot every SQLite DB with `VACUUM INTO`; refuse if disk free <2x DB total          | `phase_3_snapshot_all_databases`                                |
 | 4     | Execute in dependency order with tier prompts                                          | `phase_4_status_dashboard` + `phase_5_dependency_order_execute` |
 | 5     | On step failure: one retry with 5-sec backoff, then rollback or prompt                 | `phase_5_dependency_order_execute.failure_policy`               |
+| 5.5   | Optional post-dependency checkpoint for DBs created during Phase 5 (fresh-install rollback target) | `phase_5_5_post_dependency_checkpoint`        |
 | 6     | On SIGINT: set cancel flag, settle current tx, restore in-flight DB, exit 130          | `phase_6_sigint_cancel_contract`                                |
 | 7     | Post-run validation with gold battery per DB; rollback on regression                   | `phase_7_post_run_validation`                                   |
-| 8     | Migration Phase 0 before snapshots when `--migrate` or version skip detected           | `phase_8_migration_phase_0`                                     |
+| 8     | Migration Phase 0: file-signal auto-detect, directory bridge, mcp_server build, cocoindex venv, spec metadata backfill (FIX-08), legacy memory.md report (FIX-09) | `phase_8_migration_phase_0`                                     |
 | 9     | Legacy cleanup only with `--cleanup-legacy`, prompt-delete each                        | `phase_9_legacy_cleanup`                                        |
 | 10    | Write `.doctor-update.last-run.json`; release flock; cleanup old snapshots unless kept | `phase_10_state_log_unlock_cleanup`                             |
 
@@ -228,7 +230,7 @@ Snapshots: <kept|cleaned|skipped>
 2. Load the selected `assets/doctor_update.yaml` file and execute it as the source of truth.
 3. Enforce Phase 1 flock before any status probe that could lead to mutation. If held, refuse with holding PID and start timestamp.
 4. In Phase 2, probe active MCP clients. If active clients exist and `--force` is absent, ask for explicit proceed/cancel.
-5. In Phase 8, when `--migrate` is set or version-skip is detected, read `migration-manifest.json` only. Refuse if missing or gapped; Track C does not author it.
+5. In Phase 8, when `--migrate` is set OR auto-detected via 4 file-system signals (≥2 positive), execute the migration sub-actions in order: directory_layout_bridge → mcp_server_build → cocoindex_venv_check → spec_metadata_backfill (FIX-08, invokes sanctioned scripts) → legacy_memory_md_detection (FIX-09, report-only). Read `migration-manifest.json` for migration definitions; refuse if missing or gapped; Track C does not author it.
 6. In Phase 3, snapshot every allowed SQLite database with `VACUUM INTO` unless `--no-snapshot` is explicitly true. Disk free must be at least 2x DB total.
 7. In Phase 4, render the cross-subsystem dashboard before deciding which dependency steps to run. skips this decision and runs the full chain.
 8. In Phase 5, execute in dependency order: code-graph -> context-index -> causal-edges-init -> skill-graph -> advisor -> deep-loop-graph -> speckit-eval.

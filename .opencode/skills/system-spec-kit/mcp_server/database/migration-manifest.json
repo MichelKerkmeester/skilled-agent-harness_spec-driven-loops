@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "spec-kit-migration-manifest",
   "version": "1.0.0",
-  "last_updated": "2026-05-09T13:47:51Z",
+  "last_updated": "2026-05-09T19:30:00Z",
   "valid_source_versions": [
     "3.3.0.0",
     "3.3.0.1",
@@ -40,6 +40,14 @@
           "reason": "Legacy memory database artifact superseded by context-index.sqlite and profile-specific context-index*.sqlite databases.",
           "detect_only": true,
           "action_on_cleanup": "prompt_delete_only_after_user_confirms_with_cleanup_legacy"
+        },
+        {
+          "pattern": ".opencode/skill/",
+          "scope": "spec-kit installation root",
+          "reason": "Singular `.opencode/skill/` directory was renamed to plural `.opencode/skills/` in 3.4.0.0. v3.3 installations have all skills, commands, and agents under the singular path; v3.4+ expects plural.",
+          "detect_only": true,
+          "action_on_cleanup": "prompt_replace_with_symlink_after_user_confirms_with_cleanup_legacy",
+          "migration_helper": "M-3.3.0.0-004"
         }
       ],
       "schema_migrations": [
@@ -49,8 +57,8 @@
           "target_db": "spec-docs",
           "target_schema_version": "canonical-continuity-frontmatter",
           "idempotent": true,
-          "script": "DEFERRED: mcp_server/scripts/migrations/3.3.0.0-to-3.4.0.0-continuity.py",
-          "fallback_operation": "run /memory:save or generate-context.js for affected spec folders after reviewing detected legacy files"
+          "script": "Phase 8 of /doctor:update detects + reports via legacy_memory_md_detection (FIX-09); auto-migration deferred to user-driven /memory:save per review",
+          "fallback_operation": "review .doctor-update.legacy-memory-files.log, then run /memory:save for each affected packet"
         },
         {
           "id": "M-3.3.0.0-002",
@@ -58,8 +66,8 @@
           "target_db": "spec-docs",
           "target_schema_version": "graph-metadata.schema_version=1",
           "idempotent": true,
-          "script": "DEFERRED: mcp_server/scripts/migrations/3.3.0.0-to-3.4.0.0-graph-metadata.py",
-          "fallback_operation": "run scripts/dist/spec-folder/generate-description.js and scripts/dist/graph/backfill-graph-metadata.js"
+          "script": "Phase 8 of /doctor:update auto-runs spec_metadata_backfill (FIX-08): generate-description.js per folder + backfill-graph-metadata.js bulk",
+          "fallback_operation": "manually run scripts/dist/graph/backfill-graph-metadata.js + scripts/dist/spec-folder/generate-description.js per folder if Phase 8 backfill fails"
         },
         {
           "id": "M-3.3.0.0-003",
@@ -69,6 +77,24 @@
           "idempotent": true,
           "script": "DEFERRED: mcp_server/scripts/migrations/3.3.0.0-to-3.4.0.0-code-graph.py",
           "fallback_operation": "run code_graph_scan({ incremental: false })"
+        },
+        {
+          "id": "M-3.3.0.0-004",
+          "description": "Bridge legacy `.opencode/skill/` (singular) directory layout to current `.opencode/skills/` (plural) by creating a relative symlink so v3.3-era workspace configs (.mcp.json, opencode.json) continue to resolve. Also build the mcp_server TypeScript runtime if `dist/` is missing.",
+          "target_db": "filesystem-layout",
+          "target_schema_version": "skills-plural-with-dist",
+          "idempotent": true,
+          "script": "DEFERRED: handled inline by /doctor:update Phase 1.5 (build) + Phase 8 (symlink)",
+          "fallback_operation": "(1) cd .opencode/skills/system-spec-kit/mcp_server && npm install && npm run build; (2) ln -sf skills .opencode/skill from repo root; (3) optionally edit .mcp.json/opencode.json to use plural paths"
+        },
+        {
+          "id": "M-3.3.0.0-005",
+          "description": "Verify or recreate the CocoIndex Python virtual environment after the singular->plural directory bridge. Python venvs encode absolute paths in shebangs and activation scripts, so a venv created under `.opencode/skill/mcp-coco-index/...` will not function under `.opencode/skills/mcp-coco-index/...` even with a symlink in some Python builds.",
+          "target_db": "cocoindex-venv",
+          "target_schema_version": "venv-at-plural-path",
+          "idempotent": true,
+          "script": "DEFERRED: handled inline by /doctor:update Phase 8 (venv health) + Phase 7 (smoke test)",
+          "fallback_operation": "python3 -m venv .opencode/skills/mcp-coco-index/mcp_server/.venv && source .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/activate && pip install -e .opencode/skills/mcp-coco-index/mcp_server"
         }
       ],
       "expected_post_state": {
@@ -77,12 +103,15 @@
           "description.json",
           "graph-metadata.json",
           "mcp_server/database/context-index.sqlite",
-          "mcp_server/database/code-graph.sqlite"
+          "mcp_server/database/code-graph.sqlite",
+          ".opencode/skills/ (plural; symlink .opencode/skill -> skills if user retained legacy configs)",
+          ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
         ],
         "files_absent_required": [],
         "files_absent_after_cleanup": [
           "memory/*.md",
-          "mcp_server/database/memory.db"
+          "mcp_server/database/memory.db",
+          ".opencode/skill/ (only after symlink + config update; cleanup is opt-in)"
         ],
         "legacy_files_may_remain_without_cleanup": true,
         "schema_version": {
@@ -216,13 +245,15 @@
         "M-3.3.0.0-001",
         "M-3.3.0.0-002",
         "M-3.3.0.0-003",
+        "M-3.3.0.0-004",
+        "M-3.3.0.0-005",
         "M-3.4.0.0-001",
         "M-3.4.0.0-002",
         "M-3.4.0.0-003",
         "M-3.4.0.0-004",
         "M-3.4.0.0-005"
       ],
-      "estimated_runtime_minutes": 15
+      "estimated_runtime_minutes": 16
     },
     {
       "from": "3.3.0.1",
@@ -234,7 +265,19 @@
       ],
       "display_chain": "3.3.0.1 -> 3.4.0.0 -> 3.4.1.0",
       "inherits_steps_from": "3.3.0.0",
-      "estimated_runtime_minutes": 15
+      "steps": [
+        "M-3.3.0.0-001",
+        "M-3.3.0.0-002",
+        "M-3.3.0.0-003",
+        "M-3.3.0.0-004",
+        "M-3.3.0.0-005",
+        "M-3.4.0.0-001",
+        "M-3.4.0.0-002",
+        "M-3.4.0.0-003",
+        "M-3.4.0.0-004",
+        "M-3.4.0.0-005"
+      ],
+      "estimated_runtime_minutes": 16
     },
     {
       "from": "3.3.1.0",
@@ -246,7 +289,19 @@
       ],
       "display_chain": "3.3.1.0 -> 3.4.0.0 -> 3.4.1.0",
       "inherits_steps_from": "3.3.0.0",
-      "estimated_runtime_minutes": 15
+      "steps": [
+        "M-3.3.0.0-001",
+        "M-3.3.0.0-002",
+        "M-3.3.0.0-003",
+        "M-3.3.0.0-004",
+        "M-3.3.0.0-005",
+        "M-3.4.0.0-001",
+        "M-3.4.0.0-002",
+        "M-3.4.0.0-003",
+        "M-3.4.0.0-004",
+        "M-3.4.0.0-005"
+      ],
+      "estimated_runtime_minutes": 16
     },
     {
       "from": "3.4.0.0",
@@ -277,7 +332,7 @@
     }
   ],
   "metadata": {
-    "consumed_by": "/doctor:update --migrate",
+    "consumed_by": "/doctor:update (auto-detect via file-system signals OR --migrate)",
     "authored_by": "packet 026/013-doctor-update-orchestrator (Track D)",
     "council_adr": "ADR-008 in 013/decision-record.md",
     "script_status": "migration scripts are intentionally deferred by REQ-020; this Track D manifest is declarative only",

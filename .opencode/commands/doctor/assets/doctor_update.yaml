@@ -27,6 +27,9 @@ update_orchestrator_invariant: |
   before mutation unless explicitly waived, and restores failed plus downstream
   DBs on retry exhaustion. SIGINT follows ADR-001/ADR-007: set cancel, allow a
   ~5 sec SQLite settle window, restore the in-flight snapshot, log, and exit 130.
+  Every abort path — build failure, snapshot failure, dependency failure, SIGINT,
+  validation regression — MUST `rm -f .doctor-update.flock` before exit to prevent
+  indefinite-lock leak (council Issue 2 sub-finding).
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -166,6 +169,29 @@ workflow:
     stale_lock_rule: "refuse if PID-file stale-locked >2h"
     refusal_message: "holding PID + start timestamp"
 
+  phase_1_5_mcp_server_bootability:
+    council_line: 1
+    approval: "auto-acknowledge in confirm workflow (short tier per markdown)"
+    preflight_check: |
+      stat .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
+    rationale: "MCP tools listed in /doctor:update allowed-tools cannot be invoked unless the MCP server is built and bootable. Prevents silent Phase 5 failures."
+    if_dist_missing:
+      action: "build the mcp_server TypeScript runtime"
+      commands: |
+        cd .opencode/skills/system-spec-kit/mcp_server
+        npm install --no-audit --no-fund --silent
+        npm run build
+      timeout_seconds: 180
+      on_build_failure:
+        emit_error: "MCP server build failed; cannot proceed with database operations"
+        release_flock: "rm -f .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.flock .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.lock"
+        exit_code: 1
+    if_dist_present:
+      action: "verify timestamp newer than 30 days OR mcp_server/lib/**/*.ts (catch stale builds)"
+      stale_threshold_days: 30
+      on_stale: "warn but proceed; recommend rebuild outside flock"
+    flock_release_invariant: "On ANY abort path from this phase forward (failure, SIGINT, exception), release the flock file BEFORE exit. Each downstream phase inherits this invariant."
+
   phase_2_probe_mcp_activity:
     council_line: 2
     approval: "prompt before probing active clients"
@@ -175,9 +201,126 @@ workflow:
   phase_8_migration_phase_0:
     council_line: 8
     approval: "prompt before migration manifest Phase 0"
-    condition: "user_inputs.migrate OR auto-detected version skip"
+    condition: |
+      user_inputs.migrate == true
+      OR (
+        file_system_signals_detected >= 2 of [
+          (.opencode/skill exists AND is a directory NOT a symlink),
+          (.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js does NOT exist),
+          (find . -path './.opencode' -prune -o -name 'memory' -type d -print | grep -q .),
+          (find .opencode/specs -mindepth 2 -name 'spec.md' | first-match dirname has no description.json)
+        ]
+      )
+      ELSE refuse to proceed when version detection ambiguous and neither --migrate nor --no-migrate flag was passed.
+    file_system_signals:
+      signal_a:
+        check: "[ -d .opencode/skill ] && [ ! -L .opencode/skill ]"
+        meaning: "v3.3-era singular directory present as a real directory (not bridge symlink)"
+      signal_b:
+        check: "[ ! -f .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js ]"
+        meaning: "MCP server dist missing — fresh tarball install or post-clone state"
+      signal_c:
+        check: "find .opencode/specs -name 'memory' -type d -print -quit 2>/dev/null | grep -q ."
+        meaning: "legacy memory/ folders inside any spec packet (v3.3 continuity surface)"
+      signal_d:
+        check: |
+          if [ -d .opencode/specs ]; then
+            find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null \
+              | head -1 | while read f; do
+                dir=$(dirname "$f")
+                [ ! -f "$dir/description.json" ] && echo missing
+              done | grep -q missing
+          else
+            false
+          fi
+        meaning: "spec folders exist but lack description.json (v3.4-required metadata not backfilled from v3.3)"
+    auto_migrate_threshold: 2
+    rationale: "package.json version field is a build-time placeholder ('0.0.0' in release tarballs), so version detection MUST use file-system signals instead. Council FIX-03."
     migration: "run migration-manifest.json Phase 0 before snapshots"
     gap_detected: "refuse to proceed if manifest gap detected"
+    directory_layout_bridge:
+      precondition: "both .opencode/skill/ and .opencode/skills/ directories exist (legacy v3.3 layout + current v3.4 layout)"
+      detect_command: |
+        [ -d .opencode/skill ] && [ -d .opencode/skills ] && [ ! -L .opencode/skill ]
+      bridge_action: |
+        rm -rf .opencode/skill_legacy_backup_$(date -u +%Y%m%dT%H%M%SZ) 2>/dev/null
+        mv .opencode/skill .opencode/skill_legacy_backup_$(date -u +%Y%m%dT%H%M%SZ)
+        ln -sf skills .opencode/skill
+      on_symlink_failure:
+        action: "write per-file remediation instructions"
+        instruction_file: ".opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.config-instructions"
+        content_template: |
+          # /doctor:update remediation: directory rename
+          # Run these commands manually to update v3.3 -> v3.4 paths:
+          sed -i.bak 's|\.opencode/skill/|.opencode/skills/|g' .mcp.json opencode.json 2>/dev/null
+          # Then manually verify .mcp.json and opencode.json are correct.
+      idempotency: "if .opencode/skill is already a symlink to skills, skip"
+    cocoindex_venv_check:
+      probe: |
+        VENV_PYTHON=.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python3
+        [ -x "$VENV_PYTHON" ] && "$VENV_PYTHON" -c "import sys; print(sys.prefix)" 2>/dev/null
+      on_broken_or_missing:
+        action: "recreate venv at canonical plural path"
+        commands: |
+          python3 -m venv .opencode/skills/mcp-coco-index/mcp_server/.venv
+          .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/pip install --quiet -e .opencode/skills/mcp-coco-index/mcp_server
+        on_failure: "warn (CocoIndex is supplemental, not gating); record in state log"
+      idempotency: "skip if probe returns a sys.prefix path under the workspace"
+    spec_metadata_backfill:
+      precondition: "signal_d positive (spec folders exist but lack description.json) OR signal_c positive (legacy memory/ folders detected)"
+      rationale: "v3.3 spec packets lack the description.json + graph-metadata.json files that v3.4 requires for memory_index_scan visibility. Without backfill, Phase 5.2 silently skips all v3.3 packets — see Issue 11 in council Round 2 backlog."
+      mutation_boundary_exception: "Phase 8 INVOKES the sanctioned backfill scripts (generate-description.js + backfill-graph-metadata.js). The orchestrator does not edit description.json/graph-metadata.json directly; it delegates to maintained tooling per migration-manifest M-3.3.0.0-002 fallback_operation."
+      step_a_graph_metadata_backfill:
+        command: |
+          node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js 2>&1 \
+            | tee .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.backfill-graph.log
+        timeout_seconds: 300
+        on_failure: "warn but proceed (Phase 5.2 indexing will be partial); record failure in state log"
+      step_b_description_backfill:
+        command: |
+          # Loop over spec folders missing description.json
+          missing_count=0
+          created_count=0
+          failed_count=0
+          while read -r spec_md; do
+            dir=$(dirname "$spec_md")
+            if [ ! -f "$dir/description.json" ]; then
+              missing_count=$((missing_count + 1))
+              if node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js \
+                "$dir" "$(pwd)" >/dev/null 2>&1; then
+                created_count=$((created_count + 1))
+              else
+                failed_count=$((failed_count + 1))
+              fi
+            fi
+          done < <(find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null)
+          echo "{\"missing\":$missing_count,\"created\":$created_count,\"failed\":$failed_count}" \
+            > .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.backfill-description.log
+        timeout_seconds: 600
+        on_failure: "warn per-folder; aggregate failed_count for state log"
+      report_to_dashboard: "Phase 4 dashboard adds row 'spec-metadata-backfill: created=N, failed=M' when this sub-action runs"
+    legacy_memory_md_detection:
+      precondition: "always run when Phase 8 is triggered"
+      rationale: "v3.3 used memory/*.md files inside spec folders for continuity. v3.4 moved continuity to _memory.continuity frontmatter blocks in implementation-summary.md. The migration is NOT fully automatable — content review required per migration-manifest M-3.3.0.0-001 fallback_operation. Phase 8 detects + reports, the user runs /memory:save manually after review."
+      detection: |
+        find .opencode/specs -mindepth 2 -maxdepth 6 -path '*/memory/*.md' \
+          -not -path '*/scratch/*' -not -path '*/z_archive/*' 2>/dev/null \
+          | tee .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.legacy-memory-files.log \
+          | wc -l
+      action_on_findings:
+        do_not_auto_migrate: "respecting manifest M-3.3.0.0-001 'review first' policy"
+        write_summary_log: ".opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.legacy-memory-files.log"
+        recommend_to_user: |
+          # Emit at end of Phase 8:
+          if [ "$LEGACY_MEMORY_COUNT" -gt 0 ]; then
+            echo ""
+            echo "/doctor:update detected $LEGACY_MEMORY_COUNT legacy memory/*.md files in spec packets."
+            echo "These are v3.3 continuity artifacts that were superseded by _memory.continuity frontmatter in v3.4."
+            echo ""
+            echo "RECOMMENDED MANUAL STEP: review the files listed in .doctor-update.legacy-memory-files.log,"
+            echo "then run \`/memory:save\` for each affected packet to migrate continuity into the v3.4 frontmatter format."
+            echo ""
+          fi
 
   phase_3_snapshot_all_databases:
     council_line: 3
@@ -186,13 +329,25 @@ workflow:
     snapshot: "SNAPSHOT every *.sqlite via VACUUM INTO"
     filename: "<name>.pre-doctor-update.<version>.<timestamp>.bak"
     disk_free: "refuse if disk free < 2x DB total"
+    post_snapshot_hook: |
+      # Preserve original mtime on snapshot copies so age-based recovery decisions stay accurate.
+      # VACUUM INTO creates a new file with current mtime by default; reset to source mtime.
+      for src in mcp_server/database/*.sqlite mcp_server/database/*.db; do
+        [ -f "$src" ] || continue
+        for bak in "$src".pre-doctor-update.*.bak; do
+          [ -f "$bak" ] || continue
+          touch -r "$src" "$bak"
+        done
+      done
+    rationale: "VACUUM INTO sets mtime to the snapshot moment, not the source's last-modified time. For age-based recovery decisions, snapshot mtime should reflect the source state being checkpointed. Council FIX-05."
 
   phase_4_status_dashboard:
     council_line: 4
     approval: "prompt after rendering dashboard and before selecting actions"
     cross_subsystem_dashboard:
       rows: ["code-graph", "context-index", "causal-edges", "skill-graph", "advisor", "deep-loop", "cocoindex", "eval"]
-      columns: ["status", "age", "recommended action"]
+      columns: ["status", "age", "coverage", "recommended action"]
+      coverage_column_rationale: "context-index row populated by FIX-10 post_run_count_skipped output; other rows show n/a unless their tool surfaces a coverage metric"
 
   phase_5_dependency_order_execute:
     council_line: 4
@@ -200,7 +355,30 @@ workflow:
     dependency.order: ["code-graph", "context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
     execute:
       code-graph: "code_graph_scan({ incremental: false })"
-      context-index: "memory_index_scan({ incremental: false, force: true })"
+      context-index:
+        action: "memory_index_scan({ incremental: false, force: true })"
+        post_run_count_skipped: |
+          # Count spec folders that exist but were not indexed.
+          # memory_index_scan silently skips folders missing description.json or graph-metadata.json.
+          total_specs=$(find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null | wc -l)
+          indexed_specs=$(node -e "
+            const Database = require('better-sqlite3');
+            const db = new Database('.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite');
+            const r = db.prepare(\"SELECT COUNT(DISTINCT spec_folder) AS n FROM memory_index WHERE spec_folder IS NOT NULL\").get();
+            console.log(r.n);
+            db.close();
+          " 2>/dev/null || echo 0)
+          skipped=$((total_specs - indexed_specs))
+          echo "{\"total_specs\":$total_specs,\"indexed\":$indexed_specs,\"skipped\":$skipped}" \
+            > .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.context-index-coverage.log
+        report_when_skipped: |
+          if [ "$skipped" -gt 0 ]; then
+            echo "WARNING: context-index coverage gap detected"
+            echo "  total spec folders found: $total_specs"
+            echo "  indexed:                  $indexed_specs"
+            echo "  skipped:                  $skipped (likely missing description.json or graph-metadata.json)"
+            echo "  run Phase 8 backfill OR /memory:save per affected packet to fix"
+          fi
       causal-edges-init: "memory_causal_link(...) for high-confidence missing lineage"
       skill-graph: "skill_graph_scan({})"
       advisor: "advisor_rebuild({ force: true }) + advisor_validate({})"
@@ -210,6 +388,23 @@ workflow:
       council_line: 5
       retry: "one retry with 5-sec backoff"
       after_retry_failure: "prompt retry / rollback / leave"
+
+  phase_5_5_post_dependency_checkpoint:
+    council_line: 5
+    approval: "auto-acknowledge unless --keep-snapshots is set"
+    optional: true
+    condition: "any sqlite/db file exists now that did NOT exist when phase_3_snapshot_all_databases ran (typical: code-graph, context-index, etc. on a fresh install)"
+    detect_command: |
+      comm -13 \
+        <(ls mcp_server/database/*.pre-doctor-update.*.bak 2>/dev/null | sed 's/\.pre-doctor-update\..*\.bak$//' | sort -u) \
+        <(ls mcp_server/database/*.sqlite mcp_server/database/*.db 2>/dev/null | sort -u)
+    checkpoint_action: |
+      # For each newly-created DB, take a "post-bootstrap" checkpoint snapshot.
+      for new_db in $(comm -13 ...); do
+        sqlite3 "$new_db" ".backup '${new_db}.post-doctor-update.${VERSION}.${TIMESTAMP}.bak'" 2>/dev/null \
+          || cp -p "$new_db" "${new_db}.post-doctor-update.${VERSION}.${TIMESTAMP}.bak"
+      done
+    rationale: "Phase 3 snapshots only EXISTING DBs. On fresh install, all DBs are created during Phase 5, leaving no rollback target if Phase 7 validation fails. Phase 5.5 fills this gap. Council FIX-06."
 
   phase_6_sigint_cancel_contract:
     council_line: 6
@@ -222,6 +417,7 @@ workflow:
     post.run.validation:
       - "existence + schema-version + row-count delta within bounds"
       - "gold-battery sanity check per DB"
+      - "cocoindex smoke test: invoke `ccc search 'orchestrator' --limit 1` via the workspace's venv binary; warn (do not regress) on failure"
     regression: "prompt"
 
   phase_9_legacy_cleanup:
