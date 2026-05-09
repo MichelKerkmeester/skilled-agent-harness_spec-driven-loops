@@ -1,0 +1,28 @@
+{
+  "title": "Vitest baseline recovery followup",
+  "description": "Successor placeholder for the 196 vitest failures escalated from 026/000/006-vitest-baseline-recovery. 152 runtime regressions + 44 fixture-drift cases that exceeded the predecessor's 30-LOC repair rule, plus discoverable via `grep -rn 'followup: 026/000/007'`. Implementation deferred; this packet exists so the source-level annotations have a real target.",
+  "trigger_phrases": [
+    "vitest recovery followup",
+    "196 runtime regressions",
+    "026/000/007 packet"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "level": 1,
+  "status": "in-progress",
+  "priority": "P2",
+  "createdAt": "2026-05-09T00:00:00Z",
+  "branch": "main",
+  "parent_track": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "parent_id": "000-release-cleanup",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery"
+    ]
+  },
+  "derived": {
+    "status": "in-progress",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  }
+}

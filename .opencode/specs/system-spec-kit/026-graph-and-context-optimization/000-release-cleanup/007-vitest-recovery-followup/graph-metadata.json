@@ -1,0 +1,20 @@
+{
+  "packet_id": "007-vitest-recovery-followup",
+  "parent_id": "000-release-cleanup",
+  "level": 1,
+  "title": "Vitest baseline recovery followup",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery"
+    ]
+  },
+  "derived": {
+    "status": "in-progress",
+    "completion_pct": 0,
+    "last_active_child_id": null,
+    "children": [],
+    "is_phase_parent": false
+  },
+  "createdAt": "2026-05-09T00:00:00Z",
+  "lastUpdatedAt": "2026-05-09T00:00:00Z"
+}
