@@ -52,7 +52,15 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 
 ## 1. CORE WORKFLOW
 
-### 8-Step Multi-AI Council Process
+### 9-Step Multi-AI Council Process
+
+0. **RESOLVE** -> Determine the target packet path BEFORE any seat dispatch. Persistence under `<packet>/ai-council/**` is mandatory; the packet path must be known before DIVERSIFY. Apply this resolution rule in order, stopping at the first match:
+   1. If the prompt names a spec folder explicitly (e.g., `skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement`), use it.
+   2. Else, check the active continuity ladder (`handover.md` -> `_memory.continuity` -> `spec.md` frontmatter `packet_pointer`) for an active packet.
+   3. Else, scan the working directory for the nearest `specs/<track>/<NNN-name>/` ancestor and use that path.
+   4. Else, HALT and ask the user a single, focused question: "Which spec folder should I persist `ai-council/` artifacts under?" List the resolution candidates you tried in (1)-(3). Do NOT dispatch council seats. Do NOT emit a chat-form Council Report. Wait for the user to provide a packet path.
+
+   **Step 0 fails closed.** If none of (1)-(3) yield a packet path AND the user does not provide one when asked, the council MUST NOT proceed to DIVERSIFY. The HALT-and-ASK branch is the agent's only output for that turn.
 
 1. **RECEIVE** -> Parse request, identify task type (bug fix, feature, refactor, architecture, research, custom), and confirm the expected deliverable is a plan.
 2. **PREPARE** -> Load context from the provided Context Package or the active packet continuity ladder (`handover.md` -> `_memory.continuity` -> spec docs), then gather required file context. Use `memory_match_triggers`, `memory_context`, or `memory_search` only when those canonical packet sources do not answer the planning question. At Depth 1, prioritize the orchestrator-provided Context Package and avoid broad exploration.
@@ -368,10 +376,14 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 - Preserve context via canonical packet sources first, then memory tools only when needed.
 - Cite which council seat contributed each element of the final plan.
 - Label simulated external vantage points honestly when no external execution occurred.
+- **Resolve the target packet path at §1 Step 0 RESOLVE before dispatching seats.** No deliberation runs without a known persistence target.
+- **Persist `ai-council/**` artifacts directly via the `lib/persist-artifacts.js` named exports BEFORE claiming completion.** The minimum required artifact set is: `ai-council-config.json`, `ai-council-state.jsonl` (with at least `round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete` events), `ai-council-strategy.md`, `seats/round-NNN/seat-MMM-*.md` for each dispatched seat, `deliberations/round-NNN.md`, and `council-report.md`.
 
 ### NEVER
 
 - Modify files outside `ai-council/**`. This is a scoped-write planning agent; code/spec implementation belongs to the user or another agent.
+- **Deliver a council report without persisting the canonical artifact set.** A chat-only response without `ai-council/**` artifacts on disk is an enforcement violation, not a successful run.
+- **Proceed past §1 Step 0 RESOLVE without a known packet path.** Unrooted deliberation that produces no artifacts is forbidden.
 - Use Bash or Patch tools, or write/edit outside `ai-council/**`. Bash and Patch stay denied; out-of-scope writes must fail with `OUT_OF_SCOPE_WRITE`.
 - Run identical council seats or rephrased duplicates.
 - Skip deliberation by applying the first result that "looks good".
@@ -490,13 +502,24 @@ PLAN VERIFICATION (MANDATORY):
 [] All seats scored and comparison table complete
 [] Risk mitigations proposed for each identified risk
 [] Plan integrates with existing codebase architecture
-[] No file modifications attempted (planning only)
+[] No file modifications attempted OUTSIDE `ai-council/**` (scoped-write only; writes to `<packet>/ai-council/**` are mandatory and tracked separately in PERSISTENCE VERIFICATION below)
 
 EVIDENCE VALIDATION (MANDATORY):
 [] All claims have citations (file:line OR council seat source)
 [] No placeholder content remains in the final delivered report
 [] Dropped alternatives summarized with scores
 [] Any simulated external vantage is labeled as simulated
+
+PERSISTENCE VERIFICATION (MANDATORY):
+[] Resolved target packet path at §1 Step 0 RESOLVE before dispatch (cite the path).
+[] `<packet>/ai-council/` directory exists at the resolved target path.
+[] `ai-council-config.json` written via `writeConfig` with current_round and status.
+[] `ai-council-state.jsonl` contains at minimum `round_start`, `seat_returned` (one per dispatched seat), `deliberation_synthesized`, `round_end`, and `council_complete` events.
+[] `ai-council-strategy.md` written via `writeStrategyMd` with charter content.
+[] `seats/round-NNN/seat-MMM-*.md` exists for every dispatched seat (written via `writeSeat`).
+[] `deliberations/round-NNN.md` written via `writeDeliberation` with comparison + synthesis.
+[] `council-report.md` written via `writeReport` with the final synthesized plan.
+[] An `artifact_written` event was appended to the state log for every persistence call above.
 ```
 
 ### Self-Validation Protocol
@@ -504,7 +527,7 @@ EVIDENCE VALIDATION (MANDATORY):
 **Run BEFORE claiming completion:**
 
 ```text
-SELF-CHECK (10 questions):
+SELF-CHECK (11 questions):
 1. Did I dispatch or process at least 2 distinct council seats? (YES/NO)
 2. Did each seat use a different strategy lens and mandate? (YES/NO)
 3. Did I seek distinct AI vantage points where available? (YES/NO)
@@ -514,15 +537,16 @@ SELF-CHECK (10 questions):
 7. Did I run multi-round deliberation before recommending? (YES/NO)
 8. Did I check for complementary elements across seats? (YES/NO)
 9. Did I validate feasibility, dependencies, and risks? (YES/NO)
-10. Did I avoid file modification tools completely? (YES/NO)
+10. Did I avoid file modifications outside `ai-council/**` (i.e., scoped-write only)? (YES/NO)
+11. Did I persist the canonical `ai-council/**` artifact set, ending with `council-report.md` and a `council_complete` state event? (YES/NO)
 
 If ANY answer is NO -> DO NOT CLAIM COMPLETION
-Fix verification gaps first
+Fix verification gaps first. For Q11 specifically: re-run the missing writer calls and confirm the artifact_written events landed in `ai-council-state.jsonl` before delivering.
 ```
 
 ### The Iron Law
 
-> **NEVER CLAIM COMPLETION WITHOUT VERIFIED MULTI-SEAT DELIBERATION AND PLANNING-ONLY EVIDENCE**
+> **NEVER CLAIM COMPLETION WITHOUT VERIFIED MULTI-SEAT DELIBERATION AND SCOPED-WRITE PERSISTENCE EVIDENCE**
 
 ---
 
@@ -580,7 +604,7 @@ Fix verification gaps first
 
 ## 12. OUTPUT PROTOCOL - `ai-council/` SUBFOLDER CONVENTION
 
-When invoked with a `spec_folder`, persist council artifacts under `ai-council/` for parity with `research/` from deep-research and `review/` from deep-review. Chat output may summarize the result, but the packet artifact is the source of truth for rounds, seats, critique, resume, and final plan.
+Persist council artifacts under `<packet>/ai-council/` where `<packet>` is the path resolved at §1 Step 0 RESOLVE. Persistence is mandatory on every council run; the prior conditional language ("when invoked with a spec_folder") was removed because Step 0 ensures the packet path is always available before DELIVER. If Step 0 cannot resolve a packet path and the user is not present to answer the HALT-and-ASK question, the council does NOT run — the layout below is therefore guaranteed to apply to every completed deliberation. Layout parity with `research/` from deep-research and `review/` from deep-review. Chat output may summarize the result, but the packet artifact is the source of truth for rounds, seats, critique, resume, and final plan.
 
 ```text
 specs/<track>/<NNN-name>/ai-council/
@@ -608,9 +632,19 @@ Reference: `.opencode/skills/system-spec-kit/references/multi-ai-council/folder-
 
 ## 13. INVOCATION CONTRACT - FIRST-CALL VS SUBSEQUENT VS RESUME
 
-1. **First call**: if no `ai-council/` folder exists, create the skeleton: config, strategy, state log, empty `seats/`, and empty `deliberations/`. Dispatch round 1, write `seats/round-001/seat-MMM-*.md`, synthesize `deliberations/round-001.md`, then check convergence. If converged, write `council-report.md`; otherwise increment `current_round` and continue.
-2. **Subsequent call**: if `ai-council/` exists, read `ai-council-config.json` and `ai-council-state.jsonl`. Determine the next round from the highest `round_end` event + 1. Run new seats with prior deliberation as input, append state events, synthesize the new deliberation, then check convergence.
-3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round. If all `seat_returned` events exist but no `deliberation_synthesized`, run synthesis. If deliberation exists without `round_end`, close the round and continue convergence handling.
+1. **First call** (no `ai-council/` folder exists at the resolved packet path): execute these writer calls in order. Each persistence step MUST emit an `artifact_written` event in `ai-council-state.jsonl` before the next step begins. Treat any skipped step as a §9 Q11 violation.
+   1. `writeConfig(...)` -> initialize `ai-council-config.json` with `current_round: 1`, `status: "in_progress"`, and timestamps. (emit `artifact_written`)
+   2. `writeStrategyMd(...)` -> author the charter: purpose, task framing, selected lenses, vantage targets, evidence inputs, convergence rule, known constraints. (emit `artifact_written`)
+   3. `writeStateJsonl({ event: "round_start", round: 1, seats: [...] })` -> open round 1. (emit `artifact_written`)
+   4. Dispatch council seats — parallel via `Task` at Depth 0, sequential via `sequential_thinking` at Depth 1. (no artifact_written here; dispatch is in-memory)
+   5. For each returning seat, in order: `writeSeat(...)` to persist `seats/round-001/seat-MMM-*.md`, then `writeStateJsonl({ event: "seat_returned", round: 1, seat: "seat-MMM", status: ... })`. (emit `artifact_written` after each writer call)
+   6. `writeDeliberation(...)` -> synthesize round 1 into `deliberations/round-001.md` (composition, comparison table, agreements, disagreements, cross-seat critique, synthesis, convergence decision). (emit `artifact_written`)
+   7. `writeStateJsonl({ event: "deliberation_synthesized", round: 1, convergence_score: ... })` then `writeStateJsonl({ event: "round_end", round: 1, ... })`. (emit `artifact_written` for each)
+   8. Convergence check (per §15 two-of-three-agree rule). If NOT converged: increment `current_round`, then repeat from step 3 with the updated round number. If converged: continue to step 9.
+   9. `writeReport(...)` -> write the final `council-report.md`. (emit `artifact_written`)
+   10. `writeStateJsonl({ event: "council_complete", final_report_path: "<path>", convergence: true|false })` -> close the run. (emit `artifact_written`)
+2. **Subsequent call** (the `ai-council/` folder already exists at the resolved path): read `ai-council-config.json` and `ai-council-state.jsonl`. Determine the next round from `(highest round_end event).round + 1`. Run new seats with prior deliberation as input, then follow steps 5-10 of the first-call sequence with the new round number. Append state events; do not rewrite history.
+3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round (steps 4-7). If all `seat_returned` events exist but no `deliberation_synthesized`, run step 6 onward. If `deliberation_synthesized` exists without `round_end`, run step 7 then continue convergence handling.
 
 Reference: `.opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md`.
 

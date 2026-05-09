@@ -12,6 +12,8 @@ contextType: "reference"
 
 # Multi-AI Council Folder Layout
 
+> **Persistence is mandatory for every council run.** The target packet path is resolved by the agent at §1 Step 0 RESOLVE in `multi-ai-council.md` (across all 4 runtime mirrors). When invocation cannot resolve a packet path, the agent HALT-and-ASKs the user for one and does NOT dispatch council seats — the layout below is therefore guaranteed to apply to every completed deliberation. See packet `skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement` for the enforcement contract.
+
 The `ai-council/` folder is the packet-local artifact home for `@multi-ai-council` runs. It mirrors the familiar shape of `research/` and `review/`: configuration, strategy, append-only state, per-round evidence, and a final synthesized report.
 
 ---

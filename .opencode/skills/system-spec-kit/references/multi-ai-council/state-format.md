@@ -14,6 +14,8 @@ contextType: "reference"
 
 `ai-council-state.jsonl` is append-only JSONL. Each line is one state event used for resume, audit, and convergence decisions.
 
+> **Every council run MUST close with a `council_complete` event** appended after `writeReport(...)` lands `council-report.md`. Runs that exit before `council_complete` are incomplete and the agent has violated §9 OUTPUT VERIFICATION (specifically PERSISTENCE VERIFICATION + SELF-CHECK Q11) in `multi-ai-council.md`. Operators who encounter a state log without a trailing `council_complete` should treat the run as failed and either resume per §13 INVOCATION CONTRACT step 3 or roll the round back per §18.
+
 ---
 
 ## 1. OVERVIEW
