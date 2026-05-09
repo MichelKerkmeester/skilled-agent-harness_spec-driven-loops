@@ -223,6 +223,25 @@ _memory:
 
 ---
 
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+
+Required inventories:
+- Same-class producers: \`rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>\`.
+- Consumers of changed symbols: \`rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'\`.
+- Matrix axes: list every independent input axis and the required rows before implementation.
+- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+<!-- /ANCHOR:affected-surfaces -->
+
+---
+
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
@@ -608,6 +627,20 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: \`instance-only\`, \`class-of-bug\`, \`cross-consumer\`, \`algorithmic\`, \`matrix/evidence\`, or \`test-isolation\`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 
@@ -878,6 +911,25 @@ _memory:
 ### Data Flow
 [Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+
+Required inventories:
+- Same-class producers: \`rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>\`.
+- Consumers of changed symbols: \`rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'\`.
+- Matrix axes: list every independent input axis and the required rows before implementation.
+- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
@@ -1376,6 +1428,20 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: \`instance-only\`, \`class-of-bug\`, \`cross-consumer\`, \`algorithmic\`, \`matrix/evidence\`, or \`test-isolation\`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 
@@ -1863,6 +1929,25 @@ _memory:
 ### Data Flow
 [Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+
+Required inventories:
+- Same-class producers: \`rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>\`.
+- Consumers of changed symbols: \`rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'\`.
+- Matrix axes: list every independent input axis and the required rows before implementation.
+- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
@@ -2486,6 +2571,20 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: \`instance-only\`, \`class-of-bug\`, \`cross-consumer\`, \`algorithmic\`, \`matrix/evidence\`, or \`test-isolation\`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 
@@ -2973,6 +3072,25 @@ _memory:
 ### Data Flow
 [Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+Use this section when \`research_intent=fix_bug\`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+
+Required inventories:
+- Same-class producers: \`rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>\`.
+- Consumers of changed symbols: \`rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'\`.
+- Matrix axes: list every independent input axis and the required rows before implementation.
+- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+<!-- /ANCHOR:affected-surfaces -->
 
 ---
 

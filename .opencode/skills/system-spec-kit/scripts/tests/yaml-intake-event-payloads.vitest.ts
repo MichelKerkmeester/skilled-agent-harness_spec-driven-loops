@@ -23,7 +23,8 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const REPO_ROOT = path.resolve(import.meta.dirname, '..', '..', '..', '..', '..');
-const ASSETS_ROOT = path.join(REPO_ROOT, '.opencode', 'command', 'spec_kit', 'assets');
+// drift: 026 release
+const ASSETS_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'spec_kit', 'assets');
 
 const ASSETS_WITH_INTAKE_EVENTS = [
   'spec_kit_plan_auto.yaml',

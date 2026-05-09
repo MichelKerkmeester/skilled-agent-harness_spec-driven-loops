@@ -442,7 +442,8 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
     });
 
     it('T520-7: finds constitutional .md files', () => {
-      const skillDir = path.join(tempDir!, '.opencode', 'skill', 'test-skill', 'constitutional');
+      // drift: 026 release
+      const skillDir = path.join(tempDir!, '.opencode', 'skills', 'test-skill', 'constitutional');
       fs.mkdirSync(skillDir, { recursive: true });
       fs.writeFileSync(path.join(skillDir, 'test.md'), '# Test Constitutional');
 
@@ -452,7 +453,9 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
     });
 
     it('T520-8: constitutional README is skipped', () => {
-      const skillDir = path.join(tempDir!, '.opencode', 'skill', 'test-skill', 'constitutional');
+      // drift: 026 release
+      const skillDir = path.join(tempDir!, '.opencode', 'skills', 'test-skill', 'constitutional');
+      fs.mkdirSync(skillDir, { recursive: true });
       fs.writeFileSync(path.join(skillDir, 'README.md'), '# Readme');
 
       const result = handler.findConstitutionalFiles(tempDir!);
@@ -461,7 +464,8 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
     });
 
     it('T520-9: hidden skill directories are skipped', () => {
-      const hiddenDir = path.join(tempDir!, '.opencode', 'skill', '.hidden-skill', 'constitutional');
+      // drift: 026 release
+      const hiddenDir = path.join(tempDir!, '.opencode', 'skills', '.hidden-skill', 'constitutional');
       fs.mkdirSync(hiddenDir, { recursive: true });
       fs.writeFileSync(path.join(hiddenDir, 'hidden.md'), '# Hidden');
 

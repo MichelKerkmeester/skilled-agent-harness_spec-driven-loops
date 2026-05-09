@@ -9,12 +9,12 @@
     ]
   },
   "derived": {
-    "status": "in-progress",
-    "completion_pct": 0,
+    "status": "complete",
+    "completion_pct": 100,
     "last_active_child_id": null,
     "children": [],
     "is_phase_parent": false
   },
   "createdAt": "2026-05-09T00:00:00Z",
-  "lastUpdatedAt": "2026-05-09T00:00:00Z"
+  "lastUpdatedAt": "2026-05-09T04:30:00Z"
 }

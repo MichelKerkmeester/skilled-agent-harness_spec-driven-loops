@@ -44,12 +44,13 @@ describe('workspace identity normalization', () => {
   it('accepts repo-root and nested paths that resolve to the same .opencode workspace', () => {
     const repoRoot = makeTempRoot('speckit-workspace-');
     const opencodeRoot = path.join(repoRoot, '.opencode');
-    const nestedSkillDir = path.join(opencodeRoot, 'skill', 'system-spec-kit');
+    // drift: 026 release
+    const nestedSkillDir = path.join(opencodeRoot, 'skills', 'system-spec-kit');
     fs.mkdirSync(nestedSkillDir, { recursive: true });
 
     expect(isSameWorkspacePath(opencodeRoot, repoRoot)).toBe(true);
     expect(isSameWorkspacePath(opencodeRoot, nestedSkillDir)).toBe(true);
-    expect(toWorkspaceRelativePath(opencodeRoot, path.join(repoRoot, '.opencode', 'skill', 'system-spec-kit', 'scripts', 'core', 'workflow.ts')))
+    expect(toWorkspaceRelativePath(opencodeRoot, path.join(repoRoot, '.opencode', 'skills', 'system-spec-kit', 'scripts', 'core', 'workflow.ts')))
       .toBe('.opencode/skills/system-spec-kit/scripts/core/workflow.ts');
     expect(toWorkspaceRelativePath(opencodeRoot, path.join(repoRoot, 'README.md'))).toBe('README.md');
   });
