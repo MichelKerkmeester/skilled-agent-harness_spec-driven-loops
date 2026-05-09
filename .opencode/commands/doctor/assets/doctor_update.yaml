@@ -225,8 +225,10 @@ workflow:
       signal_d:
         check: |
           if [ -d .opencode/specs ]; then
+            # FIX-12: removed `head -1` (was limiting check to FIRST folder only).
+            # Now iterates ALL spec.md until grep -q hits the first "missing" emission and short-circuits.
             find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null \
-              | head -1 | while read f; do
+              | while IFS= read -r f; do
                 dir=$(dirname "$f")
                 [ ! -f "$dir/description.json" ] && echo missing
               done | grep -q missing
@@ -272,7 +274,10 @@ workflow:
       mutation_boundary_exception: "Phase 8 INVOKES the sanctioned backfill scripts (generate-description.js + backfill-graph-metadata.js). The orchestrator does not edit description.json/graph-metadata.json directly; it delegates to maintained tooling per migration-manifest M-3.3.0.0-002 fallback_operation."
       step_a_graph_metadata_backfill:
         command: |
-          node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js 2>&1 \
+          # FIX-13: --active-only skips z_archive/z_future paths that the script's path-validator
+          # rejects with "Spec folder is not under a supported specs root" — those archive trees
+          # are intentionally outside graph-traversal anyway.
+          node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js --active-only 2>&1 \
             | tee .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.backfill-graph.log
         timeout_seconds: 300
         on_failure: "warn but proceed (Phase 5.2 indexing will be partial); record failure in state log"

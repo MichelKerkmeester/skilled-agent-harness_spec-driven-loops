@@ -11,12 +11,12 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
-    last_updated_at: "2026-05-09T19:55:00Z"
+    last_updated_at: "2026-05-09T20:40:00Z"
     last_updated_by: "spec-kit-handover"
-    recent_action: "Shipped Round 2 fixes (FIX-07 through FIX-10) closing v3-3 spec metadata backfill gap"
-    next_safe_action: "Re-dispatch /doctor:update against fresh /tmp to verify Round 2 indexing"
+    recent_action: "Patched FIX-12 (signal_d head-1 bug) and FIX-13 (backfill --active-only)"
+    next_safe_action: "Run full E2E /doctor:update against fresh v3-3 workspace to verify all 13 fixes"
     blockers:
-      - "R1+R2 verification dispatch with real v3-3 spec content still pending"
+      - "Phase 5+7+10 of E2E verification truncated by opencode session budget (96K cap)"
     key_files:
       - ".opencode/commands/doctor/update.md"
       - ".opencode/commands/doctor/assets/doctor_update.yaml"
@@ -32,6 +32,7 @@ _memory:
       - "ADR-001 through ADR-009 captured in decision-record.md"
       - "Council R1 2026-05-09: 7 fixes (FIX-00..06) shipped + live-verified at 16-min runtime"
       - "Council R2 2026-05-09: 4 fixes (FIX-07..10) shipped closing spec metadata gap"
+      - "Patches 2026-05-09: FIX-12 (signal_d head-1 bug) + FIX-13 (backfill --active-only)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: 013 Doctor Update Orchestrator
