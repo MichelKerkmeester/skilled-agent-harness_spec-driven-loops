@@ -72,7 +72,7 @@ The framework adds three layers on top of the base platform:
          │  prior memory        domain expertise    │
          │                                          │
          │  Gate 3: Spec Folder (HARD BLOCK)        │
-         │  Every file change needs documentation    │
+         │  Every file change needs documentation   │
          └──────────────────────┬───────────────────┘
                                 │
                  ┌──────────────┴──────────────┐
@@ -86,12 +86,12 @@ The framework adds three layers on top of the base platform:
                  │                           │
                  ▼                           ▼
          ┌──────────────────────────────────────────┐
-        │       MEMORY ENGINE + ADVISOR TOOLS      │
+         │       MEMORY ENGINE + ADVISOR TOOLS      │
          │  5 core + CocoIndex bridge: Vector,      │
          │  BM25, FTS5, Causal Graph, Degree        │
-         │  Graph-first routing ─ 3-tier fallback    │
+         │  Graph-first routing ─ 3-tier fallback   │
          │  FSRS decay ─ RRF fusion ─ query intel   │
-         │  runtime flags ─ eval guardrails          │
+         │  runtime flags ─ eval guardrails         │
          │  Voyage │ OpenAI │ HuggingFace Local     │
          └──────────────────────┬───────────────────┘
                                 │
