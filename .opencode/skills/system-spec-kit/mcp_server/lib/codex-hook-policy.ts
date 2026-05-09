@@ -165,6 +165,16 @@ function hasCodexHooksFeatureEnabled(configPath: string): boolean {
       if (!inFeatures) {
         continue;
       }
+      // Codex deprecated `codex_hooks` in favor of `hooks` per
+      // https://developers.openai.com/codex/config-basic#feature-flags.
+      // Accept both during the transition; the new key takes precedence
+      // when both are present.
+      if (/^hooks\s*=\s*true\b/i.test(stripped)) {
+        return true;
+      }
+      if (/^hooks\s*=/.test(stripped)) {
+        return false;
+      }
       if (/^codex_hooks\s*=\s*true\b/i.test(stripped)) {
         return true;
       }
