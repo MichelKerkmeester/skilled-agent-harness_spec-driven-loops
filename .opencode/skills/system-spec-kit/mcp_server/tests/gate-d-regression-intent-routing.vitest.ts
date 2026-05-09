@@ -68,6 +68,7 @@ vi.mock('../lib/search/intent-classifier.js', () => ({
   getIntentWeights: vi.fn(() => ({ similarity: 0.6, importance: 0.25, recency: 0.15 })),
   getIntentDescription: vi.fn(() => 'intent description'),
   getProfileForIntent: mocks.getProfileForIntent,
+  emitIntentTelemetry: vi.fn(),
 }));
 
 vi.mock('../code_graph/lib/query-intent-classifier.js', () => ({
@@ -242,6 +243,9 @@ function parseEnvelope(response: Awaited<ReturnType<typeof handleMemoryContext>>
 
 function parseNestedPayload(envelope: Record<string, unknown>): Record<string, unknown> {
   const data = envelope.data as Record<string, unknown>;
+  if (!Array.isArray(data.content)) {
+    return envelope;
+  }
   const content = data.content as Array<{ text: string }>;
   return JSON.parse(content[0].text) as Record<string, unknown>;
 }
@@ -265,8 +269,8 @@ describe('Gate D intent routing regression', () => {
   // against an in-memory DB (or at least against the real filtering code path)
   // is required to close this coverage gap.  See review finding S3.5 #13.
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('routes canonical queries across auto, quick, deep, focused, and resume without archived or legacy-memory fallback', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('routes canonical queries across auto, quick, deep, focused, and resume without archived or legacy-memory fallback', async () => {
     const cases = [
       {
         mode: 'auto' as const,
@@ -317,11 +321,15 @@ describe('Gate D intent routing regression', () => {
       });
 
       const envelope = parseEnvelope(response);
-      const outerData = envelope.data as Record<string, unknown>;
+      const outerData = ((envelope.data as Record<string, unknown>)?.data
+        ?? envelope.data) as Record<string, unknown>;
+      const nestedDataForMode = (parseNestedPayload(envelope).data ?? {}) as Record<string, unknown>;
       const queryIntentRouting = outerData.queryIntentRouting as Record<string, unknown> | undefined;
+      const actualMode = outerData.mode ?? nestedDataForMode.mode;
+      const actualStrategy = outerData.strategy ?? nestedDataForMode.strategy;
 
-      expect(outerData.mode).toBe(testCase.expectedMode);
-      expect(outerData.strategy).toBe(testCase.expectedStrategy);
+      expect(actualMode).toBe(testCase.expectedMode);
+      expect(actualStrategy).toBe(testCase.expectedStrategy);
       if (testCase.handler !== 'resume') {
         expect(queryIntentRouting?.routedBackend).toBe('semantic');
       }
@@ -431,8 +439,8 @@ describe('Gate D intent routing regression', () => {
     expect(searchArgs.includeConstitutional).toBe(true);
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('resume handler does not fall back to legacy memory when spec-docs resolve', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('resume handler does not fall back to legacy memory when spec-docs resolve', async () => {
     const response = await handleMemoryContext({
       input: CANONICAL_QUERY,
       mode: 'resume',
@@ -445,10 +453,10 @@ describe('Gate D intent routing regression', () => {
     expect(mocks.handleMemoryMatchTriggers).not.toHaveBeenCalled();
 
     const envelope = parseEnvelope(response);
-    const outerData = envelope.data as Record<string, unknown>;
     const nested = parseNestedPayload(envelope);
-    const nestedData = nested.data as Record<string, unknown>;
-    const resumeLadder = nestedData.resumeLadder as Record<string, unknown>;
+    const nestedData = ((nested.data as Record<string, unknown>)?.data
+      ?? nested.data) as Record<string, unknown>;
+    const resumeLadder = (nestedData.resumeLadder ?? nestedData) as Record<string, unknown>;
 
     // Resume must never fall through to legacy memory when spec-doc source resolves
     expect(resumeLadder.legacyMemoryFallback).toBe(false);

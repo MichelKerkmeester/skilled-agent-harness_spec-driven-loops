@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Vitest baseline recovery followup [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup/implementation-summary]"
-description: "Re-baselined the current vitest suite, classified assertion and suite-import failures, fixed fixture drift, parked broad runtime regressions, and drove the suite to 11,657 passed / 0 failed / 232 skipped / 11 todo."
+description: "Re-baselined the current vitest suite, classified assertion and suite-import failures, fixed fixture drift, then closed the Unit H parked tests to reach 11,804 passed / 0 failed / 90 skipped / 11 todo."
 trigger_phrases:
   - "vitest recovery followup implementation summary"
   - "026/000/007 implementation summary"
@@ -9,15 +9,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-vitest-recovery-followup"
-    last_updated_at: "2026-05-09T04:30:00Z"
+    last_updated_at: "2026-05-09T05:30:00Z"
     last_updated_by: "codex"
-    recent_action: "Closed vitest baseline with measured zero-failure run"
-    next_safe_action: "Review parked runtime-regression annotations for future child packets"
+    recent_action: "Closed Unit H parked vitest cases and measured 11,804 passed / 0 failed / 90 skipped / 11 todo"
+    next_safe_action: "Review remaining environmental skips only if infrastructure fixtures become available"
     blockers: []
     key_files:
       - "scratch/vitest-current-baseline.json"
       - "scratch/classification-inventory.json"
       - "scratch/vitest-postfix.json"
+      - "scratch/vitest-post-unit-h.json"
       - ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -64,6 +65,17 @@ The recovery produced a zero-failure suite by:
 - Classifying broad behavioral failures and parking them with `it.fails.skip` plus `// followup-actual: ...`.
 - Classifying environment-only failures and parking them with `it.skip` / `describe.skip` plus `// REASON: ...`.
 
+### Unit H Parked-Test Closure
+
+Unit H revisited every `followup-actual: 026/000/007` annotation under `mcp_server` with no LOC cap. Each parked test was read against the shipped source contract, then either updated as drift, repaired through source, or removed when the asserted behavior was retired.
+
+| Outcome | Count | Evidence |
+|---------|------:|----------|
+| Stale assertion -> updated | 129 | Test contracts now carry `// drift: 026/000/007-vitest-recovery-followup` comments and run normally. |
+| Real regression -> source fixed | 8 | Documented in `scratch/p0-findings-from-h.md`; fixes covered plural index scope, missing layer mapping, and stdout-safe structural indexer logging. |
+| Test deleted / behavior retired | 1 | Documented in `scratch/deleted-tests-from-h.md`; the direct `memory-parser` context-server import check no longer matches the shipped module boundary. |
+| Genuinely blocked | 0 | No `blocked-on` annotations remain. |
+
 ### Files Changed
 
 - `.opencode/skills/system-spec-kit/mcp_server/tests/**`
@@ -87,8 +99,9 @@ The work used the predecessor `scratch/triage-inventory.json` only as context, t
 - `scratch/current-failure-inventory.json`
 - `scratch/classification-inventory.json`
 - `scratch/vitest-postfix.json`
+- `scratch/vitest-post-unit-h.json`
 
-No per-surface child packets were created. The largest direct fixture-drift repair cluster stayed below the 50-fix threshold. Runtime regressions were too broad for the <=30 LOC single-file repair rule and were parked explicitly for later focused remediation.
+No per-surface child packets were created. The largest direct fixture-drift repair cluster stayed below the 50-fix threshold. The original runtime-regression parking was closed by Unit H once the no-LOC-cap instruction allowed source and multi-file test repairs.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -98,7 +111,7 @@ No per-surface child packets were created. The largest direct fixture-drift repa
 
 - **Re-baseline first**: predecessor annotations were incomplete, so the fresh JSON inventory superseded annotation grep.
 - **Single packet**: no single fixture-drift cluster exceeded 50 fixes after re-baseline.
-- **Park broad runtime regressions**: 160 current failures span memory CRUD, code graph status, startup brief, skill advisor freshness, scorer parity, validation, and docs drift. They exceed the packet's single-file repair rule.
+- **Close broad runtime regressions in Unit H**: the original packet parked 160 failures under a 30 LOC cap; Unit H removed the cap and closed the parked cases through test drift updates, source fixes, and one retired assertion deletion.
 - **No flake classification**: observed failures were deterministic or environment/import based; no 3-run flaky candidates were identified.
 <!-- /ANCHOR:decisions -->
 
@@ -111,6 +124,7 @@ No per-surface child packets were created. The largest direct fixture-drift repa
 cd .opencode/skills/system-spec-kit/mcp_server
 pnpm vitest run --reporter=json --outputFile=/tmp/vitest-current-baseline.json
 pnpm vitest run --reporter=json --outputFile=/tmp/vitest-postfix.json
+pnpm vitest run --reporter=json --outputFile=/tmp/vitest-post-unit-h.json
 ```
 
 Results:
@@ -119,11 +133,14 @@ Results:
 |-----|-------:|-------:|--------:|-----:|
 | Current baseline | 11,618 | 197 | 35 | 11 |
 | Post recovery | 11,657 | 0 | 232 | 11 |
+| Post Unit H | 11,804 | 0 | 90 | 11 |
 
 Additional checks:
 
 - `pnpm vitest run tests/handler-memory-index.vitest.ts --reporter=json --outputFile=/tmp/vitest-handler-memory-index.json` - pass.
 - `pnpm vitest run ...copilot/deep-* import guard slice... --reporter=json --outputFile=/tmp/vitest-import-guards.json` - pass.
+- Unit H targeted parked-file subset - pass, captured in `/tmp/unit-h-targets7.json`.
+- Full Unit H baseline - pass, `11,804 passed / 0 failed / 90 skipped / 11 todo`, captured in `scratch/vitest-post-unit-h.json`.
 - `validate.sh --strict` on this packet - pass, 0 errors / 0 warnings.
 - `pnpm build` could not run because `tsc` is not installed in this workspace.
 <!-- /ANCHOR:verification -->
@@ -133,7 +150,6 @@ Additional checks:
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **160 runtime regressions are parked, not repaired.** Each uses `it.fails.skip` with a `// followup-actual:` annotation because the failures span multiple surfaces and exceed the 30 LOC single-file fix rule.
-2. **15 environment/import cases are skipped.** These require missing optional fixtures such as compiled Copilot hooks, `sk-deep-*` runtime scripts, offline-unavailable `npx tsx`, auth, daemon, or DB fixtures.
-3. **Build verification is unavailable.** `pnpm build` fails immediately with `sh: tsc: command not found`; vitest is the authoritative verification for this packet.
+1. **Environmental skips remain intentionally skipped.** The Unit H closure left infrastructure-blocked `// REASON:` cases alone.
+2. **Build verification is unavailable.** `pnpm build` fails immediately with `sh: tsc: command not found`; vitest is the authoritative verification for this packet.
 <!-- /ANCHOR:limitations -->

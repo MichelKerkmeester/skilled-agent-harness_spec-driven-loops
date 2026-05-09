@@ -26,6 +26,7 @@ function createTestDb(): Database.Database {
       spec_folder TEXT,
       file_path TEXT,
       title TEXT,
+      content_hash TEXT,
       importance_tier TEXT DEFAULT 'normal',
       stability REAL DEFAULT 1.0,
       difficulty REAL DEFAULT 5.0,
@@ -690,8 +691,8 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
   });
 
   describe('cache invalidation after causal edge mutations', () => {
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('invalidates graph and degree caches after memory deletion removes causal edges', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('invalidates graph and degree caches after memory deletion removes causal edges', () => {
       for (const memoryId of [1, 2, 3]) {
         insertMemory(db, memoryId);
       }

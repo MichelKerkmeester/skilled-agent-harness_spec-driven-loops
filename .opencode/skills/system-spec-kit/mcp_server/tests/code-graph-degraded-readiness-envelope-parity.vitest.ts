@@ -33,9 +33,14 @@ const mocks = vi.hoisted(() => ({
   getGraphFreshness: vi.fn(),
   getStats: vi.fn(),
   getDb: vi.fn(),
+  getStoredCodeGraphScope: vi.fn(),
+  countTrackedSkillFiles: vi.fn(),
   getLastDetectorProvenance: vi.fn(),
   getLastGoldVerification: vi.fn(),
   getCodeGraphMetadata: vi.fn(),
+  getParseDiagnosticsSummary: vi.fn(),
+  countStaleButValidParseDiagnostics: vi.fn(),
+  getLastFailedScan: vi.fn(),
   queryEdgesFrom: vi.fn(),
   queryEdgesTo: vi.fn(),
   queryFileDegrees: vi.fn(),
@@ -60,6 +65,8 @@ function installContextMocks(): void {
   vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
     getDb: mocks.getDb,
     getStats: mocks.getStats,
+    getStoredCodeGraphScope: mocks.getStoredCodeGraphScope,
+    countTrackedSkillFiles: mocks.countTrackedSkillFiles,
     getLastDetectorProvenance: mocks.getLastDetectorProvenance,
     queryEdgesFrom: mocks.queryEdgesFrom,
     queryEdgesTo: mocks.queryEdgesTo,
@@ -78,8 +85,13 @@ function installStatusMocks(): void {
   }));
   vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
     getStats: mocks.getStats,
+    getStoredCodeGraphScope: mocks.getStoredCodeGraphScope,
+    countTrackedSkillFiles: mocks.countTrackedSkillFiles,
     getLastGoldVerification: mocks.getLastGoldVerification,
     getCodeGraphMetadata: mocks.getCodeGraphMetadata,
+    getParseDiagnosticsSummary: mocks.getParseDiagnosticsSummary,
+    countStaleButValidParseDiagnostics: mocks.countStaleButValidParseDiagnostics,
+    getLastFailedScan: mocks.getLastFailedScan,
   }));
 }
 
@@ -103,6 +115,21 @@ beforeEach(() => {
   mocks.getLastDetectorProvenance.mockReturnValue(null);
   mocks.getLastGoldVerification.mockReturnValue(null);
   mocks.getCodeGraphMetadata.mockReturnValue(null);
+  mocks.getStoredCodeGraphScope.mockReturnValue({
+    fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+    label: null,
+    includeSkills: false,
+    includedSkillsList: 'none',
+    includeAgents: false,
+    includeCommands: false,
+    includeSpecs: false,
+    includePlugins: false,
+    source: 'default',
+  });
+  mocks.countTrackedSkillFiles.mockReturnValue(0);
+  mocks.getParseDiagnosticsSummary.mockReturnValue(null);
+  mocks.countStaleButValidParseDiagnostics.mockReturnValue(0);
+  mocks.getLastFailedScan.mockReturnValue(null);
   mocks.queryEdgesFrom.mockReturnValue([]);
   mocks.queryEdgesTo.mockReturnValue([]);
   mocks.queryFileDegrees.mockReturnValue([]);
@@ -223,8 +250,8 @@ describe('code_graph_status DB-unavailable envelope (F-003)', () => {
     installStatusMocks();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('preserves the readiness snapshot when graphDb.getStats() throws (stats failure isolated)', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('preserves the readiness snapshot when graphDb.getStats() throws (stats failure isolated)', async () => {
     // Snapshot helper still works (it is read-only and crash-safe per packet
     // 014 — returns `freshness: 'error'` if its own probe throws). We supply
     // a normal snapshot so the test isolates the F-003 behavior: stats fail,
@@ -270,8 +297,8 @@ describe('code_graph_status DB-unavailable envelope (F-003)', () => {
     expect(fallbackDecision?.reason).toBe('stats_unavailable');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('preserves the readiness snapshot when the snapshot itself reports a probe crash', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('preserves the readiness snapshot when the snapshot itself reports a probe crash', async () => {
     // End-to-end degraded path: snapshot helper crashes (returns 'error') AND
     // stats fail. The handler must still ship the unavailable-readiness
     // envelope rather than a generic init error string.
@@ -301,8 +328,8 @@ describe('code_graph_status DB-unavailable envelope (F-003)', () => {
     expect(String(readiness.reason)).toMatch(/probe crashed/);
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('still ships the ok envelope with action-level readiness on the healthy path', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('still ships the ok envelope with action-level readiness on the healthy path', async () => {
     // Sanity: the changes must NOT regress the healthy path. Stats succeed,
     // snapshot returns fresh, response is status=ok with full data block.
     mocks.getGraphReadinessSnapshot.mockReturnValue({
@@ -336,8 +363,8 @@ describe('code_graph_status DB-unavailable envelope (F-003)', () => {
 // Cross-handler vocabulary parity
 // ───────────────────────────────────────────────────────────────
 describe('cross-handler shared degraded-readiness vocabulary parity', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('context crash and status crash agree on canonicalReadiness="missing" + trustState="unavailable"', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('context crash and status crash agree on canonicalReadiness="missing" + trustState="unavailable"', async () => {
     // Ship two crash envelopes in the same test file and assert they project
     // the SAME canonical readiness fields. This is what F-008 calls out:
     // shared vocabulary, handler-local payloads. The shared fields must

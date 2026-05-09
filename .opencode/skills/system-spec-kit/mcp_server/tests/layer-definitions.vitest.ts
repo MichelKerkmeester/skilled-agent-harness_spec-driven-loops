@@ -22,8 +22,10 @@ describe('Layer Definitions Tests', () => {
   ];
   const VIRTUAL_LAYER_TOOLS: Record<string, { id: string; name: string }> = {
     advisor_recommend: { id: 'L8', name: 'Skill Advisor' },
+    advisor_rebuild: { id: 'L8', name: 'Skill Advisor' },
     advisor_status: { id: 'L8', name: 'Skill Advisor' },
     advisor_validate: { id: 'L8', name: 'Skill Advisor' },
+    code_graph_apply: { id: 'L8', name: 'Code Graph' },
   };
 
   // 4.1 LAYER_DEFINITIONS CONSTANT
@@ -154,8 +156,8 @@ describe('Layer Definitions Tests', () => {
       }
     });
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('every registered tool has a layer definition', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('every registered tool has a layer definition', () => {
       const toolNames = TOOL_DEFINITIONS
         .map((tool) => tool.name)
         .filter((name) => !COVERAGE_GRAPH_TOOLS.includes(name))
@@ -173,8 +175,8 @@ describe('Layer Definitions Tests', () => {
       expect(mod.TOOL_LAYER_MAP.checkpoint_create).toBe(matchingLayers[0].id);
     });
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('tool definition prefixes stay aligned with TOOL_LAYER_MAP', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('tool definition prefixes stay aligned with TOOL_LAYER_MAP', () => {
       for (const tool of TOOL_DEFINITIONS) {
         const match = tool.description.match(/^\[(L\d+):([^\]]+)\]/);
         expect(match, `missing layer prefix for ${tool.name}`).not.toBeNull();

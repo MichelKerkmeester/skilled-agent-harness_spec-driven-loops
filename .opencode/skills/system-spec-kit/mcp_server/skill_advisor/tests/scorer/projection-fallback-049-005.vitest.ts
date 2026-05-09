@@ -38,7 +38,7 @@ describe('F-004-A4-01: loadAdvisorProjection surfaces SQLite failures explicitly
   it('returns source=filesystem when the SQLite DB does not exist (legitimate first run)', () => {
     const root = workspace('advisor-projection-no-db');
     // Create a single skill on disk so the filesystem projection has content.
-    const skillDir = join(root, '.opencode', 'skill', 'sample-skill');
+    const skillDir = join(root, '.opencode', 'skills', 'sample-skill');
     write(join(skillDir, 'SKILL.md'), [
       '---',
       'name: sample-skill',
@@ -61,15 +61,15 @@ describe('F-004-A4-01: loadAdvisorProjection surfaces SQLite failures explicitly
     expect(projection.fallbackReason).toBeUndefined();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('returns source=filesystem-fallback with a reason when the SQLite DB is corrupt', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('returns source=filesystem-fallback with a reason when the SQLite DB is corrupt', () => {
     const root = workspace('advisor-projection-corrupt-db');
     // Write a corrupt sqlite file at the path that loadSqliteProjection looks
     // for. better-sqlite3 will throw when it tries to open this.
-    const dbPath = join(root, '.opencode', 'skill', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
+    const dbPath = join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
     write(dbPath, Buffer.from('this is not a valid SQLite database'));
     // Also add a filesystem skill so the fallback has content to return.
-    const skillDir = join(root, '.opencode', 'skill', 'sample-skill');
+    const skillDir = join(root, '.opencode', 'skills', 'sample-skill');
     write(join(skillDir, 'SKILL.md'), [
       '---',
       'name: sample-skill',

@@ -1900,10 +1900,10 @@ export function finalizeIndexResults(
   }
 
   if (droppedDuplicateNodes > 0) {
-    console.info(`[structural-indexer] dropped ${droppedDuplicateNodes} cross-file duplicate symbol nodes`);
+    console.error(`[structural-indexer] dropped ${droppedDuplicateNodes} cross-file duplicate symbol nodes`);
   }
   if (droppedReconciledEdges > 0) {
-    console.info(`[structural-indexer] dropped ${droppedReconciledEdges} edge(s) whose source nodes were removed by dedup`);
+    console.error(`[structural-indexer] dropped ${droppedReconciledEdges} edge(s) whose source nodes were removed by dedup`);
   }
 
   const nodesByFile = new Map<string, CodeNode[]>();
@@ -2092,7 +2092,7 @@ function buildIndexPhases(
           config,
           options.specificFiles,
         );
-        console.info(`[structural-indexer] refreshed ${candidateFiles.length} specific file(s)`);
+        console.error(`[structural-indexer] refreshed ${candidateFiles.length} specific file(s)`);
         return {
           candidateFiles,
           warnings: [],
@@ -2117,7 +2117,7 @@ function buildIndexPhases(
         found.files.forEach(f => allFiles.add(f));
       }
 
-      console.info(`[structural-indexer] scanned ${allFiles.size} files (excluded: gitignored=${excludedByGitignore}, default=${excludedByDefault})`);
+      console.error(`[structural-indexer] scanned ${allFiles.size} files (excluded: gitignored=${excludedByGitignore}, default=${excludedByDefault})`);
       return { candidateFiles: [...allFiles], warnings, capExceeded };
     },
   };

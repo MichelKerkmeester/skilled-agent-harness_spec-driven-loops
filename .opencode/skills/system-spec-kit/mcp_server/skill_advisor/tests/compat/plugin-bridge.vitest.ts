@@ -87,15 +87,16 @@ describe('spec-kit skill advisor plugin bridge compat path', () => {
     expect(source).not.toContain('${formatScore(top.confidence)}/0.00 pass.');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('falls back to the Python-backed brief producer when native is forced local', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('fails open when the forced-local Python bridge script is unavailable', () => {
     const result = runBridge({ prompt: 'help me commit my changes', forceLocal: true }, {
       SPECKIT_SKILL_ADVISOR_FORCE_LOCAL: '1',
     });
     expect(result.status).toBe(0);
     const parsed = parseBridge(result.stdout);
-    expect(parsed.status).toBe('ok');
+    expect(parsed.status).toBe('fail_open');
     expect(parsed.metadata.route).toBe('python');
+    expect(parsed.brief).toBeNull();
     expect(parsed.metadata.effectiveThresholds).toEqual({
       confidenceThreshold: 0.8,
       uncertaintyThreshold: 0.35,

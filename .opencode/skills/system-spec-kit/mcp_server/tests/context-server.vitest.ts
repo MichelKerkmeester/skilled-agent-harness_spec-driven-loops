@@ -156,7 +156,7 @@ describe('Context Server', () => {
   // =================================================================
   // GROUP 2: Tool Definition Completeness
   // =================================================================
-  describe('Group 2: Tool Definitions (49 tools)', () => {
+  describe('Group 2: Tool Definitions (51 tools)', () => {
     const EXPECTED_TOOLS = [
       'memory_context',
       'memory_search',
@@ -169,6 +169,7 @@ describe('Context Server', () => {
       'memory_delete',
       'memory_update',
       'memory_bulk_delete',
+      'memory_retention_sweep',
       'memory_validate',
       'checkpoint_create',
       'checkpoint_list',
@@ -192,6 +193,7 @@ describe('Context Server', () => {
       'code_graph_status',
       'code_graph_context',
       'code_graph_verify',
+      'code_graph_apply',
       'detect_changes',
       'skill_graph_scan',
       'skill_graph_query',
@@ -218,8 +220,8 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/tools:\s*TOOL_DEFINITIONS/)
     })
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('T11c: Tool count is current expected list length', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('T11c: Tool count is current expected list length', () => {
       const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
         const match = m.match(/name:\s*'(\w+)'/)
         return match ? match[1] : null
@@ -239,8 +241,8 @@ describe('Context Server', () => {
     }
 
     // T13: No unexpected tools (only expected ones exist)
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('T13: No unexpected tools', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('T13: No unexpected tools', () => {
       const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
         const match = m.match(/name:\s*'(\w+)'/)
         return match ? match[1] : null
@@ -315,9 +317,9 @@ describe('Context Server', () => {
     })
 
     // T303: Verify dispatchTool is used instead of switch
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('T16b: dispatchTool(name, args) called', () => {
-      expect(sourceCode).toMatch(/dispatchTool\(name,\s*args\)/)
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('T16b: dispatchTool(name, args) called', () => {
+      expect(sourceCode).toMatch(/dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
     })
 
     it('T16c: dispatchTool imported from ./tools', () => {
@@ -1238,9 +1240,9 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/afterToolCallbacks\.push\(fn\)/)
     })
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('T000b: callbacks are triggered after dispatchTool and non-blocking', () => {
-      expect(sourceCode).toMatch(/const\s+result\s*=\s*await\s+runWithCallerContext\([\s\S]*?dispatchTool\(name,\s*args\)/)
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('T000b: callbacks are triggered after dispatchTool and non-blocking', () => {
+      expect(sourceCode).toMatch(/const\s+result\s*=\s*await\s+runWithCallerContext\([\s\S]*?dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
       expect(sourceCode).toMatch(/runAfterToolCallbacks\(name,\s*callId,\s*structuredClone\(result\)\)/)
       expect(sourceCode).toMatch(/queueMicrotask\(\(\)\s*=>\s*\{/)
       expect(sourceCode).not.toMatch(/await\s+runAfterToolCallbacks\(/)
@@ -1412,9 +1414,9 @@ describe('Context Server', () => {
       expect(callbackFinished).toBe(true)
     })
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('T000e: non-memory-aware tools invoke TM-05 tool-dispatch hook at runtime', async () => {
-      expect(sourceCode).toContain('autoSurfacedContext = await autoSurfaceAtToolDispatch(name, args)')
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('T000e: non-memory-aware tools invoke TM-05 tool-dispatch hook at runtime', async () => {
+      expect(sourceCode).toContain('autoSurfacedContext = await autoSurfaceAtToolDispatch(name, validatedArgs)')
 
       const autoSurfaceAtToolDispatchMock = vi.fn(async () => ({
         constitutional: [{ id: 1, title: 'Gate rule' }],
@@ -1562,9 +1564,9 @@ describe('Context Server', () => {
       expect(JSON.parse((response as { content: Array<{ text: string }> }).content[0].text).meta.autoSurfacedContext).toEqual(surfaced)
     })
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('T000g: memory_context resume mode invokes TM-05 compaction hook at runtime', async () => {
-      expect(sourceCode).toContain("name === 'memory_context' && args.mode === 'resume'")
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('T000g: memory_context resume mode invokes TM-05 compaction hook at runtime', async () => {
+      expect(sourceCode).toContain("name === 'memory_context' && validatedArgs.mode === 'resume'")
       expect(sourceCode).toContain('autoSurfaceAtCompaction(contextHint)')
       expect(sourceCode).toContain('autoSurfaceMemories(contextHint)')
 
@@ -1621,9 +1623,9 @@ describe('Context Server', () => {
       expect(JSON.parse((response as { content: Array<{ text: string }> }).content[0].text).meta.autoSurfacedContext).toEqual(surfaced)
     })
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('T000h: memory_context non-resume mode keeps SK-004 memory-aware path', async () => {
-      expect(sourceCode).toContain("name === 'memory_context' && args.mode === 'resume'")
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('T000h: memory_context non-resume mode keeps SK-004 memory-aware path', async () => {
+      expect(sourceCode).toContain("name === 'memory_context' && validatedArgs.mode === 'resume'")
       expect(sourceCode).toContain('autoSurfaceMemories(contextHint)')
 
       const dispatchToolMock = vi.fn(async () => ({ content: [{ type: 'text', text: '{}' }] }))
@@ -2333,11 +2335,10 @@ describe('Context Server', () => {
       expect(validationOrder.test(sourceCode)).toBe(true)
     })
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('T32a: Schema validation delegated to tool modules', () => {
-      // Context-server validates only length pre-dispatch; schema checks occur in tool dispatch modules.
-      expect(sourceCode).toMatch(/dispatchTool\(name,\s*args\)/)
-      expect(sourceCode).not.toMatch(/validateToolArgs\(/)
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('T32a: Schema validation happens at the server boundary before dispatch', () => {
+      expect(sourceCode).toMatch(/const\s+validatedArgs:[\s\S]*?validateToolArgs\(name,\s*args\)/)
+      expect(sourceCode).toMatch(/dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
     })
 
     // T33: validateInputLengths direct tests
@@ -2779,7 +2780,6 @@ describe('Context Server', () => {
       { module: './lib/storage/access-tracker.js', name: 'Access tracker' },
       { module: './lib/search/hybrid-search.js', name: 'Hybrid search' },
       { module: './lib/search/bm25-index.js', name: 'BM25 index' },
-      { module: './lib/parsing/memory-parser.js', name: 'Memory parser', parked: true },
       { module: './lib/cognitive/working-memory.js', name: 'Working memory' },
       { module: './lib/cognitive/attention-decay.js', name: 'Attention decay' },
       { module: './lib/cognitive/co-activation.js', name: 'Co-activation' },
@@ -2792,9 +2792,8 @@ describe('Context Server', () => {
     ]
 
     for (const imp of EXPECTED_IMPORTS) {
-      const importTest = imp.parked ? it.fails.skip : it;
-      // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-      importTest(`T67: Imports ${imp.name} from '${imp.module}'`, () => {
+      // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+      it(`T67: Imports ${imp.name} from '${imp.module}'`, () => {
         const escaped = imp.module.replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&')
         const importRegex = new RegExp(`import\\s+[^;]*from\\s+['"]${escaped}['"]`)
         expect(importRegex.test(sourceCode)).toBe(true)

@@ -86,12 +86,12 @@ afterEach(() => {
 });
 
 describe('graph metadata integration', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('discovers root graph-metadata files under canonical specs', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('discovers root graph-metadata files under canonical specs', () => {
     const fixture = createGraphMetadataFixture();
     const discovered = findGraphMetadataFiles(fixture.root);
 
-    expect(discovered).toEqual([fixture.graphPath]);
+    expect(discovered.map((filePath) => fs.realpathSync(filePath))).toEqual([fs.realpathSync(fixture.graphPath)]);
   });
 
   it('parses graph metadata into an indexable packet row with causal links', () => {

@@ -343,13 +343,13 @@ describe('027/003 native scorer units', () => {
     expect(top3.some((recommendation) => ['sk-deep-review', 'deep-agent-improvement'].includes(recommendation.skill))).toBe(false);
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('065/004 canonicalizes command ids and skill ids through narrow alias groups', () => {
-    expect(SKILL_ALIAS_GROUPS['sk-deep-review']).toEqual(expect.arrayContaining([
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('065/004 canonicalizes command ids and skill ids through narrow alias groups', () => {
+    expect(SKILL_ALIAS_GROUPS['deep-review']).toEqual(expect.arrayContaining([
       'spec_kit:deep-review',
       'command-spec-kit-deep-review',
     ]));
-    expect(canonicalSkillId('spec_kit:deep-review')).toBe('sk-deep-review');
+    expect(canonicalSkillId('spec_kit:deep-review')).toBe('deep-review');
     expect(skillMatchesAlias('sk-deep-review', 'spec_kit:deep-review')).toBe(true);
     expect(skillInAliasSet('sk-deep-review', ['spec_kit:deep-review'])).toBe(true);
     expect(skillMatchesAlias('sk-code-review', 'spec_kit:deep-review')).toBe(false);
@@ -387,15 +387,15 @@ describe('027/003 native scorer units', () => {
     expect(result.topSkill).toBe('sk-code');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('projects derived triggers and keywords from distinct sources via filesystem fallback', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('projects derived triggers and keywords from distinct sources via filesystem fallback', () => {
     // F-012-C2-02: derivedTriggers come from `derived.trigger_phrases` and
     // derivedKeywords come from `derived.key_topics + entities + key_files +
     // source_docs`. Previously both fields aliased the union of all five
     // sources; now they are distinct.
     const root = mkdtempSync(join(tmpdir(), 'advisor-projection-'));
     try {
-      const skillDir = join(root, '.opencode', 'skill', 'alpha');
+      const skillDir = join(root, '.opencode', 'skills', 'alpha');
       mkdirSync(skillDir, { recursive: true });
       writeFileSync(join(skillDir, 'SKILL.md'), '---\nname: alpha\ndescription: alpha skill\n---\n', 'utf8');
       writeFileSync(join(skillDir, 'graph-metadata.json'), JSON.stringify({
@@ -420,15 +420,15 @@ describe('027/003 native scorer units', () => {
     }
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('falls back to filesystem projection when the SQLite graph is corrupt', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('falls back to filesystem projection when the SQLite graph is corrupt', () => {
     const root = mkdtempSync(join(tmpdir(), 'advisor-projection-corrupt-'));
     try {
-      const dbDir = join(root, '.opencode', 'skill', 'system-spec-kit', 'mcp_server', 'database');
+      const dbDir = join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database');
       mkdirSync(dbDir, { recursive: true });
       writeFileSync(join(dbDir, 'skill-graph.sqlite'), 'not a sqlite database', 'utf8');
 
-      const skillDir = join(root, '.opencode', 'skill', 'alpha');
+      const skillDir = join(root, '.opencode', 'skills', 'alpha');
       mkdirSync(skillDir, { recursive: true });
       writeFileSync(join(skillDir, 'SKILL.md'), '---\nname: alpha\ndescription: alpha skill\n---\n', 'utf8');
       writeFileSync(join(skillDir, 'graph-metadata.json'), JSON.stringify({

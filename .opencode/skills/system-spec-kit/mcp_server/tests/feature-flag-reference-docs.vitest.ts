@@ -136,8 +136,8 @@ describe('Memory roadmap flag documentation', () => {
     });
   }
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('manual playbook 125 matches the canonical roadmap contract', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('manual playbook 125 matches the canonical roadmap contract', () => {
     const playbookPath = path.join(SKILL_ROOT, 'manual_testing_playbook', 'manual_testing_playbook.md');
     const featureFilePath = path.join(
       SKILL_ROOT,
@@ -148,19 +148,18 @@ describe('Memory roadmap flag documentation', () => {
     const playbookContent = fs.readFileSync(playbookPath, 'utf8');
     const featureFileContent = fs.readFileSync(featureFilePath, 'utf8');
 
-    expect(playbookContent).toContain('### 125 | Memory roadmap capability flags');
+    expect(playbookContent).toContain('### 125 | Memory roadmap flags');
     expect(playbookContent).toContain('adaptive ranking default-off');
-    expect(playbookContent).toContain('capabilities.graphUnified:true');
-    expect(playbookContent).toContain('capabilities.adaptiveRanking:false');
+    expect(playbookContent).toContain('scope-governance` phase with graph-unified metadata on and adaptive ranking off');
+    expect(playbookContent).toContain('SPECKIT_MEMORY_ADAPTIVE_RANKING=false');
     expect(playbookContent).not.toContain('SPECKIT_HYDRA');
 
-    expect(featureFileContent).toContain('phase:\\"scope-governance\\"');
-    expect(featureFileContent).toContain('capabilities.graphUnified:true');
-    expect(featureFileContent).toContain('capabilities.adaptiveRanking:false');
+    expect(featureFileContent).toContain('scope-governance` phase with graph-unified metadata on and adaptive ranking off');
+    expect(featureFileContent).toContain('SPECKIT_GRAPH_UNIFIED=false');
     expect(featureFileContent).toContain('SPECKIT_MEMORY_ROADMAP_PHASE=graph');
-    expect(featureFileContent).toContain('capabilities.graphUnified:false');
+    expect(featureFileContent).toContain('graph` phase with graph-unified metadata off');
     expect(featureFileContent).toContain('SPECKIT_MEMORY_ADAPTIVE_RANKING=true');
-    expect(featureFileContent).toContain('capabilities.adaptiveRanking:true');
+    expect(featureFileContent).toContain('adaptive ranking on');
     expect(featureFileContent).not.toContain('SPECKIT_HYDRA');
   });
 });

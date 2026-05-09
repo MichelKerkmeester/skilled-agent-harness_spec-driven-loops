@@ -7,8 +7,8 @@ describe('Memory Context Session State Persistence', () => {
     vi.unstubAllEnvs();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('persists an auto-discovered spec folder in the initial session state save', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('persists an auto-discovered spec folder in the initial session state save', async () => {
     const handleMemorySearch = vi.fn(async () => ({
       content: [
         {
@@ -148,8 +148,9 @@ describe('Memory Context Session State Persistence', () => {
 
     expect(saveSessionState).toHaveBeenCalledOnce();
     expect(saveSessionState).toHaveBeenCalledWith(
-      'session-123',
+      expect.stringMatching(/^memory-context:/),
       expect.objectContaining({
+        currentTask: 'find the hybrid rag memory database refinement spec and related context',
         specFolder: 'system-spec-kit/022-hybrid-rag-fusion/026-memory-database-refinement',
       }),
     );

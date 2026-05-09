@@ -116,13 +116,13 @@ describe('Gate D regression constitutional memory', () => {
     handlerMocks.executePipeline.mockReset();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('discovers constitutional guidance from dedicated skill files and skips README placeholders', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('discovers constitutional guidance from dedicated skill files and skips README placeholders', () => {
     const workspace = makeTempDir('gate-d-constitutional-files-');
     const constitutionalDir = path.join(
       workspace,
       '.opencode',
-      'skill',
+      'skills',
       'gate-d-skill',
       'constitutional',
     );

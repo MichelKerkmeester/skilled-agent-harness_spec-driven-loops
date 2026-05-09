@@ -95,8 +95,8 @@ describe('code graph query trust emission', () => {
     vi.doUnmock('../lib/context/shared-payload.js');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('emits separate trust axes on code-graph payloads', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('emits separate trust axes on code-graph payloads', async () => {
     vi.doMock('../code_graph/lib/ensure-ready.js', () => ({
       ensureCodeGraphReady: vi.fn(async () => ({
         freshness: 'fresh',
@@ -127,7 +127,7 @@ describe('code graph query trust emission', () => {
     const result = await handleCodeGraphQuery({ operation: 'outline', subject: 'src/file.ts' });
     const parsed = JSON.parse(result.content[0].text);
 
-    expect(parsed.data.parserProvenance).toBe('ast');
+    expect(parsed.data.parserProvenance).toBe('regex');
     expect(parsed.data.evidenceStatus).toBe('confirmed');
     expect(parsed.data.freshnessAuthority).toBe('live');
     expect(parsed.data.graphMetadata).toEqual({

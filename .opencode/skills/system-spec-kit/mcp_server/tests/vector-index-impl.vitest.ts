@@ -836,8 +836,8 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       expect(result).toBe(false);
     });
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('delete_memory_from_database aborts the primary delete when vec cleanup fails unexpectedly', async () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('delete_memory_from_database aborts the primary delete when vec cleanup fails unexpectedly', async () => {
       vi.resetModules();
       const deletePrimarySpy = vi.fn(() => ({ changes: 1 }));
       const database = {
@@ -853,6 +853,10 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
 
           if (sql.includes('DELETE FROM memory_index')) {
             return { run: deletePrimarySpy };
+          }
+
+          if (sql.includes('SELECT content_hash FROM memory_index')) {
+            return { get: () => ({ content_hash: null }) };
           }
 
           return { run: vi.fn(() => ({ changes: 0 })) };

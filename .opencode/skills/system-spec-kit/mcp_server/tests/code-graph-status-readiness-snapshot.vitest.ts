@@ -33,14 +33,24 @@ const mocks = vi.hoisted(() => ({
   getGraphReadinessSnapshot: vi.fn(),
   getGraphFreshness: vi.fn(),
   getStats: vi.fn(),
+  getStoredCodeGraphScope: vi.fn(),
+  countTrackedSkillFiles: vi.fn(),
   getLastGoldVerification: vi.fn(),
   getCodeGraphMetadata: vi.fn(),
+  getParseDiagnosticsSummary: vi.fn(),
+  countStaleButValidParseDiagnostics: vi.fn(),
+  getLastFailedScan: vi.fn(),
 }));
 
 const writeSurfaceMocks = vi.hoisted(() => ({
   getStats: vi.fn(),
+  getStoredCodeGraphScope: vi.fn(),
+  countTrackedSkillFiles: vi.fn(),
   getLastGoldVerification: vi.fn(),
   getCodeGraphMetadata: vi.fn(),
+  getParseDiagnosticsSummary: vi.fn(),
+  countStaleButValidParseDiagnostics: vi.fn(),
+  getLastFailedScan: vi.fn(),
   setCodeGraphMetadata: vi.fn(),
   setLastGitHead: vi.fn(),
   setLastDetectorProvenance: vi.fn(),
@@ -83,8 +93,13 @@ function installMocks(snapshot: SnapshotFixture): void {
 
   vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
     getStats: mocks.getStats,
+    getStoredCodeGraphScope: mocks.getStoredCodeGraphScope,
+    countTrackedSkillFiles: mocks.countTrackedSkillFiles,
     getLastGoldVerification: mocks.getLastGoldVerification,
     getCodeGraphMetadata: mocks.getCodeGraphMetadata,
+    getParseDiagnosticsSummary: mocks.getParseDiagnosticsSummary,
+    countStaleButValidParseDiagnostics: mocks.countStaleButValidParseDiagnostics,
+    getLastFailedScan: mocks.getLastFailedScan,
   }));
 }
 
@@ -119,6 +134,21 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
     mocks.getStats.mockReturnValue(STATS_FIXTURE);
     mocks.getLastGoldVerification.mockReturnValue(null);
     mocks.getCodeGraphMetadata.mockReturnValue(null);
+    mocks.getStoredCodeGraphScope.mockReturnValue({
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      label: null,
+      includeSkills: false,
+      includedSkillsList: 'none',
+      includeAgents: false,
+      includeCommands: false,
+      includeSpecs: false,
+      includePlugins: false,
+      source: 'default',
+    });
+    mocks.countTrackedSkillFiles.mockReturnValue(0);
+    mocks.getParseDiagnosticsSummary.mockReturnValue(null);
+    mocks.countStaleButValidParseDiagnostics.mockReturnValue(0);
+    mocks.getLastFailedScan.mockReturnValue(null);
   });
 
   afterEach(() => {
@@ -127,8 +157,8 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── A. Fresh state → readiness.action = "none" ────────────────
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('surfaces readiness.action="none" for a fresh graph (criterion A)', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('surfaces readiness.action="none" for a fresh graph (criterion A)', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'fresh',
       action: 'none',
@@ -143,8 +173,8 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── B. Empty graph → readiness.action = "full_scan" ───────────
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('surfaces readiness.action="full_scan" for an empty graph with descriptive reason (criterion B)', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('surfaces readiness.action="full_scan" for an empty graph with descriptive reason (criterion B)', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'empty',
       action: 'full_scan',
@@ -161,8 +191,8 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── C. Broad stale → readiness.action = "full_scan" ───────────
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('surfaces readiness.action="full_scan" for broad stale (>50 files) (criterion C)', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('surfaces readiness.action="full_scan" for broad stale (>50 files) (criterion C)', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'stale',
       action: 'full_scan',
@@ -177,8 +207,8 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── D. Bounded stale → readiness.action = "selective_reindex" ─
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('surfaces readiness.action="selective_reindex" for bounded stale (criterion D)', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('surfaces readiness.action="selective_reindex" for bounded stale (criterion D)', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'stale',
       action: 'selective_reindex',
@@ -193,8 +223,8 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── Error path → no exception, action defaults to "none" ──────
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('surfaces readiness for an unavailable graph without throwing', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('surfaces readiness for an unavailable graph without throwing', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'error',
       action: 'none',
@@ -209,8 +239,8 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── Trust-state alignment: snapshot does not break canonical mapping
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('preserves canonicalReadiness/trustState mapping from freshness', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('preserves canonicalReadiness/trustState mapping from freshness', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'empty',
       action: 'full_scan',
@@ -247,6 +277,21 @@ describe('code_graph_status is side-effect free (criterion E)', () => {
     writeSurfaceMocks.getStats.mockReturnValue(STATS_FIXTURE);
     writeSurfaceMocks.getLastGoldVerification.mockReturnValue(null);
     writeSurfaceMocks.getCodeGraphMetadata.mockReturnValue(null);
+    writeSurfaceMocks.getStoredCodeGraphScope.mockReturnValue({
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      label: null,
+      includeSkills: false,
+      includedSkillsList: 'none',
+      includeAgents: false,
+      includeCommands: false,
+      includeSpecs: false,
+      includePlugins: false,
+      source: 'default',
+    });
+    writeSurfaceMocks.countTrackedSkillFiles.mockReturnValue(0);
+    writeSurfaceMocks.getParseDiagnosticsSummary.mockReturnValue(null);
+    writeSurfaceMocks.countStaleButValidParseDiagnostics.mockReturnValue(0);
+    writeSurfaceMocks.getLastFailedScan.mockReturnValue(null);
     ensureReadyMocks.getGraphReadinessSnapshot.mockReturnValue({
       freshness: 'fresh',
       action: 'none',
@@ -268,8 +313,8 @@ describe('code_graph_status is side-effect free (criterion E)', () => {
     vi.clearAllMocks();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('does NOT call any mutating code-graph-db export', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('does NOT call any mutating code-graph-db export', async () => {
     const { handleCodeGraphStatus } = await import('../code_graph/handlers/status.js');
     await handleCodeGraphStatus();
 
@@ -288,15 +333,15 @@ describe('code_graph_status is side-effect free (criterion E)', () => {
     expect(writeSurfaceMocks.cleanupOrphans).not.toHaveBeenCalled();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('does NOT call ensureCodeGraphReady (mutating entry point)', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('does NOT call ensureCodeGraphReady (mutating entry point)', async () => {
     const { handleCodeGraphStatus } = await import('../code_graph/handlers/status.js');
     await handleCodeGraphStatus();
     expect(ensureReadyMocks.ensureCodeGraphReady).not.toHaveBeenCalled();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('uses the read-only snapshot helper with process.cwd()', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('uses the read-only snapshot helper with process.cwd()', async () => {
     const { handleCodeGraphStatus } = await import('../code_graph/handlers/status.js');
     await handleCodeGraphStatus();
     expect(ensureReadyMocks.getGraphReadinessSnapshot).toHaveBeenCalledWith(process.cwd());

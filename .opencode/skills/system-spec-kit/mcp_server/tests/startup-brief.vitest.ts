@@ -22,7 +22,10 @@ vi.mock('../code_graph/lib/code-graph-db.js', () => ({
 }));
 
 vi.mock('../code_graph/lib/ensure-ready.js', () => ({
-  getGraphFreshness: vi.fn(() => 'fresh'),
+  getGraphReadinessSnapshot: vi.fn(() => ({
+    freshness: 'fresh',
+    reason: 'ready',
+  })),
 }));
 
 vi.mock('../hooks/claude/hook-state.js', () => ({
@@ -52,7 +55,7 @@ vi.mock('../lib/utils/cocoindex-path.js', () => ({
 
 import { buildStartupBrief } from '../code_graph/lib/startup-brief.js';
 import * as graphDb from '../code_graph/lib/code-graph-db.js';
-import { getGraphFreshness } from '../code_graph/lib/ensure-ready.js';
+import { getGraphReadinessSnapshot } from '../code_graph/lib/ensure-ready.js';
 import * as hookState from '../hooks/claude/hook-state.js';
 import * as cocoIndexPath from '../lib/utils/cocoindex-path.js';
 
@@ -61,8 +64,8 @@ describe('startup-brief', () => {
     vi.clearAllMocks();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('builds graph outline and session continuity when data exists', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('builds graph outline and session continuity when data exists', () => {
     const brief = buildStartupBrief(undefined, { claudeSessionId: 'recent-session' });
 
     expect(brief.graphState).toBe('ready');
@@ -95,8 +98,8 @@ describe('startup-brief', () => {
     expect(hookState.loadMostRecentState).not.toHaveBeenCalled();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('returns empty graph state with summary but no outline for empty indexes', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('returns empty graph state with summary but no outline for empty indexes', () => {
     vi.mocked(graphDb.getStats).mockReturnValueOnce({
       totalFiles: 0,
       totalNodes: 0,
@@ -119,9 +122,12 @@ describe('startup-brief', () => {
     expect(brief.sharedPayload?.provenance.trustState).toBe('absent');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('reports stale graph state when freshness detection says stale even with graph counts present', () => {
-    vi.mocked(getGraphFreshness).mockReturnValueOnce('stale');
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('reports stale graph state when freshness detection says stale even with graph counts present', () => {
+    vi.mocked(getGraphReadinessSnapshot).mockReturnValueOnce({
+      freshness: 'stale',
+      reason: 'code graph scope changed',
+    } as never);
 
     const brief = buildStartupBrief();
 
@@ -140,15 +146,15 @@ describe('startup-brief', () => {
     expect(brief.startupSurface).toContain('- CocoIndex: available');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('includes orientation note when highlights are present', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('includes orientation note when highlights are present', () => {
     const brief = buildStartupBrief();
     expect(brief.graphOutline).toContain('Orientation:');
     expect(brief.graphOutline).toContain('CocoIndex');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('omits highlights section when queryStartupHighlights returns empty', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('omits highlights section when queryStartupHighlights returns empty', () => {
     vi.mocked(graphDb.queryStartupHighlights).mockReturnValueOnce([]);
     const brief = buildStartupBrief();
     expect(brief.graphState).toBe('ready');
@@ -156,8 +162,8 @@ describe('startup-brief', () => {
     expect(brief.graphOutline).not.toContain('Orientation:');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('respects custom highlightCount parameter', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('respects custom highlightCount parameter', () => {
     const brief = buildStartupBrief(3);
     expect(graphDb.queryStartupHighlights).toHaveBeenCalledWith(3);
   });

@@ -56,7 +56,7 @@ function getCodeGraphPolicy(
 
 function matchOpencodeSkillPath(filePath: string): string | null | undefined {
   const normalizedPath = normalizeIndexScopePath(filePath);
-  const match = normalizedPath.match(/(?:^|\/)\.opencode\/skill(?:\/([^/]+))?(?:\/|$)/i);
+  const match = normalizedPath.match(/(?:^|\/)\.opencode\/skills(?:\/([^/]+))?(?:\/|$)/i);
   return match ? (match[1] ?? null) : undefined;
 }
 
@@ -83,8 +83,8 @@ export function shouldIndexForCodeGraph(
     if (policy.includedSkillsList === 'all') return true;
     return skillName === null || policy.includedSkillsList.includes(skillName);
   }
-  if (matchesOpencodeFolder(absolutePath, 'agent') && !policy.includeAgents) return false;
-  if (matchesOpencodeFolder(absolutePath, 'command') && !policy.includeCommands) return false;
+  if (matchesOpencodeFolder(absolutePath, 'agents') && !policy.includeAgents) return false;
+  if (matchesOpencodeFolder(absolutePath, 'commands') && !policy.includeCommands) return false;
   if (matchesOpencodeFolder(absolutePath, 'specs') && !policy.includeSpecs) return false;
   if (matchesOpencodeFolder(absolutePath, 'plugins') && !policy.includePlugins) return false;
   return true;

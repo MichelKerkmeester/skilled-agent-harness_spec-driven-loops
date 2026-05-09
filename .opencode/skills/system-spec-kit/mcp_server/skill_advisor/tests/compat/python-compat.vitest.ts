@@ -15,8 +15,8 @@ const pythonCompatPath = resolve(
 );
 
 describe('python compatibility suite', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('runs the Python skill-advisor compatibility tests from vitest', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('runs the Python skill-advisor compatibility tests from vitest', () => {
     const result = spawnSync('python3', [pythonCompatPath], {
       cwd: repoRoot,
       encoding: 'utf8',

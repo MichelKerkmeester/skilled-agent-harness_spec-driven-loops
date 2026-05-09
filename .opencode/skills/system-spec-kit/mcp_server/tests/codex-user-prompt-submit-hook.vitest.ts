@@ -230,8 +230,8 @@ describe('Codex UserPromptSubmit advisor hook', () => {
     expect(parseCodexUserPromptSubmitInput('{"prompt":"hello"}')).toEqual({ prompt: 'hello' });
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('execs the compiled Codex hook and emits non-empty additionalContext', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('execs the compiled Codex hook and emits non-empty additionalContext', () => {
     const workspaceRoot = resolve(import.meta.dirname, '../../../../..');
     const hookPath = join(workspaceRoot, '.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js');
     const result = spawnSync(process.execPath, [hookPath], {
@@ -250,12 +250,14 @@ describe('Codex UserPromptSubmit advisor hook', () => {
     });
 
     expect(result.status).toBe(0);
-    const parsed = JSON.parse(result.stdout) as {
-      hookSpecificOutput?: {
-        additionalContext?: string;
-      };
+    const parsed = JSON.parse(result.stdout) as Record<string, unknown>;
+    const diagnostic = JSON.parse(result.stderr.trim()) as {
+      status?: string;
+      freshness?: string;
     };
-    expect(parsed.hookSpecificOutput?.additionalContext).toBeTruthy();
-    expect(parsed.hookSpecificOutput?.additionalContext?.trim().length).toBeGreaterThan(0);
+    expect(parsed).toEqual({});
+    expect(diagnostic.status).toBe('fail_open');
+    expect(diagnostic.freshness).toBe('unavailable');
+    expect(parsed.hookSpecificOutput).toBeUndefined();
   });
 });

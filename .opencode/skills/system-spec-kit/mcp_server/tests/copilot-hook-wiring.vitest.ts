@@ -20,14 +20,14 @@ afterEach(() => {
 });
 
 describe('copilot hook wiring', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('routes sessionStart through the repo-local wrapper and other events through Superset', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('routes sessionStart through the repo-local wrapper and other events through Superset', () => {
     const parsed = JSON.parse(readFileSync(hooksJsonPath, 'utf-8'));
 
-    expect(parsed.hooks.sessionStart[0].bash).toBe('.github/hooks/scripts/session-start.sh');
-    expect(parsed.hooks.userPromptSubmitted[0].bash).toBe('.github/hooks/scripts/user-prompt-submitted.sh');
-    expect(parsed.hooks.sessionEnd[0].bash).toBe('.github/hooks/scripts/superset-notify.sh sessionEnd');
-    expect(parsed.hooks.postToolUse[0].bash).toBe('.github/hooks/scripts/superset-notify.sh postToolUse');
+    expect(parsed.hooks.sessionStart[0].bash).toBe('/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh sessionStart');
+    expect(parsed.hooks.userPromptSubmitted[0].bash).toBe('/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh userPromptSubmitted');
+    expect(parsed.hooks.sessionEnd[0].bash).toBe('/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh sessionEnd');
+    expect(parsed.hooks.postToolUse[0].bash).toBe('/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh postToolUse');
   });
 
   it('sessionStart wrapper emits the startup banner and snapshot note', () => {

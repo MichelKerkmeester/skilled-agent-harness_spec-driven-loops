@@ -137,7 +137,7 @@ function createSpecFolder(options: GraphMetadataFixtureOptions = {}): string {
       || normalized === 'handover.md' || normalized === 'resource-map.md' || normalized.startsWith('research/')) {
       absolutePath = path.join(specFolder, normalized);
     } else {
-      absolutePath = path.join(root, '.opencode', 'skill', 'system-spec-kit', normalized);
+      absolutePath = path.join(root, '.opencode', 'skills', 'system-spec-kit', normalized);
     }
 
     fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
@@ -165,8 +165,8 @@ afterEach(() => {
 });
 
 describe('graph metadata schema and parser', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('accepts derived metadata created from canonical packet docs', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('accepts derived metadata created from canonical packet docs', () => {
     const specFolder = createSpecFolder();
     const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
 
@@ -424,8 +424,8 @@ describe('graph metadata schema and parser', () => {
     expect(metadata.derived.key_files).not.toContain('system-spec-kit/901-cross-track/spec.md');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('drops obsolete memory metadata references and nonexistent key-file candidates', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('drops obsolete memory metadata references and nonexistent key-file candidates', () => {
     const specFolder = createSpecFolder({
       materializeImplementationSummaryReferences: false,
       implementationSummaryReferences: [
@@ -538,8 +538,8 @@ describe('graph metadata schema and parser', () => {
     expect(metadata.derived.entities.some((entity) => entity.name === 'handover.md')).toBe(false);
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('raises the entity cap to 24 and rejects bare runtime names', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('keeps the current 24-entity cap and rejects bare runtime names', () => {
     const specFolder = createSpecFolder({
       implementationSummaryReferences: Array.from({ length: 30 }, (_, index) => `scripts/entities/entity-${index + 1}.ts`),
     });

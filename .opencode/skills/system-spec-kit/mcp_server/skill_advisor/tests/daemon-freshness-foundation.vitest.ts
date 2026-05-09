@@ -40,7 +40,7 @@ function write(filePath: string, content: string): void {
 }
 
 function skillDir(root: string, slug: string): string {
-  return join(root, '.opencode', 'skill', slug);
+  return join(root, '.opencode', 'skills', slug);
 }
 
 function writeSkill(root: string, slug: string, options: { malformedSkill?: boolean; keyFiles?: string[] } = {}): void {
@@ -115,8 +115,8 @@ afterEach(() => {
 });
 
 describe('skill graph watcher foundation', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('AC-1 reindexes a changed SKILL.md and bumps generation after the reindex commit', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('AC-1 reindexes a changed SKILL.md and bumps generation after the reindex commit', async () => {
     const root = workspace('skill-graph-ac1');
     writeSkill(root, 'alpha');
     const harness = createWatchHarness();
@@ -140,8 +140,8 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('AC-7 coalesces atomic rename unlink/add into one reindex for the final filename', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('AC-7 coalesces atomic rename unlink/add into one reindex for the final filename', async () => {
     const root = workspace('skill-graph-rename');
     writeSkill(root, 'alpha');
     const harness = createWatchHarness();
@@ -163,8 +163,8 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('AC-7 reindexes deletion events when a watched file disappears before debounce fires', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('AC-7 reindexes deletion events when a watched file disappears before debounce fires', async () => {
     const root = workspace('skill-graph-enoent');
     writeSkill(root, 'alpha');
     const harness = createWatchHarness();
@@ -187,8 +187,8 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('AC-3 retries SQLITE_BUSY with bounded backoff and eventually commits', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('AC-3 retries SQLITE_BUSY with bounded backoff and eventually commits', async () => {
     const root = workspace('skill-graph-busy');
     writeSkill(root, 'alpha');
     const harness = createWatchHarness();
@@ -216,8 +216,8 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('quarantines malformed SKILL.md and recovers when the file becomes valid', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('quarantines malformed SKILL.md and recovers when the file becomes valid', async () => {
     const root = workspace('skill-graph-quarantine');
     const quarantineDbPath = join(root, 'quarantine.sqlite');
     writeSkill(root, 'alpha', { malformedSkill: true });
@@ -245,8 +245,8 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('adds derived.key_files as dynamic narrow watch targets', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('adds derived.key_files as dynamic narrow watch targets', () => {
     const root = workspace('skill-graph-key-files');
     write(join(root, 'docs', 'alpha.md'), '# alpha\n');
     writeSkill(root, 'alpha', { keyFiles: ['docs/alpha.md'] });
@@ -256,8 +256,8 @@ describe('skill graph watcher foundation', () => {
     expect(targets.map((target) => target.path)).toContain(join(root, 'docs', 'alpha.md'));
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('rejects absolute, escaping, and symlinked-out derived.key_files watch targets', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('rejects absolute, escaping, and symlinked-out derived.key_files watch targets', () => {
     const root = workspace('skill-graph-key-files-contained');
     const outsideRoot = workspace('skill-graph-key-files-outside');
     const outsideSecret = join(outsideRoot, 'secret.md');
@@ -283,8 +283,8 @@ describe('skill graph watcher foundation', () => {
     expect(targetPaths).not.toContain(outsideLink);
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('opens the reindex-storm circuit breaker and coalesces the burst', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('opens the reindex-storm circuit breaker and coalesces the burst', async () => {
     const root = workspace('skill-graph-storm');
     writeSkill(root, 'alpha');
     const harness = createWatchHarness();
@@ -413,7 +413,7 @@ describe('freshness and generation foundation', () => {
     write(dbPath, 'not sqlite');
     const indexer = vi.fn(async () => ({ scannedFiles: 1 }));
 
-    const result = await rebuildFromSource({ dbPath, skillsRoot: join(root, '.opencode', 'skill'), indexer });
+    const result = await rebuildFromSource({ dbPath, skillsRoot: join(root, '.opencode', 'skills'), indexer });
 
     expect(result.rebuilt).toBe(true);
     expect(result.stateDuringRebuild).toBe('unavailable');

@@ -506,7 +506,7 @@ description: Fixture helper for routing tests
                 show_rejections=True,
             )
             by_skill = {r.get("skill"): r for r in recs if isinstance(r, dict)}
-            dr = by_skill.get("sk-deep-research")
+            dr = by_skill.get("deep-research")
             cr = by_skill.get("sk-code-review")
             if not dr or not cr:
                 margin_failures.append(f"{prompt!r} missing dr={bool(dr)} cr={bool(cr)}")
@@ -536,7 +536,7 @@ description: Fixture helper for routing tests
                 show_rejections=True,
             )
             by_skill = {r.get("skill"): r for r in recs if isinstance(r, dict)}
-            drv = by_skill.get("sk-deep-review")
+            drv = by_skill.get("deep-review")
             cr = by_skill.get("sk-code-review")
             if not drv or not cr:
                 review_failures.append(f"{prompt!r} missing drv={bool(drv)} cr={bool(cr)}")
@@ -708,13 +708,13 @@ description: Fixture helper for routing tests
         fail_test("T243-SA-015: conflict penalty only applies on mutual declaration", str(exc))
 
     # T243-SA-016: T-TEST-NEW-09 / R46-001 — `/spec_kit:deep-research` must route
-    # to `sk-deep-research`, NOT collapse to the generic `command-spec-kit`. The
+    # to `deep-research`, NOT collapse to the generic `command-spec-kit`. The
     # owning-skill signal was lost for slash subcommands before T-SAP-03 /
     # skill_advisor.py line 1312 fix; this regression pins the subcommand map.
     try:
         failures = []
         # Multi-prompt check: the slash command alone AND typical phrasing that
-        # includes the slash marker. Both must prefer sk-deep-research.
+        # includes the slash marker. Both must prefer deep-research.
         for prompt in [
             "/spec_kit:deep-research",
             "run /spec_kit:deep-research on packet 016",
@@ -728,29 +728,29 @@ description: Fixture helper for routing tests
                 show_rejections=True,
             )
             by_skill = {r.get("skill"): r for r in recs if isinstance(r, dict)}
-            dr = by_skill.get("sk-deep-research")
+            dr = by_skill.get("deep-research")
             cmd = by_skill.get("command-spec-kit")
-            # sk-deep-research MUST be present as a recommendation. command-spec-kit
-            # may also appear, but sk-deep-research must rank at least as high
-            # (higher confidence OR equal with sk-deep-research listed first).
+            # deep-research MUST be present as a recommendation. command-spec-kit
+            # may also appear, but deep-research must rank at least as high
+            # (higher confidence OR equal with deep-research listed first).
             if dr is None:
-                failures.append(f"{prompt!r}: sk-deep-research missing from recs")
+                failures.append(f"{prompt!r}: deep-research missing from recs")
                 continue
             if cmd is not None:
                 dr_conf = float(dr.get("confidence", 0.0))
                 cmd_conf = float(cmd.get("confidence", 0.0))
                 if dr_conf + 1e-9 < cmd_conf:
-                    failures.append(f"{prompt!r}: sk-deep-research={dr_conf:.2f} < command-spec-kit={cmd_conf:.2f}")
+                    failures.append(f"{prompt!r}: deep-research={dr_conf:.2f} < command-spec-kit={cmd_conf:.2f}")
         if not failures:
-            ok("T243-SA-016: /spec_kit:deep-research routes to sk-deep-research (not command-spec-kit)")
+            ok("T243-SA-016: /spec_kit:deep-research routes to deep-research (not command-spec-kit)")
         else:
             fail_test(
-                "T243-SA-016: /spec_kit:deep-research routes to sk-deep-research (not command-spec-kit)",
+                "T243-SA-016: /spec_kit:deep-research routes to deep-research (not command-spec-kit)",
                 "; ".join(failures),
             )
     except Exception as exc:
         fail_test(
-            "T243-SA-016: /spec_kit:deep-research routes to sk-deep-research (not command-spec-kit)",
+            "T243-SA-016: /spec_kit:deep-research routes to deep-research (not command-spec-kit)",
             str(exc),
         )
 
@@ -760,8 +760,8 @@ description: Fixture helper for routing tests
         expected_routes = [
             ("run /memory:save for this packet", "memory:save"),
             ("run /spec_kit:resume for the 019 hardening packet", "system-spec-kit"),
-            ("run /spec_kit:deep-research :auto on this packet", "sk-deep-research"),
-            ("run /spec_kit:deep-review :auto on this packet", "sk-deep-review"),
+            ("run /spec_kit:deep-research :auto on this packet", "deep-research"),
+            ("run /spec_kit:deep-review :auto on this packet", "deep-review"),
         ]
         for prompt, expected_skill in expected_routes:
             recs = advisor.analyze_prompt(

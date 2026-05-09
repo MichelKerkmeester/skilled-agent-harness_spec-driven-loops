@@ -352,8 +352,8 @@ describe('indexer-types', () => {
       expect(config.maxFileSizeBytes).toBe(102400);
     });
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('excludes .opencode default folders by default and exposes the active scope fingerprint', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('excludes .opencode default folders by default and exposes the active scope fingerprint', () => {
       const config = getDefaultConfig('/root');
 
       expect(config.scopePolicy.includeSkills).toBe(false);
@@ -419,8 +419,8 @@ describe('indexer-types', () => {
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/example.ts', config.scopePolicy)).toBe(true);
     });
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('lets an explicit per-call false override an env opt-in', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('lets an explicit per-call false override an env opt-in', () => {
       const config = getDefaultConfig('/root', { includeSkills: false, env: { [CODE_GRAPH_INDEX_SKILLS_ENV]: 'true' } });
 
       expect(config.scopePolicy).toMatchObject({
@@ -439,8 +439,8 @@ describe('indexer-types', () => {
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/mcp-coco-index/mcp_server/index.ts', config.scopePolicy)).toBe(false);
     });
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip.each([
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it.each([
       ['agents', CODE_GRAPH_INDEX_AGENTS_ENV, 'includeAgents', '**/.opencode/agents/**', '/root/.opencode/agents/code.md'],
       ['commands', CODE_GRAPH_INDEX_COMMANDS_ENV, 'includeCommands', '**/.opencode/commands/**', '/root/.opencode/commands/spec_kit/run.yaml'],
     ] as const)(
@@ -488,8 +488,8 @@ describe('indexer-types', () => {
       },
     );
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('supports granular per-call skill selection with one, two and zero skills', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('supports granular per-call skill selection with one, two and zero skills', () => {
       const oneSkill = getDefaultConfig('/root', { includeSkills: ['sk-doc'], env: {} });
       expect(oneSkill.scopePolicy.includedSkillsList).toEqual(['sk-doc']);
       expect(oneSkill.excludeGlobs).not.toContain('**/.opencode/skills/**');
@@ -508,8 +508,8 @@ describe('indexer-types', () => {
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/sk-doc/SKILL.md', noSkills.scopePolicy)).toBe(false);
     });
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('supports granular skill selection from csv env', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('supports granular skill selection from csv env', () => {
       const config = getDefaultConfig('/root', { env: { [CODE_GRAPH_INDEX_SKILLS_ENV]: 'sk-doc,sk-code-review' } });
 
       expect(config.scopePolicy).toMatchObject({
@@ -679,8 +679,8 @@ describe('structural-indexer', () => {
       }
     });
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('indexes selected skill and agent doc rows without opening other default-excluded folders', async () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('indexes selected skill and agent doc rows without opening other default-excluded folders', async () => {
       const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-doc-selected-skill-fixture-'));
       const expectedRelativePaths = [
         '.opencode/agents/code.md',

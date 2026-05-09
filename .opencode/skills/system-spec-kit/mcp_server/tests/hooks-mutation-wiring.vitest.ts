@@ -112,8 +112,8 @@ describe('Hooks mutation wiring', () => {
     );
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('keeps hooks README documented exports aligned with explicit hooks barrel exports', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('keeps hooks README documented exports aligned with explicit hooks barrel exports', () => {
     const hooksIndexPath = path.join(__dirname, '..', 'hooks', 'index.ts');
     const hooksReadmePath = path.join(__dirname, '..', 'hooks', 'README.md');
     const indexSource = fs.readFileSync(hooksIndexPath, 'utf8');
@@ -122,12 +122,12 @@ describe('Hooks mutation wiring', () => {
     expect(indexSource).not.toMatch(/export\s+\*\s+from\s+['"][^'"]+['"]/);
 
     const exportSectionMatch = readmeSource.match(
-      /Main exports \(camelCase\):([\s\S]*?)\n\s*Data shape:/
+      /Main helper exports include([\s\S]*?)\.\n/
     );
     expect(exportSectionMatch).not.toBeNull();
     const exportsSection = exportSectionMatch?.[1] ?? '';
     const documentedExports = Array.from(
-      exportsSection.matchAll(/-\s+`([A-Za-z0-9_]+)/g),
+      exportsSection.matchAll(/`([A-Za-z0-9_]+)`/g),
       ([, exportedName]) => exportedName
     );
 

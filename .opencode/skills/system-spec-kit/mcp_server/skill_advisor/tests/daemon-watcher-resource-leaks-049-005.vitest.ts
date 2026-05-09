@@ -43,7 +43,7 @@ function write(filePath: string, content: string): void {
 }
 
 function skillDir(root: string, slug: string): string {
-  return join(root, '.opencode', 'skill', slug);
+  return join(root, '.opencode', 'skills', slug);
 }
 
 function writeSkill(
@@ -129,8 +129,8 @@ afterEach(() => {
 });
 
 describe('F-003-A3-01: refreshTargets unwatches removed paths and prunes caches', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('calls watcher.unwatch() for paths that disappear between scans', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('calls watcher.unwatch() for paths that disappear between scans', async () => {
     const root = workspace('skill-graph-unwatch');
     writeSkill(root, 'alpha');
     writeSkill(root, 'beta');
@@ -247,8 +247,8 @@ describe('F-003-A3-02: diagnostics ring buffer caps at 100 entries with aggregat
 });
 
 describe('F-004-A4-04: malformed graph-metadata.json records diagnostic instead of silently dropping targets', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('records MALFORMED_GRAPH_METADATA diagnostic when JSON.parse fails', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('records MALFORMED_GRAPH_METADATA diagnostic when JSON.parse fails', async () => {
     const root = workspace('skill-graph-malformed-json');
     writeSkill(root, 'alpha', { malformedMetadata: 'invalid-json' });
     const harness = createWatchHarness();
@@ -271,8 +271,8 @@ describe('F-004-A4-04: malformed graph-metadata.json records diagnostic instead 
     await watcher.close();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('records a diagnostic when derived is the wrong shape', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('records a diagnostic when derived is the wrong shape', async () => {
     const root = workspace('skill-graph-derived-string');
     writeSkill(root, 'alpha', { malformedMetadata: 'derived-string' });
     const harness = createWatchHarness();
@@ -292,8 +292,8 @@ describe('F-004-A4-04: malformed graph-metadata.json records diagnostic instead 
     await watcher.close();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('discoverWatchTargets stays backward-compatible without the callback', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('discoverWatchTargets stays backward-compatible without the callback', () => {
     const root = workspace('skill-graph-discover-bc');
     writeSkill(root, 'alpha', { malformedMetadata: 'invalid-json' });
     // Two-arg signature must still work without the new optional callback.

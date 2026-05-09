@@ -1,11 +1,12 @@
 {
   "title": "Vitest baseline recovery followup",
-  "description": "Re-baselined and closed the current vitest baseline after predecessor followup annotations failed to persist. Current baseline: 11,618 passed / 197 failed / 35 skipped / 11 todo. Post recovery: 11,657 passed / 0 failed / 232 skipped / 11 todo.",
+  "description": "Re-baselined and closed the current vitest baseline after predecessor followup annotations failed to persist. Unit H closed the parked cases. Current full baseline: 11,804 passed / 0 failed / 90 skipped / 11 todo.",
   "trigger_phrases": [
     "vitest recovery followup",
     "026/000/007 packet",
     "vitest current baseline",
-    "runtime regression parked"
+    "runtime regression parked",
+    "unit h parked test closure"
   ],
   "importance_tier": "important",
   "contextType": "implementation",
@@ -13,6 +14,8 @@
   "status": "complete",
   "priority": "P2",
   "createdAt": "2026-05-09T00:00:00Z",
+  "lastUpdatedAt": "2026-05-09T05:30:00Z",
+  "recent_action": "Closed Unit H parked vitest cases and measured 11,804 passed / 0 failed / 90 skipped / 11 todo",
   "branch": "main",
   "parent_track": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
   "parent_id": "000-release-cleanup",

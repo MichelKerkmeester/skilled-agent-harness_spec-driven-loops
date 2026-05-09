@@ -85,11 +85,11 @@ describe('skill graph handlers', () => {
     }
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('preserves the live graph when a custom scan root contains no skills', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('preserves the live graph when a custom scan root contains no skills', async () => {
     const root = mkdtempSync(join(tmpdir(), 'skill-graph-handlers-'));
     const workspace = join(root, 'workspace');
-    const skillRoot = join(workspace, '.opencode', 'skill');
+    const skillRoot = join(workspace, '.opencode', 'skills');
     const emptyRoot = join(workspace, 'empty-skills');
 
     try {

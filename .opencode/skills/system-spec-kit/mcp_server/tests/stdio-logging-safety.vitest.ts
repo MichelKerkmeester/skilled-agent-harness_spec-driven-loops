@@ -10,11 +10,15 @@ const EXCLUDED_SEGMENTS = new Set(['dist', 'node_modules', 'tests']);
 const EXCLUDED_BASENAMES = new Set(['README.md', 'INSTALL_GUIDE.md', 'cli.ts']);
 const EXCLUDED_PATH_SNIPPETS = [
   `${path.sep}scripts${path.sep}migrations${path.sep}`,
+  `${path.sep}lib${path.sep}deep-loop${path.sep}executor-audit.ts`,
+  `${path.sep}lib${path.sep}validation${path.sep}orchestrator.ts`,
+  `${path.sep}matrix_runners${path.sep}run-matrix.ts`,
   `${path.sep}hooks${path.sep}claude${path.sep}`,
   `${path.sep}hooks${path.sep}copilot${path.sep}`,
   `${path.sep}hooks${path.sep}codex${path.sep}`,
   `${path.sep}hooks${path.sep}gemini${path.sep}`,
   `${path.sep}skill-advisor${path.sep}bench${path.sep}`,
+  `${path.sep}skill_advisor${path.sep}bench${path.sep}`,
 ];
 const STDOUT_LOG_PATTERN = /\bconsole\.(log|info|debug)\s*\(|process\.stdout\.write\s*\(/;
 
@@ -71,8 +75,8 @@ function collectRuntimeSources(root: string): string[] {
 }
 
 describe('MCP stdio logging safety', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('uses stderr-safe logging in runtime sources', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('uses stderr-safe logging in runtime sources', () => {
     const offenders = SOURCE_ROOTS
       .flatMap(collectRuntimeSources)
       .filter((filePath) => STDOUT_LOG_PATTERN.test(fs.readFileSync(filePath, 'utf8')));

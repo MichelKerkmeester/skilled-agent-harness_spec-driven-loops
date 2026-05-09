@@ -43,4 +43,25 @@ Re-baselined the vitest suite because predecessor followup annotations mostly di
 
 ### Known limitations
 
-Runtime-regression tests are parked, not fixed. Their annotations preserve the failure surface for future focused child packets without leaving the release baseline red.
+Runtime-regression tests were parked during the original recovery run. Unit H closed that parked surface.
+
+## 2026-05-09 - Unit H parked-test closure
+
+### Summary
+
+Closed the 026/000/007 parked vitest cases under `mcp_server` with no LOC cap. The shipped behavior was compared against every parked test body, stale assertions were updated, source regressions were fixed, and one retired import-boundary assertion was deleted.
+
+### Outcome
+
+| Bucket | Count | Action |
+|--------|------:|--------|
+| stale assertion | 129 | Updated assertions and removed `it.fails.skip` / `followup-actual` annotations. |
+| real regression | 8 | Fixed source and documented details in `scratch/p0-findings-from-h.md`. |
+| retired behavior | 1 | Deleted obsolete assertion and documented it in `scratch/deleted-tests-from-h.md`. |
+| blocked-on | 0 | None. |
+
+### Verification
+
+- Targeted parked-file subset: PASS, captured in `/tmp/unit-h-targets7.json`.
+- Full vitest: PASS, 11,804 passed / 0 failed / 90 skipped / 11 todo, captured in `scratch/vitest-post-unit-h.json`.
+- Stop-condition grep: no `followup-actual: 026/000/007` or `it.fails.skip` annotations remain under `mcp_server`.

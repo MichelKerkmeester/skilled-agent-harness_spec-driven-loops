@@ -44,6 +44,16 @@ const RERANK_OPTIONS = {
   rerank: true,
   applyLengthPenalty: false,
   limit: 5,
+  queryPlan: {
+    intent: 'unknown',
+    complexity: 'complex',
+    artifactClass: 'unknown',
+    authorityNeed: 'unknown',
+    selectedChannels: ['vector'],
+    skippedChannels: [],
+    routingReasons: [],
+    fallbackPolicy: { mode: 'none', reason: 'test fixture' },
+  },
 } as const;
 
 describe('stage3-rerank regression (F-16)', () => {
@@ -57,8 +67,8 @@ describe('stage3-rerank regression (F-16)', () => {
     requireDbMock.mockReset();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('floors negative cross-encoder scores at rerank output boundary', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('floors negative cross-encoder scores at rerank output boundary', async () => {
     rerankResultsMock.mockResolvedValue([
       { id: 1, score: -0.9, rerankerScore: -0.7 },
       { id: 2, score: -0.5, rerankerScore: -0.4 },
@@ -84,8 +94,8 @@ describe('stage3-rerank regression (F-16)', () => {
     }
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('floors negative local-reranker scores at rerank output boundary', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('floors negative local-reranker scores at rerank output boundary', async () => {
     flagState.localReranker = true;
     rerankLocalMock.mockResolvedValue([
       { id: 1, score: -0.3, rerankerScore: -0.2, content: 'alpha' },
@@ -113,8 +123,8 @@ describe('stage3-rerank regression (F-16)', () => {
     }
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('preserves attentionScore as an independent signal after reranking', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('preserves attentionScore as an independent signal after reranking', async () => {
     rerankResultsMock.mockResolvedValue([
       { id: 1, score: 0.92, rerankerScore: 0.92 },
       { id: 2, score: 0.61, rerankerScore: 0.61 },
@@ -137,8 +147,8 @@ describe('stage3-rerank regression (F-16)', () => {
     expect(result.rows[0]?.attentionScore).toBe(0.17);
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('skips cross-encoder reranking for 3-result candidate sets and keeps 4-result sets eligible', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('skips cross-encoder reranking for 3-result candidate sets and keeps 4-result sets eligible', async () => {
     rerankResultsMock.mockResolvedValue([
       { id: 1, score: 0.91, rerankerScore: 0.91 },
       { id: 2, score: 0.81, rerankerScore: 0.81 },
@@ -166,8 +176,8 @@ describe('stage3-rerank regression (F-16)', () => {
     expect(rerankResultsMock).toHaveBeenCalledOnce();
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('applies the same 4-result minimum to the local GGUF reranker path', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('applies the same 4-result minimum to the local GGUF reranker path', async () => {
     flagState.localReranker = true;
     rerankLocalMock.mockResolvedValue([
       { id: 1, score: 0.91, rerankerScore: 0.91, content: 'alpha' },

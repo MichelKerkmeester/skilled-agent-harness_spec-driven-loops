@@ -907,8 +907,8 @@ describe('code-graph SQLite recovery', () => {
     expect(stats.totalFiles).toBe(0);
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('stores file mtimes and reports stale files via mtime checks', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('stores file mtimes and reports stale files via mtime checks', () => {
     initDb(tempDir);
 
     const trackedFile = path.join(tempDir, 'tracked.ts');
@@ -944,6 +944,16 @@ describe('code-graph SQLite recovery', () => {
 
     const futureTime = new Date(Date.now() + 5_000);
     fs.utimesSync(trackedFile, futureTime, futureTime);
+
+    // drift: 026/014-F-014-C4-01 made stale detection hash-aware. A touch-only
+    // mtime drift stays fresh; only content drift makes the row stale.
+    expect(isFileStale(trackedFile)).toBe(false);
+    expect(ensureFreshFiles([trackedFile])).toEqual({
+      stale: [],
+      fresh: [trackedFile],
+    });
+
+    fs.writeFileSync(trackedFile, 'export const value = 2;\n');
 
     expect(isFileStale(trackedFile)).toBe(true);
     expect(ensureFreshFiles([trackedFile])).toEqual({

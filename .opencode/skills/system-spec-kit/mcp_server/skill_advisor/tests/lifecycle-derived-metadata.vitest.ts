@@ -47,7 +47,7 @@ function write(filePath: string, content: string): void {
 }
 
 function skillDir(root: string, slug = 'alpha'): string {
-  return join(root, '.opencode', 'skill', slug);
+  return join(root, '.opencode', 'skills', slug);
 }
 
 function writeSkillFixture(root: string, slug = 'alpha'): string {
@@ -80,7 +80,7 @@ function writeSkillFixture(root: string, slug = 'alpha'): string {
     intent_signals: ['intent signal route'],
     derived: {
       source_docs: ['references/guide.md'],
-      key_files: [join('.opencode', 'skill', slug, 'docs', 'key-file.md')],
+      key_files: [join('.opencode', 'skills', slug, 'docs', 'key-file.md')],
     },
     edges: {},
   }, null, 2));
@@ -128,8 +128,8 @@ afterEach(() => {
 });
 
 describe('027/002 derived metadata acceptance', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('AC-1 and B1 extract deterministic derived metadata from every approved source category', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('AC-1 and B1 extract deterministic derived metadata from every approved source category', () => {
     const root = workspace('derived-extract');
     const dir = writeSkillFixture(root);
 
@@ -154,8 +154,8 @@ describe('027/002 derived metadata acceptance', () => {
     expect(first.keyFiles).toContain('.opencode/skills/alpha/docs/key-file.md');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('AC-1 refreshes provenance when a B1 input changes and targets only that skill', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('AC-1 refreshes provenance when a B1 input changes and targets only that skill', async () => {
     const root = workspace('derived-watcher');
     const dir = writeSkillFixture(root);
     const harness = createWatchHarness();
@@ -207,8 +207,8 @@ describe('027/002 derived metadata acceptance', () => {
     expect(betaAfter).toBe(betaBefore);
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('drops absolute, escaping, and symlinked-out derived key files from extraction and provenance', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('drops absolute, escaping, and symlinked-out derived key files from extraction and provenance', () => {
     const root = workspace('derived-key-containment');
     const outsideRoot = workspace('derived-key-outside');
     const dir = writeSkillFixture(root);

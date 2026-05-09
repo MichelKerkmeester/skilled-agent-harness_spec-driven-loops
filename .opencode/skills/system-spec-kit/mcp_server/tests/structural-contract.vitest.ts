@@ -395,7 +395,7 @@ describe('indexFiles cross-file dedup (Layer 1)', () => {
 
   it('logs dropped count', async () => {
     mockSymbolCollisionForSharedFunction();
-    const infoSpy = vi.spyOn(console, 'info').mockImplementation(() => undefined);
+    const infoSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const tempRoot = createTempRoot();
     writeFixture(tempRoot, 'a.ts', 'export function shared() { return 1; }\n');
     writeFixture(tempRoot, 'b.ts', 'export function shared() { return 2; }\n');
@@ -426,6 +426,10 @@ describe('scan handler integration - incremental:false', () => {
     vi.doMock('../code_graph/lib/structural-indexer.js', () => ({
       indexFiles: indexFilesMock,
     }));
+    vi.doMock('../code_graph/lib/ensure-ready.js', () => ({
+      persistIndexedFileResult: vi.fn(),
+      recordCandidateManifest: vi.fn(),
+    }));
     vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
       getDb: vi.fn(() => ({
         transaction: vi.fn((callback: () => void) => callback),
@@ -448,9 +452,11 @@ describe('scan handler integration - incremental:false', () => {
       clearParseDiagnostic: vi.fn(),
       removeFile: removeFileMock,
       getStoredCodeGraphScope: vi.fn(() => null),
+      countTrackedSkillFiles: vi.fn(() => indexResults.length),
       getTrackedFiles: vi.fn(() => indexResults.map(result => (result as { filePath: string }).filePath)),
       getStats: vi.fn(() => ({ lastScanTimestamp: '2026-04-23T00:00:00.000Z' })),
       recordFailedScan: vi.fn(() => null),
+      getLastFailedScan: vi.fn(() => null),
       getCodeGraphMetadata: vi.fn(() => null),
       setCodeGraphMetadata: vi.fn(),
       getParseDiagnosticsSummary: vi.fn(() => ({ affectedFiles: 0, recentErrors: [] })),
@@ -472,10 +478,10 @@ describe('scan handler integration - incremental:false', () => {
     };
   }
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('passes skipFreshFiles=false for caller-requested full scans', async () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('passes skipFreshFiles=false for caller-requested full scans', async () => {
     const scanResults = Array.from({ length: 3 }, (_, index) => ({
-      filePath: `/workspace/file-${index}.ts`,
+      filePath: `${process.cwd()}/.opencode/skills/system-spec-kit/file-${index}.ts`,
       language: 'typescript',
       contentHash: `hash-${index}`,
       nodes: [{ symbolId: `symbol-${index}` }],

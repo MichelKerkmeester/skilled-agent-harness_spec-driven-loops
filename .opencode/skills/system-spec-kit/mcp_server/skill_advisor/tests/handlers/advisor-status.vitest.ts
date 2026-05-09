@@ -13,15 +13,15 @@ import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
 
 function workspace(name: string): string {
   const root = mkdtempSync(join(tmpdir(), `advisor-status-${name}-`));
-  mkdirSync(join(root, '.opencode', 'skill', '.advisor-state'), { recursive: true });
-  mkdirSync(join(root, '.opencode', 'skill', 'system-spec-kit', 'mcp_server', 'database'), { recursive: true });
-  mkdirSync(join(root, '.opencode', 'skill', 'alpha'), { recursive: true });
-  writeFileSync(join(root, '.opencode', 'skill', 'alpha', 'graph-metadata.json'), '{"skill_id":"alpha"}\n', 'utf8');
+  mkdirSync(join(root, '.opencode', 'skills', '.advisor-state'), { recursive: true });
+  mkdirSync(join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database'), { recursive: true });
+  mkdirSync(join(root, '.opencode', 'skills', 'alpha'), { recursive: true });
+  writeFileSync(join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json'), '{"skill_id":"alpha"}\n', 'utf8');
   return root;
 }
 
 function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'unavailable', generation = 1): void {
-  writeFileSync(join(root, '.opencode', 'skill', '.advisor-state', 'skill-graph-generation.json'), `${JSON.stringify({
+  writeFileSync(join(root, '.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json'), `${JSON.stringify({
     generation,
     updatedAt: '2026-04-20T00:00:00.000Z',
     sourceSignature: null,
@@ -31,12 +31,12 @@ function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'una
 }
 
 function writeDb(root: string): void {
-  writeFileSync(join(root, '.opencode', 'skill', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite'), '', 'utf8');
+  writeFileSync(join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite'), '', 'utf8');
 }
 
 describe('advisor_status handler', () => {
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('reports live freshness', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('reports live freshness', () => {
     const root = workspace('live');
     writeDb(root);
     writeGeneration(root, 'live', 3);
@@ -52,16 +52,16 @@ describe('advisor_status handler', () => {
     expect(status.laneWeights.explicit_author).toBe(0.45);
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('keeps signed generations live when source mtimes exceed skipped SQLite writes', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('keeps signed generations live when source mtimes exceed skipped SQLite writes', () => {
     const root = workspace('signed-live');
     writeDb(root);
-    const dbPath = join(root, '.opencode', 'skill', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
-    const metadataPath = join(root, '.opencode', 'skill', 'alpha', 'graph-metadata.json');
+    const dbPath = join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
+    const metadataPath = join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json');
     utimesSync(dbPath, new Date('2026-04-19T00:00:00.000Z'), new Date('2026-04-19T00:00:00.000Z'));
     utimesSync(metadataPath, new Date('2026-04-21T00:00:00.000Z'), new Date('2026-04-21T00:00:00.000Z'));
     const sourceSignature = computeAdvisorSourceSignature(root);
-    writeFileSync(join(root, '.opencode', 'skill', '.advisor-state', 'skill-graph-generation.json'), `${JSON.stringify({
+    writeFileSync(join(root, '.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json'), `${JSON.stringify({
       generation: 9,
       updatedAt: '2026-04-22T00:00:00.000Z',
       sourceSignature,
@@ -75,13 +75,13 @@ describe('advisor_status handler', () => {
     expect(status.trustState.state).toBe('live');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('marks live generations stale when nested graph metadata is newer than the database', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('marks live generations stale when nested graph metadata is newer than the database', () => {
     const root = workspace('nested-mtime');
     writeDb(root);
     writeGeneration(root, 'live', 6);
-    const dbPath = join(root, '.opencode', 'skill', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
-    const metadataPath = join(root, '.opencode', 'skill', 'alpha', 'graph-metadata.json');
+    const dbPath = join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp_server', 'database', 'skill-graph.sqlite');
+    const metadataPath = join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json');
     utimesSync(dbPath, new Date('2026-04-19T00:00:00.000Z'), new Date('2026-04-19T00:00:00.000Z'));
     utimesSync(metadataPath, new Date('2026-04-21T00:00:00.000Z'), new Date('2026-04-21T00:00:00.000Z'));
 
@@ -91,8 +91,8 @@ describe('advisor_status handler', () => {
     expect(status.trustState.lastLiveAt).toBe('2026-04-20T00:00:00.000Z');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('reports stale freshness', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('reports stale freshness', () => {
     const root = workspace('stale');
     writeDb(root);
     writeGeneration(root, 'stale', 4);
@@ -112,10 +112,10 @@ describe('advisor_status handler', () => {
     expect(status.freshness).toBe('absent');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('reports unavailable for corrupt generation metadata', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('reports unavailable for corrupt generation metadata', () => {
     const root = workspace('unavailable');
-    writeFileSync(join(root, '.opencode', 'skill', '.advisor-state', 'skill-graph-generation.json'), '{', 'utf8');
+    writeFileSync(join(root, '.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json'), '{', 'utf8');
 
     const status = readAdvisorStatus({ workspaceRoot: root });
 
@@ -134,13 +134,13 @@ describe('advisor_status handler', () => {
     expect(raw).not.toContain('secret@example.com');
   });
 
-  // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('caps metadata scanning when requested to avoid unbounded status walks', () => {
+  // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+  it('caps metadata scanning when requested to avoid unbounded status walks', () => {
     const root = workspace('scan-cap');
     writeDb(root);
     writeGeneration(root, 'live', 7);
-    mkdirSync(join(root, '.opencode', 'skill', 'beta'), { recursive: true });
-    writeFileSync(join(root, '.opencode', 'skill', 'beta', 'graph-metadata.json'), '{"skill_id":"beta"}\n', 'utf8');
+    mkdirSync(join(root, '.opencode', 'skills', 'beta'), { recursive: true });
+    writeFileSync(join(root, '.opencode', 'skills', 'beta', 'graph-metadata.json'), '{"skill_id":"beta"}\n', 'utf8');
 
     const status = readAdvisorStatus({ workspaceRoot: root, maxMetadataFiles: 1 });
 

@@ -800,15 +800,16 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
       checkpointStorage.deleteCheckpoint('t107-empty');
     });
 
-    // followup-actual: 026/000/007-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-    it.fails.skip('T107-07: null row rejects restore', () => {
+    // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
+    it('T107-07: null row rejects restore', () => {
       const ok = injectCheckpoint('t107-null-row', [null]);
       if (!ok) return;
 
       const result = checkpointStorage.restoreCheckpoint('t107-null-row');
       expect(result).toBeDefined();
       expect(result.errors.length).toBeGreaterThan(0);
-      expect(result.errors[0]).toContain('not an object');
+      expect(result.errors[0]).toContain('Malformed snapshot row memories.0');
+      expect(result.errors[0]).toContain('received null');
 
       checkpointStorage.deleteCheckpoint('t107-null-row');
     });
