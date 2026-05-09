@@ -1,42 +1,126 @@
 ---
-title: "Checklist — 027/001 code-graph HLD/LLD"
-description: "QA validation checklist for the HLD/LLD narrative generator."
+title: "Verification Checklist: 027/001 Code Graph HLD/LLD"
+description: "QA validation checklist for the HLD/LLD narrative generator phase."
+trigger_phrases:
+  - "027 phase 001 checklist"
+  - "code graph hld lld checklist"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld"
+    last_updated_at: "2026-05-09T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Aligned checklist with pt-01/pt-02 research and active spec-kit template anchors"
+    next_safe_action: "Implement Phase 001 requirements after dependency checks"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
-# Checklist: 027/001 code-graph HLD/LLD
+# Verification Checklist: 027/001 Code Graph HLD/LLD
 
 <!-- SPECKIT_LEVEL: 2 -->
-
-Mark each item `[x]` only with file:line evidence after completion.
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
 ---
 
-## P0 — REQ-001..REQ-006
+<!-- ANCHOR:protocol -->
+## Verification Protocol
 
-- [ ] **C-001**: `generateHLD(filePath, db)` returns deterministic JSON for identical inputs — evidence: unit test "deterministic output across 100 runs"
-- [ ] **C-002**: `generateLLD(symbolId, db)` returns null on missing symbol; populated 4 fields otherwise
-- [ ] **C-003**: `code_graph_hld_lld` MCP tool registered and callable — evidence: `opencode mcp list` shows tool
-- [ ] **C-004**: `queryMode:'omni'` payload includes `hld_lld` field — evidence: integration test
-- [ ] **C-005**: `JSON.stringify(result)` succeeds without circular-ref error — evidence: serialization test
-- [ ] **C-006**: Vitest line coverage ≥80% on new code — evidence: `--coverage` output
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim the phase implemented until complete |
+| **[P1]** | Required | Must complete or explicitly defer with approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
 
-## P1 — REQ-007..REQ-009
+---
 
-- [ ] **C-007**: 5 baseline file_role classifications (module / api-handler / library / test / config) covered with unit tests
-- [ ] **C-008**: 4 layer-tier classifications (presentation / business / data / utility) covered with unit tests
-- [ ] **C-009**: `complexity_hints` includes "high-fan-in (N callers)" when fan-in > 10
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
 
-## P0 — pt-02 amendments (NEW)
+- [ ] CHK-001 [P0] Requirements REQ-001 through REQ-016 are present in spec.md, including all pt-02 amendments.
+- [ ] CHK-002 [P0] Plan sequences deterministic HLD/LLD generation before MCP/omni wiring.
+- [ ] CHK-003 [P0] Tasks include the stable-sort, dangling-edge, primary-module, role-export, and omni-contract decisions.
+- [ ] CHK-004 [P1] Dependencies on existing CodeNode, CodeEdge, QueryMode, and MCP handler APIs are verified before coding.
+<!-- /ANCHOR:pre-impl -->
 
-- [ ] **C-012** (REQ-012): Stable-sort helper applied before every cap; 100 repeated calls with 1000+ symbols produce identical output
-- [ ] **C-013** (REQ-013): Dangling-edge policy chosen and documented (filter OR unresolved record); fixture asserts behavior
-- [ ] **C-014** (REQ-014): Primary-module selection picks synthetic module (`fq_name === getModuleName(filePath)`) over captured module-like symbol
-- [ ] **C-015** (REQ-015): `classifyFileRole(filePath, db)` exported; `generateHLD(file, db).file_role === classifyFileRole(file, db)` in test
-- [ ] **C-016** (REQ-016): EITHER full omni wire-contract integration (QueryMode + ContextResult + handler parse + serialized JSON + integration test) OR omni explicitly removed from Phase 001 scope
+---
 
-## P0 — Verification
+<!-- ANCHOR:code-quality -->
+## Code Quality
 
-- [ ] **C-V01**: `npm run check` green (lint + typecheck)
-- [ ] **C-V02**: `npx vitest run code-graph-hld-lld.vitest.ts` all tests pass
-- [ ] **C-V03**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld --strict` passes
-- [ ] **C-V04**: `implementation-summary.md` authored with completion percentage and file:line evidence per requirement
+- [ ] CHK-010 [P0] `generateHLD(filePath, db)` returns deterministic JSON for identical inputs.
+- [ ] CHK-011 [P0] `generateLLD(symbolId, db)` returns null for a missing symbol and populated output for an existing symbol.
+- [ ] CHK-012 [P0] `code_graph_hld_lld` is registered and callable through the MCP surface.
+- [ ] CHK-013 [P0] Output serializes with `JSON.stringify(result)` without circular references.
+- [ ] CHK-014 [P0] Stable-sort helper is applied before every capped collection.
+- [ ] CHK-015 [P0] Dangling-edge policy is implemented as either filtered edges or explicit unresolved records.
+- [ ] CHK-016 [P0] Primary-module selection prefers the synthetic module node where `fq_name === getModuleName(filePath)`.
+- [ ] CHK-017 [P0] `classifyFileRole(filePath, db)` is exported and matches `generateHLD(filePath, db).file_role`.
+- [ ] CHK-018 [P0] Omni wire contract is either fully implemented across QueryMode, ContextResult, handler parse, serialization, and integration tests, or removed from this phase scope.
+- [ ] CHK-019 [P1] File-role classifications cover module, API handler, library, test, and config examples.
+- [ ] CHK-020 [P1] Layer-tier classifications cover presentation, business, data, and utility examples.
+- [ ] CHK-021 [P1] `complexity_hints` includes high-fan-in text when fan-in exceeds the configured threshold.
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [ ] CHK-030 [P0] Unit tests prove deterministic output across repeated runs on large symbol sets.
+- [ ] CHK-031 [P0] Serialization, missing-symbol, dangling-edge, and primary-module fixtures pass.
+- [ ] CHK-032 [P0] `npx vitest run code-graph-hld-lld.vitest.ts` passes.
+- [ ] CHK-033 [P0] New Phase 001 code reaches at least 80 percent line coverage.
+- [ ] CHK-034 [P0] `npm run check` passes.
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-040 [P0] Every P0 requirement has file:line evidence in implementation-summary.md after implementation.
+- [ ] CHK-041 [P0] All pt-02 amendments are mapped to tests or explicit out-of-scope decisions.
+- [ ] CHK-042 [P1] Deferred P1/P2 items have rationale and owner recorded.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-050 [P0] MCP input validation rejects malformed file paths and symbol IDs without throwing raw errors.
+- [ ] CHK-051 [P1] No command execution, network access, or unbounded file reads are introduced by this phase.
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-060 [P0] spec.md, plan.md, tasks.md, checklist.md, and implementation-summary.md remain synchronized.
+- [ ] CHK-061 [P0] Strict spec-kit validation passes for the phase folder.
+- [ ] CHK-062 [P1] Public helper behavior is documented where call sites cannot infer it from names.
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-070 [P1] New source, test, and fixture files follow the existing mcp_server layout.
+- [ ] CHK-071 [P1] No scratch or generated run artifacts are committed outside approved locations.
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 24 | 0/24 |
+| P1 Items | 8 | 0/8 |
+| P2 Items | 0 | 0/0 |
+
+**Verification Date**: Pending implementation
+<!-- /ANCHOR:summary -->

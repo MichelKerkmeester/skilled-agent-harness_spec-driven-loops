@@ -9,8 +9,25 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 // ── Hook shared utilities ──
 
 describe('edge-cases: empty transcript', () => {
-  it.todo('buildCompactContext should ignore empty transcript content without extracting file paths');
-  it.todo('compact-inject should treat a missing transcript file as an empty tail without throwing');
+  it('buildCompactContext should ignore empty transcript content without extracting file paths', async () => {
+    const { buildCompactContext } = await import('../hooks/claude/compact-inject.js');
+
+    const context = buildCompactContext(['', '   ', '{}']);
+
+    expect(context).not.toContain('## Active Files');
+    expect(context).not.toContain('## Semantic Context');
+    expect(context).toBe('');
+  });
+
+  it('compact-inject should treat a missing transcript file as an empty tail without throwing', async () => {
+    const { buildCompactContext, tailFile } = await import('../hooks/claude/compact-inject.js');
+
+    const transcriptLines = tailFile('/tmp/speckit-missing-transcript.jsonl', 50);
+
+    expect(transcriptLines).toEqual([]);
+    expect(() => buildCompactContext(transcriptLines)).not.toThrow();
+    expect(buildCompactContext(transcriptLines)).toBe('');
+  });
 });
 
 describe('edge-cases: hook stdin parsing', () => {

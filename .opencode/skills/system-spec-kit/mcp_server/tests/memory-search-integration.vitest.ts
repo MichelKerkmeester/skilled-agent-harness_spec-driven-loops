@@ -14,7 +14,7 @@
 //
 // The long-term goal is to replace ALL source-text assertions with behavioral
 // assertions backed by in-memory DB fixtures.
-import { describe, it, expect, vi } from 'vitest';
+import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -37,11 +37,28 @@ vi.mock('../core', async (importOriginal) => {
   };
 });
 
+const embeddingMocks = vi.hoisted(() => ({
+  generateQueryEmbedding: vi.fn(async () => new Float32Array(1024).fill(0.1)),
+}));
+
+vi.mock('../lib/providers/embeddings.js', () => ({
+  generateQueryEmbedding: embeddingMocks.generateQueryEmbedding,
+}));
+
 import * as memorySearchHandler from '../handlers/memory-search.js';
+import * as accessTracker from '../lib/storage/access-tracker.js';
 import * as fsrsScheduler from '../lib/cognitive/fsrs-scheduler.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as hybridSearch from '../lib/search/hybrid-search.js';
+import * as stage2Fusion from '../lib/search/pipeline/stage2-fusion.js';
 import * as rrfFusion from '@spec-kit/shared/algorithms/rrf-fusion.js';
+import {
+  createMemoryDbFixture,
+  disposeMemoryDbFixture,
+  makeMemoryEmbedding,
+  seedMemoryRow,
+} from './helpers/memory-db-fixture.js';
+import type Database from 'better-sqlite3';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SERVER_ROOT = path.resolve(TEST_DIR, '..');
@@ -381,10 +398,161 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     // These tests document the integration test debt identified by the deep review.
     // They must be implemented when a DB test fixture infrastructure is available.
 
-    it.todo('multi-concept search returns ranked results from DB (requires DB fixture)');
-    it.todo('hybrid search fallback chain works end-to-end (requires DB fixture)');
-    it.todo('review_count increments after processReview pipeline run (requires DB fixture)');
-    it.todo('access_count increments after direct access tracking (requires DB fixture)');
-    it.todo('searchWithFallback cascades through vector -> FTS -> BM25 (requires DB fixture)');
+    let db: Database.Database;
+    let previousSearchFallback: string | undefined;
+
+    beforeEach(() => {
+      previousSearchFallback = process.env.SPECKIT_SEARCH_FALLBACK;
+      process.env.SPECKIT_SEARCH_FALLBACK = 'false';
+      embeddingMocks.generateQueryEmbedding.mockReset();
+      embeddingMocks.generateQueryEmbedding.mockResolvedValue(makeMemoryEmbedding([1, 1]));
+      db = createMemoryDbFixture();
+    });
+
+    afterEach(() => {
+      disposeMemoryDbFixture(db);
+      if (previousSearchFallback === undefined) {
+        delete process.env.SPECKIT_SEARCH_FALLBACK;
+      } else {
+        process.env.SPECKIT_SEARCH_FALLBACK = previousSearchFallback;
+      }
+    });
+
+    it('multi-concept search returns ranked results from DB (requires DB fixture)', async () => {
+      const top = seedMemoryRow(db, {
+        title: 'Alpha beta canonical decision',
+        contentText: 'alpha beta canonical decision',
+        embedding: makeMemoryEmbedding([1, 1]),
+        documentType: 'spec_doc',
+      });
+      const weaker = seedMemoryRow(db, {
+        title: 'Alpha beta weaker note',
+        contentText: 'alpha beta weaker note',
+        embedding: makeMemoryEmbedding([1, 0.2]),
+        documentType: 'spec_doc',
+      });
+
+      const response = await memorySearchHandler.handleMemorySearch({
+        concepts: ['alpha', 'beta'],
+        limit: 5,
+        includeConstitutional: false,
+        bypassCache: true,
+        rerank: false,
+      });
+      const data = parseResponseData(response);
+      const results = data.results as Array<Record<string, unknown>>;
+
+      expect(data.searchType).toBe('multi-concept');
+      expect(results.map((result) => result.id)).toContain(top.id);
+      expect(results.map((result) => result.id)).toContain(weaker.id);
+      expect(results[0]?.id).toBe(top.id);
+      expect(embeddingMocks.generateQueryEmbedding).toHaveBeenCalledWith('alpha');
+      expect(embeddingMocks.generateQueryEmbedding).toHaveBeenCalledWith('beta');
+    });
+
+    it('hybrid search fallback chain works end-to-end (requires DB fixture)', async () => {
+      const seeded = seedMemoryRow(db, {
+        title: 'Hybrid fallback canonical row',
+        triggerPhrases: ['hybrid fallback'],
+        contentText: 'hybrid fallback exact lexical row',
+        documentType: 'spec_doc',
+      });
+      hybridSearch.init(db, () => []);
+
+      const results = await hybridSearch.searchWithFallback(
+        'hybrid fallback',
+        makeMemoryEmbedding([0, 1]),
+        { limit: 5, specFolder: seeded.specFolder, useGraph: false, forceAllChannels: true },
+      );
+
+      expect(results.length).toBeGreaterThan(0);
+      expect(results.map((result) => Number(result.id))).toContain(seeded.id);
+      expect(results.some((result) => {
+        const sources = result.sources as string[] | undefined;
+        return result.source === 'fts'
+          || result.source === 'bm25'
+          || sources?.some((source) => source === 'fts' || source === 'bm25');
+      })).toBe(true);
+    });
+
+    it('review_count increments after processReview pipeline run (requires DB fixture)', () => {
+      const seeded = seedMemoryRow(db, {
+        title: 'Review count row',
+        reviewCount: 0,
+        accessCount: 0,
+        stability: 1,
+        lastReview: '2026-05-01T00:00:00.000Z',
+      });
+      const row = db.prepare('SELECT * FROM memory_index WHERE id = ?').get(seeded.id) as Record<string, unknown>;
+
+      stage2Fusion.__testables.applyTestingEffect(db, [row as never]);
+
+      const updated = db.prepare(`
+        SELECT review_count, access_count, last_review, stability
+        FROM memory_index
+        WHERE id = ?
+      `).get(seeded.id) as {
+        review_count: number;
+        access_count: number;
+        last_review: string | null;
+        stability: number;
+      };
+
+      expect(updated.review_count).toBe(1);
+      expect(updated.access_count).toBe(1);
+      expect(updated.last_review).toEqual(expect.any(String));
+      expect(updated.stability).toBeGreaterThan(1);
+    });
+
+    it('access_count increments after direct access tracking (requires DB fixture)', () => {
+      const seeded = seedMemoryRow(db, {
+        title: 'Direct access row',
+        accessCount: 0,
+        lastAccessed: 0,
+      });
+
+      const tracked = accessTracker.flushAccessCounts(seeded.id);
+      const updated = db.prepare(`
+        SELECT access_count, last_accessed
+        FROM memory_index
+        WHERE id = ?
+      `).get(seeded.id) as { access_count: number; last_accessed: number };
+
+      expect(tracked).toBe(true);
+      expect(updated.access_count).toBe(1);
+      expect(updated.last_accessed).toBeGreaterThan(0);
+    });
+
+    it('searchWithFallback cascades through vector -> FTS -> BM25 (requires DB fixture)', async () => {
+      const ftsRow = seedMemoryRow(db, {
+        title: 'Cascade ftsonlyunique canonical row',
+        triggerPhrases: ['ftsonlyunique'],
+        contentText: 'ftsonlyunique lexical hit',
+      });
+      const bm25Row = seedMemoryRow(db, {
+        title: 'Cascade bm25onlyunique canonical row',
+        triggerPhrases: ['bm25onlyunique'],
+        contentText: 'bm25onlyunique lexical hit',
+      });
+      hybridSearch.init(db, () => []);
+
+      const ftsResults = await hybridSearch.searchWithFallback(
+        'ftsonlyunique',
+        makeMemoryEmbedding([0, 1]),
+        { limit: 5, useVector: false, useGraph: false, forceAllChannels: true },
+      );
+      expect(ftsResults.map((result) => Number(result.id))).toContain(ftsRow.id);
+      expect(hybridSearch.ftsSearch('ftsonlyunique', { limit: 5 }).map((result) => Number(result.id))).toContain(ftsRow.id);
+
+      db.exec('DROP TABLE memory_fts');
+      const bm25Results = await hybridSearch.searchWithFallback(
+        'bm25onlyunique',
+        makeMemoryEmbedding([0, 1]),
+        { limit: 5, useVector: false, useGraph: false, forceAllChannels: true },
+      );
+
+      expect(bm25Results.map((result) => Number(result.id))).toContain(bm25Row.id);
+      expect(bm25Results.some((result) => result.source === 'bm25' || (result.sources as string[] | undefined)?.includes('bm25'))).toBe(true);
+    });
   });
 });

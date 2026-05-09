@@ -1,75 +1,195 @@
 ---
-title: "Plan — 027/003 code-graph impact analysis"
-description: "Phased plan: lib → handler → detect_changes integration → optional LLM adapter → tests."
+title: "Implementation Plan: 027/003 Code Graph Impact Analysis"
+description: "Plan for deterministic file-level impact scoring, reproducible normalizers, honest coverage evidence, and explicit enrichment provider options."
+trigger_phrases:
+  - "027 003 impact plan"
+  - "code graph impact analysis plan"
+importance_tier: "important"
+contextType: "plan"
+_memory:
+  continuity:
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-code-graph-impact-analysis"
+    last_updated_at: "2026-05-09T06:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Aligned plan.md with manifest anchors and pt-02 scoring/provider amendments"
+    next_safe_action: "Choose normalizer constants before implementation"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-05-09-027-alignment-fix"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Choose deterministic normalizer semantics."
+    answered_questions:
+      - "Default LLM enrichment provider is none."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Plan: 027/003 code-graph impact analysis
+# Implementation Plan: 027/003 Code Graph Impact Analysis
 
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
-## OVERVIEW
-~350 LOC. Sequential. Wall-clock 3-4 hours.
+---
 
-## PHASES
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
 
-### Phase 1: Risk-signal lib + file-level aggregation (REQ-001, REQ-002, REQ-010, REQ-011)
-- Create `mcp_server/code_graph/lib/code-graph-impact-analysis.ts`.
-- **Implement file→nodes aggregation helper**: `getNodesForFile(filePath, db)` returns all `CodeNode` rows whose `filePath === filePath`.
-- Implement `computeRiskSignals(filePath, db)` per REQ-002:
-  - **Aggregate symbol-level edges across all nodes** of the file via `queryEdgesTo(node.id)` / `queryEdgesFrom(node.id)`; dedupe connected files at the file level (REQ-010). NOT direct `queryEdgesTo(filePath)` (that wouldn't match — edge subjects are symbol IDs).
-  - For coverage: use **incoming** `TESTED_BY` edges via `queryEdgesTo(productionSymbol.id, 'TESTED_BY')` (test→production direction; REQ-011).
-  - Encode coverage absence as `{hasTestEdge: false, coverageEvidence: "coverageUnknownOrMissing"}` per REQ-012, NOT "untested".
-- Unit-test each signal independently with fixture data including multi-symbol files (T-003A).
+### Technical Context
 
-### Phase 2: Deterministic normalizers (REQ-009, NEW)
-- **Define `normalizeFanIn(rawCount)`, `normalizeHubDegree(rawCount)`, `normalizeTransitiveDepth(rawDepth)`** with fixed caps OR documented graph-baseline semantics.
-- Snapshot tests assert reproducible outputs for unchanged graph state (T-003B).
-- Outputs labeled `weight_class: "heuristic"` until Phase 005 calibration.
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | TypeScript |
+| **Framework** | system-spec-kit MCP server |
+| **Storage** | Existing code_graph SQLite tables |
+| **Testing** | Vitest, `npm run check`, spec validator |
 
-### Phase 3: Score formula + BFS with explicit visited set (REQ-003, REQ-005, REQ-013)
-- `RISK_WEIGHTS` constants block.
-- `applyRiskFormula(signals, weights)` returns 0..1 score; uses normalizers from Phase 2.
-- **Implement BFS depth cap at 3 IN THE NEW IMPACT-ANALYSIS LOOP** with an explicit `visited: Set<string>` (REQ-013) — do NOT rely on `queryFileImportDependents()` to apply a LIMIT (it returns flat 1-hop only).
-- Cycle test fixture (T-003D).
+### Overview
+Phase 003 adds deterministic impact analysis over the existing code graph. pt-02 tightened the design: all risk signals must aggregate symbol-level graph data to files, normalizers must be reproducible, TESTED_BY must be read in the incoming direction, and LLM enrichment must be explicit provider-configured optional behavior.
+<!-- /ANCHOR:summary -->
 
-### Phase 4: Top-level orchestrator (REQ-001)
-- `analyzeImpact(changedFiles, db, opts)` composes signal computation + scoring + summary.
-- Build `affected_files` list via reverse-edge walk from changed files; results aggregated to file level.
+---
 
-### Phase 5: Handler + tool reg (REQ-004)
-- Create `handlers/impact-analysis.ts` with zod schema + readiness gate.
-- Register `code_graph_impact_analysis` in `tools/code-graph-tools.ts`.
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
 
-### Phase 6: detect_changes integration (REQ-001, REQ-008)
-- Edit `handlers/detect-changes.ts` (+50 LOC) to optionally include risk signals when `?includeRisk=true`.
+### Definition of Ready
+- [ ] Normalizer semantics selected.
+- [ ] Coverage evidence output shape selected.
+- [ ] Enrichment options contract documented.
 
-### Phase 7: Optional layer weighting (REQ-015)
-- If `opts.includeLayer === true`, call Phase 001's `classifyFileRole(filePath, db)` if available.
-- If Phase 001 unavailable, emit `{source: "unavailable", value: null}` OR omit layer weighting. **Do NOT invent a second local layer classifier.**
+### Definition of Done
+- [ ] Deterministic output is complete with `provider: "none"`.
+- [ ] File-level aggregation and TESTED_BY direction fixtures pass.
+- [ ] Strict spec validation passes.
+<!-- /ANCHOR:quality-gates -->
 
-### Phase 8: Optional LLM enrichment (P1 REQ-007 + REQ-014)
-- **Define `LlmNarrativeProvider` interface**: `{generate(payload, opts): Promise<{narrative}>}`.
-- **Default provider is `"none"` / skipped** (REQ-007 amended).
-- CLI provider is **explicit opt-in** via `enrichment.provider === "cli"` and **MUST use hardened subprocess helper semantics** (REQ-014 + Phase 005 dispatcher contract):
-  - `</dev/null` stdin redirect (per cli-opencode CHANGELOG-2026-05-08-stdin-redirect-fix.md).
-  - Timeout enforcement, SIGTERM-then-SIGKILL escalation, close-event wait.
-  - Budgets: `timeoutMs`, `maxCallsPerSession`, `maxInputBytes`, `cacheKey`.
-- Replaces boolean `enrichWithLLM` with options-shape contract per REQ-014.
+---
 
-### Phase 7: Tests + verification (REQ-006)
-- Unit tests for each signal + formula + BFS.
-- Integration test for full `analyzeImpact()` run.
-- ≥80% line coverage.
-- `npm run check` green.
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
 
-## DEPENDENCIES
+### Pattern
+Deterministic analysis library plus MCP handler and optional provider adapter.
 
-- Existing `detect_changes`, query APIs (already shipped).
-- Optional Phase 027/001 (HLD/LLD) for layer-based criticality in LLM enrichment.
-- Optional Phase 027/002 (trace) for trace-based downstream narrative in LLM enrichment.
+### Key Components
+- **`code-graph-impact-analysis.ts`**: owns aggregation, normalizers, BFS, and scoring.
+- **`handlers/impact-analysis.ts`**: owns MCP input validation and response envelope.
+- **Optional provider adapter**: generates narrative only when explicit config is supplied.
 
-## OUT OF SCOPE
+### Data Flow
+Changed files produce affected file candidates, each file aggregates all matching nodes and their incoming/outgoing edges, deterministic signals feed the risk formula, and optional enrichment adds narrative without replacing the local baseline.
+<!-- /ANCHOR:architecture -->
 
-- Real-time edge-drift tracking.
-- Change-intent classification (LLM only).
-- Cross-repo impact.
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `code_graph/lib/code-graph-impact-analysis.ts` | New analyzer | Create | Unit tests for aggregation, normalizers, BFS |
+| `code_graph/handlers/impact-analysis.ts` | New MCP handler | Create | Handler integration test |
+| `handlers/detect-changes.ts` | Existing change detector | Optional risk passthrough | Integration fixture |
+| Optional enrichment adapter | Narrative generation | Explicit opt-in only | Provider none and CLI hardening tests |
+<!-- /ANCHOR:affected-surfaces -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+### Phase 1: Setup
+- [ ] Define output schema and normalizer strategy.
+- [ ] Define enrichment options object.
+
+### Phase 2: Core Implementation
+- [ ] Implement file-node aggregation and risk signals.
+- [ ] Implement normalizers, score formula, and BFS.
+- [ ] Implement handler, tool registration, optional detect_changes integration, optional provider adapter.
+
+### Phase 3: Verification
+- [ ] Add aggregation, coverage, BFS, skipped-provider, and layer fallback tests.
+- [ ] Run checks and strict validation.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | aggregation, normalizers, TESTED_BY, BFS, formula | Vitest |
+| Integration | handler and detect_changes passthrough | Vitest |
+| Validation | Spec folder structure and anchors | `validate.sh --strict` |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Existing detect_changes | Internal | Available | Cannot reuse current affected-symbol logic |
+| Existing code_graph DB APIs | Internal | Available | Cannot compute deterministic signals |
+| Phase 001 layer data | Optional internal | Pending | Emit unavailable/null instead |
+| Phase 005 dispatcher helper | Optional internal | Pending | Required only for CLI enrichment |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: impact handler returns unstable scores, mislabels coverage evidence, or introduces remote calls by default.
+- **Procedure**: Revert impact implementation commit and remove tool registration; no data migration rollback should be needed.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | None | Core implementation |
+| Core implementation | Setup | Verification |
+| Verification | Core implementation | Phase 005 calibration |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Medium | 45-60 minutes |
+| Core Implementation | High | 3-4 hours |
+| Verification | High | 2-3 hours |
+| **Total** | | **5.5-8 hours** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] Confirm deterministic baseline works without enrichment.
+- [ ] Confirm optional provider config is absent by default.
+
+### Rollback Procedure
+1. Revert the implementation commit.
+2. Run `npm run check`.
+3. Re-run detect_changes tests if that handler was touched.
+
+### Data Reversal
+- **Has data migrations?** No.
+- **Reversal procedure**: N/A.
+<!-- /ANCHOR:enhanced-rollback -->

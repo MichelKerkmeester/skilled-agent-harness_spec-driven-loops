@@ -9,6 +9,7 @@
 
 import { performance } from 'node:perf_hooks';
 import { readFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 import {
   parseHookStdin, hookLog, truncateToTokenBudget,
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, getRequiredSessionId,
@@ -37,7 +38,7 @@ const COMPACT_FEEDBACK_GUARDS = [
 ];
 
 /** Extract the last N lines from a file */
-function tailFile(filePath: string, lines: number): string[] {
+export function tailFile(filePath: string, lines: number): string[] {
   try {
     const content = readFileSync(filePath, 'utf-8');
     const allLines = content.split('\n');
@@ -129,7 +130,7 @@ function detectSpecFolder(lines: string[]): string | null {
 }
 
 /** Build compact context from transcript analysis (legacy fallback) */
-function buildCompactContext(transcriptLines: string[]): string {
+export function buildCompactContext(transcriptLines: string[]): string {
   const filePaths = extractFilePaths(transcriptLines);
   const topics = extractTopics(transcriptLines);
   const sections: string[] = [];
@@ -460,9 +461,16 @@ async function main(): Promise<void> {
   hookLog('info', 'compact-inject', `Cached compact context (${payload.length} chars) for session ${sessionId}`);
 }
 
+function isCliEntrypoint(): boolean {
+  const entrypoint = process.argv[1];
+  return Boolean(entrypoint && import.meta.url === pathToFileURL(entrypoint).href);
+}
+
 // Run — exit cleanly even on error (hooks must never block Claude)
-main().catch((err: unknown) => {
-  hookLog('error', 'compact-inject', `Unhandled error: ${err instanceof Error ? err.message : String(err)}`);
-}).finally(() => {
-  process.exit(0);
-});
+if (isCliEntrypoint()) {
+  main().catch((err: unknown) => {
+    hookLog('error', 'compact-inject', `Unhandled error: ${err instanceof Error ? err.message : String(err)}`);
+  }).finally(() => {
+    process.exit(0);
+  });
+}

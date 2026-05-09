@@ -1,48 +1,115 @@
 ---
-title: "Tasks — 027/003 code-graph impact analysis"
-description: "Per-file tasks for the impact analysis phase."
+title: "Tasks: 027/003 Code Graph Impact Analysis"
+description: "Task list for file-level impact scoring, deterministic normalization, coverage evidence, and explicit enrichment provider options."
+trigger_phrases:
+  - "027 003 impact tasks"
+  - "code graph impact analysis tasks"
+importance_tier: "important"
+contextType: "task"
+_memory:
+  continuity:
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-code-graph-impact-analysis"
+    last_updated_at: "2026-05-09T06:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Aligned tasks.md with manifest anchors and pt-02 scoring/provider amendments"
+    next_safe_action: "Implement deterministic impact analysis baseline first"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-05-09-027-alignment-fix"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Choose fixed caps or graph-baseline semantics for normalizers."
+    answered_questions:
+      - "LLM enrichment defaults to provider none."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: 027/003 code-graph impact analysis
+# Tasks: 027/003 Code Graph Impact Analysis
 
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
-## P0
-| # | Task | File | Done |
-|---|------|------|------|
-| T1 | `computeRiskSignals(filePath, db)` returning 5 signals | `mcp_server/code_graph/lib/code-graph-impact-analysis.ts` (new, ~80 LOC) | [ ] |
-| T2 | `applyRiskFormula(signals, weights)` with tunable RISK_WEIGHTS | same | [ ] |
-| T3 | BFS transitive depth, capped at 3 | same | [ ] |
-| T4 | `analyzeImpact(changedFiles, db, opts)` orchestrator | same (~50 LOC) | [ ] |
-| T5 | Handler with zod schema + readiness gate | `mcp_server/code_graph/handlers/impact-analysis.ts` (new, ~80 LOC) | [ ] |
-| T6 | Register `code_graph_impact_analysis` MCP tool | `mcp_server/code_graph/tools/code-graph-tools.ts` (edit, +3 LOC) | [ ] |
-| T7 | `detect_changes` opt-in risk passthrough | `mcp_server/code_graph/handlers/detect-changes.ts` (edit, +50 LOC) | [ ] |
+---
 
-## P0 — pt-02 amendments (NEW)
+<!-- ANCHOR:notation -->
+## Task Notation
 
-| # | Task | File | Done |
-|---|------|------|------|
-| **T-003A** | File-node aggregation helper (`getNodesForFile`) + tests for multi-symbol files (REQ-010) | `code-graph-impact-analysis.ts` + tests | [ ] |
-| **T-003B** | Deterministic normalizers (`normalizeFanIn`, `normalizeHubDegree`, `normalizeTransitiveDepth`) + snapshot tests (REQ-009) | same + tests | [ ] |
-| **T-003C** | TESTED_BY fixture: `src/foo.ts`, `src/foo.test.ts`, AND unsupported `__tests__/foo.test.ts` or integration layout — assert direction is incoming on production symbol (REQ-011, REQ-012) | tests | [ ] |
-| **T-003D** | BFS depth/cycle fixture proving 3-hop cap with explicit visited set (REQ-013) | tests | [ ] |
-| **T-003E** | Replace boolean `enrichWithLLM` flag with enrichment options schema `{enabled, provider, model?, timeoutMs?, maxCallsPerSession?, maxInputBytes?, cacheKey?}` + skipped-provider output test (REQ-014) | handler + types + tests | [ ] |
-| **T-003F** | Redaction/budget/timeout contract tests if CLI enrichment remains in scope (REQ-014) | tests | [ ] |
-| **REMOVED** | ~~Call cli-opencode by default when `enrichWithLLM` is true~~ — DEFAULT IS NOW `provider: "none"` (per amended REQ-007) | n/a | n/a |
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
 
-## P1
-| # | Task | File | Done |
-|---|------|------|------|
-| T8 | LLM enrichment adapter (default `provider: "none"`, CLI provider opt-in via REQ-014 options shape) | `mcp_server/code_graph/lib/code-graph-llm-risk-enrich.ts` (new, ~80 LOC) | [ ] |
-| T9 | Wire enrichment options shape in handler (NOT boolean flag) | `handlers/impact-analysis.ts` | [ ] |
-| **T-003G** | Layer fallback: emit `{source: "unavailable", value: null}` if Phase 001 layer data missing (REQ-015) | `handlers/impact-analysis.ts` | [ ] |
+**Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
 
-## P0 — Tests + Verification
-| # | Task | File | Done |
-|---|------|------|------|
-| T10 | Unit tests per signal | `mcp_server/tests/code-graph-impact-analysis.vitest.ts` (new) | [ ] |
-| T11 | Unit test formula application | same | [ ] |
-| T12 | Integration test full analyze run | same | [ ] |
-| T13 | `--coverage` ≥80% | terminal | [ ] |
-| T14 | `npm run check` green | terminal | [ ] |
-| T15 | `implementation-summary.md` with file:line evidence | new | [ ] |
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [ ] T001 Define impact output schema with `affected_files`, `risk_scores`, `summary`, and enrichment status.
+- [ ] T002 Define deterministic normalizer strategy for fan-in, hub degree, and transitive depth.
+- [ ] T003 Define enrichment options object and default `provider: "none"` behavior.
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [ ] T004 Create `mcp_server/code_graph/lib/code-graph-impact-analysis.ts`.
+- [ ] T005 Implement `getNodesForFile(filePath, db)` and file-level edge aggregation over all matching `CodeNode` rows.
+- [ ] T006 Compute fan-in, fan-out, hub degree, edge confidence, and coverage evidence from symbol-level graph APIs.
+- [ ] T007 Read incoming `TESTED_BY` edges with `queryEdgesTo(productionSymbol.id, 'TESTED_BY')`.
+- [ ] T008 Emit `coverageUnknownOrMissing` or `{hasTestEdge, coverageEvidence}` when no graph evidence exists.
+- [ ] T009 Implement `normalizeFanIn`, `normalizeHubDegree`, and `normalizeTransitiveDepth`.
+- [ ] T010 Implement 3-hop BFS with explicit visited set in the new module.
+- [ ] T011 Implement `applyRiskFormula()` with heuristic weight labels.
+- [ ] T012 Create `handlers/impact-analysis.ts` and register `code_graph_impact_analysis`.
+- [ ] T013 Add optional `includeRisk=true` integration to `handlers/detect-changes.ts`.
+- [ ] T014 Implement optional layer fallback as unavailable/null when Phase 001 is absent.
+- [ ] T015 Implement optional LLM provider interface with explicit provider, timeout, budget, cache, and redaction options.
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [ ] T016 Add multi-symbol file aggregation tests.
+- [ ] T017 Add deterministic normalizer snapshot tests.
+- [ ] T018 Add TESTED_BY fixture with supported sibling layout and unsupported layout.
+- [ ] T019 Add BFS depth and cycle fixture.
+- [ ] T020 Add skipped-provider output test for default enrichment.
+- [ ] T021 Add CLI provider hardening contract tests if CLI enrichment remains in scope.
+- [ ] T022 Run `npm run check`.
+- [ ] T023 Run `npx vitest run code-graph-impact-analysis.vitest.ts --coverage` and confirm >=80% coverage.
+- [ ] T024 Run strict validation for this spec folder.
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] Deterministic baseline is complete without any remote provider.
+- [ ] Risk scores are reproducible for unchanged graph state.
+- [ ] Coverage absence is represented as unknown-or-missing, not proven untested.
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: `spec.md`
+- **Plan**: `plan.md`
+- **Checklist**: `checklist.md`
+- **Research**: `../research/027-xce-research-based-refinement-pt-02/research.md`
+<!-- /ANCHOR:cross-refs -->

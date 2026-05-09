@@ -66,8 +66,8 @@ Implementation is deterministic: every output field derives from data already in
 | **Created** | 2026-05-08 |
 | **Branch** | `main` |
 | **Parent Packet** | `027-xce-research-based-refinement` |
-| **Source Proposal** | `research/sub-packet-proposals.md` Proposal 1 |
-| **Source Findings** | `research/findings.md` items #1, #8 |
+| **Source Proposal** | `../research/sub-packet-proposals.md` Proposal 1 |
+| **Source Findings** | `../research/findings.md` items #1, #8 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -119,8 +119,8 @@ Ship the deterministic HLD/LLD narrative as a new MCP tool (`code_graph_hld_lld`
 
 | Path | Purpose |
 |------|---------|
-| `research/iterations/iteration-001.md` | RQ1 findings (gap definition + minimum-viable schema) |
-| `research/findings.md` items #1, #8 | Adoption verdict + rationale |
+| `../research/iterations/iteration-001.md` | RQ1 findings (gap definition + minimum-viable schema) |
+| `../research/findings.md` items #1, #8 | Adoption verdict + rationale |
 | `mcp_server/code_graph/lib/code-graph-db.ts:107-145` | code_files / code_nodes / code_edges schema |
 | `mcp_server/code_graph/lib/code-graph-db.ts:949-1083` | queryEdgesFrom/To, queryFileDegrees APIs |
 | `mcp_server/code_graph/lib/indexer-types.ts:12-44` | SymbolKind, EdgeType, DEFAULT_EDGE_WEIGHTS |
@@ -212,7 +212,7 @@ Ship the deterministic HLD/LLD narrative as a new MCP tool (`code_graph_hld_lld`
 
 ### Performance
 - **NFR-P01**: `generateFileNarrative()` completes in <100ms p95 on a 500-symbol file (existing db query times + template rendering).
-- **NFR-P02**: No N+1 query pattern — batch all symbol queries via single `queryEdgesFrom(filePath)` then in-memory traversal.
+- **NFR-P02**: No N+1 query pattern — collect the file's symbols first, then batch edge lookups through a file-scoped helper or single SQL query rather than calling symbol-edge queries in a per-symbol loop.
 
 ### Reliability
 - **NFR-R01**: Deterministic output for identical db state.

@@ -97,7 +97,7 @@ Cross-validate the 5-phase XCE adoption implementation plans (001-005) inside `.
 
 Pass-1 (deepseek-v4-pro) findings preserved at `027/research/`:
 - `research.md` — full synthesis with PRAT reconstruction + steering pattern transfer
-- `findings.md` — adoption matrix (4 ADOPT, 6 ADAPT, 2 DEFER, 9 SKIP across 21 features)
+- `findings.md` — adoption matrix (4 ADOPT, 9 ADAPT, 2 DEFER, 6 SKIP across 21 feature rows; 9 expanded skip boundaries)
 - `sub-packet-proposals.md` — 5 sub-packet proposals (became phases 001-005)
 
 The 5 phase children scaffolds at `027/{001..005}-*/spec.md` etc. are the input for cross-validation.

@@ -1,69 +1,114 @@
 ---
-title: "Tasks — 027/005 code-graph adoption eval"
-description: "Per-file tasks for the eval harness phase."
+title: "Tasks: 027/005 Code Graph Adoption Eval"
+description: "Task list for the Level 3 local evaluation harness, dispatcher hardening, result schema, and reporting workflow."
+trigger_phrases:
+  - "027 005 adoption eval tasks"
+  - "code graph adoption eval tasks"
+importance_tier: "important"
+contextType: "task"
+_memory:
+  continuity:
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval"
+    last_updated_at: "2026-05-09T06:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Aligned tasks.md with manifest anchors and Level 3 hardening amendments"
+    next_safe_action: "Implement provider preflight, dispatcher, schema, and mocked stress before live harness"
+    blockers:
+      - "Phases 001-004 must ship before full eval harness run."
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "checklist.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-05-09-027-alignment-fix"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Choose exact task curation source."
+    answered_questions:
+      - "Subprocess hardening stays in this Level 3 packet."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: 027/005 code-graph adoption eval
+# Tasks: 027/005 Code Graph Adoption Eval
 
 <!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
-## P0 — Task curation
-| # | Task | File | Done |
-|---|------|------|------|
-| T1 | Cherry-pick 12-20 refactoring tasks from recent PRs | `mcp_server/scripts/dist/eval/tasks/labeled-tasks.jsonl` (new, ~20 lines) | [ ] |
-| T2 | Each task labeled with id/prompt/expected_files_to_read/expected_completeness_keywords | same | [ ] |
-| T3 | Manual review of first 5 tasks for quality | spec author | [ ] |
+---
 
-## P0 — Lib + dispatcher
-| # | Task | File | Done |
-|---|------|------|------|
-| T4 | `getSessionTokens(sessionId, db)` query helper | `mcp_server/lib/eval/token-measurement.ts` (new, ~25 LOC) | [ ] |
-| T5 | `pairedDelta()` paired t-test helper | same | [ ] |
-| T6 | `computeFileReadsAvoided()` metric | `mcp_server/lib/eval/eval-metrics.ts` (edit, +20 LOC) | [ ] |
-| T7 | `computeAnswerCompleteness()` Jaccard metric | same | [ ] |
-| T8 | CLI dispatcher main | `mcp_server/scripts/dist/eval/code-graph-adoption-eval.js` (new, ~200 LOC) | [ ] |
-| T9 | Subprocess opencode run with `</dev/null` + 10-min timeout | same | [ ] |
-| T10 | EVAL_ADVISOR_MODE env toggle | same | [ ] |
-| T11 | Incremental JSONL result saving | same | [ ] |
-| T12 | Retry logic (2 retries per task) | same | [ ] |
+<!-- ANCHOR:notation -->
+## Task Notation
 
-## P0 — Report
-| # | Task | File | Done |
-|---|------|------|------|
-| T13 | Read run JSONL files | `mcp_server/lib/eval/report-generator.ts` (new, ~50 LOC) | [ ] |
-| T14 | Paired t-test per metric | same | [ ] |
-| T15 | Markdown report with pass/fail at p<0.05 | same | [ ] |
-| T16 | Power-analysis section | same | [ ] |
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
 
-## P0 — Smoke test
-| # | Task | File | Done |
-|---|------|------|------|
-| T17 | 1-task smoke per condition | `mcp_server/tests/code-graph-adoption-eval.vitest.ts` (new, ~100 LOC) | [ ] |
-| T18 | Assert result file format | same | [ ] |
-| T19 | Assert metric computation | same | [ ] |
+**Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
 
-## P0 — Stress config
-| # | Task | File | Done |
-|---|------|------|------|
-| T20 | Add stress entry | `mcp_server/vitest.stress.config.ts` (edit, +10 LOC) | [ ] |
+---
 
-## P0 — pt-02 amendments (NEW)
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
 
-| # | Task | File | Done |
-|---|------|------|------|
-| **T-005A** | Provider preflight cache + auth-shaped error invalidation (REQ-011) | `mcp_server/lib/eval/provider-preflight.ts` (new, ~50 LOC) + tests | [ ] |
-| **T-005B** | Hardened subprocess dispatcher helper: `</dev/null` stdin, 600s timeout, SIGTERM→grace→SIGKILL, close-event wait, stdout/stderr capture (REQ-012) | `mcp_server/lib/eval/dispatcher.ts` (new, ~80-120 LOC) + tests | [ ] |
-| **T-005C** | Discriminated result row schema (status/attempt/maxAttempts/condition/taskId/metrics/error/stdoutPath/stderrPath/sessionId/includeInPairedStats) + zod validation (REQ-013) | `mcp_server/lib/eval/result-schema.ts` (new, ~40 LOC) + tests | [ ] |
-| **T-005D** | Update report generator to skip incomplete pairs + count `complete_pairs`/`incomplete_pairs`/`skipped_rows` separately (REQ-009 amended) | `report-generator.ts` (edit) + tests | [ ] |
-| **T-005E** | Mocked 12×2 dispatcher stress test with 6 outcome classes (success / retry / timeout / metrics-missing / DB-readiness / final-failed) (REQ-014) | `mcp_server/tests/eval-dispatcher-stress.vitest.ts` (new, ~150 LOC) | [ ] |
-| **T-005F** | Stale-process detection + DB/readiness short-backoff retry branch (REQ-015) | `dispatcher.ts` + tests | [ ] |
-| **T-keep-but-not-sufficient** | 1×2 smoke test KEPT but explicitly NOT sufficient reliability coverage (per amendment); MUST pass + REQ-014 stress MUST also pass | smoke + stress | [ ] |
+- [ ] T001 Curate 12-20 labeled refactoring tasks from recent repo work.
+- [ ] T002 Manually review the first 5 tasks for label quality.
+- [ ] T003 Define provider preflight behavior and auth-shaped error invalidation.
+- [ ] T004 Define discriminated result row schema and zod validation.
+<!-- /ANCHOR:phase-1 -->
 
-## P0 — Verification + Run
-| # | Task | File | Done |
-|---|------|------|------|
-| T21 | `npm run check` green | terminal | [ ] |
-| T22 | `npx vitest run code-graph-adoption-eval.vitest.ts --coverage` ≥80% | terminal | [ ] |
-| T22b | **`npx vitest run eval-dispatcher-stress.vitest.ts` PASS (REQ-014 mocked stress)** | terminal | [ ] |
-| T23 | Run full harness: 12 tasks × 2 runs (only after mocked stress passes) | terminal | [ ] |
-| T24 | Review report; document findings | `implementation-summary.md` (new) | [ ] |
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [ ] T005 Implement `mcp_server/lib/eval/provider-preflight.ts`.
+- [ ] T006 Implement hardened dispatcher helper with ignored stdin, 600s timeout, SIGTERM, 5s grace, SIGKILL, close-event wait, and stdout/stderr capture.
+- [ ] T007 Implement result schema with `status`, `attempt`, `maxAttempts`, `condition`, `taskId`, `metrics`, `error`, `stdoutPath`, `stderrPath`, `sessionId`, and `includeInPairedStats`.
+- [ ] T008 Implement token-measurement helper over `session-analytics-db.ts`.
+- [ ] T009 Implement CLI dispatcher at `mcp_server/scripts/dist/eval/code-graph-adoption-eval.js`.
+- [ ] T010 Implement metrics and report generator with complete/incomplete/skipped pair accounting.
+- [ ] T011 Add stress config entry for the harness.
+- [ ] T012 Add stale-process detection and short-backoff retry for DB-lock/readiness failures.
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [ ] T013 Add mocked 12 x 2 dispatcher stress test covering success, retry, timeout, metrics-missing, DB/readiness retry, and final-failed rows.
+- [ ] T014 Add 1 x 2 smoke test as integration sanity, not reliability proof.
+- [ ] T015 Run `npx vitest run eval-dispatcher-stress.vitest.ts`.
+- [ ] T016 Run `npx vitest run code-graph-adoption-eval.vitest.ts --coverage` and confirm >=80% coverage.
+- [ ] T017 Run `npm run check`.
+- [ ] T018 Run full harness only after mocked stress passes.
+- [ ] T019 Author `implementation-summary.md` with run findings.
+- [ ] T020 Run strict validation for this spec folder.
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] Mocked stress test passes before any live full-harness run.
+- [ ] Result schema safely excludes incomplete pairs from paired statistics.
+- [ ] Provider/auth failures fail fast instead of consuming the run budget.
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: `spec.md`
+- **Plan**: `plan.md`
+- **Checklist**: `checklist.md`
+- **Decision Record**: `decision-record.md`
+- **Research**: `../research/027-xce-research-based-refinement-pt-02/research.md`
+<!-- /ANCHOR:cross-refs -->

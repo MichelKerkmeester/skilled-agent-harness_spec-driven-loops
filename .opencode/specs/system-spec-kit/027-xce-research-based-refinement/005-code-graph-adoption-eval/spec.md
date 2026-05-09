@@ -35,7 +35,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Build the lightweight eval harness proposed in 027 RQ7 (research/iterations/iteration-007.md F-041) with RQ8 token-reduction instrumentation (iteration-008 F-046). A CLI dispatcher spawns OpenCode subprocesses to execute 12-20 refactoring tasks on our own codebase in two modes: **baseline** (current advisor brief) vs **after** (Phase 004's MUST-invoke mandate brief). Measures 3 primary metrics (file-reads-avoided, context-accuracy via `computeHitRate`, answer-completeness via Jaccard) + 2 diagnostics (token waste ratio, first-action adherence) + RQ8 token-reduction instrumentation that queries `session-analytics-db.ts` for `total_tokens` post-session-stop.
+Build the lightweight eval harness proposed in 027 RQ7 (`../research/iterations/iteration-007.md` F-041) with RQ8 token-reduction instrumentation (iteration-008 F-046) and pt-02 subprocess hardening from `../research/027-xce-research-based-refinement-pt-02/research.md`. A CLI dispatcher spawns OpenCode subprocesses to execute 12-20 refactoring tasks on our own codebase in two modes: **baseline** (current advisor brief) vs **after** (Phase 004's MUST-invoke mandate brief). Measures 3 primary metrics (file-reads-avoided, context-accuracy via `computeHitRate`, answer-completeness via Jaccard) + 2 diagnostics (token waste ratio, first-action adherence) + RQ8 token-reduction instrumentation that queries `session-analytics-db.ts` for `total_tokens` post-session-stop.
 
 ADAPT verdict from findings.md items #14 (token reduction) + #15 (benchmark methodology, DEFER → built here as the lightweight local alternative).
 
@@ -62,7 +62,7 @@ ADAPT verdict from findings.md items #14 (token reduction) + #15 (benchmark meth
 | **Priority** | P2 |
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
-| **Source** | `research/sub-packet-proposals.md` Proposal 5; `research/iterations/iteration-007.md`, `iteration-008.md` |
+| **Source** | `../research/sub-packet-proposals.md` Proposal 5; `../research/iterations/iteration-007.md`, `iteration-008.md`; pt-02 amendments in `../research/027-xce-research-based-refinement-pt-02/` |
 | **Depends on** | `027/001-code-graph-hld-lld`, `027/002-code-graph-trace`, `027/003-code-graph-impact-analysis`, `027/004-skill-advisor-first-action-mandate` |
 <!-- /ANCHOR:metadata -->
 
@@ -182,31 +182,28 @@ XCE claims +7.4pp on SWE-bench Verified (external/README.md:37-47) and ~20% toke
 
 ---
 
-<!-- ANCHOR:nfr -->
-## L2: NON-FUNCTIONAL REQUIREMENTS
+<!-- ANCHOR:questions -->
+
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
 - **NFR-P01**: Per-task wallclock <10 min p95.
 - **NFR-P02**: Total run wallclock for 20 tasks × 2 conditions <2 hours.
 - **NFR-R01**: Crash recovery: rerun continues from incremental JSONL state.
 - **NFR-A01**: Run output is reproducible (same task set + same git SHA + same model = same result envelope, modulo LLM nondeterminism).
-<!-- /ANCHOR:nfr -->
 
 ---
 
-<!-- ANCHOR:edge-cases -->
-## L2: EDGE CASES
+## 8. EDGE CASES
 
 - Subprocess hangs beyond 10 min: SIGTERM, mark `timeout: true`, continue with next task.
 - DB readiness gate fails mid-task: mark `error: db_unavailable`, retry once.
 - session-analytics-db has no row for session_id: mark `error: metrics_missing`, retry once with renewed session capture.
 - Task expects file but file doesn't exist (codebase changed): mark `error: stale_task_set`.
 - Both conditions produce identical metrics: report `effect: null` and explain — likely tasks too easy.
-<!-- /ANCHOR:edge-cases -->
 
 ---
 
-<!-- ANCHOR:complexity -->
-## L2: COMPLEXITY ASSESSMENT
+## 9. COMPLEXITY ASSESSMENT
 
 | Dimension | Score |
 |-----------|-------|
@@ -214,14 +211,64 @@ XCE claims +7.4pp on SWE-bench Verified (external/README.md:37-47) and ~20% toke
 | Risk (subprocess reliability, statistical power, auth lifecycle, locked-state recovery, schema discrimination) | 22/25 |
 | Research (mostly done; task curation remains) | 8/20 |
 | **Total** | **55/70** | **Level 3** (per pt-02 amendment; subprocess hardening kept in-packet, see `decision-record.md`) |
-<!-- /ANCHOR:complexity -->
 
 ---
 
-<!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Subprocess timeout leaves OpenCode state locked | High | Medium | REQ-012 lifecycle cleanup plus REQ-015 stale-process guard |
+| R-002 | Provider auth failure burns full run budget | High | Medium | REQ-011 cached provider auth preflight and auth-error invalidation |
+| R-003 | Mixed failed rows corrupt paired statistics | High | Medium | REQ-013 discriminated row schema plus REQ-009 complete-pair filtering |
+| R-004 | Task labels are too weak to measure real impact | Medium | Medium | Manual review first 5 tasks and keep task set versioned |
+| R-005 | Effect size is below statistical power | Medium | Medium | Report inconclusive results honestly and include power analysis |
+
+---
+
+## 11. USER STORIES
+
+### US-001: Run Paired Baseline vs After Evaluation (Priority: P0)
+
+**As a** spec-kit maintainer, **I want** a paired local harness, **so that** I can measure whether code-graph steering reduces file reads and token use on this repository.
+
+**Acceptance Criteria**:
+1. **Given** the task set is valid and providers are available, **When** the CLI runs baseline and after conditions, **Then** the report includes paired metrics for complete task pairs only.
+
+---
+
+### US-002: Survive Dispatcher Failure Modes (Priority: P0)
+
+**As a** maintainer running a long eval, **I want** subprocess failures to be isolated and recorded, **so that** a timeout, auth error, or metrics miss does not corrupt the whole run.
+
+**Acceptance Criteria**:
+1. **Given** mocked subprocesses produce mixed outcomes, **When** the stress test runs 12 tasks by 2 conditions, **Then** each row validates against the discriminated schema and incomplete pairs are excluded from paired statistics.
+
+---
+
+### US-003: Produce an Honest Adoption Report (Priority: P1)
+
+**As a** reviewer, **I want** the report to distinguish complete pairs, incomplete pairs, skipped rows, and statistical power, **so that** I can tell a real improvement from an inconclusive result.
+
+**Acceptance Criteria**:
+1. **Given** a run contains missing or failed rows, **When** the report generator runs, **Then** it counts those rows separately and does not include them in the paired t-test.
+
+---
+
+## 12. OPEN QUESTIONS
 
 - Task curation: cherry-pick from real refactor PRs in this repo, or synthesize from RQ patterns? (Default: cherry-pick from recent merged PRs for ground-truth labels.)
 - Cross-validation across LLM providers? (Default: out of scope — single model both conditions.)
 - Should harness output feed back into Phase 003's `RISK_WEIGHTS` tuning automatically? (Default: no, manual review per packet.)
 <!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `checklist.md`
+- **Decision Records**: See `decision-record.md`
+- **Research Part 1**: See `../research/research.md`
+- **Research Part 2**: See `../research/027-xce-research-based-refinement-pt-02/research.md`

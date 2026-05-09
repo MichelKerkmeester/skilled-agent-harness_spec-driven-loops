@@ -1,6 +1,6 @@
 ---
 title: "Phase 002 — Symbol-to-Architecture Trace Tool (`code_graph_trace`)"
-description: "ADAPT XCE's xce_trace concept: walk symbol → class → module → architectural role using existing CONTAINS edges and the HLD/LLD classification from Phase 001. New code_graph_trace MCP tool. ~310 LOC: 1 new lib + 1 new handler + 1 tool reg edit + optional code_packages table + optional memoization cache."
+description: "ADAPT XCE's xce_trace concept: walk symbol to file/module/architectural role using CodeNode.filePath as the ownership truth, optional CONTAINS edges for class/method display, and Phase 001 HLD/LLD classification. New code_graph_trace MCP tool. ~390-460 LOC with sparse-containment fixtures and optional cache/package follow-ups."
 trigger_phrases:
   - "027 phase 002"
   - "code-graph trace"
@@ -34,14 +34,14 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Implement the trace pipeline proposed in 027 RQ2 (research/iterations/iteration-002.md F-008, F-012). A new `mcp_server/code_graph/lib/code-graph-trace.ts` walks the containment chain `symbol → class → module → architectural role` using existing CONTAINS edges (queryEdgesTo at code-graph-db.ts:972-987), `resolveSubjectFilePath` (code-graph-db.ts:989-1015), and the HLD/LLD classification from Phase 001 for the architectural-role terminus. Exposed as a new `code_graph_trace` MCP tool. Optional recursive memoization cache (~50 LOC SQLite `trace_cache` table) and optional `code_packages` table (~50 LOC) for formalized module hierarchy.
+Implement the trace pipeline proposed in 027 RQ2 (`../research/iterations/iteration-002.md` F-008/F-012) with pt-02 corrections from `../research/027-xce-research-based-refinement-pt-02/research.md`. A new `mcp_server/code_graph/lib/code-graph-trace.ts` resolves the file rung from `CodeNode.filePath`, derives module ownership from an explicit file-path policy, uses available CONTAINS/fqName metadata only for class/method display, and calls Phase 001's HLD/LLD classification for the architectural-role terminus. Exposed as a new `code_graph_trace` MCP tool. Optional recursive memoization cache and optional `code_packages` table remain P1 follow-ups after the filePath policy is correct.
 
 ADAPT verdict from findings.md item #2 + PRAT stages #6, #7, #9 (Persistent / Recursive / Tree).
 
 **Key Decisions**:
-- **Existing CONTAINS edges cover 3 of 4 trace rungs** (symbol→class→file). Only "architectural role" needs Phase 001's classification.
-- **Schema delta NOT required for MVP** — `code_packages` table is optional optimization.
-- **Memoization cache is optional** — measure first, add cache if hot path identified.
+- **`CodeNode.filePath` is the ownership truth** for the file rung; CONTAINS is not sufficient across top-level functions, Bash/doc symbols, module nodes, or default exports.
+- **Module ownership is a file-path policy**, not dotted `fq_name` splitting.
+- **Schema delta NOT required for MVP**; `code_packages` and `trace_cache` are optional P1 optimizations after correctness fixtures pass.
 
 **Critical Constraints**:
 - Phase 001 (HLD/LLD) must ship first — its `classifyFileRole()` is the source for the architectural-role rung.
@@ -59,7 +59,7 @@ ADAPT verdict from findings.md item #2 + PRAT stages #6, #7, #9 (Persistent / Re
 | **Priority** | P1 |
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
-| **Source** | `research/sub-packet-proposals.md` Proposal 2; `research/iterations/iteration-002.md` |
+| **Source** | `../research/sub-packet-proposals.md` Proposal 2; `../research/iterations/iteration-002.md`; pt-02 amendments in `../research/027-xce-research-based-refinement-pt-02/` |
 | **Depends on** | `027/001-code-graph-hld-lld` (architectural-role labels) |
 <!-- /ANCHOR:metadata -->
 
@@ -70,7 +70,7 @@ ADAPT verdict from findings.md item #2 + PRAT stages #6, #7, #9 (Persistent / Re
 
 XCE's `xce_trace` (external/README.md:211-218) walks `function → class → module → architectural role` and returns a labeled chain payload. Our edge graph stores parent/child via `CONTAINS` (indexer-types.ts:19) but no `code_graph_trace` tool surfaces the chain. AI consumers manually walk via `code_graph_query` for each rung, which is inefficient and breaks the abstraction.
 
-**Purpose**: ship a single MCP tool call that returns the full trace chain from any symbol up to its architectural role, reusing existing CONTAINS edges + Phase 001 classification.
+**Purpose**: ship a single MCP tool call that returns the full trace chain from any symbol up to its architectural role, reusing `CodeNode.filePath`, available class/method containment metadata, and Phase 001 classification.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -81,7 +81,9 @@ XCE's `xce_trace` (external/README.md:211-218) walks `function → class → mod
 ### In Scope
 - New `mcp_server/code_graph/lib/code-graph-trace.ts` (~150 LOC):
   - `traceSymbol(symbolId, db, opts)` → `{symbol, class?, file, module, architectural_role}`
-  - Walks `queryEdgesTo(symbolId, 'CONTAINS')` recursively until hitting a file-level node.
+  - Resolves the file rung from `CodeNode.filePath` for the subject symbol.
+  - Uses `queryEdgesTo(symbolId, 'CONTAINS')` only to decorate class/method ancestry where reliable.
+  - Derives module ownership from a documented file-path policy.
   - Calls `classifyFileRole()` from Phase 001 for the role rung.
 - New handler `mcp_server/code_graph/handlers/trace.ts` (~60 LOC) with zod schema + readiness gate reuse.
 - Tool registration `mcp_server/code_graph/tools/code-graph-tools.ts` (+3 LOC).

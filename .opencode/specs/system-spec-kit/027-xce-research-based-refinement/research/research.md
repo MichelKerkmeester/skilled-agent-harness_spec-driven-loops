@@ -5,7 +5,7 @@ iterations: 10 (001–009 per-RQ, 010 synthesis)
 converged: true
 stopReason: "max_iterations_with_synthesis"
 totalFindings: 47 (F-001 through F-047)
-verdicts: {ADOPT:4, ADAPT:6, DEFER:2, SKIP:9}
+verdicts: {ADOPT:4, ADAPT:9, DEFER:2, SKIP:6}
 created: "2026-05-08T18:00:00Z"
 ---
 
@@ -13,7 +13,7 @@ created: "2026-05-08T18:00:00Z"
 
 ## Executive Summary
 
-The Xanther Context Engine (XCE) is a hosted SaaS MCP server that delivers layered architectural context (HLD, LLD, component descriptions, call graphs, impact analysis) via 5 tool primitives, claiming +7.4pp on SWE-bench Verified for Sonnet 4.0 and ~20% token reduction when steering rules are active. Over 9 research iterations comparing XCE's public surface (283-line `external/README.md` + 6 steering files) against our local `code_graph` (`mcp_server/code_graph/`, 16 source files) and `skill_advisor` (`mcp_server/skill_advisor/`, core `lib/render.ts`) subsystems, we identified 4 ADOPT candidates, 6 ADAPT patterns, 2 DEFER items, and 9 SKIP boundaries. The core finding: three of four PRAT stages (Persistent, Recursive, Tree) already have working local equivalents in our code_graph infrastructure; the Abstract stage — HLD/LLD narrative generation — is the sole gap warranting new implementation (~200 LOC template-only baseline). XCE's SaaS hosting model, pricing, static unconditional steering, and closed-source PRAT internals are architecturally incompatible with our local-first, dynamic-routing architecture. Five concrete sub-packets are proposed totaling ~1,400 estimated LOC across 4 packets, with the eval harness deferred to a measurement sub-packet. This synthesis provides file:line-cited evidence for every claim, satisfying all 11 REQs in the packet spec.
+The Xanther Context Engine (XCE) is a hosted SaaS MCP server that delivers layered architectural context (HLD, LLD, component descriptions, call graphs, impact analysis) via 5 tool primitives, claiming +7.4pp on SWE-bench Verified for Sonnet 4.0 and ~20% token reduction when steering rules are active. Over 9 research iterations comparing XCE's public surface (283-line `external/README.md` + 6 steering files) against our local `code_graph` (`mcp_server/code_graph/`, 16 source files) and `skill_advisor` (`mcp_server/skill_advisor/`, core `lib/render.ts`) subsystems, we identified 4 ADOPT feature rows, 9 ADAPT feature rows, 2 DEFER rows, and 6 SKIP rows, plus 9 expanded non-adoption boundaries. The core finding: three of four PRAT stages (Persistent, Recursive, Tree) already have working local equivalents in our code_graph infrastructure; the Abstract stage — HLD/LLD narrative generation — is the sole gap warranting new implementation. XCE's SaaS hosting model, pricing, static unconditional steering, and closed-source PRAT internals are architecturally incompatible with our local-first, dynamic-routing architecture. Five concrete child phases are now scoped at ~1,900-2,320 LOC after pt-02 cross-validation amendments. This synthesis provides file:line-cited evidence for every claim, satisfying all 11 REQs in the packet spec.
 
 ---
 
@@ -244,7 +244,7 @@ LLM generates natural-language descriptions per file/symbol from graph data + do
 
 ### Alternative C: Hybrid — template baseline + LLM enrichment on demand (target end-state)
 
-Template output serves as the always-available baseline. A `enrichWithLLM: true` flag triggers a generation step that appends a natural-language narrative paragraph. The LLM receives the template output as its prompt context, grounding it in deterministic structural facts and reducing hallucination risk.
+Template output serves as the always-available baseline. Pass 1 described this as an `enrichWithLLM: true` flag; pt-02 supersedes that boolean with an explicit provider-options contract and `provider: "none"` default. The LLM receives the template output as its prompt context only when enrichment is explicitly configured, grounding it in deterministic structural facts and reducing hallucination risk.
 
 **Selection rationale**: Combines the consistency of templates with the readability of LLM output. Template output doubles as a hallucination guard. Follows the same architecture as RQ3's impact analysis (deterministic baseline + optional LLM enrichment).
 

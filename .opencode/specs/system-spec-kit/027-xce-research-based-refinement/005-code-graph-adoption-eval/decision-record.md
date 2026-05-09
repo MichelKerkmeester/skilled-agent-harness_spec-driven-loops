@@ -1,94 +1,173 @@
 ---
-title: "Decision Record — 027/005 Phase Level Bump (L2→L3)"
-description: "Rationale for keeping subprocess/auth/result-schema hardening in-packet (Level 3) rather than splitting it into a separate prerequisite packet."
+title: "Decision Record: 027/005 Code Graph Adoption Evaluation Harness"
+description: "Architecture decisions for keeping subprocess/auth/result-schema hardening in the Level 3 eval harness packet."
+trigger_phrases:
+  - "027 phase 005 decision record"
+  - "code graph adoption eval adr"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval"
+    last_updated_at: "2026-05-09T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Converted Phase 005 decision record to Level 3 ADR structure"
+    next_safe_action: "Use ADR-001 as implementation guardrail for dispatcher hardening"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2 -->
-# Decision Record: Phase 005 Level Bump (L2 → L3)
+# Decision Record: 027/005 Code Graph Adoption Evaluation Harness
 
-**Date**: 2026-05-08
-**Status**: Accepted
-**Driver**: pt-02 cross-validation amendment (`pt-02/sub-packet-amendments.md` §"Phase 005 amendments")
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
 ---
 
-## DR-001: Bump Phase 005 from Level 2 to Level 3
+<!-- ANCHOR:adr-001 -->
+## ADR-001: Bump Phase 005 from Level 2 to Level 3
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-08 |
+| **Deciders** | Spec-kit research refinement owner |
+| **Driver** | pt-02 cross-validation amendments for Phase 005 |
+
+---
+
+<!-- ANCHOR:adr-001-context -->
+### Context
+
+The pt-02 cross-validation cycle flagged Phase 005 as `NEEDS_AMENDMENT` with five blocking operational findings:
+
+- **B-iter005-001**: Subprocess lifecycle is underspecified.
+- **B-iter005-002**: Provider auth preflight is missing.
+- **B-iter005-003**: A subprocess can survive timeout and keep shared OpenCode state locked.
+- **B-iter005-004**: Result row schema is loose enough to corrupt paired statistics.
+- **B-iter005-005**: A 1 by 2 smoke test is not enough reliability proof for a 12 to 20 task by 2 condition harness.
+
+### Constraints
+
+- The eval harness is the only current consumer of this dispatcher hardening.
+- The harness is last in the phase sequence and depends on Phases 001 through 004.
+- Live runs are slow and quota-consuming, so failure contracts need mocked coverage first.
+- The phase must preserve complete-pair statistical integrity under mixed success, timeout, retry, and metrics-missing outcomes.
+<!-- /ANCHOR:adr-001-context -->
+
+---
+
+<!-- ANCHOR:adr-001-decision -->
+### Decision
+
+**We chose**: Keep subprocess/auth/result-schema hardening inside Phase 005 and bump the phase from Level 2 to Level 3.
+
+**How it works**: Phase 005 owns provider preflight, hardened subprocess lifecycle, discriminated JSONL result rows, stale-process retry behavior, incomplete-pair reporting, and a mocked 12 by 2 dispatcher stress test before any live full harness run.
+<!-- /ANCHOR:adr-001-decision -->
+
+---
+
+<!-- ANCHOR:adr-001-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Level 3 integrated hardening** | Keeps risk controls with the only consumer; no new phase dependency; aligns with pt-02 blockers | Larger single packet, roughly 680 to 800 LOC | 8/10 |
+| Separate subprocess-hardening packet | Smaller eval packet; reusable if a second consumer appears | Adds a sixth sibling phase and dependency edge before reuse is earned | 5/10 |
+| Stay Level 2 and reject blockers | Lower upfront work | Leaves timeout, auth, schema, and stress-test gaps that pt-02 explicitly found | 2/10 |
+
+**Why this one**: The hardening is necessary for the harness to produce trustworthy results, and extracting it before another consumer exists would add coordination cost without clear reuse.
+<!-- /ANCHOR:adr-001-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-001-consequences -->
+### Consequences
+
+**What improves**:
+- The eval harness has explicit failure semantics before live runs.
+- Paired statistics exclude incomplete pairs by construction.
+- Provider and subprocess failures fail fast or record structured rows instead of silently corrupting output.
+
+**What it costs**:
+- The phase grows from the original Level 2 estimate to a Level 3 packet.
+- Implementation sequencing becomes stricter: preflight, dispatcher helper, schema, mocked stress, report, smoke, then live run.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Single packet becomes too large | Medium | Keep implementation order narrow and defer shared extraction until a second consumer appears |
+| Mocked stress diverges from live subprocess behavior | Medium | Keep one-task-per-condition smoke after mocked stress |
+| Result schema becomes too rigid | Low | Use explicit versioning if later metrics need additional fields |
+<!-- /ANCHOR:adr-001-consequences -->
+
+---
+
+<!-- ANCHOR:adr-001-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | pt-02 found five blocking operational gaps in the original Level 2 shape |
+| 2 | **Beyond Local Maxima?** | PASS | Split-packet and reject-blocker alternatives were evaluated |
+| 3 | **Sufficient?** | PASS | REQ-011 through REQ-015 cover auth, lifecycle, schema, stress, and stale-process behavior |
+| 4 | **Fits Goal?** | PASS | The goal is a trustworthy local adoption eval, not a generic process library |
+| 5 | **Open Horizons?** | PASS | The dispatcher helper can still be extracted later if another consumer appears |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-001-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-001-impl -->
+### Implementation
+
+**What changes**:
+- Phase 005 remains Level 3.
+- `spec.md` includes REQ-011 through REQ-017 and Level 3 risk/user-story sections.
+- `tasks.md` sequences mocked dispatcher stress before live full harness execution.
+- `checklist.md` records the mocked stress gate, subprocess hardening, and complete-pair reporting checks.
+
+**How to roll back**: Split REQ-011 through REQ-015 into a new prerequisite phase, downgrade Phase 005 to Level 2, and update parent phase dependencies. Do not downgrade without preserving the pt-02 blocker coverage somewhere else.
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
+
+---
+
+## ADR-002: Mocked Stress Test Before Live Harness Run
+
+### Status
+
+Accepted.
 
 ### Context
 
-The pt-02 cross-validation cycle (10 iterations of cli-codex deep-research, 2026-05-08) flagged Phase 005 as `NEEDS_AMENDMENT` with **5 BLOCKING findings** that all converge on operational-complexity gaps:
-
-- **B-iter005-001**: Subprocess lifecycle is under-specified (no SIGTERM-then-SIGKILL escalation, no close-event wait, no stdin handling).
-- **B-iter005-002**: No provider auth preflight; auth failures could consume the full 2-hour run budget.
-- **B-iter005-003**: Subprocess can survive timeout and keep shared OpenCode state locked.
-- **B-iter005-004**: Result row schema is loose; mixed failures corrupt paired statistics.
-- **B-iter005-005**: No mocked stress test — only a 1×2 smoke test, which is insufficient reliability coverage for a 12-20 task × 2 condition × N≥20 dispatch loop.
-
-The amendments add 4 new P0 REQs (REQ-011 preflight, REQ-012 lifecycle, REQ-013 result schema, REQ-014 mocked stress) + 1 new P1 REQ (REQ-015 stale-process guard), with an estimated +180-300 LOC delta on top of the original ~500 LOC L2 estimate.
+The original 1 by 2 smoke test proves only that the harness can start one baseline and one after run. It does not prove dispatcher behavior under mixed success, retry, timeout, metrics-missing, DB/readiness retry, and final-failed outcomes.
 
 ### Decision
 
-**Keep all subprocess/auth/result-schema hardening inside Phase 005 and bump the phase from Level 2 to Level 3.**
+REQ-014 mocked dispatcher stress is a hard prerequisite before any manual full-harness invocation. The smoke test remains valuable, but only as an integration sanity check after mocked stress passes.
 
-### Alternatives considered
+### Consequences
 
-| Option | Description | Rejected because |
-|--------|-------------|------------------|
-| **A. Bump 005 to L3 (chosen)** | Add subprocess hardening REQs (REQ-011..015) to 005 and bump level. | n/a — chosen |
-| **B. Split out a "subprocess hardening" prerequisite packet** | Create a new sibling phase (e.g., `006-subprocess-hardening`) that owns the dispatcher helper, preflight, schema. 005 would then depend on 006. | Adds 6th sibling phase to a packet that's already 5-deep; adds dependency edge that ripples through 005's plan; the dispatcher helper has no consumer outside the eval harness, so isolating it doesn't earn reuse leverage; LOC is comparable (~200 LOC dispatcher helper + ~300 LOC 005 vs ~500 LOC integrated 005). |
-| **C. Leave 005 at L2 and reject the BLOCKING findings** | Treat the 5 findings as nice-to-haves and ship the harness without the hardening REQs. | Rejected: pt-02 cross-validation specifically caught these; the L2 envelope materially understates complexity; the harness will produce corrupt paired statistics under realistic failure mixes (timeout + retry + DB-readiness lock + auth flake) without REQ-013/014. |
-
-### Trade-off accepted
-
-- **Cost**: A larger single packet (~680-800 LOC vs original ~500 LOC; complexity 42→55/70). Single-packet implementation requires careful sequencing (preflight → dispatcher helper → result schema → mocked stress → integration → smoke → run).
-- **Benefit**: Subprocess hardening is local to the only consumer that needs it (the eval harness). No cross-packet dependency edges added. The dispatcher helper can later be extracted into a shared lib if a second consumer emerges, without forcing that abstraction now (per CLAUDE.md "Wrong abstraction" anti-pattern).
-
-### Expected impact
-
-- **LOC**: +180 to +300 LOC over original L2 estimate (per pt-02 LOC-delta estimate).
-- **Wall-clock**: implementation rises from 4-6h to ~6-8h; run wall-clock unchanged at ~2h.
-- **Required artifacts (per L3 contract)**: `decision-record.md` (this file), full QA `checklist.md`, eventually `implementation-summary.md`. Optional `research.md` and `resource-map.md` not added — research already exists in pt-01/pt-02 deep-research outputs.
-- **Sequencing**: REQ-014 mocked stress test MUST pass before any manual full-harness run (Phase 9 Verification gate; checklist C-V02b + C-V04 amended).
-
-### Reference
-
-- `pt-02/sub-packet-amendments.md` §"Phase 005 amendments" (lines 175-217)
-- `pt-02/findings.md` §"Phase 005" (B-iter005-001 .. B-iter005-007)
-- `cli-opencode/CHANGELOG-2026-05-08-stdin-redirect-fix.md` for the `</dev/null` pattern reused by REQ-012
-- `amendments-applied.md` (sibling file) for the BLOCKING-ID → REQ map
+The implementation must expose enough dispatcher seams to mock subprocess outcomes. That adds test scaffolding, but prevents slow live runs from becoming the first reliability test.
 
 ---
 
-## DR-002: Mocked stress test before live harness run (workflow gate)
+## ADR-003: Keep the Smoke Test but Downgrade Its Role
+
+### Status
+
+Accepted.
 
 ### Context
 
-REQ-014 mandates a mocked dispatcher stress test (≥12×2 with 6 outcome classes). The natural temptation is to ship code, run the live 12×2 harness once, and treat the live run as the reliability proof.
+The smoke test is cheap and still validates env passing, output paths, session-id capture, and report wiring. Removing it would lose a useful end-to-end sanity check.
 
 ### Decision
 
-The mocked stress test (REQ-014) is a **hard prerequisite gate** before any manual full-harness invocation. Captured as `C-V02b` and `C-V04` in `checklist.md`.
+Keep the 1 by 2 smoke test, but document it as insufficient on its own. The reliability proof is the mocked 12 by 2 dispatcher stress test.
 
-### Rationale
+### Consequences
 
-- A live harness run is slow (~2h wallclock) and consumes provider quota.
-- Subprocess lifecycle bugs surface non-deterministically — sometimes 1×2 smoke passes while 12×2 hangs.
-- Mocked stress isolates the dispatcher contract from provider-side flakiness, so failures are attributable.
-- Cost of running a mocked stress is seconds; cost of running a broken live harness is hours plus quota.
-
----
-
-## DR-003: KEEP the 1×2 smoke test but DOWNGRADE its role
-
-### Context
-
-Original spec treats the 1×2 smoke test (Phase 7) as the primary reliability check. pt-02 amendments explicitly downgrade this — the smoke test stays useful as an end-to-end sanity check, but it is **not** the reliability proof.
-
-### Decision
-
-- Keep the 1×2 smoke test in tasks.md (T17-T19 in current numbering).
-- Annotate its role in `tasks.md` as `T-keep-but-not-sufficient`: it MUST pass, AND the REQ-014 mocked stress MUST also pass.
-- The reliability proof is REQ-014's mocked 12×2 stress, not the smoke test.
-
-### Rationale
-
-The smoke test is still cheap insurance against integration-shape regressions (env var passing, JSONL output path, session-id capture). Removing it would delete a low-cost guard. The fix is to clarify its limited role, not to delete it.
+The verification order is explicit: mocked stress first, smoke second, live full harness last.

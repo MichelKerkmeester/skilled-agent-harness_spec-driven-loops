@@ -26,7 +26,7 @@
     "005-code-graph-adoption-eval"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-  "description": "Phase parent for the XCE adoption work. Research phase complete (10 iterations + synthesis, 2026-05-08). Implementation now scoped as 5 phase children: 001-code-graph-hld-lld (ADOPT), 002-code-graph-trace (ADAPT), 003-code-graph-impact-analysis (ADAPT), 004-skill-advisor-first-action-mandate (ADAPT), 005-code-graph-adoption-eval (ADAPT). Total ~1,440 LOC across all phases.",
+  "description": "Phase parent for the XCE adoption work. Pass 1 research complete (10 iterations + synthesis, 2026-05-08) and pt-02 cross-validation amendments applied. Implementation is scoped as 5 phase children: 004 first-action mandate (Level 1), 001 HLD/LLD (Level 2), 002 trace (Level 2), 003 impact analysis (Level 2), and 005 adoption eval (Level 3). Total ~1,900-2,320 LOC after pt-02 hardening.",
   "keywords": [
     "feature",
     "specification",

@@ -1,63 +1,194 @@
 ---
-title: "Plan — 027/002 code-graph trace"
-description: "Phased plan: lib → handler → tool reg → optional memoization → optional code_packages → tests."
+title: "Implementation Plan: 027/002 Code Graph Trace"
+description: "Plan for filePath-based trace resolution with optional containment display, Phase 001 role reuse, and deferred package metadata."
+trigger_phrases:
+  - "027 002 trace plan"
+  - "code graph trace plan"
+importance_tier: "important"
+contextType: "plan"
+_memory:
+  continuity:
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace"
+    last_updated_at: "2026-05-09T06:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Aligned plan.md with manifest anchors and pt-02 filePath amendments"
+    next_safe_action: "Wait for Phase 001 classifyFileRole export, then implement trace core"
+    blockers:
+      - "Phase 001 classifyFileRole export."
+    key_files:
+      - "spec.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-05-09-027-alignment-fix"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Choose exact filePath-derived module policy."
+    answered_questions:
+      - "Do not use fq_name dot splitting as P0 module ownership."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Plan: 027/002 code-graph trace
+# Implementation Plan: 027/002 Code Graph Trace
 
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ---
 
-## OVERVIEW
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
 
-5 phases, ~310 LOC total (210 P0 + 100 P1 optional). Sequential. Wall-clock 2-3 hours.
+### Technical Context
 
-## PHASES
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | TypeScript |
+| **Framework** | system-spec-kit MCP server |
+| **Storage** | Existing code_graph SQLite tables |
+| **Testing** | Vitest, `npm run check`, spec validator |
 
-### Phase 1: Lib core (REQ-001, REQ-003, REQ-004, REQ-008, REQ-009)
-- Create `mcp_server/code_graph/lib/code-graph-trace.ts`.
-- Implement `traceSymbol(symbolId, db, opts)`:
-  - Read symbol from `code_nodes`.
-  - **Resolve `file` from `CodeNode.filePath` directly** (NOT via CONTAINS walk; per B-iter002-001).
-  - Build symbol/class display from available CONTAINS/fqName metadata where present (REQ-009 sparse-containment fallback).
-  - For nested classes, compare against `class.fqName + "."` (REQ-010).
-  - **Derive `module` from filePath policy** (REQ-008): nearest package/root segment OR basename fallback. NOT from `fq_name` dot-splitting.
-  - Call Phase 001's `classifyFileRole(filePath, db)` for `architectural_role` (REQ-004 invariant: equals `generateHLD(filePath, db).file_role`).
-  - Return chain object with `symbol/class?/file/module/architectural_role/truncated`.
-- Implement `resolveModuleFromFilePath(filePath)` helper (REQ-008) — replaces fq_name dot-splitting fallback.
-- Document module-policy examples for TS/JS, Python, Bash, doc files under current SupportedLanguage set.
-- **Patch CONTAINS nested-class parent lookup**: compare `method.fqName` against `class.fqName + "."` (REQ-010) — OR defensively avoid relying on nested containment until fixed.
+### Overview
+Phase 002 adds a `code_graph_trace` tool that resolves architectural trace output from reliable graph facts. pt-02 corrected the original plan: file and module ownership come from `CodeNode.filePath` and an explicit file-path policy, while CONTAINS/fqName metadata is optional display context.
+<!-- /ANCHOR:summary -->
 
-### Phase 2: Handler (REQ-002)
-- Create `mcp_server/code_graph/handlers/trace.ts`.
-- Reuse readiness gate from `handlers/context.ts:182-262`.
-- zod schema: `{symbolId: string, maxDepth?: number}`.
+---
 
-### Phase 3: Tool registration (REQ-002)
-- Edit `mcp_server/code_graph/tools/code-graph-tools.ts`. Add `code_graph_trace`.
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
 
-### Phase 4: Optional memoization (P1 REQ-006)
-- DDL `trace_cache(symbol_id PK, chain_json, computed_at)` in `code-graph-db.ts`.
-- Cache invalidation on `isFileStale` for the symbol's file.
+### Definition of Ready
+- [ ] Phase 001 `classifyFileRole(filePath, db)` signature exists.
+- [ ] Module policy examples are documented.
+- [ ] Sparse symbol fixtures are listed before implementation.
 
-### Phase 5: Optional code_packages table (P1 REQ-007 — REWRITTEN per pt-02)
-- **Only build AFTER P0 filePath-derived module ownership (REQ-008) is verified correct.**
-- DDL `code_packages(package_name PK, files_json, depth)`.
-- **Populate from file paths / package markers / path aliases / import metadata / explicit config** — NOT from fq_name prefix scan (which would persist the same wrong inference per B-iter002-008).
-- If redesigning around file paths is too large, KEEP REQ-007 deferred and rely on P0 filePath policy alone.
+### Definition of Done
+- [ ] Trace returns valid `symbol`, `file`, and `architectural_role` for sparse and normal symbols.
+- [ ] `code_packages` is deferred or redesigned around file paths.
+- [ ] Tests and strict validation pass.
+<!-- /ANCHOR:quality-gates -->
 
-### Phase 6: Tests + verification (REQ-005)
-- Tests: file-level symbol (no class), class-level symbol, deep chain, truncation, missing symbol, role-from-Phase-001.
-- ≥80% line coverage.
-- `npm run check` green.
+---
 
-## DEPENDENCIES
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
 
-- Phase 027/001 (HLD/LLD) must ship first — this phase imports `classifyFileRole`.
+### Pattern
+Resolver library plus MCP handler.
 
-## OUT OF SCOPE
+### Key Components
+- **`code-graph-trace.ts`**: owns trace construction, filePath module policy, and optional containment display.
+- **`handlers/trace.ts`**: owns readiness checks and tool response.
+- **Phase 001 `classifyFileRole`**: source of architectural role value.
 
-- Cross-repo trace.
-- Downward impact tracing (Phase 003).
-- LLM enrichment.
+### Data Flow
+The handler receives a symbol id, the library loads the subject `CodeNode`, resolves file ownership from `filePath`, derives module from path policy, decorates the chain with available class/method metadata, and aliases architectural role to Phase 001's file role.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `code_graph/lib/code-graph-trace.ts` | New resolver | Create | Unit and sparse fixture tests |
+| `code_graph/handlers/trace.ts` | New MCP handler | Create | Handler integration test |
+| Phase 001 `classifyFileRole` | Role source | Consume | Equality contract test |
+| `code_packages` | Optional future metadata | Defer or redesign | Checklist deferral evidence |
+<!-- /ANCHOR:affected-surfaces -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+### Phase 1: Setup
+- [ ] Confirm Phase 001 export.
+- [ ] Define output schema and module policy.
+
+### Phase 2: Core Implementation
+- [ ] Implement trace library.
+- [ ] Implement handler and tool registration.
+- [ ] Implement optional memoization only after P0 trace behavior is correct.
+
+### Phase 3: Verification
+- [ ] Add sparse, nested-class, shared-role, and depth-cap fixtures.
+- [ ] Run checks and strict validation.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | file/module resolution, sparse symbols, nested class matching | Vitest |
+| Integration | MCP handler and Phase 001 role equality | Vitest |
+| Validation | Spec folder structure and anchors | `validate.sh --strict` |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Phase 001 `classifyFileRole` | Internal | Pending | Cannot emit authoritative `architectural_role` |
+| Existing code_graph DB APIs | Internal | Available | Cannot load symbol/file data |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: trace tool returns incorrect ownership or breaks tool registration.
+- **Procedure**: Revert the trace implementation commit and remove `code_graph_trace` registration.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | Phase 001 export | Core implementation |
+| Core implementation | Setup | Verification |
+| Verification | Core implementation | Phase 005 evaluation |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Medium | 30-45 minutes |
+| Core Implementation | Medium | 2-3 hours |
+| Verification | Medium | 1-2 hours |
+| **Total** | | **3.5-5.5 hours** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] Keep cache/package work separate or clearly optional.
+- [ ] Confirm Phase 001 contract tests pass.
+
+### Rollback Procedure
+1. Revert trace implementation commit.
+2. Run `npm run check`.
+3. Run tool registration tests.
+
+### Data Reversal
+- **Has data migrations?** Only if optional cache/package table ships.
+- **Reversal procedure**: Drop optional additive table only in the same rollback that introduced it.
+<!-- /ANCHOR:enhanced-rollback -->

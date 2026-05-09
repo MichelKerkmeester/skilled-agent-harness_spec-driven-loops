@@ -1,6 +1,6 @@
 ---
 title: "Phase 003 — Risk-Scored Impact Analysis (`code_graph_impact_analysis`)"
-description: "ADAPT XCE's xce_impact_analysis. Wrap detect_changes with 5 deterministic risk signals (fan-in, fan-out, hub centrality, test-coverage gap, edge confidence) + optional LLM enrichment. New code_graph_impact_analysis MCP tool. ~350 LOC: 1 new lib + 1 new handler + tool reg + handler edit + optional LLM adapter."
+description: "ADAPT XCE's xce_impact_analysis. Wrap detect_changes with deterministic file-level risk signals, explicit normalization, incoming TESTED_BY coverage evidence, and optional provider-configured narrative enrichment. New code_graph_impact_analysis MCP tool. ~430-570 LOC with pt-02 correctness fixtures."
 trigger_phrases:
   - "027 phase 003"
   - "code-graph impact analysis"
@@ -34,27 +34,27 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Implement the deterministic risk-scored impact analysis proposed in 027 RQ3 (research/iterations/iteration-003.md F-019). A new `mcp_server/code_graph/lib/code-graph-impact-analysis.ts` wraps the existing `detect_changes` handler and enriches its output with 5 deterministic risk signals computable from existing graph data. Synthesizes per-file risk scores via a tunable formula. Exposed as a new `code_graph_impact_analysis` MCP tool with optional `enrichWithLLM: true` flag for semantic risk narrative.
+Implement the deterministic risk-scored impact analysis proposed in 027 RQ3 (`../research/iterations/iteration-003.md` F-019) with pt-02 corrections from `../research/027-xce-research-based-refinement-pt-02/research.md`. A new `mcp_server/code_graph/lib/code-graph-impact-analysis.ts` wraps the existing `detect_changes` handler and enriches its output with deterministic file-level risk signals aggregated across all CodeNode rows for each file. Exposed as a new `code_graph_impact_analysis` MCP tool. Optional narrative enrichment is disabled by default and requires explicit provider configuration.
 
 ADAPT verdict from findings.md item #3.
 
 **5 Deterministic Risk Signals**:
-1. **fan-in** — `queryEdgesTo(filePath)` count (callers depending on this file)
-2. **fan-out** — `queryEdgesFrom(filePath)` count (modules this file depends on)
+1. **fan-in** — aggregate incoming symbol-level edges across all CodeNode rows for the file
+2. **fan-out** — aggregate outgoing symbol-level edges across all CodeNode rows for the file
 3. **hub centrality** — `queryFileDegrees(filePath)` total connectedness
-4. **test-coverage gap** — boolean `hasTestEdge = queryEdgesFrom(_, 'TESTED_BY')` check
+4. **coverage evidence gap** — incoming `TESTED_BY` edges to production symbols, reported as unknown/missing when absent
 5. **edge confidence** — average `metadata.confidence` from `code_edges` (DEFAULT_EDGE_WEIGHTS as floor)
 
 **Risk score formula** (heuristic, tunable):
 ```
 risk = normalize(fanIn) * 0.35
      + normalize(hubDegree) * 0.25
-     + (untestedFlag ? 1.0 : 0.0) * 0.25
+     + (coverageUnknownOrMissing ? 1.0 : 0.0) * 0.25
      + normalize(transitiveDepth) * 0.15
 ```
 
 **Key Decisions**:
-- **Deterministic baseline first; LLM enrichment opt-in via `enrichWithLLM: true`**.
+- **Deterministic baseline first; narrative enrichment opt-in via explicit provider options**.
 - **Risk weights are tunable constants** — Phase 005 eval harness validates them against labeled tasks.
 - **No new tables for MVP** — uses existing query helpers.
 
@@ -69,7 +69,7 @@ risk = normalize(fanIn) * 0.35
 | **Priority** | P1 |
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
-| **Source** | `research/sub-packet-proposals.md` Proposal 3; `research/iterations/iteration-003.md` |
+| **Source** | `../research/sub-packet-proposals.md` Proposal 3; `../research/iterations/iteration-003.md`; pt-02 amendments in `../research/027-xce-research-based-refinement-pt-02/` |
 | **Optional dep** | `027/001-code-graph-hld-lld` (for layer-based criticality in LLM enrichment) |
 | **Optional dep** | `027/002-code-graph-trace` (for trace-based downstream narrative) |
 <!-- /ANCHOR:metadata -->
@@ -92,18 +92,18 @@ XCE's `xce_impact_analysis` (external/README.md:220-227) returns affected module
 ### In Scope
 - New `mcp_server/code_graph/lib/code-graph-impact-analysis.ts` (~200 LOC):
   - `analyzeImpact(changedFiles[], db, opts)` → `{affected_files[], risk_scores[], summary}`
-  - Risk-signal computation via existing `queryEdgesFrom/To`, `queryFileDegrees`, `queryFileImportDependents`.
+  - Risk-signal computation by file-level aggregation over symbol-level `queryEdgesFrom/To`, plus `queryFileDegrees` and import dependents.
   - Risk score formula application.
-  - BFS for transitive depth (capped at 3 hops via `queryFileImportDependents` LIMIT).
+  - BFS for transitive depth capped at 3 hops with an explicit visited set.
 - New handler `mcp_server/code_graph/handlers/impact-analysis.ts` (~80 LOC) with zod schema + readiness gate reuse.
 - Tool registration `mcp_server/code_graph/tools/code-graph-tools.ts` (+3 LOC).
 - Edit `mcp_server/code_graph/handlers/detect-changes.ts` (+50 LOC) to optionally pass through risk signals.
-- Optional `mcp_server/code_graph/lib/code-graph-llm-risk-enrich.ts` (~80 LOC) LLM adapter for `enrichWithLLM: true`.
+- Optional `mcp_server/code_graph/lib/code-graph-llm-risk-enrich.ts` (~80 LOC) narrative adapter behind `{enabled, provider, model?, timeoutMs?, maxCallsPerSession?, maxInputBytes?, cacheKey?}`.
 - Tests `mcp_server/tests/code-graph-impact-analysis.vitest.ts` (~120 LOC, ≥80% coverage).
 
 ### Out of Scope
 - Real-time edge-drift tracking (requires `code_edge_snapshots` table — future enhancement).
-- Change-intent classification (LLM-only, opt-in via enrichWithLLM).
+- Change-intent classification (narrative-provider only, disabled by default).
 - Cross-repository impact tracing.
 <!-- /ANCHOR:scope -->
 
@@ -141,7 +141,7 @@ XCE's `xce_impact_analysis` (external/README.md:220-227) returns affected module
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: AI calling `code_graph_impact_analysis({changedFiles: ["src/auth/middleware.ts"]})` receives `{affected_files: [...], risk_scores: [{file, score, signals: {fanIn, fanOut, hub, untested, edgeConfidence}}], summary}` with risk scores in [0..1].
+- **SC-001**: AI calling `code_graph_impact_analysis({changedFiles: ["src/auth/middleware.ts"]})` receives `{affected_files: [...], risk_scores: [{file, score, signals: {fanIn, fanOut, hub, coverageEvidence, edgeConfidence}}], summary}` with risk scores in [0..1].
 - **SC-002**: Zero LLM dependency for default mode (deterministic baseline).
 - **SC-003**: `npm run check` green; `vitest` ≥80% coverage.
 - **SC-004**: Phase 005 eval harness can baseline-vs-after on this tool's output.
@@ -183,7 +183,7 @@ XCE's `xce_impact_analysis` (external/README.md:220-227) returns affected module
 
 - Changed file not in graph: skip with warning; no risk score for it.
 - File with 0 incoming edges: `fanIn=0`, score weighted accordingly.
-- File with no `TESTED_BY` edges: `untestedFlag=true` (highest risk weight).
+- File with no `TESTED_BY` edges: emit `coverageUnknownOrMissing` or explicit `coverageEvidence`; do not claim the file is proven untested.
 - Cycle detection in BFS: track visited set to prevent infinite recursion.
 <!-- /ANCHOR:edge-cases -->
 
@@ -205,6 +205,6 @@ XCE's `xce_impact_analysis` (external/README.md:220-227) returns affected module
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- LLM enrichment provider: cli-opencode subprocess, or direct API? (Default: cli-opencode for consistency with rest of stack.)
+- LLM enrichment provider: none, cli-opencode subprocess, or direct API? (Default: `provider: "none"`; any provider must be explicit.)
 - Risk weight defaults validated empirically? (Default: ship as design intuition; Phase 005 eval validates and tunes.)
 <!-- /ANCHOR:questions -->

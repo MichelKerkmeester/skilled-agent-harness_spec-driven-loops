@@ -1646,6 +1646,7 @@ export const __testables = {
   attachLexicalCapabilityMetadata,
   collectEvalChannelsFromRow,
   buildEvalChannelPayloads,
+  filterCanonicalSourceRows,
 };
 
 // Backward-compatible aliases (snake_case)

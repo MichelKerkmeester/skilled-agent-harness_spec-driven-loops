@@ -3,7 +3,7 @@ title: "XCE Research — Adoption Matrix"
 packet: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement"
 iterations_source: "001–009"
 totalFeatures: 21
-verdictDistribution: {ADOPT:4, ADAPT:6, DEFER:2, SKIP:9}
+verdictDistribution: {ADOPT:4, ADAPT:9, DEFER:2, SKIP:6}
 created: "2026-05-08T18:00:00Z"
 ---
 
@@ -86,11 +86,11 @@ Mentioned only as benchmark row (README:43). Zero implementation documentation �
 | Verdict | Count | Items |
 |---------|-------|-------|
 | ADOPT | 4 | HLD/LLD generation (#1), Semantic search (#5, already exists), PRAT Abstract stage (#8), MCP configs (#16, already exists) |
-| ADAPT | 6 | Trace tool (#2), Impact analysis (#3), Omnibus combiner (#4), PRAT Persistent (#6), PRAT Recursive (#7), PRAT Tree (#9), Steering pattern transfer (#11), Steering replacement directive (#13), Token reduction measurement (#14) |
+| ADAPT | 9 | Trace tool (#2), Impact analysis (#3), Omnibus combiner (#4), PRAT Persistent (#6), PRAT Recursive (#7), PRAT Tree (#9), Steering pattern transfer (#11), Steering replacement directive (#13), Token reduction measurement (#14) |
 | DEFER | 2 | Full PRAT pipeline (#10), Benchmark harness (#15) |
-| SKIP | 9 | SKIP-1 through SKIP-9 as listed above |
+| SKIP | 6 | Feature rows #12, #17, #18, #19, #20, #21. The expanded "Will NOT adopt" rationale list below contains 9 named skip boundaries because some boundaries refine ADAPT/DEFER rows rather than standalone feature rows. |
 | **Total** | **21** | All 21 XCE features classified |
 
-**Diversity**: All 4 verdict categories populated. ADOPT:ADAPT:DEFER:SKIP ≈ 4:6:2:9. Anti-bias guard (min 1 DEFER + 1 SKIP) exceeded by 11 items.
+**Diversity**: All 4 verdict categories populated. Feature-row verdict distribution is ADOPT:ADAPT:DEFER:SKIP = 4:9:2:6. Anti-bias guard (min 1 DEFER + 1 SKIP) exceeded by 8 feature rows, plus 9 expanded non-adoption rationale items.
 
-**Effective adoption rate**: 4 true ADOPT items (2 of which already exist) + 6 ADAPT patterns = 10 items actionable in sub-packets. Total estimated implementation LOC across sub-packets: ~1,400 LOC (4 sub-packets, excluding deferred eval harness).
+**Effective adoption rate**: 4 true ADOPT items (2 of which already exist) + 9 ADAPT patterns = 13 actionable feature rows mapped into 5 implementation phases. Total estimated implementation LOC across sub-packets: ~1,900-2,300 LOC after pt-02 amendments.

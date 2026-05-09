@@ -250,7 +250,7 @@ function parseNestedPayload(envelope: Record<string, unknown>): Record<string, u
   return JSON.parse(content[0].text) as Record<string, unknown>;
 }
 
-describe('Gate D intent routing regression', () => {
+describe.sequential('Gate D intent routing regression', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -465,7 +465,7 @@ describe('Gate D intent routing regression', () => {
   });
 });
 
-describe('Gate D canonical-filtering contract assertions', () => {
+describe.sequential('Gate D canonical-filtering contract assertions', () => {
   // TODO(S3.5 #13): Add integration tests that exercise the live canonical-
   // filtering code path (the real handleMemorySearch with an in-memory DB
   // fixture) to verify that:
@@ -478,8 +478,164 @@ describe('Gate D canonical-filtering contract assertions', () => {
   // These cannot be covered by mock-based tests because the mocks return
   // pre-constructed rows that bypass the filtering pipeline entirely.
 
-  it.todo('excludes archived memories when includeArchived is undefined (requires DB fixture)');
-  it.todo('applies preferredDocumentTypes filter to drop non-canonical rows (requires DB fixture)');
-  it.todo('legacyFallbackEnabled: false prevents legacy memory fallback (requires DB fixture)');
-  it.todo('droppedNonCanonicalResults reflects actual filter counts (requires DB fixture)');
+  async function loadRealMemorySearchFixture() {
+    vi.resetModules();
+    vi.doUnmock('../handlers/memory-search.js');
+    vi.doUnmock('../lib/search/vector-index.js');
+    vi.doUnmock('../lib/search/hybrid-search.js');
+    vi.doUnmock('../lib/search/search-flags.js');
+    vi.doUnmock('../core/index.js');
+    vi.doMock('../lib/providers/embeddings.js', () => ({
+      generateQueryEmbedding: vi.fn(async () => new Float32Array(1024).fill(0.1)),
+    }));
+
+    const fixture = await import('./helpers/memory-db-fixture.js');
+    const memorySearch = await vi.importActual<typeof import('../handlers/memory-search.js')>(
+      '../handlers/memory-search.js',
+    );
+    const vectorIndex = await vi.importActual<typeof import('../lib/search/vector-index.js')>(
+      '../lib/search/vector-index.js',
+    );
+    return { fixture, memorySearch, vectorIndex };
+  }
+
+  function parseSearchData(response: Awaited<ReturnType<typeof handleMemoryContext>>): Record<string, unknown> {
+    const envelope = JSON.parse(response.content[0].text) as Record<string, unknown>;
+    return ((envelope.data as Record<string, unknown>)?.data ?? envelope.data) as Record<string, unknown>;
+  }
+
+  it('excludes archived memories when includeArchived is undefined (requires DB fixture)', async () => {
+    const { fixture, vectorIndex } = await loadRealMemorySearchFixture();
+    const db = fixture.createMemoryDbFixture();
+    try {
+      const active = fixture.seedMemoryRow(db, {
+        title: 'Gate D active canonical row',
+        contentText: 'gate d active canonical row',
+        embedding: fixture.makeMemoryEmbedding([1, 1]),
+        importanceTier: 'important',
+      });
+      const archived = fixture.seedMemoryRow(db, {
+        title: 'Gate D archived canonical row',
+        contentText: 'gate d archived canonical row',
+        embedding: fixture.makeMemoryEmbedding([1, 1]),
+        importanceTier: 'deprecated',
+      });
+
+      const results = vectorIndex.vectorSearch(
+        fixture.makeMemoryEmbedding([1, 1]),
+        {
+          limit: 10,
+          specFolder: active.specFolder,
+          includeConstitutional: false,
+        },
+        db,
+      );
+
+      expect(results.map((result) => result.id)).toContain(active.id);
+      expect(results.map((result) => result.id)).not.toContain(archived.id);
+    } finally {
+      fixture.disposeMemoryDbFixture(db);
+    }
+  });
+
+  it('applies preferredDocumentTypes filter to drop non-canonical rows (requires DB fixture)', async () => {
+    const { fixture, memorySearch } = await loadRealMemorySearchFixture();
+    const db = fixture.createMemoryDbFixture();
+    try {
+      const specDoc = fixture.seedMemoryRow(db, { title: 'Gate D spec doc', documentType: 'spec_doc' });
+      const continuity = fixture.seedMemoryRow(db, {
+        title: 'Gate D continuity',
+        documentType: 'continuity',
+        anchorId: '_memory.continuity',
+      });
+      const legacy = fixture.seedMemoryRow(db, { title: 'Gate D legacy memory', documentType: 'memory' });
+      const rows = db.prepare('SELECT * FROM memory_index ORDER BY id').all() as Array<Record<string, unknown> & { id: number }>;
+
+      const filtered = memorySearch.__testables.filterCanonicalSourceRows(rows);
+
+      expect(filtered.results.map((result) => result.id)).toEqual([specDoc.id, continuity.id]);
+      expect(filtered.results.map((result) => result.id)).not.toContain(legacy.id);
+      expect(filtered.stats).toMatchObject({
+        retained: 2,
+        dropped: 1,
+      });
+    } finally {
+      fixture.disposeMemoryDbFixture(db);
+    }
+  });
+
+  it('legacyFallbackEnabled: false prevents legacy memory fallback (requires DB fixture)', async () => {
+    const { fixture, memorySearch } = await loadRealMemorySearchFixture();
+    const db = fixture.createMemoryDbFixture();
+    try {
+      fixture.seedMemoryRow(db, {
+        title: 'Gate D canonical search hit',
+        triggerPhrases: ['gate d canonical'],
+        contentText: 'gate d canonical reader hit',
+        documentType: 'spec_doc',
+      });
+      fixture.seedMemoryRow(db, {
+        title: 'Gate D legacy search hit',
+        triggerPhrases: ['gate d canonical'],
+        contentText: 'gate d canonical legacy memory hit',
+        documentType: 'memory',
+      });
+
+      const response = await memorySearch.handleMemorySearch({
+        query: 'gate d canonical',
+        limit: 10,
+        includeConstitutional: false,
+        bypassCache: true,
+        rerank: false,
+      });
+      const data = parseSearchData(response as Awaited<ReturnType<typeof handleMemoryContext>>);
+      const sourceContract = data.sourceContract as Record<string, unknown>;
+      const results = data.results as Array<Record<string, unknown>>;
+
+      expect(sourceContract.legacyFallbackEnabled).toBe(false);
+      expect(results.some((result) => result.documentType === 'memory')).toBe(false);
+    } finally {
+      fixture.disposeMemoryDbFixture(db);
+    }
+  });
+
+  it('droppedNonCanonicalResults reflects actual filter counts (requires DB fixture)', async () => {
+    const { fixture, memorySearch } = await loadRealMemorySearchFixture();
+    const db = fixture.createMemoryDbFixture();
+    try {
+      fixture.seedMemoryRow(db, {
+        title: 'Gate D canonical count hit',
+        triggerPhrases: ['gate d count'],
+        contentText: 'gate d count canonical hit',
+        documentType: 'spec_doc',
+      });
+      fixture.seedMemoryRow(db, {
+        title: 'Gate D scratch count hit',
+        triggerPhrases: ['gate d count'],
+        contentText: 'gate d count scratch hit',
+        documentType: 'scratch',
+      });
+      fixture.seedMemoryRow(db, {
+        title: 'Gate D memory count hit',
+        triggerPhrases: ['gate d count'],
+        contentText: 'gate d count memory hit',
+        documentType: 'memory',
+      });
+
+      const response = await memorySearch.handleMemorySearch({
+        query: 'gate d count',
+        limit: 10,
+        includeConstitutional: false,
+        bypassCache: true,
+        rerank: false,
+      });
+      const data = parseSearchData(response as Awaited<ReturnType<typeof handleMemoryContext>>);
+      const sourceContract = data.sourceContract as Record<string, unknown>;
+
+      expect(sourceContract.retainedResults).toBe(1);
+      expect(sourceContract.droppedNonCanonicalResults).toBe(2);
+    } finally {
+      fixture.disposeMemoryDbFixture(db);
+    }
+  });
 });

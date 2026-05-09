@@ -7,7 +7,14 @@ created: "2026-05-08T18:00:00Z"
 
 # Sub-Packet Proposals
 
-Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the adoption matrix. Proposals are ordered by implementation priority: structural capability first (packets 028-030), UX/steering next (031), measurement last (032).
+Five candidate sub-packets cover the 4 ADOPT and 9 ADAPT feature rows from the adoption matrix. This file is the pass-1 proposal set; the implementation child specs now apply the pt-02 cross-validation amendments from `research/027-xce-research-based-refinement-pt-02/sub-packet-amendments.md`.
+
+**Post-pt-02 overlay**:
+- Phase 004 should run first because it is the smallest treatment-variable change and now includes high-uncertainty guard fixtures.
+- Phase 001 remains the data-contract source for `classifyFileRole(filePath, db)` and deterministic HLD/LLD output.
+- Phase 002 must use `CodeNode.filePath` as ownership truth; CONTAINS is display metadata, not the file/module source.
+- Phase 003 must aggregate symbol-level edges by file, use incoming TESTED_BY evidence, and keep narrative enrichment disabled unless explicitly configured.
+- Phase 005 is Level 3 after subprocess/auth/result-schema hardening and mocked dispatcher stress requirements.
 
 ---
 
@@ -15,7 +22,7 @@ Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the ad
 
 **Scope summary**: Implement the template-only HLD/LLD schema proposed in RQ1 (F-005). A new `mcp_server/code_graph/lib/code-graph-hld-lld.ts` generates deterministic narrative from existing graph data: `file_role` (from SymbolKind counts), `layer` (from import/export ratios), `summary` (template: "This file defines {count} {kind} symbol(s)..."), `LLD` (per-symbol: signature, docstring, direct_dependencies, complexity_hints). Exposed as a new `code_graph_hld_lld` MCP tool and integrated into the `queryMode: 'omni'` combiner (RQ4 F-024).
 
-**Level estimate**: L2 (~250 LOC total)
+**Level estimate**: L2 (~320-370 LOC after pt-02 deterministic-output amendments)
 **Files**: 1 new (`lib/code-graph-hld-lld.ts` ~200 LOC), 1 new handler (`handlers/hld-lld.ts` ~50 LOC), 1 tool reg edit (`tools/code-graph-tools.ts` +2 LOC), 1 edit (`lib/code-graph-context.ts` +15 LOC for omni integration)
 
 **Dependencies**:
@@ -38,9 +45,9 @@ Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the ad
 
 ## Proposal 2: `029-code-graph-trace` — Symbol-to-Architecture Trace Tool
 
-**Scope summary**: Implement the trace pipeline proposed in RQ2 (F-012). A new `mcp_server/code_graph/lib/code-graph-trace.ts` walks symbol → class → module → architectural role using existing CONTAINS edges (queryEdgesTo at code-graph-db.ts:972-987), resolveSubjectFilePath (code-graph-db.ts:989-1015), and the HLD/LLD classification from packet 028. Exposed as a new `code_graph_trace` MCP tool. Includes optional recursive memoization cache (~50 LOC SQLite `trace_cache` table) and optional code_packages table (~50 LOC) for formalized module hierarchy.
+**Scope summary**: Implement the trace pipeline proposed in RQ2 (F-012), amended by pt-02. A new `mcp_server/code_graph/lib/code-graph-trace.ts` resolves the file rung from `CodeNode.filePath`, derives module ownership from an explicit file-path policy, uses available CONTAINS/fqName data only for class/method display, and reuses the HLD/LLD classification from packet 028. Exposed as a new `code_graph_trace` MCP tool. Optional memoization cache and `code_packages` remain P1 follow-ups after filePath correctness fixtures pass.
 
-**Level estimate**: L2 (~310 LOC total)
+**Level estimate**: L2 (~390-460 LOC after sparse-containment and nested-class fixtures)
 **Files**: 1 new (`lib/code-graph-trace.ts` ~150 LOC), 1 new handler (`handlers/trace.ts` ~60 LOC), 1 tool reg edit (`tools/code-graph-tools.ts` +3 LOC), 1 edit (`lib/code-graph-db.ts` +50 LOC memoization, +50 LOC code_packages table)
 
 **Dependencies**:
@@ -51,9 +58,9 @@ Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the ad
 **Risk register**:
 | Risk | Severity | Mitigation |
 |------|----------|------------|
-| CONTAINS edge chain is incomplete for some languages | Medium | fq_name prefix splitting (dot-delimited) serves as fallback when CONTAINS edges end early. |
+| CONTAINS edge chain is incomplete for common symbol shapes | High | Use `CodeNode.filePath` as the file source and keep CONTAINS for class/method display only. |
 | Deeply nested traces (10+ levels) hit budget | Low | Cap trace depth at maxDepth parameter (default 5). Truncate with `[...]` marker. |
-| code_packages table DDL migration breaks existing indices | Low | New table is additive — zero impact on existing code_files/code_nodes/code_edges. Rollback-safe. |
+| code_packages table encodes the wrong ownership source | Medium | Keep it P1 and populate only from file paths, package markers, path aliases, import metadata, or explicit config. |
 
 **Out of scope**:
 - Downward recursive impact tracing (that's RQ3/030 territory)
@@ -63,9 +70,9 @@ Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the ad
 
 ## Proposal 3: `030-code-graph-impact-analysis` — Risk-Scored Impact Analysis
 
-**Scope summary**: Implement the deterministic risk-scored impact analysis proposed in RQ3 (F-019). A new `mcp_server/code_graph/lib/code-graph-impact-analysis.ts` wraps the existing `detect_changes` handler and enriches its output with 5 deterministic risk signals: fan-in (queryEdgesTo), fan-out (queryEdgesFrom), hub centrality (queryFileDegrees at code-graph-db.ts:1039-1083), test-coverage gap (TESTED_BY edge check), edge confidence (DEFAULT_EDGE_WEIGHTS + metadata JSON). Synthesizes per-file risk scores: `normalize(fanIn) * 0.35 + normalize(hubDegree) * 0.25 + untestedFlag * 0.25 + normalized(transitiveDepth) * 0.15`. Exposed as a new `code_graph_impact_analysis` MCP tool with optional `enrichWithLLM: true` flag for semantic risk narrative.
+**Scope summary**: Implement the deterministic risk-scored impact analysis proposed in RQ3 (F-019), amended by pt-02. A new `mcp_server/code_graph/lib/code-graph-impact-analysis.ts` wraps the existing `detect_changes` handler and enriches its output with deterministic file-level risk signals aggregated from symbol-level edges: fan-in, fan-out, hub centrality, coverage evidence, transitive depth, and edge confidence. Synthesizes per-file risk scores with documented normalizers and heuristic weights until Phase 005 calibration. Exposed as a new `code_graph_impact_analysis` MCP tool. Optional narrative enrichment is disabled by default and requires explicit provider configuration.
 
-**Level estimate**: L2 (~350 LOC total)
+**Level estimate**: L2 (~430-570 LOC after pt-02 aggregation, coverage, and enrichment-contract amendments)
 **Files**: 1 new (`lib/code-graph-impact-analysis.ts` ~200 LOC), 1 new handler (`handlers/impact-analysis.ts` ~80 LOC), 1 tool reg edit (`tools/code-graph-tools.ts` +3 LOC), 1 edit (`handlers/detect-changes.ts` +50 LOC for risk signal passthrough), optional 1 new (`lib/code-graph-llm-risk-enrich.ts` ~80 LOC LLM adapter)
 
 **Dependencies**:
@@ -78,8 +85,8 @@ Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the ad
 | Risk | Severity | Mitigation |
 |------|----------|------------|
 | Risk score formula is unvalidated — weights are design intuition, not empirical | Medium | Document as "heuristic baseline." Weights are tunable constants. Sub-packet 032 eval harness validates against labeled tasks. |
-| Transitive import BFS may be expensive on large graphs | Medium | Cap BFS depth at 3 hops (default). Use `queryFileImportDependents` with LIMIT. |
-| LLM enrichment adds latency + cost | Low | LLM is opt-in via `enrichWithLLM: true` flag. Deterministic baseline always available. |
+| Transitive import BFS may be expensive on large graphs | Medium | Cap BFS depth at 3 hops in the new loop with an explicit visited set. |
+| Narrative enrichment adds latency, cost, and provider auth risks | Medium | Default provider is none; explicit options carry timeout, call-count, byte-budget, and cache controls. |
 
 **Out of scope**:
 - Real-time edge-drift tracking (requires code_edge_snapshots table — future enhancement)
@@ -89,9 +96,9 @@ Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the ad
 
 ## Proposal 4: `031-skill-advisor-first-action-mandate` — Strengthened Advisor Brief Rendering
 
-**Scope summary**: Implement the render-layer change proposed in RQ6 (F-036). Strengthen the `skill_advisor/lib/render.ts` brief from suggestion ("use ${label}") to mandate ("MUST invoke ${label} FIRST (${score}/${uncertainty}) — ${action_hint}"). Add `FIRST_ACTION_HINT` constant map covering all 16 skills with per-skill action directives. Modify two `capText` calls at lines 149-152 (ambiguous case) and 155-158 (normal case). No scorer changes — directive strength change only in render layer.
+**Scope summary**: Implement the render-layer change proposed in RQ6 (F-036), amended by pt-02. Strengthen the `skill_advisor/lib/render.ts` brief from suggestion ("use ${label}") to mandate ("MUST invoke ${label} FIRST (${score}/${uncertainty}) - ${action_hint}") only when confidence and uncertainty thresholds both pass. Add `FIRST_ACTION_HINT` with fallback behavior and migrate old exact-string fixtures to directive-shape assertions. No scorer changes.
 
-**Level estimate**: L1 (~30 LOC total)
+**Level estimate**: L1 (~80-120 LOC including fixture updates)
 **Files**: 1 edit (`skill_advisor/lib/render.ts` +30 LOC)
 
 **Dependencies**:
@@ -114,9 +121,9 @@ Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the ad
 
 ## Proposal 5: `032-code-graph-adoption-eval` — Lightweight Evaluation Harness
 
-**Scope summary**: Build the eval harness proposed in RQ7 (F-041) with RQ8 token measurement (F-046). A CLI dispatcher spawns OpenCode subprocesses to execute 12-20 refactoring tasks on our own codebase in baseline (current brief) and after (MUST invoke brief) modes. Measures 3 primary metrics (file-reads-avoided, context-accuracy via computeHitRate, answer-completeness) + 2 diagnostics (token waste ratio, first-action adherence). Includes RQ8 measurement instrumentation (~80 LOC to query session-analytics-db.ts for total_tokens post-session-stop).
+**Scope summary**: Build the eval harness proposed in RQ7 (F-041) with RQ8 token measurement (F-046), amended by pt-02. A CLI dispatcher spawns OpenCode subprocesses to execute 12-20 refactoring tasks on our own codebase in baseline and after modes. Measures 3 primary metrics + 2 diagnostics + session token usage. Adds provider auth preflight, hardened subprocess lifecycle, discriminated JSONL rows, stale-process retry handling, incomplete-pair reporting, and mocked 12 x 2 dispatcher stress before live runs.
 
-**Level estimate**: L2 (~500 LOC total)
+**Level estimate**: L3 (~680-800 LOC after subprocess/auth/result-schema hardening)
 **Files**: 1 new CLI entry (`scripts/dist/eval/code-graph-adoption-eval.js` ~200 LOC), 1 new metric library (`mcp_server/lib/eval/token-measurement.ts` ~25 LOC), 1 new task set (`tasks/labeled-tasks.jsonl` ~20 lines JSONL), 1 new report generator (~50 LOC), 1 new test harness (~100 LOC), 1 stress config entry (+10 LOC)
 
 **Dependencies**:
@@ -129,7 +136,7 @@ Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the ad
 **Risk register**:
 | Risk | Severity | Mitigation |
 |------|----------|------------|
-| Subprocess OpenCode dispatch unreliable at 12-20 task scale | High | Add retry logic (2 retries per task), 10-min timeout per task, incremental result saving (JSONL per task, not batch). |
+| Subprocess OpenCode dispatch unreliable at 12-20 task scale | High | Add provider preflight, dev-null stdin, 600s timeout, SIGTERM/SIGKILL escalation, close-event wait, retries, incremental JSONL, and mocked 12 x 2 stress. |
 | Labeled task set quality insufficient for valid measurement | Medium | Tasks are versioned in the packet. Manual review of first 5 task results before scaling to 20. Iterate on task quality. |
 | 5-15% token reduction is below statistical significance at N=10 | Medium | Power analysis: run N=20 tasks minimum per condition. If p > 0.05, report as "inconclusive — effect too small to measure at this scale." |
 | OpenCode subprocess MCP config switching is fragile | Medium | Use environment variable to toggle advisor mode (avoid file writes). Document MCP config injection in harness README. |
@@ -144,19 +151,22 @@ Five candidate sub-packets covering the 4 ADOPT and 6 ADAPT verdicts from the ad
 ## Implementation Dependency Graph
 
 ```
-Phase 1 — Structural Capabilities (parallelizable):
+Phase 1 — UX/Steering:
+  [031-skill-advisor-first-action-mandate] ◄── no hard deps
+
+Phase 2 — Core data contracts:
   [028-code-graph-hld-lld] ◄── no deps
-  [029-code-graph-trace]  ◄── depends on 028 (architectural role labels)
-  [030-code-graph-impact-analysis] ◄── optional dep on 028 (layer criticality)
 
-Phase 2 — UX/Steering (sequential after Phase 1):
-  [031-skill-advisor-first-action-mandate] ◄── no hard deps, but tested with Phase 1 tools
+Phase 3 — Graph tools:
+  [029-code-graph-trace] ◄── depends on 028 (architectural role labels)
+  [030-code-graph-impact-analysis] ◄── deterministic MVP can proceed in parallel;
+                                      optional layer/narrative paths depend on 028/032 contracts
 
-Phase 3 — Measurement (sequential after Phase 2):
-  [032-code-graph-adoption-eval] ◄── depends on 031 (treatment condition)
-                                    requires 028/029/030 (tools being measured)
+Phase 4 — Measurement:
+  [032-code-graph-adoption-eval] ◄── depends on 031 treatment condition
+                                    requires 028/029/030 tools for meaningful measurement
 ```
 
-**Total estimated LOC**: ~1,440 across 5 sub-packets (Phase 1: ~910 LOC, Phase 2: ~30 LOC, Phase 3: ~500 LOC)
+**Total estimated LOC**: ~1,900-2,320 across 5 sub-packets after pt-02 amendments.
 
-**Recommended execution order**: Phase 1 packets (028, 029, 030) can be implemented in parallel if staffed. Phase 2 (031) is a 30-minute single-file change. Phase 3 (032) requires Phase 2 complete before baseline/after measurement.
+**Recommended execution order**: Run 031 first, then 028, then 029 and deterministic 030 in parallel, then 032 last.

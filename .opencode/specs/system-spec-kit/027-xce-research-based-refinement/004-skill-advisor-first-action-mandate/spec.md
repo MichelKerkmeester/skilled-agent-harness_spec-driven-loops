@@ -34,7 +34,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Implement the render-layer change proposed in 027 RQ6 (research/iterations/iteration-006.md F-036). Strengthen the `skill_advisor/lib/render.ts` brief from a soft suggestion (`"use ${topLabel}"`) to a strong directive (`"MUST invoke ${topLabel} FIRST (${score}/${uncertainty}) — ${action_hint}"`). Add a `FIRST_ACTION_HINT` constant map covering all 16 skills with per-skill action directives. Modify two `capText` calls at render.ts:149-152 (ambiguous case) and render.ts:155-158 (normal case). **No scorer changes** — directive strength change only in render layer.
+Implement the render-layer change proposed in 027 RQ6 (`../research/iterations/iteration-006.md` F-036) with pt-02 guardrails from `../research/027-xce-research-based-refinement-pt-02/research.md`. Strengthen the `skill_advisor/lib/render.ts` brief from a soft suggestion (`"use ${topLabel}"`) to a strong directive (`"MUST invoke ${topLabel} FIRST (${score}/${uncertainty}) - ${action_hint}"`) only when confidence and uncertainty thresholds both pass. Add a `FIRST_ACTION_HINT` constant map covering all 16 skills with per-skill action directives. Modify two `capText` calls at render.ts:149-152 (ambiguous case) and render.ts:155-158 (normal case). **No scorer changes** — directive strength change only in render layer.
 
 ADAPT verdict from findings.md items #11, #13.
 
@@ -59,7 +59,7 @@ ADAPT verdict from findings.md items #11, #13.
 | **Priority** | P1 |
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
-| **Source** | `research/sub-packet-proposals.md` Proposal 4; `research/iterations/iteration-006.md` |
+| **Source** | `../research/sub-packet-proposals.md` Proposal 4; `../research/iterations/iteration-006.md`; pt-02 amendments in `../research/027-xce-research-based-refinement-pt-02/` |
 | **Estimated LOC** | ~30 |
 <!-- /ANCHOR:metadata -->
 

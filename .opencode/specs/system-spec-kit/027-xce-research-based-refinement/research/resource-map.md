@@ -93,7 +93,7 @@ Per spec.md REQ-009, this maps all file paths referenced during the 10-iteration
 | Path | Lines (est.) | Purpose |
 |------|-------------|---------|
 | `research/research.md` | ~400 | Final synthesis: executive summary, 9 RQ sections, PRAT reconstruction, steering pattern transfer, alternatives, open questions, references |
-| `research/findings.md` | ~280 | Adoption matrix: 21 features classified (4 ADOPT, 6 ADAPT, 2 DEFER, 9 SKIP) with file:line cites, blast radius, sub-packet mapping. "Will NOT adopt" section with 9 SKIP items. |
+| `research/findings.md` | ~280 | Adoption matrix: 21 feature rows classified (4 ADOPT, 9 ADAPT, 2 DEFER, 6 SKIP) with file:line cites, blast radius, sub-packet mapping. "Will NOT adopt" section has 9 expanded rationale items. |
 | `research/sub-packet-proposals.md` | ~270 | 5 sub-packet proposals: 028 (HLD/LLD), 029 (Trace), 030 (Impact Analysis), 031 (Advisor Mandate), 032 (Eval Harness). Each with scope, level, dependencies, risk register, out-of-scope guard. Dependency graph. |
 | `research/resource-map.md` | ~150 | This file — path ledger with Inputs, Outputs, and External References sections. |
 | `research/deep-research-state.jsonl` | 15 lines | State machine: config + 10 iterations + 2 events (executor fallback, convergence). |

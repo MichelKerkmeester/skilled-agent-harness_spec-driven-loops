@@ -1,56 +1,145 @@
 ---
-title: "Plan — 027/004 skill advisor first-action mandate"
-description: "Plan: single render.ts edit + tests."
+title: "Implementation Plan: 027/004 Skill Advisor First-Action Mandate"
+description: "Plan for render-layer mandate wording with uncertainty guardrails, fallback hints, and fixture migration."
+trigger_phrases:
+  - "027 004 advisor mandate plan"
+  - "skill advisor first action plan"
+importance_tier: "important"
+contextType: "plan"
+_memory:
+  continuity:
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-skill-advisor-first-action-mandate"
+    last_updated_at: "2026-05-09T06:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Aligned plan.md with manifest anchors and pt-02 guardrails"
+    next_safe_action: "Choose uncertainty guard strategy"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-05-09-027-alignment-fix"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Renderer-side uncertainty check or producer invariant proof."
+    answered_questions:
+      - "No scorer source changes."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Plan: 027/004 skill advisor first-action mandate
+# Implementation Plan: 027/004 Skill Advisor First-Action Mandate
 
 <!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
-## OVERVIEW
-Single-file edit, ~80-120 LOC after pt-02 amendments. Wall-clock 60-90 minutes.
+---
 
-## PHASES
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
 
-### Phase 1: Choose guard strategy (REQ-007)
-**Decide BEFORE implementation**: renderer-side uncertainty re-check OR producer invariant fixture proving `passes_threshold` already encodes confidence + uncertainty thresholds.
-- If **renderer-side**: add explicit `if (uncertainty > THRESHOLD) return softMessage` branch in render.ts before mandate wording.
-- If **producer-invariant**: write a test in `skill_advisor/tests/` proving `passes_threshold:true ⇒ uncertainty ≤ T` for every code path that sets `passes_threshold`.
-- Default recommendation: producer invariant fixture (cheaper, no scorer surgery).
+### Technical Context
 
-### Phase 2: FIRST_ACTION_HINT map + safe fallback (REQ-001)
-- Edit `mcp_server/skill_advisor/lib/render.ts`.
-- Add module-level `const FIRST_ACTION_HINT = { 'mcp-coco-index': 'semantic search BEFORE grep', ... }` (one entry per known skill).
-- Add safe fallback constant: `const FIRST_ACTION_HINT_FALLBACK = "open the skill instructions first"`.
-- Lookup: `FIRST_ACTION_HINT[topLabel] ?? FIRST_ACTION_HINT_FALLBACK` — NEVER render `undefined`.
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | TypeScript |
+| **Framework** | system-spec-kit skill_advisor |
+| **Storage** | None |
+| **Testing** | Vitest, `npm run check`, spec validator |
 
-### Phase 3: capText callsite updates (REQ-002, REQ-003, REQ-004)
-- Modify `capText` call at lines 149-152 (ambiguous case) — `"MUST invoke ${topLabel} FIRST (${score}/${uncertainty}) — ${hintOrFallback}"`.
-- Modify `capText` call at lines 155-158 (normal case) — same template.
-- Confidence threshold logic at 124-133 unchanged.
-- Apply guard from Phase 1 (high-uncertainty case routes to soft "use X" wording, not "MUST invoke").
+### Overview
+Phase 004 strengthens the advisor brief from suggestion to first-action mandate when confidence and uncertainty thresholds are satisfied. pt-02 adds the guardrails that make the stronger wording honest: high-uncertainty cases must stay soft, unknown hints must fall back safely, and exact string fixtures must be migrated intentionally.
+<!-- /ANCHOR:summary -->
 
-### Phase 4: Legacy fixture migration (REQ-008)
-- `skill_advisor/tests/render.vitest.ts`: rewrite every exact-string fixture pinning the OLD `"use X"` brief shape. Replace with mandate-wording + directive-shape assertions.
-- Preserve non-string fixtures: poisoning, null, freshness, cache, cap, ambiguous-output coverage.
-- Audit `skill_advisor/tests/skill-advisor-brief.vitest.ts` (producer-side) for OLD-string pins; migrate same way.
+---
 
-### Phase 5: Boundary + edge fixtures (REQ-009, REQ-001 fallback, REQ-007 guard)
-- Add fixture: confidence ∈ {0.79, 0.80, 0.81} × uncertainty {at threshold, over threshold} = 6 cases.
-- Add fixture: unknown safe-label (e.g. `topLabel = "no-such-skill"`) renders FIRST_ACTION_HINT_FALLBACK, NOT `undefined`.
-- Add fixture: `passes_threshold:true ∧ uncertainty>T` to lock the producer invariant chosen in Phase 1.
-- Add token-cap fixture: longest known label + longest hint exercise both DEFAULT_TOKEN_CAP and AMBIGUOUS_TOKEN_CAP without truncation.
-- Manual review of action hints for domain alignment (REQ-006).
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
 
-### Phase 6: Verification
-- `npx vitest run skill_advisor/tests/render.vitest.ts` green.
-- `npm run check` (lint + typecheck) green.
-- Smoke test: invoke advisor brief manually with sample prompt; verify mandate wording + fallback path + uncertainty guard all behave.
+### Definition of Ready
+- [ ] Guard strategy chosen.
+- [ ] FIRST_ACTION_HINT coverage and fallback text defined.
+- [ ] Existing exact-string fixtures inventoried.
 
-## DEPENDENCIES
+### Definition of Done
+- [ ] Mandate wording renders only for threshold-passing recommendations.
+- [ ] Unknown labels never render `undefined`.
+- [ ] Renderer tests, producer tests if touched, `npm run check`, and strict validation pass.
+<!-- /ANCHOR:quality-gates -->
 
-None. Self-contained.
+---
 
-## OUT OF SCOPE
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
 
-Per parent 027 spec.md: ANY scorer/ directory changes (unless the producer-invariant route requires a single test in `scorer/tests/` only — explicit user approval needed before touching scorer-owned source).
+### Pattern
+Render-layer copy and guard update.
+
+### Key Components
+- **`render.ts`**: owns FIRST_ACTION_HINT, fallback text, guard logic, and final brief strings.
+- **Renderer/producer tests**: own boundary and legacy-string fixture coverage.
+
+### Data Flow
+The advisor recommendation reaches render with confidence, uncertainty, and label data. The renderer emits mandate wording only when the selected guard proves both confidence and uncertainty are within threshold.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `skill_advisor/lib/render.ts` | Prompt-boundary renderer | Modify | Renderer boundary tests |
+| `render.vitest.ts` | Renderer fixtures | Modify | Mandate, fallback, cap, uncertainty tests |
+| `skill-advisor-brief.vitest.ts` | Producer fixture coverage | Modify only if string pins exist | Producer invariant or migrated string tests |
+<!-- /ANCHOR:affected-surfaces -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+### Phase 1: Setup
+- [ ] Choose guard strategy.
+- [ ] Inventory string fixtures and hint labels.
+
+### Phase 2: Core Implementation
+- [ ] Add hints and fallback.
+- [ ] Update render strings and guard.
+- [ ] Migrate tests.
+
+### Phase 3: Verification
+- [ ] Run renderer tests, `npm run check`, and strict validation.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | render output, uncertainty guard, fallback, token caps | Vitest |
+| Integration | producer invariant if selected | Vitest |
+| Validation | Spec folder structure and anchors | `validate.sh --strict` |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Existing render.ts threshold semantics | Internal | Available | Guard proof cannot be written |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: mandate wording causes false-positive first-action commands or breaks existing brief tests.
+- **Procedure**: Revert the render/test commit and confirm old brief tests pass.
+<!-- /ANCHOR:rollback -->

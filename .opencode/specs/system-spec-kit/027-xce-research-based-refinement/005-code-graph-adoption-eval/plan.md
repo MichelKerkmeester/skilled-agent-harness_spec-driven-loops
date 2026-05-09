@@ -1,95 +1,266 @@
 ---
-title: "Plan — 027/005 code-graph adoption eval"
-description: "Phased plan: task curation → CLI dispatcher → metric lib → report generator → smoke harness."
+title: "Implementation Plan: 027/005 Code Graph Adoption Eval"
+description: "Level 3 plan for local evaluation harness with provider preflight, hardened subprocess dispatch, result schema, mocked stress, and reporting."
+trigger_phrases:
+  - "027 005 adoption eval plan"
+  - "code graph adoption eval plan"
+importance_tier: "important"
+contextType: "plan"
+_memory:
+  continuity:
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval"
+    last_updated_at: "2026-05-09T06:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Aligned plan.md with manifest anchors and Level 3 hardening amendments"
+    next_safe_action: "Build preflight, dispatcher, schema, and mocked stress before live harness"
+    blockers:
+      - "Phases 001-004 must ship before full eval run."
+    key_files:
+      - "spec.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-05-09-027-alignment-fix"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Choose task curation source."
+    answered_questions:
+      - "Keep hardening in Phase 005 and Level 3."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Plan: 027/005 code-graph adoption eval
+# Implementation Plan: 027/005 Code Graph Adoption Eval
 
 <!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
-## OVERVIEW
-~500 LOC. Sequential phases. Wall-clock 4-6 hours implementation + 2 hours run.
+---
 
-## PHASES
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
 
-### Phase 1: Task curation (REQ-005)
-- Cherry-pick 12-20 tasks from recent merged PRs in this repo.
-- Each task labeled with `id`, `prompt`, `expected_files_to_read[]`, `expected_completeness_keywords[]`.
-- Output: `mcp_server/scripts/dist/eval/tasks/labeled-tasks.jsonl`.
-- Manual quality review of first 5 tasks before scaling to 20.
+### Technical Context
 
-### Phase 2: Token-measurement lib (REQ-004)
-- Create `mcp_server/lib/eval/token-measurement.ts`.
-- Implement `getSessionTokens(sessionId, db)` returning `{prompt_tokens, completion_tokens, total_tokens, turn_count}`.
-- Implement `pairedDelta(baselineMetrics, afterMetrics)` returning per-task delta + statistical t-stat.
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | TypeScript and Node CLI |
+| **Framework** | system-spec-kit MCP/eval tooling |
+| **Storage** | JSONL run output and session analytics DB |
+| **Testing** | Vitest, stress test, `npm run check`, spec validator |
 
-### Phase 2.5: Provider auth preflight (REQ-011, NEW)
-- **Before any task dispatch, run provider availability/auth preflight** (single one-shot OpenCode call with `--noop` or trivial prompt).
-- Cache result for the run lifetime; invalidate on auth-shaped errors.
-- Fail fast (or ask user to confirm) if provider unavailable.
+### Overview
+Phase 005 builds the local eval harness that measures whether Phases 001-004 reduce file reads and token usage. pt-02 raised this to Level 3 because subprocess lifecycle, auth preflight, discriminated result rows, and mocked stress coverage are required for credible paired statistics.
+<!-- /ANCHOR:summary -->
 
-### Phase 2.7: Hardened subprocess dispatcher helper (REQ-012, NEW)
-- Create `mcp_server/lib/eval/dispatcher.ts` (~80-120 LOC):
-  - Owns stdin (`</dev/null`), 600s timeout, SIGTERM-then-grace-then-SIGKILL escalation, close-event wait.
-  - Captures stdout/stderr to per-task paths.
-  - Returns discriminated result row per REQ-013 schema.
-- All CLI-spawn paths in the eval harness MUST use this helper (NOT direct `child_process.spawn`).
+---
 
-### Phase 3: CLI dispatcher (REQ-001, REQ-002, REQ-006, REQ-008, REQ-013)
-- Create `mcp_server/scripts/dist/eval/code-graph-adoption-eval.js`.
-- Read task set from JSONL.
-- For each task × {baseline, after}:
-  - **Use the dispatcher helper from Phase 2.7** (NOT raw spawn).
-  - Pass `EVAL_ADVISOR_MODE=baseline|after` env.
-  - Capture session_id from stdout.
-  - Query session-analytics for token counts.
-  - Compute task-level metrics.
-  - **Construct discriminated result row** per REQ-013 (status/attempt/maxAttempts/condition/taskId/metrics/error/stdoutPath/stderrPath/sessionId/includeInPairedStats).
-  - Stream incremental result to `eval-runs/<run_id>/<task_id>.jsonl` with **condition-separated paths OR condition/attempt embedded in every row**.
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
 
-### Phase 4: Metric computation (REQ-003)
-- Reuse `mcp_server/lib/eval/eval-metrics.ts` `computeHitRate` for context-accuracy.
-- Implement `computeFileReadsAvoided(actual_reads, expected_reads)`.
-- Implement `computeAnswerCompleteness(answer, expected_keywords)` via Jaccard on tokenized answer.
+### Definition of Ready
+- [ ] Phases 001-004 are complete for full live harness.
+- [ ] Provider preflight behavior is defined.
+- [ ] Result row schema is defined before dispatcher implementation.
 
-### Phase 5: Report generator (REQ-007, REQ-009 amended, REQ-017)
-- Create `mcp_server/lib/eval/report-generator.ts`.
-- Read all JSONL results.
-- **Skip incomplete baseline/after pairs**; count `complete_pairs`, `incomplete_pairs`, `skipped_rows` separately (REQ-009 amended).
-- Compute paired t-test per metric ON COMPLETE PAIRS ONLY.
-- Render markdown report with pass/fail at p<0.05.
-- Add power-analysis section.
+### Definition of Done
+- [ ] Mocked 12 x 2 dispatcher stress passes before live run.
+- [ ] Live harness writes complete/incomplete/skipped accounting.
+- [ ] Report includes paired statistics and power analysis.
+<!-- /ANCHOR:quality-gates -->
 
-### Phase 6: Mocked dispatcher stress test (REQ-014, NEW — runs BEFORE manual full-harness)
-- Create `mcp_server/tests/eval-dispatcher-stress.vitest.ts` (~150 LOC):
-  - ≥12 tasks × 2 conditions using mocked subprocesses.
-  - Mock outcomes cover: success, non-timeout failure with retries, timeout, metrics-missing retry, DB/readiness error retry, AND final failed records.
-  - Asserts result-row schema discrimination AND paired-stats inclusion logic.
+---
 
-### Phase 7: Smoke test harness (REQ-008, REQ-010, REQ-015)
-- Create `mcp_server/tests/code-graph-adoption-eval.vitest.ts`.
-- Smoke: 1 task each condition (kept — but NOT treated as sufficient reliability coverage on its own; REQ-014 stress test is the reliability proof).
-- Assert result file format, metric computation, report generation.
-- **Stale-process detection** (REQ-015): if running OpenCode processes detected before dispatch, log warning and apply short-backoff retry for DB-lock/readiness errors.
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
 
-### Phase 8: Stress config (REQ-016)
-- Edit `mcp_server/vitest.stress.config.ts` adding entry `code-graph-adoption-eval`.
+### Pattern
+CLI dispatcher with hardened subprocess helper and post-run report generation.
 
-### Phase 9: Verification + run
-- `npm run check` green.
-- ≥80% line coverage.
-- **Mocked stress test (REQ-014) MUST pass before manual full-harness run.**
-- Run full harness: `node scripts/dist/eval/code-graph-adoption-eval.js --tasks 12 --runs 2`.
-- Review report; document findings in `implementation-summary.md`.
+### Key Components
+- **Provider preflight**: fails fast on unavailable auth/provider state.
+- **Dispatcher helper**: owns stdin, timeout, SIGTERM/SIGKILL escalation, close wait, and output paths.
+- **Result schema**: discriminates success, timeout, and failed rows.
+- **Report generator**: computes metrics only over complete baseline/after pairs.
 
-## DEPENDENCIES
+### Data Flow
+The CLI reads labeled tasks, runs each task in baseline and after conditions through the dispatcher, records JSONL rows, queries token metrics by session id, computes paired deltas, and renders a markdown report.
+<!-- /ANCHOR:architecture -->
 
-- Phases 027/001, 002, 003, 004 must ship first.
-- Existing `session-analytics-db.ts`, `eval-metrics.ts`.
-- 097 packet's `</dev/null` fix in cli-opencode dispatch.
+---
 
-## OUT OF SCOPE
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
 
-- SWE-bench Verified.
-- Cross-model comparison.
-- Real-time dashboard.
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `mcp_server/lib/eval/provider-preflight.ts` | New auth preflight | Create | Unit tests for success/auth failure |
+| `mcp_server/lib/eval/dispatcher.ts` | New subprocess lifecycle owner | Create | Mocked stress test |
+| `mcp_server/lib/eval/result-schema.ts` | New row validator | Create | Schema tests |
+| `code-graph-adoption-eval.js` | New CLI | Create | Smoke and full harness |
+<!-- /ANCHOR:affected-surfaces -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+### Phase 1: Setup
+- [ ] Curate task set.
+- [ ] Define provider preflight and result schema.
+
+### Phase 2: Core Implementation
+- [ ] Implement preflight, dispatcher, schema, token helper, CLI, metrics, report generator, and stress config.
+
+### Phase 3: Verification
+- [ ] Run mocked stress, smoke, coverage, `npm run check`, live harness, and strict validation.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | preflight, schema, metric math, report pair accounting | Vitest |
+| Stress | 12 x 2 mocked dispatcher with mixed outcomes | Vitest |
+| Manual/Live | full harness after mocked stress passes | Node CLI |
+| Validation | Spec folder structure and anchors | `validate.sh --strict` |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Phases 001-004 | Internal | Pending | Full treatment condition cannot run |
+| session-analytics DB | Internal | Available | Token metrics cannot be collected |
+| cli-opencode | Internal/external provider route | Available with auth | Subprocess runs cannot execute |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: eval harness leaves subprocesses running, corrupts JSONL result rows, or misreports paired statistics.
+- **Procedure**: Disable harness invocation, revert the implementation commit, and preserve any run JSONL as diagnostic evidence.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | Phases 001-004 for live run | Core implementation |
+| Core implementation | Setup | Verification |
+| Verification | Core implementation | Completion |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Setup | Medium | 1-2 hours |
+| Core Implementation | High | 4-5 hours |
+| Verification | High | 2-3 hours plus live run |
+| **Total** | | **7-10 hours plus live run** |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+- [ ] Mocked stress passes.
+- [ ] Provider preflight runs before live dispatch.
+- [ ] Result schema validates every row.
+
+### Rollback Procedure
+1. Stop any active harness subprocesses.
+2. Revert implementation commit.
+3. Archive failed run JSONL under the packet scratch area if needed.
+4. Re-run dispatcher stress to confirm no stale process state remains.
+
+### Data Reversal
+- **Has data migrations?** No.
+- **Reversal procedure**: Preserve or delete generated eval-run JSONL as needed; no database migration rollback.
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```text
+001 HLD/LLD + 002 Trace + 003 Impact + 004 Advisor Mandate
+        -> 005 task harness treatment condition
+        -> mocked dispatcher stress
+        -> live paired run
+        -> report
+```
+
+| Component | Depends On | Produces | Blocks |
+|-----------|------------|----------|--------|
+| Provider preflight | Provider config | Cached availability | Dispatcher |
+| Dispatcher helper | Result schema | Structured rows | CLI |
+| CLI harness | Task set, dispatcher | JSONL run rows | Report |
+| Report generator | Complete paired rows | Markdown verdict | Completion |
+<!-- /ANCHOR:dependency-graph -->
+
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. **Provider preflight + dispatcher helper** - 2-3 hours - CRITICAL
+2. **Result schema + mocked stress** - 2-3 hours - CRITICAL
+3. **CLI/report integration** - 2-3 hours - CRITICAL
+4. **Live run and report review** - ~2 hours - CRITICAL
+
+**Total Critical Path**: 8-11 hours.
+
+**Parallel Opportunities**:
+- Task curation can run while dispatcher helper is implemented.
+- Report generator can start once result schema is stable.
+<!-- /ANCHOR:critical-path -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Description | Success Criteria | Target |
+|-----------|-------------|------------------|--------|
+| M1 | Hardening ready | preflight, dispatcher, schema tests pass | Before CLI |
+| M2 | Mocked reliability ready | 12 x 2 stress passes | Before live run |
+| M3 | Evaluation complete | report generated from complete pairs | Completion |
+<!-- /ANCHOR:milestones -->
+
+---
+
+## L3: ARCHITECTURE DECISION RECORD
+
+### ADR-001: Keep subprocess hardening in Phase 005
+
+**Status**: Accepted
+
+**Context**: pt-02 found provider auth, process lifecycle, and result schema risks inside the eval harness itself.
+
+**Decision**: Keep hardening in this Level 3 packet rather than split a new prerequisite phase.
+
+**Consequences**:
+- The packet is larger, but the hardening sits next to its only current consumer.
+- A shared dispatcher can be extracted later if another consumer appears.
+
+**Alternatives Rejected**:
+- Split a sixth phase: rejected because it adds dependency overhead without current reuse.
