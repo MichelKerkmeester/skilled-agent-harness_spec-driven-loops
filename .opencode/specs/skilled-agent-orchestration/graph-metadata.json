@@ -1,9 +1,8 @@
 {
-  "derived": {
-    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
-    "last_active_at": "2026-05-07T22:23:13.285Z",
-    "last_save_at": "2026-05-07T22:23:13.285Z"
-  },
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration",
+  "spec_folder": "skilled-agent-orchestration",
+  "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/051-cli-opencode-providers",
     "skilled-agent-orchestration/052-cli-skill-patterns",
@@ -37,6 +36,55 @@
     "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git",
     "skilled-agent-orchestration/094-playbook-prompt-naturalness",
     "skilled-agent-orchestration/095-sk-code-review-playbook-execution",
-    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural"
-  ]
+    "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+    "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled-agent-orchestration",
+      "skilled",
+      "agent",
+      "orchestration",
+      "skilled-agent",
+      "track",
+      "skill",
+      "command",
+      "cli",
+      "provider",
+      "executor",
+      "skill-advisor"
+    ],
+    "key_topics": [
+      "skilled-agent",
+      "orchestration",
+      "track",
+      "skill",
+      "agent",
+      "command",
+      "cli",
+      "provider",
+      "executor",
+      "skill-advisor",
+      "mcp",
+      "deep-loop"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Track folder for skilled-agent-orchestration packets — improving how skills, agents, commands, and CLI executors collaborate across the OpenCode runtime. Hosts spec folders 051-070+ covering CLI providers, skill patterns + removals, sk-code merger + fullstack split, command-spec-kit UX, agent improvements, deep-loop stress tests, sk-doc alignment, agent creation, skill-advisor re-indexing, MCP transfers, sk-doc reorg, motion.dev integration, and rename refactors.",
+    "created_at": "2026-05-05T11:35:00.000Z",
+    "last_save_at": "2026-05-07T22:23:13.285Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "description.json"
+    ],
+    "last_active_child_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+    "last_active_at": "2026-05-07T22:23:13.285Z"
+  }
 }

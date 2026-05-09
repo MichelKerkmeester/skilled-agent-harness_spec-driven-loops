@@ -1,21 +1,84 @@
 {
+  "schema_version": 1,
   "packet_id": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
-  "title": "099 Webflow per-language style guides",
-  "level": 3,
+  "spec_folder": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
+  "parent_id": null,
+  "children_ids": [],
   "manual": {
     "depends_on": [],
-    "supersedes": []
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
+    "trigger_phrases": [
+      "099 webflow per-language style guides",
+      "webflow refactor",
+      "sk-code webflow tree",
+      "css_style_guide",
+      "js_style_guide",
+      "099-webflow-per-language-style-guides"
+    ],
+    "key_topics": [],
+    "importance_tier": "normal",
     "status": "complete",
-    "completion_pct": 100,
-    "checklist_completed": true,
-    "implementation_summary_present": true,
-    "last_updated_at": "2026-05-09T17:55:00Z"
+    "key_files": [
+      ".opencode/skills/sk-code/references/webflow/standards/code_style_guide.md",
+      ".opencode/skills/sk-code/references/webflow/standards/code_style_enforcement.md",
+      ".opencode/skills/sk-code/references/webflow/standards/code_quality_standards.md",
+      ".opencode/skills/sk-code/references/webflow/standards/quick_reference.md",
+      ".opencode/skills/sk-code/references/webflow/standards/shared_patterns.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Refactored sk-code's Webflow reference tree from 5 monolithic standards/* files (3,831 lines mixing JS+CSS+HTML) into 10 per-language files under webflow/{javascript,css,html,shared}/ (4,058 lines), mirroring opencode's layout. Probe-verified across 3 axes: SC-001 CSS-only routing PASS, SC-002 JS-only routing PASS, SC-004 codegen PASS 12/12 JS + 6/6 CSS.",
+    "created_at": "2026-05-09T19:30:52.197Z",
+    "last_save_at": "2026-05-09T19:30:52.197Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md"
+    ],
+    "completion_pct": 100
   },
-  "edges": {
-    "outbound": [],
-    "inbound": []
-  },
-  "schema_version": 2
+  "importance_tier": "normal"
 }

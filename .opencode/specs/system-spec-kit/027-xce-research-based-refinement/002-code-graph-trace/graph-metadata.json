@@ -1,18 +1,81 @@
 {
-  "packet_id": "002-code-graph-trace",
-  "parent_id": "027-xce-research-based-refinement",
-  "level": 2,
-  "title": "Phase 002 — Symbol-to-Architecture Trace Tool",
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "children_ids": [],
   "manual": {
-    "depends_on": ["001-code-graph-hld-lld"]
+    "depends_on": [
+      {
+        "packet_id": "001-code-graph-hld-lld",
+        "reason": "Predecessor packet (migrated from legacy string-array; original reason not preserved)",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
+    "trigger_phrases": [
+      "027 phase 002",
+      "code-graph trace",
+      "code_graph_trace",
+      "trace tool"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "symbol-to-architecture",
+      "trace",
+      "tool"
+    ],
+    "importance_tier": "important",
     "status": "spec-scaffolded",
-    "completion_pct": 0,
-    "last_active_child_id": null,
-    "children": [],
-    "is_phase_parent": false
+    "key_files": [],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Feature Specification: code_graph_trace — Symbol-to-Architecture Trace Tool",
+    "created_at": "2026-05-08T15:00:00Z",
+    "last_save_at": "2026-05-08T15:00:00Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "completion_pct": 0
   },
-  "createdAt": "2026-05-08T15:00:00Z",
-  "lastUpdatedAt": "2026-05-08T15:00:00Z"
+  "importance_tier": "important"
 }

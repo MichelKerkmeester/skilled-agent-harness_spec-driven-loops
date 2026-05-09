@@ -1,18 +1,88 @@
 {
-  "packet_id": "097-cli-opencode-stdin-fix",
-  "parent_id": "skilled-agent-orchestration",
-  "level": 2,
-  "title": "cli-opencode `</dev/null` stdin-redirect fix",
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/097-cli-opencode-stdin-fix",
+  "spec_folder": "skilled-agent-orchestration/097-cli-opencode-stdin-fix",
+  "parent_id": null,
+  "children_ids": [],
   "manual": {
-    "depends_on": []
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
+    "trigger_phrases": [
+      "097 cli-opencode stdin fix",
+      "opencode run hangs",
+      "opencode dev null stdin",
+      "opencode background dispatch hang",
+      "cli-opencode automation hang"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "cli-opencode",
+      "dev",
+      "null",
+      "stdin-redirect",
+      "fix"
+    ],
+    "importance_tier": "important",
     "status": "in-progress",
-    "completion_pct": 0,
-    "last_active_child_id": null,
-    "children": [],
-    "is_phase_parent": false
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+      ".opencode/skills/cli-opencode/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Feature Specification: cli-opencode `</dev/null` Stdin-Redirect Fix",
+    "created_at": "2026-05-08T13:30:00Z",
+    "last_save_at": "2026-05-08T13:30:00Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "completion_pct": 0
   },
-  "createdAt": "2026-05-08T13:30:00Z",
-  "lastUpdatedAt": "2026-05-08T13:30:00Z"
+  "importance_tier": "important"
 }

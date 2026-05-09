@@ -1,19 +1,80 @@
 {
-  "packet_id": "006-vitest-baseline-recovery",
-  "parent_id": "000-release-cleanup",
-  "level": 2,
-  "title": "Vitest baseline recovery",
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-vitest-baseline-recovery",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "children_ids": [],
   "manual": {
-    "depends_on": []
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
+    "trigger_phrases": [
+      "vitest baseline recovery",
+      "198 vitest failures",
+      "skill advisor scorer projection-fallback",
+      "filesystem-fallback fixture drift",
+      "v3.4.1.0 baseline reconciliation",
+      "026/000/006 packet"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "vitest",
+      "baseline",
+      "recovery"
+    ],
+    "importance_tier": "important",
     "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": null,
-    "children": [],
-    "is_phase_parent": false
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/projection-fallback-049-005.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Feature Specification: Vitest baseline recovery",
+    "created_at": "2026-05-08T21:35:00Z",
+    "last_save_at": "2026-05-08T23:20:00Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "completion_pct": 100
   },
-  "createdAt": "2026-05-08T21:35:00Z",
-  "lastUpdatedAt": "2026-05-08T23:20:00Z",
-  "status": "complete"
+  "importance_tier": "important"
 }

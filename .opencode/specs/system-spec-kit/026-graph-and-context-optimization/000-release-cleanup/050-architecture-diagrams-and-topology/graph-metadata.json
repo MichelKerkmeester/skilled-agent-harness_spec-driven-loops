@@ -3,6 +3,7 @@
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/050-architecture-diagrams-and-topology",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/050-architecture-diagrams-and-topology",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -22,6 +23,13 @@
     "entities": [],
     "causal_summary": "Adds architecture diagrams and topology trees to 17 code-folder READMEs plus ARCHITECTURE.md. Only shared/README.md currently has both.",
     "created_at": "2026-05-02T00:00:00Z",
-    "last_save_at": "2026-05-02T00:00:00Z"
+    "last_save_at": "2026-05-02T00:00:00Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

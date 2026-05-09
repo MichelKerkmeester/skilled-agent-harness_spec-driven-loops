@@ -1,18 +1,71 @@
 {
-  "packet_id": "009-p2-032-cleanup",
-  "parent_id": "096-rename-opencode-dirs-to-plural",
-  "level": 1,
-  "title": "P2-032 strategy-doc cleanup",
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
+  "spec_folder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
+  "parent_id": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "children_ids": [],
   "manual": {
-    "depends_on": []
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
+    "trigger_phrases": [
+      "P2-032 strategy doc cleanup",
+      "aliases.ts cross-ref broken",
+      "plural rename cosmetic followup",
+      "096/009 packet"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "p2-032",
+      "strategy-doc",
+      "cleanup"
+    ],
+    "importance_tier": "normal",
     "status": "in-progress",
-    "completion_pct": 0,
-    "last_active_child_id": null,
-    "children": [],
-    "is_phase_parent": false
+    "key_files": [
+      "specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview/review/deep-review-strategy.md",
+      "specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/008-remediation/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Feature Specification: P2-032 strategy-doc cleanup",
+    "created_at": "2026-05-08T20:45:00Z",
+    "last_save_at": "2026-05-08T20:45:00Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "completion_pct": 0
   },
-  "createdAt": "2026-05-08T20:45:00Z",
-  "lastUpdatedAt": "2026-05-08T20:45:00Z"
+  "importance_tier": "normal"
 }
