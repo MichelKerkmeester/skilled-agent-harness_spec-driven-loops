@@ -43,6 +43,10 @@ _memory:
 
 - `rg -n "skill_readme|assets/skill/.*readme" .opencode/skills/sk-doc`
 - `test -f .opencode/skills/sk-doc/assets/skill/skill_readme_template.md`
+- `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-doc --check`
+- `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-doc`
+- `grep` check for stale playbook text: `3 resources`, `both skill asset templates`, `all 21 enumerated`, `SKILL_CREATION query, 3`, `median (3 resources)`.
+- `grep` check for old template section: `## 1\. WHEN TO USE` in `skill_readme_template.md`.
 
 ## Risks
 

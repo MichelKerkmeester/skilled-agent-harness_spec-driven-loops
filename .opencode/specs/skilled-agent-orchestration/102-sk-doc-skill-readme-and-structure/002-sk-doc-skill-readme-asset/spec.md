@@ -36,7 +36,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -105,7 +105,7 @@ Create a reusable sk-doc skill README asset and wire it into the skill creation 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Phase deliverables are implemented and verified.
+- **SC-001**: Phase deliverables are implemented and verified with package, search and alignment checks.
 - **SC-002**: Handoff criteria are ready for the next phase.
 <!-- /ANCHOR:success-criteria -->
 

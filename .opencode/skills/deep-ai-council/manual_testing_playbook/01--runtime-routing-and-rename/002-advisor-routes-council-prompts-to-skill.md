@@ -45,7 +45,9 @@ The advisor must route explicit council requests to the skill instead of treatin
 
 ### Commands
 
-1. `bash: cd .opencode/skills/system-spec-kit && npx vitest run mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts -t "deep-ai-council"`
+1. `bash: cd .opencode/skills/system-spec-kit/mcp_server && node_modules/.bin/vitest run skill_advisor/tests/scorer/native-scorer.vitest.ts -t "deep-ai-council"`
+
+> Note: vitest must be invoked from `mcp_server/` CWD with the local `node_modules/.bin/vitest` binary. Running `npx vitest` from the workspace root fails with `Cannot find module 'vitest/config'` because the vitest config lives at `mcp_server/vitest.config.ts` and the workspace root has no top-level vitest install.
 
 ### Expected
 
@@ -66,7 +68,7 @@ Check advisor aliases, explicit scorer lane, and native scorer fixtures.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-002 | Advisor routing | Verify council prompt routing | `As a routing-system validator, run the council advisor regression. Verify deep-ai-council is selected. Return command evidence.` | `bash: cd .opencode/skills/system-spec-kit && npx vitest run mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts -t "deep-ai-council"` | Targeted test passes | Vitest transcript | PASS if exit 0 | Inspect scorer lanes |
+| DAC-002 | Advisor routing | Verify council prompt routing | `As a routing-system validator, run the council advisor regression. Verify deep-ai-council is selected. Return command evidence.` | `bash: cd .opencode/skills/system-spec-kit/mcp_server && node_modules/.bin/vitest run skill_advisor/tests/scorer/native-scorer.vitest.ts -t "deep-ai-council"` | Targeted test passes | Vitest transcript | PASS if exit 0 | Inspect scorer lanes |
 
 ---
 

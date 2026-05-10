@@ -47,9 +47,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Review `resource-map.md`
-- [ ] T002 Inventory current files and references
-- [ ] T003 Confirm out-of-scope work remains excluded
+- [x] T001 Review `resource-map.md`
+- [x] T002 Inventory current files and references
+- [x] T003 Confirm out-of-scope work remains excluded
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,13 +57,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Inventory README files under .opencode/skills.
-- [ ] T005 Identify common skill README sections.
-- [ ] T006 Confirm readme_template.md is the source template.
-- [ ] T007 Create the dedicated skill README asset.
-- [ ] T008 Reference the asset from SKILL.md and skill_creation.md.
-- [ ] T009 Reference or test the asset from manual testing docs.
-- [ ] T010 Run asset path searches and phase validation.
+- [x] T004 Inventory README files under .opencode/skills.
+- [x] T005 Identify common skill README sections.
+- [x] T006 Confirm readme_template.md is the source template.
+- [x] T007 Create the dedicated skill README asset.
+- [x] T008 Reference the asset from SKILL.md and skill_creation.md.
+- [x] T009 Reference or test the asset from manual testing docs.
+- [x] T010 Run asset path searches and phase validation.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T900 Run exact searches from resource-map.md
-- [ ] T901 Run phase validation
-- [ ] T902 Update handoff evidence
+- [x] T900 Run exact searches from resource-map.md
+- [x] T901 Run phase validation
+- [x] T902 Update handoff evidence
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

@@ -95,7 +95,7 @@ flowchart TD
 | 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Memory tools, Glob, Grep, Read                                                    | `"general"`   |
 | 2        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `deep-research`                                             | `"general"`   |
 | 3        | Multi-strategy planning and architecture synthesis                        | `@deep-ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"general"`   |
-| 4        | `/create:*` documentation and component creation command execution        | `@create`          | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"general"`   |
+| 4        | `/create:*` documentation and component creation command execution        | `@markdown`        | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"general"`   |
 | 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code-review` baseline + `sk-code` router-selected evidence    | `"general"`   |
 | 6        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"general"`   |
 | 7        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via Task tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
@@ -109,7 +109,7 @@ This Copilot profile enforces **single-hop delegation**. Nested sub-agent dispat
 | Tier             | Dispatch Authority               | Who                                                                                   |
 | ---------------- | -------------------------------- | ------------------------------------------------------------------------------------- |
 | **ORCHESTRATOR** | Can dispatch LEAF agents         | Top-level orchestrator only                                                           |
-| **LEAF**         | MUST NOT dispatch any sub-agents | @context, @code, @create, @deep-ai-council, @review, @debug, @deep-research, @deep-review |
+| **LEAF**         | MUST NOT dispatch any sub-agents | @context, @code, @markdown, @deep-ai-council, @review, @debug, @deep-research, @deep-review |
 
 #### Absolute Depth Rules
 
@@ -176,7 +176,7 @@ Before every Task tool dispatch, compare the selected route, loaded agent defini
 | Agent     | File                          | Notes                                                                                  |
 | --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
 | @context  | `.opencode/agents/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
-| @create | `.opencode/agents/create.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
+| @markdown | `.opencode/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @deep-research | `.opencode/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-ai-council | `.opencode/agents/deep-ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see deep-ai-council persistence protocol). |
 | @review   | `.opencode/agents/review.md`   | Codebase-agnostic quality scoring                                                      |
@@ -199,7 +199,7 @@ TASK #N: [Descriptive Title]
 ├─ Objective: [WHY this task exists]
 ├─ Scope: [Explicit inclusions AND exclusions]
 ├─ Boundary: [What this agent MUST NOT do]
-├─ Agent: @code | @context | @create | @deep-research | @deep-ai-council | @review | @debug
+├─ Agent: @code | @context | @markdown | @deep-research | @deep-ai-council | @review | @debug
 ├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
 ├─ Agent Definition: [.opencode/agents/<name>.md — MUST be read and included in prompt | "built-in" for @general]
 ├─ Skills: [Specific skills the agent should use]
@@ -358,11 +358,11 @@ TASK #2: Implement Notification System
 
 **Trigger:** Task creates or substantively writes `.opencode/skills/**`, `.opencode/agents/**`, or `.opencode/commands/**` component definitions, role files, command workflows, templates, metadata, or package docs.
 
-**Action:** Route actual `/create:*` component commands, scoped markdown authoring, and spec-doc creation through `@create` or another explicitly write-capable documentation lane. Do NOT dispatch `@code` for component scaffolding or prose/package authoring.
+**Action:** Route actual `/create:*` component commands, scoped markdown authoring, and spec-doc creation through `@markdown` or another explicitly write-capable documentation lane. Do NOT dispatch `@code` for component scaffolding or prose/package authoring.
 
 **Exception:** Dispatch `@code` only for a narrow executable-code subtask after component scaffolding is complete, with exact files, success criteria, and verification commands.
 
-**Violation Response:** If a candidate dispatch says `Agent: @code` for component creation or prose/spec documentation, apply the Prompt/Agent Consistency Guard, STOP before dispatch, and rewrite the task for `@create`, `@general`, or main-agent documentation execution with explicit write scope.
+**Violation Response:** If a candidate dispatch says `Agent: @code` for component creation or prose/spec documentation, apply the Prompt/Agent Consistency Guard, STOP before dispatch, and rewrite the task for `@markdown`, `@general`, or main-agent documentation execution with explicit write scope.
 
 ### Rule 3: Context Preservation
 **Trigger:** Completion of major milestone or session end.
@@ -766,7 +766,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - Nested chains are illegal in this profile. Every dispatch must include `Depth: N` and respect single-hop NDP rules: only depth-0 orchestrator dispatches; depth-1 agents MUST NOT dispatch. If a task cannot be completed at depth 1, return partial results and escalate to the parent. See §2.
 
 ❌ **Never let LEAF agents dispatch sub-agents**
-- LEAF agents (@context, @general, @create, @deep-ai-council, @review, @debug, @deep-research, @deep-review) execute work directly. If a LEAF agent spawns a sub-agent, it violates NDP. When dispatching LEAF agents, ALWAYS include the LEAF Enforcement Instruction (§2).
+- LEAF agents (@context, @general, @markdown, @deep-ai-council, @review, @debug, @deep-research, @deep-review) execute work directly. If a LEAF agent spawns a sub-agent, it violates NDP. When dispatching LEAF agents, ALWAYS include the LEAF Enforcement Instruction (§2).
 
 ❌ **Never read 3+ large files back-to-back in main context**
 - Loading multiple large files floods the orchestrator's context window. Delegate bulk file reads to `@context` and receive summarized Context Packages. See §8 Self-Protection Rules.

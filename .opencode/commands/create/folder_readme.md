@@ -9,7 +9,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_co
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
 > **YOUR FIRST ACTION:**
-> 1. Run Phase 0: @create agent self-verification (below)
+> 1. Run Phase 0: @markdown agent self-verification (below)
 > 2. Run Setup Phase: consolidated prompt to gather inputs (including operation detection)
 > 3. Determine execution mode from user input (`:auto` or `:confirm`)
 > 4. Load the corresponding YAML file from `assets/`:
@@ -18,22 +18,22 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_co
 >    (Both YAMLs contain readme AND install operations — skip to the detected operation section)
 > 5. Execute the YAML workflow step by step
 >
-> The @create references below are self-verification checks — not dispatch instructions.
+> The @markdown references below are self-verification checks — not dispatch instructions.
 > All content after the Setup Phase is reference context for the YAML workflow.
 
 ---
 
-# 🚨 PHASE 0: @CREATE-DOC AGENT VERIFICATION
+# 🚨 PHASE 0: @MARKDOWN AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
 ```
 EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
 
-SELF-CHECK: Are you operating as the @create agent?
+SELF-CHECK: Are you operating as the @markdown agent?
 │
-├─ INDICATORS that you ARE @create agent:
-│   ├─ You were invoked with "@create" prefix
+├─ INDICATORS that you ARE @markdown agent:
+│   ├─ You were invoked with "@markdown" prefix
 │   ├─ You have template-first workflow capabilities
 │   ├─ You load templates BEFORE creating content
 │   ├─ You validate template alignment AFTER creating
@@ -47,20 +47,20 @@ SELF-CHECK: Are you operating as the @create agent?
     │
     ├─ DISPLAY to user:
     │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ CREATE-DOC AGENT REQUIRED                                    │
+    │   │ ⛔ MARKDOWN AGENT REQUIRED                                      │
     │   │                                                            │
-    │   │ This command requires the @create agent for:                │
+    │   │ This command requires the @markdown agent for:              │
     │   │   • Template-first workflow (loads before creating)          │
     │   │   • DQI scoring (target: 75+ Good)                         │
     │   │   • sk-doc skill integration                               │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   @create /create:folder_readme [operation] [target]        │
+    │   │   @markdown /create:folder_readme [operation] [target]      │
     │   │                                                            │
-    │   │ Reference: [runtime_agent_path]/create.md                   │
+    │   │ Reference: [runtime_agent_path]/markdown.md                 │
     │   └────────────────────────────────────────────────────────────┘
     │
-    └─ RETURN: STATUS=FAIL ERROR="Create-doc agent required"
+    └─ RETURN: STATUS=FAIL ERROR="Markdown agent required"
 ```
 
 **Phase Output:**
@@ -334,7 +334,7 @@ Use `[runtime_agent_path]` based on the active runtime profile:
 **YOU ARE IN VIOLATION IF YOU:**
 
 **Phase Violations:**
-- Executed command without @create agent verification
+- Executed command without @markdown agent verification
 - Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
 - Started reading the workflow section before all fields are set
 - Proceeded without explicit target path or project name

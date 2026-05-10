@@ -48,15 +48,15 @@ The framework adds three layers on top of the base platform:
 2. **Cognitive memory** (MCP server) - a local-first memory engine storing decisions, context and project history in a searchable database. Like a personal librarian who remembers every conversation.
 3. **Coordinated agents** - 11 specialized agents routed by a gate system that loads the right skills at the right time. Like a team where the project manager delegates to the right specialist.
 
-| | |
-|---|---|
-| **🤖 11 Agents** | 11 custom specialists, multi-runtime |
-| **🎯 21 Skills** | Code, docs, git, prompts, MCP, research, review, improvement, cross-AI |
-| **⌨️ 23 Commands** | 6 spec_kit + 4 memory + 6 create + 2 improve + 4 doctor + 1 agent_router |
-| **🔧 63 MCP Tools** | spec_kit_memory (54), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ |
-| **🔍 CocoIndex Code** | [Forked](.opencode/skills/mcp-coco-index/NOTICE) from [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0) - semantic code search via vector embeddings and natural-language discovery across 28+ languages |
-| **🏗️ Code Graph** | Structural indexer + SQLite - call graphs, imports, hierarchy, LLM-oriented neighborhoods, graph-first routing |
-| **⚡ Runtime Coverage** | OpenCode, Codex CLI, Claude Code, Gemini CLI, plus Copilot MCP/startup support |
+|                        |                                                                                                                                                                                                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **🤖 11 Agents**        | 11 custom specialists, multi-runtime                                                                                                                                                                                                              |
+| **🎯 21 Skills**        | Code, docs, git, prompts, MCP, research, review, improvement, cross-AI                                                                                                                                                                            |
+| **⌨️ 23 Commands**      | 6 spec_kit + 4 memory + 6 create + 2 improve + 4 doctor + 1 agent_router                                                                                                                                                                          |
+| **🔧 63 MCP Tools**     | spec_kit_memory (54), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ                                                                                                                                           |
+| **🔍 CocoIndex Code**   | [Forked](.opencode/skills/mcp-coco-index/NOTICE) from [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0) - semantic code search via vector embeddings and natural-language discovery across 28+ languages |
+| **🏗️ Code Graph**       | Structural indexer + SQLite - call graphs, imports, hierarchy, LLM-oriented neighborhoods, graph-first routing                                                                                                                                    |
+| **⚡ Runtime Coverage** | OpenCode, Codex CLI, Claude Code, Gemini CLI, plus Copilot MCP/startup support                                                                                                                                                                    |
 
 ### How It All Connects
 
@@ -192,11 +192,11 @@ The Spec Kit enforces structured spec folders for every file-modifying conversat
 
 Documentation depth scales with task complexity.
 
-| Level | LOC Guidance | Required Files | When to Use |
-|-------|-------------|----------------|-------------|
-| **1** | < 100 | spec.md, plan.md, tasks.md, implementation-summary.md | Small features, bug fixes, single-file changes |
-| **2** | 100 - 499 | Level 1 + checklist.md | Features needing QA verification, multi-file changes |
-| **3** | 500+ | Level 2 + decision-record.md | Architecture changes, complex refactors |
+| Level  | LOC Guidance   | Required Files                                                          | When to Use                                                              |
+| ------ | -------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **1**  | < 100          | spec.md, plan.md, tasks.md, implementation-summary.md                   | Small features, bug fixes, single-file changes                           |
+| **2**  | 100 - 499      | Level 1 + checklist.md                                                  | Features needing QA verification, multi-file changes                     |
+| **3**  | 500+           | Level 2 + decision-record.md                                            | Architecture changes, complex refactors                                  |
 | **3+** | Complexity 80+ | Level 3 + approval workflow, compliance checkpoints, stakeholder matrix | High-complexity work needing review tracking and workstream coordination |
 
 The LOC ranges are guidance, not hard rules. Risk, complexity and the number of affected files can push a task to a higher level. When in doubt, choose the higher level.
@@ -359,18 +359,18 @@ The full MCP API reference is in the [MCP Server README](.opencode/skills/system
 
 The MCP tools are organized into a layered architecture. Each layer has a token budget that controls how much context it consumes:
 
-| Layer | Name | Tools | Token Budget | Purpose |
-|-------|------|-------|-------------|---------|
-| **L1** | Orchestration | 3 | 2,000 | Unified context, resume, and bootstrap entry points |
-| **L2** | Core | 4 | 1,500 | Search, quick search, trigger matching, save |
-| **L3** | Discovery | 4 | 800 | List, stats, health checks, and session readiness |
-| **L4** | Mutation | 4 | 500 | Delete, update, validate, bulk cleanup |
-| **L5** | Lifecycle | 4 | 600 | Checkpoints and lifecycle state |
-| **L6** | Analysis | 10 | 1,200 | Causal graph, epistemic baselines, evaluations, and dashboards |
-| **L7** | Maintenance | 10 | 1,000 | Index scans, async ingest, learning history, and graph/CocoIndex maintenance |
-| **L8** | Graph + Advisor | 17 | 1,400 | Code graph, skill graph, advisor, and CocoIndex bridge |
-| **L9** | Coverage Graph | 4 | 700 | Deep-loop coverage graph operations |
-| | **Total** | **54** | **10,500** | |
+| Layer  | Name            | Tools  | Token Budget | Purpose                                                                      |
+| ------ | --------------- | ------ | ------------ | ---------------------------------------------------------------------------- |
+| **L1** | Orchestration   | 3      | 2,000        | Unified context, resume, and bootstrap entry points                          |
+| **L2** | Core            | 4      | 1,500        | Search, quick search, trigger matching, save                                 |
+| **L3** | Discovery       | 4      | 800          | List, stats, health checks, and session readiness                            |
+| **L4** | Mutation        | 4      | 500          | Delete, update, validate, bulk cleanup                                       |
+| **L5** | Lifecycle       | 4      | 600          | Checkpoints and lifecycle state                                              |
+| **L6** | Analysis        | 10     | 1,200        | Causal graph, epistemic baselines, evaluations, and dashboards               |
+| **L7** | Maintenance     | 10     | 1,000        | Index scans, async ingest, learning history, and graph/CocoIndex maintenance |
+| **L8** | Graph + Advisor | 17     | 1,400        | Code graph, skill graph, advisor, and CocoIndex bridge                       |
+| **L9** | Coverage Graph  | 4      | 700          | Deep-loop coverage graph operations                                          |
+|        | **Total**       | **54** | **10,500**   |                                                                              |
 
 Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used.
 
@@ -437,13 +437,13 @@ Six relationship types: `caused`, `enabled`, `supersedes`, `contradicts`, `deriv
 
 Every search result ships with a small `trustBadges` block that tells you how reliable the hit is at a glance. The badges are display-only, they read existing causal links and don't add new storage:
 
-| Badge | What it tells you |
-|-------|-------------------|
-| `confidence` | How strong the strongest causal link to this result is |
-| `extractionAge` | How long ago the supporting evidence was extracted |
-| `lastAccessAge` | How recently anything in the chain was used |
-| `orphan` | True when nothing else in the graph points at this result |
-| `weightHistoryChanged` | True when the underlying edge weight has been re-tuned |
+| Badge                  | What it tells you                                         |
+| ---------------------- | --------------------------------------------------------- |
+| `confidence`           | How strong the strongest causal link to this result is    |
+| `extractionAge`        | How long ago the supporting evidence was extracted        |
+| `lastAccessAge`        | How recently anything in the chain was used               |
+| `orphan`               | True when nothing else in the graph points at this result |
+| `weightHistoryChanged` | True when the underlying edge weight has been re-tuned    |
 
 If the database is unreachable the formatter quietly skips badges instead of failing. Caller-provided badges pass through untouched, and every response profile (`quick`, `research`, `resume`) keeps the badges on the top result and the result list.
 
@@ -613,12 +613,12 @@ The code graph runtime has its own feature catalog and operator playbook under [
 &nbsp;
 #### What Each System Does
 
-| System | Best for | Primary surface |
-|-------|----------|-----------------|
-| **CocoIndex** | Concept search, similar implementations, unfamiliar modules | `mcp__cocoindex_code__search` |
-| **Code Graph** | Callers, imports, symbol outlines, impact analysis, neighborhood expansion | `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context` |
-| **Session bridge tools** | Session bootstrap, resume, and health checks around graph availability | `session_bootstrap`, `session_resume`, `session_health` |
-| **CCC utilities** | CocoIndex availability, reindexing, result feedback | `ccc_status`, `ccc_reindex`, `ccc_feedback` |
+| System                   | Best for                                                                   | Primary surface                                                                  |
+| ------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **CocoIndex**            | Concept search, similar implementations, unfamiliar modules                | `mcp__cocoindex_code__search`                                                    |
+| **Code Graph**           | Callers, imports, symbol outlines, impact analysis, neighborhood expansion | `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context` |
+| **Session bridge tools** | Session bootstrap, resume, and health checks around graph availability     | `session_bootstrap`, `session_resume`, `session_health`                          |
+| **CCC utilities**        | CocoIndex availability, reindexing, result feedback                        | `ccc_status`, `ccc_reindex`, `ccc_feedback`                                      |
 
 &nbsp;
 #### How Query Routing Works (Graph-First)
@@ -703,12 +703,12 @@ Current shipped baseline: **80.5% full-corpus accuracy**, **77.5% holdout accura
 └── tools/      tool registration
 ```
 
-| Tool | What it does |
-|------|--------------|
-| `advisor_recommend` | Recommends skills for a prompt with lane breakdown, lifecycle redirects, and a freshness trust signal. Returns the workspace root and the effective thresholds it used. |
-| `advisor_rebuild` | Rebuilds the advisor skill graph when `advisor_status` reports stale, absent, or unavailable state; `force:true` rebuilds even when live. |
-| `advisor_status` | Reports freshness, generation, trust state, lane weights, skill count, last scan time, and background daemon status. |
-| `advisor_validate` | Runs measurement slices: corpus accuracy, holdout, parity, safety, latency. Surfaces the workspace root, effective thresholds, threshold semantics (aggregate vs runtime), and prompt-safe outcome counts (accepted / corrected / ignored). |
+| Tool                | What it does                                                                                                                                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `advisor_recommend` | Recommends skills for a prompt with lane breakdown, lifecycle redirects, and a freshness trust signal. Returns the workspace root and the effective thresholds it used.                                                                     |
+| `advisor_rebuild`   | Rebuilds the advisor skill graph when `advisor_status` reports stale, absent, or unavailable state; `force:true` rebuilds even when live.                                                                                                   |
+| `advisor_status`    | Reports freshness, generation, trust state, lane weights, skill count, last scan time, and background daemon status.                                                                                                                        |
+| `advisor_validate`  | Runs measurement slices: corpus accuracy, holdout, parity, safety, latency. Surfaces the workspace root, effective thresholds, threshold semantics (aggregate vs runtime), and prompt-safe outcome counts (accepted / corrected / ignored). |
 
 &nbsp;
 #### How Runtimes Talk To It
@@ -864,11 +864,28 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Read-only permissions - delegates implementation to other agents
 - Single-hop delegation only (depth 2 max) to prevent runaway chains
 
+**Code**
+- Surface-aware code implementation specialist (write-capable LEAF, `mode: subagent`, `task: deny`)
+- Delegates code surface detection to `sk-code`; the agent body itself stays stack-agnostic and reads sk-code's emitted surface evidence at dispatch time
+- 7 dispatch modes: full implementation / surgical fix / refactor only / test add / scaffold new file / rename-move / dependency bump
+- 5-dimension acceptance rubric (100 pts total): Correctness 30, Scope-Adherence 20, Verification-Evidence 20, Stack-Pattern-Compliance 15, Integration 15
+- Builder → Critic → Verifier adversarial self-check on every completion claim (challenges `DONE`, opposite axis from `@review`'s Hunter/Skeptic/Referee which challenges findings)
+- Iron Law: NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK; LOW confidence strictly blocks `DONE`
+- Fail-closed verification, failure returns to orchestrator, no internal retry; BLOCKED-count circuit breaker (3× BLOCKED → orchestrator offers `@debug`)
+- Compact RETURN line + structured body with `escalation` classifier (NONE / UNKNOWN_STACK / SCOPE_CONFLICT / LOW_CONFIDENCE / LOGIC_SYNC / VERIFY_FAIL)
+- Dispatched ONLY by `@orchestrate` via convention-floor caller-restriction (description prose + body §0 dispatch gate + orchestrate.md routing entry; not harness-enforced)
+
 **Context**
 - Memory-first retrieval specialist - always checks memory before codebase
 - Search order: `match_triggers` → `memory_context` → `memory_search` → grep/glob
 - Returns structured Context Packages combining memory findings with codebase evidence
 - Uses both CocoIndex semantic search and the 5-channel memory system. Read-only.
+
+**Review**
+- Code quality guardian with strict read-only permissions (cannot write or edit any file)
+- Loads `sk-code-review` baseline first, then uses `sk-code` surface evidence for stack-specific standards (whatever surface `sk-code` detected)
+- Security and correctness minimums are mandatory and never relaxed by surface-specific evidence
+- Produces findings-first severity analysis with quality scoring and pattern validation
 
 **Debug**
 - Fresh-perspective debugger that receives structured context handoff (not conversation history)
@@ -876,7 +893,26 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Systematic 5-phase methodology: Observe → Analyze → Hypothesize → Validate → Fix
 - Writes `debug-delegation.md` with root cause analysis and findings
 
-**Deep-Research**
+**Create**
+- Dedicated LEAF executor for the `/create:*` command family (agent, sk-skill, feature-catalog, testing-playbook, folder_readme, changelog)
+- Caller-restricted to `/create:*` commands by convention-level Phase 0 gate; refuses other dispatchers with canonical REFUSE wording
+- Loads `sk-doc` skill on every invocation; reads the per-command template before writing
+- Deterministic 3-state output contract: `STATUS=OK PATH=<file>` / `STATUS=FAIL ERROR=<reason>` / `STATUS=CANCELLED`
+- DQI score ≥75 minimum reported in completion claim; HVR (Human Voice Rules) compliance enforced
+
+**Prompt-Improver**
+- Prompt-escalation specialist for high-stakes external CLI invocations and other sensitive AI prompt work
+- Selects the best-fit framework from `sk-prompt`, applies DEPTH at the right energy level, and validates the result with CLEAR
+- Returns a structured prompt package with `FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, and `ESCALATION_NOTES`
+- Used by the CLI mirror-card pipeline and `/improve:prompt` agent mode when complexity, compliance, or stakeholder spread makes inline prompting too weak
+
+**Deep AI Council**
+- Multi-strategy planning architect dispatching diverse AI vantage points and strategy lenses
+- Seeks distinct reasoning strategies across multiple AIs (cli-codex, cli-gemini, cli-claude-code + native)
+- Multi-round deliberation before recommending a plan; planning-only (never modifies files)
+- 5-dimension scoring rubric for strategy quality
+
+**Deep Research**
 - Autonomous research agent executing single LEAF (Loop, Externalize, Analyze, Finish) iterations
 - State externalized via JSONL + strategy.md for pause/resume across sessions
 - Loop orchestration managed by `/spec_kit:deep-research` command, not this agent
@@ -892,7 +928,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Fail-closed corruption handling: throws structured error before writing derived files when JSONL is corrupt
 - Graph convergence fallback: scoring uses a numeric fallback when `blendedScore` is absent
 
-**Deep-Review**
+**Deep Review**
 - Autonomous code quality auditor using LEAF architecture for single review iterations
 - Reviews code but NEVER modifies target files (read-only on code)
 - Loop orchestration managed by `/spec_kit:deep-review` command, not this agent
@@ -909,47 +945,11 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Fail-closed corruption handling: reducer refuses to write derived files when JSONL corruption is detected
 - Lifecycle modes: `new`, `resume`, `restart` with typed JSONL lineage events
 
-**Review**
-- Code quality guardian with strict read-only permissions (cannot write or edit any file)
-- Loads `sk-code-review` baseline first, then uses `sk-code` surface evidence for stack-specific standards (whatever surface `sk-code` detected)
-- Security and correctness minimums are mandatory and never relaxed by surface-specific evidence
-- Produces findings-first severity analysis with quality scoring and pattern validation
-
-**Code**
-- Surface-aware code implementation specialist (write-capable LEAF, `mode: subagent`, `task: deny`)
-- Delegates code surface detection to `sk-code`; the agent body itself stays stack-agnostic and reads sk-code's emitted surface evidence at dispatch time
-- 7 dispatch modes: full implementation / surgical fix / refactor only / test add / scaffold new file / rename-move / dependency bump
-- 5-dimension acceptance rubric (100 pts total): Correctness 30, Scope-Adherence 20, Verification-Evidence 20, Stack-Pattern-Compliance 15, Integration 15
-- Builder → Critic → Verifier adversarial self-check on every completion claim (challenges `DONE`, opposite axis from `@review`'s Hunter/Skeptic/Referee which challenges findings)
-- Iron Law: NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK; LOW confidence strictly blocks `DONE`
-- Fail-closed verification, failure returns to orchestrator, no internal retry; BLOCKED-count circuit breaker (3× BLOCKED → orchestrator offers `@debug`)
-- Compact RETURN line + structured body with `escalation` classifier (NONE / UNKNOWN_STACK / SCOPE_CONFLICT / LOW_CONFIDENCE / LOGIC_SYNC / VERIFY_FAIL)
-- Dispatched ONLY by `@orchestrate` via convention-floor caller-restriction (description prose + body §0 dispatch gate + orchestrate.md routing entry; not harness-enforced)
-
-**Create**
-- Dedicated LEAF executor for the `/create:*` command family (agent, sk-skill, feature-catalog, testing-playbook, folder_readme, changelog)
-- Caller-restricted to `/create:*` commands by convention-level Phase 0 gate; refuses other dispatchers with canonical REFUSE wording
-- Loads `sk-doc` skill on every invocation; reads the per-command template before writing
-- Deterministic 3-state output contract: `STATUS=OK PATH=<file>` / `STATUS=FAIL ERROR=<reason>` / `STATUS=CANCELLED`
-- DQI score ≥75 minimum reported in completion claim; HVR (Human Voice Rules) compliance enforced
-
-**Multi-AI Council**
-- Multi-strategy planning architect dispatching diverse AI vantage points and strategy lenses
-- Seeks distinct reasoning strategies across multiple AIs (cli-codex, cli-gemini, cli-claude-code, native @deep-research)
-- Multi-round deliberation before recommending a plan; planning-only (never modifies files)
-- 5-dimension scoring rubric for strategy quality
-
-**Agent-Improver**
+**Agent Improver**
 - Proposal-only mutator for bounded agent improvement experiments
 - Reads the target agent's charter, manifest and integration surface, then writes ONE candidate to a packet-local runtime area
 - Never scores, promotes, benchmarks or edits canonical targets. The `/improve:agent` command loop handles those.
 - Loop orchestration: scan integration surfaces, generate dynamic profile, dispatch this agent, score candidate across 5 dimensions (structural, ruleCoherence, integration, outputQuality, systemFitness), reduce state, check stop conditions
-
-**Prompt-Improver**
-- Prompt-escalation specialist for high-stakes external CLI invocations and other sensitive AI prompt work
-- Selects the best-fit framework from `sk-prompt`, applies DEPTH at the right energy level, and validates the result with CLEAR
-- Returns a structured prompt package with `FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, and `ESCALATION_NOTES`
-- Used by the CLI mirror-card pipeline and `/improve:prompt` agent mode when complexity, compliance, or stakeholder spread makes inline prompting too weak
 
 ---
 
@@ -1147,13 +1147,13 @@ Code Mode MCP gives the AI access to external tools (Figma, GitHub, Chrome DevTo
 
 Defined in `opencode.json`:
 
-| Server | Tools | Purpose |
-|--------|-------|---------|
-| `spec_kit_memory` | 54 | Cognitive memory system - the memory engine + skill graph |
-| `code_mode` | 7 | External tool orchestration via TypeScript execution |
-| `cocoindex_code` | 1 | Semantic code search via vector embeddings |
-| `sequential_thinking` | 1 | Structured multi-step reasoning for complex problems |
-| **Total** | **63** | |
+| Server                | Tools  | Purpose                                                   |
+| --------------------- | ------ | --------------------------------------------------------- |
+| `spec_kit_memory`     | 54     | Cognitive memory system - the memory engine + skill graph |
+| `code_mode`           | 7      | External tool orchestration via TypeScript execution      |
+| `cocoindex_code`      | 1      | Semantic code search via vector embeddings                |
+| `sequential_thinking` | 1      | Structured multi-step reasoning for complex problems      |
+| **Total**             | **63** |                                                           |
 
 &nbsp;
 #### Code Mode Tools (7)
@@ -1179,12 +1179,12 @@ Defined in `opencode.json`:
 &nbsp;
 #### Performance
 
-| Metric | Without Code Mode | With Code Mode |
-|--------|-------------------|----------------|
-| Context tokens | Large external tool schemas loaded upfront | 1.6k (on-demand) |
-| Round trips | 15+ for chained operations | 1 (TypeScript chain) |
-| Type safety | None | Full TypeScript |
-| Context reduction | -| 98.7% |
+| Metric            | Without Code Mode                          | With Code Mode       |
+| ----------------- | ------------------------------------------ | -------------------- |
+| Context tokens    | Large external tool schemas loaded upfront | 1.6k (on-demand)     |
+| Round trips       | 15+ for chained operations                 | 1 (TypeScript chain) |
+| Type safety       | None                                       | Full TypeScript      |
+| Context reduction | -                                          | 98.7%                |
 
 To call a Code Mode tool: `call_tool_chain({ typescript: "const result = await figma.figma_get_file({fileKey: 'abc123'}); return result;" })`
 
@@ -1204,19 +1204,19 @@ For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the
 
 This repo ships as a **public template**. Of the skills it ships with, only one carries stack-specific content, start there:
 
-| Skill / Surface | Out-of-the-box | Notes |
-|---|---|---|
-| **`sk-code`** | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres, or React Native + Reanimated, or Go + sqlc, etc.). |
-| `sk-doc` | ✅ Codebase-agnostic | Markdown quality + component creation. Works for any project. |
-| `sk-git` | ✅ Codebase-agnostic | Worktree + commit + PR workflow. Works for any project. |
-| `sk-code-review` | ✅ Codebase-agnostic baseline | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts. |
-| `system-spec-kit` | ✅ Codebase-agnostic | Spec folder workflow + validator + memory. Works for any project. |
-| `mcp-coco-index` | ✅ Codebase-agnostic | Semantic code search via embeddings. Works for any project. |
-| `mcp-code-mode` | ✅ Codebase-agnostic | Multi-tool MCP orchestration. Works for any project. |
-| `deep-research` / `deep-review` | ✅ Codebase-agnostic | Iterative loop protocols. Work for any topic / target. |
-| `sk-prompt` / `deep-agent-improvement` | ✅ Codebase-agnostic | Prompt + agent improvement frameworks. Work for any project. |
-| `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic | External CLI orchestrators. Stack-independent. |
-| `mcp-chrome-devtools` | ✅ Codebase-agnostic | Browser tooling. Stack-independent. |
+| Skill / Surface                                     | Out-of-the-box                             | Notes                                                                                                                                                                                                    |
+| --------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`sk-code`**                                       | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres, or React Native + Reanimated, or Go + sqlc, etc.). |
+| `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
+| `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
+| `sk-code-review`                                    | ✅ Codebase-agnostic baseline               | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts.                                                                                                          |
+| `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
+| `mcp-coco-index`                                    | ✅ Codebase-agnostic                        | Semantic code search via embeddings. Works for any project.                                                                                                                                              |
+| `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
+| `deep-research` / `deep-review`                     | ✅ Codebase-agnostic                        | Iterative loop protocols. Work for any topic / target.                                                                                                                                                   |
+| `sk-prompt` / `deep-agent-improvement`              | ✅ Codebase-agnostic                        | Prompt + agent improvement frameworks. Work for any project.                                                                                                                                             |
+| `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
+| `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported; just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 

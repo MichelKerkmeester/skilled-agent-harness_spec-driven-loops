@@ -17,20 +17,20 @@ purpose: Create comprehensive README files and AI-first installation guides with
 action: Generate scannable, well-organized documentation (README or Install Guide) with table of contents
 
 # ─────────────────────────────────────────────────────────────────
-# PREREQUISITE: @create AGENT VERIFICATION
+# PREREQUISITE: @markdown AGENT VERIFICATION
 # ─────────────────────────────────────────────────────────────────
-# This workflow REQUIRES the @create agent for:
+# This workflow REQUIRES the @markdown agent for:
 #   - Template-first workflow (loads templates before creating)
 #   - DQI scoring (target: 70+ Acceptable)
 #   - sk-doc skill integration
 #
-# PHASE 0 in the command markdown verifies @create agent BEFORE
+# PHASE 0 in the command markdown verifies @markdown agent BEFORE
 # this YAML workflow loads. If you're executing this workflow,
-# @create verification has already passed.
+# @markdown verification has already passed.
 #
 # To invoke correctly:
-#   README:        @create /create:folder_readme [path]
-#   Install Guide: @create /create:folder_readme install [project-name]
+#   README:        @markdown /create:folder_readme [path]
+#   Install Guide: @markdown /create:folder_readme install [project-name]
 # ─────────────────────────────────────────────────────────────────
 
 # ─────────────────────────────────────────────────────────────────
@@ -186,7 +186,7 @@ workflow_enforcement:
 gate_logic:
   hard:
     H0_write_verified:
-      description: "@create verification must have passed in Phase 0"
+      description: "@markdown verification must have passed in Phase 0"
       fail_action: "STOP and return to the command setup phase"
     H1_operation_resolution:
       description: "The workflow must resolve README vs Install Guide before generation"
@@ -604,7 +604,7 @@ readme_workflow:
       blocking: false
       not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
-    - "Run @create quality validation to score the created README file"
+    - "Run @markdown quality validation to score the created README file"
     - "Validation checks: structure completeness, content quality, DQI standards"
     - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
     on_low_score:
@@ -1152,7 +1152,7 @@ install_guide_workflow:
       blocking: false
       not_for: "reviewing this workflow prompt or any pre-step activity"
     activities:
-    - "Run @create quality validation to score the created install guide"
+    - "Run @markdown quality validation to score the created install guide"
     - "Validation checks: section completeness, prerequisite accuracy, platform coverage"
     - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
     on_low_score:
@@ -1730,6 +1730,6 @@ rules:
   - "Validate the generated document before completion"
   must_not:
   - "Blend README and install-guide sections into one output file"
-  - "Skip Phase 0 @create verification"
+  - "Skip Phase 0 @markdown verification"
   - condition: "Want to save context"
     action: "Run /memory:save"

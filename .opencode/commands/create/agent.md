@@ -9,7 +9,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_co
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
 > **YOUR FIRST ACTION:**
-> 1. Run Phase 0: @create agent self-verification (below)
+> 1. Run Phase 0: @markdown agent self-verification (below)
 > 2. Run Setup Phase: consolidated prompt to gather inputs
 > 3. Determine execution mode from user input (`:auto` or `:confirm`)
 > 4. Load the corresponding YAML file from `assets/`:
@@ -17,22 +17,22 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_co
 >    - Confirm mode → `create_agent_confirm.yaml`
 > 5. Execute the YAML workflow step by step
 >
-> The @create references below are self-verification checks — not dispatch instructions.
+> The @markdown references below are self-verification checks — not dispatch instructions.
 > All content after the Setup Phase is reference context for the YAML workflow.
 
 ---
 
-# 🚨 PHASE 0: @CREATE-DOC AGENT VERIFICATION
+# 🚨 PHASE 0: @MARKDOWN AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
 ```
 EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
 
-SELF-CHECK: Are you operating as the @create agent?
+SELF-CHECK: Are you operating as the @markdown agent?
 │
-├─ INDICATORS that you ARE @create agent:
-│   ├─ You were invoked with "@create" prefix
+├─ INDICATORS that you ARE @markdown agent:
+│   ├─ You were invoked with "@markdown" prefix
 │   ├─ You have template-first workflow capabilities
 │   ├─ You load templates BEFORE creating content
 │   ├─ You validate template alignment AFTER creating
@@ -46,20 +46,20 @@ SELF-CHECK: Are you operating as the @create agent?
     │
     ├─ DISPLAY to user:
     │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ CREATE-DOC AGENT REQUIRED                                    │
+    │   │ ⛔ MARKDOWN AGENT REQUIRED                                      │
     │   │                                                            │
-    │   │ This command requires the @create agent for:                │
+    │   │ This command requires the @markdown agent for:              │
     │   │   • Template-first workflow (loads before creating)          │
     │   │   • Frontmatter validation                                 │
     │   │   • sk-doc skill integration                               │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   @create /create:agent [agent-name]                        │
+    │   │   @markdown /create:agent [agent-name]                      │
     │   │                                                            │
-    │   │ Reference: [runtime_agent_path]/create.md                   │
+    │   │ Reference: [runtime_agent_path]/markdown.md                 │
     │   └────────────────────────────────────────────────────────────┘
     │
-    └─ RETURN: STATUS=FAIL ERROR="Create-doc agent required"
+    └─ RETURN: STATUS=FAIL ERROR="Markdown agent required"
 ```
 
 **Phase Output:**
@@ -465,7 +465,7 @@ permission:
 **YOU ARE IN VIOLATION IF YOU:**
 
 **Phase Violations:**
-- Executed command without @create agent verification (Phase 0)
+- Executed command without @markdown agent verification (Phase 0)
 - Started reading the workflow section before all fields are set
 - Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
 - Proceeded without asking user for agent name when not in $ARGUMENTS

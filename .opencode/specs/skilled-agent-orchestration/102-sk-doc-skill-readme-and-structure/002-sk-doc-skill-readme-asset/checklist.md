@@ -44,9 +44,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md - REQ-001 through REQ-003 define README analysis, asset creation and wiring.
+- [x] CHK-002 [P0] Technical approach defined in plan.md - Plan uses template-first documentation maintenance and exact reference verification.
+- [x] CHK-003 [P1] Dependencies identified and available - Phase 1 relocation completed and target sk-doc files existed.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -54,10 +54,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Documentation paths are valid
-- [ ] CHK-011 [P0] No stale references remain
-- [ ] CHK-012 [P1] Error handling implemented where scripts change
-- [ ] CHK-013 [P1] Changes follow project patterns
+- [x] CHK-010 [P0] Documentation paths are valid - `rg -n "skill_readme|assets/skill/.*readme" .opencode/skills/sk-doc` and `test -f .../skill_readme_template.md` passed.
+- [x] CHK-011 [P0] No stale references remain - stale playbook grep for `3 resources`, `both skill asset templates`, `all 21 enumerated`, `SKILL_CREATION query, 3`, `median (3 resources)` returned no files.
+- [x] CHK-012 [P1] Error handling implemented where scripts change - N/A; no scripts changed.
+- [x] CHK-013 [P1] Changes follow project patterns - `skill_readme_template.md` now mirrors `skill_asset_template.md` intro and OVERVIEW pattern.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -65,10 +65,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual verification complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met - asset exists and is referenced from `SKILL.md`, `references/skill_creation.md` and manual testing docs.
+- [x] CHK-021 [P0] Manual verification complete - package validation and alignment drift checks passed.
+- [x] CHK-022 [P1] Edge cases tested - checked stale token-baseline wording and old `## 1. WHEN TO USE` heading absence in the new template.
+- [x] CHK-023 [P1] Error scenarios validated - initial patch miss was corrected with smaller context patches, then validations passed.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -76,13 +76,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable item has a finding class or scope classification.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed paths and docs.
-- [ ] CHK-FIX-004 [P0] Path fixes include adversarial checks for old and new locations.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Runtime mirror variant executed where runtime files change.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to explicit command output.
+- [x] CHK-FIX-001 [P0] Each actionable item has a finding class or scope classification - Phase scope classified as asset creation plus routing, guidance and playbook consumer updates.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep - skill README patterns inventoried via `.opencode/skills/*/README.md` headings.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed paths and docs - consumers updated in `SKILL.md`, `skill_creation.md` and relevant playbook scenarios.
+- [x] CHK-FIX-004 [P0] Path fixes include adversarial checks for old and new locations - exact searches verified new `skill_readme_template.md` references and stale playbook wording absence.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed - manual testing rows updated for intent, cross-CLI and token-cost axes.
+- [x] CHK-FIX-006 [P1] Runtime mirror variant executed where runtime files change - N/A; no runtime mirror files changed.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to explicit command output - verification commands and results recorded in `implementation-summary.md`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -90,9 +90,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented where commands change
-- [ ] CHK-032 [P1] Agent write-scope boundaries remain explicit
+- [x] CHK-030 [P0] No hardcoded secrets - documentation/template-only changes contain no credentials.
+- [x] CHK-031 [P0] Input validation implemented where commands change - N/A; no commands changed.
+- [x] CHK-032 [P1] Agent write-scope boundaries remain explicit - template keeps `SKILL.md` runtime scope distinct from README human orientation.
 <!-- /ANCHOR:security -->
 
 ---
@@ -100,9 +100,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Resource map updated
-- [ ] CHK-042 [P2] README updated if applicable
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized - status, task completion and implementation summary updated.
+- [x] CHK-041 [P1] Resource map updated - resource map includes package and alignment verification commands.
+- [x] CHK-042 [P2] README updated if applicable - N/A; phase created a README template asset rather than updating an existing skill README.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -110,8 +110,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only - no temporary files created.
+- [x] CHK-051 [P1] scratch/ cleaned before completion - no scratch files created.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -121,9 +121,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 8 | 0/8 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 8 | 8/8 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-05-10
 <!-- /ANCHOR:summary -->

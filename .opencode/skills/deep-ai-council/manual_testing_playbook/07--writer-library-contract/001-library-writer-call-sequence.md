@@ -48,7 +48,9 @@ Operators run the exact prompt and command sequence for `DAC-013` and confirm th
 ### Commands
 
 1. `bash: rg -n "^function (writeConfig|writeStrategyMd|writeStateJsonl|writeSeat|writeDeliberation|writeCritique|writeReport)" .opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js`
-2. `bash: rg -n "artifact_written" .opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js`
+2. `bash: rg -n "artifact_written" .opencode/skills/deep-ai-council/scripts/lib/`
+
+> Note: `artifact_written` is emitted by `appendArtifactWrittenEvent` in `audit-trail.js` (called from `writeFileScoped` in `persist-artifacts.js`). The audit string lives in the imported module, not in the writer module — search the whole `lib/` directory rather than `persist-artifacts.js` alone.
 
 ### Expected
 
@@ -69,7 +71,7 @@ Check whether the writer was renamed, moved, or converted to another declaration
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-013 | Library writer call sequence | Verify seven writers and audit events | `Inspect lib/persist-artifacts.js named exports and verify the canonical writer call sequence with artifact_written events.` | `bash: rg -n "^function (writeConfig\|writeStrategyMd\|writeStateJsonl\|writeSeat\|writeDeliberation\|writeCritique\|writeReport)" .opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js` -> `bash: rg -n "artifact_written" .opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js` | Seven writers and audit event references | Grep output | PASS if all writers and audit emission are present | Check renamed writer contract |
+| DAC-013 | Library writer call sequence | Verify seven writers and audit events | `Inspect lib/persist-artifacts.js named exports and verify the canonical writer call sequence with artifact_written events.` | `bash: rg -n "^function (writeConfig\|writeStrategyMd\|writeStateJsonl\|writeSeat\|writeDeliberation\|writeCritique\|writeReport)" .opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js` -> `bash: rg -n "artifact_written" .opencode/skills/deep-ai-council/scripts/lib/` | Seven writers and audit event references across lib/ | Grep output | PASS if all writers and audit emission are present | Check renamed writer contract |
 
 ---
 

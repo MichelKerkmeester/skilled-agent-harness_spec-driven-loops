@@ -51,14 +51,14 @@ Analyze skill README conventions and create a dedicated sk-doc skill README asse
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Verification searches passing
-- [ ] Docs updated and validation run
+- [x] All acceptance criteria met
+- [x] Verification searches passing
+- [x] Docs updated and validation run
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -100,19 +100,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Review resource-map.md
-- [ ] Inventory current files
-- [ ] Confirm out-of-scope surfaces
+- [x] Review resource-map.md
+- [x] Inventory current files
+- [x] Confirm out-of-scope surfaces
 
 ### Phase 2: Core Implementation
-- [ ] Inventory README files under .opencode/skills.
-- [ ] Identify common skill README sections.
-- [ ] Confirm readme_template.md is the source template.
+- [x] Inventory README files under .opencode/skills.
+- [x] Identify common skill README sections.
+- [x] Confirm readme_template.md is the source template.
 
 ### Phase 3: Verification
-- [ ] Run exact searches
-- [ ] Run spec validation
-- [ ] Record handoff notes
+- [x] Run exact searches
+- [x] Run spec validation
+- [x] Record handoff notes
 <!-- /ANCHOR:phases -->
 
 ---
@@ -181,9 +181,9 @@ Parent packet -> Phase 1 -> Phase 2 -> Phase 3
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Git status reviewed
-- [ ] Change scope confirmed
-- [ ] Verification command ready
+- [x] Git status reviewed
+- [x] Change scope confirmed
+- [x] Verification command ready
 
 ### Rollback Procedure
 1. Revert phase files from git.

@@ -10,7 +10,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_co
 > Do not split behavior across legacy command definitions.
 >
 > Mandatory execution order:
-> 1. Run Phase 0 verification (`@create` or valid chained handoff)
+> 1. Run Phase 0 verification (`@markdown` or valid chained handoff)
 > 2. Run unified setup (single consolidated prompt)
 > 3. Verify required phase outputs are present
 > 4. Route by mode (`:auto` or `:confirm`)
@@ -26,14 +26,14 @@ Do not infer missing command arguments from prior conversation context.
 
 ---
 
-# 🚨 PHASE 0: @CREATE-DOC AGENT VERIFICATION
+# 🚨 PHASE 0: @MARKDOWN AGENT VERIFICATION
 
 **STATUS: ☐ BLOCKED**
 
 ```text
 EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
 
-SELF-CHECK: Are you operating as @create OR under a valid chained parent handoff?
+SELF-CHECK: Are you operating as @markdown OR under a valid chained parent handoff?
 |
 |- CASE A: Valid chained handoff detected (--chained)
 |  |- Required parent fields present?
@@ -51,8 +51,8 @@ SELF-CHECK: Are you operating as @create OR under a valid chained parent handoff
 |     - fall through to CASE B
 |
 |- CASE B: Standalone invocation
-|  |- Verify @create indicators:
-|  |  - Invoked with @create
+|  |- Verify @markdown indicators:
+|  |  - Invoked with @markdown
 |  |  - Template-first generation behavior available
 |  |  - sk-doc quality validation behavior available
 |  |- IF yes:
@@ -62,8 +62,8 @@ SELF-CHECK: Are you operating as @create OR under a valid chained parent handoff
 |     - HARD BLOCK and stop
 
 HARD BLOCK MESSAGE:
-"This command requires @create for template-first generation and sk-doc validation.
-Restart with: @create /create:sk-skill <skill-name> [operation] [type]"
+"This command requires @markdown for template-first generation and sk-doc validation.
+Restart with: @markdown /create:sk-skill <skill-name> [operation] [type]"
 ```
 
 Phase outputs:
@@ -200,7 +200,7 @@ Proceed only when all required fields validate.
 
 Provide one canonical command entrypoint for skill lifecycle operations,
 eliminating split logic across deprecated command definitions while preserving
-strict @create + sk-doc + system-spec-kit behavior contracts.
+strict @markdown + sk-doc + system-spec-kit behavior contracts.
 
 ## 2. CONTRACT
 
@@ -239,7 +239,7 @@ Accepted type values:
 
 | Step | Name | Purpose | Output |
 | --- | --- | --- | --- |
-| 1 | Phase 0 Verification | Ensure @create or valid chained handoff | `create_agent_verified` |
+| 1 | Phase 0 Verification | Ensure @markdown or valid chained handoff | `create_agent_verified` |
 | 2 | Unified Setup | Capture all required parameters once | normalized setup fields |
 | 3 | Phase Validation | Enforce required-field contract | phase pass/fail |
 | 4 | Mode Routing | Route to auto or confirm unified YAML | target YAML path |
@@ -249,7 +249,7 @@ Accepted type values:
 ## 5. INSTRUCTIONS
 
 ### Step 1: Run Phase 0
-- Execute @create/chained verification.
+- Execute @markdown/chained verification.
 - Hard block on failure.
 
 ### Step 2: Run Unified Setup

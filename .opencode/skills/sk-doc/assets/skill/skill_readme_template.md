@@ -5,13 +5,30 @@ description: Template for human-facing skill README files that explain purpose, 
 
 # Skill README Template
 
-Use this template for `.opencode/skills/[skill-name]/README.md`. It is derived from `assets/readme/readme_template.md` and narrows the generic README structure to OpenCode skill packages.
+Use this template for `.opencode/skills/[skill-name]/README.md`. It narrows the generic README structure to OpenCode skill packages.
 
 ---
 
-## 1. WHEN TO USE
+## 1. OVERVIEW
 
-Create a skill README when a skill needs human-facing orientation beyond `SKILL.md`.
+### Purpose
+
+Provide a human-facing README scaffold for OpenCode skill packages without duplicating runtime instructions from `SKILL.md`.
+
+### Usage
+
+Copy the fillable scaffold into `.opencode/skills/[skill-name]/README.md`, replace placeholders with current skill behavior, then remove sections that do not fit.
+
+### Location & Naming
+
+| Item | Convention |
+|---|---|
+| Target path | `.opencode/skills/[skill-name]/README.md` |
+| File name | `README.md` with uppercase README preserved |
+| Source template | `assets/readme/readme_template.md` |
+| Related runtime file | `SKILL.md` |
+
+### When To Create A Skill README
 
 Use this asset when:
 
@@ -20,7 +37,7 @@ Use this asset when:
 - The skill participates in skill graph navigation or runtime routing.
 - The skill has troubleshooting, FAQ or usage examples worth preserving outside `SKILL.md`.
 
-Skip it when a skill is tiny and `SKILL.md` already gives complete human orientation.
+Keep the content in `SKILL.md` when the skill is tiny and runtime instructions already give complete human orientation.
 
 ---
 
@@ -46,6 +63,8 @@ Existing skill READMEs in this workspace commonly use this structure:
 | Related Documents | Stable navigation links | Always when links exist |
 
 Do not copy spec packet history into a skill README. Document current behavior with stable paths and commands.
+
+This structure is derived from `assets/readme/readme_template.md` and aligned with the asset-file overview pattern in `skill_asset_template.md`.
 
 ---
 
@@ -78,7 +97,7 @@ trigger_phrases:
 
 # [Skill Name]
 
-> [One-sentence statement of what this skill helps operators do.]
+[One-sentence statement of what this skill helps operators do.]
 
 ---
 
@@ -102,7 +121,13 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-[Skill name] helps [audience] [do current responsibility]. It should be used when [activation condition] and not used when [nearest boundary].
+### Purpose
+
+[Explain why this README exists, what the skill helps readers do, when to use the skill and the nearest boundary. Do not repeat the one-sentence intro verbatim.]
+
+### Usage
+
+[Explain how to use this README to navigate the skill, run workflows, find resources and verify outcomes.]
 
 ### Key Statistics
 
@@ -266,6 +291,8 @@ A: [Short answer with a stable link when useful.]
 
 - [ ] README explains the skill's current purpose before internals.
 - [ ] README and `SKILL.md` responsibilities are distinct.
+- [ ] Intro after H1 is one short sentence and the detailed purpose lives in OVERVIEW.
+- [ ] OVERVIEW includes Purpose and Usage subsections when the README is more than a short navigation page.
 - [ ] Trigger phrases and related-document links are stable.
 - [ ] Structure section lists only real files or clearly marked template placeholders.
 - [ ] Commands are tested or marked as examples.

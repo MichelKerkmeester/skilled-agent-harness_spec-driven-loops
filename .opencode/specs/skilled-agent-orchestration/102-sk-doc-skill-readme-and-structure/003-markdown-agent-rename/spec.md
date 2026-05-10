@@ -10,15 +10,15 @@ _memory:
     packet_pointer: ".opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Prepared planning documentation"
-    next_safe_action: "Run implementation phase"
+    recent_action: "Implemented markdown agent rename across runtime mirrors and create-command references"
+    next_safe_action: "Run final verification and save continuity"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "102-sk-doc-skill-readme-and-structure"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -78,7 +78,18 @@ Rename the agent identity from create to markdown without changing create comman
 | .opencode/agents/create.md | Move | Rename to markdown.md. |
 | .claude/agents/create.md | Move | Rename mirror to markdown.md if present. |
 | .gemini/agents/create.md | Move | Rename mirror to markdown.md if present. |
+| .codex/agents/create.toml | Move | Rename Codex mirror to markdown.toml if present. |
 | AGENTS.md | Modify | Update agent identity references. |
+| .opencode/agents/orchestrate.md | Modify | Route documentation execution to markdown agent. |
+| .opencode/agents/code.md | Modify | Update component-authoring conflict guidance. |
+| .claude/agents/orchestrate.md | Modify | Update Claude mirror routing references. |
+| .claude/agents/code.md | Modify | Update Claude mirror conflict guidance. |
+| .gemini/agents/orchestrate.md | Modify | Update Gemini mirror routing references. |
+| .gemini/agents/code.md | Modify | Update Gemini mirror conflict guidance. |
+| .codex/agents/orchestrate.toml | Modify | Update Codex mirror routing references. |
+| .codex/agents/code.toml | Modify | Update Codex mirror conflict guidance. |
+| .opencode/commands/create/** | Modify | Update Phase 0 agent identity while preserving `/create:*` commands. |
+| .opencode/skills/sk-doc/assets/agent_template.md | Modify | Update production agent example inventory. |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -87,10 +87,10 @@ Need to find code?
 
 CocoIndex triggers: "find code that does X", "how is X implemented", "where is the logic for X", "similar code", "find patterns", exploring unfamiliar modules, any intent-based query where exact tokens are unknown.
 
-| Approach | Command | When |
-| --- | --- | --- |
+| Approach     | Command                                                       | When                 |
+| ------------ | ------------------------------------------------------------- | -------------------- |
 | **MCP tool** | `search(query, languages, paths, num_results, refresh_index)` | AI agent integration |
-| **CLI** | `ccc search "query" --lang X --path Y --limit N` | Direct terminal use |
+| **CLI**      | `ccc search "query" --lang X --path Y --limit N`              | Direct terminal use  |
 
 Set `refresh_index=false` after the first search in a session unless the codebase changed.
 
@@ -143,26 +143,26 @@ Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup conte
 
 ### Quick Reference: Common Workflows
 
-| Task                      | Flow                                                                                                                               |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **File modification**     | Gate 3 (ask spec folder) → Gate 1 → Gate 2 → Load memory context → Execute                                                         |
-| **Research/exploration**  | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                       |
-| **Code search**           | CocoIndex for semantic/intent → Grep for exact text → Glob for file paths → Read for contents                                       |
-| **Resume prior work**     | `/spec_kit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review → Continue    |
-| **Save context**          | `/memory:save` OR compose JSON → `generate-context.js --json '<data>' [spec-folder]` → Auto-indexed                                 |
-| **Claim completion**      | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` → Load `checklist.md` → Verify ALL items → Mark with evidence |
-| **End session**           | `/memory:save` → `handover_state` routing updates `handover.md` → Provide continuation prompt                                      |
-| **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
-| **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                      |
-| **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                        |
-| **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
-| **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                |
-| **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate → DQI score → Verify                                                     |
-| **Code work**            | sk-code skill → smart router (auto-detects the active stack from CWD + library markers; unsupported surfaces ask for disambiguation); Phase 1-3 (Implement → Quality Gate → Debug → Verify) |
-| **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
-| **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
-| **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
+| Task                      | Flow                                                                                                                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **File modification**     | Gate 3 (ask spec folder) → Gate 1 → Gate 2 → Load memory context → Execute                                                                                                                  |
+| **Research/exploration**  | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                                                                                |
+| **Code search**           | CocoIndex for semantic/intent → Grep for exact text → Glob for file paths → Read for contents                                                                                               |
+| **Resume prior work**     | `/spec_kit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review → Continue                                                                    |
+| **Save context**          | `/memory:save` OR compose JSON → `generate-context.js --json '<data>' [spec-folder]` → Auto-indexed                                                                                         |
+| **Claim completion**      | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` → Load `checklist.md` → Verify ALL items → Mark with evidence                                   |
+| **End session**           | `/memory:save` → `handover_state` routing updates `handover.md` → Provide continuation prompt                                                                                               |
+| **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                                                                     |
+| **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                                                                               |
+| **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                                                                                |
+| **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                                                                                    |
+| **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                                                                                        |
+| **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                                                                        |
+| **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate → DQI score → Verify                                                                                                              |
+| **Code work**             | sk-code skill → smart router (auto-detects the active stack from CWD + library markers; unsupported surfaces ask for disambiguation); Phase 1-3 (Implement → Quality Gate → Debug → Verify) |
+| **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                                                                        |
+| **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                                                                                 |
+| **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                                                                            |
 
 ---
 
@@ -257,13 +257,13 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 ### Documentation Levels
 
-| Level  | LOC            | Required Files                                        | Use When                           |
-| ------ | -------------- | ----------------------------------------------------- | ---------------------------------- |
-| **1**  | <100           | spec.md, plan.md, tasks.md, implementation-summary.md | All features (minimum)             |
-| **2**  | 100-499        | Level 1 + checklist.md                                | QA validation needed               |
-| **3**  | ≥500           | Level 2 + decision-record.md (+ optional research.md, resource-map.md) | Complex/architecture changes       |
-| **3+** | Complexity 80+ | Level 3 + AI protocols, extended checklist, sign-offs | Multi-agent, enterprise governance |
-| **Phase Parent** | n/a (control file only) | spec.md, description.json, graph-metadata.json | Folder contains phase children (`[0-9]{3}-name/` subdirs with their own spec.md/description.json) |
+| Level            | LOC                     | Required Files                                                         | Use When                                                                                          |
+| ---------------- | ----------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **1**            | <100                    | spec.md, plan.md, tasks.md, implementation-summary.md                  | All features (minimum)                                                                            |
+| **2**            | 100-499                 | Level 1 + checklist.md                                                 | QA validation needed                                                                              |
+| **3**            | ≥500                    | Level 2 + decision-record.md (+ optional research.md, resource-map.md) | Complex/architecture changes                                                                      |
+| **3+**           | Complexity 80+          | Level 3 + AI protocols, extended checklist, sign-offs                  | Multi-agent, enterprise governance                                                                |
+| **Phase Parent** | n/a (control file only) | spec.md, description.json, graph-metadata.json                         | Folder contains phase children (`[0-9]{3}-name/` subdirs with their own spec.md/description.json) |
 
 **Optional cross-cutting docs (any level)**: `handover.md`, `debug-delegation.md`, `research.md`, and `resource-map.md` - copy from `.opencode/skills/system-spec-kit/templates/` as needed. For phase parents that have undergone reorganization (renames, gap renumbering, consolidation), `context-index.md` provides a migration bridge — optional, no required template.
 
@@ -302,25 +302,25 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 
 Use the agent directory that matches the active runtime/provider profile:
 
-| Runtime / Profile                      | Agent Directory            | Usage Rule                                                  |
-| -------------------------------------- | -------------------------- | ----------------------------------------------------------- |
-| **Opencode** | `.opencode/agents/`         | Load base agent definitions from this directory             |
-| **Claude Code**                     | `.claude/agents/`          | Load Claude-specific agent definitions from this directory  |
-| **Codex CLI**                          | `.codex/agents/`           | Load Codex-specific agent definitions from this directory   |
-| **Gemini CLI**                         | `.gemini/agents/`          | Load Gemini-specific agent definitions from this directory  |
+| Runtime / Profile | Agent Directory     | Usage Rule                                                 |
+| ----------------- | ------------------- | ---------------------------------------------------------- |
+| **Opencode**      | `.opencode/agents/` | Load base agent definitions from this directory            |
+| **Claude Code**   | `.claude/agents/`   | Load Claude-specific agent definitions from this directory |
+| **Codex CLI**     | `.codex/agents/`    | Load Codex-specific agent definitions from this directory  |
+| **Gemini CLI**    | `.gemini/agents/`   | Load Gemini-specific agent definitions from this directory |
 
 **Resolution rule:** pick one directory by runtime and stay consistent for that workflow phase.
 
 ### Agent Definitions
 
 - **`@orchestrate`** - Multi-agent coordination, complex workflows
-- **`@context`** - LEAF-only retrieval agent for codebase search, pattern discovery, and context loading. Uses memory triggers/context, memory search, CocoIndex, and direct code evidence. LEAF constraint: `@context` MUST NOT dispatch sub-agents, use the Task tool, or write files. All results are returned to the caller; never held in nested context
 - **`@code`** - Application-code implementation specialist (LEAF, write-capable). Stack-aware via `sk-code` skill delegation; fail-closed verification. Dispatched ONLY by `@orchestrate` (orchestrator-only convention; `Depth: 1` marker required per §0 dispatch gate; not harness-enforced).
+- **`@context`** - LEAF-only retrieval agent for codebase search, pattern discovery, and context loading. Uses memory triggers/context, memory search, CocoIndex, and direct code evidence. LEAF constraint: `@context` MUST NOT dispatch sub-agents, use the Task tool, or write files. All results are returned to the caller; never held in nested context
 - **`@review`** - Code review, PRs, quality gates (READ-ONLY)
 - **`@debug`** - Fresh perspective debugging (5-phase root-cause). Dispatched via Task tool; retains exclusive write access for `debug-delegation.md`
-- **`@create`** - Dedicated `/create:*` documentation executor (LEAF, write-capable). Loads `sk-doc` on every invocation, reads the command template before writing, and refuses non-`/create:*` callers by convention-level Phase 0 gate.
-- **`@multi-ai-council`** - Multi-strategy planning architect (planning-only)
+- **`@markdown`** - Dedicated `/create:*` documentation executor (LEAF, write-capable). Loads `sk-doc` on every invocation, reads the command template before writing, and refuses unscoped documentation callers by convention-level Phase 0 gate.
 - **`@prompt-improver`** - Prompt engineering via `sk-prompt`. Dispatched by `/improve:prompt`
+- **`@deep-ai-council`** - Multi-strategy planning architect 
 - **`@deep-research`** - Autonomous deep research iterations (LEAF). Dispatched by `/spec_kit:deep-research`
 - **`@deep-review`** - Autonomous deep review iterations (LEAF, P0/P1/P2). Dispatched by `/spec_kit:deep-review`
 - **`@deep-agent-improvement`** - Bounded agent improvement via `deep-agent-improvement`. Dispatched by `/improve:agent`

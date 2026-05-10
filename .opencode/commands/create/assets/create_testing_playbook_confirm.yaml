@@ -10,16 +10,16 @@ purpose: Create or update rooted manual testing playbook packages with explicit 
 action: Normalize inputs, confirm taxonomy, load standards, generate the package, validate structure, and report completion
 
 # ─────────────────────────────────────────────────────────────────
-# PREREQUISITE: @create AGENT VERIFICATION
+# PREREQUISITE: @markdown AGENT VERIFICATION
 # ─────────────────────────────────────────────────────────────────
-# This workflow REQUIRES the @create agent for:
+# This workflow REQUIRES the @markdown agent for:
 #   - Template-first generation
 #   - sk-doc standards enforcement
 #   - Root document validation
 #
-# PHASE 0 in the command markdown verifies @create agent BEFORE
+# PHASE 0 in the command markdown verifies @markdown agent BEFORE
 # this YAML workflow loads. If you are executing this workflow,
-# @create verification has already passed.
+# @markdown verification has already passed.
 # ─────────────────────────────────────────────────────────────────
 
 operating_mode:
