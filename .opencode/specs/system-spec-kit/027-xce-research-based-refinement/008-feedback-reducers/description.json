@@ -32,21 +32,18 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers",
-  "description": "Phase 008 — ADAPT pt-03 RQ-A3 + RQ-B3 + RQ-B4 as one packet: shared feedback aggregation reducer feeding three independent consumers (coco rerank weights, session-trace causal-edge inference, learned retention/decay). Sub-Phase 1 applies 3 P0 precondition fixes (auto-provenance cap broadening, manual-edge overwrite guard, retention-sweep tier basement). 5 sub-phases; ~400-650 prod LOC + ~480-810 tests. All 3 consumers default-off; live mutation requires Phase-005 eval. P0 fixes mandatory before Sub-Phases 4 (Consumer B) and 5 (Consumer C).",
+  "description": "Feature Specification: Shared Feedback Reducers (3 P0 Fixes + Aggregation + 3 Consumers)",
   "keywords": [
     "feature",
     "specification",
+    "shared",
     "feedback",
     "reducers",
-    "ccc_feedback",
-    "session-trace",
-    "causal",
-    "edges",
-    "retention",
-    "learned",
-    "shadow"
+    "fixes",
+    "aggregation",
+    "consumers"
   ],
-  "lastUpdated": "2026-05-09T11:00:00Z",
+  "lastUpdated": "2026-05-10T07:31:26.019Z",
   "specId": "008",
   "folderSlug": "feedback-reducers",
   "parentChain": [

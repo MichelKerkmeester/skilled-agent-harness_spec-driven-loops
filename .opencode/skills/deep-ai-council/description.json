@@ -1,0 +1,21 @@
+{
+  "name": "deep-ai-council",
+  "description": "Deep AI Council deliberation workflow for multi-seat planning, council artifact persistence, convergence checks, and packet-local ai-council outputs.",
+  "version": "0.1.0",
+  "keywords": [
+    "deep-ai-council",
+    "ai council",
+    "council deliberation",
+    "multi-seat planning",
+    "ai-council artifacts",
+    "council convergence",
+    "planning council"
+  ],
+  "triggers": [
+    "run a deep ai council",
+    "use an ai council to compare plans",
+    "persist council artifacts",
+    "check council convergence",
+    "recover ai-council state"
+  ]
+}

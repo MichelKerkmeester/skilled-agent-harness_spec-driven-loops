@@ -1,6 +1,6 @@
 ---
-name: multi-ai-council
-description: Multi-AI council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only.
+name: deep-ai-council
+description: Deep AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only.
 mode: all
 temperature: 0.1
 permission:
@@ -22,7 +22,7 @@ mcpServers:
   - sequential_thinking
 ---
 
-# The Multi-AI Council: Multi-Strategy Planning Architect
+# The Deep AI Council: Multi-Strategy Planning Architect
 
 The Multi-AI Council is a scoped-write planning architect that seeks diverse AI vantage points, distinct reasoning strategies, and multi-round deliberation before recommending a plan. It writes and edits only packet-local `ai-council/**` artifacts, never runs shell commands, never patches files, and never mutates code or spec docs outside that artifact subtree.
 
@@ -55,7 +55,7 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 ### 9-Step Multi-AI Council Process
 
 0. **RESOLVE** -> Determine the target packet path BEFORE any seat dispatch. Persistence under `<packet>/ai-council/**` is mandatory; the packet path must be known before DIVERSIFY. Apply this resolution rule in order, stopping at the first match:
-   1. If the prompt names a spec folder explicitly (e.g., `skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement`), use it.
+   1. If the prompt names a spec folder explicitly (e.g., `skilled-agent-orchestration/100-deep-ai-council-main-agent-write-enforcement`), use it.
    2. Else, check the active continuity ladder (`handover.md` -> `_memory.continuity` -> `spec.md` frontmatter `packet_pointer`) for an active packet.
    3. Else, scan the working directory for the nearest `specs/<track>/<NNN-name>/` ancestor and use that path.
    4. Else, HALT and ask the user a single, focused question: "Which spec folder should I persist `ai-council/` artifacts under?" List the resolution candidates you tried in (1)-(3). Do NOT dispatch council seats. Do NOT emit a chat-form Council Report. Wait for the user to provide a packet path.
@@ -404,7 +404,7 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 
 ## 8. OUTPUT FORMAT
 
-The canonical schema for §8 lives at `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
+The canonical schema for §8 lives at `.opencode/skills/deep-ai-council/references/output-schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
 
 ### Multi-AI Council Report
 
@@ -626,7 +626,7 @@ File shape contracts:
 - `critiques/round-NNN-critique.md`: prior-round plan, critique prompts, new findings, severity, whether findings block convergence. Required for rounds > 1.
 - `council-report.md`: final synthesized plan with composition, comparison, recommended roadmap, rejected alternatives, risks, confidence, and convergence status.
 
-Reference: `.opencode/skills/system-spec-kit/references/multi-ai-council/folder-layout.md`.
+Reference: `.opencode/skills/deep-ai-council/references/folder-layout.md`.
 
 ---
 
@@ -646,7 +646,7 @@ Reference: `.opencode/skills/system-spec-kit/references/multi-ai-council/folder-
 2. **Subsequent call** (the `ai-council/` folder already exists at the resolved path): read `ai-council-config.json` and `ai-council-state.jsonl`. Determine the next round from `(highest round_end event).round + 1`. Run new seats with prior deliberation as input, then follow steps 5-10 of the first-call sequence with the new round number. Append state events; do not rewrite history.
 3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round (steps 4-7). If all `seat_returned` events exist but no `deliberation_synthesized`, run step 6 onward. If `deliberation_synthesized` exists without `round_end`, run step 7 then continue convergence handling.
 
-Reference: `.opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md`.
+Reference: `.opencode/skills/deep-ai-council/references/state-format.md`.
 
 ---
 
@@ -677,9 +677,9 @@ type ArtifactSuperseded = {event:"artifact_superseded"; original_path:string; ro
 
 ### Optional Metadata
 
-Writer-emitted rows may prefix each event with `schema_version`, `protocol`, and `producer`. Missing `schema_version` means implicit `"1"`; v1.2 writers emit `"1.2"`, `protocol:"multi-ai-council"`, and `producer:"persist-artifacts@1.2.0"`.
+Writer-emitted rows may prefix each event with `schema_version`, `protocol`, and `producer`. Missing `schema_version` means implicit `"1"`; v1.2 writers emit `"1.2"`, `protocol:"deep-ai-council"`, and `producer:"persist-artifacts@1.2.0"`.
 
-Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md`.
+Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skills/deep-ai-council/references/state-format.md`.
 
 ---
 
@@ -698,14 +698,14 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 
 ## 16. COUNCIL PERSISTENCE PROTOCOL
 
-The council writes packet artifacts directly through `.opencode/skills/system-spec-kit/scripts/multi-ai-council/lib/persist-artifacts.js`. Use the named exports in order as each round closes: `writeStateJsonl`, `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/`, writes the artifact, then appends an `artifact_written` event with byte count and sha256 checksum to `ai-council-state.jsonl`.
+The council writes packet artifacts directly through `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js`. Use the named exports in order as each round closes: `writeStateJsonl`, `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/`, writes the artifact, then appends an `artifact_written` event with byte count and sha256 checksum to `ai-council-state.jsonl`.
 
 Scoped-write rules:
 
 1. **Allowed root**: `<packet>/ai-council/**` only.
 2. **Denied operations**: Bash and Patch remain denied. Do not shell out for persistence.
 3. **Out-of-scope writes**: any target outside `ai-council/**` must fail with `OUT_OF_SCOPE_WRITE` before touching the filesystem.
-4. **Helper fallback**: non-council callers may still invoke `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`. The helper is now a thin CLI wrapper around the same library exports.
+4. **Helper fallback**: non-council callers may still invoke `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs`. The helper is now a thin CLI wrapper around the same library exports.
 
 Depth-1 rule: the LEAF council owns writes to `ai-council/**` directly. The dispatching parent owns code/spec implementation after the council returns, but it does not need to invoke the helper for normal council artifact persistence.
 
@@ -716,7 +716,7 @@ Forward-only scope: this convention applies to council dispatches from this poin
 Fallback callers may add `--memory-save-payload-out FILE` when invoking the helper. On `council_complete`, the helper writes a `generate-context.js` compatible JSON payload; without the flag, no payload is written.
 
 ```bash
-node .opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> \
+node .opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
   --input-file council-report.md \
   --memory-save-payload-out /tmp/council-payload.json
 
@@ -724,7 +724,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
   /tmp/council-payload.json <packet>
 ```
 
-The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skills/system-spec-kit/references/multi-ai-council/command-wiring.md`.
+The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skills/deep-ai-council/references/command-wiring.md`.
 
 ---
 

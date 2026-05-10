@@ -1,6 +1,6 @@
 ---
 description: Rebuild spec-kit runtime databases in dependency-safe order through the interactive confirm workflow.
-argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots]"
+argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap]"
 allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_kit_memory__code_graph_status, mcp__spec_kit_memory__code_graph_query, mcp__spec_kit_memory__code_graph_context, mcp__spec_kit_memory__code_graph_scan, mcp__spec_kit_memory__code_graph_apply, mcp__spec_kit_memory__detect_changes, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search, mcp__spec_kit_memory__memory_health, mcp__spec_kit_memory__memory_index_scan, mcp__spec_kit_memory__memory_drift_why, mcp__spec_kit_memory__memory_stats, mcp__spec_kit_memory__memory_causal_stats, mcp__spec_kit_memory__memory_causal_link, mcp__spec_kit_memory__deep_loop_graph_status, mcp__spec_kit_memory__deep_loop_graph_query, mcp__spec_kit_memory__deep_loop_graph_upsert, mcp__spec_kit_memory__deep_loop_graph_convergence, mcp__spec_kit_memory__ccc_status, mcp__spec_kit_memory__ccc_reindex, mcp__spec_kit_memory__ccc_feedback, mcp__spec_kit_memory__advisor_recommend, mcp__spec_kit_memory__advisor_status, mcp__spec_kit_memory__advisor_validate, mcp__spec_kit_memory__advisor_rebuild, mcp__spec_kit_memory__skill_graph_scan, mcp__spec_kit_memory__skill_graph_query, mcp__spec_kit_memory__skill_graph_status, mcp__spec_kit_memory__eval_run_ablation, mcp__spec_kit_memory__session_health
 ---
 
@@ -23,7 +23,10 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_ki
 - **ALL** execution happens through the YAML asset selected during setup.
 - **YAML START CONDITION**: do not load YAML until every setup value is bound.
 - **NO NEW MCP TOOLS**: use only existing `code_graph_*`, `memory_*`, `skill_graph_*`, `advisor_*`, `deep_loop_graph_*`, `ccc_*`, `eval_run_ablation`, and `session_health` surfaces.
+- **MCP STARTUP BOOTSTRAP**: `spec_kit_memory` config points to `.opencode/bin/spec-kit-memory-launcher.cjs`, not directly to `dist/context-server.js`. The launcher may build missing TypeScript output before OpenCode registers MCP tools.
+- **RESTART CONTRACT**: if runtime bootstrap changes layout or build artifacts during `/doctor:update`, stop with `STATUS=RESTART_REQUIRED`; start a fresh OpenCode process and rerun with `--resume-bootstrap`.
 - **SNAPSHOT DEFAULT**: snapshot every SQLite database before mutation unless `--no-snapshot` was explicitly passed.
+- **TEST FAILURE INJECTION**: disposable-workspace tests may set `SPECKIT_FAIL_STEP=<dependency-step>`; production operators leave it unset.
 - **MIGRATION SCOPE**: `--migrate` reads `migration-manifest.json` and refuses on gaps. This command does not create or edit that manifest.
 - **LEGACY CLEANUP SCOPE**: `--cleanup-legacy` prompts per manifest-listed legacy file. No silent deletion.
 - **LOCK SCOPE**: acquire `mcp_server/database/.doctor-update.flock` before probing or mutating any database.
@@ -55,7 +58,8 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_ki
    - --cleanup-legacy  -> cleanup_legacy = true; detect known legacy files from migration-manifest and prompt-delete each
    - --migrate         -> migrate = true; run migration-manifest Phase 0 before snapshots, refuse on manifest gap
    - --keep-snapshots  -> keep_snapshots = true; skip cleanup of snapshots older than 30 days
-   - Defaults: force=false, no_snapshot=false, cleanup_legacy=false, migrate=false, keep_snapshots=false
+   - --resume-bootstrap -> resume_bootstrap = true; verify previous bootstrap state and continue after MCP restart
+   - Defaults: force=false, no_snapshot=false, cleanup_legacy=false, migrate=false, keep_snapshots=false, resume_bootstrap=false
 
 3. TIER-AWARE PROMPTING (interactive):
    - Short steps run with brief acknowledgement: skill-graph init, deep-loop graph init.
@@ -67,10 +71,10 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_ki
    B) Cancel
 
 5. STORE:
-   execution_mode, intent, yaml, force, no_snapshot, cleanup_legacy, migrate, keep_snapshots, skip_status_check
+   execution_mode, intent, yaml, force, no_snapshot, cleanup_legacy, migrate, keep_snapshots, resume_bootstrap, skip_status_check
 ```
 
-**Phase Output:** `execution_mode` | `intent` | `yaml` | `force` | `no_snapshot` | `cleanup_legacy` | `migrate` | `keep_snapshots` | `skip_status_check`
+**Phase Output:** `execution_mode` | `intent` | `yaml` | `force` | `no_snapshot` | `cleanup_legacy` | `migrate` | `keep_snapshots` | `resume_bootstrap` | `skip_status_check`
 
 # SpecKit Doctor - Unified Update
 
@@ -147,13 +151,21 @@ and bypass tier prompts. and prompt at every phase boundary. assumes all subsyst
 | `mcp_server/database/.doctor-update.flock`                                                                                                                        | primary concurrent-dispatch lock       |
 | `mcp_server/database/.doctor-update.lock`                                                                                                                         | PID-file fallback with stale detection |
 | `mcp_server/database/.doctor-update.last-run.json`                                                                                                                | state log                              |
+| `mcp_server/database/.doctor-update.bootstrap.json`                                                                                                               | pre-MCP bootstrap state                |
+| `mcp_server/database/.doctor-update.bootstrap.lockdir`                                                                                                            | pre-MCP bootstrap lock                 |
+| `.opencode/bin/spec-kit-memory-launcher.cjs`                                                                                                                      | stable MCP launcher                    |
+| `.opencode/skill` symlink to `.opencode/skills`                                                                                                                   | compatibility bridge only              |
+| `.opencode/skill_legacy_backup_*`                                                                                                                                 | legacy directory moved before symlink  |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/**`                                                                                                             | generated MCP runtime output           |
+| `.opencode/skills/system-spec-kit/scripts/dist/**`                                                                                                                | generated migration helper output      |
 
-Forbidden targets include all spec folder docs, all skills, all agents, all commands, and `mcp_server/database/migration-manifest.json`. The migration manifest is read-only in Track C.
+Forbidden targets include all spec folder docs, authored skill source, all agents, command docs/assets except the maintained bootstrap launcher/script in this packet, and `mcp_server/database/migration-manifest.json`. The migration manifest is read-only in Track C.
 
 ## WORKFLOW PHASES
 
 | Phase | Council Line                                                                           | YAML Activity                                                   |
 | ----- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| 0     | Non-MCP runtime bootstrap; stop for fresh process when tool registration changed       | `phase_0_runtime_bootstrap`                                      |
 | 1     | Acquire flock; refuse if held or PID stale-locked >2h                                  | `phase_1_flock_acquire`                                         |
 | 1.5   | Verify mcp_server/dist/context-server.js exists; build via npm if missing; release flock on abort | `phase_1_5_mcp_server_bootability`        |
 | 2     | Probe other MCP-client activity; warn and prompt unless `--force`                      | `phase_2_probe_mcp_activity`                                    |
@@ -189,7 +201,7 @@ Forbidden targets include all spec folder docs, all skills, all agents, all comm
       "snapshot_path": "mcp_server/database/context-index.sqlite.pre-doctor-update.3.4.1.0.20260509T130100Z.bak"
     }
   ],
-  "final_status": "ok|failed|rolled_back|cancelled|unrollbackable"
+  "final_status": "ok|failed|rolled_back|cancelled|unrollbackable|restart_required"
 }
 ```
 
@@ -209,10 +221,12 @@ Forbidden targets include all spec folder docs, all skills, all agents, all comm
 | cocoindex     | OK     | UNHEALTHY    | STALE              | <age>     | reindex      | fix-daemon |
 | eval          | OK     | STALE        | SKIPPED            | <age>     | run-ablation | skip       |
 
-Final status: STATUS=<OK|FAIL|ROLLED_BACK|CANCELLED>
+Final status: STATUS=<OK|FAIL|ROLLED_BACK|CANCELLED|RESTART_REQUIRED>
 State log: mcp_server/database/.doctor-update.last-run.json
 Snapshots: <kept|cleaned|skipped>
 ```
+
+When `STATUS=RESTART_REQUIRED`, no database rebuild has started yet. Start a fresh OpenCode process so the MCP launcher can register the now-built `spec_kit_memory` surface, then rerun `/doctor:update --resume-bootstrap`.
 
 ## RELATED COMMANDS
 

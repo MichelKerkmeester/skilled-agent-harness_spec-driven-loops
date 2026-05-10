@@ -80,12 +80,12 @@
         },
         {
           "id": "M-3.3.0.0-004",
-          "description": "Bridge legacy `.opencode/skill/` (singular) directory layout to current `.opencode/skills/` (plural) by creating a relative symlink so v3.3-era workspace configs (.mcp.json, opencode.json) continue to resolve. Also build the mcp_server TypeScript runtime if `dist/` is missing.",
+          "description": "Bridge legacy `.opencode/skill/` (singular) directory layout to current `.opencode/skills/` (plural) and route MCP startup through `.opencode/bin/spec-kit-memory-launcher.cjs` so fresh OpenCode sessions can build missing runtime output before MCP registration.",
           "target_db": "filesystem-layout",
           "target_schema_version": "skills-plural-with-dist",
           "idempotent": true,
-          "script": "DEFERRED: handled inline by /doctor:update Phase 1.5 (build) + Phase 8 (symlink)",
-          "fallback_operation": "(1) cd .opencode/skills/system-spec-kit/mcp_server && npm install && npm run build; (2) ln -sf skills .opencode/skill from repo root; (3) optionally edit .mcp.json/opencode.json to use plural paths"
+          "script": "Handled by MCP config launcher at OpenCode startup and /doctor:update Phase 0/1.5 via .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
+          "fallback_operation": "(1) bash .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root .; (2) restart OpenCode so MCP tools register; (3) rerun /doctor:update --resume-bootstrap"
         },
         {
           "id": "M-3.3.0.0-005",
@@ -104,7 +104,8 @@
           "graph-metadata.json",
           "mcp_server/database/context-index.sqlite",
           "mcp_server/database/code-graph.sqlite",
-          ".opencode/skills/ (plural; symlink .opencode/skill -> skills if user retained legacy configs)",
+          ".opencode/skills/ (plural; symlink .opencode/skill -> skills for legacy compatibility)",
+          ".opencode/bin/spec-kit-memory-launcher.cjs",
           ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
         ],
         "files_absent_required": [],

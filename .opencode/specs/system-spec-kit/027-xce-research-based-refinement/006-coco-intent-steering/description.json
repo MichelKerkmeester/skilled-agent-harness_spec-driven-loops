@@ -29,18 +29,18 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-coco-intent-steering",
-  "description": "Phase 006 — ADAPT XCE's intent-steering pattern into mcp-coco-index. Rule-based intent classifier shim before query embedding, bounded query expansion (≤3 embeddings, exact-intent suppression), Phase-004 advisor first-action hint. Cross-language (Python+TypeScript). Default-off behind SPECKIT_COCOINDEX_INTENT_EXPAND. Phase-005 eval gate before active rollout. ~250-350 prod LOC + ~120-180 tests.",
+  "description": "Feature Specification: Coco-Index Intent Steering + Bounded Query Expansion",
   "keywords": [
     "feature",
     "specification",
     "coco-index",
     "intent",
     "steering",
+    "bounded",
     "query",
-    "expansion",
-    "rerank"
+    "expansion"
   ],
-  "lastUpdated": "2026-05-09T11:00:00Z",
+  "lastUpdated": "2026-05-10T07:31:26.009Z",
   "specId": "006",
   "folderSlug": "coco-intent-steering",
   "parentChain": [

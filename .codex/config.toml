@@ -95,6 +95,6 @@ config_file = "agents/prompt-improver.toml"
 description = "Code review specialist focused on correctness, risk, and tests."
 config_file = "agents/review.toml"
 
-[agents.multi-ai-council]
+[agents.deep-ai-council]
 description = "Multi-strategy planning architect for diverse reasoning and optimal plans."
-config_file = "agents/multi-ai-council.toml"
+config_file = "agents/deep-ai-council.toml"

@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
+  "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
+    "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-graph-support"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council",
+      "multi-ai-council extraction",
+      "council skill",
+      "council graph support"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "multi-ai-council",
+      "extraction",
+      "council",
+      "skill",
+      "graph",
+      "support",
+      "workflow",
+      "currently",
+      "belongs",
+      "system-spec-kit",
+      "specialized"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "last_active_child_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
+    "key_files": [
+      "001-deep-ai-council-skill-creation/spec.md",
+      "002-deep-ai-council-graph-support/spec.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Skill Extraction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The council workflow currently belongs to `system-spec-kit`, but it is a specialized multi-agent planning workflow with its own agent persona, artifacts, persistence scripts, and future graph needs. Keeping that ownership inside `system-spec-kit` makes the core spec workflow responsible for council behavior that should evolve independently.",
+    "created_at": "2026-05-10T06:35:39Z",
+    "last_save_at": "2026-05-10T06:39:58.324Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

@@ -80,12 +80,35 @@ function create_mock_environment() {
     documentElement: { ...mock_element },
     addEventListener: () => {},
     removeEventListener: () => {},
+    dispatchEvent: () => true,
     readyState: 'complete',
     fonts: {
       ready: Promise.resolve(),
       check: () => true,
     },
   };
+
+  class MockEvent {
+    constructor(type, init = {}) {
+      this.type = type;
+      this.bubbles = Boolean(init.bubbles);
+      this.cancelable = Boolean(init.cancelable);
+      this.defaultPrevented = false;
+    }
+
+    preventDefault() {
+      if (this.cancelable) this.defaultPrevented = true;
+    }
+
+    stopPropagation() {}
+  }
+
+  class MockCustomEvent extends MockEvent {
+    constructor(type, init = {}) {
+      super(type, init);
+      this.detail = init.detail || null;
+    }
+  }
 
   // Mock window
   const mock_window = {
@@ -156,6 +179,8 @@ function create_mock_environment() {
       info: () => {},
       debug: () => {},
     },
+    Event: MockEvent,
+    CustomEvent: MockCustomEvent,
 
     // Library mocks
     Webflow: {

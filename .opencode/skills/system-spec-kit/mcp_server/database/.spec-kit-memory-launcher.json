@@ -1,0 +1,10 @@
+{
+  "command": "spec-kit-memory-launcher",
+  "start": "2026-05-10T06:16:36.714Z",
+  "end": "2026-05-10T06:16:36.715Z",
+  "status": "ready",
+  "actions": [
+    "created compatibility symlink .opencode/skill -> skills"
+  ],
+  "server": ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
+}

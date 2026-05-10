@@ -58,6 +58,7 @@ user_inputs:
   cleanup_legacy: "[CLEANUP_LEGACY] boolean"
   migrate: "[MIGRATE] boolean"
   keep_snapshots: "[KEEP_SNAPSHOTS] boolean"
+  resume_bootstrap: "[RESUME_BOOTSTRAP] boolean"
   skip_status_check: false
 
 
@@ -71,6 +72,7 @@ field_handling:
     cleanup_legacy_empty: "false"
     migrate_empty: "false"
     keep_snapshots_empty: "false"
+    resume_bootstrap_empty: "false"
   force_policy:
     true: "warn on active MCP clients and continue"
     false: "warn and prompt/abort when active MCP clients are detected"
@@ -86,6 +88,9 @@ field_handling:
   keep_snapshots_policy:
     true: "skip snapshot cleanup older than 30 days"
     false: "cleanup snapshots older than 30 days during final phase"
+  resume_bootstrap_policy:
+    true: "verify .doctor-update.bootstrap.json completed before continuing after a fresh OpenCode restart"
+    false: "run non-MCP runtime bootstrap and stop with restart_required if bootstrap changed tool-registration inputs"
 
 # ─────────────────────────────────────────────────────────────────
 # MUTATION BOUNDARIES
@@ -107,6 +112,12 @@ mutation_boundaries:
     - "mcp_server/database/.doctor-update.flock"  # single-instance lock
     - "mcp_server/database/.doctor-update.lock"
     - "mcp_server/database/.doctor-update.last-run.json"  # orchestrator state log
+    - "mcp_server/database/.doctor-update.bootstrap.json"  # pre-MCP bootstrap state
+    - "mcp_server/database/.doctor-update.bootstrap.lockdir"  # pre-MCP bootstrap lock
+    - ".opencode/skill"  # compatibility symlink only
+    - ".opencode/skill_legacy_backup_*"  # legacy layout backup before symlink bridge
+    - ".opencode/skills/system-spec-kit/mcp_server/dist/**"  # generated MCP runtime output
+    - ".opencode/skills/system-spec-kit/scripts/dist/**"  # generated migration helper output
   forbidden_targets:
     - ".opencode/specs/**/*.md"  # never write into spec packet docs from /doctor:update
     - ".opencode/specs/**/description.json"  # spec metadata belongs to memory-save tooling
@@ -141,7 +152,7 @@ state_log_schema:
       end: "ISO-8601"
       exit: "0|1|130"
       snapshot_path: "string|null"
-  final_status: "ok|failed|rolled_back|cancelled|unrollbackable"
+  final_status: "ok|failed|rolled_back|cancelled|unrollbackable|restart_required"
 
 # ─────────────────────────────────────────────────────────────────
 # INTERACTIVE PROMPTS
@@ -161,6 +172,33 @@ dependency:
 # WORKFLOW
 # ─────────────────────────────────────────────────────────────────
 workflow:
+  phase_0_runtime_bootstrap:
+    council_line: 0
+    approval: "auto-acknowledge before database flock; this phase uses Bash/Node only, no MCP tools"
+    purpose: "Resolve the fresh-start paradox: OpenCode can only register MCP tools at process startup, so missing dist/layout must be fixed before MCP-dependent phases run."
+    launcher_contract:
+      mcp_config_entrypoint: ".opencode/bin/spec-kit-memory-launcher.cjs"
+      invariant: "MCP configs MUST point to the stable launcher, not directly to mcp_server/dist/context-server.js."
+      launcher_behavior: "resolve singular/plural skill layout, build @spec-kit/mcp-server and @spec-kit/scripts when dist is missing, then exec the real MCP server"
+    command_preflight:
+      script: ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
+      command: "bash .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root . --json"
+      state_log: ".opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.bootstrap.json"
+      no_mcp_tools_allowed: true
+    resume_rule:
+      if_resume_bootstrap_true: "require bootstrap state status=complete and generated artifacts present; continue to phase_1_flock_acquire"
+      if_resume_bootstrap_false_and_restart_required_true: "write .doctor-update.last-run.json with final_status=restart_required, release any bootstrap lock, stop before database flock"
+      restart_message: "BOOTSTRAP_COMPLETE_RESTART_REQUIRED: restart OpenCode so MCP tools register, then rerun /doctor:update --resume-bootstrap"
+      max_reentry_count: 1
+    required_artifacts:
+      - ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
+      - ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js"
+      - ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js"
+    failure:
+      emit_error: "runtime bootstrap failed before MCP registration; inspect .doctor-update.bootstrap.json"
+      final_status: "failed"
+      exit_code: 1
+
   phase_1_flock_acquire:
     council_line: 1
     approval: "prompt before acquiring lock"
@@ -174,18 +212,19 @@ workflow:
     approval: "auto-acknowledge in confirm workflow (short tier per markdown)"
     preflight_check: |
       stat .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
-    rationale: "MCP tools listed in /doctor:update allowed-tools cannot be invoked unless the MCP server is built and bootable. Prevents silent Phase 5 failures."
+    rationale: "Defense-in-depth after Phase 0 and the MCP launcher. MCP tools listed in /doctor:update allowed-tools cannot be invoked unless the MCP server is built and bootable."
     if_dist_missing:
-      action: "build the mcp_server TypeScript runtime"
+      action: "run the maintained non-MCP bootstrap script, then stop for fresh OpenCode startup instead of continuing into MCP phases"
       commands: |
-        cd .opencode/skills/system-spec-kit/mcp_server
-        npm install --no-audit --no-fund --silent
-        npm run build
-      timeout_seconds: 180
+        bash .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root .
+      timeout_seconds: 240
       on_build_failure:
-        emit_error: "MCP server build failed; cannot proceed with database operations"
+        emit_error: "system-spec-kit runtime build failed; cannot proceed with database operations"
         release_flock: "rm -f .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.flock .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.lock"
         exit_code: 1
+      on_build_success:
+        final_status: "restart_required"
+        emit_message: "BOOTSTRAP_COMPLETE_RESTART_REQUIRED: restart OpenCode so MCP tools register, then rerun /doctor:update --resume-bootstrap"
     if_dist_present:
       action: "verify timestamp newer than 30 days OR mcp_server/lib/**/*.ts (catch stale builds)"
       stale_threshold_days: 30
@@ -358,6 +397,12 @@ workflow:
     council_line: 4
     approval: "prompt before each dependency step"
     dependency.order: ["code-graph", "context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
+    test_failure_injection:
+      env_var: "SPECKIT_FAIL_STEP"
+      scope: "disposable workspace tests only"
+      rule: "Before executing each dependency step, if SPECKIT_FAIL_STEP exactly equals the dependency step name, inject a synthetic failure after snapshots and before mutating that step."
+      example: "SPECKIT_FAIL_STEP=causal-edges-init"
+      state_log_requirement: "Record injected_failure=true, failed_step=<step>, and final_status=rolled_back when rollback is selected."
     execute:
       code-graph: "code_graph_scan({ incremental: false })"
       context-index:

@@ -1,12 +1,5 @@
 {
-  "id": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
   "title": "099 Webflow per-language style guides",
-  "description": "Refactored sk-code's Webflow reference tree from 5 monolithic standards/* files (3,831 lines mixing JS+CSS+HTML) into 10 per-language files under webflow/{javascript,css,html,shared}/ (4,058 lines), mirroring opencode's layout. Probe-verified across 3 axes: SC-001 CSS-only routing PASS, SC-002 JS-only routing PASS, SC-004 codegen PASS 12/12 JS + 6/6 CSS.",
-  "level": 3,
-  "status": "complete",
-  "completion_pct": 100,
-  "created_at": "2026-05-09",
-  "last_updated_at": "2026-05-09",
   "trigger_phrases": [
     "099 webflow per-language style guides",
     "webflow refactor",
@@ -15,6 +8,12 @@
     "js_style_guide",
     "099-webflow-per-language-style-guides"
   ],
+  "level": 3,
+  "id": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
+  "status": "complete",
+  "completion_pct": 100,
+  "created_at": "2026-05-09",
+  "last_updated_at": "2026-05-09",
   "key_files": [
     ".opencode/skills/sk-code/references/webflow/javascript/style_guide.md",
     ".opencode/skills/sk-code/references/webflow/javascript/quality_standards.md",
@@ -29,5 +28,28 @@
     ".opencode/skills/sk-code/SKILL.md"
   ],
   "importance_tier": "normal",
-  "contextType": "implementation"
+  "contextType": "implementation",
+  "specFolder": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
+  "description": "Feature Specification: Refactor sk-code Webflow style guides to per-language structure mirroring opencode",
+  "keywords": [
+    "feature",
+    "specification",
+    "refactor",
+    "sk-code",
+    "webflow",
+    "style",
+    "guides",
+    "per-language",
+    "structure",
+    "mirroring",
+    "opencode"
+  ],
+  "lastUpdated": "2026-05-10T07:31:25.988Z",
+  "specId": "099",
+  "folderSlug": "webflow-per-language-style-guides",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

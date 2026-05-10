@@ -196,6 +196,39 @@ _memory:
 - Convene R3 council on residual caveats OR
 - Ship as v3.4.2.0 release pending verification
 
+### 2026-05-10 Codex follow-up
+
+- **Patched source fixes from verification:**
+  - `.opencode/skills/system-spec-kit/package-lock.json` now records `@types/better-sqlite3` for the MCP server workspace; the ignored local `mcp_server/package.json` was updated for overlay-test parity; local `npm run build --workspace=@spec-kit/mcp-server` passes.
+  - `.opencode/commands/doctor/assets/doctor_update.yaml` Phase 1.5 now builds both `@spec-kit/mcp-server` and `@spec-kit/scripts`, so Phase 8 `scripts/dist/...` backfill entrypoints exist after the preflight.
+- **Live-confirmed during `/tmp/sk_v3_3_fresh` verification:**
+  - FIX-12 signal_d check fired correctly (`SIGNAL_D_POSITIVE`) across all spec folders.
+  - FIX-13 `backfill-graph-metadata --active-only` avoided the archive-path crash and created 232 graph metadata files in the fresh workspace.
+  - Description backfill created 59 missing `description.json` files with 0 failures.
+  - Legacy memory detection found 92 report-only `memory/*.md` files.
+- **Remaining blocker narrowed:** a truly fresh `opencode run` starts before Phase 1.5 can build `dist/context-server.js` or bridge `.opencode/skill -> .opencode/skills`, so the full `spec_kit_memory` MCP tool surface is not registered in that process. A stricter run failed fast with required tools unavailable; a prebootstrapped split run hung at `step_start` during startup/tool registration. Next pass should either implement an in-command restart/re-entry contract after Phase 1.5/Phase 8 bootstrap, or provide a non-MCP Phase 5 executor path that is part of the maintained command surface rather than ad hoc test harness code.
+
+### 2026-05-10 Codex root-cause fix
+
+- **Council perspective requested by user:** multi-ai-council agreed the bug is architectural startup ordering, not a metadata backfill failure. OpenCode registers MCP tools only at process startup, so a command phase that builds `dist/context-server.js` is too late to make missing tools appear in the current process.
+- **Primary fix implemented:** `.mcp.json` and `opencode.json` now route `spec_kit_memory` through `.opencode/bin/spec-kit-memory-launcher.cjs` instead of directly through `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js`.
+- **Launcher behavior:** the launcher resolves `.opencode/skill` vs `.opencode/skills`, creates the compatibility symlink when needed, builds `@spec-kit/mcp-server` and `@spec-kit/scripts` if generated runtime files are missing, writes `.spec-kit-memory-launcher.json`, then starts the real MCP server without writing stray stdout before MCP traffic.
+- **Command safety fix implemented:** `/doctor:update` now has a Phase 0 non-MCP bootstrap/re-entry contract, a `--resume-bootstrap` flag, `restart_required` state, and a maintained shell preflight at `.opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh`.
+- **Migration manifest updated:** M-3.3.0.0-004 now points operators at the launcher + bootstrap script + fresh OpenCode restart path instead of the old inline Phase 1.5/Phase 8 split.
+- **Verification added:** disposable fresh fixture without `node_modules` or `dist` passed bootstrap, created `.opencode/skill -> skills`, built MCP and scripts dist, and wrote `restart_required=true`. Launcher smoke test produced no stdout before MCP server takeover. JSON/YAML syntax, workspace builds, alignment-drift, and parent spec strict validation pass.
+
+### 2026-05-10 Scenario verification pass
+
+- **Scenario inventory covered:** BOOT fresh-start MCP launcher/startup plus manual playbook scenarios DOC-338, DOC-339, DOC-340, DOC-341, DOC-342, DOC-344, DOC-345, DOC-346, and DOC-347 from `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands`.
+- **Contract matrix result:** 17/17 PASS across startup config, bootstrap/restart contract, failure injection, rollback/retry, concurrent refusal, SIGINT restore/exit-130 contract, migration gap refusal, dashboard rows for all 8 subsystems, tier-aware prompt docs, 3.3.0.0 two-hop migration, legacy-file preservation, cleanup prompt behavior, current-version no-op, state schema, and all six update flags.
+- **Gap found and fixed:** DOC-338 referenced `SPECKIT_FAIL_STEP=causal-edges-init`, but `doctor_update.yaml` did not explicitly define that test hook. Added a disposable-workspace-only `test_failure_injection` contract and documented it in `/doctor:update`.
+- **Bootstrap fixture result:** `/tmp/sk_bootstrap_full_matrix` with no `node_modules`/`dist` passed `doctor-runtime-bootstrap.sh --json`, created `.opencode/skill -> skills`, built MCP/scripts dist, stayed pure JSON on stdout, and passed a second idempotent run with `restart_required=false`.
+- **Launcher smoke result:** `.opencode/bin/spec-kit-memory-launcher.cjs` started cleanly with no stray stdout before MCP traffic.
+- **Fresh OpenCode MCP visibility result:** a true fresh `opencode run` in `/tmp/sk_oc_tool_visibility` successfully called `spec_kit_memory_session_health` and returned `STATUS=PASS`.
+- **Full v3.3-style E2E result:** `/tmp/sk_doctor_update_full_e2e` exited 0 with `STATUS=OK`; `.doctor-update.last-run.json` had `final_status=ok`, `duration_seconds=648`, all seven dependency steps recorded, PID/flock locks released, and pre/post snapshot artifacts present.
+- **E2E observations:** Phase 0 bootstrap found the launcher-ready runtime; Phase 4 rendered all 8 dashboard subsystems; Phase 5 used real MCP tools and recovered after one `code_graph_scan` timeout; Phase 7 validation ran memory, causal, skill-graph, advisor, and CocoIndex health checks; Phase 10 wrote state and released locks.
+- **Remaining honest caveat:** live full E2E validates the normal migration path. Destructive/manual edge behaviors such as actual keyboard SIGINT and a second simultaneous OpenCode process are contract-tested in the matrix, not physically triggered as interactive operator tests in this pass.
+
 ### Memory rules used / honored this session
 - "DELETE not archive": no .bak/.archive/_old created
 - "Stay on main, no feature branches": branch stayed on `main` throughout

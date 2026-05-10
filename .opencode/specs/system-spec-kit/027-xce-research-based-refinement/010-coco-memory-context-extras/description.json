@@ -32,20 +32,18 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-coco-memory-context-extras",
-  "description": "Phase 010 — ADAPT pt-03 RQ-A4 (coco few-shot exemplars) + RQ-B2 (memory LLM-curated context packaging). Two presentation-layer features in one packet — neither alters scoring authority. Coco exemplars in SEPARATE response group `exemplars: [...]` from new local SQLite/vec0 table; capped storage + TTL + reconciliation + ccc_examples_clear maintenance. Memory data.curatedContext as post-retrieval packaging plan with strict JSON schema validation; budget split (retrievalCandidateLimit + presentationLimit + curationTokenBudget); LLM cache extension. Both default-off + shadow-first + Phase-005 lift required for active mode. ~500-800 prod LOC + ~340-570 tests across 5 sub-phases.",
+  "description": "Feature Specification: Coco Few-Shot Exemplars + Memory LLM-Curated Context",
   "keywords": [
     "feature",
     "specification",
     "coco",
+    "few-shot",
     "exemplars",
     "memory",
-    "curator",
-    "context",
-    "presentation",
-    "llm",
-    "shadow"
+    "llm-curated",
+    "context"
   ],
-  "lastUpdated": "2026-05-09T11:00:00Z",
+  "lastUpdated": "2026-05-10T07:31:26.028Z",
   "specId": "010",
   "folderSlug": "coco-memory-context-extras",
   "parentChain": [

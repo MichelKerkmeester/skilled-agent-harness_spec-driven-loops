@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-09T07:57:32.561Z",
+  "generated": "2026-05-10T07:31:25.833Z",
   "folders": [
     {
       "specFolder": "00--ai-systems/001-global-shared",
@@ -206,31 +206,7 @@
         "canonical",
         "diff"
       ],
-      "lastUpdated": "2026-05-01T04:13:57.851Z"
-    },
-    {
-      "specFolder": "00--anobel.com/012-notification-time-scheduling",
-      "description": "Feature Specification: Notification Time-Based Scheduling",
-      "keywords": [
-        "feature",
-        "specification",
-        "notification",
-        "time-based",
-        "scheduling"
-      ],
-      "lastUpdated": "2026-04-24T15:56:54.791Z"
-    },
-    {
-      "specFolder": "00--anobel.com/014-notification-hero-spacing",
-      "description": "Feature Specification: Notification Hero Spacing",
-      "keywords": [
-        "feature",
-        "specification",
-        "notification",
-        "hero",
-        "spacing"
-      ],
-      "lastUpdated": "2026-04-24T15:56:54.795Z"
+      "lastUpdated": "2026-05-09T15:46:42.063Z"
     },
     {
       "specFolder": "00--anobel.com/029-anobel-performance-analysis",
@@ -368,18 +344,32 @@
     },
     {
       "specFolder": "00--anobel.com/039-link-card-collapse-expand",
-      "description": "Link card collapse expand interaction",
+      "description": "Link card collapse expand interaction phase parent",
       "keywords": [
+        "link-card",
+        "collapse-expand",
+        "desktop-animation",
+        "mobile-animation",
+        "webflow"
+      ],
+      "lastUpdated": "2026-05-09T15:05:00.000Z"
+    },
+    {
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation",
+      "description": "Feature Specification: Link card collapse expand interaction",
+      "keywords": [
+        "feature",
+        "specification",
         "link",
         "card",
         "collapse",
         "expand",
         "interaction"
       ],
-      "lastUpdated": "2026-05-03T10:00:00.000Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/001-finsweet-performance",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/001-finsweet-performance",
       "description": "Feature Specification: Finsweet Performance Optimization",
       "keywords": [
         "feature",
@@ -391,7 +381,7 @@
       "lastUpdated": "2026-04-06T09:57:54.337Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/002-tab-menu-border-fix",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/002-tab-menu-border-fix",
       "description": "Feature Specification: Tab Menu Border Color Fix",
       "keywords": [
         "feature",
@@ -405,7 +395,7 @@
       "lastUpdated": "2026-04-06T09:57:54.341Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/003-btn-download-alignment",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/003-btn-download-alignment",
       "description": "Feature Specification: Download Button Code Standards Alignment",
       "keywords": [
         "feature",
@@ -419,7 +409,7 @@
       "lastUpdated": "2026-04-06T09:57:54.346Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/004-table-of-content",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/004-table-of-content",
       "description": "Feature Specification: Table Of Content",
       "keywords": [
         "table",
@@ -429,7 +419,7 @@
       "lastUpdated": "2026-04-27T13:33:11Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/004-table-of-content/001-toc-scrollspy",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/004-table-of-content/001-toc-scrollspy",
       "description": "Feature Specification: Custom TOC ScrollSpy - Requirements & User Stories",
       "keywords": [
         "feature",
@@ -444,7 +434,7 @@
       "lastUpdated": "2026-04-06T09:57:54.351Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/004-table-of-content/002-tab-main-component",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/004-table-of-content/002-tab-main-component",
       "description": "Feature Specification: Tab Main Component",
       "keywords": [
         "feature",
@@ -456,7 +446,7 @@
       "lastUpdated": "2026-04-06T09:57:54.355Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/004-table-of-content/003-icon-animation-isolation",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/004-table-of-content/003-icon-animation-isolation",
       "description": "Feature Specification: Icon Animation Isolation for Download Button",
       "keywords": [
         "feature",
@@ -470,7 +460,7 @@
       "lastUpdated": "2026-04-06T09:57:54.359Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/005-minify-javascript",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/005-minify-javascript",
       "description": "Feature Specification: minify-javascript - Requirements & User Stories",
       "keywords": [
         "feature",
@@ -483,7 +473,7 @@
       "lastUpdated": "2026-04-06T09:57:54.363Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/006-video-play-pause-hover",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/006-video-play-pause-hover",
       "description": "Feature Specification: Video Play/Pause Button Hover Effect",
       "keywords": [
         "feature",
@@ -498,7 +488,7 @@
       "lastUpdated": "2026-04-06T09:57:54.367Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/007-notification-system",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/007-notification-system",
       "description": "Feature Specification: Notification System - Requirements & User Stories",
       "keywords": [
         "feature",
@@ -512,7 +502,7 @@
       "lastUpdated": "2026-04-06T09:57:54.372Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/008-social-share-cms",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/008-social-share-cms",
       "description": "Feature Specification: Social Share CMS Integration",
       "keywords": [
         "feature",
@@ -525,7 +515,7 @@
       "lastUpdated": "2026-04-06T09:57:54.376Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/009-security-remediation",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/009-security-remediation",
       "description": "Feature Specification: Security Vulnerability Remediation",
       "keywords": [
         "feature",
@@ -537,7 +527,7 @@
       "lastUpdated": "2026-04-06T09:57:54.381Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/010-css-performance-cv",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/010-css-performance-cv",
       "description": "Feature Specification: Specification: CSS Performance Upgrade (Content Visibility)",
       "keywords": [
         "feature",
@@ -551,7 +541,7 @@
       "lastUpdated": "2026-04-06T09:57:54.385Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/011-form-input-upload-select",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/011-form-input-upload-select",
       "description": "Feature Specification: Form Input Components Enhancement",
       "keywords": [
         "feature",
@@ -564,7 +554,19 @@
       "lastUpdated": "2026-04-06T09:57:54.391Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/013-font-performance",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/012-notification-time-scheduling",
+      "description": "Feature Specification: Notification Time-Based Scheduling",
+      "keywords": [
+        "feature",
+        "specification",
+        "notification",
+        "time-based",
+        "scheduling"
+      ],
+      "lastUpdated": "2026-04-24T15:56:54.791Z"
+    },
+    {
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/013-font-performance",
       "description": "Feature Specification: Specification: Font Performance Optimization",
       "keywords": [
         "feature",
@@ -576,7 +578,19 @@
       "lastUpdated": "2026-04-06T09:57:54.396Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/015-performance-hacks",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/014-notification-hero-spacing",
+      "description": "Feature Specification: Notification Hero Spacing",
+      "keywords": [
+        "feature",
+        "specification",
+        "notification",
+        "hero",
+        "spacing"
+      ],
+      "lastUpdated": "2026-04-24T15:56:54.795Z"
+    },
+    {
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/015-performance-hacks",
       "description": "Feature Specification: Specification: Additional Performance Hacks",
       "keywords": [
         "feature",
@@ -588,7 +602,7 @@
       "lastUpdated": "2026-04-06T09:57:54.401Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/016-form-persistence",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/016-form-persistence",
       "description": "Feature Specification: Form Data Persistence",
       "keywords": [
         "feature",
@@ -600,7 +614,7 @@
       "lastUpdated": "2026-04-06T09:57:54.406Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/017-link-card-product-adv",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/017-link-card-product-adv",
       "description": "Feature Specification: Link Card Product/Adv - CTA Button Hover Animation",
       "keywords": [
         "feature",
@@ -617,7 +631,7 @@
       "lastUpdated": "2026-04-06T09:57:54.412Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/018-blog-sort-fix",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/018-blog-sort-fix",
       "description": "Feature Specification: Blog Sort Dropdown Fix",
       "keywords": [
         "feature",
@@ -627,10 +641,10 @@
         "dropdown",
         "fix"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/019-form-attribute-audit",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/019-form-attribute-audit",
       "description": "Feature Specification: Form Attribute Audit",
       "keywords": [
         "feature",
@@ -642,7 +656,7 @@
       "lastUpdated": "2026-04-06T09:57:54.422Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/020-attribute-cleanup",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/020-attribute-cleanup",
       "description": "Feature Specification: Attribute Cleanup Deepdive",
       "keywords": [
         "feature",
@@ -654,7 +668,7 @@
       "lastUpdated": "2026-04-06T09:57:54.427Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/021-decoding-async-analysis",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/021-decoding-async-analysis",
       "description": "Feature Specification: Image Decoding Async Analysis",
       "keywords": [
         "feature",
@@ -667,7 +681,7 @@
       "lastUpdated": "2026-04-06T09:57:54.431Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/022-performance-optimization",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/022-performance-optimization",
       "description": "Feature Specification: Performance Optimization - anobel.com",
       "keywords": [
         "feature",
@@ -677,10 +691,10 @@
         "anobel",
         "com"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/023-performance-review",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/023-performance-review",
       "description": "Feature Specification: Performance Optimization Review - Spec 025",
       "keywords": [
         "feature",
@@ -694,7 +708,7 @@
       "lastUpdated": "2026-04-06T09:57:54.437Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/024-language-selector-hover",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/024-language-selector-hover",
       "description": "Feature Specification: Language Selector - Desktop Hover to Open",
       "keywords": [
         "feature",
@@ -708,7 +722,7 @@
       "lastUpdated": "2026-04-06T09:57:54.445Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/025-load-toggle",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/025-load-toggle",
       "description": "Feature Specification: Load Toggle Component - anobel.com",
       "keywords": [
         "feature",
@@ -722,7 +736,7 @@
       "lastUpdated": "2026-04-06T09:57:54.450Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/026-mobile-btn-link-feedback",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/026-mobile-btn-link-feedback",
       "description": "Feature Specification: Mobile Button/Link Tap Feedback",
       "keywords": [
         "feature",
@@ -736,7 +750,7 @@
       "lastUpdated": "2026-04-06T09:57:54.454Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/027-download-btn-on-mobile",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/027-download-btn-on-mobile",
       "description": "Feature Specification: Download Button Mobile Fix",
       "keywords": [
         "feature",
@@ -749,7 +763,7 @@
       "lastUpdated": "2026-04-06T09:57:54.459Z"
     },
     {
-      "specFolder": "00--anobel.com/z_archive/028-hero-flicker-debug",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/028-hero-flicker-debug",
       "description": "Feature Specification: Hero Video Card Image Flickering Fix",
       "keywords": [
         "feature",
@@ -764,7 +778,19 @@
       "lastUpdated": "2026-04-06T09:57:54.463Z"
     },
     {
-      "specFolder": "00--barter/002-skill-doc-template-alignment",
+      "specFolder": "00--anobel.com/039-link-card-collapse-expand/002-mobile-animation",
+      "description": "Mobile scroll-driven link card animation",
+      "keywords": [
+        "mobile",
+        "scroll-driven",
+        "link-card",
+        "collapse-expand",
+        "webflow"
+      ],
+      "lastUpdated": "2026-05-09T15:05:00.000Z"
+    },
+    {
+      "specFolder": "00--barter/002-skill-doc-template-alignment-1",
       "description": "Feature Specification: Skill Doc Template Alignment — sk-bartender-endpoint-interpreter + sk-bo-notifications-templates",
       "keywords": [
         "feature",
@@ -777,6 +803,23 @@
         "sk-bo-notifications-templates"
       ],
       "lastUpdated": "2026-04-30T12:04:14.358Z"
+    },
+    {
+      "specFolder": "00--barter/003-skill-doc-template-alignment-2",
+      "description": "Feature Specification: Skill Doc Template Alignment 2 — sk-code + sk-git + sk-bartender-endpoint-interpreter + sk-back-office-notifications",
+      "keywords": [
+        "feature",
+        "specification",
+        "skill",
+        "doc",
+        "template",
+        "alignment",
+        "sk-code",
+        "sk-git",
+        "sk-bartender-endpoint-interpreter",
+        "sk-back-office-notifications"
+      ],
+      "lastUpdated": "2026-05-09T10:56:37.665Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment",
@@ -2493,7 +2536,7 @@
         "strategy-doc",
         "cleanup"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.756Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/097-cli-opencode-stdin-fix",
@@ -2507,7 +2550,7 @@
         "stdin-redirect",
         "fix"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.766Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/098-multi-ai-council-write-authority",
@@ -2520,7 +2563,95 @@
         "write",
         "authority"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.771Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
+      "description": "Feature Specification: Refactor sk-code Webflow style guides to per-language structure mirroring opencode",
+      "keywords": [
+        "feature",
+        "specification",
+        "refactor",
+        "sk-code",
+        "webflow",
+        "style",
+        "guides",
+        "per-language",
+        "structure",
+        "mirroring",
+        "opencode"
+      ],
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement",
+      "description": "When the Multi-AI Council is invoked directly as a main agent in opencode (Depth 0, no orchestrator wrapper), it routinely fails to write ai-council/** artifacts despite §12/§13/§16 documenting the protocol. Capability is in place (packet 098 shipped scoped-write permissions); the gap is enforcement. This packet adds: (1) Step 0 RESOLVE in §1 to determine target packet path before dispatch, (2) hard write-or-fail rule in §7 ALWAYS/NEVER, (3) PERSISTENCE VERIFICATION block + Q11 in §9 SELF-CHECK, (4) unconditional §12 OUTPUT PROTOCOL, (5) numbered §13 INVOCATION CONTRACT writer-call sequence, and (6) HALT-and-ASK fallback when no packet resolves. All 4 runtime mirrors flip together. Body-only changes; no library, schema, or permission changes.",
+      "keywords": [
+        "multi-ai-council",
+        "council",
+        "main-agent",
+        "enforcement",
+        "ai-council",
+        "persistence",
+        "opencode",
+        "write-authority",
+        "spec-folder-resolution",
+        "halt-and-ask",
+        "agent-body",
+        "self-check",
+        "output-verification",
+        "invocation-contract",
+        "runtime-parity"
+      ],
+      "lastUpdated": "2026-05-09T17:50:00Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
+      "description": "Phase parent for dedicated deep-ai-council skill creation and later graph support",
+      "keywords": [
+        "phase",
+        "parent",
+        "dedicated",
+        "deep-ai-council",
+        "skill",
+        "creation",
+        "later",
+        "graph",
+        "support"
+      ],
+      "lastUpdated": "2026-05-10T06:39:50.677Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
+      "description": "Initial phase for creating the dedicated deep-ai-council skill and renamed runtime agents",
+      "keywords": [
+        "initial",
+        "phase",
+        "creating",
+        "dedicated",
+        "deep-ai-council",
+        "skill",
+        "renamed",
+        "runtime",
+        "agents"
+      ],
+      "lastUpdated": "2026-05-10T06:39:50.811Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-graph-support",
+      "description": "Future phase for planning council-specific graph support after deep-ai-council skill creation",
+      "keywords": [
+        "future",
+        "phase",
+        "planning",
+        "council-specific",
+        "graph",
+        "support",
+        "deep-ai-council",
+        "skill",
+        "creation"
+      ],
+      "lastUpdated": "2026-05-10T06:39:50.903Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
@@ -3346,7 +3477,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -3547,7 +3678,7 @@
         "intent",
         "specifications"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-specify/assets",
@@ -3557,7 +3688,7 @@
         "intent",
         "specifications"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade/external/specs/completed/Spar-Install",
@@ -3565,7 +3696,7 @@
       "keywords": [
         "spar-install"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade/external/templates",
@@ -3575,7 +3706,7 @@
         "intent",
         "specifications"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/058-spec-kit-ux-adoptions",
@@ -3613,7 +3744,7 @@
         "context",
         "optimization"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.792Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
@@ -3625,7 +3756,7 @@
         "release",
         "cleanup"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.797Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-indexer-storage-boundary",
@@ -3712,7 +3843,7 @@
         "baseline",
         "recovery"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.807Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-search-rag-measurement-driven-implementation",
@@ -3739,7 +3870,7 @@
         "recovery",
         "followup"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.816Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/008-w3-w7-runtime-wiring-and-audit",
@@ -4854,7 +4985,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/042-stress-coverage-audit-and-run",
@@ -4944,7 +5075,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation",
@@ -5192,7 +5323,7 @@
         "plural",
         "sweep"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.835Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline",
@@ -5428,7 +5559,7 @@
         "4-7",
         "remediation"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.842Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening",
@@ -5922,7 +6053,7 @@
         "apply-mode",
         "phase"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.852Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-skill-advisor",
@@ -6356,8 +6487,48 @@
       "lastUpdated": "2026-05-08T16:00:21.861Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
+      "description": "Feature Specification: Doctor Update Orchestrator (phase parent)",
+      "keywords": [
+        "feature",
+        "specification",
+        "doctor",
+        "update",
+        "orchestrator",
+        "phase-parent",
+        "doctor-commands",
+        "sandbox-testing-playbook"
+      ],
+      "lastUpdated": "2026-05-10T06:59:26.785Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands",
+      "description": "Feature Specification: 013 Doctor Update Orchestrator",
+      "keywords": [
+        "feature",
+        "specification",
+        "013",
+        "doctor",
+        "update",
+        "orchestrator"
+      ],
+      "lastUpdated": "2026-05-09T20:41:29.736Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
+      "description": "Feature Specification: Sandbox Testing Playbook",
+      "keywords": [
+        "feature",
+        "specification",
+        "sandbox",
+        "testing",
+        "playbook"
+      ],
+      "lastUpdated": "2026-05-09T17:17:16.845Z"
+    },
+    {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-      "description": "Phase parent for the XCE adoption work. Pass 1 research complete (10 iterations + synthesis, 2026-05-08) and pt-02 cross-validation amendments applied. Implementation is scoped as 5 phase children: 004 first-action mandate (Level 1), 001 HLD/LLD (Level 2), 002 trace (Level 2), 003 impact analysis (Level 2), and 005 adoption eval (Level 3). Total ~1,900-2,320 LOC after pt-02 hardening.",
+      "description": "Phase parent for the XCE adoption work. Pass 1 research complete (10 iterations + synthesis, 2026-05-08), pt-02 cross-validation amendments applied (10 IRQs, 2026-05-09), pt-03 scope-expansion research complete (10 iterations, gpt-5.5 high fast, 2026-05-09), and 5 net-new L3 phase children scaffolded from pt-03 recommendations (2026-05-09). Total 10 phase children now scaffolded: 001 HLD/LLD (L2), 002 trace (L2), 003 impact analysis (L2), 004 first-action mandate (L1), 005 adoption eval (L3) — all from pt-01/pt-02; 006 coco intent steering (L3), 007 memory semantic triggers (L3), 008 feedback reducers + 3 P0 fixes (L3), 009 retrieval rerank clients (L3), 010 coco+memory context extras (L3) — all from pt-03. Phases 006-010 each have 9 files including resource-map.md per user directive. Pt-03 verdict: bounded ADAPT throughout, default-off / shadow-first, no SaaS, no embedding swaps. P0 fixes inside Phase 008 Sub-Phase 1 are correctness preconditions for Sub-Phases 4 (Consumer B) and 5 (Consumer C).",
       "keywords": [
         "feature",
         "specification",
@@ -6365,7 +6536,7 @@
         "research-based",
         "refinement"
       ],
-      "lastUpdated": "2026-05-08T16:39:21.326Z"
+      "lastUpdated": "2026-05-09T11:30:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld",
@@ -6378,7 +6549,7 @@
         "lld",
         "narrative"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.861Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace",
@@ -6390,7 +6561,7 @@
         "trace",
         "tool"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.866Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-code-graph-impact-analysis",
@@ -6402,7 +6573,7 @@
         "impact",
         "analysis"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.871Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-skill-advisor-first-action-mandate",
@@ -6415,7 +6586,7 @@
         "first-action",
         "mandate"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.876Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval",
@@ -6429,7 +6600,81 @@
         "evaluation",
         "harness"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-09T07:57:32.881Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-coco-intent-steering",
+      "description": "Feature Specification: Coco-Index Intent Steering + Bounded Query Expansion",
+      "keywords": [
+        "feature",
+        "specification",
+        "coco-index",
+        "intent",
+        "steering",
+        "bounded",
+        "query",
+        "expansion"
+      ],
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memory-semantic-triggers",
+      "description": "Feature Specification: Memory Backend Semantic Trigger Matching (Hybrid)",
+      "keywords": [
+        "feature",
+        "specification",
+        "memory",
+        "backend",
+        "semantic",
+        "trigger",
+        "matching",
+        "hybrid"
+      ],
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers",
+      "description": "Feature Specification: Shared Feedback Reducers (3 P0 Fixes + Aggregation + 3 Consumers)",
+      "keywords": [
+        "feature",
+        "specification",
+        "shared",
+        "feedback",
+        "reducers",
+        "fixes",
+        "aggregation",
+        "consumers"
+      ],
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-retrieval-rerank-clients",
+      "description": "Feature Specification: Retrieval Rerank Clients (Shared Interfaces)",
+      "keywords": [
+        "feature",
+        "specification",
+        "retrieval",
+        "rerank",
+        "clients",
+        "shared",
+        "interfaces"
+      ],
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-coco-memory-context-extras",
+      "description": "Feature Specification: Coco Few-Shot Exemplars + Memory LLM-Curated Context",
+      "keywords": [
+        "feature",
+        "specification",
+        "coco",
+        "few-shot",
+        "exemplars",
+        "memory",
+        "llm-curated",
+        "context"
+      ],
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -10686,7 +10931,7 @@
         "obsidian-export",
         "specification"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/openspec/specs/obsidian-plugin",
@@ -10695,7 +10940,7 @@
         "obsidian-plugin",
         "specification"
       ],
-      "lastUpdated": "2026-05-09T07:57:32.561Z"
+      "lastUpdated": "2026-05-10T07:31:25.833Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",

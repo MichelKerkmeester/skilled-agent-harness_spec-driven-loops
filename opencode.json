@@ -20,7 +20,7 @@
       "type": "local",
       "command": [
         "node",
-        ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
+        ".opencode/bin/spec-kit-memory-launcher.cjs"
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",

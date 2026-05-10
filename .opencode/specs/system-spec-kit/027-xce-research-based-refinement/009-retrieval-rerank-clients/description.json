@@ -27,20 +27,17 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-retrieval-rerank-clients",
-  "description": "Phase 009 — ADAPT pt-03 RQ-B5 client extraction. Extract shared RerankClient<T> from memory's cross-encoder.ts so memory backend + coco-index share provider/cache/circuit-breaker semantics. Define EmbeddingCacheClient interface (memory adapter only — Coco adapter DEFERRED until cross-backend hit-rate overlap telemetry justifies). SKIP shared indexing pipelines (binding boundary). 4 sub-phases; ~250-420 prod LOC + ~120-220 tests. Memory consumer behavior unchanged after extraction; CocoIndex consumer opt-in via SPECKIT_COCO_USE_SHARED_RERANK flag.",
+  "description": "Feature Specification: Retrieval Rerank Clients (Shared Interfaces)",
   "keywords": [
     "feature",
     "specification",
+    "retrieval",
     "rerank",
-    "client",
-    "embedding",
-    "cache",
-    "interface",
-    "extraction",
+    "clients",
     "shared",
-    "voyage"
+    "interfaces"
   ],
-  "lastUpdated": "2026-05-09T11:00:00Z",
+  "lastUpdated": "2026-05-10T07:31:26.023Z",
   "specId": "009",
   "folderSlug": "retrieval-rerank-clients",
   "parentChain": [
