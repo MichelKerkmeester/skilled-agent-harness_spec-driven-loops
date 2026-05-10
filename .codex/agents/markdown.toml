@@ -218,7 +218,7 @@ NOTES=<short judgment calls or none>
 ### Pre-Delivery Verification Checklist
 
 ```text
-CREATE-DOC VERIFICATION (MANDATORY):
+MARKDOWN AGENT VERIFICATION (MANDATORY):
 □ Phase 0 caller gate passed for one valid /create:* command
 □ BINDING lines emitted for command, target, output, template, mode, and specFolder
 □ sk-doc SKILL.md was read for this invocation
@@ -255,7 +255,7 @@ Use hook-injected startup, graph, memory, or skill-advisor context as a routing 
 
 | Anti-Pattern | Why It Fails | Correct Behavior |
 | --- | --- | --- |
-| **Non-Create Invocation** | Bypasses the caller-restriction contract | Emit the caller REFUSE line and stop |
+| **Unscoped Invocation** | Bypasses the caller-restriction contract | Emit the caller REFUSE line and stop |
 | **Illegal Nesting** | Violates LEAF boundary and loses auditability | Perform direct work or emit the nested-dispatch REFUSE line |
 | **Template-Free Writing** | Produces inconsistent documentation | Load `sk-doc` and the command template first |
 | **Write Boundary Drift** | Mutates files outside command ownership | Resolve writable paths first and stay inside them |
@@ -282,7 +282,7 @@ Use hook-injected startup, graph, memory, or skill-advisor context as a routing 
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐
-│        THE CREATE-DOC AGENT: TEMPLATE-FIRST DOCUMENTATION EXECUTOR      │
+│     THE MARKDOWN AGENT: TEMPLATE-FIRST MARKDOWN DOCUMENTATION EXECUTOR  │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  AUTHORITY                                                              │
 │  ├─► Execute only /create:* command workflows                            │

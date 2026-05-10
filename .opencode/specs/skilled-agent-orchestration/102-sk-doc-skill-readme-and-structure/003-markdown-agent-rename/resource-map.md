@@ -29,6 +29,7 @@ _memory:
 - `.opencode/agents/create.md`
 - `.claude/agents/create.md`
 - `.codex/agents/create.toml if present`
+- `.codex/config.toml`
 - `.gemini/agents/create.md`
 - `.opencode/agents/orchestrate.md`
 - `.opencode/agents/code.md`
@@ -38,6 +39,7 @@ _memory:
 - `.opencode/commands/**`
 - `README.md`
 - `AGENTS.md`
+- `AGENTS_Barter`
 
 ## Expected Write Paths
 
@@ -54,15 +56,18 @@ _memory:
 - `.codex/agents/orchestrate.toml`
 - `.codex/agents/code.toml`
 - `.codex/agents/markdown.toml`
+- `.codex/config.toml`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
 - `.opencode/commands/create/*.md`
 - `.opencode/commands/create/assets/*.yaml`
 - `.opencode/skills/sk-doc/assets/agent_template.md`
 - `AGENTS.md`
+- `AGENTS_Barter`
 
 ## Verification Commands
 
-- `rg -n "@create|create\.md|create\.toml|Create-Doc Agent|name: create|name = \"create\"" .opencode/agents .claude/agents .codex/agents .gemini/agents .opencode/commands/create AGENTS.md`
-- `rg -n "/create:" .opencode/commands .opencode/skills README.md AGENTS.md`
+- `rg -n "@create|create\.md|create\.toml|Create-Doc Agent|name: create|name = \"create\"|\[agents\.create\]|agents/create\.toml" .opencode/agents .claude/agents .codex/agents .codex/config.toml .gemini/agents .opencode/commands/create .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml AGENTS.md AGENTS_Barter README.md`
+- `rg -n "/create:" .opencode/commands .opencode/skills README.md AGENTS.md AGENTS_Barter`
 - `test -f .opencode/agents/markdown.md && test -f .claude/agents/markdown.md && test -f .gemini/agents/markdown.md && test -f .codex/agents/markdown.toml`
 - `test ! -e .opencode/agents/create.md && test ! -e .claude/agents/create.md && test ! -e .gemini/agents/create.md && test ! -e .codex/agents/create.toml`
 

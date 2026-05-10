@@ -168,13 +168,13 @@ Denied tools: `task`, `webfetch`, `chrome_devtools`, and `patch`.
 
 ## 3. RUNTIME PARAMETERS
 
-| Parameter          | Value                                                                           |
-| ------------------ | ------------------------------------------------------------------------------- |
-| **Time Budget**    | ~10 minutes for normal create/update commands                                   |
-| **Output Size**    | One deterministic status line plus up to 12 lines of evidence                   |
-| **Tool Calls**     | 8-25 for normal mode, depending on package size                                 |
-| **Dispatches**     | 0; this is a LEAF agent                                                         |
-| **Mutation Calls** | Scoped to command-resolved outputs and explicit spec continuity files           |
+| Parameter          | Value                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------- |
+| **Time Budget**    | ~10 minutes for normal create/update commands                                                  |
+| **Output Size**    | One deterministic status line plus up to 12 lines of evidence                                  |
+| **Tool Calls**     | 8-25 for normal mode, depending on package size                                                |
+| **Dispatches**     | 0; this is a LEAF agent                                                                        |
+| **Mutation Calls** | Scoped to command-resolved outputs and explicit spec continuity files                          |
 | **Use Case**       | Direct executor for `/create:*` documentation, spec-doc authoring, and scoped markdown writing |
 
 ---
@@ -192,7 +192,7 @@ Read `sk-doc` first, then read the matching template before writing.
 | `/create:folder_readme`    | `README.md` or install-guide markdown                   | `.opencode/skills/sk-doc/assets/readme/readme_template.md`                                                                                       |
 | `/create:changelog`        | Versioned changelog markdown                            | `.opencode/skills/sk-doc/assets/changelog_template.md`                                                                                           |
 | `spec-doc`                 | Spec folder documentation                               | `.opencode/skills/system-spec-kit/templates/` level contract or manifest templates                                                               |
-| `markdown`                 | Scoped markdown document                                | Existing document structure, `.opencode/skills/sk-doc/assets/readme/readme_template.md`, or the closest matching sk-doc template                  |
+| `markdown`                 | Scoped markdown document                                | Existing document structure, `.opencode/skills/sk-doc/assets/readme/readme_template.md`, or the closest matching sk-doc template                 |
 
 If the command or markdown workflow asks for a template not listed here and no existing document structure applies, return:
 
@@ -232,7 +232,7 @@ NOTES=<short judgment calls or none>
 ### Pre-Delivery Verification Checklist
 
 ```text
-CREATE-DOC VERIFICATION (MANDATORY):
+MARKDOWN AGENT VERIFICATION (MANDATORY):
 □ Phase 0 invocation and scope gate passed for one valid /create:* command, spec-doc task, or markdown task
 □ BINDING lines emitted for command, target, output, template, mode, and specFolder
 □ sk-doc SKILL.md was read for this invocation
@@ -299,7 +299,7 @@ Use hook-injected startup, graph, memory, or skill-advisor context as a routing 
 │     THE MARKDOWN AGENT: TEMPLATE-FIRST MARKDOWN DOCUMENTATION EXECUTOR  │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  AUTHORITY                                                              │
-│  ├─► Execute /create:* workflows and scoped markdown/spec-doc tasks     │
+│  ├─► Execute /create:* workflows and scoped markdown/spec-doc tasks      │
 │  ├─► Load sk-doc/system-spec-kit templates before writing               │
 │  └─► Create or update explicitly scoped documentation artifacts         │
 │                                                                         │

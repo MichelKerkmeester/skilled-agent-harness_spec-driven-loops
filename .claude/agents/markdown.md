@@ -217,7 +217,7 @@ NOTES=<short judgment calls or none>
 ### Pre-Delivery Verification Checklist
 
 ```text
-CREATE-DOC VERIFICATION (MANDATORY):
+MARKDOWN AGENT VERIFICATION (MANDATORY):
 □ Phase 0 invocation and scope gate passed for one valid /create:* command, spec-doc task, or markdown task
 □ BINDING lines emitted for command, target, output, template, mode, and specFolder
 □ sk-doc SKILL.md was read for this invocation

@@ -59,9 +59,9 @@ child_agents_md = true
 description = "Application-code implementation specialist using sk-code for stack-aware execution."
 config_file = "agents/code.toml"
 
-[agents.create]
+[agents.markdown]
 description = "Dedicated /create:* documentation executor using sk-doc templates."
-config_file = "agents/create.toml"
+config_file = "agents/markdown.toml"
 
 [agents.context]
 description = "Production context retrieval specialist (memory-first, read-only)."
