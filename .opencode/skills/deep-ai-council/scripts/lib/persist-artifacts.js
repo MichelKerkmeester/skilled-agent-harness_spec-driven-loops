@@ -1,4 +1,14 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ lib/persist-artifacts (library)                                          ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ Council artifact writers, parser, and renderer with scoped writes        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
+
+// ────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -12,13 +22,23 @@ const {
   normalizeRoundId,
 } = require('./audit-trail.js');
 
+// ────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ────────────────────────────────────────────────────────────────────────────
+
 const DEFAULT_TIMESTAMP = '1970-01-01T00:00:00.000Z';
+const DEFAULT_MAX_ROUNDS = 3;
+const MAX_SLUG_LENGTH = 80;
 const OPTIONAL_ALIASES = {
   crossReferences: ['cross-references', 'cross references'],
   droppedAlternatives: ['dropped alternatives'],
   deliberationNotes: ['deliberation notes', 'deliberation notes details'],
   risksMitigations: ['risks & mitigations', 'risks and mitigations', 'risks & mitigations details'],
 };
+
+// ────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ────────────────────────────────────────────────────────────────────────────
 
 function normalizeText(value) {
   return String(value || '').replace(/\s+/g, ' ').trim();
@@ -38,7 +58,7 @@ function slugify(value) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
-    .slice(0, 80) || 'unknown';
+    .slice(0, MAX_SLUG_LENGTH) || 'unknown';
 }
 
 function metadataEvent(event) {
@@ -46,6 +66,13 @@ function metadataEvent(event) {
   return normalizeEvent(payload);
 }
 
+/**
+ * Parse one JSONL state event and preserve legacy schema defaults.
+ *
+ * @param {string} line - JSONL line to parse
+ * @returns {Object} Parsed state event with schema metadata
+ * @throws {Error} When the state line is not a JSON object
+ */
 function parseStateLine(line) {
   const event = JSON.parse(line);
   if (typeof event !== 'object' || event === null || Array.isArray(event)) {
@@ -57,6 +84,12 @@ function parseStateLine(line) {
   };
 }
 
+/**
+ * Parse a council JSONL state log into normalized event objects.
+ *
+ * @param {string} jsonl - State log content
+ * @returns {Object[]} Parsed state events
+ */
 function parseStateLog(jsonl) {
   return String(jsonl || '')
     .split(/\r?\n/)
@@ -194,6 +227,31 @@ function collectExtraSections(sections) {
     .map((section) => section.heading);
 }
 
+/**
+ * Throw OUT_OF_SCOPE_WRITE if a relative path attempts parent-directory traversal.
+ *
+ * @param {string} relativePath - Caller-provided relative path
+ * @param {string} aiCouncilRoot - Absolute path of the council root
+ * @throws {Error} With code 'OUT_OF_SCOPE_WRITE' when traversal is detected
+ */
+function rejectParentTraversal(relativePath, aiCouncilRoot) {
+  if (String(relativePath).split(/[\\/]+/).includes('..')) {
+    const error = new Error(`OUT_OF_SCOPE_WRITE: Refusing to write outside ${aiCouncilRoot}: ${relativePath}`);
+    error.code = 'OUT_OF_SCOPE_WRITE';
+    throw error;
+  }
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Parse a council report into the artifact writer's structured model.
+ *
+ * @param {string} markdown - Council report markdown
+ * @returns {Object} Parsed council report with validation details
+ */
 function parseCouncilReport(markdown) {
   const sectionsList = splitSections(markdown);
   const title = String(markdown || '').replace(/\r\n/g, '\n').split('\n').find((line) => /^#{1,2}\s+/.test(line));
@@ -254,6 +312,13 @@ function listItems(markdown) {
   return items.filter(Boolean);
 }
 
+/**
+ * Build a memory-save payload from a parsed council report.
+ *
+ * @param {Object} parsed - Parsed council report
+ * @param {string} packetSpecFolder - Packet spec folder for the payload
+ * @returns {Object} Memory-save payload
+ */
 function buildMemorySavePayload(parsed, packetSpecFolder) {
   const recommendedPlan = parsed.recommendedPlan || '';
   const droppedAlternatives = parsed.optionalSections.droppedAlternatives || '';
@@ -297,11 +362,24 @@ ${seat.confidence || '[No confidence captured]'}
 ${seat.content || '[No per-seat section was present; derived from Council Composition table]'}
 `;
 }
+
 function optionalBlock(title, value, strictOutput) {
   if (value) return `## ${title}\n${value}\n`;
   return strictOutput ? '' : `## ${title}\n[Optional section not present in source report]\n`;
 }
 
+/**
+ * Render parsed council data into all persisted artifact payloads.
+ *
+ * @param {Object} parsed - Parsed council report
+ * @param {Object} [options={}] - Rendering options
+ * @param {number} [options.round=1] - Council round number
+ * @param {boolean} [options.strictOutput=false] - Omit missing optional blocks
+ * @param {string} [options.timestamp] - Artifact timestamp
+ * @param {string} [options.specFolder] - Packet spec folder path
+ * @param {number} [options.maxRounds] - Configured maximum round count
+ * @returns {Object} Rendered artifact payloads and relative paths
+ */
 function renderArtifacts(parsed, options = {}) {
   const round = Number(options.round || 1);
   const roundDir = roundLabel(round);
@@ -312,7 +390,7 @@ function renderArtifacts(parsed, options = {}) {
   const config = `${JSON.stringify({
     spec_folder: specFolder,
     current_round: round,
-    max_rounds: options.maxRounds || 3,
+    max_rounds: options.maxRounds || DEFAULT_MAX_ROUNDS,
     seats_per_round: parsed.seats.length,
     convergence_signal: 'two-of-three-agree',
     created_at: timestamp,
@@ -363,6 +441,7 @@ ${parsed.planConfidence === null ? '[No numeric confidence captured]' : `${parse
   const councilReport = `${parsed.rawMarkdown}\n`;
   return { config, strategy, stateLog, seats, deliberation, deliberationPath: `deliberations/${roundDir}.md`, councilReport };
 }
+
 function assertInside(baseDir, targetPath) {
   const relative = path.relative(baseDir, targetPath);
   if (relative.startsWith('..') || path.isAbsolute(relative)) {
@@ -404,68 +483,122 @@ function councilRootFor(packetSpecFolder) {
   return { packetRoot, aiCouncilRoot };
 }
 
+/**
+ * Write the council configuration artifact.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to write into
+ * @param {string} content - Configuration JSON content
+ * @param {Object} [options={}] - Scoped write and audit options
+ * @returns {string} Absolute path to the written artifact
+ */
 function writeConfig(packetSpecFolder, content, options = {}) {
   const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
   fs.mkdirSync(aiCouncilRoot, { recursive: true });
   return writeFileScoped(aiCouncilRoot, 'ai-council-config.json', content, options);
 }
 
+/**
+ * Write the council strategy markdown artifact.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to write into
+ * @param {string} content - Strategy markdown content
+ * @param {Object} [options={}] - Scoped write and audit options
+ * @returns {string} Absolute path to the written artifact
+ */
 function writeStrategyMd(packetSpecFolder, content, options = {}) {
   const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
   fs.mkdirSync(aiCouncilRoot, { recursive: true });
   return writeFileScoped(aiCouncilRoot, 'ai-council-strategy.md', content, options);
 }
 
+/**
+ * Write the council state JSONL artifact.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to write into
+ * @param {string} content - State JSONL content
+ * @param {Object} [options={}] - Scoped write and audit options
+ * @returns {string} Absolute path to the written artifact
+ */
 function writeStateJsonl(packetSpecFolder, content, options = {}) {
   const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
   fs.mkdirSync(aiCouncilRoot, { recursive: true });
   return writeFileScoped(aiCouncilRoot, 'ai-council-state.jsonl', content, options);
 }
 
+/**
+ * Write a seat artifact under the council seats directory.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to write into
+ * @param {string} relativePath - Seat-relative or ai-council-relative path
+ * @param {string} content - Seat markdown content
+ * @param {Object} [options={}] - Scoped write and audit options
+ * @returns {string} Absolute path to the written artifact
+ */
 function writeSeat(packetSpecFolder, relativePath, content, options = {}) {
   const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
   fs.mkdirSync(aiCouncilRoot, { recursive: true });
-  if (String(relativePath).split(/[\\/]+/).includes('..')) {
-    const error = new Error(`OUT_OF_SCOPE_WRITE: Refusing to write outside ${aiCouncilRoot}: ${relativePath}`);
-    error.code = 'OUT_OF_SCOPE_WRITE';
-    throw error;
-  }
+  rejectParentTraversal(relativePath, aiCouncilRoot);
   const seatPath = relativePath.startsWith('seats/') ? relativePath : path.join('seats', relativePath);
   return writeFileScoped(aiCouncilRoot, seatPath, content, options);
 }
 
+/**
+ * Write a deliberation artifact under the council deliberations directory.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to write into
+ * @param {string} relativePath - Deliberation-relative or ai-council-relative path
+ * @param {string} content - Deliberation markdown content
+ * @param {Object} [options={}] - Scoped write and audit options
+ * @returns {string} Absolute path to the written artifact
+ */
 function writeDeliberation(packetSpecFolder, relativePath, content, options = {}) {
   const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
   fs.mkdirSync(aiCouncilRoot, { recursive: true });
-  if (String(relativePath).split(/[\\/]+/).includes('..')) {
-    const error = new Error(`OUT_OF_SCOPE_WRITE: Refusing to write outside ${aiCouncilRoot}: ${relativePath}`);
-    error.code = 'OUT_OF_SCOPE_WRITE';
-    throw error;
-  }
+  rejectParentTraversal(relativePath, aiCouncilRoot);
   const deliberationPath = relativePath.startsWith('deliberations/')
     ? relativePath
     : path.join('deliberations', relativePath);
   return writeFileScoped(aiCouncilRoot, deliberationPath, content, options);
 }
 
+/**
+ * Write a critique artifact under the council critiques directory.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to write into
+ * @param {string} relativePath - Critique-relative or ai-council-relative path
+ * @param {string} content - Critique markdown content
+ * @param {Object} [options={}] - Scoped write and audit options
+ * @returns {string} Absolute path to the written artifact
+ */
 function writeCritique(packetSpecFolder, relativePath, content, options = {}) {
   const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
   fs.mkdirSync(aiCouncilRoot, { recursive: true });
-  if (String(relativePath).split(/[\\/]+/).includes('..')) {
-    const error = new Error(`OUT_OF_SCOPE_WRITE: Refusing to write outside ${aiCouncilRoot}: ${relativePath}`);
-    error.code = 'OUT_OF_SCOPE_WRITE';
-    throw error;
-  }
+  rejectParentTraversal(relativePath, aiCouncilRoot);
   const critiquePath = relativePath.startsWith('critiques/') ? relativePath : path.join('critiques', relativePath);
   return writeFileScoped(aiCouncilRoot, critiquePath, content, options);
 }
 
+/**
+ * Write the final council report artifact.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to write into
+ * @param {string} content - Council report markdown content
+ * @param {Object} [options={}] - Scoped write and audit options
+ * @returns {string} Absolute path to the written artifact
+ */
 function writeReport(packetSpecFolder, content, options = {}) {
   const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
   fs.mkdirSync(aiCouncilRoot, { recursive: true });
   return writeFileScoped(aiCouncilRoot, 'council-report.md', content, options);
 }
 
+/**
+ * Write all rendered council artifacts and collect conflict messages.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to write into
+ * @param {Object} rendered - Rendered artifact payloads
+ * @returns {Object} Written paths and conflict messages
+ */
 function writeArtifacts(packetSpecFolder, rendered) {
   const { packetRoot, aiCouncilRoot } = councilRootFor(packetSpecFolder);
 
@@ -500,6 +633,14 @@ function writeArtifacts(packetSpecFolder, rendered) {
 
   return { written, conflicts };
 }
+
+/**
+ * Append one normalized event to the packet council state log.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder containing ai-council
+ * @param {Object} event - State event payload
+ * @returns {string} Absolute path to the state JSONL file
+ */
 function appendStateLine(packetSpecFolder, event) {
   const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
   const statePath = path.resolve(aiCouncilRoot, 'ai-council-state.jsonl');
@@ -508,6 +649,7 @@ function appendStateLine(packetSpecFolder, event) {
   fs.appendFileSync(statePath, `${JSON.stringify(metadataEvent(event))}\n`, 'utf8');
   return statePath;
 }
+
 function parseArgs(argv) {
   const args = {
     packetSpecFolder: null,
@@ -537,10 +679,18 @@ function parseArgs(argv) {
   roundLabel(args.round);
   return args;
 }
+
 function readInput(inputFile) {
   if (inputFile) return fs.readFileSync(inputFile, 'utf8');
   return fs.readFileSync(0, 'utf8');
 }
+
+/**
+ * Run the council artifact persistence CLI.
+ *
+ * @param {string[]} [argv=process.argv.slice(2)] - CLI arguments
+ * @returns {number} Process exit code
+ */
 function main(argv = process.argv.slice(2)) {
   let args;
   try {
@@ -579,6 +729,10 @@ function main(argv = process.argv.slice(2)) {
     return 1;
   }
 }
+
+// ────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   SCHEMA_VERSION,

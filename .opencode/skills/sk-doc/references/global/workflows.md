@@ -21,16 +21,16 @@ Workflows define the execution patterns and operational modes for the markdown d
 - **Phase orchestration** - Sequential or independent phase execution
 - **Error handling** - Graceful degradation with clear error messages
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](../specific/skill_creation.md#progressive-disclosure).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](../skill_creation.md#progressive-disclosure).
 
 This reference provides deep-dive technical guidance on execution modes, validation patterns, and workflow orchestration.
 
 **Scope Note**: This reference covers Mode 1 (Document Quality) workflows only. For other modes, see:
-- Mode 2 (Skill Creation): [skill_creation.md](../specific/skill_creation.md)
+- Mode 2 (Skill Creation): [skill_creation.md](../skill_creation.md)
 - Mode 3 (Flowcharts): [assets/flowcharts/](../../assets/flowcharts/)
-- Mode 4 (Install Guides): [install_guide_creation.md](../specific/install_guide_creation.md)
-- Mode 5 (Playbooks): [manual_testing_playbook_creation.md](../specific/manual_testing_playbook_creation.md), [manual_testing_playbook_template.md](../../assets/testing_playbook/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../assets/testing_playbook/manual_testing_playbook_snippet_template.md)
-- Companion catalog workflow: [feature_catalog_creation.md](../specific/feature_catalog_creation.md) plus the [feature catalog template bundle](../../assets/feature_catalog/)
+- Mode 4 (Install Guides): [install_guide_creation.md](../install_guide_creation.md)
+- Mode 5 (Playbooks): [manual_testing_playbook_creation.md](../manual_testing_playbook_creation.md), [manual_testing_playbook_template.md](../../assets/testing_playbook/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../assets/testing_playbook/manual_testing_playbook_snippet_template.md)
+- Companion catalog workflow: [feature_catalog_creation.md](../feature_catalog_creation.md) plus the [feature catalog template bundle](../../assets/feature_catalog/)
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in numbered category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
 
@@ -291,8 +291,8 @@ done
 - [optimization.md](./optimization.md) - Content transformation patterns
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](./quick_reference.md) - Quick command reference
-- [skill_creation.md](../specific/skill_creation.md) - Skill creation workflow
-- [install_guide_creation.md](../specific/install_guide_creation.md) - Install guide standards and workflow
+- [skill_creation.md](../skill_creation.md) - Skill creation workflow
+- [install_guide_creation.md](../install_guide_creation.md) - Install guide standards and workflow
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates

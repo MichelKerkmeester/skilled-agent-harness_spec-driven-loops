@@ -24,7 +24,13 @@
     ],
     "siblings": [],
     "conflicts_with": [],
-    "prerequisite_for": []
+    "prerequisite_for": [
+      {
+        "target": "deep-ai-council",
+        "weight": 0.7,
+        "context": "provides spec-folder packet context and memory-save workflows for council artifact handoff"
+      }
+    ]
   },
   "domains": [
     "spec",

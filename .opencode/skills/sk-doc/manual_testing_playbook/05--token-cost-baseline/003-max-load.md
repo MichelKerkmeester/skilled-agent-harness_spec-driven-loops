@@ -10,14 +10,14 @@ expected_resources:
   - references/global/evergreen_packet_id_rule.md
   - references/global/hvr_rules.md
   - references/global/optimization.md
-  - references/specific/skill_creation.md
-  - references/specific/agent_creation.md
-  - references/specific/readme_creation.md
-  - references/specific/changelog.md
-  - references/specific/feature_catalog.md
-  - references/specific/playbook_creation.md
-  - references/specific/install_guide.md
+  - references/skill_creation.md
+  - references/agent_creation.md
+  - references/readme_creation.md
+  - references/feature_catalog_creation.md
+  - references/manual_testing_playbook_creation.md
+  - references/install_guide_creation.md
   - assets/skill/skill_md_template.md
+  - assets/skill/skill_readme_template.md
   - assets/skill/skill_reference_template.md
   - assets/agent_template.md
   - assets/command_template.md
@@ -86,7 +86,7 @@ Show the full sk-doc toolkit: all templates, frameworks, format guide, reference
 ## Success Criteria
 
 - ON_DEMAND_KEYWORDS triggered; load-all engaged
-- all 21 enumerated resources appear in the loaded set (false_positive_resource_load_count tolerated up to 3 for any new RESOURCE_MAP additions)
+- all 22 enumerated resources appear in the loaded set (false_positive_resource_load_count tolerated up to 3 for any new RESOURCE_MAP additions)
 - per-CLI ceiling token cost recorded; should be the upper bound of SD-013/SD-014/SD-015 spectrum
 
 ## 4. SOURCE METADATA

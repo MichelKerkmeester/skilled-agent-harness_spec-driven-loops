@@ -323,7 +323,7 @@ Scenario prompts must be realistic. Default voice is natural-human (how a real u
 The workflow must load both the standards reference and the templates:
 
 **References**
-- `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md`
+- `.opencode/skills/sk-doc/references/manual_testing_playbook_creation.md`
 - `.opencode/skills/sk-doc/references/global/core_standards.md`
 - `.opencode/skills/sk-doc/references/global/validation.md`
 

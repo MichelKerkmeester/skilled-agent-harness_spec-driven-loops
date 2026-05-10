@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
-    "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-graph-support"
+    "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-graph-support",
+    "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-routing-guardrail-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -34,11 +35,12 @@
       "specialized"
     ],
     "importance_tier": "important",
-    "status": "planned",
-    "last_active_child_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
+    "status": "in_progress",
+    "last_active_child_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-reference-expansion",
     "key_files": [
       "001-deep-ai-council-skill-creation/spec.md",
       "002-deep-ai-council-graph-support/spec.md",
+      "003-routing-guardrail-fix/spec.md",
       "spec.md"
     ],
     "entities": [

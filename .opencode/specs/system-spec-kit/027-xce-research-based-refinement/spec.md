@@ -10,15 +10,18 @@ trigger_phrases:
   - "code_graph impact analysis"
   - "advisor first-action mandate"
   - "HLD LLD generation pipeline"
+  - "cocoindex complete fork"
+  - "mcp-coco-index full upstream fork"
+  - "cocoindex-code v0.2.33 adoption"
 importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-05-08T00:00:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Scaffolded spec folder for XCE research run"
-    next_safe_action: "User invokes /spec_kit:deep-research:auto"
+    last_updated_at: "2026-05-10T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Added Phase 001 complete CocoIndex MCP fork plan and renumbered implementation phases"
+    next_safe_action: "Implement Phase 001 Sub-Phase 1 import manifest and layout decision"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,6 +29,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "research/deep-research-config.json"
+      - "001-cocoindex-complete-fork/spec.md"
+      - "001-cocoindex-complete-fork/plan.md"
       - "external/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -40,19 +45,25 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 
-> **Phase Parent**: This packet has graduated from a research-only packet to a phase parent with 5 implementation phase children. The original research run completed 2026-05-08 with 10 iterations + synthesis. The actionable ADOPT/ADAPT/DEFER verdicts from `research/findings.md` and the pt-02 cross-validation amendments in `research/027-xce-research-based-refinement-pt-02/` are now scoped as phases 001-005 below.
+> **Phase Parent**: This packet has graduated from a research-only packet to a phase parent with 11 implementation phase children. Phase 001 is now the complete local CocoIndex MCP fork prerequisite requested on 2026-05-10. The original XCE research run completed 2026-05-08 with 10 iterations + synthesis, pt-02 cross-validation produced the code-graph and advisor phases now numbered 002-006, and pt-03 expanded scope into CocoIndex/memory phases now numbered 007-011.
 
 ## PHASES
 
 | Phase | Title | Verdict | Level | LOC | Depends on |
 |-------|-------|---------|------:|----:|-----------|
-| **[004-skill-advisor-first-action-mandate](./004-skill-advisor-first-action-mandate/spec.md)** | Render-layer "MUST invoke FIRST" mandate | ADAPT (#11, #13) | 1 | ~80-120 | none |
-| **[001-code-graph-hld-lld](./001-code-graph-hld-lld/spec.md)** | Deterministic HLD/LLD Narrative Generation | ADOPT (#1, #8) | 2 | ~320-370 | none |
-| **[002-code-graph-trace](./002-code-graph-trace/spec.md)** | Symbol→Class→Module→Role Trace Tool | ADAPT (#2, #6, #7, #9) | 2 | ~390-460 | 001 |
-| **[003-code-graph-impact-analysis](./003-code-graph-impact-analysis/spec.md)** | Risk-Scored Impact Analysis | ADAPT (#3) | 2 | ~430-570 | optional 001/002 for enrichment only |
-| **[005-code-graph-adoption-eval](./005-code-graph-adoption-eval/spec.md)** | Lightweight Local Eval Harness | ADAPT (#14) + DEFER (#15) | 3 | ~680-800 | 001-004 |
+| **[001-cocoindex-complete-fork](./001-cocoindex-complete-fork/spec.md)** | Complete in-repo `cocoindex-code` MCP wrapper fork | FOUNDATION | 3 | ~1,000-1,500 | none |
+| **[002-code-graph-hld-lld](./002-code-graph-hld-lld/spec.md)** | Deterministic HLD/LLD Narrative Generation | ADOPT (#1, #8) | 2 | ~320-370 | none |
+| **[003-code-graph-trace](./003-code-graph-trace/spec.md)** | Symbol→Class→Module→Role Trace Tool | ADAPT (#2, #6, #7, #9) | 2 | ~390-460 | 002 |
+| **[004-code-graph-impact-analysis](./004-code-graph-impact-analysis/spec.md)** | Risk-Scored Impact Analysis | ADAPT (#3) | 2 | ~430-570 | optional 002/003 for enrichment only |
+| **[005-skill-advisor-first-action-mandate](./005-skill-advisor-first-action-mandate/spec.md)** | Render-layer "MUST invoke FIRST" mandate | ADAPT (#11, #13) | 1 | ~80-120 | none |
+| **[006-code-graph-adoption-eval](./006-code-graph-adoption-eval/spec.md)** | Lightweight Local Eval Harness | ADAPT (#14) + DEFER (#15) | 3 | ~680-800 | 002-005 |
+| **[007-coco-intent-steering](./007-coco-intent-steering/spec.md)** | CocoIndex intent steering + bounded query expansion | ADAPT (pt-03 RQ-A1) | 3 | ~250-350 | 001; soft 005/006 |
+| **[008-memory-semantic-triggers](./008-memory-semantic-triggers/spec.md)** | Memory semantic trigger matching | ADAPT (pt-03 RQ-B1) | 3 | ~280-430 | 006 |
+| **[009-feedback-reducers](./009-feedback-reducers/spec.md)** | Feedback reducers + P0 memory correctness fixes | ADAPT (pt-03 RQ-A3/RQ-B3) | 3 | ~400-650 | 006; feeds 007/011 |
+| **[010-retrieval-rerank-clients](./010-retrieval-rerank-clients/spec.md)** | Shared rerank/embedding cache client interfaces | ADAPT (pt-03 RQ-B5) | 3 | ~250-420 | 001 for Coco adapter |
+| **[011-coco-memory-context-extras](./011-coco-memory-context-extras/spec.md)** | Coco exemplars + memory curated context extras | ADAPT/DEFER (pt-03 RQ-A4/RQ-B2) | 3 | ~500-800 | 001 for Coco examples; 006/008/009/010 soft |
 
-**Total**: ~1,900-2,320 LOC across 5 phases after pt-02 hardening. Recommended execution order: 004 first (lowest effort, highest impact), then 001, then 002 and deterministic 003 in parallel, then 005 last.
+**Total**: ~4,580-6,440 LOC across 11 phases after adding the complete CocoIndex fork prerequisite. Recommended execution order: 001 first for the CocoIndex baseline, 005 can still ship early as a render-layer advisor improvement, code-graph phases 002-004 can proceed independently, 006 gates rollout evidence, and CocoIndex-facing phases 007/010/011 should wait for 001 before touching the forked MCP wrapper.
 
 **Cross-cuts**: see `research/research.md` for the original synthesis, `research/findings.md` for the 21-feature adoption matrix, `research/sub-packet-proposals.md` for the original per-phase scope rationale, `research/resource-map.md` for the pass-1 path ledger, and `research/027-xce-research-based-refinement-pt-02/research.md` for implementation-risk amendments.
 
@@ -62,7 +73,7 @@ _memory:
 
 The `external/` folder of this packet contains the public Xanther Context Engine (XCE) integration repository — README, MIT license, MCP configs for 5 IDEs, and 3 steering files (`CLAUDE.md`, `kiro.md`, `opencode-prompt.txt`). XCE is a hosted SaaS MCP server that delivers architectural context (HLD, LLD, component descriptions, call graphs, impact analysis) via 5 tool primitives, claiming +7.4pp on SWE-bench Verified for Sonnet 4.0 and ~20% token reduction when steering rules are active. The underlying PRAT (Persistent Recursive Abstract Tree) algorithm is closed-source.
 
-This packet scopes a deep-research run that compared XCE's public surface against our local `code_graph` (`mcp_server/code_graph/`) and `skill_advisor` (`mcp_server/skill_advisor/`) subsystems, identified concrete adoption candidates, and proposed sub-packets for features that warranted implementation. The research produced file:line-cited findings, an adoption matrix (4 ADOPT, 9 ADAPT, 2 DEFER, 6 SKIP feature rows), and a non-adoption list with 9 expanded rationale items. Phases 001-005 (above) implement the actionable verdicts with pt-02 amendments applied.
+This packet scopes a deep-research run that compared XCE's public surface against our local `code_graph` (`mcp_server/code_graph/`) and `skill_advisor` (`mcp_server/skill_advisor/`) subsystems, identified concrete adoption candidates, and proposed sub-packets for features that warranted implementation. The research produced file:line-cited findings, an adoption matrix (4 ADOPT, 9 ADAPT, 2 DEFER, 6 SKIP feature rows), and a non-adoption list with 9 expanded rationale items. Phases 002-006 implement the actionable pt-01/pt-02 verdicts. Phase 001 adds the complete `cocoindex-code` fork baseline needed before the pt-03 CocoIndex phases 007, 010, and 011 modify the MCP wrapper.
 
 **Key Decisions in this Spec**:
 - Research-only packet at Level 2. Implementation follows in child or sibling packets keyed off the synthesis output.

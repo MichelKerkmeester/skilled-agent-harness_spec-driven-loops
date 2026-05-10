@@ -228,12 +228,12 @@ A: The command reads the most recent changelog entry in the target component fol
 
 | Document | Purpose |
 |----------|---------|
-| [Parent: OpenCode Commands](../README.md) | Overview of all command groups |
-| [sk-doc SKILL.md](../../skill/sk-doc/SKILL.md) | Templates and standards used by create commands |
-| [feature_catalog_creation.md](../../skill/sk-doc/references/specific/feature_catalog_creation.md) | Standards for rooted feature catalog packages |
-| [manual_testing_playbook_creation.md](../../skill/sk-doc/references/specific/manual_testing_playbook_creation.md) | Standards for rooted testing playbook packages |
-| [agent_template.md](../../skill/sk-doc/assets/agent_template.md) | Agent creation template |
-| [command_template.md](../../skill/sk-doc/assets/command_template.md) | Command creation template |
-| [skill_creation.md](../../skill/sk-doc/references/specific/skill_creation.md) | Skill creation workflow reference |
+| [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
+| [sk-doc SKILL.md](../../skills/sk-doc/SKILL.md) | Templates and standards used by create commands |
+| [feature_catalog_creation.md](../../skills/sk-doc/references/feature_catalog_creation.md) | Standards for rooted feature catalog packages |
+| [manual_testing_playbook_creation.md](../../skills/sk-doc/references/manual_testing_playbook_creation.md) | Standards for rooted testing playbook packages |
+| [agent_template.md](../../skills/sk-doc/assets/agent_template.md) | Agent creation template |
+| [command_template.md](../../skills/sk-doc/assets/command_template.md) | Command creation template |
+| [skill_creation.md](../../skills/sk-doc/references/skill_creation.md) | Skill creation workflow reference |
 
 <!-- /ANCHOR:related-documents -->

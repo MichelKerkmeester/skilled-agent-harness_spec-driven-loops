@@ -4,11 +4,11 @@ category: 04--cross-cli-dispatch
 title: 'Multi-step dispatch: 3 sequential sk-doc invocations'
 expected_intent: SKILL_CREATION → DOC_QUALITY → CHANGELOG
 expected_resources:
-  - references/specific/skill_creation.md
+  - references/skill_creation.md
   - assets/skill/skill_md_template.md
+  - assets/skill/skill_readme_template.md
   - references/global/validation.md
   - references/global/core_standards.md
-  - references/specific/changelog.md
   - assets/changelog_template.md
 expected_token_range_input: 2000-5000
 expected_token_range_output: 3000-6000

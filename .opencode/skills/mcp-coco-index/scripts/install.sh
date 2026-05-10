@@ -45,10 +45,18 @@ create_venv() {
 }
 
 install_package() {
-    echo "  Installing $PACKAGE_NAME..."
-    if ! "$VENV_DIR/bin/pip" install --upgrade --quiet --no-build-isolation --editable "$SKILL_DIR/mcp_server"; then
+    # Default install includes the [local] extra (sentence-transformers + torch) so
+    # offline / no-API-key embedding stays the out-of-the-box experience. Set
+    # COCOINDEX_SKIP_LOCAL_EMBEDDINGS=1 to install the LiteLLM-only path.
+    local target="$SKILL_DIR/mcp_server"
+    if [[ "${COCOINDEX_SKIP_LOCAL_EMBEDDINGS:-0}" != "1" ]]; then
+        target="$target[local]"
+    fi
+
+    echo "  Installing $PACKAGE_NAME (target: $target)..."
+    if ! "$VENV_DIR/bin/pip" install --upgrade --quiet --no-build-isolation --editable "$target"; then
         echo "  Dependency resolution failed; retrying local editable install without dependency resolution..."
-        "$VENV_DIR/bin/pip" install --upgrade --quiet --no-build-isolation --no-deps --editable "$SKILL_DIR/mcp_server"
+        "$VENV_DIR/bin/pip" install --upgrade --quiet --no-build-isolation --no-deps --editable "$target"
     fi
 
     local version

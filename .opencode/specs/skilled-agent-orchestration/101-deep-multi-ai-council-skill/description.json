@@ -1,19 +1,15 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
-  "description": "Phase parent for dedicated deep-ai-council skill creation and later graph support",
+  "description": "Deep AI Council Skill Extraction phase parent",
   "keywords": [
-    "phase",
-    "parent",
-    "dedicated",
-    "deep-ai-council",
+    "deep",
+    "council",
     "skill",
-    "creation",
-    "later",
-    "graph",
-    "support"
+    "extraction",
+    "phase"
   ],
-  "lastUpdated": "2026-05-10T06:39:50.677Z",
+  "lastUpdated": "2026-05-10T07:51:51Z",
   "specId": "101",
   "folderSlug": "deep-multi-ai-council-skill",
   "parentChain": [

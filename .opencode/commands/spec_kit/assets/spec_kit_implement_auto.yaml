@@ -83,6 +83,28 @@ request_handling:
   override: "Use [REQUEST] if provided, else use default above"
 
 # ─────────────────────────────────────────────────────────────────
+# COMPONENT CREATION ROUTING
+# ─────────────────────────────────────────────────────────────────
+component_creation_routing:
+  purpose: "Prevent /spec_kit:implement from routing skill, agent, or command component scaffolding to @code."
+  trigger_paths:
+    - ".opencode/skills/**"
+    - ".opencode/agents/**"
+    - ".opencode/commands/**"
+  classify_before_dispatch:
+    component_authoring:
+      examples: ["skill scaffold", "agent role file", "command workflow", "template", "metadata", "package docs", "SKILL.md", "agent markdown", "command YAML"]
+      route: "@create for actual /create:* command execution; otherwise main-agent/direct sk-doc + system-spec-kit"
+      forbidden_route: "@code"
+    executable_code_subtask:
+      examples: ["script implementation", "test file", "MCP server source", "parser/compiler code"]
+      route: "@code only after scaffolding is complete and exact files, success criteria, and verification commands are named"
+  pre_dispatch_self_check:
+    - "If task prompt says Agent: @code for component_authoring, STOP and rewrite the task."
+    - "If subagent_type is general but embedded prompt names a different Agent than the selected route, STOP and rewrite the task."
+    - "If the task is an actual /create:* command, load @create and preserve the command semantics instead of approximating with @code."
+
+# ─────────────────────────────────────────────────────────────────
 # DOCUMENTATION LEVELS
 # ─────────────────────────────────────────────────────────────────
 documentation_levels:
@@ -401,6 +423,10 @@ workflow:
 
   step_6_development:
     purpose: Execute implementation following task plan
+    component_creation_guard:
+      enforcement: MANDATORY
+      rule: "Apply component_creation_routing before any development dispatch touching .opencode/skills/**, .opencode/agents/**, or .opencode/commands/**."
+      on_violation: "STOP → rewrite dispatch for @create or main-agent/sk-doc execution; never send Agent: @code for component scaffolding."
     pre_phase_parallel_check:
       enabled: true
       phase_domains: [code, testing]

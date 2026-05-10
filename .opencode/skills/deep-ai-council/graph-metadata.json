@@ -7,7 +7,7 @@
     "depends_on": [
       {
         "target": "system-spec-kit",
-        "weight": 0.6,
+        "weight": 0.7,
         "context": "uses spec-folder packet context and memory-save workflows for council artifact handoff"
       }
     ],
@@ -56,8 +56,8 @@
     ],
     "key_files": [
       ".opencode/skills/deep-ai-council/SKILL.md",
-      ".opencode/skills/deep-ai-council/references/output-schema.md",
-      ".opencode/skills/deep-ai-council/references/state-format.md",
+      ".opencode/skills/deep-ai-council/references/output_schema.md",
+      ".opencode/skills/deep-ai-council/references/state_format.md",
       ".opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs",
       ".opencode/agents/deep-ai-council.md"
     ],
@@ -74,6 +74,16 @@
         "path": ".opencode/agents/deep-ai-council.md",
         "source": "derived"
       }
-    ]
+    ],
+    "causal_summary": "Deep AI Council owns multi-seat planning deliberation, packet-local ai-council artifact persistence, lightweight convergence checks, and council recovery/audit guidance. It matters because council behavior can evolve independently from system-spec-kit while preserving scoped-write packet artifacts.",
+    "source_docs": [
+      "SKILL.md",
+      "references/output_schema.md",
+      "references/state_format.md",
+      "references/folder_layout.md",
+      "references/command_wiring.md"
+    ],
+    "created_at": "2026-05-10T07:59:08Z",
+    "last_updated_at": "2026-05-10T07:59:08Z"
   }
 }

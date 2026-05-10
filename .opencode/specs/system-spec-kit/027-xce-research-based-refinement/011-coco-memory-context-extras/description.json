@@ -1,0 +1,57 @@
+{
+  "title": "Phase 011 — Coco-Index Few-Shot Exemplars + Memory LLM-Curated Context",
+  "trigger_phrases": [
+    "027 phase 011",
+    "coco few-shot exemplars",
+    "coco example bank",
+    "memory LLM-curated context",
+    "memory_context curator",
+    "ccc_examples_clear",
+    "data.curatedContext"
+  ],
+  "level": 3,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P2",
+  "createdAt": "2026-05-09T11:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "027-xce-research-based-refinement",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork"
+    ]
+  },
+  "soft_depends_on": [
+    "006-code-graph-adoption-eval",
+    "008-memory-semantic-triggers",
+    "009-feedback-reducers"
+  ],
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras",
+  "description": "Feature Specification: Coco Few-Shot Exemplars + Memory LLM-Curated Context Dependency added for the Coco exemplar path: Phase 001 must land before this phase modifies mcp-coco-index; the memory curator path remains independently scoped.",
+  "keywords": [
+    "feature",
+    "specification",
+    "coco",
+    "few-shot",
+    "exemplars",
+    "memory",
+    "llm-curated",
+    "context"
+  ],
+  "lastUpdated": "2026-05-10T10:05:44.449Z",
+  "specId": "010",
+  "folderSlug": "coco-memory-context-extras",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

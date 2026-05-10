@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation"
-    last_updated_at: "2026-05-10T06:45:00Z"
+    last_updated_at: "2026-05-10T08:10:34Z"
     last_updated_by: "openai-gpt-5.5-opencode"
-    recent_action: "Scaffolded initial skill phase"
-    next_safe_action: "Author or execute the dedicated skill extraction implementation"
+    recent_action: "Implemented deep-ai-council skill extraction and source-level advisor routing fix"
+    next_safe_action: "Index Phase 001 continuity"
     blockers: []
     key_files:
       - .opencode/skills/deep-ai-council/
@@ -28,11 +28,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "101-001-skill-creation"
       parent_session_id: null
-    completion_pct: 10
-    open_questions:
-      - "Do active callers require the old multi-ai-council name?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Graph support is deferred to 101/002."
+      - "No active runtime mirror files remain under the old multi-ai-council name."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: 101/001 Deep AI Council Skill Creation
@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -186,6 +186,5 @@ Create a dedicated `deep-ai-council` skill and renamed runtime agent that own co
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Do any active callers outside agent files invoke `multi-ai-council` directly?
-- Should the first implementation keep a short deprecation note in docs, or remove old naming entirely once no consumer is found?
+- No active runtime mirror files require the old `multi-ai-council` name. Historical persisted state keeps `protocol: "multi-ai-council"` as additive-only data compatibility, not as an active runtime alias.
 <!-- /ANCHOR:questions -->

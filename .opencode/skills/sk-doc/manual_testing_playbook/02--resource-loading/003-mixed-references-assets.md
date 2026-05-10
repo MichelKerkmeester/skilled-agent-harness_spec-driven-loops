@@ -4,7 +4,7 @@ category: 02--resource-loading
 title: 'README_CREATION intent loads mixed references + assets'
 expected_intent: README_CREATION
 expected_resources:
-  - references/specific/readme_creation.md
+  - references/readme_creation.md
   - assets/readme/readme_template.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 1500-3000
@@ -55,7 +55,7 @@ Create a README for packages/auth/ covering purpose, install, usage, configurati
 
 - **Intent picked**: `README_CREATION`
 - **Resources loaded**:
-  - `references/specific/readme_creation.md` (guidance)
+  - `references/readme_creation.md` (guidance)
   - `assets/readme/readme_template.md` (scaffold)
 - **Outcome**: CLI loads both resources and emits a `README.md` that follows the template's section order and applies the guidance from `readme_creation.md`.
 

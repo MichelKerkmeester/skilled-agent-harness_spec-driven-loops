@@ -172,7 +172,7 @@ agent_scripts:
   extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
 
 agent_references:
-  agent_creation: .opencode/skills/sk-doc/references/specific/agent_creation.md
+  agent_creation: .opencode/skills/sk-doc/references/agent_creation.md
   core_standards: .opencode/skills/sk-doc/references/global/core_standards.md
   validation: .opencode/skills/sk-doc/references/global/validation.md
 

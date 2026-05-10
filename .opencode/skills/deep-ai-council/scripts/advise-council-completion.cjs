@@ -1,8 +1,26 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ advise-council-completion (CLI)                                          ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ Council completion advisory: state, seats, council_complete checks       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
+
+// ────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
 const path = require('node:path');
 const { parseStateLog } = require('./persist-artifacts.cjs');
+
+// ────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ────────────────────────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ────────────────────────────────────────────────────────────────────────────
 
 function usage() {
   return 'Usage: node advise-council-completion.cjs <packet-spec-folder> [--json] [--quiet]';
@@ -33,7 +51,8 @@ function readStateEvents(statePath) {
   if (!fs.existsSync(statePath)) return null;
   try {
     return parseStateLog(fs.readFileSync(statePath, 'utf8'));
-  } catch {
+  } catch (error) {
+    console.warn(`[multi-ai-council] State log parse failed: ${error.message}`);
     return [];
   }
 }
@@ -60,6 +79,16 @@ function expectedSeatCount(config) {
   return null;
 }
 
+// ────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Collect missing-artifact and incomplete-state advisories for a packet.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to inspect
+ * @returns {string[]} Advisory messages
+ */
 function collectAdvisories(packetSpecFolder) {
   const packetPath = path.resolve(packetSpecFolder);
   const councilRoot = path.join(packetPath, 'ai-council');
@@ -97,6 +126,12 @@ function collectAdvisories(packetSpecFolder) {
   return advisories;
 }
 
+/**
+ * Collect council state event counts for completion reporting.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to inspect
+ * @returns {Object} Summary counts keyed by event type
+ */
 function collectSummary(packetSpecFolder) {
   const packetPath = path.resolve(packetSpecFolder);
   const statePath = path.join(packetPath, 'ai-council', 'ai-council-state.jsonl');
@@ -118,6 +153,12 @@ function renderHuman(packetSpecFolder, advisories, summary = null) {
   return `${lines.concat(body).join('\n')}\n`;
 }
 
+/**
+ * Run the council completion advisory CLI.
+ *
+ * @param {string[]} [argv=process.argv.slice(2)] - CLI arguments
+ * @returns {number} Process exit code
+ */
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   const packet = args.packetSpecFolder || '<missing-packet-spec-folder>';
@@ -136,6 +177,10 @@ function main(argv = process.argv.slice(2)) {
 
   return 0;
 }
+
+// ────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   collectAdvisories,

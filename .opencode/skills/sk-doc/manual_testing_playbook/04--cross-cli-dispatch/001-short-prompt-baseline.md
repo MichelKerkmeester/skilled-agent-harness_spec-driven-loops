@@ -4,7 +4,6 @@ category: 04--cross-cli-dispatch
 title: 'Short-prompt baseline: CHANGELOG intent across all 3 CLIs'
 expected_intent: CHANGELOG
 expected_resources:
-  - references/specific/changelog.md
   - assets/changelog_template.md
 expected_token_range_input: 200-800
 expected_token_range_output: 800-2000
@@ -57,7 +56,6 @@ Draft a v2.3.0 changelog with added, changed, fixed, and removed sections.
 
 - **Intent picked**: `CHANGELOG`
 - **Resources loaded**:
-  - `references/specific/changelog.md`
   - `assets/changelog_template.md`
 - **Outcome**: CLI emits a populated changelog skeleton for v2.3.0 with the four standard sections, citing the template.
 

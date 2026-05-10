@@ -38,7 +38,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 | 2 | Resource Loading | `02--resource-loading/` | SD-004 .. SD-006 | Router loads only the expected resource set: references-only (HVR), assets-only (FLOWCHART), and mixed (README_CREATION). |
 | 3 | Unknown Fallback | `03--unknown-fallback/` | SD-007 .. SD-009 | Router escalates ambiguous prompts via AMBIGUITY_DELTA top-2 return or UNKNOWN_FALLBACK_CHECKLIST. |
 | 4 | Cross-CLI Dispatch | `04--cross-cli-dispatch/` | SD-010 .. SD-012 | CLI-specific behavior: short-prompt baseline, large-prompt stress (codex stdin mitigation), multi-step dispatch stability. |
-| 5 | Token Cost Baseline | `05--token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (3 resources), ceiling (ON_DEMAND load-all). |
+| 5 | Token Cost Baseline | `05--token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (4 resources), ceiling (ON_DEMAND load-all). |
 
 ---
 
@@ -68,7 +68,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 ### 05 — Token Cost Baseline
 - **SD-013** — `05--token-cost-baseline/001-minimal-load.md` — Floor: 1 reference (HVR).
-- **SD-014** — `05--token-cost-baseline/002-medium-load.md` — Median: 3 resources (SKILL_CREATION).
+- **SD-014** — `05--token-cost-baseline/002-medium-load.md` — Median: 4 resources (SKILL_CREATION).
 - **SD-015** — `05--token-cost-baseline/003-max-load.md` — Ceiling: ON_DEMAND load-all RESOURCE_MAP.
 
 ---
@@ -76,7 +76,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 ## Global Preconditions
 
 1. `.opencode/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block (RESOURCE_MAP, INTENT_MODEL, UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS).
-2. All `references/global/*.md`, `references/specific/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/agent_template.md`, and `assets/command_template.md` resolve on disk.
+2. All `references/global/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/agent_template.md`, and `assets/command_template.md` resolve on disk.
 3. Skill advisor binary callable: `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --help` exits 0.
 4. Each of the 3 CLI runtimes (cli-codex, cli-opencode) is installed and authenticated.
 5. Token-cost baselines (SD-013 → SD-014 → SD-015) MUST run in order on the same CLI to keep the floor/median/ceiling comparable.

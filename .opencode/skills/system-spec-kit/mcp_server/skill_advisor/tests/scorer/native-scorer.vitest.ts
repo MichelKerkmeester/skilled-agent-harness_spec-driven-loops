@@ -387,6 +387,27 @@ describe('027/003 native scorer units', () => {
     expect(result.topSkill).toBe('sk-code');
   });
 
+  it('routes natural council deliberation prompts to deep-ai-council despite compare wording', () => {
+    const projection = createFixtureProjection([
+      skill({
+        id: 'deep-ai-council',
+        description: 'Deep AI Council deliberation workflow for multi-seat planning and council artifact persistence.',
+        domains: ['planning', 'deliberation', 'ai-council', 'artifact-persistence'],
+        intentSignals: ['ai council', 'council deliberation', 'persist council artifacts'],
+        derivedTriggers: ['ai council deliberation'],
+      }),
+      skill({ id: 'system-spec-kit', description: 'Spec folders and implementation plans.' }),
+    ]);
+
+    const result = scoreAdvisorPrompt('Run an AI council deliberation to compare implementation plans and persist council artifacts.', {
+      workspaceRoot: process.cwd(),
+      projection,
+    });
+
+    expect(result.topSkill).toBe('deep-ai-council');
+    expect(result.recommendations[0].confidence).toBeGreaterThanOrEqual(0.8);
+  });
+
   // drift: 026/000/007-vitest-recovery-followup verified against shipped behavior during Unit H
   it('projects derived triggers and keywords from distinct sources via filesystem fallback', () => {
     // F-012-C2-02: derivedTriggers come from `derived.trigger_phrases` and

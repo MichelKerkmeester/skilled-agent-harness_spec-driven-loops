@@ -1,7 +1,7 @@
 {
   "name": "deep-ai-council",
-  "description": "Deep AI Council deliberation workflow for multi-seat planning, council artifact persistence, convergence checks, and packet-local ai-council outputs.",
-  "version": "0.1.0",
+  "description": "Deep AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs.",
+  "version": "1.0.0",
   "keywords": [
     "deep-ai-council",
     "ai council",

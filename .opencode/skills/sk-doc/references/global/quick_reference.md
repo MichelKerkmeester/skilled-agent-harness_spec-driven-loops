@@ -295,7 +295,7 @@ python scripts/package_skill.py skill-path        # Package skill
 ### Companion: Feature Catalog Creation
 
 **Reference**
-`references/specific/feature_catalog_creation.md`
+`references/feature_catalog_creation.md`
 
 **Template**
 `assets/feature_catalog/feature_catalog_template.md`
@@ -313,7 +313,7 @@ python scripts/package_skill.py skill-path        # Package skill
 ### Manual Testing Playbook
 
 **Reference**
-`references/specific/manual_testing_playbook_creation.md`
+`references/manual_testing_playbook_creation.md`
 
 ### Template
 `assets/testing_playbook/manual_testing_playbook_template.md`
@@ -345,11 +345,11 @@ Validation note: the current validator checks the root playbook, but it does not
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [optimization.md](./optimization.md) - Content transformation patterns
 - [workflows.md](./workflows.md) - Execution modes and workflows
-- [skill_creation.md](../specific/skill_creation.md) - Skill creation workflow
-- [agent_creation.md](../specific/agent_creation.md) - Agent authority, permissions, and creation workflow
-- [install_guide_creation.md](../specific/install_guide_creation.md) - Install guide standards and workflow
-- [feature_catalog_creation.md](../specific/feature_catalog_creation.md) - Feature catalog standards and workflow
-- [manual_testing_playbook_creation.md](../specific/manual_testing_playbook_creation.md) - Playbook standards and workflow
+- [skill_creation.md](../skill_creation.md) - Skill creation workflow
+- [agent_creation.md](../agent_creation.md) - Agent authority, permissions, and creation workflow
+- [install_guide_creation.md](../install_guide_creation.md) - Install guide standards and workflow
+- [feature_catalog_creation.md](../feature_catalog_creation.md) - Feature catalog standards and workflow
+- [manual_testing_playbook_creation.md](../manual_testing_playbook_creation.md) - Playbook standards and workflow
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates

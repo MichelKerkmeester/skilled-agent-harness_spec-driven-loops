@@ -8,9 +8,9 @@ const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 
 const markdownMirrors = [
-  '.opencode/agents/multi-ai-council.md',
-  '.claude/agents/multi-ai-council.md',
-  '.gemini/agents/multi-ai-council.md',
+  '.opencode/agents/deep-ai-council.md',
+  '.claude/agents/deep-ai-council.md',
+  '.gemini/agents/deep-ai-council.md',
 ];
 
 function read(path: string): string {
@@ -26,7 +26,7 @@ function body(text: string): string {
   return text.replace(/^---\n[\s\S]*?\n---\n+/, '').trim();
 }
 
-describe('multi-ai-council runtime mirror parity', () => {
+describe('deep-ai-council runtime mirror parity', () => {
   it('keeps markdown mirror permission YAML byte-equivalent', () => {
     const canonical = frontmatter(read(markdownMirrors[0]));
     // OpenCode permission schema accepts `allow` | `ask` | `deny` strings or
@@ -49,7 +49,7 @@ describe('multi-ai-council runtime mirror parity', () => {
       expect(body(read(mirror)), mirror).toBe(canonicalBody);
     }
 
-    const codex = read('.codex/agents/multi-ai-council.toml');
+    const codex = read('.codex/agents/deep-ai-council.toml');
     expect(codex).toContain('sandbox_mode = "workspace-write"');
     expect(codex).toContain('ai-council/**');
     expect(codex).toContain('COUNCIL PERSISTENCE PROTOCOL');

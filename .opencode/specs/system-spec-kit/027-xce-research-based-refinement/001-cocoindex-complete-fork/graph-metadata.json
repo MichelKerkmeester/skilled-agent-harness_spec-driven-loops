@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "children_ids": [],
+  "migrated": false,
+  "migration_source": "codex-plan",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [
+      "mcp-coco-index partial soft fork 0.2.3+spec-kit-fork.0.2.0"
+    ],
+    "related_to": [
+      "system-spec-kit/027-xce-research-based-refinement/007-coco-intent-steering",
+      "system-spec-kit/027-xce-research-based-refinement/010-retrieval-rerank-clients",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 001",
+      "cocoindex complete fork",
+      "complete cocoindex mcp fork",
+      "mcp-coco-index full upstream fork",
+      "cocoindex-code v0.2.33 adoption",
+      "spec-kit fork upstream sync"
+    ],
+    "key_topics": [
+      "cocoindex",
+      "complete fork",
+      "mcp-coco-index",
+      "cocoindex-code",
+      "v0.2.33",
+      "upstream sync",
+      "spec-kit patches",
+      "rankingSignals",
+      "source_realpath",
+      "path_class"
+    ],
+    "importance_tier": "important",
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "research.md",
+      "resource-map.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
+      ".opencode/skills/mcp-coco-index/CHANGELOG.md",
+      ".opencode/skills/mcp-coco-index/NOTICE",
+      "external/cocoindex-code-main/pyproject.toml",
+      "external/cocoindex-code-main/src/cocoindex_code/cli.py",
+      "external/cocoindex-code-main/src/cocoindex_code/query.py",
+      "external/cocoindex-code-main/src/cocoindex_code/indexer.py",
+      "external/cocoindex-code-main/src/cocoindex_code/settings.py"
+    ],
+    "entities": [
+      {
+        "name": "cocoindex-code v0.2.33",
+        "kind": "external_source",
+        "path": "external/cocoindex-code-main",
+        "source": "manual"
+      },
+      {
+        "name": "mcp-coco-index fork root",
+        "kind": "skill",
+        "path": ".opencode/skills/mcp-coco-index",
+        "source": "manual"
+      },
+      {
+        "name": "query.py",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+        "source": "manual"
+      },
+      {
+        "name": "indexer.py",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+        "source": "manual"
+      },
+      {
+        "name": "schema.py",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py",
+        "source": "manual"
+      },
+      {
+        "name": "settings.py",
+        "kind": "code",
+        "path": "external/cocoindex-code-main/src/cocoindex_code/settings.py",
+        "source": "manual"
+      }
+    ],
+    "causal_summary": "Phase 001 is a new prerequisite planning packet for replacing the current partial mcp-coco-index soft fork with a complete local fork of the upstream cocoindex-code MCP wrapper at v0.2.33. Research found the local fork is still labeled 0.2.3+spec-kit-fork.0.2.0 and carries a narrow patch overlay, while upstream v0.2.33 has a broader package, tests, runtime path helpers, Docker assets, and CLI/doctor surface. This phase keeps the transitive cocoindex engine as a pinned external dependency unless scope expands, then ports current spec-kit search telemetry and ranking patches onto the full wrapper baseline.",
+    "created_at": "2026-05-10T00:00:00Z",
+    "last_save_at": "2026-05-10T10:05:44.449Z",
+    "save_lineage": "codex-phase-001-cocoindex-complete-fork-plan",
+    "last_accessed_at": "2026-05-10T10:05:44.449Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "research.md",
+      "decision-record.md",
+      "resource-map.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-05-10T10:05:44.449Z"
+  }
+}

@@ -161,12 +161,22 @@ When dispatching ANY non-orchestrator agent, append this to the Task prompt:
 
 **Exception:** If the agent file was already loaded in a prior dispatch within the same session AND no context compaction has occurred, you may reference it rather than re-reading it.
 
+### Prompt/Agent Consistency Guard (MANDATORY)
+
+Before every Task tool dispatch, compare the selected route, loaded agent definition, and prompt body:
+
+1. The `Agent:` line in the task prompt MUST match the route selected in §2 Agent Selection.
+2. The loaded `Agent Definition` MUST be the file for that same agent.
+3. `subagent_type: "general"` is only the runtime wrapper; it does not make a mismatched prompt safe.
+4. If a prompt says `Agent: @code`, the selected route MUST be @code, `.opencode/agents/code.md` MUST be loaded, and the work MUST pass @code's component-authoring gate.
+5. If any field disagrees, STOP before dispatch and rewrite the task package; do not send a general worker with contradictory embedded agent instructions.
+
 ### Agent Files
 
 | Agent     | File                          | Notes                                                                                  |
 | --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
 | @context  | `.opencode/agents/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
-| @create | `.opencode/agents/create.md` | `/create:*` command executor; sk-doc template-first; caller-restricted to create commands |
+| @create | `.opencode/agents/create.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @deep-research | `.opencode/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-ai-council | `.opencode/agents/deep-ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see deep-ai-council persistence protocol). |
 | @review   | `.opencode/agents/review.md`   | Codebase-agnostic quality scoring                                                      |
@@ -343,6 +353,16 @@ TASK #2: Implement Notification System
 4. If none exists (or user selected Option B), delegate to `@context` to discover patterns for the new spec.
 
 **ENFORCEMENT**: Spec-doc authoring without a spec folder path, level determination, template source, and `validate.sh --strict` evidence MUST be rejected.
+
+### Rule 2b: Skill/Agent/Command Component Creation Routing
+
+**Trigger:** Task creates or substantively writes `.opencode/skills/**`, `.opencode/agents/**`, or `.opencode/commands/**` component definitions, role files, command workflows, templates, metadata, or package docs.
+
+**Action:** Route actual `/create:*` component commands, scoped markdown authoring, and spec-doc creation through `@create` or another explicitly write-capable documentation lane. Do NOT dispatch `@code` for component scaffolding or prose/package authoring.
+
+**Exception:** Dispatch `@code` only for a narrow executable-code subtask after component scaffolding is complete, with exact files, success criteria, and verification commands.
+
+**Violation Response:** If a candidate dispatch says `Agent: @code` for component creation or prose/spec documentation, apply the Prompt/Agent Consistency Guard, STOP before dispatch, and rewrite the task for `@create`, `@general`, or main-agent documentation execution with explicit write scope.
 
 ### Rule 3: Context Preservation
 **Trigger:** Completion of major milestone or session end.

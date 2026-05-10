@@ -411,12 +411,12 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 | Core standards | `references/global/core_standards.md` | Filename conventions and structure rules |
 | Workflows | `references/global/workflows.md` | Execution workflows by mode |
 | Quick reference | `references/global/quick_reference.md` | One-page command and gate cheat sheet |
-| Skill creation guide | `references/specific/skill_creation.md` | 6-step skill creation workflow |
-| Agent creation guide | `references/specific/agent_creation.md` | Agent authority, permissions, creation workflow |
-| README creation guide | `references/specific/readme_creation.md` | README creation workflow |
-| Install guide creation | `references/specific/install_guide_creation.md` | Install guide standards and workflow |
-| Feature catalog creation | `references/specific/feature_catalog_creation.md` | Catalog package standards and workflow |
-| Playbook creation | `references/specific/manual_testing_playbook_creation.md` | Playbook standards and workflow |
+| Skill creation guide | `references/skill_creation.md` | 6-step skill creation workflow |
+| Agent creation guide | `references/agent_creation.md` | Agent authority, permissions, creation workflow |
+| README creation guide | `references/readme_creation.md` | README creation workflow |
+| Install guide creation | `references/install_guide_creation.md` | Install guide standards and workflow |
+| Feature catalog creation | `references/feature_catalog_creation.md` | Catalog package standards and workflow |
+| Playbook creation | `references/manual_testing_playbook_creation.md` | Playbook standards and workflow |
 | system-spec-kit | `.opencode/skills/system-spec-kit/SKILL.md` | Spec folder lifecycle and context preservation |
 | sk-git | `.opencode/skills/sk-git/SKILL.md` | Git workflow orchestration |
 | CommonMark spec | https://spec.commonmark.org/ | Markdown rendering standard |

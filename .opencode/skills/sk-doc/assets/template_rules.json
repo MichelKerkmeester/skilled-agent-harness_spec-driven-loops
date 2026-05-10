@@ -362,6 +362,47 @@
       "tocRequired": false,
       "h2EmojiRequired": false
     },
+    "changelog": {
+      "description": "Component changelog files at .opencode/changelog/{component}/v{VERSION}.md or .opencode/skills/<skill>/changelog/v{VERSION}.md. Files start directly with a summary paragraph; no TOC, no Overview section, no version header. Authoritative format reference: .opencode/skills/sk-doc/assets/changelog_template.md",
+      "requiredSections": [],
+      "recommendedSections": [
+        "upgrade"
+      ],
+      "optionalSections": [
+        "what_changed",
+        "files_changed",
+        "test_impact",
+        "schema_changes",
+        "new_features",
+        "architecture",
+        "documentation",
+        "testing",
+        "commands",
+        "bug_fixes",
+        "breaking_changes",
+        "security",
+        "search",
+        "saving_memories"
+      ],
+      "sectionEmojis": {},
+      "sectionAliases": {
+        "what changed": "what_changed",
+        "files changed": "files_changed",
+        "test impact": "test_impact",
+        "schema changes": "schema_changes",
+        "new features": "new_features",
+        "bug fixes": "bug_fixes",
+        "breaking changes": "breaking_changes",
+        "saving memories": "saving_memories"
+      },
+      "tocRequired": false,
+      "tocAnchorFormat": null,
+      "tocUppercaseRequired": false,
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": false,
+      "firstSectionName": null,
+      "lastSectionPattern": null
+    },
     "playbook": {
       "description": "Manual testing playbook files for skill validation, including a root directory page and required per-feature snippet tree",
       "requiredSections": [

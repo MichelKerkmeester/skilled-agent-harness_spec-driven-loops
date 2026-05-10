@@ -292,8 +292,8 @@ A: Run `/spec_kit:resume`. This is the canonical recovery surface for packet wor
 | [AGENTS.md](../../AGENTS.md) | Framework defining gates, protocols, agent routing |
 | [Create Commands](create/README.txt) | Detailed index for all `/create:*` commands |
 | [Improve Commands](improve/README.txt) | Agent and prompt improvement commands |
-| [sk-doc SKILL.md](../skill/sk-doc/SKILL.md) | Documentation standards and component creation |
-| [system-spec-kit SKILL.md](../skill/system-spec-kit/SKILL.md) | Spec folder workflow and memory system |
+| [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Documentation standards and component creation |
+| [system-spec-kit SKILL.md](../skills/system-spec-kit/SKILL.md) | Spec folder workflow and memory system |
 | [Memory Commands](memory/README.txt) | Memory save, analyze, learn, manage, and shared commands |
 | [Spec Kit Commands](spec_kit/README.txt) | SpecKit plan, implement, complete, and workflow commands |
 

@@ -144,7 +144,7 @@ operation_router:
       - feature_catalog/NN--category-name/NN-feature-name.md
 
 reference_sources:
-  specific_creation: .opencode/skills/sk-doc/references/specific/feature_catalog_creation.md
+  specific_creation: .opencode/skills/sk-doc/references/feature_catalog_creation.md
   core_standards: .opencode/skills/sk-doc/references/global/core_standards.md
   validation: .opencode/skills/sk-doc/references/global/validation.md
 

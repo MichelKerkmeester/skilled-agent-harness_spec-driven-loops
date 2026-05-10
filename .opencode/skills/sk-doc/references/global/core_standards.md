@@ -20,7 +20,7 @@ Core standards define the structural foundation for all OpenCode skill documenta
 - **Type-specific rules** - Tailored requirements for SKILL, Knowledge, Command, Spec, README files
 - **Quality gates** - Filename, frontmatter, and heading standards
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](../specific/skill_creation.md#progressive-disclosure).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](../skill_creation.md#progressive-disclosure).
 
 This reference provides deep-dive technical guidance on structure validation, document type detection, and quality enforcement.
 
@@ -305,8 +305,8 @@ Format: Plain text navigation file for LLMs
 - [optimization.md](./optimization.md) - Content transformation patterns
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](./quick_reference.md) - Quick command reference
-- [skill_creation.md](../specific/skill_creation.md) - Skill creation workflow
-- [install_guide_creation.md](../specific/install_guide_creation.md) - Install guide standards and workflow
+- [skill_creation.md](../skill_creation.md) - Skill creation workflow
+- [install_guide_creation.md](../install_guide_creation.md) - Install guide standards and workflow
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates

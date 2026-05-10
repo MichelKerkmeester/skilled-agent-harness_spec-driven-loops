@@ -312,7 +312,7 @@ The generated catalog must match the current shipped `sk-doc` contract:
 The workflow must load both the standards reference and the templates:
 
 **References**
-- `.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md`
+- `.opencode/skills/sk-doc/references/feature_catalog_creation.md`
 - `.opencode/skills/sk-doc/references/global/core_standards.md`
 - `.opencode/skills/sk-doc/references/global/validation.md`
 

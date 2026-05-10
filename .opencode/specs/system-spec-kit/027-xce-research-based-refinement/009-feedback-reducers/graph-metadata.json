@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/009-feedback-reducers",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/009-feedback-reducers",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/027-xce-research-based-refinement/006-code-graph-adoption-eval",
+      "system-spec-kit/027-xce-research-based-refinement/007-coco-intent-steering",
+      "system-spec-kit/027-xce-research-based-refinement/008-memory-semantic-triggers",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 009",
+      "feedback reducers",
+      "ccc_feedback active rerank loop",
+      "session-trace causal edge inference",
+      "feedback-ledger learned retention",
+      "auto-provenance cap broadening",
+      "manual-edge overwrite guard",
+      "constitutional retention basement"
+    ],
+    "key_topics": [
+      "feedback",
+      "reducers",
+      "ccc_feedback",
+      "session-trace",
+      "causal",
+      "edges",
+      "retention",
+      "learned",
+      "shadow",
+      "p0",
+      "auto-provenance",
+      "manual-guard",
+      "tier-basement"
+    ],
+    "importance_tier": "important",
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {"name": "causal-edges.ts", "kind": "code", "path": "mcp_server/lib/storage/causal-edges.ts", "source": "modified-p0-1-p0-2"},
+      {"name": "consolidation.ts", "kind": "code", "path": "mcp_server/lib/storage/consolidation.ts", "source": "modified-p0-1"},
+      {"name": "memory-retention-sweep.ts", "kind": "code", "path": "mcp_server/lib/governance/memory-retention-sweep.ts", "source": "modified-p0-3"},
+      {"name": "feedback-aggregation.ts", "kind": "code", "path": "mcp_server/lib/feedback/feedback-aggregation.ts", "source": "planned"},
+      {"name": "feedback_reducer.py", "kind": "code", "path": "mcp-coco-index/mcp_server/cocoindex_code/feedback_reducer.py", "source": "planned"},
+      {"name": "feedback_rerank_table.py", "kind": "code", "path": "mcp-coco-index/mcp_server/cocoindex_code/feedback_rerank_table.py", "source": "planned"},
+      {"name": "session-trace-causal-reducer.ts", "kind": "code", "path": "mcp_server/lib/feedback/session-trace-causal-reducer.ts", "source": "planned"},
+      {"name": "feedback-retention-reducer.ts", "kind": "code", "path": "mcp_server/lib/feedback/feedback-retention-reducer.ts", "source": "planned"},
+      {"name": "edge-tier-basement.ts", "kind": "code", "path": "mcp_server/lib/feedback/edge-tier-basement.ts", "source": "planned"},
+      {"name": "feedback-ledger.ts", "kind": "code", "path": "mcp_server/lib/feedback/feedback-ledger.ts", "source": "cited"},
+      {"name": "shadow-scoring.ts", "kind": "code", "path": "mcp_server/lib/feedback/shadow-scoring.ts", "source": "cited"},
+      {"name": "batch-learning.ts", "kind": "code", "path": "mcp_server/lib/feedback/batch-learning.ts", "source": "cited"},
+      {"name": "ccc-feedback.ts", "kind": "code", "path": "mcp_server/code_graph/handlers/ccc-feedback.ts", "source": "cited"}
+    ],
+    "causal_summary": "Phase 009 implements pt-03 RQ-A3 + RQ-B3 + RQ-B4 as a single L3 packet. Sub-Phase 1 applies 3 P0 precondition fixes (causal-edges auto-provenance cap broadening, manual-edge overwrite guard, retention-sweep tier basement gap). Sub-Phase 2 ships shared feedback-aggregation reducer. Sub-Phases 3-5 ship three independent decision consumers: coco rerank weights (Python, ±0.10 clamped delta), session-trace causal-edge inference (TS, ENABLED edges at strength 0.3, deferred), learned retention/decay (TS, RetentionDecision = delete|extend|protect, tier-aware basement). Cross-language Python+TS. All consumers default-off; live mutation requires Phase-006 eval. Largest LOC budget of the 5 phases. P0 fixes mandatory before Sub-Phases 4 (Consumer B) and 5 (Consumer C); Sub-Phase 3 (Consumer A) independent of P0 fixes.",
+    "created_at": "2026-05-09T11:00:00Z",
+    "last_save_at": "2026-05-09T11:00:00Z",
+    "save_lineage": "scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "../research/027-xce-research-pt-03/research.md",
+      "../research/027-xce-research-pt-03/iterations/iteration-003.md",
+      "../research/027-xce-research-pt-03/iterations/iteration-008.md",
+      "../research/027-xce-research-pt-03/iterations/iteration-009.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -34,7 +34,6 @@ dependencies = [
     "pathspec>=0.12.1",
     "pydantic>=2.0.0",
     "pyyaml>=6.0",
-    "sentence-transformers>=2.2.0",
     "sqlite-vec>=0.1.0",
     "typer>=0.9.0",
 ]
@@ -48,6 +47,12 @@ Issues = "https://github.com/cocoindex-io/cocoindex-code/issues"
 ccc = "cocoindex_code.cli:app"
 
 [project.optional-dependencies]
+# Local on-device embedding stack (sentence-transformers + transitive torch/transformers).
+# Default install (`pip install -e .`) routes through LiteLLM (Voyage AI etc.) only.
+# Users who want offline / no-API-key embeddings: `pip install -e ".[local]"`.
+local = [
+    "sentence-transformers>=2.2.0",
+]
 dev = [
     "mypy>=1.0.0",
     "prek>=0.1.0",

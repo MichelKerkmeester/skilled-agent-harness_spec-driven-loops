@@ -25,7 +25,12 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 - Creating new README for any folder or project
 - User requests "create a README", "add documentation", "write a README"
 - Folder needs comprehensive documentation
-- Workflow: [readme_creation.md](./references/specific/readme_creation.md) | Template: [readme_template.md](./assets/readme/readme_template.md)
+- Workflow: [readme_creation.md](./references/readme_creation.md) | Template: [readme_template.md](./assets/readme/readme_template.md)
+
+**Skill README Creation** - Use `skill_readme_template.md` when:
+- Creating or refreshing `.opencode/skills/[skill-name]/README.md`
+- A skill README needs human-facing purpose, quick start, structure, examples, troubleshooting, FAQ or related-resource navigation
+- Template: [skill_readme_template.md](./assets/skill/skill_readme_template.md)
 
 **Frontmatter Validation** - Use `frontmatter_templates.md` when:
 - Validating YAML frontmatter in any document
@@ -54,15 +59,16 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 Create and manage OpenCode components (skills, agents, commands). Each component type has templates and validation with quality standards.
 
 **Component Types:**
-- **Skills** (.opencode/skills/) - Knowledge bundles with workflows → [skill_creation.md](./references/specific/skill_creation.md)
-- **Agents** (.opencode/agents/) - AI personas with tool permissions → [agent_creation.md](./references/specific/agent_creation.md)
+- **Skills** (.opencode/skills/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
+- **Agents** (.opencode/agents/) - AI personas with tool permissions → [agent_creation.md](./references/agent_creation.md)
 - **Commands** (.opencode/commands/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
 
-For larger skills, split deep content into focused reference files and keep concise navigation in `SKILL.md` or `README.md`. When a skill has both cross-cutting standards and document-family guides, prefer `references/global/` for shared rules and `references/specific/` for creation-specific workflows.
+For larger skills, split deep content into focused reference files and keep concise navigation in `SKILL.md` or `README.md`. When a skill has both cross-cutting standards and document-family guides, prefer `references/global/` for shared rules and the `references/` root for creation-specific workflows.
 
-Start with: [skill_creation.md](./references/specific/skill_creation.md) (Section 9)
+Start with: [skill_creation.md](./references/skill_creation.md) (Section 9)
 Primary templates:
 - [skill_md_template.md](./assets/skill/skill_md_template.md)
+- [skill_readme_template.md](./assets/skill/skill_readme_template.md)
 - [skill_reference_template.md](./assets/skill/skill_reference_template.md)
 - [skill_asset_template.md](./assets/skill/skill_asset_template.md)
 
@@ -106,7 +112,7 @@ Create and validate installation documentation for MCP servers, plugins and tool
 
 **5-Phase Process**: Overview → Prerequisites → Installation → Configuration → Verification
 
-**See**: [install_guide_creation.md](./references/specific/install_guide_creation.md)
+**See**: [install_guide_creation.md](./references/install_guide_creation.md)
 
 ### Use Case: Manual Testing Playbook Creation
 
@@ -120,7 +126,7 @@ Create manual testing playbooks with deterministic scenarios, structured evidenc
 **Canonical Package**: Root `manual_testing_playbook.md` plus numbered category folders with one per-feature file per feature ID.
 
 **See**:
-- [manual_testing_playbook_creation.md](./references/specific/manual_testing_playbook_creation.md)
+- [manual_testing_playbook_creation.md](./references/manual_testing_playbook_creation.md)
 - [manual_testing_playbook_template.md](./assets/testing_playbook/manual_testing_playbook_template.md)
 
 ### Use Case: Feature Catalog Creation
@@ -135,7 +141,7 @@ Create feature catalogs with a rooted feature inventory, numbered category secti
 **Canonical Package**: Root `FEATURE_CATALOG.md` plus numbered category folders with one per-feature file per catalog entry.
 
 **See**:
-- [feature_catalog_creation.md](./references/specific/feature_catalog_creation.md)
+- [feature_catalog_creation.md](./references/feature_catalog_creation.md)
 - [feature_catalog_template.md](./assets/feature_catalog/feature_catalog_template.md)
 
 ### When NOT to Use (All Modes)
@@ -157,9 +163,9 @@ Create feature catalogs with a rooted feature inventory, numbered category secti
 The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
 
 - `references/global/` for documentation standards, validation rules, optimization guidance, voice rules, and shared execution workflows.
-- `references/specific/` for document-family and component creation guides such as skill creation, agent creation, install guides, feature catalogs, and manual testing playbooks.
+- `references/` root for document-family and component creation guides such as skill creation, agent creation, install guides, feature catalogs, and manual testing playbooks.
 - `assets/readme/` for README and install-guide scaffolds; `assets/changelog_template.md`, `assets/frontmatter_templates.md`, and `assets/llmstxt_templates.md` at the assets/ root for cross-cutting templates.
-- `assets/skill/` for skill creation templates; `assets/agent_template.md` and `assets/command_template.md` at the assets/ root for agent and command creation templates.
+- `assets/skill/` for skill creation templates, including `SKILL.md`, skill README, reference and asset scaffolds; `assets/agent_template.md` and `assets/command_template.md` at the assets/ root for agent and command creation templates.
 - `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root for feature catalog and manual testing playbook package templates.
 - `assets/flowcharts/` for reusable ASCII flowchart patterns and diagram examples.
 
@@ -206,14 +212,14 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "DOC_QUALITY": ["references/global/validation.md", "references/global/workflows.md", "references/global/core_standards.md", "references/global/evergreen_packet_id_rule.md"],
     "OPTIMIZATION": ["references/global/optimization.md", "assets/llmstxt_templates.md"],
-    "SKILL_CREATION": ["references/specific/skill_creation.md", "assets/skill/skill_md_template.md", "assets/skill/skill_reference_template.md"],
-    "AGENT_COMMAND": ["references/specific/agent_creation.md", "assets/agent_template.md", "assets/command_template.md"],
+    "SKILL_CREATION": ["references/skill_creation.md", "assets/skill/skill_md_template.md", "assets/skill/skill_readme_template.md", "assets/skill/skill_reference_template.md"],
+    "AGENT_COMMAND": ["references/agent_creation.md", "assets/agent_template.md", "assets/command_template.md"],
     "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
-    "INSTALL_GUIDE": ["assets/readme/install_guide_template.md", "references/specific/install_guide_creation.md"],
+    "INSTALL_GUIDE": ["assets/readme/install_guide_template.md", "references/install_guide_creation.md"],
     "HVR": ["references/global/hvr_rules.md"],
-    "PLAYBOOK": ["references/specific/manual_testing_playbook_creation.md", "assets/testing_playbook/manual_testing_playbook_template.md"],
-    "FEATURE_CATALOG": ["references/specific/feature_catalog_creation.md", "assets/feature_catalog/feature_catalog_template.md"],
-    "README_CREATION": ["references/specific/readme_creation.md", "assets/readme/readme_template.md"],
+    "PLAYBOOK": ["references/manual_testing_playbook_creation.md", "assets/testing_playbook/manual_testing_playbook_template.md"],
+    "FEATURE_CATALOG": ["references/feature_catalog_creation.md", "assets/feature_catalog/feature_catalog_template.md"],
+    "README_CREATION": ["references/readme_creation.md", "assets/readme/readme_template.md"],
     "CHANGELOG": ["assets/changelog_template.md"],
 }
 
@@ -333,7 +339,7 @@ Run `scripts/extract_structure.py` for structure, metrics, DQI, and checklist da
 
 #### Skill Creation
 
-Use progressive disclosure: metadata stays in frontmatter, SKILL.md stays concise, and deep details move to references or assets. Define scope with [skill_creation.md](./references/specific/skill_creation.md) and use the skill templates under `assets/skill/`.
+Use progressive disclosure: metadata stays in frontmatter, SKILL.md stays concise, README.md gives human orientation when needed, and deep details move to references or assets. Define scope with [skill_creation.md](./references/skill_creation.md) and use the skill templates under `assets/skill/`.
 
 #### Smart Router (Resilience Pattern)
 
@@ -355,11 +361,11 @@ Select a pattern from `assets/flowcharts/`, build with consistent ASCII componen
 
 ### Mode 5: Playbook Creation
 
-Use [manual_testing_playbook_creation.md](./references/specific/manual_testing_playbook_creation.md) and the testing playbook template. The root playbook owns package guidance; per-feature files live under numbered category folders.
+Use [manual_testing_playbook_creation.md](./references/manual_testing_playbook_creation.md) and the testing playbook template. The root playbook owns package guidance; per-feature files live under numbered category folders.
 
 ### Companion Pattern: Feature Catalog Creation
 
-Use [feature_catalog_creation.md](./references/specific/feature_catalog_creation.md) when inventorying current behavior. Keep summary inventory in the root catalog and source anchors in per-feature files.
+Use [feature_catalog_creation.md](./references/feature_catalog_creation.md) when inventorying current behavior. Keep summary inventory in the root catalog and source anchors in per-feature files.
 
 ---
 
@@ -434,7 +440,7 @@ Need fast navigation? See [quick_reference.md](./references/global/quick_referen
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/global/quick_reference.md`, routed references under references/global/ and references/specific/, templates under assets/ root (`agent_template.md`, `command_template.md`, `feature_catalog/`, `testing_playbook/`) plus assets/readme/, assets/skill/, and assets/flowcharts/, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/global/quick_reference.md`, routed references under references/global/ and the references root, templates under assets/ root (`agent_template.md`, `command_template.md`, `feature_catalog/`, `testing_playbook/`) plus assets/readme/, assets/skill/ (`skill_md_template.md`, `skill_readme_template.md`, reference and asset scaffolds), and assets/flowcharts/, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/init_skill.py`, `scripts/package_skill.py`, `scripts/quick_validate.py`, `scripts/validate_flowchart.sh`.
 

@@ -11,23 +11,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill"
-    last_updated_at: "2026-05-10T06:45:00Z"
+    last_updated_at: "2026-05-10T07:51:51Z"
     last_updated_by: "openai-gpt-5.5-opencode"
-    recent_action: "Scaffolded phase parent"
+    recent_action: "Completed Phase 003 routing guardrails"
     next_safe_action: "Resume 001-deep-ai-council-skill-creation for implementation planning"
     blockers: []
     key_files:
       - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation/
       - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-graph-support/
+      - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-routing-guardrail-fix/
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "101-phase-parent-scaffold"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 33
     open_questions:
       - "Do any external callers still depend on the literal multi-ai-council name?"
     answered_questions:
       - "Initial skill extraction and future graph support are separate phase children."
+      - "Phase 003 guardrails are sufficient to resume Phase 001 with corrected routing."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -52,7 +54,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-05-10 |
 | **Branch** | `main` |
 | **Parent Spec** | N/A - phase parent root |
@@ -71,7 +73,7 @@ _memory:
 The council workflow currently belongs to `system-spec-kit`, but it is a specialized multi-agent planning workflow with its own agent persona, artifacts, persistence scripts, and future graph needs. Keeping that ownership inside `system-spec-kit` makes the core spec workflow responsible for council behavior that should evolve independently.
 
 ### Purpose
-Split the work into two independently executable phases: first create and route a dedicated `deep-ai-council` skill and renamed runtime agent, then plan graph support as a later phase after the skill boundary is stable.
+Split the work into three independently executable phases: first land routing guardrails needed for safe implementation, then create and route a dedicated `deep-ai-council` skill and renamed runtime agent, then plan graph support after the skill boundary is stable.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
@@ -82,7 +84,7 @@ Split the work into two independently executable phases: first create and route 
 ## 3. SCOPE
 
 ### In Scope
-- Track the `deep-ai-council` extraction as a two-phase packet.
+- Track the `deep-ai-council` extraction as a three-phase packet.
 - Keep the phase parent lean with only phase navigation and aggregate purpose.
 - Preserve separate child ownership for initial skill extraction and later graph support.
 
@@ -101,6 +103,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 | `.opencode/skills/system-spec-kit/references/multi-ai-council/` | Move/Delete | 001 | Remove council workflow ownership from system-spec-kit |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/` | Modify/Test | 001 | Route council prompts to `deep-ai-council` |
 | Council graph storage and MCP/query surfaces | Plan/Create | 002 | Future council-specific graph support |
+| `.opencode/agents/code.md` and `/spec_kit:implement` assets | Modify | 003 | Prevent skill/agent creation work from being misrouted through `@code` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -114,10 +117,11 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 |-------|--------|-------|--------|
 | 1 | `001-deep-ai-council-skill-creation/` | Create the dedicated skill, rename runtime agents, move council assets/scripts, and update advisor routing | Draft |
 | 2 | `002-deep-ai-council-graph-support/` | Plan and later implement council-specific graph support after the skill boundary ships | Draft |
-
+| 3 | `003-routing-guardrail-fix/` | Add routing guardrails before resuming Phase 001 implementation | Complete |
 ### Phase Transition Rules
 
 - Phase 001 MUST validate the skill package, runtime mirrors, advisor routing, and moved persistence tests before Phase 002 implementation begins.
+- Phase 003 is complete and MUST remain enforced when Phase 001 resumes because it fixes the implementation routing path that misclassified skill/agent creation as `@code` work.
 - Phase 002 MUST treat graph support as a separate design and storage problem, not as hidden scope inside the initial skill extraction.
 - Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation` to resume initial skill extraction.
 - Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-graph-support` to resume graph-support planning.
@@ -126,6 +130,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 
 | From | To | Criteria | Verification |
 |------|----|----------|--------------|
+| `003-routing-guardrail-fix` | `001-deep-ai-council-skill-creation` | `@code` refuses component-authoring work, `/spec_kit:implement` routes `.opencode/skills` and `.opencode/agents` creation to create/direct sk-doc lanes, and pre-dispatch prompts reject mismatched `subagent_type=general` + `Agent: @code` | Spec validation, grep checks, OpenCode alignment verification |
 | `001-deep-ai-council-skill-creation` | `002-deep-ai-council-graph-support` | Dedicated skill and renamed runtime agents validate; advisor routes council prompts to `deep-ai-council`; no required old-name consumer remains unresolved | Spec validation, advisor regression tests, skill graph validation, script tests |
 <!-- /ANCHOR:phase-map -->
 
@@ -144,4 +149,5 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 
 - **Phase 001**: `001-deep-ai-council-skill-creation/spec.md`
 - **Phase 002**: `002-deep-ai-council-graph-support/spec.md`
+- **Phase 003**: `003-routing-guardrail-fix/spec.md`
 - **Graph Metadata**: `graph-metadata.json`

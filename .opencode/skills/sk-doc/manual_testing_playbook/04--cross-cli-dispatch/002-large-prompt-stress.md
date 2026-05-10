@@ -4,8 +4,9 @@ category: 04--cross-cli-dispatch
 title: 'Large-prompt stress: cli-codex stdin-redirection mitigation'
 expected_intent: SKILL_CREATION
 expected_resources:
-  - references/specific/skill_creation.md
+  - references/skill_creation.md
   - assets/skill/skill_md_template.md
+  - assets/skill/skill_readme_template.md
   - assets/skill/skill_reference_template.md
 expected_token_range_input: 8000-12000
 expected_token_range_output: 2000-3000
@@ -57,7 +58,7 @@ sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against
 ## Expected Behavior
 
 - **Intent picked**: `SKILL_CREATION` (resolves correctly even at scale)
-- **Resources loaded**: skill-creation reference + both skill asset templates
+- **Resources loaded**: skill-creation reference + SKILL.md, skill README and reference templates
 - **Outcome**: CLI emits the full skill scaffold without truncation or stall. cli-codex MUST complete via `echo "$prompt" | codex exec -` (foreground + stdin), NOT inline arg.
 
 ## Cross-CLI Variants

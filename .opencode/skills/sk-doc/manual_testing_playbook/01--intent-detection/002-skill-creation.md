@@ -4,8 +4,9 @@ category: 01--intent-detection
 title: 'SKILL_CREATION intent: author a new sk-skill'
 expected_intent: SKILL_CREATION
 expected_resources:
-  - references/specific/skill_creation.md
+  - references/skill_creation.md
   - assets/skill/skill_md_template.md
+  - assets/skill/skill_readme_template.md
   - assets/skill/skill_reference_template.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 1500-3000
@@ -56,10 +57,11 @@ Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffold
 
 - **Intent picked**: `SKILL_CREATION`
 - **Resources loaded**:
-  - `references/specific/skill_creation.md`
+  - `references/skill_creation.md`
   - `assets/skill/skill_md_template.md`
+  - `assets/skill/skill_readme_template.md`
   - `assets/skill/skill_reference_template.md`
-- **Outcome**: CLI loads the skill-creation reference plus both skill-asset templates and produces a populated `SKILL.md` skeleton plus a reference-doc skeleton, both citing the loaded templates.
+- **Outcome**: CLI loads the skill-creation reference plus the SKILL.md, skill README and reference templates, then produces a populated `SKILL.md` skeleton, optional README skeleton and reference-doc skeleton citing the loaded templates.
 
 ## Cross-CLI Variants
 

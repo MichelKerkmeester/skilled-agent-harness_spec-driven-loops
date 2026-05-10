@@ -11,6 +11,11 @@
         "target": "deep-review",
         "weight": 0.5,
         "context": "autonomous loop peer with shared externalized-state workflow"
+      },
+      {
+        "target": "deep-ai-council",
+        "weight": 0.4,
+        "context": "planning council can request evidence-first research vantage"
       }
     ],
     "conflicts_with": [],

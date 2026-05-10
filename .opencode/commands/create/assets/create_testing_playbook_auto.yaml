@@ -144,7 +144,7 @@ operation_router:
       - manual_testing_playbook/NN--category-name/NNN-feature-name.md
 
 reference_sources:
-  specific_creation: .opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md
+  specific_creation: .opencode/skills/sk-doc/references/manual_testing_playbook_creation.md
   core_standards: .opencode/skills/sk-doc/references/global/core_standards.md
   validation: .opencode/skills/sk-doc/references/global/validation.md
 

@@ -10,7 +10,7 @@ Validates markdown documentation against template rules to ensure
 consistent formatting with proper TOC, H2 emojis, and section structure.
 
 Usage:
-    python validate_document.py <document.md> [--type readme|skill|reference|asset|agent|command|install_guide|spec]
+    python validate_document.py <document.md> [--type readme|skill|reference|asset|agent|command|install_guide|spec|changelog]
     python validate_document.py <document.md> --json
     python validate_document.py <document.md> --fix [--dry-run]
     python validate_document.py <document.md> --blocking-only
@@ -111,6 +111,11 @@ def load_template_rules(script_dir: Path) -> Dict[str, Any]:
         return json.load(f)
 
 
+def load_rules() -> Dict[str, Any]:
+    """Load template rules for callers importing the validator module."""
+    return load_template_rules(Path(__file__).parent)
+
+
 def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) -> str:
     """Detect document type from file path or content."""
     path_lower = str(file_path).lower()
@@ -129,6 +134,10 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
         return 'install_guide'
     if 'install_guide' in Path(path_lower).stem:
         return 'install_guide'
+    # Changelog files: under .opencode/changelog/, .opencode/skills/*/changelog/,
+    # or spec-folder nested changelog/ subdirectories. Files match v{VERSION}.md or changelog-*.md
+    if '/changelog/' in path_lower or '\\changelog\\' in path_lower:
+        return 'changelog'
     if path_lower.endswith('readme.md'):
         return 'readme'
     if path_lower.endswith('skill.md'):
@@ -620,7 +629,7 @@ def main() -> None:
         epilog=__doc__
     )
     parser.add_argument('file', help='Markdown file to validate')
-    parser.add_argument('--type', choices=['readme', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'spec'],
+    parser.add_argument('--type', choices=['readme', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'spec', 'changelog'],
                         help='Document type (auto-detected if not specified)')
     parser.add_argument('--json', action='store_true', help='Output results as JSON')
     parser.add_argument('--blocking-only', action='store_true', help='Show only blocking errors')

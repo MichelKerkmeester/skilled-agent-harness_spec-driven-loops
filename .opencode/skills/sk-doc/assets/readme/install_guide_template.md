@@ -990,7 +990,7 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 - [frontmatter_templates.md](./frontmatter_templates.md) - YAML frontmatter examples
 
 ### Standards
-- [install_guide_creation.md](../../references/specific/install_guide_creation.md) - Phase validation rules and creation workflow
+- [install_guide_creation.md](../../references/install_guide_creation.md) - Phase validation rules and creation workflow
 - [core_standards.md](../../references/global/core_standards.md) - Document formatting standards
 
 ### Examples
@@ -999,4 +999,3 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 
 ### Skill Reference
 - [sk-doc SKILL.md](../../SKILL.md) - Mode 4: Install Guide Creation
-

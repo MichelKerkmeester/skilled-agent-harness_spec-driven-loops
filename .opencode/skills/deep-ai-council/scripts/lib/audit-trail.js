@@ -1,20 +1,51 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ lib/audit-trail                                                          ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ JSONL state event normalization and artifact_written audit emission      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
+
+// ────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────────────────
 
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
+
+// ────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ────────────────────────────────────────────────────────────────────────────
 
 const SCHEMA_VERSION = '1.2';
 const PROTOCOL = 'multi-ai-council';
 const PRODUCER_VERSION = 'persist-artifacts@1.2.0';
 const DEFAULT_MAX_BYTES = 10 * 1024 * 1024;
 
+// ────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Compute a stable SHA-256 checksum for audit payload content.
+ *
+ * @param {Buffer|string} content - Content to checksum
+ * @returns {string} Prefixed SHA-256 checksum
+ */
 function computeChecksum(content) {
   const hash = crypto.createHash('sha256');
   hash.update(Buffer.isBuffer(content) ? content : String(content || ''), Buffer.isBuffer(content) ? undefined : 'utf8');
   return `sha256:${hash.digest('hex')}`;
 }
 
+/**
+ * Normalize caller-provided round identifiers into round-NNN form.
+ *
+ * @param {string|number} roundId - Round id or integer round number
+ * @returns {string} Normalized round id
+ * @throws {Error} When the round id is outside the supported range
+ */
 function normalizeRoundId(roundId) {
   if (typeof roundId === 'string' && /^round-\d{3}$/.test(roundId)) return roundId;
   const parsed = Number(roundId || 1);
@@ -24,6 +55,12 @@ function normalizeRoundId(roundId) {
   return `round-${String(parsed).padStart(3, '0')}`;
 }
 
+/**
+ * Add council audit metadata to a state event payload.
+ *
+ * @param {Object} event - Event payload to normalize
+ * @returns {Object} Event payload with schema metadata
+ */
 function normalizeEvent(event) {
   return {
     schema_version: SCHEMA_VERSION,
@@ -43,6 +80,19 @@ function rotateIfNeeded(stateJsonlPath, incomingBytes, maxBytes) {
   return true;
 }
 
+// ────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Append a normalized JSONL event to the council state log.
+ *
+ * @param {string} stateJsonlPath - Path to the state JSONL file
+ * @param {Object} event - Event payload to append
+ * @param {Object} [options={}] - Write options
+ * @param {number} [options.maxBytes] - Maximum state file size before rotation
+ * @returns {string} Absolute state JSONL path
+ */
 function appendJsonlEvent(stateJsonlPath, event, options = {}) {
   const target = path.resolve(stateJsonlPath);
   const line = `${JSON.stringify(normalizeEvent(event))}\n`;
@@ -52,6 +102,16 @@ function appendJsonlEvent(stateJsonlPath, event, options = {}) {
   return target;
 }
 
+/**
+ * Append an artifact_written audit event to the council state log.
+ *
+ * @param {string} stateJsonlPath - Path to the state JSONL file
+ * @param {Object} event - Artifact write details
+ * @param {string} event.path - Artifact path relative to the council root
+ * @param {number} event.bytes - Number of bytes written
+ * @param {string} event.checksum - Artifact checksum
+ * @returns {string} Absolute state JSONL path
+ */
 function appendArtifactWrittenEvent(stateJsonlPath, event) {
   const payload = {
     event: 'artifact_written',
@@ -65,6 +125,10 @@ function appendArtifactWrittenEvent(stateJsonlPath, event) {
   if (event.event_id || event.eventId) payload.event_id = event.event_id || event.eventId;
   return appendJsonlEvent(stateJsonlPath, payload, event);
 }
+
+// ────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   SCHEMA_VERSION,

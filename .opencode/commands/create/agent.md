@@ -386,7 +386,7 @@ permission:
 
 ### Agent References
 - Core standards: `.opencode/skills/sk-doc/references/global/core_standards.md`
-- Agent creation guide: `.opencode/skills/sk-doc/references/specific/agent_creation.md`
+- Agent creation guide: `.opencode/skills/sk-doc/references/agent_creation.md`
 
 ---
 

@@ -1,8 +1,26 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ lib/rollback                                                             ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ Round rollback: move failed round artifacts and append supersede events  ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
+
+// ────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
 const path = require('node:path');
 const { appendJsonlEvent, normalizeRoundId } = require('./audit-trail.js');
+
+// ────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ────────────────────────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ────────────────────────────────────────────────────────────────────────────
 
 function safeTimestamp(timestamp) {
   return String(timestamp || new Date().toISOString()).replace(/[:.]/g, '-');
@@ -16,6 +34,19 @@ function moveIfExists(source, target) {
   return target;
 }
 
+// ────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Move the selected round artifacts into a failed-round archive folder.
+ *
+ * @param {string} packetSpecFolder - Packet spec folder containing ai-council
+ * @param {string|number} roundId - Round id or integer round number
+ * @param {Object} [options={}] - Rollback options
+ * @param {string} [options.timestamp] - Timestamp used in the failed folder
+ * @returns {Object} Failed archive root and moved artifact paths
+ */
 function moveRoundToFailed(packetSpecFolder, roundId, options = {}) {
   const round = normalizeRoundId(roundId);
   const councilRoot = path.resolve(packetSpecFolder, 'ai-council');
@@ -46,6 +77,19 @@ function readEvents(stateJsonlPath) {
     .map((line) => JSON.parse(line));
 }
 
+/**
+ * Append rollback and artifact_superseded markers for a round.
+ *
+ * @param {string} stateJsonlPath - Path to the state JSONL file
+ * @param {Object} [options={}] - Supersede options
+ * @param {string|number} [options.round_id] - Round id to mark superseded
+ * @param {string|number} [options.roundId] - Camel-case round id alias
+ * @param {string} [options.timestamp] - Event timestamp
+ * @param {string} [options.rollback_event_id] - Rollback event id
+ * @param {string} [options.rollbackEventId] - Camel-case rollback id alias
+ * @param {string} [options.reason] - Rollback reason
+ * @returns {Object} Superseded artifact summary
+ */
 function markSuperseded(stateJsonlPath, options = {}) {
   const round = normalizeRoundId(options.round_id || options.roundId || 1);
   const timestamp = options.timestamp || new Date().toISOString();
@@ -85,6 +129,10 @@ function markSuperseded(stateJsonlPath, options = {}) {
 
   return { round_id: round, rollback_event_id: rollbackEventId, superseded: appended };
 }
+
+// ────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   moveRoundToFailed,
