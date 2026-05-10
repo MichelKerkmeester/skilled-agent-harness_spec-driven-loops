@@ -1,22 +1,7 @@
 ---
 name: debug
-description: User-invoked fresh-perspective debugger: 5-phase root-cause methodology, never auto-dispatched.
-mode: subagent
-temperature: 0.2
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  bash: allow
-  grep: allow
-  glob: allow
-  memory: allow
-  webfetch: deny
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
-  external_directory: allow
+description: "User-invoked fresh-perspective debugger: 5-phase root-cause methodology, never auto-dispatched."
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__spec_kit_memory__*, mcp__cocoindex_code__*
 ---
 
 # The Debugger: Fresh Perspective Specialist

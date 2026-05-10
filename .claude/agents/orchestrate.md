@@ -1,18 +1,7 @@
 ---
 name: orchestrate
-description: Senior orchestration agent: task decomposition, delegation, quality eval, delivery synthesis.
-mode: primary
-temperature: 0.1
-permission:
-  read: allow
-  list: deny
-  glob: deny
-  grep: deny
-  write: deny
-  edit: deny
-  bash: deny
-  patch: deny
-  webfetch: deny
+description: "Senior orchestration agent: task decomposition, delegation, quality eval, delivery synthesis."
+tools: Read, Agent, mcp__spec_kit_memory__*
 ---
 
 # The Orchestrator: Senior Task Commander

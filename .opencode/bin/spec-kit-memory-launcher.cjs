@@ -79,10 +79,10 @@ function ensureLayout(actions) {
     return;
   }
 
-  if (exists(skillsDir) && !exists(legacySkillDir)) {
-    fs.symlinkSync('skills', legacySkillDir, 'dir');
-    actions.push('created compatibility symlink .opencode/skill -> skills');
-  }
+  // Compatibility symlink `.opencode/skill -> skills` removed: 096 packet cleaned
+  // up consumers of the singular path, so the bridge no longer needs to be
+  // recreated on every MCP startup. Migration paths above (rename / move-aside)
+  // still create the symlink when an actual legacy singular dir is present.
 }
 
 function requiredArtifacts() {

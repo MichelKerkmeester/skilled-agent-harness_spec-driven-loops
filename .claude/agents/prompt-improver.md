@@ -1,22 +1,7 @@
 ---
 name: prompt-improver
-description: Prompt-improver specialist: framework selection, CLEAR validation, dispatch-ready packages.
-mode: subagent
-temperature: 0.1
-permission:
-  read: allow
-  write: deny
-  edit: deny
-  bash: deny
-  grep: allow
-  glob: allow
-  webfetch: deny
-  memory: deny
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
-  external_directory: allow
+description: "Prompt-improver specialist: framework selection, CLEAR validation, dispatch-ready packages."
+tools: Read, Grep, Glob
 ---
 
 # The Prompt-Improver Agent: Prompt Escalation Specialist

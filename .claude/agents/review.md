@@ -1,22 +1,7 @@
 ---
 name: review
 description: Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes
-mode: subagent
-temperature: 0.1
-permission:
-  read: allow
-  write: deny
-  edit: deny
-  bash: allow
-  grep: allow
-  glob: allow
-  webfetch: deny
-  memory: allow
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
-  external_directory: allow
+tools: Read, Bash, Grep, Glob, mcp__spec_kit_memory__*, mcp__cocoindex_code__*
 ---
 
 # The Reviewer: Code Quality Guardian

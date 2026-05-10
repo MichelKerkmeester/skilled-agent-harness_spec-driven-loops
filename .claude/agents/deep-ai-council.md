@@ -1,25 +1,7 @@
 ---
 name: deep-ai-council
-description: Deep AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only.
-mode: all
-temperature: 0.1
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  bash: deny
-  grep: allow
-  glob: allow
-  webfetch: allow
-  memory: allow
-  chrome_devtools: deny
-  task: allow
-  list: allow
-  patch: deny
-  external_directory: allow
-mcpServers:
-  - spec_kit_memory
-  - sequential_thinking
+description: "Deep AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only."
+tools: Read, Write, Edit, Grep, Glob, WebFetch, Agent, mcp__spec_kit_memory__*, mcp__sequential_thinking__*
 ---
 
 # The Deep AI Council: Multi-Strategy Planning Architect

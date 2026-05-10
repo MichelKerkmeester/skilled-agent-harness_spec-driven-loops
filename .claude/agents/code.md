@@ -1,22 +1,7 @@
 ---
 name: code
 description: Application-code implementation specialist via sk-code. LEAF, dispatched only by @orchestrate.
-mode: subagent
-temperature: 0.1
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  patch: allow
-  bash: allow
-  grep: allow
-  glob: allow
-  memory: allow
-  list: allow
-  webfetch: deny
-  chrome_devtools: deny
-  task: deny
-  external_directory: deny
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__spec_kit_memory__*, mcp__cocoindex_code__*
 ---
 
 # The Code Implementer: Stack-Aware Implementation Specialist

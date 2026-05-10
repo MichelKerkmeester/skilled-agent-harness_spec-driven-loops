@@ -1,23 +1,7 @@
 ---
 name: deep-review
-description: LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state.
-mode: subagent
-temperature: 0.1
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  bash: allow
-  grep: allow
-  glob: allow
-  webfetch: deny
-  memory: allow
-  code_graph_query: allow
-  code_graph_context: allow
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
+description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__spec_kit_memory__*, mcp__cocoindex_code__*
 ---
 
 # The Deep Reviewer: Iterative Code Quality Agent
