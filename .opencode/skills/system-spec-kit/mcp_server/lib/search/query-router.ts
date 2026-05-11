@@ -1,8 +1,9 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Query Router
 // ───────────────────────────────────────────────────────────────
-// Tier-to-channel-subset routing for query complexity
-// Maps classifier tiers to channel subsets for selective pipeline execution.
+// Tier-to-channel-subset routing with BM25 and graph preservation overrides.
+// Preserves authority-oriented retrieval signals without widening every query
+// to the full search pipeline.
 
 import type Database from 'better-sqlite3';
 import {
@@ -12,7 +13,7 @@ import {
   type ClassificationResult,
 } from './query-classifier.js';
 import { getStrategyForQuery, type ArtifactClass } from './artifact-routing.js';
-import { classifyIntent } from './intent-classifier.js';
+import * as intentClassifier from './intent-classifier.js';
 import {
   buildRoutingQueryPlan,
   inferAuthorityNeed,
@@ -85,6 +86,10 @@ const BM25_PRESERVING_ARTIFACTS = new Set([
 const ENTITY_DENSITY_ACTIVATION_THRESHOLD = 2;
 const QUALITY_GAP_AVG_SCORE_THRESHOLD = 0.20;
 const QUALITY_GAP_FALLBACK_DEADLINE_MS = 200;
+const MAX_ROUTING_REASON_LENGTH = 120;
+
+let _hasWarnedInvalidGraphPreservationFlag = false;
+let _hasWarnedSafeGetDb = false;
 
 /* ───────────────────────────────────────────────────────────────
    2. DEFAULT ROUTING CONFIG
@@ -141,8 +146,21 @@ function getChannelSubset(
   return enforceMinimumChannels([...channels]);
 }
 
-function shouldPreserveBm25(query: string): boolean {
-  const intent = classifyIntent(query).intent;
+/**
+ * Decides whether BM25 should be preserved independently of complexity tier.
+ *
+ * Intent triggers (`find_spec`, `find_decision`) preserve BM25 even for simple
+ * queries because exact lexical matches matter for spec and ADR retrieval.
+ * Artifact-class authority preserves BM25 for documentation packets with
+ * durable source-of-truth semantics. `precomputedIntent` lets callers reuse an
+ * already-classified intent and skip duplicate classifier work.
+ *
+ * @param query - Raw search query.
+ * @param precomputedIntent - Optional intent label already computed by caller.
+ * @returns True when BM25 should be added to the selected channel set.
+ */
+function shouldPreserveBm25(query: string, precomputedIntent?: string): boolean {
+  const intent = precomputedIntent ?? intentClassifier.classifyIntent(query).intent;
   if (intent === 'find_spec' || intent === 'find_decision') {
     return true;
   }
@@ -152,14 +170,31 @@ function shouldPreserveBm25(query: string): boolean {
 }
 
 /**
- * Default-ON feature flag for graph-channel preservation. Set
- * SPECKIT_GRAPH_CHANNEL_PRESERVATION=false (P2 / REQ-008) to no-op the
- * shouldPreserveGraph + entity-density override and revert to byte-for-byte
- * pre-change channel selection.
+ * Reads the default-ON graph preservation feature flag.
+ *
+ * Unset values enable preservation. `"1"`, `"true"`, `"yes"`, and `"on"`
+ * enable it; `"0"`, `"false"`, `"no"`, `"off"`, and `""` disable it. Unknown
+ * values default to enabled and warn once so operators can spot typos without
+ * losing the safe default.
+ *
+ * @returns True when graph-channel preservation should be active.
  */
 function isGraphChannelPreservationEnabled(): boolean {
-  const raw = process.env.SPECKIT_GRAPH_CHANNEL_PRESERVATION?.toLowerCase()?.trim();
-  return raw !== 'false';
+  const raw = process.env.SPECKIT_GRAPH_CHANNEL_PRESERVATION;
+  if (raw === undefined) return true;
+
+  const normalized = raw.trim().toLowerCase();
+  if (['0', 'false', 'no', 'off', ''].includes(normalized)) return false;
+  if (['1', 'true', 'yes', 'on'].includes(normalized)) return true;
+
+  if (!_hasWarnedInvalidGraphPreservationFlag) {
+    console.warn(
+      '[query-router] Unrecognized SPECKIT_GRAPH_CHANNEL_PRESERVATION value; defaulting to enabled:',
+      raw,
+    );
+    _hasWarnedInvalidGraphPreservationFlag = true;
+  }
+  return true;
 }
 
 interface GraphPreservationDecision {
@@ -170,25 +205,40 @@ interface GraphPreservationDecision {
 
 /**
  * REQ-001 / REQ-003: Decide whether the graph channel should be added to a
- * routing decision regardless of complexity tier. Mirrors shouldPreserveBm25
- * semantics (intent-driven) and adds an entity-density override.
+ * routing decision regardless of complexity tier.
  *
- * - Intent-driven: classifyIntent ∈ {find_decision, find_spec} → preserved.
+ * The feature flag self-gates this helper so direct callers see the same
+ * disabled behavior as routeQuery. Intent gates preserve graph for `find_spec`
+ * and `find_decision`; entity-density gates preserve graph when at least two
+ * query terms hit high-degree memory rows. `precomputedIntent` lets routeQuery
+ * pass the already-classified intent and avoid duplicate classifier work.
+ *
+ * - Intent-driven: `find_decision` or `find_spec` → preserved.
  * - Entity-density: ≥2 query terms exact-match titles/triggers of memory_index
  *   rows with ≥3 outgoing causal_edges → preserved + degree.
  *
  * Cold-start (empty causal_edges or missing DB): the entity-density signal
  * scores 0 and the override stays inactive (REQ-006).
+ *
+ * @param query - Raw search query.
+ * @param db - Optional database handle used for entity-density scoring.
+ * @param precomputedIntent - Optional intent label already computed by caller.
+ * @returns Graph preservation decision and reason labels.
  */
 function shouldPreserveGraph(
   query: string,
   db: Database.Database | null,
+  precomputedIntent?: string,
 ): GraphPreservationDecision {
+  if (!isGraphChannelPreservationEnabled()) {
+    return { preserved: false, reasons: [], includeDegree: false };
+  }
+
   const reasons: string[] = [];
   let preserved = false;
   let includeDegree = false;
 
-  const intent = classifyIntent(query).intent;
+  const intent = precomputedIntent ?? intentClassifier.classifyIntent(query).intent;
   if (intent === 'find_spec' || intent === 'find_decision') {
     preserved = true;
     reasons.push('graph-preserved-by-intent');
@@ -207,7 +257,12 @@ function shouldPreserveGraph(
 function safeGetDb(): Database.Database | null {
   try {
     return vectorIndex.getDb();
-  } catch {
+  } catch (err: unknown) {
+    if (!_hasWarnedSafeGetDb) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.warn('[query-router] safeGetDb failed once:', message);
+      _hasWarnedSafeGetDb = true;
+    }
     return null;
   }
 }
@@ -240,6 +295,20 @@ function buildQualityGapFallbackPlan(signal?: QualityGapSignal): QualityGapFallb
   };
 }
 
+function clampRoutingReason(reason: string): string {
+  if (reason.length <= MAX_ROUTING_REASON_LENGTH) return reason;
+  return `${reason.slice(0, MAX_ROUTING_REASON_LENGTH - 1)}…`;
+}
+
+function appendRoutingReason(reasons: string[], reason: string): void {
+  const clamped = clampRoutingReason(reason);
+  if (!reasons.includes(clamped)) reasons.push(clamped);
+}
+
+function clampRoutingReasons(reasons: readonly string[]): string[] {
+  return reasons.map(clampRoutingReason);
+}
+
 /* ───────────────────────────────────────────────────────────────
    4. CONVENIENCE: CLASSIFY + ROUTE
 ----------------------------------------------------------------*/
@@ -262,12 +331,12 @@ function routeQuery(
 ): RouteResult {
   const classification = classifyQueryComplexity(query, triggerPhrases);
   const qualityFallback = buildQualityGapFallbackPlan(qualitySignal);
+  const intent = intentClassifier.classifyIntent(query).intent;
 
   // When feature flag is disabled, classifier returns 'complex' with 'fallback' confidence.
   // In that case, always return all channels (full pipeline — safe default).
   if (!isComplexityRouterEnabled()) {
     const artifactClass = resolveArtifactClass(query);
-    const intent = classifyIntent(query).intent;
     const routingPlan = buildRoutingQueryPlan({
       query,
       complexity: classification.tier,
@@ -276,10 +345,10 @@ function routeQuery(
       allChannels: ALL_CHANNELS,
       intent,
       authorityNeed: inferAuthorityNeed({ intent, artifactClass, query }),
-      routingReasons: [
+      routingReasons: clampRoutingReasons([
         'complexity-router-disabled',
         ...(qualityFallback.engaged ? ['quality-gap-fallback-engaged'] : []),
-      ],
+      ]),
       fallbackPolicy: {
         mode: qualityFallback.engaged ? 'fts5_bm25_grep_broadening' : 'full_pipeline',
         reason: qualityFallback.reason ?? 'Complexity router disabled, preserving full pipeline behavior',
@@ -301,20 +370,23 @@ function routeQuery(
 
   const channels = getChannelSubset(classification.tier);
   const artifactClass = resolveArtifactClass(query);
-  const intent = classifyIntent(query).intent;
 
-  // Existing override: bm25 preservation for simple-tier authority-artifact
+  // Existing override: BM25 preservation for simple-tier authority-focused
   // queries. Behavior unchanged.
-  let adjustedChannels = classification.tier === 'simple' && shouldPreserveBm25(query)
+  const preserveBm25 = classification.tier === 'simple' && shouldPreserveBm25(query, intent);
+  let adjustedChannels = preserveBm25
     ? enforceMinimumChannels([...channels, 'bm25'])
     : channels;
   const routingReasons: string[] = [];
   if (
-    classification.tier === 'simple'
+    preserveBm25
     && adjustedChannels.includes('bm25')
     && !channels.includes('bm25')
   ) {
-    routingReasons.push('bm25-preserved-for-authority-artifact');
+    const reason = intent === 'find_spec' || intent === 'find_decision'
+      ? 'bm25-preserved-by-intent'
+      : 'bm25-preserved-by-artifact-class';
+    appendRoutingReason(routingReasons, reason);
   }
 
   // REQ-002 / REQ-003: graph-channel preservation override. Adds the graph
@@ -323,13 +395,13 @@ function routeQuery(
   // so the override is a no-op there. The feature flag (REQ-008, default-ON)
   // keeps a clean revert path.
   if (isGraphChannelPreservationEnabled() && classification.tier !== 'complex') {
-    const decision = shouldPreserveGraph(query, safeGetDb());
+    const decision = shouldPreserveGraph(query, safeGetDb(), intent);
     if (decision.preserved) {
       const additions: ChannelName[] = ['graph'];
       if (decision.includeDegree) additions.push('degree');
       adjustedChannels = enforceMinimumChannels([...adjustedChannels, ...additions]);
       for (const reason of decision.reasons) {
-        if (!routingReasons.includes(reason)) routingReasons.push(reason);
+        appendRoutingReason(routingReasons, reason);
       }
     }
   }
@@ -342,10 +414,10 @@ function routeQuery(
     allChannels: ALL_CHANNELS,
     intent,
     authorityNeed: inferAuthorityNeed({ intent, artifactClass, query }),
-    routingReasons: [
+    routingReasons: clampRoutingReasons([
       ...routingReasons,
       ...(qualityFallback.engaged ? ['quality-gap-fallback-engaged'] : []),
-    ],
+    ]),
     fallbackPolicy: qualityFallback.engaged ? {
       mode: 'fts5_bm25_grep_broadening',
       reason: qualityFallback.reason ?? 'QUALITY=gap fallback engaged',

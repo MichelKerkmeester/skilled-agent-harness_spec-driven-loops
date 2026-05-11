@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
+  "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
+  "parent_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council fixups",
+      "council graph value comparison",
+      "DAC-027",
+      "DAC-032",
+      "claude translated frontmatter parity"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "council-graph",
+      "value-comparison",
+      "vitest-fixes"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Fix 2 pre-existing vitest failures and author 6 value-comparison scenarios DAC-027..DAC-032 proving the council graph beats the no-graph baseline in real-world situations.",
+    "created_at": "2026-05-11T08:10:00Z",
+    "last_save_at": "2026-05-11T08:10:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ]
+  }
+}

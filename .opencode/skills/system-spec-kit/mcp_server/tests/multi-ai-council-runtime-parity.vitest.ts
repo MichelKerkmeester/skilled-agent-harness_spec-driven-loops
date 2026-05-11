@@ -38,9 +38,24 @@ describe('deep-ai-council runtime mirror parity', () => {
     expect(canonical).toContain('bash: deny');
     expect(canonical).toContain('patch: deny');
 
-    for (const mirror of markdownMirrors.slice(1)) {
-      expect(frontmatter(read(mirror)), mirror).toBe(canonical);
-    }
+    // Gemini uses the OpenCode frontmatter schema verbatim — full byte-equivalence required.
+    expect(frontmatter(read('.gemini/agents/deep-ai-council.md')), '.gemini').toBe(canonical);
+
+    // Claude uses a translated frontmatter schema (commit 85bd60b9f) — `tools:` list
+    // instead of the OpenCode `mode:`/`temperature:`/`permission:` block. Path-scope
+    // is enforced by the same OUT_OF_SCOPE_WRITE rejection in the helper library.
+    // Assert the shared identity fields (name + description prose) match and that
+    // the Claude-specific tools whitelist is present.
+    const claudeFM = frontmatter(read('.claude/agents/deep-ai-council.md'));
+    const nameMatch = canonical.match(/^name:\s*(.+)$/m);
+    const descMatch = canonical.match(/^description:\s*"?(.+?)"?$/m);
+    expect(nameMatch, 'canonical name field').not.toBeNull();
+    expect(descMatch, 'canonical description field').not.toBeNull();
+    expect(claudeFM, '.claude name').toContain(`name: ${nameMatch![1]}`);
+    expect(claudeFM, '.claude description prose').toContain(descMatch![1]);
+    expect(claudeFM, '.claude tools line').toMatch(/^tools:\s*.*Read/m);
+    expect(claudeFM, '.claude tools includes Write').toContain('Write');
+    expect(claudeFM, '.claude tools includes Edit').toContain('Edit');
   });
 
   it('keeps all four body mirrors aligned and removes planning-only persistence text', () => {

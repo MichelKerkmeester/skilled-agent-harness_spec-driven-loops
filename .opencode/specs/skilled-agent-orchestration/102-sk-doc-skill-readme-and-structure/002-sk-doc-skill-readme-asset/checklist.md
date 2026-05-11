@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "102-sk-doc-skill-readme-and-structure"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 
 - [x] CHK-001 [P0] Requirements documented in spec.md - REQ-001 through REQ-003 define README analysis, asset creation and wiring.
 - [x] CHK-002 [P0] Technical approach defined in plan.md - Plan uses template-first documentation maintenance and exact reference verification.
-- [x] CHK-003 [P1] Dependencies identified and available - Phase 1 relocation completed and target sk-doc files existed.
+- [x] CHK-003 [P1] Dependencies identified and available - Phase 1 relocation completed and target sk-doc files existed. Phase 1→2 handoff acceptance: `references/specific/` removed and exact-search for that string returned zero implementation-scope hits (verified 2026-05-10 during Phase 1 handoff to Phase 2).
 <!-- /ANCHOR:pre-impl -->
 
 ---

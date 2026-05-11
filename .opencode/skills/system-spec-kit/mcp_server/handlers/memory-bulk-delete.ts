@@ -5,6 +5,7 @@
 // Eliminates the need for direct DB scripts when cleaning up
 // Deprecated/temporary memories at scale.
 import { checkDatabaseUpdated } from '../core/index.js';
+import { invalidateEntityDensityCache } from '../lib/search/entity-density.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as checkpoints from '../lib/storage/checkpoints.js';
 import * as mutationLedger from '../lib/storage/mutation-ledger.js';
@@ -22,6 +23,21 @@ import type { MCPResponse } from './types.js';
 
 // Feature catalog: Tier-based bulk deletion (memory_bulk_delete)
 // Feature catalog: Per-memory history log
+
+let warnedEntityDensityInvalidationFailure = false;
+
+function invalidateEntityDensityCacheAfterBulkDelete(): void {
+  try {
+    invalidateEntityDensityCache();
+  } catch (err: unknown) {
+    if (warnedEntityDensityInvalidationFailure) {
+      return;
+    }
+    warnedEntityDensityInvalidationFailure = true;
+    const message = err instanceof Error ? err.message : String(err);
+    console.warn(`[memory-bulk-delete] Entity-density cache invalidation failed after bulk delete: ${message}`);
+  }
+}
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -130,6 +146,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   const affectedCount = countResult.count;
 
   if (affectedCount === 0) {
+    invalidateEntityDensityCacheAfterBulkDelete();
     return createMCPSuccessResponse({
       tool: 'memory_bulk_delete',
       summary: `No spec-doc records found with tier="${tier}"${specFolder ? ` in folder "${specFolder}"` : ''}${olderThanDays ? ` older than ${olderThanDays} days` : ''}`,
@@ -236,6 +253,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   });
 
   bulkDeleteTx();
+  invalidateEntityDensityCacheAfterBulkDelete();
 
   // Record in mutation ledger (single entry for bulk operation)
   const ledgerRecorded = appendMutationLedgerSafe(database, {

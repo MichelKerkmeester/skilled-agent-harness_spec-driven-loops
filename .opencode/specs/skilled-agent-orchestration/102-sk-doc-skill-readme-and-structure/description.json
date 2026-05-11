@@ -1,20 +1,15 @@
 {
   "level": "phase",
   "specFolder": "102-sk-doc-skill-readme-and-structure",
-  "description": "Add markdown agent dispatch coverage to sk-doc manual_testing_playbook across cli-claude-code, cli-codex, and cli-opencode",
+  "description": "Remediate all 7 P1 and 9 P2 findings from the 102 phase-parent deep-review",
   "keywords": [
-    "add",
-    "markdown",
-    "agent",
-    "dispatch",
-    "coverage",
-    "sk-doc",
-    "across",
-    "cli-claude-code",
-    "cli-codex",
-    "cli-opencode"
+    "remediate",
+    "findings",
+    "102",
+    "phase-parent",
+    "deep-review"
   ],
-  "lastUpdated": "2026-05-11T05:27:26.741Z",
+  "lastUpdated": "2026-05-11T08:28:00.001Z",
   "specId": "102",
   "folderSlug": "sk-doc-skill-readme-and-structure",
   "parentChain": [],

@@ -44,6 +44,7 @@ import {
   isSaveReconsolidationEnabled,
   resolveSavePlannerMode,
 } from '../lib/search/search-flags.js';
+import { invalidateEntityDensityCache } from '../lib/search/entity-density.js';
 
 import { getCanonicalPathKey, resolveCanonicalPath } from '../lib/utils/canonical-path.js';
 import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../lib/utils/index-scope.js';
@@ -174,6 +175,20 @@ const MANUAL_FALLBACK_SOURCE_CLASSIFICATION = 'manual-fallback' as const;
 export const MEMORY_INDEX_SCOPE_EXCLUDED_ERROR_CODE = 'E_MEMORY_INDEX_SCOPE_EXCLUDED';
 const ROUTED_CONTINUITY_ANCHOR_ID = '_memory.continuity';
 const tier3RoutingCache = new InMemoryRouterCache();
+let warnedEntityDensityInvalidationFailure = false;
+
+function invalidateEntityDensityCacheAfterSave(): void {
+  try {
+    invalidateEntityDensityCache();
+  } catch (err: unknown) {
+    if (warnedEntityDensityInvalidationFailure) {
+      return;
+    }
+    warnedEntityDensityInvalidationFailure = true;
+    const message = err instanceof Error ? err.message : String(err);
+    console.warn(`[memory-save] Entity-density cache invalidation failed after save: ${message}`);
+  }
+}
 
 interface PreparedParsedMemory {
   parsed: ReturnType<typeof memoryParser.parseMemoryFile>;
@@ -2559,12 +2574,13 @@ async function processPreparedMemory(
     }
 
     // POST-INSERT ENRICHMENT: causal links, entities, summaries, entity linking
-  const { causalLinksResult, enrichmentStatus, executionStatus } = await runPostInsertEnrichmentIfEnabled(
-    database,
-    id,
-    routedParsed,
-    { plannerMode },
-  );
+    const { causalLinksResult, enrichmentStatus, executionStatus } = await runPostInsertEnrichmentIfEnabled(
+      database,
+      id,
+      routedParsed,
+      { plannerMode },
+    );
+    invalidateEntityDensityCacheAfterSave();
 
     if (reconResult.assistiveRecommendation) {
       reconResult.assistiveRecommendation.advisory_stale = true;

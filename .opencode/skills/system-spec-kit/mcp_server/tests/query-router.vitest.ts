@@ -485,6 +485,14 @@ describe('012-T2: routeQuery graph-preservation', () => {
     expect(result.queryPlan.routingReasons).toContain('graph-preserved-by-intent');
   });
 
+  it('012-T2.1b: simple-tier find_spec query labels BM25 preservation by intent', () => {
+    const result = routeQuery('spec');
+    expect(result.tier).toBe('simple');
+    expect(result.channels).toContain('bm25');
+    expect(result.queryPlan.routingReasons).toContain('bm25-preserved-by-intent');
+    expect(result.queryPlan.routingReasons).not.toContain('bm25-preserved-by-artifact-class');
+  });
+
   it('012-T2.2: moderate-tier find_spec query routes graph channel', () => {
     const result = routeQuery('find the spec for auth scope');
     expect(result.tier).toBe('moderate');
@@ -515,12 +523,39 @@ describe('012-T2: routeQuery graph-preservation', () => {
     expect(result.channels).not.toContain('graph');
   });
 
+  it('012-T2.5b: shouldPreserveGraph self-gates when feature flag is OFF', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, 'false');
+    const decision = shouldPreserveGraph('find decision record', null);
+    expect(decision).toEqual({ preserved: false, reasons: [], includeDegree: false });
+  });
+
   it('012-T2.6: feature flag explicit true', () => {
     setEnv(GRAPH_PRESERVATION_FLAG, 'true');
     expect(isGraphChannelPreservationEnabled()).toBe(true);
   });
 
   it('012-T2.7: feature flag default ON', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    expect(isGraphChannelPreservationEnabled()).toBe(true);
+  });
+
+  it.each(['0', 'no', 'off', '', 'FALSE', 'No'])(
+    '012-T2.8: feature flag value %j disables graph preservation',
+    (value) => {
+      setEnv(GRAPH_PRESERVATION_FLAG, value);
+      expect(isGraphChannelPreservationEnabled()).toBe(false);
+    },
+  );
+
+  it.each(['1', 'true', 'yes', 'on', 'TRUE', 'YES'])(
+    '012-T2.9: feature flag value %j enables graph preservation',
+    (value) => {
+      setEnv(GRAPH_PRESERVATION_FLAG, value);
+      expect(isGraphChannelPreservationEnabled()).toBe(true);
+    },
+  );
+
+  it('012-T2.10: undefined feature flag enables graph preservation', () => {
     setEnv(GRAPH_PRESERVATION_FLAG, undefined);
     expect(isGraphChannelPreservationEnabled()).toBe(true);
   });

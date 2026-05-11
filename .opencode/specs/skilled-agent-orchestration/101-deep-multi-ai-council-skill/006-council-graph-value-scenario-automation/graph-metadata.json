@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation",
+  "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation",
+  "parent_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+      "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "council graph value automation",
+      "DAC-027 vitest",
+      "value-scenario fixtures",
+      "101/006"
+    ],
+    "key_topics": [
+      "council-graph",
+      "value-automation",
+      "vitest-fixtures"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Promote DAC-027..DAC-032 operator A/B value contracts into CI-protected fixture-driven vitest with measured baseline vs graph metrics plus operator fixture-seeder CLI.",
+    "created_at": "2026-05-11T09:25:00Z",
+    "last_save_at": "2026-05-11T09:25:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ]
+  }
+}

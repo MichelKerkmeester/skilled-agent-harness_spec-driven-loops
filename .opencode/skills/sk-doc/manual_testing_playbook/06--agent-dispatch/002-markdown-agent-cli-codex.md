@@ -3,6 +3,8 @@ id: SD-019
 category: 06--agent-dispatch
 title: '@markdown agent dispatch via cli-codex'
 execution_mode: dispatch_real
+expected_skip_in_non_interactive: true
+skip_rationale: "cli-codex @markdown dispatch under `codex exec` non-interactive mode falls back to a sub-agent path that hits Gate 3. Documented as accepted limitation in 102/005 (F-001). Re-enable when codex agent resolver routes @markdown directly under `codex exec`."
 expected_intent: CHANGELOG
 expected_agent: '@markdown'
 expected_resources:

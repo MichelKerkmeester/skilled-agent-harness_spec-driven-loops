@@ -1,0 +1,180 @@
+=== Codex SD-019 meta-analysis dispatch ===
+Started: 2026-05-11T11:10:58+02:00
+Model: gpt-5.5 / model_reasoning_effort=xhigh / service_tier=fast
+Sandbox: workspace-write with network_access=true
+Prompt: /tmp/codex-sd019-analysis-prompt.txt (    8443 bytes)
+Task: meta-analysis (read-only); produce 5-section diagnostic
+
+Reading additional input from stdin...
+OpenAI Codex v0.130.0
+--------
+workdir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure
+model: gpt-5.5
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/michelkerkmeester/.codex/memories] (network access enabled)
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 019e164d-d184-77e2-9dd3-582646f115a4
+--------
+user
+You are being asked to perform a meta-analysis. Do NOT modify any files. Do NOT execute test scenarios. Read the materials, think hard, and produce a written analysis as your final message.
+
+# YOUR ROLE
+
+You are a senior staff engineer being asked to diagnose a codex CLI dispatch failure and assess proposed remediations. You are running INSIDE a `codex exec` session (gpt-5.5, model_reasoning_effort=xhigh, service_tier=fast) — which means you have first-hand experience of the runtime in question. Use that.
+
+# THE INCIDENT (what we observed)
+
+We have a scenario called SD-019 that lives at:
+`.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md`
+
+The scenario dispatches you (cli-codex) with this user prompt:
+
+```
+Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill
+named sk-test-dummy via /create:changelog. Write the result to
+/tmp/sk-test-dummy-CHANGELOG-cli-codex.md. Do NOT install the stub skill
+into the .opencode/skills/ tree. Report which agent received the work,
+which sk-doc resources were loaded, and the changelog sections produced.
+```
+
+It was dispatched at 2026-05-11 07:36 CEST with this command:
+```
+codex exec -c service_tier="fast" -c sandbox_workspace_write.network_access=true \
+  "$PROMPT" </dev/null
+```
+
+(model: gpt-5.5, approval: never, sandbox: danger-full-access in the actual transcript, reasoning effort: xhigh per transcript)
+
+# WHAT HAPPENED — full transcript at this path
+
+`.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt`
+
+Key events from that transcript (verbatim quotes):
+
+1. You (the codex AI) said: "I'll route this through the `@markdown` agent as requested..."
+
+2. Internal error fired:
+```
+2026-05-11T05:36:21.982264Z ERROR codex_core::tools::router:
+  error=Full-history forked agents inherit the parent agent type, model,
+        and reasoning effort; omit agent_type, model, and reasoning_effort,
+        or spawn without a full-history fork.
+```
+
+3. You retried via `collab: SpawnAgent`. Second internal error fired:
+```
+2026-05-11T05:36:28.991568Z ERROR codex_core::tools::router:
+  error=agent type is currently not available
+```
+
+4. You then said: "The dedicated `markdown` agent type isn't exposed by this runner despite being named in the local instructions."
+
+5. You spawned a fallback sub-agent (named "Schrodinger") which hit the spec-folder safety gate (Gate 3) and waited for user input. With `</dev/null` redirected, no input arrived. Session terminated with exit 0 but no output file written.
+
+# THE CONFIGURATION FACTS
+
+`.codex/config.toml` has the registry block:
+```toml
+[agents.markdown]
+description = "Dedicated /create:* documentation executor using sk-doc templates."
+config_file = "agents/markdown.toml"
+```
+
+`.codex/agents/markdown.toml` has a complete TOML agent definition (verify yourself if you wish):
+- `name = "markdown"`
+- proper `description`, `profile`, `sandbox_mode`, `model`, `model_reasoning_effort` keys
+- a `developer_instructions` block describing the LEAF executor pattern
+- write-capable, sk-doc-loading, refuse-unscoped-callers conventions
+
+Other agents in `.codex/config.toml`: code, context, debug, orchestrate, deep-research, deep-review, deep-agent-improvement, prompt-improver, review, deep-ai-council. All registered the same way.
+
+# WHAT WE'VE ALREADY CONCLUDED (the current decision — verify or refute it)
+
+From `.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/implementation-summary.md`:
+
+We classified F-001 as "accepted limitation" — three layers:
+1. SD-019 scenario frontmatter marks `expected_skip_in_non_interactive: true` + `skip_rationale`
+2. Parent `102/spec.md` Known Issues table lists it as "Accepted limitation"
+3. 005 implementation-summary explains "fix vs accept" — we tipped toward accept on the theory that this is a codex-internal SpawnAgent-allowlist issue we can't change from the user side
+
+# THE HYPOTHESIS I'D LIKE YOU TO EVALUATE
+
+My current working theory:
+
+> Codex has TWO separate registries:
+> A. `.codex/config.toml` `[agents.markdown]` — user-defined, read for CLI context
+> B. `codex_core::tools::router` SpawnAgent runtime allowlist — internal, baked-in
+>
+> User-defined `[agents.*]` blocks DO NOT propagate into the SpawnAgent runtime allowlist.
+> Therefore when the AI inside `codex exec` tries to dispatch `agent_type=markdown` via SpawnAgent, the tool rejects it with "agent type is currently not available".
+
+If that hypothesis is correct, then a prompt-rewrite workaround should fix SD-019:
+
+> Don't ask codex to spawn a sub-agent. Tell codex to:
+>   (a) load `.opencode/skills/sk-doc/SKILL.md` and the changelog template
+>   (b) follow the @markdown agent's instructions ITSELF (the codex AI is gpt-5.5 with enough context)
+>   (c) write the output file directly
+>   (d) explicitly forbid calling SpawnAgent
+>
+> The agent's instructions live in `.codex/agents/markdown.toml` `developer_instructions` block — codex can read that file as a regular Read, then follow the rules inline.
+
+# YOUR ANALYSIS — produce this
+
+Read whatever files you need to (codex config, the SD-019 scenario, the agent definitions, the existing implementation-summary). Then write your analysis covering EXACTLY these sections:
+
+## Section A — Root cause verification
+Is my "two registries" hypothesis right? Is the actual blocker SpawnAgent's runtime allowlist? Or is there a different mechanism at play that the transcript reveals?
+
+For your analysis, consider:
+- What does "Full-history forked agents inherit..." (error 1) tell you about how codex tried to spawn?
+- Could the issue be in the AI's *interpretation* of `@markdown` (assuming sub-agent dispatch is the right tool) rather than in the SpawnAgent allowlist itself?
+- Is there a third interpretation I'm missing?
+
+## Section B — Prompt-fix viability
+Will the rewrite I proposed actually make SD-019 PASS in non-interactive mode? Walk through what gpt-5.5 inside `codex exec` would do if given the rewritten prompt.
+
+Specifically:
+- Can you (the codex AI) ACTUALLY follow `.codex/agents/markdown.toml`'s `developer_instructions` inline without dispatching a sub-agent?
+- What's the risk that gpt-5.5 still reaches for SpawnAgent despite explicit instructions not to?
+- Will the spec-folder safety gate (Gate 3) still fire when writing to `/tmp/`? (Re-read the actual gate logic if needed.)
+
+## Section C — Alternative remediations
+Are there options I didn't consider? For instance:
+- A codex CLI flag, config entry, or env var that would expose user-defined agents to SpawnAgent
+- A way to register `markdown` in the SpawnAgent allowlist via some other path
+- Restructuring `.codex/agents/markdown.toml` so it's recognized differently
+- Using `codex agent markdown ...` invocation instead of `codex exec` (if such a subcommand exists in v0.130.0)
+- Anything else
+
+For each alternative: what's the cost? What's the upside vs. the prompt-fix?
+
+## Section D — Recommended decision
+Given your analysis, what should we do? Pick one:
+
+1. KEEP "accepted limitation" — the prompt-fix is too brittle / has hidden failure modes
+2. SWAP TO "prompt-fix workaround" — re-author SD-019 with the rewritten prompt and flip the skip-flag; F-001 status becomes "resolved via workaround"
+3. EXPLORE ALTERNATIVE FROM SECTION C — name which one and why it beats both
+
+Be specific about WHY. Don't equivocate. If you'd choose option 2, also draft the exact rewritten prompt you'd put in SD-019's Setup block.
+
+## Section E — Caveats and uncertainty
+Things you're not sure about. Things that would require additional testing to confirm. Things you can ONLY know from inside the codex runtime that an external analyst couldn't have known.
+
+# CONSTRAINTS
+
+- Do NOT modify any files
+- Do NOT run the SD-019 scenario itself (no `/create:changelog`, no writes to `/tmp/`, no test dispatch)
+- You MAY read any file in the repo for context
+- You MAY check what tools you have access to (try invoking SpawnAgent yourself if useful — but DO NOT actually spawn a markdown sub-agent; if you experiment, dispatch a benign no-op or just check what error you get)
+- Final output is ONE markdown message with the five sections above
+- Be honest about uncertainty; this is a diagnostic exercise, not a sales pitch for either option
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed

@@ -40,7 +40,7 @@ _memory:
 | **Created** | 2026-05-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 3 |
+| **Phase** | 2 of 5 |
 | **Predecessor** | 001-sk-doc-reference-relocation |
 | **Successor** | 003-markdown-agent-rename |
 <!-- /ANCHOR:metadata -->

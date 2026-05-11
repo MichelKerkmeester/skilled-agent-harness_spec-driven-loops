@@ -5,7 +5,7 @@ description: "Operator-facing manual validation package for the deep-ai-council 
 
 # deep-ai-council: Manual Testing Playbook
 
-This playbook validates the `deep-ai-council` skill through 26 deterministic scenarios. It combines the root operator directory, review protocol, orchestration guide, and links to per-feature execution files.
+This playbook validates the `deep-ai-council` skill through 32 deterministic scenarios. It combines the root operator directory, review protocol, orchestration guide, and links to per-feature execution files.
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
@@ -17,6 +17,7 @@ Canonical package artifacts:
 - `06--depth-and-failure-handling/`
 - `07--writer-library-contract/`
 - `08--council-graph-integration/`
+- `09--council-graph-value-comparison/`
 
 ---
 
@@ -36,16 +37,17 @@ Canonical package artifacts:
 - [12. DEPTH AND FAILURE HANDLING (DAC-014, DAC-018)](#12--depth-and-failure-handling-dac-014-dac-018)
 - [13. WRITER LIBRARY CONTRACT (DAC-013, DAC-015..DAC-017)](#13--writer-library-contract-dac-013-dac-015dac-017)
 - [14. COUNCIL GRAPH INTEGRATION (DAC-019..DAC-026)](#14--council-graph-integration-dac-019dac-026)
-- [15. AUTOMATED TEST CROSS-REFERENCE](#15--automated-test-cross-reference)
-- [16. FEATURE CATALOG CROSS-REFERENCE INDEX](#16--feature-catalog-cross-reference-index)
+- [15. COUNCIL GRAPH VALUE COMPARISON (DAC-027..DAC-032)](#15--council-graph-value-comparison-dac-027dac-032)
+- [16. AUTOMATED TEST CROSS-REFERENCE](#16--automated-test-cross-reference)
+- [17. FEATURE CATALOG CROSS-REFERENCE INDEX](#17--feature-catalog-cross-reference-index)
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 26 deterministic scenarios across 8 categories validating the `deep-ai-council` skill surface. Each feature keeps a `DAC-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 32 deterministic scenarios across 9 categories validating the `deep-ai-council` skill surface. Each feature keeps a `DAC-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-11): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, derived graph boundaries, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, scoped-write rejection, and the dedicated council-graph MCP surface (upsert idempotency + self-loop rejection, empty-input no-op, hostile metadata redaction, five-mode prompt-safe queries, three-state convergence decision, recovery payload + readiness blocking, derived-projection replay, and tool-family separation from the deep-loop graph).
+Coverage note (2026-05-11): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, derived graph boundaries, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, scoped-write rejection, the dedicated council-graph MCP surface (upsert idempotency + self-loop rejection, empty-input no-op, hostile metadata redaction, five-mode prompt-safe queries, three-state convergence decision, recovery payload + readiness blocking, derived-projection replay, tool-family separation from the deep-loop graph), and real-world value-comparison scenarios proving the graph beats the no-graph baseline for unresolved-disagreement triage, decision provenance audit, convergence safety under critical disagreement, stalled-council blocker ranking, hot-topic discovery, and mid-run interruption recovery.
 
 ### Realistic Test Model
 
@@ -367,7 +369,49 @@ Feature file: [DAC-026](08--council-graph-integration/008-council-graph-tools-re
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 15. COUNCIL GRAPH VALUE COMPARISON (DAC-027..DAC-032)
+
+Each value-comparison scenario contrasts the no-graph baseline workflow against the with-graph workflow on a real-world council situation, with a measurable value metric.
+
+### DAC-027 | Unresolved disagreement triage: graph vs baseline
+
+Graph returns the unresolved critical set in one MCP call; baseline requires reading 12+ deliberation/critique artifacts.
+
+Feature file: [DAC-027](09--council-graph-value-comparison/001-unresolved-disagreement-triage-graph-vs-baseline.md)
+
+### DAC-028 | Decision provenance audit: graph vs baseline
+
+Graph returns a structured DECISION → SUPPORTS → EVIDENCE → SEAT trace; baseline produces unstructured prose narrative.
+
+Feature file: [DAC-028](09--council-graph-value-comparison/002-decision-provenance-audit-graph-vs-baseline.md)
+
+### DAC-029 | Convergence safety under critical disagreement: graph vs baseline
+
+Graph returns `STOP_BLOCKED` when 2-of-3 agree but a critical disagreement is unresolved; the naive two-of-three baseline would have allowed stop.
+
+Feature file: [DAC-029](09--council-graph-value-comparison/003-convergence-safety-under-critical-disagreement-graph-vs-baseline.md)
+
+### DAC-030 | Stalled-council blocker ranking: graph vs baseline
+
+Graph returns ranked blockers (severity / evidence-depth / centrality) with reason traces; baseline returns unranked artifact survey.
+
+Feature file: [DAC-030](09--council-graph-value-comparison/004-stalled-council-blocker-ranking-graph-vs-baseline.md)
+
+### DAC-031 | Hot-topic discovery: graph vs baseline
+
+Graph ranks nodes by edge-degree (SUPPORTS + CONTRADICTS + EVIDENCE_FOR); baseline approximates via text cross-reference counts.
+
+Feature file: [DAC-031](09--council-graph-value-comparison/005-hot-topic-discovery-graph-vs-baseline.md)
+
+### DAC-032 | Mid-run interruption recovery: graph vs baseline
+
+Graph status returns counts + readiness + namespace-scoped recovery payload; baseline requires manual JSONL forensics.
+
+Feature file: [DAC-032](09--council-graph-value-comparison/006-mid-run-interruption-recovery-graph-vs-baseline.md)
+
+---
+
+## 16. AUTOMATED TEST CROSS-REFERENCE
 
 | Test File | Scenario IDs |
 | --- | --- |
@@ -378,11 +422,13 @@ Feature file: [DAC-026](08--council-graph-integration/008-council-graph-tools-re
 | `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-rollback.vitest.ts` | DAC-010 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph-value-scenarios.vitest.ts` | DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, DAC-032 |
+| Operator A/B comparison (with-graph vs no-graph baseline) | Operator-runnable contract mirrors the automated DAC-027..DAC-032 fixtures |
 | Documentation reference validation | DAC-014, DAC-015, DAC-016, DAC-018, DAC-025, DAC-026 |
 
 ---
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Scenario | Feature File | Catalog |
 | --- | --- | --- | --- |
@@ -412,3 +458,9 @@ Feature file: [DAC-026](08--council-graph-integration/008-council-graph-tools-re
 | DAC-024 | council_graph_status recovery payload and readiness | `08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md` | No feature catalog exists yet |
 | DAC-025 | Derived projection rebuilds from artifacts | `08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md` | No feature catalog exists yet |
 | DAC-026 | council_graph_* tools registered separately from deep_loop_graph_* | `08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md` | No feature catalog exists yet |
+| DAC-027 | Unresolved disagreement triage: graph vs baseline | `09--council-graph-value-comparison/001-unresolved-disagreement-triage-graph-vs-baseline.md` | No feature catalog exists yet |
+| DAC-028 | Decision provenance audit: graph vs baseline | `09--council-graph-value-comparison/002-decision-provenance-audit-graph-vs-baseline.md` | No feature catalog exists yet |
+| DAC-029 | Convergence safety under critical disagreement: graph vs baseline | `09--council-graph-value-comparison/003-convergence-safety-under-critical-disagreement-graph-vs-baseline.md` | No feature catalog exists yet |
+| DAC-030 | Stalled-council blocker ranking: graph vs baseline | `09--council-graph-value-comparison/004-stalled-council-blocker-ranking-graph-vs-baseline.md` | No feature catalog exists yet |
+| DAC-031 | Hot-topic discovery: graph vs baseline | `09--council-graph-value-comparison/005-hot-topic-discovery-graph-vs-baseline.md` | No feature catalog exists yet |
+| DAC-032 | Mid-run interruption recovery: graph vs baseline | `09--council-graph-value-comparison/006-mid-run-interruption-recovery-graph-vs-baseline.md` | No feature catalog exists yet |

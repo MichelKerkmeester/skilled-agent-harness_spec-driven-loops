@@ -4,7 +4,7 @@
 // Cached high-degree title/trigger lookup used by shouldPreserveGraph
 // (REQ-003 + REQ-006).
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import Database from 'better-sqlite3';
 
 import {
@@ -12,6 +12,7 @@ import {
   invalidateEntityDensityCache,
   _getEntityDensityCacheState,
   MIN_OUTGOING_EDGES,
+  CACHE_TTL_MS,
 } from '../lib/search/entity-density';
 
 /* ───────────────────────────────────────────────────────────────
@@ -52,6 +53,10 @@ function seedHighDegreeRow(
       .run(String(id), String(id + 1000 + i), 'caused');
   }
 }
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 /* ───────────────────────────────────────────────────────────────
    012-ED-1: BASIC LOOKUP
@@ -168,5 +173,30 @@ describe('012-ED-3: cache behavior', () => {
     const sizeAfter = _getEntityDensityCacheState().size;
 
     expect(sizeAfter).toBeGreaterThan(sizeBefore);
+  });
+
+  it('012-ED-3.3: preserves prior cache when rebuild fails after successful warm (P2-C-002)', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-05-11T00:00:00.000Z'));
+
+    const db = createTestDb();
+    seedHighDegreeRow(db, 23, 'resilient cache token', ['durable trigger'], MIN_OUTGOING_EDGES);
+
+    const warmScore = getEntityDensityScore('resilient cache', db);
+    const warmState = _getEntityDensityCacheState();
+    expect(warmScore).toBeGreaterThan(0);
+    expect(warmState.ok).toBe(true);
+    expect(warmState.size).toBeGreaterThan(0);
+
+    vi.setSystemTime(warmState.builtAt + CACHE_TTL_MS + 1);
+    db.close();
+
+    const scoreAfterFailedRebuild = getEntityDensityScore('resilient cache', db);
+    const failedState = _getEntityDensityCacheState();
+
+    expect(scoreAfterFailedRebuild).toBe(warmScore);
+    expect(failedState.size).toBe(warmState.size);
+    expect(failedState.builtAt).toBeGreaterThan(warmState.builtAt);
+    expect(failedState.ok).toBe(false);
   });
 });

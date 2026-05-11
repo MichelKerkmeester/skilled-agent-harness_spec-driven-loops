@@ -8,6 +8,7 @@
 // The cache is a Set of lowercase tokens drawn from high-degree memory rows.
 // Refreshes lazily on a 60s TTL or via invalidateEntityDensityCache(). Falls
 // back to score=0 when the DB / tables are missing (cold-start safety).
+// CONCURRENCY: Node.js is single-threaded; this module relies on synchronous better-sqlite3 calls. Cache mutation is therefore atomic per event-loop turn. No locking required.
 
 import type Database from 'better-sqlite3';
 
@@ -29,6 +30,7 @@ const STOPWORDS: ReadonlySet<string> = new Set([
   'will', 'would', 'can', 'could', 'should', 'may', 'might',
 ]);
 
+// SIZE: bounded by number of memory_index rows with >= MIN_OUTGOING_EDGES outgoing causal edges; for the current scale (~1.3k edges) this is well under O(n) memory.
 let cachedTerms: Set<string> = new Set();
 let lastBuiltAt = 0;
 let lastBuildOk = false;
@@ -43,6 +45,13 @@ function tokenize(text: string): string[] {
   return tokens.filter((t) => t.length >= TOKEN_MIN_LENGTH && !STOPWORDS.has(t));
 }
 
+/**
+ * Parses the stored `trigger_phrases` field. Accepts nullish/empty values,
+ * JSON arrays, and legacy plain-text phrases; nullish/empty values return [].
+ * The fallback is intentionally asymmetric: invalid JSON is treated as one
+ * legacy phrase, while valid non-array JSON returns [] because it is not a
+ * supported trigger phrase shape.
+ */
 function parseTriggerPhrases(raw: string | null | undefined): string[] {
   if (!raw) return [];
   try {
@@ -67,6 +76,7 @@ interface HighDegreeRow {
 }
 
 function buildIndex(db: Database.Database): Set<string> {
+  // SAFETY: SELECT shape is locked by buildIndex's SQL; rows that don't match crash the assignment loudly rather than silently corrupting cache. If you change the SQL, update the type.
   const rows = db.prepare(`
     SELECT mi.title, mi.trigger_phrases
     FROM memory_index mi
@@ -99,7 +109,7 @@ function refreshIfStale(db: Database.Database | null): void {
     return;
   }
   const now = Date.now();
-  if (lastBuildOk && now - lastBuiltAt < CACHE_TTL_MS) {
+  if (now - lastBuiltAt < CACHE_TTL_MS) {
     return;
   }
   try {
@@ -107,9 +117,7 @@ function refreshIfStale(db: Database.Database | null): void {
     lastBuiltAt = now;
     lastBuildOk = true;
   } catch {
-    // Table missing or query failed — keep prior cache state, mark not-ok so
-    // we retry on next call rather than silently serving stale data.
-    cachedTerms = new Set();
+    // PRESERVES PRIOR CACHE: do not discard on transient build failure; TTL retry on next boundary.
     lastBuiltAt = now;
     lastBuildOk = false;
   }
@@ -143,9 +151,10 @@ function getEntityDensityScore(query: string, db: Database.Database | null): num
 }
 
 /**
- * Force the next score lookup to rebuild the cache. Wire into post-commit
- * hooks (memory_save, memory_bulk_delete) when the cache becomes stale enough
- * to mis-route. The 60s TTL is the floor — this is the precision tool.
+ * Force the next score lookup to rebuild the cache. Safe to call from any
+ * handler and idempotent: repeated calls leave the cache empty and stale.
+ * Current mutation entry points are memory-save.ts:2583 and
+ * memory-bulk-delete.ts:149,256.
  */
 function invalidateEntityDensityCache(): void {
   cachedTerms = new Set();

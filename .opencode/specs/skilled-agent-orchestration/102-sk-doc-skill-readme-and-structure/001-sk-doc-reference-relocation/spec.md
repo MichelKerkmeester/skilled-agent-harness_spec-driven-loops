@@ -40,7 +40,7 @@ _memory:
 | **Created** | 2026-05-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 3 |
+| **Phase** | 1 of 5 |
 | **Predecessor** | None |
 | **Successor** | 002-sk-doc-skill-readme-asset |
 <!-- /ANCHOR:metadata -->

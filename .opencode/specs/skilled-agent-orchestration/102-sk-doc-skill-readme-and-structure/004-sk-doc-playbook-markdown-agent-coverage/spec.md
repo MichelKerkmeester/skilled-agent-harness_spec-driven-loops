@@ -37,11 +37,11 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-11 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 4 |
+| **Phase** | 4 of 5 |
 | **Predecessor** | 003-markdown-agent-rename |
 | **Successor** | None |
 <!-- /ANCHOR:metadata -->

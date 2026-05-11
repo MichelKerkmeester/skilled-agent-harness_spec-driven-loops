@@ -1,0 +1,410 @@
+{
+  "sessionId": "2026-05-11T05:42:00Z",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "P1-001",
+      "severity": "P2",
+      "cluster": "performance",
+      "file": "query-router.ts:145,191,304",
+      "title": "Intent classified redundantly — up to 3x per routeQuery invocation",
+      "iteration": 1,
+      "confidence": 0.85,
+      "notes": "DOWNGRADED P1→P2 per iter 9/10: micro-performance advisory, not correctness/security issue"
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "cluster": "resource-map",
+      "file": "resource-map.md:55",
+      "title": "Resource-map playbook path wrong — 210 should be 272",
+      "iteration": 4,
+      "notes": "Borderline P1/P2 per iter 10 sanity check; P1 retained because resource-map is authoritative navigation surface"
+    },
+    {
+      "id": "P1-003",
+      "severity": "P1",
+      "cluster": "resource-map",
+      "file": "resource-map.md:73",
+      "title": "Resource-map changelog entry missing on disk",
+      "iteration": 4,
+      "notes": "Likely OBE — resource-map itself shows status=OK; handover confirms file exists. Verify and mark RESOLVED if confirmed."
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "cluster": "maintainability",
+      "file": "routing-telemetry.ts:14",
+      "title": "ChannelName type duplicated from query-router.ts",
+      "iteration": 1,
+      "confidence": 0.9
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "cluster": "maintainability",
+      "file": "routing-telemetry.ts:33-35",
+      "title": "recordInvocation uses Array.shift() not true ring buffer",
+      "iteration": 1,
+      "confidence": 0.75
+    },
+    {
+      "id": "P2-003",
+      "severity": "P2",
+      "cluster": "maintainability",
+      "file": "query-router.ts:183",
+      "title": "shouldPreserveGraph does not self-gate on feature flag",
+      "iteration": 1,
+      "confidence": 0.8
+    },
+    {
+      "id": "P2-004",
+      "severity": "P2",
+      "cluster": "defensive",
+      "file": "memory-crud-health.ts:626",
+      "title": "No isolated try/catch around getRoutingTelemetrySnapshot in memory_health",
+      "iteration": 1,
+      "confidence": 0.7
+    },
+    {
+      "id": "P2-008",
+      "severity": "P2",
+      "cluster": "correctness",
+      "file": "entity-density.ts:105-116",
+      "title": "Entity-density error path lacks retry backoff for persistent build failures",
+      "iteration": 2,
+      "confidence": 0.78
+    },
+    {
+      "id": "P2-009",
+      "severity": "P2",
+      "cluster": "observability",
+      "file": "query-router.ts:144-317",
+      "title": "routingReasons mislabels intent-triggered BM25 preservation as authority-artifact",
+      "iteration": 2,
+      "confidence": 0.82
+    },
+    {
+      "id": "P2-010",
+      "severity": "P2",
+      "cluster": "reliability",
+      "file": "entity-density.ts:95-116",
+      "title": "Entity-density cache refresh has no concurrency guard",
+      "iteration": 3,
+      "confidence": 0.8
+    },
+    {
+      "id": "P2-011",
+      "severity": "P2",
+      "cluster": "access-control",
+      "file": "entity-density.ts:150-154",
+      "title": "invalidateEntityDensityCache exported with no access control",
+      "iteration": 3,
+      "confidence": 0.75
+    },
+    {
+      "id": "P2-012",
+      "severity": "P2",
+      "cluster": "defensive",
+      "file": "query-plan.ts:74,258",
+      "title": "buildRoutingQueryPlan accepts unbounded routingReasons strings for disk persistence",
+      "iteration": 3,
+      "confidence": 0.78
+    },
+    {
+      "id": "P2-013",
+      "severity": "P2",
+      "cluster": "observability",
+      "file": "query-router.ts:207-213",
+      "title": "safeGetDb error swallowing loses observability",
+      "iteration": 3,
+      "confidence": 0.82
+    },
+    {
+      "id": "P2-014",
+      "severity": "P2",
+      "cluster": "playbook",
+      "file": "272-routing-telemetry-and-graph-channel-invocation.md:55",
+      "title": "Playbook expected rate 0.6 contradicts actual classifier behavior (0.4)",
+      "iteration": 4
+    },
+    {
+      "id": "P2-015",
+      "severity": "P2",
+      "cluster": "resource-map",
+      "file": "resource-map.md (missing entry)",
+      "title": "routing-telemetry-stress.vitest.ts not listed in resource-map.md",
+      "iteration": 4
+    },
+    {
+      "id": "P2-016",
+      "severity": "P2",
+      "cluster": "feature-catalog",
+      "file": "12-graph-channel-preservation.md:59-67",
+      "title": "Feature catalog traceability table line numbers stale (4/8 off by 20+ lines)",
+      "iteration": 4
+    },
+    {
+      "id": "P2-017",
+      "severity": "P2",
+      "cluster": "docs",
+      "file": "routing-telemetry.ts:50",
+      "title": "Missing JSDoc on exported getSnapshot function",
+      "iteration": 5
+    },
+    {
+      "id": "P2-018",
+      "severity": "P2",
+      "cluster": "docs",
+      "file": "query-router.ts:144",
+      "title": "Missing JSDoc on exported shouldPreserveBm25 function",
+      "iteration": 5
+    },
+    {
+      "id": "P2-019",
+      "severity": "P2",
+      "cluster": "docs",
+      "file": "query-router.ts:160",
+      "title": "Missing JSDoc on exported isGraphChannelPreservationEnabled",
+      "iteration": 5
+    },
+    {
+      "id": "P2-020",
+      "severity": "P2",
+      "cluster": "docs",
+      "file": "query-router.ts:1-6",
+      "title": "Module header stale — omits channel preservation overrides",
+      "iteration": 5
+    },
+    {
+      "id": "P2-021",
+      "severity": "P2",
+      "cluster": "maintainability",
+      "file": "entity-density.ts:46-58",
+      "title": "parseTriggerPhrases has asymmetric and undocumented fallback behavior",
+      "iteration": 5
+    },
+    {
+      "id": "P2-022",
+      "severity": "P2",
+      "cluster": "tests",
+      "file": "query-router.vitest.ts:33,415",
+      "title": "Duplicate env-flag constant in same test file",
+      "iteration": 5
+    },
+    {
+      "id": "P2-023",
+      "severity": "P2",
+      "cluster": "tests",
+      "file": "query-router.vitest.ts:37-57,routing-telemetry-stress.vitest.ts:23-35",
+      "title": "Duplicated setEnv/restoreEnv helpers across test files",
+      "iteration": 5
+    },
+    {
+      "id": "P1-C-001",
+      "severity": "P1",
+      "cluster": "reliability",
+      "file": "entity-density.ts:146-154",
+      "title": "invalidateEntityDensityCache never wired to memory_save/memory_bulk_delete — entity-density cache stale for 60s",
+      "iteration": 6,
+      "confidence": 0.82
+    },
+    {
+      "id": "P2-C-001",
+      "severity": "P2",
+      "cluster": "reliability",
+      "file": "entity-density.ts:109-114",
+      "title": "entity-density error path discards valid cached state",
+      "iteration": 6
+    },
+    {
+      "id": "P2-C-002",
+      "severity": "P2",
+      "cluster": "tests",
+      "file": "entity-density.vitest.ts",
+      "title": "no test for entity-density rebuild failure after successful cache population",
+      "iteration": 6
+    },
+    {
+      "id": "S7-001",
+      "severity": "P2",
+      "cluster": "security",
+      "file": "entity-density.ts:32,69-92",
+      "title": "Entity-density cache has no explicit upper-bound size guard",
+      "iteration": 7
+    },
+    {
+      "id": "P2-TR-001",
+      "severity": "P2",
+      "cluster": "docs-inconsistency",
+      "file": "implementation-summary.md:87,124",
+      "title": "Implementation-summary internal test-count inconsistency (27 vs 15 vs 25)",
+      "iteration": 8
+    },
+    {
+      "id": "P2-TR-002",
+      "severity": "P2",
+      "cluster": "resource-map",
+      "file": "resource-map.md:59-74",
+      "title": "Resource-map omits scratch/live-smoke-results.md and scratch/stress-test-results.md",
+      "iteration": 8
+    },
+    {
+      "id": "P2-TR-003",
+      "severity": "P2",
+      "cluster": "docs",
+      "file": "scratch/live-smoke-results.md:80",
+      "title": "Stale line reference for shouldPreserveGraph (167-189 vs actual 183-205)",
+      "iteration": 8
+    },
+    {
+      "id": "P2-TR-004",
+      "severity": "P2",
+      "cluster": "feature-catalog",
+      "file": "feature_catalog/12-graph-channel-preservation.md:50-53",
+      "title": "Feature catalog validation table omits routing-telemetry-stress.vitest.ts",
+      "iteration": 8
+    },
+    {
+      "id": "P2-TR-005",
+      "severity": "P2",
+      "cluster": "resource-map",
+      "file": "resource-map.md:29",
+      "title": "Resource-map summary count mismatch (Skills=8 but 9 entries; total=18 but 19)",
+      "iteration": 8
+    },
+    {
+      "id": "P2-TR-006",
+      "severity": "P2",
+      "cluster": "docs",
+      "file": "implementation-summary.md:35,spec.md:229-230",
+      "title": "Spec Q2 (rate band) only partially answered in implementation-summary",
+      "iteration": 8
+    },
+    {
+      "id": "P2-TR-007",
+      "severity": "P2",
+      "cluster": "checklist",
+      "file": "checklist.md:142",
+      "title": "CHK-052 evidence enumeration omits routing-telemetry-stress.vitest.ts",
+      "iteration": 8
+    },
+    {
+      "id": "ADV-001",
+      "severity": "P2",
+      "cluster": "env-parsing",
+      "file": "query-router.ts:160-163",
+      "title": "SPECKIT_GRAPH_CHANNEL_PRESERVATION env flag treats 0/no/off/empty as enabled",
+      "iteration": 9
+    },
+    {
+      "id": "ADV-002",
+      "severity": "P2",
+      "cluster": "tests",
+      "file": "query-router.vitest.ts:60-72",
+      "title": "withFeatureFlag helper defined but never called in query-router.vitest.ts",
+      "iteration": 9
+    },
+    {
+      "id": "ADV-003",
+      "severity": "P2",
+      "cluster": "reliability",
+      "file": "entity-density.ts:109-114",
+      "title": "entity-density error-path comment contradicts code; cache discarded on transient error",
+      "iteration": 9
+    },
+    {
+      "id": "F10-001",
+      "severity": "P2",
+      "cluster": "docs-staleness",
+      "file": "spec.md:49",
+      "title": "spec.md Status field still Draft after full implementation",
+      "iteration": 10,
+      "confidence": 0.85
+    },
+    {
+      "id": "F10-002",
+      "severity": "P2",
+      "cluster": "docs-staleness",
+      "file": "plan.md:60-73",
+      "title": "plan.md Definition of Done checkboxes never updated post-completion",
+      "iteration": 10,
+      "confidence": 0.90
+    },
+    {
+      "id": "F10-003",
+      "severity": "P2",
+      "cluster": "docs-inconsistency",
+      "file": "handover.md:30",
+      "title": "handover.md completion_pct=95 conflicts with implementation-summary.md completion_pct=100",
+      "iteration": 10,
+      "confidence": 0.82
+    },
+    {
+      "id": "F10-004",
+      "severity": "P2",
+      "cluster": "defensive",
+      "file": "entity-density.ts:79",
+      "title": "buildIndex returns Set via as HighDegreeRow[] cast without runtime shape validation",
+      "iteration": 10,
+      "confidence": 0.65
+    },
+    {
+      "id": "F10-005",
+      "severity": "P2",
+      "cluster": "maintainability",
+      "file": "routing-telemetry.ts:31",
+      "title": "recordInvocation [...new Set(channels)] redundant after upstream enforceMinimumChannels dedup",
+      "iteration": 10,
+      "confidence": 0.88
+    },
+    {
+      "id": "F10-006",
+      "severity": "P2",
+      "cluster": "metadata",
+      "file": "graph-metadata.json:50,54",
+      "title": "derived.key_files contains duplicate entries with different path prefixes",
+      "iteration": 10,
+      "confidence": 0.80
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true,
+    "adversarial": true,
+    "final-sweep": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 39
+  },
+  "openFindingsCount": 42,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.09,
+  "finalVerdict": "CONDITIONAL (hasAdvisories=true)",
+  "releaseBlocking": ["P1-C-001 (invalidateEntityDensityCache unwired)", "P1-002 (resource-map playbook path wrong)"],
+  "recommendedFollowUpPackets": [
+    "Entity-density cache hardening",
+    "Resource-map + doc cleanup",
+    "Code polish",
+    "graph-metadata.json dedup"
+  ],
+  "perIterationRatio": [
+    {"iteration": 1, "ratio": 1, "findingsNew": 5, "focus": "inventory"},
+    {"iteration": 2, "ratio": 0.29, "findingsNew": 2, "focus": "correctness"},
+    {"iteration": 3, "ratio": 0.36, "findingsNew": 4, "focus": "security"},
+    {"iteration": 4, "ratio": 0.31, "findingsNew": 5, "focus": "traceability"},
+    {"iteration": 5, "ratio": 1, "findingsNew": 7, "focus": "maintainability"},
+    {"iteration": 6, "ratio": 1, "findingsNew": 3, "focus": "correctness-deep"},
+    {"iteration": 7, "ratio": 0.17, "findingsNew": 1, "focus": "security-deep"},
+    {"iteration": 8, "ratio": 1, "findingsNew": 7, "focus": "traceability-replay"},
+    {"iteration": 9, "ratio": 0.09, "findingsNew": 3, "focus": "adversarial"},
+    {"iteration": 10, "ratio": 0.09, "findingsNew": 6, "focus": "final-sweep"}
+  ]
+}

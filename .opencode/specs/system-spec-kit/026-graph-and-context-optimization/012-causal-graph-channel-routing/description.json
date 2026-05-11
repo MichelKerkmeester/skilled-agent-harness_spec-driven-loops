@@ -1,27 +1,28 @@
 {
-  "level": "2",
+  "level": "3",
   "specFolder": "026-graph-and-context-optimization/012-causal-graph-channel-routing",
-  "description": "Activate the graph and degree channels for intent-driven and entity-rich short queries. shouldPreserveGraph + entity-density override + routing-telemetry rolling counter expose graphChannelInvocationRate via memory_health.",
+  "description": "Phase parent for graph-channel routing utilization. 001-initial-delivery ships the override (complete, CONDITIONAL deep-review verdict). 002-deep-review-remediation closes 3 P1 + 39 P2 deep-review findings via cli-codex gpt-5.5 reasoning=high service_tier=fast.",
   "keywords": [
     "012-causal-graph-channel-routing",
-    "shouldPreserveGraph",
-    "entity-density override",
-    "graphChannelInvocationRate",
-    "graph-preserved-by-intent",
-    "graph-preserved-by-entity-density",
-    "SPECKIT_GRAPH_CHANNEL_PRESERVATION",
-    "routing-telemetry rolling counter",
-    "complexity router graph activation"
+    "012 phase parent",
+    "graph channel routing phases",
+    "012 deep-review remediation",
+    "shouldPreserveGraph phases",
+    "entity-density cache wiring",
+    "routing-telemetry remediation",
+    "deep-review 012 CONDITIONAL"
   ],
-  "lastUpdated": "2026-05-08T16:00:21.861Z",
+  "lastUpdated": "2026-05-11T10:30:00Z",
   "specId": "012",
   "folderSlug": "causal-graph-channel-routing",
   "parentChain": [
     "026-graph-and-context-optimization"
   ],
-  "memorySequence": 2,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "08-05-26_15-58__refined-012-packet-handover-md-post-mcp-restart.md",
-    "08-05-26_17-00__closed-all-deferred-stress-sub-criteria-for-012.md"
+    "08-05-26_17-00__closed-all-deferred-stress-sub-criteria-for-012.md",
+    "11-05-26_08-55__manual-context-save.md",
+    "11-05-26_10-30__phase-parent-restructure-with-002-remediation.md"
   ]
 }

@@ -31,10 +31,12 @@ Review the implementation, spec artifacts, tests, and telemetry for packet `012-
 
 ## 3. REVIEW DIMENSIONS (remaining)
 <!-- MACHINE-OWNED: START -->
-- [ ] D1 Correctness — `shouldPreserveGraph`, `getEntityDensityScore`, `routeQuery` override, telemetry ring-buffer math, env-flag short-circuit, cold-start safety, integration with `routingReasons`
-- [ ] D2 Security — SQL safety in entity-density cache build, env-flag enforcement, unbounded growth / DoS surfaces, log injection via reason strings, secret/PII exposure via telemetry snapshot
-- [ ] D3 Traceability — spec.md REQ-001..REQ-008 ↔ code; checklist.md ↔ evidence; resource-map.md coverage of touched files; implementation-summary.md ↔ tests; cross-runtime skill/agent references; feature-catalog / playbook capability mapping
-- [ ] D4 Maintainability — clarity of new modules, naming, documentation, surprising patterns, test readability, dead code, comment hygiene, error-handling consistency
+- [x] D1 Correctness — `shouldPreserveGraph`, `getEntityDensityScore`, `routeQuery` override, telemetry ring-buffer math, env-flag short-circuit, cold-start safety, integration with `routingReasons`
+- [x] D2 Security — SQL safety in entity-density cache build, env-flag enforcement, unbounded growth / DoS surfaces, log injection via reason strings, secret/PII exposure via telemetry snapshot
+- [x] D3 Traceability — spec.md REQ-001..REQ-008 ↔ code; checklist.md ↔ evidence; resource-map.md coverage of touched files; implementation-summary.md ↔ tests; cross-runtime skill/agent references; feature-catalog / playbook capability mapping
+- [x] D4 Maintainability — clarity of new modules, naming, documentation, surprising patterns, test readability, dead code, comment hygiene, error-handling consistency
+- [x] D5 Adversarial — claim adjudication, counterevidence search, P2→P1 escalation scan, env-flag edge cases, test-reliability under adversarial inputs
+- [x] D6 Final Sweep — dedup findings, severity sanity-check, P2→P1 upgrade scan, final verdict, synthesis summary table
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -56,10 +58,14 @@ Review the implementation, spec artifacts, tests, and telemetry for packet `012-
 
 ## 6. COMPLETED DIMENSIONS
 <!-- MACHINE-OWNED: START -->
-[None yet — populated as iterations complete dimension reviews]
-
 | Dimension | Verdict | Iteration | Summary |
 |-----------|---------|-----------|---------|
+| correctness | CONDITIONAL (hasAdvisories=true) | 2 | 0 P0, 0 P1, 2 P2; all 8 inquiry questions resolved; no off-by-one; no broken invariants
+| security | PASS (hasAdvisories=true) | 3 | 0 P0, 0 P1, 4 P2; all 5 specific audit questions answered; no injection/auth/secrets found
+| traceability | PASS (hasAdvisories=true) | 4,8 | 2 P1, 10 P2; resource-map coverage PARTIAL; spec-code mapping PASS; feature-catalog PASS_WITH_ADVISORIES
+| maintainability | PASS (hasAdvisories=true) | 5 | 0 P1, 7 P2; missing JSDoc, stale headers, test duplication
+| adversarial | PASS (hasAdvisories=true) | 9 | 0 P1, 3 P2; P1-001 downgraded to P2; 12 directions ruled out
+| final-sweep | PASS | 10 | 0 P1, 6 P2 (new); dedup complete; P2→P1 scan 0 upgrades; verdict CONDITIONAL
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -67,17 +73,24 @@ Review the implementation, spec artifacts, tests, and telemetry for packet `012-
 ## 7. RUNNING FINDINGS
 <!-- MACHINE-OWNED: START -->
 - **P0 (Critical):** 0 active
-- **P1 (Major):** 0 active
-- **P2 (Minor):** 0 active
-- **Delta this iteration:** +0 P0, +0 P1, +0 P2
+- **P1 (Major):** 3 active (P1-002 resource-map playbook path; P1-003 changelog entry likely OBE; P1-C-001 cache invalidation unwired)
+- P1-001 DOWNGRADED P1→P2 (iter 9, confirmed iter 10)
+- **P2 (Minor):** 39 active
+- **Delta iter 10:** +0 P0, +0 P1, +6 P2
 
 Findings registry: `deep-review-findings-registry.json`.
+
+**FINAL VERDICT: CONDITIONAL (hasAdvisories=true)** — 0 P0, 3 P1, 39 P2
+**Release-blocking:** P1-C-001, P1-002 (conditional)
+**Recommended follow-ups:** Entity-density cache hardening, Resource-map + doc cleanup, Code polish, graph-metadata.json dedup
 <!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 8. WHAT WORKED
-[First iteration — populated after iteration 1 completes]
+- Iteration 1 (inventory): Broad sweep surfaced 5 findings across all files. CocoIndex + direct reads provided full coverage.
+- Iteration 2 (correctness): Targeted line-by-line trace of all 8 inquiry questions yielded definitive answers. No P0/P1 correctness bugs — the implementation is solid. Two P2 advisories found (entity-density error-path backoff, bm25 reason label). Three test gaps documented.
+- Iteration 3 (security): All 5 specific audit questions answered definitively — SQL is parameterized, no injection surfaces found, no PII/secret exposure via telemetry, env-flag immune to request-scoped mutation, entity-density cache bounded. Four P2 defense-in-depth advisories: cache rebuild race condition, exported cache invalidation, unbounded routingReasons API contract, silent DB error swallowing.
 
 ---
 
@@ -87,7 +100,7 @@ Findings registry: `deep-review-findings-registry.json`.
 ---
 
 ## 10. NEXT FOCUS
-**Iteration 1:** inventory pass — build artifact map, classify every file in scope by type/owner, identify hotspots (LOC, complexity, novelty), surface obvious P0/P1 quick-wins before the dimension-ordered passes begin.
+**Deep review COMPLETE.** All 10 iterations executed across 6 dimensions. Final verdict: CONDITIONAL (hasAdvisories=true). Proceed to `/memory:save` to persist review continuity.
 
 ---
 
