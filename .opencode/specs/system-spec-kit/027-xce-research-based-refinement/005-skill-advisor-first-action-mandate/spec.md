@@ -1,38 +1,48 @@
 ---
-title: "Phase 005 — Skill Advisor First-Action Mandate (render.ts strengthening)"
-description: "ADAPT XCE's static 'ALWAYS use X FIRST' steering pattern to our dynamic skill_advisor brief. Strengthen render.ts from 'use ${label}' (suggestion) to 'MUST invoke ${label} FIRST — ${action_hint}' (mandate) with per-skill action hints. ~30 LOC: single render.ts edit, zero scorer surgery, zero new files."
+title: "Phase 005 — Skill Advisor First-Action Mandate (CANCELLED — folded into 103/003)"
+description: "CANCELLED 2026-05-11 per pt-04 audit. The render.ts strengthening proposed here overlaps the shipped 103 :auto contract (commit add6cff39, 2026-05-11) which already delivers a three-tier noninteractive routing contract. To keep the noninteractive routing vocabulary single-sourced under 103, this phase is cancelled and the renderer wording change is folded into `../../../skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment/`."
 trigger_phrases:
-  - "027 phase 005"
-  - "skill advisor first-action mandate"
-  - "advisor MUST invoke"
-  - "render.ts strengthening"
-importance_tier: "important"
+  - "027 phase 005 cancelled"
+  - "027 phase 005 folded into 103"
+  - "first-action mandate folded"
+importance_tier: "background"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-skill-advisor-first-action-mandate"
-    last_updated_at: "2026-05-08T15:00:00Z"
+    last_updated_at: "2026-05-11T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Scaffolded 027/005 phase from sub-packet-proposals.md Proposal 4"
-    next_safe_action: "Implement FIRST_ACTION_HINT map + capText callsite update in render.ts"
+    recent_action: "CANCELLED per pt-04: renderer change folded into 103/003"
+    next_safe_action: "Implement renderer wording change in 103/003, not here"
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    key_files: ["spec.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "claude-opus-4-7-2026-05-08-027-005"
+      session_id: "2026-05-11-027-005-cancellation"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Phase 005 fate → cancel + fold into 103/003 follow-on (pt-04 user decision)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Skill Advisor First-Action Mandate
+# Feature Specification: Skill Advisor First-Action Mandate — **CANCELLED**
 
 <!-- SPECKIT_LEVEL: 1 -->
 
+> **Status: CANCELLED — 2026-05-11 (pt-04 audit)**.
+>
+> The render-layer "MUST invoke FIRST" mandate proposed in this phase has been folded into the 103 :auto noninteractive contract follow-on at:
+>
+> `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment/`
+>
+> Rationale (per pt-04 audit `../research/027-xce-research-pt-04/research.md` §2 Phase 005 and §3 overlap matrix): shipped commit `add6cff39` (2026-05-11) generalized the :auto three-tier contract to 12 commands with 13/13 live PASS. Adding a second "MUST invoke FIRST" vocabulary in `render.ts:155-157` outside that contract would create a divergent vocabulary. The renderer wording change therefore lands as a child of 103, not as a 027 phase.
+>
+> This folder is retained as audit history (not deleted, per spec-kit retention policy for cancelled phases). The downstream packet 006 has been updated to remove the dependency on this phase as the eval's "after" independent variable.
+
 ---
 
-## EXECUTIVE SUMMARY
+## EXECUTIVE SUMMARY (HISTORICAL — pre-cancellation)
 
 Implement the render-layer change proposed in 027 RQ6 (`../research/iterations/iteration-006.md` F-036) with pt-02 guardrails from `../research/027-xce-research-based-refinement-pt-02/research.md`. Strengthen the `skill_advisor/lib/render.ts` brief from a soft suggestion (`"use ${topLabel}"`) to a strong directive (`"MUST invoke ${topLabel} FIRST (${score}/${uncertainty}) - ${action_hint}"`) only when confidence and uncertainty thresholds both pass. Add a `FIRST_ACTION_HINT` constant map covering all 16 skills with per-skill action directives. Modify two `capText` calls at render.ts:149-152 (ambiguous case) and render.ts:155-158 (normal case). **No scorer changes** — directive strength change only in render layer.
 

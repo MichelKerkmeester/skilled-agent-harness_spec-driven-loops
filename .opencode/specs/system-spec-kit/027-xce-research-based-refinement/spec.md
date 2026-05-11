@@ -18,54 +18,67 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-05-10T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Added Phase 001 complete CocoIndex MCP fork plan and renumbered implementation phases"
-    next_safe_action: "Implement Phase 001 Sub-Phase 1 import manifest and layout decision"
+    last_updated_at: "2026-05-11T00:00:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "pt-04 audit + spec-refresh: 005 cancelled to 103/003, 012 split from 009"
+    next_safe_action: "Implement 012-feedback-p0-correctness P0 fixes first"
     blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
-      - "tasks.md"
-      - "checklist.md"
-      - "research/deep-research-config.json"
+      - "research/027-xce-research-pt-04/research.md"
+      - "research/027-xce-research-pt-04/prompt.md"
       - "001-cocoindex-complete-fork/spec.md"
-      - "001-cocoindex-complete-fork/plan.md"
-      - "external/README.md"
+      - "012-feedback-p0-correctness/spec.md"
+      - "../../skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-08-027-spec-scaffold"
+      session_id: "2026-05-11-027-pt-04-refresh"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Phase 001 baseline → keep v0.2.33 snapshot (no upstream refresh)"
+      - "Phase 005 fate → cancel + fold into 103/003 follow-on"
+      - "Phase 009 P0 split → ship as new 012 mini-packet before code_graph phases"
+      - "Phase 006 purpose → XCE-style productivity measurement (file-reads-avoided + token reduction)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: XCE Research-Based Refinement (Phase Parent)
 
 <!-- SPECKIT_LEVEL: 2 -->
 
-> **Phase Parent**: This packet has graduated from a research-only packet to a phase parent with 11 implementation phase children. Phase 001 is now the complete local CocoIndex MCP fork prerequisite requested on 2026-05-10. The original XCE research run completed 2026-05-08 with 10 iterations + synthesis, pt-02 cross-validation produced the code-graph and advisor phases now numbered 002-006, and pt-03 expanded scope into CocoIndex/memory phases now numbered 007-011.
+> **Phase Parent**: This packet has graduated from a research-only packet to a phase parent with 11 implementation phase children plus 1 split-out P0 correctness mini-packet (012). pt-04 alignment audit (2026-05-11, cli-codex gpt-5.5 xhigh fast) reviewed the packet against 26+ commits shipped between 2026-05-08 and 2026-05-11; verdict: direction correct, 7 children need spec-refresh, 1 cancelled and folded into 103 follow-on, 3 deferred. See `research/027-xce-research-pt-04/research.md` for full audit; see [pt-04 verdict mix](#pt-04-verdict-mix) below for one-liner status.
 
 ## PHASES
 
-| Phase | Title | Verdict | Level | LOC | Depends on |
+| Phase | Title | pt-04 Verdict | Level | LOC | Depends on |
 |-------|-------|---------|------:|----:|-----------|
-| **[001-cocoindex-complete-fork](./001-cocoindex-complete-fork/spec.md)** | Complete in-repo `cocoindex-code` MCP wrapper fork | FOUNDATION | 3 | ~1,000-1,500 | none |
-| **[002-code-graph-hld-lld](./002-code-graph-hld-lld/spec.md)** | Deterministic HLD/LLD Narrative Generation | ADOPT (#1, #8) | 2 | ~320-370 | none |
-| **[003-code-graph-trace](./003-code-graph-trace/spec.md)** | Symbol→Class→Module→Role Trace Tool | ADAPT (#2, #6, #7, #9) | 2 | ~390-460 | 002 |
-| **[004-code-graph-impact-analysis](./004-code-graph-impact-analysis/spec.md)** | Risk-Scored Impact Analysis | ADAPT (#3) | 2 | ~430-570 | optional 002/003 for enrichment only |
-| **[005-skill-advisor-first-action-mandate](./005-skill-advisor-first-action-mandate/spec.md)** | Render-layer "MUST invoke FIRST" mandate | ADAPT (#11, #13) | 1 | ~80-120 | none |
-| **[006-code-graph-adoption-eval](./006-code-graph-adoption-eval/spec.md)** | Lightweight Local Eval Harness | ADAPT (#14) + DEFER (#15) | 3 | ~680-800 | 002-005 |
-| **[007-coco-intent-steering](./007-coco-intent-steering/spec.md)** | CocoIndex intent steering + bounded query expansion | ADAPT (pt-03 RQ-A1) | 3 | ~250-350 | 001; soft 005/006 |
-| **[008-memory-semantic-triggers](./008-memory-semantic-triggers/spec.md)** | Memory semantic trigger matching | ADAPT (pt-03 RQ-B1) | 3 | ~280-430 | 006 |
-| **[009-feedback-reducers](./009-feedback-reducers/spec.md)** | Feedback reducers + P0 memory correctness fixes | ADAPT (pt-03 RQ-A3/RQ-B3) | 3 | ~400-650 | 006; feeds 007/011 |
-| **[010-retrieval-rerank-clients](./010-retrieval-rerank-clients/spec.md)** | Shared rerank/embedding cache client interfaces | ADAPT (pt-03 RQ-B5) | 3 | ~250-420 | 001 for Coco adapter |
-| **[011-coco-memory-context-extras](./011-coco-memory-context-extras/spec.md)** | Coco exemplars + memory curated context extras | ADAPT/DEFER (pt-03 RQ-A4/RQ-B2) | 3 | ~500-800 | 001 for Coco examples; 006/008/009/010 soft |
+| **[001-cocoindex-complete-fork](./001-cocoindex-complete-fork/spec.md)** | Complete in-repo `cocoindex-code` MCP wrapper fork | REVISE_SCOPE — v0.2.33 baseline kept, sync follow-on noted | 3 | ~1,000-1,500 | none |
+| **[002-code-graph-hld-lld](./002-code-graph-hld-lld/spec.md)** | Deterministic HLD/LLD Narrative Generation | KEEP_AS_IS | 2 | ~320-370 | none |
+| **[003-code-graph-trace](./003-code-graph-trace/spec.md)** | Symbol→Class→Module→Role Trace Tool | REVISE_SCOPE — dep label fix only | 2 | ~390-460 | 002 |
+| **[004-code-graph-impact-analysis](./004-code-graph-impact-analysis/spec.md)** | Risk-Scored Impact Analysis | REVISE_SCOPE — extend existing `impact` mode, not new concept | 2 | ~430-570 | optional 002/003 for enrichment only |
+| **[005-skill-advisor-first-action-mandate](./005-skill-advisor-first-action-mandate/spec.md)** | Render-layer "MUST invoke FIRST" mandate | **CANCELLED** — folded into [103/003 follow-on](../../skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment/spec.md) | 1 | ~80-120 (now in 103/003) | n/a |
+| **[006-code-graph-adoption-eval](./006-code-graph-adoption-eval/spec.md)** | XCE-Style Productivity Measurement Harness (file-reads-avoided + token reduction) | REVISE_SCOPE — productivity measurement on top of existing eval/stress surfaces | 3 | ~680-800 | 002-004 |
+| **[007-coco-intent-steering](./007-coco-intent-steering/spec.md)** | CocoIndex intent steering + bounded query expansion | DEFER — blocked on 001 | 3 | ~250-350 | 001; soft 006 |
+| **[008-memory-semantic-triggers](./008-memory-semantic-triggers/spec.md)** | Memory semantic trigger matching | REVISE_SCOPE — path repair to `tools/memory-tools.ts` | 3 | ~280-430 | 006 (shadow eval evidence) |
+| **[009-feedback-reducers](./009-feedback-reducers/spec.md)** | Learning Feedback Reducers (P0 fixes split into 012) | REVISE_SCOPE — scope to learning reducers only after 012 lands | 3 | ~350-570 (was 400-650; -50-80 to 012) | 012 hard; 006 soft |
+| **[010-retrieval-rerank-clients](./010-retrieval-rerank-clients/spec.md)** | Shared rerank/embedding cache client interfaces | DEFER — blocked on 001 | 3 | ~250-420 | 001 for Coco adapter |
+| **[011-coco-memory-context-extras](./011-coco-memory-context-extras/spec.md)** | Coco exemplars + memory curated context extras | DEFER — blocked on 001 + 006 evidence | 3 | ~500-800 | 001 for Coco examples; 006/008/009/010 soft |
+| **[012-feedback-p0-correctness](./012-feedback-p0-correctness/spec.md)** | Feedback P0 Correctness (split from 009 Sub-Phase 1) | NEW — split-out 2026-05-11 per pt-04 | 2 | ~50-80 prod + ~60-100 tests | none |
 
-**Total**: ~4,580-6,440 LOC across 11 phases after adding the complete CocoIndex fork prerequisite. Recommended execution order: 001 first for the CocoIndex baseline, 005 can still ship early as a render-layer advisor improvement, code-graph phases 002-004 can proceed independently, 006 gates rollout evidence, and CocoIndex-facing phases 007/010/011 should wait for 001 before touching the forked MCP wrapper.
+### pt-04 verdict mix
 
-**Cross-cuts**: see `research/research.md` for the original synthesis, `research/findings.md` for the 21-feature adoption matrix, `research/sub-packet-proposals.md` for the original per-phase scope rationale, `research/resource-map.md` for the pass-1 path ledger, and `research/027-xce-research-based-refinement-pt-02/research.md` for implementation-risk amendments.
+| Verdict | Count | Phases |
+|---|---|---|
+| KEEP_AS_IS | 1 | 002 |
+| REVISE_SCOPE | 6 | 001, 003, 004, 006, 008, 009 |
+| CANCELLED (folded into 103/003) | 1 | 005 |
+| DEFER | 3 | 007, 010, 011 |
+| NEW (split from 009) | 1 | 012 |
+
+**Total**: ~4,580-6,440 LOC across 11 active phase children (005 cancelled, 012 added). Revised execution order: **012 P0 correctness ships first** → 001 (v0.2.33 baseline) → 002 → 003 → 004 → 006 (XCE-style productivity measurement) → 008 → 009 (learning reducers only) → 007/010/011 deferred. 005's renderer change is now owned by [skilled-agent-orchestration/103/003](../../skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment/spec.md).
+
+**Cross-cuts**: see `research/research.md` for the original synthesis, `research/findings.md` for the 21-feature adoption matrix, `research/sub-packet-proposals.md` for the original per-phase scope rationale, `research/resource-map.md` for the pass-1 path ledger, `research/027-xce-research-based-refinement-pt-02/research.md` for implementation-risk amendments, and `research/027-xce-research-pt-04/research.md` for the 2026-05-11 alignment audit.
 
 ---
 

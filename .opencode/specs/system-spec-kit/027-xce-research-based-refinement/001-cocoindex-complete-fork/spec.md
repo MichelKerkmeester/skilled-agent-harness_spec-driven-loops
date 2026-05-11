@@ -13,10 +13,10 @@ contextType: "plan"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork"
-    last_updated_at: "2026-05-10T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Scaffolded Phase 001 fork plan"
-    next_safe_action: "Implement Sub-Phase 1 inventory and upstream baseline import"
+    last_updated_at: "2026-05-11T00:00:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "pt-04 audit: kept downloaded snapshot baseline, upstream sync deferred"
+    next_safe_action: "Implement Sub-Phase 1 inventory and snapshot baseline import"
     blockers: []
     key_files:
       - "spec.md"
@@ -46,7 +46,9 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This phase converts `mcp-coco-index` from a partial soft fork into a complete, locally controlled fork of `cocoindex-code`'s MCP wrapper. The current skill fork is pinned to `0.2.3+spec-kit-fork.0.2.0` and documents only the original 0.2.3 vendoring plus six spec-kit patches in `CHANGELOG.md:9-27` and `NOTICE:16-31`. Upstream is now `v0.2.33` as of 2026-05-08; GitHub release `v0.2.33` is marked latest and lists the lazy-load CLI performance change from PR #164.
+> **pt-04 audit note (2026-05-11)**: Baseline decision confirmed — this phase imports from the **2026-05-10 v0.2.33 snapshot** already downloaded at `external/cocoindex-code-main/`. No upstream refresh in this packet. Any upstream commits past v0.2.33 are deferred to a separate sync follow-on packet. See `../research/027-xce-research-pt-04/research.md` §4 for the baseline reality check.
+
+This phase converts `mcp-coco-index` from a partial soft fork into a complete, locally controlled fork of `cocoindex-code`'s MCP wrapper. The current skill fork is pinned to `0.2.3+spec-kit-fork.0.2.0` and documents only the original 0.2.3 vendoring plus six spec-kit patches in `CHANGELOG.md:9-27` and `NOTICE:16-31`. Upstream as captured in the downloaded snapshot is `v0.2.33`; GitHub release `v0.2.33` was marked latest on 2026-05-10 (snapshot capture date) and lists the lazy-load CLI performance change from PR #164.
 
 The researched baseline says this is architectural Level 3 work. The local fork has 15 Python package files and 2 tests; upstream v0.2.33 has 18 Python modules, 15 test files, Docker runtime assets, the `skills/ccc` agent skill, hatch/uv packaging, path mapping helpers, custom chunker support, embedding parameter defaults, and a richer CLI/doctor surface. Taking the whole MCP wrapper into the repo lets later phases change query behavior, daemon behavior, settings, packaging, tests, and docs without chasing PyPI or reimplementing upstream features piecemeal.
 

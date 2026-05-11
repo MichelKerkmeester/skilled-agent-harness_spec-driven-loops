@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
-    "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands"
+    "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands",
+    "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -20,7 +21,7 @@
     "trigger_phrases": [],
     "key_topics": [],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "in-progress",
     "key_files": [
       "spec.md"
     ],

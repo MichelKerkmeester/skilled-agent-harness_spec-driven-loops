@@ -1,0 +1,47 @@
+{
+  "title": "Phase 103/003 — Skill Advisor Render-Layer 103-Alignment (absorbs cancelled 027/005)",
+  "trigger_phrases": [
+    "103 phase 003",
+    "skill advisor render 103 alignment",
+    "render.ts MUST invoke FIRST",
+    "advisor first-action under 103 contract"
+  ],
+  "level": 1,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-11T00:00:00Z",
+  "branch": "main",
+  "parent_track": "103-spec-kit-auto-mode-noninteractive-contract",
+  "parent_id": "103-spec-kit-auto-mode-noninteractive-contract",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
+      "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands"
+    ]
+  },
+  "derived": {
+    "status": "planned",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment",
+  "description": "Feature Specification: Skill Advisor Render-Layer 103 Alignment",
+  "keywords": [
+    "skill",
+    "advisor",
+    "render",
+    "first-action",
+    "noninteractive"
+  ],
+  "lastUpdated": "2026-05-11T00:00:00Z",
+  "specId": "003",
+  "folderSlug": "skill-advisor-render-103-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "103-spec-kit-auto-mode-noninteractive-contract"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

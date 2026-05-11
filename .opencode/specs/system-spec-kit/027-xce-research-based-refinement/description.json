@@ -39,7 +39,8 @@
     "008-memory-semantic-triggers",
     "009-feedback-reducers",
     "010-retrieval-rerank-clients",
-    "011-coco-memory-context-extras"
+    "011-coco-memory-context-extras",
+    "012-feedback-p0-correctness"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement",
   "description": "Phase parent for the XCE adoption work. Phase 001 now plans the complete local fork of the cocoindex-code MCP wrapper at upstream v0.2.33, replacing the current partial 0.2.3 soft-fork baseline before later CocoIndex phases modify retrieval behavior. Pass 1 XCE research completed 2026-05-08, pt-02 cross-validation hardened the code-graph/advisor work, and pt-03 expanded into CocoIndex and memory-backend phases. Total 11 phase children are scaffolded: 001 complete CocoIndex fork (L3); 002 HLD/LLD (L2), 003 trace (L2), 004 impact analysis (L2), 005 first-action mandate (L1), 006 adoption eval (L3); 007 coco intent steering (L3), 008 memory semantic triggers (L3), 009 feedback reducers + P0 fixes (L3), 010 retrieval rerank clients (L3), 011 coco+memory context extras (L3). CocoIndex-facing phases 007, 010, and 011 now depend on Phase 001 for the owned MCP wrapper baseline.",

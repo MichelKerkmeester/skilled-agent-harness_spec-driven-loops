@@ -34,7 +34,9 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Implement the deterministic risk-scored impact analysis proposed in 027 RQ3 (`../research/iterations/iteration-003.md` F-019) with pt-02 corrections from `../research/027-xce-research-based-refinement-pt-02/research.md`. A new `mcp_server/code_graph/lib/code-graph-impact-analysis.ts` wraps the existing `detect_changes` handler and enriches its output with deterministic file-level risk signals aggregated across all CodeNode rows for each file. Exposed as a new `code_graph_impact_analysis` MCP tool. Optional narrative enrichment is disabled by default and requires explicit provider configuration.
+> **pt-04 audit note (2026-05-11)**: Pivot from "new parallel concept" to **"extend existing surfaces"**. The current `code-graph-context.ts:458-491` already implements a lightweight `impact` mode over incoming CALLS/IMPORTS, and `detect-changes.ts:40-49` already returns affected symbols/files/readiness. Phase 004's role is to **add the 5 risk signals + the risk-score formula on top of those existing surfaces** — NOT to create a third parallel "impact" concept. See `../research/027-xce-research-pt-04/research.md` §2 Phase 004.
+
+Implement the deterministic risk-scored impact analysis proposed in 027 RQ3 (`../research/iterations/iteration-003.md` F-019) with pt-02 corrections from `../research/027-xce-research-based-refinement-pt-02/research.md` and pt-04 path discipline from `../research/027-xce-research-pt-04/research.md`. A new `mcp_server/code_graph/lib/code-graph-impact-analysis.ts` **extends** the existing `detect_changes` handler and the existing `impact` mode in `code-graph-context.ts:458-491` with deterministic file-level risk signals aggregated across all CodeNode rows for each file. Exposed as a new `code_graph_impact_analysis` MCP tool that consumes (not duplicates) the existing impact-mode walker. Optional narrative enrichment is disabled by default and requires explicit provider configuration.
 
 ADAPT verdict from findings.md item #3.
 
@@ -70,8 +72,8 @@ risk = normalize(fanIn) * 0.35
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
 | **Source** | `../research/sub-packet-proposals.md` Proposal 3; `../research/iterations/iteration-003.md`; pt-02 amendments in `../research/027-xce-research-based-refinement-pt-02/` |
-| **Optional dep** | `027/003-code-graph-hld-lld` (for layer-based criticality in LLM enrichment) |
-| **Optional dep** | `027/004-code-graph-trace` (for trace-based downstream narrative) |
+| **Optional dep** | `027/002-code-graph-hld-lld` (for layer-based criticality in LLM enrichment) — pt-04 fix: was 003 pre-renumbering |
+| **Optional dep** | `027/003-code-graph-trace` (for trace-based downstream narrative) — pt-04 fix: was 004 pre-renumbering |
 <!-- /ANCHOR:metadata -->
 
 ---

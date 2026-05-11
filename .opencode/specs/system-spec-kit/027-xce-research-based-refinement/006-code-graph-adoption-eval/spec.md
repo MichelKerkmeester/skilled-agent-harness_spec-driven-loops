@@ -35,7 +35,14 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Build the lightweight eval harness proposed in 027 RQ7 (`../research/iterations/iteration-007.md` F-041) with RQ8 token-reduction instrumentation (iteration-008 F-046) and pt-02 subprocess hardening from `../research/027-xce-research-based-refinement-pt-02/research.md`. A CLI dispatcher spawns OpenCode subprocesses to execute 12-20 refactoring tasks on our own codebase in two modes: **baseline** (current advisor brief) vs **after** (Phase 005's MUST-invoke mandate brief). Measures 3 primary metrics (file-reads-avoided, context-accuracy via `computeHitRate`, answer-completeness via Jaccard) + 2 diagnostics (token waste ratio, first-action adherence) + RQ8 token-reduction instrumentation that queries `session-analytics-db.ts` for `total_tokens` post-session-stop.
+> **pt-04 audit note (2026-05-11)**: Two updates per user decision.
+>
+> 1. **Independent variable changed**: Phase 005 was cancelled (folded into 103/003); the "after" condition is now the combined effect of the new code_graph tools (HLD/LLD from 002, trace from 003, impact-analysis from 004) **plus** the 103/003 first-action wording (if shipped before this harness runs). The harness can also run in pure code-graph-tools mode (without 103/003) to isolate tool effect.
+> 2. **Dependency labels fixed**: prior text listed `027/003-code-graph-hld-lld, 027/004-code-graph-trace, 027/005-code-graph-impact-analysis, 027/006-skill-advisor-first-action-mandate` — all using the pre-renumbering IDs. Real deps are 027/002 (HLD/LLD), 027/003 (trace), 027/004 (impact-analysis), and 103/003 (first-action wording, optional).
+>
+> The XCE-style productivity-measurement scope is **KEPT** (per pt-04 user decision — measure file-reads-avoided + token reduction, not just readiness validation). See `../research/027-xce-research-pt-04/research.md` §5 re-prioritization and §6 open questions Q4.
+
+Build the lightweight eval harness proposed in 027 RQ7 (`../research/iterations/iteration-007.md` F-041) with RQ8 token-reduction instrumentation (iteration-008 F-046), pt-02 subprocess hardening from `../research/027-xce-research-based-refinement-pt-02/research.md`, and pt-04 dependency / variable updates from `../research/027-xce-research-pt-04/research.md`. A CLI dispatcher spawns OpenCode subprocesses to execute 12-20 refactoring tasks on our own codebase in two modes: **baseline** (current advisor brief, no new code_graph tools) vs **after** (Phases 002-004 tools live, optionally with 103/003 first-action wording). Measures 3 primary metrics (file-reads-avoided, context-accuracy via `computeHitRate`, answer-completeness via Jaccard) + 2 diagnostics (token waste ratio, first-action adherence) + RQ8 token-reduction instrumentation that queries `session-analytics-db.ts` for `total_tokens` post-session-stop. **Productivity-measurement scope is intentional** — this harness mirrors XCE's benchmark methodology in lightweight local form, building on existing `eval_run_ablation` + `eval_reporting_dashboard` + 060 stress methodology + 101 council graph value automation as reusable building blocks (per pt-04 §5).
 
 ADAPT verdict from findings.md items #14 (token reduction) + #15 (benchmark methodology, DEFER → built here as the lightweight local alternative).
 
@@ -44,10 +51,11 @@ ADAPT verdict from findings.md items #14 (token reduction) + #15 (benchmark meth
 - **Subprocess OpenCode dispatch** with `</dev/null` redirect (per 097 fix). Reuses cli-opencode skill.
 - **Paired comparison protocol**: same task set, same model, baseline vs after — controls for prompt/model variance.
 - **N≥20 tasks per condition** for statistical power.
+- **Reuse existing eval surfaces**: `eval_run_ablation` + `eval_reporting_dashboard` (`tool-input-schemas.ts:776-779`), 060 stress methodology, 101 council graph value automation. The new harness adds the file-reads-avoided + token-reduction metrics on top.
 
 **Critical Constraints**:
-- Phase 005 must ship FIRST — its mandate brief is the "after" condition's independent variable.
-- Phases 001-003 must ship FIRST — they're the tools being evaluated.
+- Phases 027/002, 027/003, 027/004 must ship FIRST — they're the tools being evaluated.
+- 103/003 first-action wording is optional for the "after" condition (run with-and-without to isolate the contribution).
 - 10-minute per-task timeout to bound total wallclock.
 - Incremental result saving (JSONL per task) — never lose data on partial harness crash.
 
@@ -63,7 +71,7 @@ ADAPT verdict from findings.md items #14 (token reduction) + #15 (benchmark meth
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
 | **Source** | `../research/sub-packet-proposals.md` Proposal 5; `../research/iterations/iteration-007.md`, `iteration-008.md`; pt-02 amendments in `../research/027-xce-research-based-refinement-pt-02/` |
-| **Depends on** | `027/003-code-graph-hld-lld`, `027/004-code-graph-trace`, `027/005-code-graph-impact-analysis`, `027/006-skill-advisor-first-action-mandate` |
+| **Depends on** | `027/002-code-graph-hld-lld` (hard), `027/003-code-graph-trace` (hard), `027/004-code-graph-impact-analysis` (hard); optional: `103/003-skill-advisor-render-103-alignment` (for 2nd "after" arm comparing with-vs-without first-action wording). **pt-04 fix** — prior phase IDs (003/004/005/006) were pre-renumbering. |
 <!-- /ANCHOR:metadata -->
 
 ---

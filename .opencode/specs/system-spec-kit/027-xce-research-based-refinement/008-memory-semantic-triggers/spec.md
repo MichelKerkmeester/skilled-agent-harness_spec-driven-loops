@@ -38,6 +38,8 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
+> **pt-04 audit note (2026-05-11)**: Path discipline confirmed — spec uses correct `mcp_server/lib/triggers/`, `mcp_server/lib/parsing/trigger-matcher.ts`, `mcp_server/handlers/memory-index-scan.ts`, `mcp_server/lib/embeddings/embedding-pipeline.ts` paths. Audit flagged `mcp_server/lib/memory/` as nonexistent — that path may appear in plan.md / tasks.md / decision-record.md (TODO: sweep these). Live tool dispatch is `tools/memory-tools.ts:63-75` and schemas `tool-input-schemas.ts:820-825`. **Dependency reframing**: the soft dependency on `006-code-graph-adoption-eval` is now stated as "requires **shadow eval evidence**" — Phase 006's harness produces the evidence, but the dependency is on the evidence, not on a specific harness implementation. See `../research/027-xce-research-pt-04/research.md` §2 Phase 008.
+
 Pt-03 RQ-B1 (verdict ADAPT, see `../research/027-xce-research-pt-03/research.md` §RQ-B1 and `../research/027-xce-research-pt-03/iterations/iteration-006.md`) addresses the memory backend's lexical-only trigger matching. Today's `memory_match_triggers` (`mcp_server/lib/parsing/trigger-matcher.ts:201-545`) matches by exact phrase + word boundaries (CJK substring + Latin word-boundary regex). It catches `/memory:save` and `save context` precisely but misses paraphrases like "save the current state".
 
 XCE's transferable teaching is semantic retrieval ("find by meaning, not text matching" per `external/README.md:192-199`). Direct adoption would replace lexical with semantic — but trigger matches activate working memory + co-activation spreading (`memory-triggers.ts:360-380`); semantic false positives would mis-prioritize cognitive tiers.
@@ -71,7 +73,7 @@ XCE's transferable teaching is semantic retrieval ("find by meaning, not text ma
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
 | **Source** | `../research/027-xce-research-pt-03/research.md` §RQ-B1; `../research/027-xce-research-pt-03/iterations/iteration-006.md` |
-| **Depends on** | none (hard); shared infra from `006-code-graph-adoption-eval` for threshold tuning eval |
+| **Depends on** | none (hard); requires **shadow eval evidence** from `006-code-graph-adoption-eval` (or equivalent harness) for threshold tuning before live-mode promotion. **pt-04 reframing** — was "shared infra from 006", now "requires evidence, not infra coupling". |
 | **LOC budget** | ~280-430 production + ~180-280 tests |
 <!-- /ANCHOR:metadata -->
 

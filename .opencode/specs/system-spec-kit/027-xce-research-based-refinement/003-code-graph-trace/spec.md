@@ -60,7 +60,7 @@ ADAPT verdict from findings.md item #2 + PRAT stages #6, #7, #9 (Persistent / Re
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
 | **Source** | `../research/sub-packet-proposals.md` Proposal 2; `../research/iterations/iteration-002.md`; pt-02 amendments in `../research/027-xce-research-based-refinement-pt-02/` |
-| **Depends on** | `027/003-code-graph-hld-lld` (architectural-role labels) |
+| **Depends on** | `027/002-code-graph-hld-lld` (architectural-role labels) — pt-04 fix: was `027/003-code-graph-hld-lld` pre-renumbering |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -144,7 +144,7 @@ XCE's `xce_trace` (external/README.md:211-218) walks `function → class → mod
 | Risk | **`fqName` dot-splitting confuses lexical containment with package ownership** | High | Derive module from `filePath` policy (REQ-008); reserve `fqName` for class/method display only. Per B-iter002-008 + B-iter008-001. |
 | Risk | **Parallel work before Phase 002 ships can hide classifier-contract drift** | Medium | Use typed test doubles ONLY before Phase 002 ships; later add shared-contract test against real `classifyFileRole()` (REQ-004 amended). |
 | Risk | Deeply nested traces (10+ levels) hit budget | Low | Cap at maxDepth (default 5); truncate with marker |
-| Dependency | Phase 027/002 (HLD/LLD) must ship first | Internal | Hard sequence — Phase 003 cannot start until 001 lands; REQ-015 from 001 pins `classifyFileRole(filePath, db)` signature |
+| Dependency | Phase 027/002 (HLD/LLD) must ship first | Internal | Hard sequence — Phase 003 cannot start until 027/002 lands; REQ-015 from 027/002 pins `classifyFileRole(filePath, db)` signature. (pt-04 fix: prior text incorrectly said "001 lands" / "REQ-015 from 001"; 001 is the CocoIndex fork, not HLD/LLD.) |
 | Dependency | Existing `code-graph-db.ts` queryEdgesTo + resolveSubjectFilePath | Internal | Already shipped, stable |
 <!-- /ANCHOR:risks -->
 

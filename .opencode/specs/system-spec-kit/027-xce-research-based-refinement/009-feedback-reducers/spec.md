@@ -1,6 +1,6 @@
 ---
-title: "Phase 009 — Shared Feedback Reducers (3 P0 Fixes + 1 Aggregation + 3 Consumers)"
-description: "ADAPT pt-03 RQ-A3 + RQ-B3 + RQ-B4 as a single L3 packet: shared feedback aggregation reducer feeding three independent decision consumers (coco rerank weights, session-trace causal-edge inference, learned retention/decay). Sub-Phase 1 applies 3 P0 precondition fixes (auto-provenance cap broadening, manual-edge overwrite guard, retention-sweep tier basement). Largest phase of the 5: ~400-650 prod LOC + ~480-810 tests across Python and TypeScript."
+title: "Phase 009 — Learning Feedback Reducers (3 Consumers, P0 Fixes split into 012)"
+description: "ADAPT pt-03 RQ-A3 + RQ-B3 + RQ-B4 as a learning-reducers L3 packet: shared feedback aggregation reducer feeding three independent decision consumers (coco rerank weights, session-trace causal-edge inference, learned retention/decay). pt-04 split (2026-05-11): the 3 P0 precondition fixes (auto-provenance cap broadening, manual-edge overwrite guard, retention-sweep tier basement) have moved to new sibling phase `012-feedback-p0-correctness` which ships FIRST. Phase 009 now depends on 012 and is scoped to ~350-570 prod LOC + ~420-710 tests (was ~400-650 prod + ~480-810 tests)."
 trigger_phrases:
   - "027 phase 009"
   - "feedback reducers"
@@ -15,10 +15,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-feedback-reducers"
-    last_updated_at: "2026-05-09T11:00:00Z"
+    last_updated_at: "2026-05-11T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Scaffolded 027/009 from pt-03 RQ-A3+B3+B4"
-    next_safe_action: "Begin Sub-Phase 1 (3 P0 fixes)"
+    recent_action: "pt-04 split: P0 fixes moved to sibling 012, 009 scoped to learning reducers"
+    next_safe_action: "Implement 012 P0 fixes first, then 009 Sub-Phase 2 aggregation"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md", "resource-map.md"]
     session_dedup:
@@ -35,9 +35,11 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Shared Feedback Reducers (3 P0 Fixes + Aggregation + 3 Consumers)
+# Feature Specification: Learning Feedback Reducers (3 Consumers; P0 fixes split into 012)
 
 <!-- SPECKIT_LEVEL: 3 -->
+
+> **pt-04 split note (2026-05-11)**: The 3 P0 correctness fixes that were Sub-Phase 1 of this packet have been carved out into a new sibling phase: [`../012-feedback-p0-correctness/`](../012-feedback-p0-correctness/spec.md). Reason (per pt-04 user decision): correctness fixes should not wait on learning-reducer design. The 012 packet ships before all code_graph phases. 009 (this packet) is now scoped to Sub-Phases 2-5 only (aggregation + 3 consumers) and **hard-depends on 012** for the precondition fixes. See `../research/027-xce-research-pt-04/research.md` §2 Phase 009.
 
 ---
 
@@ -48,9 +50,9 @@ Pt-03 RQ-A3, RQ-B3, RQ-B4 (verdicts ADAPT, see `../research/027-xce-research-pt-
 - **RQ-B3** — session-trace causal-edge inference: `search_shown(A) → result_cited(B)` → weak `ENABLED(A→B)` at strength 0.3.
 - **RQ-B4** — learned retention/decay: weighted-positive TTL extensions; constitutional/critical basement; narrow edge-floor.
 
-Phase 009 implements all three as a single L3 packet with one shared aggregation layer feeding three independent decision consumers, plus 3 P0 precondition fixes that MUST land in Sub-Phase 1 BEFORE any reducer ships.
+Phase 009 implements the three reducers as a single L3 packet with one shared aggregation layer feeding three independent decision consumers. **The 3 P0 precondition fixes that were Sub-Phase 1 have moved to sibling phase [`../012-feedback-p0-correctness/`](../012-feedback-p0-correctness/spec.md)** which ships BEFORE 009. 009 hard-depends on 012; 012 is a self-contained correctness packet.
 
-**The 3 P0 Fixes (Sub-Phase 1 — preconditions):**
+**The 3 P0 Fixes (NOW in sibling 012-feedback-p0-correctness):**
 1. **P0-1: Auto-provenance cap broadening** — `causal-edges.ts:269-288` only checks `createdBy === 'auto'`; RQ-B3's `created_by='auto-session'` would BYPASS the 0.5 strength cap. Fix: `isAutoEdgeCreator(createdBy) => createdBy === 'auto' || createdBy.startsWith('auto-')`. Same fix in `consolidation.ts:352-359`.
 2. **P0-2: Manual-edge overwrite guard** — `causal-edges.ts:313-338` `insertEdge` upsert overwrites `created_by` on conflict. Reducer must query existing edge first and skip if `created_by` is non-auto.
 3. **P0-3: Retention-sweep tier basement gap** — `memory-retention-sweep.ts:52-68` selects expired rows by `delete_after` ONLY, ignoring tier. Constitutional/critical records can be deleted on TTL expiry despite scoring treating them as never-decay (`tier-classifier.ts:185-213`, `importance-tiers.ts:32-55`, `fsrs-scheduler.ts:286-304`). Fix: extend `RetentionExpiredRow` schema with tier fields; add tier-aware decision before deletion.
@@ -58,7 +60,7 @@ Phase 009 implements all three as a single L3 packet with one shared aggregation
 **Universal pattern (per pt-03):** all 3 reducers default-off, shadow-first, fail-closed; live mutation requires Phase-006 eval lift over rule-based baseline.
 
 **Critical Constraints:**
-- The 3 P0 fixes MUST land before consumers B and C ship. Consumer A (coco rerank) is independent and could ship without them.
+- Phase 012 (P0 correctness fixes) MUST land before this packet starts. Consumer A (coco rerank) could in principle ship without P0-1/P0-2, but ordering after 012 is simpler and safer.
 - Live per-event reducers would turn shadow-only feedback logging into immediate ranking mutation via causal-boost — DEFERRED reducers only (session-close / consolidation cycle / explicit maintenance).
 - Weighted positives MUST replace raw `summary.total` — exposure ≠ usefulness.
 - Constitutional/critical retention basement is narrow: applies to MANUAL/authored edges with BOTH endpoints high-tier; not to auto-derived RQ-B3 edges.
@@ -75,8 +77,8 @@ Phase 009 implements all three as a single L3 packet with one shared aggregation
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
 | **Source** | `../research/027-xce-research-pt-03/research.md` §§RQ-A3, RQ-B3, RQ-B4; iterations 003, 008, 009; deltas 003, 008, 009 |
-| **Depends on** | none hard; soft on `006-code-graph-adoption-eval` (Phase-006 eval gate for live mutation) |
-| **LOC budget** | ~400-650 production + ~480-810 tests |
+| **Depends on** | **`012-feedback-p0-correctness` (HARD, pt-04 split)**; soft on `006-code-graph-adoption-eval` (Phase-006 eval gate for live mutation) |
+| **LOC budget** | ~350-570 production + ~420-710 tests (was ~400-650 + ~480-810 before 012 split) |
 <!-- /ANCHOR:metadata -->
 
 ---
