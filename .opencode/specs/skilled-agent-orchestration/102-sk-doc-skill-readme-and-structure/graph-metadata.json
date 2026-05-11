@@ -6,7 +6,8 @@
   "children_ids": [
     "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation",
     "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset",
-    "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/003-markdown-agent-rename"
+    "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
+    "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
   ],
   "manual": {
     "depends_on": [],
@@ -17,7 +18,7 @@
     "trigger_phrases": [],
     "key_topics": [],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "active",
     "key_files": [
       "spec.md"
     ],
@@ -30,7 +31,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
-    "last_active_at": "2026-05-10T12:31:54.523Z"
+    "last_active_child_id": "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage",
+    "last_active_at": "2026-05-11T05:30:00.000Z"
   }
 }

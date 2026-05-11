@@ -60,6 +60,8 @@ Capture grep output and classification notes.
 - **Pass**: Graph support is derived, scoped, and artifact-authoritative.
 - **Fail**: SKILL.md describes council-seat-owned graph mutation or graph rows as authoritative state.
 
+> **Functional graph coverage:** This scenario is a textual boundary check only. Functional behavior of the `council_graph_*` MCP tools (idempotent upsert, self-loop rejection, empty no-op, hostile metadata redaction, five query modes, three convergence buckets, recovery payload, derived-projection replay, tool-family separation) is exercised by DAC-019..DAC-026 in `08--council-graph-integration/`.
+
 ### Failure Triage
 
 Inspect Section 1, Section 4, Section 7, and `references/graph_support.md` for unsafe source-of-truth claims.
@@ -92,4 +94,4 @@ Inspect Section 1, Section 4, Section 7, and `references/graph_support.md` for u
 - Group: SCOPE BOUNDARIES
 - Playbook ID: DAC-011
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `05--scope-boundaries/001-graph-support-explicitly-out-of-scope.md`
+- Feature file path: `05--scope-boundaries/001-graph-support-derived-and-scoped.md`

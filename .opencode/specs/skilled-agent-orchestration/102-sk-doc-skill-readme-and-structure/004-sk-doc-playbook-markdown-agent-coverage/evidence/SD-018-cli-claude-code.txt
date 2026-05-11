@@ -1,0 +1,40 @@
+=== SD-018 dispatch: cli-claude-code @markdown via /create:changelog ===
+=== START: 2026-05-11T07:34:42+02:00 ===
+
+The @markdown agent completed the scaffold. Summary below.
+
+**Agent that received the work:** `@markdown` (LEAF doc executor, write-capable, no nested dispatch)
+
+**sk-doc resources loaded:**
+- `.opencode/skills/sk-doc/SKILL.md` (entry, routing confirmation)
+- `.opencode/skills/sk-doc/assets/changelog_template.md` (canonical compact-format template)
+
+**Output:** `/tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md` — DQI 82, 10 checks passed (template loaded, sk-doc loaded, no fake hashes/PRs, no em-dashes, why-led summary, etc.)
+
+**Changelog sections produced:**
+- Lead summary paragraph (no version header per template §2)
+- `> Spec folder:` quote line
+- `## What Changed` → `#### New Features`, `#### Documentation`
+- `## Files Changed`
+- `## Upgrade`
+
+**Routing nuance the agent flagged:** your prompt said "packet-local" but no spec folder was bound and the output path is `/tmp/...`, so the agent chose the global component template (`assets/changelog_template.md`) rather than the nested packet-local ones (`system-spec-kit/templates/changelog/{root,phase}.md`). If you wanted the packet-local variant, re-dispatch with an explicit spec folder.
+
+=== END: 2026-05-11T07:35:39+02:00 ===
+=== EXIT CODE: 0 ===
+=== WALL CLOCK: 57s ===
+
+================================================================
+VERDICT: PASS
+================================================================
+Grading rubric (playbook §Pass/Fail):
+- routing_trace: @markdown agent received the work (3 hits for @markdown/Phase 0 in transcript)
+- resource_trace: changelog_template + Keep-a-Changelog referenced (2 hits)
+- output: /tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md exists (2134 bytes)
+- output_shape: sk-doc compact-changelog format (## What Changed → #### New Features / #### Documentation / ## Files Changed / ## Upgrade) — this is the canonical sk-doc shape, not raw Keep-a-Changelog. Agent flagged the format choice explicitly in the transcript.
+- safety: no install into .opencode/skills/ (output is /tmp only)
+- latency: 57s wall-clock
+- exit_code: 0
+
+NOTABLE: Agent surfaced a routing nuance — "packet-local" wording in prompt but no spec folder bound → global component template chosen. Documented in transcript. This is high-quality routing transparency.
+================================================================

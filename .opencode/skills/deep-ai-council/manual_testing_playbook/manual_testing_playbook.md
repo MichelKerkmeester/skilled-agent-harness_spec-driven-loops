@@ -1,11 +1,11 @@
 ---
 title: "deep-ai-council: Manual Testing Playbook"
-description: "Operator-facing manual validation package for the deep-ai-council skill, runtime routing, council deliberation, artifact persistence, convergence, rollback, and scope boundaries."
+description: "Operator-facing manual validation package for the deep-ai-council skill, runtime routing, council deliberation, artifact persistence, convergence, rollback, scope boundaries, and council graph integration."
 ---
 
 # deep-ai-council: Manual Testing Playbook
 
-This playbook validates the `deep-ai-council` skill through 18 deterministic scenarios. It combines the root operator directory, review protocol, orchestration guide, and links to per-feature execution files.
+This playbook validates the `deep-ai-council` skill through 26 deterministic scenarios. It combines the root operator directory, review protocol, orchestration guide, and links to per-feature execution files.
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
@@ -16,6 +16,7 @@ Canonical package artifacts:
 - `05--scope-boundaries/`
 - `06--depth-and-failure-handling/`
 - `07--writer-library-contract/`
+- `08--council-graph-integration/`
 
 ---
 
@@ -34,16 +35,17 @@ Canonical package artifacts:
 - [11. SCOPE BOUNDARIES (DAC-011..DAC-012)](#11--scope-boundaries-dac-011dac-012)
 - [12. DEPTH AND FAILURE HANDLING (DAC-014, DAC-018)](#12--depth-and-failure-handling-dac-014-dac-018)
 - [13. WRITER LIBRARY CONTRACT (DAC-013, DAC-015..DAC-017)](#13--writer-library-contract-dac-013-dac-015dac-017)
-- [14. AUTOMATED TEST CROSS-REFERENCE](#14--automated-test-cross-reference)
-- [15. FEATURE CATALOG CROSS-REFERENCE INDEX](#15--feature-catalog-cross-reference-index)
+- [14. COUNCIL GRAPH INTEGRATION (DAC-019..DAC-026)](#14--council-graph-integration-dac-019dac-026)
+- [15. AUTOMATED TEST CROSS-REFERENCE](#15--automated-test-cross-reference)
+- [16. FEATURE CATALOG CROSS-REFERENCE INDEX](#16--feature-catalog-cross-reference-index)
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 18 deterministic scenarios across 7 categories validating the `deep-ai-council` skill surface. Each feature keeps a `DAC-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 26 deterministic scenarios across 8 categories validating the `deep-ai-council` skill surface. Each feature keeps a `DAC-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-10): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, derived graph boundaries, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, and scoped-write rejection.
+Coverage note (2026-05-11): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, derived graph boundaries, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, scoped-write rejection, and the dedicated council-graph MCP surface (upsert idempotency + self-loop rejection, empty-input no-op, hostile metadata redaction, five-mode prompt-safe queries, three-state convergence decision, recovery payload + readiness blocking, derived-projection replay, and tool-family separation from the deep-loop graph).
 
 ### Realistic Test Model
 
@@ -257,9 +259,9 @@ Feature file: [DAC-010](04--convergence-and-rollback/003-rollback-failed-round-p
 
 ### DAC-011 | Graph support stays derived and scoped
 
-Verify graph references preserve artifact source-of-truth and caller-owned MCP boundaries.
+Verify graph references preserve artifact source-of-truth and caller-owned MCP boundaries. Functional graph behavior is verified by DAC-019..DAC-026.
 
-Feature file: [DAC-011](05--scope-boundaries/001-graph-support-explicitly-out-of-scope.md)
+Feature file: [DAC-011](05--scope-boundaries/001-graph-support-derived-and-scoped.md)
 
 ### DAC-012 | Planning-only boundary rejects implementation writes
 
@@ -313,7 +315,59 @@ Feature file: [DAC-017](07--writer-library-contract/004-out-of-scope-write-rejec
 
 ---
 
-## 14. AUTOMATED TEST CROSS-REFERENCE
+## 14. COUNCIL GRAPH INTEGRATION (DAC-019..DAC-026)
+
+### DAC-019 | council_graph_upsert idempotency and self-loop rejection
+
+Verify `council_graph_upsert` is idempotent across repeated calls and that self-loop edges are rejected by strict input validation.
+
+Feature file: [DAC-019](08--council-graph-integration/001-council-graph-upsert-idempotency-and-self-loop-rejection.md)
+
+### DAC-020 | council_graph_upsert empty input no-op success
+
+Verify `council_graph_upsert` returns explicit no-op success on empty `nodes`/`edges` input rather than erroring.
+
+Feature file: [DAC-020](08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md)
+
+### DAC-021 | council_graph_query hostile metadata redaction
+
+Verify `council_graph_query` redacts arbitrary metadata keys and bounds string lengths before returning prompt-safe output.
+
+Feature file: [DAC-021](08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md)
+
+### DAC-022 | council_graph_query five modes return prompt-safe context
+
+Verify all five query modes (`unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, `hot_nodes`) return bounded prompt-safe context.
+
+Feature file: [DAC-022](08--council-graph-integration/004-council-graph-query-five-modes-prompt-safe-context.md)
+
+### DAC-023 | council_graph_convergence three-state decision matrix
+
+Verify `council_graph_convergence` emits `CONTINUE`, `STOP_ALLOWED`, or `STOP_BLOCKED` based on agreement, evidence, confidence, and unresolved-critical-disagreement signals.
+
+Feature file: [DAC-023](08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md)
+
+### DAC-024 | council_graph_status recovery payload and readiness
+
+Verify `council_graph_status` returns readiness, counts, schema version, signals, and a namespace-scoped `recovery` payload — never false-safe empty success on missing/corrupt state.
+
+Feature file: [DAC-024](08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md)
+
+### DAC-025 | Derived projection rebuilds from artifacts
+
+Verify deleting `council-graph.sqlite` rows for a session and replaying upserts from `ai-council/**` artifacts restores graph state without touching the artifacts.
+
+Feature file: [DAC-025](08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md)
+
+### DAC-026 | council_graph_* tools registered separately from deep_loop_graph_*
+
+Verify `council_graph_*` tools are registered as a distinct family in `tools/index.ts`, `tool-schemas.ts`, and `schemas/tool-input-schemas.ts` with no `loop_type:'council'` overload added to `deep_loop_graph_*`.
+
+Feature file: [DAC-026](08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md)
+
+---
+
+## 15. AUTOMATED TEST CROSS-REFERENCE
 
 | Test File | Scenario IDs |
 | --- | --- |
@@ -323,11 +377,12 @@ Feature file: [DAC-017](07--writer-library-contract/004-out-of-scope-write-rejec
 | `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-rollback.vitest.ts` | DAC-010 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
-| Documentation reference validation | DAC-014, DAC-015, DAC-016, DAC-018 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
+| Documentation reference validation | DAC-014, DAC-015, DAC-016, DAC-018, DAC-025, DAC-026 |
 
 ---
 
-## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Scenario | Feature File | Catalog |
 | --- | --- | --- | --- |
@@ -341,7 +396,7 @@ Feature file: [DAC-017](07--writer-library-contract/004-out-of-scope-write-rejec
 | DAC-008 | Two-of-three agree triggers convergence | `04--convergence-and-rollback/001-two-of-three-agree-triggers-convergence.md` | No feature catalog exists yet |
 | DAC-009 | Max rounds without convergence emits non-converged | `04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md` | No feature catalog exists yet |
 | DAC-010 | Rollback failed round preserves forensic trail | `04--convergence-and-rollback/003-rollback-failed-round-preserves-forensic-trail.md` | No feature catalog exists yet |
-| DAC-011 | Graph support stays derived and scoped | `05--scope-boundaries/001-graph-support-explicitly-out-of-scope.md` | No feature catalog exists yet |
+| DAC-011 | Graph support stays derived and scoped | `05--scope-boundaries/001-graph-support-derived-and-scoped.md` | No feature catalog exists yet |
 | DAC-012 | Planning-only boundary rejects implementation writes | `05--scope-boundaries/002-planning-only-boundary-rejects-implementation-writes.md` | No feature catalog exists yet |
 | DAC-013 | Library writer call sequence | `07--writer-library-contract/001-library-writer-call-sequence.md` | No feature catalog exists yet |
 | DAC-014 | Depth detection parallel vs sequential | `06--depth-and-failure-handling/001-depth-detection-parallel-vs-sequential.md` | No feature catalog exists yet |
@@ -349,3 +404,11 @@ Feature file: [DAC-017](07--writer-library-contract/004-out-of-scope-write-rejec
 | DAC-016 | Hunter Skeptic Referee cross-critique | `07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md` | No feature catalog exists yet |
 | DAC-017 | OUT_OF_SCOPE_WRITE rejection | `07--writer-library-contract/004-out-of-scope-write-rejection.md` | No feature catalog exists yet |
 | DAC-018 | Resume after interrupted state | `06--depth-and-failure-handling/002-resume-after-interrupted-state.md` | No feature catalog exists yet |
+| DAC-019 | council_graph_upsert idempotency and self-loop rejection | `08--council-graph-integration/001-council-graph-upsert-idempotency-and-self-loop-rejection.md` | No feature catalog exists yet |
+| DAC-020 | council_graph_upsert empty input no-op success | `08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md` | No feature catalog exists yet |
+| DAC-021 | council_graph_query hostile metadata redaction | `08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md` | No feature catalog exists yet |
+| DAC-022 | council_graph_query five modes return prompt-safe context | `08--council-graph-integration/004-council-graph-query-five-modes-prompt-safe-context.md` | No feature catalog exists yet |
+| DAC-023 | council_graph_convergence three-state decision matrix | `08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md` | No feature catalog exists yet |
+| DAC-024 | council_graph_status recovery payload and readiness | `08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md` | No feature catalog exists yet |
+| DAC-025 | Derived projection rebuilds from artifacts | `08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md` | No feature catalog exists yet |
+| DAC-026 | council_graph_* tools registered separately from deep_loop_graph_* | `08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md` | No feature catalog exists yet |

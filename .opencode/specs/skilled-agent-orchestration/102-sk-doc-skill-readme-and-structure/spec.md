@@ -34,11 +34,11 @@ _memory:
 
 | Field | Value |
 | --- | --- |
-| **Status** | Draft |
+| **Status** | Active |
 | **Priority** | P1 |
 | **Created** | 2026-05-10 |
-| **Phase Count** | 3 |
-| **Last Active Child** | `001-sk-doc-reference-relocation/` |
+| **Phase Count** | 4 |
+| **Last Active Child** | `004-sk-doc-playbook-markdown-agent-coverage/` |
 
 ## 2. Purpose
 
@@ -62,7 +62,8 @@ Out of scope:
 | --- | --- | --- | --- |
 | 1 | `001-sk-doc-reference-relocation/` | Active | Move `sk-doc/references/specific` documents to `sk-doc/references` root and update all old-path references. |
 | 2 | `002-sk-doc-skill-readme-asset/` | Draft | Analyze skill README conventions and create a dedicated sk-doc skill README asset with references from sk-doc docs and tests. |
-| 3 | `003-markdown-agent-rename/` | Draft | Rename create-agent identity to markdown-agent identity across runtime agent mirrors and references while preserving `/create:*` commands. |
+| 3 | `003-markdown-agent-rename/` | Complete | Rename create-agent identity to markdown-agent identity across runtime agent mirrors and references while preserving `/create:*` commands. |
+| 4 | `004-sk-doc-playbook-markdown-agent-coverage/` | Active | Add `06--agent-dispatch/` section to the sk-doc manual testing playbook with three scenarios that dispatch `@markdown` across cli-claude-code, cli-codex, and cli-opencode; execute and capture evidence. |
 
 ## 5. Phase Handoffs
 
@@ -70,6 +71,7 @@ Out of scope:
 | --- | --- | --- | --- |
 | `001-sk-doc-reference-relocation` | `002-sk-doc-skill-readme-asset` | `references/specific` is removed, files are in `references/`, and old path references are gone. | Exact search for `references/specific` returns no implementation-scope hits. |
 | `002-sk-doc-skill-readme-asset` | `003-markdown-agent-rename` | Dedicated skill README asset exists and is referenced from sk-doc creation guidance and testing docs. | File exists under `assets/skill/` and references resolve from `SKILL.md`, `references/skill_creation.md`, and manual testing docs. |
+| `003-markdown-agent-rename` | `004-sk-doc-playbook-markdown-agent-coverage` | `@markdown` agent is wired across 4 runtime mirrors and routed by orchestrate.md. | `ls .opencode/agents/markdown.md .claude/agents/markdown.md .gemini/agents/markdown.md .codex/agents/markdown.toml` resolves all four. |
 
 ## 6. Success Criteria
 
@@ -82,4 +84,5 @@ Out of scope:
 - `001-sk-doc-reference-relocation/spec.md`
 - `002-sk-doc-skill-readme-asset/spec.md`
 - `003-markdown-agent-rename/spec.md`
+- `004-sk-doc-playbook-markdown-agent-coverage/spec.md`
 - `graph-metadata.json`

@@ -11,20 +11,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill"
-    last_updated_at: "2026-05-10T12:30:00Z"
-    last_updated_by: "openai-gpt-5.5-opencode"
-    recent_action: "Normalized phase map for graph-support implementation"
-    next_safe_action: "Complete 003-deep-ai-council-graph-support implementation"
+    last_updated_at: "2026-05-11T07:55:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Added phase 004 (playbook graph coverage) to phase map and graph metadata"
+    next_safe_action: "Complete 004-deep-ai-council-playbook-graph-coverage implementation"
     blockers: []
     key_files:
       - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation/
       - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion/
       - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/
+      - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage/
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "101-phase-parent-scaffold"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 85
     open_questions:
       - "Do any external callers still depend on the literal multi-ai-council name?"
     answered_questions:
@@ -104,6 +105,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/` | Modify/Test | 001 | Route council prompts to `deep-ai-council` |
 | `.opencode/skills/deep-ai-council/references/` | Modify | 002 | Expand council references, playbook, and runtime parity guidance |
 | Council graph storage and MCP/query surfaces | Plan/Create | 003 | Dedicated council-specific graph support |
+| `.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/` | Create | 004 | Add 8 functional graph integration scenarios DAC-019..DAC-026 covering Phase 003's shipped MCP surface |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -117,14 +119,17 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 |-------|--------|-------|--------|
 | 1 | `001-deep-ai-council-skill-creation/` | Create the dedicated skill, rename runtime agents, move council assets/scripts, and update advisor routing | Complete |
 | 2 | `002-deep-ai-council-reference-expansion/` | Expand council references, playbook scenarios, and routing metadata | Complete |
-| 3 | `003-deep-ai-council-graph-support/` | Implement council-specific graph support after the skill boundary ships | In Progress |
+| 3 | `003-deep-ai-council-graph-support/` | Implement council-specific graph support after the skill boundary ships | Complete |
+| 4 | `004-deep-ai-council-playbook-graph-coverage/` | Add 8 functional graph integration scenarios (DAC-019..DAC-026) to the manual testing playbook so Phase 003's shipped MCP surface has operator-driven coverage | In Progress |
 ### Phase Transition Rules
 
 - Phase 001 MUST validate the skill package, runtime mirrors, advisor routing, and moved persistence tests before Phase 002 or 003 work depends on the skill boundary.
 - Phase 002 MUST keep reference expansion separate from graph storage and MCP implementation.
 - Phase 003 MUST treat graph support as a separate design and storage problem, not as hidden scope inside the initial skill extraction or reference expansion.
+- Phase 004 depends on Phase 003 completion; it adds operator playbook coverage matching the shipped `council_graph_*` MCP tool family.
 - Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation` to resume initial skill extraction.
 - Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support` to resume graph-support planning.
+- Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage` to resume playbook coverage work.
 
 ### Phase Handoff Criteria
 
@@ -132,6 +137,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 |------|----|----------|--------------|
 | `001-deep-ai-council-skill-creation` | `002-deep-ai-council-reference-expansion` | Dedicated skill and renamed runtime agents validate; advisor routes council prompts to `deep-ai-council`; no required old-name consumer remains unresolved | Spec validation, advisor regression tests, skill graph validation, script tests |
 | `002-deep-ai-council-reference-expansion` | `003-deep-ai-council-graph-support` | Council references and artifact contracts are stable enough to derive graph nodes and convergence signals | Spec validation, reference validation, playbook checks |
+| `003-deep-ai-council-graph-support` | `004-deep-ai-council-playbook-graph-coverage` | `council_graph_*` MCP tools, schemas, and tests are shipped and stable | Spec validation, council-graph.vitest.ts passes, references/graph_support.md present |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -150,4 +156,5 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 - **Phase 001**: `001-deep-ai-council-skill-creation/spec.md`
 - **Phase 002**: `002-deep-ai-council-reference-expansion/spec.md`
 - **Phase 003**: `003-deep-ai-council-graph-support/spec.md`
+- **Phase 004**: `004-deep-ai-council-playbook-graph-coverage/spec.md`
 - **Graph Metadata**: `graph-metadata.json`
