@@ -2,7 +2,7 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 <!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, opencode-go, deepseek, openai -->
@@ -290,6 +290,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 10. Classify the use case (1 / 2 / 3) before dispatching — the smart router refuses dispatches that do not map to one of the three.
 11. **Run the Provider Auth Pre-Flight once per session** (see §3 Provider Auth Pre-Flight). Cache the configured-providers list. If the default `opencode-go` is missing, ASK the user — never silently substitute the model. If a later dispatch returns an auth error, invalidate the cache and rerun the pre-flight before retrying.
 12. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack from markers and target files; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
+13. **Destructive-scope-violation prevention (RM-8) for deep-loop dispatches** — Any non-interactive `opencode run` with `--dangerously-skip-permissions` against a populated worktree (and especially long-running `/spec_kit:deep-research:auto` / `/spec_kit:deep-review:auto`) MUST apply the four-layer mitigation **before dispatch**: (L1) rendered prompt contains the literal `BANNED OPERATIONS` and `ALLOWED WRITE PATHS` strings from the hardened iteration prompt template; (L2) dispatch `--dir` points at a fresh `git worktree`, not the live working tree; (L3) main `git status` clean OR committed, recovery-baseline commit hash recorded; (L4) for multi-phase / phase-parent targets, prefer `cli-copilot` + `gpt-5.5 --reasoning-effort high` over `deepseek-v4-pro` until the runtime scope guard ships. Background: on 2026-05-04 an `opencode-go/deepseek-v4-pro` dispatch under `/spec_kit:deep-review:auto` deleted 44 files across two phase folders because the only safeguard was a single prose line in the prompt and `--dangerously-skip-permissions` granted unrestricted FS write. Full incident + root cause + checklist: `references/destructive_scope_violations.md`.
 
 ### ❌ NEVER
 
@@ -328,6 +329,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 - [integration_patterns.md](./references/integration_patterns.md) - 3 use cases, decision tree, self-invocation guard, silent stdin
 - [opencode_tools.md](./references/opencode_tools.md) - Unique value props vs sibling cli-* skills
 - [agent_delegation.md](./references/agent_delegation.md) - Agent routing matrix, leaf-agent constraints
+- [destructive_scope_violations.md](./references/destructive_scope_violations.md) - RM-8 incident (2026-05-04, 44 files deleted), root cause analysis, four-layer prevention playbook
 
 ### Templates and Assets
 
