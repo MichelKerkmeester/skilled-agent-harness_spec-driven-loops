@@ -85,12 +85,12 @@ run_doctor_command() {
     fi
 
     if command -v opencode >/dev/null 2>&1; then
-        opencode run "$command_text"
+        opencode run "$command_text" </dev/null
         return $?
     fi
 
     if command -v codex >/dev/null 2>&1; then
-        codex exec "$command_text"
+        codex exec "$command_text" </dev/null
         return $?
     fi
 

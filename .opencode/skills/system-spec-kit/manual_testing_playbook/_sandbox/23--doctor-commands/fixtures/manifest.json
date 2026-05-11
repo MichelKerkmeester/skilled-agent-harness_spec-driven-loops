@@ -6,7 +6,7 @@
     "v3.3.0.0-state": {
       "local_path": "../../../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/external/opencode--spec-kit-skilled-agent-orchestration-3.3.0.1.tar.gz",
       "url": "file://${SCRIPT_DIR}/../../../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/external/opencode--spec-kit-skilled-agent-orchestration-3.3.0.1.tar.gz",
-      "sha256": "4dcc23ace9345f70c39175d1602cab971902cd514be7d2cfa2df61d3b68a73d7",
+      "sha256": "138cc6a2c9edf8a0b0d773ca22a33f87b5cc976857df365595933f54de3e99a9",
       "size": 28862429,
       "version": "3.3.0.1",
       "extract_strip_components": 1,
@@ -14,7 +14,7 @@
     },
     "v3.4.0.0-state": {
       "local_path": "../../../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook/external/opencode--spec-kit-skilled-agent-orchestration-3.4.0.0.tar.gz",
-      "sha256": "2ac6e06d0e215c1e037c3c32dc567b6b1752d54255dd415075d446b2e3660726",
+      "sha256": "1f01289d2fbc60902e36ba48abea0d074c9ca7884c1e52cc048fab4465250330",
       "size": 75354758,
       "version": "3.4.0.0",
       "extract_strip_components": 1,
