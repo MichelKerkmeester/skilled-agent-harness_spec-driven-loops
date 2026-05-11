@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "validation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass"
+    packet_pointer: ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup"
     last_updated_at: "2026-05-11T12:00:00Z"
     last_updated_by: "codex-inline"
     recent_action: "Checklist updated with dry-run evidence"
@@ -16,10 +16,10 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/commands/spec_kit/deep-review.md"
-      - ".opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/evidence/dry-run-verification.txt"
+      - ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/evidence/dry-run-verification.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "028-deep-review-noninteractive-setup-bypass"
+      session_id: "103-001-deep-review-three-tier-setup"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -49,8 +49,8 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md. Evidence: `.opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/spec.md` read first; §4 requirements and §5 success criteria guided the implementation.
-- [x] CHK-002 [P0] Technical approach defined in plan.md. Evidence: `.opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/plan.md` read second; §3 architecture matched the implemented three-tier setup flow.
+- [x] CHK-001 [P0] Requirements documented in spec.md. Evidence: `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/spec.md` read first; §4 requirements and §5 success criteria guided the implementation.
+- [x] CHK-002 [P0] Technical approach defined in plan.md. Evidence: `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/plan.md` read second; §3 architecture matched the implemented three-tier setup flow.
 - [x] CHK-003 [P1] Dependencies identified (command + YAML + CLI binaries available). Evidence: command markdown and auto YAML were read; CLI binaries were not used because runtime instruction prohibited live dispatch verification.
 <!-- /ANCHOR:pre-impl -->
 

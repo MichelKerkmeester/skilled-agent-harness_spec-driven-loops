@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass"
+    packet_pointer: ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup"
     last_updated_at: "2026-05-11T11:35:00Z"
     last_updated_by: "codex-inline"
     recent_action: "Completed command-contract implementation and dry-run verification"
@@ -17,7 +17,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "028-deep-review-noninteractive-setup-bypass"
+      session_id: "103-001-deep-review-three-tier-setup"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -83,7 +83,7 @@ Runtime override for this execution: do not run the full `/spec_kit:deep-review:
 - [x] T022 Dispatch verification scenario via `opencode run --pure` — same. Evidence: not run by runtime instruction; replaced by V2 Trace A dry-run setup verification.
 - [x] T023 Dispatch `/spec_kit:deep-review:auto ""` (empty args) via `codex exec </dev/null` — must exit non-zero within 10s with named-missing-inputs error. Evidence: not run by runtime instruction; replaced by V2 Trace C dry-run fail-fast verification.
 - [x] T024 Manual `:confirm` dispatch — must still emit the question block (regression check). Evidence: not run by runtime instruction; replaced by V2 Trace D read-back verification.
-- [x] T025 Run `validate.sh --strict` against this folder; exit 0. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass --strict` passed with Errors: 0, Warnings: 0.
+- [x] T025 Run `validate.sh --strict` against this folder; exit 0. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup --strict` passed with Errors: 0, Warnings: 0.
 - [x] T026 Populate `implementation-summary.md` with audit notes, design decisions, dispatch evidence pointers. Evidence: completed in `implementation-summary.md`.
 - [x] T027 Update `_memory.continuity` blocks to `completion_pct: 100`. Evidence: `tasks.md` and `implementation-summary.md` frontmatter updated to `completion_pct: 100`.
 <!-- /ANCHOR:phase-3 -->

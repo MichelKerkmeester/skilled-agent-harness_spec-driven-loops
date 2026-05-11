@@ -1,5 +1,5 @@
 {
-  "specFolder": "028-deep-review-noninteractive-setup-bypass",
+  "specFolder": "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
   "description": "Bypass /spec_kit:deep-review:auto setup-phase stdin hang — fold setup-question pre-binding into the command markdown so :auto mode is truly non-intera",
   "keywords": [
     "bypass",

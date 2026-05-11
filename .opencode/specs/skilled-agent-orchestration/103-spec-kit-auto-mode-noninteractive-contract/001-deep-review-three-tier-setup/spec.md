@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass"
+    packet_pointer: ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup"
     last_updated_at: "2026-05-11T11:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored spec"
@@ -18,7 +18,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "028-deep-review-noninteractive-setup-bypass"
+      session_id: "103-001-deep-review-three-tier-setup"
       parent_session_id: null
     completion_pct: 0
     open_questions: []

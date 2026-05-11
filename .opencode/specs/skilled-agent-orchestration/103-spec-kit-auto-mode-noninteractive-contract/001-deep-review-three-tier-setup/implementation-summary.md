@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass"
+    packet_pointer: ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup"
     last_updated_at: "2026-05-11T12:00:00Z"
     last_updated_by: "codex-inline"
     recent_action: "Implemented command-level setup-resolution contract and dry-run verification evidence"
@@ -17,10 +17,10 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/commands/spec_kit/deep-review.md"
-      - ".opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/evidence/dry-run-verification.txt"
+      - ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/evidence/dry-run-verification.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "028-deep-review-noninteractive-setup-bypass"
+      session_id: "103-001-deep-review-three-tier-setup"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/` |
+| **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/` |
 | **Completed** | 2026-05-11 |
 | **Level** | 2 |
 | **Status** | Complete |
@@ -69,10 +69,10 @@ _memory:
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/commands/spec_kit/deep-review.md` | Modified | Documents the autonomous three-tier setup branch, pre-bound marker schema, defaults, and fail-fast error format. |
-| `.opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/evidence/dry-run-verification.txt` | Created | Captures the required four dry-run setup traces and read-back check. |
-| `.opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/tasks.md` | Modified | Marks implementation and dry-run verification tasks complete. |
-| `.opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/checklist.md` | Modified | Marks checklist items with evidence text and documents constrained verification. |
-| `.opencode/specs/system-spec-kit/028-deep-review-noninteractive-setup-bypass/implementation-summary.md` | Modified | Replaces scaffold text with completion summary, decisions, verification, and limitations. |
+| `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/evidence/dry-run-verification.txt` | Created | Captures the required four dry-run setup traces and read-back check. |
+| `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/tasks.md` | Modified | Marks implementation and dry-run verification tasks complete. |
+| `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/checklist.md` | Modified | Marks checklist items with evidence text and documents constrained verification. |
+| `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/implementation-summary.md` | Modified | Replaces scaffold text with completion summary, decisions, verification, and limitations. |
 <!-- /ANCHOR:what-built -->
 
 ---

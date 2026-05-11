@@ -47,108 +47,19 @@ This workflow gathers all setup inputs in one prompt. Confirm mode still include
 
 For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
 
-### Three-Tier Setup Resolution for `:auto`
+### `:auto` Setup Resolution
 
-Run this branch only when the attached suffix sets `execution_mode = "AUTONOMOUS"`.
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
 
-#### Tier 1 - Resolve Confidently
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. Parse `$ARGUMENTS` for:
-   - Positional review target after removing mode suffixes and flags.
-   - `--max-iterations=N`
-   - `--convergence=N`
-   - `--dims=<all|comma-separated dimensions>`
-   - `--executor=<native|cli-codex|cli-gemini|cli-claude-code>`
-   - `--model=<id>`
-   - `--reasoning-effort=<none|minimal|low|medium|high|xhigh>`
-   - `--service-tier=<priority|standard|fast>`
-   - `--executor-timeout=<seconds>`
-   - `--no-resource-map`
-   - `--spec-folder=PATH`
-2. Scan the prompt body for a `PRE-BOUND SETUP ANSWERS:` block using the schema below. Merge known marker fields over `$ARGUMENTS` values because the caller's explicit prompt-body binding wins.
-3. Apply defaults for every field with a documented default:
-   - `execution_mode = AUTONOMOUS`
-   - `review_dimensions = "all"`
-   - `maxIterations = 7`
-   - `convergenceThreshold = 0.10`
-   - `executor = native`
-   - `executor_timeout = 900`
-   - `resource_map_emit = true` unless `--no-resource-map` or marker `resource_map_emit: false`
-   - `review_target_type` auto-detects from `review_target`:
-     - `spec-folder` when the target is a spec path ending in `NNN-name/`, including nested `.opencode/specs/` phase paths
-     - `skill` when the target starts with `skill:`
-     - `agent` when the target starts with `agent:`
-     - `track` when the target starts with `track:` or names a `NN--name` track root
-     - `files` when the target is an existing file path, glob, or whitespace-separated file/glob list
-   - `spec_folder` resolves from `--spec-folder`, marker `spec_folder`, or a target already recognized as `spec-folder`.
-4. Validate the resolved map:
-   - Required values: `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`.
-   - Executor config uses `config.executor.*` fields and must pass the validation hook described below.
-   - Unknown marker fields are warnings, not errors.
-   - A malformed marker block emits a parse error naming the line, then falls through to Tier 2 or Tier 3 with the malformed fields unresolved.
-5. If every required value is resolved:
-   - Persist the resolved setup values to `{spec_folder}/review/deep-review-config.json` using the same shape the YAML consumes:
-     - `reviewTarget`
-     - `reviewTargetType`
-     - `reviewDimensions`
-     - `specFolder`
-     - `maxIterations`
-     - `convergenceThreshold`
-     - `executionMode: "auto"`
-     - `resource_map.emit`
-     - `config.executor.type`
-     - optional `config.executor.model`
-     - optional `config.executor.reasoningEffort`
-     - optional `config.executor.serviceTier`
-     - `config.executor.timeoutSeconds`
-   - Bind the equivalent runtime placeholders for the YAML: `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `max_iterations`, `convergence_threshold`, `resource_map_emit`, and executor config.
-   - SET `STATUS: PASSED`.
-   - Load `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`.
-   - End §0. Do not emit the consolidated Q0..Q-Exec block.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`. End §0.
 
-#### Tier 2 - Targeted Ask
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
-Use Tier 2 only when Tier 1 leaves one or two required inputs unresolved, each unresolved field is genuinely ambiguous, and no sensible default exists.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-review:auto` as the command name. Exit non-zero. Do not load YAML.
 
-- Tier-2-eligible fields:
-  - `review_target_type` when `review_target` is present but cannot be confidently classified.
-  - `spec_folder` when the review target is not a spec folder and no `--spec-folder` or marker value was supplied.
-- Ordering rule:
-  - If `review_target_type` is ambiguous, ask only for `review_target_type` first. Do not also ask for `spec_folder` in the same prompt, because the target type answer may make the spec-folder rule obvious on the next Tier 1 pass.
-- Not Tier-2-eligible:
-  - Missing `review_target`. Absence is not ambiguity; go to Tier 3.
-  - Fields with defaults (`review_dimensions`, `maxIterations`, `convergenceThreshold`, executor, timeout, resource-map emission).
-
-Emit one narrow question per ambiguous field, never the full Q0..Q-Exec block.
-
-Examples:
-
-```
-`review_target_type` is ambiguous for `some-ambiguous-target`.
-Choose one: spec-folder | skill | agent | track | files.
-```
-
-```
-`spec_folder` is unresolved for this review target.
-Provide --spec-folder=PATH or a PRE-BOUND SETUP ANSWERS: spec_folder value.
-```
-
-Wait briefly for a reply. If an answer arrives, merge it into the resolved map and rerun Tier 1 from the default/persistence step. If stdin is closed or no answer arrives, fall through to Tier 3. Never wait indefinitely.
-
-#### Tier 3 - Fail Fast
-
-Use Tier 3 when `:auto` still has unresolved required inputs after Tier 1 and Tier 2, or when Tier 2 produced no answer because stdin is closed.
-
-Emit this exact error shape, name every missing input, and exit non-zero:
-
-```
-[ERROR] /spec_kit:deep-review:auto — required inputs unresolved under autonomous mode:
-  - <field>: <why-unresolved>
-  - <field>: <why-unresolved>
-Resolution: provide via $ARGUMENTS flags, PRE-BOUND SETUP ANSWERS: block, or switch to :confirm mode for interactive setup.
-```
-
-Do not emit setup questions in Tier 3. Do not load YAML.
+`:confirm` path stays unchanged — see the Consolidated Setup Prompt section below.
 
 ### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 
