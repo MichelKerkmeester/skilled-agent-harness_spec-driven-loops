@@ -92,59 +92,33 @@ TIER 1 — TARGET RESOLUTION
    - ASK Tier 1 question (print VERBATIM — do not paraphrase or split into multiple messages):
 
 ```
-You ran `/doctor` without a target. Pick the scenario that fits — common cross-cutting
-cases first, then per-subsystem diagnostics.
+What do you want to do?
 
-══ COMMON SCENARIOS (try one of these BEFORE picking a per-subsystem target) ══
-
-   [1] "I just upgraded spec-kit (e.g. 3.3.0.0 → 3.4.x) and want everything aligned"
-       → Use `/doctor:update --migrate` instead. Handles schema migration + every
-         subsystem rebuild in dependency-safe order with snapshots + auto-rollback.
-         Takes 8-25 min. Hit 1 to switch now.
-
-   [2] "MCP servers themselves are broken (not connecting, missing tools, install fail)"
-       → Use `/doctor:mcp debug --fix` (or `/doctor:mcp install` for fresh setup).
-         Diagnoses spec-kit-memory, cocoindex-code, code-mode, sequential-thinking.
-         Hit 2 to switch now.
-
-   [3] "I want a full sweep, no per-subsystem decisions"
-       → Use `/doctor:update` (no --migrate flag). Same orchestrator, current schema.
-         Takes 8-25 min. Hit 3 to switch now.
-
-══ PER-SUBSYSTEM DIAGNOSTICS (pick one if you have a specific symptom) ══
-
-   [A] memory         — memory_search returns stale/empty; spec-doc edits not indexed;
-                        STARTUP warning "context-index.sqlite missing" or "STALE"
-   [B] causal-graph   — memory_drift_why returns sparse paths; lineage hops missing;
-                        STARTUP warning "causal coverage <60%"
-   [C] code-graph     — `cocoindex search` returns 0 hits where matches expected;
-                        STARTUP graph warning "stale", "missed", or "bloat"
-   [D] deep-loop      — /spec_kit:deep-research|deep-review iteration graphs empty;
-                        convergence detection broken; coverage drift between runs
-   [E] cocoindex      — semantic search fails; CocoIndex daemon zombie / unhealthy /
-                        unreachable; "ccc_status" reports degraded
-   [F] skill-advisor  — Skill Advisor recommends the wrong skill; recently-added
-                        skills not found; lane scoring drifted
-   [G] skill-budget   — Frontmatter descriptions over 1536-char hard cap; project total
-                        over the 5600 soft ceiling (READ-ONLY audit; CI-friendly with --json)
-
-══ OTHER ══
-
-   [H] help    — Print detailed symptom→subsystem mapping (no command runs)
-   [X] cancel  — Exit without running anything (default if empty input)
+   1) Update everything to match latest spec-kit release   (e.g. 3.3.0.0 → 3.4.x)
+   2) Debug Memory database              (search index, spec-doc indexing)
+   3) Debug Causal-Graph                 (spec lineage, drift_why)
+   4) Debug Code-Graph                   (structural index, stale/missed/bloat)
+   5) Debug Deep-Loop history            (research/review iteration graphs)
+   6) Debug CocoIndex                    (semantic search daemon)
+   7) Re-tune Skill Advisor              (which skill gets recommended)
+   8) Audit Skill Description budget     (char counts, CI-friendly)
+   9) Install/repair MCP servers         (spec-kit-memory, cocoindex-code, etc.)
+   0) Full sweep — rebuild everything    (no migration, current schema)
+   H) Help me decide
+   X) Cancel
 ```
 
    - WAIT for selection. Map answers as follows:
      - 1 → ABORT this command, EMIT: "Switch to `/doctor:update --migrate` for upgrade migration. Exiting /doctor."
-     - 2 → ABORT, EMIT: "Switch to `/doctor:mcp debug --fix` (or `/doctor:mcp install`). Exiting /doctor."
-     - 3 → ABORT, EMIT: "Switch to `/doctor:update` for full sweep. Exiting /doctor."
-     - A → target = "memory"
-     - B → target = "causal-graph"
-     - C → target = "code-graph"
-     - D → target = "deep-loop"
-     - E → target = "cocoindex"
-     - F → target = "skill-advisor"
-     - G → target = "skill-budget"
+     - 2 → target = "memory"
+     - 3 → target = "causal-graph"
+     - 4 → target = "code-graph"
+     - 5 → target = "deep-loop"
+     - 6 → target = "cocoindex"
+     - 7 → target = "skill-advisor"
+     - 8 → target = "skill-budget"
+     - 9 → ABORT, EMIT: "Switch to `/doctor:mcp debug --fix` (or `/doctor:mcp install`). Exiting /doctor."
+     - 0 → ABORT, EMIT: "Switch to `/doctor:update` for full sweep. Exiting /doctor."
      - H → print the HELP block below, then re-ask Tier 1 question.
      - X / empty / "cancel" → STATUS=CANCEL, exit.
      - Anything else → re-emit the menu once; on second invalid input → STATUS=FAIL ERROR=unknown_selection.
