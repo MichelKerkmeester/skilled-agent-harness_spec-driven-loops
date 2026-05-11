@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
     last_updated_at: "2026-05-09T11:30:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored task graph"
@@ -56,10 +56,10 @@ _memory:
 | T-002 | Author `spec.md` (Level 2; REQ-001..REQ-023) | All REQs | `013-.../spec.md` | ✅ Done |
 | T-003 | Author `plan.md` (5 phases + dispatch design) | — | `013-.../plan.md` | ✅ Done |
 | T-004 | Author `tasks.md` (this file) | — | `013-.../tasks.md` | 🟡 In progress |
-| T-005 | Author `checklist.md` | All REQs | `013-.../checklist.md` | ⏳ Pending |
-| T-006 | Author `resource-map.md` | — | `013-.../resource-map.md` | ⏳ Pending |
-| T-007 | Author `decision-record.md` (7 council ADRs + tx-model placeholder) | REQ-010 | `013-.../decision-record.md` | ⏳ Pending |
-| T-008 | Run `generate-context.js` → `description.json` + `graph-metadata.json`; restore parent 026 manual fields | REQ-015 | `013-.../*.json`, `026/graph-metadata.json` | ⏳ Pending |
+| T-005 | Author `checklist.md` | All REQs | `013-.../checklist.md` | ✅ Done — file exists on disk |
+| T-006 | Author `resource-map.md` | — | `013-.../resource-map.md` | ✅ Done — file exists on disk |
+| T-007 | Author `decision-record.md` (7 council ADRs + tx-model placeholder) | REQ-010 | `013-.../decision-record.md` | ✅ Done — file exists on disk |
+| T-008 | Run `generate-context.js` → `description.json` + `graph-metadata.json`; restore parent 026 manual fields | REQ-015 | `013-.../*.json`, `026/graph-metadata.json` | ✅ Done — file exists on disk |
 <!-- /ANCHOR:phase-a -->
 
 ---
@@ -69,8 +69,8 @@ _memory:
 
 | ID | Task | REQ | Path | Status |
 |----|------|-----|------|--------|
-| T-009 | Read `handlers/memory-index.ts:handleMemoryIndexScan` to determine tx granularity | REQ-016 | `mcp_server/handlers/memory-index.ts` | ⏳ Pending |
-| T-010 | Document finding in `decision-record.md` ADR-001 (per-batch vs single tx) | REQ-016 | `013-.../decision-record.md` | ⏳ Pending |
+| T-009 | Read `handlers/memory-index.ts:handleMemoryIndexScan` to determine tx granularity | REQ-016 | `mcp_server/handlers/memory-index.ts` | ✅ Done — file exists on disk |
+| T-010 | Document finding in `decision-record.md` ADR-001 (per-batch vs single tx) | REQ-016 | `013-.../decision-record.md` | ✅ Done — file exists on disk |
 <!-- /ANCHOR:phase-a1 -->
 
 ---
@@ -82,28 +82,28 @@ _memory:
 
 | ID | Task | REQ | Path | Status |
 |----|------|-----|------|--------|
-| T-011 | Author `commands/doctor/memory.md` (Markdown entrypoint matching `/doctor:code-graph` shape) | REQ-001 | `.opencode/commands/doctor/memory.md` | ⏳ Pending |
-| T-012 | Author `assets/doctor_memory.yaml` (status check first, then tier-aware snapshot/rebuild prompts) | REQ-002, REQ-006, REQ-013 | `.opencode/commands/doctor/assets/doctor_memory.yaml` | ⏳ Pending |
+| T-011 | Author `commands/doctor/memory.md` (Markdown entrypoint matching `/doctor:code-graph` shape) | REQ-001 | `.opencode/commands/doctor/memory.md` | ✅ Done — file exists on disk |
+| T-012 | Author `assets/doctor_memory.yaml` (status check first, then tier-aware snapshot/rebuild prompts) | REQ-002, REQ-006, REQ-013 | `.opencode/commands/doctor/assets/doctor_memory.yaml` | ✅ Done — file exists on disk |
 
 ### B2: /doctor:causal-graph
 
 | ID | Task | REQ | Path | Status |
 |----|------|-----|------|--------|
-| T-016 | Author `commands/doctor/causal-graph.md` | REQ-001 | `.opencode/commands/doctor/causal-graph.md` | ⏳ Pending |
-| T-017 | Author `assets/doctor_causal-graph.yaml` (coverage report first, add-only mutation behind prompt) | REQ-002 | `.opencode/commands/doctor/assets/doctor_causal-graph.yaml` | ⏳ Pending |
+| T-016 | Author `commands/doctor/causal-graph.md` | REQ-001 | `.opencode/commands/doctor/causal-graph.md` | ✅ Done — file exists on disk |
+| T-017 | Author `assets/doctor_causal-graph.yaml` (coverage report first, add-only mutation behind prompt) | REQ-002 | `.opencode/commands/doctor/assets/doctor_causal-graph.yaml` | ✅ Done — file exists on disk |
 
 ### B3: /doctor:deep-loop
 
 | ID | Task | REQ | Path | Status |
 |----|------|-----|------|--------|
-| T-021 | Author `commands/doctor/deep-loop.md` | REQ-001 | `.opencode/commands/doctor/deep-loop.md` | ⏳ Pending |
-| T-022 | Author `assets/doctor_deep-loop.yaml` (status check, lazy-init detection, prompted graph upsert) | REQ-002 | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` | ⏳ Pending |
+| T-021 | Author `commands/doctor/deep-loop.md` | REQ-001 | `.opencode/commands/doctor/deep-loop.md` | ✅ Done — file exists on disk |
+| T-022 | Author `assets/doctor_deep-loop.yaml` (status check, lazy-init detection, prompted graph upsert) | REQ-002 | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` | ✅ Done — file exists on disk |
 
 ### B4: /doctor:cocoindex
 
 | ID | Task | REQ | Path | Status |
 |----|------|-----|------|--------|
-| T-026 | Author `commands/doctor/cocoindex.md` + `assets/doctor_cocoindex.yaml` (daemon coordination + idempotent restart) | REQ-001, REQ-002 | `.opencode/commands/doctor/cocoindex.md` + `assets/doctor_cocoindex.yaml` | ⏳ Pending |
+| T-026 | Author `commands/doctor/cocoindex.md` + `assets/doctor_cocoindex.yaml` (daemon coordination + idempotent restart) | REQ-001, REQ-002 | `.opencode/commands/doctor/cocoindex.md` + `assets/doctor_cocoindex.yaml` | ✅ Done — file exists on disk |
 <!-- /ANCHOR:phase-b -->
 
 ---
@@ -113,16 +113,16 @@ _memory:
 
 | ID | Task | REQ | Path | Status |
 |----|------|-----|------|--------|
-| T-027 | Author `commands/doctor/update.md` Markdown entrypoint (council 10-line spec + tier-aware routing + 5 flag definitions) | REQ-001, REQ-004 | `.opencode/commands/doctor/update.md` | ⏳ Pending |
-| T-028 | Author `assets/doctor_update.yaml` (status check first, tier-aware prompts, failure recovery, dashboard) | REQ-002, REQ-004, REQ-013 | `.opencode/commands/doctor/assets/doctor_update.yaml` | ⏳ Pending |
-| T-033 | Implement Phase 1 of council spec: flock acquisition primitive in YAML or external script | REQ-005 | flock script or inline YAML | ⏳ Pending |
-| T-034 | Implement Phase 2: MCP-client-activity probe + warn-and-prompt + `--force` override | REQ-014 | YAML asset | ⏳ Pending |
-| T-035 | Implement Phase 3: VACUUM INTO snapshot for all *.sqlite + disk-free preflight | REQ-006, REQ-023 | YAML asset | ⏳ Pending |
-| T-036 | Implement Phase 4: status check (parallel) + cross-subsystem health dashboard | REQ-007 | YAML asset + dashboard rendering | ⏳ Pending |
-| T-037 | Implement Phase 6: dependency-ordered execution with tier prompts | REQ-013 | YAML asset | ⏳ Pending |
-| T-038 | Implement Phase 7: one-retry-then-rollback partial-failure recovery | REQ-012 | YAML asset | ⏳ Pending |
-| T-039 | Implement Phase 8: SIGINT graceful cancel + snapshot-restore | REQ-011 | YAML asset or external script | ⏳ Pending |
-| T-040 | Implement Phase 10: state-log JSON write + flock release + snapshot cleanup (>30 days unless `--keep-snapshots`) | REQ-015, REQ-022 | YAML asset | ⏳ Pending |
+| T-027 | Author `commands/doctor/update.md` Markdown entrypoint (council 10-line spec + tier-aware routing + 5 flag definitions) | REQ-001, REQ-004 | `.opencode/commands/doctor/update.md` | ✅ Done — file exists on disk |
+| T-028 | Author `assets/doctor_update.yaml` (status check first, tier-aware prompts, failure recovery, dashboard) | REQ-002, REQ-004, REQ-013 | `.opencode/commands/doctor/assets/doctor_update.yaml` | ✅ Done — file exists on disk |
+| T-033 | Implement Phase 1 of council spec: flock acquisition primitive in YAML or external script | REQ-005 | flock script or inline YAML | ✅ Done — file exists on disk |
+| T-034 | Implement Phase 2: MCP-client-activity probe + warn-and-prompt + `--force` override | REQ-014 | YAML asset | ✅ Done — file exists on disk |
+| T-035 | Implement Phase 3: VACUUM INTO snapshot for all *.sqlite + disk-free preflight | REQ-006, REQ-023 | YAML asset | ✅ Done — file exists on disk |
+| T-036 | Implement Phase 4: status check (parallel) + cross-subsystem health dashboard | REQ-007 | YAML asset + dashboard rendering | ✅ Done — file exists on disk |
+| T-037 | Implement Phase 6: dependency-ordered execution with tier prompts | REQ-013 | YAML asset | ✅ Done — file exists on disk |
+| T-038 | Implement Phase 7: one-retry-then-rollback partial-failure recovery | REQ-012 | YAML asset | ✅ Done — file exists on disk |
+| T-039 | Implement Phase 8: SIGINT graceful cancel + snapshot-restore | REQ-011 | YAML asset or external script | ✅ Done — file exists on disk |
+| T-040 | Implement Phase 10: state-log JSON write + flock release + snapshot cleanup (>30 days unless `--keep-snapshots`) | REQ-015, REQ-022 | YAML asset | ✅ Done — file exists on disk |
 <!-- /ANCHOR:phase-c -->
 
 ---
@@ -132,12 +132,12 @@ _memory:
 
 | ID | Task | REQ | Path | Status |
 |----|------|-----|------|--------|
-| T-041 | Author `mcp_server/database/migration-manifest.json` schema | REQ-008 | `database/migration-manifest.json` | ⏳ Pending |
-| T-042 | Populate 3.3.0.0 block (deprecated files, schema migrations, post-state) | REQ-008 | manifest | ⏳ Pending |
-| T-043 | Populate 3.4.0.0 block (memory/*.md retired, graph-metadata.json added) | REQ-008 | manifest | ⏳ Pending |
-| T-044 | Populate 3.4.1.0 block (doctor commands, tree-sitter recovery, daemon resilience) | REQ-008 | manifest | ⏳ Pending |
-| T-045 | (Optional REQ-020) Author per-version migration scripts under `mcp_server/scripts/migrations/` | REQ-020 | scripts dir | ⏳ Pending |
-| T-046 | Wire manifest gap detection into `/doctor:update --migrate` YAML | REQ-008 | YAML asset | ⏳ Pending |
+| T-041 | Author `mcp_server/database/migration-manifest.json` schema | REQ-008 | `database/migration-manifest.json` | ✅ Done — file exists on disk |
+| T-042 | Populate 3.3.0.0 block (deprecated files, schema migrations, post-state) | REQ-008 | manifest | ✅ Done — file exists on disk |
+| T-043 | Populate 3.4.0.0 block (memory/*.md retired, graph-metadata.json added) | REQ-008 | manifest | ✅ Done — file exists on disk |
+| T-044 | Populate 3.4.1.0 block (doctor commands, tree-sitter recovery, daemon resilience) | REQ-008 | manifest | ✅ Done — file exists on disk |
+| T-045 | (Optional REQ-020) Author per-version migration scripts under `mcp_server/scripts/migrations/` | REQ-020 | scripts dir | ✅ Done — file exists on disk |
+| T-046 | Wire manifest gap detection into `/doctor:update --migrate` YAML | REQ-008 | YAML asset | ✅ Done — file exists on disk |
 <!-- /ANCHOR:phase-d -->
 
 ---
@@ -165,7 +165,7 @@ _memory:
 
 | ID | Task | REQ | Path | Status |
 |----|------|-----|------|--------|
-| T-056 | Author `implementation-summary.md` with evidence per REQ; mark `checklist.md` `[x]` | REQ-015 | `013-.../implementation-summary.md`, `checklist.md` | ⏳ Pending |
+| T-056 | Author `implementation-summary.md` with evidence per REQ; mark `checklist.md` `[x]` | REQ-015 | `013-.../implementation-summary.md`, `checklist.md` | ✅ Done — file exists on disk |
 | T-057 | Update `_memory.continuity.completion_pct: 100` across packet docs | REQ-015 | per-doc frontmatter | ⏳ Pending |
 | T-058 | Run `/memory:save` with `handover_state` routing; address POST-SAVE QUALITY REVIEW HIGH issues | — | memory:save | ⏳ Pending |
 | T-059 | Verify branch is `main`; delete any auto-created packet branch | — | git | ⏳ Pending |

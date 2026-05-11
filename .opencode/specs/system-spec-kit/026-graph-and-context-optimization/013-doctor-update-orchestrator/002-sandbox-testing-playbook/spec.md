@@ -32,7 +32,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-sandbox-testing-playbook-2026-05-09"
       parent_session_id: null
-    completion_pct: 15
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "Spec location: 002 child of 013 phase parent (user choice)"
@@ -78,7 +78,7 @@ This packet adds the validation layer for sibling `001-doctor-commands`: 23 manu
 
 ### Problem Statement
 
-Sibling packet `001-doctor-commands/` shipped 5 doctor commands (`/doctor:memory`, `causal-graph`, `deep-loop`, `cocoindex`, `update`), 21 YAML mode assets, and a migration manifest for spec-kit version migration (3.3.0.0 → 3.4.1.0). The runtime is in place. What's missing:
+Sibling packet `001-doctor-commands/` shipped 5 doctor commands (`/doctor:memory`, `causal-graph`, `deep-loop`, `cocoindex`, `update`), 10 active YAML assets, and a migration manifest for spec-kit version migration (3.3.0.0 → 3.4.1.0). The runtime is in place. What's missing:
 
 1. **No reproducible test harness** — verification gates G4-G9 in 001's spec require runtime smoke tests (auto/confirm/concurrent dispatch/SIGINT/migration-gap/dashboard) but those need a controlled environment with pre-populated database fixtures, a deterministic codebase tag (e.g., v3.3.0.0 simulated state), and runnable shell harness scripts that snapshot evidence.
 2. **No manual playbook coverage** — the canonical `system-spec-kit/manual_testing_playbook/` has 322 scenarios across 22 categories but ZERO entries for the new doctor surface. Operators wanting to verify a v3.3.0.0 → v3.4.1.0 upgrade have no scenario to follow.
@@ -190,7 +190,7 @@ Author the validation half of 013's deliverable: 23 manual playbook scenarios (I
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: 25 scenario `.md` files exist + each passes `validate_document.py --type playbook_feature`.
+- **SC-001**: 23 scenario `.md` files exist + each passes `validate_document.py --type playbook_feature`.
 - **SC-002**: Root playbook `manual_testing_playbook.md` lists `23--doctor-commands/` and indexes 23 new scenarios in Section 12.
 - **SC-003**: Sandbox harness `Dockerfile` + `docker-compose.yml` + 4 harness scripts + 23 wrappers + fixture-fetch + manifest authored.
 - **SC-004**: All `*.sh` files pass `bash -n`; all `*.yaml` and `*.json` files pass syntax validation.
@@ -282,7 +282,7 @@ Author the validation half of 013's deliverable: 23 manual playbook scenarios (I
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 22/25 | 25 scenario .md + 31 sandbox files + 8 packet docs + 1 root playbook modify = ~67 files |
+| Scope | 22/25 | 23 scenario .md + 31 sandbox files + 8 packet docs + 1 root playbook modify = ~67 files |
 | Risk | 14/25 | Codex parallel dispatch + fixture hosting absence + cross-packet template-manifest known issue |
 | Research | 12/20 | Phase 1 explored 3 areas (playbook conventions, docker patterns, phase-parent shape) — substantial research, well-grounded |
 | **Total** | **48/70** | **Level 3** (above Level 2 threshold; Level 3+ not needed since complexity < 80) |

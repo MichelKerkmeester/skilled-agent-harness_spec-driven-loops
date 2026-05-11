@@ -3,25 +3,25 @@
     "001-doctor-commands",
     "002-sandbox-testing-playbook"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
-  "description": "Feature Specification: Doctor Update Orchestrator (phase parent)",
+  "specFolder": "013-doctor-update-orchestrator",
+  "description": "Remediation of 013 deep-review CONDITIONAL findings: doc honesty + security hardening + cross-runtime mirror",
   "keywords": [
-    "feature",
-    "specification",
-    "doctor",
-    "update",
-    "orchestrator",
-    "phase-parent",
-    "doctor-commands",
-    "sandbox-testing-playbook"
+    "remediation",
+    "013",
+    "deep-review",
+    "conditional",
+    "findings",
+    "doc",
+    "honesty",
+    "security",
+    "hardening",
+    "cross-runtime",
+    "mirror"
   ],
-  "lastUpdated": "2026-05-10T06:59:26.785Z",
+  "lastUpdated": "2026-05-11T08:32:25.383Z",
   "specId": "013",
   "folderSlug": "doctor-update-orchestrator",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization"
-  ],
+  "parentChain": [],
   "memorySequence": 2,
   "memoryNameHistory": [
     "10-05-26_07-23__root-cause-invent-a-smart-solution-to-this.md",

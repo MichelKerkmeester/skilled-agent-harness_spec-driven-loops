@@ -3,6 +3,7 @@ description: Audit skill, command, and agent description budgets through the int
 argument-hint: "[--json] [--top-n=N] [--fail-over=N] [--project-ceiling=N]"
 allowed-tools: Read, Bash, Glob
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >

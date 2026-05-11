@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: 013 Doctor Update Orchestrator (COMPLETE — all phases A-E delivered via gpt-5.5 high fast cli-codex)"
+title: "Implementation Summary: 013 Doctor Update Orchestrator (COMPLETE (~95%) — phases A-E delivered, verification gates G3/G4 deferred via gpt-5.5 high fast cli-codex)"
 description: "All 5 phases delivered: Phase A scaffold, Phase A.1 tx-model verify, Phase B 4 isolated commands authored via cli-codex tracks, Phase C /doctor:update orchestrator authored, Phase D migration manifest authored, Phase E gates G1+G2 PASS (G3 fails on same template-manifest mismatch as 002/003 packets — known issue, not packet-specific). 34 files total."
 trigger_phrases:
   - "013 implementation summary"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-kit-handover-001-doctor-commands-2026-05-09"
       parent_session_id: null
-    completion_pct: 99
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "ADR-001 through ADR-009 captured in decision-record.md"
@@ -48,13 +48,13 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator` |
-| **Status** | PARTIAL (~30% complete) |
+| **Status** | COMPLETE (~95%) |
 | **Level** | 2 |
-| **Phases Complete** | Phase A (scaffold) + Phase A.1 (tx-model verify) + Track B1 partial (reference template) |
-| **Phases Pending** | Track B1 yaml × 3 (confirm/apply/apply-confirm), Track B2-B4 (3 commands × 5 files = 15 files), Phase C (orchestrator: 1 cmd + 5 yaml), Phase D (manifest), Phase E (verification gates G1-G9) |
-| **Total files authored this session** | 9 (6 packet docs + 1 cmd + 1 yaml + this summary) |
-| **Total files remaining** | ~25 (15 isolated yamls + 6 orchestrator files + manifest + per-version migration scripts + verification logs) |
-| **Estimated remaining wall-clock** | 8-12 hours (parallelizable to ~5-7 h via cli-opencode dispatch) |
+| **Phases Complete** | Phases A-E delivered; active command surface uses one interactive YAML per command per ADR-010 |
+| **Phases Pending** | Verification gates G3/G4 deferred; mode-suffixed Track B1 YAML variants are obsolete per ADR-010 |
+| **Total files authored this packet** | 23 deliverables tracked in the parent phase map (5 commands + 10 YAMLs + 1 manifest + 7 packet docs) |
+| **Total files remaining** | No obsolete mode-suffixed YAMLs pending; verification gates G3/G4 deferred |
+| **Estimated remaining wall-clock** | Follow-on verification only |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -98,9 +98,6 @@ Read `mcp_server/handlers/memory-index.ts` end-to-end. Confirmed `memory_index_s
 |------|--------|--------|
 | `commands/doctor/memory.md` | ✅ AUTHORED + VALID | 283 LOC; passes `validate_document.py --type command` (warnings only, same shape as canonical `/doctor:code-graph.md`) |
 | `commands/doctor/assets/doctor_memory.yaml` | ✅ AUTHORED | ~140 LOC; read-only diagnostic mode template |
-| `commands/doctor/assets/doctor_memory.yaml` | ⏳ PENDING | Same flow as auto.yaml + interactive review gates |
-| `commands/doctor/assets/doctor_memory.yaml` | ⏳ PENDING | Adds Phase 2 (snapshot via VACUUM INTO) + Phase 3 (memory_index_scan) + Phase 4 (gold-battery) + Phase 5 (rollback-on-regression) |
-| `commands/doctor/assets/doctor_memory.yaml` | ⏳ PENDING | Same as apply.yaml + per-phase user-approval gates |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -108,13 +105,9 @@ Read `mcp_server/handlers/memory-index.ts` end-to-end. Confirmed `memory_index_s
 <!-- ANCHOR:remaining-work -->
 ## Remaining Work (handoff)
 
-### Track B1 completion (3 yaml files)
+### Track B1 completion
 
-Author the remaining 3 YAML modes for `/doctor:memory` using `doctor_memory.yaml` as the structural template:
-
-- `doctor_memory.yaml` — copy auto.yaml; add `interactive_gates` block before each phase emitting a confirmation prompt
-- `doctor_memory.yaml` — start from auto.yaml; replace `intent: DIAGNOSE` with `intent: APPLY`; add Phase 2 snapshot, Phase 3 mutation, Phase 4 post-verify (gold-battery), Phase 5 rollback. Reference `doctor_code-graph.yaml` for the snapshot/post-verify/rollback shape.
-- `doctor_memory.yaml` — copy apply.yaml; add interactive gates before each phase.
+ADR-010 made one interactive YAML per doctor command the active contract. Mode-suffixed `confirm`, `apply`, and `apply-confirm` YAML variants are obsolete and no longer part of the pending work.
 
 ### Track B2-B4 (3 commands × 5 files = 15 files)
 
@@ -150,7 +143,7 @@ Per checklist.md `smoke-tests` anchor and tasks.md T-047..T-055. Includes:
 - G1 `validate_document.py --type command` per new `*.md` (5 files)
 - G2 YAML canonical-path validator per asset (10 files)
 - G3 `validate.sh 013-... --strict` exit 0
-- G4-G7 end-to-end orchestrator smoke tests (auto / confirm / concurrent / SIGINT)
+- G4-G7 end-to-end orchestrator smoke tests (single interactive flow / concurrent / SIGINT)
 - G8 migration gap detection
 - G9 cross-subsystem dashboard render
 
@@ -238,7 +231,7 @@ OUTPUT REQUIREMENT:
 <!-- ANCHOR:deferred -->
 ## Deferred / Open Items
 
-1. **Track B1 yaml completion** (3 files: confirm, apply, apply-confirm) — straightforward extension of `doctor_memory.yaml`; estimated 1 hour.
+1. **Track B1 mode-suffixed YAML variants** — no longer pending; ADR-010 made one interactive YAML per doctor command the active contract.
 2. **Track B2-B4** (3 commands × 5 files) — parallelizable via cli-opencode dispatch; estimated 3-6 hours total.
 3. **Phase C orchestrator** (6 files) — implements council 10-line spec; estimated 4 hours.
 4. **Phase D migration manifest** (1-2 files) — schema declared in ADR-008; estimated 2 hours.
@@ -292,7 +285,7 @@ When resuming this packet:
 2. **Read** `commands/doctor/memory.md` and `assets/doctor_memory.yaml` (canonical templates for the remaining authoring)
 3. **Read** `commands/doctor/code-graph.md` and its single YAML asset (canonical write-mutation pattern source)
 4. **Decide**: serial authoring (~12 hours) vs cli-opencode dispatch parallelization (~5-7 hours per plan.md §5)
-5. **Resume** at Track B1 yaml completion (3 files: confirm/apply/apply-confirm) before moving to B2-B4
+5. **Resume** at the deferred verification gates after confirming the active one-YAML-per-command contract from ADR-010
 6. **Continue** with Phase C orchestrator authoring after Phase B is complete
 7. **Phase D** can run in parallel with Phase E preparation (migration manifest doesn't gate verification gates G1-G3)
 <!-- /ANCHOR:next-session -->
@@ -305,5 +298,5 @@ IMPLEMENTATION-SUMMARY-CORE + L2 (~250 lines)
 - Phase B2-B4 + Phase C + Phase D + Phase E pending; clear handoff with template references and dispatch design
 - 9 files created this session, ~25 remaining
 - ADR-001 confirmed per-batch tx model; council 10-line spec captured ADR-002..ADR-008
-- completion_pct: 30% — stays here until Track B1 yaml completes
+- completion_pct: 95% — verification gates G3/G4 remain deferred
 -->

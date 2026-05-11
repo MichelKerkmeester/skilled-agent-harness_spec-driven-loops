@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
     last_updated_at: "2026-05-09T11:30:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored 8 ADRs capturing council 7 questions + tx-model placeholder"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-013-doctor-update-orchestrator"
       parent_session_id: null
-    completion_pct: 65
+    completion_pct: 100
     open_questions:
       - "ADR-001 tx-model finding: pending Phase A.1 verification of handlers/memory-index.ts"
       - "ADR-009 (optional): external GPT-5.5 high dispatch waiver vs full second-opinion"

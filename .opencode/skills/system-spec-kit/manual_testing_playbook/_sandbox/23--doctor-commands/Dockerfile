@@ -1,4 +1,4 @@
-FROM node:20-bookworm
+FROM node:20-bookworm-slim
 
 LABEL description="Spec Kit doctor command manual-testing sandbox"
 

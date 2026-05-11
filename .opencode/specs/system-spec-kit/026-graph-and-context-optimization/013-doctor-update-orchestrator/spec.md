@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Doctor Update Orchestrator [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/spec]"
-description: "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 25-scenario manual playbook (child 002) ships the validation harness."
+description: "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 23-scenario manual playbook (child 002) ships the validation harness."
 trigger_phrases:
   - "013-doctor-update-orchestrator"
   - "doctor command surface"
@@ -101,8 +101,9 @@ Group the doctor command authoring (child `001-doctor-commands/`) and the sandbo
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
-| 1 | `001-doctor-commands/` | Complete | Feature Specification: 5 isolated `/doctor:*` commands (memory, causal-graph, deep-loop, cocoindex) + unified `/doctor:update` orchestrator implementing the council 10-line spec, plus the migration manifest for 3.3.0.0 → 3.4.1.0. Authored via cli-codex gpt-5.5 high fast across 5 sequential dispatch tracks; 34 deliverables total (5 cmds + 21 yamls + 1 manifest + 7 packet docs). G1+G2 verification gates passed. |
-| 2 | `002-sandbox-testing-playbook/` | In Progress | Feature Specification: Docker sandbox + 25-scenario manual testing playbook covering all 5 doctor commands and the version-migration end-to-end. Adds new playbook category `23--doctor-commands/` (IDs 323-347) plus `_sandbox/23--doctor-commands/` with Dockerfile, docker-compose.yml, fixture-fetch script, 4 harness scripts, and 25 per-scenario shell wrappers. |
+| 1 | `001-doctor-commands/` | Complete | Feature Specification: 5 isolated `/doctor:*` commands (memory, causal-graph, deep-loop, cocoindex) + unified `/doctor:update` orchestrator implementing the council 10-line spec, plus the migration manifest for 3.3.0.0 → 3.4.1.0. Authored via cli-codex gpt-5.5 high fast across 5 sequential dispatch tracks; 23 deliverables total (5 cmds + 10 yamls + 1 manifest + 7 packet docs). G1+G2 verification gates passed. |
+| 2 | `002-sandbox-testing-playbook/` | In Progress | Feature Specification: Docker sandbox + 23-scenario manual testing playbook covering all 5 doctor commands and the version-migration end-to-end. Adds new playbook category `23--doctor-commands/` (IDs 323-347 with gaps at 337 and 343) plus `_sandbox/23--doctor-commands/` with Dockerfile, docker-compose.yml, fixture-fetch script, 4 harness scripts, and 23 per-scenario shell wrappers. |
+| 002-sandbox-testing-playbook | 003-rm8-013-remediation-doc-honesty-security | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -114,7 +115,7 @@ Group the doctor command authoring (child `001-doctor-commands/`) and the sandbo
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-P-001 | Phase parent root has the lean trio (`spec.md`, `description.json`, `graph-metadata.json`) and NO heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`). | `find . -maxdepth 1 -type f` returns exactly the three lean-trio files. |
+| REQ-P-001 | Phase parent root has the lean trio (`spec.md`, `description.json`, `graph-metadata.json`) and NO heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`). | `find . -maxdepth 1 -type f -name '*.md' -o -name '*.json'` returns the lean-trio (`spec.md`, `description.json`, `graph-metadata.json`) PLUS any cross-cutting optional docs (`handover.md`, `resource-map.md`). Heavy authored docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) MUST be absent at parent level. |
 | REQ-P-002 | `graph-metadata.json` `derived.last_active_child_id` matches the most recently saved child packet. | Field is one of `001-doctor-commands` / `002-sandbox-testing-playbook` and matches the child whose `last_save_at` is most recent. |
 | REQ-P-003 | Both children are listed in `graph-metadata.json` `children_ids` with the canonical `system-spec-kit/...` path prefix. | `children_ids` array length ≥ 2; entries match `001-doctor-commands` and `002-sandbox-testing-playbook` with full prefix. |
 | REQ-P-004 | Child 001 (doctor commands) is `Complete` and child 002 (sandbox playbook) reaches `Complete` for parent to be `Complete`. | Tracked via per-child `_memory.continuity.completion_pct: 100`. |
@@ -123,7 +124,7 @@ Group the doctor command authoring (child `001-doctor-commands/`) and the sandbo
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-P-010 | Every command authored in child 001 has at least one corresponding scenario in child 002's playbook category. | 5 commands × ≥1 scenarios ≥ 5; planned coverage is 25 scenarios across 6 feature blocks. |
+| REQ-P-010 | Every command authored in child 001 has at least one corresponding scenario in child 002's playbook category. | 5 commands × ≥1 scenarios ≥ 5; planned coverage is 23 scenarios across 6 feature blocks. |
 | REQ-P-011 | The migration manifest authored in child 001 is exercised by at least one end-to-end scenario in child 002. | Scenario DOC-345 (or equivalent) cites `migration-manifest.json` and runs `--migrate` end-to-end. |
 | REQ-P-012 | Child 002's sandbox harness wraps the canonical doctor command invocations exactly as documented in child 001's Markdown entrypoints (no parallel reimplementation). | Per-scenario `.sh` wrappers `cd` into the workspace and invoke `/doctor:*` via the same shell-friendly invocation pattern declared in the Markdown setup phase. |
 <!-- /ANCHOR:requirements -->
@@ -135,7 +136,7 @@ Group the doctor command authoring (child `001-doctor-commands/`) and the sandbo
 
 - **SC-P-001**: Both children reach `_memory.continuity.completion_pct: 100`.
 - **SC-P-002**: 5 `/doctor:*` commands registered in Skill Advisor and pass `validate_document.py --type command` (already true for child 001).
-- **SC-P-003**: 25 manual playbook scenarios authored in `system-spec-kit/manual_testing_playbook/23--doctor-commands/` and indexed in the root playbook's Section 12 cross-reference (planned for child 002).
+- **SC-P-003**: 23 manual playbook scenarios authored in `system-spec-kit/manual_testing_playbook/23--doctor-commands/` and indexed in the root playbook's Section 12 cross-reference (planned for child 002).
 - **SC-P-004**: Sandbox harness scripts pass `bash -n` and `harness/run-all.sh --dry-run` exits 0 (planned for child 002).
 - **SC-P-005**: Strict spec-folder validate exits 0 on parent root (lean-trio detection works).
 <!-- /ANCHOR:success-criteria -->
@@ -165,7 +166,7 @@ Group the doctor command authoring (child `001-doctor-commands/`) and the sandbo
 - **Q-B** *(answered 2026-05-09)*: Manual playbook home — packet-local or skill-level? **Answer**: Skill-level at `system-spec-kit/manual_testing_playbook/23--doctor-commands/` (matches existing 22-category convention).
 - **Q-C** *(answered 2026-05-09)*: Sandbox harness location? **Answer**: `manual_testing_playbook/_sandbox/23--doctor-commands/` (sibling to Markdown categories with `_` prefix to keep out of validator scans).
 - **Q-D** *(answered 2026-05-09)*: Fixture archive hosting? **Answer**: External download via `fetch-fixtures.sh` at sandbox setup time (cleanest repo footprint).
-- **Q-E** *(answered 2026-05-09)*: Scenario ID range? **Answer**: 323-347 (25 IDs contiguous above current 322 file max in the playbook).
+- **Q-E** *(answered 2026-05-09)*: Scenario ID range? **Answer**: 323-347 with gaps at 337 and 343 (23 IDs above current 322 file max in the playbook).
 <!-- /ANCHOR:questions -->
 
 ---

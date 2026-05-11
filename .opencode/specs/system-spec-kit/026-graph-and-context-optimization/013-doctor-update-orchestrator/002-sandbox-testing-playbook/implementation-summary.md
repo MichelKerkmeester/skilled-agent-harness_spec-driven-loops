@@ -30,7 +30,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-kit-handover-002-sandbox-testing-playbook-2026-05-09"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 95
     open_questions:
       - "Generate empty-state and partial-state fixtures synthetically, or wait on external sources?"
       - "Build Docker image now or defer until CI workflow lands?"
@@ -69,7 +69,7 @@ _memory:
 **013 phase parent lean trio** (3 files):
 - `spec.md` — phase parent root with PHASE DOCUMENTATION MAP linking 001 + 002
 - `description.json` — parentChain ["system-spec-kit", "026-graph-and-context-optimization"], specId "013", childTopology
-- `graph-metadata.json` — parent_id 026, children_ids [001, 002], `derived.last_active_child_id` → 002
+- `graph-metadata.json` — parent relationship tracked at the parent `graph-metadata.json`
 
 **002 packet Level 3 docs** (8 files):
 - `spec.md` (Level 3, REQ-001..REQ-043, NFR section, complexity 48/70)
@@ -108,20 +108,20 @@ Authored under `system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-comm
 - **Container**: `Dockerfile` (Node 20-bookworm + python3.11 + sqlite3 + jq + git + curl + non-root testuser) + `docker-compose.yml`
 - **Fixtures**: `fixtures/manifest.json` (4 fixtures with placeholder URLs + SHA-256 checksums) + `fixtures/fetch-fixtures.sh` (idempotent download with checksum verify) + `fixtures/.gitkeep`
 - **Harness scripts (4)**: `run-all.sh` (orchestrator), `reset-state.sh` (fixture restore), `capture-evidence.sh` (stdout/exit/file-deltas/snapshots), `assert-signals.sh` (grep-based expected-signal matcher)
-- **Per-scenario wrappers (25)**: `scenarios/DOC-323-*.sh` ... `DOC-347-*.sh`, each sources the harness lib + invokes the canonical `/doctor:*` command 1:1 with the matching .md scenario
+- **Per-scenario wrappers (23)**: `scenarios/DOC-323-*.sh` ... `DOC-347-*.sh` with gaps at DOC-337 and DOC-343, each sources the harness lib + invokes the canonical `/doctor:*` command 1:1 with the matching .md scenario
 
 All 28 .sh files pass `bash -n`. `harness/run-all.sh --dry-run` exits 0 with proper output.
 
 ### Bonus: YAML polish track (parallel with Phase A)
 
-While Phase A authored the 002 packet docs, a separate cli-codex track polished all 21 YAMLs in `001-doctor-commands/` to match canonical `/doctor:code-graph_apply.yaml` style:
-- Added `upstream_assets` block (21/21)
-- Added module-specific `_invariant` block (21/21)
-- Added `field_handling.policy` mappings (19/21 — 2 cocoindex auto/confirm don't need it)
+While Phase A authored the 002 packet docs, a separate cli-codex track aligned the active 10 YAMLs in `001-doctor-commands/` to match the canonical doctor command style:
+- Added `upstream_assets` block (10/10)
+- Added module-specific `_invariant` block (10/10)
+- Added `field_handling.policy` mappings where needed
 - Added inline `# ` comments (avg 7.67 per file)
 - Tightened `forbidden_targets` globs from over-broad to specific patterns
 
-All 21 YAMLs still syntactically valid; structural correctness preserved.
+All 10 active YAMLs still syntactically valid; structural correctness preserved.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -150,7 +150,7 @@ Delivery used the planned split from `plan.md`: precision packet docs and root p
 
 | Track | Files | Wall-Clock | Status |
 |-------|-------|------------|--------|
-| YAML polish (001 yamls) | 21 modified | ~10 min | ✅ Clean (21/21 valid; all enrichment targets met) |
+| YAML polish (001 yamls) | 10 active assets aligned | ~10 min | ✅ Clean (10/10 valid; all enrichment targets met) |
 | P-MEM (Phase B) | 5 | ~6 min | ✅ Clean |
 | P-CAUSAL (Phase B) | 3 | ~5 min | ✅ Clean |
 | P-LOOP-COCO (Phase B) | 6 | ~7 min | ✅ Clean |
@@ -167,12 +167,12 @@ Delivery used the planned split from `plan.md`: precision packet docs and root p
 
 | Gate | Status | Detail |
 |------|--------|--------|
-| **G1** validate_document on 25 scenario .md (using --type spec since playbook_feature unsupported) | ✅ | 25/25 valid |
+| **G1** validate_document on 23 scenario .md (using --type spec since playbook_feature unsupported) | ✅ | 23/23 valid |
 | **G2** yaml/json syntax (docker-compose.yml + manifest.json) | ✅ | Both pass |
 | **G3** strict spec-folder validate on 002 packet | ⚠️ | 4 errors (FILE_EXISTS missing 1 required, TEMPLATE_HEADERS 23 issues, ANCHORS_VALID 35 issues, FRONTMATTER_MEMORY_BLOCK 5 issues) — **same cross-packet template-manifest pattern that 002 + 003 + 013/001 packets in this session also fail**; documented as known issue in spec.md §6 RISKS |
 | **G4** strict spec-folder validate on 013 phase parent | ⚠️ | Lean-trio detection **WORKS** (`Phase parent lean template shape accepted`); only 1 FRONTMATTER_MEMORY_BLOCK issue; near-pass |
-| **G5** harness/run-all.sh --dry-run | ✅ | Exit 0; lint pass=30, scenarios=25, playbook=25 |
-| **G6** bash -n on all .sh | ✅ | 30/30 |
+| **G5** harness/run-all.sh --dry-run | ✅ | Exit 0; lint pass=28, scenarios=23, playbook=23 |
+| **G6** bash -n on all .sh | ✅ | 28/28 |
 | **G7** root playbook updates | ✅ | 23-- in canonical sources (1 hit), last_updated 2026-05-09, 23 Section 12 entries (3{2[3-9],3[0-9],4[0-7]}) |
 
 **Notes on validator gaps**:
@@ -249,10 +249,10 @@ Delivery used the planned split from `plan.md`: precision packet docs and root p
 | Path | Change |
 |------|--------|
 | `system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | last_updated bump + canonical-source-artifacts entry + 23 Section 12 rows |
-| `026-.../013-.../graph-metadata.json` | last_active_child_id ← 002-sandbox-testing-playbook (auto-managed by generate-context.js) |
+| `026-.../013-.../graph-metadata.json` | active child tracked at parent `graph-metadata.json` |
 
-### Modified — 21 YAMLs in 001-doctor-commands (polish track)
-All 21 doctor mode YAMLs enriched with upstream_assets + _invariant + field_handling.policy + inline comments + tightened forbidden_targets (per the user's earlier alignment feedback).
+### Modified — 10 active YAMLs in 001-doctor-commands (polish track)
+All active doctor YAMLs enriched with upstream_assets + _invariant + field_handling.policy where needed + inline comments + tightened forbidden_targets (per the user's earlier alignment feedback).
 <!-- /ANCHOR:files-touched -->
 
 ---

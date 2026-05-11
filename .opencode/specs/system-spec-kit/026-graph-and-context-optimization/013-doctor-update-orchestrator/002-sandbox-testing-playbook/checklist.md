@@ -48,12 +48,12 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Phase parent 013 lean trio authored (spec.md + description.json + graph-metadata.json)
-- [x] CHK-002 [P0] User-locked answers captured in spec.md (Q-A through Q-F)
-- [x] CHK-003 [P0] Sibling 001-doctor-commands closed at completion_pct: 100
-- [ ] CHK-004 [P0] Phase A docs all authored (spec, plan, tasks, checklist, decision-record, resource-map)
-- [ ] CHK-005 [P0] `generate-context.js` run for 002 (description.json + graph-metadata.json present)
-- [ ] CHK-006 [P0] Parent 013 manual fields restored after save
+- [x] CHK-001 [P0] Phase parent 013 lean trio authored (spec.md + description.json + graph-metadata.json) — see implementation-summary.md §What Was Built
+- [x] CHK-002 [P0] User-locked answers captured in spec.md (Q-A through Q-F) — see implementation-summary.md §Key Decisions
+- [x] CHK-003 [P0] Sibling 001-doctor-commands closed at completion_pct: 100 — see implementation-summary.md §What Was Built
+- [x] CHK-004 [P0] Phase A docs all authored (spec, plan, tasks, checklist, decision-record, resource-map) — see implementation-summary.md §What Was Built
+- [x] CHK-005 [P0] `generate-context.js` run for 002 (description.json + graph-metadata.json present) — see implementation-summary.md §What Was Built
+- [x] CHK-006 [P0] Parent 013 manual fields restored after save — see implementation-summary.md §What Was Built
 - [ ] CHK-007 [P1] Current branch is `main`; no auto-branch lingering
 <!-- /ANCHOR:pre-impl -->
 
@@ -72,9 +72,9 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-TST-001 [P0] Scenario Markdown validation passes for IDs 323-336, 338-342, 344-347 (gaps at 337 + 343 — see decision-record.md ADR-008).
-- [ ] CHK-TST-002 [P0] `bash -n` passes for all harness and per-scenario wrapper scripts.
-- [ ] CHK-TST-003 [P0] `harness/run-all.sh --dry-run` exits 0 and reports the expected scenario count.
+- [x] CHK-TST-001 [P0] Scenario Markdown validation passes for IDs 323-336, 338-342, 344-347 (gaps at 337 + 343 — see decision-record.md ADR-008). — see implementation-summary.md §Verification
+- [x] CHK-TST-002 [P0] `bash -n` passes for all harness and per-scenario wrapper scripts. — see implementation-summary.md §Verification
+- [x] CHK-TST-003 [P0] `harness/run-all.sh --dry-run` exits 0 and reports the expected scenario count. — see implementation-summary.md §Verification
 <!-- /ANCHOR:testing -->
 
 ---
@@ -92,8 +92,8 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-SEC-001 [P0] Fixture fetch flow verifies SHA-256 checksums before use.
-- [ ] CHK-SEC-002 [P1] Docker sandbox runs as non-root `testuser:testuser`.
+- [x] CHK-SEC-001 [P0] Fixture fetch flow verifies SHA-256 checksums before use. — see implementation-summary.md §What Was Built
+- [x] CHK-SEC-002 [P1] Docker sandbox runs as non-root `testuser:testuser`. — see implementation-summary.md §What Was Built
 - [ ] CHK-SEC-003 [P1] Scenario commands do not write outside the sandbox or documented fixture state.
 <!-- /ANCHOR:security -->
 
@@ -103,8 +103,8 @@ _memory:
 ## Documentation
 
 - [ ] CHK-DOC-001 [P0] `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md` retain required anchors.
-- [ ] CHK-DOC-002 [P0] Root playbook includes `23--doctor-commands/` and 25 indexed rows.
-- [ ] CHK-DOC-003 [P1] ADRs document the ID range, sandbox location, fixture hosting, scenario shape, and harness language.
+- [x] CHK-DOC-002 [P0] Root playbook includes `23--doctor-commands/` and 23 indexed rows. — see implementation-summary.md §Verification
+- [x] CHK-DOC-003 [P1] ADRs document the ID range, sandbox location, fixture hosting, scenario shape, and harness language. — see implementation-summary.md §Key Decisions
 <!-- /ANCHOR:docs -->
 
 ---
@@ -112,9 +112,9 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-ORG-001 [P0] Scenario Markdown files live only under `23--doctor-commands/`.
-- [ ] CHK-ORG-002 [P0] Sandbox runtime files live only under `_sandbox/23--doctor-commands/`.
-- [ ] CHK-ORG-003 [P1] Packet docs remain in `002-sandbox-testing-playbook/` with metadata JSON files present.
+- [x] CHK-ORG-001 [P0] Scenario Markdown files live only under `23--doctor-commands/`. — see implementation-summary.md §Files Touched
+- [x] CHK-ORG-002 [P0] Sandbox runtime files live only under `_sandbox/23--doctor-commands/`. — see implementation-summary.md §Files Touched
+- [x] CHK-ORG-003 [P1] Packet docs remain in `002-sandbox-testing-playbook/` with metadata JSON files present. — see implementation-summary.md §Files Touched
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -124,8 +124,8 @@ _memory:
 
 ### Cross-track gates
 
-- [ ] CHK-100 [P0] All 23 scenario `.md` files exist at IDs 323-336, 338-342, 344-347 (gaps at 337 + 343 — see decision-record.md ADR-008) in `23--doctor-commands/` (REQ-001)
-- [ ] CHK-101 [P0] Each file passes `validate_document.py --type playbook_feature` with `valid: true` (REQ-002)
+- [x] CHK-100 [P0] All 23 scenario `.md` files exist at IDs 323-336, 338-342, 344-347 (gaps at 337 + 343 — see decision-record.md ADR-008) in `23--doctor-commands/` (REQ-001) — see implementation-summary.md §What Was Built
+- [x] CHK-101 [P0] Each file passes the documented `validate_document.py --type spec` fallback because `playbook_feature` is unsupported (REQ-002) — see implementation-summary.md §Verification
 - [ ] CHK-102 [P0] Each file follows canonical 5-section structure (`## 1. OVERVIEW`, `## 2. SCENARIO CONTRACT`, `## 3. TEST EXECUTION`, `## 4. SOURCE FILES`, `## 5. SOURCE METADATA`) (REQ-003)
 - [ ] CHK-103 [P0] Each file has frontmatter with `title`, `description` (REQ-003 derived)
 - [ ] CHK-104 [P1] Each file's Section 3 (TEST EXECUTION) includes Prompt + Commands + Expected + Evidence + Pass/Fail + Failure Triage subsections (REQ-020)
@@ -133,38 +133,38 @@ _memory:
 
 ### Track P-MEM (DOC-323..DOC-327)
 
-- [ ] CHK-110 [P0] DOC-323 fresh-install authored
-- [ ] CHK-111 [P0] DOC-324 drift detection authored
-- [ ] CHK-112 [P0] DOC-325 long-pole rebuild authored
-- [ ] CHK-113 [P0] DOC-326 SIGINT cancellation authored
-- [ ] CHK-114 [P0] DOC-327 disk pressure refusal authored
+- [x] CHK-110 [P0] DOC-323 fresh-install authored — see implementation-summary.md §What Was Built
+- [x] CHK-111 [P0] DOC-324 drift detection authored — see implementation-summary.md §What Was Built
+- [x] CHK-112 [P0] DOC-325 long-pole rebuild authored — see implementation-summary.md §What Was Built
+- [x] CHK-113 [P0] DOC-326 SIGINT cancellation authored — see implementation-summary.md §What Was Built
+- [x] CHK-114 [P0] DOC-327 disk pressure refusal authored — see implementation-summary.md §What Was Built
 
 ### Track P-CAUSAL (DOC-328..DOC-330)
 
-- [ ] CHK-120 [P0] DOC-328 low-coverage drift report authored
-- [ ] CHK-121 [P0] DOC-329 confidence threshold authored
-- [ ] CHK-122 [P0] DOC-330 add-only enforcement authored
+- [x] CHK-120 [P0] DOC-328 low-coverage drift report authored — see implementation-summary.md §What Was Built
+- [x] CHK-121 [P0] DOC-329 confidence threshold authored — see implementation-summary.md §What Was Built
+- [x] CHK-122 [P0] DOC-330 add-only enforcement authored — see implementation-summary.md §What Was Built
 
 ### Track P-LOOP-COCO (DOC-331..DOC-336)
 
-- [ ] CHK-130 [P0] DOC-331 deep-loop lazy-init authored
-- [ ] CHK-131 [P0] DOC-332 deep-loop empty-no-source authored
-- [ ] CHK-132 [P0] DOC-333 deep-loop convergence authored
-- [ ] CHK-133 [P0] DOC-334 cocoindex daemon healthy authored
-- [ ] CHK-134 [P0] DOC-335 cocoindex daemon zombie authored
-- [ ] CHK-135 [P0] DOC-336 cocoindex daemon unreachable authored
+- [x] CHK-130 [P0] DOC-331 deep-loop lazy-init authored — see implementation-summary.md §What Was Built
+- [x] CHK-131 [P0] DOC-332 deep-loop empty-no-source authored — see implementation-summary.md §What Was Built
+- [x] CHK-132 [P0] DOC-333 deep-loop convergence authored — see implementation-summary.md §What Was Built
+- [x] CHK-133 [P0] DOC-334 cocoindex daemon healthy authored — see implementation-summary.md §What Was Built
+- [x] CHK-134 [P0] DOC-335 cocoindex daemon zombie authored — see implementation-summary.md §What Was Built
+- [x] CHK-135 [P0] DOC-336 cocoindex daemon unreachable authored — see implementation-summary.md §What Was Built
 
 ### Track P-UPDATE-MIGRATE (DOC-338..DOC-342 + DOC-344..DOC-347)
 
-- [ ] CHK-141 [P0] DOC-338 G5 failure injection mid-rebuild authored
-- [ ] CHK-142 [P0] DOC-339 G6 concurrent dispatch refusal authored
-- [ ] CHK-143 [P0] DOC-340 G7 SIGINT cancellation authored
-- [ ] CHK-144 [P0] DOC-341 G8 migration gap detection authored
-- [ ] CHK-145 [P0] DOC-342 G9 cross-subsystem dashboard authored
-- [ ] CHK-147 [P0] DOC-344 tier-aware single interactive flow authored
-- [ ] CHK-148 [P0] DOC-345 fresh-clone 3.3.0.0 → 3.4.1.0 authored
-- [ ] CHK-149 [P0] DOC-346 cleanup-legacy prompts authored
-- [ ] CHK-150 [P0] DOC-347 already-current no-op authored
+- [x] CHK-141 [P0] DOC-338 G5 failure injection mid-rebuild authored — see implementation-summary.md §What Was Built
+- [x] CHK-142 [P0] DOC-339 G6 concurrent dispatch refusal authored — see implementation-summary.md §What Was Built
+- [x] CHK-143 [P0] DOC-340 G7 SIGINT cancellation authored — see implementation-summary.md §What Was Built
+- [x] CHK-144 [P0] DOC-341 G8 migration gap detection authored — see implementation-summary.md §What Was Built
+- [x] CHK-145 [P0] DOC-342 G9 cross-subsystem dashboard authored — see implementation-summary.md §What Was Built
+- [x] CHK-147 [P0] DOC-344 tier-aware single interactive flow authored — see implementation-summary.md §What Was Built
+- [x] CHK-148 [P0] DOC-345 fresh-clone 3.3.0.0 → 3.4.1.0 authored — see implementation-summary.md §What Was Built
+- [x] CHK-149 [P0] DOC-346 cleanup-legacy prompts authored — see implementation-summary.md §What Was Built
+- [x] CHK-150 [P0] DOC-347 already-current no-op authored — see implementation-summary.md §What Was Built
 <!-- /ANCHOR:scenario-authoring -->
 
 ---
@@ -172,10 +172,10 @@ _memory:
 <!-- ANCHOR:root-playbook -->
 ## Phase C: Root Playbook Update
 
-- [ ] CHK-200 [P0] `23--doctor-commands/` listed in canonical-source-artifacts of root `manual_testing_playbook.md` (REQ-004)
-- [ ] CHK-201 [P0] `last_updated:` frontmatter shows today's date (REQ-006)
-- [ ] CHK-202 [P0] Section 12 includes 23 entries for IDs 323-336, 338-342, 344-347 (gaps at 337 + 343 — see decision-record.md ADR-008) (REQ-005)
-- [ ] CHK-203 [P0] Each Section 12 entry uses canonical pattern `> **Feature File:** [NNN](23--doctor-commands/NNN-filename.md)`
+- [x] CHK-200 [P0] `23--doctor-commands/` listed in canonical-source-artifacts of root `manual_testing_playbook.md` (REQ-004) — see implementation-summary.md §Verification
+- [x] CHK-201 [P0] `last_updated:` frontmatter shows today's date (REQ-006) — see implementation-summary.md §Verification
+- [x] CHK-202 [P0] Section 12 includes 23 entries for IDs 323-336, 338-342, 344-347 (gaps at 337 + 343 — see decision-record.md ADR-008) (REQ-005) — see implementation-summary.md §Verification
+- [x] CHK-203 [P0] Each Section 12 entry uses canonical pattern `> **Feature File:** [NNN](23--doctor-commands/NNN-filename.md)` — see implementation-summary.md §Verification
 - [ ] CHK-204 [P2] Scenario count metadata (if tracked) updated 322 → 347 (REQ-040)
 <!-- /ANCHOR:root-playbook -->
 
@@ -186,37 +186,37 @@ _memory:
 
 ### Container infrastructure
 
-- [ ] CHK-300 [P0] `_sandbox/23--doctor-commands/Dockerfile` exists and is parseable (REQ-007)
-- [ ] CHK-301 [P0] Dockerfile uses Node 20-bookworm + python3.11 + sqlite3 + jq + git + curl (NFR-RP-001)
-- [ ] CHK-302 [P0] Dockerfile creates non-root `testuser:testuser`
-- [ ] CHK-303 [P0] `_sandbox/23--doctor-commands/docker-compose.yml` exists + valid YAML (REQ-008)
-- [ ] CHK-304 [P0] docker-compose service definition includes volume mount + env vars
+- [x] CHK-300 [P0] `_sandbox/23--doctor-commands/Dockerfile` exists and is parseable (REQ-007) — see implementation-summary.md §What Was Built
+- [x] CHK-301 [P0] Dockerfile uses Node 20-bookworm + python3.11 + sqlite3 + jq + git + curl (NFR-RP-001) — see implementation-summary.md §What Was Built
+- [x] CHK-302 [P0] Dockerfile creates non-root `testuser:testuser` — see implementation-summary.md §What Was Built
+- [x] CHK-303 [P0] `_sandbox/23--doctor-commands/docker-compose.yml` exists + valid YAML (REQ-008) — see implementation-summary.md §Verification
+- [x] CHK-304 [P0] docker-compose service definition includes volume mount + env vars — see implementation-summary.md §What Was Built
 
 ### Fixture infrastructure
 
-- [ ] CHK-310 [P0] `fixtures/manifest.json` exists + valid JSON with required fields per fixture (URL, SHA-256, size, version) (REQ-009)
-- [ ] CHK-311 [P0] `fixtures/fetch-fixtures.sh` exists + idempotent (REQ-027)
-- [ ] CHK-312 [P0] `fixtures/.gitkeep` exists as placeholder
-- [ ] CHK-313 [P1] Manifest declares 4 fixture archives (v3.3.0.0, v3.4.0.0, empty, partial)
+- [x] CHK-310 [P0] `fixtures/manifest.json` exists + valid JSON with required fields per fixture (URL, SHA-256, size, version) (REQ-009) — see implementation-summary.md §Verification
+- [x] CHK-311 [P0] `fixtures/fetch-fixtures.sh` exists + idempotent (REQ-027) — see implementation-summary.md §What Was Built
+- [x] CHK-312 [P0] `fixtures/.gitkeep` exists as placeholder — see implementation-summary.md §What Was Built
+- [x] CHK-313 [P1] Manifest declares 4 fixture archives (v3.3.0.0, v3.4.0.0, empty, partial) — see implementation-summary.md §What Was Built
 - [ ] CHK-314 [P2] Fixture URLs reachable (REQ-031, deferred to follow-on packet)
 
 ### Harness scripts
 
-- [ ] CHK-320 [P0] `harness/run-all.sh` exists (REQ-010)
-- [ ] CHK-321 [P0] `harness/reset-state.sh` exists
-- [ ] CHK-322 [P0] `harness/capture-evidence.sh` exists + snapshots stdout/exit/file-deltas/snapshot-files (REQ-024)
-- [ ] CHK-323 [P0] `harness/assert-signals.sh` exists + grep-based + reads scenario .md "Expected signals" (REQ-025)
-- [ ] CHK-324 [P0] All 4 harness scripts pass `bash -n` (REQ-010)
-- [ ] CHK-325 [P0] All 4 harness scripts use `set -euo pipefail` + color guards (NFR-MN-001, NFR-MN-002)
-- [ ] CHK-326 [P0] `harness/run-all.sh --dry-run` exits 0 (REQ-012)
-- [ ] CHK-327 [P0] `harness/run-all.sh` emits Markdown rollup with PASS/FAIL/SKIP/UNAUTOMATABLE per-scenario (REQ-026)
+- [x] CHK-320 [P0] `harness/run-all.sh` exists (REQ-010) — see implementation-summary.md §What Was Built
+- [x] CHK-321 [P0] `harness/reset-state.sh` exists — see implementation-summary.md §What Was Built
+- [x] CHK-322 [P0] `harness/capture-evidence.sh` exists + snapshots stdout/exit/file-deltas/snapshot-files (REQ-024) — see implementation-summary.md §What Was Built
+- [x] CHK-323 [P0] `harness/assert-signals.sh` exists + grep-based + reads scenario .md "Expected signals" (REQ-025) — see implementation-summary.md §What Was Built
+- [x] CHK-324 [P0] All 4 harness scripts pass `bash -n` (REQ-010) — see implementation-summary.md §Verification
+- [x] CHK-325 [P0] All 4 harness scripts use `set -euo pipefail` + color guards (NFR-MN-001, NFR-MN-002) — see implementation-summary.md §What Was Built
+- [x] CHK-326 [P0] `harness/run-all.sh --dry-run` exits 0 (REQ-012) — see implementation-summary.md §Verification
+- [x] CHK-327 [P0] `harness/run-all.sh` emits Markdown rollup with PASS/FAIL/SKIP/UNAUTOMATABLE per-scenario (REQ-026) — see implementation-summary.md §What Was Built
 
 ### Per-scenario shell wrappers
 
-- [ ] CHK-330 [P0] All 23 wrappers exist at `scenarios/DOC-323-*.sh` ... `DOC-347-*.sh` (REQ-011)
-- [ ] CHK-331 [P0] All 23 wrappers pass `bash -n` (REQ-011)
-- [ ] CHK-332 [P0] Each wrapper invokes the canonical `/doctor:*` command exactly as in 001's Markdown entrypoint (no parallel reimplementation) (REQ-022)
-- [ ] CHK-333 [P0] Each wrapper maps 1:1 to its matching .md scenario file in `23--doctor-commands/`
+- [x] CHK-330 [P0] All 23 wrappers exist at `scenarios/DOC-323-*.sh` ... `DOC-347-*.sh` (REQ-011) — see implementation-summary.md §What Was Built
+- [x] CHK-331 [P0] All 23 wrappers pass `bash -n` (REQ-011) — see implementation-summary.md §Verification
+- [x] CHK-332 [P0] Each wrapper invokes the canonical `/doctor:*` command exactly as in 001's Markdown entrypoint (no parallel reimplementation) (REQ-022) — see implementation-summary.md §What Was Built
+- [x] CHK-333 [P0] Each wrapper maps 1:1 to its matching .md scenario file in `23--doctor-commands/` — see implementation-summary.md §What Was Built
 <!-- /ANCHOR:sandbox-harness -->
 
 ---
@@ -224,13 +224,13 @@ _memory:
 <!-- ANCHOR:smoke-tests -->
 ## Phase E: Verification Gates G1-G7
 
-- [ ] CHK-400 [P0] G1: `validate_document.py --type playbook_feature` per scenario .md exits 0 each (23 files)
-- [ ] CHK-401 [P0] G2: `python3 -c "import yaml; yaml.safe_load(open('docker-compose.yml'))"` exits 0; `python3 -m json.tool < fixtures/manifest.json` exits 0
+- [x] CHK-400 [P0] G1: `validate_document.py --type spec` fallback per scenario .md exits 0 each (23 files) — see implementation-summary.md §Verification
+- [x] CHK-401 [P0] G2: `python3 -c "import yaml; yaml.safe_load(open('docker-compose.yml'))"` exits 0; `python3 -m json.tool < fixtures/manifest.json` exits 0 — see implementation-summary.md §Verification
 - [ ] CHK-402 [P1] G3: `validate.sh 002-... --strict` exits 0 (acknowledge known cross-packet template-manifest issue per 002 + 003 packet precedent)
 - [ ] CHK-403 [P0] G4: `validate.sh 013-... --strict` exits 0 (lean-trio detection works at parent)
-- [ ] CHK-404 [P0] G5: `bash _sandbox/23--doctor-commands/harness/run-all.sh --dry-run` exits 0
-- [ ] CHK-405 [P0] G6: `for s in _sandbox/23--doctor-commands/**/*.sh; do bash -n "$s"; done` exits 0 each
-- [ ] CHK-406 [P0] G7: Manual visual confirm of root playbook updates (23-- in canonical sources, 23 entries in Section 12)
+- [x] CHK-404 [P0] G5: `bash _sandbox/23--doctor-commands/harness/run-all.sh --dry-run` exits 0 — see implementation-summary.md §Verification
+- [x] CHK-405 [P0] G6: `for s in _sandbox/23--doctor-commands/**/*.sh; do bash -n "$s"; done` exits 0 each — see implementation-summary.md §Verification
+- [x] CHK-406 [P0] G7: Manual visual confirm of root playbook updates (23-- in canonical sources, 23 entries in Section 12) — see implementation-summary.md §Verification
 <!-- /ANCHOR:smoke-tests -->
 
 ---
@@ -241,7 +241,7 @@ _memory:
 | Area | Expected Evidence |
 |------|-------------------|
 | Template structure | `validate.sh --strict --verbose` with zero `TEMPLATE_HEADERS` and `ANCHORS_VALID` issues |
-| Scenario docs | 25 validator-clean playbook files |
+| Scenario docs | 23 validator-clean playbook files |
 | Sandbox | 30 shell scripts passing `bash -n` and dry-run count matching 23 scenarios |
 | Root playbook | `23--doctor-commands/` listed and IDs 323-336, 338-342, 344-347 (gaps at 337 + 343 — see decision-record.md ADR-008) indexed |
 <!-- /ANCHOR:summary -->

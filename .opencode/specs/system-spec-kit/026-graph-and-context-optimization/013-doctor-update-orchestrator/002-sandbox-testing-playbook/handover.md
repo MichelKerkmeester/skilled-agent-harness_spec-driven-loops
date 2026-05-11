@@ -97,7 +97,7 @@ _memory:
 | `.opencode/specs/.../013-.../001-doctor-commands/*.md` | Updated yaml refs to bare names; introduced 5 transient frontmatter regressions during edits, codex auto-corrected most before final read | mostly complete; 2 errors remain (TEMPLATE_HEADERS + ANCHORS_VALID — pre-existing) |
 | `.gitignore` | Added rule for `_sandbox/*/fixtures/states/*.tar.gz` | complete |
 | `.opencode/specs/.../013-.../graph-metadata.json` | Phase parent metadata refreshed | complete |
-| `.opencode/specs/.../013-.../graph-metadata.json` (parent) | last_active_child_id correctly tracks 002 | complete |
+| `.opencode/specs/.../013-.../graph-metadata.json` (parent) | active child tracked at parent graph metadata | complete |
 <!-- /ANCHOR:context-transfer -->
 
 ---

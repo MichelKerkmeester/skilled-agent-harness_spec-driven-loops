@@ -150,6 +150,17 @@ read_verdict() {
     add_rollup_row "$scenario_id" "$verdict" "$reason"
 }
 
+record_skip_verdict() {
+    local scenario_id="$1"
+    local reason="$2"
+    local evidence_dir="${EVIDENCE_ROOT}/${scenario_id}"
+    mkdir -p "$evidence_dir"
+    printf '%s\n' "SKIP" > "${evidence_dir}/verdict.txt"
+    printf '%s\n' "$reason" > "${evidence_dir}/verdict-reason.txt"
+    printf '%s\n' "125" > "${evidence_dir}/exit-code.txt"
+    printf '| SKIP | %s |\n' "$reason" > "${evidence_dir}/verdict.md"
+}
+
 emit_rollup() {
     printf '\n## Doctor Command Sandbox Rollup\n\n'
     printf '| Scenario | Verdict | Rationale |\n'
@@ -174,15 +185,21 @@ run_scenarios() {
     mkdir -p "$EVIDENCE_ROOT"
     for scenario in "$SCENARIO_DIR"/DOC-*.sh; do
         [[ -f "$scenario" ]] || continue
-        scenario_id="$(basename "$scenario" | sed 's/-.*$//')"
+        scenario_id="$(basename "$scenario" | sed 's/^\(DOC-[0-9][0-9][0-9]\).*/\1/')"
         if [[ -n "$SINGLE_SCENARIO" && "$scenario_id" != "$SINGLE_SCENARIO" ]]; then
             continue
         fi
         printf '\n%bRUN%b %s\n' "$BLUE" "$NC" "$scenario_id"
+        local scenario_status=0
         if bash "$scenario"; then
             :
         else
-            run_failed=1
+            scenario_status=$?
+            if [[ "$scenario_status" -eq 125 ]]; then
+                record_skip_verdict "$scenario_id" "sandbox guard pre-condition not met"
+            else
+                run_failed=1
+            fi
         fi
         read_verdict "$scenario_id"
     done

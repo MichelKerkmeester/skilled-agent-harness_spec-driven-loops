@@ -3,6 +3,7 @@ description: Rebuild spec-kit runtime databases in dependency-safe order through
 argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap]"
 allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_kit_memory__code_graph_status, mcp__spec_kit_memory__code_graph_query, mcp__spec_kit_memory__code_graph_context, mcp__spec_kit_memory__code_graph_scan, mcp__spec_kit_memory__code_graph_apply, mcp__spec_kit_memory__detect_changes, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search, mcp__spec_kit_memory__memory_health, mcp__spec_kit_memory__memory_index_scan, mcp__spec_kit_memory__memory_drift_why, mcp__spec_kit_memory__memory_stats, mcp__spec_kit_memory__memory_causal_stats, mcp__spec_kit_memory__memory_causal_link, mcp__spec_kit_memory__deep_loop_graph_status, mcp__spec_kit_memory__deep_loop_graph_query, mcp__spec_kit_memory__deep_loop_graph_upsert, mcp__spec_kit_memory__deep_loop_graph_convergence, mcp__spec_kit_memory__ccc_status, mcp__spec_kit_memory__ccc_reindex, mcp__spec_kit_memory__ccc_feedback, mcp__spec_kit_memory__advisor_recommend, mcp__spec_kit_memory__advisor_status, mcp__spec_kit_memory__advisor_validate, mcp__spec_kit_memory__advisor_rebuild, mcp__spec_kit_memory__skill_graph_scan, mcp__spec_kit_memory__skill_graph_query, mcp__spec_kit_memory__skill_graph_status, mcp__spec_kit_memory__eval_run_ablation, mcp__spec_kit_memory__session_health
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >

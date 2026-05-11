@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
     last_updated_at: "2026-05-09T11:30:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored resource map ledger"
@@ -34,7 +34,7 @@ _memory:
 
 - **Total references**: 47
 - **By category**: READMEs=0, Documents=10, Commands=5, Agents=0, Skills=0, Specs=2, Scripts=0, Tests=0, Config=21, Meta=9
-- **Missing on disk**: 0 (all PLANNED entries are intentional new files)
+- **Missing on disk**: 5 entries remain absent on disk.
 - **Scope**: All files created, updated, analyzed, or cited during packet `013-doctor-update-orchestrator` — covers the 5 new doctor commands, 10 YAML assets, 1 migration manifest, packet docs, and read-only pattern sources.
 - **Generated**: 2026-05-09T11:30:00+02:00
 
@@ -54,11 +54,11 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-.../013-.../tasks.md` | Created | OK | T-001..T-059 task graph |
 | `.opencode/specs/system-spec-kit/026-.../013-.../checklist.md` | Created | OK | P0/P1/P2 verification checklist |
 | `.opencode/specs/system-spec-kit/026-.../013-.../resource-map.md` | Created | OK | This file |
-| `.opencode/specs/system-spec-kit/026-.../013-.../decision-record.md` | Created | PLANNED | 7 council ADRs + tx-model ADR-001 |
-| `.opencode/specs/system-spec-kit/026-.../013-.../implementation-summary.md` | Created | PLANNED | Authored Phase E close (T-056) |
-| `.opencode/specs/system-spec-kit/026-.../013-.../description.json` | Created | PLANNED | Auto via `generate-context.js` (T-008) |
-| `.opencode/specs/system-spec-kit/026-.../013-.../graph-metadata.json` | Created | PLANNED | Auto via `generate-context.js` (T-008) |
-| `.opencode/specs/system-spec-kit/026-.../013-.../scratch/` | Created | OK | Smoke-test logs + dispatch logs (Phase B + E) |
+| `.opencode/specs/system-spec-kit/026-.../013-.../decision-record.md` | Created | OK | 7 council ADRs + tx-model ADR-001 |
+| `.opencode/specs/system-spec-kit/026-.../013-.../implementation-summary.md` | Created | OK | Authored Phase E close (T-056) |
+| `.opencode/specs/system-spec-kit/026-.../013-.../description.json` | Created | OK | Auto via `generate-context.js` (T-008) |
+| `.opencode/specs/system-spec-kit/026-.../013-.../graph-metadata.json` | Created | OK | Auto via `generate-context.js` (T-008) |
+| `.opencode/specs/system-spec-kit/026-.../013-.../scratch/` | Created | MISSING | Smoke-test logs + dispatch logs (Phase B + E) # absent on disk |
 <!-- /ANCHOR:documents -->
 
 ---
@@ -68,11 +68,11 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/commands/doctor/memory.md` | Created | PLANNED | `/doctor:memory` entrypoint (Track B1) |
-| `.opencode/commands/doctor/causal-graph.md` | Created | PLANNED | `/doctor:causal-graph` entrypoint (Track B2) |
-| `.opencode/commands/doctor/deep-loop.md` | Created | PLANNED | `/doctor:deep-loop` entrypoint (Track B3) |
-| `.opencode/commands/doctor/cocoindex.md` | Created | PLANNED | `/doctor:cocoindex` entrypoint (Track B4) |
-| `.opencode/commands/doctor/update.md` | Created | PLANNED | `/doctor:update` orchestrator (Track C, council 10-line spec) |
+| `.opencode/commands/doctor/memory.md` | Created | OK | `/doctor:memory` entrypoint (Track B1) |
+| `.opencode/commands/doctor/causal-graph.md` | Created | OK | `/doctor:causal-graph` entrypoint (Track B2) |
+| `.opencode/commands/doctor/deep-loop.md` | Created | OK | `/doctor:deep-loop` entrypoint (Track B3) |
+| `.opencode/commands/doctor/cocoindex.md` | Created | OK | `/doctor:cocoindex` entrypoint (Track B4) |
+| `.opencode/commands/doctor/update.md` | Created | OK | `/doctor:update` orchestrator (Track C, council 10-line spec) |
 <!-- /ANCHOR:commands -->
 
 ---
@@ -84,23 +84,23 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/commands/doctor/assets/doctor_memory.yaml` | Created | PLANNED | 1 asset for `/doctor:memory` |
-| `.opencode/commands/doctor/assets/doctor_causal-graph.yaml` | Created | PLANNED | 1 asset for `/doctor:causal-graph` |
-| `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` | Created | PLANNED | 1 asset for `/doctor:deep-loop` |
-| `.opencode/commands/doctor/assets/doctor_cocoindex.yaml` | Created | PLANNED | 1 asset for `/doctor:cocoindex` |
-| `.opencode/commands/doctor/assets/doctor_update.yaml` | Created | PLANNED | 1 asset for `/doctor:update` orchestrator |
+| `.opencode/commands/doctor/assets/doctor_memory.yaml` | Created | OK | 1 asset for `/doctor:memory` |
+| `.opencode/commands/doctor/assets/doctor_causal-graph.yaml` | Created | OK | 1 asset for `/doctor:causal-graph` |
+| `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` | Created | OK | 1 asset for `/doctor:deep-loop` |
+| `.opencode/commands/doctor/assets/doctor_cocoindex.yaml` | Created | OK | 1 asset for `/doctor:cocoindex` |
+| `.opencode/commands/doctor/assets/doctor_update.yaml` | Created | OK | 1 asset for `/doctor:update` orchestrator |
 
 ### Migration manifest
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json` | Created | PLANNED | Per-version deprecations + script declarations (3.3.0.0 → 3.4.1.0 chain) |
+| `.opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json` | Created | OK | Per-version deprecations + script declarations (3.3.0.0 → 3.4.1.0 chain) |
 
 ### Per-version migration scripts (optional, REQ-020)
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/*.{py,sh,ts}` | Created | PLANNED | One script per declared version step (optional) |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/*.{py,sh,ts}` | Created | OK | One script per declared version step (optional) |
 <!-- /ANCHOR:config -->
 
 ---
@@ -110,10 +110,10 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.flock` | Created | PLANNED (runtime) | OS-level lock for orchestrator (auto-managed) |
-| `.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.lock` | Created | PLANNED (runtime) | PID-file fallback for stale-detection |
-| `.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json` | Created | PLANNED (runtime) | State-log per `/doctor:update` invocation |
-| `.opencode/skills/system-spec-kit/mcp_server/database/<name>.sqlite.pre-doctor-update.<version>.<timestamp>.bak` | Created | PLANNED (runtime) | VACUUM INTO snapshots; auto-cleanup > 30 days |
+| `.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.flock` | Created | PLANNED (runtime) | OS-level lock for orchestrator (auto-managed) # absent on disk |
+| `.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.lock` | Created | PLANNED (runtime) | PID-file fallback for stale-detection # absent on disk |
+| `.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json` | Created | PLANNED (runtime) | State-log per `/doctor:update` invocation # absent on disk |
+| `.opencode/skills/system-spec-kit/mcp_server/database/<name>.sqlite.pre-doctor-update.<version>.<timestamp>.bak` | Created | PLANNED (runtime) | VACUUM INTO snapshots; auto-cleanup > 30 days # absent on disk |
 <!-- /ANCHOR:meta -->
 
 ---

@@ -15,7 +15,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
     last_updated_at: "2026-05-09T11:30:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author Level 2 spec for 4 isolated doctor commands + unified /doctor:update orchestrator"
@@ -31,7 +31,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-013-doctor-update-orchestrator"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions:
       - "memory_index_scan(incremental=false) transaction granularity — per-batch commits or single tx? Affects council Q3+Q6 cancel-safety contract."
       - "Should /doctor:update use one tier-aware interactive mode? (Mode reduction later made this authoritative.)"

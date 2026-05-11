@@ -3,6 +3,7 @@ description: Diagnose and fix MCP server connection issues (5 steps): health che
 argument-hint: "[--fix] [--server <name>]"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >

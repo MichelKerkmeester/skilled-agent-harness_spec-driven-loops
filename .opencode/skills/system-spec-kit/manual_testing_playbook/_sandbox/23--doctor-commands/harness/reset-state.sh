@@ -2,7 +2,7 @@
 # COMPONENT: Doctor Sandbox State Reset
 # Restores a named fixture into the disposable sandbox workspace.
 # Exit Codes:
-#   0 - Reset completed or was safely skipped
+#   0 - Reset completed or reset skip was recorded for scenario classification
 #   1 - Requested fixture archive is invalid or cannot be restored
 
 set -euo pipefail
@@ -41,7 +41,7 @@ require_sandbox_reset() {
         return 0
     fi
     reset_warn "state reset skipped outside sandbox; set SPECKIT_SANDBOX=1 or SPECKIT_ALLOW_HOST_RESET=1 to restore fixtures"
-    return 1
+    return 125
 }
 
 reset_state() {
@@ -50,8 +50,13 @@ reset_state() {
 
     export SPECKIT_ACTIVE_FIXTURE="$fixture_name"
 
+    unset SPECKIT_RESET_STATE_SKIPPED SPECKIT_RESET_STATE_SKIP_REASON
+
     if ! require_sandbox_reset; then
-        return 0
+        export SPECKIT_RESET_STATE_SKIPPED=1
+        export SPECKIT_RESET_STATE_SKIP_REASON="sandbox guard pre-condition not met"
+        printf '[sandbox-guard] SKIPPING - guard pre-condition not met\n' >&2
+        return 125
     fi
 
     mkdir -p "$STATE_DIR"

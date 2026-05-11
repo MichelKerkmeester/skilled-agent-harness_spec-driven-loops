@@ -3,6 +3,7 @@ description: Install or reinstall all 4 MCP servers from scratch (6 steps): guid
 argument-hint: "[--server <name>] [--runtime <name>]"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >

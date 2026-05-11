@@ -3,6 +3,7 @@ description: Diagnose deep-loop coverage graphs with an interactive read-only st
 argument-hint: "[--scope=research|review|both] [--no-snapshot] [--dry-run]"
 allowed-tools: Read, Bash, Grep, Glob, mcp__spec_kit_memory__deep_loop_graph_status, mcp__spec_kit_memory__deep_loop_graph_query, mcp__spec_kit_memory__deep_loop_graph_upsert, mcp__spec_kit_memory__deep_loop_graph_convergence
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >

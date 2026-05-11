@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
     last_updated_at: "2026-05-09T11:30:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored verification checklist"
@@ -47,11 +47,11 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] All 5 spec docs authored (spec.md, plan.md, tasks.md, checklist.md, resource-map.md, decision-record.md)
+- [x] CHK-001 [P0] All 5 spec docs authored (spec.md, plan.md, tasks.md, checklist.md, resource-map.md, decision-record.md) — see implementation-summary.md §What Was Built (this session)
 - [ ] CHK-002 [P0] User-locked answers captured: location (013 inside 026), scope (both unified+isolated), council lens (op safety)
 - [ ] CHK-003 [P0] `/doctor:code-graph.md` + single YAML asset fully read (canonical pattern source)
-- [ ] CHK-004 [P0] Multi-AI Council 10-line spec captured in `decision-record.md` ADR-002..ADR-008 (one ADR per council question)
-- [ ] CHK-005 [P0] `memory_index_scan` tx model verified + recorded in ADR-001 (REQ-016)
+- [x] CHK-004 [P0] Multi-AI Council 10-line spec captured in `decision-record.md` ADR-002..ADR-008 (one ADR per council question) — see implementation-summary.md frontmatter answered_questions
+- [x] CHK-005 [P0] `memory_index_scan` tx model verified + recorded in ADR-001 (REQ-016) — see implementation-summary.md §Phase A.1 — TX-Model Verification (COMPLETE)
 - [ ] CHK-006 [P1] cli-opencode availability confirmed if Phase B parallelization pursued
 - [ ] CHK-007 [P0] Current branch is `main`; no auto-branch lingering
 <!-- /ANCHOR:pre-impl -->
@@ -77,8 +77,8 @@ _memory:
 <!-- ANCHOR:doctor-memory -->
 ## /doctor:memory (Track B1)
 
-- [ ] CHK-100 [P0] `commands/doctor/memory.md` exists + valid
-- [ ] CHK-101 [P0] 1 YAML asset exists
+- [x] CHK-100 [P0] `commands/doctor/memory.md` exists + valid — see implementation-summary.md §Track B1 — Reference Template
+- [x] CHK-101 [P0] 1 YAML asset exists — see implementation-summary.md §Track B1 — Reference Template
 - [ ] CHK-102 [P0] Long-pole ETA prompt (5-15 min) in mutation phase before rebuild
 - [ ] CHK-103 [P0] Snapshot covers both context-index.sqlite AND voyage embeddings DB
 - [ ] CHK-104 [P0] Gold-battery: 5 representative `memory_search()` queries return results within Recall@20 baseline

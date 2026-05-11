@@ -3,6 +3,7 @@ description: Diagnose causal-edge integrity with an interactive read-only status
 argument-hint: "[--confidence-threshold=0.7] [--no-snapshot] [--dry-run]"
 allowed-tools: Read, Bash, Grep, Glob, mcp__spec_kit_memory__memory_causal_stats, mcp__spec_kit_memory__memory_causal_link, mcp__spec_kit_memory__memory_drift_why, mcp__spec_kit_memory__memory_search
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >

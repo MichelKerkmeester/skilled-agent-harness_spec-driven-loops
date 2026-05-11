@@ -3,6 +3,7 @@ description: Analyze skills and optimize advisor scoring through the interactive
 argument-hint: "[--skip-tests] [--dry-run] [--scope=all|explicit|derived|lexical]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_kit_memory__advisor_recommend, mcp__spec_kit_memory__advisor_status, mcp__spec_kit_memory__advisor_validate, mcp__spec_kit_memory__advisor_rebuild, mcp__spec_kit_memory__skill_graph_scan, mcp__spec_kit_memory__skill_graph_query, mcp__spec_kit_memory__skill_graph_status, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >

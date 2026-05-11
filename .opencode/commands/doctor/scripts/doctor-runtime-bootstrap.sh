@@ -47,7 +47,7 @@ LEGACY_SKILL_DIR="$OPENCODE_DIR/skill"
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
 DB_DIR="$KIT_DIR/mcp_server/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
-LOCK_DIR="$DB_DIR/.doctor-update.bootstrap.lockdir"
+LOCK_FILE="/tmp/doctor-runtime-bootstrap.lock"
 MCP_DIST="$KIT_DIR/mcp_server/dist/context-server.js"
 GRAPH_BACKFILL_DIST="$KIT_DIR/scripts/dist/graph/backfill-graph-metadata.js"
 DESCRIPTION_DIST="$KIT_DIR/scripts/dist/spec-folder/generate-description.js"
@@ -97,7 +97,6 @@ NODE
 
 cleanup() {
   rm -f "$actions_file"
-  rm -rf "$LOCK_DIR"
 }
 trap cleanup EXIT
 
@@ -126,8 +125,10 @@ if [[ ! -d "$OPENCODE_DIR" ]]; then
 fi
 
 mkdir -p "$DB_DIR"
-if ! mkdir "$LOCK_DIR" 2>/dev/null; then
-  fail "bootstrap lock already exists at $LOCK_DIR"
+exec 9>"$LOCK_FILE"
+if ! flock -n 9; then
+  printf '[doctor-bootstrap] Another bootstrap is in progress (lock %s held). Exiting.\n' "$LOCK_FILE" >&2
+  exit 0
 fi
 
 if [[ ! -d "$SKILLS_DIR" && -d "$LEGACY_SKILL_DIR" && ! -L "$LEGACY_SKILL_DIR" ]]; then
@@ -180,10 +181,13 @@ if [[ "$need_build" == true ]]; then
     (
       cd "$KIT_DIR"
       if [[ -f package-lock.json ]]; then
-        npm ci --no-audit --no-fund --silent
+        npm ci --no-fund --silent
       else
-        npm install --no-audit --no-fund --silent
+        npm install --no-fund --silent
       fi
+      npm audit --audit-level=high || {
+        printf '[doctor-bootstrap] WARNING: npm audit found high-severity issues. Continuing bootstrap; investigate at next opportunity.\n' >&2
+      }
       npm run build --workspace=@spec-kit/mcp-server
       npm run build --workspace=@spec-kit/scripts
     ) >&2
@@ -191,10 +195,13 @@ if [[ "$need_build" == true ]]; then
     (
       cd "$KIT_DIR"
       if [[ -f package-lock.json ]]; then
-        npm ci --no-audit --no-fund --silent
+        npm ci --no-fund --silent
       else
-        npm install --no-audit --no-fund --silent
+        npm install --no-fund --silent
       fi
+      npm audit --audit-level=high || {
+        printf '[doctor-bootstrap] WARNING: npm audit found high-severity issues. Continuing bootstrap; investigate at next opportunity.\n' >&2
+      }
       npm run build --workspace=@spec-kit/mcp-server
       npm run build --workspace=@spec-kit/scripts
     )

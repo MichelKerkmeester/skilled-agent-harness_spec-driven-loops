@@ -184,7 +184,6 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill` | Created | OK | Compatibility symlink created/used for `.opencode/skill` vs `.opencode/skills` runtime layouts. |
 | `.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.{flock,lock,last-run.json}` | Validated | RUNTIME | Runtime lock/state artifacts checked in full E2E; not all are expected to exist persistently. |
 | `.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite.*doctor-update*.bak` | Validated | RUNTIME | Snapshot artifact pattern verified in full E2E temp workspace. |
 <!-- /ANCHOR:meta -->

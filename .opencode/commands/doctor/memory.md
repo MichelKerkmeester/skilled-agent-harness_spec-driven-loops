@@ -3,6 +3,7 @@ description: Diagnose the memory continuity index with an interactive read-only 
 argument-hint: "[--incremental=true|false] [--no-snapshot] [--dry-run]"
 allowed-tools: Read, Bash, Grep, Glob, mcp__spec_kit_memory__memory_health, mcp__spec_kit_memory__memory_index_scan, mcp__spec_kit_memory__memory_drift_why, mcp__spec_kit_memory__memory_search, mcp__spec_kit_memory__memory_stats
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >

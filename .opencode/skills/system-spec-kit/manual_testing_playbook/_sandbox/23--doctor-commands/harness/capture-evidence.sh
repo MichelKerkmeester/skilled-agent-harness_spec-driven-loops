@@ -117,6 +117,25 @@ capture_evidence() {
     printf '%s\n' "$command_text" > "${evidence_dir}/command.txt"
     printf '%s\n' "${SPECKIT_ACTIVE_FIXTURE:-unknown}" > "${evidence_dir}/fixture.txt"
     date -u '+%Y-%m-%dT%H:%M:%SZ' > "${evidence_dir}/started-at.txt"
+
+    if [[ "${SPECKIT_RESET_STATE_SKIPPED:-}" = "1" ]]; then
+        local skip_reason="${SPECKIT_RESET_STATE_SKIP_REASON:-sandbox guard pre-condition not met}"
+        printf '125\n' > "${evidence_dir}/exit-code.txt"
+        printf 'STATUS=SKIP reason="%s"\n' "$skip_reason" > "${evidence_dir}/stdout.log"
+        : > "${evidence_dir}/stderr.log"
+        date -u '+%Y-%m-%dT%H:%M:%SZ' > "${evidence_dir}/finished-at.txt"
+        : > "${evidence_dir}/files-before.sha256"
+        : > "${evidence_dir}/files-after.sha256"
+        : > "${evidence_dir}/snapshots-before.txt"
+        : > "${evidence_dir}/snapshots-after.txt"
+        : > "${evidence_dir}/file-deltas.diff"
+        : > "${evidence_dir}/snapshot-deltas.diff"
+        cat "${evidence_dir}/stdout.log" "${evidence_dir}/stderr.log" > "${evidence_dir}/combined.log"
+        capture_warn "sandbox guard pre-condition not met for: ${command_text}"
+        unset SPECKIT_RESET_STATE_SKIPPED SPECKIT_RESET_STATE_SKIP_REASON
+        return 125
+    fi
+
     write_file_manifest "${evidence_dir}/files-before.sha256"
     write_snapshot_list "${evidence_dir}/snapshots-before.txt"
 

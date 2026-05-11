@@ -3,6 +3,7 @@ description: Diagnose CocoIndex semantic-search health with an interactive read-
 argument-hint: "[--no-snapshot] [--dry-run]"
 allowed-tools: Read, Bash, Grep, Glob, mcp__spec_kit_memory__ccc_status, mcp__spec_kit_memory__ccc_reindex, mcp__spec_kit_memory__ccc_feedback
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >

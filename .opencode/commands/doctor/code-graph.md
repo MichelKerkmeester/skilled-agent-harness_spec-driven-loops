@@ -3,6 +3,7 @@ description: Diagnose code-graph index health with an interactive workflow.
 argument-hint: "[--scope=stale|missed|bloat|all|excludes] [--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-run] [--dry-run] [--confirm]"
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_kit_memory__code_graph_status, mcp__spec_kit_memory__code_graph_query, mcp__spec_kit_memory__code_graph_context, mcp__spec_kit_memory__code_graph_scan, mcp__spec_kit_memory__code_graph_apply, mcp__spec_kit_memory__detect_changes, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search
 ---
+<!-- skill_agent: system-spec-kit -->
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
