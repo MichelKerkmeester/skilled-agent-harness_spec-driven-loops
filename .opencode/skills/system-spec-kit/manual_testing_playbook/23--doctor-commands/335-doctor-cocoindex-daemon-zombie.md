@@ -1,13 +1,13 @@
 ---
 title: "DOC-335 -- Doctor cocoindex daemon zombie"
-description: "Manual scenario validating /doctor:cocoindex behavior for an unresponsive CocoIndex daemon and the 3.4.1.0 idempotent restart contract."
+description: "Manual scenario validating /doctor cocoindex behavior for an unresponsive CocoIndex daemon and the 3.4.1.0 idempotent restart contract."
 ---
 
 # DOC-335 -- Doctor cocoindex daemon zombie
 
 ## 1. OVERVIEW
 
-This scenario validates the daemon-resilience branch for `/doctor:cocoindex` when a CocoIndex daemon process exists but is unresponsive, CPU-bound, or otherwise zombie-like.
+This scenario validates the daemon-resilience branch for `/doctor cocoindex` when a CocoIndex daemon process exists but is unresponsive, CPU-bound, or otherwise zombie-like.
 
 The intended regression target is the 3.4.1.0 idempotent restart fix: restarting the daemon must not create duplicate long-lived daemon processes, and the final reindex must run only after the daemon is responsive. If the sandbox cannot truthfully reproduce a zombie daemon state, the scenario must be marked `UNAUTOMATABLE` with the concrete blocker.
 
@@ -20,7 +20,7 @@ The intended regression target is the 3.4.1.0 idempotent restart fix: restarting
 - Real user request: `Reindex cocoindex. The daemon has been spinning at 90% CPU since this morning.`
 - Prompt: `Reindex cocoindex. The daemon has been spinning at 90% CPU since this morning.`
 - Preconditions: A disposable sandbox can simulate a zombie CocoIndex daemon: a `ccc run-daemon` process exists, but `ccc_status({})` or `ccc daemon status` reports unresponsive behavior, stale pid/socket/lock state, or CPU spin.
-- Expected execution process: Capture pre-run daemon process count and CPU, run `/doctor:cocoindex`, verify idempotent restart behavior, then confirm reindex and gold-battery success when restart recovers the daemon.
+- Expected execution process: Capture pre-run daemon process count and CPU, run `/doctor cocoindex`, verify idempotent restart behavior, then confirm reindex and gold-battery success when restart recovers the daemon.
 - Expected signals: zombie state detected through status/process/log evidence; daemon restart is idempotent; process count remains one after recovery; CPU drops below 5 percent; `ccc_reindex({full: true})` completes; gold battery passes.
 - Desired user-visible outcome: A concise verdict proving zombie recovery did not create duplicate daemons and reindex completed after recovery.
 - Pass/fail: PASS if the zombie state is reproduced, restart is idempotent, post-restart process count is one, and reindex succeeds.
@@ -44,7 +44,7 @@ Reindex cocoindex. The daemon has been spinning at 90% CPU since this morning.
 3. Capture pre-run CPU for the daemon process with `ps` or Activity Monitor evidence.
 4. Capture `ccc_status({})` and `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc daemon status`.
 5. Capture recent `~/.cocoindex_code/daemon.log` metadata and BrokenPipeError count without modifying the log.
-6. Run `/doctor:cocoindex` through the real runtime.
+6. Run `/doctor cocoindex` through the real runtime.
 7. Capture the YAML asset load for `.opencode/commands/doctor/assets/doctor_cocoindex.yaml`, daemon-health classification, restart command, and `ccc_reindex({full: true})` result.
 8. Capture post-run process count and CPU.
 9. Capture post-run `ccc_status({})`, semantic search gold-battery counts, and final state-log path.
@@ -60,7 +60,7 @@ If the checked-in workflow instead classifies the reproduced zombie state as unh
 - Reproduction notes for the zombie daemon state.
 - Pre-run daemon process count and CPU evidence.
 - Pre-run `ccc_status({})`, daemon status, and daemon log metadata.
-- `/doctor:cocoindex` transcript.
+- `/doctor cocoindex` transcript.
 - Restart transcript showing the idempotent restart path.
 - Post-run process count proving one daemon process, not duplicates.
 - Post-run CPU evidence showing less than 5 percent.
@@ -94,7 +94,7 @@ If the command refuses before restart, compare the observed behavior against `.o
 - Group: Doctor commands
 - Playbook ID: DOC-335
 - Feature name: Doctor cocoindex daemon zombie
-- Command mode: `/doctor:cocoindex`
+- Command mode: `/doctor cocoindex`
 - YAML asset: `doctor_cocoindex.yaml`
 - Regression anchor: 3.4.1.0 idempotent daemon restart behavior.
 - Required sandbox note: mark `UNAUTOMATABLE` if zombie state cannot be reproduced safely.

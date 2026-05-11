@@ -1420,17 +1420,17 @@ Instead of manual troubleshooting, use the built-in diagnostic commands that che
 
 ```bash
 # Diagnose all 4 MCP servers across all runtimes
-/doctor:mcp_debug
+/doctor:mcp debug
 
 # Auto-fix detected issues
-/doctor:mcp_debug --fix
+/doctor:mcp debug --fix
 
 # Fresh install all MCP servers from scratch
-/doctor:mcp_install
+/doctor:mcp install
 
 # Diagnose or install a single server
-/doctor:mcp_debug --server cocoindex_code
-/doctor:mcp_install --server spec_kit_memory
+/doctor:mcp debug --server cocoindex_code
+/doctor:mcp install --server spec_kit_memory
 ```
 
 The doctor commands read the install guides, check system reality, and offer guided repair. Available across OpenCode, Claude Code, Codex CLI, and Gemini CLI.

@@ -13,7 +13,7 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`/doctor:code-graph` is a command-owned diagnostic and repair policy surface. Diagnostic modes are read-only; apply modes explicitly mutate `.opencode/code-graph.config.json` and verify with scan/query battery behavior.
+`/doctor code-graph` is a command-owned diagnostic and repair policy surface. Diagnostic modes are read-only; apply modes explicitly mutate `.opencode/code-graph.config.json` and verify with scan/query battery behavior.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->
@@ -21,7 +21,7 @@ importance_tier: "important"
 
 ### Trigger / Auto-Fire Path
 
-Manual slash command: `/doctor:code-graph:auto|confirm|apply|apply-confirm`.
+Manual slash command: `/doctor code-graph|confirm|apply|apply-confirm`.
 
 ### Class
 
@@ -39,7 +39,7 @@ Apply mode writes config, not source code. The YAML itself notes scanner-config 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/doctor/code-graph.md:13-32` | Implementation | selects YAML modes and states diagnostic/apply mutation boundaries |
+| `.opencode/commands/doctor.md:13-32` | Implementation | selects YAML modes and states diagnostic/apply mutation boundaries |
 | `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml:19-24` | Implementation | states Phase A is diagnostic-only |
 | `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml:191-204` | Implementation | forbids source mutations and `code_graph_scan` in Phase A |
 | `.opencode/commands/doctor/assets/doctor_code-graph_apply.yaml:24-30` | Implementation | defines apply-mode snapshot and rollback invariants |

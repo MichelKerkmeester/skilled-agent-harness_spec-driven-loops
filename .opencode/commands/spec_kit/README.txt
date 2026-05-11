@@ -102,7 +102,7 @@ spec_kit/
     ├── spec_kit_resume_auto.yaml
     └── spec_kit_resume_confirm.yaml
 
-> Note: `/doctor:skill-advisor` previously lived under `spec_kit/`; it is now organized under `.opencode/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
+> Note: `/doctor skill-advisor` previously lived under `spec_kit/`; it is now organized under `.opencode/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
 ```
 
 <!-- /ANCHOR:structure -->
@@ -196,7 +196,7 @@ Each mode maps to a YAML workflow file in `assets/`:
 /spec_kit:complete "Add WebSocket support" :auto :with-research
 
 # Optimize skill advisor scoring (now under /doctor:* group, not spec_kit)
-/doctor:skill-advisor :auto
+/doctor skill-advisor :auto
 ```
 
 <!-- /ANCHOR:usage-examples -->

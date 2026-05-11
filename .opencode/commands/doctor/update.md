@@ -231,13 +231,13 @@ When `STATUS=RESTART_REQUIRED`, no database rebuild has started yet. Start a fre
 
 ## RELATED COMMANDS
 
-- `/doctor:memory` - isolated context-index/vector-index health and rebuild.
-- `/doctor:causal-graph` - isolated causal edge coverage and add-only repair.
-- `/doctor:deep-loop` - isolated research/review coverage graph rebuild.
-- `/doctor:cocoindex` - isolated CocoIndex semantic reindex.
-- `/doctor:code-graph` - isolated structural graph diagnosis and confirm workflow.
-- `/doctor:skill-advisor` - advisor and skill-graph optimization pass.
-- `/doctor:skill-budget` - advisor budget/status helper.
+- `/doctor memory` - isolated context-index/vector-index health and rebuild.
+- `/doctor causal-graph` - isolated causal edge coverage and add-only repair.
+- `/doctor deep-loop` - isolated research/review coverage graph rebuild.
+- `/doctor cocoindex` - isolated CocoIndex semantic reindex.
+- `/doctor code-graph` - isolated structural graph diagnosis and confirm workflow.
+- `/doctor skill-advisor` - advisor and skill-graph optimization pass.
+- `/doctor skill-budget` - advisor budget/status helper.
 
 ## 6. INSTRUCTIONS
 

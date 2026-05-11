@@ -129,8 +129,8 @@ Diagnose, install, and repair MCP server connections. Backed by `mcp-doctor.sh` 
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| MCP Debug | `/doctor:mcp_debug [--fix] [--server <name>]` | Diagnose and fix MCP connection issues across all runtimes |
-| MCP Install | `/doctor:mcp_install [--server <name>] [--runtime <name>]` | Fresh install or reinstall all 4 MCP servers from install guides |
+| MCP Debug | `/doctor:mcp debug [--fix] [--server <name>]` | Diagnose and fix MCP connection issues across all runtimes |
+| MCP Install | `/doctor:mcp install [--server <name>] [--runtime <name>]` | Fresh install or reinstall all 4 MCP servers from install guides |
 
 ### Improve Commands
 

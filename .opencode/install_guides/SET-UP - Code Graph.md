@@ -1,9 +1,9 @@
 # SET-UP - Code Graph
 
-User-facing diagnostic guide for `/doctor:code-graph` (Phase A — diagnostic-only). Audit the code-graph index for stale + missed files and bloat directories without modifying any source files. Phase B (apply mode) is gated on the resilience-research packet 007.
+User-facing diagnostic guide for `/doctor code-graph` (Phase A — diagnostic-only). Audit the code-graph index for stale + missed files and bloat directories without modifying any source files. Phase B (apply mode) is gated on the resilience-research packet 007.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](./README.md) for complete setup.
-> **Command:** `/doctor:code-graph` (auto + confirm modes) — full reference in `.opencode/commands/doctor/code-graph.md`.
+> **Command:** `/doctor code-graph` (auto + confirm modes) — full reference in `.opencode/commands/doctor.md`.
 > **Phase:** A (read-only). Phase B (apply mode) coming after research packet 007 stabilizes.
 
 ---
@@ -23,7 +23,7 @@ PREREQUISITE CHECK (verify before proceeding):
 If any prerequisite fails: STOP and report which one. Do NOT proceed.
 
 Steps:
-1. Invoke /doctor:code-graph:auto (or :confirm for the proposal gate review).
+1. Invoke /doctor code-graph (or :confirm for the proposal gate review).
 2. At setup: scope=A (all) for first run; B/C/D to focus on stale/missed/bloat only.
 3. Walk through Phase 0 (Discovery) → Phase 1 (Analysis) → Phase 2 (Proposal report).
 4. Read the report at <packet_scratch>/code-graph-diagnostic-<timestamp>.md.
@@ -62,14 +62,14 @@ code_graph_scan({})
 
 | Use case | Command |
 | --- | --- |
-| First diagnostic | `/doctor:code-graph:auto` |
-| Review before report | `/doctor:code-graph:confirm` (pauses at proposal gate) |
-| Stale files only | `/doctor:code-graph:auto --scope=stale` |
-| Missed files only | `/doctor:code-graph:auto --scope=missed` |
-| Bloat dirs only | `/doctor:code-graph:auto --scope=bloat` |
-| Apply high-tier excludes (auto rollback if regression) | `/doctor:code-graph:apply` |
-| Review apply plan before mutating + before keeping | `/doctor:code-graph:apply-confirm` |
-| Apply medium tier (interactive only) | `/doctor:code-graph:apply-confirm --tier-floor=medium` |
+| First diagnostic | `/doctor code-graph` |
+| Review before report | `/doctor code-graph` (pauses at proposal gate) |
+| Stale files only | `/doctor code-graph --scope=stale` |
+| Missed files only | `/doctor code-graph --scope=missed` |
+| Bloat dirs only | `/doctor code-graph --scope=bloat` |
+| Apply high-tier excludes (auto rollback if regression) | `/doctor code-graph` |
+| Review apply plan before mutating + before keeping | `/doctor code-graph` |
+| Apply medium tier (interactive only) | `/doctor code-graph --tier-floor=medium` |
 
 **Diagnostic phases (auto / confirm):**
 
@@ -136,7 +136,7 @@ Phase A is diagnostic-only; you decide whether to apply changes manually. To app
 1. Read the report and pick recommendations you trust.
 2. Edit the scanner config (location depends on your code-graph version).
 3. Run `code_graph_scan({})` to re-index with new rules.
-4. Run `/doctor:code-graph:auto` again to confirm the exclude took effect.
+4. Run `/doctor code-graph` again to confirm the exclude took effect.
 
 When Phase B ships, this entire flow (apply → verify → rollback if regressed) will run automatically inside the command.
 
@@ -151,15 +151,15 @@ When Phase B ships, this entire flow (apply → verify → rollback if regressed
 | `"detect_changes unavailable"` | Falls back to git status + index timestamp comparison |
 | Report path missing on completion | Check packet scratch directory exists; check disk space |
 | Bloat detection over-flags `dist/` | Expected for medium-tier patterns; review per-repo |
-| Command not found | Verify `.opencode/commands/doctor/code-graph.md` exists; restart your AI client |
+| Command not found | Verify `.opencode/commands/doctor.md` exists; restart your AI client |
 
 ---
 
 ## 7. RESOURCES
 
-- **Command reference:** `.opencode/commands/doctor/code-graph.md`
+- **Command reference:** `.opencode/commands/doctor.md`
 - **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_code-graph_{auto,confirm}.yaml`
 - **Spec packet:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/`
 - **Research packet (gates Phase B):** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/`
-- **Sibling doctor commands:** `/doctor:mcp_install`, `/doctor:mcp_debug`, `/doctor:skill-advisor`
+- **Sibling doctor commands:** `/doctor:mcp install`, `/doctor:mcp debug`, `/doctor skill-advisor`
 - **Related guides:** [SET-UP - Skill Advisor](./SET-UP%20-%20Skill%20Advisor.md) (sibling 5-phase doctor command pattern)

@@ -199,8 +199,8 @@ workflow:
   phase_2_recommendation:
     purpose: "Translate drift signals into a safe operator action."
     rules:
-      - "If empty_graph=true and lazy_init_available=true -> recommend /doctor:deep-loop:apply-confirm --scope=<scope>."
-      - "If missing_convergence_signal > 0 -> recommend /doctor:deep-loop:apply-confirm."
+      - "If empty_graph=true and lazy_init_available=true -> recommend /doctor deep-loop --scope=<scope>."
+      - "If missing_convergence_signal > 0 -> recommend /doctor deep-loop."
       - "If stale_graph=true or orphan_nodes > 0 -> recommend :apply-confirm --dry-run first."
       - "If no drift -> status=OK, no action needed."
     outputs:
@@ -237,7 +237,7 @@ output_contract:
   state_log:
     path: "<packet_scratch>/doctor-deep-loop-state.<timestamp>.json"
     schema:
-      command: "/doctor:deep-loop"
+      command: "/doctor deep-loop"
       mode: INTERACTIVE
       intent: DIAGNOSE
       timestamp: ISO_8601

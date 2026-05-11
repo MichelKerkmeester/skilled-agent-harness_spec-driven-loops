@@ -1,0 +1,198 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR ROUTER — CANONICAL ROUTE MANIFEST
+# ─────────────────────────────────────────────────────────────────
+# Source of truth for /doctor <target> dispatch.
+# Read by: .opencode/commands/doctor.md (the router)
+# Validated by: .opencode/commands/doctor/scripts/route-validate.sh
+# Consumed by: Skill Advisor lexical lane (per-target trigger_phrases)
+#
+# Schema (per route):
+#   target:           string — positional name the user types
+#   yaml:             string — YAML asset filename in assets/
+#   setup_vars:       list   — variables the router resolves and passes to YAML
+#   allowed_flags:    list   — per-target flag schema (target-first parsing)
+#   mutating:         enum   — read-only | add-only | mutates
+#   gate3_location:   string — concrete mutation target (or "n/a" for read-only)
+#   mcp_tools:        list   — subset of router's frontmatter allowed-tools union
+#   trigger_phrases:  list   — advisor lexical-routing phrases for this target
+#
+# To add a new target: append a route here, then re-run route-validate.sh.
+# To remove a target: delete the route AND its corresponding assets/doctor_<target>.yaml.
+# ─────────────────────────────────────────────────────────────────
+schema_version: 1
+routes:
+  - target: memory
+    yaml: doctor_memory.yaml
+    setup_vars: [execution_mode, intent, incremental, no_snapshot, dry_run]
+    allowed_flags: ["--incremental=true|false", "--no-snapshot", "--dry-run"]
+    mutating: mutates
+    gate3_location: "mcp_server/database/context-index.sqlite + context-index__voyage__voyage-4__1024.sqlite"
+    mcp_tools:
+      - mcp__spec_kit_memory__memory_health
+      - mcp__spec_kit_memory__memory_index_scan
+      - mcp__spec_kit_memory__memory_drift_why
+      - mcp__spec_kit_memory__memory_search
+      - mcp__spec_kit_memory__memory_stats
+    trigger_phrases:
+      - "memory continuity index drift"
+      - "memory health rebuild"
+      - "context-index doctor"
+      - "voyage embedding rebuild"
+
+  - target: causal-graph
+    yaml: doctor_causal-graph.yaml
+    setup_vars: [execution_mode, intent, confidence_threshold, no_snapshot, dry_run]
+    allowed_flags: ["--confidence-threshold=N", "--no-snapshot", "--dry-run"]
+    mutating: add-only
+    gate3_location: "mcp_server/database/context-index.sqlite causal_edges table (add-only; existing edges never deleted or updated)"
+    mcp_tools:
+      - mcp__spec_kit_memory__memory_causal_stats
+      - mcp__spec_kit_memory__memory_causal_link
+      - mcp__spec_kit_memory__memory_drift_why
+      - mcp__spec_kit_memory__memory_search
+    trigger_phrases:
+      - "causal edges drift"
+      - "causal graph doctor"
+      - "lineage coverage"
+      - "memory_causal_stats"
+
+  - target: code-graph
+    yaml: doctor_code-graph.yaml
+    setup_vars: [execution_mode, scope]
+    allowed_flags:
+      - "--scope=stale|missed|bloat|all|excludes"
+      - "--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-run"
+      - "--dry-run"
+      - "--confirm"
+    mutating: mutates
+    gate3_location: ".opencode/code-graph.config.json + code-graph.sqlite"
+    mcp_tools:
+      - mcp__cocoindex_code__search
+      - mcp__spec_kit_memory__code_graph_status
+      - mcp__spec_kit_memory__code_graph_query
+      - mcp__spec_kit_memory__code_graph_context
+      - mcp__spec_kit_memory__code_graph_scan
+      - mcp__spec_kit_memory__code_graph_apply
+      - mcp__spec_kit_memory__detect_changes
+      - mcp__spec_kit_memory__memory_context
+      - mcp__spec_kit_memory__memory_search
+    trigger_phrases:
+      - "code-graph index drift"
+      - "code-graph rebuild"
+      - "code-graph stale excludes"
+      - "code-graph corruption recover"
+
+  - target: deep-loop
+    yaml: doctor_deep-loop.yaml
+    setup_vars: [execution_mode, intent, scope, no_snapshot, dry_run]
+    allowed_flags: ["--scope=research|review|both", "--no-snapshot", "--dry-run"]
+    mutating: mutates
+    gate3_location: "mcp_server/database/deep-loop-graph.sqlite"
+    mcp_tools:
+      - mcp__spec_kit_memory__deep_loop_graph_status
+      - mcp__spec_kit_memory__deep_loop_graph_query
+      - mcp__spec_kit_memory__deep_loop_graph_upsert
+      - mcp__spec_kit_memory__deep_loop_graph_convergence
+    trigger_phrases:
+      - "deep-loop coverage"
+      - "deep-loop graph rebuild"
+      - "deep-research convergence drift"
+      - "deep-review iteration graph"
+
+  - target: cocoindex
+    yaml: doctor_cocoindex.yaml
+    setup_vars: [execution_mode, intent, no_snapshot, dry_run]
+    allowed_flags: ["--no-snapshot", "--dry-run"]
+    mutating: mutates
+    gate3_location: ".opencode/skills/mcp-coco-index/mcp_server/database/ (SQLite + vector stores)"
+    mcp_tools:
+      - mcp__spec_kit_memory__ccc_status
+      - mcp__spec_kit_memory__ccc_reindex
+      - mcp__spec_kit_memory__ccc_feedback
+    trigger_phrases:
+      - "cocoindex daemon hung"
+      - "cocoindex reindex"
+      - "cocoindex semantic search health"
+      - "ccc status"
+
+  - target: skill-advisor
+    yaml: doctor_skill-advisor.yaml
+    setup_vars: [execution_mode, scope, skip_tests, dry_run]
+    allowed_flags: ["--skip-tests", "--dry-run", "--scope=all|explicit|derived|lexical"]
+    mutating: mutates
+    gate3_location: "lib/scorer/lanes/*.ts + .opencode/skills/*/graph-metadata.json"
+    mcp_tools:
+      - mcp__cocoindex_code__search
+      - mcp__spec_kit_memory__advisor_recommend
+      - mcp__spec_kit_memory__advisor_status
+      - mcp__spec_kit_memory__advisor_validate
+      - mcp__spec_kit_memory__advisor_rebuild
+      - mcp__spec_kit_memory__skill_graph_scan
+      - mcp__spec_kit_memory__skill_graph_query
+      - mcp__spec_kit_memory__skill_graph_status
+      - mcp__spec_kit_memory__memory_context
+      - mcp__spec_kit_memory__memory_search
+    trigger_phrases:
+      - "skill advisor scoring"
+      - "skill advisor rebuild"
+      - "advisor recommendation tuning"
+      - "skill_graph scan"
+
+  - target: skill-budget
+    yaml: doctor_skill-budget.yaml
+    setup_vars: [execution_mode, json_output, top_n, fail_over, project_ceiling]
+    allowed_flags: ["--json", "--top-n=N", "--fail-over=N", "--project-ceiling=N"]
+    mutating: read-only
+    gate3_location: "n/a (read-only audit; no spec folder required)"
+    mcp_tools: []   # script-only audit; no MCP calls
+    trigger_phrases:
+      - "skill budget audit"
+      - "description budget check"
+      - "skill char count drift"
+      - "frontmatter description trim"
+
+# ─────────────────────────────────────────────────────────────────
+# COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
+# ─────────────────────────────────────────────────────────────────
+# /doctor:mcp dispatches via its own command (.opencode/commands/doctor/mcp.md).
+# These rows are tracked here for advisor + CI visibility only — the mcp.md
+# command parses its own sub-action argv and dispatches to the right YAML.
+# ─────────────────────────────────────────────────────────────────
+mcp_subroutes:
+  - sub_action: install
+    yaml: doctor_mcp_install.yaml
+    allowed_flags: ["--server <name>", "--runtime <name>"]
+    mutating: mutates
+    gate3_location: "MCP server install dirs + runtime config (.opencode.json / .claude/settings.json / .codex/config.toml / .gemini/settings.json)"
+    trigger_phrases:
+      - "MCP install"
+      - "MCP server fresh install"
+      - "reinstall MCP"
+
+  - sub_action: debug
+    yaml: doctor_mcp_debug.yaml
+    allowed_flags: ["--fix", "--server <name>"]
+    mutating: mutates
+    gate3_location: "MCP server logs + runtime config repair"
+    trigger_phrases:
+      - "MCP server broken"
+      - "MCP debug"
+      - "MCP connection failure"
+      - "mcp-doctor.sh"
+
+# ─────────────────────────────────────────────────────────────────
+# ORCHESTRATOR (NOT routed through /doctor — kept here for reference)
+# ─────────────────────────────────────────────────────────────────
+# /doctor:update is a STANDALONE command at .opencode/commands/doctor/update.md.
+# It does NOT route through /doctor. This block exists for advisor visibility.
+# ─────────────────────────────────────────────────────────────────
+standalone:
+  - command: /doctor:update
+    file: .opencode/commands/doctor/update.md
+    yaml: doctor_update.yaml
+    mutating: mutates
+    trigger_phrases:
+      - "spec-kit version migration"
+      - "doctor update orchestrator"
+      - "rebuild all spec-kit databases"
+      - "doctor full sync"

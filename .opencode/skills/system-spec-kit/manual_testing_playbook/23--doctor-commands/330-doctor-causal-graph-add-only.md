@@ -1,13 +1,13 @@
 ---
 title: "DOC-330 -- Doctor causal graph add-only"
-description: "This scenario validates /doctor:causal-graph add-only enforcement for DOC-330. It focuses on proving existing causal edges are never deleted or weight-modified."
+description: "This scenario validates /doctor causal-graph add-only enforcement for DOC-330. It focuses on proving existing causal edges are never deleted or weight-modified."
 ---
 
 # DOC-330 -- Doctor causal graph add-only
 
 ## 1. OVERVIEW
 
-This scenario validates the mutation boundary for `/doctor:causal-graph`. The command is allowed to add new causal edges, but it must never delete existing edges or rewrite established weights.
+This scenario validates the mutation boundary for `/doctor causal-graph`. The command is allowed to add new causal edges, but it must never delete existing edges or rewrite established weights.
 
 The test treats existing edges as historical evidence. Even if the command finds better links, mutation flow must preserve previous `sourceId`, `targetId`, `relation`, and weight data byte-for-byte and add only new rows through the causal-link tool.
 
@@ -20,7 +20,7 @@ The test treats existing edges as historical evidence. Even if the command finds
 - Real user request: `Run causal-graph apply. Verify no existing edges are deleted or weight-modified, only new edges are added.`
 - Prompt: `Run causal-graph apply. Verify no existing edges are deleted or weight-modified, only new edges are added.`
 - Preconditions: A sandbox or target `context-index.sqlite` has existing `causal_edges` rows with established weights and at least one eligible new candidate edge.
-- Expected execution process: Dump existing causal edges before apply, run `/doctor:causal-graph`, dump edges again, and compare pre/post state so the diff shows only additions.
+- Expected execution process: Dump existing causal edges before apply, run `/doctor causal-graph`, dump edges again, and compare pre/post state so the diff shows only additions.
 - Expected signals: existing edges are byte-identical before and after; new edges are appended; edge count increases by the number of inserted candidates; no delete or update operation is observed.
 - Desired user-visible outcome: A pass/fail verdict proving mutation flow preserved all existing causal evidence.
 - Pass/fail: PASS if pre-existing causal edges are unchanged and all differences are additive new rows.
@@ -40,7 +40,7 @@ Run causal-graph apply. Verify no existing edges are deleted or weight-modified,
 
 1. Record baseline `memory_causal_stats({})` totals and the pre-run edge count.
 2. Dump existing `causal_edges` rows before apply, including stable identifiers, relation, strength or weight fields, evidence, and timestamps available in this schema.
-3. Run `/doctor:causal-graph --confidence-threshold=0.7`.
+3. Run `/doctor causal-graph --confidence-threshold=0.7`.
 4. Capture the snapshot path, candidate-existing-edge check, link results, and final state log.
 5. Dump `causal_edges` rows again after apply using the same ordering and selected columns as the pre-run dump.
 6. Diff the pre-run and post-run dumps.
@@ -66,7 +66,7 @@ If `N` new edges are inserted, the post-run edge count is exactly baseline plus 
 - **PASS**: existing edges are byte-identical pre/post, the diff contains only additions, and edge count delta equals inserted new edges.
 - **FAIL**: any existing edge weight changes, any existing row is deleted, any existing row is updated, or the command uses a forbidden delete/update path.
 - **SKIP**: no sandbox or target dataset has both established existing edges and eligible new candidate edges.
-- **UNAUTOMATABLE**: the runtime cannot execute `/doctor:causal-graph` or produce comparable pre/post causal edge dumps.
+- **UNAUTOMATABLE**: the runtime cannot execute `/doctor causal-graph` or produce comparable pre/post causal edge dumps.
 
 ### Failure Triage
 
@@ -87,7 +87,7 @@ If any existing edge weight changed or any edge was deleted, fail with `mutation
 - Group: Doctor commands
 - Playbook ID: DOC-330
 - Feature name: Doctor causal graph add-only
-- Command mode: `/doctor:causal-graph --confidence-threshold=0.7`
+- Command mode: `/doctor causal-graph --confidence-threshold=0.7`
 - YAML asset: `doctor_causal-graph.yaml`
 - Mutation boundary: add-only; never delete or update existing `causal_edges`
 - Failure code: `mutation-boundary-violation`

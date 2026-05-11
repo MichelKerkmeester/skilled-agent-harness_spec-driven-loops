@@ -1,13 +1,13 @@
 ---
 title: "DOC-327 -- Doctor memory disk pressure"
-description: "Manual scenario validating /doctor:memory refusal when the snapshot disk-free preflight has less than two times the memory DB total available."
+description: "Manual scenario validating /doctor memory refusal when the snapshot disk-free preflight has less than two times the memory DB total available."
 ---
 
 # DOC-327 -- Doctor memory disk pressure
 
 ## 1. OVERVIEW
 
-This scenario validates the `/doctor:memory` disk-pressure refusal path. It runs the real command inside a disposable filesystem whose free space is below the snapshot threshold, then confirms Phase 2 refuses before creating snapshots or mutating the index.
+This scenario validates the `/doctor memory` disk-pressure refusal path. It runs the real command inside a disposable filesystem whose free space is below the snapshot threshold, then confirms Phase 2 refuses before creating snapshots or mutating the index.
 
 The behavior is user-observable: the command should fail clearly with free-vs-required disk numbers and leave the memory DB untouched.
 
@@ -16,10 +16,10 @@ The behavior is user-observable: the command should fail clearly with free-vs-re
 ## 2. SCENARIO CONTRACT
 
 - Objective: Snapshot preflight refuses when disk free is less than two times total memory DB size.
-- Real user request: `Run /doctor:memory --incremental=true with disk near full. Verify the command refuses cleanly.`
-- Prompt: `Run /doctor:memory --incremental=true with disk near full. Verify the command refuses cleanly.`
+- Real user request: `Run /doctor memory --incremental=true with disk near full. Verify the command refuses cleanly.`
+- Prompt: `Run /doctor memory --incremental=true with disk near full. Verify the command refuses cleanly.`
 - Prompt voice: Natural-human.
-- Exact command sequence: create disposable low-free-space fixture -> place workspace inside it -> run `/doctor:memory --incremental=true` -> verify refusal, no snapshot, and unchanged DB checksum.
+- Exact command sequence: create disposable low-free-space fixture -> place workspace inside it -> run `/doctor memory --incremental=true` -> verify refusal, no snapshot, and unchanged DB checksum.
 - Expected signals: disk-free preflight runs, refusal message includes free and required bytes, exit is nonzero, no snapshot is created, index checksum is unchanged.
 - Desired user-visible outcome: A concise failure verdict explaining the disk pressure and proving the index was untouched.
 - Pass/fail: PASS if the command refuses before snapshot or mutation and reports the disk calculation.
@@ -31,7 +31,7 @@ The behavior is user-observable: the command should fail clearly with free-vs-re
 ### Prompt
 
 ```
-Run /doctor:memory --incremental=true with disk near full. Verify the command refuses cleanly.
+Run /doctor memory --incremental=true with disk near full. Verify the command refuses cleanly.
 ```
 
 ### Commands
@@ -44,7 +44,7 @@ Run /doctor:memory --incremental=true with disk near full. Verify the command re
 4. Record pre-run checksums for both memory DBs.
 5. Confirm there are no pre-existing scenario snapshots:
    - `rm -f .opencode/skills/system-spec-kit/mcp_server/database/context-index*.sqlite.pre-doctor-memory.*.bak`
-6. Run `/doctor:memory --incremental=true` through the real runtime.
+6. Run `/doctor memory --incremental=true` through the real runtime.
 7. Capture the refusal output and process exit code.
 8. Confirm no matching snapshot exists:
    - `test ! -e .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite.pre-doctor-memory.*.bak`
@@ -90,7 +90,7 @@ If the command proceeds, inspect Phase 2 disk-free preflight in `doctor_memory.y
 
 - Group: Doctor Commands
 - Playbook ID: DOC-327
-- Command under test: `/doctor:memory --incremental=true`
+- Command under test: `/doctor memory --incremental=true`
 - Mode: single interactive mutation flow
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `23--doctor-commands/327-doctor-memory-disk-pressure.md`

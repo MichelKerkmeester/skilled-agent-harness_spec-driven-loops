@@ -65,7 +65,7 @@ mutation_boundaries:
     - "mcp_server/database/context-index__voyage__voyage-4__1024.sqlite"  # 1024-dim voyage vector DB
     - "mcp_server/database/context-index*.sqlite.pre-doctor-memory.*.bak"  # memory snapshot files only
   forbidden_targets:
-    - ".opencode/specs/**/*.md"  # never write into spec packet docs from /doctor:memory
+    - ".opencode/specs/**/*.md"  # never write into spec packet docs from /doctor memory
     - ".opencode/specs/**/description.json"  # spec metadata belongs to memory-save tooling
     - ".opencode/specs/**/graph-metadata.json"  # graph metadata is not a memory doctor target
     - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
@@ -216,7 +216,7 @@ output_contract:
   state_log:
     path: "<packet_scratch>/doctor-memory-state.<timestamp>.json"
     schema:
-      command: "/doctor:memory"
+      command: "/doctor memory"
       mode: INTERACTIVE
       intent: DIAGNOSE
       timestamp: ISO_8601

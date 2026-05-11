@@ -58,6 +58,7 @@ _memory:
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
+| **Superseded By** | ../014-doctor-command-consolidation/ (router consolidation, 2026-05-11) |
 | **Phase** | 13 of 13 |
 | **Predecessor** | 012-causal-graph-channel-routing |
 | **Successor** | None |
@@ -74,12 +75,12 @@ Phase 13 of the 026 graph-and-context-optimization wrapper. The 010-graph-impact
 **Scope Boundary**: Author 5 new commands (4 isolated + 1 unified orchestrator) + 10 YAML assets (8 doctor commands + 2 MCP variants) + 1 migration manifest + (optional) per-version migration scripts. Does NOT modify any MCP server code beyond surfacing existing tools through the new commands.
 
 **Dependencies**:
-- Existing `/doctor:code-graph` Markdown + YAML pattern (precedent for shape)
+- Existing `/doctor code-graph` Markdown + YAML pattern (precedent for shape)
 - Existing MCP tools (no new tools): `memory_index_scan`, `memory_health`, `memory_causal_stats`, `memory_causal_link`, `memory_drift_why`, `deep_loop_graph_status`, `deep_loop_graph_query`, `deep_loop_graph_upsert`, `deep_loop_graph_convergence`, `ccc_status`, `ccc_reindex`, `ccc_feedback`, `code_graph_scan`, `code_graph_status`, `skill_graph_scan`, `advisor_status`, `advisor_rebuild`, `eval_run_ablation`, `session_health`
 - Existing canonical-path validator pattern (per `doctor_skill-advisor.yaml:49-70`)
 
 **Deliverables**:
-- 4 isolated doctor commands: `/doctor:memory`, `/doctor:causal-graph`, `/doctor:deep-loop`, `/doctor:cocoindex`
+- 4 isolated doctor commands: `/doctor memory`, `/doctor causal-graph`, `/doctor deep-loop`, `/doctor cocoindex`
 - 1 unified orchestrator: `/doctor:update` with tier-aware prompts
 - 1 migration manifest (`migration-manifest.json`) for users skipping versions
 - 10 YAML asset files (8 doctor commands + 2 MCP variants)
@@ -152,13 +153,13 @@ Ship a one-shot doctor surface that:
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/doctor/memory.md` | Create | `/doctor:memory` Markdown entrypoint |
+| `.opencode/commands/doctor/memory.md` | Create | `/doctor memory` Markdown entrypoint |
 | `.opencode/commands/doctor/assets/doctor_memory.yaml` | Create | one single-mode YAML asset |
-| `.opencode/commands/doctor/causal-graph.md` | Create | `/doctor:causal-graph` Markdown entrypoint |
+| `.opencode/commands/doctor/causal-graph.md` | Create | `/doctor causal-graph` Markdown entrypoint |
 | `.opencode/commands/doctor/assets/doctor_causal-graph.yaml` | Create | one single-mode YAML asset |
-| `.opencode/commands/doctor/deep-loop.md` | Create | `/doctor:deep-loop` Markdown entrypoint |
+| `.opencode/commands/doctor/deep-loop.md` | Create | `/doctor deep-loop` Markdown entrypoint |
 | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` | Create | one single-mode YAML asset |
-| `.opencode/commands/doctor/cocoindex.md` | Create | `/doctor:cocoindex` Markdown entrypoint |
+| `.opencode/commands/doctor/cocoindex.md` | Create | `/doctor cocoindex` Markdown entrypoint |
 | `.opencode/commands/doctor/assets/doctor_cocoindex.yaml` | Create | one single-mode YAML asset |
 | `.opencode/commands/doctor/update.md` | Create | `/doctor:update` orchestrator Markdown entrypoint |
 | `.opencode/commands/doctor/assets/doctor_update.yaml` | Create | one single-mode YAML asset |
@@ -242,7 +243,7 @@ Ship a one-shot doctor surface that:
 | Risk | `cli-opencode`/`cli-codex` could land mid-rebuild | External dispatch ignores doctor lock | Out of scope for 013; track in follow-on packet |
 | Risk | `generate-context.js` regenerates parent graph-metadata.json and drops manual fields | Parent metadata loses `parent_id`, `manual.depends_on` | Restore manual fields after every save (memory rule) |
 | Risk | Auto-branch from `create.sh` against memory rule | Diverges from main | After scaffold, switch back to main and delete packet branch |
-| Dependency | Existing `/doctor:code-graph` shape | Source of truth for command pattern | Read fully before authoring any new command; reuse YAML structure |
+| Dependency | Existing `/doctor code-graph` shape | Source of truth for command pattern | Read fully before authoring any new command; reuse YAML structure |
 | Dependency | MCP tool stability | All 18+ MCP tools called by orchestrator | Pin to `v3.4.1.0` MCP server contract |
 <!-- /ANCHOR:risks -->
 
@@ -272,7 +273,7 @@ Ship a one-shot doctor surface that:
 
 ### Reuse
 
-- **NFR-R01**: All 5 commands follow the canonical `/doctor:code-graph` shape (Markdown entrypoint + Execution Protocol + Constraints + Unified Setup Phase + single-mode YAML).
+- **NFR-R01**: All 5 commands follow the canonical `/doctor code-graph` shape (Markdown entrypoint + Execution Protocol + Constraints + Unified Setup Phase + single-mode YAML).
 - **NFR-R02**: Canonical-path validator pattern reused for all mutation boundaries.
 - **NFR-R03**: No new MCP server code — all MCP tools already exist; this packet exposes them through commands.
 <!-- /ANCHOR:nfr -->
@@ -322,7 +323,7 @@ Ship a one-shot doctor surface that:
 ### Notes
 
 - Higher scope than 002 or 003 (5 commands vs 4 skill optimizations); lower per-file complexity (no LOC-reduction work).
-- Risk concentrated in the orchestrator (Phase C); isolated commands are mostly templated from `/doctor:code-graph`.
+- Risk concentrated in the orchestrator (Phase C); isolated commands are mostly templated from `/doctor code-graph`.
 - Level 3 not chosen because no new MCP server code, no schema migrations beyond manifest declarations, no new architecture.
 <!-- /ANCHOR:complexity -->
 
@@ -345,7 +346,7 @@ Ship a one-shot doctor surface that:
 <!--
 CORE + L2 SPEC (~280 lines)
 - 5 new doctor commands (4 isolated + 1 unified orchestrator)
-- 10 YAML assets matching canonical /doctor:code-graph pattern
+- 10 YAML assets matching canonical /doctor code-graph pattern
 - Migration manifest for 3.3.0.0 → 3.4.1.0 chain
 - Council anchor: operational safety; 7 ADRs in decision-record.md
 - Implementation: doc + command-yaml + manifest; no new MCP server code

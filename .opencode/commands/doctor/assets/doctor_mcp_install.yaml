@@ -221,7 +221,7 @@ workflow:
         Proceed? [Y/n/skip]
     on_failure:
       max_retries: 1
-      action: "Report error, suggest /doctor:mcp_debug --server {name}"
+      action: "Report error, suggest /doctor:mcp debug --server {name}"
     outputs:
       - install_results: "Map of server -> PASS|FAIL + details"
 
@@ -258,7 +258,7 @@ workflow:
       - "Report any remaining issues"
     command: "bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json"
     on_remaining_failures:
-      action: "Suggest /doctor:mcp_debug for remaining issues"
+      action: "Suggest /doctor:mcp debug for remaining issues"
     outputs:
       - verification_json: "Post-install diagnostic results"
       - improvements: "Before vs after comparison"
@@ -281,7 +281,7 @@ workflow:
       ### Next Steps
       - Restart your AI client to pick up MCP servers
       - Test: ask your AI assistant to use each MCP tool
-      - If issues persist: /doctor:mcp_debug
+      - If issues persist: /doctor:mcp debug
 
       STATUS={final_status}
 

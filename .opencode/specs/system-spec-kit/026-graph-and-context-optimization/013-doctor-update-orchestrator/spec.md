@@ -5,10 +5,10 @@ trigger_phrases:
   - "013-doctor-update-orchestrator"
   - "doctor command surface"
   - "/doctor:update"
-  - "/doctor:memory"
-  - "/doctor:causal-graph"
-  - "/doctor:deep-loop"
-  - "/doctor:cocoindex"
+  - "/doctor memory"
+  - "/doctor causal-graph"
+  - "/doctor deep-loop"
+  - "/doctor cocoindex"
   - "doctor update orchestrator"
   - "spec-kit version migration"
   - "001-doctor-commands"
@@ -54,6 +54,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
+| **Superseded By** | ../014-doctor-command-consolidation/ (router consolidation, 2026-05-11) |
 | **Predecessor** | ../012-causal-graph-channel-routing/spec.md |
 | **Successor** | None (current packet line) |
 <!-- /ANCHOR:metadata -->
@@ -151,7 +152,7 @@ Group the doctor command authoring (child `001-doctor-commands/`) and the sandbo
 | Risk | Phase parent strict validate may flag because the validator hasn't been updated for the lean-trio convention this packet adopted | Phase E gate G4 may fail on cross-packet template-manifest issue (same pattern as 002 + 003 packets in this session) | Document as known cross-packet issue; G4 acceptance allows it |
 | Risk | Children diverge on naming conventions or path roots over time | Cross-child references break, root playbook index gets stale | Pin: child 001 commands at `Public/.opencode/commands/doctor/`; child 002 scenarios at `system-spec-kit/manual_testing_playbook/23--doctor-commands/`. Locked in this spec. |
 | Risk | Codex parallel dispatch unreliability with 4 tracks (per memory `feedback_cli_dispatch_unreliability`) | Phase B in child 002 may need serial fallback | Tracks write to disjoint paths (5 ID ranges). Fallback to serial if hangs detected. |
-| Dependency | Existing `/doctor:code-graph_apply.yaml` style as canonical reference | Child 001's polish track depends on this gold standard | Confirmed canonical and stable; cited in 001's polish track prompt. |
+| Dependency | Existing `doctor_code-graph_apply.yaml` style as canonical reference | Child 001's polish track depends on this gold standard | Confirmed canonical and stable; cited in 001's polish track prompt. |
 | Dependency | sk-doc `validate_document.py` and spec-kit `validate.sh --strict` | All verification gates depend on these scripts | Both in repo; tracked in 001 + 002 verification sections. |
 <!-- /ANCHOR:risks -->
 

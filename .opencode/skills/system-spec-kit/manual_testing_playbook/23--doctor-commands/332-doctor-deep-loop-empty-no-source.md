@@ -1,13 +1,13 @@
 ---
 title: "DOC-332 -- Doctor deep-loop empty no source"
-description: "Manual scenario validating /doctor:deep-loop behavior when the coverage graph is empty and no iteration folders exist."
+description: "Manual scenario validating /doctor deep-loop behavior when the coverage graph is empty and no iteration folders exist."
 ---
 
 # DOC-332 -- Doctor deep-loop empty no source
 
 ## 1. OVERVIEW
 
-This scenario validates `/doctor:deep-loop` when the deep-loop coverage graph is empty and there are no `research/iterations/*.md` or `review/iterations/*.md` sources available.
+This scenario validates `/doctor deep-loop` when the deep-loop coverage graph is empty and there are no `research/iterations/*.md` or `review/iterations/*.md` sources available.
 
 The command must stay read-only and refuse remediation. An empty graph without source iterations is not a recoverable lazy-init case; the correct user-facing result is a degraded diagnostic with a recommendation to run a real deep-research or deep-review loop first.
 
@@ -20,7 +20,7 @@ The command must stay read-only and refuse remediation. An empty graph without s
 - Real user request: `Check deep-loop graph status. There's no recent research iteration data.`
 - Prompt: `Check deep-loop graph status. There's no recent research iteration data.`
 - Preconditions: `deep-loop-graph.sqlite` is empty or missing in a disposable workspace, and no spec packet under the sandbox contains `research/iterations/*.md` or `review/iterations/*.md`.
-- Expected execution process: Confirm graph emptiness, confirm no iteration files, run `/doctor:deep-loop --scope=both`, and capture the diagnostic report.
+- Expected execution process: Confirm graph emptiness, confirm no iteration files, run `/doctor deep-loop --scope=both`, and capture the diagnostic report.
 - Expected signals: read-only diagnostic flow loads `doctor_deep-loop.yaml`; `empty_graph=true`; `iteration_folder_count=0`; `lazy_init.available=false`; status is `DEGRADED`, `EMPTY`, or equivalent attention state with no `deep_loop_graph_upsert` call.
 - Desired user-visible outcome: A concise diagnostic verdict saying no iteration source was detected and recommending `/spec_kit:deep-research` or `/spec_kit:deep-review` first.
 - Pass/fail: PASS if the command reports the empty graph and missing source clearly while performing no graph mutation.
@@ -43,7 +43,7 @@ Check deep-loop graph status. There's no recent research iteration data.
    - `test -z "$(find .opencode/specs -path '*/research/iterations/*.md' -o -path '*/review/iterations/*.md' | head -1)"`
 3. Remove or isolate only `mcp_server/database/deep-loop-graph.sqlite` in the disposable workspace.
 4. Confirm the graph status is empty with `deep_loop_graph_status({})` or equivalent.
-5. Run `/doctor:deep-loop --scope=both` through the real runtime.
+5. Run `/doctor deep-loop --scope=both` through the real runtime.
 6. Capture the full diagnostic report and state log.
 7. Verify the transcript contains no `deep_loop_graph_upsert` call and no snapshot or rollback activity.
 
@@ -57,7 +57,7 @@ No graph rows are inserted, no snapshot is taken, and no iteration markdown file
 
 - Pre-run proof that no `research/iterations/*.md` or `review/iterations/*.md` files exist.
 - Pre-run `deep_loop_graph_status({})` output showing an empty graph.
-- `/doctor:deep-loop --scope=both` transcript.
+- `/doctor deep-loop --scope=both` transcript.
 - Diagnostic report showing empty graph plus missing iteration source.
 - State log showing `iteration_folder_count: 0`, `lazy_init.available: false`, and read-only mode.
 - Transcript evidence that `deep_loop_graph_upsert` did not run.
@@ -67,7 +67,7 @@ No graph rows are inserted, no snapshot is taken, and no iteration markdown file
 - **PASS**: command reports empty graph and no iteration source, recommends running a deep-loop workflow first, and performs no mutation.
 - **FAIL**: command attempts lazy-init without source files, calls `deep_loop_graph_upsert`, invents iteration data, or reports a healthy graph.
 - **SKIP**: the sandbox cannot remove or isolate iteration folders without touching active user data.
-- **UNAUTOMATABLE**: only valid if the runtime cannot execute `/doctor:deep-loop` and no direct status diagnostic can be captured.
+- **UNAUTOMATABLE**: only valid if the runtime cannot execute `/doctor deep-loop` and no direct status diagnostic can be captured.
 
 ### Failure Triage
 
@@ -88,7 +88,7 @@ If the command tries to remediate, inspect the diagnostic-mode guard in `.openco
 - Group: Doctor commands
 - Playbook ID: DOC-332
 - Feature name: Doctor deep-loop empty no source
-- Command mode: `/doctor:deep-loop --scope=both`
+- Command mode: `/doctor deep-loop --scope=both`
 - YAML asset: `doctor_deep-loop.yaml`
 - Expected refusal: no iteration source detected.
 - Mutation boundary: read-only diagnostic; no `deep_loop_graph_upsert`.

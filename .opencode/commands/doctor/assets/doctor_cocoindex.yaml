@@ -182,8 +182,8 @@ workflow:
     rules:
       - "If unavailable_binary=true -> recommend install script, not :apply."
       - "If daemon_health=unhealthy -> recommend 3.4.1.0 daemon recovery checklist, not :apply."
-      - "If embedding_model_change=true -> recommend /doctor:cocoindex:apply-confirm after daemon is healthy."
-      - "If code_drift=true OR missing_index=true -> recommend /doctor:cocoindex:apply-confirm."
+      - "If embedding_model_change=true -> recommend /doctor cocoindex after daemon is healthy."
+      - "If code_drift=true OR missing_index=true -> recommend /doctor cocoindex."
       - "If no drift -> status=OK."
     outputs:
       - status: OK|STALE|DEGRADED|MISSING|FAIL|CANCELLED
@@ -218,7 +218,7 @@ output_contract:
   state_log:
     path: "<packet_scratch>/doctor-cocoindex-state.<timestamp>.json"
     schema:
-      command: "/doctor:cocoindex"
+      command: "/doctor cocoindex"
       mode: INTERACTIVE
       intent: DIAGNOSE
       timestamp: ISO_8601

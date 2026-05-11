@@ -65,6 +65,7 @@ This packet adds the validation layer for sibling `001-doctor-commands`: 23 manu
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
+| **Superseded By** | ../014-doctor-command-consolidation/ (router consolidation, 2026-05-11) |
 | **Sibling** | 001-doctor-commands (Complete) |
 | **Predecessor** | 001-doctor-commands |
 | **Successor** | None |
@@ -78,7 +79,7 @@ This packet adds the validation layer for sibling `001-doctor-commands`: 23 manu
 
 ### Problem Statement
 
-Sibling packet `001-doctor-commands/` shipped 5 doctor commands (`/doctor:memory`, `causal-graph`, `deep-loop`, `cocoindex`, `update`), 10 active YAML assets, and a migration manifest for spec-kit version migration (3.3.0.0 → 3.4.1.0). The runtime is in place. What's missing:
+Sibling packet `001-doctor-commands/` shipped 5 doctor commands (`/doctor memory`, `causal-graph`, `deep-loop`, `cocoindex`, `update`), 10 active YAML assets, and a migration manifest for spec-kit version migration (3.3.0.0 → 3.4.1.0). The runtime is in place. What's missing:
 
 1. **No reproducible test harness** — verification gates G4-G9 in 001's spec require runtime smoke tests (auto/confirm/concurrent dispatch/SIGINT/migration-gap/dashboard) but those need a controlled environment with pre-populated database fixtures, a deterministic codebase tag (e.g., v3.3.0.0 simulated state), and runnable shell harness scripts that snapshot evidence.
 2. **No manual playbook coverage** — the canonical `system-spec-kit/manual_testing_playbook/` has 322 scenarios across 22 categories but ZERO entries for the new doctor surface. Operators wanting to verify a v3.3.0.0 → v3.4.1.0 upgrade have no scenario to follow.
@@ -97,10 +98,10 @@ Author the validation half of 013's deliverable: 23 manual playbook scenarios (I
 ### In Scope
 
 - **23 per-scenario Markdown files** in `system-spec-kit/manual_testing_playbook/23--doctor-commands/`:
-  - 5 `/doctor:memory` (323-327): fresh-install, drift, long-pole, sigint, disk-pressure
-  - 3 `/doctor:causal-graph` (328-330): low-coverage, confidence-threshold, add-only
-  - 3 `/doctor:deep-loop` (331-333): lazy-init, empty-no-source, convergence
-  - 3 `/doctor:cocoindex` (334-336): daemon-healthy, daemon-zombie, daemon-unreachable
+  - 5 `/doctor memory` (323-327): fresh-install, drift, long-pole, sigint, disk-pressure
+  - 3 `/doctor causal-graph` (328-330): low-coverage, confidence-threshold, add-only
+  - 3 `/doctor deep-loop` (331-333): lazy-init, empty-no-source, convergence
+  - 3 `/doctor cocoindex` (334-336): daemon-healthy, daemon-zombie, daemon-unreachable
   - 6 `/doctor:update` orchestrator (338-342 + 344): G5-G9 gates + tier-aware single interactive flow
   - 3 version migration end-to-end (345-347): 3.3.0.0→3.4.1.0, cleanup-legacy, no-op
 - **Root playbook update** (`manual_testing_playbook.md`): add `23--doctor-commands/` to canonical-source-artifacts list, update `last_updated:` frontmatter, append 23 entries to Section 12 (Feature Catalog Cross-Reference Index).
@@ -272,7 +273,7 @@ Author the validation half of 013's deliverable: 23 manual playbook scenarios (I
 ### Cross-Cutting
 
 - **Codex parallel dispatch** — Phase B uses 4 cli-codex tracks. If one stalls, fallback to serial. Document fallback path in plan.md dispatch design.
-- **Per-scenario shell wrapper drift** — wrappers might invoke `/doctor:*` differently than the canonical Markdown entrypoint over time. REQ-022 enforces 1:1 fidelity at authoring time; future audits via `/doctor:skill-budget` or similar.
+- **Per-scenario shell wrapper drift** — wrappers might invoke `/doctor:*` differently than the canonical Markdown entrypoint over time. REQ-022 enforces 1:1 fidelity at authoring time; future audits via `/doctor skill-budget` or similar.
 <!-- /ANCHOR:edge-cases -->
 
 ---

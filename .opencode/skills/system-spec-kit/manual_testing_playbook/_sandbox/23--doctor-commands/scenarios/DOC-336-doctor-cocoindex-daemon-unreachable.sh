@@ -23,7 +23,7 @@ source "${HARNESS_DIR}/assert-signals.sh"
 
 run_scenario() {
     reset_state "$FIXTURE_NAME"
-    capture_evidence "$SCENARIO_ID" /doctor:cocoindex || true
+    capture_evidence "$SCENARIO_ID" /doctor cocoindex || true
     assert_signals "$SCENARIO_ID" "${PLAYBOOK_DIR}/${SCENARIO_MD}"
     printf '%b%s complete%b\n' "$GREEN" "$SCENARIO_ID" "$NC"
 }

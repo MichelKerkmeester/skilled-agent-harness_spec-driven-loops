@@ -1,13 +1,13 @@
 ---
 title: "DOC-326 -- Doctor memory SIGINT cancellation"
-description: "Manual scenario validating graceful Ctrl-C handling during /doctor:memory full rebuild, including ADR-001 settle, snapshot restore, and exit 130."
+description: "Manual scenario validating graceful Ctrl-C handling during /doctor memory full rebuild, including ADR-001 settle, snapshot restore, and exit 130."
 ---
 
 # DOC-326 -- Doctor memory SIGINT cancellation
 
 ## 1. OVERVIEW
 
-This scenario validates cancellation safety for a full `/doctor:memory --incremental=false` rebuild. It starts a real rebuild, sends Ctrl-C after roughly 30 seconds, and verifies the command lets the active per-file transaction settle, restores the pre-rebuild snapshot, records cancellation, and exits 130.
+This scenario validates cancellation safety for a full `/doctor memory --incremental=false` rebuild. It starts a real rebuild, sends Ctrl-C after roughly 30 seconds, and verifies the command lets the active per-file transaction settle, restores the pre-rebuild snapshot, records cancellation, and exits 130.
 
 This scenario is destructive and requires a disposable Docker-backed sandbox. If Docker is not available, the truthful verdict is `UNAUTOMATABLE`, because ADR-001 only matters when real per-file transactions are exercised under process cancellation.
 
@@ -44,7 +44,7 @@ Start a full rebuild and Ctrl-C it after ~30 seconds. Verify the index isn't hal
 5. Record pre-rebuild checksums:
    - `shasum .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
    - `shasum .opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite`
-6. Start `/doctor:memory --incremental=false` in the real runtime.
+6. Start `/doctor memory --incremental=false` in the real runtime.
 7. After the command enters Phase 3 rebuild, send Ctrl-C after roughly 30 seconds.
 8. Wait for the command to settle; record whether restore finishes within roughly 5 seconds after SIGINT handling begins.
 9. Capture the process exit code.
@@ -91,7 +91,7 @@ If exit code is not 130, inspect signal handling in the apply workflow before ch
 
 - Group: Doctor Commands
 - Playbook ID: DOC-326
-- Command under test: `/doctor:memory --incremental=false`
+- Command under test: `/doctor memory --incremental=false`
 - Mode: single interactive mutation flow
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `23--doctor-commands/326-doctor-memory-sigint-cancellation.md`

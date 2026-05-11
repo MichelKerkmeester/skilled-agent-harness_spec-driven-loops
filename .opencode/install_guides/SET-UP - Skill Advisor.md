@@ -3,7 +3,7 @@
 Tune the OpenCode skill advisor scoring tables (TOKEN_BOOSTS, PHRASE_BOOSTS, derived triggers, CATEGORY_HINTS) so the advisor can route prompts to every skill in your repo.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](./README.md) for complete setup.
-> **Command:** `/doctor:skill-advisor` (auto + confirm modes) — full reference in `.opencode/commands/doctor/skill-advisor.md`.
+> **Command:** `/doctor skill-advisor` (auto + confirm modes) — full reference in `.opencode/commands/doctor.md`.
 
 ---
 
@@ -23,7 +23,7 @@ PREREQUISITE CHECK (verify before proceeding):
 If any prerequisite fails: STOP and report which one. Do NOT proceed.
 
 Steps:
-1. Invoke /doctor:skill-advisor:confirm (interactive mode for first run).
+1. Invoke /doctor skill-advisor (interactive mode for first run).
 2. At setup: scope=A (all), tests=A (run), apply=A (apply changes).
 3. Walk me through Phase 0 → 1 → 2 → 3 → 4 with approval at each gate.
 4. On success: summarize files modified and how to undo if needed.
@@ -80,7 +80,7 @@ Most "tweak it to match my setup" needs are signal additions, not lane-weight ch
 - Instant feedback (re-index is < 1 second)
 - Skill-local: edits only affect the skill you touch, no risk to other skills
 
-The full `/doctor:skill-advisor` workflow (Section 2 below) is for batch optimization across all skills + lane-weight tuning. Use it after large repo restructures or when adding 5+ new skills.
+The full `/doctor skill-advisor` workflow (Section 2 below) is for batch optimization across all skills + lane-weight tuning. Use it after large repo restructures or when adding 5+ new skills.
 
 > **Critical**: The advisor reads scoring inputs from `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without running `skill_graph_scan` will produce identical pre-edit scores.
 
@@ -90,11 +90,11 @@ The full `/doctor:skill-advisor` workflow (Section 2 below) is for batch optimiz
 
 | Use case | Command |
 | --- | --- |
-| First-time tuning | `/doctor:skill-advisor:confirm` |
-| Re-tune after adding a skill | `/doctor:skill-advisor:auto` |
-| Preview without writing | `/doctor:skill-advisor:auto --dry-run` |
-| Tune one lane only | `/doctor:skill-advisor:auto --scope=explicit` (or `derived` / `lexical`) |
-| Skip post-apply tests | `/doctor:skill-advisor:auto --skip-tests` (not recommended) |
+| First-time tuning | `/doctor skill-advisor` |
+| Re-tune after adding a skill | `/doctor skill-advisor` |
+| Preview without writing | `/doctor skill-advisor --dry-run` |
+| Tune one lane only | `/doctor skill-advisor --scope=explicit` (or `derived` / `lexical`) |
+| Skip post-apply tests | `/doctor skill-advisor --skip-tests` (not recommended) |
 
 **The five phases (see command markdown for full detail):**
 
@@ -177,7 +177,7 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 | `"graph health: missing"` | Run `skill_graph_scan({})` once, then re-run the command |
 | Build fails after apply | Rollback (see Section 5), inspect diff in `<spec-folder>/scratch/skill-advisor-proposal-*.md` (or `.opencode/scratch/...` outside a spec folder) |
 | Tests fail after apply | Rollback, then re-run with `--scope=derived` only |
-| Command not found | Verify `.opencode/commands/doctor/skill-advisor.md` exists; restart your AI client |
+| Command not found | Verify `.opencode/commands/doctor.md` exists; restart your AI client |
 | Wrong skill in `advisor_recommend` | Stale graph index — run `skill_graph_scan({})` |
 | Edited `graph-metadata.json` but scores unchanged | Forgot to re-index — call `skill_graph_scan({})`. The advisor reads from `database/skill-graph.sqlite`, not the JSON file. |
 | `skill_graph_scan` reports `scannedFiles: 20, indexedFiles: 18` | Normal — the indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding, not real skills). The 18 is your real skill count. |
@@ -188,7 +188,7 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 
 ## 7. RESOURCES
 
-- **Command reference:** `.opencode/commands/doctor/skill-advisor.md`
+- **Command reference:** `.opencode/commands/doctor.md`
 - **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`
 - **Operator setup (advanced):** `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/SET-UP_GUIDE.md`
 - **Native MCP install:** `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`

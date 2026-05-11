@@ -1,13 +1,13 @@
 ---
 title: "DOC-325 -- Doctor memory long-pole rebuild"
-description: "Manual scenario validating the /doctor:memory full rebuild path with ETA prompt, snapshots, state-log duration, and gold-battery verification."
+description: "Manual scenario validating the /doctor memory full rebuild path with ETA prompt, snapshots, state-log duration, and gold-battery verification."
 ---
 
 # DOC-325 -- Doctor memory long-pole rebuild
 
 ## 1. OVERVIEW
 
-This scenario validates the long-pole `/doctor:memory --incremental=false` path. It proves the command warns about the 5-15 minute full rebuild, snapshots the memory databases with `VACUUM INTO`, runs a forced `memory_index_scan`, records duration, and passes the post-rebuild gold battery.
+This scenario validates the long-pole `/doctor memory --incremental=false` path. It proves the command warns about the 5-15 minute full rebuild, snapshots the memory databases with `VACUUM INTO`, runs a forced `memory_index_scan`, records duration, and passes the post-rebuild gold battery.
 
 The behavior is intentionally slower than an incremental refresh. The user-observable value is operational confidence: the command makes the long runtime explicit and leaves rollback snapshots available.
 
@@ -19,7 +19,7 @@ The behavior is intentionally slower than an incremental refresh. The user-obser
 - Real user request: `Force a full rebuild of the memory index. I changed embedding provider and need fresh vectors.`
 - Prompt: `Force a full rebuild of the memory index. I changed embedding provider and need fresh vectors.`
 - Prompt voice: Natural-human.
-- Exact command sequence: confirm populated index -> run `/doctor:memory --incremental=false` -> accept ETA prompt -> verify snapshots, duration, and gold battery.
+- Exact command sequence: confirm populated index -> run `/doctor memory --incremental=false` -> accept ETA prompt -> verify snapshots, duration, and gold battery.
 - Expected signals: 5-15 minute ETA prompt, `VACUUM INTO` snapshot files, `memory_index_scan({incremental:false, force:true})`, state-log `duration_seconds`, gold-battery exit 0, snapshot retention note.
 - Desired user-visible outcome: A concise applied verdict with rebuild duration, snapshot paths, and gold-battery result.
 - Pass/fail: PASS if the rebuild completes from snapshots through gold-battery verification without rollback.
@@ -39,7 +39,7 @@ Force a full rebuild of the memory index. I changed embedding provider and need 
 1. Use a disposable workspace with a populated `context-index.sqlite` and vector DB.
 2. Confirm precondition:
    - `test -s .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
-3. Run `/doctor:memory --incremental=false` through the real runtime.
+3. Run `/doctor memory --incremental=false` through the real runtime.
 4. When the setup phase presents the long-pole ETA prompt, answer yes and keep the transcript.
 5. Capture snapshot creation lines for both memory DBs.
 6. Capture the Phase 3 rebuild summary, including `incremental: false` and `force: true`.
@@ -86,7 +86,7 @@ If no ETA prompt appears, inspect `.opencode/commands/doctor/memory.md` setup ha
 
 - Group: Doctor Commands
 - Playbook ID: DOC-325
-- Command under test: `/doctor:memory --incremental=false`
+- Command under test: `/doctor memory --incremental=false`
 - Mode: single interactive mutation flow
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `23--doctor-commands/325-doctor-memory-long-pole-rebuild.md`

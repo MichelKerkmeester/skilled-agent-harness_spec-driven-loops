@@ -1,13 +1,13 @@
 ---
 title: "DOC-328 -- Doctor causal graph low coverage"
-description: "This scenario validates /doctor:causal-graph low-coverage reporting for DOC-328. It focuses on read-only causal coverage drift, degraded status, and explicit apply-mode recommendation."
+description: "This scenario validates /doctor causal-graph low-coverage reporting for DOC-328. It focuses on read-only causal coverage drift, degraded status, and explicit apply-mode recommendation."
 ---
 
 # DOC-328 -- Doctor causal graph low coverage
 
 ## 1. OVERVIEW
 
-This scenario validates the read-only `/doctor:causal-graph` diagnostic path when the causal graph is below the 60% coverage target. It proves the command reports degraded causal coverage without mutating `causal_edges`, surfaces the observed coverage percentage, and recommends the safe apply path.
+This scenario validates the read-only `/doctor causal-graph` diagnostic path when the causal graph is below the 60% coverage target. It proves the command reports degraded causal coverage without mutating `causal_edges`, surfaces the observed coverage percentage, and recommends the safe apply path.
 
 The scenario is intentionally operator-visible. A real user wants to know whether a recent deep-research session left enough causal links behind, so the pass condition depends on the final health report being clear enough to act on.
 
@@ -20,10 +20,10 @@ The scenario is intentionally operator-visible. A real user wants to know whethe
 - Real user request: `Check causal graph coverage. We had a deep-research session last week and want to know if the edges are well-linked.`
 - Prompt: `Check causal graph coverage. We had a deep-research session last week and want to know if the edges are well-linked.`
 - Preconditions: `mcp_server/database/context-index.sqlite` exists and `memory_causal_stats({})` reports causal-edge coverage below 60%, such as 45%.
-- Expected execution process: Run `/doctor:causal-graph`, capture the read-only stats and drift report, verify no causal-edge mutation occurred, and return a concise verdict.
-- Expected signals: status is `ATTENTION`, `STALE`, or `DEGRADED`; coverage is below 60%; recommendation names `/doctor:causal-graph` with the default confidence floor.
+- Expected execution process: Run `/doctor causal-graph`, capture the read-only stats and drift report, verify no causal-edge mutation occurred, and return a concise verdict.
+- Expected signals: status is `ATTENTION`, `STALE`, or `DEGRADED`; coverage is below 60%; recommendation names `/doctor causal-graph` with the default confidence floor.
 - Desired user-visible outcome: A short report saying the graph is under target and naming the remediation command.
-- Pass/fail: PASS if the report captures coverage below 60%, marks the graph degraded or attention-worthy, and explicitly recommends `/doctor:causal-graph`.
+- Pass/fail: PASS if the report captures coverage below 60%, marks the graph degraded or attention-worthy, and explicitly recommends `/doctor causal-graph`.
 - Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
 
 ---
@@ -40,30 +40,30 @@ Check causal graph coverage. We had a deep-research session last week and want t
 
 1. Confirm the sandbox or target runtime uses a `context-index.sqlite` whose `memory_causal_stats({})` coverage is below 60%.
 2. Record the pre-run causal edge count from `memory_causal_stats({})`.
-3. Run `/doctor:causal-graph`.
+3. Run `/doctor causal-graph`.
 4. Capture the health report, stats table, drift signals, recommendation block, and state-log path.
 5. Run `memory_causal_stats({})` again and record the post-run causal edge count.
 6. Compare pre-run and post-run edge counts to confirm read-only diagnostic flow was read-only.
 
 ### Expected
 
-The command returns a causal graph health report with coverage below the 60% target, for example `coverage: 45%`. The status is degraded, attention-worthy, or stale rather than healthy. The recommendation explicitly points to `/doctor:causal-graph` or `/doctor:causal-graph --confidence-threshold=0.7`.
+The command returns a causal graph health report with coverage below the 60% target, for example `coverage: 45%`. The status is degraded, attention-worthy, or stale rather than healthy. The recommendation explicitly points to `/doctor causal-graph` or `/doctor causal-graph --confidence-threshold=0.7`.
 
 The pre-run and post-run causal edge counts are identical because the read-only diagnostic flow is read-only. No `memory_causal_link`, delete, update, or direct SQL mutation occurs.
 
 ### Evidence
 
 - Pre-run `memory_causal_stats({})` output showing coverage below 60%.
-- `/doctor:causal-graph` transcript showing the status, coverage percentage, target coverage, drift signals, and recommendation.
+- `/doctor causal-graph` transcript showing the status, coverage percentage, target coverage, drift signals, and recommendation.
 - Post-run `memory_causal_stats({})` output showing the same causal edge count as the pre-run baseline.
 - State-log path emitted by the command.
 
 ### Pass / Fail
 
-- **PASS**: coverage below 60% is reported, the status is degraded or attention-worthy, the recommendation explicitly names `/doctor:causal-graph`, and edge count is unchanged.
+- **PASS**: coverage below 60% is reported, the status is degraded or attention-worthy, the recommendation explicitly names `/doctor causal-graph`, and edge count is unchanged.
 - **FAIL**: coverage is omitted, the report claims healthy status below the 60% target, the apply recommendation is missing, or read-only diagnostic flow mutates causal edges.
 - **SKIP**: no sandbox or target `context-index.sqlite` with below-target causal coverage is available.
-- **UNAUTOMATABLE**: the runtime cannot execute `/doctor:causal-graph` or the memory causal stats tool in the current environment.
+- **UNAUTOMATABLE**: the runtime cannot execute `/doctor causal-graph` or the memory causal stats tool in the current environment.
 
 ### Failure Triage
 
@@ -84,7 +84,7 @@ If the report does not mark low coverage, inspect `.opencode/commands/doctor/ass
 - Group: Doctor commands
 - Playbook ID: DOC-328
 - Feature name: Doctor causal graph low coverage
-- Command mode: `/doctor:causal-graph`
+- Command mode: `/doctor causal-graph`
 - YAML asset: `doctor_causal-graph.yaml`
 - Coverage target: 60%
 - Mutation policy: read-only diagnostic

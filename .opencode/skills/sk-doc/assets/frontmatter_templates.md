@@ -266,7 +266,7 @@ description: "Multi-stack coding standards and verification. Smart router auto-d
 
 The trimmed version retains every routing-keyword the advisor cares about (`coding`, `standards`, `verification`, `surface`, `code patterns`) while losing the brittle stack enumeration that would have to be edited every time a library is added.
 
-**Validation at create-time**: `quick_validate.py` warns when descriptions exceed the soft target and hard-fails at 1,536 chars. Run `/doctor:skill-budget :auto` periodically to detect accumulated drift across the project.
+**Validation at create-time**: `quick_validate.py` warns when descriptions exceed the soft target and hard-fails at 1,536 chars. Run `/doctor skill-budget :auto` periodically to detect accumulated drift across the project.
 
 ### `allowed-tools` Field
 

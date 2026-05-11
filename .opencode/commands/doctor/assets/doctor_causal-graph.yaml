@@ -171,7 +171,7 @@ workflow:
     validation: discovery_complete
     fail_fast:
       - "memory_causal_stats returns error -> STATUS=FAIL with diagnostic"
-      - "context-index.sqlite missing -> STATUS=MISSING with recommendation to run /doctor:memory"
+      - "context-index.sqlite missing -> STATUS=MISSING with recommendation to run /doctor memory"
 
   phase_1_analysis:
     purpose: "Sample up to 10 records around drift signals using read-only traversal."
@@ -195,8 +195,8 @@ workflow:
   phase_2_recommendation:
     purpose: "Translate drift signals into a safe operator action."
     rules:
-      - "If coverage_percent < 60 -> recommend /doctor:causal-graph:apply --confidence-threshold=0.7."
-      - "If this is first-time packet auto-link -> recommend /doctor:causal-graph:apply-confirm --confidence-threshold=0.9."
+      - "If coverage_percent < 60 -> recommend /doctor causal-graph --confidence-threshold=0.7."
+      - "If this is first-time packet auto-link -> recommend /doctor causal-graph --confidence-threshold=0.9."
       - "If orphan_records > 0 but coverage >= 60 -> recommend manual review."
       - "If no drift -> status=OK, no action needed."
     outputs:
@@ -232,7 +232,7 @@ output_contract:
   state_log:
     path: "<packet_scratch>/doctor-causal-graph-state.<timestamp>.json"
     schema:
-      command: "/doctor:causal-graph"
+      command: "/doctor causal-graph"
       mode: INTERACTIVE
       intent: DIAGNOSE
       timestamp: ISO_8601
@@ -248,7 +248,7 @@ output_contract:
 # ─────────────────────────────────────────────────────────────────
 halt_conditions:
   - "Phase 0 fails to read memory_causal_stats -> STATUS=FAIL"
-  - "context-index.sqlite missing -> STATUS=MISSING; recommend /doctor:memory"
+  - "context-index.sqlite missing -> STATUS=MISSING; recommend /doctor memory"
   - "Any phase emits a write attempt -> STATUS=FAIL with ERROR='confirm-mode-mutation-violation'"
   - "Any operation attempts causal_edges deletion -> STATUS=FAIL with ERROR='causal-delete-forbidden'"
   - "User answers n at any interactive gate -> STATUS=CANCELLED and emit state log"

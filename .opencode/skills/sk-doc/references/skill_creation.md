@@ -611,7 +611,7 @@ description: "Multi-stack coding standards and verification. Smart router auto-d
 - **KEEP**: skill name token, primary verb, primary domain noun, mode suffixes (`:auto`/`:confirm`), numeric specifics (`9 steps`, `5-dim scoring`)
 - **Stack-agnostic rule** (memory-enforced): never enumerate Webflow/Go/Next.js etc. The smart router detects stacks at dispatch time; baked-in stack lists age poorly and dilute keyword density.
 
-**Fix**: Apply the trim rules to your description. Run `python3 .opencode/skills/sk-doc/scripts/quick_validate.py <skill-dir>` — it warns when over soft target and hard-fails at 1,536. Periodically run `/doctor:skill-budget :auto` to detect accumulated drift project-wide.
+**Fix**: Apply the trim rules to your description. Run `python3 .opencode/skills/sk-doc/scripts/quick_validate.py <skill-dir>` — it warns when over soft target and hard-fails at 1,536. Periodically run `/doctor skill-budget :auto` to detect accumulated drift project-wide.
 
 ### Pitfall 2: Bloated SKILL.md
 
