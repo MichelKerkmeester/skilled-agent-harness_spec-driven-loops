@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-graph-support",
-  "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-graph-support",
+  "packet_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "spec_folder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
   "parent_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
   "children_ids": [],
   "manual": {
@@ -11,22 +11,28 @@
   },
   "derived": {
     "trigger_phrases": [
-      "101/002",
+      "101/003",
       "deep-ai-council graph support",
       "council graph",
       "council convergence graph",
       "ai council graph storage",
-      "101/002 plan",
+      "101/003 plan",
       "deep-ai-council graph plan",
       "council graph support plan",
-      "101/002 tasks",
+      "101/003 tasks",
       "deep-ai-council graph tasks",
-      "101/002 summary",
-      "deep-ai-council graph summary"
+      "101/003 summary",
+      "deep-ai-council graph summary",
+      "council_graph_upsert",
+      "council_graph_query",
+      "derived council graph",
+      "prompt-safe metadata",
+      "empty upsert no-op",
+      "council graph recovery"
     ],
     "key_topics": [
       "101",
-      "002",
+      "003",
       "deep-ai-council",
       "graph",
       "support",
@@ -36,15 +42,24 @@
       "plan",
       "tasks",
       "summary",
-      "phase"
+      "phase",
+      "derived",
+      "mcp",
+      "metadata",
+      "recovery",
+      "remediation"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "completed",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "decision-record.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/council-graph/",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/"
     ],
     "entities": [
       {
@@ -180,16 +195,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Deep AI Council skill extraction specification.",
+    "causal_summary": "This is Phase 3 of the Deep AI Council skill extraction specification. It implements a dedicated derived council graph rather than overloading deep-loop research/review graph semantics, with deep-review findings remediated for empty upserts, convergence coverage, prompt-safe metadata, and recovery guidance.",
     "created_at": "2026-05-10T06:35:40Z",
-    "last_save_at": "2026-05-10T06:39:58.329Z",
+    "last_save_at": "2026-05-11T05:20:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "decision-record.md",
+      "checklist.md"
     ]
   }
 }

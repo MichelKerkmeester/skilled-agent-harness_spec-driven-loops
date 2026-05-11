@@ -20,6 +20,10 @@ import { handleCoverageGraphConvergence } from '../handlers/coverage-graph/conve
 import { handleCoverageGraphQuery } from '../handlers/coverage-graph/query.js';
 import { handleCoverageGraphStatus } from '../handlers/coverage-graph/status.js';
 import { handleCoverageGraphUpsert } from '../handlers/coverage-graph/upsert.js';
+import { handleCouncilGraphConvergence } from '../handlers/council-graph/convergence.js';
+import { handleCouncilGraphQuery } from '../handlers/council-graph/query.js';
+import { handleCouncilGraphStatus } from '../handlers/council-graph/status.js';
+import { handleCouncilGraphUpsert } from '../handlers/council-graph/upsert.js';
 import { parseArgs } from './types.js';
 import type { MCPCallerContext } from '../lib/context/caller-context.js';
 import type { MCPResponse } from './types.js';
@@ -47,6 +51,29 @@ export const coverageGraphTools = {
         return toMCP(await handleCoverageGraphStatus(parseArgs<Parameters<typeof handleCoverageGraphStatus>[0]>(args)));
       case 'deep_loop_graph_convergence':
         return toMCP(await handleCoverageGraphConvergence(parseArgs<Parameters<typeof handleCoverageGraphConvergence>[0]>(args)));
+      default:
+        return null;
+    }
+  },
+};
+
+export const councilGraphTools = {
+  TOOL_NAMES: new Set([
+    'council_graph_upsert',
+    'council_graph_query',
+    'council_graph_status',
+    'council_graph_convergence',
+  ]),
+  async handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
+    switch (name) {
+      case 'council_graph_upsert':
+        return toMCP(await handleCouncilGraphUpsert(parseArgs<Parameters<typeof handleCouncilGraphUpsert>[0]>(args)));
+      case 'council_graph_query':
+        return toMCP(await handleCouncilGraphQuery(parseArgs<Parameters<typeof handleCouncilGraphQuery>[0]>(args)));
+      case 'council_graph_status':
+        return toMCP(await handleCouncilGraphStatus(parseArgs<Parameters<typeof handleCouncilGraphStatus>[0]>(args)));
+      case 'council_graph_convergence':
+        return toMCP(await handleCouncilGraphConvergence(parseArgs<Parameters<typeof handleCouncilGraphConvergence>[0]>(args)));
       default:
         return null;
     }
@@ -81,6 +108,7 @@ const SCHEMA_VALIDATED_TOOL_NAMES = new Set<string>([
   ...skillGraphTools.TOOL_NAMES,
   ...advisorTools.TOOL_NAMES,
   ...coverageGraphTools.TOOL_NAMES,
+  ...councilGraphTools.TOOL_NAMES,
 ]);
 
 export { contextTools, memoryTools, causalTools, checkpointTools, lifecycleTools, codeGraphTools, skillGraphTools };
@@ -98,6 +126,7 @@ export const ALL_DISPATCHERS = [
   skillGraphTools,
   advisorTools,
   coverageGraphTools,
+  councilGraphTools,
 ] as const;
 
 /** Dispatch a tool call to the appropriate module. Returns null if unrecognized. */

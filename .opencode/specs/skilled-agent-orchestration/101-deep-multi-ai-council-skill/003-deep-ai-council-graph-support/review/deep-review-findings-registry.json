@@ -1,0 +1,61 @@
+{
+  "sessionId": "2026-05-10T18:45:03.440Z",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "title": "Empty upsert violates the documented no-op contract",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/upsert.ts:52",
+      "evidence": "Spec documents empty upsert as bounded no-op, schema allows omitted nodes/edges, but handler returns error when both arrays are empty.",
+      "status": "active"
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "title": "Verification claims convergence CONTINUE coverage that tests do not exercise",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts:142",
+      "evidence": "Checklist claims STOP_ALLOWED, CONTINUE, and blocked critical disagreement coverage; reviewed tests assert STOP_BLOCKED and STOP_ALLOWED only while convergence.ts has a distinct CONTINUE branch.",
+      "status": "active"
+    },
+    {
+      "id": "P1-003",
+      "severity": "P1",
+      "title": "Arbitrary metadata is returned as prompt-safe output without redaction or size bounds",
+      "dimension": "security",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-query.ts:67",
+      "evidence": "Schemas accept arbitrary node/edge metadata records, storage persists them verbatim, and prompt-safe serializers return full metadata objects through bounded query responses.",
+      "status": "active"
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "title": "Replay recovery remains manual despite documented rollback workflow",
+      "dimension": "maintainability",
+      "file": ".opencode/skills/deep-ai-council/references/graph_support.md:96",
+      "evidence": "Recovery guidance describes deletion/replay, but reviewed graph implementation exposes only upsert/status/query/convergence paths.",
+      "status": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true
+}

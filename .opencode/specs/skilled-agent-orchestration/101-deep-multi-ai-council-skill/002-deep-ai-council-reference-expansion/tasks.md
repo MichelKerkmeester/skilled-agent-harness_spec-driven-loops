@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-reference-expansion"
+    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion"
     last_updated_at: "2026-05-10T10:50:00Z"
     last_updated_by: "openai-gpt-5.5-codex"
     recent_action: "Completed T001 through T015 for the reference expansion packet pending validation."
@@ -85,7 +85,7 @@ _memory:
 - [x] T011 Add writer library contract playbook category (`manual_testing_playbook/07--writer-library-contract/`)
 - [x] T012 Update root manual testing playbook (`manual_testing_playbook/manual_testing_playbook.md`)
 - [x] T013 Extend SKILL.md routing (`SKILL.md`)
-- [x] T014 Create Level 1 spec packet docs (`003-deep-ai-council-reference-expansion/`)
+- [x] T014 Create Level 1 spec packet docs (`002-deep-ai-council-reference-expansion/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

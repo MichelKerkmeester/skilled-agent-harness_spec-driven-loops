@@ -1,0 +1,130 @@
+{
+  "topic": "Review: .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "sessionId": "2026-05-10T18:45:03.440Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "createdAt": "2026-05-10T18:45:03.440Z",
+  "status": "complete",
+  "releaseReadinessState": "conditional",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/spec.md",
+    ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/plan.md",
+    ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/tasks.md",
+    ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/checklist.md",
+    ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/decision-record.md",
+    ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/implementation-summary.md",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-db.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-query.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/upsert.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/query.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/status.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/convergence.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts",
+    ".opencode/skills/deep-ai-council/SKILL.md",
+    ".opencode/skills/deep-ai-council/references/graph_support.md",
+    ".opencode/skills/deep-ai-council/manual_testing_playbook/05--scope-boundaries/001-graph-support-explicitly-out-of-scope.md"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions"
+    ],
+    "promotionMode": "advisory-only"
+  }
+}

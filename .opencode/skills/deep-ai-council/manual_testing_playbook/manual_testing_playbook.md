@@ -43,7 +43,7 @@ Canonical package artifacts:
 
 This playbook provides 18 deterministic scenarios across 7 categories validating the `deep-ai-council` skill surface. Each feature keeps a `DAC-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-10): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, graph exclusion, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, and scoped-write rejection.
+Coverage note (2026-05-10): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, derived graph boundaries, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, and scoped-write rejection.
 
 ### Realistic Test Model
 
@@ -255,9 +255,9 @@ Feature file: [DAC-010](04--convergence-and-rollback/003-rollback-failed-round-p
 
 ## 11. SCOPE BOUNDARIES (DAC-011..DAC-012)
 
-### DAC-011 | Graph support explicitly out of scope
+### DAC-011 | Graph support stays derived and scoped
 
-Verify graph references are escape-hatch only and not a runtime integration.
+Verify graph references preserve artifact source-of-truth and caller-owned MCP boundaries.
 
 Feature file: [DAC-011](05--scope-boundaries/001-graph-support-explicitly-out-of-scope.md)
 
@@ -341,7 +341,7 @@ Feature file: [DAC-017](07--writer-library-contract/004-out-of-scope-write-rejec
 | DAC-008 | Two-of-three agree triggers convergence | `04--convergence-and-rollback/001-two-of-three-agree-triggers-convergence.md` | No feature catalog exists yet |
 | DAC-009 | Max rounds without convergence emits non-converged | `04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md` | No feature catalog exists yet |
 | DAC-010 | Rollback failed round preserves forensic trail | `04--convergence-and-rollback/003-rollback-failed-round-preserves-forensic-trail.md` | No feature catalog exists yet |
-| DAC-011 | Graph support explicitly out of scope | `05--scope-boundaries/001-graph-support-explicitly-out-of-scope.md` | No feature catalog exists yet |
+| DAC-011 | Graph support stays derived and scoped | `05--scope-boundaries/001-graph-support-explicitly-out-of-scope.md` | No feature catalog exists yet |
 | DAC-012 | Planning-only boundary rejects implementation writes | `05--scope-boundaries/002-planning-only-boundary-rejects-implementation-writes.md` | No feature catalog exists yet |
 | DAC-013 | Library writer call sequence | `07--writer-library-contract/001-library-writer-call-sequence.md` | No feature catalog exists yet |
 | DAC-014 | Depth detection parallel vs sequential | `06--depth-and-failure-handling/001-depth-detection-parallel-vs-sequential.md` | No feature catalog exists yet |

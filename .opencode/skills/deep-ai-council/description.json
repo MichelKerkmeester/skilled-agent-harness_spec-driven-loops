@@ -1,6 +1,6 @@
 {
   "name": "deep-ai-council",
-  "description": "Deep AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs.",
+  "description": "Deep AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs, and derived council graph guidance.",
   "version": "1.0.0",
   "keywords": [
     "deep-ai-council",
@@ -9,13 +9,16 @@
     "multi-seat planning",
     "ai-council artifacts",
     "council convergence",
-    "planning council"
+    "planning council",
+    "council graph",
+    "derived graph"
   ],
   "triggers": [
     "run a deep ai council",
     "use an ai council to compare plans",
     "persist council artifacts",
     "check council convergence",
-    "recover ai-council state"
+    "recover ai-council state",
+    "query council graph support"
   ]
 }

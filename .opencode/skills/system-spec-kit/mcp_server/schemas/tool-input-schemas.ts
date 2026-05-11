@@ -160,6 +160,38 @@ const deepLoopGraphQueryTypeEnum = z.enum([
   'hot_nodes',
 ]);
 
+const councilGraphNodeKindEnum = z.enum([
+  'SESSION',
+  'ROUND',
+  'SEAT',
+  'CLAIM',
+  'EVIDENCE',
+  'DISAGREEMENT',
+  'DECISION',
+  'RECOMMENDATION',
+]);
+
+const councilGraphRelationEnum = z.enum([
+  'PARTICIPATES_IN',
+  'PROPOSES',
+  'SUPPORTS',
+  'CONTRADICTS',
+  'DERIVES_FROM',
+  'AGREES_WITH',
+  'RESOLVES',
+  'ESCALATES',
+  'EVIDENCE_FOR',
+  'RECOMMENDS',
+]);
+
+const councilGraphQueryTypeEnum = z.enum([
+  'unresolved_disagreements',
+  'evidence_chain',
+  'decision_support',
+  'convergence_blockers',
+  'hot_nodes',
+]);
+
 const cccFeedbackRatingEnum = z.enum(['helpful', 'not_helpful', 'partial']);
 
 /* ───────────────────────────────────────────────────────────────
@@ -665,6 +697,54 @@ const deepLoopGraphConvergenceSchema = getSchema({
   persistSnapshot: z.boolean().optional(),
 });
 
+const councilGraphNodeSchema = z.object({
+  id: z.string().min(1),
+  kind: councilGraphNodeKindEnum,
+  name: z.string().min(1),
+  artifactPath: pathString().optional(),
+  contentHash: z.string().optional(),
+  roundId: z.string().optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
+});
+
+const councilGraphEdgeSchema = z.object({
+  id: z.string().min(1),
+  sourceId: z.string().min(1),
+  targetId: z.string().min(1),
+  relation: councilGraphRelationEnum,
+  weight: boundedNumber(0, 2).optional(),
+  artifactPath: pathString().optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
+});
+
+const councilGraphUpsertSchema = getSchema({
+  specFolder: pathString(1),
+  sessionId: z.string().min(1),
+  nodes: z.array(councilGraphNodeSchema).optional(),
+  edges: z.array(councilGraphEdgeSchema).optional(),
+});
+
+const councilGraphQuerySchema = getSchema({
+  specFolder: pathString(1),
+  sessionId: z.string().min(1),
+  queryType: councilGraphQueryTypeEnum,
+  nodeId: z.string().optional(),
+  limit: positiveIntMax(200).optional(),
+  maxDepth: positiveIntMax(20).optional(),
+});
+
+const councilGraphStatusSchema = getSchema({
+  specFolder: pathString(1),
+  sessionId: z.string().min(1),
+});
+
+const councilGraphConvergenceSchema = getSchema({
+  specFolder: pathString(1),
+  sessionId: z.string().min(1),
+  roundId: z.string().optional(),
+  persistSnapshot: z.boolean().optional(),
+});
+
 /* ───────────────────────────────────────────────────────────────
    6. EXPORTS
 ──────────────────────────────────────────────────────────────── */
@@ -722,6 +802,10 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   deep_loop_graph_query: deepLoopGraphQuerySchema as unknown as ToolInputSchema,
   deep_loop_graph_status: deepLoopGraphStatusSchema as unknown as ToolInputSchema,
   deep_loop_graph_convergence: deepLoopGraphConvergenceSchema as unknown as ToolInputSchema,
+  council_graph_upsert: councilGraphUpsertSchema as unknown as ToolInputSchema,
+  council_graph_query: councilGraphQuerySchema as unknown as ToolInputSchema,
+  council_graph_status: councilGraphStatusSchema as unknown as ToolInputSchema,
+  council_graph_convergence: councilGraphConvergenceSchema as unknown as ToolInputSchema,
   session_bootstrap: getSchema({
     specFolder: optionalPathString(),
   }) as unknown as ToolInputSchema,
@@ -789,6 +873,10 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   deep_loop_graph_query: ['specFolder', 'loopType', 'queryType', 'nodeId', 'sessionId', 'limit', 'maxDepth'],
   deep_loop_graph_status: ['specFolder', 'loopType', 'sessionId'],
   deep_loop_graph_convergence: ['specFolder', 'loopType', 'sessionId', 'iteration', 'persistSnapshot'],
+  council_graph_upsert: ['specFolder', 'sessionId', 'nodes', 'edges'],
+  council_graph_query: ['specFolder', 'sessionId', 'queryType', 'nodeId', 'limit', 'maxDepth'],
+  council_graph_status: ['specFolder', 'sessionId'],
+  council_graph_convergence: ['specFolder', 'sessionId', 'roundId', 'persistSnapshot'],
   session_bootstrap: ['specFolder'],
   session_health: [],
   session_resume: ['specFolder', 'sessionId', 'minimal'],

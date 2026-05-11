@@ -20,6 +20,12 @@ describe('Layer Definitions Tests', () => {
     'deep_loop_graph_status',
     'deep_loop_graph_convergence',
   ];
+  const COUNCIL_GRAPH_TOOLS = [
+    'council_graph_upsert',
+    'council_graph_query',
+    'council_graph_status',
+    'council_graph_convergence',
+  ];
   const VIRTUAL_LAYER_TOOLS: Record<string, { id: string; name: string }> = {
     advisor_recommend: { id: 'L8', name: 'Skill Advisor' },
     advisor_rebuild: { id: 'L8', name: 'Skill Advisor' },
@@ -161,6 +167,7 @@ describe('Layer Definitions Tests', () => {
       const toolNames = TOOL_DEFINITIONS
         .map((tool) => tool.name)
         .filter((name) => !COVERAGE_GRAPH_TOOLS.includes(name))
+        .filter((name) => !COUNCIL_GRAPH_TOOLS.includes(name))
         .filter((name) => !Object.hasOwn(VIRTUAL_LAYER_TOOLS, name));
       const mappedToolNames = Object.keys(mod.TOOL_LAYER_MAP);
       const unmapped = toolNames.filter((name) => !mappedToolNames.includes(name));
@@ -184,6 +191,12 @@ describe('Layer Definitions Tests', () => {
         if (COVERAGE_GRAPH_TOOLS.includes(tool.name)) {
           expect(match?.[1]).toBe('L9');
           expect(match?.[2]).toBe('CoverageGraph');
+          continue;
+        }
+
+        if (COUNCIL_GRAPH_TOOLS.includes(tool.name)) {
+          expect(match?.[1]).toBe('L9');
+          expect(match?.[2]).toBe('CouncilGraph');
           continue;
         }
 

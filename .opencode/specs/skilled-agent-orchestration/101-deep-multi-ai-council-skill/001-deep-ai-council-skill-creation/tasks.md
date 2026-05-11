@@ -126,5 +126,5 @@ _memory:
 - **Specification**: `spec.md`
 - **Plan**: `plan.md`
 - **Parent**: `../spec.md`
-- **Successor**: `../002-deep-ai-council-graph-support/spec.md`
+- **Successor**: `../002-deep-ai-council-reference-expansion/spec.md`
 <!-- /ANCHOR:cross-refs -->

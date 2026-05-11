@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "description": "Dedicated derived council graph support implementation after deep-ai-council skill creation",
+  "keywords": [
+    "dedicated",
+    "derived",
+    "implementation",
+    "council-specific",
+    "graph",
+    "support",
+    "deep-ai-council",
+    "skill",
+    "creation"
+  ],
+  "lastUpdated": "2026-05-11T05:20:00.000Z",
+  "specId": "003",
+  "folderSlug": "deep-ai-council-graph-support",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "101-deep-multi-ai-council-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

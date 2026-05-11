@@ -27,7 +27,8 @@
     "deliberation",
     "ai-council",
     "convergence",
-    "artifact-persistence"
+    "artifact-persistence",
+    "derived-graph"
   ],
   "intent_signals": [
     "deep ai council",
@@ -35,7 +36,9 @@
     "planning council",
     "council deliberation",
     "persist council artifacts",
-    "ai-council artifacts"
+    "ai-council artifacts",
+    "council graph",
+    "derived council graph"
   ],
   "derived": {
     "trigger_phrases": [
@@ -44,7 +47,8 @@
       "ai council deliberation",
       "multi-seat planning council",
       "council convergence",
-      "ai-council artifact persistence"
+      "ai-council artifact persistence",
+      "council graph support"
     ],
     "key_topics": [
       "planning",
@@ -52,12 +56,14 @@
       "strategy comparison",
       "council artifacts",
       "append-only state",
-      "convergence"
+      "convergence",
+      "derived graph"
     ],
     "key_files": [
       ".opencode/skills/deep-ai-council/SKILL.md",
       ".opencode/skills/deep-ai-council/references/output_schema.md",
       ".opencode/skills/deep-ai-council/references/state_format.md",
+      ".opencode/skills/deep-ai-council/references/graph_support.md",
       ".opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs",
       ".opencode/agents/deep-ai-council.md"
     ],
@@ -75,15 +81,16 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Deep AI Council owns multi-seat planning deliberation, packet-local ai-council artifact persistence, lightweight convergence checks, and council recovery/audit guidance. It matters because council behavior can evolve independently from system-spec-kit while preserving scoped-write packet artifacts.",
+    "causal_summary": "Deep AI Council owns multi-seat planning deliberation, packet-local ai-council artifact persistence, lightweight convergence checks, derived council graph guidance, and council recovery/audit guidance. It matters because council behavior can evolve independently from system-spec-kit while preserving scoped-write packet artifacts as source-of-truth.",
     "source_docs": [
       "SKILL.md",
       "references/output_schema.md",
       "references/state_format.md",
+      "references/graph_support.md",
       "references/folder_layout.md",
       "references/command_wiring.md"
     ],
     "created_at": "2026-05-10T07:59:08Z",
-    "last_updated_at": "2026-05-10T07:59:08Z"
+    "last_updated_at": "2026-05-10T12:40:00Z"
   }
 }

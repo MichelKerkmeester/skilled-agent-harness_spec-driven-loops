@@ -52,10 +52,10 @@ _memory:
 | **Created** | 2026-05-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 1 of 2 |
+| **Phase** | 1 of 3 |
 | **Predecessor** | Current planning session |
-| **Successor** | `002-deep-ai-council-graph-support` |
-| **Handoff Criteria** | Dedicated skill package, renamed runtime mirrors, advisor routing, and council artifact scripts validate before graph planning starts |
+| **Successor** | `002-deep-ai-council-reference-expansion` |
+| **Handoff Criteria** | Dedicated skill package, renamed runtime mirrors, advisor routing, and council artifact scripts validate before reference expansion starts |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-reference-expansion",
+  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion",
   "description": "Completed packet expanding deep-ai-council references, manual testing playbook coverage, and SKILL.md routing for scoring, depth dispatch, failure handling, and anti-pattern guidance",
   "keywords": [
     "completed",

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-reference-expansion"
+    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion"
     last_updated_at: "2026-05-10T10:50:00Z"
     last_updated_by: "openai-gpt-5.5-codex"
     recent_action: "Completed council reference expansion."
@@ -52,7 +52,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-reference-expansion` |
+| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion` |
 | **Status** | Complete |
 | **Level** | 1 |
 | **Completed** | 2026-05-10 |

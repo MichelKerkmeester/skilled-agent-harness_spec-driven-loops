@@ -49,7 +49,7 @@ Use this skill when a request needs:
 Do not use this skill for:
 
 - Direct implementation work, code edits, or spec-doc authorship outside council artifacts.
-- Graph-backed council storage, graph MCP tooling, or coverage-graph behavior.
+- Treating council graph rows as source-of-truth or replacing packet-local `ai-council/**` artifacts.
 - Single-answer planning where no meaningful strategic disagreement is needed.
 - Claims that external AI systems participated when they did not actually run.
 
@@ -62,6 +62,7 @@ Do not use this skill for:
 - planning council
 - council artifacts
 - council convergence
+- council graph
 - packet-local ai-council
 
 ---
@@ -130,6 +131,7 @@ INTENT_MODEL = {
     "DEPTH_DISPATCH": {"keywords": [("depth 0", 5), ("depth 1", 5), ("parallel dispatch", 4), ("sequential thinking", 4), ("ndp compliant", 4)]},
     "FAILURE_HANDLING": {"keywords": [("seat timeout", 5), ("all seats fail", 5), ("contradiction without resolution", 4), ("insufficient vantage", 4)]},
     "ANTI_PATTERNS": {"keywords": [("anti-pattern", 5), ("convergence sycophancy", 5), ("fake consensus", 4), ("recursive council", 4)]},
+    "GRAPH_SUPPORT": {"keywords": [("council graph", 5), ("graph support", 4), ("derived graph", 5), ("council_graph", 5)]},
 }
 
 RESOURCE_MAP = {
@@ -141,6 +143,7 @@ RESOURCE_MAP = {
     "DEPTH_DISPATCH": ["references/depth_dispatch.md"],
     "FAILURE_HANDLING": ["references/failure_handling.md"],
     "ANTI_PATTERNS": ["references/anti_patterns.md"],
+    "GRAPH_SUPPORT": ["references/graph_support.md", "references/state_format.md", "references/folder_layout.md"],
 }
 
 LOAD_LEVELS = {
@@ -152,6 +155,7 @@ LOAD_LEVELS = {
     "DEPTH_DISPATCH": "CONDITIONAL",
     "FAILURE_HANDLING": "CONDITIONAL",
     "ANTI_PATTERNS": "CONDITIONAL",
+    "GRAPH_SUPPORT": "CONDITIONAL",
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -323,8 +327,8 @@ node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <pac
 4. **ALWAYS append a `council_complete` event for completed persisted runs**
    - State is append-only and completion must be auditable.
 
-5. **ALWAYS treat graph-backed storage, graph DBs, and graph MCP tools as out of scope**
-   - Graph support is deferred and must not be smuggled into this skill phase.
+5. **ALWAYS treat council graph support as a derived projection**
+   - The graph is rebuilt from packet-local `ai-council/**` artifacts and must not replace append-only council state.
 
 ### ❌ NEVER
 
@@ -351,8 +355,8 @@ node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <pac
 3. **ESCALATE IF a caller still depends on the old `multi-ai-council` runtime name and cannot be renamed**
    - Compatibility requires explicit user direction.
 
-4. **ESCALATE IF the request requires graph support or advisor regression finalization outside the current boundary**
-   - Those are separate work packets.
+4. **ESCALATE IF a caller asks the council agent itself to mutate graph storage**
+   - Graph updates belong to caller-owned `council_graph_*` MCP tooling or reducers, not council-seat deliberation.
 
 ---
 
@@ -370,6 +374,7 @@ Ordered by load priority — most-loaded intent first.
 - `references/command_wiring.md` - caller-owned post-dispatch persistence patterns.
 - `references/seat_diversity_patterns.md` - seat lens and vantage diversity rules.
 - `references/convergence_signals.md` - convergence and escape-hatch rules.
+- `references/graph_support.md` - derived council graph boundaries, tool surface, and recovery behavior.
 - `manual_testing_playbook/manual_testing_playbook.md` - operator validation scenarios.
 
 ---
@@ -384,7 +389,7 @@ Council alignment is complete when:
 - ✅ Runtime mirrors use `@deep-ai-council` as the primary agent identity.
 - ✅ Council references and scripts live inside this skill package.
 - ✅ Scoped grep shows no active runtime/config dispatch references to `multi-ai-council`.
-- ✅ Persistence helpers parse and write the existing council artifact contract without adding graph behavior.
+- ✅ Persistence helpers parse and write the existing council artifact contract while graph support remains a derived projection.
 
 ### Quality Targets
 
@@ -392,7 +397,7 @@ Council alignment is complete when:
 - **Routing**: Section 2 is the only authoritative routing source.
 - **Reference shape**: reference filenames are snake_case and intro sections are short.
 - **Playbook coverage**: manual testing package has 18 scenarios across 7 categories.
-- **Boundary discipline**: graph support and implementation writes remain out of scope.
+- **Boundary discipline**: graph rows never replace `ai-council/**` artifacts and council seats do not mutate graph storage directly.
 
 ### Validation Success
 
@@ -432,6 +437,7 @@ The council is a planning LEAF. It hands recommendations, risk analysis, and pac
 - `references/depth_dispatch.md` - adaptive dispatch guidance.
 - `references/failure_handling.md` - failure and rollback treatment.
 - `references/anti_patterns.md` - quality anti-pattern detection and recovery.
+- `references/graph_support.md` - derived graph support and MCP tool boundary.
 - `references/folder_layout.md` - artifact shape and rollback layout.
 - `references/seat_diversity_patterns.md` - lens selection.
 - `references/state_format.md` - state event semantics.
@@ -445,6 +451,6 @@ No external tools are required. External CLIs may contribute seats only when the
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-Start with `references/output_schema.md`, then load intent-specific references through Section 2, including `scoring_rubric.md`, `depth_dispatch.md`, `failure_handling.md`, and `anti_patterns.md` when those topics match. Use `README.md` for human-facing overview and `manual_testing_playbook/manual_testing_playbook.md` for operator validation.
+Start with `references/output_schema.md`, then load intent-specific references through Section 2, including `scoring_rubric.md`, `depth_dispatch.md`, `failure_handling.md`, `anti_patterns.md`, and `graph_support.md` when those topics match. Use `README.md` for human-facing overview and `manual_testing_playbook/manual_testing_playbook.md` for operator validation.
 
 Related skills: `deep-research` for evidence-first investigation vantages and `system-spec-kit` for packet documentation, validation, resume, and memory continuity.

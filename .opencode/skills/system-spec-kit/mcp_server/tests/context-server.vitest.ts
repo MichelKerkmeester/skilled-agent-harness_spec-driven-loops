@@ -156,7 +156,7 @@ describe('Context Server', () => {
   // =================================================================
   // GROUP 2: Tool Definition Completeness
   // =================================================================
-  describe('Group 2: Tool Definitions (51 tools)', () => {
+  describe('Group 2: Tool Definitions (55 tools)', () => {
     const EXPECTED_TOOLS = [
       'memory_context',
       'memory_search',
@@ -209,6 +209,10 @@ describe('Context Server', () => {
       'deep_loop_graph_query',
       'deep_loop_graph_status',
       'deep_loop_graph_convergence',
+      'council_graph_upsert',
+      'council_graph_query',
+      'council_graph_status',
+      'council_graph_convergence',
     ]
 
     // T11: TOOL_DEFINITIONS export exists

@@ -1,9 +1,9 @@
 ---
-title: "DAC-011 -- Graph support explicitly out of scope"
-description: "This scenario validates graph-support exclusion for DAC-011."
+title: "DAC-011 -- Graph support stays derived and scoped"
+description: "This scenario validates derived graph-support boundaries for DAC-011."
 ---
 
-# DAC-011 -- Graph support explicitly out of scope
+# DAC-011 -- Graph support stays derived and scoped
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `DAC-011`.
 
@@ -11,23 +11,23 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that graph support is only mentioned as an out-of-scope escape hatch.
+This scenario validates that graph support is described as a derived projection, not as a replacement for packet-local council artifacts.
 
 ### Why This Matters
 
-The skill must not imply graph-backed council storage exists before the deferred phase ships.
+The skill must not imply council seats write graph storage directly or that graph rows replace append-only `ai-council-state.jsonl`.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify graph support is excluded.
+- Objective: Verify graph support is derived and scoped.
 - Real user request: Does the council write to graph storage yet?
-- Prompt: `As a planning-only validator, verify graph support is excluded from the current council skill. Return the allowed interpretation.`
-- Expected execution process: Grep SKILL.md for graph references and confirm they are out-of-scope language only.
-- Expected signals: Graph references appear only in When NOT to Use, rules, success criteria, or integration caveats.
-- Desired user-visible outcome: The user is told graph support is deferred.
-- Pass/fail: PASS if graph is escape-hatch-only; FAIL if runtime graph tooling is described.
+- Prompt: `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.`
+- Expected execution process: Grep SKILL.md and `references/graph_support.md` for graph references and confirm source-of-truth boundaries.
+- Expected signals: Graph references state that `ai-council/**` artifacts remain authoritative and graph updates use caller-owned `council_graph_*` tooling.
+- Desired user-visible outcome: The user is told graph support is available only as derived MCP projection.
+- Pass/fail: PASS if graph is derived/scoped; FAIL if council seats directly mutate graph storage or graph rows replace artifacts.
 
 ---
 
@@ -36,12 +36,12 @@ The skill must not imply graph-backed council storage exists before the deferred
 ### Recommended Orchestration Process
 
 1. Run the exact graph grep.
-2. Classify each hit as exclusion, caveat, or runtime integration.
-3. Fail on any runtime integration claim.
+2. Classify each hit as derived projection, source-of-truth boundary, or unsafe direct mutation.
+3. Fail on any claim that graph rows replace artifacts or council seats mutate graph storage directly.
 
 ### Prompt
 
-`As a planning-only validator, verify graph support is excluded from the current council skill. Return the allowed interpretation.`
+`As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.`
 
 ### Commands
 
@@ -49,7 +49,7 @@ The skill must not imply graph-backed council storage exists before the deferred
 
 ### Expected
 
-Graph hits are limited to escape-hatch or deferred-scope language.
+Graph hits describe derived projection boundaries, caller-owned MCP tools, and artifact source-of-truth rules.
 
 ### Evidence
 
@@ -57,16 +57,16 @@ Capture grep output and classification notes.
 
 ### Pass / Fail
 
-- **Pass**: Graph support is explicitly out of scope.
-- **Fail**: SKILL.md describes graph-backed runtime behavior.
+- **Pass**: Graph support is derived, scoped, and artifact-authoritative.
+- **Fail**: SKILL.md describes council-seat-owned graph mutation or graph rows as authoritative state.
 
 ### Failure Triage
 
-Inspect Section 1, Section 4, and Section 7 for accidental runtime claims.
+Inspect Section 1, Section 4, Section 7, and `references/graph_support.md` for unsafe source-of-truth claims.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-011 | Graph exclusion | Verify graph support is deferred | `As a planning-only validator, verify graph support is excluded from the current council skill. Return the allowed interpretation.` | `bash: rg -n "graph" .opencode/skills/deep-ai-council/SKILL.md` | Only escape-hatch language | Grep output | PASS if no runtime graph integration | Inspect SKILL.md scope language |
+| DAC-011 | Graph boundary | Verify graph support is derived and scoped | `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.` | `bash: rg -n "graph" .opencode/skills/deep-ai-council/SKILL.md .opencode/skills/deep-ai-council/references/graph_support.md` | Derived projection and artifact source-of-truth language | Grep output | PASS if no council-seat-owned graph mutation | Inspect SKILL.md and graph_support.md scope language |
 
 ---
 

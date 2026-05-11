@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-reference-expansion"
+    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion"
     last_updated_at: "2026-05-10T10:50:00Z"
     last_updated_by: "openai-gpt-5.5-codex"
     recent_action: "Expanded council references/playbook/routing."
@@ -63,7 +63,8 @@ _memory:
 | **Created** | 2026-05-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `002-deep-ai-council-graph-support` |
+| **Predecessor** | `001-deep-ai-council-skill-creation` |
+| **Successor** | `003-deep-ai-council-graph-support` |
 | **Handoff Criteria** | Reference files, playbook scenarios, skill routing, metadata, and strict spec validation all pass |
 <!-- /ANCHOR:metadata -->
 
@@ -111,7 +112,7 @@ Expand the `deep-ai-council` skill knowledge base and playbook so operators can 
 | `.opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/` | Create | DAC-013 and DAC-015 through DAC-017 scenarios |
 | `.opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md` | Modify | Update counts, categories, TOC, summaries, and index |
 | `.opencode/skills/deep-ai-council/SKILL.md` | Modify | Add routing intents, resource mappings, and references |
-| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-reference-expansion/` | Create | Level 1 packet docs and metadata |
+| `.opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion/` | Create | Level 1 packet docs and metadata |
 <!-- /ANCHOR:scope -->
 
 ---

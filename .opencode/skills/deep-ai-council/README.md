@@ -215,8 +215,8 @@ Evidence to capture:
 **Q: Can this skill implement the winning plan?**
 A: No. It produces planning artifacts and hands off implementation to another actor.
 
-**Q: Why is graph support deferred?**
-A: Current scope is packet-local markdown and JSONL persistence. Graph storage requires a separate contract.
+**Q: Does graph support replace council artifacts?**
+A: No. Graph support is a derived MCP projection. Packet-local `ai-council/**` artifacts and append-only state remain authoritative.
 
 **Q: What counts as convergence?**
 A: Two of three seats agree on the material plan and cross-seat critique finds no new high-severity blocker.
@@ -235,6 +235,7 @@ A: Preserve failed artifacts under `failed/round-NNN-<timestamp>/` and append ro
 - `references/command_wiring.md` - caller-owned persistence patterns.
 - `references/convergence_signals.md` - convergence and escape hatches.
 - `references/folder_layout.md` - runtime artifact tree.
+- `references/graph_support.md` - derived graph support and MCP tool boundaries.
 - `references/output_schema.md` - required report sections.
 - `references/seat_diversity_patterns.md` - seat and vantage selection.
 - `references/state_format.md` - append-only state events.

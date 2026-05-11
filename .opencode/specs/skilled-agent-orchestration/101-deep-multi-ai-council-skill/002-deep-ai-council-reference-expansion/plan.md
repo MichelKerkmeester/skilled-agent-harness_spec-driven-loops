@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-reference-expansion"
+    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion"
     last_updated_at: "2026-05-10T10:50:00Z"
     last_updated_by: "openai-gpt-5.5-codex"
     recent_action: "Planned and completed reference expansion workstreams A through E."
@@ -119,7 +119,7 @@ Agent-body sections provide authoritative source content, references reorganize 
 - [x] Add six playbook scenario files under two new category folders.
 - [x] Update root manual testing playbook.
 - [x] Extend `SKILL.md` routing and reference lists.
-- [x] Create packet `003-deep-ai-council-reference-expansion`.
+- [x] Create packet `002-deep-ai-council-reference-expansion`.
 
 ### Phase 3: Verification
 - [x] Run `quick_validate.py` for `deep-ai-council`.
