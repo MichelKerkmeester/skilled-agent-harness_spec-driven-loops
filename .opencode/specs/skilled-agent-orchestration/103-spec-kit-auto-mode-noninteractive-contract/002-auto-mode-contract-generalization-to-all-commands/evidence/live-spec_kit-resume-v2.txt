@@ -1,0 +1,17 @@
+=== Live setup-phase test v2 (corrected fixtures): /spec_kit:resume:auto ===
+Started: 2026-05-11T14:50:57+0200
+Command: .opencode/commands/spec_kit/resume.md
+Fixture: extracted from command's own §0 PRE-BOUND schema
+
+PRE-BOUND used:
+  spec_folder: .opencode/specs/103-example/001-passwordless-login/  # explicit spec or phase folder path
+  phase_folder: ""  # optional explicit phase child path
+  no_redirect: false  # boolean
+  detection_method: provided  # provided | phase-folder | ranked | none
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  continuation_choice: indexed-continuity  # handoff | indexed-continuity | investigate
+  artifact_recovery_choice: continue_anyway  # plan | select-different | continue_anyway
+  memory_choice: fast  # fast | fill-gaps | deeper-mcp | canonical-only
+  artifacts_valid: true  # auto-detected: yes | partial | no
+  continuity_sources_available: yes  # auto-detected: yes | partial | no
+
