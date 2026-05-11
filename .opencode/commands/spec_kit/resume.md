@@ -1,6 +1,6 @@
 ---
 description: Resume or recover work on a spec folder: canonical continuity recovery with one next step.
-argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]"
+argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, memory_match_triggers, memory_list, memory_stats, memory_delete, memory_update, memory_validate, memory_index_scan, memory_health, checkpoint_create, checkpoint_list, checkpoint_restore, checkpoint_delete, mcp__cocoindex_code__search
 ---
 
@@ -36,7 +36,58 @@ This workflow gathers ALL inputs in ONE prompt. Mode defaults to INTERACTIVE unl
 
 ## 0. UNIFIED SETUP PHASE
 
-**FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery is allowed, then ask ALL questions immediately and wait.
+**FIRST MESSAGE PROTOCOL**: For `:confirm` or no suffix, the consolidated setup prompt MUST be your FIRST response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery is allowed, then ask ALL questions immediately and wait.
+
+For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`. End §0.
+
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `continuation_choice`. **Ordering rule**: ask only for `spec_folder` first when detection is ambiguous — continuation validation depends on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:resume:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  spec_folder: .opencode/specs/103-example/001-passwordless-login/  # explicit spec or phase folder path
+  phase_folder: ""  # optional explicit phase child path
+  no_redirect: false  # boolean
+  detection_method: provided  # provided | phase-folder | ranked | none
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  continuation_choice: indexed-continuity  # handoff | indexed-continuity | investigate
+  artifact_recovery_choice: continue_anyway  # plan | select-different | continue_anyway
+  memory_choice: fast  # fast | fill-gaps | deeper-mcp | canonical-only
+  artifacts_valid: true  # auto-detected: yes | partial | no
+  continuity_sources_available: yes  # auto-detected: yes | partial | no
+```
+
+Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `spec_folder` | Y | `$ARGUMENTS` positional path, flag `--phase-folder`, marker `spec_folder` / `phase_folder`, or deterministic ranked detection | none | Y, when detection returns multiple viable folders |
+| `phase_folder` | N | flag `--phase-folder`, marker `phase_folder`, or phase-parent redirect | none | N |
+| `no_redirect` | N | flag `--no-redirect`, marker `no_redirect`, or default | `false` | N |
+| `detection_method` | Y | auto-detect from provided path / phase-folder / ranked candidates, or marker `detection_method` | auto-detect | N |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `continuation_choice` | N | marker `continuation_choice` or targeted question when handoff and indexed continuity disagree | none | Y, only when a handoff mismatch is present |
+| `artifact_recovery_choice` | N | marker `artifact_recovery_choice`, artifact validation result, or default | `continue_anyway` under resume auto mode | N |
+| `memory_choice` | N | marker `memory_choice`, canonical packet thickness check, or default | `fast` | N |
+| `artifacts_valid` | Y | auto-detect from `spec.md`, `plan.md`, and `tasks.md`; marker may only document expected state | auto-detect | N |
+| `continuity_sources_available` | N | auto-detect from `handover.md`, `_memory.continuity`, spec docs, and graph metadata; marker may only document expected state | auto-detect | N |
 
 **STATUS: BLOCKED**
 

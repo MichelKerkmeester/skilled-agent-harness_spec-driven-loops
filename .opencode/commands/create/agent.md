@@ -1,6 +1,6 @@
 ---
 description: Create a new OpenCode agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.
-argument-hint: "<agent_name> [agent_description] [:auto|:confirm]"
+argument-hint: "<agent_name> [agent_description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_code__search
 ---
 
@@ -76,6 +76,47 @@ SELF-CHECK: Are you operating as the @markdown agent?
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
 
 **Round-trip optimization:** This workflow requires only 1 user interaction.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/create-agent-config.json` when a spec is linked, otherwise `/tmp/create-agent-config.json` (shape: `agentName`, `agentPath`, `specChoice`, `specPath`, `executionMode: "auto"`, `memoryChoice`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/create/assets/create_agent_auto.yaml`. End §0.
+
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_choice`. **Ordering rule**: none needed.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/create:agent:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  agent_name: quality-gate  # kebab-case string
+  agent_path: .opencode/agents/  # runtime agent directory path
+  spec_choice: new  # existing | new | update-related | skip
+  spec_path: .opencode/specs/103-example/001-quality-gate/  # explicit path when applicable
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  memory_choice: skip  # latest | recent3 | skip | n/a
+```
+
+Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `agent_name` | Y | `$ARGUMENTS` positional agent name, or marker `agent_name` | none | N |
+| `agent_path` | Y | flag `--path`, marker `agent_path`, runtime profile default | runtime agent path | N |
+| `spec_choice` | Y | marker `spec_choice`, or targeted choice among existing/new/update-related/skip | none | Y, when related specs exist and the folder choice is ambiguous |
+| `spec_path` | Conditional | marker `spec_path`, derived from `spec_choice`, or null when `spec_choice` is `skip` | none | N |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `memory_choice` | N | marker `memory_choice`, prior-session detection, or default | `skip` when no prior continuity records exist | N |
 
 ```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:

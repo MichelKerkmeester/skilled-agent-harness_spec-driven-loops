@@ -1,6 +1,6 @@
 ---
 description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
-argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
+argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_context, memory_search, mcp__cocoindex_code__search, code_graph_query, code_graph_context
 ---
 
@@ -45,7 +45,60 @@ This workflow gathers all setup inputs in one prompt. Confirm mode still include
 
 ## 0. UNIFIED SETUP PHASE
 
-**FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery to suggest a spec folder or load prior context is allowed, then ask ALL questions immediately and wait.
+**FIRST MESSAGE PROTOCOL**: For `:confirm` or no suffix, the consolidated setup prompt MUST be your FIRST response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery to suggest a spec folder or load prior context is allowed, then ask ALL questions immediately and wait.
+
+For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`. End §0.
+
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-research:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  research_topic: WebSocket reconnection strategies  # string
+  spec_folder: .opencode/specs/103-example/001-research/  # existing | new | update-related | phase-folder | explicit path
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  maxIterations: 10  # positive integer
+  convergenceThreshold: 0.05  # decimal 0..1
+  executor: native  # native | cli-codex | cli-gemini | cli-claude-code
+  executor_model: ""  # optional executor-specific model id
+  executor_reasoning: ""  # optional reasoning effort
+  executor_service_tier: ""  # optional service tier
+  executor_timeout: 900  # optional positive integer seconds
+  resource_map_emit: true  # boolean
+```
+
+Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `research_topic` | Y | `$ARGUMENTS` positional topic, or marker `research_topic` | none | N |
+| `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or targeted choice among suggested existing/new/update-related/phase folder | none | Y, when topic is present but folder choice is ambiguous |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default | `10` | N |
+| `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.05` | N |
+| `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
+| `executor_model` | N | flag `--model`, marker `executor_model`, or executor-specific validation | none | N |
+| `executor_reasoning` | N | flag `--reasoning-effort`, marker `executor_reasoning`, or executor default | none | N |
+| `executor_service_tier` | N | flag `--service-tier`, marker `executor_service_tier`, or executor default | none | N |
+| `executor_timeout` | N | flag `--executor-timeout`, marker `executor_timeout`, or default | `900` | N |
+| `resource_map_emit` | N | flag `--no-resource-map`, marker `resource_map_emit`, or default | `true` | N |
 
 **STATUS: BLOCKED**
 

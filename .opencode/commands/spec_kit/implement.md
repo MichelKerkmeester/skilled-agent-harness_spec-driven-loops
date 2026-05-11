@@ -1,6 +1,6 @@
 ---
 description: Implementation workflow (9 steps): execute pre-planned work. Requires plan.md. Modes :auto, :confirm.
-argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>]"
+argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, mcp__cocoindex_code__search
 ---
 
@@ -33,7 +33,54 @@ This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in
 
 ## 0. UNIFIED SETUP PHASE
 
-**FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery is allowed, then ask ALL questions immediately and wait.
+**FIRST MESSAGE PROTOCOL**: For `:confirm` or no suffix, the consolidated setup prompt MUST be your FIRST response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery is allowed, then ask ALL questions immediately and wait.
+
+For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`. End §0.
+
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `resume_choice`. **Ordering rule**: ask only for `spec_folder` first when folder detection is ambiguous — prerequisite and resume-session checks depend on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  spec_folder: .opencode/specs/103-example/001-passwordless-login/  # explicit spec or phase folder path
+  phase_folder: ""  # optional explicit phase child path
+  confirm_choice: yes  # yes | different-folder | cancel
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  dispatch_mode: single_agent  # single_agent | multi_small | multi_large
+  memory_choice: skip  # latest | recent3 | skip | n/a
+  resume_choice: resume  # resume | restart | cancel, only when prior incomplete session exists
+  prerequisites_valid: true  # auto-detected boolean
+```
+
+Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `spec_folder` | Y | `$ARGUMENTS` positional path, flag `--phase-folder`, marker `spec_folder` / `phase_folder`, or deterministic single-folder detection | none | Y, when detection returns multiple viable folders |
+| `phase_folder` | N | flag `--phase-folder`, marker `phase_folder`, or auto-detect phase child from `spec_folder` | none | N |
+| `confirm_choice` | Y | marker `confirm_choice` or default after prerequisite validation | `yes` when prerequisites are valid | N |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `dispatch_mode` | Y | marker `dispatch_mode` or default recommended option | `single_agent` | N |
+| `memory_choice` | N | marker `memory_choice`, prior-continuity detection, or default | `skip` when no prior continuity records exist | N |
+| `resume_choice` | N | marker `resume_choice` or targeted question when prior incomplete session exists | none | Y, only when an incomplete-session warning is present |
+| `prerequisites_valid` | Y | auto-detect from `spec.md`, `plan.md`, `tasks.md`, and Level 2+ `checklist.md`; marker may only document expected state | auto-detect | N |
 
 **STATUS: BLOCKED**
 

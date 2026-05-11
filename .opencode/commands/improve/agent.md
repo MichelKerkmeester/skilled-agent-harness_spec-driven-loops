@@ -1,6 +1,6 @@
 ---
 description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
-argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N]"
+argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
@@ -59,6 +59,51 @@ SELF-CHECK: Are you operating as the @general agent?
 ---
 
 # 🔒 UNIFIED SETUP PHASE
+
+**FIRST MESSAGE PROTOCOL**: For `:confirm` or no suffix, the consolidated setup prompt MUST be your FIRST response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery to suggest a spec folder or load prior context is allowed, then ask ALL questions immediately and wait.
+
+For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
+
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  target_path: .opencode/agents/debug.md  # required path matching .opencode/agents/*.md
+  target_profile: dynamic  # optional; one of: handover | context-prime | dynamic; derived from target_path when omitted
+  spec_folder: specs/041/008  # required spec folder path or explicit runtime folder
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  scoring_mode: dynamic  # dynamic is the current supported scoring mode
+  max_iterations: 5  # positive integer
+```
+
+Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over $ARGUMENTS flags; unknown fields warn; malformed lines parse-error).
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `target_path` | Y | `$ARGUMENTS` agent path, or marker `target_path` | none | N |
+| `target_profile` | Y | marker `target_profile`, or auto-detect from `target_path` (`handover` -> `handover`, `context-prime` -> `context-prime`, otherwise `dynamic`) | inferred from `target_path` | N |
+| `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or requires-ask | none | Y |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `scoring_mode` | Y | marker `scoring_mode`, Q3 equivalent, or default | `dynamic` | N |
+| `max_iterations` | Y | flag `--iterations`, marker `max_iterations`, or default | `5` | N |
 
 **STATUS: ☐ BLOCKED**
 

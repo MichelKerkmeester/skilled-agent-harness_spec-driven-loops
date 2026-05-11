@@ -1,6 +1,6 @@
 ---
 description: Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.
-argument-hint: "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]"
+argument-hint: "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_code__search
 ---
 
@@ -77,6 +77,54 @@ Phase outputs:
 **STATUS: ☐ BLOCKED**
 
 This command uses one consolidated setup prompt. Do not split setup questions.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/create-sk-skill-config.json` when a spec is linked, otherwise `/tmp/create-sk-skill-config.json` (shape: `skillName`, `operation`, `type`, `skillPath`, `executionMode: "auto"`, `specChoice`, `specPath`, `memoryChoice`, `chainedHandoffValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/create/assets/create_sk_skill_auto.yaml`. End §0.
+
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `type`, `spec_choice`. **Ordering rule**: if `type` is required for `reference-only` or `asset-only`, ask only for `type` first — the answer may make the operation branch fully resolvable on the next Tier 1 pass.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/create:sk-skill:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  skill_name: my-skill  # hyphen-case string
+  operation: full-create  # full-create | full-update | reference-only | asset-only
+  type: workflow  # reference-only: workflow | patterns | debugging | tools | quick_ref; asset-only: template | lookup | example | guide
+  skill_path: .opencode/skills/  # directory path
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  spec_choice: new  # existing | new | update-related | skip | phase-folder
+  spec_path: .opencode/specs/103-example/001-my-skill/  # explicit path when applicable
+  memory_choice: skip  # latest | recent3 | skip | n/a
+  chained_handoff_valid: false  # boolean
+```
+
+Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `skill_name` | Y | `$ARGUMENTS` first positional token, marker `skill_name`, or chained parent value | none | N |
+| `operation` | Y | `$ARGUMENTS` second positional token, marker `operation`, or chained parent value | none | N |
+| `type` | Conditional | `$ARGUMENTS` third positional token, marker `type`, or chained parent value when `operation` is `reference-only` / `asset-only` | none | Y, when operation requires type and type is ambiguous |
+| `skill_path` | Y | flag `--path`, marker `skill_path`, or default | `.opencode/skills/` | N |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `spec_choice` | Conditional | marker `spec_choice`, chained parent value, or targeted choice for `full-create` / `full-update` | none | Y, when full operation is selected and folder choice is ambiguous |
+| `spec_path` | Conditional | marker `spec_path`, derived from `spec_choice`, or chained parent value | none | N |
+| `memory_choice` | N | marker `memory_choice`, prior-work detection, or default | `skip` when no prior continuity records exist | N |
+| `chained_handoff_valid` | N | flag `--chained` plus parent fields, marker `chained_handoff_valid`, or default | `false` | N |
+
 **🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION**
 ```text
 SETUP EXECUTION LOGIC:

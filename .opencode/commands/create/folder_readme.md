@@ -1,6 +1,6 @@
 ---
 description: Unified folder README and install guide creation with sk-doc quality standards. Modes :auto, :confirm.
-argument-hint: "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm]"
+argument-hint: "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_code__search
 ---
 
@@ -77,6 +77,53 @@ SELF-CHECK: Are you operating as the @markdown agent?
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
 
 **Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together), with an optional follow-up only if target file already exists.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `/tmp/create-folder-readme-config.json` (shape: `operation`, `targetPath`, `readmeType`, `projectName`, `platforms`, `outputPath`, `existingFile`, `existingFileAction`, `executionMode: "auto"`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/create/assets/create_folder_readme_auto.yaml`. End §0.
+
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `operation`, `readme_type`, `platforms`, `existing_file_action`. **Ordering rule**: ask `operation` first when ambiguous — branch selection determines whether README or install-guide fields are required.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/create:folder_readme:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  operation: readme  # readme | install
+  target_path: .opencode/skills/system-spec-kit  # README branch path
+  readme_type: skill  # project | component | feature | skill
+  project_name: semantic-search-mcp  # install branch project/tool name
+  platforms: all  # all | macos | linux | windows | docker | comma-separated subset
+  output_path: install_guides/Tool - semantic-search-mcp.md  # install branch output path
+  existing_file: false  # boolean
+  existing_file_action: merge  # overwrite | backup-overwrite | merge | cancel
+  execution_mode: AUTONOMOUS  # from :auto suffix
+```
+
+Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `operation` | Y | first positional token, flag `--operation`, marker `operation`, or default when remaining argument is path-like | `readme` for path-like target | Y, when operation is absent and target is not path-like |
+| `target_path` | Conditional | README branch positional target, marker `target_path` | none | N |
+| `readme_type` | Conditional | flag `--type`, marker `readme_type`, or targeted README type choice | none | Y |
+| `project_name` | Conditional | install branch positional project name, marker `project_name` | none | N |
+| `platforms` | Conditional | flag `--platforms`, marker `platforms`, or targeted platform choice | none | Y |
+| `output_path` | Conditional | flag `--output`, marker `output_path`, or recommended install-guide path | `install_guides/[Type] - [Name].md` | N |
+| `existing_file` | N | output existence check, marker `existing_file`, or default | `false` | N |
+| `existing_file_action` | Conditional | marker `existing_file_action`, inline conflict response, or targeted conflict choice when an existing README/output conflict is detected | none | Y |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
 
 ```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:

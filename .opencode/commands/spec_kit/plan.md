@@ -1,6 +1,6 @@
 ---
 description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :with-phases.
-argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs]"
+argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, mcp__cocoindex_code__search
 ---
 
@@ -35,9 +35,76 @@ This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
 
 ## 0. UNIFIED SETUP PHASE
 
-**FIRST MESSAGE PROTOCOL**: This prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
+**FIRST MESSAGE PROTOCOL**: For `:confirm` or no suffix, the consolidated setup prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
 
 Read-only discovery to classify folder state is allowed when `spec_path` is explicit or can be inferred from the setup answers. Healthy folders keep the existing prompt shape; non-healthy folders run the intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) inline inside the same consolidated prompt and MUST NOT open a second visible command flow. When `--intake-only` is present, execution halts after the Emit phase without proceeding to planning Steps 2–8.
+
+For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`. End §0.
+
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  feature_description: Add passwordless login  # string
+  spec_folder: .opencode/specs/103-example/001-passwordless-login/  # existing | new | update-related | skip | phase-folder | explicit path
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  dispatch_mode: single_agent  # single_agent | multi_small | multi_large
+  memory_choice: skip  # latest | recent3 | skip | n/a
+  research_intent: add_feature  # add_feature | fix_bug | refactor | understand
+  phase_decomposition: false  # boolean, true when :with-phases present
+  phase_count: 3  # positive integer
+  phase_names: ""  # optional comma-separated names
+  phase_folder: ""  # optional explicit phase child path
+  intake_only: false  # boolean, true when --intake-only present
+  selected_level: ""  # optional intake level: 1 | 2 | 3 | 3+
+  start_state: ""  # optional intake folder state
+  repair_mode: ""  # optional intake repair mode
+  record_relationships: false  # boolean
+  depends_on: ""  # optional comma-separated packet ids
+  related_to: ""  # optional comma-separated packet ids
+  supersedes: ""  # optional comma-separated packet ids
+```
+
+Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `feature_description` | Y | `$ARGUMENTS` positional feature description, or marker `feature_description` | none | N |
+| `spec_folder` | Y | flag `--spec-folder`, flag `--phase-folder`, marker `spec_folder` / `phase_folder`, or targeted choice among existing/new/update-related/skip/phase folder | none | Y, when feature is present but folder choice is ambiguous |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `dispatch_mode` | Y | marker `dispatch_mode` or default recommended option | `single_agent` | N |
+| `memory_choice` | N | marker `memory_choice`, prior-work detection, or default | `skip` when no prior continuity records exist | N |
+| `research_intent` | Y | marker `research_intent` or targeted classification question | none | Y |
+| `phase_decomposition` | Y | suffix `:with-phases`, marker `phase_decomposition`, or default | `false` | N |
+| `phase_count` | N | flag `--phases`, marker `phase_count`, or default | `3` | N |
+| `phase_names` | N | flag `--phase-names`, marker `phase_names`, or auto-generate | none | N |
+| `phase_folder` | N | flag `--phase-folder`, marker `phase_folder`, or default | none | N |
+| `intake_only` | N | flag `--intake-only`, marker `intake_only`, or default | `false` | N |
+| `selected_level` | N | flag `--level`, marker `selected_level`, or inline intake contract when required | none | N |
+| `start_state` | N | flag `--start-state`, marker `start_state`, folder-state classification, or inline intake contract when required | auto-detect | N |
+| `repair_mode` | N | flag `--repair-mode`, marker `repair_mode`, or inline intake contract when required | none | N |
+| `record_relationships` | N | flag `--record-relationships`, marker `record_relationships`, or inline intake contract when required | `false` | N |
+| `depends_on` | N | flag `--depends-on`, marker `depends_on`, or inline intake relationship capture | none | N |
+| `related_to` | N | flag `--related-to`, marker `related_to`, or inline intake relationship capture | none | N |
+| `supersedes` | N | flag `--supersedes`, marker `supersedes`, or inline intake relationship capture | none | N |
 
 **STATUS: BLOCKED**
 

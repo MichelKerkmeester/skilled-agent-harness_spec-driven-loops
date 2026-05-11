@@ -10,8 +10,8 @@ _memory:
     packet_pointer: ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands"
     last_updated_at: "2026-05-11T12:35:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Authored task list"
-    next_safe_action: "Dispatch codex group 1"
+    recent_action: "Group 3 improve command migrated"
+    next_safe_action: "Run live verification dispatches (Stage D)"
     blockers: []
     key_files: []
     session_dedup:
@@ -57,9 +57,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T010 Codex group dispatch 1 (spec_kit/5): deep-research, complete, implement, plan, resume.
-- [ ] T011 Codex group dispatch 2 (create/6): sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme.
-- [ ] T012 Codex group dispatch 3 (improve/1): agent.
+- [x] T010 Codex group dispatch 1 (spec_kit/5): deep-research, complete, implement, plan, resume. Evidence: Group 1 codex dispatch completed; 5 commands migrated; see evidence/codex-group1-dispatch.txt
+- [x] T011 Codex group dispatch 2 (create/6): sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme. Evidence: Group 2 codex dispatch completed; 5 commands migrated; see evidence/codex-group2-dispatch.txt
+- [x] T012 Codex group dispatch 3 (improve/1): agent. Evidence: Group 3 codex dispatch completed; 1 command migrated; see evidence/codex-group3-dispatch.txt
 - [ ] T013 Per-command read-back: confirm `:confirm` block untouched in all 11 migrated commands.
 <!-- /ANCHOR:phase-2 -->
 

@@ -1,6 +1,6 @@
 ---
 description: Create or update feature catalog packages via one unified command. Modes :auto, :confirm.
-argument-hint: "<skill-name> [create|update] [--path <dir>] [:auto|:confirm]"
+argument-hint: "<skill-name> [create|update] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_code__search
 ---
 
@@ -60,6 +60,53 @@ Phase outputs:
 **STATUS: ☐ BLOCKED**
 
 This command uses one consolidated setup prompt. Do not split setup questions.
+
+### `:auto` Setup Resolution
+
+Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
+
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/create-feature-catalog-config.json` when a spec is linked, otherwise `/tmp/create-feature-catalog-config.json` (shape: `skillName`, `operation`, `sourceStrategy`, `skillPath`, `catalogRoot`, `executionMode: "auto"`, `specChoice`, `specPath`, `memoryChoice`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/create/assets/create_feature_catalog_auto.yaml`. End §0.
+
+2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `source_strategy`, `spec_choice`. **Ordering rule**: ask `source_strategy` before `spec_choice` when both are ambiguous — the source strategy can narrow whether a prior spec needs loading.
+
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/create:feature-catalog:auto` as the command name. Exit non-zero. Do not load YAML.
+
+`:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+
+The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  skill_name: system-spec-kit  # hyphen-case skill folder name
+  operation: update  # create | update
+  source_strategy: hybrid  # existing-playbook | manual-list | hybrid
+  skill_path: .opencode/skills/  # directory path
+  catalog_root: .opencode/skills/system-spec-kit/feature_catalog  # derived path
+  execution_mode: AUTONOMOUS  # from :auto suffix
+  spec_choice: skip  # existing | new | update-related | skip | phase-folder
+  spec_path: ""  # explicit path when applicable
+  memory_choice: skip  # latest | recent3 | skip | n/a
+```
+
+Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+
+### Default Resolution Table
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+|-------|----------|--------------|---------|------------------|
+| `skill_name` | Y | `$ARGUMENTS` first positional token, or marker `skill_name` | none | N |
+| `operation` | Y | `$ARGUMENTS` second positional token, or marker `operation` | none | N |
+| `source_strategy` | Y | marker `source_strategy`, or targeted source strategy choice | none | Y |
+| `skill_path` | Y | flag `--path`, marker `skill_path`, or default | `.opencode/skills/` | N |
+| `catalog_root` | Y | marker `catalog_root`, or derive from `skill_path` + `skill_name` | derived | N |
+| `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
+| `spec_choice` | Y | marker `spec_choice`, or targeted choice among existing/new/update-related/skip/phase-folder | none | Y |
+| `spec_path` | Conditional | marker `spec_path`, or derived from `spec_choice` | none | N |
+| `memory_choice` | N | marker `memory_choice`, prior-work detection, or default | `skip` when no prior continuity records exist | N |
 
 ```text
 SETUP EXECUTION LOGIC:
