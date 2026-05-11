@@ -43,7 +43,12 @@ _memory:
 | **Testing** | Live dispatch via codex exec + opencode run; existing strict-validate |
 
 ### Overview
-Audit `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE. Add an explicit non-interactive resolution branch that fires when `execution_mode = AUTONOMOUS` AND required inputs can be resolved from `$ARGUMENTS` (existing flags) OR a new `PRE-BOUND SETUP ANSWERS:` block in the prompt body. When all required inputs resolve, skip the question block and load YAML directly. When inputs are missing, emit a fail-fast error naming the missing inputs and exit non-zero. Add one verification scenario.
+Audit `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE. Implement a three-tier setup-resolution contract under `:auto`:
+- **Tier 1 (resolve)**: when every required input resolves from `$ARGUMENTS`, `PRE-BOUND SETUP ANSWERS:` block, or documented defaults → skip the question block, load YAML.
+- **Tier 2 (targeted ask)**: when 1-2 fields are genuinely ambiguous AND no sensible default exists → emit ONE narrow question naming only the ambiguous field. Wait briefly; fall through to Tier 3 on stdin EOF.
+- **Tier 3 (fail fast)**: when truly unresolvable → exit non-zero with a clear named-missing-inputs error.
+
+Verification scenarios cover all three tiers.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -69,24 +74,30 @@ Audit `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE. Add 
 ## 3. ARCHITECTURE
 
 ### Pattern
-Two-branch setup resolution inside the command markdown's §0:
-- **Branch A (existing)**: `:confirm` or `:auto`-with-missing-inputs → emit consolidated question block + wait for user.
-- **Branch B (new)**: `:auto`-with-resolvable-inputs → resolve from `$ARGUMENTS` + pre-binding markers → persist to `deep-review-config.json` → load YAML directly.
+Three-tier setup resolution under `:auto`, with `:confirm` keeping its existing single-branch behavior. Implemented inside the command markdown's §0:
+
+- **`:confirm` (unchanged)**: emit consolidated question block + wait for user.
+- **`:auto` Tier 1 (resolve)**: every required input resolves from `$ARGUMENTS` + pre-binding markers + defaults → persist to `deep-review-config.json` → load YAML directly.
+- **`:auto` Tier 2 (targeted ask)**: 1-2 fields ambiguous AND no default → emit ONE narrow question naming only the ambiguous field → wait briefly → on answer, merge into resolved map and proceed to Tier 1's persistence step; on stdin EOF, fall through to Tier 3.
+- **`:auto` Tier 3 (fail fast)**: truly unresolvable → exit non-zero with a named-missing-inputs error.
 
 ### Key Components
-- **`.opencode/commands/spec_kit/deep-review.md` §0**: branch selector; documents the pre-binding marker schema.
-- **Pre-binding marker block**: a structured block in the dispatched prompt that the markdown's setup phase parses for setup field values.
-- **Fail-fast error emitter**: when AUTONOMOUS + unresolved, exit non-zero with a clear named-missing-inputs message.
-- **YAML init step**: unchanged consumer; reads resolved `deep-review-config.json` regardless of which branch produced it.
+- **`.opencode/commands/spec_kit/deep-review.md` §0**: tier selector; documents the pre-binding marker schema + per-field default-resolution rules.
+- **Pre-binding marker block** (`PRE-BOUND SETUP ANSWERS:`): structured block in the dispatched prompt the setup phase parses for setup field values.
+- **Per-field default-resolution rules**: for each setup field (target, mode, dims, maxIter, convergence, executor), document whether it has a sensible default, an inferable value, or requires a user choice.
+- **Ambiguity detector**: logic that flags a field as Tier-2-eligible only when (a) no flag, (b) no marker, (c) no default, but (d) the field is genuinely required.
+- **Fail-fast error emitter**: clear named-missing-inputs message when Tier 3 fires.
+- **YAML init step**: unchanged consumer; reads resolved `deep-review-config.json` regardless of which tier produced it.
 
 ### Data Flow
 1. Command receives `$ARGUMENTS` with target + flags + `:auto` suffix.
 2. Setup phase parses `$ARGUMENTS` → resolved inputs map (target, mode, dims, maxIter, convergence, executor).
 3. Setup phase scans the prompt body for a `PRE-BOUND SETUP ANSWERS:` block → merges values into the resolved map.
-4. Setup phase checks: are all required inputs resolved?
-   - YES → persist to `deep-review-config.json`, load YAML, continue.
-   - NO + AUTONOMOUS → emit fail-fast error, exit non-zero.
-   - NO + INTERACTIVE → emit consolidated question block, wait.
+4. Setup phase applies documented defaults to any unresolved field that has one.
+5. Setup phase classifies remaining unresolved fields:
+   - **Zero unresolved required fields** → Tier 1: persist config, load YAML, continue.
+   - **1-2 unresolved required fields, all ambiguity-detectable** → Tier 2: emit one targeted question per field; on answer, merge and go to step 4 again.
+   - **More than 2 unresolved, OR Tier 2 produced no answer (stdin EOF)** → Tier 3: emit fail-fast error, exit non-zero.
 <!-- /ANCHOR:architecture -->
 
 ---

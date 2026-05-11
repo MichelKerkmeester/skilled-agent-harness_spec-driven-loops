@@ -50,12 +50,20 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`/spec_kit:deep-review:auto` advertises itself as non-interactive (`:auto` suffix → `execution_mode = AUTONOMOUS`). In practice, the markdown entrypoint at `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE still emits a `STATUS: BLOCKED` consolidated question block (Q0/Q1_type/Q_dims/Q1/Q3/Q-Exec) and waits on stdin before loading the YAML workflow. When dispatched non-interactively via `codex exec </dev/null` or `opencode run --pure ... </dev/null`, the session hits stdin EOF, emits the question, and exits 0 with no work done — silently. The user-side workaround (pre-binding every setup answer in the prompt) works but is brittle, undocumented in the command surface, and easy to forget.
+`/spec_kit:deep-review:auto` advertises itself as autonomous (`:auto` suffix → `execution_mode = AUTONOMOUS`). In practice, the markdown entrypoint at `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE always emits a `STATUS: BLOCKED` consolidated question block (Q0/Q1_type/Q_dims/Q1/Q3/Q-Exec) and waits on stdin before loading the YAML workflow. When dispatched non-interactively via `codex exec </dev/null` or `opencode run --pure ... </dev/null`, the session hits stdin EOF, emits the question, and exits 0 with no work done — silently. The user-side workaround (pre-binding every setup answer in the prompt) works but is brittle, undocumented in the command surface, and easy to forget.
 
 Concrete incident: 2026-05-11 102/004 Stage E first dispatch hung 3 minutes at the setup gate; second dispatch (with pre-bound answers in the prompt) ran the full 5-iteration deep-review and converged.
 
 ### Purpose
-Make `:auto` truly non-interactive. When the command detects sufficient resolved inputs (either from `$ARGUMENTS` flags or explicit pre-binding markers in the prompt body), it must skip the question block, persist resolved values to `deep-review-config.json`, and load the YAML workflow without a round-trip. When required inputs ARE missing, fail fast with an explicit error citing which inputs are unbound — never hang on stdin.
+Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (see `feedback_auto_mode_ask_only_when_ambiguous.md`):
+
+1. **Resolve confidently first** — when the command can resolve every required input from `$ARGUMENTS` flags, a `PRE-BOUND SETUP ANSWERS:` block in the prompt body, or documented sensible defaults, skip the question block entirely. Persist resolved values to `deep-review-config.json` and load the YAML workflow without a round-trip.
+
+2. **Ask one targeted clarification when genuinely ambiguous** — when exactly one or two fields are genuinely ambiguous AND no sensible default exists (e.g. target path matches multiple candidates, or a destructive-scope choice has no safe default), emit ONE narrow question rather than the full Q0..Q-Exec block. If stdin is closed and no answer arrives, fall through to step 3.
+
+3. **Fail fast as last resort** — when required inputs are genuinely unresolvable AND no defaults rescue them AND targeted-clarification produced no answer, exit non-zero with a clear named-missing-inputs error. Never hang on stdin.
+
+`:auto` does NOT mean "never ask" (too rigid) and does NOT mean "always ask the full block" (too soft). It means "ask only when uncertain or ambiguous."
 <!-- /ANCHOR:problem -->
 
 ---
@@ -64,12 +72,15 @@ Make `:auto` truly non-interactive. When the command detects sufficient resolved
 ## 3. SCOPE
 
 ### In Scope
-- Audit `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE to identify which inputs are required vs which can be defaulted under `:auto`.
-- Add a "non-interactive setup resolution" branch: when `execution_mode = AUTONOMOUS` AND all required inputs are present (either via `$ARGUMENTS` flags or pre-binding markers), skip the question block entirely.
-- Define explicit pre-binding markers the command will accept: `PRE-BOUND SETUP ANSWERS:` block in prompt body, with named fields matching Q0/Q1_type/Q_dims/Q1/Q3/Q-Exec.
-- Fail-fast error path: if `:auto` is set AND required inputs are missing, emit a clear error message naming the missing inputs and exit non-zero. Do NOT hang.
-- Update the command's argument-hint and execution-protocol comments to document the non-interactive path.
-- Add a test scenario under sk-doc playbook (or system-spec-kit playbook) that dispatches `:auto` non-interactively and verifies no stdin hang + workflow loads.
+- Audit `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE to identify which inputs are required vs which can be defaulted under `:auto`, and which carry sensible defaults vs which require explicit user choice.
+- Add the three-tier setup-resolution branch under `:auto`:
+  - **Tier 1 (resolve)**: when `execution_mode = AUTONOMOUS` AND every required input is present via `$ARGUMENTS` flags, `PRE-BOUND SETUP ANSWERS:` block, OR documented defaults, skip the question block and load YAML.
+  - **Tier 2 (targeted ask)**: when 1-2 fields are genuinely ambiguous (e.g. target path matches multiple candidates) AND no sensible default exists, emit ONE narrow question naming only the ambiguous field. Wait briefly; fall through to Tier 3 if no answer.
+  - **Tier 3 (fail fast)**: when truly unresolvable, exit non-zero with a clear named-missing-inputs error.
+- Define the `PRE-BOUND SETUP ANSWERS:` block schema in the command markdown, with named fields matching Q0/Q1_type/Q_dims/Q1/Q3/Q-Exec.
+- Document each setup field's default-resolution rule (so reviewers can audit which inputs need targeted asks vs. which can default).
+- Update the command's argument-hint and execution-protocol comments to document the three-tier path.
+- Add a test scenario covering all three tiers: resolvable (Tier 1 pass), ambiguous (Tier 2 targeted ask), unresolvable (Tier 3 fail-fast).
 
 ### Out of Scope
 - The YAML workflow itself (`spec_kit_deep-review_auto.yaml`) — its iteration loop already runs non-interactively once loaded.
@@ -96,16 +107,18 @@ Make `:auto` truly non-interactive. When the command detects sufficient resolved
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | `:auto` mode never hangs on stdin when required inputs are resolvable from `$ARGUMENTS` or pre-binding markers. | Dispatch `/spec_kit:deep-review:auto "specs/.../X" --max-iterations=5` via `codex exec </dev/null` succeeds end-to-end with no setup-phase question emitted. |
-| REQ-002 | `:auto` mode fails fast (non-zero exit + clear error) when required inputs are genuinely missing. | Dispatch `/spec_kit:deep-review:auto ""` (empty arguments) emits an explicit missing-inputs error and exits non-zero within 10 seconds. |
-| REQ-003 | Pre-binding marker format documented in the command markdown. | Reading `.opencode/commands/spec_kit/deep-review.md` reveals an explicit `PRE-BOUND SETUP ANSWERS:` schema with field names + types. |
+| REQ-001 | Tier 1 (resolve): `:auto` skips the question block when required inputs are resolvable from `$ARGUMENTS`, pre-binding markers, or sensible defaults. | Dispatch `/spec_kit:deep-review:auto "specs/.../X" --max-iterations=5` via `codex exec </dev/null` succeeds end-to-end with no setup-phase question emitted. |
+| REQ-002 | Tier 2 (targeted ask): when 1-2 fields are ambiguous AND no default exists, `:auto` emits ONE narrow question — never the full Q0..Q-Exec block. | Construct an ambiguous-target case (e.g. target string matches two spec folders); dispatch emits a single clarification question naming only the ambiguous field, not the consolidated block. |
+| REQ-003 | Tier 3 (fail fast): `:auto` exits non-zero with a clear named-missing-inputs error when truly unresolvable AND targeted-clarification gets no answer. | Dispatch `/spec_kit:deep-review:auto ""` (empty arguments) via `codex exec </dev/null` exits non-zero within 10 seconds with an explicit missing-inputs error. |
+| REQ-004 | Pre-binding marker schema documented in the command markdown. | Reading `.opencode/commands/spec_kit/deep-review.md` reveals an explicit `PRE-BOUND SETUP ANSWERS:` schema with field names + types + a documented default-resolution rule per field. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | `:confirm` mode behavior unchanged. | Existing interactive setup tests still pass. |
-| REQ-005 | Test scenario added that exercises non-interactive setup-bypass. | Scenario file exists; dispatch returns workflow-loaded evidence. |
+| REQ-005 | `:confirm` mode behavior unchanged. | Existing interactive setup tests still pass; `:confirm` still emits the full consolidated question block. |
+| REQ-006 | Test scenario covers all three tiers (resolvable / ambiguous / unresolvable). | Scenario file exists; three dispatch verdicts captured as evidence. |
+| REQ-007 | Each setup field's default-resolution rule documented inline. | For every field in the schema, the command markdown notes how it resolves (flag / marker / default / requires-ask). |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -113,10 +126,11 @@ Make `:auto` truly non-interactive. When the command detects sufficient resolved
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `:auto` dispatch with full `$ARGUMENTS` set loads YAML workflow without emitting a setup question.
-- **SC-002**: `:auto` dispatch with insufficient inputs exits non-zero with a named-missing-inputs error.
-- **SC-003**: `:confirm` dispatch retains its existing interactive question block.
-- **SC-004**: A re-dispatch of the 102/004 Stage E scenario (or equivalent) succeeds without the prompt-side pre-binding workaround we currently apply.
+- **SC-001 (Tier 1)**: `:auto` dispatch with resolvable inputs loads YAML workflow without emitting any setup question.
+- **SC-002 (Tier 2)**: `:auto` dispatch with one ambiguous field emits a single targeted question naming only that field — not the full consolidated block.
+- **SC-003 (Tier 3)**: `:auto` dispatch with truly unresolvable inputs exits non-zero with a named-missing-inputs error within 10 seconds.
+- **SC-004**: `:confirm` dispatch retains its existing full-block interactive question behavior.
+- **SC-005**: A re-dispatch of the 102/004 Stage E scenario (or equivalent) succeeds without the prompt-side pre-binding workaround currently applied — the command's own Tier 1 resolution covers it.
 <!-- /ANCHOR:success-criteria -->
 
 ---
