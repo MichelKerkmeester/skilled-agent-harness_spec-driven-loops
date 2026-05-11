@@ -46,12 +46,12 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_ki
 
 ## 0. UNIFIED SETUP PHASE
 
-**FIRST MESSAGE PROTOCOL:** if no suffix is present, ask Q0 before executing any mutating phase. Lightweight read-only status probes are allowed only after flag parsing.
+**FIRST MESSAGE PROTOCOL:** ASK Q0 before executing any mutating phase. Lightweight read-only status probes are allowed only after flag parsing. If `--force` is present, Q0 is auto-answered `A` and the tier-aware mid-run prompts (Q-MED, Q-LONG, Q-PROBE, Q-LEGACY, Q-FAIL) are suppressed unless they hit a hard safety gate (active-MCP detection still warns).
 
 ```
-1. CHECK mode suffix:
-   - default -> execution_mode = "INTERACTIVE", yaml = "doctor_update.yaml"
-   - No suffix -> execution_mode = "INTERACTIVE", yaml = "doctor_update.yaml" (confirm is the only supported mode)
+1. RESOLVE execution_mode + yaml asset:
+   - Always: execution_mode = "INTERACTIVE", yaml = "doctor_update.yaml"
+   - The router does not honor mode suffixes; mid-run prompts are gated by the --force flag below.
 
 2. PARSE flags from $ARGUMENTS:
    - --force           -> force = true; warn on active MCP clients, then proceed without additional override prompt
@@ -62,20 +62,135 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_ki
    - --resume-bootstrap -> resume_bootstrap = true; verify previous bootstrap state and continue after MCP restart
    - Defaults: force=false, no_snapshot=false, cleanup_legacy=false, migrate=false, keep_snapshots=false, resume_bootstrap=false
 
-3. TIER-AWARE PROMPTING (interactive):
-   - Short steps run with brief acknowledgement: skill-graph init, deep-loop graph init.
-   - Medium steps share one combined prompt: code-graph scan, speckit eval ablation.
-   - Long-pole step gets explicit ETA prompt: context-index memory_index_scan (5-15 min).
+3. ASK Q0 — INITIAL CONFIRMATION (skip if --force=true):
 
-4. ASK Q0 when the user invoked the command and operator confirmation is needed:
-   A) Proceed with tier-aware run (recommended): short ack, medium combined prompt, long-pole ETA prompt
-   B) Cancel
+   Print EXACTLY this prompt text and WAIT for an answer:
 
-5. STORE:
+   /doctor:update will rebuild every spec-kit database in dependency-safe order
+   (code-graph -> context-index + vector-index -> causal-edges -> skill-graph ->
+   advisor -> deep-loop -> cocoindex -> eval). Snapshots are taken before each
+   mutation; rollback is automatic on regression.
+
+   Tier-aware prompts will fire mid-run:
+     - SHORT  steps (skill-graph init, deep-loop init): auto-acknowledged, no prompt
+     - MEDIUM steps (code-graph scan, eval ablation):   one combined prompt (Q-MED)
+     - LONG-POLE  step (memory_index_scan, 5-15 min):   explicit ETA prompt (Q-LONG)
+
+   Estimated total: 8-25 minutes depending on corpus size.
+
+   [A] Proceed (recommended)
+   [B] Cancel
+
+   Accept: case-insensitive "A" / "Proceed" / "Y" -> proceed; "B" / "Cancel" / "N" -> STATUS=CANCELLED, exit.
+   Default if input is empty: ask again once; on second empty input STATUS=CANCELLED.
+
+4. STORE:
    execution_mode, intent, yaml, force, no_snapshot, cleanup_legacy, migrate, keep_snapshots, resume_bootstrap, skip_status_check
 ```
 
 **Phase Output:** `execution_mode` | `intent` | `yaml` | `force` | `no_snapshot` | `cleanup_legacy` | `migrate` | `keep_snapshots` | `resume_bootstrap` | `skip_status_check`
+
+## MID-RUN PROMPT CATALOG (canonical question texts)
+
+The YAML workflow fires these prompts at specific phases. Each prompt has a fixed ID, exact text, accepted answers, and default behavior. The AI MUST use these verbatim — do NOT paraphrase, summarize, or split into multiple messages.
+
+### Q-MED — Combined medium-tier prompt (fires before Phase 5 medium steps)
+
+When: about to run `code_graph_scan` and/or `eval_run_ablation`. Suppressed if `--force=true`.
+
+Prompt text:
+```
+About to run medium-tier steps:
+  - code_graph_scan      (~1-3 min, mutates code-graph.sqlite + .opencode/code-graph.config.json)
+  - eval_run_ablation    (~2-4 min, mutates speckit-eval.db)
+
+Snapshots already taken in Phase 3; auto-rollback on gold-battery regression.
+
+[A] Proceed with both (recommended)
+[B] Skip eval_run_ablation (run code_graph_scan only)
+[C] Cancel run (rolls back snapshots from Phase 3)
+```
+
+Accept: `A`/`Y`/`Proceed` -> both; `B`/`Skip` -> code_graph_scan only; `C`/`N`/`Cancel` -> rollback + STATUS=CANCELLED.
+Default if empty: re-ask once; second empty -> STATUS=CANCELLED.
+
+### Q-LONG — Long-pole ETA prompt (fires before Phase 5 memory_index_scan)
+
+When: about to run `memory_index_scan` on context-index + vector-index. Suppressed if `--force=true`.
+
+Prompt text:
+```
+LONG-POLE step starting: memory_index_scan over context-index.sqlite + voyage vector DB.
+
+Estimated runtime: 5-15 min depending on markdown corpus + Voyage API throughput.
+Mutation: full re-index; pre-snapshots from Phase 3 enable rollback.
+Network: Voyage API required for embeddings. Confirm credentials are set.
+
+[A] Proceed (recommended)
+[B] Skip this step (advisor will be marked STALE; deep-loop init still runs)
+[C] Cancel run (rolls back all snapshots)
+```
+
+Accept: `A`/`Y` -> proceed; `B`/`Skip` -> step skipped, mark STALE; `C`/`N`/`Cancel` -> rollback + STATUS=CANCELLED.
+Default if empty: re-ask once; second empty -> STATUS=CANCELLED.
+
+### Q-PROBE — Active-MCP-client prompt (fires in Phase 2)
+
+When: Phase 2 detects ≥1 other MCP client connected to the spec-kit memory server. ALWAYS fires (NOT suppressed by `--force`, but `--force` reduces it to a single confirmation rather than per-client).
+
+Prompt text:
+```
+Active MCP client(s) detected:
+  <comma-separated list of client_id values from probe>
+
+These clients will be disrupted by the database rebuild. Their open transactions
+will be cancelled mid-rebuild; their cached state will be stale until they reconnect.
+
+[A] Proceed (recommended only on a quiet system or if these clients are expected to disconnect)
+[B] Cancel (rerun once the active clients are idle)
+```
+
+Accept: `A`/`Y`/`Proceed` -> proceed; `B`/`N`/`Cancel` -> STATUS=CANCELLED.
+Default if empty: re-ask once; second empty -> STATUS=CANCELLED.
+
+### Q-LEGACY — Per-file legacy cleanup prompt (fires in Phase 9 only when `--cleanup-legacy=true`)
+
+When: each file listed in migration-manifest's `legacy_cleanup_targets` array. Loops per file.
+
+Prompt text:
+```
+Legacy file detected: <absolute path>
+Reason: <manifest reason string, e.g. "superseded by skills/ rename in packet 096">
+Size: <human-readable size>
+
+[Y] Delete (irreversible)
+[N] Keep (skip this file, continue to next)
+[A] Yes to ALL remaining legacy files (no further prompts in Phase 9)
+[Q] Quit cleanup (keep remaining files, proceed to Phase 10)
+```
+
+Accept: `Y`/`Delete` -> rm -f; `N`/`Keep`/`Skip` -> next; `A`/`All` -> auto-delete remaining; `Q`/`Quit` -> exit Phase 9 early.
+Default if empty: `N` (safe default = keep).
+
+### Q-FAIL — Step-failure recovery prompt (fires in Phase 5 after one retry)
+
+When: a step fails its first run AND the 5-second-backoff retry. Suppressed if `--force=true` (auto-rollback in force mode).
+
+Prompt text:
+```
+Step "<step_name>" failed after retry.
+Phase: <phase number>   Exit: <exit_code>   Snapshot path: <path>
+
+Error excerpt (last 5 stderr lines):
+<excerpt>
+
+[A] Rollback all snapshots and cancel (recommended)
+[B] Continue without rolling back (DANGEROUS: subsequent steps may regress)
+[C] Retry once more (one additional attempt before falling back to A)
+```
+
+Accept: `A`/`Y`/`Rollback` -> rollback + STATUS=ROLLED_BACK; `B`/`Continue` -> log warning, skip step, continue; `C`/`Retry` -> third attempt.
+Default if empty: re-ask once; second empty -> `A` (safe default = rollback).
 
 # SpecKit Doctor - Unified Update
 
@@ -131,13 +246,20 @@ speckit-eval (optional measurement)
 
 ## TIER-AWARE PROMPT TIERS
 
-| Tier      | Steps                                       | Prompt Policy                       | Rationale                                          |
-| --------- | ------------------------------------------- | ----------------------------------- | -------------------------------------------------- |
-| Short     | `skill_graph_scan`, deep-loop lazy init     | Auto in confirm workflow                | Fast idempotent initialization                     |
-| Medium    | `code_graph_scan`, `eval_run_ablation`      | One combined prompt in confirm workflow | Meaningful runtime and index churn                 |
-| Long-pole | `memory_index_scan` over context/vector DBs | Explicit ETA prompt in confirm workflow | 5-15 min runtime and largest rollback blast radius |
+Each tier maps to a specific question ID from the MID-RUN PROMPT CATALOG above.
 
-and bypass tier prompts. and prompt at every phase boundary. assumes all subsystems need rebuild and skips the Phase 4 status decision gate.
+| Tier      | Steps                                       | Prompt ID                                  | Suppressed by `--force`? | Rationale                                          |
+| --------- | ------------------------------------------- | ------------------------------------------ | ------------------------ | -------------------------------------------------- |
+| Short     | `skill_graph_scan`, deep-loop lazy init     | none (auto-acknowledged via log line only) | n/a                      | Fast idempotent initialization                     |
+| Medium    | `code_graph_scan`, `eval_run_ablation`      | **Q-MED**                                  | YES                      | Meaningful runtime and index churn                 |
+| Long-pole | `memory_index_scan` over context/vector DBs | **Q-LONG**                                 | YES                      | 5-15 min runtime and largest rollback blast radius |
+
+Additional non-tier prompts (always fire when their trigger condition is met):
+- **Q-PROBE** — Phase 2 active-MCP-client detection (NOT suppressed by `--force`)
+- **Q-LEGACY** — Phase 9 per-file cleanup (fires only when `--cleanup-legacy=true`)
+- **Q-FAIL** — Phase 5 step-failure recovery (suppressed by `--force`; defaults to rollback)
+
+`--force=true` collapses Q0, Q-MED, Q-LONG, and Q-FAIL to auto-`A` (proceed/rollback). Q-PROBE still fires once to warn on active clients. Q-LEGACY fires only if the operator opted into `--cleanup-legacy`.
 
 ## MUTATION BOUNDARIES
 
