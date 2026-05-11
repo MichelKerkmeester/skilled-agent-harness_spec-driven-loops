@@ -20,7 +20,10 @@ import { toErrorMessage } from '../utils/index.js';
 import { summarizeAliasConflicts } from './memory-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import { getEmbeddingRetryStats } from '../lib/providers/retry-manager.js';
-import { getSnapshot as getRoutingTelemetrySnapshot } from '../lib/search/routing-telemetry.js';
+import {
+  getSnapshot as getRoutingTelemetrySnapshot,
+  WINDOW_SIZE as ROUTING_TELEMETRY_WINDOW_SIZE,
+} from '../lib/search/routing-telemetry.js';
 import { probeCocoIndexDaemon } from '../lib/cocoindex/daemon-probe.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
@@ -623,7 +626,24 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     hints.push(`${aliasConflicts.divergentHashGroups} alias group(s) have divergent content hashes`);
   }
 
-  const routingTelemetry = getRoutingTelemetrySnapshot();
+  let routingTelemetry: Pick<
+    ReturnType<typeof getRoutingTelemetrySnapshot>,
+    'graphChannelInvocationRate' | 'channelInvocationRates' | 'totalRecorded' | 'windowSize'
+  >;
+  try {
+    routingTelemetry = getRoutingTelemetrySnapshot();
+  } catch (err: unknown) {
+    routingTelemetry = {
+      graphChannelInvocationRate: 0,
+      channelInvocationRates: { vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0 },
+      totalRecorded: 0,
+      windowSize: ROUTING_TELEMETRY_WINDOW_SIZE,
+    };
+    const errClass = err instanceof Error ? err.constructor.name : typeof err;
+    const errMsg = err instanceof Error ? err.message : String(err);
+    const hint = `Routing telemetry unavailable (${errClass}: ${errMsg})`.slice(0, 160);
+    hints.push(hint);
+  }
   const cocoIndex = probeCocoIndexDaemon();
   if (cocoIndex.status !== 'reachable') {
     hints.push('WARN: vector channel unavailable, lexical-only');

@@ -30,9 +30,9 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Should graph channel activate for intent=understand on entity-rich queries? — YES via entity-density gate (REQ-003); intent gate restricts to find_decision/find_spec, but density gate fires for any intent when ≥2 query terms hit a high-degree row"
+      - "Should graph channel activate for intent=understand on entity-rich queries? — YES via entity-density gate; intent gate stays find_decision/find_spec-only."
       - "Should degree channel always pair with graph in the override? — Only on entity-density activation, not on intent activation; keeps intent path lean"
-      - "Live SC-001 ≥ 0.30? — YES; live rate 0.714 (21 prior) and 0.625 (40 post-scenario-1); both above threshold"
+      - "Live SC-001 ≥ 0.30? — YES. Live smoke was 0.625, above SC-001's 0.30 band. Post-scenario-1 traffic mixed intent-only graph hits, no-graph controls, and entity-density/complex-tier routes; recall/precision stays out-of-band per spec."
       - "Degree-vs-graph parity? — Spec semantics hold (intent path adds graph alone). Pre-scenario-1 parity at 0.714 reflected traffic mix (complex-tier + entity-density dominated). Post-scenario-1: graph=0.625 vs degree=0.525, parity broken cleanly via 4 intent-only routings."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -84,8 +84,8 @@ The query router now activates the graph channel for queries the data argues sho
 | `mcp_server/lib/search/entity-density.ts` | Created | Cached `getEntityDensityScore` with 60s TTL + `invalidateEntityDensityCache` |
 | `mcp_server/lib/search/routing-telemetry.ts` | Created | 200-decision rolling ring; `recordInvocation` / `getSnapshot` / `resetRoutingTelemetry` |
 | `mcp_server/handlers/memory-crud-health.ts` | Modified | Surface `data.routing` block from telemetry snapshot |
-| `mcp_server/tests/query-router.vitest.ts` | Modified | Add 27 tests covering shouldPreserveGraph, integration, telemetry, latency |
-| `mcp_server/tests/entity-density.vitest.ts` | Created | 12 tests covering lookup, cold-start, cache behavior |
+| `mcp_server/tests/query-router.vitest.ts` | Modified | Covered by the 95 matching query-router/entity-density/routing-telemetry test cases (post-002 remediation count; verified 2026-05-11), including shouldPreserveGraph, integration, telemetry, latency |
+| `mcp_server/tests/entity-density.vitest.ts` | Created | 11 tests covering lookup, cold-start, cache behavior |
 | `mcp_server/tests/routing-telemetry-stress.vitest.ts` | Created | 11 stress tests across 012-S1..S4: ring overflow, 1k-iter latency, cache invalidation, env-flag live-path |
 | `specs/.../012-causal-graph-channel-routing/scratch/baseline.md` | Created | Synthetic pre-change baseline rationale |
 | `specs/.../012-causal-graph-channel-routing/scratch/post-change.md` | Created | Test-derived rate evidence + live-smoke procedure for next MCP restart |
@@ -121,13 +121,13 @@ Land the override behind a default-ON flag, integration-test the four activation
 | Check | Result |
 |-------|--------|
 | `npm run build` | PASS — `tsc --build` exit 0 |
-| `tests/query-router.vitest.ts` | PASS — 48 tests (33 pre-existing + 15 new for 012-T1..T4) |
-| `tests/entity-density.vitest.ts` | PASS — 12 tests covering lookup, cold-start, cache behavior |
+| `tests/query-router.vitest.ts` | PASS — covered by the 95 matching query-router/entity-density/routing-telemetry test cases (post-002 remediation count; verified 2026-05-11); query-router coverage includes 012-T1..T4 |
+| `tests/entity-density.vitest.ts` | PASS — 11 tests covering lookup, cold-start, cache behavior |
 | Routing latency p99 (012-T4.1) | PASS — 200-iteration loop, p99 < 5 ms (REQ-005) |
 | Telemetry rate after mixed routing (012-T3.1) | PASS — 5 routings, 2 with graph → rate = 0.40 |
 | Cold-start safety (012-ED-2.*) | PASS — null DB, empty causal_edges, missing tables all score 0 |
 | Feature flag OFF (012-T2.5) | PASS — no graph addition; matches pre-change channel set |
-| Full vitest regression check | PASS — 11606 passed / 157 failed (vs baseline 11548 / 190); 0 net regressions, 25 new tests added |
+| Full vitest regression check | PASS — 11606 passed / 157 failed (vs baseline 11548 / 190); 0 net regressions; 95 matching query-router/entity-density/routing-telemetry test cases tracked (post-002 remediation count; verified 2026-05-11) |
 | `validate.sh --strict` | PASS — Errors: 0  Warnings: 0 |
 | Live `graphChannelInvocationRate` smoke | PASS — captured 2026-05-08T14:47Z post-MCP-restart, 5-query mix; before/after rate moved from 0.714 (21 prior) to 0.625 (40 routings); intent path verified to add `graph` WITHOUT `degree` (parity broken: graph=0.625 vs degree=0.525); evidence in `scratch/live-smoke-results.md`. Two qualifying findings: (a) telemetry tracks ~3.8 routings per user-facing memory_search call, not 1:1; (b) intent classifier returns `understand` for "alternatives considered for caching" — playbook 272 expected `find_decision`, so 2/5 not 3/5 graph hits. Code is correct; the findings are about playbook expectations. |
 | Live stress (sustained burst) | PASS — full coverage across all stress sub-criteria: 012-T4.1 microbenchmark green (200-iter, p99<5ms); new `routing-telemetry-stress.vitest.ts` with 11 tests (012-S1.* ring overflow ×4, 012-S2.* 1000-iter latency ×2, 012-S3.* cache invalidation stress ×2, 012-S4.* feature flag OFF live-path ×3) — all green; plus 25 live `memory_search` calls in 3 batches producing 104 new routing decisions, 37 of which had graph WITHOUT degree (clean spec compliance). Final live rate: graph=0.568 vs degree=0.304 (parity broken cleanly). Evidence in `scratch/stress-test-results.md`. |

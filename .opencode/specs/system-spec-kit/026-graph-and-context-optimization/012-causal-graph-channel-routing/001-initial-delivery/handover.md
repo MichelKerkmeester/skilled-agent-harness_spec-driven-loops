@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing"
     last_updated_at: "2026-05-08T16:30:00Z"
     last_updated_by: "handover-refinement"
-    recent_action: "Refined handover post-restart; pre-flight verified live"
+    recent_action: "Packet closed 2026-05-08; 2026-05-11 deep review verdict CONDITIONAL; remediation tracked in 002-deep-review-remediation/"
     next_safe_action: "Run §4 → §5 → §6 in order; pre-flight already PASSED"
     blockers: []
     key_files:
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "handover-012-post-restart-verification"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions:
       - "§6 stress test — pick option per §3.4 signal table or defer to follow-on packet"
       - "Degree-vs-graph parity — see §4 callout; investigate via search-decisions.jsonl in scenario 1"
@@ -371,7 +371,7 @@ After verification session consumes this handover:
 - [x] Scenario 1 (§4 live smoke) executed 2026-05-08T14:47Z; verdict in `scratch/live-smoke-results.md`. Degree-vs-graph parity RESOLVED (intent path adds graph alone; spec semantics hold). 2/5 user-facing graph hits (playbook 272 expected 3/5; classifier returns `understand` for "alternatives considered for caching").
 - [x] Scenario 2 (§5 playbook 272) executed in-session via Claude Code MCP rather than cli-opencode dispatch (per §8 self-invocation guidance — equivalent verdict, only the runner differs); evidence in `scratch/live-smoke-results.md` covers playbook 272 §3 commands except the env-flag-OFF toggle (opt-out covered by unit tests 012-T2.5/.6/.7 — flag toggle requires MCP child restart with env var set).
 - [x] Scenario 3 (§6 stress test) executed: 012-T4.1 microbenchmark green (200-iter, p99<5ms) + 5 live MCP latencies captured; ring-overflow + 50-call live-burst deferred to follow-on packet per §3.4 criteria (closeout signal sufficient). Evidence in `scratch/stress-test-results.md`.
-- [x] `implementation-summary.md` `completion_pct` updated 95 → 100; tasks.md T016 + new T020 checked with live-rate values.
+- [x] `implementation-summary.md` `completion_pct` set to 100; tasks.md T016 + new T020 checked with live-rate values.
 - [x] Re-run `validate.sh --strict` — PASSED 0/0.
 - [ ] Decide on commit strategy (knowledge-surface bundle: handover + resource-map + changelog + feature-catalog ×2 + playbook 272 + scratch results × 2 + tasks.md + implementation-summary.md — single commit, or split changelog from the rest)
 - [ ] Run `/memory:save` (T019 in tasks.md) to persist continuity

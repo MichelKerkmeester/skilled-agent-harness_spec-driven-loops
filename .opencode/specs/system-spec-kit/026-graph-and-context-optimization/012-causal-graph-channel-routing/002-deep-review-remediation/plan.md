@@ -1,6 +1,17 @@
 ---
 title: "Plan: 002 Deep-Review Remediation for 012 Causal Graph Channel Routing"
 description: "Sequenced implementation plan across 4 tiers (T1 release blockers, T2 code, T2 docs, T3 metadata) — 25 task batches dispatched via cli-codex gpt-5.5 reasoning=high service_tier=fast."
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/002-deep-review-remediation"
+    last_updated_at: "2026-05-11T11:30:00Z"
+    last_updated_by: "cli-codex-gpt-5.5"
+    recent_action: "Plan locked; all 21 batches dispatched"
+    next_safe_action: "Track batches via tasks.md"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: 002 Deep-Review Remediation for 012 Causal Graph Channel Routing
@@ -255,3 +266,92 @@ No batch in this plan crosses Tier 1 ↔ Tier 2 boundaries, so partial completio
 - After each batch: read diff, run `npm run build`, then continue.
 - Total wall-clock target: ~4–6 hours including verification.
 - No /memory:save between batches — single `/memory:save` after T4 closes.
+
+---
+
+<!-- ANCHOR:summary -->
+## SUMMARY
+
+T4 finalizes the packet after all 21 Tier 1-3 batches landed. The closure path is docs-only: frontmatter, anchors, checklist tags, final synthesis, validation, and targeted tests.
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:quality-gates -->
+## QUALITY GATES
+
+- `tsc --noEmit` exits 0.
+- Targeted vitest run passes 91 tests across 4 files.
+- `validate.sh --strict` exits 0 for this packet.
+<!-- /ANCHOR:quality-gates -->
+
+<!-- ANCHOR:architecture -->
+## ARCHITECTURE
+
+The remediation architecture is batch-based: release blockers first, code/test polish second, doc polish third, metadata cleanup fourth, final synthesis last.
+<!-- /ANCHOR:architecture -->
+
+<!-- ANCHOR:phases -->
+## IMPLEMENTATION PHASES
+
+- Tier 1: cache wiring plus resource-map P1 fixes.
+- Tier 2a: source and test polish.
+- Tier 2b: docs and traceability polish.
+- Tier 3: metadata dedup.
+- Tier 4: validation and synthesis.
+<!-- /ANCHOR:phases -->
+
+<!-- ANCHOR:testing -->
+## TESTING STRATEGY
+
+Use the targeted vitest command for the changed search-routing surface and the integration commit-hook test. Use TypeScript no-emit for compile verification.
+<!-- /ANCHOR:testing -->
+
+<!-- ANCHOR:dependencies -->
+## DEPENDENCIES
+
+The final packet depends on the completed T1-T3 edits recorded in `implementation-summary.md`. No additional source edits are required in T4.
+<!-- /ANCHOR:dependencies -->
+
+<!-- ANCHOR:rollback -->
+## ROLLBACK PLAN
+
+Rollback is file-scoped: revert this packet's T4 documentation edits if template validation regresses.
+<!-- /ANCHOR:rollback -->
+
+<!-- ANCHOR:phase-deps -->
+## PHASE DEPENDENCIES
+
+T4 depends on every T1-T3 batch already being landed and verified. It does not reopen 001 source changes.
+<!-- /ANCHOR:phase-deps -->
+
+<!-- ANCHOR:effort -->
+## EFFORT
+
+T4 is a short docs and validation batch. The implementation work is already complete.
+<!-- /ANCHOR:effort -->
+
+<!-- ANCHOR:enhanced-rollback -->
+## ENHANCED ROLLBACK
+
+If strict validation fails, patch only the named packet-doc rule failure and rerun validation.
+<!-- /ANCHOR:enhanced-rollback -->
+
+<!-- ANCHOR:dependency-graph -->
+## DEPENDENCY GRAPH
+
+T1 -> T2a/T2b -> T3 -> T4 final synthesis.
+<!-- /ANCHOR:dependency-graph -->
+
+<!-- ANCHOR:critical-path -->
+## CRITICAL PATH
+
+The critical path is strict validation, then targeted vitest verification, then checklist closure evidence.
+<!-- /ANCHOR:critical-path -->
+
+<!-- ANCHOR:milestones -->
+## MILESTONES
+
+- T1-T3 landed.
+- T4 docs patched.
+- Strict validation passed.
+- Targeted vitest passed.
+<!-- /ANCHOR:milestones -->

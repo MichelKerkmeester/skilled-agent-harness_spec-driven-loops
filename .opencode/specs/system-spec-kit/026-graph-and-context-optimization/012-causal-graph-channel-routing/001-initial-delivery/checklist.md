@@ -137,9 +137,9 @@ _memory:
 - [x] CHK-050 [P0] New modules placed under `mcp_server/lib/search/`
   - **Evidence**: `entity-density.ts` and `routing-telemetry.ts` both at `lib/search/`
 - [x] CHK-051 [P0] New tests placed under `mcp_server/tests/` matching `*.vitest.ts` naming
-  - **Evidence**: `tests/entity-density.vitest.ts`; query-router additions extend existing `tests/query-router.vitest.ts`
+  - **Evidence**: `tests/entity-density.vitest.ts`; `tests/routing-telemetry-stress.vitest.ts`; query-router additions extend existing `tests/query-router.vitest.ts`
 - [x] CHK-052 [P1] No changes outside the declared scope in `spec.md` "Files to Change" table
-  - **Evidence**: only modified files: query-router.ts, entity-density.ts (new), routing-telemetry.ts (new), memory-crud-health.ts, query-router.vitest.ts, entity-density.vitest.ts (new)
+  - **Evidence**: only modified files: query-router.ts, entity-density.ts (new), routing-telemetry.ts (new), memory-crud-health.ts, query-router.vitest.ts, entity-density.vitest.ts (new), routing-telemetry-stress.vitest.ts (new)
 - [x] CHK-053 [P1] No new top-level files created outside the spec folder
   - **Evidence**: `git status` shows changes only in mcp_server source/tests + the 012 spec folder
 <!-- /ANCHOR:file-org -->

@@ -16,23 +16,10 @@ import {
   type ChannelName,
 } from '../lib/search/routing-telemetry';
 import { invalidateEntityDensityCache } from '../lib/search/entity-density';
+import { setEnv, restoreEnv } from './__helpers__/test-env';
 
 const COMPLEXITY_FLAG = 'SPECKIT_COMPLEXITY_ROUTER';
 const GRAPH_PRESERVATION_FLAG = 'SPECKIT_GRAPH_CHANNEL_PRESERVATION';
-
-const savedEnv: Record<string, string | undefined> = {};
-function setEnv(key: string, value: string | undefined) {
-  if (!(key in savedEnv)) savedEnv[key] = process.env[key];
-  if (value === undefined) delete process.env[key];
-  else process.env[key] = value;
-}
-function restoreEnv() {
-  for (const [key, value] of Object.entries(savedEnv)) {
-    if (value === undefined) delete process.env[key];
-    else process.env[key] = value;
-  }
-  for (const key of Object.keys(savedEnv)) delete savedEnv[key];
-}
 
 /* ───────────────────────────────────────────────────────────────
    012-S1: RING BUFFER OVERFLOW CORRECTNESS
@@ -119,14 +106,18 @@ describe('012-S1: ring buffer overflow correctness', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-S2: routeQuery latency under 1k-iter burst', () => {
+  let priorComplexityFlag: string | undefined;
+  let priorGraphPreservationFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(COMPLEXITY_FLAG, 'true');
-    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
+    priorGraphPreservationFlag = setEnv(GRAPH_PRESERVATION_FLAG, undefined);
     resetRoutingTelemetry();
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
+    restoreEnv(GRAPH_PRESERVATION_FLAG, priorGraphPreservationFlag);
     resetRoutingTelemetry();
   });
 
@@ -173,15 +164,19 @@ describe('012-S2: routeQuery latency under 1k-iter burst', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-S3: entity-density cache invalidation under stress', () => {
+  let priorComplexityFlag: string | undefined;
+  let priorGraphPreservationFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(COMPLEXITY_FLAG, 'true');
-    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
+    priorGraphPreservationFlag = setEnv(GRAPH_PRESERVATION_FLAG, undefined);
     resetRoutingTelemetry();
     invalidateEntityDensityCache();
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
+    restoreEnv(GRAPH_PRESERVATION_FLAG, priorGraphPreservationFlag);
     resetRoutingTelemetry();
     invalidateEntityDensityCache();
   });
@@ -221,13 +216,15 @@ describe('012-S3: entity-density cache invalidation under stress', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-S4: feature flag OFF live-path verification', () => {
+  let priorComplexityFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(COMPLEXITY_FLAG, 'true');
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
     resetRoutingTelemetry();
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
     resetRoutingTelemetry();
   });
 

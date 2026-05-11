@@ -60,17 +60,19 @@ Mirror the existing `shouldPreserveBm25` precedent (`query-router.ts:120-128`) w
 - [ ] Baseline `graph_channel_invocation_rate` captured pre-change
 
 ### Definition of Done
-- [ ] REQ-001 — `shouldPreserveGraph` implemented + intent-driven test passes
-- [ ] REQ-002 — Channel-list adjustment in `routeQuery()` integrated; routingReasons surface
-- [ ] REQ-003 — Entity-density helper + cache implemented and tested
-- [ ] REQ-004 — Rolling-window invocation-rate metric exposed via `memory_health`
-- [ ] REQ-005 — Microbenchmark <5ms p99
-- [ ] REQ-006 — Cold-start DB edge case test passes
-- [ ] REQ-007 — `search-decisions.jsonl` carries new reasons
-- [ ] REQ-008 — Feature flag (P2; deferral ok)
-- [ ] `npm run build` exits 0
-- [ ] Full vitest run regresses 0 tests vs. pre-change baseline
-- [ ] `validate.sh --strict` exits 0
+Note: Closed 2026-05-08 with deep-review remediation tracked in 002-deep-review-remediation/.
+
+- [x] REQ-001 — `shouldPreserveGraph` implemented + intent-driven test passes
+- [x] REQ-002 — Channel-list adjustment in `routeQuery()` integrated; routingReasons surface
+- [x] REQ-003 — Entity-density helper + cache implemented and tested
+- [x] REQ-004 — Rolling-window invocation-rate metric exposed via `memory_health`
+- [x] REQ-005 — Microbenchmark <5ms p99
+- [x] REQ-006 — Cold-start DB edge case test passes
+- [x] REQ-007 — `search-decisions.jsonl` carries new reasons
+- [x] REQ-008 — Feature flag (P2; deferral ok)
+- [x] `npm run build` exits 0
+- [x] Full vitest run regresses 0 tests vs. pre-change baseline
+- [x] `validate.sh --strict` exits 0
 <!-- /ANCHOR:quality-gates -->
 
 ---

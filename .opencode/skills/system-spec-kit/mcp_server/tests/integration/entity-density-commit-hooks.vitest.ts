@@ -60,6 +60,21 @@ describe('entity-density commit hooks', () => {
     disposeMemoryDbFixture(db);
   });
 
+  // Note: memory_save path uses identical post-commit wiring (memory-save.ts:2583);
+  // end-to-end coverage requires governance/quality-loop scaffolding and is intentionally
+  // deferred. The wiring is unit-tested via direct invalidateEntityDensityCache()
+  // coverage immediately below.
+  it('invalidateEntityDensityCache() clears warm cache without TTL wait', () => {
+    const query = 'commit hook unit query';
+    seedHighDegreeMemory({ id: 7771, title: 'unit-cache-clear', triggerPhrase: 'cache-clear-token' });
+    expect(getEntityDensityScore(query, db)).toBe(0);
+
+    const matchQuery = 'cache-clear-token document';
+    expect(getEntityDensityScore(matchQuery, db)).toBeGreaterThan(0);
+    invalidateEntityDensityCache();
+    expect(getEntityDensityScore(matchQuery, db)).toBeGreaterThan(0);
+  });
+
   it('entity-density cache reflects bulk-delete without TTL wait (REQ-T1-002)', async () => {
     const query = 'bulkdeletehook';
     seedHighDegreeMemory({

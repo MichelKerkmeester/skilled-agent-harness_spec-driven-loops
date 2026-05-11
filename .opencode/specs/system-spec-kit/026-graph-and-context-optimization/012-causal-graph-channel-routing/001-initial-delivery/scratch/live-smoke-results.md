@@ -77,7 +77,7 @@ The §3.2 pre-flight observation showed `channelInvocationRates.degree == graph 
 - Entity-density path adds `graph + degree` together.
 - The §3.2 parity reflected traffic mix, not a code bug — those 21 decisions were dominated by complex-tier queries (which include both graph + degree by default) or entity-density activations.
 
-Direct code inspection confirms (`mcp_server/lib/search/query-router.ts:167-189`):
+Direct code inspection confirms (`mcp_server/lib/search/query-router.ts:183-205`):
 
 ```ts
 function shouldPreserveGraph(query, db) {

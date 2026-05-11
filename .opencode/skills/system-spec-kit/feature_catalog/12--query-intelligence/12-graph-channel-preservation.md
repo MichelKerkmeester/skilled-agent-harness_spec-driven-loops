@@ -51,6 +51,7 @@ The `SPECKIT_GRAPH_CHANNEL_PRESERVATION` flag is **enabled by default** (`isGrap
 |------|-------|
 | `mcp_server/tests/query-router.vitest.ts` | 012-T1.* (shouldPreserveGraph unit), 012-T2.* (routeQuery integration + feature flag), 012-T3.* (telemetry rate), 012-T4.* (latency microbenchmark) |
 | `mcp_server/tests/entity-density.vitest.ts` | 012-ED-1.* (lookup hits), 012-ED-2.* (cold-start safety), 012-ED-3.* (cache lifecycle) |
+| `mcp_server/tests/routing-telemetry-stress.vitest.ts` | 012-S1.* (ring overflow), 012-S2.* (1000-iter latency), 012-S3.* (cache invalidation stress), 012-S4.* (feature flag OFF live path) |
 
 ---
 
@@ -58,14 +59,14 @@ The `SPECKIT_GRAPH_CHANNEL_PRESERVATION` flag is **enabled by default** (`isGrap
 
 | Claim | Source | Lines |
 |-------|--------|-------|
-| `shouldPreserveGraph` returns true for find_spec / find_decision | `query-router.ts` | 139-180 |
-| Override happens at router level, not classifier | `query-router.ts:routeQuery` | 233-249 |
-| Entity-density cache rebuilds on 60s TTL | `entity-density.ts` | 68-90 |
-| Cold-start: empty causal_edges → score 0 | `entity-density.ts` | 95-105 |
-| Telemetry rolling ring of 200 decisions | `routing-telemetry.ts` | 18-35 |
-| `data.routing` block in memory_health | `memory-crud-health.ts` | 624-650 |
-| Default-on flag (`raw !== 'false'`) | `query-router.ts:isGraphChannelPreservationEnabled` | 132-135 |
-| Spec REQ-001..REQ-008 | `specs/.../012-causal-graph-channel-routing/spec.md` | 132-156 |
+| `shouldPreserveGraph` returns true for find_spec / find_decision | `query-router.ts` | 228-255 |
+| Override happens at router level, not classifier | `query-router.ts:routeQuery` | 392-429 |
+| Entity-density cache rebuilds on 60s TTL | `entity-density.ts` | 105-123 |
+| Cold-start: empty causal_edges → score 0 | `entity-density.ts` | 78-139 |
+| Telemetry rolling ring of 200 decisions | `routing-telemetry.ts` | 18-38 |
+| `data.routing` block in memory_health | `memory-crud-health.ts` | 629-683 |
+| Default-on flag (`raw !== 'false'`) | `query-router.ts:isGraphChannelPreservationEnabled` | 182-198 |
+| Spec REQ-001..REQ-008 | `specs/.../012-causal-graph-channel-routing/spec.md` | 136-155 |
 
 <!-- /ANCHOR:source-files -->
 

@@ -27,10 +27,10 @@
       "routing telemetry"
     ],
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts"
     ]
   }
 }

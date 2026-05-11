@@ -25,51 +25,14 @@ import {
   type ChannelRoutingConfig,
 } from '../lib/search/query-router';
 import { resetRoutingTelemetry, getSnapshot as getRoutingSnapshot } from '../lib/search/routing-telemetry';
+import { setEnv, restoreEnv, withFeatureFlag } from './__helpers__/test-env';
 
 /* ───────────────────────────────────────────────────────────────
    HELPERS
    ──────────────────────────────────────────────────────────────── */
 
-const FEATURE_FLAG = 'SPECKIT_COMPLEXITY_ROUTER';
-
-const savedEnv: Record<string, string | undefined> = {};
-
-function setEnv(key: string, value: string | undefined) {
-  if (!(key in savedEnv)) savedEnv[key] = process.env[key];
-  if (value === undefined) {
-    delete process.env[key];
-  } else {
-    process.env[key] = value;
-  }
-}
-
-function restoreEnv() {
-  for (const [key, value] of Object.entries(savedEnv)) {
-    if (value === undefined) {
-      delete process.env[key];
-    } else {
-      process.env[key] = value;
-    }
-  }
-  for (const key of Object.keys(savedEnv)) {
-    delete savedEnv[key];
-  }
-}
-
-/** Enable the complexity router feature flag for a test block. */
-function withFeatureFlag(fn: () => void): void {
-  const original = process.env[FEATURE_FLAG];
-  process.env[FEATURE_FLAG] = 'true';
-  try {
-    fn();
-  } finally {
-    if (original === undefined) {
-      delete process.env[FEATURE_FLAG];
-    } else {
-      process.env[FEATURE_FLAG] = original;
-    }
-  }
-}
+const COMPLEXITY_FLAG = 'SPECKIT_COMPLEXITY_ROUTER';
+const GRAPH_PRESERVATION_FLAG = 'SPECKIT_GRAPH_CHANNEL_PRESERVATION';
 
 const TRIGGER_PHRASES = [
   'save context',
@@ -258,12 +221,14 @@ describe('T026-03: Minimum 2-Channel Invariant', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('T026-04: routeQuery Convenience Function', () => {
+  let priorComplexityFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(FEATURE_FLAG, 'true');
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
   });
 
   it('T18: routes simple query to 2 channels', () => {
@@ -315,12 +280,14 @@ describe('T026-04: routeQuery Convenience Function', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('T026-05: Feature Flag Disabled', () => {
+  let priorComplexityFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(FEATURE_FLAG, 'false');
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'false');
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
   });
 
   it('T23: routeQuery returns all 5 channels when flag is disabled', () => {
@@ -343,7 +310,7 @@ describe('T026-05: Feature Flag Disabled', () => {
   });
 
   it('T26: routeQuery with flag set to "false" returns all 5 channels', () => {
-    setEnv(FEATURE_FLAG, 'false');
+    setEnv(COMPLEXITY_FLAG, 'false');
     const result = routeQuery('refactor the database connection module');
     expect(result.channels).toHaveLength(5);
     expect(result.channels).toEqual(['vector', 'fts', 'bm25', 'graph', 'degree']);
@@ -355,12 +322,14 @@ describe('T026-05: Feature Flag Disabled', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('T026-06: Edge Cases', () => {
+  let priorComplexityFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(FEATURE_FLAG, 'true');
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
   });
 
   it('T27: empty query routes to all channels (complex fallback)', () => {
@@ -412,17 +381,18 @@ describe('T026-06: Edge Cases', () => {
    012-T1: shouldPreserveGraph — UNIT (REQ-001)
    ──────────────────────────────────────────────────────────────── */
 
-const COMPLEXITY_FLAG = 'SPECKIT_COMPLEXITY_ROUTER';
-const GRAPH_PRESERVATION_FLAG = 'SPECKIT_GRAPH_CHANNEL_PRESERVATION';
-
 describe('012-T1: shouldPreserveGraph', () => {
+  let priorComplexityFlag: string | undefined;
+  let priorGraphPreservationFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(COMPLEXITY_FLAG, 'true');
-    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
+    priorGraphPreservationFlag = setEnv(GRAPH_PRESERVATION_FLAG, undefined);
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
+    restoreEnv(GRAPH_PRESERVATION_FLAG, priorGraphPreservationFlag);
   });
 
   it('012-T1.1: find_decision intent → preserved with graph-preserved-by-intent reason', () => {
@@ -465,14 +435,18 @@ describe('012-T1: shouldPreserveGraph', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-T2: routeQuery graph-preservation', () => {
+  let priorComplexityFlag: string | undefined;
+  let priorGraphPreservationFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(COMPLEXITY_FLAG, 'true');
-    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
+    priorGraphPreservationFlag = setEnv(GRAPH_PRESERVATION_FLAG, undefined);
     resetRoutingTelemetry();
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
+    restoreEnv(GRAPH_PRESERVATION_FLAG, priorGraphPreservationFlag);
     resetRoutingTelemetry();
   });
 
@@ -517,21 +491,24 @@ describe('012-T2: routeQuery graph-preservation', () => {
   });
 
   it('012-T2.5: feature flag OFF → graph preservation disabled (REQ-008)', () => {
-    setEnv(GRAPH_PRESERVATION_FLAG, 'false');
-    const result = routeQuery('why chose this');
-    expect(result.tier).toBe('simple');
-    expect(result.channels).not.toContain('graph');
+    withFeatureFlag(GRAPH_PRESERVATION_FLAG, 'false', () => {
+      const result = routeQuery('why chose this');
+      expect(result.tier).toBe('simple');
+      expect(result.channels).not.toContain('graph');
+    });
   });
 
   it('012-T2.5b: shouldPreserveGraph self-gates when feature flag is OFF', () => {
-    setEnv(GRAPH_PRESERVATION_FLAG, 'false');
-    const decision = shouldPreserveGraph('find decision record', null);
-    expect(decision).toEqual({ preserved: false, reasons: [], includeDegree: false });
+    withFeatureFlag(GRAPH_PRESERVATION_FLAG, 'false', () => {
+      const decision = shouldPreserveGraph('find decision record', null);
+      expect(decision).toEqual({ preserved: false, reasons: [], includeDegree: false });
+    });
   });
 
   it('012-T2.6: feature flag explicit true', () => {
-    setEnv(GRAPH_PRESERVATION_FLAG, 'true');
-    expect(isGraphChannelPreservationEnabled()).toBe(true);
+    withFeatureFlag(GRAPH_PRESERVATION_FLAG, 'true', () => {
+      expect(isGraphChannelPreservationEnabled()).toBe(true);
+    });
   });
 
   it('012-T2.7: feature flag default ON', () => {
@@ -555,6 +532,36 @@ describe('012-T2: routeQuery graph-preservation', () => {
     },
   );
 
+  it('SPECKIT_GRAPH_CHANNEL_PRESERVATION="00" enables (not equal to "0")', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, '00');
+    expect(isGraphChannelPreservationEnabled()).toBe(true);
+  });
+
+  it('SPECKIT_GRAPH_CHANNEL_PRESERVATION="01" enables (not equal to "0")', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, '01');
+    expect(isGraphChannelPreservationEnabled()).toBe(true);
+  });
+
+  it('SPECKIT_GRAPH_CHANNEL_PRESERVATION="  0  " disables (trim normalizes)', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, '  0  ');
+    expect(isGraphChannelPreservationEnabled()).toBe(false);
+  });
+
+  it('SPECKIT_GRAPH_CHANNEL_PRESERVATION="  true  " enables (trim normalizes)', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, '  true  ');
+    expect(isGraphChannelPreservationEnabled()).toBe(true);
+  });
+
+  it('SPECKIT_GRAPH_CHANNEL_PRESERVATION="NO" disables (case-insensitive)', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, 'NO');
+    expect(isGraphChannelPreservationEnabled()).toBe(false);
+  });
+
+  it('SPECKIT_GRAPH_CHANNEL_PRESERVATION="oN" enables (mixed case)', () => {
+    setEnv(GRAPH_PRESERVATION_FLAG, 'oN');
+    expect(isGraphChannelPreservationEnabled()).toBe(true);
+  });
+
   it('012-T2.10: undefined feature flag enables graph preservation', () => {
     setEnv(GRAPH_PRESERVATION_FLAG, undefined);
     expect(isGraphChannelPreservationEnabled()).toBe(true);
@@ -566,14 +573,18 @@ describe('012-T2: routeQuery graph-preservation', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-T3: routing telemetry', () => {
+  let priorComplexityFlag: string | undefined;
+  let priorGraphPreservationFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(COMPLEXITY_FLAG, 'true');
-    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
+    priorGraphPreservationFlag = setEnv(GRAPH_PRESERVATION_FLAG, undefined);
     resetRoutingTelemetry();
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
+    restoreEnv(GRAPH_PRESERVATION_FLAG, priorGraphPreservationFlag);
     resetRoutingTelemetry();
   });
 
@@ -605,14 +616,18 @@ describe('012-T3: routing telemetry', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-T4: routing latency', () => {
+  let priorComplexityFlag: string | undefined;
+  let priorGraphPreservationFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(COMPLEXITY_FLAG, 'true');
-    setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
+    priorGraphPreservationFlag = setEnv(GRAPH_PRESERVATION_FLAG, undefined);
     resetRoutingTelemetry();
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
+    restoreEnv(GRAPH_PRESERVATION_FLAG, priorGraphPreservationFlag);
     resetRoutingTelemetry();
   });
 
@@ -647,13 +662,15 @@ describe('012-T4: routing latency', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('006-T1: quality-gap fallback routing', () => {
+  let priorComplexityFlag: string | undefined;
+
   beforeEach(() => {
-    setEnv(COMPLEXITY_FLAG, 'true');
+    priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
     resetRoutingTelemetry();
   });
 
   afterEach(() => {
-    restoreEnv();
+    restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
     resetRoutingTelemetry();
   });
 

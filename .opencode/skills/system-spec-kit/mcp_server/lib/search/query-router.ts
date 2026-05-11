@@ -89,7 +89,7 @@ const QUALITY_GAP_FALLBACK_DEADLINE_MS = 200;
 const MAX_ROUTING_REASON_LENGTH = 120;
 
 let _hasWarnedInvalidGraphPreservationFlag = false;
-let _hasWarnedSafeGetDb = false;
+const _safeGetDbWarnedClasses = new Set<string>();
 
 /* ───────────────────────────────────────────────────────────────
    2. DEFAULT ROUTING CONFIG
@@ -254,14 +254,23 @@ function shouldPreserveGraph(
   return { preserved, reasons, includeDegree };
 }
 
+/**
+ * Resolve the vector-index database handle for optional entity-density routing.
+ *
+ * Database initialization can fail differently across boot states, so this
+ * helper preserves the null-on-failure contract while warning once per error
+ * class to keep repeated routing calls from flooding stderr.
+ */
 function safeGetDb(): Database.Database | null {
   try {
     return vectorIndex.getDb();
   } catch (err: unknown) {
-    if (!_hasWarnedSafeGetDb) {
+    const errClass = err instanceof Error ? err.constructor.name : typeof err;
+    if (!_safeGetDbWarnedClasses.has(errClass)) {
+      _safeGetDbWarnedClasses.add(errClass);
       const message = err instanceof Error ? err.message : String(err);
-      console.warn('[query-router] safeGetDb failed once:', message);
-      _hasWarnedSafeGetDb = true;
+      // eslint-disable-next-line no-console
+      console.warn(`[query-router] safeGetDb failed (${errClass}): ${message}`);
     }
     return null;
   }

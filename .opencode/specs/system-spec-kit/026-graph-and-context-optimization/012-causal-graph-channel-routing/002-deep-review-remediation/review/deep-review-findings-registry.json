@@ -1,0 +1,54 @@
+{
+  "sessionId": "2026-05-11T11:40:00Z",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "P2-CONF-001",
+      "severity": "P2",
+      "cluster": "tests",
+      "file": "tests/integration/entity-density-commit-hooks.vitest.ts:86-103",
+      "title": "Integration test for memory-save commit hook does not exercise full wiring",
+      "iteration": 1,
+      "status": "open"
+    },
+    {
+      "id": "P2-ADV-001",
+      "severity": "P2",
+      "cluster": "observability",
+      "file": "query-router.ts:92,257-268",
+      "title": "safeGetDb warn-once flag masks distinct DB-failure causes",
+      "iteration": 2,
+      "status": "open"
+    },
+    {
+      "id": "P2-ADV-002",
+      "severity": "P2",
+      "cluster": "observability",
+      "file": "memory-crud-health.ts:635-642",
+      "title": "Zero-fallback catch in memory_health swallows error classification",
+      "iteration": 2,
+      "status": "open"
+    },
+    {
+      "id": "P2-ADV-003",
+      "severity": "P2",
+      "cluster": "tests",
+      "file": "query-router.vitest.ts:519-537",
+      "title": "Env-flag tests miss numeric and whitespace edge cases",
+      "iteration": 2,
+      "status": "open"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": { "correctness": true, "security": true, "traceability": true, "maintainability": true },
+  "findingsBySeverity": { "P0": 0, "P1": 0, "P2": 4 },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "perIterationRatio": [0.024, 0.073, 0.0],
+  "finalVerdict": "PASS",
+  "hasAdvisories": true,
+  "iterationsCompleted": 3
+}
