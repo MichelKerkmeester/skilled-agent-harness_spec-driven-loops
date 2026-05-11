@@ -1,0 +1,53 @@
+{
+  "sessionId": "2026-05-11T05-55-00Z-rm8-013-deepseek",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    "R1-P1-001","R1-P1-002","R1-P1-003","R1-P1-004","R1-P1-005","R1-P1-007",
+    "R2-P1-001","R2-P1-002","R2-P1-003","R2-P1-004","R2-P1-005","R2-P1-006",
+    "R3-P0-001_dg_P1","R3-P1-001","R3-P1-002","R3-P1-003","R3-P1-004","R3-P1-005","R3-P1-006",
+    "R4-P1-002","R4-P1-004",
+    "R5-P1-001","R5-P1-002",
+    "R6-P1-001","R6-P1-002","R6-P1-003","R6-P1-004",
+    "R7-P1-001",
+    "R8-P1-001","R8-P1-002",
+    "R1-P1-006_dg_P2","R1-P1-008_dg_P2","R4-P1-001_dg_P2","R4-P1-003_dg_P2","R4-P1-005_dg_P2","R5-P1-003_dg_P2","R6-P1-005_dg_P2",
+    "R2-P2-001","R2-P2-002",
+    "R3-P2-001","R3-P2-002",
+    "R4-P2-001","R4-P2-002",
+    "R5-P2-001","R5-P2-002",
+    "R6-P2-001","R6-P2-002",
+    "R7-P2-001","R7-P2-002",
+    "R8-P2-001","R8-P2-002",
+    "R9-P2-001","R9-P2-002","R9-P2-003","R9-P2-004","R9-P2-005","R9-P2-006","R9-P2-007","R9-P2-008","R9-P2-009"
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [
+    "R2-P1-001~R1-P1-001","R2-P1-003~R1-P1-003","R3-P1-003~R1-P1-003","R6-P1-001~R1-P1-004","R6-P1-002~R1-P1-007","R2-P1-006~R3-P1-004"
+  ],
+  "adjudicated": {
+    "by": "iteration-010 adversarial self-check",
+    "timestamp": "2026-05-11T16-30-00Z",
+    "downgrades": {
+      "P0_to_P1": ["R3-P0-001"],
+      "P1_to_P2": ["R1-P1-006","R1-P1-008","R4-P1-001","R4-P1-003","R4-P1-005","R5-P1-003","R6-P1-005"]
+    },
+    "upgrades": [],
+    "confirmedP1": ["R1-P1-001","R1-P1-002","R1-P1-003","R1-P1-004","R1-P1-005","R1-P1-007","R2-P1-002","R2-P1-004","R2-P1-005","R2-P1-006","R3-P1-001","R3-P1-002","R3-P1-004","R3-P1-005","R3-P1-006","R4-P1-002","R4-P1-004","R5-P1-001","R5-P1-002","R6-P1-003","R6-P1-004","R7-P1-001","R8-P1-001","R8-P1-002"]
+  },
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 30,
+    "P2": 30
+  },
+  "openFindingsCount": 60,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "lastUpdated": "2026-05-11T16-30-00Z"
+}

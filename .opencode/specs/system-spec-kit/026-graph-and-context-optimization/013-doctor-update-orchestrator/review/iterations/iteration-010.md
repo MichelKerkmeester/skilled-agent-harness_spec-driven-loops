@@ -1,294 +1,184 @@
-# Iteration 10 — adversarial self-check + finalization
+# Iteration 10 — adversarial self-check + final verdict (re-review)
+
+**Dimension**: adversarial self-check + final verdict
+**Mode**: re-review
+**Timestamp**: 2026-05-11T11:00:00Z
+**Tool calls used**: 8
+
+## Closure Verification
+
+All 10 finding clusters (A–J) from the original deep-review report (§3 of `review_archive/.../review-report.md`) remain closed on disk. Remediation commit `495fdd282` closed all 30 P1 findings and 28/30 P2 findings. Two P2 were formally deferred (see §Deferred Findings below).
+
+| Cluster ID | Original symptom | Fix applied (commit 495fdd282) | Re-verified status |
+|---|---|---|---|
+| A | `last_active_child_id: null`, `derived.status: planned` | Batch A: `graph-metadata.json` updated; `last_active_child_id` = `002-sandbox-testing-playbook` (line 220), derived.status = `in_progress` | CLOSED |
+| B | 001 IMS "COMPLETE" vs "~95%" contradiction | Batch A: reconciled to `COMPLETE (~95%)` across title + body + continuity | CLOSED |
+| C | 002 SC-001 scenario count unclear, 002 checklist unmarked | Batch A: SC-001 = 23 confirmed, 71 items marked `[x]` with evidence anchors | CLOSED |
+| D | parent spec "21 yamls" → should be "10 yamls" | Batch A: corrected to "10 yamls" per ADR-010 mode reduction | CLOSED |
+| E | 001 description.json specFolder short-form vs full path | Batch A: accepted as upstream generate-context.js convention; documented in 003 IMS §Verification | CLOSED |
+| F | resource-maps show PLANNED for on-disk files, dead `.opencode/skill` symlink row | Batch A: marked OK for on-disk files, absent-on-disk rows marked `# absent on disk`, symlink row dropped | CLOSED |
+| G | `--no-audit` + mkdir-lock in doctor-runtime-bootstrap.sh | Batch B: `--no-audit` removed (grep returns 0 hits), `npm audit --audit-level=high` added at lines 188,202, `flock -n` at FD 9 (lines 128-132) | CLOSED |
+| H | docker-compose.yml wide mount + no capabilities drop | Batch B: mount narrowed to `:ro` + `evidence:rw`, `cap_drop: [ALL]` + minimal `cap_add`, `no-new-privileges:true` at docker-compose.yml:12-20 | CLOSED |
+| I | missing cross-runtime doctor command mirrors | Batch C: opencode=10, claude=10, codex=10 (via symlink), gemini=10; skill_agent anchors 10/10 | CLOSED |
+| J | Dockerfile base + sandbox guard exit code + spec.md REQ-P-001 + continuity stale values | Batch D: `node:20-bookworm-slim`, guard returns 125/SKIP, REQ-P-001 relaxed, continuity refreshed where targeted | CLOSED |
 
 ## Files Reviewed
 
-| Path | Dimension Classification | Notes |
-|------|-------------------------|-------|
-| 002-sandbox-testing-playbook/checklist.md | correctness | Evidence verified: 103 `[ ]` vs 3 `[x]` — confirms R3-P0-001 / R1-P1-007 / R6-P1-002 |
-| 013-doctor-update-orchestrator/graph-metadata.json | correctness | Evidence verified: `last_active_child_id: null` at line 220 — confirms R1-P1-001 / R2-P1-001 |
-| 001-doctor-commands/implementation-summary.md | correctness | Evidence verified: title COMPLETE (line 2) vs body PARTIAL ~30% (line 51) — confirms R1-P1-003 / R2-P1-003 / R3-P1-003 |
-| 002-sandbox-testing-playbook/implementation-summary.md | correctness | Evidence verified: completion_pct 70 (frontmatter) vs COMPLETE ~95% (body line 55) — confirms R3-P1-002 |
-| 001-doctor-commands/description.json | correctness | Evidence verified: specFolder missing /001-doctor-commands suffix (line 2) — confirms R1-P1-005 |
-| 001-doctor-commands/checklist.md | traceability | Evidence verified: 0 `[x]` in body — confirms R1-P1-004 / R6-P1-001 |
-| 002-sandbox-testing-playbook/handover.md | maintainability | Evidence verified: line 100 claims `last_active_child_id correctly tracks 002` but field is null — confirms R8-P1-002 |
-| commands/doctor/assets/doctor_update.yaml | security | Evidence verified: rm -rf at line 287 IS inside flock-protected section (Phase 1 flock at line 205) — supports R4-P1-001 DOWNGRADE |
-| commands/doctor/assets/doctor_update.yaml | security | Evidence verified: pip install -e from local repo path at line 307 — supports R4-P1-003 DOWNGRADE |
-| commands/doctor/scripts/doctor-runtime-bootstrap.sh | security | Evidence verified: --no-audit at lines 183, 194 — confirms R4-P1-002. mkdir lock at line 129 precedes YAML flock at line 205 — confirms R4-P1-004 |
-| 013-doctor-update-orchestrator/spec.md | correctness | Evidence verified: Phase Map claims 001 Complete (line 104), 21 yamls (line 104-105) — confirms R2-P1-002, R2-P1-005 |
+- `parent/spec.md:106` — malformed PHASE DOCUMENTATION MAP row (P2-RG-001)
+- `parent/description.json:7` — overwritten description (P2-009-001)
+- `parent/graph-metadata.json:220` — last_active_child_id populated (Cluster A closed)
+- `002-sandbox-testing-playbook/handover.md:33` — completion_pct drift (P2-007-001)
+- `001-doctor-commands/` — no handover.md (P2-007-003, confirmed by Glob)
+- `003-rm8-013-remediation-doc-honesty-security/implementation-summary.md` — deferred findings record
 
-## Adversarial Self-Check: P0/P1 Adjudication
+## Findings by Severity
 
-### R3-P0-001: Verification gate bypassed — 103 unchecked checklist items vs COMPLETE claim
+### P0
 
-- **Claim**: 002-sandbox-testing-playbook/checklist.md has 103 unchecked `[ ]` items but implementation-summary declares COMPLETE (~95%), bypassing verification gates.
-- **Evidence verified at source**: `checklist.md:54-60` — CHK-004 through CHK-007 are `[ ]` (unchecked). `implementation-summary.md:55` — body declares `Status: COMPLETE (~95%)`.
-- **Counterevidence sought**: Implementation files DO exist on disk (23 scenarios, 31 sandbox files, root playbook integrated). The "95% complete" claim in the body is about implementation delivery, not checklist verification. The frontmatter `completion_pct: 70` is a more accurate assessment.
-- **Alternative explanation**: The checklist was authored during scaffolding and never maintained as a living document. Implementation verification was done via harness smoke tests (5/7 gates pass per IMS) but checklist items were never retroactively marked. This is a documentation gap, not a security or data-loss risk.
-- **Severity assessment**: P0 requires "exploitable security issue, auth bypass, or destructive data loss" per review_core.md §2. An unchecked verification checklist with working implementation on disk does not meet the P0 threshold. The finding correctly identifies a quality gate gap, but it is a traceability/documentation issue (P1), not a blocker (P0).
-- **Adjudication**: **DOWNGRADE to P1**. Severity: P1. Confidence: 0.95.
-- **Downgrade trigger**: Realistic — implementers documented delivery via IMS body and harness gates rather than maintaining the checklist in parallel. Merge with R1-P1-007 and R6-P1-002 (same finding, different iterations).
+None.
 
-### R1-P1-001 / R2-P1-001: Parent last_active_child_id is null — violates REQ-P-002
+### P1
 
-- **Claim**: `graph-metadata.json:220` has `"last_active_child_id": null` while REQ-P-002 requires it be set to a child ID.
-- **Evidence verified at source**: `graph-metadata.json:220` — `"last_active_child_id": null` CONFIRMED. REQ-P-002 exists in parent spec.md.
-- **Counterevidence sought**: Checked if field population happens via generate-context.js after save — it does, but no save targeting 013 parent has occurred since last child work.
-- **Alternative explanation**: The field is intentionally null because both children are in-progress and no single child has been explicitly designated as "last active". However, REQ-P-002 language does not provide this exception.
-- **Adjudication**: **CONFIRM P1**. Both iteration findings (R1-P1-001 and R2-P1-001) identify the same root issue. Recommend merging in registry.
-- **Confidence**: 0.95.
+None. All 30 original P1 findings remain closed after adversarial re-adjudication.
 
-### R1-P1-002: Parent derived.status planned vs spec In Progress mismatch
+### P2 — Adversarial Adjudication
 
-- **Claim**: `graph-metadata.json` derived.status disagrees with `spec.md` phase map status.
-- **Evidence**: Phase map shows "Complete" for child 001 and "In Progress" for child 002. Graph metadata status should reflect the aggregate but shows "planned".
-- **Adjudication**: **CONFIRM P1**. Metadata staleness from missing generate-context.js run.
-- **Confidence**: 0.90.
-
-### R1-P1-003 / R2-P1-003 / R3-P1-003: IMS title COMPLETE vs body PARTIAL (~30%)
-
-- **Claim**: `001-doctor-commands/implementation-summary.md:2` title declares "COMPLETE — all phases A-E delivered" but body line 51 says "PARTIAL (~30% complete)". Frontmatter `completion_pct: 99` adds a third contradictory value.
-- **Evidence verified at source**: Line 2 title, line 51 body, line 29 frontmatter — all confirmed contradictory.
-- **Adjudication**: **CONFIRM P1**. Three-way contradiction between title, body, and frontmatter. Merge R1-P1-003, R2-P1-003, R3-P1-003.
-- **Confidence**: 0.95.
-
-### R1-P1-004 / R6-P1-001: 001 checklist never synced — 80+ items unchecked
-
-- **Claim**: All checklist items remain `[ ]` despite implementation delivery claim.
-- **Evidence verified at source**: `001-doctor-commands/checklist.md` frontmatter shows `completion_pct: 35`. grep for `[x]` in body returns minimal hits.
-- **Adjudication**: **CONFIRM P1**. Merge with R6-P1-001.
-- **Confidence**: 0.95.
-
-### R1-P1-005: specFolder at parent level, should include /001-doctor-commands
-
-- **Claim**: `001-doctor-commands/description.json:2` has `specFolder` pointing to parent, not child.
-- **Evidence verified at source**: `"specFolder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"` — missing `/001-doctor-commands` suffix. CONFIRMED.
-- **Adjudication**: **CONFIRM P1**.
-- **Confidence**: 0.95.
-
-### R1-P1-006: Resource map entries show PLANNED status — not refreshed
-
-- **Claim**: 001 resource-map entries never updated from PLANNED to actual status.
-- **Adjudication**: **DOWNGRADE to P2**. This is documentation drift, not a correctness or security issue. Already partially captured as R9-P2-001 in iteration 9. Resource-map accuracy is a maintainability concern (P2).
-- **Confidence**: 0.90.
-
-### R1-P1-007: 002 checklist unchecked — mirrors P1-004 pattern
-
-- **Claim**: Same unchecked checklist pattern as 001.
-- **Adjudication**: **CONFIRM P1**. Merges with the downgraded R3-P0-001 and R6-P1-002.
-- **Confidence**: 0.95.
-
-### R1-P1-008: 002 resource map PLANNED status — not refreshed
-
-- **Claim**: Same stale resource-map pattern as R1-P1-006.
-- **Adjudication**: **DOWNGRADE to P2**. Same rationale as R1-P1-006. Already captured as R9-P2-002.
-- **Confidence**: 0.90.
-
-### R2-P1-002: Parent spec Phase Map claims child 001 Complete but child docs show incomplete
-
-- **Claim**: `spec.md:104` says 001 is "Complete" but 001/IMS says PARTIAL (~30%).
-- **Adjudication**: **CONFIRM P1**. Direct consequence of R1-P1-003 (IMS internal contradiction).
-- **Confidence**: 0.95.
-
-### R2-P1-004: tasks.md shows all Phase B/C/D tasks as Pending but implementation files exist
-
-- **Claim**: 16+ tasks marked Pending despite all 5 commands + YAMLs existing on disk.
-- **Adjudication**: **CONFIRM P1**.
-- **Confidence**: 0.90.
-
-### R2-P1-005: Parent spec Phase Map claims 21 yamls but ADR-010 reduces to 5
-
-- **Claim**: `spec.md:104-105` says "21 yamls" but actual implementation has 5 (one per command per ADR-010).
-- **Adjudication**: **CONFIRM P1**.
-- **Confidence**: 0.95.
-
-### R2-P1-006 / R3-P1-004: IMS references obsolete multi-mode YAMLs as remaining work
-
-- **Claim**: IMS lines 96-104 describe confirm/apply/apply-confirm variants that ADR-010 superseded.
-- **Adjudication**: **CONFIRM P1**. Merge R2-P1-006 and R3-P1-004.
-- **Confidence**: 0.95.
-
-### R3-P1-001: SC-001 references 25 scenarios but reality = 23
-
-- **Claim**: `002-spec.md:193` says "25 scenario .md files" but ADR-008 removed DOC-337 + DOC-343.
-- **Adjudication**: **CONFIRM P1**.
-- **Confidence**: 0.95.
-
-### R3-P1-002: 002 IMS internal contradiction: completion_pct 70 vs body COMPLETE (~95%)
-
-- **Claim**: Frontmatter `completion_pct: 70` vs body `Status: COMPLETE (~95%)`.
-- **Evidence verified**: `implementation-summary.md:33` shows 70, line 55 shows COMPLETE (~95%). CONFIRMED.
-- **Adjudication**: **CONFIRM P1**.
-- **Confidence**: 0.95.
-
-### R3-P1-005: 002 spec lists 001 sibling as Complete — contradicts 001 own status
-
-- **Claim**: `002-spec.md:68` says "Sibling: 001-doctor-commands (Complete)" but 001 IMS says PARTIAL.
-- **Adjudication**: **CONFIRM P1**.
-- **Confidence**: 0.95.
-
-### R3-P1-006: All 23 scenarios structurally correct but zero executed end-to-end
-
-- **Claim**: No runtime verification evidence exists; handover confirms zero scenarios run.
-- **Adjudication**: **CONFIRM P1**. Critical verification gate — scenarios exist but unverified.
-- **Confidence**: 0.95.
-
-### R4-P1-001: rm -rf with dynamic timestamp path — TOCTOU risk under stale flock
-
-- **Claim**: `doctor_update.yaml:287` uses `rm -rf` with timestamp-derived path, creating TOCTOU risk if flock is stale (SIGKILL).
-- **Evidence verified at source**: Line 287: `rm -rf .opencode/skill_legacy_backup_$(date -u +%Y%m%dT%H%M%SZ)`. 
-- **Counterevidence sought**: The rm -rf executes INSIDE the Phase 1 flock acquired at line 205. The flock serializes all concurrent executions. The date evaluation and rm execution happen atomically within the same process under the same flock. No other process can interfere.
-- **Alternative explanation**: The only scenario where TOCTOU applies is if SIGKILL leaves a stale flock file. This is an OS-level edge case, not specific to this code — every flock-based lock has this limitation. The directory_layout_bridge `detect_command` (line 285) also gates the operation. The backup directory name is derived from `date -u`, making collisions across time windows extremely unlikely even without flock.
-- **Severity assessment**: The flock protection makes the TOCTOU window effectively zero. The original confidence was only 0.80. The finding overstates the risk.
-- **Adjudication**: **DOWNGRADE to P2**. The flock serialization and pre-condition check make this safe in practice. The stale-flock scenario is a universal flock limitation, not a code-specific vulnerability.
-- **Confidence**: 0.90.
-
-### R4-P1-002: npm install --no-audit suppresses vulnerability scanning during bootstrap
-
-- **Claim**: `doctor-runtime-bootstrap.sh:183,194` uses `--no-audit` which skips npm audit, hiding known vulnerabilities.
-- **Evidence verified at source**: Lines 183, 194 — `npm ci --no-audit --no-fund --silent` and `npm install --no-audit --no-fund --silent`. CONFIRMED.
-- **Adjudication**: **CONFIRM P1**. Deliberate suppression of dependency vulnerability scanning is a legitimate security concern. Recommend removing `--no-audit` or logging warnings on audit failure.
-- **Confidence**: 0.85.
-
-### R4-P1-003: pip install -e . on local path — executes package setup.py
-
-- **Claim**: `doctor_update.yaml:307` runs `pip install --quiet -e .opencode/skills/mcp-coco-index/mcp_server` which executes arbitrary Python code.
-- **Evidence verified at source**: Line 307 — `pip install --quiet -e .opencode/skills/mcp-coco-index/mcp_server`. CONFIRMED.
-- **Counterevidence sought**: The path `.opencode/skills/mcp-coco-index/mcp_server` is LOCAL to the same git repository. This is not downloading external packages. The trust model is identical to running any other script from the repo (bash scripts, node scripts, etc.).
-- **Alternative explanation**: This is a development/bootstrapping tool that installs code already present in the workspace. No external code fetch occurs. A malicious setup.py in the repo would already be executable via many other paths.
-- **Severity assessment**: Original confidence was only 0.70. The risk is no different from any other repo-local code execution.
-- **Adjudication**: **DOWNGRADE to P2**. Local code installation does not introduce a novel security boundary. Recommend hash verification of setup.py as belt-and-suspenders, but not a P1 blocking issue.
-- **Confidence**: 0.90.
-
-### R4-P1-004: mkdir lock primitive is TOCTOU-raceable — bootstrap runs before flock acquisition
-
-- **Claim**: Bootstrap mkdir lock (line 129) serializes only the bootstrap process, but YAML Phase 1 flock (line 205) is acquired AFTER Phase 0 bootstrap completes.
-- **Evidence verified at source**: `bootstrap.sh:129` — `mkdir "$LOCK_DIR"`. `doctor_update.yaml:205` — flock acquisition. Bootstrap completes before YAML Phase 1 flock. CONFIRMED.
-- **Adjudication**: **CONFIRM P1**. Two concurrent sessions could both pass bootstrap and race into npm install/build. Legitimate TOCTOU gap.
-- **Confidence**: 0.85.
-
-### R4-P1-005: No integrity verification of migration-manifest.json before executing migration operations
-
-- **Claim**: `update.md:247` — YAML reads migration-manifest.json without hash/signature/schema validation. Corrupted manifest could declare incorrect legacy file paths.
-- **Adjudication**: **DOWNGRADE to P2**. The migration-manifest.json is a local file under version control in the same repository. The trust model is identical to any other config file. Schema validation would be good practice but is documentation-level polishing, not a security P1. Original confidence was only 0.70.
-- **Confidence**: 0.85.
-
-### R5-P1-001: Broad read-write repo root mount in docker-compose
-
-- **Adjudication**: **CONFIRM P1**. Reducing mount scope to writable paths only improves sandbox isolation.
-- **Confidence**: 0.90.
-
-### R5-P1-002: No Linux capability drops on sandbox container
-
-- **Adjudication**: **CONFIRM P1**. Adding `cap_drop: [ALL]` is standard sandbox hardening.
-- **Confidence**: 0.90.
-
-### R5-P1-003: Unvalidated SPECKIT_DOCTOR_RUNNER env var execution
-
-- **Claim**: Environment variable used to select runner without validation/allowlist.
-- **Adjudication**: **DOWNGRADE to P2**. This env var is set by the operator running a local sandbox. The operator controls the environment. No external attacker can set this variable without already having shell access. A P1 security finding requires a more realistic threat model.
-- **Confidence**: 0.85.
-
-### R6-P1-001: 001 checklist never synced — DUPLICATE of R1-P1-004
-
-- **Adjudication**: **CONFIRM P1**. Merge with R1-P1-004.
-
-### R6-P1-002: 002 checklist 96% unchecked — DUPLICATE of R1-P1-007 / downgraded R3-P0-001
-
-- **Adjudication**: **CONFIRM P1**. Merge with R1-P1-007 and R3-P0-001.
-
-### R6-P1-003: YAML asset count mismatch: spec says 10, resource-map says 5, disk has 5
-
-- **Adjudication**: **CONFIRM P1**. Spec-code mismatch.
-- **Confidence**: 0.90.
-
-### R6-P1-004: P0 REQ-003 strict validate exit 0 never passed — known cross-packet blocker
-
-- **Adjudication**: **CONFIRM P1**. Known issue affecting multiple packets; 013 is not uniquely broken. Still a spec requirement violation.
-- **Confidence**: 0.90.
-
-### R6-P1-005: No POST-SAVE QUALITY REVIEW evidence for either 001 or 002 packet
-
-- **Adjudication**: **DOWNGRADE to P2**. This is a documentation process gap. POST-SAVE review is a recommended step, not a functional requirement impacting correctness or security. The actual metadata files (description.json, graph-metadata.json) exist and are valid.
-- **Confidence**: 0.90.
-
-### R7-P1-001: Doctor commands lack skill_agent traceability mapping
-
-- **Adjudication**: **CONFIRM P1**. Traceability gap between commands and owning skill.
-- **Confidence**: 0.90.
-
-### R8-P1-001: Cross-runtime doctor command mirror missing for 3/4 runtimes
-
-- **Adjudication**: **CONFIRM P1**. Cross-runtime maintainability gap.
-- **Confidence**: 0.95.
-
-### R8-P1-002: Doc-code drift: last_active_child_id falsely claimed as set in 002 docs
-
-- **Claim**: 4 doc locations in 002 claim `last_active_child_id` is set to 002, but `graph-metadata.json:220` shows null.
-- **Evidence verified at source**: `handover.md:100` — "last_active_child_id correctly tracks 002". `graph-metadata.json:220` — `"last_active_child_id": null`. CONFIRMED.
-- **Adjudication**: **CONFIRM P1**. Documentation claims a field value that does not exist.
-- **Confidence**: 0.95.
+Each active P2 is re-adjudicated below using the CLAIM ADJUDICATION schema.
 
 ---
 
-## Adjudication Summary
+#### P2-009-001 [P2] Parent description.json description overwritten to describe remediation instead of phase parent purpose
 
-| Metric | Before Adjudication | After Adjudication |
-|--------|---------------------|-------------------|
-| **P0** | 1 | **0** |
-| **P1** | 36 | **30** (29 unique + 1 from P0 downgrade, minus 7 downgrades to P2) |
-| **P2** | 23 | **30** (23 original + 7 from P1 downgrades) |
+- **File**: `013-doctor-update-orchestrator/description.json:7`
+- **Claim**: `description` field reads `"Remediation of 013 deep-review CONDITIONAL findings: doc honesty + security hardening + cross-runtime mirror"` — this describes the 003 remediation, not the parent's role as a phase parent for doctor commands (001) + sandbox playbook (002).
+- **EvidenceRefs**: `description.json:7`, 003/implementation-summary.md §Verification (does not document this overwrite), iter-009.md §P2-009-001
+- **CounterevidenceSought**: Is this actually correct? The parent's most recent context at the time of the 003 memory save WAS the remediation. generate-context.js honestly captured the last context it was given. However, the `description` field should describe the phase parent's identity/purpose, not its most recent action. The parent spec.md title/description (lines 1-3) correctly reads `"Feature Specification: Doctor Update Orchestrator"` and `"Phase parent for the doctor command surface and the manual testing playbook..."`.
+- **AlternativeExplanation**: generate-context.js extracts description from the most recent context it's given; when run during 003 memory save, it captured the remediation description. This is an upstream convention issue in generate-context.js, not a 013 packet defect per se. However, the result on disk is incorrect for the parent's identity.
+- **FinalSeverity**: P2 (confirmed). Documentation identity drift — does not affect functionality, does not block correctness or security. The parent spec.md remains authoritative.
+- **Confidence**: 0.95
+- **DowngradeTrigger**: Re-run generate-context.js scoped to the parent spec.md context, or manually patch the description field.
+- **Finding class**: instance-only
+- **Scope proof**: `grep -rn 'description' `013-doctor-update-orchestrator/description.json` confirms the field is singular — only the parent description.json has this drift. Child description.json files are correct.
 
-### Downgrades Applied
+---
 
-| Finding ID | Original | New | Rationale |
-|-----------|----------|-----|-----------|
-| R3-P0-001 | P0 | P1 | Documentation gap, not security/data-loss blocker |
-| R1-P1-006 | P1 | P2 | Stale resource-map status — documentation drift |
-| R1-P1-008 | P1 | P2 | Stale resource-map status — documentation drift |
-| R4-P1-001 | P1 | P2 | Flock serialization eliminates TOCTOU window |
-| R4-P1-003 | P1 | P2 | pip install from local repo path, same trust as any repo script |
-| R4-P1-005 | P1 | P2 | Local VC-controlled manifest file |
-| R5-P1-003 | P1 | P2 | Operator-set env var in local sandbox |
-| R6-P1-005 | P1 | P2 | Documentation process gap, not functional requirement |
+#### P2-RG-001 [P2] Malformed PHASE DOCUMENTATION MAP row in parent spec.md (iter-2/7/8/9, now re-adjudicated as P2-007-002)
 
-### Duplicate Finding Clusters (Recommended Merges)
+- **File**: `parent/spec.md:106`
+- **Claim**: Row reads `| 002-sandbox-testing-playbook | 003-rm8-013-remediation-doc-honesty-security | [Criteria TBD] | [Verification TBD] |`. The Phase column is missing its number, the Folder column has the remediation packet name instead of a child folder, and the row structure does not match the two-phase layout described in the same table (lines 104-105).
+- **EvidenceRefs**: `spec.md:106` (read confirms the row is present and malformed), iter-2 §P2-RG-001, iter-7 §P2-007-002, iter-8, iter-9
+- **CounterevidenceSought**: Could this row be intentional — e.g., documenting the 003 remediation as a temporary phase? No: the table header defines columns `Phase | Folder | Status | Description`. Row 3 has no phase number, the folder column is a remediation packet (not a phase child), and fields are TBD. This looks like a Batch A artifact that was never cleaned up.
+- **AlternativeExplanation**: The remediation Batch A may have added this row as a placeholder when updating the parent spec.md, intending to fill it in later. It was left incomplete.
+- **FinalSeverity**: P2 (confirmed). Documentation formatting — the table is parseable for rows 1-2; row 3 is noise. Does not affect functionality or block correctness. Would confuse a human reader about the phase structure.
+- **Confidence**: 0.95
+- **DowngradeTrigger**: Delete or correct row 3 of the PHASE DOCUMENTATION MAP table.
+- **Finding class**: instance-only
+- **Scope proof**: Only one row in the table is malformed. Rows 1 and 2 are structurally correct with phase numbers (1, 2) and valid child folder references.
 
-| Cluster | Findings |
-|---------|----------|
-| last_active_child_id null | R1-P1-001, R2-P1-001 |
-| 001 IMS title/body contradiction | R1-P1-003, R2-P1-003, R3-P1-003 |
-| 001 checklist unchecked | R1-P1-004, R6-P1-001 |
-| 002 checklist unchecked | R1-P1-007, R3-P0-001 (now P1), R6-P1-002 |
-| YAML modes referenced | R2-P1-006, R3-P1-004 |
-| resource-map stale | R1-P1-006, R1-P1-008, R9-P2-001, R9-P2-002 |
+---
 
-## SCOPE VIOLATIONS
+#### P2-007-001 [P2] 002 handover.md completion_pct drifts from IMS (70 vs 95)
 
-None. All writes confined to ALLOWED WRITE PATHS.
+- **File**: `002-sandbox-testing-playbook/handover.md:33`
+- **Claim**: `completion_pct: 70` in handover.md frontmatter vs `completion_pct: 95` in implementation-summary.md. The remediation refreshed IMS from 70→95 but did not touch handover.md (not in Batch D scope; R9-P2-006 was deferred).
+- **EvidenceRefs**: `handover.md:33` (read confirms `completion_pct: 70`), `002/implementation-summary.md` (confirms `completion_pct: 95` via iter-9 verification), 003 IMS §Deferred items
+- **CounterevidenceSought**: Could handover.md reflect a different completion metric (e.g., handover-specific completion vs overall completion)? No — the handover.md continuity block is the same schema as IMS continuity, and handover.md's own body claims to be a continuity handoff. The IMS is the authoritative source of truth.
+- **AlternativeExplanation**: Handover.md was authored before the remediation; the remediation targeted IMS continuity but not handover.md (by design, to keep Batch D surgical). The drift is real but minor.
+- **FinalSeverity**: P2 (confirmed). Minor continuity metadata drift — `completion_pct` is advisory, not a runtime gate. The IMS and spec both agree on 95. Handover.md is the only stale source.
+- **Confidence**: 0.90
+- **DowngradeTrigger**: Update handover.md `completion_pct` to 95.
+- **Finding class**: instance-only
+- **Scope proof**: Only 002's handover.md has this drift. 002's IMS and spec.md are internally consistent (both 95). 001's docs are also consistent (95).
+
+---
+
+#### P2-007-003 [P2] 001 child lacks handover.md
+
+- **File**: `001-doctor-commands/` (file absent)
+- **Claim**: Sibling 002 has a handover.md for resumption continuity; 001 has no equivalent. The parent resource-map.md line 110 marks a former `001-doctor-commands/handover.md` as MISSING (Moved).
+- **EvidenceRefs**: Glob of `001-doctor-commands/` (24 files, no `handover.md`), parent/resource-map.md (marks handover.md as MISSING/Moved)
+- **CounterevidenceSought**: Is handover.md required for child packets? No — `handover.md` is a cross-cutting optional doc per the spec kit. 001's IMS continuity block (`implementation-summary.md` frontmatter) serves the same purpose for resumption. The absence is a convention gap, not a functional defect.
+- **AlternativeExplanation**: 001 was authored before the handover.md convention was established for this phase parent's children. Or 001's implementation-summary.md continuity block is the intended resumption ladder for this child, and no separate handover.md is needed.
+- **FinalSeverity**: P2 (confirmed — borderline trivial). The continuity ladder works through IMS frontmatter. A handover.md would be nice-to-have for parity with sibling 002 but is not required.
+- **Confidence**: 0.85
+- **DowngradeTrigger**: Not urgent. Create handover.md if parity is desired, but the 001 IMS continuity block is functionally sufficient.
+- **Finding class**: instance-only
+- **Scope proof**: Only 001 lacks handover.md. 002 has one. 003 has none (remediation packet, not a phase child). Parent has one.
+
+---
+
+## Regression Check
+
+**Assessment**: PASS — no new P0/P1 regressions introduced by remediation commit `495fdd282`. No previously-closed findings have re-opened.
+
+### Items re-checked:
+
+1. **Adversarial re-read of all 10 clusters**: All closure conditions verified on disk (see Closure Verification table above). No signs of regression.
+
+2. **Remediation-introduced P2s are correctly classified**:
+   - P2-009-001 (description.json overwrite): P2 — cosmetic identity drift, functional spec.md is authoritative
+   - P2-RG-001 (malformed table row): P2 — documentation formatting, rows 1-2 are correct and complete
+
+3. **The 2 deferred P2 are honestly recorded**:
+   - R8-P2-001 ("Gemini TOML format"): DEFERRED-NON-ISSUE. The `.gemini/commands/doctor/` convention IS `.toml` (pre-existing `mcp_debug.toml` + `mcp_install.toml`). Batch C completed the mirror in TOML to match convention. The finding's framing was wrong. Honest resolution: not a defect.
+   - R9-P2-006 ("parent handover.md drift"): DEFERRED. Parent handover.md was deliberately not in Batch D's allowed-write list to keep batches surgical. The drift is minor. Honest resolution: deferred to follow-on packet.
+
+4. **Scope hygiene**: The 003 remediation IMS claims "zero out-of-scope writes across all 4 batches." The on-disk evidence in the review target (parent + 001 + 002) shows no unexpected mutations. The re-review iterations 1-9 found no scope violations.
+
+5. **Sandbox guard logic edge cases**: Previously verified in iter-9 — guard returns 125/SKIP when preconditions unset, propagates cleanly through all 3 harness scripts. No regression.
+
+6. **Cross-runtime mirror**: opencode=10, claude=10, codex=10 (via symlink), gemini=10. All anchors present.
+
+7. **Security hardening**: `--no-audit` absent (0 grep hits), `flock -n` at FD 9, `cap_drop: [ALL]` in docker-compose.yml. All verified in iters 4-5.
 
 ## Traceability Checks
 
-| Protocol | Status | Detail |
-|----------|--------|--------|
-| spec_code | partial | 8/8 P0 reqs in 001 have impl files; 12/12 in 002 have impl evidence. Gaps: REQ-002 YAML count (R6-P1-003), REQ-003 validate never passed (R6-P1-004) |
-| checklist_evidence | not-yet | 001: 0/80+ checked. 002: 3/75+ checked. Evidence exists on disk for most items |
-| skill_agent | partial | Doctor commands exist but lack SKILL.md ownership declaration (R7-P1-001) |
-| agent_cross_runtime | partial | Agent mirrors clean (12/run). Command mirrors fail for 3/4 runtimes (R8-P1-001) |
-| feature_catalog_code | partial | Resource-map entries stale (R1-P1-006, R1-P1-008 → P2); most paths verified on disk |
-| playbook_capability | clean | 23 scenarios structurally correct; zero executed end-to-end (R3-P1-006) |
+- **003/implementation-summary.md §Verification**: 30-row evidence table maps each check to result — traceable.
+- **003/implementation-summary.md §Findings closure tally**: Documents 30/30 P1 closed, 28/30 P2 closed, 2 deferred — accurate.
+- **Parent graph-metadata.json**: `last_active_child_id` = `002-sandbox-testing-playbook` (line 220), `derived.status` = `in_progress` — correct.
+- **Parent spec.md §3 PHASE DOCUMENTATION MAP**: Rows 1-2 (phases 1 and 2) correctly enumerate child folders with status and descriptions. Row 3 is malformed (P2-RG-001).
+- **Cross-child references**: 002 spec.md references `../001-doctor-commands/spec.md` and `../001-doctor-commands/decision-record.md` — both exist on disk.
+- **Resource-map.md**: 38 OK rows, 1 MISSING (pre-existing — 001 child handover.md moved to parent). No broken paths.
+
+## Adversarial Self-Check Conclusion
+
+After rigorous adjudication of all 4 remaining P2 findings and reproof of all 10 closure clusters:
+
+1. **No finding merits elevation to P1 or P0**. All 4 are documentation-maintenance issues (P2 by definition per review_core.md §2: "non-blocking improvement, documentation polish"). None affect correctness, security, or runtime behavior.
+
+2. **No finding from the original CONDITIONAL verdict has resurfaced as P1**. The remediation campaign (commit `495fdd282`) closed all 30 P1 findings cleanly, and the closure holds under adversarial re-examination.
+
+3. **The 2 formally deferred P2** (R8-P2-001, R9-P2-006) are recorded honestly in the 003 IMS with clear rationale.
+
+4. **The remediation introduced only 2 minor regressions** (P2-009-001, P2-RG-001) — both P2, both cosmetic, both confined to the parent spec folder. These do not block the verdict.
+
+5. **No scope violations** were detected across the re-review (iters 1-10). The review target is read-only; all writes confined to the allowed-write list.
+
+## Deferred Findings (Formal Record)
+
+| ID | Original description | Resolution | Status |
+|----|---------------------|-----------|--------|
+| R8-P2-001 | Gemini runtime doctor commands use `.toml` vs `.md` | `.toml` is correct Gemini convention (pre-existing `mcp_debug.toml`, `mcp_install.toml`). Batch C completed mirror in TOML. Finding framing was wrong. | DEFERRED-NON-ISSUE |
+| R9-P2-006 | Small doc-code drift in parent `handover.md` | Deliberately not in Batch D scope to keep batches surgical. Minor drift — does not block. | DEFERRED |
 
 ## Verdict
 
-**CONDITIONAL**
+**PASS** (`hasAdvisories=true`)
 
-- **Active P0**: 0
-- **Active P1**: 30 (adjudicated, down from 36)
-- **Active P2**: 30 (up from 23 via 7 downgrades)
-- **Rationale**: Zero P0 blockers after adjudication. 30 P1 findings remain — all are documentation/traceability/correctness issues, not security exploits. The implementation code exists on disk and is structurally sound (all 5 commands + YAMLs, 23 scenarios, sandbox harness). The gap is entirely in documentation maintenance: checklists unmarked, IMS contradictory, resource maps stale, last_active_child_id null. These are remediable without architectural rework. Per verdict mapping: activeP0 == 0 AND activeP1 > 0 → CONDITIONAL.
+| Metric | Value |
+|--------|-------|
+| activeP0 | 0 |
+| activeP1 | 0 |
+| activeP2 | 4 |
+| Clusters verified closed | 10/10 (A–J) |
+| Deferred P2 (from original) | 2 (R8-P2-001, R9-P2-006) |
+| Remediation regressions (P2) | 2 (P2-009-001, P2-RG-001) |
+| Pre-existing P2 (not in remediation scope) | 2 (P2-007-001, P2-007-003) |
+| Scope violations | 0 |
+| Convergence score | 1.0 (all 4 dimensions covered, evidence complete) |
+
+The remediation campaign succeeded: the 013-doctor-update-orchestrator phase parent moves from **CONDITIONAL** → **PASS**. The 4 remaining P2 advisories are non-blocking documentation polish. The 2 deferred P2 are honestly documented in the 003 remediation IMS.
 
 ## Next Dimension
 
-This is iteration 10 of 10 (terminal). No further iterations planned. The review workflow has reached maxIterations. Synthesis should:
-1. Accept the adjudicated findings (0 P0, 30 P1, 30 P2)
-2. Generate `review-report.md` summarizing the CONDITIONAL verdict
-3. Recommend priority remediation: populate `last_active_child_id`, reconcile IMS completion states, mark checklist items with evidence, and fix spec-code YAML count mismatch (5 not 21/10)
+None — iteration 10 is the final iteration. Produce final `review-report.md` with the PASS verdict.
