@@ -89,17 +89,103 @@ TIER 1 — TARGET RESOLUTION
    - Otherwise → bind `target` to the token.
 
 2. IF target IS UNRESOLVED:
-   - ASK Tier 1 question:
-     "Which subsystem do you want to diagnose?
-        A) memory          — continuity index health
-        B) causal-graph    — causal-edge integrity (add-only)
-        C) code-graph      — code-graph index scan / repair
-        D) deep-loop       — deep-loop coverage graphs (research / review)
-        E) cocoindex       — CocoIndex semantic-search daemon
-        F) skill-advisor   — advisor scoring tune
-        G) skill-budget    — description budget audit (read-only)
-        H) cancel"
-   - WAIT for selection. Map A-G to the target string. H → STATUS=CANCEL, exit.
+   - ASK Tier 1 question (print VERBATIM — do not paraphrase or split into multiple messages):
+
+```
+You ran `/doctor` without a target. Pick the scenario that fits — common cross-cutting
+cases first, then per-subsystem diagnostics.
+
+══ COMMON SCENARIOS (try one of these BEFORE picking a per-subsystem target) ══
+
+   [1] "I just upgraded spec-kit (e.g. 3.3.0.0 → 3.4.x) and want everything aligned"
+       → Use `/doctor:update --migrate` instead. Handles schema migration + every
+         subsystem rebuild in dependency-safe order with snapshots + auto-rollback.
+         Takes 8-25 min. Hit 1 to switch now.
+
+   [2] "MCP servers themselves are broken (not connecting, missing tools, install fail)"
+       → Use `/doctor:mcp debug --fix` (or `/doctor:mcp install` for fresh setup).
+         Diagnoses spec-kit-memory, cocoindex-code, code-mode, sequential-thinking.
+         Hit 2 to switch now.
+
+   [3] "I want a full sweep, no per-subsystem decisions"
+       → Use `/doctor:update` (no --migrate flag). Same orchestrator, current schema.
+         Takes 8-25 min. Hit 3 to switch now.
+
+══ PER-SUBSYSTEM DIAGNOSTICS (pick one if you have a specific symptom) ══
+
+   [A] memory         — memory_search returns stale/empty; spec-doc edits not indexed;
+                        STARTUP warning "context-index.sqlite missing" or "STALE"
+   [B] causal-graph   — memory_drift_why returns sparse paths; lineage hops missing;
+                        STARTUP warning "causal coverage <60%"
+   [C] code-graph     — `cocoindex search` returns 0 hits where matches expected;
+                        STARTUP graph warning "stale", "missed", or "bloat"
+   [D] deep-loop      — /spec_kit:deep-research|deep-review iteration graphs empty;
+                        convergence detection broken; coverage drift between runs
+   [E] cocoindex      — semantic search fails; CocoIndex daemon zombie / unhealthy /
+                        unreachable; "ccc_status" reports degraded
+   [F] skill-advisor  — Skill Advisor recommends the wrong skill; recently-added
+                        skills not found; lane scoring drifted
+   [G] skill-budget   — Frontmatter descriptions over 1536-char hard cap; project total
+                        over the 5600 soft ceiling (READ-ONLY audit; CI-friendly with --json)
+
+══ OTHER ══
+
+   [H] help    — Print detailed symptom→subsystem mapping (no command runs)
+   [X] cancel  — Exit without running anything (default if empty input)
+```
+
+   - WAIT for selection. Map answers as follows:
+     - 1 → ABORT this command, EMIT: "Switch to `/doctor:update --migrate` for upgrade migration. Exiting /doctor."
+     - 2 → ABORT, EMIT: "Switch to `/doctor:mcp debug --fix` (or `/doctor:mcp install`). Exiting /doctor."
+     - 3 → ABORT, EMIT: "Switch to `/doctor:update` for full sweep. Exiting /doctor."
+     - A → target = "memory"
+     - B → target = "causal-graph"
+     - C → target = "code-graph"
+     - D → target = "deep-loop"
+     - E → target = "cocoindex"
+     - F → target = "skill-advisor"
+     - G → target = "skill-budget"
+     - H → print the HELP block below, then re-ask Tier 1 question.
+     - X / empty / "cancel" → STATUS=CANCEL, exit.
+     - Anything else → re-emit the menu once; on second invalid input → STATUS=FAIL ERROR=unknown_selection.
+
+   HELP block (printed when user picks [H]):
+
+```
+SYMPTOM → SUBSYSTEM MAPPING
+
+If your symptom is...                                          Pick subsystem:
+─────────────────────────────────────────────────────────────  ──────────────
+"I edited a spec doc and memory_search doesn't find it"        memory  (A)
+"context-index.sqlite missing" startup warning                 memory  (A)
+"voyage embedding DB missing" startup warning                  memory  (A)
+"memory_drift_why returns nothing useful"                      causal-graph  (B)
+"causal coverage <60%" warning at startup                      causal-graph  (B)
+"lineage trace shows orphans" or "no incoming edges"           causal-graph  (B)
+"cocoindex search returns 0 hits for known code"               code-graph  (C)  ← structural index
+"startup warning: code-graph stale/missed/bloat"               code-graph  (C)
+"my code is indexed but search is slow / wrong"                cocoindex   (E)  ← semantic embeddings
+"CocoIndex daemon died" or "ccc_status: unhealthy"             cocoindex   (E)
+"/spec_kit:deep-research iteration graph is empty"             deep-loop   (D)
+"convergence not detected between iterations"                  deep-loop   (D)
+"Skill Advisor recommends the wrong skill"                     skill-advisor  (F)
+"new skill not appearing in advisor results"                   skill-advisor  (F)
+"description char-count over 1536 hard cap"                    skill-budget   (G)
+"want to audit project description budget for CI"              skill-budget   (G)
+
+Confused between code-graph (C) and cocoindex (E)?
+   - code-graph  = STRUCTURAL (functions, files, dirs, AST-derived)
+   - cocoindex   = SEMANTIC   (vector embeddings, intent-based search)
+
+Confused between skill-advisor (F) and skill-budget (G)?
+   - skill-advisor = ROUTING quality (which skill gets recommended for a prompt)
+   - skill-budget  = CHAR COUNT audit (frontmatter description size for AI tools)
+
+Press any letter A-G to pick, [1] for upgrade migration, [2] for MCP infra,
+[3] for full sweep without prompts, or [X] to cancel.
+```
+
+   - After printing HELP, RE-EMIT the Tier 1 question above and WAIT again.
 
 3. VALIDATE target against the canonical list in _routes.yaml:
    - If target is NOT one of: memory | causal-graph | code-graph | deep-loop | cocoindex | skill-advisor | skill-budget
