@@ -51,11 +51,11 @@ For Spec Kit packet recovery, this skill treats `/spec_kit:resume` as the canoni
 
 | Metric | Value |
 | --- | --- |
-| Skill version | 1.3.0.0 |
+| Skill version | 1.5.0.0 |
 | Operating modes | 5 |
 | Script count | 6 automation scripts |
 | Template count | 10+ templates across 4 asset categories |
-| Reference files | 11 (6 global, 5 specific) |
+| Reference files | 12 (6 global, 6 creation guides) |
 | Flowchart patterns | 7 core patterns |
 | DQI scale | 0-100 (four quality bands) |
 
