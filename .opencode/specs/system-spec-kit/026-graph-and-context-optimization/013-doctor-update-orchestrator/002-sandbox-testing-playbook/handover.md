@@ -30,7 +30,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "handover-002-sandbox-testing-playbook-2026-05-09"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 95
     open_questions:
       - "Generate empty-state and partial-state fixtures synthetically, or wait on external sources?"
       - "Build Docker image now or defer until CI workflow lands?"

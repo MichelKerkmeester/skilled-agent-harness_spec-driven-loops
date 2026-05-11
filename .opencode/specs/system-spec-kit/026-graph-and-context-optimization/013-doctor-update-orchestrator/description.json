@@ -4,27 +4,27 @@
     "002-sandbox-testing-playbook"
   ],
   "specFolder": "013-doctor-update-orchestrator",
-  "description": "Remediation of 013 deep-review CONDITIONAL findings: doc honesty + security hardening + cross-runtime mirror",
+  "description": "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 23-scenario manual playbook (child 002) ships the validation harness; doc-honesty + security hardening + cross-runtime mirror remediation (child 003) closed the deep-review CONDITIONAL findings.",
   "keywords": [
-    "remediation",
-    "013",
-    "deep-review",
-    "conditional",
-    "findings",
-    "doc",
-    "honesty",
-    "security",
-    "hardening",
-    "cross-runtime",
-    "mirror"
+    "doctor",
+    "doctor-update",
+    "orchestrator",
+    "phase-parent",
+    "doctor-commands",
+    "sandbox-testing-playbook",
+    "manual-testing",
+    "spec-kit-version-migration",
+    "doctor-runtime-bootstrap",
+    "remediation"
   ],
-  "lastUpdated": "2026-05-11T08:32:25.383Z",
+  "lastUpdated": "2026-05-11T10:38:42.485Z",
   "specId": "013",
   "folderSlug": "doctor-update-orchestrator",
   "parentChain": [],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "10-05-26_07-23__root-cause-invent-a-smart-solution-to-this.md",
-    "10-05-26_07-59__root-cause.md"
+    "10-05-26_07-59__root-cause.md",
+    "11-05-26_11-38__manual-context-save.md"
   ]
 }
