@@ -54,12 +54,16 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - Otherwise → bind `sub_action` to the token.
 
 2. IF sub_action IS UNRESOLVED:
-   - ASK:
-     "Which MCP infrastructure action?
-        A) install — Fresh install (or reinstall) all 4 MCP servers based on install guides
-        B) debug   — Diagnose and repair broken MCP servers (cross-references install guides)
-        C) cancel"
-   - WAIT. Map A → install, B → debug, C → STATUS=CANCEL.
+   - ASK (print VERBATIM):
+
+     ```
+     What do you want to do with MCP servers?
+        1) Install fresh    (all 4 MCP servers from install guides)
+        2) Debug + repair   (diagnose failures, apply guided fixes)
+        X) Cancel
+     ```
+
+   - WAIT. Map 1/I/install → install; 2/D/debug → debug; X/empty/cancel → STATUS=CANCEL.
 
 3. VALIDATE sub_action:
    - If sub_action NOT in {install, debug}:

@@ -66,22 +66,20 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_ki
 
    Print EXACTLY this prompt text and WAIT for an answer:
 
-   /doctor:update will rebuild every spec-kit database in dependency-safe order
-   (code-graph -> context-index + vector-index -> causal-edges -> skill-graph ->
-   advisor -> deep-loop -> cocoindex -> eval). Snapshots are taken before each
-   mutation; rollback is automatic on regression.
+   ```
+   /doctor:update rebuilds ALL spec-kit databases in dependency order with
+   snapshots + auto-rollback on regression. ETA 8-25 min.
 
-   Tier-aware prompts will fire mid-run:
-     - SHORT  steps (skill-graph init, deep-loop init): auto-acknowledged, no prompt
-     - MEDIUM steps (code-graph scan, eval ablation):   one combined prompt (Q-MED)
-     - LONG-POLE  step (memory_index_scan, 5-15 min):   explicit ETA prompt (Q-LONG)
+   Mid-run prompts:
+      SHORT  steps    → auto (no prompt)
+      MEDIUM steps    → 1 combined prompt   (Q-MED)
+      LONG-POLE step  → ETA prompt + skip   (Q-LONG, 5-15 min)
 
-   Estimated total: 8-25 minutes depending on corpus size.
+      1) Proceed
+      X) Cancel
+   ```
 
-   [A] Proceed (recommended)
-   [B] Cancel
-
-   Accept: case-insensitive "A" / "Proceed" / "Y" -> proceed; "B" / "Cancel" / "N" -> STATUS=CANCELLED, exit.
+   Accept: 1/A/Y/Proceed/Enter → proceed; X/N/Cancel → STATUS=CANCELLED, exit.
    Default if input is empty: ask again once; on second empty input STATUS=CANCELLED.
 
 4. STORE:
@@ -100,19 +98,19 @@ When: about to run `code_graph_scan` and/or `eval_run_ablation`. Suppressed if `
 
 Prompt text:
 ```
-About to run medium-tier steps:
-  - code_graph_scan      (~1-3 min, mutates code-graph.sqlite + .opencode/code-graph.config.json)
-  - eval_run_ablation    (~2-4 min, mutates speckit-eval.db)
+Medium-tier steps next:
+   code_graph_scan      ~1-3 min   (mutates code-graph.sqlite + config.json)
+   eval_run_ablation    ~2-4 min   (mutates speckit-eval.db)
 
-Snapshots already taken in Phase 3; auto-rollback on gold-battery regression.
+Phase 3 snapshots in place → auto-rollback on gold-battery regression.
 
-[A] Proceed with both (recommended)
-[B] Skip eval_run_ablation (run code_graph_scan only)
-[C] Cancel run (rolls back snapshots from Phase 3)
+   1) Run both
+   2) Run code_graph_scan only (skip eval)
+   X) Cancel + rollback
 ```
 
-Accept: `A`/`Y`/`Proceed` -> both; `B`/`Skip` -> code_graph_scan only; `C`/`N`/`Cancel` -> rollback + STATUS=CANCELLED.
-Default if empty: re-ask once; second empty -> STATUS=CANCELLED.
+Accept: 1/A/Y/Proceed → both; 2/Skip → code_graph_scan only; X/N/Cancel → rollback + STATUS=CANCELLED.
+Default if empty: re-ask once; second empty → STATUS=CANCELLED.
 
 ### Q-LONG — Long-pole ETA prompt (fires before Phase 5 memory_index_scan)
 
@@ -120,19 +118,19 @@ When: about to run `memory_index_scan` on context-index + vector-index. Suppress
 
 Prompt text:
 ```
-LONG-POLE step starting: memory_index_scan over context-index.sqlite + voyage vector DB.
+LONG-POLE: memory_index_scan over context-index + voyage vector DB.
 
-Estimated runtime: 5-15 min depending on markdown corpus + Voyage API throughput.
-Mutation: full re-index; pre-snapshots from Phase 3 enable rollback.
-Network: Voyage API required for embeddings. Confirm credentials are set.
+   ETA      5-15 min  (depends on corpus size + Voyage API throughput)
+   Mutates  full re-index   (rollback available via Phase 3 snapshot)
+   Network  Voyage API required — confirm credentials
 
-[A] Proceed (recommended)
-[B] Skip this step (advisor will be marked STALE; deep-loop init still runs)
-[C] Cancel run (rolls back all snapshots)
+   1) Proceed
+   2) Skip   (advisor → STALE; deep-loop init still runs)
+   X) Cancel + rollback
 ```
 
-Accept: `A`/`Y` -> proceed; `B`/`Skip` -> step skipped, mark STALE; `C`/`N`/`Cancel` -> rollback + STATUS=CANCELLED.
-Default if empty: re-ask once; second empty -> STATUS=CANCELLED.
+Accept: 1/A/Y/Proceed → proceed; 2/Skip → step skipped, mark STALE; X/N/Cancel → rollback + STATUS=CANCELLED.
+Default if empty: re-ask once; second empty → STATUS=CANCELLED.
 
 ### Q-PROBE — Active-MCP-client prompt (fires in Phase 2)
 
@@ -141,17 +139,16 @@ When: Phase 2 detects ≥1 other MCP client connected to the spec-kit memory ser
 Prompt text:
 ```
 Active MCP client(s) detected:
-  <comma-separated list of client_id values from probe>
+   <comma-separated client_id list>
 
-These clients will be disrupted by the database rebuild. Their open transactions
-will be cancelled mid-rebuild; their cached state will be stale until they reconnect.
+The rebuild will cancel their open transactions and stale their cache until reconnect.
 
-[A] Proceed (recommended only on a quiet system or if these clients are expected to disconnect)
-[B] Cancel (rerun once the active clients are idle)
+   1) Proceed anyway
+   X) Cancel  (rerun when clients are idle)
 ```
 
-Accept: `A`/`Y`/`Proceed` -> proceed; `B`/`N`/`Cancel` -> STATUS=CANCELLED.
-Default if empty: re-ask once; second empty -> STATUS=CANCELLED.
+Accept: 1/A/Y/Proceed → proceed; X/N/Cancel → STATUS=CANCELLED.
+Default if empty: re-ask once; second empty → STATUS=CANCELLED.
 
 ### Q-LEGACY — Per-file legacy cleanup prompt (fires in Phase 9 only when `--cleanup-legacy=true`)
 
@@ -159,17 +156,17 @@ When: each file listed in migration-manifest's `legacy_cleanup_targets` array. L
 
 Prompt text:
 ```
-Legacy file detected: <absolute path>
-Reason: <manifest reason string, e.g. "superseded by skills/ rename in packet 096">
-Size: <human-readable size>
+Legacy file: <absolute path>
+   Reason:   <manifest reason string>
+   Size:     <human-readable size>
 
-[Y] Delete (irreversible)
-[N] Keep (skip this file, continue to next)
-[A] Yes to ALL remaining legacy files (no further prompts in Phase 9)
-[Q] Quit cleanup (keep remaining files, proceed to Phase 10)
+   Y) Delete  (irreversible)
+   N) Keep    (default if empty)
+   A) Yes to ALL remaining
+   Q) Quit cleanup  (keep the rest, continue to Phase 10)
 ```
 
-Accept: `Y`/`Delete` -> rm -f; `N`/`Keep`/`Skip` -> next; `A`/`All` -> auto-delete remaining; `Q`/`Quit` -> exit Phase 9 early.
+Accept: Y/Delete → rm -f; N/Keep/Skip/empty → next; A/All → auto-delete remaining; Q/Quit → exit Phase 9 early.
 Default if empty: `N` (safe default = keep).
 
 ### Q-FAIL — Step-failure recovery prompt (fires in Phase 5 after one retry)
@@ -179,18 +176,20 @@ When: a step fails its first run AND the 5-second-backoff retry. Suppressed if `
 Prompt text:
 ```
 Step "<step_name>" failed after retry.
-Phase: <phase number>   Exit: <exit_code>   Snapshot path: <path>
+   Phase:    <N>
+   Exit:     <code>
+   Snapshot: <path>
 
-Error excerpt (last 5 stderr lines):
+Error (last 5 stderr lines):
 <excerpt>
 
-[A] Rollback all snapshots and cancel (recommended)
-[B] Continue without rolling back (DANGEROUS: subsequent steps may regress)
-[C] Retry once more (one additional attempt before falling back to A)
+   1) Rollback + cancel       (default if empty after re-ask)
+   2) Continue without rollback   (DANGEROUS — subsequent steps may regress)
+   3) Retry once more
 ```
 
-Accept: `A`/`Y`/`Rollback` -> rollback + STATUS=ROLLED_BACK; `B`/`Continue` -> log warning, skip step, continue; `C`/`Retry` -> third attempt.
-Default if empty: re-ask once; second empty -> `A` (safe default = rollback).
+Accept: 1/A/Y/Rollback → rollback + STATUS=ROLLED_BACK; 2/Continue → log warning, skip step, continue; 3/Retry → third attempt.
+Default if empty: re-ask once; second empty → 1 (safe default = rollback).
 
 # SpecKit Doctor - Unified Update
 

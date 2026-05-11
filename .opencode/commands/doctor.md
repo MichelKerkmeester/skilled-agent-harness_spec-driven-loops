@@ -126,37 +126,29 @@ What do you want to do?
    HELP block (printed when user picks [H]):
 
 ```
-SYMPTOM → SUBSYSTEM MAPPING
+Pick by symptom:
 
-If your symptom is...                                          Pick subsystem:
-─────────────────────────────────────────────────────────────  ──────────────
-"I edited a spec doc and memory_search doesn't find it"        memory  (A)
-"context-index.sqlite missing" startup warning                 memory  (A)
-"voyage embedding DB missing" startup warning                  memory  (A)
-"memory_drift_why returns nothing useful"                      causal-graph  (B)
-"causal coverage <60%" warning at startup                      causal-graph  (B)
-"lineage trace shows orphans" or "no incoming edges"           causal-graph  (B)
-"cocoindex search returns 0 hits for known code"               code-graph  (C)  ← structural index
-"startup warning: code-graph stale/missed/bloat"               code-graph  (C)
-"my code is indexed but search is slow / wrong"                cocoindex   (E)  ← semantic embeddings
-"CocoIndex daemon died" or "ccc_status: unhealthy"             cocoindex   (E)
-"/spec_kit:deep-research iteration graph is empty"             deep-loop   (D)
-"convergence not detected between iterations"                  deep-loop   (D)
-"Skill Advisor recommends the wrong skill"                     skill-advisor  (F)
-"new skill not appearing in advisor results"                   skill-advisor  (F)
-"description char-count over 1536 hard cap"                    skill-budget   (G)
-"want to audit project description budget for CI"              skill-budget   (G)
+   Search returns stale or empty results              → 2  Memory
+   "context-index.sqlite missing" warning             → 2  Memory
+   memory_drift_why returns nothing                   → 3  Causal-Graph
+   "causal coverage <60%" warning                     → 3  Causal-Graph
+   cocoindex search returns 0 hits for known code     → 4  Code-Graph (structural)
+   "code-graph stale/missed/bloat" warning            → 4  Code-Graph
+   Semantic search slow or wrong                      → 6  CocoIndex (semantic)
+   "CocoIndex daemon died" or "ccc_status: unhealthy" → 6  CocoIndex
+   deep-research/deep-review iteration graph empty    → 5  Deep-Loop
+   Convergence not detected between iterations        → 5  Deep-Loop
+   Skill Advisor recommends the wrong skill           → 7  Skill Advisor
+   New skill not appearing in advisor results         → 7  Skill Advisor
+   Description char-count over hard cap (1536)        → 8  Skill Budget
 
-Confused between code-graph (C) and cocoindex (E)?
-   - code-graph  = STRUCTURAL (functions, files, dirs, AST-derived)
-   - cocoindex   = SEMANTIC   (vector embeddings, intent-based search)
+Quick reference for confusable pairs:
+   Code-Graph (4) is STRUCTURAL — functions, files, dirs, AST
+   CocoIndex (6) is SEMANTIC — vector embeddings, intent search
+   Skill Advisor (7) tunes ROUTING quality (which skill gets picked)
+   Skill Budget (8) audits CHAR COUNTS (frontmatter description size)
 
-Confused between skill-advisor (F) and skill-budget (G)?
-   - skill-advisor = ROUTING quality (which skill gets recommended for a prompt)
-   - skill-budget  = CHAR COUNT audit (frontmatter description size for AI tools)
-
-Press any letter A-G to pick, [1] for upgrade migration, [2] for MCP infra,
-[3] for full sweep without prompts, or [X] to cancel.
+Press 1-9, 0, or X.
 ```
 
    - After printing HELP, RE-EMIT the Tier 1 question above and WAIT again.
@@ -242,14 +234,29 @@ TIER 2 — PER-TARGET FLAG PARSING (case block)
        (Suggest the correct target by scanning `_routes.yaml` for any route whose allowed_flags contains <flag>.)
      - EXIT with STATUS=FAIL ERROR=cross_target_flag_injection.
 
-8. ASK any unresolved required setup_var question:
-   - For `memory`: if `--incremental` was not passed → ASK once: "Incremental rebuild (faster) or full (5-15 min)? [I/full] (default: I)".
-   - For `causal-graph`: confidence_threshold defaults to 0.7; no prompt needed.
-   - For `code-graph`: if `--scope` was not passed AND `--operation` is mutating → ASK once for scope.
-   - For `deep-loop`: defaults to both; no prompt needed.
-   - For `cocoindex`: no prompt needed.
-   - For `skill-advisor`: no prompt needed.
-   - For `skill-budget`: no prompt needed.
+8. ASK any unresolved required setup_var question. Print VERBATIM:
+
+   **For `memory`** (if `--incremental` was not passed):
+   ```
+   Rebuild mode?
+      1) Incremental — only changed files (fast, ~30s, default)
+      2) Full        — every file (5-15 min; needed after upgrade)
+   ```
+   Accept: 1/I/Enter → incremental=true; 2/F/full → incremental=false.
+
+   **For `code-graph`** (if `--scope` was not passed AND `--operation` is mutating):
+   ```
+   Code-graph scope?
+      1) stale     — files indexed but mtime moved
+      2) missed    — files in repo but not indexed
+      3) bloat     — large dirs hogging the graph
+      4) all       — full scan (default)
+      5) excludes  — review the exclude config
+   ```
+   Accept: 1-5 → scope=<value>; empty → scope=all.
+
+   **For other targets** (causal-graph, deep-loop, cocoindex, skill-advisor, skill-budget):
+   No prompt needed — defaults apply (causal-graph confidence_threshold=0.7, deep-loop scope=both, others have no required vars).
 
 9. STORE: execution_mode, target, yaml_asset, AND every setup_var for that target.
 
