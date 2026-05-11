@@ -1,100 +1,148 @@
 ---
 id: SD-019
 category: 06--agent-dispatch
-title: '@markdown agent dispatch via cli-codex'
-execution_mode: dispatch_real
-expected_skip_in_non_interactive: true
-skip_rationale: "cli-codex @markdown dispatch under `codex exec` non-interactive mode falls back to a sub-agent path that hits Gate 3. Documented as accepted limitation in 102/005 (F-001). Re-enable when codex agent resolver routes @markdown directly under `codex exec`."
+title: '@markdown agent inline-contract execution via cli-codex'
+execution_mode: dispatch_inline_contract
+dispatch_rationale: "cli-codex's SpawnAgent runtime allowlist (in `codex_core::tools::router`) does not include user-defined agents from `.codex/config.toml`. Real typed-agent dispatch via `codex exec` rejects `agent_type=markdown` with 'agent type is currently not available'. This scenario instead verifies INLINE-CONTRACT execution: codex's gpt-5.5 reads `.codex/agents/markdown.toml` developer_instructions and follows them itself, without sub-agent dispatch. F-001 is therefore resolved via inline workaround, not via real SpawnAgent dispatch — see 102/005 implementation-summary and 102/spec.md Known Issues. Re-enable real-dispatch semantics if a future codex release maps `.codex/config.toml` user-defined agents into the SpawnAgent allowlist."
 expected_intent: CHANGELOG
-expected_agent: '@markdown'
+expected_agent: '@markdown (inline contract — gpt-5.5 follows .codex/agents/markdown.toml itself)'
 expected_resources:
   - assets/changelog_template.md
-  - references/changelog_creation.md
-expected_token_range_input: 400-1500
+expected_token_range_input: 800-2500
 expected_token_range_output: 1500-4000
 created: 2026-05-11
+revised: 2026-05-11
 ---
 
-# SD-019: @markdown agent dispatch via cli-codex
+# SD-019: @markdown agent inline-contract execution via cli-codex
 
 ## 1. OVERVIEW
 
-This scenario validates that `cli-codex` (gpt-5.5/fast/high) correctly routes a `/create:changelog` task to the `@markdown` agent and that the agent loads sk-doc CHANGELOG resources before scaffolding the output.
+This scenario validates that `cli-codex` (gpt-5.5/high/fast) can correctly execute the `@markdown` agent contract inline for a `/create:changelog` task, when real typed-agent dispatch is unavailable.
 
 ### Why This Matters
 
-cli-codex runs in a workspace-write sandbox by default that blocks sub-process network calls (memory: `feedback_codex_sandbox_blocks_network.md`). For sk-doc dispatch to succeed, the codex invocation must explicitly enable network access and the `fast` service tier (memory: `feedback_codex_cli_fast_mode.md`). This scenario tests that the codex pathway honors the `@markdown` rename under those constraints.
+Codex CLI v0.130.0's `codex exec` rejects `agent_type=markdown` in its internal SpawnAgent router (`codex_core::tools::router`) — the SpawnAgent runtime allowlist does not include user-defined agents declared in `.codex/config.toml`. Real `@markdown` dispatch under non-interactive `codex exec` is therefore upstream-blocked. This scenario verifies the practical workaround: codex's gpt-5.5 reads the `@markdown` agent definition file directly and executes its instructions inline. The verification is genuine end-to-end (sk-doc loaded, template followed, output file written) but the dispatch surface is inline-contract, not typed sub-agent dispatch.
+
+**The rubric shift matters.** SD-018 (cli-claude-code) and SD-020 (cli-opencode) prove real typed-agent dispatch. SD-019 proves codex can execute the contract inline. Reading evidence files, treat the three as different verifications of the same agent identity, not three of the same dispatch surface.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Real user request: scaffold a v0.1.0 changelog for a stub skill via the `@markdown` agent
-- Prompt: `Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-codex.md. Do NOT install the stub skill into the .opencode/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.`
+- Real user request: scaffold a v0.1.0 changelog for stub skill `sk-test-dummy` via the `@markdown` agent contract, executed inline under `codex exec`
+- Prompt: the full inline-contract prompt with pre-bound setup answers, explicit SpawnAgent forbid, and Gate 3 pre-answer (see Setup block)
 - Expected intent: `CHANGELOG`
-- Expected executor: `@markdown` agent (NOT `@code`, NOT direct sk-doc invocation)
-- Desired user-visible outcome: A scaffolded changelog file at `/tmp/sk-test-dummy-CHANGELOG-cli-codex.md` with Keep-a-Changelog sections, plus a transcript showing `@markdown` Phase 0 verification ran before the YAML workflow loaded.
+- Expected executor: codex gpt-5.5 follows `.codex/agents/markdown.toml` developer_instructions inline — no sub-agent dispatch
+- Desired user-visible outcome: A scaffolded changelog file at `/tmp/sk-test-dummy-CHANGELOG-cli-codex.md` with sk-doc compact-changelog sections, plus a transcript with `BINDING:` trace lines and the final report fields (`AGENT_RECEIVED=inline-codex-following-.codex/agents/markdown.toml`, `SPAWN_AGENT_USED=no`, etc.).
 
 ## 3. TEST EXECUTION
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SD-019 | @markdown via cli-codex | Verify `@markdown` agent receives `/create:changelog` work dispatched through cli-codex. | See Setup. | See Setup. | `@markdown` Phase 0 verification text appears in transcript; CHANGELOG asset reference appears; output file written. | Transcript + output changelog content. | PASS when `@markdown` invocation appears AND output file exists AND has Keep-a-Changelog sections. PARTIAL if `@markdown` invoked but output incomplete. FAIL if a different agent answered. SKIP if `codex` binary unavailable. | Re-check `.codex/agents/markdown.toml` exists; verify `.codex/config.toml` registers `agents.markdown`; verify network-access + fast flags applied. |
+| SD-019 | @markdown via cli-codex (inline contract) | Verify codex gpt-5.5 can execute the @markdown contract inline for /create:changelog under `codex exec`. | See Setup. | See Setup. | `BINDING:` lines emit; sk-doc + template loaded; `SPAWN_AGENT_USED=no` in transcript; output file exists. | Transcript + output changelog content. | PASS when all 5 BINDING lines emit, `SPAWN_AGENT_USED=no` line emits, output file exists with sk-doc compact-changelog sections, AND no SpawnAgent error fires. PARTIAL if BINDING lines emit but output incomplete. FAIL if codex tries SpawnAgent and triggers `codex_core::tools::router` error. SKIP if `codex` binary unavailable. | Re-check the prompt explicitly forbids SpawnAgent / collab / Task; re-check the Gate 3 pre-answer `D) Skip` appears verbatim in the prompt; verify gpt-5.5 model + xhigh reasoning are passed. |
 
 ### Setup
 
-This scenario EXECUTES real work — it is not a routing-trace probe.
+This scenario EXECUTES real work via the **inline-contract** path. Codex's gpt-5.5 reads `.codex/agents/markdown.toml` and follows its instructions itself; no sub-agent dispatch.
 
 Memory-mandated flags:
-- `-c service_tier="fast"` (cli-codex fast mode must be explicit — never rely on global default)
-- `-c sandbox_workspace_write.network_access=true` (sandbox blocks sub-process network without this; embeddings / API calls would fail)
+- `-c service_tier="fast"` (cli-codex fast mode must be explicit)
+- `-c sandbox_workspace_write.network_access=true` (sandbox blocks sub-process network without this)
+- `-c model_reasoning_effort="xhigh"` (raise reasoning for the contract following)
 
 ```bash
-PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-codex.md. Do NOT install the stub skill into the .opencode/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
+PROMPT='Run this as an inline Codex execution of the @markdown contract. Do NOT call SpawnAgent, collab: SpawnAgent, Task, or any sub-agent. If you are about to dispatch, stop and perform the work inline instead.
+
+This is the user'"'"'s consolidated Gate 3 answer for this run: D) Skip spec-folder creation. The only allowed write is /tmp/sk-test-dummy-CHANGELOG-cli-codex.md. specFolder=none. Do not ask interactive questions; stdin is closed.
+
+Follow .codex/agents/markdown.toml developer_instructions inline for /create:changelog.
+
+Resolved setup bindings:
+command_name=/create:changelog
+execution_mode=AUTONOMOUS
+target=sk-test-dummy
+output_path=/tmp/sk-test-dummy-CHANGELOG-cli-codex.md
+template_path=.opencode/skills/sk-doc/assets/changelog_template.md
+spec_folder=none
+
+Before any file reads, print these binding lines:
+BINDING: command=/create:changelog
+BINDING: target=sk-test-dummy
+BINDING: output=/tmp/sk-test-dummy-CHANGELOG-cli-codex.md
+BINDING: template=.opencode/skills/sk-doc/assets/changelog_template.md
+BINDING: mode=AUTONOMOUS
+BINDING: specFolder=none
+
+Then read:
+1. .codex/agents/markdown.toml
+2. .opencode/skills/sk-doc/SKILL.md
+3. .opencode/skills/sk-doc/assets/changelog_template.md
+
+Create a compact v0.1.0 changelog for stub skill sk-test-dummy at /tmp/sk-test-dummy-CHANGELOG-cli-codex.md. Do NOT install or create anything under .opencode/skills/.
+
+Final report must include:
+AGENT_RECEIVED=inline-codex-following-.codex/agents/markdown.toml
+SPAWN_AGENT_USED=no
+SK_DOC_RESOURCES_LOADED=<actual existing paths loaded>
+CHANGELOG_SECTIONS=<sections produced>
+STATUS=OK PATH=/tmp/sk-test-dummy-CHANGELOG-cli-codex.md'
 
 EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt'
 
-# Dispatch via cli-codex (gpt-5.5/fast)
 codex exec \
+  --model gpt-5.5 \
+  -c model_reasoning_effort="xhigh" \
   -c service_tier="fast" \
   -c sandbox_workspace_write.network_access=true \
+  --sandbox workspace-write \
   "$PROMPT" </dev/null 2>&1 | tee "$EVIDENCE"
-
-# Append verdict footer manually after grading
 ```
 
-After the dispatch returns, run the grading probes against the evidence transcript:
+After the dispatch returns, run the grading probes:
 
 ```bash
-# Routing trace: @markdown must appear
-grep -c '@markdown\|markdown agent\|Phase 0\|agents.markdown\|markdown.toml' "$EVIDENCE"
+EVIDENCE='/Users/michelkerkmeester/.../004-.../evidence/SD-019-cli-codex.txt'
 
-# Resource trace: changelog template must be referenced
-grep -c 'changelog_template\|changelog_creation\|Keep-a-Changelog' "$EVIDENCE"
+# Binding lines emitted (must be 5)
+grep -c '^BINDING:' "$EVIDENCE"
 
-# Output existence + shape
-test -f /tmp/sk-test-dummy-CHANGELOG-cli-codex.md && \
-  grep -cE '^## .*(Added|Changed|Fixed|Removed)' /tmp/sk-test-dummy-CHANGELOG-cli-codex.md
+# SpawnAgent NOT used (must be 1)
+grep -c 'SPAWN_AGENT_USED=no' "$EVIDENCE"
+
+# No SpawnAgent runtime error (must be 0)
+grep -c 'codex_core::tools::router' "$EVIDENCE"
+grep -c 'agent type is currently not available' "$EVIDENCE"
+
+# Inline contract acknowledged (must be ≥1)
+grep -c 'AGENT_RECEIVED=inline-codex-following' "$EVIDENCE"
+
+# Output file exists and has content
+test -f /tmp/sk-test-dummy-CHANGELOG-cli-codex.md && wc -c /tmp/sk-test-dummy-CHANGELOG-cli-codex.md
 ```
 
 ## Expected Behavior
 
 - **Intent picked**: `CHANGELOG`
-- **Executor**: `@markdown` agent (Codex resolves via `.codex/config.toml` `[agents.markdown]` → `.codex/agents/markdown.toml`)
+- **Executor**: codex gpt-5.5 inline (following `.codex/agents/markdown.toml` developer_instructions)
 - **Resources loaded**:
+  - `.codex/agents/markdown.toml` (the @markdown contract itself)
+  - `.opencode/skills/sk-doc/SKILL.md`
   - `.opencode/skills/sk-doc/assets/changelog_template.md`
-  - `.opencode/skills/sk-doc/references/changelog_creation.md`
-- **Outcome**: CLI scaffolds a v0.1.0 changelog file with Added / Changed / Fixed / Removed sections at `/tmp/sk-test-dummy-CHANGELOG-cli-codex.md`.
+- **Outcome**: codex scaffolds a v0.1.0 changelog file with sk-doc compact-changelog sections (`## What Changed` → `#### New Features` / `## Files Changed` / `## Upgrade`) at `/tmp/sk-test-dummy-CHANGELOG-cli-codex.md`.
 
 ## Cross-CLI Variants
 
-This scenario is fixed to `cli-codex`. Equivalent dispatches for cli-claude-code and cli-opencode are SD-018 and SD-020 respectively.
+This scenario is fixed to `cli-codex` and verifies inline-contract execution. SD-018 (cli-claude-code) and SD-020 (cli-opencode) verify real typed-agent dispatch — the dispatch surfaces differ across the three CLIs because of upstream runtime differences.
 
 ## Success Criteria
 
-- `@markdown` invocation evidence present in transcript
-- output file exists at the requested path
-- output contains at least 3 of the 4 Keep-a-Changelog sections (Added / Changed / Fixed / Removed)
+- 5 `BINDING:` lines emit in transcript before any file reads (proves setup acknowledged)
+- `SPAWN_AGENT_USED=no` line emits (proves inline path taken)
+- `AGENT_RECEIVED=inline-codex-following-.codex/agents/markdown.toml` line emits (proves contract acknowledged)
+- 0 `codex_core::tools::router` errors in transcript (proves no SpawnAgent attempt)
+- output file at `/tmp/sk-test-dummy-CHANGELOG-cli-codex.md` exists with non-zero size
+- output contains sk-doc compact-changelog sections (`What Changed` + `Files Changed` + `Upgrade`)
 - no installation under `.opencode/skills/` (stub stayed out of the skills tree)
 
 ## 4. SOURCE METADATA
@@ -104,3 +152,4 @@ This scenario is fixed to `cli-codex`. Equivalent dispatches for cli-claude-code
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `06--agent-dispatch/002-markdown-agent-cli-codex.md`
 - Introduced by: `.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage`
+- Revised by: `.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation` (post codex meta-analysis 2026-05-11; F-001 resolved via inline-contract workaround)

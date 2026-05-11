@@ -7,7 +7,6 @@ expected_intent: CHANGELOG
 expected_agent: '@markdown'
 expected_resources:
   - assets/changelog_template.md
-  - references/changelog_creation.md
 expected_token_range_input: 400-1500
 expected_token_range_output: 1500-4000
 created: 2026-05-11

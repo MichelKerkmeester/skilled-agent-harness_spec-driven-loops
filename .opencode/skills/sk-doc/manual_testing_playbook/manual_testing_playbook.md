@@ -74,7 +74,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 ### 06 — Agent Dispatch
 - **SD-018** — `06--agent-dispatch/001-markdown-agent-cli-claude-code.md` — `@markdown` agent dispatch via cli-claude-code; `/create:changelog` for stub `sk-test-dummy`.
-- **SD-019** — `06--agent-dispatch/002-markdown-agent-cli-codex.md` — `@markdown` agent dispatch via cli-codex (gpt-5.5/fast) with sandbox network-access enabled.
+- **SD-019** — `06--agent-dispatch/002-markdown-agent-cli-codex.md` — `@markdown` agent inline-contract execution via cli-codex (gpt-5.5/xhigh/fast). Verifies codex follows `.codex/agents/markdown.toml` developer_instructions itself (no SpawnAgent) because the SpawnAgent runtime allowlist upstream-blocks user-defined agents — rubric differs from SD-018/020; see scenario header.
 - **SD-020** — `06--agent-dispatch/003-markdown-agent-cli-opencode.md` — `@markdown` agent dispatch via cli-opencode with DeepSeek v4 Pro through the DIRECT DeepSeek API.
 
 ---

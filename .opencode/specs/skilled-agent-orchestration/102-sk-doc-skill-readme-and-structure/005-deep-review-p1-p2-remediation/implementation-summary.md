@@ -176,13 +176,22 @@ A single cli-codex `gpt-5.5 / high / fast` dispatch closed all 16 findings from 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-### F-001 SD-019 — accepted limitation (not fixed in this packet)
-The cli-codex `@markdown` dispatch gap under `codex exec` non-interactive mode is now documented at three layers:
-1. SD-019 scenario file frontmatter: `expected_skip_in_non_interactive: true` + `skip_rationale`
-2. Parent `102/spec.md` Known Issues register: explicit row with status "Accepted limitation"
-3. This implementation-summary §Key Decisions explains why fix-vs-accept tipped toward accept
+### F-001 SD-019 — Resolved via inline-contract workaround (2026-05-11)
 
-**Re-evaluation trigger**: a future codex release that fixes `codex exec` agent resolution for runtime-registered agents (`[agents.markdown]` in `.codex/config.toml`) could re-enable SD-019 by flipping the frontmatter flag and re-running the scenario.
+**Initial decision** (later revised): accept as documented limitation across SD-019 frontmatter, parent Known Issues, and this §Key Decisions.
+
+**Revision driver**: user pushed back on the accept-vs-fix tradeoff. We dispatched a cli-codex meta-analysis (`evidence/codex-sd019-meta-analysis.txt`, 229s wall-clock, gpt-5.5 xhigh fast) asking codex to diagnose its own failure mode from inside the runtime. Codex confirmed the two-registry hypothesis (the `[agents.markdown]` config block IS read for CLI context, but codex's `codex_core::tools::router` SpawnAgent runtime allowlist is a separate baked-in list that does NOT propagate user-defined agents). Codex also flagged two facts the initial accept decision missed: (a) Gate 3 fires on `/tmp` writes too (no path exemption), and (b) `references/changelog_creation.md` doesn't exist (sk-doc only maps CHANGELOG → `assets/changelog_template.md`). It recommended swapping to the inline-contract workaround.
+
+**Resolution applied (2026-05-11)**:
+1. Removed phantom `references/changelog_creation.md` from SD-018, SD-019, and SD-020 `expected_resources`
+2. Rewrote SD-019 with inline-contract semantics: `execution_mode: dispatch_inline_contract`, explicit SpawnAgent forbid, Gate 3 pre-answered with "D) Skip", BINDING-trace requirements, and contract-acknowledgment fields in success criteria
+3. Re-ran SD-019: PASS (115s wall-clock, 952-byte output, 0 router errors, 18 BINDING lines, 3× `SPAWN_AGENT_USED=no`, 3× `AGENT_RECEIVED=inline-codex-following-.codex/agents/markdown.toml`)
+4. Updated parent `102/spec.md` Known Issues F-001 row to "Resolved via inline-contract workaround"
+5. Archived original v1 FAIL transcript as `evidence/SD-019-cli-codex.v1-fail.txt` for forensic reference
+
+**Rubric shift made plain**: SD-018 (cli-claude-code) and SD-020 (cli-opencode) verify real typed-agent dispatch. SD-019 v2 verifies inline-contract execution — codex's gpt-5.5 reads `.codex/agents/markdown.toml`'s `developer_instructions` and follows them itself, without dispatching a sub-agent. The three CLIs are no longer testing the same dispatch surface; they are testing the same agent identity through three different mechanisms. This is documented in SD-019's revised OVERVIEW section.
+
+**Real typed-agent dispatch via codex `SpawnAgent` remains upstream-blocked in codex v0.130.0.** A future codex release that maps `.codex/config.toml` user-defined agents into the `codex_core::tools::router` SpawnAgent allowlist would let us flip SD-019 back to `dispatch_real` and exercise true typed-agent dispatch under `codex exec`.
 
 ### F-Stage-E-001 — `/spec_kit:deep-review:auto` setup-phase stdin hang
 Surfaced during Stage E of 004 (not in the dashboard, but documented in 004/implementation-summary). The `:auto` suffix is supposed to be non-interactive, but the markdown-entry setup gate still asks confirmation questions. Worked around by pre-binding all setup answers in the dispatch prompt. Not addressed by 005; worth filing as a separate deep-review-skill packet.

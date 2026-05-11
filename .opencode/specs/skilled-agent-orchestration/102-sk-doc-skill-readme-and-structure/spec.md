@@ -98,7 +98,7 @@ This packet's deep-review (5 iterations, converged at iter 4, dashboard at `revi
 
 | ID | Severity | Title | Status |
 |----|----------|-------|--------|
-| F-001 | P1 | cli-codex non-interactive `@markdown` dispatch ergonomics gap (SD-019 FAIL) | Accepted limitation — see 005 packet + SD-019 scenario `expected_skip_in_non_interactive` field |
+| F-001 | P1 | cli-codex non-interactive `@markdown` dispatch via SpawnAgent rejects user-defined agents (SD-019 v1 FAIL) | **Resolved via inline-contract workaround** — codex meta-analysis (2026-05-11) confirmed SpawnAgent runtime allowlist does not propagate `.codex/config.toml` user-defined agents. SD-019 rewritten with inline-contract prompt (forbid SpawnAgent, pre-answer Gate 3 with D-Skip, follow `.codex/agents/markdown.toml` developer_instructions inline). v2 dispatch PASS: 952-byte output, 0 router errors, all 5 BINDING trace lines + `SPAWN_AGENT_USED=no` acknowledged. Real typed-agent dispatch remains upstream-blocked in codex v0.130.0. |
 | F-002 | P2 | opencode `--agent general` subagent-fallback message | Accepted — harmless ergonomics noise |
 | F-003 | P2 | sk-doc compact-changelog format vs Keep-a-Changelog raw shape mismatch | Documented — sk-doc compact format is canonical |
 

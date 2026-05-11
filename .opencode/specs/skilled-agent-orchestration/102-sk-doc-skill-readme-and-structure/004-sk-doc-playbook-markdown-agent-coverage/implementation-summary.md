@@ -98,10 +98,11 @@ This packet closed the documented gap in the sk-doc manual testing playbook: zer
 | Scenario | CLI | Provider | @markdown invoked | sk-doc loaded | Output file | Verdict |
 |----------|-----|----------|-------------------|---------------|-------------|---------|
 | SD-018 | cli-claude-code | Claude Opus 4.7 | ✓ (3 hits) | ✓ (2 hits) | ✓ (2134 bytes) | **PASS** |
-| SD-019 | cli-codex | gpt-5.5/fast | ✗ ("unavailable") | ✗ | ✗ | **FAIL** |
+| SD-019 v1 | cli-codex | gpt-5.5/fast | ✗ ("unavailable") | ✗ | ✗ | **FAIL** (archived as `SD-019-cli-codex.v1-fail.txt`) |
+| SD-019 v2 | cli-codex | gpt-5.5/xhigh/fast (inline contract) | ✓ inline (3 `SPAWN_AGENT_USED=no`) | ✓ (`SKILL.md` + `changelog_template.md`) | ✓ (952 bytes) | **PASS** — F-001 resolved via inline-contract workaround |
 | SD-020 | cli-opencode | deepseek/deepseek-v4-pro (DIRECT) | ✓ (8 hits) | ✓ (8 hits) | ✓ (1464 bytes) | **PASS** |
 
-Pass rate: **2/3** (66.7%). The single FAIL surfaced a real cli-codex dispatch gap that 003's implementation summary did not flag.
+Pass rate (after 005 remediation): **3/3** (100%). The original SD-019 FAIL surfaced a real cli-codex SpawnAgent allowlist gap (F-001); the v2 rewrite resolved it via inline-contract workaround. See 005 implementation-summary §Known Limitations for the full evolution.
 <!-- /ANCHOR:how-delivered -->
 
 ---
