@@ -82,6 +82,7 @@ mcp_server/handlers/
 ├── memory-triggers.ts             # L2 trigger matching and tiered content injection
 ├── memory-save.ts                 # Public save entrypoint into save/
 ├── memory-crud.ts                 # Stable CRUD facade into focused submodules
+├── memory-crud-health.ts          # memory_health endpoint + data.routing telemetry block
 ├── memory-bulk-delete.ts          # Bulk delete by importance tier
 ├── memory-retention-sweep.ts      # Expired record retention enforcement
 ├── memory-index.ts                # Scan, re-index, and alias discovery
@@ -116,8 +117,10 @@ mcp_server/handlers/
 | `memory-context.ts` | Builds intent-aware context for auto, deep, focused, and resume modes. |
 | `memory-search.ts` | Runs hybrid memory retrieval with profiles and telemetry. |
 | `memory-triggers.ts` | Matches trigger phrases and injects tiered content. |
-| `memory-save.ts` | Owns save entry validation and routes work into `save/`. |
+| `memory-save.ts` | Owns save entry validation and routes work into `save/`. Invalidates entity-density cache via `invalidateEntityDensityCache()` after successful single-row commit (warn-once on failure). |
 | `memory-crud.ts` | Provides the stable CRUD facade for list, delete, update, stats, and health. |
+| `memory-crud-health.ts` | `memory_health` handler. Exposes auto-repair, FTS rebuild stats, orphan cleanup, and `data.routing` telemetry block surfacing `graphChannelInvocationRate` and per-channel counts from `routing-telemetry.ts`. |
+| `memory-bulk-delete.ts` | Bulk delete by importance tier. Invalidates entity-density cache after successful bulk commit (also fires on partial-failure bulk paths to be safe). |
 | `mutation-hooks.ts` | Clears trigger, constitutional, graph, co-activation, tool, and degree caches after mutations. |
 | `save/` | Contains the decomposed save pipeline modules. |
 

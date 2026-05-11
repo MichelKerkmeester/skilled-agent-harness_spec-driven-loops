@@ -158,8 +158,10 @@ lib/search/
 +-- cross-encoder.ts
 +-- local-reranker.ts
 +-- graph-search-fn.ts
++-- entity-density.ts        # Cached entity-density signal for graph-preservation gate (60s TTL)
 +-- intent-classifier.ts
-+-- query-router.ts
++-- query-router.ts          # Hybrid routing + shouldPreserveBm25/Graph overrides
++-- routing-telemetry.ts     # Rolling 200-decision invocation window
 +-- query-classifier.ts
 +-- query-expander.ts
 +-- query-decomposer.ts
@@ -191,8 +193,15 @@ lib/search/
 | `bm25-index.ts` | Provides keyword ranking without external runtime dependencies. |
 | `sqlite-fts.ts` | Runs SQLite FTS5 lexical queries when available. |
 | `graph-search-fn.ts` | Produces graph and degree-channel candidates. |
+| `query-router.ts` | Routes hybrid retrieval; `shouldPreserveBm25` / `shouldPreserveGraph` overrides activate bm25/graph channels for intent-driven and entity-rich queries regardless of complexity tier. Reads `SPECKIT_GRAPH_CHANNEL_PRESERVATION` env flag. |
+| `entity-density.ts` | Cached lookup of memory rows with ≥3 outgoing causal edges. `getEntityDensityScore(query, db)` returns the count of query tokens that hit high-fanout rows. 60s TTL; safe to invalidate via `invalidateEntityDensityCache()`. |
+| `routing-telemetry.ts` | In-process rolling 200-decision window tracking which channels routed per query. `getSnapshot()` returns per-channel counts and rates including `graphChannelInvocationRate`. |
 | `intent-classifier.ts` | Maps query text to task intent. |
 | `search-types.ts` | Defines shared search result and option types. |
+
+### Graph-Channel Preservation Overrides
+
+`query-router.ts` can preserve graph and BM25 channels even when the complexity tier would otherwise skip them. The graph path is guarded by `SPECKIT_GRAPH_CHANNEL_PRESERVATION`, intent signals, and the cached entity-density score from `entity-density.ts`; entity-rich queries stay eligible for causal graph retrieval because they are more likely to benefit from high-fanout memory rows. `routing-telemetry.ts` records the resulting channel choices in a rolling 200-decision window so maintainers can inspect graph invocation rates through health telemetry. The full design lives in `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/spec.md`.
 
 <!-- /ANCHOR:key-files -->
 
