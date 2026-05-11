@@ -21,7 +21,7 @@ importance_tier: "important"
 
 ### Trigger / Auto-Fire Path
 
-Manual slash command: `/doctor code-graph|confirm|apply|apply-confirm`.
+Manual slash command: `/doctor code-graph` with target-specific flags (`--scope`, `--operation`, `--dry-run`, `--confirm`) per the router manifest at `.opencode/commands/doctor/_routes.yaml`.
 
 ### Class
 

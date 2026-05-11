@@ -31,7 +31,7 @@ Verify doctor-code-graph separates read-only diagnostic mode from explicit apply
 
 ### Commands
 
-1. Read `.opencode/commands/doctor/code-graph.md:13-32`.
+1. Read `.opencode/commands/doctor.md:13-32`.
 2. Read `doctor_code-graph_auto.yaml:19-24` and `:191-204`.
 3. Read `doctor_code-graph_apply.yaml:24-30` and `:135-156`.
 4. Run only diagnostic mode unless using disposable workspace.

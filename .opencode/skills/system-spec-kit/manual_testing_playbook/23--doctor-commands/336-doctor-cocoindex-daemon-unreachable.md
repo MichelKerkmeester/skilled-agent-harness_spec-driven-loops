@@ -75,12 +75,12 @@ The CocoIndex database directory remains untouched: no index mtime or size chang
 
 ### Failure Triage
 
-If mutation flow proceeds, inspect `.opencode/commands/doctor/assets/doctor_cocoindex.yaml` Phase 1 daemon health probe and `daemon_coordination.unhealthy_signals`. If the refusal is correct but not helpful, compare the output against `.opencode/commands/doctor/cocoindex.md` output contract and add the missing recovery recommendation in the command implementation, not in this playbook file.
+If mutation flow proceeds, inspect `.opencode/commands/doctor/assets/doctor_cocoindex.yaml` Phase 1 daemon health probe and `daemon_coordination.unhealthy_signals`. If the refusal is correct but not helpful, compare the output against `.opencode/commands/doctor.md` output contract and add the missing recovery recommendation in the command implementation, not in this playbook file.
 
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Command entrypoint: [.opencode/commands/doctor/cocoindex.md](../../../../commands/doctor/cocoindex.md)
+- Command entrypoint: [.opencode/commands/doctor.md](../../../../commands/doctor.md)
 - Matching YAML asset: [.opencode/commands/doctor/assets/doctor_cocoindex.yaml](../../../../commands/doctor/assets/doctor_cocoindex.yaml)
 - Diagnostic YAML asset: [.opencode/commands/doctor/assets/doctor_cocoindex.yaml](../../../../commands/doctor/assets/doctor_cocoindex.yaml)
 - Upstream spec context: [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md)

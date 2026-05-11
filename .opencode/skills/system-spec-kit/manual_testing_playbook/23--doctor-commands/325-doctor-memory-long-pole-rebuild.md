@@ -68,14 +68,14 @@ The command emits the 5-15 minute full-rebuild warning before mutation, snapshot
 
 ### Failure Triage
 
-If no ETA prompt appears, inspect `.opencode/commands/doctor/memory.md` setup handling for full rebuilds. If no snapshot exists, inspect Phase 2 in `doctor_memory.yaml`. If gold battery fails, compare baseline and post counts from the state log and confirm rollback behavior did not trigger.
+If no ETA prompt appears, inspect `.opencode/commands/doctor.md` setup handling for full rebuilds. If no snapshot exists, inspect Phase 2 in `doctor_memory.yaml`. If gold battery fails, compare baseline and post counts from the state log and confirm rollback behavior did not trigger.
 
 ---
 
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Command entrypoint: `.opencode/commands/doctor/memory.md`
+- Command entrypoint: `.opencode/commands/doctor.md`
 - YAML asset: `.opencode/commands/doctor/assets/doctor_memory.yaml`
 - Command spec: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md`
 - Decision record: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md`

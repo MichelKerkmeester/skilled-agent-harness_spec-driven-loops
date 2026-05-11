@@ -41,7 +41,7 @@ Bootstrap the memory continuity-index from scratch. The workspace has no `contex
 3. Confirm the precondition:
    - `test ! -e .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
 4. Run `/doctor memory --incremental=true` through the real runtime.
-5. Capture the complete command transcript, including the setup values resolved by `.opencode/commands/doctor/memory.md`.
+5. Capture the complete command transcript, including the setup values resolved by `.opencode/commands/doctor.md`.
 6. Confirm the postcondition:
    - `test -s .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
 7. Capture the Phase 4 gold-battery summary and final state-log path.
@@ -67,14 +67,14 @@ The command resolves `intent=APPLY`, loads `.opencode/commands/doctor/assets/doc
 
 ### Failure Triage
 
-Check whether `doctor_memory.yaml` reached Phase 3 and called `memory_index_scan({incremental: true, force: false})`. If Phase 0 fails before apply, inspect `.opencode/commands/doctor/memory.md` setup handling for missing database discovery. If Phase 4 fails after a successful scan, rerun the gold-battery memory searches and compare against the baseline counts in the state log.
+Check whether `doctor_memory.yaml` reached Phase 3 and called `memory_index_scan({incremental: true, force: false})`. If Phase 0 fails before apply, inspect `.opencode/commands/doctor.md` setup handling for missing database discovery. If Phase 4 fails after a successful scan, rerun the gold-battery memory searches and compare against the baseline counts in the state log.
 
 ---
 
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Command entrypoint: `.opencode/commands/doctor/memory.md`
+- Command entrypoint: `.opencode/commands/doctor.md`
 - YAML asset: `.opencode/commands/doctor/assets/doctor_memory.yaml`
 - Command spec: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/spec.md`
 - Decision record: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands/decision-record.md`
