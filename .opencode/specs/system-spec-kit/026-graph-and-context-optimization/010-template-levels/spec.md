@@ -89,6 +89,7 @@ This parent spec lists no files directly. Per-phase blast radius:
 | 002 | `002-template-greenfield-redesign` | 14-iter deep-research loop on greenfield redesign + workflow-invariance constraint + 5 ADRs | Complete (C+F hybrid manifest-driven greenfield, ACCEPTED) |
 | 003 | `003-template-greenfield-impl` | 4-phase implementation plan with file-by-file blast radius (`resource-map.md`) and gated phases | Plan ready; awaiting implementation session |
 
+| 9 | 009-rm-8-prompt-hardening/ | [Phase 9 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh --strict` independently before the next phase begins
@@ -103,6 +104,7 @@ This parent spec lists no files directly. Per-phase blast radius:
 | 001 | 002 | User rejection of PARTIAL framing; greenfield reframe articulated | Conversation transcript + spec.md §3 in 002 cites the rejection |
 | 002 | 003 | Design converged (C+F hybrid + 5 ADRs); workflow-invariance locked | 002/decision-record.md ADR-001 through ADR-005 all Accepted; 002/research/research.md §18 addendum present |
 | 003 | (impl session) | resource-map.md complete; plan.md phases gated; tasks.md actionable | 003/checklist.md Gates 1-4 listed; codex review remediated all P0+P1+P2 findings |
+| 008-z-archive-marker-validation-sweep | 009-rm-8-prompt-hardening | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

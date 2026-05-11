@@ -55,6 +55,14 @@ All paths are relative to the repo root.
 - Target 9 tool calls. Soft max 12, hard max 13.
 - Write ALL findings to files. Do not hold in context.
 - Review target is READ-ONLY. Do not modify reviewed files.
+- **ALLOWED WRITE PATHS (the ONLY paths you may create, modify, or append to)**:
+  - `{state_paths_iteration_pattern}` — this iteration's narrative markdown
+  - `{state_paths_state_log}` — append-only JSONL state log
+  - `{state_paths_delta_pattern}` — this iteration's delta JSONL
+  - `{state_paths_strategy}` — strategy.md (in-place updates only)
+  - `{state_paths_findings_registry}` — findings registry (in-place updates only)
+- **BANNED OPERATIONS (NEVER execute against any path)**: `rm`, `rm -rf`, `git rm`, `mv`, `sed -i` (including `sed -i ''`), `rmdir`, `find ... -delete`, shell output-redirect truncate `>` against any file not in the allowed-write list, and any tool call whose effect is to delete, rename, or replace a file outside the allowed-write list. Reading is unrestricted; **writing, renaming, and deleting are scoped**.
+- **SCOPE VIOLATION PROTOCOL**: if your plan would require modifying any path NOT in the allowed-write list, you MUST STOP that action and emit a finding instead. Record the would-be mutation as a `scope_violation` entry in the iteration narrative (under a `## SCOPE VIOLATIONS` heading) and continue the review. NEVER execute the out-of-scope mutation. The review packet (`{state_paths_iteration_pattern}` directory and parents) is the only zone for your writes; the reviewed target spec/code is off-limits.
 - Append JSONL record with dimensions, filesReviewed, findingsSummary, findingsNew, traceabilityChecks, newFindingsRatio, and optional graphEvents.
 - When emitting the iteration JSONL record, include an optional `graphEvents` array of `{type, id, label, relation?, source?, target?}` objects representing coverage graph nodes and edges discovered this iteration. Omit the field when no graph events are produced.
 
