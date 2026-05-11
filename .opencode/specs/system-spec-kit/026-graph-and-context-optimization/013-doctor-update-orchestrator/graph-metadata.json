@@ -5,7 +5,8 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands",
-    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
+    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,29 +45,46 @@
       "version"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
+      "handover.md",
+      "resource-map.md",
       ".opencode/commands/doctor/assets/doctor_update.yaml",
       ".opencode/commands/doctor/update.md",
       ".opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json",
       "001-doctor-commands/implementation-summary.md",
       "001-doctor-commands/description.json",
       "001-doctor-commands/ai-council/council-report.md",
-      "handover.md",
       "002-sandbox-testing-playbook/handover.md",
       ".opencode/skills/system-spec-kit/package-lock.json",
       "mcp_server/package.json",
       "dist/context-server.js",
       ".opencode/bin/spec-kit-memory-launcher.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
-      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
+      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
+      ".opencode/commands/doctor/memory.md",
+      ".opencode/commands/doctor/causal-graph.md",
+      ".opencode/commands/doctor/deep-loop.md",
+      ".opencode/commands/doctor/cocoindex.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -100,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
         "name": "package-lock.json",
         "kind": "config",
         "path": ".opencode/skills/system-spec-kit/package-lock.json",
@@ -133,6 +145,30 @@
         "name": "doctor-runtime-bootstrap.sh",
         "kind": "script",
         "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
+        "source": "derived"
+      },
+      {
+        "name": "memory.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/memory.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/causal-graph.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/deep-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "cocoindex.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/cocoindex.md",
         "source": "derived"
       },
       {
@@ -176,48 +212,19 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
-      },
-      {
-        "name": "Handover Summary",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "From Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Opus",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "To Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Completed",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit ecosystem into alignment with their current codebase and skill set. The 026 release shipped doctor commands for code-graph, skill-advisor, skill-budget, and MCP infra, but **four subsystems with on-disk databases have no `/doctor:*` coverage**: memory continuity-index, causal-edges, deep-loop coverage graphs, and CocoIndex. There is also no unified entry point that chains rebuilds in dependency-safe order with snapshot + rollback. Authoring the new commands is one half of the gap; authoring a reproducible Docker sandbox + manual testing playbook so users can verify the commands against canonical preconditions is the other half.",
     "created_at": "2026-05-10T06:24:00.129Z",
-    "last_save_at": "2026-05-11T08:39:15.708Z",
+    "last_save_at": "2026-05-11T10:38:48.400Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "handover.md"
+      "handover.md",
+      "resource-map.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
-    "last_active_at": "2026-05-11T08:39:15.708Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-05-11T10:38:48.400Z"
   }
 }
