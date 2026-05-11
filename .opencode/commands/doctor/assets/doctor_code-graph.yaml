@@ -21,6 +21,21 @@ phase_a_invariant: |
   Phase 3 + Phase 4 are handled by explicit apply workflows after resilience assets stabilize.
 
 # ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  files:
+    spec: "spec.md"  # REQ-### for code-graph doctor
+    decision_record: "decision-record.md"  # ADRs for code-graph diagnostic / apply modes
+    checklist: "checklist.md#doctor-code-graph"  # acceptance bars
+    resilience_research: "../../../007-code-graph/007-code-graph-resilience-research"  # gold queries + staleness model
+  pass_policy:
+    diagnostic_only_default: true  # diagnostic mode is read-only; confirm workflow gates apply mode
+    gold_battery_required: true  # post-apply validation must pass before mutation is kept
+    exclude_confidence_floor: 0.7  # exclude-rule confidence threshold for apply mode
+
+# ─────────────────────────────────────────────────────────────────
 # USER INPUTS
 # ─────────────────────────────────────────────────────────────────
 user_inputs:

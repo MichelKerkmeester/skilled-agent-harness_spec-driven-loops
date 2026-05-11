@@ -18,6 +18,17 @@ operating_mode:
   read_only: true
 
 # ─────────────────────────────────────────────────────────────────
+# SKILL-BUDGET AUDIT INVARIANT
+# ─────────────────────────────────────────────────────────────────
+skill_budget_doctor_invariant: |
+  Skill-budget doctor is strictly read-only. It walks the project surfaces that
+  feed Claude Code's available-skills metadata (skills, commands, agents) and
+  reports per-item char counts, top-N bloated items, project total, and headroom
+  under the configured ceiling. It NEVER modifies frontmatter, never re-indexes
+  the advisor, and never writes to spec packet docs. Exit code is non-zero only
+  when --fail-over threshold is exceeded or an item exceeds the 1,536-char hard cap.
+
+# ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:

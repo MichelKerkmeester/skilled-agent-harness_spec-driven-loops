@@ -10,10 +10,67 @@ action: Run 6-step guided installation with verification
 # ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: sequential_6_step
+  compliance: MANDATORY
+  execution: interactive
   workflow_compliance: MANDATORY
   workflow_execution: interactive
   approvals: per_server
   tracking: installed_skipped_failed_per_server
+  validation: post_install_health_check
+  intent: INSTALL
+
+# ─────────────────────────────────────────────────────────────────
+# MCP-INSTALL DOCTOR INVARIANT
+# ─────────────────────────────────────────────────────────────────
+mcp_install_doctor_invariant: |
+  MCP install workflows perform fresh install (or reinstall) of the 4 MCP
+  servers based on their install guides. Each server's install runs only after
+  prerequisite check passes (Node >= 20.11.0, Python >= 3.11, npm, npx) and
+  the user approves the install plan. No silent overwrite of existing installs:
+  if a server is already present, the user is prompted to skip, reinstall, or
+  upgrade. Post-install health check (mcp-doctor.sh --json) is mandatory and
+  failure halts the workflow with rollback guidance.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  files:
+    spec: "spec.md"
+    decision_record: "decision-record.md"
+  install_guides:
+    spec_kit_memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
+    cocoindex_code: ".opencode/install_guides/MCP - CocoIndex Code.md"
+    code_mode: ".opencode/install_guides/MCP - Code Mode.md"
+    sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
+  scripts:
+    health_check: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
+  pass_policy:
+    prerequisite_check_required: true
+    user_approval_per_server: true
+    health_check_after_each: true
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  server_filter: "[SERVER_FILTER] string|null"
+  runtime_filter: "[RUNTIME_FILTER] string|null"
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    server_filter_empty: null  # install all 4 when unset
+    runtime_filter_empty: null  # auto-detect active runtime when unset
+  server_filter_policy:
+    null: "install all 4 MCP servers"
+    set: "install only the named server"
+  runtime_filter_policy:
+    null: "wire MCP config into the detected active runtime"
+    set: "wire MCP config into the named runtime only"
 
 # ─────────────────────────────────────────────────────────────────
 # ARGUMENT PARSING

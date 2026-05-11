@@ -60,6 +60,21 @@ user_inputs:
   intent: "[INTENT] - DIAGNOSE (this YAML)"
 
 # ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    no_snapshot_empty: "false"
+    dry_run_empty: "false"
+    intent_empty: "DIAGNOSE"
+  no_snapshot_policy:
+    true: "skip CocoIndex snapshot; rollback unavailable on reindex regression"
+    false: "snapshot CocoIndex DB before reindex; restore on regression"
+  dry_run_policy:
+    true: "propose reindex actions only; no daemon restart or DB writes"
+    false: "execute reindex when daemon health permits"
+
+# ─────────────────────────────────────────────────────────────────
 # MUTATION BOUNDARIES
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:

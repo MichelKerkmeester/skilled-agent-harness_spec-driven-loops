@@ -10,10 +10,66 @@ action: Run 5-step interactive diagnostic with guided repair
 # ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: sequential_5_step
+  compliance: MANDATORY
+  execution: interactive
   workflow_compliance: MANDATORY
   workflow_execution: interactive
   approvals: per_failure
   tracking: pass_warn_fail_per_check
+  validation: post_repair_reverify
+  intent: DEBUG
+
+# ─────────────────────────────────────────────────────────────────
+# MCP-DEBUG DOCTOR INVARIANT
+# ─────────────────────────────────────────────────────────────────
+mcp_debug_doctor_invariant: |
+  MCP debug workflows run the mcp-doctor.sh diagnostic script against all 4
+  MCP servers (spec-kit-memory, cocoindex-code, code-mode, sequential-thinking),
+  cross-reference each failure with its install guide, and apply guided repairs
+  ONLY when --fix is passed AND the user approves the proposed repair. No
+  silent mutation: every config edit, env change, or build step requires
+  explicit per-server approval. Post-repair re-verification is mandatory.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands"
+  files:
+    spec: "spec.md"
+    decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
+  install_guides:
+    spec_kit_memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
+    cocoindex_code: ".opencode/install_guides/MCP - CocoIndex Code.md"
+    code_mode: ".opencode/install_guides/MCP - Code Mode.md"
+    sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
+  scripts:
+    diagnostic: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
+    library: ".opencode/commands/doctor/scripts/mcp-doctor-lib.sh"
+  pass_policy:
+    require_user_approval_per_fix: true
+    reverify_after_each_fix: true
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  fix: "[FIX] boolean"  # if true, offer guided repairs after diagnostic
+  server_filter: "[SERVER_FILTER] string|null"  # restrict to one server name; null = all 4
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    fix_empty: "false"
+    server_filter_empty: null  # diagnose all 4 servers when unset
+  fix_policy:
+    true: "after diagnostic, prompt per failed server for guided repair"
+    false: "diagnostic only; emit recommendations without writes"
+  server_filter_policy:
+    null: "diagnose all 4 MCP servers"
+    set: "restrict diagnostic + repair to the named server only"
 
 # ─────────────────────────────────────────────────────────────────
 # ARGUMENT PARSING

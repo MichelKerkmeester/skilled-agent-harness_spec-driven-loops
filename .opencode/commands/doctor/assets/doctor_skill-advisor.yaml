@@ -16,6 +16,29 @@ operating_mode:
   tracking: phase_by_phase
   validation: tests_pass_after_changes
 
+# ─────────────────────────────────────────────────────────────────
+# SKILL-ADVISOR DOCTOR INVARIANT
+# ─────────────────────────────────────────────────────────────────
+skill_advisor_doctor_invariant: |
+  Advisor doctor workflows treat scorer lanes (explicit, lexical, derived, semantic)
+  as independent calibration surfaces. Diagnostic mode is read-only and reports
+  per-lane scores against the gold battery. Confirm mode mutates lib/scorer/lanes/*.ts
+  and skill graph-metadata only after explicit per-lane approval. Validation suite
+  must pass post-mutation; failure triggers per-run rollback via the script generated
+  in Phase 3.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  packet: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor"
+  files:
+    spec: "spec.md"  # advisor system requirements
+    decision_record: "decision-record.md"  # ADRs for scoring lanes + thresholds
+  pass_policy:
+    validation_required: true  # advisor_validate must pass before commit
+    rollback_script_required: true  # Phase 3 emits per-run rollback
+
 advisor_philosophy:
   principle: "Tune the routing surface, never the routing logic"
   approach: "Read all skills → propose → review per skill → apply → validate"
