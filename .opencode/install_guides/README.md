@@ -998,6 +998,22 @@ ls .opencode/skills/                 # Skills
 cat opencode.json | jq '.mcp | keys'  # MCP servers
 ```
 
+### Run `/doctor` for end-to-end health check (recommended)
+
+After the static checks above pass, run the interactive doctor surface to verify every subsystem ends up in a healthy state:
+
+```text
+/doctor                              # Interactive menu — pick a subsystem or "Update everything to match latest release"
+/doctor:update                       # Full sweep across every database (8-25 min)
+/doctor:mcp debug                    # MCP-infra diagnostic only (~30s)
+```
+
+- `/doctor` opens an 11-option menu. **Option 1** is "Update everything to match latest spec-kit release" — the right pick after a fresh install (runs `/doctor:update --migrate`).
+- `/doctor:update` rebuilds every database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
+- `/doctor:mcp debug` checks all 4 MCP servers (Spec Kit Memory, CocoIndex Code, Code Mode, Sequential Thinking) and offers guided repair with `--fix`.
+
+Full reference: `.opencode/commands/doctor.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical 7 subsystem targets: memory, causal-graph, code-graph, deep-loop, cocoindex, skill-advisor, skill-budget.
+
 ---
 
 <!-- /ANCHOR:final-verification -->

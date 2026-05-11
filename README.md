@@ -52,7 +52,7 @@ The framework adds three layers on top of the base platform:
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **🤖 11 Agents**        | 11 custom specialists, multi-runtime                                                                                                                                                                                                              |
 | **🎯 21 Skills**        | Code, docs, git, prompts, MCP, research, review, improvement, cross-AI                                                                                                                                                                            |
-| **⌨️ 23 Commands**      | 6 spec_kit + 4 memory + 6 create + 2 improve + 4 doctor + 1 agent_router                                                                                                                                                                          |
+| **⌨️ 22 Commands**      | 6 spec_kit + 4 memory + 6 create + 2 improve + 3 doctor + 1 agent_router                                                                                                                                                                          |
 | **🔧 63 MCP Tools**     | spec_kit_memory (54), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ                                                                                                                                           |
 | **🔍 CocoIndex Code**   | [Forked](.opencode/skills/mcp-coco-index/NOTICE) from [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0) - semantic code search via vector embeddings and natural-language discovery across 28+ languages |
 | **🏗️ Code Graph**       | Structural indexer + SQLite - call graphs, imports, hierarchy, LLM-oriented neighborhoods, graph-first routing                                                                                                                                    |
@@ -1113,21 +1113,29 @@ The MCP server also ships explicit stress and matrix execution surfaces. Run `np
 &nbsp;
 #### DOCTOR
 
-**MCP Debug**
-- Diagnoses all 4 MCP servers (Spec Kit Memory, CocoIndex Code, Code Mode, Sequential Thinking) with PASS/WARN/FAIL per check
-- Investigates failures using install guide knowledge, cross-references config wiring across all 5 runtime configs
-- Interactive repair: walks through each failure with root cause + targeted fix. Also supports `--fix` for automatic repair
+Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no target to see the interactive menu — upgrade users see "Update everything to match latest release" as option 1.
 
-**MCP Install**
-- Fresh install or reinstall all 4 MCP servers from their install guides
-- Assesses current state (INSTALLED/STALE/MISSING), runs install scripts, configures runtime wiring, verifies health
-- Handles old-install-conflicting-with-new scenarios (clean reinstall with venv/node_modules removal)
+**`/doctor <target>` (router)**
+- Single entry point for 7 subsystems: `memory`, `causal-graph`, `code-graph`, `deep-loop`, `cocoindex`, `skill-advisor`, `skill-budget`
+- Argv-positional dispatch via `.opencode/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
+- Each target loads its own self-contained YAML workflow under `assets/doctor_<target>.yaml`
+- Interactive menu when no target supplied; Tier 2 per-target prompt when a required flag is missing
+- Examples: `/doctor memory --dry-run`, `/doctor causal-graph --confidence-threshold=0.8`, `/doctor code-graph --scope=stale`
+- `--target=<name>` is preserved as a compatibility alias for flag-only invocation
 
-**Code Graph**
-- Diagnoses code graph readiness, stale state, and verification status; apply mode is documented in the code graph runtime playbook
+**`/doctor:mcp install|debug`**
+- MCP infrastructure repair (replaces the standalone `/doctor:mcp_install` and `/doctor:mcp_debug` from v3.4.0.0)
+- `install` — fresh install or reinstall of all 4 MCP servers from their install guides; handles old-conflicting-with-new (clean reinstall with venv/node_modules removal)
+- `debug` — diagnoses all 4 MCP servers (Spec Kit Memory, CocoIndex Code, Code Mode, Sequential Thinking) with PASS/WARN/FAIL per check; supports `--fix` for guided repair
 
-**Skill Advisor**
-- Checks advisor freshness, routing health, and stale-state repair paths, including when to use `advisor_rebuild`
+**`/doctor:update`**
+- Multi-subsystem orchestrator: dependency-safe rebuild across code-graph → context-index + vector-index → causal-edges → skill-graph → advisor → deep-loop → cocoindex → eval
+- One lock (`mcp_server/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
+- Tier-aware mid-run prompts: SHORT steps auto-acknowledge; MEDIUM steps share one combined prompt (Q-MED); LONG-POLE `memory_index_scan` gets explicit ETA prompt (Q-LONG, 5-15 min)
+- Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
+- Use after upgrading spec-kit, after large packet moves, or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle schema migration (e.g. v3.3.0.0 → v3.4.1.0). Wall-clock 8-25 min
+
+The 10 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self-sufficient — each declares its own `role/purpose/action/operating_mode/invariants/upstream_assets/user_inputs/field_handling` block plus phased execution. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
