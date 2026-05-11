@@ -373,7 +373,7 @@ print(response)
 **Remove/Minimize**:
 - Installation-only snippets (always combine with usage)
 - Long feature lists (convert to example-driven)
-- Project governance (move to CONTRIBUTING.md)
+- Project governance (move to a separate governance doc)
 - Licensing text (link to LICENSE)
 - Directory trees (unless essential)
 - Academic citations

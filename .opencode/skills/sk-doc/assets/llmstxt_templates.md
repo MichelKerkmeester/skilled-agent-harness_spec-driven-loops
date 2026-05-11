@@ -198,7 +198,6 @@ Each link must include a description:
 
 List all existing documentation files:
 - README.md
-- CONTRIBUTING.md
 - API documentation
 - Guides and tutorials
 - Example files
@@ -576,7 +575,6 @@ Key features:
 
 ## DEVELOPMENT
 
-- [Contributing Guide](https://github.com/example/dataflow/blob/main/CONTRIBUTING.md): How to contribute to DataFlow
 - [Development Setup](https://github.com/example/dataflow/blob/main/docs/development.md): Setting up local development environment
 - [Testing](https://github.com/example/dataflow/blob/main/docs/testing.md): Running and writing tests
 
@@ -783,7 +781,6 @@ The skill provides:
 ## DEVELOPMENT
 
 - [Structure Extraction](https://github.com/example/doc-optimizer/blob/main/scripts/extract_structure.py): Python tool for document parsing
-- [Contributing](https://github.com/example/doc-optimizer/blob/main/CONTRIBUTING.md): How to contribute improvements
 
 ## OPTIONAL
 

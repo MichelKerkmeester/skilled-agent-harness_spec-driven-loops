@@ -17,35 +17,38 @@ import { fixture as dac030 } from './fixtures/council-value/dac-030.js';
 import { fixture as dac031 } from './fixtures/council-value/dac-031.js';
 import { fixture as dac032 } from './fixtures/council-value/dac-032.js';
 
-const fixtures = [dac027, dac028, dac029, dac030, dac031, dac032];
-
 describe('Council graph value scenarios (DAC-027..DAC-032)', () => {
-  for (const fx of fixtures) {
-    it(`${fx.scenarioId} graph beats no-graph baseline`, async () => {
-      const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), `${fx.scenarioId.toLowerCase()}-`));
-      const { db, cleanup } = openTempCouncilGraphDb();
-
-      try {
-        seedArtifactTree(tmpRoot, fx.artifactTree);
-        await upsertFixtureGraph(fx.specFolder, fx.sessionId, fx.graphSeed);
-
-        const baseline = await fx.baseline.runner(tmpRoot);
-        const graph = await fx.graph.runner(db, fx.specFolder, fx.sessionId);
-
-        expect(graph.answer).toEqual(fx.graph.expectedAnswer);
-        expect(baseline.answer).toEqual(fx.baseline.expectedAnswer);
-        expect(baseline.fileReads).toBeGreaterThanOrEqual(fx.baseline.minFileReads);
-        expect(graph.mcpCalls).toBeLessThanOrEqual(baseline.fileReads);
-
-        appendMetricsReport(fx.scenarioId, {
-          baselineFileReads: baseline.fileReads,
-          graphMcpCalls: graph.mcpCalls,
-          ratio: baseline.fileReads / Math.max(graph.mcpCalls, 1),
-        });
-      } finally {
-        cleanup();
-        fs.rmSync(tmpRoot, { recursive: true, force: true });
-      }
-    });
-  }
+  it('DAC-027 graph beats no-graph baseline', async () => runFixture(dac027));
+  it('DAC-028 graph beats no-graph baseline', async () => runFixture(dac028));
+  it('DAC-029 graph beats no-graph baseline', async () => runFixture(dac029));
+  it('DAC-030 graph beats no-graph baseline', async () => runFixture(dac030));
+  it('DAC-031 graph beats no-graph baseline', async () => runFixture(dac031));
+  it('DAC-032 graph beats no-graph baseline', async () => runFixture(dac032));
 });
+
+async function runFixture(fx: typeof dac027): Promise<void> {
+  const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), `${fx.scenarioId.toLowerCase()}-`));
+  const { db, cleanup } = openTempCouncilGraphDb();
+
+  try {
+    seedArtifactTree(tmpRoot, fx.artifactTree);
+    await upsertFixtureGraph(fx.specFolder, fx.sessionId, fx.graphSeed);
+
+    const baseline = await fx.baseline.runner(tmpRoot);
+    const graph = await fx.graph.runner(db, fx.specFolder, fx.sessionId);
+
+    expect(graph.answer).toEqual(fx.graph.expectedAnswer);
+    expect(baseline.answer).toEqual(fx.baseline.expectedAnswer);
+    expect(baseline.fileReads).toBeGreaterThanOrEqual(fx.baseline.minFileReads);
+    expect(graph.mcpCalls).toBeLessThanOrEqual(baseline.fileReads);
+
+    appendMetricsReport(fx.scenarioId, {
+      baselineFileReads: baseline.fileReads,
+      graphMcpCalls: graph.mcpCalls,
+      ratio: baseline.fileReads / Math.max(graph.mcpCalls, 1),
+    });
+  } finally {
+    cleanup();
+    fs.rmSync(tmpRoot, { recursive: true, force: true });
+  }
+}

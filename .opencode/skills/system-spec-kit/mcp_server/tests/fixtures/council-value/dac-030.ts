@@ -2,4 +2,5 @@ import { buildScenarioFixture, type ScenarioFixture as BaseScenarioFixture } fro
 
 export interface ScenarioFixture extends BaseScenarioFixture {}
 
+// DAC-030 normalization provenance lives in seed-helpers.ts at rankDac030Blockers().
 export const fixture: ScenarioFixture = buildScenarioFixture('DAC-030');

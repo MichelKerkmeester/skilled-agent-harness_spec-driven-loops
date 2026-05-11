@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `DAC-025` and confirm th
 2. Snapshot `council_graph_status` counts.
 3. Snapshot artifact mtimes: `bash: stat -f '%m %N' .opencode/specs/sandbox/dac-025/ai-council/**/*`.
 4. Delete derived rows scoped to `(sandbox/dac-025, dac-025-run-01)` via direct SQL or `council_graph_status` `recovery` payload guidance.
-5. Replay upserts: read `ai-council/ai-council-state.jsonl`, derive nodes/edges, call `council_graph_upsert` once per row.
+5. Replay upserts with `node .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder .opencode/specs/sandbox/dac-025 --session-id dac-025-run-01`, then pipe the emitted payload to `council_graph_upsert`.
 6. Re-run `council_graph_status`; compare counts to step 2.
 7. Re-snapshot artifact mtimes; compare to step 3.
 
@@ -54,7 +54,7 @@ Operators run the exact prompt and command sequence for `DAC-025` and confirm th
 1. `tool: council_graph_status({ specFolder: 'sandbox/dac-025', sessionId: 'dac-025-run-01' })`
 2. `bash: stat -f '%m %N' .opencode/specs/sandbox/dac-025/ai-council/**/* | sort > /tmp/dac-025-pre-mtimes.txt`
 3. `bash: # delete derived rows scoped to namespace (helper script or direct SQL per recovery payload guidance)`
-4. `bash: # replay: read ai-council-state.jsonl and call council_graph_upsert per row`
+4. `bash: node .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder .opencode/specs/sandbox/dac-025 --session-id dac-025-run-01 > /tmp/dac-025-upsert.json`
 5. `tool: council_graph_status({ specFolder: 'sandbox/dac-025', sessionId: 'dac-025-run-01' })`
 6. `bash: stat -f '%m %N' .opencode/specs/sandbox/dac-025/ai-council/**/* | sort > /tmp/dac-025-post-mtimes.txt`
 7. `bash: diff /tmp/dac-025-pre-mtimes.txt /tmp/dac-025-post-mtimes.txt`

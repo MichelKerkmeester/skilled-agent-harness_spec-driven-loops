@@ -303,6 +303,13 @@ async function runGraph(
     case 'DAC-032': {
       const data = parseData(await handleCouncilGraphStatus({ specFolder, sessionId }));
       const nodesByKind = data.nodesByKind as Record<string, number>;
+      // NORMALIZATION (gap #6 of 101/007):
+      // Runtime `council_graph_status` returns a binary `ready` flag plus separate counts.
+      // The operator-facing scenario DAC-032 expects an "incomplete" flag distinguishing
+      // partial mid-round state from healthy state. This block derives that flag from the
+      // status response (ready=false AND counts indicate at least one partial round).
+      // If the runtime adds a richer readiness enum, update this normalization and the
+      // DAC-032 scenario's expected-answer simultaneously.
       const incomplete = (nodesByKind.ROUND ?? 0) > (nodesByKind.DECISION ?? 0);
       const recovery = data.recovery as Record<string, unknown>;
       return {
@@ -366,9 +373,12 @@ function rankDac030Blockers(ns: CouncilNamespace): string[] {
   const c5Evidence = edges.filter((edge) => edge.targetId === 'c5' && edge.relation === 'EVIDENCE_FOR').length;
   if (c5?.kind === 'CLAIM' && c5Evidence <= 1) ranked.push(c5.id);
 
-  // The current MCP response groups blocker categories; this fixture normalizes
-  // those graph rows into the operator-facing DAC-030 ranking without changing
-  // runtime council graph code.
+  // NORMALIZATION (gap #6 of 101/007):
+  // Runtime `council_graph_query mode='convergence_blockers'` returns grouped blockers
+  // (by severity + evidence-depth + centrality). The operator-facing scenario DAC-030
+  // expects a single ranked list `[d1, d2, c5]`. This block flattens the grouped
+  // response into that order. If the runtime response shape changes, update this
+  // normalization and the DAC-030 scenario's expected-answer simultaneously.
   return ranked;
 }
 

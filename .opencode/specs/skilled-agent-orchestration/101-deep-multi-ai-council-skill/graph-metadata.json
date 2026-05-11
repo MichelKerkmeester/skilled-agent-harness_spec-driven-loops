@@ -10,7 +10,8 @@
     "skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage",
     "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
     "skilled-agent-orchestration/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation",
-    "skilled-agent-orchestration/101-deep-multi-ai-council-skill/007-council-infrastructure-hardening"
+    "skilled-agent-orchestration/101-deep-multi-ai-council-skill/007-council-infrastructure-hardening",
+    "skilled-agent-orchestration/101-deep-multi-ai-council-skill/008-council-surface-polish"
   ],
   "manual": {
     "depends_on": [],
@@ -40,7 +41,7 @@
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/007-council-infrastructure-hardening",
+    "last_active_child_id": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/008-council-surface-polish",
     "key_files": [
       "001-deep-ai-council-skill-creation/spec.md",
       "002-deep-ai-council-reference-expansion/spec.md",
@@ -49,6 +50,7 @@
       "005-deep-ai-council-fixups-and-graph-value-scenarios/spec.md",
       "006-council-graph-value-scenario-automation/spec.md",
       "007-council-infrastructure-hardening/spec.md",
+      "008-council-surface-polish/spec.md",
       "spec.md"
     ],
     "entities": [

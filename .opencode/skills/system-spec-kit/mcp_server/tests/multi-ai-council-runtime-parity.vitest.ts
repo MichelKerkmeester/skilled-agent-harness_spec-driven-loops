@@ -26,6 +26,10 @@ function body(text: string): string {
   return text.replace(/^---\n[\s\S]*?\n---\n+/, '').trim();
 }
 
+function normalizeProse(text: string): string {
+  return text.replace(/\\"/g, '"').replace(/\\'/g, "'").replace(/\s+/g, ' ').trim();
+}
+
 describe('deep-ai-council runtime mirror parity', () => {
   it('keeps markdown mirror permission YAML byte-equivalent', () => {
     const canonical = frontmatter(read(markdownMirrors[0]));
@@ -59,12 +63,20 @@ describe('deep-ai-council runtime mirror parity', () => {
   });
 
   it('keeps all four body mirrors aligned and removes planning-only persistence text', () => {
+    const canonicalFM = frontmatter(read(markdownMirrors[0]));
+    const nameMatch = canonicalFM.match(/^name:\s*"?(.+?)"?$/m);
+    const descMatch = canonicalFM.match(/^description:\s*"?(.+?)"?$/m);
+    expect(nameMatch, 'canonical name field').not.toBeNull();
+    expect(descMatch, 'canonical description field').not.toBeNull();
+
     const canonicalBody = body(read(markdownMirrors[0]));
     for (const mirror of markdownMirrors.slice(1)) {
       expect(body(read(mirror)), mirror).toBe(canonicalBody);
     }
 
     const codex = read('.codex/agents/deep-ai-council.toml');
+    expect(codex).toContain(`name = "${nameMatch![1]}"`);
+    expect(normalizeProse(codex)).toContain(normalizeProse(descMatch![1]));
     expect(codex).toContain('sandbox_mode = "workspace-write"');
     expect(codex).toContain('ai-council/**');
     expect(codex).toContain('COUNCIL PERSISTENCE PROTOCOL');

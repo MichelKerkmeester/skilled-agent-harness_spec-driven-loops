@@ -102,8 +102,9 @@ manual_testing_playbook/**/*.md
 ```
 
 - `references/` contains council state, folder layout, seat diversity, output schema, convergence signals, and caller wiring.
-- `manual_testing_playbook/` contains operator validation scenarios for routing, deliberation, persistence, convergence, rollback, and scope boundaries.
-- `scripts/` contains deterministic helpers; scripts are invoked explicitly and are not markdown-routed.
+- `manual_testing_playbook/` contains operator validation scenarios for routing, deliberation, persistence, convergence, rollback, scope boundaries, council-graph integration, and council-graph value comparison (32 scenarios across 9 categories).
+- `feature_catalog/` mirrors the playbook 1:1 with one user-facing feature entry per scenario (32 entries) — start here for "what does DAC-NNN actually do" lookups.
+- `scripts/` contains deterministic helpers; scripts are invoked explicitly and are not markdown-routed. Notable entries: `persist-artifacts.cjs` (artifact writer CLI), `replay-graph-from-artifacts.cjs` (DAC-025 derived-projection rebuild — reads `ai-council-state.jsonl` and emits a `council_graph_upsert` payload).
 
 ### Resource Loading Levels
 

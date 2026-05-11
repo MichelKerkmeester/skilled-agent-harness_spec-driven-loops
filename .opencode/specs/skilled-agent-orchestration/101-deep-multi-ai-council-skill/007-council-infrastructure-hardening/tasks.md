@@ -53,17 +53,17 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation (cli-codex dispatch)
+## PHASE 2: IMPLEMENTATION
 
-- [ ] T010 Gap #1: Add `test:council` npm script + standalone runner + opt-in pre-push template + CONTRIBUTING.md
-- [ ] T011 Gap #2: Author 32 feature catalog entries across 9 category folders
-- [ ] T012 Gap #2: Update root playbook §17 to reference real catalog paths
-- [ ] T013 Gap #3: Author reverse-anchor integrity vitest
-- [ ] T014 Gap #4: Author DAC-025 replay helper script + update DAC-025 scenario file
-- [ ] T015 Gap #5: Broaden Codex TOML parity assertions
-- [ ] T016 Gap #6: Add normalization provenance comments to DAC-030/032 fixtures
-- [ ] T017 cli-codex runs `npm run test:council` and confirms green
-- [ ] T018 Main agent: update parent 101 spec.md + graph-metadata.json
+- [x] T010 Gap #1: Add `test:council` npm script + standalone runner + opt-in pre-push template + CONTRIBUTING.md
+- [x] T011 Gap #2: Author 32 feature catalog entries across 9 category folders
+- [x] T012 Gap #2: Update root playbook §17 to reference real catalog paths
+- [x] T013 Gap #3: Author reverse-anchor integrity vitest
+- [x] T014 Gap #4: Author DAC-025 replay helper script + update DAC-025 scenario file
+- [x] T015 Gap #5: Broaden Codex TOML parity assertions
+- [x] T016 Gap #6: Add normalization provenance comments to DAC-030/032 fixtures
+- [x] T017 cli-codex runs `npm run test:council` and confirms green
+- [x] T018 Main agent: update parent 101 spec.md + graph-metadata.json
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,14 +71,14 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T030 Run new anchor-integrity vitest standalone
-- [ ] T031 Run full 9-file council vitest batch
-- [ ] T032 Smoke test runner script + npm script
-- [ ] T033 Smoke test replay helper `--help`
-- [ ] T034 Verify §17 catalog rows have 0 "No feature catalog exists yet" hits
-- [ ] T035 Run sk-doc validators
-- [ ] T036 Strict spec validation on 007 + parent 101
-- [ ] T037 Author real implementation-summary.md
+- [x] T030 Run new anchor-integrity vitest standalone
+- [x] T031 Run full 9-file council vitest batch
+- [x] T032 Smoke test runner script + npm script
+- [x] T033 Smoke test replay helper `--help`
+- [x] T034 Verify §17 catalog rows have 0 "No feature catalog exists yet" hits
+- [x] T035 Run sk-doc validators
+- [x] T036 Strict spec validation on 007 + parent 101
+- [x] T037 Author real implementation-summary.md
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -86,9 +86,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0 requirements REQ-001..REQ-009 verified with evidence
-- [ ] Full 9-file council vitest matrix passes
-- [ ] Strict spec validation 0/0 on 007 + parent 101
+- [x] All P0 requirements REQ-001..REQ-009 verified with evidence
+- [x] Full 9-file council vitest matrix passes
+- [x] Strict spec validation 0/0 on 007 + parent 101
 <!-- /ANCHOR:completion -->
 
 ---

@@ -27,7 +27,7 @@
       "anchor-integrity"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -37,13 +37,14 @@
     "entities": [],
     "causal_summary": "Close six residual gaps from 101/001..006 in a single dispatch: runnable test gate, 32-entry feature catalog, reverse-anchor meta-test, DAC-025 replay helper, Codex TOML parity broaden, fixture normalization provenance.",
     "created_at": "2026-05-11T11:00:00Z",
-    "last_save_at": "2026-05-11T11:00:00Z",
+    "last_save_at": "2026-05-11T11:35:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

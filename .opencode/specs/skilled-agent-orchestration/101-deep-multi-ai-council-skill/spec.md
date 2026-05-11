@@ -126,7 +126,8 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 | 4 | `004-deep-ai-council-playbook-graph-coverage/` | Add 8 functional graph integration scenarios (DAC-019..DAC-026) to the manual testing playbook so Phase 003's shipped MCP surface has operator-driven coverage | Complete |
 | 5 | `005-deep-ai-council-fixups-and-graph-value-scenarios/` | Fix 2 pre-existing vitest failures (Claude translated frontmatter parity + persist-artifacts stale HELPER_PATH); add 6 value-comparison scenarios (DAC-027..DAC-032) proving graph beats no-graph baseline | Complete |
 | 6 | `006-council-graph-value-scenario-automation/` | Promote DAC-027..DAC-032 from operator A/B contracts into CI-protected fixture-driven vitest with measured baseline vs graph metrics + operator fixture-seeder CLI | Complete |
-| 7 | `007-council-infrastructure-hardening/` | Close 6 residual gaps from 101/001..006: test gate (npm script + runner + opt-in pre-push), 32-entry feature catalog, reverse-anchor meta-test, DAC-025 replay helper, Codex TOML name/desc parity, fixture normalization provenance | In Progress |
+| 7 | `007-council-infrastructure-hardening/` | Close 6 residual gaps from 101/001..006: test gate (npm script + runner + opt-in pre-push), 32-entry feature catalog, reverse-anchor meta-test, DAC-025 replay helper, Codex TOML name/desc parity, fixture normalization provenance | Complete |
+| 8 | `008-council-surface-polish/` | Surface 101/007 artifacts through SKILL.md, publish 101/001..007 series changelog, add smoke vitest covering replay helper + bash runner + pre-push hook | Complete |
 ### Phase Transition Rules
 
 - Phase 001 MUST validate the skill package, runtime mirrors, advisor routing, and moved persistence tests before Phase 002 or 003 work depends on the skill boundary.
@@ -136,6 +137,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 - Phase 005 depends on Phase 004 completion (which surfaced the 2 pre-existing vitest failures); it repairs the failures and adds value-comparison scenarios contrasting with-graph vs no-graph workflows.
 - Phase 006 depends on Phase 005 completion; it automates the 6 value scenarios as fixture-driven vitest with measured baseline vs graph metrics.
 - Phase 007 depends on Phase 006 completion; it closes 6 residual infrastructure gaps surfaced across 101/001..006 (test gate, feature catalog, anchor integrity, replay helper, Codex parity, fixture provenance).
+- Phase 008 depends on Phase 007 completion; it surfaces the new artifacts via SKILL.md, publishes the 101 series changelog, and adds smoke coverage for the three new helper scripts.
 - Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation` to resume initial skill extraction.
 - Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support` to resume graph-support planning.
 - Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage` to resume playbook coverage work.
@@ -171,4 +173,5 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 - **Phase 005**: `005-deep-ai-council-fixups-and-graph-value-scenarios/spec.md`
 - **Phase 006**: `006-council-graph-value-scenario-automation/spec.md`
 - **Phase 007**: `007-council-infrastructure-hardening/spec.md`
+- **Phase 008**: `008-council-surface-polish/spec.md`
 - **Graph Metadata**: `graph-metadata.json`
