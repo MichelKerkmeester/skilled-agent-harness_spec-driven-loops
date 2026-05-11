@@ -37,7 +37,7 @@ trigger_phrases:
 
 The skill is planning-only. Council writes are scoped to packet-local `ai-council/**` artifacts, including state, seat outputs, deliberations, failed-round forensics, and the final council report. It does not edit application code or authored spec docs.
 
-Recovery outside a council run should use `/spec_kit:resume`, which rebuilds context from the packet continuity ladder before consulting generated memory artifacts. Graph-backed council storage is deferred to Phase 002 and is not part of the current skill contract.
+Recovery outside a council run should use `/spec_kit:resume`, which rebuilds context from the packet continuity ladder before consulting generated memory artifacts. Graph-backed council storage is a derived SQLite projection exposed through the `council_graph_*` MCP tool family (`upsert`, `query`, `status`, `convergence`); packet-local `ai-council/**` artifacts remain authoritative and the graph rebuilds from them.
 
 ---
 
@@ -88,16 +88,25 @@ Skill package:
 |-- README.md
 |-- description.json
 |-- graph-metadata.json
+|-- changelog/
+|   |-- v1.0.0.0.md
+|   |-- v1.1.0.0.md
 |-- references/
+|   |-- anti_patterns.md
 |   |-- command_wiring.md
 |   |-- convergence_signals.md
+|   |-- depth_dispatch.md
+|   |-- failure_handling.md
 |   |-- folder_layout.md
+|   |-- graph_support.md
 |   |-- output_schema.md
+|   |-- scoring_rubric.md
 |   |-- seat_diversity_patterns.md
 |   |-- state_format.md
 |-- scripts/
 |   |-- advise-council-completion.cjs
 |   |-- persist-artifacts.cjs
+|   |-- replay-graph-from-artifacts.cjs
 |   |-- lib/
 |-- manual_testing_playbook/
 |   |-- manual_testing_playbook.md
@@ -106,6 +115,12 @@ Skill package:
 |   |-- 03--artifact-persistence-and-state-format/
 |   |-- 04--convergence-and-rollback/
 |   |-- 05--scope-boundaries/
+|   |-- 06--depth-and-failure-handling/
+|   |-- 07--writer-library-contract/
+|   |-- 08--council-graph-integration/
+|   |-- 09--council-graph-value-comparison/
+|-- feature_catalog/
+|   |-- 01--runtime-routing-and-rename/ .. 09--council-graph-value-comparison/  (32 entries total)
 ```
 
 Runtime packet layout:
@@ -232,14 +247,20 @@ A: Preserve failed artifacts under `failed/round-NNN-<timestamp>/` and append ro
 ## 10. RELATED DOCUMENTS
 
 - `SKILL.md` - agent-facing router and operating contract.
+- `changelog/` - per-release notes (`v1.0.0.0.md` skill extraction, `v1.1.0.0.md` graph + value-comparison + infra hardening series).
+- `references/anti_patterns.md` - council failure modes to avoid.
 - `references/command_wiring.md` - caller-owned persistence patterns.
 - `references/convergence_signals.md` - convergence and escape hatches.
+- `references/depth_dispatch.md` - Depth 0 / Depth 1 dispatch rules.
+- `references/failure_handling.md` - rollback and recovery flows.
 - `references/folder_layout.md` - runtime artifact tree.
 - `references/graph_support.md` - derived graph support and MCP tool boundaries.
 - `references/output_schema.md` - required report sections.
+- `references/scoring_rubric.md` - 5-dimension scoring contract.
 - `references/seat_diversity_patterns.md` - seat and vantage selection.
 - `references/state_format.md` - append-only state events.
-- `manual_testing_playbook/manual_testing_playbook.md` - operator validation package.
+- `manual_testing_playbook/manual_testing_playbook.md` - operator validation package (32 scenarios across 9 categories).
+- `feature_catalog/NN--<category>/` - 1:1 feature inventory mirroring the playbook (32 entries).
 
 Agent definitions:
 
