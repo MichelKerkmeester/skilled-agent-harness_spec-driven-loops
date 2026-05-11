@@ -41,7 +41,7 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 
 ---
 
-# 0. SUB-ACTION RESOLUTION
+## 0. SUB-ACTION RESOLUTION
 
 **FIRST MESSAGE PROTOCOL:** this prompt MUST be your FIRST response when `$ARGUMENTS` lacks a positional sub-action.
 
@@ -108,7 +108,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 ---
 
-# 1. PURPOSE
+## 1. PURPOSE
 
 `/doctor:mcp` bundles two MCP infrastructure operations:
 
@@ -119,10 +119,15 @@ These are the only two operations on MCP infrastructure itself. Every other `/do
 
 ---
 
-# 2. CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — `<install|debug>` (positional) plus sub-action-specific flags.
-**Outputs:** Install report or diagnostic + optional repairs + `STATUS=OK|FAIL|CANCEL`.
+
+**Outputs:**
+- `STATUS=OK` — install or debug completed (final state in mcp-doctor.sh report)
+- `STATUS=CANCEL` — user picked X
+- `STATUS=FAIL ERROR="unknown_sub_action"` — sub-action not in {install, debug}
+- `STATUS=FAIL ERROR="cross_sub_action_flag_injection"` — flag from wrong sub-action
 
 **YAML assets:**
 - `install` → `.opencode/commands/doctor/assets/doctor_mcp_install.yaml`
@@ -134,7 +139,7 @@ These are the only two operations on MCP infrastructure itself. Every other `/do
 
 ---
 
-# 3. EXAMPLES
+## 3. EXAMPLES
 
 ```
 # Install (fresh / reinstall)
@@ -153,7 +158,7 @@ These are the only two operations on MCP infrastructure itself. Every other `/do
 
 ---
 
-# 4. TROUBLESHOOTING / NEXT STEPS
+## 4. TROUBLESHOOTING / NEXT STEPS
 
 | Situation                                                                                  | Suggested action                                                                                |
 | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |

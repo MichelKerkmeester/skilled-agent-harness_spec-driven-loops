@@ -348,6 +348,14 @@ State log: mcp_server/database/.doctor-update.last-run.json
 Snapshots: <kept|cleaned|skipped>
 ```
 
+### Status Outputs
+
+- `STATUS=OK` — all phases completed; gold-battery passed; state log written
+- `STATUS=ROLLED_BACK` — Q-FAIL chose rollback OR auto-rollback fired on gold-battery regression
+- `STATUS=CANCELLED` — Q0 cancelled, Q-PROBE rejected, or Q-LONG/Q-MED cancelled mid-run
+- `STATUS=RESTART_REQUIRED` — Phase 1.5 built mcp_server/dist; needs fresh OpenCode process + --resume-bootstrap
+- `STATUS=FAIL ERROR="..."` — see state log `.doctor-update.last-run.json` for details
+
 When `STATUS=RESTART_REQUIRED`, no database rebuild has started yet. Start a fresh OpenCode process so the MCP launcher can register the now-built `spec_kit_memory` surface, then rerun `/doctor:update --resume-bootstrap`.
 
 ## RELATED COMMANDS

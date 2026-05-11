@@ -70,7 +70,7 @@ This router never modifies authored spec packet docs. Each routed target has its
 
 ---
 
-# 0. UNIFIED SETUP PHASE (TWO TIERS)
+## 0. UNIFIED SETUP PHASE (TWO TIERS)
 
 **FIRST MESSAGE PROTOCOL:** this prompt MUST be your FIRST response when `$ARGUMENTS` lacks a recognized positional target. Lightweight read-only discovery is allowed (read `_routes.yaml`); then ask Tier 1 and wait. The happy path (`/doctor <target> [flags]`) skips Tier 1 entirely and proceeds straight to Tier 2.
 
@@ -267,7 +267,7 @@ TIER 2 — PER-TARGET FLAG PARSING (case block)
 
 ---
 
-# 1. PURPOSE
+## 1. PURPOSE
 
 `/doctor` is the single entry point for per-subsystem diagnostics in the spec-kit ecosystem. It replaces 7 previously-separate `/doctor:*` commands (`/doctor:memory`, `/doctor:causal-graph`, `/doctor:code-graph`, `/doctor:deep-loop`, `/doctor:cocoindex`, `/doctor:skill-advisor`, `/doctor:skill-budget`) with one router that dispatches via `_routes.yaml`. The router preserves every previous behavior — same setup variables, same YAML workflows, same mutation boundaries — while collapsing the markdown surface area by ~75%.
 
@@ -275,17 +275,23 @@ Use `/doctor` when you need to diagnose or rebuild ONE subsystem. Use `/doctor:u
 
 ---
 
-# 2. CONTRACT
+## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` — `<target>` (positional) plus target-specific flags.
-**Outputs:** Diagnostic report (or rebuild outcome) from the chosen target's YAML workflow. `STATUS=OK|FAIL|CANCEL`.
+
+**Outputs:**
+- `STATUS=OK` — target dispatched, YAML loaded, workflow ran
+- `STATUS=CANCEL` — user picked X/cancel or chose to switch to /doctor:update or /doctor:mcp
+- `STATUS=FAIL ERROR="unknown_target"` — positional target not in _routes.yaml
+- `STATUS=FAIL ERROR="cross_target_flag_injection"` — flag from wrong target's schema
+- `STATUS=FAIL ERROR="unknown_selection"` — Tier 1 menu got invalid response after 2 attempts
 
 **Routing source of truth:** `.opencode/commands/doctor/_routes.yaml`
 **CI assertion:** `.opencode/commands/doctor/scripts/route-validate.sh`
 
 ---
 
-# 3. EXAMPLES
+## 3. EXAMPLES
 
 ```
 # Per-target diagnostics
@@ -307,7 +313,7 @@ Use `/doctor` when you need to diagnose or rebuild ONE subsystem. Use `/doctor:u
 
 ---
 
-# 4. TROUBLESHOOTING / NEXT STEPS
+## 4. TROUBLESHOOTING / NEXT STEPS
 
 | Situation                                                  | Suggested action                                                                                         |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -320,7 +326,7 @@ Use `/doctor` when you need to diagnose or rebuild ONE subsystem. Use `/doctor:u
 
 ---
 
-# 5. INTERNAL: WHY THE TWO-TIER SETUP
+## 5. INTERNAL: WHY THE TWO-TIER SETUP
 
 Each routed target's YAML expects specific `setup_vars` to be bound before Phase 0. The pre-014 commands used 8 separate .md files (one per subsystem + update) to parse target-specific flags. The router collapses that into one .md by:
 
