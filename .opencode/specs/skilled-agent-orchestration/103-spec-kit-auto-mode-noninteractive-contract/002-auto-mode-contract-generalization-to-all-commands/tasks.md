@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "103-002-auto-mode-contract-generalization"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +49,7 @@ _memory:
 
 - [x] T001 Shared `auto_mode_contract.md` authored (Stage B).
 - [x] T002 `/spec_kit:deep-review.md` §0 refactored to cite shared contract (Stage B).
-- [ ] T003 Confirm 001's dry-run traces still conceptually pass after refactor (read-back).
+- [x] T003 Confirm 001's dry-run traces still conceptually pass after refactor (read-back).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,7 +60,7 @@ _memory:
 - [x] T010 Codex group dispatch 1 (spec_kit/5): deep-research, complete, implement, plan, resume. Evidence: Group 1 codex dispatch completed; 5 commands migrated; see evidence/codex-group1-dispatch.txt
 - [x] T011 Codex group dispatch 2 (create/6): sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme. Evidence: Group 2 codex dispatch completed; 5 commands migrated; see evidence/codex-group2-dispatch.txt
 - [x] T012 Codex group dispatch 3 (improve/1): agent. Evidence: Group 3 codex dispatch completed; 1 command migrated; see evidence/codex-group3-dispatch.txt
-- [ ] T013 Per-command read-back: confirm `:confirm` block untouched in all 11 migrated commands.
+- [x] T013 Per-command read-back: confirm `:confirm` block untouched in all 11 migrated commands.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,22 +68,22 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T020 Live `:auto` dispatch — `/spec_kit:deep-review` (re-verify post-refactor).
-- [ ] T021 Live `:auto` dispatch — `/spec_kit:deep-research`.
-- [ ] T022 Live `:auto` dispatch — `/spec_kit:resume`.
-- [ ] T023 Live `:auto` dispatch — `/spec_kit:implement`.
-- [ ] T024 Live `:auto` dispatch — `/spec_kit:complete`.
-- [ ] T025 Live `:auto` dispatch — `/spec_kit:plan`.
-- [ ] T026 Live `:auto` dispatch — `/create:changelog`.
-- [ ] T027 Live `:auto` dispatch — `/create:sk-skill`.
-- [ ] T028 Live `:auto` dispatch — `/create:agent`.
-- [ ] T029 Live `:auto` dispatch — `/create:feature-catalog`.
-- [ ] T030 Live `:auto` dispatch — `/create:testing-playbook`.
-- [ ] T031 Live `:auto` dispatch — `/create:folder_readme`.
-- [ ] T032 Live `:auto` dispatch — `/improve:agent`.
-- [ ] T033 Populate `implementation-summary.md` with 12-row results matrix + per-PARTIAL/FAIL finding.
-- [ ] T034 strict-validate 103 phase parent + 001 + 002 — all exit 0.
-- [ ] T035 Update `_memory.continuity` blocks to `completion_pct: 100`.
+- [x] T020 Live `:auto` dispatch — `/spec_kit:deep-review` (re-verify post-refactor).
+- [x] T021 Live `:auto` dispatch — `/spec_kit:deep-research`.
+- [x] T022 Live `:auto` dispatch — `/spec_kit:resume`.
+- [x] T023 Live `:auto` dispatch — `/spec_kit:implement`.
+- [x] T024 Live `:auto` dispatch — `/spec_kit:complete`.
+- [x] T025 Live `:auto` dispatch — `/spec_kit:plan`.
+- [x] T026 Live `:auto` dispatch — `/create:changelog`.
+- [x] T027 Live `:auto` dispatch — `/create:sk-skill`.
+- [x] T028 Live `:auto` dispatch — `/create:agent`.
+- [x] T029 Live `:auto` dispatch — `/create:feature-catalog`.
+- [x] T030 Live `:auto` dispatch — `/create:testing-playbook`.
+- [x] T031 Live `:auto` dispatch — `/create:folder_readme`.
+- [x] T032 Live `:auto` dispatch — `/improve:agent`.
+- [x] T033 Populate `implementation-summary.md` with 12-row results matrix + per-PARTIAL/FAIL finding.
+- [x] T034 strict-validate 103 phase parent + 001 + 002 — all exit 0.
+- [x] T035 Update `_memory.continuity` blocks to `completion_pct: 100`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

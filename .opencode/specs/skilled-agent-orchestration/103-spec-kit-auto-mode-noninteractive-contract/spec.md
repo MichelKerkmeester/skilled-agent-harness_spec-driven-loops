@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 | --- | --- |
-| **Status** | Active |
+| **Status** | Complete |
 | **Priority** | P1 |
 | **Created** | 2026-05-11 |
 | **Phase Count** | 2 |
@@ -65,7 +65,7 @@ Out of scope:
 | Phase | Folder | Status | Description |
 | --- | --- | --- | --- |
 | 1 | `001-deep-review-three-tier-setup/` | Complete | Three-tier `:auto` setup contract authored, implemented, and live-verified for `/spec_kit:deep-review`. Originally shipped as `system-spec-kit/028-deep-review-noninteractive-setup-bypass`; renamed and imported here 2026-05-11. |
-| 2 | `002-auto-mode-contract-generalization-to-all-commands/` | Active | Lift the three-tier flow into a shared `auto_mode_contract.md` reference doc; migrate 11 remaining commands to cite it; full live `:auto` dispatch verification. |
+| 2 | `002-auto-mode-contract-generalization-to-all-commands/` | Complete | Lifted three-tier flow into shared `auto_mode_contract.md` reference doc; migrated 11 remaining commands to cite it; full live `:auto` dispatch verification = 13/13 PASS. |
 
 ## 5. Phase Handoffs
 
