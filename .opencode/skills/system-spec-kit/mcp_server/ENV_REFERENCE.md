@@ -103,6 +103,11 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Community search fallback | ON | `SPECKIT_COMMUNITY_SEARCH_FALLBACK` | Community-level fallback channel | Phase B T018 |
 | Dual retrieval | ON | `SPECKIT_DUAL_RETRIEVAL` | Local/global/auto retrieval level control | Phase B T019 |
 | Intent auto profile | ON | `SPECKIT_INTENT_AUTO_PROFILE` | Intent-to-response-profile auto-routing | Phase C |
+<!-- PHASE-007-ENV-SLOT: SPECKIT_COCOINDEX_INTENT_* flags inserted here (027/007) -->
+<!-- PHASE-008-ENV-SLOT: SPECKIT_SEMANTIC_TRIGGERS_* flags inserted here (027/008) -->
+<!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_COCOINDEX_FEEDBACK_RERANK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->
+<!-- PHASE-010-ENV-SLOT: SPECKIT_COCO_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
+<!-- PHASE-011-ENV-SLOT: SPECKIT_COCOINDEX_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
 Total unique variables documented: 129 (legacy HYDRA aliases removed in commit 6f2c2c939).
 

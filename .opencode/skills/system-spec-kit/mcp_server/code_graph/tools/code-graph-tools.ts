@@ -13,6 +13,9 @@ import {
   handleCccReindex,
   handleCccFeedback,
   handleDetectChanges,
+  // PHASE-002-IMPORT-SLOT: handleCodeGraphHldLld (027/002)
+  // PHASE-003-IMPORT-SLOT: handleCodeGraphTrace (027/003)
+  // PHASE-004-IMPORT-SLOT: handleCodeGraphImpactAnalysis (027/004)
 } from '../handlers/index.js';
 
 import type { MCPResponse } from '../../tools/types.js';
@@ -30,6 +33,9 @@ export const TOOL_NAMES = new Set([
   'ccc_status',
   'ccc_reindex',
   'ccc_feedback',
+  // PHASE-002-TOOLNAME-SLOT: 'code_graph_hld_lld' (027/002)
+  // PHASE-003-TOOLNAME-SLOT: 'code_graph_trace' (027/003)
+  // PHASE-004-TOOLNAME-SLOT: 'code_graph_impact_analysis' (027/004)
 ]);
 
 /** Coerce handler response to MCPResponse (fix type literal narrowing) */
@@ -99,6 +105,9 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
       }
       return toMCP(await handleCccFeedback(parseArgs<Parameters<typeof handleCccFeedback>[0]>(args)));
     }
+    // PHASE-002-DISPATCH-SLOT: case 'code_graph_hld_lld' (027/002)
+    // PHASE-003-DISPATCH-SLOT: case 'code_graph_trace' (027/003)
+    // PHASE-004-DISPATCH-SLOT: case 'code_graph_impact_analysis' (027/004)
     default:
       return null;
   }
