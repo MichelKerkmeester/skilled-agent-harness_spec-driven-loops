@@ -1,22 +1,48 @@
 {
-  "name": "003-handler",
-  "purpose": "Implement handlers/hld-lld.ts and MCP tool wiring using the published contract interface.",
-  "type": "phase-child",
+  "title": "Phase 002.003 — code_graph_hld_lld Handler + MCP Tool Wiring",
+  "trigger_phrases": [
+    "027 phase 002 handler",
+    "handlers/hld-lld.ts",
+    "code_graph_hld_lld MCP tool"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-12T00:00:00Z",
+  "branch": "main",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld",
   "manual": {
     "depends_on": [
-      "001-contract"
+      "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld/001-contract"
     ]
   },
   "soft_depends_on": [
-    "002-lib-impl"
+    "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld/002-lib-impl"
   ],
-  "level": 2,
-  "status": "spec-scaffolded",
-  "importance_tier": "important",
-  "contextType": "implementation",
   "derived": {
     "status": "spec-scaffolded",
-    "completion_pct": 0
-  }
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld/003-handler",
+  "description": "MCP handler handlers/hld-lld.ts wiring the code_graph_hld_lld tool dispatch using the contract interface.",
+  "keywords": [
+    "hld-lld",
+    "handler",
+    "mcp",
+    "tool",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "specId": "003",
+  "folderSlug": "handler",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-code-graph-hld-lld"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

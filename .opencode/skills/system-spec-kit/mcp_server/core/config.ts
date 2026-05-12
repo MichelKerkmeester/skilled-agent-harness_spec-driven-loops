@@ -123,7 +123,7 @@ export const BATCH_DELAY_MS: number = Number.isFinite(parsedBatchDelayMs) && par
 
 // ────────────────────────────────────────────────────────────────
 
-export const INDEX_SCAN_COOLDOWN: number = 60000;
+export const INDEX_SCAN_COOLDOWN: number = 30000;
 
 // ────────────────────────────────────────────────────────────────
 // 5. QUERY VALIDATION LIMITS 

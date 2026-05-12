@@ -1,18 +1,45 @@
 {
-  "name": "001-contract",
-  "purpose": "Define the TypeScript contract for deterministic code_graph HLD/LLD generation before parallel child implementation begins.",
-  "type": "phase-child",
+  "title": "Phase 002.001 — code_graph_hld_lld Contract",
+  "trigger_phrases": [
+    "027 phase 002 contract",
+    "code_graph_hld_lld contract",
+    "HldLldClassifier interface",
+    "FileRole enum"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-12T00:00:00Z",
+  "branch": "main",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld",
   "manual": {
     "depends_on": []
   },
   "soft_depends_on": [],
-  "level": 2,
-  "status": "spec-scaffolded",
-  "importance_tier": "important",
-  "contextType": "implementation",
   "derived": {
     "status": "spec-scaffolded",
-    "completion_pct": 0
-  }
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld/001-contract",
+  "description": "TypeScript HldLldClassifier interface and FileRole enum types defining the deterministic HLD/LLD generation contract.",
+  "keywords": [
+    "hld-lld",
+    "contract",
+    "typescript",
+    "interface",
+    "enum"
+  ],
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "specId": "001",
+  "folderSlug": "contract",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-code-graph-hld-lld"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }
