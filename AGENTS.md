@@ -155,14 +155,29 @@ Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup conte
 | **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                                                                     |
 | **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                                                                               |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                                                                                |
-| **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                                                                                    |
-| **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                                                                                        |
+| **Memory DB admin**       | `/memory:manage` → stats, health, cleanup, retention, validate, checkpoint, ingest, CCC operations                                                                                           |
+| **Database/index maintenance** | `/doctor <target>` for subsystem diagnostics/repairs; `/doctor:update` for dependency-ordered code-graph → memory → causal → skill/advisor/deep-loop/cocoindex alignment with snapshot, validation, rollback, and run log                          |
+| **Doctor command surface** | Use router-form doctor commands after cutover: `/doctor memory`, `/doctor causal-graph`, `/doctor:mcp debug`, `/doctor:mcp install`; do not route users to deleted legacy colon-form target commands. `/doctor:update` remains standalone             |
+| **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history; inspect `memory_health.data.routing` for graph/degree channel utilization                             |
 | **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                                                                        |
-| **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate → DQI score → Verify                                                                                                              |
+| **Documentation/component creation** | `/create:*` command → `@markdown` → load `sk-doc` → read command template → write scoped artifact → validate/DQI/verify. Direct documentation quality work may use `sk-doc` directly → classify → load template → fill → validate → DQI score → verify |
 | **Code work**             | sk-code skill → smart router (auto-detects the active stack from CWD + library markers; unsupported surfaces ask for disambiguation); Phase 1-3 (Implement → Quality Gate → Debug → Verify) |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                                                                        |
+| **Deep AI Council changes** | Run `npm run --prefix .opencode/skills/system-spec-kit/mcp_server test:council`; for full release validation run `npm run --prefix .opencode/skills/system-spec-kit/mcp_server test:council:full` or `bash .opencode/skills/system-spec-kit/scripts/test-council-matrix.sh` → sk-doc validate `deep-ai-council` → strict validate the touched spec packet |
 | **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                                                                                 |
 | **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                                                                            |
+
+**Doctor surface notes:**
+- `/doctor <target>` is the router form for subsystem diagnostics and repairs.
+- `/doctor:mcp install|debug` is the MCP infrastructure branch.
+- `/doctor:update` is the standalone full alignment orchestrator.
+- Deleted legacy colon-form target commands must not be suggested after cutover.
+- Doctor manual validation lives in `system-spec-kit/manual_testing_playbook/23--doctor-commands/`; Docker-backed dry-run evidence lives in `_sandbox/23--doctor-commands/`.
+
+**Documentation and council notes:**
+- `/create:*` command execution routes through `@markdown`; direct doc-quality review can still use `sk-doc`.
+- Deep AI Council graph tools are derived projections. Treat packet-local `ai-council/**` artifacts as source of truth.
+- Council verification requires the council test gate plus spec/doc validation for the touched packet.
 
 ---
 
@@ -195,7 +210,13 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 - **Read-only disqualifiers:** `review`, `audit`, `inspect`, `analyze`, `explain` — suppress Gate 3 when they appear ALONE (e.g. "review the decomposition phase"). Do NOT suppress when a continuity-write trigger is also present.
 - **Note:** tokens `analyze`, `decompose`, `phase` are NOT positive triggers; they false-positive on read-only review prompts.
 - **Options:** A) Existing | B) New | C) Update related | D) Skip | E) Phase folder (e.g., `specs/NNN-name/001-phase/`)
+- **Router commands:** For router-style commands such as `/doctor`, evaluate Gate 3 per selected route. The route manifest/table must expose each target's location and mutation class (`read-only`, `add-only`, `mutates`) before asking or acting.
 - **Ask first, then act.** No Read/Edit/Write/Bash (except Gate Actions) before answer. The answer applies for the ENTIRE session — re-ask ONLY when user says "new task" / "different feature" / names a different spec folder, or asks you to re-ask.
+
+Router command manifests must make the mutation boundary visible before execution:
+- `read-only` routes may inspect and report without a spec-folder write path.
+- `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied.
+- `mutates` routes require the same spec-folder discipline as any other file/database mutation.
 
 #### GATE 4: SKILL-OWNED WORKFLOW ENFORCEMENT [HARD] BLOCK
 Trigger phrases: "deep-research", "deep-review", "iterations", ":auto" suffix, "convergence", "autoresearch", "research loop", "review loop", iterative investigation/audit at scale (>5 iterations).
@@ -226,7 +247,8 @@ Trigger: "save context", "save memory", `/memory:save`
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`.
   - Also refreshes `graph-metadata.json` and `description.json` for the spec folder.
 - **Quick continuity update:** AI may directly edit `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md` without running generate-context.js (per ADR-004). The resume ladder only reads continuity from `implementation-summary.md`.
-- **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()
+- **Memory mutation freshness:** Handlers that affect `memory_index` rows (`memory_save`, `memory_bulk_delete`) must invalidate the entity-density cache after commit so graph-channel routing sees fresh causal/entity state without waiting for the TTL.
+- **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
 - **Post-Save Review:** After `generate-context.js` completes, check the POST-SAVE QUALITY REVIEW output.
   - **HIGH** issues: MUST manually patch via Edit tool (fix title, trigger_phrases, importance_tier)
   - **MEDIUM** issues: patch when practical
@@ -236,7 +258,14 @@ Trigger: "save context", "save memory", `/memory:save`
 Trigger: Claiming "done", "complete", "finished", "works"
 1. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` (Exit 0 = pass, 1 = warnings, 2 = errors).
 2. Load `checklist.md` → verify ALL items → mark `[x]` with evidence.
+3. Reconcile completion metadata: update `spec.md` Status, plan/checklist evidence, handover completion fields, and implementation-summary continuity so packet docs do not claim conflicting completion states.
 - Skip: Level 1 tasks (no checklist.md required).
+
+Completion metadata reconciliation covers:
+- `spec.md` status and shipped/current-state claims.
+- `plan.md` / `tasks.md` / `checklist.md` evidence rows.
+- `handover.md` or `_memory.continuity` fields when present.
+- `implementation-summary.md` final state, validation evidence, and continuation notes.
 
 #### VIOLATION RECOVERY [SELF-CORRECTION]
 Trigger: About to skip gates, or realized gates were skipped → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D/E) → WAIT
@@ -275,7 +304,13 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 **Rules:** When in doubt → higher level. LOC is soft guidance (risk/complexity can override). Single typo/whitespace fixes (<5 characters in one file) are exempt.
 
-**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skills/system-spec-kit/templates/`
+**Spec folder path:** `.opencode/specs/[track]/[###-short-name]/` for tracked OpenCode packets, with phase children such as `[001-phase]/` under phase parents. Legacy/root `specs/[###-short-name]/` may exist, but current packet-local docs and metadata live under `.opencode/specs/`. | **Templates:** `.opencode/skills/system-spec-kit/templates/`
+
+Path convention details:
+- Tracked OpenCode packets use `.opencode/specs/[track]/[###-short-name]/`.
+- Phase parents may contain `NNN-short-name/` child folders with their own spec docs.
+- Legacy `specs/[###-short-name]/` remains valid where already established.
+- Always resolve the active packet path before writing spec docs or continuity metadata.
 
 ---
 
@@ -318,9 +353,9 @@ Use the agent directory that matches the active runtime/provider profile:
 - **`@context`** - LEAF-only retrieval agent for codebase search, pattern discovery, and context loading. Uses memory triggers/context, memory search, CocoIndex, and direct code evidence. LEAF constraint: `@context` MUST NOT dispatch sub-agents, use the Task tool, or write files. All results are returned to the caller; never held in nested context
 - **`@review`** - Code review, PRs, quality gates (READ-ONLY)
 - **`@debug`** - Fresh perspective debugging (5-phase root-cause). Dispatched via Task tool; retains exclusive write access for `debug-delegation.md`
-- **`@markdown`** - Dedicated `/create:*` documentation executor (LEAF, write-capable). Loads `sk-doc` on every invocation, reads the command template before writing, and refuses unscoped documentation callers by convention-level Phase 0 gate.
+- **`@markdown`** - Dedicated `/create:*` documentation and component executor (LEAF, write-capable). Loads `sk-doc` on every invocation, reads the command template before writing, and refuses unscoped documentation callers by convention-level Phase 0 gate. Codex CLI caveat: under non-interactive `codex exec`, do not rely on SpawnAgent for user-defined `@markdown` until the runtime allowlist supports it; use the inline-contract path that reads `.codex/agents/markdown.toml` and forbids nested SpawnAgent fallback. Gate 3 still applies to writes unless the user or command contract has already supplied the answer.
 - **`@prompt-improver`** - Prompt engineering via `sk-prompt`. Dispatched by `/improve:prompt`
-- **`@deep-ai-council`** - Multi-strategy planning architect 
+- **`@deep-ai-council`** - Deep AI Council planning architect for multi-seat deliberation, strategy comparison, critique, convergence, and packet-local `ai-council/**` artifacts. Primary runtime identity is `deep-ai-council` across OpenCode, Claude, Codex, and Gemini; do not route new work to the retired `multi-ai-council` runtime name unless maintaining legacy persisted rows.
 - **`@deep-research`** - Autonomous deep research iterations (LEAF). Dispatched by `/spec_kit:deep-research`
 - **`@deep-review`** - Autonomous deep review iterations (LEAF, P0/P1/P2). Dispatched by `/spec_kit:deep-review`
 - **`@deep-agent-improvement`** - Bounded agent improvement via `deep-agent-improvement`. Dispatched by `/improve:agent`
@@ -337,6 +372,11 @@ Use the agent directory that matches the active runtime/provider profile:
 
 1. **Native MCP** (`opencode.json`) - Direct tools, called natively
    - Sequential Thinking, Spec Kit Memory, Code Mode, CocoIndex Code
+   - Council Graph MCP: `council_graph_upsert`, `council_graph_query`, `council_graph_status`, `council_graph_convergence`. These are dedicated derived-projection tools for Deep AI Council state; packet-local `ai-council/**` artifacts remain source of truth.
+     - `council_graph_upsert` records bounded council nodes and edges.
+     - `council_graph_query` reads the derived projection for comparison and trace questions.
+     - `council_graph_status` reports namespace-scoped health and recovery payloads.
+     - `council_graph_convergence` assesses round/session convergence buckets.
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
    - Figma, Github, ClickUp, Chrome DevTools, etc.
