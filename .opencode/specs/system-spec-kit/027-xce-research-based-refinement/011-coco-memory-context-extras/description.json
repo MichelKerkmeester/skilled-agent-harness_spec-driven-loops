@@ -1,24 +1,29 @@
 {
-  "title": "Phase 011 — Coco-Index Few-Shot Exemplars + Memory LLM-Curated Context",
+  "title": "Phase Parent 011 — Coco Memory Context Extras",
   "trigger_phrases": [
     "027 phase 011",
-    "coco few-shot exemplars",
-    "coco example bank",
-    "memory LLM-curated context",
-    "memory_context curator",
-    "ccc_examples_clear",
-    "data.curatedContext"
+    "coco memory context extras",
+    "coco exemplars track",
+    "memory curator track",
+    "phase parent 011"
   ],
-  "level": 3,
+  "level": "phase",
   "importance_tier": "important",
   "contextType": "implementation",
-  "status": "spec-scaffolded",
+  "status": "phase-parent",
   "priority": "P2",
   "createdAt": "2026-05-09T11:00:00Z",
   "branch": "main",
   "parent_track": "027-xce-research-based-refinement",
-  "parent_id": "027-xce-research-based-refinement",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
   "manual": {
+    "children": [
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/001-exemplars-schema",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/002-exemplars-retriever",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/003-exemplars-maintenance",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/004-curator-prompt",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/005-curator-integration"
+    ],
     "depends_on": [
       "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork"
     ]
@@ -29,24 +34,31 @@
     "009-feedback-reducers"
   ],
   "derived": {
-    "status": "spec-scaffolded",
+    "status": "phase-parent",
     "completion_pct": 0,
-    "last_active_child_id": null
+    "last_active_child_id": null,
+    "children": [
+      "001-exemplars-schema",
+      "002-exemplars-retriever",
+      "003-exemplars-maintenance",
+      "004-curator-prompt",
+      "005-curator-integration"
+    ]
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras",
-  "description": "Feature Specification: Coco Few-Shot Exemplars + Memory LLM-Curated Context Dependency added for the Coco exemplar path: Phase 001 must land before this phase modifies mcp-coco-index; the memory curator path remains independently scoped.",
+  "description": "Phase parent for two independent presentation-layer tracks: Coco exemplars in Python and memory context curation in TypeScript. Child phases own detailed implementation plans and validation.",
   "keywords": [
-    "feature",
-    "specification",
+    "phase",
+    "parent",
     "coco",
-    "few-shot",
     "exemplars",
     "memory",
-    "llm-curated",
-    "context"
+    "curator",
+    "context",
+    "presentation"
   ],
-  "lastUpdated": "2026-05-10T10:05:44.449Z",
-  "specId": "010",
+  "lastUpdated": "2026-05-12T00:00:00Z",
+  "specId": "011",
   "folderSlug": "coco-memory-context-extras",
   "parentChain": [
     "system-spec-kit",

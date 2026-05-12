@@ -1,0 +1,43 @@
+{
+  "title": "001 Exemplars Schema",
+  "trigger_phrases": [
+    "027 011 001 exemplars schema",
+    "coco exemplars schema",
+    "examples_schema.py"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "draft",
+  "priority": "P2",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork"
+    ]
+  },
+  "derived": {
+    "status": "draft",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/001-exemplars-schema",
+  "description": "Level 2 child phase for Coco exemplar schema and SQLite migration planning.",
+  "keywords": [
+    "coco",
+    "exemplars",
+    "schema",
+    "sqlite",
+    "vec0"
+  ],
+  "lastUpdated": "2026-05-12T00:00:00Z",
+  "specId": "001",
+  "folderSlug": "exemplars-schema",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "011-coco-memory-context-extras"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

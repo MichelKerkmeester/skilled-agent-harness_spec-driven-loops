@@ -3,8 +3,21 @@
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras",
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement",
-  "children_ids": [],
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/001-exemplars-schema",
+    "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/002-exemplars-retriever",
+    "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/003-exemplars-maintenance",
+    "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/004-curator-prompt",
+    "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/005-curator-integration"
+  ],
   "manual": {
+    "children": [
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/001-exemplars-schema",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/002-exemplars-retriever",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/003-exemplars-maintenance",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/004-curator-prompt",
+      "system-spec-kit/027-xce-research-based-refinement/011-coco-memory-context-extras/005-curator-integration"
+    ],
     "depends_on": [
       "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork"
     ],
@@ -12,126 +25,42 @@
     "related_to": [
       "system-spec-kit/027-xce-research-based-refinement/006-code-graph-adoption-eval",
       "system-spec-kit/027-xce-research-based-refinement/008-memory-semantic-triggers",
-      "system-spec-kit/027-xce-research-based-refinement/009-feedback-reducers",
-      "system-spec-kit/027-xce-research-based-refinement/010-retrieval-rerank-clients",
-      "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork"
+      "system-spec-kit/027-xce-research-based-refinement/009-feedback-reducers"
     ]
   },
   "derived": {
     "trigger_phrases": [
       "027 phase 011",
-      "coco few-shot exemplars",
-      "coco example bank",
-      "memory LLM-curated context",
-      "memory_context curator",
-      "ccc_examples_clear",
-      "data.curatedContext"
+      "coco memory context extras",
+      "coco exemplars track",
+      "memory curator track",
+      "phase parent 011"
     ],
     "key_topics": [
       "coco",
       "exemplars",
-      "example-bank",
       "memory",
       "curator",
       "context",
       "presentation",
-      "llm",
-      "schema-validation",
-      "budget-split",
-      "shadow",
-      "rq-a4",
-      "rq-b2"
+      "phase-parent"
     ],
     "importance_tier": "important",
-    "status": "spec-scaffolded",
+    "status": "phase-parent",
     "completion_pct": 0,
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "resource-map.md"
+      "description.json",
+      "graph-metadata.json"
     ],
-    "entities": [
-      {
-        "name": "example_bank.py",
-        "kind": "code",
-        "path": "mcp-coco-index/mcp_server/cocoindex_code/example_bank.py",
-        "source": "planned"
-      },
-      {
-        "name": "example_bank_schema.py",
-        "kind": "code",
-        "path": "mcp-coco-index/mcp_server/cocoindex_code/example_bank_schema.py",
-        "source": "planned"
-      },
-      {
-        "name": "exemplar_lookup.py",
-        "kind": "code",
-        "path": "mcp-coco-index/mcp_server/cocoindex_code/exemplar_lookup.py",
-        "source": "planned"
-      },
-      {
-        "name": "context-curator.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/context-curator.ts",
-        "source": "planned"
-      },
-      {
-        "name": "context-curator-prompt.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/context-curator-prompt.ts",
-        "source": "planned"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-context.ts",
-        "source": "modified"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "modified"
-      },
-      {
-        "name": "llm-cache.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/llm-cache.ts",
-        "source": "modified"
-      },
-      {
-        "name": "ccc-feedback.ts",
-        "kind": "code",
-        "path": "mcp_server/code_graph/handlers/ccc-feedback.ts",
-        "source": "modified"
-      },
-      {
-        "name": "query.py",
-        "kind": "code",
-        "path": "mcp-coco-index/mcp_server/cocoindex_code/query.py",
-        "source": "modified"
-      },
-      {
-        "name": "server.py",
-        "kind": "code",
-        "path": "mcp-coco-index/mcp_server/cocoindex_code/server.py",
-        "source": "modified"
-      }
-    ],
-    "causal_summary": "Phase 011 implements pt-03 RQ-A4 (coco few-shot exemplars) + RQ-B2 (memory LLM-curated context packaging) as one L3 packet bundling two presentation-layer features. Both default-off + shadow-first + Phase-006 lift gate. Coco exemplars in SEPARATE response group from new SQLite/vec0 table (capped + TTL + reconciliation); memory data.curatedContext as post-retrieval packaging plan with strict JSON schema validation. Budget split adds retrievalCandidateLimit + presentationLimit + curationTokenBudget knobs. LLM cache extended with mode='context_curation' keying. Hard timeout + deterministic fallback for curator. Stage 4 ordering immutability binding (ADR-004). Soft deps on Phase 008 (better trigger candidates → better curator input), Phase 009 Consumer A (signal quality for example-bank capture), Phase 006 (eval lift gate). Dependency added for the Coco exemplar path: Phase 001 must land before this phase modifies mcp-coco-index; the memory curator path remains independently scoped.",
+    "entities": [],
+    "causal_summary": "Phase parent for Phase 011, split into Track A Coco exemplars and Track B memory context curator. Child folders own Level 2 execution packets. Parent keeps dependency and child routing only.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-05-10T10:05:44.449Z",
-    "save_lineage": "scaffold",
-    "last_accessed_at": "2026-05-10T10:05:44.449Z",
+    "last_save_at": "2026-05-12T00:00:00Z",
+    "save_lineage": "phase-parent-scaffold",
+    "last_accessed_at": "2026-05-12T00:00:00Z",
     "source_docs": [
-      "spec.md",
-      "../research/027-xce-research-pt-03/research.md",
-      "../research/027-xce-research-pt-03/iterations/iteration-004.md",
-      "../research/027-xce-research-pt-03/iterations/iteration-007.md"
+      "spec.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null
