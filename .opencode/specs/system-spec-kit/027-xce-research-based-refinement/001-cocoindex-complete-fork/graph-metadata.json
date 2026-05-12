@@ -3,11 +3,26 @@
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork",
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement",
-  "children_ids": [],
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/001-import-upstream",
+    "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/002-scripts",
+    "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/003-tests-port",
+    "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/004-docs",
+    "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/005-attribution",
+    "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/006-integration-smoke"
+  ],
   "migrated": false,
-  "migration_source": "codex-plan",
+  "migration_source": "phase-parent-scaffold",
   "manual": {
     "depends_on": [],
+    "children": [
+      "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/001-import-upstream",
+      "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/002-scripts",
+      "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/003-tests-port",
+      "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/004-docs",
+      "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/005-attribution",
+      "system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/006-integration-smoke"
+    ],
     "supersedes": [
       "mcp-coco-index partial soft fork 0.2.3+spec-kit-fork.0.2.0"
     ],
@@ -21,42 +36,22 @@
     "trigger_phrases": [
       "027 phase 001",
       "cocoindex complete fork",
-      "complete cocoindex mcp fork",
-      "mcp-coco-index full upstream fork",
-      "cocoindex-code v0.2.33 adoption",
-      "spec-kit fork upstream sync"
+      "phase parent",
+      "cocoindex-code v0.2.33 adoption"
     ],
     "key_topics": [
       "cocoindex",
       "complete fork",
-      "mcp-coco-index",
-      "cocoindex-code",
-      "v0.2.33",
-      "upstream sync",
-      "spec-kit patches",
-      "rankingSignals",
-      "source_realpath",
-      "path_class"
+      "phase parent",
+      "v0.2.33"
     ],
     "importance_tier": "important",
-    "status": "spec-scaffolded",
+    "status": "phase-parent",
     "completion_pct": 0,
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "research.md",
-      "resource-map.md",
-      ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
-      ".opencode/skills/mcp-coco-index/CHANGELOG.md",
-      ".opencode/skills/mcp-coco-index/NOTICE",
-      "external/cocoindex-code-main/pyproject.toml",
-      "external/cocoindex-code-main/src/cocoindex_code/cli.py",
-      "external/cocoindex-code-main/src/cocoindex_code/query.py",
-      "external/cocoindex-code-main/src/cocoindex_code/indexer.py",
-      "external/cocoindex-code-main/src/cocoindex_code/settings.py"
+      "description.json",
+      "graph-metadata.json"
     ],
     "entities": [
       {
@@ -70,45 +65,17 @@
         "kind": "skill",
         "path": ".opencode/skills/mcp-coco-index",
         "source": "manual"
-      },
-      {
-        "name": "query.py",
-        "kind": "code",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
-        "source": "manual"
-      },
-      {
-        "name": "indexer.py",
-        "kind": "code",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
-        "source": "manual"
-      },
-      {
-        "name": "schema.py",
-        "kind": "code",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py",
-        "source": "manual"
-      },
-      {
-        "name": "settings.py",
-        "kind": "code",
-        "path": "external/cocoindex-code-main/src/cocoindex_code/settings.py",
-        "source": "manual"
       }
     ],
-    "causal_summary": "Phase 001 is a new prerequisite planning packet for replacing the current partial mcp-coco-index soft fork with a complete local fork of the upstream cocoindex-code MCP wrapper at v0.2.33. Research found the local fork is still labeled 0.2.3+spec-kit-fork.0.2.0 and carries a narrow patch overlay, while upstream v0.2.33 has a broader package, tests, runtime path helpers, Docker assets, and CLI/doctor surface. This phase keeps the transitive cocoindex engine as a pinned external dependency unless scope expands, then ports current spec-kit search telemetry and ranking patches onto the full wrapper baseline.",
+    "causal_summary": "Phase parent coordinates six child packets for a complete local fork of the cocoindex-code MCP wrapper from the fixed v0.2.33 snapshot.",
     "created_at": "2026-05-10T00:00:00Z",
-    "last_save_at": "2026-05-10T10:05:44.449Z",
-    "save_lineage": "codex-phase-001-cocoindex-complete-fork-plan",
-    "last_accessed_at": "2026-05-10T10:05:44.449Z",
+    "last_save_at": "2026-05-12T07:20:00Z",
+    "save_lineage": "phase-parent-scaffold",
+    "last_accessed_at": "2026-05-12T07:20:00Z",
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "research.md",
-      "decision-record.md",
-      "resource-map.md"
+      "spec.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-05-10T10:05:44.449Z"
+    "last_active_at": "2026-05-12T07:20:00Z"
   }
 }

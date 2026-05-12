@@ -1,35 +1,39 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Update Attribution Metadata"
+description: "Current implementation summary placeholder for Update NOTICE, CHANGELOG, and package metadata for Apache-2.0 upstream plus spec-kit modifications."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "027 phase 005"
+  - "cocoindex attribution"
+  - "005-attribution"
+importance_tier: "important"
+contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-attribution"
-    last_updated_at: "2026-05-12T07:10:19Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/005-attribution"
+    last_updated_at: "2026-05-12T07:20:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Scaffolded child packet for Update Attribution Metadata"
+    next_safe_action: "Implement scoped tasks for 005-attribution"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-attribution"
+      session_id: "codex-2026-05-12-027-001-005-attribution"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Parent decomposition and dependency order are pre-approved by orchestrator."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary
+# Implementation Summary: Update Attribution Metadata
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 ---
 
@@ -38,9 +42,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 005-attribution |
-| **Completed** | 2026-05-12 |
-| **Level** | 1 |
+| **Spec Folder** | `005-attribution` |
+| **Status** | Scaffolded |
+| **Level** | 2 |
+| **Updated** | 2026-05-12 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,28 +53,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
-
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+No implementation has landed in this child yet. The scaffold defines the scope, dependencies, tasks, and validation evidence slots for Update Attribution Metadata.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/mcp-coco-index/NOTICE` | Modify | Apache-2.0 attribution and local modifications |
+| `.opencode/skills/mcp-coco-index/CHANGELOG.md` | Modify | Fork ownership narrative and v0.2.33 baseline |
+| `.opencode/skills/mcp-coco-index/mcp_server/package metadata` | Modify | Version and fork identifiers in package metadata |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +69,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+Scaffolding only. Implementation evidence belongs here after the child work lands.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +77,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep this child bounded to attribution | The parent decomposition relies on disjoint write scopes after 001 lands |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +87,10 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Scaffold validation | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <child-folder> --strict` after scaffold fixes |
+| Implementation checks | Pending implementation |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +98,5 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. Implementation work is not complete. This child is ready to be resumed by a scoped worker.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

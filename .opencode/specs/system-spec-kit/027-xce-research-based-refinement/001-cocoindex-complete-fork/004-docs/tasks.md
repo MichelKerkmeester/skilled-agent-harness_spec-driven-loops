@@ -1,34 +1,39 @@
 ---
-title: "Tasks: Phase 4: docs [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Author Fork Documentation"
+description: "Task list for Author skill, README, install guide, and reference docs for the complete local fork."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "027 phase 004"
+  - "cocoindex docs"
+  - "004-docs"
+importance_tier: "important"
+contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-docs"
-    last_updated_at: "2026-05-12T07:10:19Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/004-docs"
+    last_updated_at: "2026-05-12T07:20:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Scaffolded child packet for Author Fork Documentation"
+    next_safe_action: "Implement scoped tasks for 004-docs"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-docs"
+      session_id: "codex-2026-05-12-027-001-004-docs"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Parent decomposition and dependency order are pre-approved by orchestrator."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: docs
+# Tasks: Author Fork Documentation
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ---
 
@@ -42,17 +47,28 @@ _memory:
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+**Task Format**: `T### [P?] Description (file path) [effort] {deps: T###}`
 <!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## Milestone Reference
+
+| Milestone | Tasks | Target |
+|-----------|-------|--------|
+| M1 | T001-T002 | readiness |
+| M2 | T003-T005 | scoped implementation |
+| M3 | T006-T007 | verification |
+<!-- /ANCHOR:milestones -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Read dependency child outputs and owned files [30m]
+- [ ] T002 Confirm no sibling-owned files are in scope [15m] {deps: T001}
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +76,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T003 Implement the scoped Author Fork Documentation changes [2h] {deps: T002}
+- [ ] T004 Update child docs with implementation evidence [30m] {deps: T003}
+- [ ] T005 Record handoff notes for dependent children [20m] {deps: T004}
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +86,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T006 Run child-specific verification command [30m] {deps: T003}
+- [ ] T007 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <child-folder> --strict` [15m] {deps: T006}
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +95,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked complete or explicitly deferred.
+- [ ] No blocked tasks remain.
+- [ ] Strict validation exits 0.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -91,16 +105,8 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: `spec.md`
+- **Plan**: `plan.md`
+- **Checklist**: `checklist.md`
+- **Parent**: `../spec.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

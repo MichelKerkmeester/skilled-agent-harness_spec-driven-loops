@@ -1,35 +1,45 @@
 ---
-title: "Feature Specification: Phase 1: import-upstream [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Import Upstream Snapshot"
+description: "Bootstrap import of the downloaded upstream cocoindex-code v0.2.33 snapshot into the local mcp-coco-index fork root with an import manifest."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "027 phase 001"
+  - "cocoindex import-upstream"
+  - "001-import-upstream"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-import-upstream"
-    last_updated_at: "2026-05-12T07:10:17Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/001-import-upstream"
+    last_updated_at: "2026-05-12T07:20:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Scaffolded child packet for Import Upstream Snapshot"
+    next_safe_action: "Implement scoped tasks for 001-import-upstream"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-import-upstream"
+      session_id: "codex-2026-05-12-027-001-001-import-upstream"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Parent decomposition and dependency order are pre-approved by orchestrator."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: import-upstream
+# Feature Specification: Import Upstream Snapshot
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+---
+
+## EXECUTIVE SUMMARY
+
+This child establishes the fixed upstream baseline for the complete fork. It owns the mechanical import boundary and manifest so later children can adapt scripts, tests, docs, attribution, and smoke validation without re-deciding what upstream source they are targeting.
 
 ---
 
@@ -38,16 +48,18 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Level** | 3 |
+| **Priority** | P0 |
+| **Status** | draft |
 | **Created** | 2026-05-12 |
-| **Branch** | `scaffold/001-import-upstream` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `027-xce-research-based-refinement` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork` |
 | **Phase** | 1 of 6 |
 | **Predecessor** | None |
-| **Successor** | 002-scripts |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Successor** | ../002-scripts/spec.md |
+| **Estimated Scope** | ~300 LOC, mostly mechanical copy and manifest work |
+| **Depends On** | None |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -55,18 +67,9 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of the Complete CocoIndex MCP fork topical decomposition specification.
+Bootstrap import of the downloaded upstream cocoindex-code v0.2.33 snapshot into the local mcp-coco-index fork root with an import manifest.
 
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+This child is bounded to its topical file surface. It should not take work from sibling children except to consume validated outputs listed in its dependencies.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -75,10 +78,10 @@ This is **Phase 1** of the Complete CocoIndex MCP fork topical decomposition spe
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The complete fork needs this child scope isolated so the implementation can be reviewed and validated independently.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Deliver import-upstream work with clear handoff evidence for the phase parent and downstream children.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -87,19 +90,22 @@ This is **Phase 1** of the Complete CocoIndex MCP fork topical decomposition spe
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Bootstrap import of the downloaded upstream cocoindex-code v0.2.33 snapshot into the local mcp-coco-index fork root with an import manifest.
+- Update this child packet with validation evidence when implementation lands.
+- Preserve the parent baseline decision: v0.2.33 snapshot at `external/cocoindex-code-main/`, no upstream refresh in this packet.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Work owned by sibling child folders.
+- Changes outside the files listed in this child scope.
+- Vendoring the transitive `cocoindex` engine dependency.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `external/cocoindex-code-main/**` | Read | Source snapshot for upstream v0.2.33 |
+| `.opencode/skills/mcp-coco-index/mcp_server/**` | Replace/Create | Complete local fork root for upstream source, package metadata, runtime helpers, and selected assets |
+| `.opencode/skills/mcp-coco-index/mcp_server/IMPORT_MANIFEST.md` | Create | Imported, excluded, and deferred file ledger |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -107,17 +113,13 @@ This is **Phase 1** of the Complete CocoIndex MCP fork topical decomposition spe
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Import the selected upstream v0.2.33 repository surface | Manifest maps each imported path back to external/cocoindex-code-main |
+| REQ-002 | Keep the pt-04 baseline decision intact | No upstream refresh occurs in this packet |
+| REQ-003 | Record source layout choice | ADR explains src layout versus flat package handling |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -125,8 +127,9 @@ This is **Phase 1** of the Complete CocoIndex MCP fork topical decomposition spe
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All files in this child scope are updated or explicitly marked unchanged with evidence.
+- **SC-002**: This child passes strict spec validation.
+- **SC-003**: Handoff evidence is sufficient for dependent children.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -134,42 +137,82 @@ This is **Phase 1** of the Complete CocoIndex MCP fork topical decomposition spe
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Patch overlay conflicts with v0.2.33 query/indexer shape | High | Port patch by patch and leave tests to 003-tests-port |
+| Import includes assets that do not belong in skill runtime | Medium | Classify every non-source asset in IMPORT_MANIFEST.md |
+
+### Dependencies
+- None
 <!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- **NFR-001**: Keep the implementation scoped to the child file boundary.
+- **NFR-002**: Prefer deterministic local checks over network-dependent verification.
+- **NFR-003**: Record any skipped verification with rationale.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- Required dependency child has not validated yet: stop and resume the dependency first.
+- A touched path belongs to another child: stop and route the change to that child.
+- A check needs network or Docker: document it as optional/manual unless the implementation explicitly enables it.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Rationale |
+|-----------|-------|-----------|
+| Scope | Medium | Child has a bounded but non-trivial file surface |
+| Risk | Medium | Incorrect handoff can block downstream phases |
+| Coordination | High | Depends on the phase-parent topology |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Imported tree drops a required spec-kit patch target | H | M | Keep manifest and patch overlay tasks separate |
+| R-002 | Source layout decision breaks scripts | H | M | Record layout decision before script child starts |
+
+---
+
+## 11. USER STORIES
+
+### US-001: Establish Complete Fork Baseline
+
+As a SpecKit maintainer, I want the upstream v0.2.33 wrapper surface locally available so later retrieval work can change local code directly.
+
+Acceptance criteria:
+1. The imported files are traceable to `external/cocoindex-code-main/`.
+2. Exclusions and deferred assets are listed with rationale.
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+None for scaffold. Implementation questions belong in this child after code work begins.
 <!-- /ANCHOR:questions -->
 
 ---
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
+## RELATED DOCUMENTS
 
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- Parent: `../spec.md`
+- Plan: `plan.md`
+- Tasks: `tasks.md`
+- Checklist: `checklist.md`
+- Decisions: `decision-record.md`

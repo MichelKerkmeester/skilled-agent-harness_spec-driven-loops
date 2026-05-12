@@ -1,35 +1,39 @@
 ---
-title: "Feature Specification: Phase 2: scripts [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Adapt Lifecycle Scripts"
+description: "Adapt install, update, and doctor scripts for the spec-kit-owned complete fork lifecycle."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "027 phase 002"
+  - "cocoindex scripts"
+  - "002-scripts"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-scripts"
-    last_updated_at: "2026-05-12T07:10:17Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/002-scripts"
+    last_updated_at: "2026-05-12T07:20:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Scaffolded child packet for Adapt Lifecycle Scripts"
+    next_safe_action: "Implement scoped tasks for 002-scripts"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-scripts"
+      session_id: "codex-2026-05-12-027-001-002-scripts"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Parent decomposition and dependency order are pre-approved by orchestrator."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: scripts
+# Feature Specification: Adapt Lifecycle Scripts
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ---
 
@@ -38,16 +42,18 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | draft |
 | **Created** | 2026-05-12 |
-| **Branch** | `scaffold/002-scripts` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `027-xce-research-based-refinement` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork` |
 | **Phase** | 2 of 6 |
-| **Predecessor** | 001-import-upstream |
-| **Successor** | 003-tests-port |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Predecessor** | ../001-import-upstream/spec.md |
+| **Successor** | ../003-tests-port/spec.md |
+| **Estimated Scope** | ~150 LOC |
+| **Depends On** | `001-import-upstream` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -55,18 +61,9 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the Complete CocoIndex MCP fork topical decomposition specification.
+Adapt install, update, and doctor scripts for the spec-kit-owned complete fork lifecycle.
 
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+This child is bounded to its topical file surface. It should not take work from sibling children except to consume validated outputs listed in its dependencies.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -75,10 +72,10 @@ This is **Phase 2** of the Complete CocoIndex MCP fork topical decomposition spe
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The complete fork needs this child scope isolated so the implementation can be reviewed and validated independently.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Deliver scripts work with clear handoff evidence for the phase parent and downstream children.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -87,19 +84,22 @@ This is **Phase 2** of the Complete CocoIndex MCP fork topical decomposition spe
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Adapt install, update, and doctor scripts for the spec-kit-owned complete fork lifecycle.
+- Update this child packet with validation evidence when implementation lands.
+- Preserve the parent baseline decision: v0.2.33 snapshot at `external/cocoindex-code-main/`, no upstream refresh in this packet.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Work owned by sibling child folders.
+- Changes outside the files listed in this child scope.
+- Vendoring the transitive `cocoindex` engine dependency.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/mcp-coco-index/scripts/install.sh` | Modify | Install from local complete fork root |
+| `.opencode/skills/mcp-coco-index/scripts/update.sh` | Modify | Review complete upstream snapshot diffs instead of small patch queue |
+| `.opencode/skills/mcp-coco-index/scripts/doctor.sh` | Modify | Check local fork version, layout, and runtime paths |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -107,17 +107,13 @@ This is **Phase 2** of the Complete CocoIndex MCP fork topical decomposition spe
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Install uses local fork source | install.sh resolves mcp_server path and never installs PyPI cocoindex-code as source of truth |
+| REQ-002 | Update workflow reviews full upstream snapshot boundary | update.sh reports imported/excluded/deferred files |
+| REQ-003 | Doctor detects complete-fork readiness | doctor.sh validates version marker, package layout, and required runtime files |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -125,8 +121,9 @@ This is **Phase 2** of the Complete CocoIndex MCP fork topical decomposition spe
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All files in this child scope are updated or explicitly marked unchanged with evidence.
+- **SC-002**: This child passes strict spec validation.
+- **SC-003**: Handoff evidence is sufficient for dependent children.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -134,42 +131,51 @@ This is **Phase 2** of the Complete CocoIndex MCP fork topical decomposition spe
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Script assumes old flat package layout | Medium | Drive paths from the 001 import manifest |
+| Doctor invokes expensive daemon behavior | Medium | Keep default checks non-destructive and path-printing |
+
+### Dependencies
+- `001-import-upstream`
 <!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
+- **NFR-001**: Keep the implementation scoped to the child file boundary.
+- **NFR-002**: Prefer deterministic local checks over network-dependent verification.
+- **NFR-003**: Record any skipped verification with rationale.
+<!-- /ANCHOR:nfr -->
 
 ---
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
 
+- Required dependency child has not validated yet: stop and resume the dependency first.
+- A touched path belongs to another child: stop and route the change to that child.
+- A check needs network or Docker: document it as optional/manual unless the implementation explicitly enables it.
+<!-- /ANCHOR:edge-cases -->
 
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+---
+
+<!-- ANCHOR:complexity -->
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Rationale |
+|-----------|-------|-----------|
+| Scope | Medium | Child has a bounded but non-trivial file surface |
+| Risk | Medium | Incorrect handoff can block downstream phases |
+| Coordination | High | Depends on the phase-parent topology |
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 11. OPEN QUESTIONS
+
+None for scaffold. Implementation questions belong in this child after code work begins.
+<!-- /ANCHOR:questions -->
