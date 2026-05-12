@@ -6,7 +6,9 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/001-doctor-commands",
     "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/002-sandbox-testing-playbook",
-    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security"
+    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/003-rm8-013-remediation-doc-honesty-security",
+    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase",
+    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -28,7 +30,9 @@
       "spec-kit version migration",
       "001-doctor-commands",
       "002-sandbox-testing-playbook",
-      "001-doctor-commands handover"
+      "001-doctor-commands handover",
+      "004-router-phase",
+      "005-cutover-phase"
     ],
     "key_topics": [
       "013-doctor-update-orchestrator",
@@ -45,7 +49,7 @@
       "version"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "handover.md",
@@ -66,7 +70,9 @@
       ".opencode/commands/doctor/memory.md",
       ".opencode/commands/doctor/causal-graph.md",
       ".opencode/commands/doctor/deep-loop.md",
-      ".opencode/commands/doctor/cocoindex.md"
+      ".opencode/commands/doctor/cocoindex.md",
+      "004-router-phase/spec.md",
+      "005-cutover-phase/spec.md"
     ],
     "entities": [
       {
@@ -216,7 +222,7 @@
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit ecosystem into alignment with their current codebase and skill set. The 026 release shipped doctor commands for code-graph, skill-advisor, skill-budget, and MCP infra, but **four subsystems with on-disk databases have no `/doctor:*` coverage**: memory continuity-index, causal-edges, deep-loop coverage graphs, and CocoIndex. There is also no unified entry point that chains rebuilds in dependency-safe order with snapshot + rollback. Authoring the new commands is one half of the gap; authoring a reproducible Docker sandbox + manual testing playbook so users can verify the commands against canonical preconditions is the other half.",
     "created_at": "2026-05-10T06:24:00.129Z",
-    "last_save_at": "2026-05-11T10:38:48.400Z",
+    "last_save_at": "2026-05-12T04:55:46Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,7 +230,7 @@
       "handover.md",
       "resource-map.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-05-11T10:38:48.400Z"
+    "last_active_child_id": "005-cutover-phase",
+    "last_active_at": "2026-05-12T04:55:46Z"
   }
 }

@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/002-cutover-phase/decision-record]"
+title: "Decision Record: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase/decision-record]"
 description: "Architectural Decision Records for the hard cutover phase: delete strategy, sed strategy, advisor rebuild order, historical annotation scope, and runtime mirror boundaries."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2 -->"
 ---
@@ -60,7 +60,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2
 
 **Decision:** Add a concise `Superseded By` row and update operational invocation examples only.
 
-**Rationale:** The 013 docs should remain accurate to what they delivered while pointing operators at the superseding 014 router consolidation.
+**Rationale:** The 013 docs should remain accurate to what they delivered while pointing operators at the superseding 013 phases 004 + 005 router consolidation.
 
 **Consequences:** Requirements and decisions in 013 remain intact; only invocation strings and metadata annotation change.
 

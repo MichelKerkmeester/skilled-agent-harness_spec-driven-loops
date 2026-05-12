@@ -14,7 +14,7 @@ Manual testing scenarios for the spec-kit `/doctor` command surface.
 - Version migration — 2 scenarios (345-346): end-to-end 3.3.0.0 → 3.4.1.0, cleanup-legacy with per-file prompts
 - `/doctor:mcp` infra — 1 scenario (347): MCP server install + verify
 
-After commit `1b8d4d691` (packet 014 hard cutover), `/doctor:<name>` invocations were consolidated into `/doctor <target>` argv-positional dispatch. `/doctor:update` and `/doctor:mcp <install|debug>` remain as standalone companion commands.
+After commit `1b8d4d691` (013 Phase 5 hard cutover), `/doctor:<name>` invocations were consolidated into `/doctor <target>` argv-positional dispatch. `/doctor:update` and `/doctor:mcp <install|debug>` remain as standalone companion commands.
 
 ## Harness
 
@@ -31,5 +31,5 @@ Per-scenario fixtures are fetched on demand by `_sandbox/.../harness/fetch-fixtu
 - Router source: `.opencode/commands/doctor.md`
 - Route manifest: `.opencode/commands/doctor/_routes.yaml`
 - CI assertion: `.opencode/commands/doctor/scripts/route-validate.sh`
-- Spec packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/`
+- Spec packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/` (phases `004-router-phase/` + `005-cutover-phase/`)
 - Root playbook index: `../manual_testing_playbook.md`

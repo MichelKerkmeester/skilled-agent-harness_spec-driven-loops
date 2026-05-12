@@ -1,19 +1,19 @@
 ---
-title: "Tasks: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase/tasks]"
+title: "Tasks: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase/tasks]"
 description: "Decomposed task list for the additive /doctor router + /doctor:mcp + _routes.yaml + route-validate.sh + 4-runtime mirrors."
 trigger_phrases:
-  - "014 router phase tasks"
+  - "013/004 router phase tasks"
   - "doctor router task graph"
   - "route-validate tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
-    next_safe_action: "Phase 2 lives in 002-cutover-phase"
+    next_safe_action: "Phase 2 lives in 005-cutover-phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -52,14 +52,14 @@ Each task keeps its original `T-###` identifier so references from `plan.md`, `c
 <!-- ANCHOR:phase-1 -->
 ## PHASE 1: SETUP
 
-### T-001 — Scaffold 014 phase parent (lean trio)
+### T-001 — Scaffold 013 phase parent (lean trio)
 - [x] **Effort:** 10 min
 - [x] **Files:**
-  - `.opencode/specs/.../014-doctor-command-consolidation/spec.md`
-  - `.opencode/specs/.../014-doctor-command-consolidation/description.json`
-  - `.opencode/specs/.../014-doctor-command-consolidation/graph-metadata.json`
+  - `.opencode/specs/.../013-doctor-update-orchestrator/spec.md`
+  - `.opencode/specs/.../013-doctor-update-orchestrator/description.json`
+  - `.opencode/specs/.../013-doctor-update-orchestrator/graph-metadata.json`
 
-### T-002 — Scaffold 001-router-phase Level 2 docs
+### T-002 — Scaffold 004-router-phase Level 2 docs
 - [~] **Effort:** 30-40 min
 - [x] `spec.md`
 - [x] `plan.md`
@@ -149,7 +149,7 @@ Each task keeps its original `T-###` identifier so references from `plan.md`, `c
 - [ ] **Effort:** 5 min
 - [ ] Run `generate-context.js` for this packet.
 - [ ] Update `description.json` + `graph-metadata.json`.
-- [ ] Update phase-parent `_memory.continuity.next_safe_action` to `Scaffold 002-cutover-phase`.
+- [ ] Update phase-parent `_memory.continuity.next_safe_action` to `Scaffold 005-cutover-phase`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -1,15 +1,15 @@
 ---
-title: "Implementation Plan: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/002-cutover-phase/plan]"
+title: "Implementation Plan: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase/plan]"
 description: "Step-by-step plan for hard deleting legacy doctor commands, rewriting playbook and harness invocations, refreshing advisor indices, and validating the final 10 to 3 command state."
 trigger_phrases:
-  - "014 cutover phase plan"
+  - "013/005 cutover phase plan"
   - "doctor hard cutover plan"
   - "delete legacy doctor commands plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/002-cutover-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
     last_updated_at: "2026-05-11T17:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 2 cutover shipped + verified"
@@ -49,7 +49,7 @@ Phase 2 converts the additive Phase 1 rollout into the final production state. T
 ### Definition of Ready
 
 - Phase 1 static verification, `route-validate.sh`, and `route-validate.sh --self-test` passed.
-- 014 parent points at `002-cutover-phase` as the active child.
+- 013 parent points at `005-cutover-phase` as the active child.
 - This Level 2 packet passes strict validation before destructive deletes begin.
 
 ### Definition of Done
@@ -133,7 +133,7 @@ Run canonical context generation for the 002 packet and refresh parent metadata 
 
 ### Step 9: Final verification
 
-Run strict validation on 014 parent, 001-router-phase, and 002-cutover-phase; rerun route validation; verify file counts; run the case-insensitive stale invocation grep; run sandbox shell syntax checks.
+Run strict validation on 013 parent, 004-router-phase, and 005-cutover-phase; rerun route validation; verify file counts; run the case-insensitive stale invocation grep; run sandbox shell syntax checks.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -177,7 +177,7 @@ Rollback requires restoring deleted legacy command files from git and reversing 
 <!-- ANCHOR:phase-deps -->
 ## 8. PHASE DEPENDENCIES
 
-Phase 2 depends on 001-router-phase being validated. It closes the 014 phase parent and has no successor phase planned.
+Phase 2 depends on 004-router-phase being validated. It closes the 013 phase parent and has no successor phase planned.
 <!-- /ANCHOR:phase-deps -->
 
 ---

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
   "children_ids": [],
   "migrated": false,
   "migration_source": null,
@@ -91,9 +91,9 @@
         "source": "manual"
       }
     ],
-    "causal_summary": "Phase 1 of the 014-doctor-command-consolidation packet: ship the argv-positional /doctor router + companion /doctor:mcp command + _routes.yaml canonical manifest + route-validate.sh CI assertion. Additive deployment alongside the existing 10 commands so both invocation forms work during validation. 8 ADRs (Option C boundary, manifest split, argv-positional UX, two-phase rollout, target-first flag parsing, allowed-tools union, hard cutover end state, mutation class column) lock the design. Verification gates: 17-file checklist, 4-runtime parity, 9 smoke tests, advisor lexical-lane test for 7 historical trigger phrases.",
+    "causal_summary": "Phase 1 of the 013-doctor-update-orchestrator packet: ship the argv-positional /doctor router + companion /doctor:mcp command + _routes.yaml canonical manifest + route-validate.sh CI assertion. Additive deployment alongside the existing 10 commands so both invocation forms work during validation. 8 ADRs (Option C boundary, manifest split, argv-positional UX, two-phase rollout, target-first flag parsing, allowed-tools union, hard cutover end state, mutation class column) lock the design. Verification gates: 17-file checklist, 4-runtime parity, 9 smoke tests, advisor lexical-lane test for 7 historical trigger phrases.",
     "created_at": "2026-05-11T16:00:00.000Z",
-    "last_save_at": "2026-05-11T17:30:00.000Z",
+    "last_save_at": "2026-05-12T04:55:46Z",
     "save_lineage": "manual",
     "last_accessed_at": null,
     "source_docs": [
@@ -102,6 +102,6 @@
       "decision-record.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-05-11T17:30:00.000Z"
+    "last_active_at": "2026-05-12T04:55:46Z"
   }
 }

@@ -1,19 +1,19 @@
 ---
-title: "Implementation Plan: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase/plan]"
+title: "Implementation Plan: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase/plan]"
 description: "Step-by-step implementation plan for shipping the additive /doctor router + /doctor:mcp infra command + _routes.yaml manifest + route-validate.sh CI assertion across 4 runtimes."
 trigger_phrases:
-  - "014 router phase plan"
+  - "013/004 router phase plan"
   - "doctor router implementation plan"
   - "_routes.yaml plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
-    next_safe_action: "Phase 2 lives in 002-cutover-phase"
+    next_safe_action: "Phase 2 lives in 005-cutover-phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -54,7 +54,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 
 ### Definition of Ready
 
-- Phase parent lean trio exists and points at `001-router-phase`.
+- Phase parent lean trio exists and points at `004-router-phase`.
 - Level 2 packet docs are strict-template compliant before claiming completion.
 - Existing doctor YAML assets and shipped command files are treated as references only for this doc-compliance pass.
 - Scope remains limited to the Phase 1 router deliverables and packet docs.
@@ -101,12 +101,12 @@ Companion command:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Step 1 — Scaffold the 014 phase parent (lean trio)
-- [x] `.opencode/specs/.../014-doctor-command-consolidation/spec.md`
-- [x] `.opencode/specs/.../014-doctor-command-consolidation/description.json`
-- [x] `.opencode/specs/.../014-doctor-command-consolidation/graph-metadata.json`
+### Step 1 — Scaffold the 013 phase parent (lean trio)
+- [x] `.opencode/specs/.../013-doctor-update-orchestrator/spec.md`
+- [x] `.opencode/specs/.../013-doctor-update-orchestrator/description.json`
+- [x] `.opencode/specs/.../013-doctor-update-orchestrator/graph-metadata.json`
 
-### Step 2 — Scaffold this packet (001-router-phase Level 2 docs)
+### Step 2 — Scaffold this packet (004-router-phase Level 2 docs)
 - [x] `spec.md`
 - [ ] `plan.md` (this file)
 - [ ] `tasks.md`

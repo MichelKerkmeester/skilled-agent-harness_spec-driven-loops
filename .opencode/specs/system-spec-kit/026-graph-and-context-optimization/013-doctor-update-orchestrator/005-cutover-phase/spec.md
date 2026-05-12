@@ -1,8 +1,8 @@
 ---
-title: "Feature Specification: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/002-cutover-phase/spec]"
-description: "Phase 2 of the doctor command consolidation: hard cutover from legacy /doctor:* files to the shipped /doctor router by deleting old command files, updating playbook and harness invocations, refreshing advisor indices, and closing the 014 phase parent."
+title: "Feature Specification: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase/spec]"
+description: "Phase 2 of the doctor command consolidation: hard cutover from legacy /doctor:* files to the shipped /doctor router by deleting old command files, updating playbook and harness invocations, refreshing advisor indices, and closing the 013 phase parent."
 trigger_phrases:
-  - "002-cutover-phase"
+  - "005-cutover-phase"
   - "doctor cutover phase 2"
   - "hard cutover"
   - "delete old doctor commands"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/002-cutover-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
     last_updated_at: "2026-05-11T17:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 2 cutover shipped + verified"
@@ -32,7 +32,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Hard cutover chosen in 014 phase parent and 2026-05-11 user answer"
+      - "Hard cutover chosen in 013 phase parent and 2026-05-11 user answer"
       - "No shim aliases; delete old files rather than archive"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 ---
@@ -54,8 +54,8 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Created** | 2026-05-11 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | `../001-router-phase/spec.md` |
-| **Successor** | None (closes 014) |
+| **Predecessor** | `../004-router-phase/spec.md` |
+| **Successor** | None (closes 013's doctor command surface line) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -67,7 +67,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 Phase 1 shipped the new `/doctor` router additively. That left the repository in an intentional temporary overlap: the final design wants 3 markdown command entrypoints (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`), but Phase 1 kept the 9 old per-target markdown files in place so validation could compare old and new behavior. The old surface also exists in runtime mirrors: `.claude/commands/doctor/` auto-syncs from `.opencode/commands/doctor/`, `.codex/prompts` symlinks to `.opencode/commands`, and `.gemini/commands/doctor/*.toml` is independent.
 
 ### Purpose
-Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9 old `.opencode/commands/doctor/*.md` files and the 9 corresponding `.gemini/commands/doctor/*.toml` files, rely on `.claude` and `.codex` propagation where the filesystem already provides it, rewrite manual playbook and harness invocations to the new router form, refresh advisor indices, and close the 014 phase parent. No shim aliases, no archives, no tombstones.
+Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9 old `.opencode/commands/doctor/*.md` files and the 9 corresponding `.gemini/commands/doctor/*.toml` files, rely on `.claude` and `.codex` propagation where the filesystem already provides it, rewrite manual playbook and harness invocations to the new router form, refresh advisor indices, and close the 013 phase parent. No shim aliases, no archives, no tombstones.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -82,7 +82,7 @@ Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9
 - Rewrite 23 manual playbook scenario files under `.opencode/specs/system-spec-kit/manual_testing_playbook/23--doctor-commands/`.
 - Rewrite sandbox harness and wrapper shell scripts under `_sandbox/23--doctor-commands/`.
 - Audit `doctor_update.yaml` cross-references for stale legacy invocation strings without changing orchestrator behavior.
-- Add concise "Superseded By 014" annotations to the 013 historical spec docs and update invocation examples.
+- Add concise "Superseded By 013 phases 004 + 005" annotations to the 013 historical spec docs and update invocation examples.
 - Rebuild advisor index after deletes so stale command descriptions stop influencing routing.
 
 ### Out of Scope
@@ -118,7 +118,7 @@ Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9
 - **REQ-008:** Do not rewrite `/doctor:mcp`, `/doctor:update`, or unrelated `/doctor:mcp-*` strings.
 - **REQ-009:** Add one concise "Superseded By" annotation to each of the three 013 historical spec docs listed in the plan.
 - **REQ-010:** Refresh advisor indexing after deletes and reference rewrites.
-- **REQ-011:** Close the 014 phase parent only after strict validation, route validation, file-count gates, and grep gates pass.
+- **REQ-011:** Close the 013 phase parent only after strict validation, route validation, file-count gates, and grep gates pass.
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -133,7 +133,7 @@ Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9
 - **SC-005:** `route-validate.sh` exits 0 and reports 7 routes validated.
 - **SC-006:** Case-insensitive stale invocation grep over `.opencode`, `.claude`, `.gemini`, and `.codex` returns zero non-archival matches.
 - **SC-007:** Every sandbox `.sh` file under `_sandbox/23--doctor-commands/` passes `bash -n`.
-- **SC-008:** 014 parent, 001-router-phase, and 002-cutover-phase all pass strict validation with zero errors and zero warnings.
+- **SC-008:** 013 parent, 004-router-phase, and 005-cutover-phase all pass strict validation with zero errors and zero warnings.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -205,7 +205,7 @@ Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9
 <!-- ANCHOR:questions -->
 ## 11. OPEN QUESTIONS
 
-All open questions are resolved by the 014 phase parent spec and Phase 1 ADRs:
+All open questions are resolved by the 013 phase parent spec and Phase 1 ADRs:
 
 - Hard cutover, no shims.
 - `/doctor:update` remains standalone.

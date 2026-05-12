@@ -1,8 +1,8 @@
 ---
-title: "Feature Specification: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase/spec]"
+title: "Feature Specification: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase/spec]"
 description: "Phase 1 of the doctor command consolidation: author the new /doctor router (.opencode/commands/doctor.md), /doctor:mcp infra command (.opencode/commands/doctor/mcp.md), _routes.yaml canonical manifest, and route-validate.sh CI assertion. Ships ADDITIVELY alongside the existing 10 commands so both /doctor memory and /doctor:memory invocation forms succeed during the validation window. Mirrors land in .claude / .gemini / .codex in the same packet. No deletes, no playbook changes, no YAML modifications."
 trigger_phrases:
-  - "001-router-phase"
+  - "004-router-phase"
   - "doctor router phase 1"
   - "/doctor router"
   - "_routes.yaml"
@@ -13,11 +13,11 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
-    next_safe_action: "Phase 2 lives in 002-cutover-phase"
+    next_safe_action: "Phase 2 lives in 005-cutover-phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -52,8 +52,8 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Created** | 2026-05-11 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | None (first phase) |
-| **Successor** | `../002-cutover-phase/spec.md` (planned) |
+| **Predecessor** | `../003-rm8-013-remediation-doc-honesty-security/spec.md` |
+| **Successor** | `../005-cutover-phase/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -143,7 +143,7 @@ Ship a new `/doctor` router command (argv-positional dispatch: `/doctor <target>
 | REQ-102 | `_routes.yaml` aggregate `trigger_phrases` cover all 7 historical /doctor:<target> trigger phrases at confidence ≥ 0.8 in the Skill Advisor lexical lane. | `skill_advisor.py "memory continuity index drift" --threshold 0.8 → /doctor`; same for other 6 targets' phrases. |
 | REQ-103 | `route-validate.sh` exits 0 on the fresh manifest; non-zero on intentionally corrupted manifest (test fixtures). | Script self-tests pass. |
 | REQ-104 | Router does NOT modify any of the 10 YAML files in `.opencode/commands/doctor/assets/`. | `git diff` shows zero changes under `assets/`. |
-| REQ-105 | `/doctor:update` orchestrator behavior is unchanged. | `update.md` and `assets/doctor_update.yaml` are byte-identical to pre-014 state; smoke test of `/doctor:update --dry-run` produces same output. |
+| REQ-105 | `/doctor:update` orchestrator behavior is unchanged. | `update.md` and `assets/doctor_update.yaml` are byte-identical to pre-router-consolidation state; smoke test of `/doctor:update --dry-run` produces same output. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -172,7 +172,7 @@ routes:
 - **SC-003**: `bash .opencode/commands/doctor/scripts/route-validate.sh` exits 0 on the shipped manifest.
 - **SC-004**: For each of 7 Gen-A targets, `/doctor <target> --dry-run` produces equivalent output to `/doctor:<target> --dry-run`.
 - **SC-005**: `/doctor:mcp install --server spec-kit-memory` reaches `doctor_mcp_install.yaml`; `/doctor:mcp debug --fix` reaches `doctor_mcp_debug.yaml`.
-- **SC-006**: `/doctor:update --dry-run` is byte-equivalent (in output) to pre-014 state.
+- **SC-006**: `/doctor:update --dry-run` is byte-equivalent (in output) to pre-router-consolidation state.
 - **SC-007**: 4-runtime mirror parity: `.opencode` ↔ `.claude` ↔ `.gemini` markdown bodies diff zero non-whitespace; `.codex` TOML body matches token-by-token.
 <!-- /ANCHOR:success-criteria -->
 
@@ -183,8 +183,8 @@ routes:
 
 | Component | LOC est. | Time est. |
 |-----------|----------|-----------|
-| 014 phase parent (lean trio) | 60 | 10 min |
-| 001-router-phase Level 2 docs (spec/plan/tasks/checklist/decision-record + lean trio) | 500-600 | 30-40 min |
+| 013 phase parent (lean trio) | 60 | 10 min |
+| 004-router-phase Level 2 docs (spec/plan/tasks/checklist/decision-record + lean trio) | 500-600 | 30-40 min |
 | `.opencode/commands/doctor.md` (router) | 250-300 | 20-30 min |
 | `.opencode/commands/doctor/mcp.md` | 150 | 10-15 min |
 | `.opencode/commands/doctor/_routes.yaml` | 80-100 | 10 min |

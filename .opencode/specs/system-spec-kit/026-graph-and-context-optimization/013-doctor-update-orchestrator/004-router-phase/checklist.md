@@ -1,19 +1,19 @@
 ---
-title: "Checklist: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase/checklist]"
+title: "Checklist: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase/checklist]"
 description: "Verification gates and completion criteria for Phase 1 (additive /doctor router + /doctor:mcp + _routes.yaml + 4-runtime mirrors)."
 trigger_phrases:
-  - "014 router phase checklist"
+  - "013/004 router phase checklist"
   - "doctor router verification"
   - "route-validate checklist"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
-    next_safe_action: "Phase 2 lives in 002-cutover-phase"
+    next_safe_action: "Phase 2 lives in 005-cutover-phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -50,11 +50,11 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 <!-- ANCHOR:pre-impl -->
 ## PRE-IMPLEMENTATION
 
-- [ ] CHK-001 [P0]: 014 phase parent has lean trio (`spec.md`, `description.json`, `graph-metadata.json`) — no heavy docs at parent.
-- [ ] CHK-002 [P0]: 014 phase parent `graph-metadata.json` `parent_id` = `system-spec-kit/026-graph-and-context-optimization`.
-- [ ] CHK-003 [P0]: 014 phase parent `children_ids` includes `system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase`.
+- [ ] CHK-001 [P0]: 013 phase parent has lean trio (`spec.md`, `description.json`, `graph-metadata.json`) — no heavy docs at parent.
+- [ ] CHK-002 [P0]: 013 phase parent `graph-metadata.json` `parent_id` = `system-spec-kit/026-graph-and-context-optimization`.
+- [ ] CHK-003 [P0]: 013 phase parent `children_ids` includes `system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase`.
 - [ ] CHK-004 [P0]: 001-router-phase has full Level 2 doc set (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `description.json`, `graph-metadata.json`).
-- [ ] CHK-005 [P1]: 001-router-phase `description.json` `parentChain` = `["system-spec-kit", "026-graph-and-context-optimization", "014-doctor-command-consolidation"]`.
+- [ ] CHK-005 [P1]: 001-router-phase `description.json` `parentChain` = `["system-spec-kit", "026-graph-and-context-optimization", "013-doctor-update-orchestrator"]`.
 - [ ] CHK-006 [P0]: Both packets pass `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict` (exit 0).
 <!-- /ANCHOR:pre-impl -->
 
@@ -142,7 +142,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 - [ ] CHK-608 [P0]: `/doctor skill-budget --json --fail-over=5600` -> loads `doctor_skill-budget.yaml`.
 - [ ] CHK-609 [P0]: `/doctor:mcp install --server spec-kit-memory` -> loads `doctor_mcp_install.yaml`.
 - [ ] CHK-610 [P0]: `/doctor:mcp debug --fix` -> loads `doctor_mcp_debug.yaml`.
-- [ ] CHK-611 [P0]: `/doctor:update --dry-run` -> byte-equivalent output to pre-014 state (unchanged).
+- [ ] CHK-611 [P0]: `/doctor:update --dry-run` -> byte-equivalent output to pre-router-consolidation state (unchanged).
 - [ ] CHK-612 [P0]: `/doctor memory --confidence-threshold=0.8` -> clean error (cross-target flag injection rejected).
 <!-- /ANCHOR:testing -->
 
@@ -186,8 +186,8 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 ## DOCUMENTATION
 
 - [ ] CHK-901 [P1]: `generate-context.js` run for this packet; updated `description.json` + `graph-metadata.json`.
-- [ ] CHK-902 [P1]: Phase-parent `graph-metadata.json` `derived.last_active_child_id` = `001-router-phase`.
-- [ ] CHK-903 [P2]: Phase-parent `_memory.continuity.next_safe_action` updated to `Scaffold 002-cutover-phase`.
+- [ ] CHK-902 [P1]: Phase-parent `graph-metadata.json` `derived.last_active_child_id` = `004-router-phase`.
+- [ ] CHK-903 [P2]: Phase-parent `_memory.continuity.next_safe_action` updated to `Scaffold 005-cutover-phase`.
 - [ ] CHK-904 [P1]: `_memory.continuity.completion_pct` on this packet = 100.
 <!-- /ANCHOR:docs -->
 

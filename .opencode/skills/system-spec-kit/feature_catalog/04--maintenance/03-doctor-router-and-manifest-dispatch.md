@@ -1,6 +1,6 @@
 ---
 title: "Doctor router and manifest-driven dispatch"
-description: "Argv-positional /doctor router that dispatches to per-subsystem YAML workflows via a canonical _routes.yaml manifest. Shipped in packet 014 to consolidate 10 /doctor:* commands into 3 markdown files."
+description: "Argv-positional /doctor router that dispatches to per-subsystem YAML workflows via a canonical _routes.yaml manifest. Shipped in 013 phases 004 + 005 to consolidate 10 /doctor:* commands into 3 markdown files."
 ---
 
 # Doctor router and manifest-driven dispatch
@@ -9,7 +9,7 @@ description: "Argv-positional /doctor router that dispatches to per-subsystem YA
 
 `/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of seven subsystem YAML workflows (memory, causal-graph, code-graph, deep-loop, cocoindex, skill-advisor, skill-budget) by reading the canonical route manifest `.opencode/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
 
-The router shipped as a hard cutover in packet 014-doctor-command-consolidation, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
+The router shipped as a hard cutover in `013-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
 
 ---
 
@@ -63,9 +63,9 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 | File | Role |
 |------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/spec.md` | Phase parent (lean trio) |
-| `.../014-doctor-command-consolidation/001-router-phase/` | Phase 1 (additive router) — Level 2 docs |
-| `.../014-doctor-command-consolidation/002-cutover-phase/` | Phase 2 (hard cutover) — Level 2 docs |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/spec.md` | Phase parent (lean trio) |
+| `.../013-doctor-update-orchestrator/004-router-phase/` | Phase 4 / former packet 014 Phase 1 (additive router) — Level 2 docs |
+| `.../013-doctor-update-orchestrator/005-cutover-phase/` | Phase 5 / former packet 014 Phase 2 (hard cutover) — Level 2 docs |
 
 ---
 
@@ -73,7 +73,7 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 1. **Target-first parsing** — the positional target is parsed BEFORE any `--flag`. Global flag pre-parse is forbidden; each target's flag schema is disjoint and per-target parsing is the only safe order.
 2. **Interactive fallback** — invoking `/doctor` with no positional target presents the SUBSYSTEM MANIFEST menu.
-3. **Hard cutover end state** — the 9 legacy `/doctor:<name>` markdown files were deleted in packet 014 Phase 2 (commit `1b8d4d691`). No shim aliases. Skill Advisor lexical routing absorbs the historical trigger phrases.
+3. **Hard cutover end state** — the 9 legacy `/doctor:<name>` markdown files were deleted in 013 Phase 5 (commit `1b8d4d691`). No shim aliases. Skill Advisor lexical routing absorbs the historical trigger phrases.
 4. **YAML workflows untouched** — the consolidation collapsed only the markdown surface; per-target workflow YAMLs in `assets/` remain stable and self-sufficient.
 
 ---

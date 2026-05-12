@@ -1,15 +1,15 @@
 ---
-title: "Checklist: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/002-cutover-phase/checklist]"
+title: "Checklist: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase/checklist]"
 description: "Verification gates and completion criteria for the doctor command hard cutover: deletes, sed correctness, advisor rebuild, file counts, grep gates, and strict validation."
 trigger_phrases:
-  - "014 cutover phase checklist"
+  - "013/005 cutover phase checklist"
   - "doctor hard cutover verification"
   - "doctor stale grep gate"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/002-cutover-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
     last_updated_at: "2026-05-11T17:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 2 cutover shipped + verified"
@@ -50,12 +50,12 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 <!-- ANCHOR:pre-impl -->
 ## PRE-IMPLEMENTATION
 
-- [ ] CHK-001 [P0]: 001-router-phase static verification table has 7/7 YAML matches.
+- [ ] CHK-001 [P0]: 004-router-phase static verification table has 7/7 YAML matches.
 - [ ] CHK-002 [P0]: `route-validate.sh` exits 0 before cutover.
 - [ ] CHK-003 [P0]: `route-validate.sh --self-test` rejects 3/3 bad fixtures.
-- [ ] CHK-004 [P0]: 014 parent `children_ids` includes `002-cutover-phase`.
-- [ ] CHK-005 [P0]: 002-cutover-phase has full Level 2 doc set.
-- [ ] CHK-006 [P0]: 002-cutover-phase passes strict validation before destructive deletes.
+- [ ] CHK-004 [P0]: 013 parent `children_ids` includes `005-cutover-phase`.
+- [ ] CHK-005 [P0]: 005-cutover-phase has full Level 2 doc set.
+- [ ] CHK-006 [P0]: 005-cutover-phase passes strict validation before destructive deletes.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -126,8 +126,8 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 ## DOCUMENTATION
 
 - [ ] CHK-601 [P0]: 002 packet docs strict-validate with zero errors and warnings.
-- [ ] CHK-602 [P0]: 001-router-phase strict-validates after completion metadata update.
-- [ ] CHK-603 [P0]: 014 parent strict-validates after child metadata update.
+- [ ] CHK-602 [P0]: 004-router-phase strict-validates after completion metadata update.
+- [ ] CHK-603 [P0]: 013 parent strict-validates after child metadata update.
 - [ ] CHK-604 [P1]: `implementation-summary.md` records final evidence.
 <!-- /ANCHOR:docs -->
 

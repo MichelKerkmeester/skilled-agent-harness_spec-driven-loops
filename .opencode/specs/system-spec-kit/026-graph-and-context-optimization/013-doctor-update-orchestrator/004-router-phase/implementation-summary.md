@@ -2,7 +2,7 @@
 title: "Implementation Summary: Doctor Router Phase 1 (IN PROGRESS)"
 description: "Implementation summary for the 014 doctor command consolidation router phase. Runtime implementation files are authored; this document tracks remaining validation evidence before the packet can be marked complete."
 trigger_phrases:
-  - "014 router phase implementation summary"
+  - "013/004 router phase implementation summary"
   - "doctor router phase handoff"
   - "doctor command consolidation summary"
 importance_tier: "important"
@@ -10,11 +10,11 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
-    next_safe_action: "Phase 2 lives in 002-cutover-phase"
+    next_safe_action: "Phase 2 lives in 005-cutover-phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/001-router-phase` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/004-router-phase` |
 | **Status** | In Progress |
 | **Level** | 2 |
 | **Phase** | Phase 1: additive router |
@@ -144,5 +144,5 @@ None in this strict-validation documentation pass.
 <!-- ANCHOR:next-session -->
 ## Next Session Continuation
 
-Run strict validation for `001-router-phase`, patch any remaining template-schema findings, then update checklist evidence once validation exits 0.
+Run strict validation for `004-router-phase`, patch any remaining template-schema findings, then update checklist evidence once validation exits 0.
 <!-- /ANCHOR:next-session -->

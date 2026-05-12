@@ -1,10 +1,13 @@
 {
   "childTopology": [
     "001-doctor-commands",
-    "002-sandbox-testing-playbook"
+    "002-sandbox-testing-playbook",
+    "003-rm8-013-remediation-doc-honesty-security",
+    "004-router-phase",
+    "005-cutover-phase"
   ],
   "specFolder": "013-doctor-update-orchestrator",
-  "description": "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 23-scenario manual playbook (child 002) ships the validation harness; doc-honesty + security hardening + cross-runtime mirror remediation (child 003) closed the deep-review CONDITIONAL findings.",
+  "description": "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 23-scenario manual playbook (child 002) ships the validation harness; doc-honesty + security hardening + cross-runtime mirror remediation (child 003) closed the deep-review CONDITIONAL findings. Router consolidation (child 004) and hard cutover (child 005) now complete the timeline after dissolving 014.",
   "keywords": [
     "doctor",
     "doctor-update",
@@ -15,9 +18,13 @@
     "manual-testing",
     "spec-kit-version-migration",
     "doctor-runtime-bootstrap",
-    "remediation"
+    "remediation",
+    "router-phase",
+    "cutover-phase",
+    "doctor-router",
+    "doctor-cutover"
   ],
-  "lastUpdated": "2026-05-11T10:38:42.485Z",
+  "lastUpdated": "2026-05-12T04:55:46Z",
   "specId": "013",
   "folderSlug": "doctor-update-orchestrator",
   "parentChain": [],

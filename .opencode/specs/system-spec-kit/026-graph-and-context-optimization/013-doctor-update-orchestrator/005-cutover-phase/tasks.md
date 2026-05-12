@@ -1,15 +1,15 @@
 ---
-title: "Tasks: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/002-cutover-phase/tasks]"
+title: "Tasks: Doctor Cutover Phase 2 [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase/tasks]"
 description: "Decomposed task list for the hard cutover from legacy /doctor:* command files to the consolidated /doctor router surface."
 trigger_phrases:
-  - "014 cutover phase tasks"
+  - "013/005 cutover phase tasks"
   - "doctor hard cutover tasks"
   - "legacy doctor delete tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-doctor-command-consolidation/002-cutover-phase"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/005-cutover-phase"
     last_updated_at: "2026-05-11T17:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 2 cutover shipped + verified"
@@ -63,7 +63,7 @@ Task IDs are stable for checklist and implementation-summary references.
 - [ ] Static-verify router/manifest YAML table.
 - [ ] Run `route-validate.sh`.
 - [ ] Run `route-validate.sh --self-test`.
-- [ ] Mark 001-router-phase completion metadata to 100.
+- [ ] Mark 004-router-phase completion metadata to 100.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -118,7 +118,7 @@ Task IDs are stable for checklist and implementation-summary references.
 
 ### T-201 - Strict validate packets
 - [ ] **Effort:** 10-15 min
-- [ ] Validate 014 parent, 001-router-phase, and 002-cutover-phase.
+- [ ] Validate 013 parent, 004-router-phase, and 005-cutover-phase.
 
 ### T-202 - Route and inventory verification
 - [ ] **Effort:** 10 min
@@ -138,7 +138,7 @@ Task IDs are stable for checklist and implementation-summary references.
 
 - [ ] Update `implementation-summary.md` with final evidence.
 - [ ] Update checklist items with evidence.
-- [ ] Mark 002 and 014 metadata complete only after validation passes.
+- [ ] Mark 005 and 013 metadata complete only after validation passes.
 - [ ] Emit final inventory report.
 <!-- /ANCHOR:completion -->
 

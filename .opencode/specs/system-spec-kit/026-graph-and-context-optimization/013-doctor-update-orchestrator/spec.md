@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Doctor Update Orchestrator [system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator/spec]"
-description: "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 23-scenario manual playbook (child 002) ships the validation harness."
+description: "Phase parent for the complete doctor command surface timeline: initial commands, sandbox playbook, remediation, router consolidation, and hard cutover."
 trigger_phrases:
   - "013-doctor-update-orchestrator"
   - "doctor command surface"
@@ -13,25 +13,31 @@ trigger_phrases:
   - "spec-kit version migration"
   - "001-doctor-commands"
   - "002-sandbox-testing-playbook"
+  - "003-rm8-013-remediation-doc-honesty-security"
+  - "004-router-phase"
+  - "005-cutover-phase"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"
-    last_updated_at: "2026-05-09T16:00:00Z"
+    last_updated_at: "2026-05-12T04:55:46Z"
     last_updated_by: "spec-author"
-    recent_action: "Authored phase parent lean trio after 001 + 002 reorganization"
-    next_safe_action: "Draft 002-sandbox-testing-playbook Level 3 docs"
+    recent_action: "Folded former 014 doctor-command consolidation packet into 013 as phases 004 + 005"
+    next_safe_action: "Ship calibration packet for 23 manual playbook scenarios (deferred from 014)"
     blockers: []
     key_files:
       - "001-doctor-commands/spec.md"
       - "001-doctor-commands/decision-record.md"
       - "002-sandbox-testing-playbook/spec.md"
+      - "003-rm8-013-remediation-doc-honesty-security/spec.md"
+      - "004-router-phase/spec.md"
+      - "005-cutover-phase/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-013-phase-parent-2026-05-09"
       parent_session_id: null
-    completion_pct: 30
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
@@ -50,11 +56,11 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 |-------|-------|
 | **Level** | 1 (phase parent) |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Superseded By** | ../014-doctor-command-consolidation/ (router consolidation, 2026-05-11) |
+| **Superseded By** | None (014 dissolved into this packet as phases 004 + 005) |
 | **Predecessor** | ../012-causal-graph-channel-routing/spec.md |
 | **Successor** | None (current packet line) |
 <!-- /ANCHOR:metadata -->
@@ -68,7 +74,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit ecosystem into alignment with their current codebase and skill set. The 026 release shipped doctor commands for code-graph, skill-advisor, skill-budget, and MCP infra, but **four subsystems with on-disk databases have no `/doctor:*` coverage**: memory continuity-index, causal-edges, deep-loop coverage graphs, and CocoIndex. There is also no unified entry point that chains rebuilds in dependency-safe order with snapshot + rollback. Authoring the new commands is one half of the gap; authoring a reproducible Docker sandbox + manual testing playbook so users can verify the commands against canonical preconditions is the other half.
 
 ### Purpose
-Group the doctor command authoring (child `001-doctor-commands/`) and the sandbox + playbook authoring (child `002-sandbox-testing-playbook/`) under one phase root so the surface is browsable in one place. Each child owns its own Level 2 / Level 3 spec; this parent only documents the cross-child topology, the active layout, and the high-level outcome the two children work toward.
+Group the complete doctor command surface timeline under one phase root so the surface is browsable in one place: initial command authoring (`001`), sandbox + playbook authoring (`002`), RM-8 remediation (`003`), additive router consolidation (`004`), and hard cutover (`005`). Each child owns its own Level 2 / Level 3 spec; this parent only documents the cross-child topology, the active layout, and the high-level outcome the children worked toward.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -105,6 +111,8 @@ Group the doctor command authoring (child `001-doctor-commands/`) and the sandbo
 | 1 | `001-doctor-commands/` | Complete | Feature Specification: 5 isolated `/doctor:*` commands (memory, causal-graph, deep-loop, cocoindex) + unified `/doctor:update` orchestrator implementing the council 10-line spec, plus the migration manifest for 3.3.0.0 → 3.4.1.0. Authored via cli-codex gpt-5.5 high fast across 5 sequential dispatch tracks; 23 deliverables total (5 cmds + 10 yamls + 1 manifest + 7 packet docs). G1+G2 verification gates passed. |
 | 2 | `002-sandbox-testing-playbook/` | Complete | Feature Specification: Docker sandbox + 23-scenario manual testing playbook covering all 5 doctor commands and the version-migration end-to-end. Adds new playbook category `23--doctor-commands/` (IDs 323-347 with gaps at 337 and 343) plus `_sandbox/23--doctor-commands/` with Dockerfile, docker-compose.yml, fixture-fetch script, 4 harness scripts, and 23 per-scenario shell wrappers. |
 | 3 | `003-rm8-013-remediation-doc-honesty-security/` | Complete | RM-8 doc-honesty + security hardening + cross-runtime mirror remediation that closed 30/30 P1 and 28/30 P2 findings from the original deep-review (commit `8d794afad`). 4 sequential cli-codex (gpt-5.5 high fast) batches: A doc honesty, B security (`flock(2)` + `--no-audit` drop + cap_drop), C cross-runtime mirror (10 doctor commands × 4 runtimes), D P2 cleanup. Verdict moved CONDITIONAL → PASS (hasAdvisories=true) per re-review commit `76daa9ef0`. |
+| 4 | `004-router-phase/` | Complete | Router consolidation (was packet 014 Phase 1, dissolved into 013): authored `.opencode/commands/doctor.md` (argv-positional router) + `doctor/mcp.md` + `_routes.yaml` manifest + route-validate.sh CI assertion. 4-runtime mirrors (.claude / .gemini / .codex). Additive ship — old 10 `.md` commands still present during this phase. |
+| 5 | `005-cutover-phase/` | Complete | Hard cutover (was packet 014 Phase 2, dissolved into 013): DELETED 9 legacy `/doctor:<name>.md` files across `.opencode` + `.gemini`; sed-updated 23 manual playbook scenarios + 28 sandbox shell scripts + 5 YAML assets + 3 install guides + sk-doc references + feature catalog + 013 historical spec docs (94 substitutions across 15 files); advisor reindex via `advisor_rebuild`. Final state: 3 `.md` files (router + mcp + update) per runtime; 10 unchanged YAML workflows. |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -117,9 +125,9 @@ Group the doctor command authoring (child `001-doctor-commands/`) and the sandbo
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-P-001 | Phase parent root has the lean trio (`spec.md`, `description.json`, `graph-metadata.json`) and NO heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`). | `find . -maxdepth 1 -type f -name '*.md' -o -name '*.json'` returns the lean-trio (`spec.md`, `description.json`, `graph-metadata.json`) PLUS any cross-cutting optional docs (`handover.md`, `resource-map.md`). Heavy authored docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) MUST be absent at parent level. |
-| REQ-P-002 | `graph-metadata.json` `derived.last_active_child_id` matches the most recently saved child packet. | Field is one of `001-doctor-commands` / `002-sandbox-testing-playbook` and matches the child whose `last_save_at` is most recent. |
-| REQ-P-003 | Both children are listed in `graph-metadata.json` `children_ids` with the canonical `system-spec-kit/...` path prefix. | `children_ids` array length ≥ 2; entries match `001-doctor-commands` and `002-sandbox-testing-playbook` with full prefix. |
-| REQ-P-004 | Child 001 (doctor commands) is `Complete` and child 002 (sandbox playbook) reaches `Complete` for parent to be `Complete`. | Tracked via per-child `_memory.continuity.completion_pct: 100`. |
+| REQ-P-002 | `graph-metadata.json` `derived.last_active_child_id` matches the most recently saved child packet. | Field is one of the five child folders and currently points to `005-cutover-phase`. |
+| REQ-P-003 | All five children are listed in `graph-metadata.json` `children_ids` with the canonical `system-spec-kit/...` path prefix. | `children_ids` array length = 5; entries match children `001` through `005` with full prefix. |
+| REQ-P-004 | Children 001 through 005 are `Complete` for parent to be `Complete`. | Tracked via per-child completion metadata and strict validation of the phase parent. |
 
 ### P1 — Cross-child outcomes
 
@@ -135,11 +143,11 @@ Group the doctor command authoring (child `001-doctor-commands/`) and the sandbo
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-P-001**: Both children reach `_memory.continuity.completion_pct: 100`.
+- **SC-P-001**: All five children reach complete status.
 - **SC-P-002**: 5 `/doctor:*` commands registered in Skill Advisor and pass `validate_document.py --type command` (already true for child 001).
 - **SC-P-003**: 23 manual playbook scenarios authored in `system-spec-kit/manual_testing_playbook/23--doctor-commands/` and indexed in the root playbook's Section 12 cross-reference (planned for child 002).
 - **SC-P-004**: Sandbox harness scripts pass `bash -n` and `harness/run-all.sh --dry-run` exits 0 (planned for child 002).
-- **SC-P-005**: Strict spec-folder validate exits 0 on parent root (lean-trio detection works).
+- **SC-P-005**: Strict spec-folder validate exits 0 on parent root with all five child phases.
 <!-- /ANCHOR:success-criteria -->
 
 ---
