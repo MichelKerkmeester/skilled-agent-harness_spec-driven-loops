@@ -370,13 +370,21 @@ Use the agent directory that matches the active runtime/provider profile:
 
 **Two systems:**
 
-1. **Native MCP** (`opencode.json`) - Direct tools, called natively
-   - Sequential Thinking, Spec Kit Memory, Code Mode, CocoIndex Code
-   - Council Graph MCP: `council_graph_upsert`, `council_graph_query`, `council_graph_status`, `council_graph_convergence`. These are dedicated derived-projection tools for Deep AI Council state; packet-local `ai-council/**` artifacts remain source of truth.
-     - `council_graph_upsert` records bounded council nodes and edges.
-     - `council_graph_query` reads the derived projection for comparison and trace questions.
-     - `council_graph_status` reports namespace-scoped health and recovery payloads.
-     - `council_graph_convergence` assesses round/session convergence buckets.
+1. **Native MCP servers** (`opencode.json`) - Direct tools, called natively. **Exactly 4 servers registered:**
+   - `sequential_thinking` — Sequential Thinking
+   - `spec_kit_memory` — Spec Kit Memory (the umbrella server; exposes the tool families listed below)
+   - `code_mode` — Code Mode
+   - `cocoindex_code` — CocoIndex Code
+
+   **Tool families inside the `spec_kit_memory` MCP server** (all callable as `mcp__spec_kit_memory__<tool>`):
+   - `memory_*` — memory_search, memory_save, memory_context, memory_health, memory_index_scan, memory_stats, memory_drift_why, memory_bulk_delete, memory_causal_link, memory_causal_unlink, memory_causal_stats
+   - `advisor_*` — advisor_recommend, advisor_rebuild, advisor_status, advisor_validate
+   - `code_graph_*` — code_graph_status, code_graph_query, code_graph_context, code_graph_scan, code_graph_apply, code_graph_verify, detect_changes
+   - `skill_graph_*` — skill_graph_scan, skill_graph_query, skill_graph_status, skill_graph_validate
+   - `ccc_*` — ccc_status, ccc_reindex, ccc_feedback (CocoIndex daemon control; distinct from the `cocoindex_code` semantic-search server)
+   - `deep_loop_graph_*` — deep_loop_graph_status, deep_loop_graph_query, deep_loop_graph_upsert, deep_loop_graph_convergence
+   - `council_graph_*` — council_graph_upsert, council_graph_query, council_graph_status, council_graph_convergence. Derived-projection tools for Deep AI Council state; packet-local `ai-council/**` artifacts remain source of truth.
+   - Maintenance: checkpoint_*, eval_*, session_*, task_preflight/postflight
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
    - Figma, Github, ClickUp, Chrome DevTools, etc.
