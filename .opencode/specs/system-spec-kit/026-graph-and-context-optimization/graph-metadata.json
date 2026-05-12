@@ -18,7 +18,8 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation",
     "system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience",
     "system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing",
-    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator"
+    "system-spec-kit/026-graph-and-context-optimization/013-doctor-update-orchestrator",
+    "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a"
   ],
   "migrated": true,
   "migration_source": "legacy",

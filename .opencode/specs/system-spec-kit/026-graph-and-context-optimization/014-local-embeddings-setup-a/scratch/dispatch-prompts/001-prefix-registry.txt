@@ -1,0 +1,131 @@
+You are dispatched by Claude Code main-agent via cli-opencode for sub-phase 001 of packet 014-local-embeddings-setup-a. Single-shot. No sub-agent dispatch. No SpawnAgent. Spec folder pre-approved (Gate 3 = option A existing).
+
+═══════════════════════════════════════════════════════════════════
+SUB-PHASE 001 — PREFIX REGISTRY ARCHITECTURE (Level 3, ADR-bearing)
+═══════════════════════════════════════════════════════════════════
+
+PACKET FOLDER (already exists, scaffolded):
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/001-prefix-registry-architecture/
+
+CONTEXT
+HfLocalProvider (TypeScript, transformers.js-backed) and cocoindex_code/shared.py both hardcode prefix conventions for one specific embedding model family (Nomic). Any model swap silently inherits the wrong prefix → ~5-8% recall loss. We are migrating from Voyage to local embeddings (Qwen3-Embedding-4B for code, EmbeddingGemma for memory). The new models use DIFFERENT prefix conventions. We need a model-keyed registry + env-var override so future swaps are config-only.
+
+═══════════════════════════════════════════════════════════════════
+SOURCE EDITS — 3 files
+═══════════════════════════════════════════════════════════════════
+
+1) `.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts`
+   - Find the existing `TASK_PREFIX` constant (~line 19-27): `{ DOCUMENT: 'search_document: ', QUERY: 'search_query: ' }`
+   - Replace with `PREFIX_REGISTRY: Record<string, {document?: string; query?: string}>` containing:
+     • `'nomic-ai/nomic-embed-text-v1.5'`: `{document: 'search_document: ', query: 'search_query: '}`
+     • `'google/embeddinggemma-300m'`: `{document: 'title: none | text: ', query: 'task: search result | query: '}`
+     • `'intfloat/e5-large-v2'`: `{document: 'passage: ', query: 'query: '}`
+     • `'mixedbread-ai/mxbai-embed-large-v1'`: `{document: '', query: ''}`
+     • `'Snowflake/snowflake-arctic-embed-l-v2.0'`: `{document: '', query: 'Represent this sentence for searching relevant passages: '}`
+     • `'BAAI/bge-m3'`: `{document: '', query: ''}`
+   - Add function `getPrefixFor(modelId: string, kind: 'document' | 'query'): string` with resolution order:
+     (a) env override: `process.env.HF_EMBEDDINGS_PREFIX_DOC` for document, `process.env.HF_EMBEDDINGS_PREFIX_QUERY` for query. **Distinguish "unset" vs "empty string"** — empty string is a valid override meaning "no prefix"; unset means "fall through".
+     (b) registry entry for modelId, kind
+     (c) empty string `''` final fallback (safe: no prefix is always valid)
+   - Update the encode/embed call sites that previously used `TASK_PREFIX.DOCUMENT` / `TASK_PREFIX.QUERY` to instead call `getPrefixFor(this.modelName, 'document')` / `getPrefixFor(this.modelName, 'query')`.
+   - Export `getPrefixFor` for unit testing.
+
+2) `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts`
+   - Find `VALID_PROVIDER_DIMENSIONS` (~line 98-101)
+   - For the `hf-local` provider entry, add model→dim mappings:
+     • `'google/embeddinggemma-300m': 768`
+     • `'intfloat/e5-large-v2': 1024`
+     • `'mixedbread-ai/mxbai-embed-large-v1': 1024`
+     • `'Snowflake/snowflake-arctic-embed-l-v2.0': 1024`
+     • `'BAAI/bge-m3': 1024`
+   - Verify (read-only) that `EMBEDDING_DIM` env override path still works (Matryoshka truncation: EmbeddingGemma supports 768/512/256/128).
+
+3) `.opencode/skills/system-spec-kit/mcp_server/cocoindex_code/shared.py`
+   - Find `_QUERY_PROMPT_MODELS` (~line 24-76). Currently `{"nomic-ai/nomic-embed-code", "nomic-ai/CodeRankEmbed"}`.
+   - Convert from `set[str]` to `dict[str, str]` mapping model_id → prompt_name. Existing entries → `"query"` value.
+   - Add: `"Qwen/Qwen3-Embedding-0.6B": "query"`, `"Qwen/Qwen3-Embedding-4B": "query"`, `"Qwen/Qwen3-Embedding-8B": "query"`.
+   - Add env-var override layer in the lookup function:
+     • `COCOINDEX_QUERY_PROMPT_NAME` env overrides query prompt
+     • `COCOINDEX_DOC_PROMPT_NAME` env overrides document prompt
+     • Resolution order: env > registry dict > None (raw text, no prompt-name flag).
+
+═══════════════════════════════════════════════════════════════════
+DOCS — fill these scaffolded files in the packet
+═══════════════════════════════════════════════════════════════════
+
+The 001 packet was scaffolded at Level 1 (spec.md, plan.md, tasks.md, implementation-summary.md). Upgrade it to Level 3 by:
+- Adding `decision-record.md` (copy from `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl`)
+- Updating `spec.md` template-source header to indicate L3 (`SPECKIT_LEVEL: 3` and `SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2`)
+- Updating `spec.md` frontmatter `level: 3`
+
+`decision-record.md` must contain an ADR for the registry design:
+- **Problem**: HfLocalProvider hardcodes Nomic-style prefix for ALL models → silent recall loss on non-Nomic models (~5-8%)
+- **Decision**: Model-keyed `PREFIX_REGISTRY` + env-var overrides (`HF_EMBEDDINGS_PREFIX_DOC`/`_QUERY`, `COCOINDEX_*_PROMPT_NAME`), final fallback empty string
+- **Alternatives considered**:
+  • Keep hardcoded, document limitation → rejected (silent recall loss)
+  • Pure env config, no registry → rejected (100% config churn for common cases)
+  • Runtime model probing (try multiple prefixes, pick best) → rejected (10x latency, fragile)
+  • ✓ Registry + env override hybrid → chosen
+- **Consequences**: extending support = add registry entry (one-line PR); users with custom models use env vars; default fallback (empty) is safe.
+
+`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`: fill in with this sub-phase's actual content (problem, plan, task list, evidence). Don't leave templates unfilled — write real content based on the work above. Use the parent 014 spec.md for cross-references.
+
+═══════════════════════════════════════════════════════════════════
+VERIFY — must succeed before claiming completion
+═══════════════════════════════════════════════════════════════════
+
+1. `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` — exit 0 required
+2. `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` — exit 0 required (no type errors)
+3. Write `001-prefix-registry-architecture/scratch/test-prefix-registry.mjs` that imports the registry, asserts:
+   (a) Known: getPrefixFor('nomic-ai/nomic-embed-text-v1.5', 'document') === 'search_document: '
+   (b) EmbeddingGemma: getPrefixFor('google/embeddinggemma-300m', 'query') === 'task: search result | query: '
+   (c) Unknown: getPrefixFor('made-up/model', 'query') === ''
+   (d) Env override doc: HF_EMBEDDINGS_PREFIX_DOC='X' → getPrefixFor('made-up/model', 'document') === 'X' (then restore env)
+   (e) Empty-string override: HF_EMBEDDINGS_PREFIX_QUERY='' → getPrefixFor('nomic-ai/nomic-embed-text-v1.5', 'query') === ''
+   Run with `node 001-prefix-registry-architecture/scratch/test-prefix-registry.mjs` — exit 0 required.
+4. Write `001-prefix-registry-architecture/scratch/test-cocoindex-prompts.py` that imports `cocoindex_code.shared` and asserts:
+   (a) Qwen lookup returns `'query'` prompt name
+   (b) Unknown model returns None
+   (c) Env COCOINDEX_QUERY_PROMPT_NAME='custom' override works
+   Run with `python3` — exit 0 required.
+5. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/001-prefix-registry-architecture --strict` — exit 0 required.
+
+═══════════════════════════════════════════════════════════════════
+ALLOWED WRITE PATHS
+═══════════════════════════════════════════════════════════════════
+
+- .opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts
+- .opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+- .opencode/skills/system-spec-kit/mcp_server/cocoindex_code/shared.py
+- .opencode/skills/system-spec-kit/mcp_server/dist/** (regenerated by build)
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/001-prefix-registry-architecture/**
+
+═══════════════════════════════════════════════════════════════════
+BANNED OPERATIONS
+═══════════════════════════════════════════════════════════════════
+
+- Touch any OTHER source file (no Voyage provider, no LiteLLM, no other providers, no schema, no other MCP server code)
+- Edit MCP runtime configs (~/.claude.json, opencode.json, .codex/config.toml, .gemini/settings.json) — that's sub-phase 003's job
+- Edit any other spec folder (only 001-prefix-registry-architecture)
+- Download models, run pip/npm install (no network ops)
+- Touch vec stores (.cocoindex_code/**, .opencode/skills/system-spec-kit/mcp_server/database/**)
+- Spawn sub-agents (no SpawnAgent / Task tool / nested cli-* / opencode run / opencode-skills)
+- Modify the parent 014 wrapper's spec.md/graph-metadata.json (out of scope for 001)
+
+═══════════════════════════════════════════════════════════════════
+RESPONSE CONTRACT — these fields MUST appear at the end of your final response
+═══════════════════════════════════════════════════════════════════
+
+BINDING: I have read the 001 PREFIX REGISTRY contract. I edited hf-local.ts, factory.ts, shared.py. I ran npm run build + tsc --noEmit (both exit 0). I wrote and executed the two /scratch/ test scripts (both exit 0). I strict-validated the 001 packet (exit 0).
+AGENT_RECEIVED: cli-opencode openai/gpt-5.5-fast --variant high
+SPAWN_AGENT_USED: no
+FILES_MODIFIED:
+  - <each path + line ranges>
+FILES_CREATED:
+  - <each path>
+BUILD_EXIT_CODE: <0 or non-zero>
+TSC_NOEMIT_EXIT_CODE: <0 or non-zero>
+TEST_PREFIX_REGISTRY_EXIT_CODE: <0 or non-zero>
+TEST_COCOINDEX_PROMPTS_EXIT_CODE: <0 or non-zero>
+STRICT_VALIDATE_EXIT_CODE: <0 or non-zero>
+KNOWN_GAPS: <list anything incomplete or any deviation from contract>

@@ -42,6 +42,24 @@ from .protocol import (
 logger = logging.getLogger(__name__)
 
 
+def _ipc_debug_enabled() -> bool:
+    return os.environ.get("COCOINDEX_CODE_IPC_DEBUG", "").lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
+
+
+def _log_ipc_recv(label: str, data: bytes) -> None:
+    if not _ipc_debug_enabled():
+        return
+    print(
+        f"ipc_recv label={label} bytes={len(data)} first200_hex={data[:200].hex()}",
+        file=sys.stderr,
+    )
+
+
 class DaemonClient:
     """Client for communicating with the daemon."""
 
@@ -127,6 +145,7 @@ class DaemonClient:
                 data = self._conn.recv_bytes()
             except EOFError:
                 raise RuntimeError("Connection to daemon lost during search")
+            _log_ipc_recv("search", data)
             resp = decode_response(data)
             if isinstance(resp, ErrorResponse):
                 raise RuntimeError(f"Daemon error: {resp.message}")

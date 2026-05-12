@@ -12,7 +12,11 @@ args = [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]
 
 [mcp_servers.spec_kit_memory.env]
 EMBEDDINGS_PROVIDER = "auto"
-MEMORY_DB_PATH = ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
+# MEMORY_DB_PATH intentionally unset: filename is auto-derived from provider+model+dim
+# (e.g., context-index__hf-local__nomic-ai__nomic-embed-text-v1.5__768.sqlite for the
+# auto-resolved default). 014-local-embeddings-setup-a removed the explicit override
+# that pinned the generic context-index.sqlite filename (a leftover from an older state).
+# To override the model: set HF_EMBEDDINGS_MODEL in .env.local at repo root (see .env.example).
 SPECKIT_SESSION_BOOST = "true"
 SPECKIT_CAUSAL_BOOST = "true"
 _NOTE_1_DATABASE = "Stores vectors in: .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"

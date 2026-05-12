@@ -1,0 +1,5 @@
+{"iter":1,"dim":"correctness","p0":0,"p1":1,"p2":1,"timestamp":"2026-05-12T22:40:00+02:00"}
+{"iter":2,"dim":"type-safety","p0":0,"p1":1,"p2":1,"timestamp":"2026-05-12T22:41:00+02:00"}
+{"iter":3,"dim":"docs","p0":0,"p1":1,"p2":1,"timestamp":"2026-05-12T22:42:00+02:00"}
+{"iter":4,"dim":"performance","p0":0,"p1":1,"p2":1,"timestamp":"2026-05-12T22:43:00+02:00"}
+{"event":"converged","packet":"005-q4-quantization","total_iters":4,"final_p0":0,"final_p1":2,"final_p2":4,"timestamp":"2026-05-12T22:43:10+02:00"}

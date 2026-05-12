@@ -1,0 +1,35 @@
+COMMAND: temp project source daemon search after search-only patch
+TIMESTAMP: 2026-05-12T20:10:18Z
+zsh:1: nice(5) failed: operation not permitted
+ipc_recv label=search bytes=1857 first200_hex=88a474797065a6736561726368a773756363657373c3a7726573756c74739389a966696c655f70617468a9524541444d452e6d64a86c616e6775616765a86d61726b646f776ea7636f6e74656e74da015b23232323204f544845520a0a2a2a736b2d70726f6d70742a2a0a2d2050726f6d707420656e67696e656572696e67207370656369616c697374206175746f2d73656c656374696e672066726f6d20372070726f76656e206672616d65776f726b732028524341462c20434f535441522c20524143452c20
+dedupedAliases: 1 | uniqueResultCount: 3
+
+--- Result 1 (score: 0.598, raw_score: 0.598) ---
+File: README.md:838-845 [markdown, docs]
+#### OTHER
+
+**sk-prompt**
+- Prompt engineering specialist auto-selecting from 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
+- DEPTH thinking methodology with 3-10 iteration rounds of progressive refinement
+- CLEAR quality scoring: Clarity, Logic, Expression, Reliability (40+/50 pass threshold)
+
+**deep-agent-improvement**
+
+--- Result 2 (score: 0.542, raw_score: 0.542) ---
+File: AGENTS.md:212-215 [markdown, docs]
+#### CONSOLIDATED QUESTION PROTOCOL
+Consolidate multiple questions into a SINGLE prompt before any analysis or tool calls — never split across messages. **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading; Level 1 tasks skip completion verification.
+
+---
+
+--- Result 3 (score: 0.524, raw_score: 0.524) ---
+File: README.md:778-786 [markdown, docs]
+**deep-research** 
+- Autonomous research investigation system with iterative LEAF cycles
+- Fresh context per iteration, externalized JSONL state, 3-signal convergence detection (Rolling Average + MAD Noise Floor + Coverage/Age)
+- Semantic coverage graph with 7 relation types, question coverage tracking, sourceDiversity and evidenceDepth guards
+- Progressive synthesis, negative knowledge preservation, quality guards (source diversity, focus alignment, weak-source checks)
+- Fail-closed corruption handling, graph convergence fallback scoring, terminal stop metadata parsing
+- Lifecycle modes: `new`, `resume`, `restart`. Dispatched by `/spec_kit:deep-research` command
+
+**deep-review**

@@ -17,6 +17,8 @@ from multiprocessing.connection import Connection, Listener
 from pathlib import Path
 from typing import Any, TextIO
 
+from cocoindex.connectors import sqlite as coco_sqlite
+
 from ._version import __version__
 from .project import Project
 from .protocol import (
@@ -49,25 +51,45 @@ from .protocol import (
 )
 from .query import query_codebase
 from .settings import (
+    PROJECT_SETTINGS,
     global_settings_mtime_us,
     load_project_settings,
     load_user_settings,
     user_settings_dir,
 )
-from .shared import SQLITE_DB, Embedder, create_embedder
+from .shared import EMBEDDER, SQLITE_DB, Embedder, create_embedder
 
 logger = logging.getLogger(__name__)
 
 
-def _safe_send_bytes(conn: Connection, payload: bytes) -> None:
+def _ipc_debug_enabled() -> bool:
+    return os.environ.get("COCOINDEX_CODE_IPC_DEBUG", "").lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
+
+
+def _safe_send_bytes(conn: Connection, payload: bytes, *, label: str = "response") -> None:
     """Send bytes over a multiprocessing connection, swallowing pipe errors.
 
     Logs once at INFO if the client disconnected. Never raises.
     """
+    if _ipc_debug_enabled():
+        logger.info(
+            "ipc_send label=%s bytes=%d first200_hex=%s",
+            label,
+            len(payload),
+            payload[:200].hex(),
+        )
     try:
         conn.send_bytes(payload)
     except (BrokenPipeError, ConnectionResetError):
         logger.info("client disconnected before response could be sent")
+    except Exception:
+        logger.exception("ipc_send failed label=%s bytes=%d", label, len(payload))
+        raise
 
 
 def _pid_alive(pid: int) -> bool:
@@ -139,6 +161,16 @@ class SearchResults(list[SearchResult]):
         super().__init__(results)
         self.dedupedAliases = deduped_aliases
         self.uniqueResultCount = unique_result_count
+
+
+class SearchOnlyContext:
+    """Minimal context provider for read-only searches against target_sqlite.db."""
+
+    def __init__(self, values: dict[Any, Any]) -> None:
+        self._values = values
+
+    def get_context(self, key: Any) -> Any:
+        return self._values[key]
 
 
 # ---------------------------------------------------------------------------
@@ -354,18 +386,35 @@ class ProjectRegistry:
         offset: int = 0,
     ) -> SearchResults:
         """Search within a project."""
-        project = await self.get_project(project_root)
         root = Path(project_root)
         target_db = root / ".cocoindex_code" / "target_sqlite.db"
-        results = await query_codebase(
-            query=query,
-            target_sqlite_db_path=target_db,
-            env=project.env,
-            limit=limit,
-            offset=offset,
-            languages=languages,
-            paths=paths,
-        )
+        project = self._projects.get(project_root)
+        db_to_close: Any | None = None
+        if project is None:
+            project_settings = load_project_settings(root)
+            db_to_close = coco_sqlite.connect(str(target_db), load_vec=True)
+            env: Any = SearchOnlyContext(
+                {
+                    SQLITE_DB: db_to_close,
+                    EMBEDDER: self._embedder,
+                    PROJECT_SETTINGS: project_settings,
+                }
+            )
+        else:
+            env = project.env
+        try:
+            results = await query_codebase(
+                query=query,
+                target_sqlite_db_path=target_db,
+                env=env,
+                limit=limit,
+                offset=offset,
+                languages=languages,
+                paths=paths,
+            )
+        finally:
+            if db_to_close is not None:
+                db_to_close.close()
         search_results = [
             SearchResult(
                 file_path=r.file_path,
@@ -495,13 +544,13 @@ async def handle_connection(
                 req = decode_request(data)
             except Exception as e:
                 resp: Response = ErrorResponse(message=f"Invalid request: {e}")
-                _safe_send_bytes(conn, encode_response(resp))
+                _safe_send_bytes(conn, encode_response(resp), label=type(resp).__name__)
                 continue
 
             if not handshake_done:
                 if not isinstance(req, HandshakeRequest):
                     resp = ErrorResponse(message="First message must be a handshake")
-                    _safe_send_bytes(conn, encode_response(resp))
+                    _safe_send_bytes(conn, encode_response(resp), label=type(resp).__name__)
                     break
 
                 ok = req.version == __version__
@@ -510,7 +559,7 @@ async def handle_connection(
                     daemon_version=__version__,
                     global_settings_mtime_us=settings_mtime_us,
                 )
-                _safe_send_bytes(conn, encode_response(resp))
+                _safe_send_bytes(conn, encode_response(resp), label=type(resp).__name__)
                 if not ok:
                     break
                 handshake_done = True
@@ -520,12 +569,17 @@ async def handle_connection(
             if isinstance(result, AsyncIterator):
                 try:
                     async for resp in result:
-                        _safe_send_bytes(conn, encode_response(resp))
+                        _safe_send_bytes(conn, encode_response(resp), label=type(resp).__name__)
                 except Exception as exc:
                     logger.info("error during streaming response: %s", exc)
-                    _safe_send_bytes(conn, encode_response(ErrorResponse(message=str(exc))))
+                    error_resp = ErrorResponse(message=str(exc))
+                    _safe_send_bytes(
+                        conn,
+                        encode_response(error_resp),
+                        label=type(error_resp).__name__,
+                    )
             else:
-                _safe_send_bytes(conn, encode_response(result))
+                _safe_send_bytes(conn, encode_response(result), label=type(result).__name__)
 
             if isinstance(req, StopRequest):
                 break
@@ -582,9 +636,6 @@ async def _dispatch(
             return registry.update_index(req.project_root)
 
         if isinstance(req, SearchRequest):
-            # Ensure the project is loaded (may trigger load-time indexing)
-            await registry.get_project(req.project_root)
-
             # If load-time indexing is in progress, return a streaming response
             if registry.should_wait_for_indexing(req.project_root):
                 return _search_with_wait(registry, req)

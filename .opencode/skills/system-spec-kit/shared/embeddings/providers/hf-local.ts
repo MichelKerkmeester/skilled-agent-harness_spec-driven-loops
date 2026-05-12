@@ -18,6 +18,9 @@ const MODEL_LOAD_TIMEOUT: number = 120000; // 2 minutes (model is ~274MB)
 
 // Task prefixes required by nomic-embed-text-v1.5
 // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
+// NOTE: kept as the default (Nomic) prefix shape for backward-compatible consumers
+// (shared/embeddings.ts, shared/index.ts, mcp_server/lib/providers/embeddings.ts).
+// New code should call getPrefixFor() instead — see PREFIX_REGISTRY below.
 /** Defines task prefix. */
 export const TASK_PREFIX: TaskPrefixMap = {
   DOCUMENT: 'search_document: ',
@@ -25,6 +28,87 @@ export const TASK_PREFIX: TaskPrefixMap = {
   CLUSTERING: 'clustering: ',
   CLASSIFICATION: 'classification: ',
 };
+
+// ---------------------------------------------------------------
+// 1b. PREFIX REGISTRY (014-local-embeddings-setup-a / 001-prefix-registry-architecture)
+// ---------------------------------------------------------------
+// Model-keyed prefix lookup. Different embedding models use different prefix
+// conventions (Nomic vs E5 vs EmbeddingGemma vs Snowflake-Arctic vs mxbai vs bge).
+// Hardcoding Nomic's `search_document:` / `search_query:` for every model causes
+// ~5-8% silent recall loss when running a non-Nomic model.
+//
+// Resolution order (getPrefixFor):
+//   1) env override:
+//        HF_EMBEDDINGS_PREFIX_DOC   — overrides document prefix for any model
+//        HF_EMBEDDINGS_PREFIX_QUERY — overrides query prefix for any model
+//      Empty string is a VALID override meaning "no prefix"; `undefined` (unset)
+//      means "fall through to the registry".
+//   2) PREFIX_REGISTRY entry for the modelId
+//   3) empty string '' (safe — no prefix is always valid)
+export interface ModelPrefixConfig {
+  document?: string;
+  query?: string;
+}
+
+export const PREFIX_REGISTRY: Readonly<Record<string, Readonly<ModelPrefixConfig>>> = Object.freeze({
+  'nomic-ai/nomic-embed-text-v1.5': Object.freeze({
+    document: 'search_document: ',
+    query: 'search_query: ',
+  }),
+  'google/embeddinggemma-300m': Object.freeze({
+    document: 'title: none | text: ',
+    query: 'task: search result | query: ',
+  }),
+  // transformers.js-compatible ONNX port of the same model (shares prefix shape)
+  'onnx-community/embeddinggemma-300m-ONNX': Object.freeze({
+    document: 'title: none | text: ',
+    query: 'task: search result | query: ',
+  }),
+  'intfloat/e5-large-v2': Object.freeze({
+    document: 'passage: ',
+    query: 'query: ',
+  }),
+  'mixedbread-ai/mxbai-embed-large-v1': Object.freeze({
+    document: '',
+    query: '',
+  }),
+  'Snowflake/snowflake-arctic-embed-l-v2.0': Object.freeze({
+    document: '',
+    query: 'Represent this sentence for searching relevant passages: ',
+  }),
+  'BAAI/bge-m3': Object.freeze({
+    document: '',
+    query: '',
+  }),
+});
+
+/**
+ * Resolve the prefix string for a given (modelId, kind) pair.
+ * Returns '' (empty string) as the safe final fallback.
+ *
+ * @param modelId - HuggingFace model id, e.g. 'google/embeddinggemma-300m'
+ * @param kind    - 'document' for index-time embeddings, 'query' for search-time embeddings
+ */
+export function getPrefixFor(modelId: string, kind: 'document' | 'query'): string {
+  // 1) env override (distinguish unset vs empty-string)
+  const envKey = kind === 'document' ? 'HF_EMBEDDINGS_PREFIX_DOC' : 'HF_EMBEDDINGS_PREFIX_QUERY';
+  const envValue = process.env[envKey];
+  if (envValue !== undefined) {
+    return envValue;
+  }
+
+  // 2) registry entry
+  const entry = PREFIX_REGISTRY[modelId];
+  if (entry) {
+    const candidate = entry[kind];
+    if (candidate !== undefined) {
+      return candidate;
+    }
+  }
+
+  // 3) safe fallback
+  return '';
+}
 
 // ---------------------------------------------------------------
 // 2. DEVICE DETECTION
@@ -49,6 +133,28 @@ interface HfLocalOptions {
   dim?: number;
   maxTextLength?: number;
   timeout?: number;
+  dtype?: HfLocalDtype;
+}
+
+// 014-local-embeddings-setup-a / 005-q4-quantization:
+// Allowed dtypes for ONNX model variants exposed by @huggingface/transformers.
+// EmbeddingGemma-300m-ONNX ships fp32 (default), fp16, q4, q4f16, quantized (int8),
+// and a no_gather_q4 variant. fp32 is the recall-safe baseline; q4 halves RAM at
+// a small recall cost; q4f16 is the in-between sweet spot per transformers.js docs.
+const ALLOWED_HF_DTYPES: ReadonlyArray<string> = [
+  'fp32', 'fp16', 'q4', 'q4f16', 'q8', 'int8', 'uint8', 'bnb4',
+];
+export type HfLocalDtype = 'fp32' | 'fp16' | 'q4' | 'q4f16' | 'q8' | 'int8' | 'uint8' | 'bnb4';
+
+function resolveDtype(explicit?: string): HfLocalDtype {
+  const raw = (explicit ?? process.env.HF_EMBEDDINGS_DTYPE ?? 'fp32').trim();
+  if (!ALLOWED_HF_DTYPES.includes(raw)) {
+    console.warn(
+      `[hf-local] Unknown HF_EMBEDDINGS_DTYPE="${raw}"; falling back to fp32. Allowed: ${ALLOWED_HF_DTYPES.join(', ')}`,
+    );
+    return 'fp32';
+  }
+  return raw as HfLocalDtype;
 }
 
 interface ErrorWithCode extends Error {
@@ -100,6 +206,7 @@ async function withTimeout<T>(operation: Promise<T>, timeoutMs: number, message:
 export class HfLocalProvider implements IEmbeddingProvider {
   modelName: string;
   dim: number;
+  dtype: HfLocalDtype;
   maxTextLength: number;
   timeout: number;
   extractor: FeatureExtractionPipeline | null;
@@ -110,6 +217,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
   constructor(options: HfLocalOptions = {}) {
     this.modelName = options.model || process.env.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL;
     this.dim = options.dim || EMBEDDING_DIM;
+    this.dtype = resolveDtype(options.dtype);
     this.maxTextLength = options.maxTextLength || MAX_TEXT_LENGTH;
     this.timeout = options.timeout || EMBEDDING_TIMEOUT;
 
@@ -132,7 +240,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
     this.loadingPromise = (async (): Promise<FeatureExtractionPipeline> => {
       const start = Date.now();
       try {
-        console.warn(`[hf-local] Loading ${this.modelName} (~274MB, first load may take 15-30s)...`);
+        console.warn(`[hf-local] Loading ${this.modelName} (dtype=${this.dtype}, first load may take 15-30s)...`);
 
         const { pipeline } = await import('@huggingface/transformers');
 
@@ -148,7 +256,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
             }, MODEL_LOAD_TIMEOUT);
 
             (pipeline as PipelineFactory)('feature-extraction', this.modelName, {
-              dtype: 'fp32',
+              dtype: this.dtype,
               device: device,
             }).then((extractor: FeatureExtractionPipeline) => {
               clearTimeout(timeoutId);
@@ -272,7 +380,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
       return null;
     }
-    const prefixedText = TASK_PREFIX.DOCUMENT + text;
+    const prefixedText = getPrefixFor(this.modelName, 'document') + text;
     return await this.generateEmbedding(prefixedText);
   }
 
@@ -280,7 +388,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
       return null;
     }
-    const prefixedQuery = TASK_PREFIX.QUERY + text;
+    const prefixedQuery = getPrefixFor(this.modelName, 'query') + text;
     return await this.generateEmbedding(prefixedQuery);
   }
 

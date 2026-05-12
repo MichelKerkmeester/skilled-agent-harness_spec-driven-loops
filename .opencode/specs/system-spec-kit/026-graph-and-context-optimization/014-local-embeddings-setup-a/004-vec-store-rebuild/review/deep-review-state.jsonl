@@ -1,0 +1,6 @@
+{"iter":1,"dim":"correctness","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:35:00+02:00"}
+{"iter":2,"dim":"reversibility","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:36:00+02:00"}
+{"iter":3,"dim":"docs","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:37:00+02:00"}
+{"iter":4,"dim":"edge-cases","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:38:00+02:00"}
+{"iter":5,"dim":"performance","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:39:00+02:00"}
+{"event":"converged","packet":"004-vec-store-rebuild","total_iters":5,"final_p0":1,"final_p1":5,"final_p2":5,"timestamp":"2026-05-12T22:39:10+02:00"}

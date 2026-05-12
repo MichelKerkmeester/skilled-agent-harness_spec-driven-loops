@@ -1,0 +1,6 @@
+{"iter":1,"dim":"correctness","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:48:00+02:00"}
+{"iter":2,"dim":"security","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:49:00+02:00"}
+{"iter":3,"dim":"edge-cases","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:50:00+02:00"}
+{"iter":4,"dim":"cross-stack","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:51:00+02:00"}
+{"iter":5,"dim":"performance","p0":1,"p1":1,"p2":1,"timestamp":"2026-05-12T22:52:00+02:00"}
+{"event":"converged","packet":"009-cocoindex-ipc-fix","total_iters":5,"final_p0":1,"final_p1":5,"final_p2":5,"timestamp":"2026-05-12T22:52:10+02:00"}

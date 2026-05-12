@@ -5,6 +5,41 @@ const { spawn, spawnSync } = require('child_process');
 
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
+
+// 014-local-embeddings-setup-a / 003-mcp-config-rollout:
+// Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
+// .env, both are gitignored. Existing process.env wins over file values (do not override).
+// Minimal parser — no external dependency.
+function loadEnvFile(filePath) {
+  if (!fs.existsSync(filePath)) return 0;
+  let count = 0;
+  const raw = fs.readFileSync(filePath, 'utf8');
+  for (const line of raw.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const m = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/);
+    if (!m) continue;
+    const key = m[1];
+    let val = m[2];
+    // Strip matching outer quotes (single or double)
+    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+      val = val.slice(1, -1);
+    }
+    if (!(key in process.env)) {
+      process.env[key] = val;
+      count++;
+    }
+  }
+  return count;
+}
+for (const fname of ['.env.local', '.env']) {
+  const p = path.join(root, fname);
+  if (fs.existsSync(p)) {
+    const n = loadEnvFile(p);
+    if (n > 0) process.stderr.write(`[spec-kit-memory-launcher] loaded ${n} env(s) from ${fname}\n`);
+  }
+}
+
 let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
 let kitDir = path.join(skillsDir, 'system-spec-kit');

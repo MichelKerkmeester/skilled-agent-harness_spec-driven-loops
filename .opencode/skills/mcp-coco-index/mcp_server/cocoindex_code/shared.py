@@ -1,9 +1,12 @@
 """Shared context keys, embedder factory, and CodeChunk schema."""
 
 # Modified by spec-kit-skilled-agent-orchestration: 009 packet REQ-001..006 (see ../NOTICE)
+# Modified by 014-local-embeddings-setup-a / 001-prefix-registry-architecture:
+# _QUERY_PROMPT_MODELS converted from set to dict; env override added.
 from __future__ import annotations
 
 import logging
+import os
 import pathlib
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Annotated, Union
@@ -24,7 +27,32 @@ logger = logging.getLogger(__name__)
 SBERT_PREFIX = "sbert/"
 
 # Models that define a "query" prompt for asymmetric retrieval.
-_QUERY_PROMPT_MODELS = {"nomic-ai/nomic-embed-code", "nomic-ai/CodeRankEmbed"}
+# Maps model_id -> prompt_name passed to SentenceTransformerEmbedder.
+# Resolution order in resolve_query_prompt_name():
+#   1) env override COCOINDEX_QUERY_PROMPT_NAME (empty string == no prompt)
+#   2) this registry entry
+#   3) None (raw text, no prompt-name flag)
+_QUERY_PROMPT_MODELS: dict[str, str] = {
+    "nomic-ai/nomic-embed-code": "query",
+    "nomic-ai/CodeRankEmbed": "query",
+    # 014-local-embeddings-setup-a / 001-prefix-registry-architecture additions:
+    "Qwen/Qwen3-Embedding-0.6B": "query",
+    "Qwen/Qwen3-Embedding-4B": "query",
+    "Qwen/Qwen3-Embedding-8B": "query",
+}
+
+
+def resolve_query_prompt_name(model_name: str) -> str | None:
+    """Resolve the query prompt name for a model.
+
+    Env override (COCOINDEX_QUERY_PROMPT_NAME) wins over the registry.
+    Empty string is a valid override meaning "explicitly no prompt".
+    """
+    env_value = os.environ.get("COCOINDEX_QUERY_PROMPT_NAME")
+    if env_value is not None:
+        return env_value if env_value != "" else None
+    return _QUERY_PROMPT_MODELS.get(model_name)
+
 
 # Type alias
 Embedder = Union["SentenceTransformerEmbedder", "LiteLLMEmbedder"]
@@ -58,7 +86,7 @@ def create_embedder(settings: EmbeddingSettings) -> Embedder:
         if model_name.startswith(SBERT_PREFIX):
             model_name = model_name[len(SBERT_PREFIX) :]
 
-        query_prompt_name = "query" if model_name in _QUERY_PROMPT_MODELS else None
+        query_prompt_name = resolve_query_prompt_name(model_name)
         instance: Embedder = SentenceTransformerEmbedder(
             model_name,
             device=settings.device,

@@ -1,10 +1,34 @@
 """CLI entry point for cocoindex-code (ccc command)."""
 
 # Modified by spec-kit-skilled-agent-orchestration: 009 packet REQ-001..006 (see ../NOTICE)
+# Modified by 014-local-embeddings-setup-a / 003-mcp-config-rollout:
+# load project-local .env.local / .env at startup so override env vars
+# (COCOINDEX_CODE_EMBEDDING_MODEL etc.) take effect without committing them to
+# shared MCP runtime configs. Both files are gitignored by default.
 from __future__ import annotations
 
+import os as _os
 from pathlib import Path
 from typing import TYPE_CHECKING
+
+# Project-local env override loader. Existing process.env wins (override=False).
+# Search upward from CWD for .env.local first (Setup A overrides), then .env (project defaults).
+try:
+    from dotenv import load_dotenv as _load_dotenv
+    _cwd = Path(_os.getcwd()).resolve()
+    for _ancestor in (_cwd, *_cwd.parents):
+        _local = _ancestor / ".env.local"
+        _shared = _ancestor / ".env"
+        if _local.exists():
+            _load_dotenv(_local, override=False)
+        if _shared.exists():
+            _load_dotenv(_shared, override=False)
+        # Stop at first ancestor that has either file (or at filesystem root).
+        if _local.exists() or _shared.exists():
+            break
+except ImportError:
+    # python-dotenv not installed in this venv — skip; env vars must be set externally.
+    pass
 
 import typer as _typer
 

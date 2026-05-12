@@ -85,6 +85,33 @@ const providerValidationCache = new Map<string, Promise<ApiKeyValidationResult>>
 export const SUPPORTED_PROVIDERS = ['openai', 'voyage', 'hf-local', 'auto'] as const;
 const SUPPORTED_PROVIDER_SET: ReadonlySet<string> = new Set(SUPPORTED_PROVIDERS);
 
+// 014-local-embeddings-setup-a / 007-voyage-cleanup-and-egress-monitoring:
+// Runtime guard that fires once per process startup if VOYAGE_API_KEY is present
+// while the resolved provider is hf-local. The original Voyage purge in 003 only
+// cleaned shell-propagating sources (~/.zshrc, project .env, macOS launchd). If a
+// future setup re-exports the key (e.g. via a different shell rc or a system-wide
+// launchd plist), `EMBEDDINGS_PROVIDER=auto` will silently fall back to Voyage and
+// start making network calls to api.voyageai.com again. This guard surfaces that
+// regression at the first provider-resolution call so users notice before egress.
+let voyageDriftWarned = false;
+function warnIfVoyageDriftDetected(effectiveProvider: string): void {
+  if (voyageDriftWarned) {
+    return;
+  }
+  if (effectiveProvider !== 'hf-local') {
+    return;
+  }
+  if (process.env.VOYAGE_API_KEY) {
+    voyageDriftWarned = true;
+    console.warn(
+      '[factory] VOYAGE_API_KEY is set in process.env but the resolved provider is hf-local. ' +
+      'If you intended to use Voyage, set EMBEDDINGS_PROVIDER=voyage explicitly. ' +
+      'If you intended local-only, unset VOYAGE_API_KEY to silence this warning. ' +
+      'See 014-local-embeddings-setup-a/007-voyage-cleanup-and-egress-monitoring/spec.md.',
+    );
+  }
+}
+
 const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = {
   voyage: 'voyage-4',
   openai: 'text-embedding-3-small',
@@ -97,6 +124,17 @@ export const VALID_PROVIDER_DIMENSIONS = Object.freeze({
   openai: Object.freeze({ ...OPENAI_MODEL_DIMENSIONS }),
   'hf-local': Object.freeze({
     'nomic-ai/nomic-embed-text-v1.5': 768,
+    // 014-local-embeddings-setup-a / 001-prefix-registry-architecture:
+    // Additional locally-runnable embedding models registered for Setup A and
+    // documented fallbacks. Dimensions are model-native; EmbeddingGemma also
+    // supports Matryoshka truncation via the EMBEDDING_DIM env override.
+    'google/embeddinggemma-300m': 768,
+    // transformers.js-compatible ONNX port (used by HfLocalProvider on Node)
+    'onnx-community/embeddinggemma-300m-ONNX': 768,
+    'intfloat/e5-large-v2': 1024,
+    'mixedbread-ai/mxbai-embed-large-v1': 1024,
+    'Snowflake/snowflake-arctic-embed-l-v2.0': 1024,
+    'BAAI/bge-m3': 1024,
   }),
 } satisfies Record<SupportedProviderName, Readonly<Record<string, number>>>);
 
@@ -199,6 +237,9 @@ function getProviderInfoForResolution(resolution: ProviderResolution): ProviderI
   const reason = metadata.fallbackReason
     ? `Fallback from ${metadata.requestedProvider} to ${metadata.effectiveProvider}: ${metadata.fallbackReason}`
     : resolution.reason;
+
+  // 014/007: surface accidental Voyage drift at the first provider resolution.
+  warnIfVoyageDriftDetected(metadata.effectiveProvider);
 
   return {
     provider: metadata.effectiveProvider,

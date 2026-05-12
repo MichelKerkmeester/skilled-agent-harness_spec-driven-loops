@@ -1,0 +1,50 @@
+feat(embeddings,014): migrate from Voyage to local Setup A (EmbeddingGemma 768 + Qwen3 2560)
+
+Migrate the spec-kit-memory layer and CocoIndex code-search to fully local
+embedding models. Memory side is fully operational under the new model;
+CocoIndex side has the right schema and a partial index but query path needs
+the upstream IPC fix tracked in 014/009.
+
+Setup A profile:
+  spec-kit-memory:  onnx-community/embeddinggemma-300m-ONNX (768 dim, hf-local)
+  cocoindex_code:   Qwen/Qwen3-Embedding-4B (2560 dim, sentence-transformers/sbert)
+  previous defaults: Voyage voyage-4 (1024 dim) and sentence-transformers/all-MiniLM-L6-v2 (384 dim)
+
+Sub-phases (014/001-009):
+  001 prefix-registry-architecture           Add model-keyed prefix registry + env override; closes silent-recall-loss gap when swapping non-Nomic embedding models.
+  002 model-installation-and-compat          Download EmbeddingGemma-300m-ONNX + Qwen3-Embedding-4B; transformers.js compat smoke tests; HF cache symlink for the ONNX layout.
+  003 mcp-config-rollout                     Project-local .env.local mechanism + dotenv autoload in both MCP launchers (Node + Python). Voyage purged from ~/.zshrc, project .env, and macOS launchd.
+  004 vec-store-rebuild                      Memory: rebuilt to filename-keyed sqlite (2112/2112 vec rows under hf-local/EmbeddingGemma/768). CocoIndex: stale 2GB MiniLM target_sqlite.db deleted; fresh DB with Qwen3 2560-dim schema; under the patched daemon (post-009) the language sweep runs at ~565 rows/min and covers markdown + bash + text + typescript + python + go + rust (sweep was still progressing at commit time).
+  005 q4-quantization                        HF_EMBEDDINGS_DTYPE env var plumbed through HfLocalProvider. fp32 default preserved; q4 opt-in via .env.local. Synthetic fp32-vs-q4 cosine benchmark: mean 0.9811 (effectively interchangeable), q4 15% faster warm-path inference.
+  006 bge-m3-hybrid-evaluation               Planning packet. Eval methodology + ship/don't-ship rule documented. Execution gated on 009.
+  007 voyage-cleanup-and-egress-monitoring   Deleted 463MB stale sqlite (Voyage 322MB + legacy generic-name context-index.sqlite 141MB). Added warn-once egress guard in factory.ts that surfaces if VOYAGE_API_KEY appears while resolved provider is hf-local. Documented 24h tcpdump capture script for post-merge user verification.
+  008 finalize-and-commit                    This packet. Validation cascade + commit-message authorship + post-merge user-verification checklist.
+  009 cocoindex-ipc-fix (follow-on)          Search-path patched in cocoindex_code/daemon.py + client.py: added SearchOnlyContext to bypass full CocoIndex Environment setup for read-only searches against an existing target_sqlite.db. msgspec round-trip verified at 1857 bytes; warm p95 search latency 141.82ms. Indexing also confirmed working under the home daemon (the codex-isolated daemon's "Operation not permitted" was a codex --sandbox workspace-write artifact, not a Rust core bug).
+
+Notable findings (documented in implementation-summary files):
+  - MCP-child lazy-load wedge: first memory_index_scan deferred all 2459 rows due to HfLocalProvider stuck in isHealthy=false after a race with concurrent indexing. Cleared by killing the launcher + /mcp reconnect (root cause untracked; standalone repro works perfectly).
+  - UNCHANGED_EMBEDDING_STATUSES dedup includes 'pending' + 'retry' -> force=true rescan is a no-op on deferred rows. Workaround: direct SQLite DELETE + rescan. embedding_cache content-hash hits made the workaround near-instant.
+  - Public mcp-coco-index venv was editable-installed from the Barter sibling repo -> 003's dotenv-autoload patch was dead code at runtime. Fix: pip install -e . from Public's mcp_server dir to self-pin. Memory note saved.
+  - ~/.cocoindex_code/global_settings.yml had voyage/voyage-code-3 as user-level default -> updated to Qwen/Qwen3-Embedding-4B / sentence-transformers (out of repo; user reapplies on other machines if needed).
+
+Files changed: ~12 source files (TS + Python) + ~60 spec-doc files + 4 sqlite deletes + 1 dist regeneration. ~463MB disk reclaim.
+
+Out-of-repo state changes (not committed but documented in 014):
+  - ~/.cocoindex_code/global_settings.yml: Voyage -> Qwen3 (backup at .pre-014-004.bak)
+  - ~/.cache/huggingface/hub/: Qwen3-Embedding-4B + onnx-community/embeddinggemma-300m-ONNX + symlink
+  - macOS launchd: launchctl unsetenv VOYAGE_API_KEY (runtime mutation, no file)
+
+Post-merge verification (see 008/scratch/post-merge-checks.md):
+  - 24h tcpdump on api.voyageai.com (expect 0 packets)
+  - memory_health() returns vectorSearchAvailable: true, dim 768, healthy: true
+  - cocoindex_code.search returns success=true (search path: shipped under 009)
+
+Deep review (27 iterations, cli-codex gpt-5.5 high, normal speed):
+  - Review report at 014-.../review/review-report.md
+  - Verdict: FAIL with advisories. 1 valid P0 (Codex runtime bypasses .env.local launcher); 2 P0s in the report are stale (009 search + indexing both shipped after the review wrote them).
+  - Valid P1s as follow-on:
+    * P1-005-001: dtype not in EmbeddingProfile/DB filename → silent fp32/q4 mix risk
+    * P1-007-001: Voyage egress guard fires after auto-resolution, not before
+    * P1-007-002: tcpdump-verify.sh uses -i any (may need -i pktap on macOS)
+
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>

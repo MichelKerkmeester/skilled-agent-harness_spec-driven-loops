@@ -1,0 +1,105 @@
+You are dispatched by Claude Code main-agent via cli-opencode for sub-phase 006 of packet 014-local-embeddings-setup-a. Single-shot. No sub-agent dispatch. No SpawnAgent. Spec folder pre-approved (Gate 3 = option A existing).
+
+═══════════════════════════════════════════════════════════════════
+SUB-PHASE 006 — bge-m3 HYBRID RETRIEVAL EVALUATION (Level 3, ADR-bearing)
+═══════════════════════════════════════════════════════════════════
+
+PACKET FOLDER:
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/006-bge-m3-hybrid-evaluation/
+
+CONTEXT
+Sub-phases 001-004 are complete; Setup A baseline runs Qwen3-Embedding-4B for code search (CocoIndex). `BAAI/bge-m3` offers dense + sparse + multi-vector (ColBERT-style) retrieval in one model. If hybrid beats pure-dense Qwen3-4B by a meaningful margin, it changes the code-side recommendation. Worth evaluating but only ship schema work if the lift justifies it.
+
+═══════════════════════════════════════════════════════════════════
+TASKS
+═══════════════════════════════════════════════════════════════════
+
+1) Download bge-m3 to HF cache:
+   `huggingface-cli download BAAI/bge-m3` (~2.3GB)
+
+2) Build evaluation harness at `006-bge-m3-hybrid-evaluation/eval/`:
+   - `queries.json` — 50 hand-curated (query, expected-result-file) pairs from THIS codebase. Examples:
+     • "where is provider selection logic" → `shared/embeddings/factory.ts`
+     • "Gate 3 classifier" → `shared/gate-3-classifier.ts`
+     • "transformers.js pipeline call" → `shared/embeddings/providers/hf-local.ts`
+     • "auto-memory MEMORY.md handling" → `~/.claude/CLAUDE.md`
+     ... 46 more drawn from actual file structure
+   - `corpus-spec.md` — describe what's indexed: which paths, which file types, chunk size
+   - `metrics.md` — define top-1 hit, top-5 hit, MRR@10
+   - `run-eval.py` — orchestrator script
+
+3) Index code corpus three ways at `006-bge-m3-hybrid-evaluation/eval/indexes/`:
+   - `qwen3-4b/` — current Setup A baseline. Use existing `.cocoindex_code/target_sqlite.db` if Qwen3-4B is the active model; otherwise build a parallel index here.
+   - `bge-m3-dense/` — bge-m3 dense-only via sentence-transformers (`SentenceTransformer('BAAI/bge-m3').encode(...)`)
+   - `bge-m3-hybrid/` — bge-m3 dense + sparse + colbert via the `FlagEmbedding` library or huggingface raw model output. Use `BGEM3FlagModel(...).encode(texts, return_dense=True, return_sparse=True, return_colbert_vecs=True)`. Store sparse + colbert in JSON sidecar.
+
+4) Run all 50 queries against all 3 indexes. Score with MRR@10. Record results in `eval/results.json`.
+
+5) For hybrid scoring, use Reciprocal Rank Fusion (RRF): `score_hybrid = sum(1/(60+rank_i))` across dense/sparse/colbert ranks. Standard RRF k=60.
+
+6) Decision matrix (write to `decision-record.md`):
+   - If Qwen3-4B wins OR ties within 2pp MRR@10 → keep Setup A as-is; document bge-m3 as alternative
+   - If bge-m3-dense wins by >2pp → swap default to bge-m3 (still pure-dense; no schema work)
+   - If bge-m3-hybrid wins by >5pp over best dense → SHIP schema extension (sparse + colbert columns in cocoindex's vec0 table + RRF fusion in query path)
+
+7) **Conditional schema work** (ONLY if hybrid wins by >5pp):
+   - Edit `.opencode/skills/system-spec-kit/mcp_server/cocoindex_code/indexer.py` — add `sparse_vector` and `colbert_vectors` auxiliary columns to the Vec0TableDef
+   - Edit `.opencode/skills/system-spec-kit/mcp_server/cocoindex_code/query.py` — add hybrid query path using RRF
+   - Rebuild + reindex
+   - Document in decision-record.md as "hybrid path shipped"
+   - Otherwise document as "hybrid path deferred; lift insufficient to justify schema change"
+
+═══════════════════════════════════════════════════════════════════
+DOCS — fill scaffolded files in this packet
+═══════════════════════════════════════════════════════════════════
+
+- `spec.md`: evaluation goal + 3-way comparison
+- `plan.md`: harness construction + indexing + scoring steps
+- `tasks.md`: 7 task checklist
+- `decision-record.md`: ADR — bge-m3 hybrid vs pure-dense; matrix of outcomes vs decisions; final verdict + evidence
+- `implementation-summary.md`: results table (3 configs × 50 queries × MRR), final decision, any schema changes shipped
+
+═══════════════════════════════════════════════════════════════════
+VERIFY
+═══════════════════════════════════════════════════════════════════
+
+- `eval/results.json` exists with 3 entries (one per config) each with `top1`, `top5`, `mrr10`
+- `decision-record.md` cites the matrix outcome and chosen action
+- If schema changed: TS/Python builds pass, vec-store rebuild succeeds, basic search still returns results
+- Strict-validate the 006 packet — exit 0
+
+═══════════════════════════════════════════════════════════════════
+ALLOWED WRITE PATHS
+═══════════════════════════════════════════════════════════════════
+
+- ~/.cache/huggingface/** (model downloads)
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/006-bge-m3-hybrid-evaluation/**
+- *(conditional, only if hybrid wins by >5pp)* .opencode/skills/system-spec-kit/mcp_server/cocoindex_code/indexer.py + query.py
+- *(conditional)* .opencode/skills/system-spec-kit/mcp_server/dist/**
+
+═══════════════════════════════════════════════════════════════════
+BANNED OPERATIONS
+═══════════════════════════════════════════════════════════════════
+
+- Touch any other source file unless hybrid wins by >5pp
+- Touch any other spec folder
+- Modify the live `.cocoindex_code/target_sqlite.db` outside the eval/ subtree
+- Modify MCP runtime configs (003 owns those)
+- Spawn sub-agents
+
+═══════════════════════════════════════════════════════════════════
+RESPONSE CONTRACT
+═══════════════════════════════════════════════════════════════════
+
+BINDING: I have read the 006 bge-m3 EVAL contract. I built the eval harness, indexed 3 configurations, ran 50 queries, scored MRR@10, made the schema decision per the matrix, and strict-validated.
+AGENT_RECEIVED: cli-opencode openai/gpt-5.5-fast --variant high
+SPAWN_AGENT_USED: no
+BGE_M3_DOWNLOADED: yes/no (size)
+EVAL_RESULTS:
+  qwen3-4b: top1=, top5=, mrr10=
+  bge-m3-dense: top1=, top5=, mrr10=
+  bge-m3-hybrid: top1=, top5=, mrr10=
+DECISION_OUTCOME: <keep-qwen3-4b | swap-to-bge-m3-dense | ship-hybrid-schema>
+SCHEMA_CHANGES_SHIPPED: yes/no
+STRICT_VALIDATE_EXIT_CODE: 0/1/2
+KNOWN_GAPS: <e.g. FlagEmbedding pip install missing, etc>

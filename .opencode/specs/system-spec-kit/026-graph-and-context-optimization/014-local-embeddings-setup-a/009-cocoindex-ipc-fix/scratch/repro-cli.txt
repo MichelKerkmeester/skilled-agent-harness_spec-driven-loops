@@ -1,0 +1,2 @@
+COMMAND: ccc search "embedding initialization" --limit 1
+TIMESTAMP: 2026-05-12T20:02:06Z

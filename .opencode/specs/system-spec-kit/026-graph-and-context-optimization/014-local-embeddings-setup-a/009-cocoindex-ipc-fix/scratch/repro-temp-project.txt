@@ -1,0 +1,40 @@
+COMMAND: temp project source daemon search
+TIMESTAMP: 2026-05-12T20:08:47Z
+zsh:1: nice(5) failed: operation not permitted
+ipc_recv label=search bytes=58 first200_hex=82a474797065a56572726f72a76d657373616765d9244f7065726174696f6e206e6f74207065726d697474656420286f73206572726f72203129
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/ │
+│ skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:400 in search         │
+│                                                                              │
+│   397 │   │   if default is not None:                                        │
+│   398 │   │   │   paths = [default]                                          │
+│   399 │                                                                      │
+│ ❱ 400 │   resp = _search_with_wait_spinner(                                  │
+│   401 │   │   client,                                                        │
+│   402 │   │   project_root=project_root,                                     │
+│   403 │   │   query=query_str,                                               │
+│                                                                              │
+│ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/ │
+│ skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:252 in                │
+│ _search_with_wait_spinner                                                    │
+│                                                                              │
+│   249 │   │   │   │   refresh=True,                                          │
+│   250 │   │   │   )                                                          │
+│   251 │   │                                                                  │
+│ ❱ 252 │   │   resp = client.search(                                          │
+│   253 │   │   │   project_root=project_root,                                 │
+│   254 │   │   │   query=query,                                               │
+│   255 │   │   │   languages=languages,                                       │
+│                                                                              │
+│ /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/ │
+│ skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:151 in search      │
+│                                                                              │
+│   148 │   │   │   _log_ipc_recv("search", data)                              │
+│   149 │   │   │   resp = decode_response(data)                               │
+│   150 │   │   │   if isinstance(resp, ErrorResponse):                        │
+│ ❱ 151 │   │   │   │   raise RuntimeError(f"Daemon error: {resp.message}")    │
+│   152 │   │   │   if isinstance(resp, IndexWaitingNotice):                   │
+│   153 │   │   │   │   if on_waiting is not None:                             │
+│   154 │   │   │   │   │   on_waiting()                                       │
+╰──────────────────────────────────────────────────────────────────────────────╯
+RuntimeError: Daemon error: Operation not permitted (os error 1)
