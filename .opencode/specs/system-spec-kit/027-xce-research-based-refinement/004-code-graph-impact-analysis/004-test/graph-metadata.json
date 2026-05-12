@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-code-graph-impact-analysis/004-test",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-code-graph-impact-analysis/004-test",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-code-graph-impact-analysis",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/004-code-graph-impact-analysis/001-contract"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 004 004 test",
+      "code-graph-impact-analysis.vitest",
+      "impact analysis tests"
+    ],
+    "key_topics": [
+      "tests",
+      "vitest",
+      "fixtures",
+      "impact"
+    ],
+    "importance_tier": "important",
+    "status": "scaffolded",
+    "key_files": [],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Vitest fixture scaffold for code graph impact-analysis correctness.",
+    "created_at": "2026-05-12T00:00:00.000Z",
+    "last_save_at": "2026-05-12T00:00:00.000Z",
+    "last_accessed_at": null,
+    "last_active_child_id": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "completion_pct": 0
+  },
+  "importance_tier": "important"
+}

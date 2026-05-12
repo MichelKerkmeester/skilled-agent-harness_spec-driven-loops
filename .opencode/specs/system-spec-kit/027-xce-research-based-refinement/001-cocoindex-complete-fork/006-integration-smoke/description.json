@@ -1,0 +1,17 @@
+{
+  "specFolder": "001-cocoindex-complete-fork/006-integration-smoke",
+  "description": "Phase 6: integration-smoke",
+  "keywords": [
+    "phase",
+    "integration-smoke"
+  ],
+  "lastUpdated": "2026-05-12T07:10:20.449Z",
+  "specId": "006",
+  "folderSlug": "integration-smoke",
+  "parentChain": [
+    "001-cocoindex-complete-fork"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

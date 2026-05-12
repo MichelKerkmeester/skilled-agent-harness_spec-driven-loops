@@ -1,0 +1,18 @@
+{
+  "name": "001-contract",
+  "purpose": "Define the TypeScript contract for deterministic code_graph HLD/LLD generation before parallel child implementation begins.",
+  "type": "phase-child",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld",
+  "manual": {
+    "depends_on": []
+  },
+  "soft_depends_on": [],
+  "level": 2,
+  "status": "spec-scaffolded",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0
+  }
+}

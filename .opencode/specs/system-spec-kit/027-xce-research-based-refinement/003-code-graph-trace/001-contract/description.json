@@ -1,0 +1,44 @@
+{
+  "title": "Phase 003.001 — code_graph_trace Contract",
+  "trigger_phrases": [
+    "027 phase 003 contract",
+    "code_graph_trace contract",
+    "TraceTool interface"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-12T00:00:00Z",
+  "branch": "main",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/003-code-graph-trace",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld/001-contract"
+    ]
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-code-graph-trace/001-contract",
+  "description": "TraceTool and trace-result TypeScript interfaces.",
+  "keywords": [
+    "trace",
+    "contract",
+    "typescript",
+    "interface"
+  ],
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "specId": "001",
+  "folderSlug": "contract",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "003-code-graph-trace"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

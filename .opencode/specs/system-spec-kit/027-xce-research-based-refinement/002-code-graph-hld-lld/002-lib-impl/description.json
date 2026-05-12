@@ -1,0 +1,20 @@
+{
+  "name": "002-lib-impl",
+  "purpose": "Implement code-graph-hld-lld.ts conforming to the published contract.",
+  "type": "phase-child",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld",
+  "manual": {
+    "depends_on": [
+      "001-contract"
+    ]
+  },
+  "soft_depends_on": [],
+  "level": 2,
+  "status": "spec-scaffolded",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0
+  }
+}

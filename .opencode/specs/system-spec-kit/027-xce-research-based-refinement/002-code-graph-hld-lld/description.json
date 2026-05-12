@@ -1,5 +1,7 @@
 {
-  "title": "Phase 002 — Deterministic HLD/LLD Narrative Generation for code_graph",
+  "title": "Phase Parent: 027/002 Code Graph HLD/LLD",
+  "name": "027/002 Code Graph HLD/LLD Phase Parent",
+  "purpose": "Coordinate four contract-first child phases that deliver the deterministic HLD/LLD narrative layer for code_graph.",
   "trigger_phrases": [
     "027 phase 002",
     "code-graph hld-lld",
@@ -9,32 +11,39 @@
   "level": 2,
   "importance_tier": "important",
   "contextType": "implementation",
-  "status": "spec-scaffolded",
+  "status": "phase-parent",
+  "type": "phase-parent",
   "priority": "P1",
   "createdAt": "2026-05-08T15:00:00Z",
   "branch": "main",
   "parent_track": "027-xce-research-based-refinement",
-  "parent_id": "027-xce-research-based-refinement",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
   "manual": {
-    "depends_on": []
+    "depends_on": [],
+    "children": [
+      "001-contract",
+      "002-lib-impl",
+      "003-handler",
+      "004-test"
+    ]
   },
   "derived": {
-    "status": "spec-scaffolded",
+    "status": "phase-parent",
     "completion_pct": 0,
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld",
-  "description": "Feature Specification: Deterministic HLD/LLD Narrative for code_graph",
+  "description": "Phase parent for deterministic HLD/LLD narrative generation over code_graph data.",
   "keywords": [
-    "feature",
-    "specification",
+    "phase-parent",
     "deterministic",
     "hld",
     "lld",
-    "narrative"
+    "narrative",
+    "code_graph"
   ],
-  "lastUpdated": "2026-05-09T07:57:32.861Z",
-  "specId": "001",
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "specId": "002",
   "folderSlug": "code-graph-hld-lld",
   "parentChain": [
     "system-spec-kit",

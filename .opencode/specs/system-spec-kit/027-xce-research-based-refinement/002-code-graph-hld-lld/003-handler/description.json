@@ -1,0 +1,22 @@
+{
+  "name": "003-handler",
+  "purpose": "Implement handlers/hld-lld.ts and MCP tool wiring using the published contract interface.",
+  "type": "phase-child",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld",
+  "manual": {
+    "depends_on": [
+      "001-contract"
+    ]
+  },
+  "soft_depends_on": [
+    "002-lib-impl"
+  ],
+  "level": 2,
+  "status": "spec-scaffolded",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0
+  }
+}

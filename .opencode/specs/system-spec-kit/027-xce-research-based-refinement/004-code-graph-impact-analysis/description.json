@@ -1,5 +1,5 @@
 {
-  "title": "Phase 004 — Risk-Scored Impact Analysis (code_graph_impact_analysis)",
+  "title": "Phase Parent: 027/004 Code Graph Impact Analysis",
   "trigger_phrases": [
     "027 phase 004",
     "code-graph impact analysis",
@@ -7,34 +7,41 @@
     "impact analysis",
     "risk scoring"
   ],
-  "level": 2,
+  "level": "phase-parent",
   "importance_tier": "important",
   "contextType": "implementation",
-  "status": "spec-scaffolded",
+  "status": "phase-parent",
   "priority": "P1",
   "createdAt": "2026-05-08T15:00:00Z",
   "branch": "main",
   "parent_track": "027-xce-research-based-refinement",
-  "parent_id": "027-xce-research-based-refinement",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
   "manual": {
-    "depends_on": []
+    "children": [
+      "001-contract",
+      "002-lib-impl",
+      "003-handler",
+      "004-test"
+    ],
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld"
+    ]
   },
   "derived": {
-    "status": "spec-scaffolded",
+    "status": "phase-parent",
     "completion_pct": 0,
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-code-graph-impact-analysis",
-  "description": "Feature Specification: code_graph_impact_analysis — Risk-Scored Impact Analysis",
+  "description": "Phase-parent control spec for contract-first implementation of risk-scored code graph impact analysis.",
   "keywords": [
-    "feature",
-    "specification",
+    "phase-parent",
     "risk-scored",
     "impact",
-    "analysis"
+    "analysis",
+    "code-graph"
   ],
-  "lastUpdated": "2026-05-09T07:57:32.871Z",
-  "specId": "003",
+  "lastUpdated": "2026-05-12T00:00:00.000Z",
   "folderSlug": "code-graph-impact-analysis",
   "parentChain": [
     "system-spec-kit",

@@ -1,0 +1,17 @@
+{
+  "specFolder": "001-cocoindex-complete-fork/002-scripts",
+  "description": "Phase 2: scripts",
+  "keywords": [
+    "phase",
+    "scripts"
+  ],
+  "lastUpdated": "2026-05-12T07:10:17.745Z",
+  "specId": "002",
+  "folderSlug": "scripts",
+  "parentChain": [
+    "001-cocoindex-complete-fork"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

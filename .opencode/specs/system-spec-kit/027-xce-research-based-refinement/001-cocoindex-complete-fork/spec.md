@@ -282,3 +282,35 @@ Establish a complete in-repo fork of the `cocoindex-code` MCP wrapper so SpecKit
 - **Task Breakdown**: `tasks.md`
 - **Verification Checklist**: `checklist.md`
 - **Decision Records**: `decision-record.md`
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-import-upstream/ | [Phase 1 scope] | Pending |
+| 2 | 002-scripts/ | [Phase 2 scope] | Pending |
+| 3 | 003-tests-port/ | [Phase 3 scope] | Pending |
+| 4 | 004-docs/ | [Phase 4 scope] | Pending |
+| 5 | 005-attribution/ | [Phase 5 scope] | Pending |
+| 6 | 006-integration-smoke/ | [Phase 6 scope] | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-import-upstream | 002-scripts | [Criteria TBD] | [Verification TBD] |
+| 002-scripts | 003-tests-port | [Criteria TBD] | [Verification TBD] |
+| 003-tests-port | 004-docs | [Criteria TBD] | [Verification TBD] |
+| 004-docs | 005-attribution | [Criteria TBD] | [Verification TBD] |
+| 005-attribution | 006-integration-smoke | [Criteria TBD] | [Verification TBD] |
+<!-- /ANCHOR:phase-map -->

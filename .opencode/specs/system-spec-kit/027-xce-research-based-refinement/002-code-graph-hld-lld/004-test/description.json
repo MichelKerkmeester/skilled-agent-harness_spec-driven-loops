@@ -1,0 +1,23 @@
+{
+  "name": "004-test",
+  "purpose": "Author code-graph-hld-lld.vitest.ts against the published contract interface.",
+  "type": "phase-child",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-code-graph-hld-lld",
+  "manual": {
+    "depends_on": [
+      "001-contract"
+    ]
+  },
+  "soft_depends_on": [
+    "002-lib-impl",
+    "003-handler"
+  ],
+  "level": 2,
+  "status": "spec-scaffolded",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0
+  }
+}
