@@ -15,6 +15,11 @@
 *.key
 *.pem
 
+# Local-only files (personal notes, secret rotation guides, etc — never committed)
+# ───────────────────────────────────────────
+.local/
+.env.pre-pat-removal.bak
+
 # Archive
 # ───────────────────────────────────────────
 .opencode/agents/.provider-backups/
