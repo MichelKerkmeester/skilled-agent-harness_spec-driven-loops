@@ -148,6 +148,7 @@ The child folder was scaffolded with the system-spec-kit Level 3 contract, popul
 | Gold-verification battery | PASS: 28/28 probes (overall 1.0, edge-focus 1.0, all four categories at 1.0) after `code-graph-gold-queries.json` was rewritten to point each probe at the file that actually declares its expected symbols. |
 | Parser-skip-list noise routed to warnings | DIST READY (awaiting MCP restart): `scan.ts` now routes "Parser skipped by skip-list" entries into `warnings[]` instead of polluting `errors[]`. |
 | memory_index_scan rejection reason surfaced | DIST READY (awaiting MCP restart): `memory-index.ts` now includes `rejectionReason`, `rejectionCode`, and `error` in the per-file scan output when a save was rejected. |
+| graph-metadata.json sufficiency exemption | PASS: `memory-save.ts` exempts `graph-metadata.json` (structural metadata file) from the markdown-shaped sufficiency and template-contract gates; verified live via cli-opencode + deepseek-v4-pro that the file now indexes with `status: deferred, id: 2683` instead of `status: rejected, id: 0`. |
 <!-- /ANCHOR:verification -->
 
 ---

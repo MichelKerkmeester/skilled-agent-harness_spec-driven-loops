@@ -305,6 +305,19 @@ function classifyMemorySaveSource(
   return hasAnyStandardMarker ? 'template-generated' : MANUAL_FALLBACK_SOURCE_CLASSIFICATION;
 }
 
+// Files that are structural metadata for graph traversal and continuity, not
+// semantic-search corpus. The memory-sufficiency gate is built around markdown
+// anchors and prose evidence; pure-JSON structural files cannot satisfy it by
+// construction. We exempt them from the sufficiency floor so they index with
+// whatever flattened text the indexer produces — graph traversal already reads
+// these files directly from disk for parent/child/status, so the embedding is
+// best-effort, not load-bearing.
+const STRUCTURAL_METADATA_FILENAMES = new Set<string>(['graph-metadata.json']);
+
+function isStructuralMetadataFile(filePath: string): boolean {
+  return STRUCTURAL_METADATA_FILENAMES.has(path.basename(filePath));
+}
+
 function shouldBypassTemplateContract(
   sourceClassification: PreparedParsedMemory['sourceClassification'],
   sufficiencyResult: MemorySufficiencyResult,
@@ -2115,7 +2128,9 @@ async function processPreparedMemory(
     }
 
     if (!sufficiencyResult.pass) {
-      if (qualityGateMode === 'warn-only') {
+      if (isStructuralMetadataFile(filePath)) {
+        console.warn(`[memory-save] Sufficiency exempt for structural metadata file ${path.basename(filePath)}: ${sufficiencyResult.reasons.join('; ')}`);
+      } else if (qualityGateMode === 'warn-only') {
         console.warn(`[memory-save] Sufficiency warn-only (spec doc) for ${path.basename(filePath)}: ${sufficiencyResult.reasons.join('; ')}`);
       } else {
         return buildInsufficiencyRejectionResult(parsed, validation, sufficiencyResult);
@@ -2123,7 +2138,11 @@ async function processPreparedMemory(
     }
 
     if (!templateContract.valid) {
-      if (templateContractBypassed) {
+      if (isStructuralMetadataFile(filePath)) {
+        console.warn(
+          `[memory-save] Template contract exempt for structural metadata file ${path.basename(filePath)}: ${templateContract.violations.map((v: { message?: string; rule?: string }) => v.message || v.rule).join('; ')}`,
+        );
+      } else if (templateContractBypassed) {
         console.warn(
           `[memory-save] Template contract bypassed in ${MANUAL_FALLBACK_SOURCE_CLASSIFICATION} mode for ${path.basename(filePath)}: ${templateContract.violations.map((v: { message?: string; rule?: string }) => v.message || v.rule).join('; ')}`,
         );
